@@ -393,10 +393,10 @@ function MainApp(props) {
   //   }
   // };
   const Subscription = 
-  props.suscrptionData.subscriptionType === "1" ? "Free" :
-  props.suscrptionData.subscriptionType === "2" ? "Starter" :
-  props.suscrptionData.subscriptionType === "3" ? "Professional" :
-  props.suscrptionData.subscriptionType === "4" ? "Enterprise" :
+  props.suscrptionData.subscriptionType === "1" ? "Starter" :
+  props.suscrptionData.subscriptionType === "2" ? "Professional" :
+  props.suscrptionData.subscriptionType === "3" ? "Enterprise" :
+  props.suscrptionData.subscriptionType === "4" ? "Customise" :
   "Unknown";
   console.log(props.suscrptionData)
   return (

@@ -123,7 +123,7 @@ function InventoryTable(props) {
                   
 
                 </div>
-            <div className=' flex justify-end sticky top-28 z-auto'>
+            <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[92%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" w-[31.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
@@ -169,7 +169,7 @@ function InventoryTable(props) {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2rem] items-center p-3" >
+                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                                                 <div className=" flex font-medium justify-between items-center  w-[15.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">

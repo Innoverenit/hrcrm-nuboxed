@@ -321,7 +321,7 @@ function ContactCardList(props) {
               <div>
               <Tooltip title="Notes">
  <NoteAltIcon
-          className=" !text-xl cursor-pointer text-[#4bc076]"
+          className=" !text-icon cursor-pointer text-[#4bc076]"
           onClick={() => {
             handleContactNotesDrawerModal(true);
             handleSetCurrentContact(item);
@@ -353,7 +353,7 @@ function ContactCardList(props) {
                   }
                 >
                   <AddchartIcon
-                  className="!text-xl cursor-pointer text-blue-500"
+                  className="!text-icon cursor-pointer text-blue-500"
                     onClick={() => {
                       props.handleContactCETdrawer(true);
                       handleSetCurrentContact(item);
@@ -372,7 +372,7 @@ function ContactCardList(props) {
             handleSetCurrentContactId(item);
           }}
         >
-         <PhoneInTalkIcon     className=" !text-xl cursor-pointer text-[blue]"/>
+         <PhoneInTalkIcon     className=" !text-icon cursor-pointer text-[blue]"/>
         </span>
       )}
       {item.doNotCallInd === true && (
@@ -392,7 +392,7 @@ function ContactCardList(props) {
      
       <MailOutlineIcon
         type="mail"
-        className=" !text-xl cursor-pointer text-[red]"
+        className=" !text-icon cursor-pointer text-[red]"
         onClick={() => {
           props.getContactById(item.contactId);
           props.handleContactEmailDrawerModal(true);
@@ -410,7 +410,7 @@ function ContactCardList(props) {
           props.handleContactPulseDrawerModal(true);
         }}
       >{user.pulseAccessInd === true && (
-        <MonitorHeartIcon  className=" !text-xl cursor-pointer text-[#df9697]"/>
+        <MonitorHeartIcon  className=" !text-icon cursor-pointer text-[#df9697]"/>
       )}
       </span>
                   </div>
@@ -425,7 +425,7 @@ function ContactCardList(props) {
         }}
       >
       <LocationOnIcon   
-      className=" !text-xl cursor-pointer text-[#960A0A]"/>
+      className=" !text-icon cursor-pointer text-[#960A0A]"/>
       </span>
     </Tooltip>
     </div>
@@ -444,7 +444,7 @@ function ContactCardList(props) {
      
       <Tooltip title="Edit">
         <BorderColorIcon
-          className=" !text-xl cursor-pointer text-[tomato]"
+          className=" !text-icon cursor-pointer text-[tomato]"
           onClick={() => {
             props.setEditContact(item);
             handleUpdateContactModal(true);

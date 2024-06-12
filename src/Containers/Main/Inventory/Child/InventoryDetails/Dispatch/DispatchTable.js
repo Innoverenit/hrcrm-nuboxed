@@ -60,8 +60,8 @@ function DispatchTable(props) {
   return (
     <>
     
-        <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div className=' flex justify-end sticky  z-auto'>
+          <div class="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className=" flex max-sm:hidden justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
               <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
               <div className="w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]"><FormattedMessage id="app.units" defaultMessage="Units" /></div>
@@ -201,7 +201,7 @@ function DispatchTable(props) {
                             <div>
                               <Tooltip title="Notes">
                                 <NoteAltIcon
-                                  style={{ cursor: "pointer", fontSize: "13px" }}
+                                  className="!text-xl cursor-pointer text-[green]"
                                 />
 
                               </Tooltip>

@@ -12,6 +12,18 @@ const initialState = {
   fetchingNoOfRepairTechnicianByIdError: false,
   repairByTechnician: [],
 
+  fetchingProductionUrgent: false,
+  fetchingProductionUrgentError: false,
+  productionUrgent:[],
+
+  fetchingProductionHigh: false,
+  fetchingProductionHighError: false,
+  productionHigh:[],
+
+  fetchingProductionNormal: false,
+  fetchingProductionNormalError: false,
+  productionNormal:[],
+
   showAssignRepairModal: false,
 
   fetchingRemainingPhoneList: false,
@@ -65,6 +77,11 @@ const initialState = {
   fetchingTaskByPhoneId: false,
   fetchingTaskByPhoneIdError: false,
   taskByPhone: [],
+
+  fetchingAllInputSearchData:false,
+  fetchingAllInputSearchDataError:false,
+  searchRefurbish:[],
+
 
   fetchingProductBuilderById: false,
   fetchingProductBuilderByIdError: false,
@@ -192,6 +209,9 @@ const initialState = {
   fetchingNoOfPhonesByIdError: false,
   noOfPhoneById: [],
 
+  fetchingimeiSearchPhoneData: false,
+  fetchingimeiSearchPhoneDataError: false,
+
   phoneByTechnician: false,
 
   productBuilderList: false,
@@ -214,12 +234,20 @@ const initialState = {
   fetchingOrderByUserError: false,
   orderByUser: [],
 
+  fetchingUpdateDispatchList: false,
+  fetchingUpdateDispatchListError: false,
+  updateDispatchList: [],
+
   fetchingAllManufaturedId: false,
   fetchingAllManufaturedIdError: false,
   allProductsByOrder: [],
 
   addingProduction: false,
   addingProductionError: false,
+
+  fetchingQcInputSearchData: false,
+  fetchingQcInputSearchDataError: false,
+
 
   fetchingOpenRepairByUser: false,
   fetchingOpenRepairByUserError: false,
@@ -573,6 +601,51 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         fetchingProductionOrederId: false,
         fetchingProductionOrederIdError: true,
+      };
+
+      case types.GET_PRODUCTION_URGENT_REQUEST:
+      return { ...state, fetchingProductionUrgent: true };
+    case types.GET_PRODUCTION_URGENT_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionUrgent: false,
+        productionUrgent: action.payload,
+      };
+    case types.GET_PRODUCTION_URGENT_FAILURE:
+      return {
+        ...state,
+        fetchingProductionUrgent: false,
+        fetchingProductionUrgentError: true,
+      };
+
+      case types.GET_PRODUCTION_HIGH_REQUEST:
+      return { ...state, fetchingProductionHigh: true };
+    case types.GET_PRODUCTION_HIGH_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionHigh: false,
+        productionHigh: action.payload,
+      };
+    case types.GET_PRODUCTION_HIGH_FAILURE:
+      return {
+        ...state,
+        fetchingProductionHigh: false,
+        fetchingProductionHighError: true,
+      };
+
+      case types.GET_PRODUCTION_NORMAL_REQUEST:
+      return { ...state, fetchingProductionNormal: true };
+    case types.GET_PRODUCTION_NORMAL_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionNormal: false,
+        productionNormal: action.payload,
+      };
+    case types.GET_PRODUCTION_NORMAL_FAILURE:
+      return {
+        ...state,
+        fetchingProductionNormal: false,
+        fetchingProductionNormalError: true,
       };
 
     case types.GET_NO_OF_REPAIR_TECHNICIAN_BY_ID_REQUEST:
@@ -1597,6 +1670,23 @@ export const refurbishReducer = (state = initialState, action) => {
                     orderPhoneList: [], 
                   };
 
+                  case types.GET_SEARCH_IMEIPHONE_REQUEST:
+        return { ...state, fetchingimeiSearchPhoneData: true };
+      case types.GET_SEARCH_IMEIPHONE_SUCCESS:
+        return {
+          ...state,
+          fetchingimeiSearchPhoneData: false,
+          updateDispatchList: action.payload,
+         
+        };
+      case types.GET_SEARCH_IMEIPHONE_FAILURE:
+        return { ...state, fetchingimeiSearchPhoneDataError: true };
+
+        case types.HANDLE_CLAER_PHONEREDUCER_DATA_REFURBISH:
+                  return { ...state, 
+                    updateDispatchList: [], 
+                  };
+
              
       case types.GET_SEARCH_IMEIREPAIR_REQUEST:
         return { ...state, fetchingimeiSearchRepair: true };
@@ -1613,7 +1703,70 @@ export const refurbishReducer = (state = initialState, action) => {
         case types.HANDLE_CLAER_REDUCER_DATAREAPIR_REFURBISH:
                   return { ...state, 
                     repairPhone: [], 
-                  };     
+                  };  
+                  
+                  case types.GET_DISPATCH_UPDATE_REQUEST:
+      return { ...state, fetchingUpdateDispatchList: true };
+    case types.GET_DISPATCH_UPDATE_SUCCESS:
+      return {
+        ...state,
+        fetchingUpdateDispatchList: false,
+        updateDispatchList: action.payload,
+      };
+    case types.GET_DISPATCH_UPDATE_FAILURE:
+      return {
+        ...state,
+        fetchingUpdateDispatchList: false,
+        fetchingUpdateDispatchListError: true,
+      };
+
+      case types.INPUT_QC_SEARCH_DATA_REQUEST:
+        return { ...state, fetchingQcInputSearchData: true };
+      case types.INPUT_QC_SEARCH_DATA_SUCCESS:
+        return {
+          ...state,
+          fetchingQcInputSearchData: false,
+          orderByUser: action.payload,
+        };
+      case types.INPUT_QC_SEARCH_DATA_FAILURE:
+        return { ...state, fetchingQcInputSearchDataError: true };
+
+        case types.HANDLE_CLAER_SEARCHED_DATA_QC:
+          return { ...state, 
+            orderByUser: [], 
+          };
+
+          case types.INPUT_PROCESS_SEARCH_DATA_REQUEST:
+        return { ...state, fetchingProcessInputSearchData: true };
+      case types.INPUT_PROCESS_SEARCH_DATA_SUCCESS:
+        return {
+          ...state,
+          fetchingProcessInputSearchData: false,
+          repairOrder: action.payload,
+        };
+      case types.INPUT_PROCESS_SEARCH_DATA_FAILURE:
+        return { ...state, fetchingProcessInputSearchDataError: true };
+
+        case types.HANDLE_CLAER_SEARCHED_DATA_PROCESS:
+          return { ...state, 
+            repairOrder: [], 
+          };
+
+          case types.INPUT_ALL_SEARCH_DATA_REQUEST:
+        return { ...state, fetchingAllInputSearchData: true };
+      case types.INPUT_ALL_SEARCH_DATA_SUCCESS:
+        return {
+          ...state,
+          fetchingAllInputSearchData: false,
+          searchRefurbish: action.payload,
+        };
+      case types.INPUT_ALL_SEARCH_DATA_FAILURE:
+        return { ...state, fetchingAllInputSearchDataError: true };
+
+        case types.HANDLE_CLAER_SEARCHED_DATA_ALL:
+          return { ...state, 
+            searchRefurbish: [], 
+          };
 
     default:
       return state;

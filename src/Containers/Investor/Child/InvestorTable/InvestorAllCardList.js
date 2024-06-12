@@ -350,7 +350,7 @@ function InvestorAllCardList(props) {
                     handleInvestorPulseDrawerModal(true);
                     handleCurrentRowData(item);
                   }}
-                  className=" !text-xl cursor-pointer text-[#df9697]"
+                  className=" !text-icon cursor-pointer text-[#df9697]"
                 />
              </Tooltip>
                           </div>
@@ -365,7 +365,7 @@ function InvestorAllCardList(props) {
                   props.handleInvestorNotesDrawerModal(true);
                   handleCurrentRowData(item);
                 }}
-                className=" !text-xl cursor-pointer text-green-800"
+                className=" !text-icon cursor-pointer text-green-800"
               />
            </Tooltip>
                    </div>
@@ -380,7 +380,7 @@ function InvestorAllCardList(props) {
                   {" "}
                   <a href={`https://${item.url}`} target="_blank">
                     <ExploreIcon
-                      className=" !text-xl cursor-pointer text-green-800"
+                      className=" !text-icon cursor-pointer text-green-800"
                     />
                   </a>
                 </span>
@@ -392,7 +392,7 @@ function InvestorAllCardList(props) {
                     
                     <div className="w-5">
                         <span 
-              className=" !text-xl cursor-pointer"
+              className=" !text-icon cursor-pointer"
             //   onClick={() => {
             //     props.getCustomerDetailsById(item.customerId);
             //     props.getCustomerKeySkill(item.customerId);
@@ -402,7 +402,7 @@ function InvestorAllCardList(props) {
             //   }}
             >
               {" "}
-              {user.pulseAccessInd === true && <MonitorHeartIcon  className=" !text-xl cursor-pointer text-[#df9697]" />}
+              {user.pulseAccessInd === true && <MonitorHeartIcon  className=" !text-icon cursor-pointer text-[#df9697]" />}
             </span> 
                         </div>
         
@@ -410,7 +410,7 @@ function InvestorAllCardList(props) {
           
             <Tooltip title="Investor Contact">
               <LocationCityIcon
-              className=" !text-2xl cursor-pointer p-1 text-blue-500 "
+              className=" !text-icon cursor-pointer p-1 text-blue-500 "
                 onClick={() => {
                   handleInvestorContModal(true);
                     handleCurrentRowData(item);
@@ -427,14 +427,14 @@ function InvestorAllCardList(props) {
             <div className="w-5">
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span class="cursor-pointer">
-            <LocationOnIcon   className=" !text-xl cursor-pointer text-[#960a0a]"/>
+            <LocationOnIcon   className=" !text-icon cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
             <div className="w-5">
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
             <Tooltip title="Edit">
-              <BorderColorIcon className=" !text-xl cursor-pointer text-[tomato]"
+              <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato]"
                 onClick={() => {
                     handleUpdateInvestorModal(true);
                     handleCurrentRowData(item);
@@ -455,7 +455,7 @@ function InvestorAllCardList(props) {
                        
                           <DeleteOutlined
                             type="delete"
-                            className="!text-xl text-[red] cursor-pointer"
+                            className="!text-icon text-[red] cursor-pointer"
                           />
                        
                         </Tooltip>

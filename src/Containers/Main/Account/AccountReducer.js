@@ -136,6 +136,7 @@ const initialState = {
 
   fetchingInputDistributorData: false,
   fetchingInputDistributorDataError: false,
+  serachedData: [],
 
   fetchingOrderDetailsById: false,
   fetchingOrderDetailsByIdError: false,
@@ -267,6 +268,9 @@ const initialState = {
   fetchingDeletedDistributors: false,
   fetchingDeletedDistributorsError: false,
   deletedDistributors: [],
+
+  convertingQuotationToOrder: false,
+  convertingQuotationToOrderError: false,
 
   fetchingLowCompleteOrders: false,
   fetchingLowCompleteOrdersError: false,
@@ -1067,8 +1071,11 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingInputDistributorData: false,
-        distributorsByUserId: state.viewType === "all" ? null : action.payload,
-        allDistributors: state.viewType === "all" ? action.payload : null,
+        customerListByUser: action.payload,
+        allDistributors:action.payload,
+        deletedDistributors:action.payload,
+        // distributorsByUserId: state.viewType === "all" ? null : action.payload,
+        // allDistributors: state.viewType === "all" ? action.payload : null,
         // serachedData: action.payload,
       };
     case types.INPUT_SEARCH_DATA_FAILURE:
@@ -3162,6 +3169,36 @@ export const distributorReducer = (state = initialState, action) => {
                             addingQuotationPhoneDetailsError:true,
                             // addCustomerModal: false 
                           };
+
+
+                          case types.QUOTATION_TO_ORDER_CONVERT_REQUEST:
+                            return {
+                              ...state,
+                              convertingQuotationToOrder: true,
+                            };
+                          case types.QUOTATION_TO_ORDER_CONVERT_SUCCESS:
+                            return {
+                              ...state,
+                              convertingQuotationToOrder: false,
+                              quotationRepairOrder: state.quotationRepairOrder.filter(
+                                (item) => item.quotationId !== action.payload
+                              ),
+                              quotationProcureOrder: state.quotationProcureOrder.filter(
+                                (item) => item.quotationId !== action.payload
+                              ),
+                            };
+                          case types.QUOTATION_TO_ORDER_CONVERT_FAILURE:
+                            return {
+                              ...state,
+                              convertingQuotationToOrder: false,
+                              convertingQuotationToOrderError: true,
+                            };
+
+                          case types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT:
+                            return { ...state, 
+                              customerListByUser: [], 
+                              // deletedTruck: [] 
+                            };
 
 
 

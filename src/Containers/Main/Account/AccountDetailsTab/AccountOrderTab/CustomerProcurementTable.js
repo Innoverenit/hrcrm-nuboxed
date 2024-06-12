@@ -72,10 +72,10 @@ const handleLoadMoreLow = () => {
 
   return (
     <>
-    <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+    <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-<div class=" w-[8.5rem] text-[red]">Urgent</div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
+        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">Urgent </div>
+                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
@@ -105,7 +105,7 @@ const handleLoadMoreLow = () => {
                                       <div>
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
                                         <div class="flex">
-                                          <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                                          <div className=" flex font-medium  flex-col w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
                                             <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
@@ -218,8 +218,8 @@ const handleLoadMoreLow = () => {
       </div>
       <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-<div class=" w-[8.5rem] text-[orange]">High</div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
+        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
+                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
@@ -362,8 +362,8 @@ const handleLoadMoreLow = () => {
       </div>
       <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-<div class=" w-[8.5rem] text-[teal]">Normal</div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
+        <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
+                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>

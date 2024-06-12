@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import { Button} from "antd";
+import { Button,Switch} from "antd";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
@@ -24,13 +24,16 @@ const UpdateInvestorSchema = Yup.object().shape({
 });
 
 function UpdateInvestorForm (props) {
-  
+ 
+  const [contract, setContract] = useState(false);
   useEffect(() => {
     props.getAllEmployeelist();
     props.getInvestorList(props.orgId)
     props.getDialCode();
   }, []);
-
+  const handleContract = (checked) => {
+    setContract(checked);
+  };
 
   const handleReset = (resetForm) => {
     resetForm();
@@ -80,6 +83,7 @@ function UpdateInvestorForm (props) {
           initialValues={{
             name: RowData.name || "",
             url: RowData.url || "",
+            pvtAndIntunlInd: contract ? "true" : "false",
             sectorId: RowData.sectorId || "",
             investorCategoryId:RowData.investorCategoryId || "",
             source: RowData.source || "" ,
@@ -112,6 +116,7 @@ function UpdateInvestorForm (props) {
                 ...values,
                 investorId: RowData.investorId,
                 // source: RowData.source,
+                pvtAndIntunlInd: contract ? "true" : "false",
                 assignedTo:selectedOption ? selectedOption.employeeId:props.RowData.employeeId,
               },
               RowData.investorId,
@@ -262,6 +267,16 @@ function UpdateInvestorForm (props) {
                             defaultValue={RowData.investorId}
                           />
                     </div>
+                    <div class=" flex flex-col items-center  mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Category</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      onChange={handleContract}
+                      checked={contract}
+                      checkedChildren="Institutional"
+                      unCheckedChildren="Private"
+                    />
+                  </div>
                     </div> 
                
                  <div class="mt-3">

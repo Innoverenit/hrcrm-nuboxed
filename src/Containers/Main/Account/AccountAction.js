@@ -975,7 +975,11 @@ export const inputDataSearch = (name) => (dispatch) => {
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/distributor/distributorName/${name}`, {})
+    .get(`${base_url2}/distributor/distributorName/${name}`,  {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       // if (res.data.contactId) {
       //   console.log(res.data);
@@ -4243,5 +4247,42 @@ export const addQuotationPhoneDetails = (customer, orderPhoneId, cb) => (dispatc
         payload: err,
       });
       cb && cb();
+    });
+};
+
+
+export const ClearSearchedDataOfAccount = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT,
+  });
+};
+
+
+export const quotationToOrder = ( quotationId,userId ) => (dispatch) => {
+  dispatch({ type: types.QUOTATION_TO_ORDER_CONVERT_REQUEST });
+
+  axios
+    .put(`${base_url2}/quotation/convert/${quotationId}/${userId} `, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+     
+      // message.success("Customer move to Account");
+      console.log(res);
+      dispatch({
+        type: types.QUOTATION_TO_ORDER_CONVERT_SUCCESS,
+        payload: quotationId,
+      });
+      // cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.QUOTATION_TO_ORDER_CONVERT_FAILURE,
+      });
+      // cb && cb("failure");
     });
 };

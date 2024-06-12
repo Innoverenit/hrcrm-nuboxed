@@ -46,6 +46,10 @@ const initialState = {
   fetchingAllOrderCountError: false,
   allOrderCount: {},
 
+  fetchingCompletedMediumOrderList: false,
+  fetchingCompletedMediumOrderListError: false,
+  completedMediumOrder:[],
+
   fetchingRepairLowOrderList: false,
   fetchingRepairLowOrderListError: false,
   repairLowCompleteOrder:[],
@@ -67,6 +71,15 @@ const initialState = {
   fetchingCustomerList: false,
   fetchingCustomerListError: false,
   customerList: [],
+
+  fetchingCompletedHighOrderList: false,
+  fetchingCompletedHighOrderListError: false,
+  completedHighOrder:[],
+
+
+  fetchingCompletedLowOrderList: false,
+  fetchingCompletedLowOrderListError: false,
+  completedLowOrder:[],
 
   deletingOrderRepairData: false,
   deletingOrderRepairDataError: false,
@@ -460,7 +473,13 @@ export const orderReducer = (state = initialState, action) => {
         return {
           ...state,
           deletingOrderRepairData: false,
-          orderShowById: state.orderShowById.filter(
+          repairHighCompleteOrder: state.repairHighCompleteOrder.filter(
+            (item) => item.orderId !== action.payload
+          ),
+          repairMediumCompleteOrder: state.repairMediumCompleteOrder.filter(
+            (item) => item.orderId !== action.payload
+          ),
+          repairLowCompleteOrder: state.repairLowCompleteOrder.filter(
             (item) => item.orderId !== action.payload
           ),
         };
@@ -631,6 +650,73 @@ export const orderReducer = (state = initialState, action) => {
               deletedLowOrder: [],
              
             };
+
+
+            case types.GET_COMPLETED_HIGH_ORDER_LIST_REQUEST:
+              return { ...state, fetchingCompletedHighOrderList: true };
+            case types.GET_COMPLETED_HIGH_ORDER_LIST_SUCCESS:
+              return {
+                ...state,
+                fetchingCompletedHighOrderList: false,
+                completedHighOrder: [
+                  ...state.completedHighOrder,
+                  ...action.payload]
+              };
+            case types.GET_COMPLETED_HIGH_ORDER_LIST_FAILURE:
+              return {
+                ...state,
+                fetchingCompletedHighOrderList: false,
+                fetchingCompletedHighOrderListError: true,
+        
+              };
+
+
+              case types.GET_COMPLETED_MEDIUM_ORDER_LIST_REQUEST:
+                return { ...state, fetchingCompletedMediumOrderList: true };
+              case types.GET_COMPLETED_MEDIUM_ORDER_LIST_SUCCESS:
+                return {
+                  ...state,
+                  fetchingCompletedMediumOrderList: false,
+                  completedMediumOrder: [
+                    ...state.completedMediumOrder,
+                    ...action.payload]
+                };
+              case types.GET_COMPLETED_MEDIUM_ORDER_LIST_FAILURE:
+                return {
+                  ...state,
+                  fetchingCompletedMediumOrderList: false,
+                  fetchingCompletedMediumOrderListError: true,
+          
+                };
+
+
+                case types.GET_COMPLETED_LOW_ORDER_LIST_REQUEST:
+                  return { ...state, fetchingCompletedLowOrderList: true };
+                case types.GET_COMPLETED_LOW_ORDER_LIST_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingCompletedLowOrderList: false,
+                    completedLowOrder: [
+                      ...state.completedLowOrder,
+                      ...action.payload]
+                  };
+                case types.GET_COMPLETED_LOW_ORDER_LIST_FAILURE:
+                  return {
+                    ...state,
+                    fetchingCompletedLowOrderList: false,
+                    fetchingCompletedLowOrderListError: true,
+            
+                  };
+
+
+                  case types.EMPTY_COMPLETE_ORDERS_LIST:
+                    return {
+                      ...state,
+                      completedHighOrder: [],
+                      completedMediumOrder: [],
+                      completedLowOrder: [],
+                    
+                    };
     
     default:
       return state;

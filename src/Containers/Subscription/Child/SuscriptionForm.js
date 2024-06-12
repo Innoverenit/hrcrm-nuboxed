@@ -164,19 +164,13 @@ import dayjs from "dayjs";
 import { FaFreeCodeCamp, FaRocket, FaBriefcase, FaBuilding } from 'react-icons/fa';
 
 function SubscriptionForm(props) {
-  // const [workType, setWorkType] = useState("1");
-  const [selectedType, setSelectedType] = useState("1");
+   const [workType, setWorkType] = useState(props.rowData.subscriptionType);
+  // const [selectedType, setSelectedType] = useState("1");
+  const [selectedType, setSelectedType] = useState(props.rowData.subscriptionType);
   const subscriptionPlans = [
+    
     { 
       type: "1", 
-      title: "Free", 
-      price: "0", 
-      features: ["Basic features"], 
-      description: "Get started with basic features for free", 
-      icon: <FaFreeCodeCamp /> 
-    },
-    { 
-      type: "2", 
       title: "Starter", 
       price: "9.99", 
       features: ["Starter features"], 
@@ -184,7 +178,7 @@ function SubscriptionForm(props) {
       icon: <FaRocket /> 
     },
     { 
-      type: "3", 
+      type: "2", 
       title: "Professional", 
       price: "29.99", 
       features: ["Professional features"], 
@@ -192,32 +186,40 @@ function SubscriptionForm(props) {
       icon: <FaBriefcase /> 
     },
     { 
-      type: "4", 
+      type: "3", 
       title: "Enterprise", 
-      price: "Contact us", 
-      features: ["All features", "Custom solutions"], 
+      price: "50.49", 
+      features: ["All features"], 
       description: "Tailored solutions for large enterprises", 
       icon: <FaBuilding /> 
     },
+    { 
+      type: "4", 
+      title: "Customise", 
+      price: "Contact us", 
+      features: ["All features","Custom solutions"], 
+      description: "Get started with All features Customised", 
+      icon: <FaFreeCodeCamp /> 
+    },
   ];
-  // const handleCardClick = (type) => {
-  //   setWorkType(type);
-  // };
   const handleCardClick = (type) => {
-    setSelectedType(selectedType === type ? null : type);
+    setWorkType(type);
   };
+  // const handleCardClick = (type) => {
+  //   setSelectedType(selectedType === type ? null : type);
+  // };
   useEffect(() => {
     const {} = props;
   }, []);
 
   const { updateSuscription, updatingSuscrption } = props;
-
+console.log(props.rowData.subscriptionType)
   return (
     <>
       <Formik
         initialValues={{
-         // subscriptionType: workType,
-         subscriptionType: selectedType,
+          subscriptionType: workType,
+        // subscriptionType: selectedType,
           organizationId: props.orgId,
           SubscriptionEndDate: props.rowData.SubscriptionEndDate,
         }}
@@ -226,8 +228,8 @@ function SubscriptionForm(props) {
             {
               ...values,
               organizationId: props.orgId,
-             // subscriptionType: workType,
-             subscriptionType: selectedType,
+             subscriptionType: workType,
+            // subscriptionType: selectedType,
               SubscriptionEndDate: props.rowData.SubscriptionEndDate,
             },
             props.orgId
@@ -252,53 +254,79 @@ function SubscriptionForm(props) {
                     <div className="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-base flex flex-col">
                       Subscription
                     </div>
-                    {/* <div className="flex flex-wrap flex-col">
+                    <div className=" bg-gray-50 flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                       <div
-                        className={`cursor-pointer p-4 border rounded-lg m-2 ${
+                         className={`cursor-pointer flex flex-col h-[20rem] p-6 rounded-3xl shadow-lg transform transition-transform hover:scale-105 ${
                           workType === "1"
-                            ? "border-blue-500 bg-blue-100"
-                            : "border-gray-300"
+                            ? "border-2 border-blue-500 bg-gradient-to-r from-blue-100 to-blue-300"
+                            : "border-2 border-transparent bg-white"
                         }`}
                         onClick={() => handleCardClick("1")}
                       >
-                        <h3 className="text-lg font-bold">Free</h3>
-                        <p className="text-sm">Basic features</p>
+                         <div className="flex items-center justify-center mb-4 text-4xl text-blue-500">
+                         <FaRocket />
+            </div>
+                        <label className="text-xl font-semibold text-center text-gray-900">Starter</label>
+                        <label className="text-lg font-bold text-center mt-2">€ 9.99</label>
+                        <label className="text-lg font-bold text-center mt-2">Starter features</label>
+                        <label className="text-sm text-gray-600 mt-4">Ideal for individuals and small teams</label>
                       </div>
                       <div
-                        className={`cursor-pointer p-4 border rounded-lg m-2 ${
+                        className={`cursor-pointer flex flex-col h-[20rem] p-6 rounded-3xl shadow-lg transform transition-transform hover:scale-105 ${
                           workType === "2"
-                            ? "border-blue-500 bg-blue-100"
-                            : "border-gray-300"
+                            ? "border-2 border-blue-500 bg-gradient-to-r from-blue-100 to-blue-300"
+                            : "border-2 border-transparent bg-white"
                         }`}
                         onClick={() => handleCardClick("2")}
                       >
-                        <h3 className="text-lg font-bold">Starter</h3>
-                        <p className="text-sm">Starter features</p>
+                         <div className="flex items-center justify-center mb-4 text-4xl text-blue-500">
+                         <FaBriefcase /> 
+            </div>
+                        <label className="text-xl font-semibold text-center text-gray-900">Professional</label>
+                        <label className="text-lg font-bold text-center mt-2">€ 29.99</label>
+                        <label className="text-lg font-bold text-center mt-2">Professional features</label>
+                        <label className="text-sm text-gray-600 mt-4">Advanced features for professionals and businesse</label>
                       </div>
                       <div
-                        className={`cursor-pointer p-4 border rounded-lg m-2 ${
+                       className={`cursor-pointer flex flex-col h-[20rem] p-6 rounded-3xl shadow-lg transform transition-transform hover:scale-105 ${
                           workType === "3"
-                            ? "border-blue-500 bg-blue-100"
-                            : "border-gray-300"
+                            ? "border-2 border-blue-500 bg-gradient-to-r from-blue-100 to-blue-300"
+                            : "border-2 border-transparent bg-white"
                         }`}
                         onClick={() => handleCardClick("3")}
                       >
-                        <h3 className="text-lg font-bold">Professional</h3>
-                        <p className="text-sm">Professional features</p>
+                          <div className="absolute top-[0.25rem] left-[10rem]  bg-blue-500 text-white px-3 py-1 rounded-full text-sm">
+            Recommended
+          </div>
+                         <div className="flex items-center justify-center mb-4 text-4xl text-blue-500">
+                         <FaBuilding /> 
+            </div>
+                        <label className="text-xl font-semibold text-center text-gray-900">Enterprise</label>
+                        <label className="text-lg font-bold text-center mt-2">€ 50.49</label>
+                        <label className="text-lg font-bold text-center mt-2">All features</label>
+                        <label className="text-sm text-gray-600 mt-4">Tailored solutions for large enterprises</label>
                       </div>
+           
                       <div
-                        className={`cursor-pointer p-4 border rounded-lg m-2 ${
+                        className={`cursor-pointer flex flex-col h-[20rem] p-6 rounded-3xl shadow-lg transform transition-transform hover:scale-105 ${
                           workType === "4"
-                            ? "border-blue-500 bg-blue-100"
-                            : "border-gray-300"
+                            ? "border-2 border-blue-500 bg-gradient-to-r from-blue-100 to-blue-300"
+                            : "border-2 border-transparent bg-white"
                         }`}
                         onClick={() => handleCardClick("4")}
                       >
-                        <h3 className="text-lg font-bold">Enterprise</h3>
-                        <p className="text-sm">All features</p>
+                          <div className="flex items-center justify-center mb-4 text-4xl text-blue-500">
+                          <FaFreeCodeCamp /> 
+            </div>
+                        <label className="text-xl font-semibold text-center text-gray-900">Customise</label>
+                        <label className="text-lg font-bold text-center mt-2">Contact us</label>
+                        <label className="text-lg font-bold text-center mt-2">All features Custom solutions</label>
+                        <label className="text-sm text-gray-600 mt-4">Get started with All features Customised</label>
                       </div>
-                    </div> */}
-     <div className=" bg-gray-50 flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
+                    </div>
+                    </div>
+     {/* <div className=" bg-gray-50 flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {subscriptionPlans.map(({ type, title, price, features, description, icon }) => (
           <div
@@ -313,7 +341,7 @@ function SubscriptionForm(props) {
             <div className="flex items-center justify-center mb-4 text-4xl text-blue-500">
               {icon}
             </div>
-            <h3 className="text-xl font-semibold text-center text-gray-900">{title}</h3>
+            <label className="text-xl font-semibold text-center text-gray-900">{title}</label>
             <p className="text-lg font-bold text-center mt-2">{price === "Contact us" ? price : `€${price}`}</p>
             <ul className="text-sm text-gray-600 mt-4">
               {features.map((feature, index) => (
@@ -326,7 +354,7 @@ function SubscriptionForm(props) {
           </div>
         ))}
       </div>
-    </div>
+    </div> */}
 
                   </div>
                 </div>

@@ -98,8 +98,8 @@ function PurchaseOrderTable(props) {
     };
     return (
         <>
-            <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div className=' flex justify-end sticky z-auto'>
+                <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[90.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             <FormattedMessage
@@ -323,7 +323,7 @@ function PurchaseOrderTable(props) {
                       tooltipTitle="Edit"
                     
                       onClick={() => handleEditClick(item.poSupplierDetailsId, item.contact,item.expectDeliveryDate,item.poCurrency )}
-                      style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
+                      className="!text-xl cursor-pointer flex items-center justify-center text-[tomato]"
                     />
                         </Tooltip>
                   )}
@@ -347,7 +347,7 @@ function PurchaseOrderTable(props) {
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-[0.85rem] text-cardBody font-poppins">
                                                             <Tooltip title="Terms and condition">
                                                                 <TerminalSharp
                                                                     onClick={() => {

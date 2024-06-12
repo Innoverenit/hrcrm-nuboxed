@@ -404,6 +404,89 @@ export const getProductionOrderId = (userId,pageNo) => (dispatch) => {
       });
     });
 };
+
+export const getProductionUrgent = (userId,pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_URGENT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderProductionLocationLink/get-all/highPriority/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_URGENT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_URGENT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getProductionHigh = (userId,pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_HIGH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderProductionLocationLink/get-all/mediumPriority/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_HIGH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_HIGH_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getProductionNormal = (userId,pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_NORMAL_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderProductionLocationLink/get-all/lowPriority/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_NORMAL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_NORMAL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
 export const handleProductionNotesModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_PRODUCTION_NOTES_MODAL,
@@ -2079,6 +2162,37 @@ export const ClearReducerDataOfrefurbish = () => (dispatch) => {
   });
 };
 
+export const searchimeiNamePhone = (imei) => (dispatch) => {
+  dispatch({
+    type: types.GET_SEARCH_IMEIPHONE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/search/${imei}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEIPHONE_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEIPHONE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const ClearPhoneDataOfrefurbish = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_PHONEREDUCER_DATA_REFURBISH,
+  });
+};
+
 export const searchimeiNamerapir = (imei) => (dispatch) => {
   dispatch({
     type: types.GET_SEARCH_IMEIREPAIR_REQUEST,
@@ -2107,5 +2221,119 @@ export const searchimeiNamerapir = (imei) => (dispatch) => {
 export const ClearReducerDataOfrepair = () => (dispatch) => {
   dispatch({
     type: types.HANDLE_CLAER_REDUCER_DATAREAPIR_REFURBISH,
+  });
+};
+
+export const getDispatchUpdateList = (orderPhoneId) => (dispatch, getState) => {
+
+  dispatch({
+    type: types.GET_DISPATCH_UPDATE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/dispatchPhoneDetail/${orderPhoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DISPATCH_UPDATE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DISPATCH_UPDATE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const inputQcDataSearch =(orderPhoneId)=>(dispatch)=>{
+  dispatch({
+    type: types.INPUT_QC_SEARCH_DATA_REQUEST,
+  });
+  axios.get(`${base_url2}/phoneOrder/search/order/${orderPhoneId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  .then((res)=>{
+    dispatch({
+      type:types.INPUT_QC_SEARCH_DATA_SUCCESS,
+      payload:res.data,
+    });
+  })
+  .catch((err)=>{
+    dispatch({
+  type:types.INPUT_QC_SEARCH_DATA_FAILURE,
+  payload:err,
+    });
+  });
+};
+
+export const ClearSearchedDataOfQc = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_DATA_QC,
+  });
+};
+
+export const inputProcessDataSearch =(orderPhoneId)=>(dispatch)=>{
+  dispatch({
+    type: types.INPUT_PROCESS_SEARCH_DATA_REQUEST,
+  });
+  axios.get(`${base_url2}/phoneOrder/search/order/${orderPhoneId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  .then((res)=>{
+    dispatch({
+      type:types.INPUT_PROCESS_SEARCH_DATA_SUCCESS,
+      payload:res.data,
+    });
+  })
+  .catch((err)=>{
+    dispatch({
+  type:types.INPUT_PROCESS_SEARCH_DATA_FAILURE,
+  payload:err,
+    });
+  });
+};
+
+export const ClearSearchedDataOfProcess = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_DATA_PROCESS,
+  });
+};
+
+export const inputAllDataSearch =(orderPhoneId)=>(dispatch)=>{
+  dispatch({
+    type: types.INPUT_ALL_SEARCH_DATA_REQUEST,
+  });
+  axios.get(`${base_url2}/phoneOrder/search/order/${orderPhoneId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  .then((res)=>{
+    dispatch({
+      type:types.INPUT_ALL_SEARCH_DATA_SUCCESS,
+      payload:res.data,
+    });
+  })
+  .catch((err)=>{
+    dispatch({
+  type:types.INPUT_ALL_SEARCH_DATA_FAILURE,
+  payload:err,
+    });
+  });
+};
+
+export const ClearSearchedDataOfAll = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_DATA_ALL,
   });
 };

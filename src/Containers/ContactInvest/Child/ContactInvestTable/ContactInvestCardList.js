@@ -291,7 +291,7 @@ function ContactInvestCardList(props) {
                   handleCurrentContactIdata(item);
                 }}
               >
-               <PhoneInTalkIcon className=" !text-xl cursor-pointer"/>
+               <PhoneInTalkIcon className=" !text-icon cursor-pointer"/>
               </span>
             )}
             {item.doNotCallInd === true && (
@@ -301,7 +301,7 @@ function ContactInvestCardList(props) {
                   handleCurrentContactIdata(item);
                 }}
               >
-                <PhoneDisabledIcon className="!text-xl text-[gold]"/>
+                <PhoneDisabledIcon className="!text-icon text-[gold]"/>
               </span>
             )}
           </Tooltip>
@@ -309,7 +309,7 @@ function ContactInvestCardList(props) {
                         <div class=" max-sm:flex justify-end max-sm:w-full">
                         <Tooltip title={item.emailId}>
            
-            <MailOutlineIcon className="!text-xl cursor-pointer text-green-400"
+            <MailOutlineIcon className="!text-icon cursor-pointer text-green-400"
               type="mail"
              
               onClick={() => {
@@ -328,7 +328,7 @@ function ContactInvestCardList(props) {
                 props.handleContactDrawerModal(true);
               }}
             >{user.pulseAccessInd === true && (
-              <MonitorHeartIcon className=" !text-xl cursor-pointer text-[#df9697]"/>
+              <MonitorHeartIcon className=" !text-icon cursor-pointer text-[#df9697]"/>
             )}
             </span>
                         </div>
@@ -343,7 +343,7 @@ function ContactInvestCardList(props) {
             <span class="cursor-pointer"
              
             >
-            <LocationOnIcon  className="!text-xl cursor-pointer text-[#960a0a]"/>
+            <LocationOnIcon  className="!text-icon cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
@@ -368,12 +368,12 @@ function ContactInvestCardList(props) {
                   props.handleContactInvestNotesDrawerModal(true);
                   handleCurrentContactIdata(item);
                 }}
-                className="text-green-500 cursor-pointer !text-xl"
+                className="text-green-500 cursor-pointer !text-icon"
               />
            </Tooltip>
            <Tooltip title="Pulse">
        <MonitorHeartIcon
-       className=" !text-xl cursor-pointer text-[#df9697]"
+       className=" !text-icon cursor-pointer text-[#df9697]"
                 onClick={() => {
                   handleContactInvestPulseDrawerModal(true);
                   handleCurrentContactIdata(item);
@@ -385,7 +385,7 @@ function ContactInvestCardList(props) {
             {user.imInd === true  && user.investorContactUpdateInd === true &&  (
             <Tooltip title="Edit">
               <BorderColorIcon
-                className="!text-xl cursor-pointer text-[tomato]"
+                className="!text-icon cursor-pointer text-[tomato]"
                 onClick={() => {
                   handleUpdateContactInvestModal(true);
                   handleCurrentContactIdata(item);

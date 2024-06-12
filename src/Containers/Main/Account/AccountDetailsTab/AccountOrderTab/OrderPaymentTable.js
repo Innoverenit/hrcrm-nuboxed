@@ -43,23 +43,23 @@ function OrderPaymentTable(props) {
     <>
 
       {props.fetchingPaymentHistory ? <BundleLoader /> : <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
 
-            <div className=" md:w-[4.1rem]">Transaction #</div>
-            <div className=" md:w-[4.5rem] ">Created By</div>
+            <div className=" md:w-[6.1rem]">Transaction ID</div>
+            <div className=" md:w-[4.5rem] ">Created </div>
             <div className="md:w-[5.8rem]">Entry</div>
             <div className=" md:w-[4.2rem] ">Amount</div>
             <div className=" md:w-[4.2rem] ">Mode</div>
             <div className=" md:w-[4.2rem] ">Reason</div>
-            <div className=" md:w-[5.2rem] ">Approved By</div>
+            <div className=" md:w-[6.2rem] ">Approved </div>
             <div className="md:w-[6rem]"></div>
           </div>
 
           {props.paymentHistory.map((item) => {
             return (
               <div>
-                <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 "    >
+                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "    >
                   <div class="flex">
                     <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
                       <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
@@ -161,7 +161,7 @@ function OrderPaymentTable(props) {
                         <>
                           {item.approveByFinanceInd === false && (
                             <BorderColorIcon
-                              className="text-[blue] flex justify-items-center justify-center text-xs cursor-pointer"
+                              className="text-[blue] flex justify-items-center justify-center text-xl cursor-pointer"
                               onClick={() => {
                                 handleRowData(item);
                                 handleEditIcon()
@@ -182,7 +182,7 @@ function OrderPaymentTable(props) {
                       >
                         <Tooltip title="Delete">
                           <DeleteIcon
-                            className="text-base cursor-pointer text-[red]"
+                            className="text-xl cursor-pointer text-[red]"
                           />
                         </Tooltip>
                       </StyledPopconfirm>
