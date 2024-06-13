@@ -2,7 +2,7 @@ import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Draggable } from "react-beautiful-dnd";
-import {deleteDealsData} from "../DealAction";
+import {deleteDealsData,sendToWon,lostRecruit} from "../DealAction";
 const DealGroupCard =lazy(()=>import("./DealGroupCard"));
 
 class DealStageColumn extends Component {
@@ -38,6 +38,17 @@ class DealStageColumn extends Component {
                   state: { dealDetail: dealDetailsbyID },
                 })
               }
+              handleWon={() => {
+                this.props.sendToWon(dealDetailsbyID.invOpportunityId, {
+                  wonInd:true
+                },this.props.userId)
+              }}
+              handleConfirm ={() => {
+                this.props.lostRecruit(dealDetailsbyID.invOpportunityId, {
+                  lostInd: true
+                },this.props.userId)
+                
+              }}
               handleDelete={() => this.props.deleteDealsData(dealDetailsbyID.invOpportunityId)}
             />
             </div>
@@ -55,7 +66,9 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
     
-      deleteDealsData
+      deleteDealsData,
+      sendToWon,
+      lostRecruit
     },
     dispatch
   );

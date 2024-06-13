@@ -10,6 +10,7 @@ class DealActionRight extends React.Component {
   render() {
     const {
       userId,
+      viewType,
       user,
       handleDealModal,
     } = this.props;
@@ -37,7 +38,7 @@ class DealActionRight extends React.Component {
                 defaultMessage="Create"
               />}>
            {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
-           {user.imInd === true  && user.opportunityCreateInd ===true && (
+           {viewType === "table" && user.imInd === true  && user.opportunityCreateInd ===true && (
           <Button
             type="primary"
             // ghost

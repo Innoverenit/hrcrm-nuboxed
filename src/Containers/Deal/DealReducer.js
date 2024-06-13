@@ -139,6 +139,12 @@ const initialState = {
    sendingToWon: false,
 sendingToWonError:false,
 
+sendingCardWon: false,
+sendingCardWonError: false,
+
+sendingToLost: false,
+sendingToLostError: false,
+
 deleteDealData: false, deleteDealDataError: false
 
 };
@@ -474,6 +480,30 @@ export const dealReducer = (state = initialState, action) => {
                     fetchingWonDeals: false,
                     fetchingWonDealsError: true,
                   };
+
+                  case types.SEND_WON_CARD_REQUEST:
+                    return {
+                      ...state,
+                      sendingCardWon: true,
+                    };
+                  case types.SEND_WON_CARD_SUCCESS:
+                    return {
+                      ...state,
+                      sendingCardWon: false,
+                      dealsByuserId: state.dealsByuserId.map((opp) =>
+                      opp.invOpportunityId === action.payload.invOpportunityId
+                        ? action.payload
+                        : opp
+                    ),
+                    };
+                  case types.SEND_WON_CARD_FAILURE:
+                    return {
+                      ...state,
+                      sendingCardWon: false,
+                      sendingCardWonError: true,
+                    };
+
+
                   case types.SEND_WON_TO_REQUEST:
                     return {
                       ...state,
@@ -483,7 +513,7 @@ export const dealReducer = (state = initialState, action) => {
                     return {
                       ...state,
                       sendingToWon: false,
-                      dealsByuserId: state.dealsByuserId.map((opp) =>
+                      aLLdealsList: state.aLLdealsList.map((opp) =>
                       opp.invOpportunityId === action.payload.invOpportunityId
                         ? action.payload
                         : opp
@@ -495,6 +525,28 @@ export const dealReducer = (state = initialState, action) => {
                       sendingToWon: false,
                       sendingToWonError: true,
                     };
+
+                    case types.SEND_LOST_TO_REQUEST:
+                      return {
+                        ...state,
+                        sendingToLost: true,
+                      };
+                    case types.SEND_LOST_TO_SUCCESS:
+                      return {
+                        ...state,
+                        sendingToLost: false,
+                        aLLdealsList: state.aLLdealsList.map((opp) =>
+                        opp.invOpportunityId === action.payload.invOpportunityId
+                          ? action.payload
+                          : opp
+                      ),
+                      };
+                    case types.SEND_LOST_TO_FAILURE:
+                      return {
+                        ...state,
+                        sendingToLost: false,
+                        sendingToLostError: true,
+                      };
 
                     case types.UPDATE_DEAL_NAME_REQUEST:
                       return { ...state, updatingDealName: true };
@@ -562,7 +614,7 @@ export const dealReducer = (state = initialState, action) => {
                         case types.UPDATE_DEAL_DRAG_STAGE_SUCCESS:
                           return { ...state, 
                             updatingDealDragStage: false ,
-                            dealsByuserId: updateDragdDeal(state.dealsByuserId, action.payload),
+                            aLLdealsList: updateDragdDeal(state.dealsByuserId, action.payload),
                            // candidateRequirement: [action.payload]
 
                           };

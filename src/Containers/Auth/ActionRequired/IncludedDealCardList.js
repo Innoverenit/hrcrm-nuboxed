@@ -164,7 +164,7 @@ function IncludedDealCardList(props) {
 
                                       invOpportunityStagesId:
                                         investorOppStagesId,
-                                    });
+                                    },props.userId);
                                   }}
                                 />{" "}
                               </Menu.Item>

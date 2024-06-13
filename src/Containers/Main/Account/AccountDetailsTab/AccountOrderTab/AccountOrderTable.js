@@ -384,9 +384,16 @@ const AccountOrderTable = (props) => {
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center">
-                                                        <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
+                                                    {item.supervisorUserName ? 
+                                                    <MultiAvatar
+                                                                primaryTitle={item.supervisorUserName}
+                                                                imageURL={item.imageURL}
+                                                                imgWidth={"1.8em"}
+                                                                imgHeight={"1.8em"}
+                                                            />:<div class="text-[red]">Tag Supervisor</div>}
+                                                        {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
-                                                        </span>
+                                                        </span> */}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -814,9 +821,16 @@ const AccountOrderTable = (props) => {
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center">
-                                                        <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
+                                                    {item.supervisorUserName ? 
+                                                    <MultiAvatar
+                                                                primaryTitle={item.supervisorUserName}
+                                                                imageURL={item.imageURL}
+                                                                imgWidth={"1.8em"}
+                                                                imgHeight={"1.8em"}
+                                                            /> : <div class="text-[red]">Tag Supervisor</div>}
+                                                        {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
-                                                        </span>
+                                                        </span> */}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -1243,9 +1257,16 @@ const AccountOrderTable = (props) => {
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center">
-                                                        <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
+                                                        {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
-                                                        </span>
+                                                        </span> */}
+                                                        {item.supervisorUserName ? 
+                                                    <MultiAvatar
+                                                                primaryTitle={item.supervisorUserName}
+                                                                imageURL={item.imageURL}
+                                                                imgWidth={"1.8em"}
+                                                                imgHeight={"1.8em"}
+                                                            /> : <div class="text-[red]">Tag Supervisor</div>}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
