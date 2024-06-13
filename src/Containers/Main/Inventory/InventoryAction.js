@@ -1999,3 +1999,10 @@ export const getItemHistoryDataInstock = (locationId,suppliesId) => (dispatch) =
     });
 };
 
+
+export const handleCustomModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CUSTOM_MODAL,
+    payload: modalProps,
+  });
+};
