@@ -327,7 +327,7 @@ console.log(page)
             next={handleLoadMore}
             hasMore={hasMore}
             loader={fetchingCustomers || fetchingCustomerPagination ? <div class="flex justify-center">Loading...</div> : null}
-            height={"75vh"}
+            height={"80vh"}
           >
 
             {!fetchingCustomers && customerByUserId.length === 0 ? <NodataFoundPage /> : customerByUserId.map((item, index) => {
@@ -603,7 +603,7 @@ console.log(page)
                      
 
                      
-                        <div class="w-5">
+                        <div >
                           <Tooltip title="Contact">
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
@@ -615,7 +615,7 @@ console.log(page)
                             />
                           </Tooltip>
                         </div>
-                        <div class="w-5">
+                        <div >
                           <Tooltip title="Opportunity">
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
@@ -631,7 +631,7 @@ console.log(page)
                         </div>
                      
                      
-                        <div class="w-5">
+                        <div >
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
@@ -643,7 +643,7 @@ console.log(page)
                             />
                           </Tooltip>
                         </div>
-                        <div class="w-5">
+                        <div >
                           <Tooltip title="Notes">
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-[#4bc076]"
@@ -660,7 +660,7 @@ console.log(page)
                      
 
                       
-                        <div class="w-5">
+                        <div >
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
                             <LocationOnIcon
@@ -670,7 +670,7 @@ console.log(page)
 
                           </Tooltip>
                         </div>
-                        <div class="w-5">
+                        <div >
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title="Edit">
                               <BorderColorIcon

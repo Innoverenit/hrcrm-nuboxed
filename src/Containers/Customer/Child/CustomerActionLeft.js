@@ -174,7 +174,7 @@ const CustomerActionLeft = (props) => {
   return (
     <div class=" flex items-center"
     >
-      <Tooltip title={<FormattedMessage id="app.myprospect" defaultMessage="My Prospect" />}>
+      <Tooltip title={<FormattedMessage id="app.myprospects" defaultMessage="My Prospects" />}>
         <Badge
           size="small"
           count={(props.viewType === "table" && props.recordData.customer) || 0}
