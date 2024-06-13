@@ -1,6 +1,4 @@
 import React, { useEffect, useState, lazy } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faGlobe, faMapMarkerAlt, faIndustry, faRecycle, faWarehouse, faFileInvoiceDollar, faBuilding, faProjectDiagram, faStore, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -74,29 +72,26 @@ const LocationCard = (props) => {
         >
           <div className=" flex justify-between w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" md:w-[10.5rem]">
-              <FontAwesomeIcon icon={faUser} className="mr-2" /><span>Name</span></div>
+              Name</div>
             <div className=" md:w-[9.1rem]">
-              <FontAwesomeIcon icon={faGlobe} className="mr-2" />
-              <span>Country</span>
+              Country
             </div>
-            <div className=" md:w-[11.1rem] "><FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
-              <span>Address</span></div>
-            <div className=" md:w-[8.2rem] "> <FontAwesomeIcon icon={faIndustry} className="mr-2" />
-              <span>Production</span></div>
-            <div className=" md:w-[8.2rem] "> <FontAwesomeIcon icon={faRecycle} className="mr-2" />
-              <span>Refurbish</span></div>
-            <div className="md:w-[8.5rem]"><FontAwesomeIcon icon={faWarehouse} className="mr-2" />
-              <span>Inventory</span></div>
-            <div className="md:w-[7.5rem]"><FontAwesomeIcon icon={faFileInvoiceDollar} className="mr-2" />
-              <span>Billing</span></div>
-            <div className="md:w-[8.51rem]"><FontAwesomeIcon icon={faBuilding} className="mr-2" />
-              <span>Corporate</span></div>
-            <div className="md:w-[8.3rem]"><FontAwesomeIcon icon={faProjectDiagram} className="mr-2" />
-              <span>Project</span></div>
-            <div className="md:w-[8.9rem]"><FontAwesomeIcon icon={faStore} className="mr-2" />
-              <span>Retail</span></div>
-            <div className="md:w-[8.9rem]"> <FontAwesomeIcon icon={faMapMarkedAlt} className="mr-2" />
-              <span>Regions</span></div>
+            <div className=" md:w-[11.1rem] ">
+              Address</div>
+            <div className=" md:w-[8.2rem] ">Production</div>
+            <div className=" md:w-[8.2rem] ">
+              Refurbish</div>
+            <div className="md:w-[8.5rem]">
+              Inventory</div>
+            <div className="md:w-[7.5rem]">
+              Billing</div>
+            <div className="md:w-[8.51rem]">
+              Corporate</div>
+            <div className="md:w-[8.3rem]">
+              Project</div>
+            <div className="md:w-[8.9rem]">
+              Retail</div>
+            <div className="md:w-[8.9rem]">Regions</div>
           </div>
           <div class="">
             {props.showLocation.map((item) => {
