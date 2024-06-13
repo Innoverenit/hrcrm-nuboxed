@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { ActionHeader } from "../../../Components/Utils";
 import CollectionActionLeft from "./CollectionActionLeft";
-import CollectionActionRight from "./CollectionActionRight";
 class CollectionHeader extends Component {
   render() {
 

@@ -78,7 +78,7 @@ function AllShipperList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingAllShipper ? <div class="flex justify-center">Loading...</div> : null}
-        height={"75vh"}
+        height={"79vh"}
       >
         {!props.fetchingAllShipper && props.allShipper.length === 0 ? <NodataFoundPage /> : props.allShipper.map((item, index) => {
             return (
@@ -168,7 +168,7 @@ function AllShipperList(props) {
                           <div>
                             <Tooltip title="Edit">
                               <BorderColorIcon
-                                className=" !text-xl cursor-pointer text-[tomato]"
+                                className=" !text-icon cursor-pointer text-[tomato]"
 
                                 onClick={() => {
                                   props.setEditShipper(item);
@@ -185,7 +185,7 @@ function AllShipperList(props) {
                               onConfirm={() => props.deleteShipperData(item.shipperId)}
                             >
                               <DeleteOutlined
-                                className=" !text-xl cursor-pointer text-[red]"
+                                className=" !text-icon cursor-pointer text-[red]"
 
                               />
                             </Popconfirm>

@@ -9,7 +9,6 @@ import {
   deleteLocation, addingLocationToggle,
   handleLocnCellDrawer
 } from "./LocationAction";
-import styled from "styled-components";
 import TokenIcon from '@mui/icons-material/Token';
 import { Popconfirm, Switch, Tooltip } from "antd";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
@@ -240,17 +239,17 @@ const LocationCard = (props) => {
                         /> */}
                       </div>
                     </div>
-                    <div className=" font-medium flex-row md:w-[4.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" font-medium flex-col md:w-[4.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                         {item.regions}
                       </div>
                     </div>
-                    <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                    <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                       <div>
                         <Tooltip title="Shift">
                           <FilterTiltShiftIcon
-                            className="!text-base cursor-pointer"
+                            className="!text-icon cursor-pointer"
                             onClick={() => {
                               handleStoredLocations(item);
                               props.handleLocationShiftDrawer(true);
@@ -262,7 +261,7 @@ const LocationCard = (props) => {
                       <div>
                         <Tooltip title="Customer">
                           <AcUnitIcon
-                            className="!text-base cursor-pointer"
+                            className="!text-icon cursor-pointer"
                             onClick={() => {
                               handleStoredLocations(item);
                               props.handleLocationCustomerDrawer(true);
@@ -272,12 +271,12 @@ const LocationCard = (props) => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row w-[2%] max-sm:flex-row max-sm:w-[10%]">
+                    <div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[10%]">
                       {item.productionInd ?
                         <div>
                           <Tooltip title="Cell">
                             <TokenIcon
-                              className=" !text-base cursor-pointer text-[blue]"
+                              className=" !text-icon cursor-pointer text-[blue]"
                               onClick={() => {
                                 handleStoredLocations(item);
                                 props.handleLocnCellDrawer(true);
@@ -287,11 +286,11 @@ const LocationCard = (props) => {
                         </div> : null}
                       <div></div>
                     </div>
-                    <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                    <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                       <div>
                         <Tooltip title="Edit">
                           <BorderColorIcon
-                            className="!text-base cursor-pointer"
+                            className="!text-icon cursor-pointer"
                             onClick={() => {
                               handleStoredLocations(item);
                               props.handleUpdateLocationDrawer(true);
@@ -307,7 +306,7 @@ const LocationCard = (props) => {
                           <Tooltip title="Delete">
                             <DeleteOutlined
                               type="delete"
-                              className="!text-base cursor-pointer text-[red]"
+                              className="!text-icon cursor-pointer text-[red]"
                             />
                           </Tooltip>
                         </StyledPopconfirm>

@@ -21,7 +21,7 @@ const LocationActionLeft = (props) => {
     return (
         <div class=" flex items-center" >
           <Tooltip
-        title={<FormattedMessage id="app.listView" defaultMessage="List View" />}
+        title={<FormattedMessage id="app.listView" defaultMessage="All" />}
       >
          <Badge
           size="small"
@@ -65,7 +65,7 @@ const LocationActionLeft = (props) => {
           </Badge>
       </Tooltip>
 
-      <Tooltip title="Deleted List">
+      <Tooltip title="Inactive">
                 <Badge size="small"
                         count={(props.viewType === "delete" && props.locationDeletedCount.locCount) || 0}
                         overflowCount={999}

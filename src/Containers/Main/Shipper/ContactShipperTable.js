@@ -233,7 +233,7 @@ class ShipperContactTable extends Component {
                           </div>
                         </div>
                         <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
-                          <div className="text-xs text-cardBody font-poppins text-center">
+                          <div className="text-icon text-cardBody font-poppins text-center">
                           <Tooltip title="Edit">
              <BorderColorIcon
                 style={{ cursor: "pointer" }}
