@@ -2,26 +2,20 @@ import * as types from "./ProcreActionTypes";
 import moment from "moment";
 
 const initialState = {
-
-
   viewType: "card",
 
   fetchingAllProcure: false,
   fetchingAllProcureError: false,
-  allProcure:[],
+  allProcure: [],
 
-  addProcureOrderModal:false,
+  addProcureOrderModal: false,
 
   fetchingRecords: false,
   fetchingRecordsError: false,
-  recordData:{},
- 
- 
+  recordData: {},
 
-
-
-  
-  
+  updatingProcures: false,
+  updatingProcuresError: false,
 };
 
 export const procreReducer = (state = initialState, action) => {
@@ -31,50 +25,68 @@ export const procreReducer = (state = initialState, action) => {
       return {
         ...state,
         viewType: action.payload,
-        
       };
 
-      case types.GET_ALL_PROCURE_REQUEST:
-        return { ...state, fetchingAllProcure: true };
-      case types.GET_ALL_PROCURE_SUCCESS:
-        return {
-          ...state,
-          fetchingAllProcure: false,
-          allProcure: action.payload,
-        };
-      case types.GET_ALL_PROCURE_FAILURE:
-        return {
-          ...state,
-          fetchingAllProcure: false,
-          fetchingAllProcureError: true,
-        };
+    case types.GET_ALL_PROCURE_REQUEST:
+      return { ...state, fetchingAllProcure: true };
+    case types.GET_ALL_PROCURE_SUCCESS:
+      return {
+        ...state,
+        fetchingAllProcure: false,
+        allProcure: action.payload,
+      };
+    case types.GET_ALL_PROCURE_FAILURE:
+      return {
+        ...state,
+        fetchingAllProcure: false,
+        fetchingAllProcureError: true,
+      };
 
+    case types.EMPTY_PROCURE_LIST:
+      return { ...state, allProcure: [] };
 
-        case types.EMPTY_PROCURE_LIST:
-          return { ...state, allProcure: [] };
+    case types.GET_RECORDS_REQUEST:
+      return { ...state, fetchingRecords: true };
+    case types.GET_RECORDS_SUCCESS:
+      return {
+        ...state,
+        fetchingRecords: false,
+        recordData: action.payload,
+      };
+    case types.GET_RECORDS_FAILURE:
+      return {
+        ...state,
+        fetchingRecords: false,
+        fetchingRecordsError: true,
+      };
 
+    case types.HANDLE_PROCURE_ORDER_MODAL:
+      return {
+        ...state,
+        addProcureOrderModal: action.payload,
+        phoneListById: [],
+      };
 
-          case types.GET_RECORDS_REQUEST:
-            return { ...state, fetchingRecords: true };
-          case types.GET_RECORDS_SUCCESS:
-            return {
-              ...state,
-              fetchingRecords: false,
-              recordData: action.payload,
-            };
-          case types.GET_RECORDS_FAILURE:
-            return {
-              ...state,
-              fetchingRecords: false,
-              fetchingRecordsError: true,
-            };
-
-            case types.HANDLE_PROCURE_ORDER_MODAL:
-              return { ...state, addProcureOrderModal: action.payload, phoneListById: [] };
-        
-
-    
-
+    case types.UPDATE_PROCURES_REQUEST:
+      return { ...state, updatingProcures: true };
+    case types.UPDATE_PROCURES_SUCCESS:
+      return {
+        ...state,
+        updatingProcures: false,
+        allProcure: state.allProcure.map((item) => {
+          if (item.procureId == action.payload.procureId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_PROCURES_FAILURE:
+      return {
+        ...state,
+        updatingProcures: false,
+        updatingProcuresError: true,
+      };
 
     default:
       return state;
