@@ -176,7 +176,7 @@ function ShipperCardList(props) {
                           <div>
                             <Tooltip title="Edit">
                               <BorderColorIcon
-                                className=" !text-xl cursor-pointer text-[tomato]"
+                                className=" !text-icon cursor-pointer text-[tomato]"
 
                                 onClick={() => {
                                   props.setEditShipper(item);
@@ -193,7 +193,7 @@ function ShipperCardList(props) {
                               onConfirm={() => props.deleteShipperData(item.shipperId,props.userId)}
                             >
                               <DeleteOutlined
-                                className=" !text-xl cursor-pointer text-[red]"
+                                className=" !text-icon cursor-pointer text-[red]"
 
                               />
                             </Popconfirm>
