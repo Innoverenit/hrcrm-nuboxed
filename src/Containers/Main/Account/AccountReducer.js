@@ -2040,6 +2040,27 @@ export const distributorReducer = (state = initialState, action) => {
             return item;
           }
         }),
+        highDistributorOrder: state.highDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        lowDistributorOrder: state.lowDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        mediumDistributorOrder: state.mediumDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.ADD_LOCATION_IN_ORDER_FAILURE:
       return {
@@ -2817,6 +2838,27 @@ export const distributorReducer = (state = initialState, action) => {
         addingSupervisor: false,
         addInventoryInOrder: false,
         distributorOrder: state.distributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        highDistributorOrder: state.highDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        lowDistributorOrder: state.lowDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        mediumDistributorOrder: state.mediumDistributorOrder.map((item) => {
           if (item.orderId == action.payload.orderId) {
             return action.payload;
           } else {

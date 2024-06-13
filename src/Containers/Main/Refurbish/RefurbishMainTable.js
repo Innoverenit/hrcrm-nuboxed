@@ -58,7 +58,7 @@ const ProductionOrderList = (props) => {
   const timerRef = useRef(null);
     useEffect(() => {
         setPageNo(pageNo + 1);
-        props.getProductionOrderId(props.userId,pageNo)
+        // props.getProductionOrderId(props.userId,pageNo)
         props.getProductionUrgent(props.userId,pageNo,"High")
         props.getProductionHigh(props.userId,pageNo,"Medium")
         props.getProductionNormal(props.userId,pageNo,"Low")

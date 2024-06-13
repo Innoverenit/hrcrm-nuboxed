@@ -43,11 +43,35 @@ const DealsTeamCardList = (props) => {
   const handleRowData = (data) => {
     setrowData(data);
   };
+  // const handleLoadMore = () => {
+  //   setPage(page + 1);
+  //   props.getTeamsDeals(props.userId,page);
+  //  // props.getTeamsDeals("all", page);
+  
+  // }
   const handleLoadMore = () => {
-    setPage(page + 1);
-    props.getTeamsDeals("all", page);
-    setPage(page + 1);
-  }
+    const callPageMapd = props.teamsDealsData && props.teamsDealsData.length &&props.teamsDealsData[0].pageCount
+    setTimeout(() => {
+      const {
+        getTeamsDeals,
+
+      } = props;
+      if  (props.teamsDealsData)
+      {
+        if (page < callPageMapd) {
+          setPage(page + 1);
+          getTeamsDeals(
+            props.userId,page
+          );
+      }
+      if (page === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
+
+
   function handleSetCurrentLeadsId(item) {
     setCurrentLeadsId(item);
   }
@@ -103,6 +127,7 @@ const DealsTeamCardList = (props) => {
           hasMore={hasMore}
           loader={fetchingTeamsDealsData ? <div class="flex justify-center">Loading...</div> : null}
           height={"75vh"}
+          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
           {!fetchingTeamsDealsData && props.teamsDealsData.length === 0 ? <NodataFoundPage /> : props.teamsDealsData.map((item, index) => {
             var findProbability = item.probability;

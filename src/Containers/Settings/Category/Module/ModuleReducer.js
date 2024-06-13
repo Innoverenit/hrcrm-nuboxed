@@ -8,7 +8,8 @@ const initialState = {
 
     addingModules: false,
     addingModulesError: false,
-
+    
+    addStripeModal:false,
    
 };
 
@@ -56,10 +57,9 @@ export const moduleReducer = (state = initialState, action) => {
                   fetchingModulesError: false,
                 };
 
-    
+                case types.HANDLE_STRIPE_MODAL:
+                  return { ...state, addStripeModal: action.payload };
   
-
-      
     
     default:
         return state;
