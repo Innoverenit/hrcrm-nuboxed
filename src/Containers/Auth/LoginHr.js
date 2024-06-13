@@ -97,7 +97,7 @@ class LoginHr extends Component {
           >
             <img
               className="big-logo"
-              src={FWLogo2}
+              src={FWLogo}
               style={{ width: 200 }}
               alt="Tekorero logo"
             />
@@ -209,7 +209,7 @@ class LoginHr extends Component {
                       loading={isSubmitting}
                       style={{ width: "100%", height: "2.5em" }}
                     >
-                     {isSubmitting ? 'Logging In...' : 'Log In'}
+                      {isSubmitting ? 'Logging In...' : 'Log In'}
                     </Button>
                   </Form>
                 )}
