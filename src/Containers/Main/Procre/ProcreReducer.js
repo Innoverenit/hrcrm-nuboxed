@@ -74,7 +74,7 @@ export const procreReducer = (state = initialState, action) => {
         ...state,
         updatingProcures: false,
         allProcure: state.allProcure.map((item) => {
-          if (item.procureId == action.payload.procureId) {
+          if (item.iteamId == action.payload.iteamId) {
             return action.payload;
           } else {
             return item;

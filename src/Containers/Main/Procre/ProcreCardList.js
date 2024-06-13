@@ -69,11 +69,13 @@ function ProcreCardList(props) {
         // subAttributeName:key.subAttributeName,
         //       categoryName:key.categoryName,
         //       subCategoryName:key.subCategoryName,
+        iteamId:key.iteamId,
               tradeId:key.tradeId,
               suppliesId:key.suppliesId,
               tradePrice:key.tradePrice,
               tradeUnit:key.tradeUnit,
-              procureId:key.procureId
+              procureId:key.procureId,
+              userId:props.userId
             }];
       props.updateProcures(result)
     
@@ -84,20 +86,18 @@ function ProcreCardList(props) {
     <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.item" defaultMessage="Item"/></div>
+                        <div className=" md:w-[11rem]"><FormattedMessage id="app.item" defaultMessage="Item"/></div>
                         <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit "/></div>
                         <div className=" md:w-[5.4rem]"><FormattedMessage id="app.unit" defaultMessage="Unit "/></div>
                         <div className=" md:w-[12rem]"><FormattedMessage id="app.procreid#" defaultMessage="Procure ID"/></div>
-                        <div className=" md:w-[8rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
-                        <div className=" md:w-[8.1rem]"><FormattedMessage id="app.location" defaultMessage="Location"/></div>
+                        <div className=" md:w-[6rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
+                        <div className=" md:w-[5rem]"><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className=" md:w-[3.8rem] "><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
                         <div className=" md:w-[5rem]"><FormattedMessage id="app.tradeid" defaultMessage="Trade ID"/></div>
                         <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit "/></div>
                         <div className=" md:w-[5.4rem]"><FormattedMessage id="app.unit" defaultMessage="Unit "/></div>
                         <div className=" md:w-[5.8rem]"><FormattedMessage id="app.Submittedby" defaultMessage="Submitted By"/></div>
-                        
-
-                        <div className="md:w-[3.12rem]"></div>
+                        <div className="md:w-[1rem]"></div>
         </div>
         <InfiniteScroll
             hasMore={hasMore}
@@ -114,13 +114,10 @@ function ProcreCardList(props) {
             );
            
             return (
-              <div key={item.procureId}>
-              <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
-                  <div class="flex">
-                  <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
-                  <div className="flex items-center max-sm:w-full">
-                      <div className=" flex font-medium items-center  md:w-[6.56rem] max-sm:w-full  ">
-                                                        <Tooltip>
+              <div key={item.iteamId}>
+              <div className="flex rounded  mt-1 bg-white h-12 items-center p-1">
+<div>
+{/* <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full ">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
@@ -135,7 +132,13 @@ function ProcreCardList(props) {
                                                                         <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
                                                                 </div>
                                                             </div>
-                                                        </Tooltip>
+                                                        </Tooltip> */}
+</div>
+                  <div class="flex">
+                  <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                  <div className="flex items-center max-sm:w-full">
+                      <div className=" flex font-medium items-center  md:w-[12rem] max-sm:w-full  ">
+                                                      {item.category} {item.brand} {item.model} {item.attribute}
                                                     </div>
                                                     <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
       
@@ -163,7 +166,7 @@ function ProcreCardList(props) {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleProcureOrderModal(true);
                                                                     }}
-                                                                >{item.procureId} 
+                                                                >{item.iteamId} 
                                                                 </span>
                                                                 <span> {date === currentDate ? (
                                                                   <span className="text-xs text-[tomato] font-bold">
@@ -190,7 +193,7 @@ function ProcreCardList(props) {
                 </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[12.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <h4 class="text-cardBody font-poppins text-sm">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -211,13 +214,25 @@ function ProcreCardList(props) {
                   </div>
                   <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
-                      {item.tradeId}
+                    {editsuppliesId === item.iteamId ? (
+                       <Input
+                       style={{ width: "3rem" }}
+                       value={item.tradeId}
+                       onChange={(e) => handleInputChange(e.target.value, item.key, 'tradeId')}
+                     />
+                       
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.tradeId}</div>
+                      </div>
+                    )}
+                  
                     </div>
                   </div>
-                  <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                   {editsuppliesId === item.procureId ? (
+                   {editsuppliesId === item.iteamId ? (
                        <Input
                        style={{ width: "3rem" }}
                        value={item.tradePrice}
@@ -234,7 +249,7 @@ function ProcreCardList(props) {
   <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                   {editsuppliesId === item.procureId ? (
+                   {editsuppliesId === item.iteamId ? (
                        <Input
                        style={{ width: "3rem" }}
                        value={item.tradeUnit}
@@ -250,11 +265,11 @@ function ProcreCardList(props) {
   </div>
   <div class="flex flex-row items-center md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
-                      {/* {item.tradeId} */} Submitted
+                      {item.userName} 
                     </div>
                   </div>
   <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
-    {editsuppliesId === item.procureId ? (
+    {editsuppliesId === item.iteamId ? (
                         <>
                       <Button 
                       type="primary"
@@ -264,7 +279,7 @@ function ProcreCardList(props) {
                       </Button>
                         <Button 
                          type="primary"
-                        onClick={() => handleCancelClick(item.procureId)} className="ml-[0.5rem]">
+                        onClick={() => handleCancelClick(item.iteamId)} className="ml-[0.5rem]">
                         Cancel
                       </Button>
                       </>
@@ -274,7 +289,7 @@ function ProcreCardList(props) {
                       className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
-                        onClick={() => handleEditClick(item.procureId)}
+                        onClick={() => handleEditClick(item.iteamId)}
                       />
                     )}
     </div>
@@ -306,6 +321,7 @@ const mapStateToProps = ({ shipper,procre,auth }) => ({
   orgId: auth.userDetails.organizationId,
   addProcureOrderModal:procre.addProcureOrderModal,
   updatingProcures:procre.updatingProcures,
+  userId: auth.userDetails.userId,
 });
 
 const mapDispatchToProps = (dispatch) =>

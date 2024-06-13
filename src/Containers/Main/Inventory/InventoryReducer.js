@@ -306,6 +306,8 @@ const initialState = {
   rejectPhoneListError: false,
 
   rejectedReasonModal: false,
+
+  custoModal:false,
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -1619,6 +1621,11 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingInventoryLocationRecords: false,
         fetchingInventoryLocationRecordsError: true,
       };
+
+      
+    case types.HANDLE_CUSTOM_MODAL:
+      return { ...state, custoModal: action.payload };
+
     default:
       return state;
   }
