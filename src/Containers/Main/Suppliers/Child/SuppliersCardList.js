@@ -174,7 +174,7 @@ function SuppliersCardList(props) {
                             <div>
 <Tooltip title="Purchase Order">
 <StoreIcon
-                            className="!text-xl cursor-pointer text-[red]"
+                            className="!text-icon cursor-pointer text-[red]"
                             // onClick={() => {
                             //    props.setEditSuppliers(item);
                             //   handleRowData(item);
@@ -187,7 +187,7 @@ function SuppliersCardList(props) {
  <div>
 <Tooltip title="Price">
 <EuroIcon
-                            className="!text-xl cursor-pointer text-[blue]"
+                            className="!text-icon cursor-pointer text-[blue]"
                             onClick={() => {
                                props.setEditSuppliers(item);
                               handleRowData(item);
@@ -199,7 +199,7 @@ function SuppliersCardList(props) {
           <div>
 <Tooltip title="">
 <AssignmentIcon
-                            className="!text-xl cursor-pointer text-[green]"
+                            className="!text-icon cursor-pointer text-[green]"
                             onClick={() => {
                                props.setEditSuppliers(item);
                               handleRowData(item);
@@ -214,7 +214,7 @@ function SuppliersCardList(props) {
  <div>
 <Tooltip title="Edit">
             <BorderColorIcon
-             className="!text-xl cursor-pointer text-[tomato]"
+             className="!text-icon cursor-pointer text-[tomato]"
               onClick={() => {
                  props.setEditSuppliers(item);
                 handleRowData(item);
@@ -225,25 +225,22 @@ function SuppliersCardList(props) {
           </Tooltip>
           </div>
           <div>
+          <Tooltip title="Delete">
           <Popconfirm
               title="Do you want to delete?"
              onConfirm={() => props.deleteSupplierData(item.supplierId,props.userId)}
             >
               <DeleteOutlined
 
-className=" !text-xl cursor-pointer text-[red]"
+              className=" !text-icon cursor-pointer text-[red]"
               />
             </Popconfirm>
+            </Tooltip>
             </div>
             </div> 
           
             </div>
-                        
-
-
-
-
-                        </div>
+            </div>
                       </>
                     )
                   })}

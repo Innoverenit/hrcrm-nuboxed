@@ -12,11 +12,10 @@ import {
 } from "../SuppliersAction";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
-import { Button, Input } from "antd";
+import { Tooltip, Button, Input } from "antd";
 import { BorderColor as BorderColorIcon } from "@mui/icons-material";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import moment from "moment";
 
 function SuppliersPriceCardList(props) {
   const [editRowId, setEditRowId] = useState(null);
@@ -152,16 +151,18 @@ function SuppliersPriceCardList(props) {
                               <Button onClick={handleCancelEdit}>Cancel</Button>
                             </>
                           ) : (
-                            <span>{item.updatePrice} &nbsp; {moment(item.updateDate).format('ll')}</span>
+                            <span>{item.updatePrice} &nbsp; {dayjs(item.updateDate).format('DD/MM/YYYY')}</span>
                           )}
                           </div>
                         </div>
                         <div className="flex font-medium flex-col md:w-[5rem] max-sm:justify-between w-full max-sm:flex-row">
                           <div className="font-normal text-[0.85rem] text-cardBody font-poppins">
+                          <Tooltip title="Edit">
                           <BorderColorIcon
-                              className="!text-xl cursor-pointer text-[tomato]"
+                              className="!text-icon cursor-pointer text-[tomato]"
                               onClick={() => handleEditRow(item.suppliesId)}
                             />
+                            </Tooltip>
                           </div>
                         </div>
                       </div>

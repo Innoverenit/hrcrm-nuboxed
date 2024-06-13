@@ -1,19 +1,16 @@
 import React, {  useEffect, useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip,Badge } from "antd";
+import { Tooltip } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import {
   getAllProcure,
   emptyProcre,
   handleProcureOrderModal
 } from "../Procre/ProcreAction";
-import { PersonAddAlt1 } from "@mui/icons-material";
-import moment from "moment";
-import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
+import dayjs from "dayjs";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
 import ProcureOrderModal from "./Child/ProcureOrderModal";
@@ -48,11 +45,17 @@ function ProcreCardList(props) {
     <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[0.5rem]"></div>
-    
+                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.item" defaultMessage="Item"/></div>
+                         <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit"/></div>
+                         <div className=" md:w-[5.4rem]"><FormattedMessage id="app.units" defaultMessage="Units"/></div>
                         <div className=" md:w-[5.4rem]"><FormattedMessage id="app.procreid#" defaultMessage="Procure ID"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.1rem]"><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className=" md:w-[7.8rem] "><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
+                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.tradeid" defaultMessage="Trade ID"/></div>
+                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit "/></div>
+                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.unit" defaultMessage="Unit "/></div>
+                        <div className=" md:w-[5.8rem]"><FormattedMessage id="app.Submittedby" defaultMessage="Submitted By"/></div>
                         
 
                         <div className="md:w-[3.12rem]"></div>
@@ -65,10 +68,10 @@ function ProcreCardList(props) {
           height={"75vh"}
         >
           {props.allProcure.map((item) => {
-            const currentDate = moment().format("DD/MM/YYYY");
-            const date = moment(item.creationDate).format("DD/MM/YYYY");
+            const currentDate = dayjs().format("DD/MM/YYYY");
+            const date = dayjs(item.creationDate).format("DD/MM/YYYY");
             const diff = Math.abs(
-              moment().diff(moment(item.lastRequirementOn), "days")
+              dayjs().diff(dayjs(item.lastRequirementOn), "days")
             );
             const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
               } 
@@ -121,7 +124,7 @@ function ProcreCardList(props) {
                                                                     }}
                                                                 >{item.newOrderNo} 
                                                                 </span>
-                                                                <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                                                                <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                                                   <span className="text-xs text-[tomato] font-bold">
                                                                     New
                                                                   </span>
@@ -138,7 +141,7 @@ function ProcreCardList(props) {
                   
                       
                   <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                  {` ${moment(item.deliveryDate).format("ll")}`}
+                  {` ${dayjs(item.deliveryDate).format("ll")}`}
                         </div>
 
                

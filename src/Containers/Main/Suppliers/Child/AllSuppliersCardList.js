@@ -57,7 +57,7 @@ return(
 <div className=' flex justify-end sticky  z-auto'>
 <div class="rounded-lg m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
 <div className=" flex max-sm:hidden justify-between w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[11.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  <FormattedMessage
+            <div className=" w-[18.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"
             /></div>
@@ -92,7 +92,7 @@ return(
                   className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1  max-sm:h-[6rem] max-sm:flex-col">
                           <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className="font-medium  flex items-center w-[13.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
+                            <div className="font-medium  flex items-center w-[18.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                               <div class=" font-semibold text-[0.85rem] text-cardBody font-poppins">
                               <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
                             href={`supplier/${item.supplierId}`}>{item.name}</a>
@@ -154,7 +154,7 @@ return(
                             <div>
 <Tooltip title="Purchase Order">
 <StoreIcon
-                            className="!text-xl cursor-pointer text-[red]"
+                            className="!text-icon cursor-pointer text-[red]"
                             // onClick={() => {
                             //    props.setEditSuppliers(item);
                             //   handleRowData(item);
@@ -166,7 +166,7 @@ return(
  <div>
 <Tooltip title="Edit">
             <BorderColorIcon
-             className="!text-xl cursor-pointer text-[tomato]"
+             className="!text-icon cursor-pointer text-[tomato]"
               onClick={() => {
                  props.setEditSuppliers(item);
                 handleRowData(item);
@@ -183,19 +183,13 @@ return(
             >
               <DeleteOutlined
 
-className=" !text-xl cursor-pointer text-[red]"
+className=" !text-icon cursor-pointer text-[red]"
               />
             </Popconfirm>
             </div>
             </div> 
-           
-
-                          </div>
-
-
-
-
-                        </div>
+            </div>
+           </div>
     </>
   )
 })}
