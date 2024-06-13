@@ -1,8 +1,8 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
-import { Tooltip, Badge,Avatar } from "antd";
+import { Tooltip, Badge, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PeopleIcon from '@mui/icons-material/People';
@@ -11,23 +11,23 @@ import { AudioOutlined } from "@ant-design/icons";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import {getInvestor,ClearReducerDataOfInvestor,getInvestorsbyId,getInvestorTeam,searchInvestorName,getInvestorAll} from "../InvestorAction";
+import { getInvestor, ClearReducerDataOfInvestor, getInvestorsbyId, getInvestorTeam, searchInvestorName, getInvestorAll } from "../InvestorAction";
 import { Input } from "antd";
 
 const Option = StyledSelect.Option;
 const { Search } = Input;
 
 const InvestorActionLeft = (props) => {
-  const[filter,setFilter]=useState("creationdate")
+  const [filter, setFilter] = useState("creationdate")
   const [currentData, setCurrentData] = useState("");
   const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (searchOnEnter&&e.target.value.trim() === "") {
+    if (searchOnEnter && e.target.value.trim() === "") {
       setPage(pageNo + 1);
-      props.getInvestorsbyId(props.userId, pageNo,"creationdate");
+      props.getInvestorsbyId(props.userId, pageNo, "creationdate");
       props.ClearReducerDataOfInvestor()
       setSearchOnEnter(false);
     }
@@ -58,9 +58,9 @@ const InvestorActionLeft = (props) => {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
   console.log(transcript);
-  function  handleFilterChange(data){
+  function handleFilterChange(data) {
     setFilter(data)
-    props.getInvestorsbyId(props.userId, pageNo,data);
+    props.getInvestorsbyId(props.userId, pageNo, data);
     setPage(pageNo + 1);
   }
 
@@ -70,13 +70,13 @@ const InvestorActionLeft = (props) => {
       props.getInvestorTeam(props.userId);
     }
   }, [props.userId, props.teamsAccessInd]);
-useEffect(() => {
-  // props.getCustomerRecords();
-  if (transcript) {
-    console.log(">>>>>>>", transcript);
-    setCurrentData(transcript);
-  }
-  }, [ transcript]);
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+  }, [transcript]);
   useEffect(() => {
     if (props.viewType === "list") {
       props.getInvestor(props.userId);
@@ -84,21 +84,21 @@ useEffect(() => {
       props.getInvestorTeam(props.userId);
     } else if (props.viewType === "all") {
       props.getInvestorAll(props.orgId);
-    } 
-   
+    }
+
     // if (transcript) {
     //   console.log(">>>>>>>", transcript);
     //   props.setCurrentData(transcript);
     // }
-  }, [props.viewType, props.userId,props.orgId]);
+  }, [props.viewType, props.userId, props.orgId]);
   const teamCount = props.teamsAccessInd && props.investorTeamRecord ? props.investorTeamRecord.investorTeam : 0;
   return (
     <div class=" flex items-center">
-    
-      <Tooltip title={<FormattedMessage id="app.all" defaultMessage="All" />}>
+
+      <Tooltip title={<FormattedMessage id="app.myInvestors" defaultMessage="My Investors" />}>
         <Badge
           size="small"
-        count={(props.viewType === "list" && props.investorRecord.investor) || 0}
+          count={(props.viewType === "list" && props.investorRecord.investor) || 0}
           overflowCount={999}
         >
           <span
@@ -108,57 +108,57 @@ useEffect(() => {
               color: props.viewType === "list" && "#1890ff",
             }}
           >
-             <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon />
+            <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
+              <TocIcon />
             </Avatar>
           </span>
         </Badge>
       </Tooltip>
-   
+
       {props.user.teamsAccessInd === true && (
-      <Tooltip 
-      title={<FormattedMessage id="app.teams" defaultMessage="Teams" />}
->
-        <Badge
-          size="small"
-        count={(teamCount||props.viewType === "teams" && props.investorTeamRecord.investorTeam) || 0}
-          overflowCount={999}
+        <Tooltip
+          title={<FormattedMessage id="app.teamView" defaultMessage="Team View" />}
         >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            onClick={() => props.setInvestorViewType("teams")}
-            style={{
-              color: props.viewType === "teams" && "#1890ff",
-            }}
+          <Badge
+            size="small"
+            count={(teamCount || props.viewType === "teams" && props.investorTeamRecord.investorTeam) || 0}
+            overflowCount={999}
           >
-            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-          <PeopleIcon/>
-          </Avatar>
-          </span>
-        </Badge>
-      </Tooltip>
-       )}
-      {(props.user.investorFullListInd===true || props.user.role==="ADMIN") && (
-      <Tooltip title={<FormattedMessage id="app.all" defaultMessage="All" />}>
-        <Badge
-          size="small"
-        count={(props.viewType === "all" && props.allinvestorRecord.investor) || 0}
-          overflowCount={999}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            onClick={() => props.setInvestorViewType("all")}
-            style={{
-              color: props.viewType === "all" && "#1890ff",
-            }}
+            <span
+              class=" mr-1 text-sm cursor-pointer"
+              onClick={() => props.setInvestorViewType("teams")}
+              style={{
+                color: props.viewType === "teams" && "#1890ff",
+              }}
+            >
+              <Avatar style={{ background: props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+                <PeopleIcon />
+              </Avatar>
+            </span>
+          </Badge>
+        </Tooltip>
+      )}
+      {(props.user.investorFullListInd === true || props.user.role === "ADMIN") && (
+        <Tooltip title={<FormattedMessage id="app.all" defaultMessage="All" />}>
+          <Badge
+            size="small"
+            count={(props.viewType === "all" && props.allinvestorRecord.investor) || 0}
+            overflowCount={999}
           >
-             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-         <FormattedMessage id="app.all" defaultMessage="ALL" />
-         </Avatar>
-          </span>
-        </Badge>
-      </Tooltip>
-  )}
+            <span
+              class=" mr-1 text-sm cursor-pointer"
+              onClick={() => props.setInvestorViewType("all")}
+              style={{
+                color: props.viewType === "all" && "#1890ff",
+              }}
+            >
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                <FormattedMessage id="app.all" defaultMessage="ALL" />
+              </Avatar>
+            </span>
+          </Badge>
+        </Tooltip>
+      )}
       {/* <Tooltip>
         <Badge
           size="small"
@@ -177,7 +177,7 @@ useEffect(() => {
         </Badge>
       </Tooltip> */}
 
-      
+
       {/* <Tooltip
         title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
       >
@@ -198,15 +198,15 @@ useEffect(() => {
       </Tooltip> */}
       <div class=" flex items-center justify-between"
       >
-       <div class=" w-72 md:ml-4 max-sm:w-16 ml-0">
-       <Input
-          placeholder="Search by Name, Company"
-          class="w-96"
-          suffix={suffix}
-            onPressEnter={handleSearch}  
+        <div class=" w-72 md:ml-4 max-sm:w-16 ml-0">
+          <Input
+            placeholder="Search by Name, Company"
+            class="w-96"
+            suffix={suffix}
+            onPressEnter={handleSearch}
             onChange={handleChange}
-             value={currentData}
-        />
+            value={currentData}
+          />
         </div>
         {/* <Button
           type={props.currentData ? "primary" : "danger"}
@@ -225,8 +225,8 @@ useEffect(() => {
           <FormattedMessage id="app.clear" defaultMessage="Clear" />
         </Button> */}
         <div class=" w-[40%] mt-2 ml-2" >
-          <StyledSelect placeholder="Sort"  onChange={(e)  => props.handleFilterChange(e)}>
-          <Option value="CreationDate">Creation Date</Option>
+          <StyledSelect placeholder="Sort" onChange={(e) => props.handleFilterChange(e)}>
+            <Option value="CreationDate">Creation Date</Option>
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>
           </StyledSelect>
@@ -237,12 +237,12 @@ useEffect(() => {
 };
 const mapStateToProps = ({ investor, auth, candidate }) => ({
   user: auth.userDetails,
-  investorRecord:investor.investorRecord,
-  investorTeamRecord:investor.investorTeamRecord,
+  investorRecord: investor.investorRecord,
+  investorTeamRecord: investor.investorTeamRecord,
   Candidatesort: candidate.Candidatesort,
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
-  allinvestorRecord:investor.allinvestorRecord
+  allinvestorRecord: investor.allinvestorRecord
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
