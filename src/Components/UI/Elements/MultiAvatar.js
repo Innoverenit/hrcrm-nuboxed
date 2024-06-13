@@ -1,7 +1,6 @@
 import React from "react";
-//import Avatar from "antd/lib/avatar";
 import { ProgressiveImage } from "../../Utils";
-import { Icon, Empty, Tooltip, Input, Button, Avatar, Rate } from "antd";
+import { Tooltip, Avatar } from "antd";
 import { base_url } from "../../../Config/Auth";
 import ProfilePreview from "../../../Assets/Images/ProfilePreview.png";
 const MultiAvatar = ({
@@ -11,9 +10,6 @@ const MultiAvatar = ({
   imgWidth,
   imgHeight,
   smallAvatar,
-  imgRadius,
-  // bgcolor,
-  minAvatarWidth,
 }) => {
   const size = smallAvatar && !imageId && !imageURL ? "small" : "large";
   // const fontSize = size === "large" ? 18 : 12;
@@ -83,24 +79,3 @@ const MultiAvatar = ({
 };
 
 export default MultiAvatar;
-{
-  /* <Icon type="audit" />influencer */
-}
-{
-  /* <i class="material-icons">
-how_to_reg
-</i> evaluator */
-}
-
-// <i class="material-icons">
-// how_to_vote
-// </i>decision maker
-{
-  /* <i class="material-icons">
-assistant
-</i>influencer */
-}
-
-//decision maker <i class="fas fa-vote-yea"></i>
-//evaluator <i class="fas fa-address-card"></i>
-//influencer <i class="fas fa-hands-helping"></i>
