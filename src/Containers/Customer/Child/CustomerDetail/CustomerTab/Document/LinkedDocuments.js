@@ -5,9 +5,6 @@ import DownloadIcon from '@mui/icons-material/Download';
 import { DeleteOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import { base_url } from "../../../../../../Config/Auth";
-import {
-  StyledPopconfirm,
-} from "../../../../../../Components/UI/Antd";
 import { SearchOutlined } from "@ant-design/icons";
 import {
   Tooltip,
@@ -148,7 +145,7 @@ class LinkedDocuments extends Component {
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
       <>
-        <div class="rounded-lg m-5 p-2 w-[98%]   shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div class="rounded-lg m-1 p-2 w-[98%]   shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
           
         <div className=" md:w-[6rem]">
@@ -198,7 +195,7 @@ class LinkedDocuments extends Component {
     <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm  text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm  text-cardBody font-poppins font-medium  cursor-pointer">
                                                 
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
      
@@ -270,12 +267,14 @@ class LinkedDocuments extends Component {
                               <a
             href={`${base_url}/document/${item.documentId}`}
             // target="_blank"
-          >
+          > <Tooltip title="Download">
             <DownloadIcon
-            className="cursor-pointer !text-xl"
-            />
-          </a>            </div>
+            className="cursor-pointer !text-icon"
+            /></Tooltip>
+          </a>  
+                 </div>
           <div>
+            
           <Popconfirm
                         title="Do you want to delete?"
                         okText="Yes"
@@ -285,7 +284,7 @@ class LinkedDocuments extends Component {
                          <Tooltip title="Delete">
       
             <DeleteOutlined
-className="cursor-pointer !text-xl text-[red]"
+className="cursor-pointer !text-icon text-[red]"
             />
             </Tooltip>
           </Popconfirm>

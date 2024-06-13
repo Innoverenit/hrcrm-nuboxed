@@ -175,7 +175,7 @@ function ContactAllCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllContacts?<div class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
         
         { !fetchingAllContacts && allContacts.length === 0 ?<NodataFoundPage />:allContacts.map((item,index) =>  {
@@ -352,7 +352,7 @@ function ContactAllCardList(props) {
               </div>
      
                         
-              <div class="rounded-full w-5 h-5 cursor-pointer ">
+              <div class="rounded-full  cursor-pointer ">
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
         <span class=" mr-2 text-xs cursor-pointer"
@@ -376,7 +376,7 @@ function ContactAllCardList(props) {
       )}
     </Tooltip>
                   </div>
-                  <div class=" max-sm:flex justify-end mt-1 max-sm:w-full">
+                  <div class=" max-sm:flex justify-end  max-sm:w-full">
                   <Tooltip title={item.emailId}>
      
       <MailOutlineIcon

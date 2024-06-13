@@ -181,12 +181,6 @@ function ProductionPaymentTable(props) {
                                                 <Tooltip title="Delete">
                                                     <DeleteIcon
                                                         className="text-base cursor-pointer text-[red]"
-
-                                                    // style={{
-                                                    //   cursor: "pointer",
-                                                    //   color: "red",
-                                                    //   fontSize: "1rem",
-                                                    // }}
                                                     />
                                                 </Tooltip>
                                             </StyledPopconfirm>

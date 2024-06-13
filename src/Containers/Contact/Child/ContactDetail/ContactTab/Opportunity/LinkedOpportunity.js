@@ -2,7 +2,7 @@ import React, { useEffect ,useState} from "react";
 import { connect } from "react-redux";
 import LockIcon from "@mui/icons-material/Lock";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import moment from "moment";
+import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {  Menu, Dropdown, Progress } from "antd";
 import { Link } from "../../../../../../Components/Common";
@@ -141,7 +141,7 @@ function OpportunityTable(props) {
 
 
                                   <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                  {moment(item.startDate).format("ll")}
+                                  {dayjs(item.startDate).format("DD/MM/YYYY")}
                                   </div>
                               </div>
                            
@@ -183,7 +183,7 @@ trigger={["click"]}
 {" "}
 <Progress
 type="circle"
-className=" !text-xl cursor-pointer text-[red]"
+className=" !text-icon cursor-pointer text-[red]"
 percent={findProbability}
 width={30}
 strokeColor={"#005075"}
@@ -254,7 +254,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
 >
          {user.pulseAccessInd === true && (
            <MonitorHeartIcon
-           className=" !text-xl cursor-pointer text-[#df9697]"
+           className=" !text-icon cursor-pointer text-[#df9697]"
            />
          )}
        </span>
@@ -276,7 +276,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
      
        >
         <LockIcon
-         className=" !text-xl cursor-pointer"
+         className=" !text-icon cursor-pointer"
             />
           </span>
    </Tooltip> 

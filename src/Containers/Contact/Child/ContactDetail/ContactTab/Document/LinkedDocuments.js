@@ -83,7 +83,7 @@ class LinkedDocuments extends Component {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm  text-cardBody font-poppins  font-medium cursor-pointer">
                                                 
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
      
@@ -132,9 +132,7 @@ class LinkedDocuments extends Component {
           // target="_blank"
           >
             <DownloadIcon
-              type="download"
-              style={{ cursor: "pointer" ,fontSize:"1.25rem"}}
-            />
+              type="download" class=" cursor-pointer !text-icon bg-green-500"/>
           </a>
           </>
                  
@@ -143,11 +141,7 @@ class LinkedDocuments extends Component {
                                     
 
                                     <div class=" text-sm text-cardBody font-poppins text-center">
-                                    <a
-            href={`${base_url}/download/${item.documentTypeId}`}
-          >
-            
-          </a>
+                                    <a href={`${base_url}/download/${item.documentTypeId}`}></a>
 
                                     </div>
                                 </div>
@@ -156,11 +150,11 @@ class LinkedDocuments extends Component {
 
                                     <div class=" text-sm text-cardBody font-poppins text-center">
                                     <StyledPopconfirm
-            title="Do you want to delete?"
-            onConfirm={() => deleteDocument(item.documentId)}
-         >
-            <DeleteOutlined type="delete" style={{ cursor: "pointer", fontSize:"1.25rem",color: "red" }} />
-          </StyledPopconfirm>
+                                      title="Do you want to delete?"
+                                        onConfirm={() => deleteDocument(item.documentId)}
+                                             >
+                                      <DeleteOutlined type="delete" class="cursor-pointer !text-icon bg-red-600" />
+                                        </StyledPopconfirm>
 
                                     </div>
                                 </div>
