@@ -78,6 +78,7 @@ function AccountOpportunityForm(props) {
                 distributorId: props.distributorId,
                 userId: props.userId,
                 orderId: "",
+                lobDetsilsId:"",
                 // orderType: "Repair",
                 priority: priority || "",
                 orgId: props.orgId,
@@ -337,6 +338,7 @@ function AccountOpportunityForm(props) {
                                         />
                                     </div>
                                     <div class="w-[45%]">
+                                        <div>
                                         <Field
                                             label="LOB"
                                             name="lobDetsilsId"
@@ -347,6 +349,8 @@ function AccountOpportunityForm(props) {
                                             style={{ borderRight: "3px red solid" }}
                                             isColumn
                                         />
+                                       
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="justify-between flex mt-3">

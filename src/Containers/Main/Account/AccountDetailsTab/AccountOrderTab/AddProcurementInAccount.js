@@ -73,6 +73,7 @@ function AddProcurementInAccount(props) {
                 advancePayment: 50,
                 distributorId: props.distributorId,
                 userId: props.userId,
+                lobDetsilsId:"",
                 orderId: "",
                 priority: priority || "",
                 orgId: props.orgId,
