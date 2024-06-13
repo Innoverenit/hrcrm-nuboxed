@@ -141,7 +141,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             }));
              return (
               <div>
-            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-sm:h-[7rem] max-sm:flex-col"
+            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-sm:h-[7rem] max-sm:flex-row"
            >
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
               <div class="flex  flex-col w-[8.9rem] max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">

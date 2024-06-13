@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import QrCode from "./QrCode"
 import {
   getSuppliesList,
   deletePurchaseData,
@@ -15,12 +14,11 @@ import {
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip, Popconfirm } from "antd";
 import {
-  DeleteFilled,
   DeleteOutlined,
   PhoneFilled,
 } from "@ant-design/icons";
 import CategoryIcon from '@mui/icons-material/Category'
-import moment from "moment";
+import dayjs from "dayjs";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { BundleLoader } from "../../../Components/Placeholder";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -101,7 +99,7 @@ function SuppliesTable(props) {
             <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Created</div>
             <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Unique ID</div>
             {/* <div className="md:w-[4.2rem]">Scan</div> */}
-            <div className="w-[11.8rem]"></div>
+            <div className="w-[11.8rem]">Process</div>
           </div>
 
           <InfiniteScroll
@@ -114,7 +112,7 @@ function SuppliesTable(props) {
             {props.purchaseList.length ?
               <>
                 {props.purchaseList.map((item) => {
-                    const currentDate = moment().format("DD/MM/YYYY");
+                    const currentDate = dayjs().format("DD/MM/YYYY");
                   return (
                     <>
                       <div className="flex rounded justify-center bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
@@ -143,7 +141,7 @@ function SuppliesTable(props) {
 
                                 <div className=" flex font-medium flex-col w-[4rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                                   <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                  {item.hsn} <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                                  {item.hsn} <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                     <span className="text-xs text-[tomato] font-bold">
                       New
                     </span>
@@ -191,7 +189,7 @@ function SuppliesTable(props) {
                               imgWidth={"1.8rem"}
                               imgHeight={"1.8rem"}
                             />
-                               {`${moment(item.creationDate).format("ll")}`}
+                               {`${dayjs(item.creationDate).format("ll")}`}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
@@ -220,7 +218,7 @@ suppliesId={item.suppliesId}
                             <div>
                               <Tooltip title="Material Builder">
                                 <ViewQuiltIcon
-                                  className="cursor-pointer text-xl"
+                                  className="cursor-pointer text-icon"
                                   onClick={() => {
                                     props.handleMaterialBuilderDrawer(true);
                                     handleParticularRowData(item);
@@ -235,7 +233,7 @@ suppliesId={item.suppliesId}
                                     props.handleBrandModel(true);
                                     handleParticularRowData(item);
                                   }}
-                                  className=" !text-xl cursor-pointer text-[blue]"
+                                  className=" !text-icon cursor-pointer text-[blue]"
                                 />
                               </Tooltip>}
                             </div>
@@ -248,12 +246,14 @@ suppliesId={item.suppliesId}
                                     props.handleSuppliersListDrawer(true);
                                     handleParticularRowData(item);
                                   }}
-                                  className=" !text-xl cursor-pointer"
+                                  className=" !text-icon cursor-pointer"
                                 />
                               </Tooltip>
                             </div>
                             <div>
-                              <InventoryIcon className=" !text-xl cursor-pointer" />
+                            <Tooltip title="Inventory">
+                              <InventoryIcon className=" !text-icon cursor-pointer" />
+                              </Tooltip>
                             </div>
                         
                          
@@ -264,7 +264,7 @@ suppliesId={item.suppliesId}
                                     handleUpdateSupplieDrawer(true);
                                     handleParticularRowData(item);
                                   }}
-                                  className=" !text-xl cursor-pointer text-[tomato]"
+                                  className=" !text-icon cursor-pointer text-[tomato]"
                                 />
                               </Tooltip>
                             </div>
@@ -274,7 +274,7 @@ suppliesId={item.suppliesId}
                                 onConfirm={() => props.deletePurchaseData(item.suppliesId)}
                               >
 
-                                <DeleteOutlined className=" !text-xl cursor-pointer text-[red]" />
+                                <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
                               </Popconfirm>
                             </div>
                          

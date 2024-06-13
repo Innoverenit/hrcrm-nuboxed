@@ -114,6 +114,7 @@ return (
   </div>
   <div class="flex flex-row justify-between max-sm:flex-row max-sm:w-[10%]">
     <div>
+      
     {editlinkSuppliesId === item.linkSuppliesId ? (
                         <>
                       <Button onClick={() => handleUpdateSupplies(item.linkSuppliesId,item.supplySupplyLinkId,item.suppliesName,item.description,item.categoryName,item.subCategoryName)}>
@@ -127,11 +128,12 @@ return (
                       </>
                       
                     ) : (
+                      <Tooltip title="Edit">
                       <BorderColorIcon
-                      className="text-[blue] flex justify-items-center justify-center text-xl cursor-pointer"
+                      className=" flex justify-items-center justify-center !text-icon cursor-pointer  text-[tomato] "
                         onClick={() => handleEditClick(item.linkSuppliesId)}
                         // style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '0.75rem', marginTop: '0.25rem', marginLeft: '0.25rem' }}
-                      />
+                      /></Tooltip>
                     )}
     </div>
     <div>
@@ -141,7 +143,7 @@ return (
                           >
                      <Tooltip title="Delete">
                           <DeleteOutlined
-                          className="!text-xl cursor-pointer "
+                          className="!text-icon cursor-pointer "
                           style={{
                        
                             color: "red",

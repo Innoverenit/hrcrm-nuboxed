@@ -136,9 +136,9 @@ const handleLoadMoreLow = () => {
                 <div class="rounded-lg m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[99%]  bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">Urgent </div>
-                        <div className=" md:w-[9.3rem] ml-2">Order ID</div>
-          <div className=" md:w-[11.6rem]">Customer</div>
-          <div className=" md:w-[5.051rem] ">Contact</div>
+                        <div className=" md:w-[10.31rem] ml-2">Order ID</div>
+          <div className=" md:w-[8.6rem]">Customer</div>
+          <div className=" md:w-[4.051rem] ">Contact</div>
           <div className="md:w-[5.018rem]">Units</div>
           <div className="md:w-[5.031rem]">Owner</div>
           <div className="md:w-[5.2rem]">Supervisor</div>
@@ -218,7 +218,7 @@ const handleLoadMoreLow = () => {
                               ) : null}
                         </div>
 
-                        <div class="max-sm:w-full md:w-[10.02rem]">
+                        <div class="max-sm:w-full md:w-[9.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
                               {item.distributorName}
@@ -228,7 +228,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[5.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -241,7 +241,7 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[4.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class="text-cardBody font-poppins text-sm">
                         {item.noOfPhones}
                       </div>
@@ -398,9 +398,9 @@ const handleLoadMoreLow = () => {
                 <div class="rounded-lg m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[99%]  bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
-                        <div className=" md:w-[9.3rem] ml-2">Order ID</div>
-          <div className=" md:w-[11.6rem]">Customer</div>
-          <div className=" md:w-[5.051rem] ">Contact</div>
+                        <div className=" md:w-[10.31rem] ml-2">Order ID</div>
+          <div className=" md:w-[8.6rem]">Customer</div>
+          <div className=" md:w-[4.051rem] ">Contact</div>npm inst
           <div className="md:w-[5.012rem]">Units</div>
           <div className="md:w-[5.031rem]">Owner</div>
           <div className="md:w-[5.2rem]">Supervisor</div>
@@ -477,7 +477,7 @@ const handleLoadMoreLow = () => {
                               ) : null}
                         </div>
 
-                        <div class="max-sm:w-full md:w-[10.02rem]">
+                        <div class="max-sm:w-full md:w-[9.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
                               {item.distributorName}
@@ -487,7 +487,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[5.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -500,7 +500,7 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[4.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class="text-cardBody font-poppins text-sm">
                         {item.noOfPhones}
                       </div>
@@ -656,9 +656,9 @@ const handleLoadMoreLow = () => {
                 <div class="rounded-lg m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[99%]  bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
-                        <div className=" md:w-[9.3rem] ml-2">Order ID</div>
-          <div className=" md:w-[11.6rem]">Customer</div>
-          <div className=" md:w-[5.051rem] ">Contact</div>
+                        <div className=" md:w-[10.31rem] ml-2">Order ID</div>
+          <div className=" md:w-[8.6rem]">Customer</div>
+          <div className=" md:w-[4.051rem] ">Contact</div>
           <div className="md:w-[5.014rem]">Units</div>
           <div className="md:w-[5.031rem]">Owner</div>
           <div className="md:w-[5.2rem]">Supervisor</div>
@@ -735,7 +735,7 @@ const handleLoadMoreLow = () => {
                               ) : null}
                         </div>
 
-                        <div class="max-sm:w-full md:w-[10.02rem]">
+                        <div class="max-sm:w-full md:w-[9.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
                               {item.distributorName}
@@ -745,7 +745,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[5.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -758,7 +758,7 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[4.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class="text-cardBody font-poppins text-sm">
                         {item.noOfPhones}
                       </div>
