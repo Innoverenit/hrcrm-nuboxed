@@ -109,7 +109,7 @@ function InventoryTableAll(props) {
                             next={handleLoadMore}
                             hasMore={hasMore}
                             loader={props.fetchingInventoryAlllist ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"75vh"}
+                            height={"79vh"}
                         >
                             {props.inventoryAllList.length ? <>
                                 {props.inventoryAllList.map((item) => {

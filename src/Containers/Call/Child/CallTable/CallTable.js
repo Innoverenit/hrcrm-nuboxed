@@ -16,7 +16,7 @@ import {
   getNotesListByCallId,
   emptyCall
 } from "../../CallAction";
-import { MultiAvatar2, } from "../../../../Components/UI/Elements";
+import { MultiAvatar2, MultiAvatar } from "../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 const AddCallNotesDrawerModal = lazy(() => import("../AddCallNotesDrawerModal"));
 
@@ -82,8 +82,8 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   
   return (
     <>
-       <div className=' flex justify-end sticky top-28 z-auto'>
-       <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+       <div className=' flex justify-end sticky  z-auto'>
+       <div class="rounded-lg max-sm:m-1 m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
        <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.type"
@@ -125,7 +125,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
         next={handleLoadMore}
       hasMore={hasMore}
         loader={fetchingCallListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"79vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       
@@ -141,7 +141,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             }));
              return (
               <div>
-            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-sm:h-[7rem] max-sm:flex-row"
+            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-8  items-center p-1 max-sm:h-[7rem] max-sm:flex-row"
            >
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
               <div class="flex  flex-col w-[8.9rem] max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
@@ -233,7 +233,7 @@ return (
              
               <div class="flex  flex-col w-[9.38rem] max-xl:w-[7.78rem] max-lg:w-[5.38rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto mt-1 mb-1">
              
-             <MultiAvatar2
+             <MultiAvatar
                    primaryTitle={item.woner}
                    //imageId={item.ownerImageId}
                    imageURL={item.imageURL}
@@ -249,7 +249,7 @@ return (
             
               
              
-              <div class="flex flex-col w-[6%] max-sm:flex-row max-sm:w-auto">
+              <div class="flex flex-row  w-[6%] max-sm:flex-row max-sm:w-auto">
                     <div>
                     <Tooltip title="Notes">
        <NoteAltIcon
@@ -257,14 +257,14 @@ return (
                   handleCallNotesDrawerModal(true);
                   handleSetCallNameId(item);
                 }}
-                className="!text-base cursor-pointer text-[green]"
+                className="!text-icon cursor-pointer text-[green]"
               />
            </Tooltip>
                     </div>
                     <div>
                     <Tooltip title="Delete">
                     <DeleteOutlined  type="delete" 
-                    className="!text-base cursor-pointer text-[red]"
+                    className="!text-icon cursor-pointer text-[red]"
                 onClick={() => deleteCall(item.callId, employeeId)}
               />
                 </Tooltip>

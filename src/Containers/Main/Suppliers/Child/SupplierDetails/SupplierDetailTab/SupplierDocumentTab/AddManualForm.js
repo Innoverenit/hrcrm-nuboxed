@@ -171,9 +171,9 @@ function AddManualForm(props) {
               </div>
               <div>
                 <label>Model</label>
-                <div className="w-[7rem]">
+                <div className="w-[12rem]">
                   <Select
-                    style={{ width: 100 }}
+                    style={{ width: 170 }}
                     value={row.model}
                     onChange={(value) => handleModelChange(value, index)}
                   >

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { DatePicker } from "antd";
-import moment from "moment";
 
 import {
     getPurchaseSuppliersList,
@@ -20,7 +19,7 @@ import NodataFoundPage from '../../../../../../Helpers/ErrorBoundary/NodataFound
 import PoLocationModal from "./PoLocationModal";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 import POSupplierDetailsModal from "./POSupplierDetailsModal";
-import { BorderColorRounded, TerminalSharp } from "@mui/icons-material";
+import { TerminalSharp } from "@mui/icons-material";
 import TermsnConditionModal from "./TermsnConditionModal";
 import { getCurrency } from "../../../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -195,15 +194,15 @@ function PurchaseOrderTable(props) {
                   {editContactId === item.poSupplierDetailsId ? (
                                          <DatePicker
                                          style={{marginLeft:"0.5rem"}}
-                                       // defaultValue={moment(item.borrowDate)}
-               value={selectedDate ? moment(selectedDate) : null} 
+                                       // defaultValue={dayjs(item.borrowDate)}
+               value={selectedDate ? dayjs(selectedDate) : null} 
                onChange={(date, dateString) => setSelectedDate(dateString)}
                picker="date" 
              />
                   ) : (
                     <div className="font-normal text-sm text-cardBody font-poppins">
  
-                        {item.expectDeliveryDate ? moment(item.expectDeliveryDate).format("ll") : ""}
+                        {item.expectDeliveryDate ? dayjs(item.expectDeliveryDate).format("ll") : ""}
                         </div>
                   )}
                 </div>
@@ -323,7 +322,7 @@ function PurchaseOrderTable(props) {
                       tooltipTitle="Edit"
                     
                       onClick={() => handleEditClick(item.poSupplierDetailsId, item.contact,item.expectDeliveryDate,item.poCurrency )}
-                      className="!text-xl cursor-pointer flex items-center justify-center text-[tomato]"
+                      className="!text-icon cursor-pointer flex items-center justify-center text-[tomato]"
                     />
                         </Tooltip>
                   )}
