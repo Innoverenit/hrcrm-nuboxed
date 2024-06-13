@@ -84,7 +84,7 @@ const {
             <div class="flex items-center">
 
                 <Tooltip
-                    title={<FormattedMessage id="app.cardview" defaultMessage="Card View" />}>
+                    title={<FormattedMessage id="app.mysuppliers" defaultMessage="My Suppliers" />}>
 <Badge
           size="small"
           count={(props.viewType === "card" && props.countSupplier.supplierCount) || 0}
@@ -103,7 +103,7 @@ const {
                     </span></Badge>
                 </Tooltip>
 
-                <Tooltip title="ALL Suppliers">
+                <Tooltip title="ALL">
                 <Badge
           size="small"
           count={(props.viewType === "all" && props.allCountSupplier.AllSupplierCount) || 0}
@@ -121,7 +121,7 @@ const {
                     </span>
                     </Badge>
                 </Tooltip>
-                <Tooltip title="Deleted List">
+                <Tooltip title="My Suppliers-Deleted">
                 <Badge
           size="small"
           count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}

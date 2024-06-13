@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { DeleteOutlined, AlipayOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Avatar,Badge } from "antd";
 import MenuIcon from '@mui/icons-material/Menu';
 import { getRecords ,getDeletedProductRecords} from "../ProductAction";
@@ -28,7 +28,7 @@ const ProductActionLeft = (props) => {
 
   return (
     <FlexContainer alignItems="center">
-      <Tooltip title="Product List">
+      <Tooltip title="Active Products">
       <Badge
           size="small"
            count={( props.recordData.product) || 0}
@@ -67,7 +67,7 @@ const ProductActionLeft = (props) => {
 
      
 
-      <Tooltip title="Category List">
+      <Tooltip title="Category">
         <div
           class=" ml-2 text-sm cursor-pointer"
           style={{
@@ -83,7 +83,7 @@ const ProductActionLeft = (props) => {
         </div>
       </Tooltip>
 
-<Tooltip title="Suspended Product">
+<Tooltip title="Suspended Products">
 <Badge
     size="small"
      count={( props.deletedProductCount.deletedProduct) || 0}
