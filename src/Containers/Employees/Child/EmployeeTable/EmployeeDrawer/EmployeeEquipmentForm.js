@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { updateProfileEquipment,getEmployeeEquipmentByUserId } from "../../../../Profile/ProfileAction";
 import { Switch, Input, Button } from 'antd'; 
 import { getEquipment } from "../../../../Settings/Category/Equipment/EquipmentAction";
-import { MainWrapper } from '../../../../../Components/UI/Layout';
 import { BundleLoader } from '../../../../../Components/Placeholder';
 
 const EmployeeEquipmentForm = (props) => {

@@ -39,7 +39,7 @@ class EmployeePulseDrawerModal extends Component {
           closable
           maskClosable={false}
           destroyOnClose
-          width={"100%"}
+          width={"90%"}
           visible={this.props.addDrawerEmployeePulseModal}
         onClose={() => this.props.handleEmployeePulseDrawerModal(false)}
         
