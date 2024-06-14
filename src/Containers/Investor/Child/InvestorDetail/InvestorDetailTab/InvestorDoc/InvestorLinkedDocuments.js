@@ -186,7 +186,7 @@ class InvestorLinkedDocuments extends Component {
             >
               <DownloadIcon
                 type="download"
-                style={{ cursor: "pointer" ,fontSize:"1.25rem"}}
+               class=" cursor-pointer !text-icon bg-green-600"
               />
             </a>
 
@@ -199,7 +199,8 @@ class InvestorLinkedDocuments extends Component {
               title="Do you want to delete?"
             //   onConfirm={() => deleteDocument(item.documentId)}
            >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", fontSize:"1.25rem",color: "red" }} />
+              <DeleteOutlined type="delete"
+              class=" cursor-pointer !text-icon  bg-red-600 " />
             </StyledPopconfirm>
 
                                       </div>

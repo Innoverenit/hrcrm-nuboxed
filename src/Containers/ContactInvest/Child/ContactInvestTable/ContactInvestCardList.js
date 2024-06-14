@@ -8,7 +8,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip } from "antd";
-import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import {
   handleUpdateContactModal,
   handleContactReactSpeechModal,
@@ -147,7 +147,7 @@ function ContactInvestCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingContactsInvest?<div  class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
        
        { !fetchingContactsInvest && filterData.length === 0 ?<NodataFoundPage />:filterData.map((item,index) =>  {
@@ -281,7 +281,7 @@ function ContactInvestCardList(props) {
           </Tooltip>
 
                    </div>
-                               
+      <div class=" flex justify-end items-center w-[7rem] max-sm:flex   max-sm:w-full">                 
                     <div class="rounded-full bg-white w-5 h-5 cursor-pointer">
                     <Tooltip title={item.mobileNo} >
             {item.doNotCallInd !== true && (
@@ -395,7 +395,7 @@ function ContactInvestCardList(props) {
             </Tooltip>
             )}
             </div>
-            
+            </div>
                             </div>
                         </div>
 

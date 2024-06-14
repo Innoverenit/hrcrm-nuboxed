@@ -13,9 +13,7 @@ import { Tooltip, Select } from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   MultiAvatar,
-  MultiAvatar2,
-  SubTitle,
-} from "../../../../Components/UI/Elements";
+  MultiAvatar2 } from "../../../../Components/UI/Elements";
 import {  DeleteOutlined } from "@ant-design/icons";
 import { Link } from 'react-router-dom';
 import {
@@ -167,7 +165,7 @@ function InvestorTeamCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingTeamInvestor?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
         
         { !fetchingTeamInvestor && teamInvestor.length === 0 ?<NodataFoundPage />:teamInvestor.map((item,index) =>  {
@@ -355,7 +353,7 @@ function InvestorTeamCardList(props) {
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-between">            
-                                <div className="w-5">
+                                <div >
                                 {/* {user.pulseAccessInd === true && */}
                           <Tooltip title="Pulse">
          <MonitorHeartIcon
@@ -368,11 +366,7 @@ function InvestorTeamCardList(props) {
              </Tooltip>
         {/* } */}
                           </div>
-                         
-          
-                   
-                               
-                          <div className="w-5">
+                         <div>
                    <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
@@ -384,7 +378,7 @@ function InvestorTeamCardList(props) {
            </Tooltip>
                    </div>
                    
-                   <div className="w-5">
+                   <div>
                     <Tooltip title={item.url}>
               {item.url !== "" ? (
                 <span class="cursor-pointer"
@@ -405,11 +399,11 @@ function InvestorTeamCardList(props) {
                         </div>                   
                       
         
-                        <div className="w-5">
+                        <div>
           
             <Tooltip title="Investor Contact">
               <LocationCityIcon
-              className=" !text-3xl cursor-pointer p-1 text-blue-500 "
+              className=" !text-icon cursor-pointer p-1 text-blue-500 "
                 onClick={() => {
                   handleInvestorContModal(true);
                     handleCurrentRowData(item);
@@ -423,14 +417,14 @@ function InvestorTeamCardList(props) {
                     
     
                     
-            <div className="w-5">
+            <div>
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span class="cursor-pointer">
             <LocationOnIcon   className=" !text-icon cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
-            <div className="w-5">
+            <div>
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
             <Tooltip title="Edit">
               <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato]"
@@ -443,7 +437,7 @@ function InvestorTeamCardList(props) {
             </Tooltip>
            )} 
             </div>
-            <div className="w-5">
+            <div >
             <StyledPopconfirm
                         title="Do you want to delete?"
                         onConfirm={() =>
