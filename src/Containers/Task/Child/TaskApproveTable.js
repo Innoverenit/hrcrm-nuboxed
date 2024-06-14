@@ -380,7 +380,7 @@ const TaskApproveTable = (props) => {
                   handleTaskNotesDrawerModal(true);
                   handleSetTaskNameId(item);
                 }}
-                className="!text-lg cursor-pointer text-[#green]"
+                className="!text-icon cursor-pointer text-[#green]"
               />
            </Tooltip>
   

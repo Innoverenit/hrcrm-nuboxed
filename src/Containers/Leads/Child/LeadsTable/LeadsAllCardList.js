@@ -3,7 +3,7 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
-import moment from "moment";
+import dayjs from "dayjs";
 import LanguageIcon from '@mui/icons-material/Language';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
@@ -193,11 +193,11 @@ const LeadsAllCardList = (props) => {
         endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
              { !fetchingAllLeadsHot && allleadsInfoHot.length === 0 ?<NodataFoundPage />:allleadsInfoHot.map((item,index) =>  {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.address[0].country_alpha2_code
           const diff = Math.abs(
-            moment().diff(moment(item.lastRequirementOn), "days")
+            dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
           const dataLoc = ` Address : ${
             item.address && item.address.length && item.address[0].address1
@@ -471,7 +471,7 @@ const LeadsAllCardList = (props) => {
                 </div>
                 <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
                 
-                  <div class="w-5">
+                  <div >
                     <Tooltip title="Notes">
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
@@ -484,7 +484,7 @@ const LeadsAllCardList = (props) => {
                       />
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       title={
                         <FormattedMessage
@@ -510,7 +510,7 @@ const LeadsAllCardList = (props) => {
                   
                
                
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       overlayStyle={{ maxWidth: "300px" }}
                       title={dataLoc}
@@ -524,7 +524,7 @@ const LeadsAllCardList = (props) => {
                       </div>
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip title={item.email}>
                       <MailOutlineIcon
                         type="mail"
@@ -537,7 +537,7 @@ const LeadsAllCardList = (props) => {
                     </Tooltip>{" "}
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div class="w-5">
+                   <div >
                       <Tooltip title="Edit">
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
@@ -551,7 +551,7 @@ const LeadsAllCardList = (props) => {
                     </div>
                   )}
                   {user.leadsDeleteInd === true && user.crmInd === true && (
-                    <div class="w-5">
+                    <div >
                      
                       <StyledPopconfirm
                         title="Do you want to delete?"
@@ -604,11 +604,11 @@ const LeadsAllCardList = (props) => {
         endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
        { !fetchingAllLeadsWarm && allleadsInfoWarm.length === 0 ?<NodataFoundPage />:allleadsInfoWarm.map((item,index) =>  {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.address[0].country_alpha2_code
           const diff = Math.abs(
-            moment().diff(moment(item.lastRequirementOn), "days")
+            dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
           const dataLoc = ` Address : ${
             item.address && item.address.length && item.address[0].address1
@@ -882,7 +882,7 @@ const LeadsAllCardList = (props) => {
                 </div>
                 <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
                 
-                  <div class="w-5">
+                  <div >
                     <Tooltip title="Notes">
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
@@ -895,7 +895,7 @@ const LeadsAllCardList = (props) => {
                       />
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       title={
                         <FormattedMessage
@@ -921,7 +921,7 @@ const LeadsAllCardList = (props) => {
                   
                
                
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       overlayStyle={{ maxWidth: "300px" }}
                       title={dataLoc}
@@ -935,7 +935,7 @@ const LeadsAllCardList = (props) => {
                       </div>
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip title={item.email}>
                       <MailOutlineIcon
                         type="mail"
@@ -948,7 +948,7 @@ const LeadsAllCardList = (props) => {
                     </Tooltip>{" "}
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div class="w-5">
+                   <div >
                       <Tooltip title="Edit">
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
@@ -962,7 +962,7 @@ const LeadsAllCardList = (props) => {
                     </div>
                   )}
                   {user.leadsDeleteInd === true && user.crmInd === true && (
-                    <div class="w-5">
+                    <div >
                      
                       <StyledPopconfirm
                         title="Do you want to delete?"
@@ -1015,11 +1015,11 @@ const LeadsAllCardList = (props) => {
         endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
        { !fetchingAllLeadsCold && allleadsInfoCold.length === 0 ?<NodataFoundPage />:allleadsInfoCold.map((item,index) =>  {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.address[0].country_alpha2_code
           const diff = Math.abs(
-            moment().diff(moment(item.lastRequirementOn), "days")
+            dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
           const dataLoc = ` Address : ${
             item.address && item.address.length && item.address[0].address1
@@ -1293,7 +1293,7 @@ const LeadsAllCardList = (props) => {
                 </div>
                 <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
                 
-                  <div class="w-5">
+                  <div >
                     <Tooltip title="Notes">
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
@@ -1306,7 +1306,7 @@ const LeadsAllCardList = (props) => {
                       />
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       title={
                         <FormattedMessage
@@ -1332,7 +1332,7 @@ const LeadsAllCardList = (props) => {
                   
                
                
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       overlayStyle={{ maxWidth: "300px" }}
                       title={dataLoc}
@@ -1346,7 +1346,7 @@ const LeadsAllCardList = (props) => {
                       </div>
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip title={item.email}>
                       <MailOutlineIcon
                         type="mail"
@@ -1359,7 +1359,7 @@ const LeadsAllCardList = (props) => {
                     </Tooltip>{" "}
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div class="w-5">
+                   <div >
                       <Tooltip title="Edit">
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
@@ -1373,7 +1373,7 @@ const LeadsAllCardList = (props) => {
                     </div>
                   )}
                   {user.leadsDeleteInd === true && user.crmInd === true && (
-                    <div class="w-5">
+                    <div >
                      
                       <StyledPopconfirm
                         title="Do you want to delete?"

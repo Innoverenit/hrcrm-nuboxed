@@ -178,7 +178,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
               }}
             >
                <Tooltip title="Pulse">
-              <MonitorHeartIcon className="!text-base cursor-pointer text-[#df9697]" />
+              <MonitorHeartIcon className="!text-icon cursor-pointer text-[#df9697]" />
               </Tooltip>
      </span>
            </div>

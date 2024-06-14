@@ -137,9 +137,9 @@ function UserKpiList(props) {
     )}
      </div>
      {activeTab&&(
-  <div className=' flex  justify-center  sticky top-28 z-auto'>
-  <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-    <div className="flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+  <div className=' flex  justify-center  sticky  z-auto'>
+  <div className="rounded m-1 p-1  w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+    <div className="flex justify-between  h-10 w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
       <div className="md:w-[8.5rem]">
         <FormattedMessage id="app.kpi" defaultMessage="KPI" />
       </div>

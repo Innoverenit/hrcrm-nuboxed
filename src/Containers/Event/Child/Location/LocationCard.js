@@ -96,7 +96,7 @@ const LocationCard = (props) => {
             {props.showLocation.map((item) => {
               return (
                 <div >
-                  <div class=" flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 ">
+                  <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center p-1 ">
                     <div class="flex">
                       <div className=" flex font-medium flex-row md:w-[25.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
@@ -245,7 +245,7 @@ const LocationCard = (props) => {
                         {item.regions}
                       </div>
                     </div>
-                    <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                    <div class="flex   max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                       <div>
                         <Tooltip title="Shift">
                           <FilterTiltShiftIcon
@@ -259,7 +259,7 @@ const LocationCard = (props) => {
                         </Tooltip>
                       </div>
                       <div>
-                        <Tooltip title="Customer">
+                        <Tooltip title="Customer-Virtual Location">
                           <AcUnitIcon
                             className="!text-icon cursor-pointer"
                             onClick={() => {
@@ -271,7 +271,7 @@ const LocationCard = (props) => {
                       </div>
                     </div>
 
-                    <div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[10%]">
+                    <div class="flex  max-sm:flex-row max-sm:w-[10%]">
                       {item.productionInd ?
                         <div>
                           <Tooltip title="Cell">
@@ -284,13 +284,12 @@ const LocationCard = (props) => {
                             />
                           </Tooltip>
                         </div> : null}
-                      <div></div>
                     </div>
-                    <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                    <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                       <div>
                         <Tooltip title="Edit">
                           <BorderColorIcon
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon cursor-pointer text-[tomato]"
                             onClick={() => {
                               handleStoredLocations(item);
                               props.handleUpdateLocationDrawer(true);

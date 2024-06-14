@@ -83,7 +83,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   return (
     <>
        <div className=' flex justify-end sticky  z-auto'>
-       <div class="rounded-lg max-sm:m-1 m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+       <div class="rounded-lg max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
        <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.type"
@@ -125,7 +125,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
         next={handleLoadMore}
       hasMore={hasMore}
         loader={fetchingCallListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
-        height={"79vh"}
+        height={"80vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       
