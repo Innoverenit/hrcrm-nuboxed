@@ -396,7 +396,7 @@ function MainApp(props) {
   props.suscrptionData.subscriptionType === "1" ? "Starter" :
   props.suscrptionData.subscriptionType === "2" ? "Professional" :
   props.suscrptionData.subscriptionType === "3" ? "Enterprise" :
-  props.suscrptionData.subscriptionType === "4" ? "Customise" :
+  props.suscrptionData.subscriptionType === "4" ? "Custom" :
   "Unknown";
   console.log(props.suscrptionData)
   return (
@@ -628,7 +628,7 @@ function MainApp(props) {
                     />
                   </FloatButton.Group> */}
            <div className="flex items-center">
-                <label className="text-base font-semibold font-poppins mr-1">{Subscription}</label>
+                <div className=" text-sm font-semibold font-poppins mr-1">{Subscription}</div>
                 <Button
                  type="primary"
                  onClick={() =>{
@@ -637,7 +637,7 @@ function MainApp(props) {
                 >Upgrade</Button>
                  </div>
                   {/* <Subscription /> */}
-                  <div class=" text-base cursor-pointer font-normal text-[blue] max-sm:hidden"
+                  <div class=" text-base cursor-pointer font-normal text-[blue]  ml-1 max-sm:hidden "
                     onClick={() => {
                       // handleRowData(item);
                       props.handleActionDrawerModal(true);

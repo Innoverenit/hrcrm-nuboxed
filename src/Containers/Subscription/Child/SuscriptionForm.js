@@ -195,7 +195,7 @@ function SubscriptionForm(props) {
     },
     { 
       type: "4", 
-      title: "Customise", 
+      title: "Custom", 
       price: "Contact us", 
       features: ["All features","Custom solutions"], 
       description: "Get started with All features Customised", 
@@ -267,10 +267,10 @@ console.log(props.rowData.subscriptionType)
                          <div className="flex items-center justify-center mb-4 text-4xl text-blue-500">
                          <FaRocket />
             </div>
-                        <label className="text-xl font-semibold text-center text-gray-900">Starter</label>
-                        <label className="text-lg font-bold text-center mt-2">€ 9.99</label>
-                        <label className="text-lg font-bold text-center mt-2">Starter features</label>
-                        <label className="text-sm text-gray-600 mt-4">Ideal for individuals and small teams</label>
+                        <div className="text-xl font-semibold text-center text-gray-900">Starter</div>
+                        <div className="text-lg font-bold text-center mt-2">€ 9.99</div>
+                        <div className="text-lg font-bold text-center mt-2">Starter features</div>
+                        <div className="text-sm text-gray-600 mt-4">Ideal for individuals and small teams</div>
                       </div>
                       <div
                         className={`cursor-pointer flex flex-col h-[20rem] p-6 rounded-3xl shadow-lg transform transition-transform hover:scale-105 ${
@@ -283,10 +283,10 @@ console.log(props.rowData.subscriptionType)
                          <div className="flex items-center justify-center mb-4 text-4xl text-blue-500">
                          <FaBriefcase /> 
             </div>
-                        <label className="text-xl font-semibold text-center text-gray-900">Professional</label>
-                        <label className="text-lg font-bold text-center mt-2">€ 29.99</label>
-                        <label className="text-lg font-bold text-center mt-2">Professional features</label>
-                        <label className="text-sm text-gray-600 mt-4">Advanced features for professionals and businesse</label>
+                        <div className="text-xl font-semibold text-center text-gray-900">Professional</div>
+                        <div className="text-lg font-bold text-center mt-2">€ 29.99</div>
+                        <div className="text-lg font-bold text-center mt-2">Professional features</div>
+                        <div className="text-sm text-gray-600 mt-4">Advanced features for professionals and businesse</div>
                       </div>
                       <div
                        className={`cursor-pointer flex flex-col h-[20rem] p-6 rounded-3xl shadow-lg transform transition-transform hover:scale-105 ${
@@ -302,10 +302,10 @@ console.log(props.rowData.subscriptionType)
                          <div className="flex items-center justify-center mb-4 text-4xl text-blue-500">
                          <FaBuilding /> 
             </div>
-                        <label className="text-xl font-semibold text-center text-gray-900">Enterprise</label>
-                        <label className="text-lg font-bold text-center mt-2">€ 50.49</label>
-                        <label className="text-lg font-bold text-center mt-2">All features</label>
-                        <label className="text-sm text-gray-600 mt-4">Tailored solutions for large enterprises</label>
+                        <div className="text-xl font-semibold text-center text-gray-900">Enterprise</div>
+                        <div className="text-lg font-bold text-center mt-2">€ 50.49</div>
+                        <div className="text-lg font-bold text-center mt-2">All features</div>
+                        <div className="text-sm text-gray-600 mt-4">Tailored solutions for large enterprises</div>
                       </div>
            
                       <div
@@ -319,10 +319,10 @@ console.log(props.rowData.subscriptionType)
                           <div className="flex items-center justify-center mb-4 text-4xl text-blue-500">
                           <FaFreeCodeCamp /> 
             </div>
-                        <label className="text-xl font-semibold text-center text-gray-900">Customise</label>
-                        <label className="text-lg font-bold text-center mt-2">Contact us</label>
-                        <label className="text-lg font-bold text-center mt-2">All features Custom solutions</label>
-                        <label className="text-sm text-gray-600 mt-4">Get started with All features Customised</label>
+                        <div className="text-xl font-semibold text-center text-gray-900">Custom</div>
+                        <div className="text-lg font-bold text-center mt-2">Contact us</div>
+                        <div className="text-lg font-bold text-center mt-2">All features Custom solutions</div>
+                        <div className="text-sm text-gray-600 mt-4">Get started with Customized features </div>
                       </div>
                     </div>
                     </div>
@@ -341,7 +341,7 @@ console.log(props.rowData.subscriptionType)
             <div className="flex items-center justify-center mb-4 text-4xl text-blue-500">
               {icon}
             </div>
-            <label className="text-xl font-semibold text-center text-gray-900">{title}</label>
+            <div className="text-xl font-semibold text-center text-gray-900">{title}</div>
             <p className="text-lg font-bold text-center mt-2">{price === "Contact us" ? price : `€${price}`}</p>
             <ul className="text-sm text-gray-600 mt-4">
               {features.map((feature, index) => (
