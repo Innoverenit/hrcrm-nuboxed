@@ -37,7 +37,7 @@ class PitchHeader extends Component {
           }
           rightComponent={
             <PitchActionRight
-            // viewType={viewType}
+            viewType={viewType}
             // currentUser={this.props.currentUser} 
             // handleDropChange={this.props.handleDropChange}
             handlePitchModal={this.props.handlePitchModal} 

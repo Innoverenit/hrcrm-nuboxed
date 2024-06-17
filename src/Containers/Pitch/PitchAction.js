@@ -36,6 +36,99 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
       });
   };
 
+  export const getPitchHot = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_PITCHHOT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investorleads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PITCHHOT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_PITCHHOT_FAILURE,
+          payload: err,
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });
+  };
+
+  export const getPitchWarm = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_PITCHWARM_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investorleads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PITCHWARM_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_PITCHWARM_FAILURE,
+          payload: err,
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });
+  };
+
+  export const getPitchCold = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_PITCHCOLD_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investorleads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PITCHCOLD_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_PITCHCOLD_FAILURE,
+          payload: err,
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });
+  };
+
 
 
   export const handlePitchDocumentUploadModal = (modalProps) => (dispatch) => {

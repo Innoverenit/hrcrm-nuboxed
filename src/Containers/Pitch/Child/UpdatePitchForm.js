@@ -1,7 +1,7 @@
 import React, {  useState,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, } from "antd";
+import { Button,Switch,Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
@@ -29,8 +29,16 @@ const UpdatePitchSchema = Yup.object().shape({
 
 function UpdatePitchForm (props) {
  
-  
-
+  const [contract, setContract] = useState(false); 
+  const [priority,setpriority]=useState(props.selectedTask
+    ? props.selectedTask.priority
+    : "hot");
+  const handleContract = (checked) => {
+    setContract(checked);
+  };
+  const handleButtonClick = (type) => {
+    setpriority(type);
+    };
   const handleReset = (resetForm) => {
     resetForm();
   };
@@ -87,9 +95,9 @@ function UpdatePitchForm (props) {
             companyName: props.setEditingPitch.companyName || "",
             url: props.setEditingPitch.url || "",
             sectorId: props.setEditingPitch.sectorId  ,
-            
+            type:priority,
             source: props.setEditingPitch.source || "" ,
-
+            pvtAndIntunlInd: contract ? "true" : "false",
             vatNo:props.setEditingPitch.vatNo  ,
             email: props.setEditingPitch.email || "",
             country:props.setEditingPitch.country || "",
@@ -103,6 +111,8 @@ function UpdatePitchForm (props) {
             firstName:props.setEditingPitch.firstName || "",
             middleName:props.setEditingPitch.middleName || "",
             lastName:props.setEditingPitch.lastName || "",
+            unitOfShare:props.setEditingPitch.unitOfShare ||"",
+            valueOfShare:props.setEditingPitch.valueOfShare ||"",
             businessRegistration:props.setEditingPitch.businessRegistration ||"",
             assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingPitch.employeeId,
             address: [
@@ -125,8 +135,10 @@ function UpdatePitchForm (props) {
             props.updatePitch(
               {
                 ...values,
+                type:priority,
                 investorleadsId: props.investorleadsId,
                 assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingPitch.employeeId,
+                pvtAndIntunlInd: contract ? "true" : "false",
               },
               props.investorleadsId,
               () => handleReset(resetForm)
@@ -334,6 +346,38 @@ function UpdatePitchForm (props) {
                       </div>
                     </div>                    
                     </div>
+
+                    <div class=" flex justify-between">
+                    <div class=" w-w47.5">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                      <Field
+                        name="unitOfShare"
+                        type="text"
+                        label="Share Quantity"
+                        isColumn
+                        width={"100%"}
+                        component={InputComponent}
+                        inlineLabel
+                      />
+                      </div>
+                    </div>
+                    <div class="w-w47.5">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                      <Field
+                        name="valueOfShare"
+                        type="text"
+                        label="Share Value"
+                        isColumn
+                        width={"100%"}
+                        component={InputComponent}
+                        inlineLabel
+                      />
+                      </div>
+                    </div>
+                  </div>
+
+
+
                      <div class=" flex justify-between">
                      <div class=" w-w47.5">
                       <Field
@@ -377,6 +421,65 @@ function UpdatePitchForm (props) {
 
            </div>
                 </div>
+                <div class=" flex items-center justify-between">
+                <div class=" flex flex-col   mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Category</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      onChange={handleContract}
+                      checked={contract}
+                      checkedChildren="Institutional"
+                      unCheckedChildren="Private"
+                    />
+                  </div>
+                  <div class=" w-w47.5 max-sm:w-wk">
+                    <div class="flex">
+                       <Tooltip title="Hot">
+                         <Button
+                           
+                            shape="circle"
+                           onClick={() => handleButtonClick("hot")}
+                           style={{
+                             backgroundColor:"red",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px"
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Warm">
+                         <Button
+                           
+                            shape="circle"
+             
+                           onClick={() => handleButtonClick("warm")}
+                           style={{
+                             backgroundColor:"orange",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px",
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Cold">
+                         <Button
+                           
+                            shape="circle"
+                   
+                           onClick={() => handleButtonClick("cold")}
+                           style={{
+                             backgroundColor:"teal",
+                                 borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
+                                 width: "31px", // Adjust the width as needed
+                                 height: "31px"
+                           }}
+                         ></Button>
+                       </Tooltip>
+                     </div>
+                      </div>
+                      </div>
                  </div>
                  <div class=" h-3/4 w-w47.5 max-sm:w-wk "   >
                    

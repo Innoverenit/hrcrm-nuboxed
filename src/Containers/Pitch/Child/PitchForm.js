@@ -1,7 +1,7 @@
 import React, {  useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Select} from "antd";
+import { Button, Select,Switch,Tooltip} from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
@@ -86,10 +86,14 @@ props.getDialCode();
     const [selectedSector, setSelectedSector] = useState(null);
     const [isLoadingSector, setIsLoadingSector] = useState(false);
     const [touchedSector, setTouchedSector] = useState(false);
+    const [contract, setContract] = useState(false);
 
-
-
-
+    const [priority,setpriority]=useState(props.selectedTask
+      ? props.selectedTask.priority
+      : "hot");
+    const handleContract = (checked) => {
+      setContract(checked);
+    };
 
     const fetchSector = async () => {
       setIsLoadingSector(true);
@@ -116,7 +120,9 @@ props.getDialCode();
       setSelectedSector(value)
       console.log('Selected user:', value);
     };
-
+    const handleButtonClick = (type) => {
+      setpriority(type);
+      };
 
     const handleSelectSectorFocus = () => {
       if (!touchedSector) {
@@ -178,10 +184,14 @@ props.getDialCode();
             fullName:"",
             userId: props.userId,
             notes: "",
+            unitOfShare:"",
+            valueOfShare:"",
+            type:priority,
             businessRegistration: "",
             assignedTo: selectedOption ? selectedOption.employeeId:userId,
             department: "",
             salutation:"",
+            pvtAndIntunlInd: contract ? "true" : "false",
             firstName:"",
             middleName:"",
             lastName:"",
@@ -205,7 +215,9 @@ props.getDialCode();
             props.addPitch(
               {
                 ...values,
+                type:priority,
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
+                pvtAndIntunlInd: contract ? "true" : "false",
               },
               props.userId,
               () => handleReset(resetForm)
@@ -451,6 +463,37 @@ props.getDialCode();
                       </div>
                     </div>
                   </div>
+
+                  <div class=" flex justify-between">
+                    <div class=" w-w47.5">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                      <Field
+                        name="unitOfShare"
+                        type="text"
+                        label="Share Quantity"
+                        isColumn
+                        width={"100%"}
+                        component={InputComponent}
+                        inlineLabel
+                      />
+                      </div>
+                    </div>
+                    <div class="w-w47.5">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                      <Field
+                        name="valueOfShare"
+                        type="text"
+                        label="Share Value"
+                        isColumn
+                        width={"100%"}
+                        component={InputComponent}
+                        inlineLabel
+                      />
+                      </div>
+                    </div>
+                  </div>
+
+
                   <div class=" flex justify-between">
                   <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
                       {/* <Field
@@ -473,7 +516,7 @@ props.getDialCode();
 
 <Select
         showSearch
-        style={{ width: 200 }}
+       
         placeholder="Search or select sector"
         optionFilterProp="children"
         loading={isLoadingSector}
@@ -508,7 +551,7 @@ props.getDialCode();
 
 <Select
         showSearch
-        style={{ width: 200 }}
+      
         placeholder="Search or select source"
         optionFilterProp="children"
         loading={isLoading}
@@ -522,7 +565,70 @@ props.getDialCode();
         ))}
       </Select>
                         </div>
+
+                        
+
                     </div>
+                    <div class=" flex items-center justify-between">
+                    <div class=" flex flex-col   mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Category</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      onChange={handleContract}
+                      checked={contract}
+                      checkedChildren="Institutional"
+                      unCheckedChildren="Private"
+                    />
+                  </div>
+                  <div class=" w-w47.5 max-sm:w-wk">
+                    <div class="flex">
+                       <Tooltip title="Hot">
+                         <Button
+                           
+                            shape="circle"
+                           onClick={() => handleButtonClick("hot")}
+                           style={{
+                             backgroundColor:"red",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px"
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Warm">
+                         <Button
+                           
+                            shape="circle"
+             
+                           onClick={() => handleButtonClick("warm")}
+                           style={{
+                             backgroundColor:"orange",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px",
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Cold">
+                         <Button
+                           
+                            shape="circle"
+                   
+                           onClick={() => handleButtonClick("cold")}
+                           style={{
+                             backgroundColor:"teal",
+                                 borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
+                                 width: "31px", // Adjust the width as needed
+                                 height: "31px"
+                           }}
+                         ></Button>
+                       </Tooltip>
+                     </div>
+                      </div>
+</div>
+
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
                 >
