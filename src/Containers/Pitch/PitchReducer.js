@@ -7,6 +7,20 @@ const initialState = {
     fetchingPitch:false,
     fetchingPitchError:false,
     pitchData:[],
+
+    fetchingPitchHot: false,
+    fetchingPitchHotError: false,
+    pitchDataHot:[],
+
+    fetchingPitchWarm: false,
+    fetchingPitchWarmError: false,
+    pitchDataWarm:[],
+
+    fetchingPitchCold: false,
+    fetchingPitchColdError: false,
+    pitchDataCold:[],
+
+
     fetchingOpportunityRecord: false,
     fetchingOpportunityRecordError: false,
     opportunityRecord:[],
@@ -151,6 +165,59 @@ case types.GET_PITCH_REQUEST:
       fetchingPitch: false,
       fetchingPitchError: true,
     };
+
+    case types.GET_PITCHHOT_REQUEST:
+
+    return { ...state, fetchingPitchHot: true };
+  case types.GET_PITCHHOT_SUCCESS:
+    return {
+      ...state,
+      fetchingPitchHot: false,
+      pitchDataHot: action.payload,
+      clearbit:null
+    };
+  case types.GET_PITCHHOT_FAILURE:
+    return {
+      ...state,
+      fetchingPitchHot: false,
+      fetchingPitchHotError: true,
+    };
+
+
+    case types.GET_PITCHWARM_REQUEST:
+
+    return { ...state, fetchingPitchWarm: true };
+  case types.GET_PITCHWARM_SUCCESS:
+    return {
+      ...state,
+      fetchingPitchWarm: false,
+      pitchDataWarm: action.payload,
+      clearbit:null
+    };
+  case types.GET_PITCHWARM_FAILURE:
+    return {
+      ...state,
+      fetchingPitchWarm: false,
+      fetchingPitchWarmError: true,
+    };
+
+    case types.GET_PITCHCOLD_REQUEST:
+
+    return { ...state, fetchingPitchCold: true };
+  case types.GET_PITCHCOLD_SUCCESS:
+    return {
+      ...state,
+      fetchingPitchCold: false,
+      pitchDataCold: action.payload,
+      clearbit:null
+    };
+  case types.GET_PITCHCOLD_FAILURE:
+    return {
+      ...state,
+      fetchingPitchCold: false,
+      fetchingPitchColdError: true,
+    };
+
 
 
     case types.HANDLE_UPDATE_PITCH_MODAL:

@@ -370,6 +370,7 @@ function InvesterForm(props) {
 
                   
                   <div class=" flex justify-between mt-3">
+                  {contract ?
                   <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
                   {/* <Field                     
                             name="sectorId"
@@ -408,6 +409,8 @@ function InvesterForm(props) {
         ))}
       </Select>
                     </div>
+                     : ( null)}
+                      {contract ?
                     <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
                     {/* <FastField
                             name="source"
@@ -441,6 +444,7 @@ function InvesterForm(props) {
         ))}
       </Select>
                         </div>
+                          : ( null)}
                   </div>
                   <div class=" flex justify-between">
                   <div class=" w-w47.5">
@@ -567,7 +571,8 @@ function InvesterForm(props) {
                     </div>
                     
                     <div class=" flex justify-between max-sm:flex-col mt-3">
-                    <div class=" w-2/5 max-sm:w-wk">
+                    {contract ?
+                     <div class=" w-2/5 max-sm:w-wk">
                       <Field
                         name="vatNo"
                         type="text"
@@ -582,7 +587,9 @@ function InvesterForm(props) {
                         component={InputComponent}
                         inlineLabel
                       />
-                    </div>
+                    </div> 
+                    : ( null)}
+                      {contract ?
                     <div class=" w-[10rem] max-sm:w-wk">
                       <Field
                         name="businessRegistration"
@@ -600,6 +607,7 @@ function InvesterForm(props) {
                         inlineLabel
                       />
                     </div>
+                     : ( null)}
                   </div>
                  
                   <div class="mt-3 w-full" style={{backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>

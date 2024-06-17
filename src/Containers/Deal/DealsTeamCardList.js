@@ -8,6 +8,7 @@ import "jspdf-autotable";
 import {
   getTeamsDeals
 } from "./DealAction";
+import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -87,19 +88,19 @@ const DealsTeamCardList = (props) => {
     <>
       <div class="rounded-lg m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex  w-[96%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[13.5rem]"><FormattedMessage
+          <div className=" md:w-[14.5rem]"><FormattedMessage
             id="app.name"
             defaultMessage="name"
           /></div>
-          <div className=" md:w-[12.13rem]"><FormattedMessage
+          <div className=" md:w-[13.13rem]"><FormattedMessage
             id="app.investor"
             defaultMessage="investor"
           /></div>
-          <div className=" md:w-[8.2rem] "><FormattedMessage
+          <div className=" md:w-[9.2rem] "><FormattedMessage
             id="app.sponsor"
             defaultMessage="sponsor"
           /></div>
-          <div className="md:w-[7.12rem]"><FormattedMessage
+          <div className="md:w-[6.12rem]"><FormattedMessage
             id="app.startdate"
             defaultMessage="startdate"
           /></div>
@@ -107,11 +108,12 @@ const DealsTeamCardList = (props) => {
             id="app.value"
             defaultMessage="Value"
           /></div>
-          <div className="md:w-[6.2rem]"><FormattedMessage
+          <div className="md:w-[4.2rem]"><FormattedMessage
             id="app.stages"
             defaultMessage="stages"
           /></div>
-          <div className="md:w-[6.21rem]"><FormattedMessage
+          <div className="md:w-[5.26rem]">Status</div>
+          <div className="md:w-[7.21rem]"><FormattedMessage
             id="app.assignto"
             defaultMessage="Assign To"
           /></div>
@@ -138,7 +140,7 @@ const DealsTeamCardList = (props) => {
             });
             const currentdate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-
+           const myIndicator = (item.wonInd) ? <CheckCircleTwoTone/> : (item.lostInd ? <StopTwoTone/> : null);
             const diff = Math.abs(
               dayjs().diff(dayjs(item.lastRequirementOn), "days")
             );
@@ -214,7 +216,7 @@ const DealsTeamCardList = (props) => {
                       </div>
                     </div>
 
-                    <div className=" flex font-medium  items-center md:w-[6.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium  items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm text-cardBody font-poppins">
@@ -233,7 +235,7 @@ const DealsTeamCardList = (props) => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium items-center  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm justify-center text-cardBody font-poppins">
@@ -241,7 +243,7 @@ const DealsTeamCardList = (props) => {
                       </div>
                     </div>
 
-                    <div className=" flex font-medium items-center  md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm text-cardBody font-poppins text-center">
@@ -251,7 +253,7 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium items-center  md:w-[7.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm text-cardBody font-poppins text-center">
@@ -286,6 +288,9 @@ const DealsTeamCardList = (props) => {
                         </Dropdown>
 
                       </div>
+                    </div>
+                    <div className=" flex font-medium items-center  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    {myIndicator}
                     </div>
                     <div className=" flex font-medium items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
