@@ -24,9 +24,9 @@ class ReportDetails extends Component {
           ) : ( */}
               <div>
                 <Suspense fallback={"Loading..."}>
-                  <div class=" flex flex-nowrap w-full max-sm:flex-col max-sm:overflow-x-auto max-sm:h-[63vh]"
+                  <div class=" flex  max-sm:flex-col max-sm:overflow-x-auto max-sm:h-[63vh]"
                 >
-                    <div class=" w-1/4 max-sm:w-full">
+                    <div class=" w-1/5 max-sm:w-full">
                       <ReportDetailLeft   handleIconClick={this.props.handleIconClick}
             activeIcon={this.props.activeIcon}
             handleButtonTask={this.props.handleButtonTask}
@@ -39,7 +39,7 @@ class ReportDetails extends Component {
             buttonData={this.props.buttonData}
                handleDropChange={this.props.handleDropChange} />
                     </div>
-                    <div class=" w-3/4 max-sm:w-full">
+                    <div class=" w-4/5 max-sm:w-full">
                       <ReportDetailRight 
                       gettingReportProspect={this.props.gettingReportProspect}
                       reportProspect={this.props.reportProspect}

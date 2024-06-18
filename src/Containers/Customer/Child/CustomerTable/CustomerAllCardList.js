@@ -40,6 +40,7 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import NextPlanIcon from '@mui/icons-material/NextPlan';
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
 const CustomerOpportunityDrawerModal =lazy(()=> import("./CustomerOpportunityDrawerModal"));
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
@@ -416,6 +417,7 @@ const [rowdata, setrowdata] = useState("");
                                {item.convertInd===0 && "Convert"}
                                {item.convertInd===1 && "In progress"}
                                {item.convertInd===2 && "Converted"}
+                               <NextPlanIcon  />
                               </div>
                             </Button>
                           )}

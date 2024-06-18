@@ -190,7 +190,7 @@ style={{ fontSize: "1rem" ,}}
           {user.department === "Management" && (
               <>
               <div class=" flex ">
-              <div class=" mt-2 ml-2">
+              <div>
                   <Tag
                     color={reportViewType === "ALL" ? "tomato" : "#FFA500"}
                     style={{

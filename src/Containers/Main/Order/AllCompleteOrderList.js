@@ -108,7 +108,7 @@ function AllCompleteOrderList(props) {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingCompletedHighOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"19vh"}
+                        height={"22vh"}
                     >
                         {props.completedHighOrder.length ?
                             <>
@@ -386,7 +386,7 @@ function AllCompleteOrderList(props) {
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
                         loader={props.fetchingCompletedMediumOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"19vh"}
+                        height={"22vh"}
                     >
                         {props.completedMediumOrder.length ?
                             <>
@@ -665,7 +665,7 @@ function AllCompleteOrderList(props) {
                         next={handleLoadMoreLow}
                         hasMore={hasMore}
                         loader={props.fetchingCompletedLowOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"19vh"}
+                        height={"22vh"}
                     >
                         {props.completedLowOrder.length ?
                             <>

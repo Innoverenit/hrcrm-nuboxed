@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import { getPhonelistById, handlePhoneNotesOrderModal } from "../../AccountAction";
 import { Button, Tooltip } from "antd";
 import QRCode from "qrcode.react";
-import { SubTitle } from "../../../../../Components/UI/Elements";
 import ButtonGroup from "antd/lib/button/button-group";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
@@ -13,10 +12,12 @@ import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturi
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
+import QrCodeIcon from '@mui/icons-material/QrCode';
 const PhoneNotesOrderModal = lazy(() => import("./PhoneNotesOrderModal"));
 const AccountPhoneTaskTable = lazy(() => import("./AccountPhoneTaskTable"));
 const AddingSpareList = lazy(() => import("./AddingSpareList"));
 const QRCodeModal = lazy(() => import("../../../../../Components/UI/Elements/QRCodeModal"));
+
 
 function DistributorPauseForm(props) {
     const [dimensions, setDimensions] = React.useState({ width: 500, height: 500 });
@@ -110,11 +111,11 @@ function DistributorPauseForm(props) {
                 {props.fetchingPhoneListById ? <BundleLoader /> :
                     <>
                         <div className=' flex justify-end sticky flex-col z-auto'>
-                            <div class="rounded-lg m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                                <div className=" flex  w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+                            <div class="rounded-lg m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                                <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                                     <div className=" md:w-[4.2rem]"><FormattedMessage
-                                        id="app.OEM"
-                                        defaultMessage="OEM"
+                                        id="app.brand"
+                                        defaultMessage="Brand"
                                     /></div>
                                     <div className=" md:w-[4.5rem]"><FormattedMessage
                                         id="app.model"
@@ -265,24 +266,6 @@ function DistributorPauseForm(props) {
                                                                     {item.issue}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium    md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
-                                                                    <SubTitle>
-                                                                        {item.qrCodeId ? (
-                                                                            <QRCodeModal
-                                                                                qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                                                                imgHeight={"2.8em"}
-                                                                                imgWidth={"2.8em"}
-                                                                                imgRadius={20}
-                                                                            />
-                                                                        ) : (
-                                                                            <span class="text-xs font-bold">
-                                                                                No QR
-                                                                            </span>
-                                                                        )}
-                                                                    </SubTitle>
-                                                                </div>
-                                                            </div>
                                                             <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     <Tooltip title={<FormattedMessage
@@ -291,7 +274,7 @@ function DistributorPauseForm(props) {
                                                                     />}>
                                                                         <PrecisionManufacturingIcon
                                                                             style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "black" }}
-                                                                            className="!text-xl cursor-pointer"
+                                                                            className="!text-icon cursor-pointer"
                                                                             onClick={() => {
                                                                                 handleSetRowData(item);
                                                                                 hanldeSpare();
@@ -308,7 +291,7 @@ function DistributorPauseForm(props) {
                                                                         defaultMessage="Task"
                                                                     />}>
                                                                         <FormatListBulletedIcon
-                                                                            className="!text-xl cursor-pointer"
+                                                                            className="!text-icon cursor-pointer"
                                                                             style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "black" }}
                                                                             onClick={() => {
                                                                                 handleSetRowData(item);
@@ -320,13 +303,13 @@ function DistributorPauseForm(props) {
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs text-green-600  text-cardBody font-poppins">
                                                                     <Tooltip title={<FormattedMessage
                                                                         id="app.Notes"
                                                                         defaultMessage="Notes"
                                                                     />}>
                                                                         <NoteAltIcon
-                                                                            className="!text-xl cursor-pointer"
+                                                                            className="!text-icon cursor-pointer"
                                                                             onClick={() => {
                                                                                 handleSetRowData(item);
                                                                                 props.handlePhoneNotesOrderModal(true);
@@ -341,7 +324,9 @@ function DistributorPauseForm(props) {
                                                                     <Tooltip title={<FormattedMessage
                                                                         id="app.Print"
                                                                         defaultMessage="Print"
+                                                                        
                                                                     />}>
+                                                                         {/* <div class="ml-1"><QrCodeIcon/></div> */}
                                                                         {/* <PrintOutlined
                                                                             // onClick={handlePrint}
                                                                             className="!text-base cursor-pointer"
@@ -350,6 +335,7 @@ function DistributorPauseForm(props) {
                                                                             trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
                                                                             content={() => componentRefs.current[index]}
                                                                         />
+                                                                       
                                                                     </Tooltip>
 
                                                                 </div>
@@ -369,12 +355,7 @@ function DistributorPauseForm(props) {
                                                                 alignItems: "center",
                                                             }}
                                                         >
-                                                            {/* <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Company:</span> {item.company}</div> */}
-
-                                                            {/* <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Model:</span> {item.model}</div>
-                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>OS:</span> {item.os}</div>
-                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>GB:</span> {item.gb}</div>
-                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Color:</span> {item.color}</div> */}
+                                                        
                                                             <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
                                                                 <QRCode size={150} value={item.imei} />
 
@@ -390,7 +371,7 @@ function DistributorPauseForm(props) {
                             </div>
 
                         </div>
-                        <div class=" flex justify-end">
+                        <div class=" w-10 flex justify-end">
                             <Button
                                 type="primary"
                                 onClick={handlePrint}>

@@ -34,18 +34,18 @@ function ReportsProductivityData(props) {
                                 </div>
 
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                                    <div className="font-normal text-[0.85rem] text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                                    <div className="font-normal  text-sm text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
                                         {item.startTime}
                                     </div>
                                 </div>
 
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                                    <div className="font-normal text-[0.85rem] text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                                    <div className="font-normal  text-sm text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
                                         {item.endTime}
                                     </div>
                                 </div>
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                                    <div className="font-normal text-[0.85rem] text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                                    <div className="font-normal text-sm text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
                                         {item.totalTimeTaken}
                                     </div>
                                 </div>

@@ -13,6 +13,7 @@ import { getCountries } from "../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Button, Popconfirm } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import NextPlanIcon from '@mui/icons-material/NextPlan';
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -548,6 +549,7 @@ console.log(page)
                                 {item.convertInd === 0 && "Convert"}
                                 {item.convertInd === 1 && "In progress"}
                                 {item.convertInd === 2 && "Converted"}
+                                <NextPlanIcon  />
                               </div>
                             </Button>
                           )}

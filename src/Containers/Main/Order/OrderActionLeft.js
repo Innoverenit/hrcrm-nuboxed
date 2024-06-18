@@ -225,9 +225,9 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
   
      
       )}
-      <div class=" w-64 max-sm:w-24">
+      <div class=" w-64 ml-2 max-sm:w-24">
         <Input
-          placeholder="Search by Name or Sector"
+          placeholder="Search by Customer or Order ID"
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
