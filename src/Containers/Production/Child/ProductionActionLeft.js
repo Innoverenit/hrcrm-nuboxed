@@ -20,7 +20,7 @@ const ProductionActionLeft = (props) => {
   }, [props.viewType, props.locationId]);
   return (
     <div class="flex items-center">
-       <Tooltip title="Table ">
+       <Tooltip title="My Work Space ">
                     <Badge size="small"
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         //overflowCount={999}
@@ -79,7 +79,7 @@ const ProductionActionLeft = (props) => {
 
         </span>
       </Tooltip>
-      <Tooltip title="ALL ">
+      <Tooltip title="All ">
                     <Badge size="small"
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
@@ -92,7 +92,7 @@ const ProductionActionLeft = (props) => {
                             }}
                         >
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white">All</div></Avatar>
+                                <div className="text-white">ALL</div></Avatar>
 
                         </span>
                     </Badge>
@@ -111,7 +111,10 @@ const ProductionActionLeft = (props) => {
                                 color: viewType === "cell" && "#1890ff",
                             }}
                         >
-                            <TokenIcon  />
+                           
+                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                                <div className="text-white"> <TokenIcon  /></div></Avatar>
+
 
                         </span>
                     {/* </Badge> */}
