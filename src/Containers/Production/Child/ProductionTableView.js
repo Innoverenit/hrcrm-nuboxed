@@ -161,11 +161,11 @@ function ProductionTableView(props) {
 
     return (
         <>
-            <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=' flex justify-end sticky  z-auto'>
+                <div class="rounded m-1  mt-5 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className=""></div>
-                        <div className=" md:w-[9rem]">ID</div>
+                        <div className=" md:w-[9rem]"> MFG ID</div>
                         <div className=" md:w-[6.01rem]">Cell</div>
                         <div className=" md:w-[6rem]">Created</div>
                         <div className="md:w-[2rem]"></div>
@@ -186,7 +186,7 @@ function ProductionTableView(props) {
                                     return (
                             
                                         <div key={item.productId} >
-                                            <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
+                                            <div className="flex rounded justify-between mt-2 bg-white h-8 items-center p-1 ">
                                                 <div class="flex">
                                                     <div className=" flex font-medium  items-center  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
@@ -345,9 +345,9 @@ function ProductionTableView(props) {
             </div>
 
 
-            <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">                       
+            <div className=' flex justify-end sticky z-auto'>
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">                       
                         <div className=" md:w-[9rem]">Workflow</div>
                         <div className=" md:w-[6.06rem]">Stage</div>
                         <div className="md:w-[5rem]">Inspected</div>
@@ -367,16 +367,8 @@ function ProductionTableView(props) {
                                     return (
                     <div key={item.productId} >
                                            
-                    <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
-                                                
-
-                                                
-                                                
-
-
-                                                
-                                                
-                                                <div className=" flex font-medium  items-center md:w-[10.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className="flex rounded justify-between mt-2 bg-white h-8 items-center p-1">
+                                                 <div className=" flex font-medium  items-center md:w-[10.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins" >
                                                         {/* {stage} */}
                                                         {item.workflowName}

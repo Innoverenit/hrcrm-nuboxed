@@ -116,7 +116,7 @@ function DealCardList(props) {
             return (
               <div class="rounded-md border-2 justify-center bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9rem] 
               text-[#444444] m-2 p-1 w-[16vw] flex flex-col max-sm:w-wk  ">
-                <div class=" flex  flex-nowrap items-center h-[2.81em]"
+                <div class=" flex  flex-nowrap items-center h-8"
                 >
                   <div class=" mr-[0.2rem] flex basis-[15%]">
                     <MultiAvatar
@@ -132,7 +132,7 @@ function DealCardList(props) {
                   >
                     <div 
                       class="font-semibold text-[#337df4] cursor-pointer text-sm ">
-                                                               <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
+         <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
                       {/* <Link

@@ -53,9 +53,9 @@ function ProductionDispatchCard(props) {
     } = props;
     return (
         <>
-            <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex max-sm:hidden justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=' flex justify-end sticky  z-auto'>
+                <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
                         <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16rem]">Manufacture ID</div>
                         <div className=" w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.01rem]">Name</div>
                         <div className=" w-[10.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.1rem]">Category</div>
@@ -78,7 +78,7 @@ function ProductionDispatchCard(props) {
                                 <div>
                                     <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col ">
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium flex-col  w-[14.12rem] max-xl:w-[14.12rem] max-lg:w-[11.12rem] max-sm:w-auto max max-sm:flex-row  max-sm:justify-between  ">
+                                            <div className=" flex font-medium   w-[14.12rem] max-xl:w-[14.12rem] max-lg:w-[11.12rem] max-sm:w-auto max max-sm:flex-row  max-sm:justify-between  ">
 
                                                 <div 
                                                  onClick={() => {
@@ -95,7 +95,7 @@ function ProductionDispatchCard(props) {
                                                 </div>
 
                                             </div>
-                                            <div className=" flex font-medium flex-col  w-[7.5rem] max-xl:w-[7.5rem] max-lg:w-[5.9rem]  max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                                            <div className=" flex font-medium   w-[7.5rem] max-xl:w-[7.5rem] max-lg:w-[5.9rem]  max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     {item.productName}
@@ -105,13 +105,13 @@ function ProductionDispatchCard(props) {
 
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium flex-col w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[6.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex font-medium w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[6.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                                                     {item.categoryName}  {item.subCategoryName}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium flex-col w-[17.2rem] max-xl:w-[13.2rem] max-lg:w-[10.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[17.2rem] max-xl:w-[13.2rem] max-lg:w-[10.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                                                 <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -119,7 +119,7 @@ function ProductionDispatchCard(props) {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium flex-col w-[5.5rem] max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[5.5rem] max-sm:flex-row  max-sm:justify-between ">
 
                                                 <div class="text-xs text-cardBody font-semibold  font-poppins">
                                                     {/* {item.userName} */}
@@ -131,19 +131,19 @@ function ProductionDispatchCard(props) {
                                                     />
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium flex-col w-[4.5rem] max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[4.5rem] max-sm:flex-row  max-sm:justify-between ">
 
 
                                             </div>
-                                            <div className=" flex font-medium flex-col w-[4.5rem] max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[4.5rem] max-sm:flex-row  max-sm:justify-between ">
 
 
                                             </div>
-                                            <div className=" flex font-medium flex-col w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex font-medium  w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     <Tooltip title="Edit">
                                                         <BorderColorIcon
-                                                            className="!text-xl cursor-pointer text-[tomato]"
+                                                            className="!text-icon cursor-pointer text-[tomato]"
                                                         // onClick={() => {
                                                         //     props.setEditProducts(item);
                                                         //     handleUpdateProductModal(true);
