@@ -87,7 +87,7 @@ function WonForm(props) {
           <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
               <div class=" flex  max-sm:flex-col">
-                <div class=" h-full w-w47.5 max-sm:w-wk">
+                <div class=" h-full w-wk">
                  
                 <div class=" w-w47.5 max-sm:w-wk">
                 <Field

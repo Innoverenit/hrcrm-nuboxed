@@ -21,6 +21,7 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import UpdateSupplierModal from "./UpdateSupplierModal";
 import SupplierPriceModal from "./SupplierPriceModal";
 import SupplierAddListModal from "./SupplierAddListModal";
+import SuplierPublishToggle from "./SuplierPublishToggle";
 
 function SuppliersCardList(props) {
 
@@ -139,7 +140,7 @@ function SuppliersCardList(props) {
 
                               </div>
                             </div>
-                            <div class="flex items-center max-sm:justify-between max-sm:w-wk items-center">
+                            <div class="flex items-center max-sm:justify-between max-sm:w-wk ">
                               <div className=" flex font-medium flex-col w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
 
                                 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -171,6 +172,17 @@ function SuppliersCardList(props) {
                               </div>
 
                             </div>
+
+                            <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <SuplierPublishToggle
+                                  publishInd={item.publishInd}
+                                  supplierId={item.supplierId}
+                                />
+                              </div>
+                            </div>
+
+
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
                               <div>
                                 <Tooltip title="Purchase Order">

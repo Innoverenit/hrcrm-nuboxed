@@ -457,6 +457,25 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </Link>
           </Menu.Item>
         )}
+         <Menu.Item key="/club" style={{ height: "1.45rem", 
+          color: selectedMenuItem === '/club' ? 'tomato' : '#4bc076' }}>
+            <Link to="/club" onClick={() => handleSelect('/club')}>
+
+              <LocationCityIcon
+
+                style={{ fontSize: "large" }}
+              />
+              <span class="text-white text-ls ml-1">
+             Club
+                {/* {translatedMenuItems[9]} */}
+                &nbsp;&nbsp;&nbsp;
+                {/* <Badge
+                  count={props.opportunityRecord.investor}
+                  overflowCount={999}
+                ></Badge> */}
+              </span>
+            </Link>
+          </Menu.Item>
         {/* {user.userType !== "USER" && user.department !== "Customer" &&user.department == "VENDOR" && ( */}
 
 
