@@ -23,7 +23,7 @@ const MultiAvatar = ({
     <>
       {imageId || imageURL ? (
         imageId ? (
-          <div style={{  }}>
+          <div style={{}}>
             <ProgressiveImage
               preview={ProfilePreview}
               image={`${base_url}/image/${imageId}`}
@@ -34,46 +34,28 @@ const MultiAvatar = ({
             />
           </div>
         ) : (
-            <ProgressiveImage
-              preview={ProfilePreview}
-              image={imageURL}
-              width={imgWidth || "3.4375em"}
-              height={imgHeight || "3.4375em"}
-              // borderRadius={imgRadius}
-             borderRadius={'1.0625em'}
-            />
-          )
+          <ProgressiveImage
+            preview={ProfilePreview}
+            image={imageURL}
+            width={imgWidth || "3.4375em"}
+            height={imgHeight || "3.4375em"}
+            // borderRadius={imgRadius}
+            borderRadius={'1.0625em'}
+          />
+        )
       ) : (
-          // <Avatar
-          //   size={size || "large"}
-          //   style={{
-          //     color,
-          //     // backgroundColor: bgcolor ? "red" : backgroundColor,
-          //     backgroundColor,
-          //     // fontSize,
-          //     borderWidth,
-          //     borderColor,
-          //     borderStyle,
-          //     minWidth: minAvatarWidth,
-          //   }}
-          // >
-          //   {primaryTitle && primaryTitle.split("")[0].toUpperCase()}
-          // </Avatar>
-        //   <Avatar.Group
-        //   maxCount={1000}
-        //   maxStyle={{ color: "#e97c28ba", backgroundColor: "#fde3cf" }}
-        // >
-         
-         <Tooltip title={primaryTitle}>
-                  <Avatar style={{ backgroundColor: "#e97c28ba",fontFamily:"poppins" }}>
-                  {primaryTitle && primaryTitle.slice(0,2)}
-                  </Avatar>
-                  </Tooltip>
-               
-             
-            
+
+
+        <Tooltip title={primaryTitle}>
+          <Avatar style={{ backgroundColor: "#e97c28ba", fontFamily: "poppins" }}>
+            {primaryTitle && primaryTitle.slice(0, 2)}
+          </Avatar>
+        </Tooltip>
+
+
+
         // </Avatar.Group>
-        )}
+      )}
     </>
   );
 };

@@ -1,9 +1,9 @@
-import React, {  useEffect, useState,  lazy } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Select } from "antd";
-import {  DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -17,9 +17,9 @@ import {
   handleStatusLeaveModal,
   handleLeaveNoteDrawer
 } from "../../LeavesAction";
-const StatusLeavesModal = lazy(()=>import("./StatusLeavesModal"));
-const LeaveNoteDrawer = lazy(()=>import("./LeaveNoteDrawer"));
-const UpdateLeavesModal = lazy(()=>import("../Tab/UpdateLeavesModal"));
+const StatusLeavesModal = lazy(() => import("./StatusLeavesModal"));
+const LeaveNoteDrawer = lazy(() => import("./LeaveNoteDrawer"));
+const UpdateLeavesModal = lazy(() => import("../Tab/UpdateLeavesModal"));
 
 const { Option } = Select;
 function LeaveCardView(props) {
@@ -53,7 +53,7 @@ function LeaveCardView(props) {
   return (
     <>
       <div className=" h-h72 md:mt-4 overflow-auto overflow-x-auto max-sm:h-[28vh]">
-      <div className="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
+        <div className="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
           {leaveListRangeByUserId.map((item) => {
             return (
               <div className="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[6.5rem] 
@@ -133,59 +133,59 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                     )}
                   </span>
                   <div class="flex justify-end items-center">
-                  <Tooltip title="Notes">
-                    <NoteAltIcon className="!text-xl mt-1 cursor-pointer text-[green] "
-                   
-                    onClick={() => {
-                   
-                      handleLeaveNoteDrawer(true);
-                      handleSetCurrentLeaveId(item);
-                    }}
-                    />
-                  </Tooltip>
-                  <span>
-                    {item.status === "Pending" ? (
-                      <div className="cursor-pointer "
+                    <Tooltip title="Notes">
+                      <NoteAltIcon className="!text-icon mt-1 cursor-pointer text-[green] "
+
                         onClick={() => {
-                          props.setEditLeave(item);
-                          handleUpdateLeaveModal(true);
+
+                          handleLeaveNoteDrawer(true);
+                          handleSetCurrentLeaveId(item);
+                        }}
+                      />
+                    </Tooltip>
+                    <span>
+                      {item.status === "Pending" ? (
+                        <div className="cursor-pointer "
+                          onClick={() => {
+                            props.setEditLeave(item);
+                            handleUpdateLeaveModal(true);
+                            handleSetCurrentLeaveId(item.leaveId);
+                          }}
+                        >
+                          <Tooltip title={item.emailId}>
+                            <BorderColorIcon className="!text-icon cursor-pointer text-[tomato]" />
+                          </Tooltip>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </span>
+
+                    <span>
+                      <div className="!text-base cursor-pointer "
+                        onClick={() => {
+                          handleStatusLeaveModal(true);
                           handleSetCurrentLeaveId(item.leaveId);
                         }}
                       >
-                        <Tooltip title={item.emailId}>
-                          <BorderColorIcon className="!text-xl cursor-pointer text-[tomato]"/>
+                        <Tooltip title={"Status"}>
+                          <AssistantIcon className="!text-xl cursor-pointer text-[grey]" />
                         </Tooltip>
                       </div>
-                    ) : (
-                      ""
-                    )}
-                  </span>
+                    </span>
 
-                  <span>
-                    <div className="!text-base cursor-pointer "
-                      onClick={() => {
-                        handleStatusLeaveModal(true);
-                        handleSetCurrentLeaveId(item.leaveId);
-                      }}
-                    >
-                      <Tooltip title={"Status"}>
-                        <AssistantIcon  className="!text-xl cursor-pointer text-[grey]"/>
-                      </Tooltip>
-                    </div>
-                  </span>
-
-                  <span>
-                    {item.status === "Pending" ? (
-                      <div class="cursor-pointer">
-                        <DeleteOutlined
-                          type="delete"
-                          className="!text-xl cursor-pointer text-[red]" 
-                        ></DeleteOutlined>
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                  </span>
+                    <span>
+                      {item.status === "Pending" ? (
+                        <div class="cursor-pointer">
+                          <DeleteOutlined
+                            type="delete"
+                            className="!text-xl cursor-pointer text-[red]"
+                          ></DeleteOutlined>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -207,10 +207,10 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
         handleSetCurrentLeaveId={handleSetCurrentLeaveId}
       />
       <LeaveNoteDrawer
-       leavesItems={currentLeaveId}
-      noteLeaveDrawer={noteLeaveDrawer}
-      handleLeaveNoteDrawer={handleLeaveNoteDrawer}
-      handleSetCurrentLeaveId={handleSetCurrentLeaveId}
+        leavesItems={currentLeaveId}
+        noteLeaveDrawer={noteLeaveDrawer}
+        handleLeaveNoteDrawer={handleLeaveNoteDrawer}
+        handleSetCurrentLeaveId={handleSetCurrentLeaveId}
       />
     </>
   );
@@ -225,7 +225,7 @@ const mapStateToProps = ({ leave, auth }) => ({
   // fetchingBankDetails: profile.fetchingBankDetails,
   updateLeaveModal: leave.updateLeaveModal,
   updateStatusLeaveModal: leave.updateStatusLeaveModal,
-  noteLeaveDrawer:leave.noteLeaveDrawer,
+  noteLeaveDrawer: leave.noteLeaveDrawer,
 });
 
 const mapDispatchToProps = (dispatch) =>

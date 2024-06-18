@@ -4,7 +4,7 @@ import { Badge, Tooltip, Popover } from "antd";
 import NotificationTab from "./NotificationTab";
 import {
   BellOutlined
-  
+
 } from '@ant-design/icons';
 
 class NotificationPopover extends Component {
@@ -38,7 +38,7 @@ class NotificationPopover extends Component {
             count={this.props.notificationCount}
             style={{ fontSize: 8, boxSizing: 8 }}
           >
-            <BellOutlined  type="bell"  className="!text-xl cursor-pointer text-[blue] "  />
+            <BellOutlined type="bell" className="!text-xl cursor-pointer text-[#1890ff] " />
           </Badge>
         </Popover>
       </Tooltip>

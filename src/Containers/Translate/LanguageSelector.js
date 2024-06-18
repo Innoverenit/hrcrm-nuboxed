@@ -43,9 +43,9 @@
 //       setSourceLanguage(data.data.languages[0].language);
 //       setTargetLanguage(data.data.languages[1].language);
 //       setSelectedLanguage(data.data.languages);
-   
+
 //     }
-    
+
 //   };
 
 
@@ -105,7 +105,7 @@
 //         <label htmlFor="sourceLanguage">Source Language: </label>
 //         <select id="sourceLanguage" value={sourceLanguage} onChange={handleSourceLanguageChange}>
 //           {languages.map((lang) => (
-           
+
 //             <option key={lang.language} value={lang.language}>
 //               {lang.language}
 //             </option>
@@ -129,9 +129,9 @@
 //         ))}
 //       </select>
 //       </div>
-   
-      
- 
+
+
+
 //     </div>
 //   );
 // }
@@ -142,8 +142,8 @@ import React, { useState, useEffect } from 'react';
 import { getSupportedLanguages } from './TranslateService';
 // import { getName } from 'iso-639-1';
 
-function LanguageSelector({ onLanguageChange,supportedLanguages }) {
-//   const [supportedLanguages, setSupportedLanguages] = useState([]);
+function LanguageSelector({ onLanguageChange, supportedLanguages }) {
+  //   const [supportedLanguages, setSupportedLanguages] = useState([]);
   const [selectedLanguage, setSelectedLanguage] = useState('');
   console.log(supportedLanguages)
 
