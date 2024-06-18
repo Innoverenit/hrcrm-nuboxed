@@ -106,7 +106,7 @@ function DeletedOrderList(props) {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingDeletedHighOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"19vh"}
+                        height={"22vh"}
                     >
                         {props.deletedHighOrder.length ?
                             <>
@@ -387,7 +387,7 @@ function DeletedOrderList(props) {
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
                         loader={props.fetchingDeletedMediumOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"19vh"}
+                        height={"22vh"}
                     >
                         {props.deletedMediumOrder.length ?
                             <>
@@ -669,7 +669,7 @@ function DeletedOrderList(props) {
                         next={handleLoadMoreLow}
                         hasMore={hasMore}
                         loader={props.fetchingDeletedLowOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"19vh"}
+                        height={"22vh"}
                     >
                         {props.deletedLowOrder.length ?
                             <>

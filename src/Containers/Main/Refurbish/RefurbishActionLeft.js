@@ -125,7 +125,7 @@ function RefurbishActionLeft (props) {
               {/* {user.designation === "Executive" && */}
     
     
-              <Tooltip title="List">
+              <Tooltip title="My Repair Orders">
                 <span class=" text-sm cursor-pointer"
                   onClick={() => setProductionViewType("list")}
                   style={{
@@ -137,7 +137,7 @@ function RefurbishActionLeft (props) {
     
                 </span>
               </Tooltip>
-              <Tooltip title="All List">
+              <Tooltip title="All">
               <Badge
           size="small"
           count={(viewType === "all" && props.allCountRefurbish.allRefurbish) || 0}

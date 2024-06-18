@@ -1,7 +1,7 @@
 import React from "react";
 //import Avatar from "antd/lib/avatar";
 import { ProgressiveImage } from "../../Utils";
-import { Icon, Empty, Tooltip, Input, Button, Avatar, Rate } from "antd";
+import {  Tooltip,  Avatar  } from "antd";
 import { base_url } from "../../../Config/Auth";
 import ProfilePreview from "../../../Assets/Images/ProfilePreview.png";
 const MultiAvatar2 = ({
@@ -48,25 +48,7 @@ const MultiAvatar2 = ({
             />
           )
       ) : (
-          // <Avatar
-          //   size={size || "large"}
-          //   style={{
-          //     color,
-          //     // backgroundColor: bgcolor ? "red" : backgroundColor,
-          //     backgroundColor,
-          //     // fontSize,
-          //     borderWidth,
-          //     borderColor,
-          //     borderStyle,
-          //     minWidth: minAvatarWidth,
-          //   }}
-          // >
-          //   {primaryTitle && primaryTitle.split("")[0].toUpperCase()}
-          // </Avatar>
-        //   <Avatar.Group
-        //   maxCount={1000}
-        //   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
-        // >
+         
     
          <Tooltip title={primaryTitle}>
                   <Avatar style={{ backgroundColor: "#94b3e4",fontFamily:"poppins" }}>
@@ -76,31 +58,9 @@ const MultiAvatar2 = ({
                
              
             
-        // </Avatar.Group>
         )}
     </>
   );
 };
 
 export default MultiAvatar2;
-{
-  /* <Icon type="audit" />influencer */
-}
-{
-  /* <i class="material-icons">
-how_to_reg
-</i> evaluator */
-}
-
-// <i class="material-icons">
-// how_to_vote
-// </i>decision maker
-{
-  /* <i class="material-icons">
-assistant
-</i>influencer */
-}
-
-//decision maker <i class="fas fa-vote-yea"></i>
-//evaluator <i class="fas fa-address-card"></i>
-//influencer <i class="fas fa-hands-helping"></i>
