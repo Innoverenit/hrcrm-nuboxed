@@ -588,7 +588,7 @@ export const getlostRecords = (userId) => (dispatch) => {
     });
 };
 
-export const sendToWonCard = ( invOpportunityId,data ) => (dispatch) => {
+export const sendToWonCard = (data, invOpportunityId,userId ) => (dispatch) => {
   dispatch({ type: types.SEND_WON_CARD_REQUEST });
 
   axios
@@ -599,12 +599,13 @@ export const sendToWonCard = ( invOpportunityId,data ) => (dispatch) => {
     })
 
     .then((res) => {
-     // dispatch(getAllDealsbyUserId(userId));
+      dispatch(getAllDealsbyUserId(userId));
       message.success("Congratulations on this Win.Wish you success!");
       console.log(res);
       dispatch({
         type: types.SEND_WON_CARD_SUCCESS,
-        payload: invOpportunityId,
+        payload: res.data,
+      //  payload: invOpportunityId,
       });
     })
     .catch((err) => {
@@ -1198,4 +1199,11 @@ export const getDeletedDeal = (pageNo) => (dispatch) => {
         payload: err,
       });
     });
+};
+
+export const handleOwnModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_OWN_MODAL,
+    payload: modalProps,
+  });
 };

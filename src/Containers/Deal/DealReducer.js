@@ -20,6 +20,8 @@ const initialState = {
   fetchingDealError:false,
   dealsByuserId:[],
 
+  addOwnModal:false,
+
   fetchingTeamsDealsData: false,
   fetchingTeamsDealsDataError: false,
   teamsDealsData:[],
@@ -490,11 +492,14 @@ export const dealReducer = (state = initialState, action) => {
                     return {
                       ...state,
                       sendingCardWon: false,
-                      dealsByuserId: state.dealsByuserId.map((opp) =>
-                      opp.invOpportunityId === action.payload.invOpportunityId
-                        ? action.payload
-                        : opp
-                    ),
+                      addOwnModal:false,
+                      // dealsByuserId: state.dealsByuserId.map((item) => {
+                      //   if (item.invOpportunityId === action.payload.invOpportunityId) {
+                      //     return action.payload;
+                      //   } else {
+                      //     return item;
+                      //   }
+                      // }),
                     };
                   case types.SEND_WON_CARD_FAILURE:
                     return {
@@ -866,6 +871,9 @@ export const dealReducer = (state = initialState, action) => {
                                   fetchingDeletedDeal: false,
                                   fetchingDeletedDealError: true,
                                 };
+
+                                case types.HANDLE_OWN_MODAL:
+              return { ...state, addOwnModal: action.payload };
 
     default:
       return state;

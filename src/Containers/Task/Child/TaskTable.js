@@ -577,9 +577,8 @@ return (
                   <Tooltip title="Edit">
                     {props.userId === item.userId && (
                       <BorderColorIcon
-                        type="edit"
-                        style={{ cursor: "pointer", fontSize: "0.8rem" }}
-                        onClick={() => {
+                        type="edit" class=" cursor-pointer !text-icon text-[tomato]"
+                          onClick={() => {
                           props.setEditTask(item);
                           handleUpdateTaskModal(true);
                         }}

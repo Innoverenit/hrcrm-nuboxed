@@ -157,7 +157,7 @@ function ContactInvestTeamsCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingTeamsContactInvest?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
        
        { !props.fetchingTeamsContactInvest && props.teamsContactInvestData.length === 0 ?<NodataFoundPage />:props.teamsContactInvestData.map((item,index) =>  {
@@ -293,7 +293,7 @@ function ContactInvestTeamsCardList(props) {
              </div>
                          
        
-                  <div class=" flex justify-end w-[7rem] max-sm:flex justify-end max-sm:w-full">
+                  <div class=" flex justify-end items-center w-[7rem] max-sm:flex   max-sm:w-full">
                     <div>
                   <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (

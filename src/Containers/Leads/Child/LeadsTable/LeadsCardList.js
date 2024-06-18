@@ -491,7 +491,7 @@ const LeadsCardList = (props) => {
                   </div>
                   <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
                   
-                    <div class="w-5">
+                    <div >
                       <Tooltip title="Notes">
                         <NoteAltIcon
                          className=" !text-icon cursor-pointer text-green-800"
@@ -504,7 +504,7 @@ const LeadsCardList = (props) => {
                         />
                       </Tooltip>
                     </div>
-                    <div class="w-5">
+                    <div >
                       <Tooltip
                         title={
                           <FormattedMessage
@@ -530,7 +530,7 @@ const LeadsCardList = (props) => {
                     
                  
                  
-                    <div class="w-5">
+                    <div >
                       <Tooltip
                         overlayStyle={{ maxWidth: "300px" }}
                         title={dataLoc}
@@ -544,7 +544,7 @@ const LeadsCardList = (props) => {
                         </div>
                       </Tooltip>
                     </div>
-                    <div class="w-5">
+                    <div >
                       <Tooltip title={item.email}>
                         <MailOutlineIcon
                           type="mail"
@@ -557,7 +557,7 @@ const LeadsCardList = (props) => {
                       </Tooltip>{" "}
                     </div>
                     {user.leadsUpdateInd === true && user.crmInd === true && (
-                     <div class="w-5">
+                     <div >
                         <Tooltip title="Edit">
                           <BorderColorIcon
                            className="!text-icon cursor-pointer text-[tomato]"
@@ -571,7 +571,7 @@ const LeadsCardList = (props) => {
                       </div>
                     )}
                     {user.leadsDeleteInd === true && user.crmInd === true && (
-                      <div class="w-5">
+                      <div >
                        
                         <StyledPopconfirm
                           title="Do you want to delete?"
@@ -905,7 +905,7 @@ const LeadsCardList = (props) => {
                 </div>
                 <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
                 
-                  <div class="w-5">
+                  <div >
                     <Tooltip title="Notes">
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
@@ -918,7 +918,7 @@ const LeadsCardList = (props) => {
                       />
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       title={
                         <FormattedMessage
@@ -944,7 +944,7 @@ const LeadsCardList = (props) => {
                   
                
                
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       overlayStyle={{ maxWidth: "300px" }}
                       title={dataLoc}
@@ -958,7 +958,7 @@ const LeadsCardList = (props) => {
                       </div>
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip title={item.email}>
                       <MailOutlineIcon
                         type="mail"
@@ -971,7 +971,7 @@ const LeadsCardList = (props) => {
                     </Tooltip>{" "}
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div class="w-5">
+                   <div >
                       <Tooltip title="Edit">
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
@@ -985,7 +985,7 @@ const LeadsCardList = (props) => {
                     </div>
                   )}
                   {user.leadsDeleteInd === true && user.crmInd === true && (
-                    <div class="w-5">
+                    <div >
                      
                       <StyledPopconfirm
                         title="Do you want to delete?"
@@ -1327,7 +1327,7 @@ const LeadsCardList = (props) => {
                 </div>
                 <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
                 
-                  <div class="w-5">
+                  <div >
                     <Tooltip title="Notes">
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
@@ -1340,7 +1340,7 @@ const LeadsCardList = (props) => {
                       />
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       title={
                         <FormattedMessage
@@ -1366,7 +1366,7 @@ const LeadsCardList = (props) => {
                   
                
                
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       overlayStyle={{ maxWidth: "300px" }}
                       title={dataLoc}
@@ -1380,7 +1380,7 @@ const LeadsCardList = (props) => {
                       </div>
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip title={item.email}>
                       <MailOutlineIcon
                         type="mail"
@@ -1393,7 +1393,7 @@ const LeadsCardList = (props) => {
                     </Tooltip>{" "}
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div class="w-5">
+                   <div >
                       <Tooltip title="Edit">
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
@@ -1407,7 +1407,7 @@ const LeadsCardList = (props) => {
                     </div>
                   )}
                   {user.leadsDeleteInd === true && user.crmInd === true && (
-                    <div class="w-5">
+                    <div >
                      
                       <StyledPopconfirm
                         title="Do you want to delete?"

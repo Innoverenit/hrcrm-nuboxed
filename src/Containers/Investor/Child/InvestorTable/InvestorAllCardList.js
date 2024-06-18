@@ -170,7 +170,7 @@ function InvestorAllCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllInvestors?<div class="flex items-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
         
         { !fetchingAllInvestors && allInvestorsbyId.length === 0 ?<NodataFoundPage />:allInvestorsbyId.map((item,index) =>  {
@@ -343,7 +343,7 @@ function InvestorAllCardList(props) {
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-between">            
-                                <div className="w-5">
+                                <div >
                           <Tooltip title="Pulse">
          <MonitorHeartIcon
                   onClick={() => {
@@ -358,7 +358,7 @@ function InvestorAllCardList(props) {
           
                    
                                
-                          <div className="w-5">
+                          <div >
                    <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
@@ -370,7 +370,7 @@ function InvestorAllCardList(props) {
            </Tooltip>
                    </div>
                    
-                   <div className="w-5">
+                   <div>
                     <Tooltip title={item.url}>
               {item.url !== "" ? (
                 <span class="cursor-pointer"
@@ -384,13 +384,13 @@ function InvestorAllCardList(props) {
                     />
                   </a>
                 </span>
-              ):<div class=" w-3">
+              ):<div>
                       
               </div>}
             </Tooltip>
                         </div>                   
                     
-                    <div className="w-5">
+                    <div >
                         <span 
               className=" !text-icon cursor-pointer"
             //   onClick={() => {
@@ -406,7 +406,7 @@ function InvestorAllCardList(props) {
             </span> 
                         </div>
         
-                        <div className="w-5">
+                        <div>
           
             <Tooltip title="Investor Contact">
               <LocationCityIcon
@@ -420,18 +420,14 @@ function InvestorAllCardList(props) {
             </Tooltip>
  
             </div>
-                      
-                    
-    
-                    
-            <div className="w-5">
+            <div>
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span class="cursor-pointer">
             <LocationOnIcon   className=" !text-icon cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
-            <div className="w-5">
+            <div>
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
             <Tooltip title="Edit">
               <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato]"
@@ -444,7 +440,7 @@ function InvestorAllCardList(props) {
             </Tooltip>
            )} 
             </div>
-            <div className="w-5">
+            <div>
             <StyledPopconfirm
                         title="Do you want to delete?"
                         onConfirm={() =>

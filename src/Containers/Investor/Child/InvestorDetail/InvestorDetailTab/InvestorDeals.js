@@ -10,7 +10,6 @@ import {getInvestorDeals
 import { CurrencySymbol } from "../../../../../Components/Common"; 
 import { Button, Tooltip,Dropdown ,Menu,Progress} from "antd";
 import { FormattedMessage } from "react-intl";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -53,10 +52,6 @@ console.log("investorDetails",props.investorDetails)
                   id="app.name"
                   defaultMessage="name"
                 /></div>
-        <div className=" md:w-[13.1rem]"><FormattedMessage
-                  id="app.investor"
-                  defaultMessage="investor"
-                /></div>
         <div className=" md:w-[13.2rem] "><FormattedMessage
                   id="app.sponsor"
                   defaultMessage="sponsor"
@@ -72,6 +67,10 @@ console.log("investorDetails",props.investorDetails)
         <div className="md:w-[4.2rem]"><FormattedMessage
                   id="app.stages"
                   defaultMessage="stages"
+                /></div> 
+        <div className="md:w-[4.2rem]"><FormattedMessage
+                  id="app.status"
+                  defaultMessage=""
                 /></div> 
         <div className="md:w-[7.1rem]"><FormattedMessage
                   id="app.assignto"

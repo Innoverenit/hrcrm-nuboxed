@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import { PlusOutlined } from "@ant-design/icons";
 import {  StyledTabs } from "../../../../Components/UI/Antd";
-import TabsWrapper1 from "../../../../Components/UI/Layout/TabsWrapper1";
 import {handleCreateShiftDrawer} from "./LocationAction";
 
 const ShftLocsTable =lazy(()=>import("./ShftLocsTable"));

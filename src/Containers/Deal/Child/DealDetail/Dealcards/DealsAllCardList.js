@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../../Components/UI/Elements";
 import "jspdf-autotable";
-import { OnlyWrapCard } from '../../../../../Components/UI/Layout'
+import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
 import {
   getAllDeals
 } from "../../../DealAction";
@@ -63,20 +63,20 @@ const DealsAllCardList = (props) => {
   return (
     <>
       <div class="rounded-lg m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-     <div className=" flex  w-[96%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[13.5rem]"><FormattedMessage
+      <div className=" flex  w-[96%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" md:w-[14.5rem]"><FormattedMessage
             id="app.name"
             defaultMessage="name"
           /></div>
-          <div className=" md:w-[12.13rem]"><FormattedMessage
+          <div className=" md:w-[13.13rem]"><FormattedMessage
             id="app.investor"
             defaultMessage="investor"
           /></div>
-          <div className=" md:w-[8.2rem] "><FormattedMessage
+          <div className=" md:w-[9.2rem] "><FormattedMessage
             id="app.sponsor"
             defaultMessage="sponsor"
           /></div>
-          <div className="md:w-[7.12rem]"><FormattedMessage
+          <div className="md:w-[6.12rem]"><FormattedMessage
             id="app.startdate"
             defaultMessage="startdate"
           /></div>
@@ -84,11 +84,12 @@ const DealsAllCardList = (props) => {
             id="app.value"
             defaultMessage="Value"
           /></div>
-          <div className="md:w-[6.2rem]"><FormattedMessage
+          <div className="md:w-[4.2rem]"><FormattedMessage
             id="app.stages"
             defaultMessage="stages"
           /></div>
-          <div className="md:w-[6.21rem]"><FormattedMessage
+          <div className="md:w-[5.26rem]">Status</div>
+          <div className="md:w-[7.21rem]"><FormattedMessage
             id="app.assignto"
             defaultMessage="Assign To"
           /></div>
@@ -114,7 +115,7 @@ const DealsAllCardList = (props) => {
             });
             const currentdate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-
+            const myIndicator = (item.wonInd) ? <CheckCircleTwoTone/> : (item.lostInd ? <StopTwoTone/> : null);
             const diff = Math.abs(
               dayjs().diff(dayjs(item.lastRequirementOn), "days")
             );
@@ -131,180 +132,183 @@ const DealsAllCardList = (props) => {
               } `;
             return (
               <div>
-                 <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
-              >
-                  <div class="flex justify-between">
-                    <div className=" flex font-medium  w-[15rem]   max-sm:w-full">
-                      <div className="flex max-sm:w-full items-center">
-                        <div>
-                          <SubTitle>
-                            <MultiAvatar
-                              primaryTitle={item.opportunityName}
-                              imageId={item.imageId}
-                              imageURL={item.imageURL}
-                              imgWidth={"1.8em"}
-                              imgHeight={"1.8em"}
-                            />
-                          </SubTitle>
-                        </div>
-                        <div class="w-[4%]">
+              <div
+             className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+           >
+               <div class="flex justify-between">
+                 <div className=" flex font-medium  w-[15rem]   max-sm:w-full">
+                   <div className="flex max-sm:w-full items-center">
+                     <div>
+                       <SubTitle>
+                         <MultiAvatar
+                           primaryTitle={item.opportunityName}
+                           imageId={item.imageId}
+                           imageURL={item.imageURL}
+                           imgWidth={"1.8em"}
+                           imgHeight={"1.8em"}
+                         />
+                       </SubTitle>
+                     </div>
+                     <div class="w-[4%]">
 
-                        </div>
+                     </div>
 
-                        <div class="max-sm:w-full w-52" >
-                          <Tooltip>
-                            <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
-                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
-                                            Name
-                                            </div> */}
-                              <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                     <div class="max-sm:w-full w-52" >
+                       <Tooltip>
+                         <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
+                           {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
+                                         Name
+                                         </div> */}
+                           <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
-                                {/* <Link
-                                                 toUrl={`customer/${item.customerId}`}
-                                                 title={`${item.name}`} 
-                                               > */}
-                                {item.opportunityName}
-                                {/* </Link> */}
-                                &nbsp;&nbsp;
-                                {date === currentdate ? (
-                                  <span class="text-[tomato] mt-[0.4rem] font-bold"
+                             {/* <Link
+                                              toUrl={`customer/${item.customerId}`}
+                                              title={`${item.name}`} 
+                                            > */}
+                             {item.opportunityName}
+                             {/* </Link> */}
+                             &nbsp;&nbsp;
+                             {date === currentdate ? (
+                               <span class="text-[tomato] mt-[0.4rem] font-bold"
 
-                                  >
-                                    New
-                                  </span>
-                                ) : null}
+                               >
+                                 New
+                               </span>
+                             ) : null}
 
-                              </div>
-                            </div>
-                          </Tooltip>
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" flex font-medium  items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                           </div>
+                         </div>
+                       </Tooltip>
+                     </div>
+                   </div>
+                 </div>
+                 <div className=" flex font-medium  items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <div class=" text-sm text-cardBody font-poppins">
-                        <Link to="/investor">
-                          {item.investor}
-                        </Link>
-                      </div>
-                    </div>
+                   <div class=" text-sm text-cardBody font-poppins">
+                     <Link to="/investor">
+                       {item.investor}
+                     </Link>
+                   </div>
+                 </div>
 
-                    <div className=" flex font-medium  items-center md:w-[6.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-
-                      <div class=" text-sm text-cardBody font-poppins">
-                        <SubTitle>
-                          {item.contactName === null ? "None" :
-                            <MultiAvatar2
-                              primaryTitle={item.contactName}
-                              imageId={item.imageId}
-                              imageURL={item.imageURL}
-                              imgWidth={"1.8em"}
-                              imgHeight={"1.8em"}
-                            />
-                          }
-                        </SubTitle>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex">
-                    <div className=" flex font-medium items-center  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 <div className=" flex font-medium  items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-sm justify-center text-cardBody font-poppins">
-                        {dayjs(item.startDate).format("DD/MM/YYYY")}
-                      </div>
-                    </div>
-
-                    <div className=" flex font-medium items-center  md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-
-                      <div class=" text-sm text-cardBody font-poppins text-center">
-                        <CurrencySymbol currencyType={item.currency} />
-                        &nbsp;
-                        {item.proposalAmount}
-
-                      </div>
-                    </div>
-                    <div className=" flex font-medium items-center  md:w-[7.02rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-
-                      <div class=" text-sm text-cardBody font-poppins text-center">
-                        <Dropdown
-                          overlay={
-                            <div>
-                              <Menu mode="horizontal">
-                                <Menu.Item
-                                  style={{
-                                    paddingLeft: 5,
-                                    paddingRight: 5,
-                                    backgroundColor: "#F5F5F5",
-                                  }}
-                                >
-
-                                </Menu.Item>
-                              </Menu>
-                            </div>
-                          }
-                          trigger={["click"]}
-                        >
-                          <Tooltip title={item.stageName}>
-                            {" "}
-                            <Progress
-                              type="circle"
-                              style={{ cursor: "pointer", color: "red", fontSize: "0.8rem" }}
-                              percent={findProbability}
-                              width={30}
-                              strokeColor={"#005075"}
-                            />
-                          </Tooltip>
-                        </Dropdown>
-
-                      </div>
-                    </div>
-                    <div className=" flex font-medium items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                   <div class=" text-sm text-cardBody font-poppins">
+                     <SubTitle>
+                       {item.contactName === null ? "None" :
+                         <MultiAvatar2
+                           primaryTitle={item.contactName}
+                           imageId={item.imageId}
+                           imageURL={item.imageURL}
+                           imgWidth={"1.8em"}
+                           imgHeight={"1.8em"}
+                         />
+                       }
+                     </SubTitle>
+                   </div>
+                 </div>
+               </div>
+               <div class="flex">
+                 <div className=" flex font-medium items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-sm text-cardBody font-poppins">
+                   <div class=" text-sm justify-center text-cardBody font-poppins">
+                     {dayjs(item.startDate).format("DD/MM/YYYY")}
+                   </div>
+                 </div>
 
-                        <span>
-                          {item.assignedTo === null ? (
-                            "No Data"
-                          ) : (
-                            <>
-                              {item.assignedTo === item.ownerName ? (
-
-                                null
-                              ) : (
-                                <MultiAvatar2
-                                  primaryTitle={item.assignedTo}
-                                  imgWidth={"1.8rem"}
-                                  imgHeight={"1.8rem"}
-                                />
-                              )}
-                            </>
-                          )}
-                        </span>
-
-                      </div>
-                    </div>
-                    <div className=" flex font-medium items-center  md:w-[6.01rem] max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                 <div className=" flex font-medium items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
+                   <div class=" text-sm text-cardBody font-poppins text-center">
+                     <CurrencySymbol currencyType={item.currency} />
+                     &nbsp;
+                     {item.proposalAmount}
 
-                      <span>
-                        <MultiAvatar2
-                          primaryTitle={item.ownerName}
-                          imageId={item.ownerImageId}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                   </div>
+                 </div>
+                 <div className=" flex font-medium items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+
+                   <div class=" text-sm text-cardBody font-poppins text-center">
+                     <Dropdown
+                       overlay={
+                         <div>
+                           <Menu mode="horizontal">
+                             <Menu.Item
+                               style={{
+                                 paddingLeft: 5,
+                                 paddingRight: 5,
+                                 backgroundColor: "#F5F5F5",
+                               }}
+                             >
+
+                             </Menu.Item>
+                           </Menu>
+                         </div>
+                       }
+                       trigger={["click"]}
+                     >
+                       <Tooltip title={item.stageName}>
+                         {" "}
+                         <Progress
+                           type="circle"
+                           style={{ cursor: "pointer", color: "red", fontSize: "0.8rem" }}
+                           percent={findProbability}
+                           width={30}
+                           strokeColor={"#005075"}
+                         />
+                       </Tooltip>
+                     </Dropdown>
+
+                   </div>
+                 </div>
+                 <div className=" flex font-medium items-center  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 {myIndicator}
+                 </div>
+                 <div className=" flex font-medium items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+
+                   <div class=" text-sm text-cardBody font-poppins">
+
+                     <span>
+                       {item.assignedTo === null ? (
+                         "No Data"
+                       ) : (
+                         <>
+                           {item.assignedTo === item.ownerName ? (
+
+                             null
+                           ) : (
+                             <MultiAvatar2
+                               primaryTitle={item.assignedTo}
+                               imgWidth={"1.8rem"}
+                               imgHeight={"1.8rem"}
+                             />
+                           )}
+                         </>
+                       )}
+                     </span>
+
+                   </div>
+                 </div>
+                 <div className=" flex font-medium items-center  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+
+
+
+                   <span>
+                     <MultiAvatar2
+                       primaryTitle={item.ownerName}
+                       imageId={item.ownerImageId}
+                       imgWidth={"1.8rem"}
+                       imgHeight={"1.8rem"}
+                     />
+                   </span>
+                 </div>
+               </div>
+             </div>
+           </div>
 
             )
           })}

@@ -23,7 +23,7 @@ class PitchActionRight extends React.Component {
     const { handleLeadsModal, user } = this.props;
     return (
       <>
-        {user.imInd === true  &&  user.pitchCreateInd === true && (
+        {this.props.viewType === "card" && user.imInd === true  &&  user.pitchCreateInd === true && (
         <div class=" flex  items-center">
           {/* {user.customerFullListInd === true &&(  */}
         {/* <LeadShareForm

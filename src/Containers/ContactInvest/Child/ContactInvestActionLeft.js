@@ -108,7 +108,7 @@ const ContactInvestActionLeft = (props) => {
   return (
     <div class=" flex  items-center">
       <Tooltip
-        title={<FormattedMessage id="app.customer" defaultMessage="Customer" />}
+        title={<FormattedMessage id="app.myinvestorcontacts" defaultMessage="My Investor Contacts" />}
       >
         <Badge
           size="small"
@@ -134,7 +134,7 @@ const ContactInvestActionLeft = (props) => {
       </Tooltip>
       {user.teamsAccessInd === true && (
       <Tooltip
-       title={<FormattedMessage id="app.teams" defaultMessage="Teams" />}
+       title={<FormattedMessage id="app.teamview" defaultMessage="Team View" />}
       >
       <Badge
           size="small"

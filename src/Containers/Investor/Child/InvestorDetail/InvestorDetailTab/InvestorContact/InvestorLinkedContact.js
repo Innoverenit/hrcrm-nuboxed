@@ -175,7 +175,7 @@ class InvestorLinkedContact extends Component {
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
       <>
-        <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div class="rounded-lg m-1 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[16.1rem]">
         <FormattedMessage
@@ -312,7 +312,7 @@ class InvestorLinkedContact extends Component {
                                     <div class=" text-sm text-cardBody font-poppins text-center">
                                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
               <span
-                className="!text-xl cursor-pointer text-[#960a0a]"
+                className="!text-icon cursor-pointer text-[#960a0a]"
               >
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
               </span>
@@ -327,7 +327,7 @@ class InvestorLinkedContact extends Component {
                                     <Tooltip title="LinkedIn">
               <span
                 //type="edit"
-                className="!text-xl cursor-pointer"
+                className="!text-icon cursor-pointer"
                 onClick={() => {}}
               >
                 {" "}
@@ -351,7 +351,7 @@ class InvestorLinkedContact extends Component {
                  handleUpdateInvestorContactModal(true);
                 }}
               >
-                <BorderColorIcon className="!text-xl cursor-pointer text-[tomato] " />
+                <BorderColorIcon className="!text-icon cursor-pointer text-[tomato] " />
               </span>
             </Tooltip>
 

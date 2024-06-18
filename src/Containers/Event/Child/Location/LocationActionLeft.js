@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
-import TocIcon from '@mui/icons-material/Toc';
 import { FormattedMessage } from "react-intl";
 import { Badge, Tooltip,Avatar } from "antd";
 import {getLocationRecords,getLocationDeletedCount} from "./LocationAction";
@@ -36,7 +35,8 @@ const LocationActionLeft = (props) => {
             }}
           >
              <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon className="text-white" />
+  
+            <div className="text-white">ALL</div>
             </Avatar>
           </span>
           </Badge>
