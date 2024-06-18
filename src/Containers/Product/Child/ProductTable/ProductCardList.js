@@ -105,8 +105,8 @@ function ProductCardList(props) {
     <>
 
       <div className=' flex justify-end sticky  z-auto'>
-        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between max-sm:hidden w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">  
+        <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">  
           <div className="w-[7.01rem]"></div>        
             <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">Article #</div>
             <div className=" w-[13.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">Name</div>
@@ -122,7 +122,7 @@ function ProductCardList(props) {
             next={handleLoadMore}
             hasMore={hasMore}
             loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-            height={"79vh"}
+            height={"80vh"}
             endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           >
              {products.length ?

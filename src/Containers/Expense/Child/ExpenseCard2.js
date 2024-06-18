@@ -38,7 +38,7 @@ function ExpenseCard2(props) {
     return (
       <>
       <div class=" h-h86 overflow-hidden overflow-x-hidden">
-      <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] h-[36rem] bg-[#E3E8EE] max-sm:w-wk max-sm:h-[32rem]">
+      <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] h-[36rem] bg-[#E3E8EE] max-sm:w-wk max-sm:h-[32rem]">
               {Expenses.map((item) => {
                  return (
                   <div>

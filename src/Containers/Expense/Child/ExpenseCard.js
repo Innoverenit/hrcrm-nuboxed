@@ -53,8 +53,8 @@ function ExpenseCard(props) {
        <div class="flex flex-wrap w-full max-sm:justify-between max-sm:h-[34rem] max-sm:items-center overflow-x-auto h-[37rem]">   
               {Expenses.map((item) => {
                  return (
-                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[8rem] 
-                  text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
+                  <div class="rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[8rem] 
+                  text-[#444444] m-1 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
         
                                
                    <div >
