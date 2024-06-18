@@ -35,7 +35,7 @@ class MileageCard2 extends React.Component {
     return (
       <>
          <div class=" h-[86vh] overflow-hidden overflow-x-hidden max-sm:h-h86">
-         <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto h-[37rem] shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE] 
+         <div class="rounded m-1 p-1 w-[99%] overflow-auto h-[37rem] shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE] 
          max-sm:w-wk max-sm:overflow-auto max-sm:h-[32rem]">
       {MileageDat.map((item) => { 
                     return (

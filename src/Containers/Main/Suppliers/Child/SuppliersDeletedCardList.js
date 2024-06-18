@@ -42,8 +42,8 @@ function SuppliersDeletedCardList(props) {
   return (
     <>
       <div className=' flex justify-end sticky  z-auto'>
-        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden justify-between w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex max-sm:hidden justify-between w-[100%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[14.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"

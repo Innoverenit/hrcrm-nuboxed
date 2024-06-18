@@ -39,7 +39,7 @@ function ExpenseApprovedStatusCard(props) {
 
     return (
       <>
-        <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE] max-sm:w-wk">
+        <div class="rounded m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE] max-sm:w-wk">
          <div className="p-0.5 inline-flex items-center rounded-md w-max ml-1">
             <span className="pl-2 pr-4 relative">
               <span

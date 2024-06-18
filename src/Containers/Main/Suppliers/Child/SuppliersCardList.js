@@ -73,7 +73,7 @@ function SuppliersCardList(props) {
     <>
       <div className=' flex justify-end sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden justify-between w-[100%] p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" flex max-sm:hidden justify-between w-[100%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[20.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"

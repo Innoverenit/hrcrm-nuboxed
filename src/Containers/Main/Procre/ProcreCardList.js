@@ -83,8 +83,8 @@ function ProcreCardList(props) {
 
   return (
     <>
-    <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-        <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
+    <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[0.5rem]"></div>
                         <div className=" md:w-[11rem]"><FormattedMessage id="app.item" defaultMessage="Item"/></div>
                         <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit "/></div>
@@ -115,7 +115,7 @@ function ProcreCardList(props) {
            
             return (
               <div key={item.iteamId}>
-              <div className="flex rounded  mt-1 bg-white h-12 items-center p-1">
+              <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
 <div>
 {/* <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full ">
@@ -286,7 +286,7 @@ function ProcreCardList(props) {
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.iteamId)}

@@ -2,12 +2,9 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import TocIcon from '@mui/icons-material/Toc';
 import { Input, Tooltip, Avatar } from "antd";
 import { FormattedMessage } from "react-intl";
-import ListAltIcon from '@mui/icons-material/ListAlt';
 import GridViewIcon from '@mui/icons-material/GridView';
-import GroupsIcon from "@mui/icons-material/Groups";
 import CategoryIcon from '@mui/icons-material/Category';
 import { AreaChartOutlined } from '@ant-design/icons';
 
@@ -50,21 +47,7 @@ const LeavesActionLeft = (props) => {
           </span>
       
       </Tooltip> */}
-      <Tooltip
-        title={<FormattedMessage id="app.cardView" defaultMessage="Card View" />}
-      >  <span
-        class=" mr-2 text-sm cursor-pointer"
-        onClick={() => props.setLeavesViewType("card")}
-        style={{
-          color: props.viewType === "card" && "#1890ff",
-        }}
-      >
-          <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon />
-          </Avatar>
-        </span>
-
-      </Tooltip>
+      
 
       <Tooltip
         title="Category"
