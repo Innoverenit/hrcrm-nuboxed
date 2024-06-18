@@ -63,9 +63,9 @@ function ProductionAllCardList(props) {
 console.log(page)
   return (
     <>
-      <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden  w-[92.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
+      <div className=' flex justify-end sticky  z-auto'>
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex max-sm:hidden  w-[92.5%] justify-between p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[4.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
               <FormattedMessage
                 id="app.order#"
@@ -115,7 +115,7 @@ console.log(page)
                 } `;
               return (
                 <div>
-                  <div className="flex rounded-xl justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-[2.75rem] max-sm:h-[9rem] items-center p-3 "
+                  <div className="flex rounded-xl justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 "
 
                   >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">

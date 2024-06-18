@@ -86,9 +86,9 @@ function DeletedOrderList(props) {
     return (
         <>
             <div className=' flex justify-end sticky  z-auto'>
-            <div class="rounded-lg m-2 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
               
-                <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
+                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
                 <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">Urgent </div>
           <div className=" md:w-[9.3rem] ml-2">Order ID</div>
           <div className=" md:w-[11.6rem]">Customer</div>
@@ -368,8 +368,8 @@ function DeletedOrderList(props) {
             </div>
 
             <div className=' flex justify-end sticky z-auto'>
-            <div class="rounded-lg m-2 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky z-10">
                 <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
           <div className=" md:w-[9.3rem] ml-2">Order ID</div>
           <div className=" md:w-[11.6rem]">Customer</div>
@@ -650,8 +650,8 @@ function DeletedOrderList(props) {
                 </div>
             </div>
             <div className=' flex justify-end sticky  z-auto'>
-            <div class="rounded-lg m-2 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
                 <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
           <div className=" md:w-[9.3rem] ml-2">Order ID</div>
           <div className=" md:w-[11.6rem]">Customer</div>
