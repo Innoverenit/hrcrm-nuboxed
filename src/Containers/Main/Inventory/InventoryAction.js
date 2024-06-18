@@ -262,7 +262,7 @@ export const createAwbNo = (data, id) => (dispatch) => {
   });
 
   axios
-    .post(`${base_url2}/orderAwb/save`, data, {
+    .post(`${base_url2}/orderAwb/save/hj`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
