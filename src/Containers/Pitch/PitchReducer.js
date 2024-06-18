@@ -232,7 +232,13 @@ case types.GET_PITCH_REQUEST:
             addingPitch: false, 
             addPitchModal: false ,
             pitchData:[action.payload,...state.pitchData],
-            allPitchData:[action.payload,...state.allPitchData]
+            allPitchData:[action.payload,...state.allPitchData],
+            pitchDataHot: action.payload.type === 'hot' ? 
+          [action.payload, ...state.pitchDataHot] : state.pitchDataHot,
+          pitchDataWarm: action.payload.type === 'warm' ? 
+          [action.payload, ...state.pitchDataWarm] : state.pitchDataWarm,
+          pitchDataCold: action.payload.type === 'cold' ? 
+          [action.payload, ...state.pitchDataCold] : state.pitchDataCold,
         };
       case types.ADD_PITCH_FAILURE:
         return { ...state, addingPitch: false,  };  

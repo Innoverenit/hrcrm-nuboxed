@@ -19,6 +19,9 @@ const initialState = {
   creatingInvestorDeal: false,
   creatingInvestorDealError: false,
 
+  creatingInvestorShare: false,
+  creatingInvestorShareError: false,
+
   fetchingDialCode: false,
   fetchingDialCodeError: false,
   dialCodeList:[],
@@ -128,6 +131,10 @@ const initialState = {
   fetchingTeamInvestor: false,
   fetchingTeamInvestorError: false,
   teamInvestor:[],
+
+  fetchingInvenstoryShare: false,
+        fetchingInvenstoryShareError: false,
+        inventoryShare:[],
 
   fetchingInvestorDealsData: false,
   fetchingInvestorDealsDataError: false,
@@ -831,6 +838,41 @@ export const investorReducer = (state = initialState, action) => {
                                                    
                                                 case types.HANDLE_INVESTORPRICE_DRAWER:
                                                   return { ...state, priceInvestorDrawer: action.payload };   
+
+                                                  case types.INVESTOR_SHARE_REQUEST:
+                                                    return { ...state, creatingInvestorShare: true };
+                                                  case types.INVESTOR_SHARE_SUCCESS:
+                                                    return {
+                                                      ...state,
+                                                      creatingInvestorShare: false,
+                                                      inventoryShare: [action.payload, ...state.inventoryShare]
+                                                    };
+                                                  case types.INVESTOR_SHARE_FAILURE:
+                                                    return {
+                                                      ...state,
+                                                      creatingInvestorShare: false,
+                                                      creatingInvestorShareError: true,
+                                                    };
+
+        case types.GET_INVESTOR_SHARE_REQUEST:
+      return {
+        ...state,
+        fetchingInvenstoryShare: true,
+      };
+    case types.GET_INVESTOR_SHARE_SUCCESS:
+      return {
+        ...state,
+        fetchingInvenstoryShare: false,
+        inventoryShare: action.payload,
+      };
+    case types.GET_INVESTOR_SHARE_FAILURE:
+      return {
+        ...state,
+        fetchingInvenstoryShare: false,
+        fetchingInvenstoryShareError: true,
+      };
+
+
 
 
 

@@ -1222,3 +1222,58 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
       payload: modalProps,
     });
   };
+
+  export const investorShare = (data,) => (dispatch) => {
+    dispatch({ type: types.INVESTOR_SHARE_REQUEST });
+    axios
+      .post(`${base_url}/investor/share/save`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.INVESTOR_SHARE_SUCCESS,
+          payload: res.data,
+        });
+        Swal.fire({
+          icon: 'success',
+          title: 'Created Successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.INVESTOR_SHARE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getInvestorShare = (investorId) => (dispatch) => {
+    dispatch({
+      type: types.GET_INVESTOR_SHARE_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investor/get/all/share-list/${investorId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_INVESTOR_SHARE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_INVESTOR_SHARE_FAILURE,
+          payload: err,
+        });
+      });
+  };

@@ -329,7 +329,7 @@ function InvestorCardList(props) {
                                     <div class=" text-sm text-[blue] cursor-pointer justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   <div  onClick={() => {
                               props.handleInvestorPriceDrawer(true);
-                             // handleParticularRowData(item);
+                              handleCurrentRowData(item);
                             }}>Share Own</div>
                                     </div>
                                 </div>
@@ -555,7 +555,7 @@ function InvestorCardList(props) {
         handleCurrentRowData={handleCurrentRowData}
       />
       <InventoryPriceDrawer
-          //particularDiscountData={particularDiscountData}
+          RowData={RowData}
           handleInvestorPriceDrawer={handleInvestorPriceDrawer}
           priceInvestorDrawer={priceInvestorDrawer}
         />
