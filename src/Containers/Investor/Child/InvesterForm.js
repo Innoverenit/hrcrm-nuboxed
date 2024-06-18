@@ -480,7 +480,40 @@ function InvesterForm(props) {
                     />
                   </div>
                     </div> 
+                 <div class="flex justify-between">
+                 <div class=" flex flex-col items-center  mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">UBO</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      //onChange={handleContract}
+                      //checked={contract}
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                    />
+                  </div>
+                  <div class=" flex flex-col items-center  mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Identification</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      //onChange={handleContract}
+                      //checked={contract}
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                    />
+                  </div>
+                  
+                 </div>
                  
+                  <div class=" flex flex-col   mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Inofocit</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      //onChange={handleContract}
+                      //checked={contract}
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                    />
+                  </div>
                   <div class="mt-3">
                   <Field
                     name="notes"

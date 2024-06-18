@@ -33,10 +33,12 @@ import {getInvestorsbyId,
   handleInvestorPulseDrawerModal,
   handleInvestorNotesDrawerModal,emptyInvestor,
   deleteInvestorData,
+  handleInvestorPriceDrawer
 } from "../../InvestorAction";
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
+import InventoryPriceDrawer from "./InventoryPriceDrawer";
 const AddInvestorNotesDrawerModal = lazy(() => import("../InvestorDetail/AddInvestorNotesDrawerModal"));
 const ContactsInvestorModal = lazy(() => import("./ContactsInvestorModal"));
 const UpdateInvestorModal = lazy(() =>
@@ -111,7 +113,9 @@ function InvestorCardList(props) {
     addDrawerInvestorContactModal,
     updateInvestorModal,
     investor,
+    priceInvestorDrawer,
     deleteInvestorData,
+    handleInvestorPriceDrawer,
     fetchingInvestorsError,
     fetchingAllCustomers,
     user,
@@ -158,6 +162,12 @@ function InvestorCardList(props) {
                   id="app.Category"
                   defaultMessage="Category"
                 />
+          </div>
+          <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+       Shares Own
+          </div>
+          <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        Share Value
           </div>
         <div className="w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
         <FormattedMessage
@@ -311,6 +321,23 @@ function InvestorCardList(props) {
 
                                     <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.category}
+                                    </div>
+                                </div>
+                                <div className=" flex font-medium items-center w-[6.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+
+                                    <div class=" text-sm text-[blue] cursor-pointer justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div  onClick={() => {
+                              props.handleInvestorPriceDrawer(true);
+                             // handleParticularRowData(item);
+                            }}>Share Own</div>
+                                    </div>
+                                </div>
+                                <div className=" flex font-medium items-center w-[6.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+
+                                    <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    Share Value
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -527,6 +554,11 @@ function InvestorCardList(props) {
         handleInvestorNotesDrawerModal={props.handleInvestorNotesDrawerModal}
         handleCurrentRowData={handleCurrentRowData}
       />
+      <InventoryPriceDrawer
+          //particularDiscountData={particularDiscountData}
+          handleInvestorPriceDrawer={handleInvestorPriceDrawer}
+          priceInvestorDrawer={priceInvestorDrawer}
+        />
       {/* <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
@@ -558,6 +590,7 @@ const mapStateToProps = ({
   fetchingInvestorsError: investor.fetchingInvestorsError,
   updateInvestorModal: investor.updateInvestorModal,
   user: auth.userDetails,
+  priceInvestorDrawer: investor.priceInvestorDrawer,
   employees: employee.employees,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
 });
@@ -577,6 +610,7 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerKeySkill,
       handleCustomerEmailDrawerModal,
       getCustomerById,
+      handleInvestorPriceDrawer
 
     },
     dispatch

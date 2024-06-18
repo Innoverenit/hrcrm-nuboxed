@@ -1215,3 +1215,10 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         });
       });
   };
+
+  export const handleInvestorPriceDrawer = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_INVESTORPRICE_DRAWER,
+      payload: modalProps,
+    });
+  };

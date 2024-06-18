@@ -8,12 +8,12 @@ import WonForm from "./WonForm";
 class AddDealsOwnDrawerModal extends Component {
   render() {
      
-
+console.log(this.props.currentItem.opportunityName)
     return (
       <div>
         <StyledDrawer
           title={this.props.currentItem.opportunityName}
-          width="65%"
+          width="30%"
           visible={this.props.addOwnModal}
           closable
           placement="right"

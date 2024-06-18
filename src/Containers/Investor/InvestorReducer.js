@@ -41,6 +41,8 @@ const initialState = {
   fetchingAllInvestorsError: false,
   allInvestorsbyId: [],
 
+  priceInvestorDrawer:false,
+
   fetchingInvestorRecords: false,
   fetchingInvestorRecordsError: false,
   investorRecord:[],
@@ -826,7 +828,10 @@ export const investorReducer = (state = initialState, action) => {
                                                 };
                                               case types.DELETE_INVESTOR_DATA_FAILURE:
                                                 return { ...state, deleteInvestorData: false, deleteInvestorDataError: false };
-                                                       
+                                                   
+                                                case types.HANDLE_INVESTORPRICE_DRAWER:
+                                                  return { ...state, priceInvestorDrawer: action.payload };   
+
 
 
 default:

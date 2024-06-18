@@ -48,6 +48,7 @@ import Trade from "./Trade/Trade";
 import CreateSubscriptionDrawer from "../Subscription/Child/CreateSubscriptionDrawer";
 import { handleCreateSubscriptionDrawer } from "../Subscription/SubscriptionAction";
 import Quality from "../Quality/Quality";
+import Club from "./Club/Club";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -784,6 +785,7 @@ function MainApp(props) {
                       <Route exact path="/setting" component={Settings} />
                       <Route exact path="/reports" component={Reports} />
                       <Route exact path="/partner" component={Partner} />
+                     
                       <Route exact path="/call" component={Call} />
                       <Route exact path="/collection" component={Collection} />
                       <Route exact path="/task" component={Task} />
@@ -945,6 +947,7 @@ function MainApp(props) {
                       <Route exact path="/deal" component={Deal} />
                       <Route exact path="/contactInvest" component={ContactInvest} />
                       <Route exact path="/investor" component={Investor} />
+                      <Route exact path="/club" component={Club} />
                       <Route exact path="/investor/:investorId" component={InvestorDetail} />
                       <Route exact path="/contactinvest/:contactId" component={ContactInvestDetail} />
                       <Route exact path="/dealDetails/:invOpportunityId" component={DealDetail} />

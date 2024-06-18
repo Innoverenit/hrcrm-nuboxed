@@ -2073,3 +2073,32 @@ export const ClearReducerDataOfInventory = () => (dispatch) => {
     type: types.HANDLE_CLAER_REDUCER_DATA_INVENTORY,
   });
 };
+
+export const linkSuplierToggle = ( data,id) => (dispatch, getState) => {
+  //console.log(permissions, userId);
+  //const orgId = getState().auth.userDetails.organizationId;
+  dispatch({
+    type: types.LINK_SUPPLIERS_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplier/update/inventory/supplier/publishInd/${id}`, data, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_SUPPLIERS_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_SUPPLIERS_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
