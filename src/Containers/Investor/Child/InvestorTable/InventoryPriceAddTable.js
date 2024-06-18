@@ -4,7 +4,8 @@ import { bindActionCreators } from "redux";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { getCurrency } from "../../../Auth/AuthAction";
 import { Button, Input, Select,Tooltip } from "antd";
-// import { getProductCurrency, createProductCurrency,
+import {investorShare,getInvestorShare} from "../../InvestorAction";
+// import { getInvestorShare, investorShare,
 //    handleDiscountModal, handleOfferModal,removeProductPrice } from "../../ProductAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 // import {getSaleCurrency} from "../../../Auth/AuthAction";
@@ -23,10 +24,9 @@ function InventoryPriceAddTable(props) {
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
 
-//   useEffect(() => {
-//     props.getProductCurrency(props.particularDiscountData.productId);
-//     props.getSaleCurrency()
-//   }, []);
+  useEffect(() => {
+    props.getInvestorShare(props.RowData.investorId);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -38,9 +38,9 @@ function InventoryPriceAddTable(props) {
     };
   }, []);
 
-//   useEffect(() => {
-//     setData(props.ProductCurrency.map((item, index) => ({ ...item, key: String(index) })));
-//   }, [props.ProductCurrency]);
+  useEffect(() => {
+    setData(props.inventoryShare.map((item, index) => ({ ...item, key: String(index) })));
+  }, [props.inventoryShare]);
 
  
 
@@ -49,10 +49,9 @@ function InventoryPriceAddTable(props) {
   const handleAddRow = () => {
     const newRow = {
       // key: String(data.length + 1),
-      currencyId: '',
-      price: '',
-      priceB2C: '',
-      vat: '',
+      quantityOfShare: '',
+      amountPerShare: '',
+      
 
 
     };
@@ -60,7 +59,7 @@ function InventoryPriceAddTable(props) {
   };
 
   const handleChange = (index, key, value) => {
-    if (key === 'price' || key === 'priceB2C' || key === 'vat') {
+    if (key === 'amountPerShare' || key === 'quantityOfShare' || key === 'vat') {
       if (!isNaN(value)) {
         const updatedRows = [...rows];
         updatedRows[index][key] = value;
@@ -96,36 +95,28 @@ function InventoryPriceAddTable(props) {
     // if (targetRow) {
       console.log('Submitting Row:', row);
       const result = {
-        currencyId: row.currency_id,
-        price: row.price,
-        priceB2C: row.priceB2C,
-        vat: row.vat,
-        skillLevelLinkId: row.skillLevelLinkId,
-        productId: props.particularDiscountData.productId,
-        userId: props.userId
+        quantityOfShare: row.quantityOfShare,
+        amountPerShare: row.amountPerShare,
+        investorId: props.RowData.investorId,
       };
-      props.createProductCurrency(result)
-      setRows([{ currencyId: '', price: '', priceB2C: '', vat: '' }]);
+      props.investorShare(result)
+      setRows([{  amountPerShare: '', quantityOfShare: '', }]);
   };
-  const handleEditClick = (productCurrencyId) => {
-    setEditsuppliesId(productCurrencyId);
+  const handleEditClick = (investorId) => {
+    setEditsuppliesId(investorId);
   };
-  const handleCancelClick = (productCurrencyId) => {
-    setEditedFields((prevFields) => ({ ...prevFields, [productCurrencyId]: undefined }));
+  const handleCancelClick = (investorId) => {
+    setEditedFields((prevFields) => ({ ...prevFields, [investorId]: undefined }));
     setEditsuppliesId(null);
   };
   function handleUpdate(key) {
     console.log('Submitting Row:', key);
     const updatedData = {
-      currencyId: key.currency_id,
-      price: key.price,
-      priceB2C: key.priceB2C,
-      vat: key.vat,
-      skillLevelLinkId: key.skillLevelLinkId,
-      productId: props.particularDiscountData.productId,
-      userId: props.userId
+      quantityOfShare: key.quantityOfShare,
+      amountPerShare: key.amountPerShare,
+      investorId: props.RowData.investorId,
     };
-    props.createProductCurrency(updatedData);
+    props.investorShare(updatedData);
     setEditsuppliesId(null);
   };
 
@@ -137,48 +128,32 @@ function InventoryPriceAddTable(props) {
       {rows.map((row, index) => (
           <div key={index} class="flex items-center">
             <div class="flex justify-around w-[30rem]">
-              <div>
-                <label>Currency</label>
-                <div class="w-24">
-                <Select
-                        classNames="w-32"
-                        value={row.currency_id}
-                        onChange={(value) => handleChange(index, 'currency_id',value)}
-                      >
-                        {props.saleCurrencies.map((s) => (
-                          <Option key={s.currency_id} value={s.currency_id}>
-                            {s.currency_name}
-                          </Option>
-                        ))}
-                      </Select>
-
-                </div>
-              </div>
+              
 
               <div>
-                <label>Price (B2B)</label>
+                <label>Quantity Of Share</label>
                 <div class="w-24"></div>
                 <Input
                  inputMode="numeric"
                         className="w-32"
-                        value={row.price}
-                        onChange={(e) => handleChange(index,'price',e.target.value)}
+                        value={row.quantityOfShare}
+                        onChange={(e) => handleChange(index,'quantityOfShare',e.target.value)}
                       />
-                        {errors[`price${index}`] && <span className="text-red-500">{errors[`price${index}`]}</span>}
+                        {errors[`quantityOfShare${index}`] && <span className="text-red-500">{errors[`quantityOfShare${index}`]}</span>}
                       </div>
               <div>
-                <label>Price (B2C)</label>
+                <label>Value per Share</label>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
                         className="w-32"
-                        value={row.priceB2C}
-                        onChange={(e) => handleChange(index,'priceB2C',e.target.value)}
+                        value={row.amountPerShare}
+                        onChange={(e) => handleChange(index,'amountPerShare',e.target.value)}
                       />
-                       {errors[`priceB2C${index}`] && <span className="text-red-500">{errors[`priceB2C${index}`]}</span>}
+                       {errors[`amountPerShare${index}`] && <span className="text-red-500">{errors[`amountPerShare${index}`]}</span>}
                       </div></div>
-              <div>
-                <label>VAT (in %)</label>
+              {/* <div>
+                <label>Date</label>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -188,7 +163,7 @@ function InventoryPriceAddTable(props) {
                       />
                         {errors[`vat${index}`] && <span className="text-red-500">{errors[`vat${index}`]}</span>}
                 </div>
-              </div>
+              </div> */}
             </div>
             <div class="mt-4">
             <Button type="primary" onClick={() => handleSave(index)}>
@@ -201,22 +176,22 @@ function InventoryPriceAddTable(props) {
 
       <div className=' flex justify-end sticky z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
-            <div className=" md:w-[7%]">Currency</div>
-            <div className=" md:w-[6.1rem]">Price(B2B)</div>
-            <div className=" md:w-[4.2rem] ">Price(B2C)</div>
-            <div className="md:w-[5.8rem]">VAT(%)</div>
-            <div className="w-12"></div>             </div>
+          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">         
+            <div className=" md:w-[10rem]">Quantity Of Share</div>
+            <div className=" md:w-[10.1rem]">Value per Share</div>
+            {/* <div className=" md:w-[4.2rem] ">Date</div> */}
+            <div className="w-12"></div>           
+              </div>
 
           {data.length ? data.map((item) => {
             return (
-              <div key={item.productCurrencyId}>
+              <div key={item.investorId}>
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
                 >
 
-                  <div className=" flex font-medium items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
+                  {/* <div className=" flex font-medium items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
                     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
-                    {editsuppliesId === item.productCurrencyId ? (
+                    {editsuppliesId === item.investorId ? (
                       <Select
                         classNames="w-32"
                         value={item.currencyName}
@@ -234,20 +209,20 @@ function InventoryPriceAddTable(props) {
                     </div>
                   )}
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                  {editsuppliesId === item.productCurrencyId ? (
+                  {editsuppliesId === item.investorId ? (
                     <div class=" text-xs text-cardBody font-poppins">
                       <Input
                         className="w-32"
-                        value={item.price}
-                        onChange={(e) => handleInputChange(e.target.value, item.key, 'price')}
+                        value={item.amountPerShare}
+                        onChange={(e) => handleInputChange(e.target.value, item.key, 'amountPerShare')}
                       />
                     </div>
  ):(
   <div className="font-normal text-sm text-cardBody font-poppins">
-  <div> {item.price}</div>
+  <div> {item.amountPerShare}</div>
 </div>
 )}
                   </div>
@@ -255,22 +230,22 @@ function InventoryPriceAddTable(props) {
 
 
                   <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  {editsuppliesId === item.productCurrencyId ? (
+                  {editsuppliesId === item.investorId ? (
                     <div class=" text-xs text-cardBody font-poppins">
                       <Input
                         className="w-32"
-                        value={item.priceB2C}
-                        onChange={(e) => handleInputChange(e.target.value, item.key, 'priceB2C')}
+                        value={item.quantityOfShare}
+                        onChange={(e) => handleInputChange(e.target.value, item.key, 'quantityOfShare')}
                       />
                     </div>
                      ):(
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                      <div> {item.priceB2C}</div>
+                      <div> {item.quantityOfShare}</div>
                     </div>
                     )}
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  {editsuppliesId === item.productCurrencyId ? (
+                  {/* <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  {editsuppliesId === item.investorId ? (
 
                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                       <Input
@@ -284,20 +259,12 @@ function InventoryPriceAddTable(props) {
                       <div> {item.vat}</div>
                     </div>
                     )}
-                  </div>
+                  </div> */}
 
                   <div class="flex md:items-center">
 
 
-                    {/* <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
-                      <div>
-                        <Button type="primary" onClick={() => handleSave(item.key)}>
-                          Save
-                        </Button>
-                      </div>
-
-                    </div> */}
- {editsuppliesId === item.productCurrencyId ? (
+ {editsuppliesId === item.investorId ? (
                         <>
                       <Button 
                       type="primary"
@@ -306,7 +273,7 @@ function InventoryPriceAddTable(props) {
                       </Button>
                         <Button 
                          type="primary"
-                        onClick={() => handleCancelClick(item.productCurrencyId)} className="ml-[0.5rem]">
+                        onClick={() => handleCancelClick(item.investorId)} className="ml-[0.5rem]">
                         Cancel
                       </Button>
                       </>
@@ -316,13 +283,13 @@ function InventoryPriceAddTable(props) {
                       className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
-                        onClick={() => handleEditClick(item.productCurrencyId)}
+                        onClick={() => handleEditClick(item.investorId)}
                       />
                     )}
- <div>
+ {/* <div>
       <StyledPopconfirm
                           title="Do you want to delete?"
-                          onConfirm={() => props.removeProductPrice(item.productCurrencyId)}
+                          onConfirm={() => props.removeProductPrice(item.investorId)}
 
                           >
                      <Tooltip title="Delete">
@@ -332,13 +299,13 @@ function InventoryPriceAddTable(props) {
                           />
                        </Tooltip>
                        </StyledPopconfirm>
-                       </div>
+                       </div> */}
                   </div>
 
                 </div>
               </div>
             );
-          }) : !data.length && !props.fetchingProductCurrency ? <NodataFoundPage /> : null}
+          }) : !data.length && !props.fetchingInvenstoryShare ? <NodataFoundPage /> : null}
 
         </div>
       </div>
@@ -349,14 +316,11 @@ function InventoryPriceAddTable(props) {
 
 };
 
-const mapStateToProps = ({ product, auth }) => ({
-  ProductCurrency: product.ProductCurrency,
-  fetchingProductCurrency: product.fetchingProductCurrency,
-  addDiscountModal: product.addDiscountModal,
-  addProductOfferModal: product.addProductOfferModal,
+const mapStateToProps = ({ investor, auth }) => ({
+  inventoryShare: investor.inventoryShare,
+  fetchingInvenstoryShare: investor.fetchingInvenstoryShare,
   currencies: auth.currencies,
   userId: auth.userDetails.userId,
-  fetchingProductCurrency: product.fetchingProductCurrency,
   fetchingSaleCurrency:auth.fetchingSaleCurrency,
   saleCurrencies:auth.saleCurrencies
 });
@@ -364,8 +328,8 @@ const mapStateToProps = ({ product, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   getProductCurrency,
-    //   createProductCurrency,
+       getInvestorShare,
+       investorShare,
     //   handleDiscountModal,
     //   handleOfferModal,
     //   getCurrency,
