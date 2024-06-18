@@ -11,7 +11,7 @@ import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
 import {
   EyeInvisibleOutlined, EyeOutlined,
 } from "@ant-design/icons";
-import FWLogo from "../../Assets/Images/name.jpg"; //ct
+// import FWLogo from "../../Assets/Images/name.jpg"; //ct
 import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
 import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nb
 import inno from "../../Assets/Images/logo_22.png"; //inn

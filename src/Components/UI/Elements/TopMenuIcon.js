@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Badge, Icon, Tooltip, Popover } from 'antd';
-// import { StyledPopover } from "../../Components/UI/Antd";
 import NotificationTab from './NotificationTab';
 
 class NotificationPopover extends Component {
@@ -34,7 +33,8 @@ class NotificationPopover extends Component {
                     onVisibleChange={this.handleVisibleChange}
                 >
                     <Badge count={this.props.notificationCount} >
-                        <Icon type="bell" />
+                        <Icon type="bell"
+                            style={{ color: "#1890ff" }} />
                     </Badge>
                 </Popover>
             </Tooltip>

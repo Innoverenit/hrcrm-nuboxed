@@ -23,7 +23,7 @@ import {
 } from "../../Components/UI/Layout";
 import { Select } from "antd";
 import { handleInTagDrawer } from "../../Containers/Main/Refurbish/RefurbishAction";
-import { getSuscrption} from "../Subscription/SubscriptionAction";
+import { getSuscrption } from "../Subscription/SubscriptionAction";
 import { updateUserById, handleActionDrawerModal, getActionRequiredCount } from "../Auth/AuthAction";
 import { setLanguage } from "../../Language/LanguageAction";
 import { getOpportunityRecord } from "../Opportunity/OpportunityAction";
@@ -46,7 +46,7 @@ import Procre from "./Procre/Procre";
 import InventoryTableAll from "./Suppliers/Child/SupplierDetails/SupplierDetailTab/InventoryTableAll";
 import Trade from "./Trade/Trade";
 import CreateSubscriptionDrawer from "../Subscription/Child/CreateSubscriptionDrawer";
-import {handleCreateSubscriptionDrawer} from "../Subscription/SubscriptionAction";
+import { handleCreateSubscriptionDrawer } from "../Subscription/SubscriptionAction";
 import Quality from "../Quality/Quality";
 const NavMenu = lazy(() =>
   import("./NavMenu")
@@ -392,6 +392,7 @@ function MainApp(props) {
 
   //   }
   // };
+
   const Subscription = 
   props.suscrptionData.subscriptionType === "1" ? "Starter" :
   props.suscrptionData.subscriptionType === "2" ? "Professional" :
@@ -476,17 +477,17 @@ function MainApp(props) {
             }}>
               <Header>
                 <div class="flex justify-between items-center">
-                <div class="xl:hidden ml-4 "><Navmenu2 selectedLanguage={selectedLanguage} /></div>
-                
-                {/* <div className="border-2"></div>Attendance<div className="border-2"></div> */}
-                <StartStop />
-                <div >
-                {/* <div class="border border-grey ml-1 p-1 h-10 md:p-4">
+                  <div class="xl:hidden ml-4 "><Navmenu2 selectedLanguage={selectedLanguage} /></div>
+
+                  {/* <div className="border-2"></div>Attendance<div className="border-2"></div> */}
+                  <StartStop />
+                  <div >
+                    {/* <div class="border border-grey ml-1 p-1 h-10 md:p-4">
   <label class=" bg-white flex px-2 -mt-[1.15rem] h-2 items-center w-[5.5rem]">Attendance</label>
   <StartStop />
 </div> */}
-</div>
-                {/* <Button
+                  </div>
+                  {/* <Button
                   onClick={() => {
                     props.handleInTagDrawer(true)
                   }}
@@ -494,17 +495,17 @@ function MainApp(props) {
                 >
                   Scan </Button> */}
                   <div class="ml-2">
-                <QRCodeList
-                  handleScan={handleScan}
-                  stopScanning={stopScanning}
-                  startScanning={startScanning}
-                  handleError={handleError}
-                  modalVisible={modalVisible}
-                  scanning={scanning}
-                  data={data}
-                  shouldRenderCamera={shouldRenderCamera}
-                />
-                </div>
+                    <QRCodeList
+                      handleScan={handleScan}
+                      stopScanning={stopScanning}
+                      startScanning={startScanning}
+                      handleError={handleError}
+                      modalVisible={modalVisible}
+                      scanning={scanning}
+                      data={data}
+                      shouldRenderCamera={shouldRenderCamera}
+                    />
+                  </div>
                 </div>
                 {/* <Popconfirm
                 title="Stop"
@@ -627,6 +628,7 @@ function MainApp(props) {
                       }
                     />
                   </FloatButton.Group> */}
+
            <div className="flex items-center">
                 <div className=" text-sm font-semibold font-poppins mr-1">{Subscription}</div>
                 <Button
@@ -644,10 +646,10 @@ function MainApp(props) {
 
                     }}
                   >Action<Badge
-                  count={props.actionCount.ActionRecordCount}
-                  overflowCount={999}
-                ></Badge>
-                  {/* <span class=" text-[tomato] font-semibold">{props.actionCount.ActionRecordCount}</span> */}
+                    count={props.actionCount.ActionRecordCount}
+                    overflowCount={999}
+                  ></Badge>
+                    {/* <span class=" text-[tomato] font-semibold">{props.actionCount.ActionRecordCount}</span> */}
                   </div>
                   <div class=" text-white bg-mainclr h-[1.75rem] ml-8 mr-3 max-sm:hidden"
                     style={{
@@ -682,18 +684,22 @@ function MainApp(props) {
                   </div>
                   {/* <Subscription /> */}
                   <div class=" flex items-center h-full self-start "
-                >
-                  <div class=" mr-2 mt-1 max-sm:hidden " >
-                    <Select
-                      value={props.preferedLanguage}
-                      style={{ width: "3.8rem" }}
-                      onChange={(value) => handleLanguageSelect(value)}
-                    >
-                      <Option value="English">EN</Option>
-                      <Option value="Dutch">NL</Option>
-                    </Select>
+                  >
+                    <div class=" mr-2 mt-1 max-sm:hidden " >
+                      <Select
+                        value={props.preferedLanguage}
+                        style={{ width: "3.8rem" }}
+                        onChange={(value) => handleLanguageSelect(value)}
+                      >
+                        <Option value="English">EN</Option>
+                        <Option value="Dutch">NL</Option>
+                        <Option value="German">DE</Option>
+                        <Option value="French">FR</Option>
+                        <Option value="Spanish">ES</Option>
+                        <Option value="Italian">IT</Option>
+                      </Select>
+                    </div>
                   </div>
-                </div>
                   <div class=" flex items-center h-0">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
                       <SettingsDropdown />
@@ -902,7 +908,7 @@ function MainApp(props) {
                         path="/opportunity"
                         component={Opportunity}
                       />
-                        <Route
+                      <Route
                         exact
                         path="/quality"
                         component={Quality}
@@ -974,11 +980,11 @@ function MainApp(props) {
       // handleResponseData={this.handleResponseData}
       // responseData={this.state.responseData}
       />
- <CreateSubscriptionDrawer
- rowData={rowData}
-          createSubscriptiondrawer={props.createSubscriptiondrawer}
-          handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
-        />
+      <CreateSubscriptionDrawer
+        rowData={rowData}
+        createSubscriptiondrawer={props.createSubscriptiondrawer}
+        handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
+      />
       <TagInDrawer
         clickTagInDrawr={props.clickTagInDrawr}
         handleInTagDrawer={props.handleInTagDrawer}
@@ -1038,11 +1044,11 @@ const mapStateToProps = ({
   organizationDetails: auth.organizationDetails,
   addCandidateResumeModal: candidate.addCandidateResumeModal,
   addCallModal: call.addCallModal,
-  suscrptionData:subscription.suscrptionData,
+  suscrptionData: subscription.suscrptionData,
   user: auth.userDetails,
   actionCount: auth.actionCount,
   clickTagInDrawr: refurbish.clickTagInDrawr,
-  createSubscriptiondrawer:subscription.createSubscriptiondrawer
+  createSubscriptiondrawer: subscription.createSubscriptiondrawer
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
