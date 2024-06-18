@@ -467,7 +467,7 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         addingReceivedUser: false,
-        addCreateAwb: false,
+        // addCreateAwb: false,
         // addAwbNo: false
       };
     case types.ADD_RECEIVED_FAILURE:

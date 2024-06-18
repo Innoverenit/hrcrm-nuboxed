@@ -62,7 +62,12 @@ const AddAWBNo = (props) => {
         setAwbFieldValue(""); 
         setShowModal(false); 
     };
-
+    const handleModalNoo = () => {
+        props.createAwbNo(initialValues, props.locationDetailsId); 
+        setAwbFieldValue(""); 
+        setShowModal(false); 
+        props.handleAddAWB(false);
+    };
     const handleModalCancel = () => {
         setShowModal(false); 
         props.handleAddAWB(false)
@@ -102,7 +107,10 @@ const AddAWBNo = (props) => {
        visible={showModal}
        onCancel={handleModalCancel}
         footer={[<>
-            <Button key="cancel" onClick={handleModalCancel}>
+        <Button key="cancel" onClick={handleModalCancel}>
+             Cancel
+            </Button>
+            <Button key="cancel" onClick={handleModalNoo}>
                 No
             </Button>
             <Button key="confirm" type="primary" onClick={handleModalConfirm}>
@@ -111,7 +119,7 @@ const AddAWBNo = (props) => {
             </>
         ]}
     >
-        <p>Do you want to add AWB No?</p>
+      Do you want to add AWB No ?
     </StyledModal>
 
     </>

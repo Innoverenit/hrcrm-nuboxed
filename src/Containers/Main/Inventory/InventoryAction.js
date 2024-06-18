@@ -262,14 +262,14 @@ export const createAwbNo = (data, id) => (dispatch) => {
   });
 
   axios
-    .post(`${base_url2}/orderAwb/save/hj`, data, {
+    .post(`${base_url2}/orderAwb/save`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
       console.log(res);
-      dispatch(getDispatchList(id))
+      dispatch(getDispatchList(id,0))
       dispatch({
         type: types.ADD_RECEIVED_SUCCESS,
         payload: res.data,
@@ -277,6 +277,7 @@ export const createAwbNo = (data, id) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
+      dispatch(getDispatchList(id,0))
       dispatch({
         type: types.ADD_RECEIVED_FAILURE,
         payload: err,
