@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip} from "antd";
+import { Tooltip } from "antd";
 import { getAllDistributorsList } from "../CollectionAction";
 import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
 import { CurrencySymbol } from "../../../Components/Common";
@@ -16,22 +16,22 @@ class AllDistributorList extends Component {
   state = {
     searchText: "",
     searchedColumn: "",
-    page:0,
-    hasMore:true
+    page: 0,
+    hasMore: true
   };
 
   componentDidMount() {
-    this.setState({page:this.state.page+1})
+    this.setState({ page: this.state.page + 1 })
     this.props.getAllDistributorsList(this.state.page);
   }
 
   handleLoadMore = () => {
-    this.setState({page:this.state.page+1})
+    this.setState({ page: this.state.page + 1 })
     this.props.getAllDistributorsList(this.state.page);
   }
 
   render() {
-   
+
     if (this.props.fetchingAllDistributorsError) {
       return <APIFailed />;
     }
@@ -39,167 +39,163 @@ class AllDistributorList extends Component {
 
     return (
       <>
-   <div className='flex justify-end sticky top-28 z-auto'>
-        <OnlyWrapCard style={{backgroundColor:"#E3E8EE"}}>
-        <div className=" flex justify-between w-[97.5%] px-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[8.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer"/></div>
-        <div className=" md:w-[5.1rem]"><FormattedMessage id="app.mobile" defaultMessage="Mobile"/></div>
-        <div className=" md:w-[6.8rem] "><FormattedMessage id="app.website" defaultMessage="Website"/></div>
-        <div className="md:w-[5.9rem]"><FormattedMessage id="app.address" defaultMessage="Address"/></div>
-        <div className="md:w-[7.8rem]"><FormattedMessage id="app.pincode" defaultMessage="Pin Code"/></div>
-        <div className="md:w-[7.9rem]"><FormattedMessage id="app.city" defaultMessage="City"/></div>
-        <div className="md:w-[6.2rem]"><FormattedMessage id="app.owner" defaultMessage="Owner"/> </div>
-        <div className="md:w-[11.3rem]"><FormattedMessage id="app.balance" defaultMessage="Balance"/></div>
-        <div className="md:w-[11.3rem]"><FormattedMessage id="app.previous" defaultMessage="Previous"/></div>
+        <div className='flex justify-end sticky z-auto'>
+          <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
+            <div className=" flex justify-between w-[97.5%] px-1 bg-transparent font-bold sticky top-0 z-10">
+              <div className=" md:w-[8.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
+              <div className=" md:w-[5.1rem]"><FormattedMessage id="app.mobile" defaultMessage="Mobile" /></div>
+              <div className=" md:w-[6.8rem] "><FormattedMessage id="app.website" defaultMessage="Website" /></div>
+              <div className="md:w-[5.9rem]"><FormattedMessage id="app.address" defaultMessage="Address" /></div>
+              <div className="md:w-[7.8rem]"><FormattedMessage id="app.pincode" defaultMessage="Pin Code" /></div>
+              <div className="md:w-[7.9rem]"><FormattedMessage id="app.city" defaultMessage="City" /></div>
+              <div className="md:w-[6.2rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /> </div>
+              <div className="md:w-[11.3rem]"><FormattedMessage id="app.balance" defaultMessage="Balance" /></div>
+              <div className="md:w-[11.3rem]"><FormattedMessage id="app.previous" defaultMessage="Previous" /></div>
 
 
-      </div>
-        <InfiniteScroll
-        dataLength={this.props.allDistributors.length}
-        next={this.handleLoadMore}
-        hasMore={this.state.hasMore}
-        loader={this.props.fetchingAllDistributors?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
-        height={"75vh"}
-      >
-      
-      {this.props.allDistributors.map((item) => { 
-         const currentdate = moment().format("DD/MM/YYYY");
-         const date = moment(item.creationDate).format("DD/MM/YYYY");
-         const diff = Math.abs(
-            moment().diff(moment(item.lastRequirementOn), "days")
-          );
-          const dataLoc = ` Address : ${
-            item.address && item.address.length && item.address[0].address1
-          } 
-           Street : ${
-             item.address && item.address.length && item.address[0].street
-           }   
+            </div>
+            <InfiniteScroll
+              dataLength={this.props.allDistributors.length}
+              next={this.handleLoadMore}
+              hasMore={this.state.hasMore}
+              loader={this.props.fetchingAllDistributors ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+              height={"75vh"}
+            >
+
+              {this.props.allDistributors.map((item) => {
+                const currentdate = moment().format("DD/MM/YYYY");
+                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const diff = Math.abs(
+                  moment().diff(moment(item.lastRequirementOn), "days")
+                );
+                const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
+                  } 
+           Street : ${item.address && item.address.length && item.address[0].street
+                  }   
           State : ${item.address && item.address.length && item.address[0].state}
-         Country : ${
-           (item.address && item.address.length && item.address[0].country) || ""
-         } 
-           PostalCode : ${
-             item.address && item.address.length && item.address[0].postalCode
-           } `;
-                    return (
-                        <div>
-                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
-                                // style={{
-                                //     borderBottom: "3px dotted #515050"
-                                // }}
-                                >
-                                   <div class="flex">
-                                <div className=" flex font-medium flex-col md:w-40 max-sm:w-full  ">
+         Country : ${(item.address && item.address.length && item.address[0].country) || ""
+                  } 
+           PostalCode : ${item.address && item.address.length && item.address[0].postalCode
+                  } `;
+                return (
+                  <div>
+                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
+                    // style={{
+                    //     borderBottom: "3px dotted #515050"
+                    // }}
+                    >
+                      <div class="flex">
+                        <div className=" flex font-medium flex-col md:w-40 max-sm:w-full  ">
 
-                                   
-                                        <Tooltip>
-                                          <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
+
+                          <Tooltip>
+                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                              {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
-                                                
-         <Link
-          toUrl={`distributor/${item.distributorId}`}
-          title={`${item.name}`}
-        >{item.name}</Link>&nbsp;&nbsp;
-        {date === currentdate ? (
-          <span class="text-xs"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
-            New
-          </span>
-        ) : null}
-       
-                                            </div>
-                                            </div>
-                                        </Tooltip>
-                              
-                                </div>
+                              <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
-                                <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-                           
-                                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                                    <div class=" text-xs text-cardBody font-poppins">   
-                                 {item.phoneNo}
-                                    </div>
-                                
-                                </div> 
-                             
-                                </div>
-                                <div class="flex">
-                                <div className=" flex font-medium flex-col md:w-full max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"># Opportunity</div> */}
+                                <Link
+                                  toUrl={`distributor/${item.distributorId}`}
+                                  title={`${item.name}`}
+                                >{item.name}</Link>&nbsp;&nbsp;
+                                {date === currentdate ? (
+                                  <span class="text-xs"
+                                    style={{
+                                      color: "tomato",
+                                      fontWeight: "bold",
+                                    }}
+                                  >
+                                    New
+                                  </span>
+                                ) : null}
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                    {item.url}
+                              </div>
+                            </div>
+                          </Tooltip>
 
-                                    </div>
-                                </div>
-                                <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                        </div>
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                    {/* { `${item.addresses[0].address1 || ""} ${item.addresses[0]
+                        <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
+
+                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                          <div class=" text-xs text-cardBody font-poppins">
+                            {item.phoneNo}
+                          </div>
+
+                        </div>
+
+                      </div>
+                      <div class="flex">
+                        <div className=" flex font-medium flex-col md:w-full max-sm:flex-row w-full max-sm:justify-between ">
+                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"># Opportunity</div> */}
+
+                          <div class=" text-xs text-cardBody font-poppins text-center">
+                            {item.url}
+
+                          </div>
+                        </div>
+                        <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
+                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+
+                          <div class=" text-xs text-cardBody font-poppins text-center">
+                            {/* { `${item.addresses[0].address1 || ""} ${item.addresses[0]
                                       .address2 || ""} ${item.addresses[0].street || ""} 
                                           ${item.addresses[0].city || ""},
                                               `} */}
 
-                                    </div>
-                                </div>
-                                </div>
-                                <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Weighted Value</div> */}
+                          </div>
+                        </div>
+                      </div>
+                      <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
+                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Weighted Value</div> */}
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                   {/* {`${(item.addresses &&
+                        <div class=" text-xs text-cardBody font-poppins text-center">
+                          {/* {`${(item.addresses &&
                                     item.addresses.length &&
                                     item.addresses[0].city) ||
                                     ""} 
                                           `}  */}
 
-                                    </div>
-                                </div>
-                             
-                                <div class="flex md:items-center"> 
-                                <div class="flex">
-                                <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-                           
-                           {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                           <div class=" text-xs text-cardBody font-poppins">   
-                           <span>
-                           <CurrencySymbol currencyType={"INR"} />
-                           {item.totalPayableAmount.toFixed(2)}
-                         </span>
-                           </div>
-                       
-                       </div> 
-                       <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-                           
-                           {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                           <div class=" text-xs text-cardBody font-poppins">   
-                           <span>
-                           <CurrencySymbol currencyType={"INR"} />
-                           {item.totalPayablePrev.toFixed(2)}
-                         </span>
-                           </div>
-                       
-                       </div> 
-                       </div>
-
+                        </div>
                       </div>
+
+                      <div class="flex md:items-center">
+                        <div class="flex">
+                          <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
+
+                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                            <div class=" text-xs text-cardBody font-poppins">
+                              <span>
+                                <CurrencySymbol currencyType={"INR"} />
+                                {item.totalPayableAmount.toFixed(2)}
+                              </span>
                             </div>
+
+                          </div>
+                          <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
+
+                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                            <div class=" text-xs text-cardBody font-poppins">
+                              <span>
+                                <CurrencySymbol currencyType={"INR"} />
+                                {item.totalPayablePrev.toFixed(2)}
+                              </span>
+                            </div>
+
+                          </div>
                         </div>
 
+                      </div>
+                    </div>
+                  </div>
 
-                    )
-                })}
-                </InfiniteScroll>
-      </OnlyWrapCard>
-      </div>
+
+                )
+              })}
+            </InfiniteScroll>
+          </OnlyWrapCard>
+        </div>
       </>
     );
   }
@@ -254,7 +250,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AllDistributorList);
 //     title: "Address",
 //     render: (name, item, i) => {
 //       return `${item.addresses[0].address1 || ""} ${item.addresses[0]
-//         .address2 || ""} ${item.addresses[0].street || ""} 
+//         .address2 || ""} ${item.addresses[0].street || ""}
 //             ${item.addresses[0].city || ""},
 //                 `;
 //     },
@@ -267,7 +263,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AllDistributorList);
 //       return `${(item.addresses &&
 //         item.addresses.length &&
 //         item.addresses[0].pinCode) ||
-//         ""} 
+//         ""}
 //               `;
 //     },
 //     width: "6%",
@@ -279,7 +275,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AllDistributorList);
 //       return `${(item.addresses &&
 //         item.addresses.length &&
 //         item.addresses[0].city) ||
-//         ""} 
+//         ""}
 //               `;
 //     },
 //     width: "9%",
@@ -306,7 +302,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AllDistributorList);
 
 //       return 0;
 //     },
-//   },     
+//   },
 //   {
 //     title: "Balance",
 //     width: "7%",

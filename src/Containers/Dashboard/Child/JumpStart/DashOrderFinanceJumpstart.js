@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getJumpFinanceDetail } from "../../DashboardAction"
-import { JumpStartBox,  } from "../../../../Components/UI/Elements";
+import { JumpStartBox, } from "../../../../Components/UI/Elements";
 
 function DashOrderFinanceJumpstart(props) {
 
@@ -18,7 +18,7 @@ function DashOrderFinanceJumpstart(props) {
     <>
       <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
-          <div class="flex w-wk">
+          <div class="flex w-1/2">
             <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
@@ -45,9 +45,9 @@ function DashOrderFinanceJumpstart(props) {
             // isLoading={props.fetchingJumpstartInvestor2}
             /> */}
           </div>
-          <div class="flex w-wk">
+          <div class="flex w-1/2">
             <JumpStartBox
-                          bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
+              bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
               title={<FormattedMessage
                 id="app.financeclosed"
@@ -59,7 +59,7 @@ function DashOrderFinanceJumpstart(props) {
             // isLoading={props.fetchingJumpstartInvestor3}
             />
             <JumpStartBox
- bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
               title={<FormattedMessage
                 id="app.financecancelled"
