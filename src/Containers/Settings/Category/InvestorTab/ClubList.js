@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import { getCurrency } from "../../../Auth/AuthAction";
 import { Button, Input, Select,Tooltip } from "antd";
-import {investorShare,getInvestorShare} from "../../InvestorAction";
-// import { getInvestorShare, investorShare,
-//    handleDiscountModal, handleOfferModal,removeProductPrice } from "../../ProductAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-// import {getSaleCurrency} from "../../../Auth/AuthAction";
+import {clubShare,getclubShare,updateClub} from "../../SettingsAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { DeleteOutlined } from "@ant-design/icons";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 
 const { Option } = Select;
 
-function InventoryPriceAddTable(props) {
+function ClubList(props) {
 
   const [editedFields, setEditedFields] = useState({});
   const [rows, setRows] = useState([]);
@@ -25,7 +21,7 @@ function InventoryPriceAddTable(props) {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    props.getInvestorShare(props.RowData.investorId);
+    props.getclubShare();
   }, []);
 
   useEffect(() => {
@@ -39,18 +35,19 @@ function InventoryPriceAddTable(props) {
   }, []);
 
   useEffect(() => {
-    setData(props.inventoryShare.map((item, index) => ({ ...item, key: String(index) })));
-  }, [props.inventoryShare]);
+    setData(props.clubShareData.map((item, index) => ({ ...item, key: String(index) })));
+  }, [props.clubShareData]);
 
- 
+
 
 
 
   const handleAddRow = () => {
     const newRow = {
       // key: String(data.length + 1),
-      quantityOfShare: '',
-      amountPerShare: '',
+      clubName: '',
+      noOfShare: '',
+      discount:''
       
 
 
@@ -59,7 +56,7 @@ function InventoryPriceAddTable(props) {
   };
 
   const handleChange = (index, key, value) => {
-    if (key === 'amountPerShare' || key === 'quantityOfShare' || key === 'vat') {
+    if (key === 'noOfShare' ||  key === 'discount') {
       if (!isNaN(value)) {
         const updatedRows = [...rows];
         updatedRows[index][key] = value;
@@ -95,31 +92,67 @@ function InventoryPriceAddTable(props) {
     // if (targetRow) {
       console.log('Submitting Row:', row);
       const result = {
-        quantityOfShare: row.quantityOfShare,
-        amountPerShare: row.amountPerShare,
-        investorId: props.RowData.investorId,
+        clubName: row.clubName,
+        noOfShare: row.noOfShare,
+        discount: row.discount,
+       
       };
-      props.investorShare(result)
-      setRows([{  amountPerShare: '', quantityOfShare: '', }]);
+      props.clubShare(result)
+      setRows([{  noOfShare: '', clubName: '', }]);
   };
-  const handleEditClick = (investorId) => {
-    setEditsuppliesId(investorId);
+  const handleEditClick = (clubId) => {
+    setEditsuppliesId(clubId);
   };
-  const handleCancelClick = (investorId) => {
-    setEditedFields((prevFields) => ({ ...prevFields, [investorId]: undefined }));
+  const handleCancelClick = (clubId) => {
+    setEditedFields((prevFields) => ({ ...prevFields, [clubId]: undefined }));
     setEditsuppliesId(null);
   };
-  function handleUpdate(key) {
-    console.log('Submitting Row:', key);
-    const updatedData = {
-      quantityOfShare: key.quantityOfShare,
-      amountPerShare: key.amountPerShare,
-      investorId: props.RowData.investorId,
-    };
-    props.investorShare(updatedData);
-    setEditsuppliesId(null);
-  };
+//   const { clubShareData } = props;
+//   if (clubShareData && clubShareData.length > 0) {
+//     const firstItem = clubShareData[0];
+//     const clubId = firstItem.clubId;
+//     console.log(clubId); // or use the clubId as needed
+//   } else {
+//     console.error("clubShareData is undefined or empty");
+//   }
 
+//   function handleUpdate(key) {
+//     console.log('Submitting Row:', key);
+//     const updatedData = {
+//       clubName: key.clubName,
+//       noOfShare: key.noOfShare,
+//       discount: key.discount,
+//       //clubId: clubId,
+//     };
+//     props.updateClub(updatedData,clubId);
+//     setEditsuppliesId(null);
+//   };
+const { clubShareData } = props;
+let clubId; // Declare clubId outside
+
+if (clubShareData && clubShareData.length > 0) {
+  const firstItem = clubShareData[0];
+  clubId = firstItem.clubId;
+  console.log(clubId); // or use the clubId as needed
+} else {
+  console.error("clubShareData is undefined or empty");
+}
+
+function handleUpdate(key) {
+  console.log('Submitting Row:', key);
+  const updatedData = {
+    clubName: key.clubName,
+    noOfShare: key.noOfShare,
+    discount: key.discount,
+  };
+  if (clubId) {
+    props.updateClub(updatedData, clubId);
+  } else {
+    console.error("clubId is undefined");
+  }
+  setEditsuppliesId(null);
+};
+console.log(props.clubShareData)
   return (
     <div>
       <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
@@ -131,39 +164,41 @@ function InventoryPriceAddTable(props) {
               
 
               <div>
-                <label>Quantity Of Share</label>
+                <label>Name</label>
                 <div class="w-24"></div>
                 <Input
-                 inputMode="numeric"
+                type="text"
+                 inputMode="text"
+                  pattern="[a-zA-Z0-9\s]*"
                         className="w-32"
-                        value={row.quantityOfShare}
-                        onChange={(e) => handleChange(index,'quantityOfShare',e.target.value)}
+                        value={row.clubName}
+                        onChange={(e) => handleChange(index,'clubName',e.target.value)}
                       />
-                        {errors[`quantityOfShare${index}`] && <span className="text-red-500">{errors[`quantityOfShare${index}`]}</span>}
+                        {errors[`clubName${index}`] && <span className="text-red-500">{errors[`clubName${index}`]}</span>}
                       </div>
               <div>
-                <label>Value per Share</label>
+                <label># Shares</label>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
                         className="w-32"
-                        value={row.amountPerShare}
-                        onChange={(e) => handleChange(index,'amountPerShare',e.target.value)}
+                        value={row.noOfShare}
+                        onChange={(e) => handleChange(index,'noOfShare',e.target.value)}
                       />
-                       {errors[`amountPerShare${index}`] && <span className="text-red-500">{errors[`amountPerShare${index}`]}</span>}
+                       {errors[`noOfShare${index}`] && <span className="text-red-500">{errors[`noOfShare${index}`]}</span>}
                       </div></div>
-              {/* <div>
-                <label>Date</label>
+              <div>
+                <label>Discount %</label>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
                         className="w-32"
-                        value={row.vat}
-                        onChange={(e) => handleChange(index,'vat',e.target.value)}
+                        value={row.discount}
+                        onChange={(e) => handleChange(index,'discount',e.target.value)}
                       />
-                        {errors[`vat${index}`] && <span className="text-red-500">{errors[`vat${index}`]}</span>}
+                        {errors[`discount${index}`] && <span className="text-red-500">{errors[`discount${index}`]}</span>}
                 </div>
-              </div> */}
+              </div>
             </div>
             <div class="mt-4">
             <Button type="primary" onClick={() => handleSave(index)}>
@@ -177,66 +212,45 @@ function InventoryPriceAddTable(props) {
       <div className=' flex justify-end sticky z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">         
-            <div className=" md:w-[10rem]">Quantity Of Share</div>
-            <div className=" md:w-[10.1rem]">Value per Share</div>
-            {/* <div className=" md:w-[4.2rem] ">Date</div> */}
+            <div className=" md:w-[10rem]">Name</div>
+            <div className=" md:w-[10.1rem]"># Shares</div>
+            <div className=" md:w-[11.2rem] ">Discount %</div>
             <div className="w-12"></div>           
               </div>
 
           {data.length ? data.map((item) => {
             return (
-              <div key={item.investorId}>
+              <div key={item.clubId}>
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
                 >
 
-                  {/* <div className=" flex font-medium items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
-                    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
-                    {editsuppliesId === item.investorId ? (
-                      <Select
-                        classNames="w-32"
-                        value={item.currencyName}
-                        onChange={(value) => handleSelectChange(value, item.key, 'currencyName')}
-                      >
-                        {props.saleCurrencies.map((s) => (
-                          <Option key={s.currency_id} value={s.currency_id}>
-                            {s.currency_name}
-                          </Option>
-                        ))}
-                      </Select>
-                    ):(
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                      <div> {item.currencyName}</div>
-                    </div>
-                  )}
-                    </div>
-                  </div> */}
- <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  {editsuppliesId === item.investorId ? (
+<div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  {editsuppliesId === item.clubId ? (
                     <div class=" text-xs text-cardBody font-poppins">
                       <Input
                         className="w-32"
-                        value={item.quantityOfShare}
-                        onChange={(e) => handleInputChange(e.target.value, item.key, 'quantityOfShare')}
+                        value={item.clubName}
+                        onChange={(e) => handleInputChange(e.target.value, item.key, 'clubName')}
                       />
                     </div>
                      ):(
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                      <div> {item.quantityOfShare}</div>
+                      <div> {item.clubName}</div>
                     </div>
                     )}
                   </div>
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                  {editsuppliesId === item.investorId ? (
+                  {editsuppliesId === item.clubId ? (
                     <div class=" text-xs text-cardBody font-poppins">
                       <Input
                         className="w-32"
-                        value={item.amountPerShare}
-                        onChange={(e) => handleInputChange(e.target.value, item.key, 'amountPerShare')}
+                        value={item.noOfShare}
+                        onChange={(e) => handleInputChange(e.target.value, item.key, 'noOfShare')}
                       />
                     </div>
  ):(
   <div className="font-normal text-sm text-cardBody font-poppins">
-  <div> {item.amountPerShare}</div>
+  <div> {item.noOfShare}</div>
 </div>
 )}
                   </div>
@@ -244,27 +258,27 @@ function InventoryPriceAddTable(props) {
 
 
                  
-                  {/* <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  {editsuppliesId === item.investorId ? (
+                  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  {editsuppliesId === item.clubId ? (
 
                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                       <Input
                         className="w-32"
-                        value={item.vat}
-                        onChange={(e) => handleInputChange(e.target.value, item.key, 'vat')}
+                        value={item.discount}
+                        onChange={(e) => handleInputChange(e.target.value, item.key, 'discount')}
                       />
                     </div>
                      ):(
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                      <div> {item.vat}</div>
+                      <div> {item.discount}</div>
                     </div>
                     )}
-                  </div> */}
+                  </div>
 
                   <div class="flex md:items-center">
 
 
- {editsuppliesId === item.investorId ? (
+ {editsuppliesId === item.clubId ? (
                         <>
                       <Button 
                       type="primary"
@@ -273,7 +287,7 @@ function InventoryPriceAddTable(props) {
                       </Button>
                         <Button 
                          type="primary"
-                        onClick={() => handleCancelClick(item.investorId)} className="ml-[0.5rem]">
+                        onClick={() => handleCancelClick(item.clubId)} className="ml-[0.5rem]">
                         Cancel
                       </Button>
                       </>
@@ -283,13 +297,13 @@ function InventoryPriceAddTable(props) {
                       className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
-                        onClick={() => handleEditClick(item.investorId)}
+                        onClick={() => handleEditClick(item.clubId)}
                       />
                     )}
- {/* <div>
+ <div>
       <StyledPopconfirm
                           title="Do you want to delete?"
-                          onConfirm={() => props.removeProductPrice(item.investorId)}
+                          onConfirm={() => props.removeProductPrice(item.clubId)}
 
                           >
                      <Tooltip title="Delete">
@@ -299,13 +313,13 @@ function InventoryPriceAddTable(props) {
                           />
                        </Tooltip>
                        </StyledPopconfirm>
-                       </div> */}
+                       </div>
                   </div>
 
                 </div>
               </div>
             );
-          }) : !data.length && !props.fetchingInvenstoryShare ? <NodataFoundPage /> : null}
+          }) : !data.length && !props.fetchingClubShare ? <NodataFoundPage /> : null}
 
         </div>
       </div>
@@ -316,9 +330,9 @@ function InventoryPriceAddTable(props) {
 
 };
 
-const mapStateToProps = ({ investor, auth }) => ({
-  inventoryShare: investor.inventoryShare,
-  fetchingInvenstoryShare: investor.fetchingInvenstoryShare,
+const mapStateToProps = ({ settings, auth }) => ({
+    clubShareData: settings.clubShareData,
+  fetchingClubShare: settings.fetchingClubShare,
   currencies: auth.currencies,
   userId: auth.userDetails.userId,
   fetchingSaleCurrency:auth.fetchingSaleCurrency,
@@ -328,8 +342,9 @@ const mapStateToProps = ({ investor, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-       getInvestorShare,
-       investorShare,
+       getclubShare,
+       clubShare,
+       updateClub
     //   handleDiscountModal,
     //   handleOfferModal,
     //   getCurrency,
@@ -339,5 +354,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(InventoryPriceAddTable);
+export default connect(mapStateToProps, mapDispatchToProps)(ClubList);
 

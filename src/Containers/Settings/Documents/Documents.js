@@ -203,6 +203,7 @@ return <div><BundleLoader/></div>;
   <option value="User">User</option>
   <option value="Customer">Customer</option>
   <option value="Supplier">Supplier</option>
+  <option value="Supplier">Investor</option>
 </Select>
                   </div>
                   <div className=" w-[20%]">

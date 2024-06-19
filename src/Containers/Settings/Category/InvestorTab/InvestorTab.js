@@ -5,6 +5,7 @@ import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import {  Badge } from "antd";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import ClubList from "./ClubList";
 
 const InvestorList = lazy(() =>
   import("./InvestorList")
@@ -28,7 +29,8 @@ class InvestorTab extends Component {
     switch (key) {
       case "0":
         return     <InvestorList />;
-       
+        case "1":
+        return     <ClubList />;
 
       default:
         return null;
@@ -63,7 +65,24 @@ class InvestorTab extends Component {
                 >
          
                 </TabPane>
-             
+                <TabPane
+                  tab={
+                    <>
+                      <MonetizationOnIcon />
+                      {/* <Badge
+                count={this.props.investorCount.InvestorCategoryCount}
+                overflowCount={999}
+              > */}
+                      <span class=" ml-1" >
+                        Club
+                      </span>
+                      {/* </Badge> */}
+                    </>
+                  }
+                  key="1"
+                >
+         
+                </TabPane>
                
              
               </StyledTabs>
