@@ -11,8 +11,8 @@ const InventoryPriceDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        // title={`Price for ${props.particularDiscountData.articleNo ? `${props.particularDiscountData.articleNo}`: "" }
-        //  ${props.particularDiscountData.name ? `${props.particularDiscountData.name}`:""}`}
+        title={`Share Own ${props.RowData.allTotalQuantityOfShare}`}
+    
         width={drawerWidth}
         visible={priceInvestorDrawer}
         destroyOnClose

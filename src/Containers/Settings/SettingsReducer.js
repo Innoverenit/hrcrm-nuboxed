@@ -16,6 +16,17 @@ const initialState = {
   fetchingMatrixDataError:false,
   matrixData:[],
 
+
+  creatingClubShare: false,
+  creatingClubShareError: false,
+
+  fetchingClubShare: false,
+  fetchingClubShareError: false,
+  clubShareData:[],
+
+  updatingClub: false,
+  updatingClubError: false,
+
   fetchingProcessForOnboarding: false,
   fetchingProcessForOnboardingError: false,
   onboardingProcess: [],
@@ -4073,7 +4084,57 @@ export const settingsReducer = (state = initialState, action) => {
                                                               };
                                                             case types.UPDATE_SKILL_LEVEL_FAILURE:
                                                               return { ...state, updatingSkillLevel: false,  
-                                                              };      
+                                                              }; 
+                                                              
+                                                              case types.CLUB_SHARE_REQUEST:
+                                                                return { ...state, creatingClubShare: true };
+                                                              case types.CLUB_SHARE_SUCCESS:
+                                                                return {
+                                                                  ...state,
+                                                                  creatingClubShare: false,
+                                                                  clubShareData: [action.payload, ...state.clubShareData]
+                                                                };
+                                                              case types.CLUB_SHARE_FAILURE:
+                                                                return {
+                                                                  ...state,
+                                                                  creatingClubShare: false,
+                                                                  creatingClubShareError: true,
+                                                                };
+
+                                                                case types.GET_CLUB_SHARE_REQUEST:
+                                                                  return {
+                                                                    ...state,
+                                                                    fetchingClubShare: true,
+                                                                  };
+                                                                case types.GET_CLUB_SHARE_SUCCESS:
+                                                                  return {
+                                                                    ...state,
+                                                                    fetchingClubShare: false,
+                                                                    clubShareData: action.payload,
+                                                                  };
+                                                                case types.GET_CLUB_SHARE_FAILURE:
+                                                                  return {
+                                                                    ...state,
+                                                                    fetchingClubShare: false,
+                                                                    fetchingClubShareError: true,
+                                                                  };
+
+        case types.UPDATE_CLUB_REQUEST:
+      return { ...state, updatingClub: true };
+    case types.UPDATE_CLUB_SUCCESS:
+      return {
+        ...state,
+        updatingClub: false,
+        clubShareData: [action.payload, ...state.clubShareData]
+      };
+    case types.UPDATE_CLUB_FAILURE:
+      return {
+        ...state,
+        updatingClub: false,
+        updatingClubError: true,
+      };
+                                                            
+
 
     default:
       return state;

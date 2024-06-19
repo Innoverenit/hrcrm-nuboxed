@@ -8,6 +8,7 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import {  DeleteOutlined } from "@ant-design/icons";
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import dayjs from "dayjs";
+import ArticleIcon from '@mui/icons-material/Article';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component"; 
 import { Tooltip, Select, } from "antd";
@@ -31,6 +32,7 @@ import {getInvestorsbyId,
   handleInvestorContModal,
   handleUpdateInvestorModal,
   handleInvestorPulseDrawerModal,
+  handleInvestorDocumentModal,
   handleInvestorNotesDrawerModal,emptyInvestor,
   deleteInvestorData,
   handleInvestorPriceDrawer
@@ -39,6 +41,7 @@ import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
 import InventoryPriceDrawer from "./InventoryPriceDrawer";
+import InvestorDocumentDrawerModal from "./InvestorDocumentDrawerModal";
 const AddInvestorNotesDrawerModal = lazy(() => import("../InvestorDetail/AddInvestorNotesDrawerModal"));
 const ContactsInvestorModal = lazy(() => import("./ContactsInvestorModal"));
 const UpdateInvestorModal = lazy(() =>
@@ -109,7 +112,9 @@ function InvestorCardList(props) {
     handleUpdateInvestorModal,
     handleInvestorContModal,
     handleInvestorPulseDrawerModal,
+    handleInvestorDocumentModal,
     addDrawerInvestorPulseModal,
+    addDrawerInvestorDocumentModal,
     addDrawerInvestorContactModal,
     updateInvestorModal,
     investor,
@@ -168,6 +173,9 @@ function InvestorCardList(props) {
           </div>
           <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
         Share Value
+          </div>
+          <div className="w-[6.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        Club
           </div>
         <div className="w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
         <FormattedMessage
@@ -330,14 +338,21 @@ function InvestorCardList(props) {
                                   <div  onClick={() => {
                               props.handleInvestorPriceDrawer(true);
                               handleCurrentRowData(item);
-                            }}>Share Own</div>
+                            }}>{item.allTotalQuantityOfShare}</div>
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[6.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    Share Value
+                                   {item.allTotalAmountOfShare}
+                                    </div>
+                                </div>
+                                <div className=" flex font-medium items-center w-[6.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+
+                                    <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                   {item.club}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -396,7 +411,17 @@ function InvestorCardList(props) {
                                     {item.source}
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-between">            
+                                <div class="flex items-center justify-between">  
+                                  <div>
+                                  <Tooltip title="Document">
+                                    <ArticleIcon
+                                  onClick={() => {
+                                    handleInvestorDocumentModal(true);
+                                    handleCurrentRowData(item);
+                                  }}
+                                  />
+                                  </Tooltip>
+                                  </div>          
                                 <div >
                           <Tooltip title="Pulse">
          <MonitorHeartIcon
@@ -548,6 +573,13 @@ function InvestorCardList(props) {
         handleInvestorPulseDrawerModal={handleInvestorPulseDrawerModal}
         handleCurrentRowData={handleCurrentRowData}
       />
+
+<InvestorDocumentDrawerModal
+        RowData={RowData}
+        addDrawerInvestorDocumentModal={addDrawerInvestorDocumentModal}
+        handleInvestorDocumentModal={handleInvestorDocumentModal}
+        handleCurrentRowData={handleCurrentRowData}
+      />
            <AddInvestorNotesDrawerModal
         RowData={RowData}
         addDrawerInvestorNotesModal={props.addDrawerInvestorNotesModal}
@@ -558,6 +590,7 @@ function InvestorCardList(props) {
           RowData={RowData}
           handleInvestorPriceDrawer={handleInvestorPriceDrawer}
           priceInvestorDrawer={priceInvestorDrawer}
+          key={priceInvestorDrawer ? 'open' : 'closed'}
         />
       {/* <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
@@ -593,6 +626,7 @@ const mapStateToProps = ({
   priceInvestorDrawer: investor.priceInvestorDrawer,
   employees: employee.employees,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
+  addDrawerInvestorDocumentModal: investor.addDrawerInvestorDocumentModal
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -603,6 +637,7 @@ const mapDispatchToProps = (dispatch) =>
       handleInvestorContModal,
       emptyInvestor,
       handleInvestorPulseDrawerModal,
+      handleInvestorDocumentModal,
       handleInvestorNotesDrawerModal,
       updateOwnercustomerById,
       handleCustomerDrawerModal,

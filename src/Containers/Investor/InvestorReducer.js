@@ -10,6 +10,10 @@ const initialState = {
   fetchingInvestorsError: false,
   investorsbyId: [],
 
+  fetchingDocumentList: false,
+   fetchingDocumentListError: false,
+   documentAllList:[],
+
   opencreateDealModal: false,
 
   fetchingInvestorActivityCount: false,
@@ -69,6 +73,8 @@ const initialState = {
   addDrawerInvestorContactModal:false,
 
   addDrawerInvestorPulseModal:false,
+
+  addDrawerInvestorDocumentModal:false,
 
   fetchingOpportunityRecord: false,
   fetchingOpportunityRecordError: false,
@@ -674,6 +680,9 @@ export const investorReducer = (state = initialState, action) => {
                           case types.HANDLE_INVESTOR_PULSE_DRAWER_MODAL:
                             return { ...state, addDrawerInvestorPulseModal: action.payload }; 
 
+                            case types.HANDLE_INVESTOR_DOCUMENT_DRAWER_MODAL:
+                              return { ...state, addDrawerInvestorDocumentModal: action.payload }; 
+
 
                             case types.GET_INVESTOR_OPP_VALUE_REQUEST:
                               return { ...state, fetchingInvestorOppValue: true, fetchingInvestorOppValueError: false };
@@ -871,6 +880,24 @@ export const investorReducer = (state = initialState, action) => {
         fetchingInvenstoryShare: false,
         fetchingInvenstoryShareError: true,
       };
+
+      case types.GET_DOCUMENT_ALLLIST_REQUEST:
+        return {
+          ...state,
+          fetchingDocumentList: true,
+        };
+      case types.GET_DOCUMENT_ALLLIST_SUCCESS:
+        return {
+          ...state,
+          fetchingDocumentList: false,
+          documentAllList: action.payload,
+        };
+      case types.GET_DOCUMENT_ALLLIST_FAILURE:
+        return {
+          ...state,
+          fetchingDocumentList: false,
+          fetchingDocumentListError: true,
+        };
 
 
 

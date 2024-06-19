@@ -884,6 +884,13 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
     });
   };
 
+  export const handleInvestorDocumentModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_INVESTOR_DOCUMENT_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+
   export const getInvestorOppValue = (investorId, startDate, endDate) => (dispatch) => {
     dispatch({ type: types.GET_INVESTOR_OPP_VALUE_REQUEST });
   
@@ -1273,6 +1280,32 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         console.log(err);
         dispatch({
           type: types.GET_INVESTOR_SHARE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getDocumentAlllist = (investorId) => (dispatch) => {
+    dispatch({
+      type: types.GET_DOCUMENT_ALLLIST_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investor/getDocTypes/${investorId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_DOCUMENT_ALLLIST_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_DOCUMENT_ALLLIST_FAILURE,
           payload: err,
         });
       });

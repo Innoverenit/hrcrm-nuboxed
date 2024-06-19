@@ -218,6 +218,8 @@ props.getDialCode();
                 type:priority,
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 pvtAndIntunlInd: contract ? "true" : "false",
+                sectorId: selectedSector,
+                source:selectedSource,
               },
               props.userId,
               () => handleReset(resetForm)
@@ -425,6 +427,7 @@ props.getDialCode();
                   />
                   </div>
                   <div class=" flex justify-between">
+                  {contract ?
                     <div class=" w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                       <Field
@@ -443,6 +446,8 @@ props.getDialCode();
                       />
                       </div>
                     </div>
+                    : ( null)}
+                     {contract ?
                     <div class="w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                       <Field
@@ -462,6 +467,7 @@ props.getDialCode();
                       />
                       </div>
                     </div>
+                      : ( null)}
                   </div>
 
                   <div class=" flex justify-between">
@@ -495,6 +501,7 @@ props.getDialCode();
 
 
                   <div class=" flex justify-between">
+                  {contract ?
                   <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
                       {/* <Field
                         name="sectorId"
@@ -530,6 +537,8 @@ props.getDialCode();
         ))}
       </Select>
                     </div>
+                     : ( null)}
+                       {contract ?
                     <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
                           {/* <Field
                             name="source"
@@ -565,7 +574,7 @@ props.getDialCode();
         ))}
       </Select>
                         </div>
-
+: ( null)}
                         
 
                     </div>

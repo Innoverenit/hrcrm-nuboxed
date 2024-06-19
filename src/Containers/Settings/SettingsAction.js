@@ -3,7 +3,7 @@ import { base_url,login_url, base_url2 } from "../../Config/Auth";
 import axios from "axios";
 import { UPDATE_RECRUITMENT_ADVANCE_SUCCESS } from "../Auth/AuthTypes";
 import { message } from "antd";
-
+import Swal from "sweetalert2";
 /**
  * goal modal action
  */
@@ -5470,3 +5470,86 @@ export const updateSkillLevel = (data,activeTab,organizationId) => (dispatch, ge
     });
 };
 
+export const clubShare = (data,) => (dispatch) => {
+  dispatch({ type: types.CLUB_SHARE_REQUEST });
+  axios
+    .post(`${base_url}/club`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.CLUB_SHARE_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Created Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CLUB_SHARE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getclubShare = (investorId) => (dispatch) => {
+  dispatch({
+    type: types.GET_CLUB_SHARE_REQUEST,
+  });
+  axios
+    .get(`${base_url}/club/All`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CLUB_SHARE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CLUB_SHARE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateClub = (data,clubId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_CLUB_REQUEST });
+  axios
+    .put(`${base_url}/club/${clubId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_CLUB_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Updated Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_CLUB_FAILURE,
+        payload: err,
+      });
+    });
+};

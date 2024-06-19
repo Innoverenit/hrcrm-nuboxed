@@ -288,7 +288,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         },
       })
       .then((res) => {
-        //  dispatch(getPitch(userId));
+          dispatch(getPitchHot(userId,"0","creationdate","hot"));
+          dispatch(getPitchCold(userId,"0","creationdate","cold"));
+          dispatch(getPitchWarm(userId,"0","creationdate","warm"));
         dispatch({
           type: types.CONVERT_PITCH_STATUS_SUCCESS,
           payload: investorLeadsId,
