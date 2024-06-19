@@ -23,6 +23,19 @@ function AddManualForm(props) {
   }, []);
 
   const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', spces: '',price:'',quality:'',saleCurrencies:'',id:'',currencyId:'' }]);
+  
+  const [fieldEnabled, setFieldEnabled] = useState({
+    brand: false,
+    model: false,
+    attribute: false,
+    specs: false,
+    quality: false,
+    type: false,
+    locationId: false,
+    currencyId: false,
+    price: false,
+    unit: false
+  });
 
   const handleUnitChange = (index, key, value) => {
     const updatedRows = [...rows];
@@ -36,43 +49,61 @@ function AddManualForm(props) {
     updatedRows[index].model = ""; // Reset model when brand changes
     updatedRows[index].modelId = ""; // Reset modelId when brand changes
     setRows(updatedRows);
+    setFieldEnabled((prevState) => ({
+      ...prevState,
+      model: true
+    }));
     props.getModel(updatedRows[index].category,value);
   };
 
   const handleCurrencyChange = (value, index) => {
     const updatedRows = [...rows];
     updatedRows[index].currencyId = value;
-    // updatedRows[index].model = ""; // Reset model when brand changes
-    // updatedRows[index].modelId = ""; // Reset modelId when brand changes
     setRows(updatedRows);
-    //props.getModel(value);
+    setFieldEnabled((prevState) => ({
+      ...prevState,
+      price: true
+    }));
   };
 
   const handleQualityChange = (value, index) => {
     const updatedRows = [...rows];
     updatedRows[index].quality = value;
     setRows(updatedRows);
+    setFieldEnabled((prevState) => ({
+      ...prevState,
+      type: true
+    }));
   };
 
   const handleAttributeChange = (value, index) => {
     const updatedRows = [...rows];
     updatedRows[index].attribute = value;
     setRows(updatedRows);
+    setFieldEnabled((prevState) => ({
+      ...prevState,
+      specs: true
+    }));
    
   };
   const handleLocationChange = (value, index) => {
     const updatedRows = [...rows];
     updatedRows[index].locationId = value;
     setRows(updatedRows);
-   
+    setFieldEnabled((prevState) => ({
+      ...prevState,
+      currencyId: true
+    }));
   };
 
   const handleCategoryChange = (value, index) => {
     const updatedRows = [...rows];
     updatedRows[index].category = value;
-    // updatedRows[index].model = ""; // Reset model when brand changes
-    // updatedRows[index].modelId = ""; // Reset modelId when brand changes
     setRows(updatedRows);
+    setFieldEnabled((prevState) => ({
+      ...prevState,
+      brand: true
+    }));
     props.getBrand(value);
   };
   
@@ -81,8 +112,12 @@ function AddManualForm(props) {
     const selectedModel = props.model.find((model) => model.model === value);
     const updatedRows = [...rows];
     updatedRows[index].model = value;
-    updatedRows[index].modelId = selectedModel.id; // Assuming model object has an 'id' field
+    updatedRows[index].modelId = selectedModel.id; 
     setRows(updatedRows);
+    setFieldEnabled((prevState) => ({
+      ...prevState,
+      attribute: true
+    }));
     props.getAllProductList(updatedRows[index].category, updatedRows[index].brand,value);
   };
 
@@ -90,12 +125,20 @@ function AddManualForm(props) {
     const updatedRows = [...rows];
     updatedRows[index].spces = value;
     setRows(updatedRows);
+    setFieldEnabled((prevState) => ({
+      ...prevState,
+      quality: true
+    }));
   };
 
   const handleTypeChange = (value, index) => {
     const updatedRows = [...rows];
     updatedRows[index].type = value;
     setRows(updatedRows);
+    setFieldEnabled((prevState) => ({
+      ...prevState,
+      locationId: true
+    }));
   };
 
   const handleAddRow = () => {
@@ -146,7 +189,7 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.category}
                     onChange={(value) => handleCategoryChange(value, index)}
-                  >
+                 >
                     {props.categoryList.map((a) => (
                       <Option key={a.id} value={a.categoryId
                       }>{a.categoryName}</Option>
@@ -162,7 +205,8 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.brand}
                     onChange={(value) => handleBrandChange(value, index)}
-                  >
+                    disabled={!fieldEnabled.brand}
+                 >
                     {props.brand.map((a) => (
                       <Option key={a.brand} value={a.brand}>{a.brand}</Option>
                     ))}
@@ -176,6 +220,7 @@ function AddManualForm(props) {
                     style={{ width: 170 }}
                     value={row.model}
                     onChange={(value) => handleModelChange(value, index)}
+                    disabled={!fieldEnabled.model}
                   >
                     {props.model.map((a) => (
                       <Option key={a.model} value={a.model}>{a.model}</Option>
@@ -183,7 +228,21 @@ function AddManualForm(props) {
                   </Select>
                 </div>
               </div>
-              
+              <div>
+                <label>Attribute</label>
+                <div className="w-[7rem]">
+                  <Select
+                    style={{ width: 100 }}
+                    value={row.attribute}
+                    onChange={(value) => handleAttributeChange(value, index)}
+                    disabled={!fieldEnabled.attribute}
+                 >
+                    {props.allProduct.map((a) => (
+                      <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
+                    ))}
+                  </Select>
+                </div>
+              </div>
               <div>
                 <label>Specs</label>
                 <div className="w-28 ">
@@ -191,7 +250,8 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.spces}
                     onChange={(value) => handleSpecsChange(value, index)}
-                  >
+                    disabled={!fieldEnabled.specs}
+                 >
                     <Option value="US">US</Option>
                     <Option value="CE">CE</Option>
                     <Option value="IND">IND</Option>
@@ -206,6 +266,7 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.quality}
                     onChange={(value) => handleQualityChange(value, index)}
+                    disabled={!fieldEnabled.quality}
                   >
                      <Option value="A+">A+</Option>
                     <Option value="A">A</Option>
@@ -222,26 +283,14 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.type}
                     onChange={(value) => handleTypeChange(value, index)}
+                    disabled={!fieldEnabled.type}
                   >
                     <Option value="Finished">Finished</Option>
                     <Option value="UnFinished">UnFinished</Option>
                   </Select>
                 </div>
               </div>
-              <div>
-                <label>Attribute</label>
-                <div className="w-[7rem]">
-                  <Select
-                    style={{ width: 100 }}
-                    value={row.attribute}
-                    onChange={(value) => handleAttributeChange(value, index)}
-                  >
-                    {props.allProduct.map((a) => (
-                      <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
-                    ))}
-                  </Select>
-                </div>
-              </div>
+              
               <div>
                 <label>Location</label>
                 <div className="w-[7rem]">
@@ -249,7 +298,8 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.locationId}
                     onChange={(value) => handleLocationChange(value, index)}
-                  >
+                    disabled={!fieldEnabled.locationId}
+                 >
                     {props.locationlist.map((a) => (
                       <Option key={a.locationDetailsId} value={a.locationDetailsId}>{a.locationName}</Option>
                     ))}
@@ -263,7 +313,8 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.currencyId}
                     onChange={(value) => handleCurrencyChange(value, index)}
-                  >
+                    disabled={!fieldEnabled.currencyId}
+                >
                     {props.saleCurrencies.map((a) => (
                       <Option key={a.currency_id} value={a.currency_id}>{a.currency_name}</Option>
                     ))}
@@ -278,6 +329,7 @@ function AddManualForm(props) {
                     value={row.price}
                     onChange={(e) => handleUnitChange(index, 'price', e.target.value)}
                     placeholder="Enter Price"
+                    disabled={!fieldEnabled.price}
                   />
                 </div>
               </div>
@@ -290,6 +342,7 @@ function AddManualForm(props) {
                     value={row.unit}
                     onChange={(e) => handleUnitChange(index, 'unit', e.target.value)}
                     placeholder="Enter unit"
+                    // disabled={!fieldEnabled.unit}
                   />
                 </div>
               </div>

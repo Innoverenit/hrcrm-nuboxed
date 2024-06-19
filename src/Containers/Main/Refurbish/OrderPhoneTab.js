@@ -81,25 +81,27 @@ const OrderPhoneTab = (props) => {
                     </Suspense>
                 </TabPane>
                 
-                 {/* <TabPane
+                 <TabPane
                  tab={
                      <>
-                         <span onClick={handleMainQa}>
+                         <span 
+                        //  onClick={handleMainQa}
+                         >
                              QA
                          </span>
                          &nbsp;&nbsp;
-                         <span onClick={handleOpenQa}>
+                         {/* <span onClick={handleOpenQa}>
                              <HandymanIcon className="text-base" />
-                         </span>
+                         </span> */}
 
                      </>
                  }
-                 key="1">
+                 key="3">
                  <Suspense fallback={<BundleLoader />}>
-                     {openQa ? <OpenQcTable /> : qaMain ? <ProductionOrderListById /> : null}
+                     {/* {openQa ? <OpenQcTable /> : qaMain ? <ProductionOrderListById /> : null} */}
                  </Suspense>
                  
-             </TabPane> */}
+             </TabPane>
                 {props.inspectionRequiredInd &&
 
                     <TabPane
