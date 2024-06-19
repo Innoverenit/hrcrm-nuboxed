@@ -14,11 +14,10 @@ import {
   updateRepairStatus,
 
 } from "../../../InventoryAction";
-import MotionPhotosOffIcon from '@mui/icons-material/MotionPhotosOff';
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
 import { EditOutlined, FileDoneOutlined, PlusOutlined } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
+import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import ReceiveValidationToggle from "./ReceiveValidationToggle";
 import dayjs from "dayjs";
 import AccountPhoneTaskTable from "../../../../Account/AccountDetailsTab/AccountOrderTab/AccountPhoneTaskTable";
@@ -29,7 +28,6 @@ import { base_url2 } from "../../../../../../Config/Auth";
 import PhoneDetailsModal from "../../../../Refurbish/ProductionTab/PhoneDetailsModal";
 import { handlePhoneDetails, handleInTagDrawer } from "../../../../Refurbish/RefurbishAction"
 import TagInDrawer from "../../../../Refurbish/ProductionTab/TagInDrawer";
-const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
 const { Search } = Input;
 
 function OpenReceivedOrderIdForm(props) {
@@ -110,8 +108,8 @@ function OpenReceivedOrderIdForm(props) {
       </div>
       {/* {props.fetchingPhoneListById ? <BundleLoader /> : */}
       <div className='flex justify-center sticky ticky z-10 '>
-        <div class="rounded-lg m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" md:w-[2rem]"></div>
             <div className=" md:w-[6.74rem]"><FormattedMessage
               id="app.oem"
@@ -171,7 +169,7 @@ function OpenReceivedOrderIdForm(props) {
               next={handleLoadMore}
               hasMore={hasMore}
               loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"72vh"}
+              height={"70vh"}
             >
               {props.phoneListById.map((item, index) => {
                 return (
@@ -222,34 +220,11 @@ function OpenReceivedOrderIdForm(props) {
                           {item.issue}
                         </div>
                       </div>
-                      <div className=" flex font-medium  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
-                          <SubTitle>
-                            {item.qrCodeId ? (
-                              <span onClick={() => {
-                                props.handlePhoneDetails(true)
-                                handleSetParticularOrderData(item);
-                              }}>
-                                <QRCodeModal
-                                  qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                  imgHeight={"2.8rem"}
-                                  imgWidth={"2.8rem"}
-                                  imgRadius={20}
-                                />
-                              </span>
-                            ) : (
-                              <span class="text-xs font-bold">
-                                No QR
-                              </span>
-                            )}
-                          </SubTitle>
-                        </div>
-                      </div>
 
                       <div className=" flex font-medium  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs text-cardBody font-poppins text-center">
                           <Tooltip title="Task">
-                            <FileDoneOutlined   className="!text-xl  text-[black]" type="file-done"
+                            <FileDoneOutlined   className="!text-icon  text-[black]" type="file-done"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 handleExpand(item.phoneId);
@@ -263,7 +238,7 @@ function OpenReceivedOrderIdForm(props) {
                         <div class=" text-xs text-cardBody font-poppins text-center">
                           <Tooltip title="Notes">
                             <NoteAltIcon
-                              className="!text-xl cursor-pointer text-[green]"
+                              className="!text-icon cursor-pointer text-[green]"
                            
                               onClick={() => {
                                 handleSetParticularOrderData(item);
@@ -313,7 +288,7 @@ function OpenReceivedOrderIdForm(props) {
                         <div class=" text-xs text-cardBody font-poppins text-center">
                           {item.inspectionInd === 1 && item.receivePhoneInd && !item.cannotRepairInd && (
                             <EditOutlined
-                            className="!text-xl cursor-pointer text-[orange]"
+                            className="!text-icon cursor-pointer text-[orange]"
                               onClick={() => {
                                 props.setEditPhoneData(item);
                                 props.handlereceivePhoneModal(true);
@@ -383,7 +358,7 @@ function OpenReceivedOrderIdForm(props) {
 
                     </div>
                     {/* 2nd part */}
-                    {(show && particularRowData.phoneId === item.phoneId) && <div className="flex rounded-xl  mt-4 bg-pink-200 h-8 items-center p-3 " >
+                    {(show && particularRowData.phoneId === item.phoneId) && <div className="flex rounded-xl  mt-4 bg-pink-200 h-8 items-center p-1 " >
                       <div class="flex">
                         <div className=" flex font-medium  md:w-[7.6rem] max-sm:w-full  ">
                           {item.receiveCompany}

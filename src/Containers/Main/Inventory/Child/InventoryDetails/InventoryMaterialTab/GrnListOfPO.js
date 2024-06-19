@@ -51,10 +51,10 @@ const GrnListOfPO = (props) => {
         setPage(page + 1);
     };
     return (
-        <>
-            <div className=' flex justify-end sticky z-auto'>
-                <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex  w-[100%] px-2 bg-transparent font-bold sticky top-0 z-10">
+        <>                           
+            <div className=' flex  sticky z-auto'>
+                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky z-10">
                         <div className=""></div>
                         <div className=" w-[15rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
                         <div className=" w-[7.12rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div>
@@ -74,13 +74,13 @@ const GrnListOfPO = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                        height={"65vh"}
+                        height={"73vh"}
                     >
                         {props.receivedDetailData.map((item) => {
 
                             return (
                                 <div>
-                                    <div className="flex rounded-xl justify-between  mt-2 bg-white h-12 items-center p-3 ">
+                                    <div className="flex rounded-xl justify-between  mt-2 bg-white h-8 items-center p-1 ">
                                         <div class="flex w-[22rem]">
                                             <div className=" flex font-medium  w-[12.5rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
@@ -117,7 +117,7 @@ const GrnListOfPO = (props) => {
                                             </div>
                                         </div>
                                         <div className=" flex font-medium   w-[3.2rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins cursor-pointer">
+                                            <div class=" !text-icon text-cardBody font-poppins cursor-pointer">
                                                 <ListAltRounded
                                                     onClick={() => {
                                                         handleRow(item)
@@ -140,13 +140,14 @@ const GrnListOfPO = (props) => {
                                             </div>
                                         </div>
                                         {item.grnNumber !== null &&
-                                            <div className=" flex font-medium   w-[12.1rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins flex justify-between">
+                                            <div className=" flex   justify-between w-[10.5rem] max-sm:flex-row    ">
+                                              
 
                                                     {selectZone && item.poSupplierSuppliesId === row.poSupplierSuppliesId ?
                                                         <>
                                                             <Select
-                                                                classNames="w-32"
+                                                                style={{ width: "5rem"}}
+                                                                 placeholder='Zone'
                                                                 value={selectedRoomId}
                                                                 onChange={(value) => { handleChangeRoomRack(value) }}
                                                             >
@@ -158,7 +159,8 @@ const GrnListOfPO = (props) => {
                                                                     ))}
                                                             </Select>
                                                             <Select
-                                                                classNames="w-32"
+                                                                  style={{ width: "5rem"}}
+                                                                 placeholder='Room'
                                                                 value={selectedChamberId}
                                                                 onChange={(val) => handleChangeChamber(val)}
                                                             >
@@ -182,7 +184,7 @@ const GrnListOfPO = (props) => {
                                                     }
 
                                                 </div>
-                                            </div>
+                                           
                                         }
                                         <div className=" flex font-medium   w-[3.1rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">

@@ -11,6 +11,7 @@ const OpenRepairTable = lazy(() => import('./OpenRepairTable'));
 const ProductionRepairOrder = lazy(() => import('./ProductionRepairOrder'));
 const OpenQcTable = lazy(() => import('./OpenQcTable'));
 const ProductionOrderListById = lazy(() => import('./ProductionOrderListById'));
+// const OpenQaTable = lazy(() => import('./OpenQaTable'));
 
 const OrderPhoneTab = (props) => {
 
@@ -79,7 +80,28 @@ const OrderPhoneTab = (props) => {
                             openRepair ? <OpenRepairTable /> : null}
                     </Suspense>
                 </TabPane>
+                
+                 {/* <TabPane
+                 tab={
+                     <>
+                         <span onClick={handleMainQa}>
+                             QA
+                         </span>
+                         &nbsp;&nbsp;
+                         <span onClick={handleOpenQa}>
+                             <HandymanIcon className="text-base" />
+                         </span>
+
+                     </>
+                 }
+                 key="1">
+                 <Suspense fallback={<BundleLoader />}>
+                     {openQa ? <OpenQcTable /> : qaMain ? <ProductionOrderListById /> : null}
+                 </Suspense>
+                 
+             </TabPane> */}
                 {props.inspectionRequiredInd &&
+
                     <TabPane
                         tab={
                             <>
@@ -96,7 +118,9 @@ const OrderPhoneTab = (props) => {
 
 
                     </TabPane>
+                    
                 }
+              
             </StyledTabs>
         </div>
     )

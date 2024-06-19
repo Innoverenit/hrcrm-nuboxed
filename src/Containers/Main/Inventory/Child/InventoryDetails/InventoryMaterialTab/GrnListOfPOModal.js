@@ -16,7 +16,7 @@ class GrnListOfPOModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={`GRN list for PO# - ${this.props.row.newPoNumber}`}
+                    title={`GRN list for PO ID - ${this.props.row.newPoNumber}`}
                     width="90%"
                     destroyOnClose
                     closable

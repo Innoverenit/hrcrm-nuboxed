@@ -18,7 +18,7 @@ import { getLocationList } from "../../../../Account/AccountAction"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
-import { MultiAvatar, MultiAvatar1, MultiAvatar2 } from "../../../../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import ReceivedOrderToggle from "./ReceivedOrderToggle";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -73,8 +73,8 @@ const ReceivedTable = (props) => {
     <>
       {props.fetchingReceivedUser ? <BundleLoader /> :
         <div className=' flex justify-center sticky  z-auto'>
-          <div class="rounded-lg m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-            <div className=" flex max-sm:hidden  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
+          <div class="roundedm-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div className=" flex max-sm:hidden  w-[99%] p-1 bg-transparent font-bold  z-10">
               <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
               <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
               <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
@@ -93,7 +93,7 @@ const ReceivedTable = (props) => {
               next={handleLoadMore}
               hasMore={hasMore}
               loader={props.fetchingReceivedUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"72vh"}
+              height={"69vh"}
               style={{overflowX:"hidden"}}
             >
               {props.allReceivedUser.length ? <>
@@ -251,12 +251,12 @@ const ReceivedTable = (props) => {
                                     </Button> : item.inventoryReceiveInd ? <b>Sent To Facility</b> : null}
                             </div>
                           </div>
-
-                          <div class="flex  w-[3rem] max-sm:flex-row max-sm:w-auto">
+                                    </div>
+                          <div class="flex  justify-end ">
                             <div>
                               <Tooltip title="Notes">
                                 <NoteAltIcon
-                                  className="!text-xl cursor-pointer text-[green]"
+                                  className="!text-icon cursor-pointer text-[green]"
                                   onClick={() => {
                                     handleRowData(item);
                                     props.handleInventoryReceivedNoteOrderModal(true);
@@ -265,13 +265,13 @@ const ReceivedTable = (props) => {
 
                               </Tooltip>
                             </div>
-                          </div>
-                          <div class="flex  w-[2rem] max-sm:flex-row max-sm:w-auto">
+                          
+                          <div class="flex   max-sm:flex-row max-sm:w-auto">
                             {item.mismatchOrderInd &&
                               <div>
                                 <Tooltip title="Mismatch Phones">
                                   <LabelOffIcon
-                                    class=" text-xl text-red-700"
+                                    class=" text-icon text-red-700"
                                     onClick={() => {
                                       handleRowData(item);
                                       props.handleMismatchPhoneModal(true)
@@ -280,11 +280,13 @@ const ReceivedTable = (props) => {
 
                                 </Tooltip>
                               </div>
+                       
+
                             }
-                          </div>
-                        </div>
+                          </div>  </div> </div>
+                        {/* </div> */}
                       </div>
-                    </div>
+                    
                   );
                 })}
               </> : !props.allReceivedUser.length

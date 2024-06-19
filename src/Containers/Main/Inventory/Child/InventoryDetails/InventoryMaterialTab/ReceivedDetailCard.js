@@ -99,9 +99,9 @@ const ReceivedDetailCard = (props) => {
     };
     return (
         <>
-            <div className=' flex justify-end sticky z-auto'>
-                <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex  w-[100%] px-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=' flex  sticky z-auto'>
+                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className=""></div>
                         <div className=" w-[29.51rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
                         <div className=" w-[23.02rem]"><FormattedMessage id="app.Category" defaultMessage="Category" /></div>
@@ -122,13 +122,13 @@ const ReceivedDetailCard = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                        height={"60vh"}
+                        height={"72vh"}
                     >
                         {props.receivedDetailData.map((item) => {
 
                             return (
                                 <div>
-                                    <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
+                                    <div className="flex rounded  mt-2 bg-white h-8 items-center p-1 ">
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col w-[12.422rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
@@ -247,7 +247,7 @@ const ReceivedDetailCard = (props) => {
                                                     : item.grnReceivedInd ? null :
                                                         item.poReceivedInd ?
                                                             <BorderColorIcon
-                                                                className=" !text-base cursor-pointer text-[tomato]"
+                                                                className=" !text-icon cursor-pointer text-[tomato]"
                                                                 onClick={() => {
                                                                     handleRowData(item);
                                                                     handleEditicon()
