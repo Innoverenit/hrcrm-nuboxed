@@ -61,8 +61,8 @@ function DispatchTable(props) {
     <>
     
         <div className=' flex justify-end sticky  z-auto'>
-          <div class="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-            <div className=" flex max-sm:hidden justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+          <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
               <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
               <div className="w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]"><FormattedMessage id="app.units" defaultMessage="Units" /></div>
               <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
@@ -81,7 +81,7 @@ function DispatchTable(props) {
                next={handleLoadMore}
                hasMore={hasMore}
                loader={props.fetchingDispatchList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"75vh"}
+              height={"69vh"}
               style={{ overflowX: "hidden" }}
               endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
             >
@@ -197,11 +197,11 @@ function DispatchTable(props) {
                                 />}
                             </div>
                           </div>
-                          <div class="flex flex-col md:w-[2rem] max-sm:flex-row max-sm:w-[6%]">
+                          <div class="flex  md:w-[2rem] max-sm:flex-row max-sm:w-[6%]">
                             <div>
                               <Tooltip title="Notes">
                                 <NoteAltIcon
-                                  className="!text-xl cursor-pointer text-[green]"
+                                  className="!text-icon cursor-pointer text-[green]"
                                 />
 
                               </Tooltip>

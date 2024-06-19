@@ -18,7 +18,7 @@ import {
 } from "../../ShipperAction";
 import { handleSupplierDocumentUploadModal } from "../../../Suppliers/SuppliersAction";
 import { handleSupplierContactModal } from "../../../Suppliers/SuppliersAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   PlusOutlined,
 } from "@ant-design/icons";
@@ -75,7 +75,7 @@ class ShipperDetailsTab extends Component {
     console.log({
       shipperId: this.props.shipperShipperId,
       products: this.props.orderForGenerating,
-      subscriptionStartDate: moment().toISOString(),
+      subscriptionStartDate: dayjs().toISOString(),
       subscriptionType: this.state.value === 1 ? "Subscription" : "OneTime",
       data,
     });
@@ -84,7 +84,7 @@ class ShipperDetailsTab extends Component {
       {
         shipperId: this.props.shipperShipperId,
         products: this.props.orderForGenerating,
-        subscriptionStartDate: moment(data.startDate).toISOString(),
+        subscriptionStartDate: dayjs(data.startDate).toISOString(),
         subscriptionType: this.state.value === 1 ? "Subscription" : "OneTime",
         deliveryType: this.state.dailyCustomInd === 1 ? "Daily" : "Custom",
         noOfDays: data.frequency,

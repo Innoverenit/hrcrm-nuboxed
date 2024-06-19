@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, {  Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import ReceivedDetailCard from "./ReceivedDetailCard";
@@ -13,7 +13,7 @@ class ReceivedDetailModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={`PO Details - ${this.props.row.newPoNumber}`}
+                    title={`PO ID - ${this.props.row.newPoNumber}`}
                     width="90%"
                     visible={addMaterialReceived}
                     maskClosable={false}

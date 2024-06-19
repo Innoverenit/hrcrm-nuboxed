@@ -8,11 +8,9 @@ import {
 } from "../../../InventoryAction";
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-import { BorderColorOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 import ReceivedDetailModal from "./ReceivedDetailModal";
-import { ListAltOutlined } from "@mui/icons-material";
 import GrnListOfPOModal from "./GrnListOfPOModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Button } from "antd";
@@ -73,11 +71,11 @@ const MaterialReceivedTable = (props) => {
 
     return (
         <>
-            <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=' flex sticky  z-auto'>
+                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky z-10">
                         <div className=""></div>
-                        <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
+                        <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
                         <div className=" w-[13.52rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
                         <div className=" w-[11.122rem]">Supplier</div>
 
@@ -88,7 +86,7 @@ const MaterialReceivedTable = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                        height={"75vh"}
+                        height={"69vh"}
                     >
                         {props.materialReceiveData.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
