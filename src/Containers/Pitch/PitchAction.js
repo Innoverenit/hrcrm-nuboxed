@@ -396,7 +396,8 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
   };
 
 
-  export const updateTypeForPitch = (investorleadsId,type,data) => (dispatch) => {
+  export const updateTypeForPitch = (investorleadsId,type,data) => (dispatch,getState) => {
+    const { userId } = getState("auth").auth.userDetails;
     dispatch({ type: types.UPDATE_TYPE_FOR_PITCH_REQUEST });
     axios
       .put(
@@ -407,6 +408,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
           },
         })
       .then((res) => {
+        dispatch(getPitchHot(userId,"0","creationdate","hot"));
+        dispatch(getPitchCold(userId,"0","creationdate","cold"));
+        dispatch(getPitchWarm(userId,"0","creationdate","warm"));
         dispatch({
           type: types.UPDATE_TYPE_FOR_PITCH_SUCCESS,
           payload: res.data,

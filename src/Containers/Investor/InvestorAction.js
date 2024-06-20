@@ -1259,6 +1259,36 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
       });
   };
 
+  export const investorShareUpdate = (data,investorId) => (dispatch) => {
+    dispatch({ type: types.INVESTOR_SHARE_UPDATE_REQUEST });
+    axios
+      .put(`${base_url}/investor/share/update`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch(getInvestorShare(investorId));
+        dispatch({
+          type: types.INVESTOR_SHARE_UPDATE_SUCCESS,
+          payload: res.data,
+        });
+        Swal.fire({
+          icon: 'success',
+          title: 'Created Successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.INVESTOR_SHARE_UPDATE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
   export const getInvestorShare = (investorId) => (dispatch) => {
     dispatch({
       type: types.GET_INVESTOR_SHARE_REQUEST,
@@ -1309,4 +1339,31 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
           payload: err,
         });
       });
+  };
+
+  export const linkInvestorToggle = ( data) => (dispatch) => {
+    dispatch({
+      type: types.LINK_INVESTOR_TOGGLE_REQUEST,
+    });
+    axios
+    .put(`${base_url}/investor/docType/update`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.LINK_INVESTOR_TOGGLE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.LINK_INVESTOR_TOGGLE_FAILURE,
+          payload: err,
+        });
+      })
   };

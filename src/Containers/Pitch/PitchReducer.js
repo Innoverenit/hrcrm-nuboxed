@@ -383,8 +383,29 @@ case types.GET_PITCH_REQUEST:
                   case types.UPDATE_TYPE_FOR_PITCH_SUCCESS:
                     return {
                       ...state,
-                      updateTypePitch: false,
+                      updateTypePitch: false,                  
                       pitchData: state.pitchData.map((item) => {
+                        if (item.investorLeadsId === action.payload.investorLeadsId) {
+                          return action.payload;
+                        } else {
+                          return item;
+                        }
+                      }),
+                      pitchDataHot: state.pitchDataHot.map((item) => {
+                        if (item.investorLeadsId === action.payload.investorLeadsId) {
+                          return action.payload;
+                        } else {
+                          return item;
+                        }
+                      }),
+                      pitchDataWarm: state.pitchDataWarm.map((item) => {
+                        if (item.investorLeadsId === action.payload.investorLeadsId) {
+                          return action.payload;
+                        } else {
+                          return item;
+                        }
+                      }),
+                      pitchDataCold: state.pitchDataCold.map((item) => {
                         if (item.investorLeadsId === action.payload.investorLeadsId) {
                           return action.payload;
                         } else {

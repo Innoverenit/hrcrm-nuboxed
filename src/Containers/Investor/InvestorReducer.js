@@ -23,6 +23,9 @@ const initialState = {
   creatingInvestorDeal: false,
   creatingInvestorDealError: false,
 
+  creatingUpdateInvestorShare: false,
+  creatingUpdateInvestorShareError: false,
+
   creatingInvestorShare: false,
   creatingInvestorShareError: false,
 
@@ -863,6 +866,21 @@ export const investorReducer = (state = initialState, action) => {
                                                       creatingInvestorShareError: true,
                                                     };
 
+                                                    case types.INVESTOR_SHARE_UPDATE_REQUEST:
+                                                    return { ...state, creatingUpdateInvestorShare: true };
+                                                  case types.INVESTOR_SHARE_UPDATE_SUCCESS:
+                                                    return {
+                                                      ...state,
+                                                      creatingUpdateInvestorShare: false,
+                                                      inventoryShare: [action.payload, ...state.inventoryShare]
+                                                    };
+                                                  case types.INVESTOR_SHARE_UPDATE_FAILURE:
+                                                    return {
+                                                      ...state,
+                                                      creatingUpdateInvestorShare: false,
+                                                      creatingUpdateInvestorShareError: true,
+                                                    };
+
         case types.GET_INVESTOR_SHARE_REQUEST:
       return {
         ...state,
@@ -899,7 +917,26 @@ export const investorReducer = (state = initialState, action) => {
           fetchingDocumentListError: true,
         };
 
-
+        case types.LINK_INVESTOR_TOGGLE_REQUEST:
+          return { ...state, addingInvestorToggle: true };
+        case types.LINK_INVESTOR_TOGGLE_SUCCESS:
+          return {
+            ...state,
+            addingInvestorToggle: false,
+            documentAllList: state.documentAllList.map((item) => {
+              if (item.documentTypeId === action.payload.documentTypeId) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
+          };
+        case types.LINK_INVESTOR_TOGGLE_FAILURE:
+          return {
+            ...state,
+            addingInvestorToggle: false,
+            addingInvestorToggleError: true,
+          };
 
 
 

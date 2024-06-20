@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { getCurrency } from "../../../Auth/AuthAction";
 import { Button, Input, Select,Tooltip } from "antd";
-import {investorShare,getInvestorShare} from "../../InvestorAction";
+import {investorShare,getInvestorShare,investorShareUpdate} from "../../InvestorAction";
 // import { getInvestorShare, investorShare,
 //    handleDiscountModal, handleOfferModal,removeProductPrice } from "../../ProductAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -109,14 +109,27 @@ function InventoryPriceAddTable(props) {
     setEditedFields((prevFields) => ({ ...prevFields, [investorId]: undefined }));
     setEditsuppliesId(null);
   };
+
+  const { inventoryShare } = props;
+  let investorsShareId; // Declare investorsShareId outside
+  
+  if (inventoryShare && inventoryShare.length > 0) {
+    const firstItem = inventoryShare[0];
+    investorsShareId = firstItem.investorsShareId;
+    console.log(investorsShareId); // or use the investorsShareId as needed
+  } else {
+    console.error("inventoryShare is undefined or empty");
+  }
+
   function handleUpdate(key) {
     console.log('Submitting Row:', key);
     const updatedData = {
       quantityOfShare: key.quantityOfShare,
       amountPerShare: key.amountPerShare,
       investorId: props.RowData.investorId,
+      investorsShareId:investorsShareId,
     };
-    props.investorShare(updatedData);
+    props.investorShareUpdate(updatedData,props.RowData.investorId);
     setEditsuppliesId(null);
   };
 
@@ -330,6 +343,7 @@ const mapDispatchToProps = (dispatch) =>
     {
        getInvestorShare,
        investorShare,
+       investorShareUpdate
     //   handleDiscountModal,
     //   handleOfferModal,
     //   getCurrency,
