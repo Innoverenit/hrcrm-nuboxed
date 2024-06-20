@@ -833,3 +833,33 @@ export const emptyCompleteOrders = () => (dispatch) => {
     type: types.EMPTY_COMPLETE_ORDERS_LIST,
   });
 };
+
+
+export const inputOrderNoSearch = (orderId) => (dispatch) => {
+  dispatch({
+    type: types.INPUT_ORDER_NO_SEARCH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/search/order/${orderId}`,  {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.INPUT_ORDER_NO_SEARCH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.INPUT_ORDER_NO_SEARCH_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const ClearSearchedOrder = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_ORDER,
+  });
+};

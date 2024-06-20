@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import {
     getInventoryAlllist
-   
 } from "../../../../Trade/TradeAction";
 import {  Select } from 'antd';
 import dayjs from "dayjs";
@@ -17,8 +16,6 @@ function InventoryTableAll(props) {
     const [pageNo, setPageNo] = useState(0);
     useEffect(() => {
         setPageNo(pageNo + 1);
-        // props.getCurrency()
-        // props.getPurchaseSuppliersList(props.supplier.supplierId);
         props.getInventoryAlllist(props.orgId,pageNo)
     }, []);
     const [rowData, setRowData] = useState({})
@@ -68,6 +65,9 @@ function InventoryTableAll(props) {
                     <div className=" w-[15.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             Trade ID
                             </div>
+                             <div className=" w-[12.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                            Creation
+                        </div>
                         <div className=" w-[10.81rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             Category
                             </div>
@@ -123,6 +123,11 @@ function InventoryTableAll(props) {
                                                                     New
                                                                 </div>
                                                             ) : null}
+                                                    </div>
+                                                    <div className=" flex font-medium  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
+                                                        {dayjs(item.creationDate).format("DD/MM/YYYY")}
+                                                        </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">

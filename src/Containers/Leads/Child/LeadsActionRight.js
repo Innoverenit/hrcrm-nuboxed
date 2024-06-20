@@ -29,10 +29,16 @@ class LeadsActionRight extends React.Component {
       currentUser={this.props.currentUser} 
       /> */}
       {/* )} */}
+      {this.props.viewType==="teams" || this.props.viewType ==="all" ?  "" :
+      <>
+
           <Button type="primary"  onClick={() => handleLeadsModal(true)}>
             Add
           </Button>
-          <div className="max-sm:hidden">
+          
+          </>
+        }
+        <div className="max-sm:hidden">
           <Button type="primary"  
         onClick={() => this.props.handleLeadsImportModal(true)}
         >
@@ -40,6 +46,7 @@ class LeadsActionRight extends React.Component {
           </Button>
           </div>
         </div>
+  
         )} 
          
        
