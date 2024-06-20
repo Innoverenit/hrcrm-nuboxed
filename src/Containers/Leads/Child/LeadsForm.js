@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select, Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
+import { base_url } from "../../../Config/Auth";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field, FieldArray, FastField,setFieldValue  } from "formik";
 import * as Yup from "yup";
@@ -76,7 +77,7 @@ props.emptyClearbit();
     const fetchSource = async () => {
       setIsLoading(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+        const apiEndpoint = `${base_url}/source/${props.organizationId}`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
@@ -111,7 +112,7 @@ props.emptyClearbit();
   const fetchSector = async () => {
     setIsLoadingSector(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+      const apiEndpoint = `${base_url}/sector`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -148,7 +149,7 @@ props.emptyClearbit();
   const fetchLob = async () => {
     setIsLoadingLob(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/lob/all/${props.orgId}`;
+      const apiEndpoint = `${base_url}/lob/all/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -226,7 +227,7 @@ props.emptyClearbit();
                 companyName: "",
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 source: selectedSource,
-                lob:selectedLob,
+                lobId:selectedLob,
                 countryDialCode:values.countryDialCode,
                 // price:values.price,
                 type:priority,

@@ -129,6 +129,9 @@ function InventoryTable(props) {
                     <div className=" w-[31.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             Trade ID
                             </div>
+                            <div className=" w-[14.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                            Creation 
+                        </div>
                         <div className=" w-[19.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             Category
                             </div>
@@ -182,6 +185,15 @@ function InventoryTable(props) {
                                                                     New
                                                                 </div>
                                                             ) : null}
+                                                    </div>
+                                                           
+                                                    <div className=" flex font-medium justify-between  w-[9.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
+                                                            {dayjs(item.creationDate).format("DD/MM/YYYY")}
+                                                           
+
+                                                        </div>
+                                                        
                                                     </div>
                                                     <div className=" flex font-medium justify-between  w-[9.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">

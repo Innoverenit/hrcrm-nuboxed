@@ -6,24 +6,30 @@ import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { AudioOutlined, HistoryOutlined } from "@ant-design/icons";
-import { getOrderCount, getAllOrderCount } from "../Order/OrderAction";
+import { getOrderCount, getAllOrderCount,inputOrderNoSearch,getAllHighOrderList,ClearSearchedOrder,
+  getAllMediumOrderList,getAllLowOrderList, getCompletedHighOrderList,
+  getCompletedMediumOrderList,
+  getCompletedLowOrderList,
+ } from "../Order/OrderAction";
 import { FlexContainer } from "../../../Components/UI/Layout";
 
 const { Search } = Input;
 const Option = StyledSelect.Option;
 
-const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCount, orderCount, setOrderViewType, userId, user }) => {
+function OrderActionLeft (props) {
+ 
   const [currentData, setCurrentData] = useState("");
   const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
 
+
   useEffect(() => {
-    if (viewType === "list") {
-      getOrderCount(userId);
-    } else if (viewType === "all") {
-      getAllOrderCount();
+    if (props.viewType === "list") {
+      props.getOrderCount(props.userId);
+    } else if (props.viewType === "all") {
+      props.getAllOrderCount();
     }
-  }, [viewType, userId]);
+  }, [props.viewType, props.userId]);
 
   const {
     transcript,
@@ -43,15 +49,20 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
 
     if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
       setPage(pageNo + 1);
-      //   props.getLeads(props.userId, pageNo, "creationdate");
-      //   props.ClearReducerDataOfLead()
+      props.getAllHighOrderList(props.orgId,pageNo,"High");
+      props.getAllMediumOrderList(props.orgId,pageNo,"Medium");
+      props.getAllLowOrderList(props.orgId,pageNo,"Low");
+      props.getCompletedHighOrderList(props.userId, pageNo,"High");
+      props.getCompletedMediumOrderList(props.userId, pageNo,"Medium");
+      props.getCompletedLowOrderList(props.userId, pageNo,"Low");
+      props.ClearSearchedOrder();
       setSearchOnEnter(false);
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
-      // props.inputDataSearch(currentData);
+      props.inputOrderNoSearch(currentData);
       setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
@@ -71,24 +82,24 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
   return (
     <FlexContainer alignItems="center">
       <>
-      {user.productionInd === true && (
+      {props.user.productionInd === true && (
       <div className="">
         <Tooltip title="List View">
           <Badge
             size="small"
-            count={(viewType === "production" && orderCount.order) || 0}
+            count={(props.viewType === "production" && props.orderCount.order) || 0}
 
             overflowCount={999}
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => setOrderViewType("production")}
+              onClick={() => props.setOrderViewType("production")}
               style={{
-                color: viewType === "production" && "#1890ff",
+                color: props.viewType === "production" && "#1890ff",
               }}
             >
               
-              <Button type={viewType === "production" ? "primary" : ""} style={{ backgroundColor: viewType === "production" ? "" : "tomato" }}>
+              <Button type={props.viewType === "production" ? "primary" : ""} style={{ backgroundColor: props.viewType === "production" ? "" : "tomato" }}>
              <div class="text-white">Production</div></Button>
             </span>
           </Badge>
@@ -96,18 +107,18 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
         <Tooltip title="Complete Orders">
           <Badge
             size="small"
-            // count={(viewType === "complete" && orderCount.order) || 0}
+            // count={(props.viewType === "complete" && orderCount.order) || 0}
 
             overflowCount={999}
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => setOrderViewType("complete")}
+              onClick={() => props.setOrderViewType("complete")}
               style={{
-                color: viewType === "complete" && "#1890ff",
+                color: props.viewType === "complete" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: viewType === "complete" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.viewType === "complete" ? "#f279ab" : "#4bc076" }}>
                 <HistoryOutlined fontSize="small" className="text-white" /></Avatar>
 
             </span>
@@ -116,18 +127,18 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
         <Tooltip title="ALL">
           <Badge
             size="small"
-            count={(viewType === "productionAll" && allOrderCount.order) || 0}
+            count={(props.viewType === "productionAll" && props.allOrderCount.order) || 0}
 
             overflowCount={999}
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => setOrderViewType("productionAll")}
+              onClick={() => props.setOrderViewType("productionAll")}
               style={{
-                color: viewType === "productionAll" && "#1890ff",
+                color: props.viewType === "productionAll" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: viewType === "productionAll" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.viewType === "productionAll" ? "#f279ab" : "#4bc076" }}>
                 <div className="text-white">ALL</div></Avatar>
 
             </span>
@@ -137,25 +148,25 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
      
      
 )}
-{user.repairInd === true && (
+{props.user.repairInd === true && (
       <div className=" cursor-pointer">
         <Tooltip title="My Repair Orders">
           <Badge
             size="small"
-            count={(viewType === "list" && orderCount.order) || 0}
+            count={(props.viewType === "list" && props.orderCount.order) || 0}
 
             overflowCount={999}
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => setOrderViewType("list")}
+              onClick={() => props.setOrderViewType("list")}
               style={{
-                color: viewType === "list" && "#1890ff",
+                color: props.viewType === "list" && "#1890ff",
               }}
             >
-              {/* <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#4bc076" }}>
+              {/* <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
                 <TocIcon className="text-white" /></Avatar> */}
-<Button type={viewType === "list" ? "primary" : ""} style={{ backgroundColor: viewType === "list" ? "" : "tomato" }}>
+<Button type={props.viewType === "list" ? "primary" : ""} style={{ backgroundColor: props.viewType === "list" ? "" : "tomato" }}>
                 
                 <div class="text-white">Repair</div></Button>
                 
@@ -165,18 +176,18 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
         <Tooltip title="ALL">
           <Badge
             size="small"
-            count={(viewType === "all" && allOrderCount.order) || 0}
+            count={(props.viewType === "all" && props.allOrderCount.order) || 0}
 
             overflowCount={999}
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => setOrderViewType("all")}
+              onClick={() => props.setOrderViewType("all")}
               style={{
-                color: viewType === "all" && "#1890ff",
+                color: props.viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
                 <div className="text-white">ALL</div></Avatar>
 
             </span>
@@ -185,18 +196,18 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
         <Tooltip title="All Repair Orders-Completed">
           <Badge
             size="small"
-            // count={(viewType === "allcomplete" && orderCount.order) || 0}
+            // count={(props.viewType === "allcomplete" && orderCount.order) || 0}
 
             overflowCount={999}
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => setOrderViewType("allcomplete")}
+              onClick={() => props.setOrderViewType("allcomplete")}
               style={{
-                color: viewType === "allcomplete" && "#1890ff",
+                color: props.viewType === "allcomplete" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: viewType === "allcomplete" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.viewType === "allcomplete" ? "#f279ab" : "#4bc076" }}>
                 <HistoryOutlined fontSize="small" className="text-white" /></Avatar>
 
             </span>
@@ -209,12 +220,12 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
           overflowCount={999}
         > */}
                     <span class=" mr-2 text-sm cursor-pointer"
-                        onClick={() => setOrderViewType("delete")}
+                        onClick={() => props.setOrderViewType("delete")}
                         style={{
-                            color: viewType === "delete" && "#1890ff",
+                            color: props.viewType === "delete" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
                         <DeleteOutlined className="text-white" /></Avatar>
 
                     </span>
@@ -244,9 +255,18 @@ const mapStateToProps = ({ auth, order }) => ({
   orderCount: order.orderCount,
   allOrderCount: order.allOrderCount,
   userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getOrderCount,
-  getAllOrderCount
+  getAllOrderCount,
+  inputOrderNoSearch,
+  getAllHighOrderList,
+  ClearSearchedOrder,
+  getAllMediumOrderList,
+  getAllLowOrderList,
+  getCompletedHighOrderList,
+  getCompletedMediumOrderList,
+  getCompletedLowOrderList,
 }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(OrderActionLeft);
