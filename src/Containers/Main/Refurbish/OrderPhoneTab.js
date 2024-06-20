@@ -11,7 +11,7 @@ const OpenRepairTable = lazy(() => import('./OpenRepairTable'));
 const ProductionRepairOrder = lazy(() => import('./ProductionRepairOrder'));
 const OpenQcTable = lazy(() => import('./OpenQcTable'));
 const ProductionOrderListById = lazy(() => import('./ProductionOrderListById'));
-// const OpenQaTable = lazy(() => import('./OpenQaTable'));
+const QaCardList = lazy(() => import('./QaCardList'));
 
 const OrderPhoneTab = (props) => {
 
@@ -99,6 +99,7 @@ const OrderPhoneTab = (props) => {
                  key="3">
                  <Suspense fallback={<BundleLoader />}>
                      {/* {openQa ? <OpenQcTable /> : qaMain ? <ProductionOrderListById /> : null} */}
+                     <QaCardList/>
                  </Suspense>
                  
              </TabPane>

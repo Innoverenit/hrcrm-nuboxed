@@ -80,7 +80,7 @@ function ProspectConfirmStatusForm(props) {
               taskId: props.rowdata.taskId,
               // singleMultiInd: single ? true : false,
             },
-            user,
+            props.userId,
             props.rowdata.taskId,
           
         
@@ -169,7 +169,7 @@ function ProspectConfirmStatusForm(props) {
 }
 
 const mapStateToProps = ({ settings,leads,task, departments, auth }) => ({
-//   userId: auth.userDetails.userId,
+  userId: auth.userDetails.userId,
   linkingProspectStatus:task.linkingProspectStatus,
   departmentwiseUser:settings.departmentwiseUser,
   distributionAutomation: settings.distributionAutomation,

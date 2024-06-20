@@ -344,6 +344,12 @@ const initialState = {
   updatingCantRepairStatusByTech: false,
   updatingCantRepairStatusByTechError: false,
 
+  fetchingQAorderlist: false,
+  fetchingQAorderlistError:false,
+  QAorderList:[],
+  updatingQAinspection: false,
+  updatingQAinspectionError:false,
+  
 };
 
 export const refurbishReducer = (state = initialState, action) => {
@@ -1767,6 +1773,47 @@ export const refurbishReducer = (state = initialState, action) => {
           return { ...state, 
             searchRefurbish: [], 
           };
+
+          case types.GET_QA_ORDER_LIST_REQUEST:
+            return { ...state, fetchingQAorderlist: true };
+          case types.GET_QA_ORDER_LIST_SUCCESS:
+            return {
+              ...state,
+              fetchingQAorderlist: false,
+              // QAorderlist: state.QAorderlist.map((item) =>
+              //   item.orderPhoneId !== null
+              //     ? action.payload
+              //     : action.payload
+              // ),
+              QAorderList: action.payload,
+              // QAorderlist: state.QAorderlist.filter(
+              //   (item) => item.orderPhoneId !== action.payload
+              // ),
+            };
+          case types.GET_QA_ORDER_LIST_FAILURE:
+            return {
+              ...state,
+              fetchingQAorderlist: false,
+              fetchingQAorderlistError: true,
+            };
+
+            case types.UPDATE_QA_INSPECTION_REQUEST:
+              return { ...state, updatingQAinspection: true };
+            case types.UPDATE_QA_INSPECTION_SUCCESS:
+              return {
+                ...state,
+                updatingQAinspection: false,
+                QAorderList: state.QAorderList.map((item) =>
+                  item.orderPhoneId === action.payload.orderPhoneId
+                    ? action.payload : item
+                ),
+              };
+            case types.UPDATE_QA_INSPECTION_FAILURE:
+              return {
+                ...state,
+                updatingQAinspection: false,
+                updatingQAinspectionError: true,
+              };
 
     default:
       return state;
