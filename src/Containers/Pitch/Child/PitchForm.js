@@ -5,6 +5,7 @@ import { Button, Select,Switch,Tooltip} from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
+import { CheckOutlined } from "@ant-design/icons";
 import {getSectors} from "../../Settings/Sectors/SectorsAction"
 import {getSources} from "../../Settings/Category/Source/SourceAction"
 import {getAllEmployeelist,getDialCode} from "../../Investor/InvestorAction"
@@ -602,7 +603,9 @@ props.getDialCode();
                                  width: "31px", 
                                  height: "31px"
                            }}
-                         />
+                         >
+                           {priority === "hot" && <CheckOutlined style={{ color: "white" }} />}
+                           </Button>
                        </Tooltip>
                        &nbsp;
                        <Tooltip title="Warm">
@@ -617,7 +620,9 @@ props.getDialCode();
                                  width: "31px", 
                                  height: "31px",
                            }}
-                         />
+                         >
+                           {priority === "warm" && <CheckOutlined style={{ color: "white" }} />}
+                           </Button>
                        </Tooltip>
                        &nbsp;
                        <Tooltip title="Cold">
@@ -632,7 +637,9 @@ props.getDialCode();
                                  width: "31px", // Adjust the width as needed
                                  height: "31px"
                            }}
-                         ></Button>
+                           >
+                           {priority === "cold" && <CheckOutlined style={{ color: "white" }} />}
+                           </Button>
                        </Tooltip>
                      </div>
                       </div>
