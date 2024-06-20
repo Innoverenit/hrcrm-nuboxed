@@ -1353,12 +1353,10 @@ export const handleProspectConfirmationModal = (modalProps) => (dispatch) => {
 };
 
 
-export const convertProspectStatus = (data,userId,taskId,) => (
+export const convertProspectStatus = (data,userId,taskId) => (
   dispatch,
   getState
-) => {
-  // debugger;
-  // const { userId } = getState("auth").auth.userDetails;
+) => { 
   dispatch({
     type: types.CONVERT_PROSPECT_STATUS_REQUEST,
   });
@@ -1374,29 +1372,13 @@ export const convertProspectStatus = (data,userId,taskId,) => (
         Swal.fire({
           icon: 'success',
           title: res.data,
-          // showConfirmButton: false,
-          // timer: 1500
         });
       } 
-      // Swal.fire({
-      //   icon: 'success',
-      //   title: 'Prospect converted Successfully!',
-     
-      // })
       dispatch(getAprrovalTaskTable(userId,0));
-      // dispatch(getLeadsRecords(userId));
       dispatch({
         type: types.CONVERT_PROSPECT_STATUS_SUCCESS,
         payload: taskId,
       });
-      // Swal.fire({
-      //   icon: 'success',
-      //   fontSize:"2rem",
-      //   title: 'Lead Qualified Succefully!',
-      //   showConfirmButton: false,
-      //   timer: 4000
-      // })
-      // cb && cb("success");
     })
     .catch((err) => {
       console.log(err);
@@ -1404,7 +1386,6 @@ export const convertProspectStatus = (data,userId,taskId,) => (
         type: types.CONVERT_PROSPECT_STATUS_FAILURE,
         payload: err,
       });
-      // cb && cb("failuer");
     });
 };
 
