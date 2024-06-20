@@ -82,9 +82,9 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   
   return (
     <>
-       <div className=' flex justify-end sticky  z-auto'>
-       <div class="rounded-lg max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-       <div className=" flex max-sm:hidden justify-between w-[99%] p-1E bg-transparent font-bold sticky top-0 z-10">
+       <div className=' flex  justify-center sticky  z-auto'>
+       <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+       <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.type"
                   defaultMessage="type"
@@ -141,7 +141,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             }));
              return (
               <div>
-            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-8  items-center p-1 max-sm:h-[7rem] max-sm:flex-row"
+            <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8  items-center p-1 max-sm:h-[7rem] max-sm:flex-row scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
               <div class="flex  flex-col w-[8.9rem] max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">

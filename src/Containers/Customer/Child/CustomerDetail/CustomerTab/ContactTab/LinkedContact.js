@@ -77,8 +77,8 @@ function LinkedContact(props) {
     <>
       
      
-      <div class="rounded-lg m-5 p-2 w-[97%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[97%] p-2 bg-transparent font-bold sticky top-0 z-10">
+      <div class="rounded0 m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
         <div className=" md:w-[17.5rem]">
         <FormattedMessage
                   id="app.name"
@@ -136,8 +136,7 @@ function LinkedContact(props) {
         
                     return (
                         <div>
-                           <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+                           <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
               >
                                      
                                 <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">

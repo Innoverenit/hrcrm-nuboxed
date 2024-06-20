@@ -1,6 +1,5 @@
 import { Field, Form, Formik } from 'formik'
-import React, { useEffect, lazy,useState, Suspense } from 'react'
-import { SelectComponent } from '../../../Components/Forms/Formik/SelectComponent';
+import React, { useEffect,useState, Suspense } from 'react'
 import { InputComponent } from '../../../Components/Forms/Formik/InputComponent';
 import { Button,Select,Input } from 'antd';
 import { bindActionCreators } from 'redux';
