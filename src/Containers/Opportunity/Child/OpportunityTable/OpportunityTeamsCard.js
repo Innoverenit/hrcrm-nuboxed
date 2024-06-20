@@ -104,8 +104,8 @@ function OpportunityTeamsCard(props) {
 
       return (    
   <>
-<div class="rounded m-1 max-sm:m-1 p-2 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
- <div className="flex max-sm:hidden  w-[99%] max-xl:w-[87%] p-2 bg-transparent font-bold sticky top-0 z-10">
+<div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+ <div className="flex max-sm:hidden  w-[99%] max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">Name</div>
         <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Prospect</div>
         <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Sponsor</div>
@@ -123,7 +123,7 @@ function OpportunityTeamsCard(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingTeamOpportunity?<div class="flex justify-center" >Loading...</div> :null}
-        height={"75vh"}
+        height={"80vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
      
@@ -139,7 +139,7 @@ function OpportunityTeamsCard(props) {
 
                   <div className="max-sm:w-wk">
                    <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium  w-[13rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">

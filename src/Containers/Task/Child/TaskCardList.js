@@ -249,7 +249,7 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
@@ -694,8 +694,8 @@ const TaskCardList = (props) => {
 </div>
 
 <div className=' flex sticky  z-auto'>
-          <div class="rounded-lg m-1 max-sm:m-1  p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div class="rounded m-1 max-sm:m-1  p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE] ">
+          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
           <div className=" md:w-[4.54rem] bg-orange-600 text-white">High </div>
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
@@ -749,7 +749,7 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                           <div className="flex rounded  mt-1 bg-white h-9 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
@@ -1194,8 +1194,8 @@ const TaskCardList = (props) => {
 </div>
 
 <div className=' flex sticky  z-auto'>
-          <div class="rounded-lg  m-1 max-sm:m-1  p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div class="rounded  m-1 max-sm:m-1  p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE] ">
+          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
           <div className=" md:w-[4.54rem] bg-teal-600 text-white">Normal </div>
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
@@ -1249,8 +1249,8 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
-                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                            <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                                 <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
@@ -1392,7 +1392,7 @@ const TaskCardList = (props) => {
 </div>
                      
                    </div>
-                   <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                   <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}

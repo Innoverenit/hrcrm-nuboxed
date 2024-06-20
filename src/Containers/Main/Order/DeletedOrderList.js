@@ -118,12 +118,12 @@ function DeletedOrderList(props) {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
                 >
-                  <div class="flex">
+                  <div class="flex ">
                   <div className=" flex font-medium  md:w-[4.26rem]  items-center max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
@@ -368,7 +368,7 @@ function DeletedOrderList(props) {
             </div>
 
             <div className=' flex justify-end sticky z-auto'>
-            <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                 <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky z-10">
                 <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
           <div className=" md:w-[9.3rem] ml-2">Order ID</div>
@@ -399,7 +399,7 @@ function DeletedOrderList(props) {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
@@ -681,7 +681,7 @@ function DeletedOrderList(props) {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}

@@ -227,7 +227,7 @@ console.log(props.userDetails.imageId)
         next={handleLoadMore}
       hasMore={hasMore}
         loader={fetchingOpportunity?<div class="flex justify-center">Loading...</div>:null}
-        height={"85vh"}
+        height={"80vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
 
@@ -249,7 +249,7 @@ console.log(props.userDetails.imageId)
                     });
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7.5rem] 
-                  text-[#444444] m-3 p-1 w-[15.5vw] max-sm:w-wk flex flex-col  ">
+                  text-[#444444] m-3 p-1 w-[15.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         <div class="flex items-center flex-no-wrap h-[2.81em]">
           <div class=" flex basis-[15%] mr-[0.2rem]" >
             <MultiAvatar

@@ -93,7 +93,7 @@ function OpportunityLostCard(props) {
       return (    
   <>
  <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
- <div className=" flex max-sm:hidden justify-between w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
+ <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">Name</div>
         <div className=" w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem]">Prospect</div>
         <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem]">Sponsor</div>
@@ -111,7 +111,7 @@ function OpportunityLostCard(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchinglostOpportunity?<div class="flex justify-center">Loading...</div> :null}
-        height={"75vh"}
+        height={"80vh"}
         style={{overflowX:"hidden"}}
       >
  <CardWrapper>      
@@ -127,7 +127,7 @@ function OpportunityLostCard(props) {
 
                   <div className="max-sm:w-wk">
                   <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium w-[14.5rem] max-xl:w-[9.5rem] max-lg:w-[6.5rem] max-sm:flex-row  ">

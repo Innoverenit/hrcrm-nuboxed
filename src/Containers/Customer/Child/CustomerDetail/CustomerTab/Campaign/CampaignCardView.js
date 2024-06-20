@@ -14,7 +14,6 @@ import {
   setEditEvents,
 } from "../../../../../Event/EventAction";
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { getCurrency } from "../../../../../Auth/AuthAction";
 import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
@@ -101,8 +100,8 @@ if(fetchingCustomerCampaign){
     if (isMobile){
       return (
         <>
-        <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg  p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div className=' flex justify-end sticky z-auto'>
+        <div class="rounded  p-1 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
      
           
         <InfiniteScroll
@@ -320,10 +319,10 @@ if(fetchingCustomerCampaign){
 
     return (
       <>
-      <div className=' flex justify-end sticky top-28 z-auto'>
-      <div class="rounded-lg m-5 p-2 w-[94%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=' flex  sticky  z-auto'>
+      <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
    
-         <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+         <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[7.8rem]"><FormattedMessage
                   id="app.type"
                   defaultMessage="type"
@@ -361,7 +360,7 @@ if(fetchingCustomerCampaign){
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingCustomerCampaign?<div class="flex items-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"79vh"}
       >
       {data.map((item) => { 
                     return (

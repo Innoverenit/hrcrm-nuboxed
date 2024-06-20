@@ -124,8 +124,8 @@ const TaskApproveTable = (props) => {
   return (
     <>
       
-          <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
           <div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
@@ -155,7 +155,7 @@ const TaskApproveTable = (props) => {
         next={handleLoadMore}
       hasMore={hasMore}
         loader={fetchingApproveTaskTable?<div class="flex justify-center" >Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
           {approvalTaskTable.map((item) => { 
@@ -169,7 +169,7 @@ const TaskApproveTable = (props) => {
          console.log("deviationDate",incompleteDeviationDate)
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between mt-1 bg-white h-11 items-center p-3 max-sm:h-[9rem] max-sm:flex-col">
+                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex font-medium flex-col w-[13.3rem] max-xl:w-[10.3rem] max-lg:w-[10.3rem] max-sm:w-auto max-sm:flex-row justify-between ">
 <div className="flex max-sm:w-full"> 

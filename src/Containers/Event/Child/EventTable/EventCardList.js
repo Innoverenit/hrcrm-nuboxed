@@ -130,7 +130,7 @@ function EventCardList (props) {
             };
                     return (
                         <div>
-                            <div className="flex rounded   mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col"
+                            <div className="flex rounded   mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                                 style={{
                                     // borderBottom: "3px dotted #515050"
                                 }}>
