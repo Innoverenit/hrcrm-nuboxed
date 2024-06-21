@@ -1014,7 +1014,9 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         // cb && cb("failure");
       });
   };
-  export const updateTypeForLead = (leadsId,type,data) => (dispatch) => {
+  export const updateTypeForLead = (leadsId,type,data) => (dispatch,getState) => {
+    const { userId } = getState("auth").auth.userDetails;
+
     dispatch({ type: types.UPDATE_TYPE_FOR_LEAD_REQUEST });
     axios
       .put(
@@ -1025,6 +1027,16 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           },
         })
       .then((res) => {
+        dispatch(getLeadsHot(userId,"0","creationdate","hot"));
+        dispatch(getLeadsWarm(userId,"0","creationdate","warm"));
+        dispatch(getLeadsCold(userId,"0","creationdate","cold"));
+        // dispatch(getTeamLeadsHot(userId,"0","hot"));
+        // dispatch(getTeamLeadsWarm(userId,"0","warm"));
+        // dispatch(getTeamLeadsCold(userId,"0","cold"));
+        // dispatch(getAllLeadsHot("0","creationdate","hot"));
+        // dispatch(getAllLeadsWarm("0","creationdate","warm"));
+        // dispatch(getAllLeadsCold("0","creationdate","cold"));
+
         dispatch({
           type: types.UPDATE_TYPE_FOR_LEAD_SUCCESS,
           payload: res.data,
