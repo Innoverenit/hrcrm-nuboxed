@@ -28,6 +28,7 @@ import { base_url2 } from "../../../../../../Config/Auth";
 import PhoneDetailsModal from "../../../../Refurbish/ProductionTab/PhoneDetailsModal";
 import { handlePhoneDetails, handleInTagDrawer } from "../../../../Refurbish/RefurbishAction"
 import TagInDrawer from "../../../../Refurbish/ProductionTab/TagInDrawer";
+import OpenReceivedPlusCard from "./OpenReceivedPlusCard";
 const { Search } = Input;
 
 function OpenReceivedOrderIdForm(props) {
@@ -358,49 +359,11 @@ function OpenReceivedOrderIdForm(props) {
 
                     </div>
                     {/* 2nd part */}
-                    {(show && particularRowData.phoneId === item.phoneId) && <div className="flex rounded-xl  mt-4 bg-pink-200 h-8 items-center p-1 " >
-                      <div class="flex">
-                        <div className=" flex font-medium  md:w-[7.6rem] max-sm:w-full  ">
-                          {item.receiveCompany}
-                        </div>
-
-                        <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                          <div class=" text-xs text-cardBody font-poppins">
-                            {item.receiveModel}
-                          </div>
-
-                        </div>
-                        <div className=" flex font-medium  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-sm text-cardBody font-poppins">
-
-                            {item.receiveIMEI}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className=" flex font-medium  md:w-[4.52rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
-
-                          {item.receiveOS}
-                        </div>
-                      </div>
-
-                      <div className=" flex font-medium  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
-                          {item.receiveGB}
-                        </div>
-                      </div>
-                      <div className=" flex font-medium  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
-                          {item.receiveColor}
-                        </div>
-                      </div>
-                      <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
-                          {item.receiveCondition}
-                        </div>
-                      </div>
-                    </div>}
+                    {(show && particularRowData.phoneId === item.phoneId) && 
+                    
+                    <OpenReceivedPlusCard item={item} />
+                    
+                    }
                     <div style={{ display: "none", textAlign: "center" }}>
 
                       <div
