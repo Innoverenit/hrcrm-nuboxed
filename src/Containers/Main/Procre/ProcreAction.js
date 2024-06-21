@@ -2,6 +2,7 @@ import * as types from "./ProcreActionTypes";
 import axios from "axios";
 import { base_url, base_url2 } from "../../../Config/Auth";
 import moment from "moment";
+import { message } from "antd";
 import Swal from "sweetalert2";
 
 /**
@@ -167,7 +168,7 @@ export const getNotesListByProcure = (type,id) => (dispatch) => {
     });
 };
 
-export const procureToAccept = ( tradeId,data ) => (dispatch) => {
+export const procureToAccept = ( tradeId,data,orgId ) => (dispatch) => {
   dispatch({ type: types.PROCURE_TO_ACCEPTED_REQUEST });
 
   axios
@@ -178,12 +179,12 @@ export const procureToAccept = ( tradeId,data ) => (dispatch) => {
     })
 
     .then((res) => {
-     
+     dispatch( getAllProcure(orgId,"0"))
       message.success("Procure Accepted");
       console.log(res);
       dispatch({
         type: types.PROCURE_TO_ACCEPTED_SUCCESS,
-        payload: customerId,
+       // payload: customerId,
       });
       // cb && cb("success");
     })

@@ -146,9 +146,14 @@ export const procreReducer = (state = initialState, action) => {
               return {
                 ...state,
                 procureToAccept: false,
-                allProcure: state.allProcure.filter(
-                  (item) => item.tradeId !== action.payload
-                ),
+                //allProcure: [action.payload, ...state.allProcure],
+                // allProcure: state.allProcure.map((item) => {
+                //   if (item.iteamId === action.payload.iteamId) {
+                //     return action.payload;
+                //   } else {
+                //     return item;
+                //   }
+                // }),
               };
             case types.PROCURE_TO_ACCEPTED_FAILURE:
               return {
