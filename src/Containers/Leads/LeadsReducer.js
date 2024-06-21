@@ -850,6 +850,27 @@ case types.HANDLE_LEADS_MODAL:
                   return item;
                 }
               }),
+              // leadsAllDataHot: state.leadsAllDataHot.map((item) => {
+              //   if (item.leadsId === action.payload.leadsId) {
+              //     return action.payload;
+              //   } else {
+              //     return item;
+              //   }
+              // }),
+              // leadsAllDataWarm: state.leadsAllDataWarm.map((item) => {
+              //   if (item.leadsId === action.payload.leadsId) {
+              //     return action.payload;
+              //   } else {
+              //     return item;
+              //   }
+              // }),
+              // leadsAllDataCold: state.leadsAllDataCold.map((item) => {
+              //   if (item.leadsId === action.payload.leadsId) {
+              //     return action.payload;
+              //   } else {
+              //     return item;
+              //   }
+              // }),
             };
           case types.UPDATE_TYPE_FOR_LEAD_FAILURE:
             return { ...state, updateTypeLeads: false,updateTypeLeadsError:true, };
@@ -1142,7 +1163,7 @@ case types.HANDLE_LEADS_MODAL:
           case types.GET_TEAM_LEADSCOLD_REQUEST:
           return { ...state, fetchingTeamLeadsCold: true };
         case types.GET_TEAM_LEADSCOLD_SUCCESS:
-          const newteamlColdData = action.payload.filter(item => !state.teamLeadsWarm.some(existingItem => existingItem.id === item.id));
+          const newteamlColdData = action.payload.filter(item => !state.teamLeadsCold.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingTeamLeadsCold: false,

@@ -1203,6 +1203,11 @@ export const inventoryReducer = (state = initialState, action) => {
           item.orderPhoneId === action.payload.orderPhoneId
             ? action.payload : item
         ),
+        phoneListById: state.phoneListById.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload : item
+        ),
+        
       };
     case types.UPDATE_DISPATCH_INSPECTION_BUTTON_FAILURE:
       return {
