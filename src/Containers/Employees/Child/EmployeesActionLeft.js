@@ -85,7 +85,7 @@ const EmployeesActionLeft = (props) => {
           </Badge> 
       </Tooltip>
   
-      <Tooltip title={<FormattedMessage id="app.allusers" defaultMessage="All Users" />}>
+      <Tooltip title={<FormattedMessage id="app.allusers" defaultMessage="All " />}>
       <Badge
           size="small"
           count={
@@ -103,7 +103,7 @@ const EmployeesActionLeft = (props) => {
             }}
           >
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon />
+            <div className="text-white">ALL</div>
             </Avatar>
           </span>
           </Badge>

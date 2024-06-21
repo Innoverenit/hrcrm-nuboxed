@@ -67,9 +67,9 @@ const LocationCard = (props) => {
           next={handleLoadMore}
           hasMore={hasMore}
           loader={props.fetchingLocationData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-          height={"75vh"}
+          height={"80vh"}
         >
-          <div className=" flex justify-between w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" md:w-[10.5rem]">
               Name</div>
             <div className=" md:w-[9.1rem]">
@@ -96,7 +96,7 @@ const LocationCard = (props) => {
             {props.showLocation.map((item) => {
               return (
                 <div >
-                  <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center p-1 ">
+                  <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                     <div class="flex">
                       <div className=" flex font-medium flex-row md:w-[25.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 

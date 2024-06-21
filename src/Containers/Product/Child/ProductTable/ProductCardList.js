@@ -122,7 +122,7 @@ function ProductCardList(props) {
             next={handleLoadMore}
             hasMore={hasMore}
             loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-            height={"80vh"}
+            height={"85vh"}
             endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           >
              {products.length ?
