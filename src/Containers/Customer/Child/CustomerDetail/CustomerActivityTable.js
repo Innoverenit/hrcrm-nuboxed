@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import AddCustomerNotesListDrawerModal from "../CustomerDetail/AddCustomerNotesListDrawerModal"
 import { bindActionCreators } from 'redux';
-import { DeleteOutlined } from "@ant-design/icons";
-import NotesProspectForm from "../CustomerDetail/NotesProspectForm"
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { getCustomerActivityTimeline,
   setEditActivityEvents,
    getCustomerNoteList, getCustomerActivityRecords, handleCustomerNoteDrawerModal, handleCustomerActivityModal } from '../../CustomerAction';
@@ -33,23 +31,24 @@ const CustomerActivityTable = (props) => {
 
   const { customerActivityTimeline, ratingValue } = props;
 
-  const currentDate = moment().format("DD/MM/YYYY");
+  const currentDate = dayjs().format("DD/MM/YYYY");
   if (props.fetchingCusActivityTimelineStatus) return <BundleLoader/>;
   return (
-    <div className="mt-4 ml-4">
+    <div className="mt-4 ml-4 ">
+      {/* scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] */}
       <Timeline>
         {customerActivityTimeline &&
           customerActivityTimeline.map((status, index) => ( 
             <Timeline.Item key={index} > 
               <div className="flex flex-row justify-between items-center">           
                 <div class="w-[30rem]">
-                  {moment(status.creationDate).format('DD/MM/YYYY')} {status.category} &nbsp;
-                  {currentDate === moment(status.creationDate).format("DD/MM/YYYY") ? (
+                  {dayjs(status.creationDate).format('DD/MM/YYYY')} {status.category} &nbsp;
+                  {currentDate === dayjs(status.creationDate).format("DD/MM/YYYY") ? (
                     <span className="text-xs text-[tomato] font-bold">
                       New
                     </span>
                   ) : null} 
-                  &nbsp;{status.activityType}, completion By {moment(status.endDate).format('DD/MM/YYYY')}
+                  &nbsp;{status.activityType}, completion By {dayjs(status.endDate).format('DD/MM/YYYY')}
                   {status.category === 'Task' ? status.statusTask : null}
                 </div>
 
@@ -65,7 +64,7 @@ const CustomerActivityTable = (props) => {
                 <div class="w-[13rem]">
                   <Tooltip title="Edit">
                     <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato]"
+                      className="!text-icon cursor-pointer text-[tomato]"
                       onClick={() => {handleEditClick(status)
                         props.setEditActivityEvents(status)
                       }}

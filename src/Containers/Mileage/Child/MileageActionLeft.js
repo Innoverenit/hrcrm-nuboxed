@@ -33,28 +33,7 @@ const MileageActionLeft = (props) => {
         </Badge>
       </Tooltip>
 
-      <Tooltip
-        title={<FormattedMessage id="app.List" defaultMessage="List" />}
-      >
-        <Badge
-          size="small"
-          // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-          overflowCount={999}
-        >
-          <span class=" mr-2 cursor-pointer text-4"
-            onClick={() => props.setMileageViewType("tile")}
-            style={{
-              color: props.viewType === "tile" && "#1890ff",
-            }}
-          >
-            <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#4bc076" }}>
-              <TocIcon
-              // icon={solid('users')}
-              />
-            </Avatar>
-          </span>
-        </Badge>
-      </Tooltip>
+      
       <Tooltip title="Category">
         <Badge
           size="small"

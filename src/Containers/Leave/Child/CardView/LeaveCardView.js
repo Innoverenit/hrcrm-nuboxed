@@ -173,6 +173,48 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                         </Tooltip>
                       </div>
                     </span>
+                    <span>
+                    <div >
+                        {item.status === "Pending" ?
+                          <Tooltip title="Edit">
+                            <BorderColorIcon
+                              type="edit"
+                              className="!text-icon cursor-pointer text-[tomato]"
+                              onClick={() => {
+                                props.setEditLeave(item);
+                                handleUpdateLeaveModal(true);
+                                handleSetCurrentLeaveId(item.leaveId);
+
+                              }}
+
+                            >
+
+                            </BorderColorIcon>
+                          </Tooltip>
+                          : ""}
+                      </div>
+                      <div >
+                        <div >
+                          {item.status === "Pending" ? (
+                            <Tooltip title="Delete">
+                              <DeleteOutlined
+                                type="delete"
+                                className="!text-icon cursor-pointer text-[red]"
+                              // onClick={() => {
+                              //   // props.getProviderById(item.serviceId);
+                              //   props.handleDrawerContactlistModal(true);
+                              //   handleRowData(item);
+                              //   handleSetCurrentProvider(item.name);
+                              // }}
+
+                              >
+
+                              </DeleteOutlined>
+                            </Tooltip>
+                            ) : null}
+                            </div>
+                            </div>
+                    </span>
 
                     <span>
                       {item.status === "Pending" ? (

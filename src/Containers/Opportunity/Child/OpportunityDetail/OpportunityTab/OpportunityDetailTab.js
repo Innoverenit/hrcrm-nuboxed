@@ -415,8 +415,8 @@ return  <BundleLoader />
                   <DynamicFeedIcon   style={{fontSize:"1.1rem"}}/>
                     <span style={{ marginLeft: "0.25em" }}>
                       <FormattedMessage
-                        id="app.order"
-                        defaultMessage="Order"
+                        id="app.version"
+                        defaultMessage="Version"
                       />
                   </span>
                
