@@ -8,7 +8,19 @@ const initialState = {
   fetchingAllProcureError: false,
   allProcure: [],
 
+  fetchingNotesListByProcure: false,
+  fetchingNotesListByProcureError: false,
+  notesListByPrcure:[],
+
+  procureToAccept: false,
+  procureToAcceptError: false,
+
   addProcureOrderModal: false,
+
+  addDrawerProcureNotesModal:false,
+
+  addingNotesByProcure: false,
+  addingNotesByProcureError: false,
 
   fetchingRecords: false,
   fetchingRecordsError: false,
@@ -87,6 +99,64 @@ export const procreReducer = (state = initialState, action) => {
         updatingProcures: false,
         updatingProcuresError: true,
       };
+
+      case types.HANDLE_PRCURE_NOTES_DRAWER_MODAL:
+        return { ...state, addDrawerProcureNotesModal: action.payload };
+
+        case types.ADD_PROCURE_NOTES_REQUEST:
+          return {
+            ...state,
+            addingNotesByProcure: true,
+          };
+        case types.ADD_PROCURE_NOTES_SUCCESS:
+          return {
+            ...state,
+            addingNotesByProcure: false,
+            addingNotesByProcure: false,
+            //addLeadsSpeechModal: false,
+          };
+        case types.ADD_PROCURE_NOTES_FAILURE:
+          return {
+            ...state,
+            addingNotesByProcure: false,
+            addingNotesByProcureError: true,
+          };
+    
+          case types.GET_NOTES_LIST_BY_PROCURE_ID_REQUEST:
+            return { ...state, fetchingNotesListByProcure: true };
+          case types.GET_NOTES_LIST_BY_PROCURE_ID_SUCCESS:
+            return {
+              ...state,
+              fetchingNotesListByProcure: false,
+              notesListByPrcure: action.payload,
+            };
+          case types.GET_NOTES_LIST_BY_PROCURE_ID_FAILURE:
+            return {
+              ...state,
+              fetchingNotesListByProcure: false,
+              fetchingNotesListByProcureError: true,
+            };
+
+            case types.PROCURE_TO_ACCEPTED_REQUEST:
+              return {
+                ...state,
+                procureToAccept: true,
+              };
+            case types.PROCURE_TO_ACCEPTED_SUCCESS:
+              return {
+                ...state,
+                procureToAccept: false,
+                allProcure: state.allProcure.filter(
+                  (item) => item.tradeId !== action.payload
+                ),
+              };
+            case types.PROCURE_TO_ACCEPTED_FAILURE:
+              return {
+                ...state,
+                procureToAccept: false,
+                procureToAcceptError: true,
+              };
+
 
     default:
       return state;
