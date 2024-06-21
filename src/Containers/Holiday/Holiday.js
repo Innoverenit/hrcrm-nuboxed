@@ -1,9 +1,8 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, { Component, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { handleHolidayModal } from "./HolidayAction";
 const HolidayPage = lazy(() => import("./Child/HolidayPage"));
-const  AddHolidayModal= lazy(() =>import("./Child/AddHolidayModal"));
 
 class Holiday extends Component {
   componentDidMount() {
@@ -18,11 +17,7 @@ class Holiday extends Component {
       <>
         {/* <React.Fragment> */}
         {/* <HolidayHeader handleHolidayModal={handleHolidayModal} /> */}
-        <AddHolidayModal
-          addHolidayModal={addHolidayModal}
-          handleHolidayModal={handleHolidayModal}
-        />
-        {/* <HolidayTable /> */}
+        
         <HolidayPage />
       </>
     );

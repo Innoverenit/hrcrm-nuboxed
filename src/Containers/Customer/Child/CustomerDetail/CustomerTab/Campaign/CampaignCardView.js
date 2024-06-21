@@ -121,9 +121,7 @@ if(fetchingCustomerCampaign){
               };
                       return (
                           <div>
-                             <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
-              >
+                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  ">
                                       <div class="flex items-center  justify-between">
                                  
  
@@ -232,22 +230,22 @@ if(fetchingCustomerCampaign){
                 />
                  <div class="">
                       {item.rating === 0 ? (<StarBorderIcon
-                       className="!text-xl cursor-pointer text-[#eeeedd]"
+                       className="!text-icon cursor-pointer text-[#eeeedd]"
                   />)
                   : (
                     <span>
                       {item.rating}{<StarBorderIcon 
-                      className="!text-xl cursor-pointer text-[#FFD700]"/>}
+                      className="!text-icon cursor-pointer text-[#FFD700]"/>}
                     </span>)}
                           </div>                 
                           <div>
                           {item.completionInd === false ? (
                   <CheckCircleIcon 
-                  className="!text-xl cursor-pointer text-[#eeeedd]"
+                  className="!text-icon cursor-pointer text-[#eeeedd]"
                     />
                 ) : (
                   <span><CheckCircleIcon 
-                  className="!text-xl cursor-pointer text-[#67d239]"
+                  className="!text-icon cursor-pointer text-[#67d239]"
                    />
                   </span>
                 )}
@@ -261,13 +259,13 @@ if(fetchingCustomerCampaign){
        {item.eventDescription}
        <br />
        <FileCopyIcon
-         className={`!text-xl cursor-pointer ${isCopied ? 'text-white' : ''}`}
+         className={`!text-icon cursor-pointer ${isCopied ? 'text-white' : ''}`}
          onClick={handleCopyClick}
        />
        {/* {isCopied && <span className="text-green-500 ml-2">Copied!</span>} */}
      </div>
    }>
-     <EventNoteIcon className="text-xl cursor-pointer" />
+     <EventNoteIcon className="text-icon cursor-pointer" />
    </Tooltip>
                    </div>
                    
@@ -291,7 +289,7 @@ if(fetchingCustomerCampaign){
              >
                 <Tooltip title="Delete">
                <DeleteOutlined  type="delete"
-                 className="!text-xl cursor-pointer text-[red]"
+                 className="!text-icon cursor-pointer text-[red]"
                />
                </Tooltip>
              </StyledPopconfirm>
@@ -366,7 +364,7 @@ if(fetchingCustomerCampaign){
                     return (
                         <div key={item.eventId}>
                              <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                      <div class="flex ">
                                 <div className=" flex font-medium  w-[6.98rem] max-sm:w-full ">

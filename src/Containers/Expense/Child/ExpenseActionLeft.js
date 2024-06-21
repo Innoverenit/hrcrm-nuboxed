@@ -5,7 +5,6 @@ import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 import { FormattedMessage } from "react-intl";
 import { Tooltip, Avatar } from "antd";
 import { connect } from "react-redux";
-import ListAltIcon from '@mui/icons-material/ListAlt';
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 
@@ -29,25 +28,7 @@ const ExpenseActionLeft = (props) => {
 
       </Tooltip>
 
-      <Tooltip
-        title={<FormattedMessage id="app.list" defaultMessage="List" />}
-      >
-
-        <span class=" mr-2 cursor-pointer text-[1rem]"
-          onClick={() => props.setExpenseViewType("tile")}
-          style={{
-            color: props.viewType === "tile" && "#1890ff",
-
-          }}
-        >
-          <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon
-            // icon={solid('users')}
-            />
-          </Avatar>
-        </span>
-
-      </Tooltip>
+      
       <Tooltip
         title="Category"
       >

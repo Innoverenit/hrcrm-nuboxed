@@ -6,7 +6,6 @@ import { handleExpenseModal,setExpenseViewType } from "./ExpenseAction";
 const ExpenseHeader = lazy(() => import("./Child/ExpenseHeader"));
 const ExpenseStatusCard = lazy(() => import("./Child/ExpenseStatusCard"));
 const ExpenseCard = lazy(() => import("./Child/ExpenseCard"));
-const ExpenseCard2 = lazy(() => import("./Child/ExpenseCard2"));
 const AddExpenseModal = lazy(() => import("./Child/AddExpenseModal"));
 class Expense extends Component {
   render() {
@@ -25,10 +24,7 @@ class Expense extends Component {
              viewType={viewType}
            />
           ) 
-          :this.props.viewType === "tile" ? (
-            
-            <ExpenseCard2/> )
-            :this.props.viewType==="list" ?(
+          :this.props.viewType === "tile" ?(
               <ExpenseStatusCard/>
             )
           : null}

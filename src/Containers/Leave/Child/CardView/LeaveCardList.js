@@ -6,7 +6,7 @@ import { Select } from "antd";
 import styled from 'styled-components'
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import moment from "moment";
+import dayjs from "dayjs";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import {
   getLeaveListRangeByUserId,
@@ -67,8 +67,8 @@ function LeaveCardList(props) {
 
 
         {props.leaveListRangeByUserId.map((item) => {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
           return (
             <>
@@ -94,7 +94,7 @@ function LeaveCardList(props) {
 
 
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                        {` ${moment.utc(item.startDate).format("ll")}`}
+                        {` ${dayjs(item.startDate).format("ll")}`}
                       </div>
 
                     </div>
@@ -107,7 +107,7 @@ function LeaveCardList(props) {
 
 
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                        {` ${moment.utc(item.endDate).format("ll")}`}
+                        {` ${dayjs(item.endDate).format("ll")}`}
                       </div>
 
                       {/* </Tooltip>   */}

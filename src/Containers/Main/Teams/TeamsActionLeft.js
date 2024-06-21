@@ -5,10 +5,11 @@ import PeopleIcon from '@mui/icons-material/People';
 import TocIcon from '@mui/icons-material/Toc';
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { StyledSelect } from "../../../Components/UI/Antd";
-import { Button, Empty, Tooltip, Badge } from "antd";
+import { Avatar, Tooltip, Badge } from "antd";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { getperformanceRecord } from "./TeamsAction";
 const Option = StyledSelect.Option;
+
 class TeamsActionLeft extends React.Component {
   componentDidMount() {
   
@@ -26,11 +27,7 @@ class TeamsActionLeft extends React.Component {
           size="small"
           count={
             (this.props.viewType === "client" &&
-              this.props.performancerecordData.EmployeeListByReptMngrId) ||
-            0
-          }
-          overflowCount={999}
-        >
+              this.props.performancerecordData.EmployeeListByReptMngrId) ||0}overflowCount={999}>
             <span
               onClick={() => setTeamsViewType("client")}
               style={{
@@ -38,7 +35,10 @@ class TeamsActionLeft extends React.Component {
                 color: viewType === "client" && "#1890ff",
               }}
             >
-              <ManageAccountsIcon className="!text-2xl cursor-pointer" />
+               <Avatar style={{ background: this.props.viewType === "client" ? "#f279ab" : "#4bc076" }}>
+            <div className="text-white"> <ManageAccountsIcon className="!text-2xl cursor-pointern  " /></div>
+            </Avatar>
+              
             </span>
             </Badge>
           </Tooltip>
@@ -50,7 +50,10 @@ class TeamsActionLeft extends React.Component {
                     color: viewType === "table" && "#1890ff",
                   }}
                   onClick={() => setTeamsViewType("table")}>
-                  <TocIcon className="!text-2xl cursor-pointer"/>
+                    <Avatar style={{ background: this.props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <div className="text-white"> <TocIcon className="!text-2xl cursor-pointer "/></div>
+            </Avatar>
+                  
                 </span>
               </Badge>
             </Tooltip>
@@ -65,7 +68,10 @@ class TeamsActionLeft extends React.Component {
                   color: viewType === "teams" && "#1890ff",
                 }}
               >
-             <PeopleIcon className="!text-2xl cursor-pointer"/>
+                  <Avatar style={{ background: this.props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+            <div className="text-white"> <PeopleIcon className="!text-2xl cursor-pointer"/></div>
+            </Avatar>
+            
               </span>
             </Badge>
             </Tooltip>

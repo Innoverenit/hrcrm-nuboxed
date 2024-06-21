@@ -132,7 +132,7 @@ className="!text-base cursor-pointer text-[grey] p-[2px]"/>
         >
               <DeleteOutlined
                 type="delete"
-                className="!text-base cursor-pointer text-[red]" 
+                className="!text-icon cursor-pointer text-[red]" 
                 // onClick={() => {
                 // props.deleteExpense(item.voucherId);
                   

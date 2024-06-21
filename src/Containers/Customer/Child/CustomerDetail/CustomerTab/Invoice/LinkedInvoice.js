@@ -44,6 +44,7 @@ class LinkedInvoice extends Component {
         width: "5%",
         render: (name, item, i) => {
           return (
+            
             <a
               href={`${base_url}/document/${item.documentId}`}
             >

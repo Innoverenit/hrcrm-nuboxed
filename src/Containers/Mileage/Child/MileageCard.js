@@ -116,7 +116,16 @@ this.handleExpand(item.voucherId)
    </Tooltip> 
 
    </div>
-        
+          {/* <div style={{filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))"}} class="rounded-full bg-white w-5 h-5 cursor-pointer">
+                      <EditIcon
+                         style={{ color: "blue" ,display:"flex",justifyItems:"center",justifyContent:"center",fontSize:"0.75rem",marginTop:"0.25rem",marginLeft:"0.25rem"}}
+          //               onClick={() => {
+          //               props.handleDeleteModal(true);
+          //               props.setRequirementsData(item);
+          //               handleSetCurrentOrderId(item.orderId)
+          // }} 
+                        />
+                        </div> */}
                         
                            {item.status === "Pending" && (
               <StyledPopconfirm
