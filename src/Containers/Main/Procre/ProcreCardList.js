@@ -1,19 +1,24 @@
 import React, {  useEffect, useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip,Button,Input } from "antd";
+import { Tooltip,Button,Input ,Popconfirm} from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
   getAllProcure,
   emptyProcre,
   handleProcureOrderModal,
-  updateProcures
+  updateProcures,
+  handleProcureNotesDrawerModal,
+  procureToAccept
 } from "../Procre/ProcreAction";
 import dayjs from "dayjs";
+import NextPlanIcon from '@mui/icons-material/NextPlan';
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import ProcureOrderModal from "./Child/ProcureOrderModal";
+import AddProcureNotesDrawerModal from "./AddProcureNotesDrawerModal";
 
 function ProcreCardList(props) {
   const [page, setPage] = useState(0);
@@ -39,6 +44,8 @@ function ProcreCardList(props) {
   useEffect(() => {
     return () => props.emptyProcre();
   }, []);
+
+ 
 
   const handleLoadMore = () => {
     setPage(page + 1);
@@ -80,7 +87,9 @@ function ProcreCardList(props) {
       props.updateProcures(result)
     
   };
-
+const {handleProcureNotesDrawerModal,
+  addDrawerProcureNotesModal
+} = props;
   return (
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
@@ -92,6 +101,8 @@ function ProcreCardList(props) {
                         <div className=" md:w-[12rem]"><FormattedMessage id="app.procreid#" defaultMessage="Procure ID"/></div>
                         <div className=" md:w-[6rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[5rem]"><FormattedMessage id="app.location" defaultMessage="Location"/></div>
+                        <div className=" md:w-[6.01rem]">Created</div>
+                        <div className=" md:w-[6.03rem]">currency</div>
                         <div className=" md:w-[3.8rem] "><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
                         <div className=" md:w-[5rem]"><FormattedMessage id="app.tradeid" defaultMessage="Trade ID"/></div>
                         <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit "/></div>
@@ -194,12 +205,24 @@ function ProcreCardList(props) {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class="text-cardBody font-poppins text-sm">
+                      <div class="text-cardBody font-poppins text-sm">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
          
         `}
-                      </h4>
+                      </div>
+                    </div>
+                    <div className=" flex font-medium flex-col  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class="text-cardBody font-poppins text-sm">
+
+                     {/* {item.currencyName} */}
+                      </div>
+                    </div>
+                    <div className=" flex font-medium flex-col  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class="text-cardBody font-poppins text-sm">
+
+                     {item.currencyName} {item.price}
+                      </div>
                     </div>
                   </div>
                   <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
@@ -212,6 +235,29 @@ function ProcreCardList(props) {
                       />
                     </div>
                   </div>
+                  {/* <div class=" text-sm text-cardBody font-poppins">
+                        <Popconfirm
+                          title="Change status to Accepted?"
+                          onConfirm={() => props.procureToAccept(item.tradeId)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                         
+                            <Button type="primary"
+                              style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}
+                             
+                              >
+                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
+                                 {item.acceptedInd === 0 && "Accepted"} 
+                                 {item.convertInd === 1 && "In progress"}
+                                {item.convertInd === 2 && "Converted"} 
+                                Accept
+                                <NextPlanIcon  />
+                              </div>
+                            </Button>
+                         
+                        </Popconfirm>
+                      </div> */}
                   <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                     {editsuppliesId === item.iteamId ? (
@@ -268,6 +314,19 @@ function ProcreCardList(props) {
                       {item.userName} 
                     </div>
                   </div>
+                  <div >
+                      <Tooltip title="Notes">
+                        <NoteAltIcon
+                         className=" !text-icon cursor-pointer text-green-800"
+                          onClick={() => {
+                            handleSetParticularOrderData(item);
+                            handleProcureNotesDrawerModal(true);
+                         
+                          }}
+                         
+                        />
+                      </Tooltip>
+                    </div>
   <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.iteamId ? (
                         <>
@@ -305,6 +364,12 @@ function ProcreCardList(props) {
                 particularRowData={particularRowData}
                 handleProcureOrderModal={props.handleProcureOrderModal}
                 addProcureOrderModal={props.addProcureOrderModal} />
+
+<AddProcureNotesDrawerModal
+        particularRowData={particularRowData}
+        addDrawerProcureNotesModal={props.addDrawerProcureNotesModal}
+        handleProcureNotesDrawerModal={props.handleProcureNotesDrawerModal}
+      />
     </>
   );
 
@@ -322,6 +387,7 @@ const mapStateToProps = ({ shipper,procre,auth }) => ({
   addProcureOrderModal:procre.addProcureOrderModal,
   updatingProcures:procre.updatingProcures,
   userId: auth.userDetails.userId,
+  addDrawerProcureNotesModal: procre.addDrawerProcureNotesModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -331,7 +397,9 @@ const mapDispatchToProps = (dispatch) =>
 getAllProcure,
 emptyProcre,
 handleProcureOrderModal,
-updateProcures
+updateProcures,
+handleProcureNotesDrawerModal,
+procureToAccept
     },
     dispatch
   );
