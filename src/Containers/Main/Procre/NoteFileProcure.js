@@ -102,6 +102,7 @@ class NoteFileProcure extends Component {
             procureId: this.props.particularRowData.procureId ? this.props.particularRowData.procureId : "",
             notes: "",
             userId: this.props.userId?this.props.userId : "",
+            iteamId: this.props.particularRowData.iteamId ? this.props.particularRowData.iteamId : "",
           }}
           onSubmit={(values, { resetForm }) => {
             console.log(

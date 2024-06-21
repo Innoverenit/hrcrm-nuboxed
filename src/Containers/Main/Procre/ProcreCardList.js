@@ -47,11 +47,30 @@ function ProcreCardList(props) {
 
  
 
+  // const handleLoadMore = () => {
+  //   setPage(page + 1);
+  //   props.getAllProcure(props.currentUser ? props.currentUser : props.orgId, page,
+  //   );
+  // }
   const handleLoadMore = () => {
-    setPage(page + 1);
-    props.getAllProcure(props.currentUser ? props.currentUser : props.orgId, page,
-    );
-  }
+    const callPageMapd = props.allProcure && props.allProcure.length &&props.allProcure[0].pageCount
+    setTimeout(() => {
+      const {
+        getAllProcure,
+       // userDetails: { employeeId },
+      } = props;
+      if  (props.allProcure)
+      {
+        if (page < callPageMapd) {
+          setPage(page + 1);
+          getAllProcure(props.currentUser ? props.currentUser : props.orgId, page, );
+      }
+      if (page === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
 
   const handleInputChange = (value, key, dataIndex) => {
     const updatedData = data.map((row) =>
@@ -116,6 +135,7 @@ const {handleProcureNotesDrawerModal,
           next={handleLoadMore}
           loader={props.fetchingAllProcure?<div class="flex justify-center" >Loading...</div>:null}
           height={"75vh"}
+          endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
           {data.map((item) => {
             const currentDate = dayjs().format("DD/MM/YYYY");
@@ -215,7 +235,7 @@ const {handleProcureNotesDrawerModal,
                     <div className=" flex font-medium flex-col  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class="text-cardBody font-poppins text-sm">
 
-                     {/* {item.currencyName} */}
+                     {date}
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -235,29 +255,30 @@ const {handleProcureNotesDrawerModal,
                       />
                     </div>
                   </div>
-                  {/* <div class=" text-sm text-cardBody font-poppins">
+                  {props.userId === item.userId && item.tradeId !== null && (
+                  <div class=" text-sm text-cardBody font-poppins">
                         <Popconfirm
                           title="Change status to Accepted?"
-                          onConfirm={() => props.procureToAccept(item.tradeId)}
+                          onConfirm={() => props.procureToAccept(item.iteamId,data,props.orgId)}
                           okText="Yes"
                           cancelText="No"
                         >
                          
                             <Button type="primary"
                               style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}
-                             
+                              disabled={item.acceptedInd || props.fetchingAllProcure}
+                              loading={props.fetchingAllProcure}
                               >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
-                                 {item.acceptedInd === 0 && "Accepted"} 
-                                 {item.convertInd === 1 && "In progress"}
-                                {item.convertInd === 2 && "Converted"} 
-                                Accept
+                                   {item.acceptedInd? "Accepted": "Accept"}           
+                                {/* Accept */}
                                 <NextPlanIcon  />
                               </div>
                             </Button>
                          
                         </Popconfirm>
-                      </div> */}
+                      </div>
+          )}
                   <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                     {editsuppliesId === item.iteamId ? (
@@ -344,12 +365,17 @@ const {handleProcureNotesDrawerModal,
                       </>
                       
                     ) : (
+                      <>
+                       {!item.acceptedInd && (
+                     
                       <BorderColorIcon
                       className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.iteamId)}
                       />
+                       )}
+                      </>
                     )}
     </div>
                 </div>
