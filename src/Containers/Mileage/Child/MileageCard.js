@@ -45,11 +45,11 @@ class MileageCard extends React.Component {
     return (
       <>
        <div class=" h-[84vh] overflow-auto overflow-x-auto">
-       <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">       
+       <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center ">       
               {MileageDat.map((item) => {
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7.5rem] 
-                  text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
+                  text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         
                                 
                    <div >
@@ -112,7 +112,7 @@ this.handleExpand(item.voucherId)
 }}
 >
                  <Tooltip  title={"Status"}>
-                 <AssistantIcon  className="!text-[1.2rem] cursor-pointer text-[grey] "/>
+                 <AssistantIcon  className="!text-icon  cursor-pointer text-[grey] "/>
    </Tooltip> 
 
    </div>

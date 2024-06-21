@@ -33,9 +33,9 @@ const handleLoadMore = () => {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingDeletedLocationHistory?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
-      <div className=" flex justify-between w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
+      <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[7.5rem]">Name</div>
         <div className=" md:w-[12.1rem]">Country</div>
         <div className=" md:w-[4.1rem] ">Address</div>
@@ -47,7 +47,7 @@ const handleLoadMore = () => {
           {props.deletedLocationHistory.map((item) => {
             return (
               <div >
-                <div class=" flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 ">
+                <div class=" flex rounded justify-between  bg-white mt-[0.5rem] h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex">
                   <div className=" flex font-medium  md:w-[15.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
                       

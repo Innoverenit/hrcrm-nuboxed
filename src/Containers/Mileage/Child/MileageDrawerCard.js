@@ -87,8 +87,8 @@ function MileageDrawerCard(props) {
 
   return (
     <>
-    <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-     <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+    <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+     <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[9.2rem]">ID</div>
         <div className="md:w-[6.8rem]">Cost Code</div>
         <div className=" md:w-[7.21rem] ">Date</div>
@@ -104,7 +104,7 @@ function MileageDrawerCard(props) {
           return (
             <div key={index}>
                         <div
-                className="flex rounded-xl  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+                className="flex rounded-xl  bg-white mt-[0.5rem] h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                 <div className="flex font-medium flex-col w-[9.7rem]">
                   
