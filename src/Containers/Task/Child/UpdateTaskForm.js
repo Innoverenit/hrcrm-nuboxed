@@ -921,7 +921,7 @@ function UpdateTaskForm(props) {
               <div class=" h-full w-w47.5 max-sm:w-wk">          
                 <Field
                   name="assignedTo"
-                  // label="Assigned to"
+                  // label="Assigned"
                   label={
                     <FormattedMessage
                                 id="app.assignedto"

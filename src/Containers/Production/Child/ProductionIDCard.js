@@ -12,7 +12,7 @@ function ProductionIDCard(props) {
   return (
     <>
       <div className='flex justify-end sticky z-auto'>
-        <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className="flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
             <div className=""></div>
             <div className="md:w-[7%]">Part ID</div>

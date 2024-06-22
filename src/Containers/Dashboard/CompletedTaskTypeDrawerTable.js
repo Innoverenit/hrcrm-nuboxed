@@ -24,7 +24,7 @@ function CompletedTaskTypeDrawerTable (props) {
     return (
       <>
          <div className=' flex justify-end sticky top-28 z-auto'>
-        <OnlyWrapCard style={{backgroundColor:"#E3E8EE"}}>
+        <OnlyWrapCard style={{backgroundColor:"#eaedf1"}}>
         <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[5.1rem]">    <FormattedMessage
                 id="app.priority"
@@ -36,7 +36,7 @@ function CompletedTaskTypeDrawerTable (props) {
               /></div>
         <div className="md:w-24"> <FormattedMessage
                 id="app.assignedTo"
-                defaultMessage="Assigned To"
+                defaultMessage="Assigned"
               /></div>
         <div className=" md:w-[6.8rem] ">       <FormattedMessage
                 id="app.status"

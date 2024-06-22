@@ -395,7 +395,7 @@ function CustomerOpportunityForm(props) {
             <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2  "
             // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
             >
-              Assigned to
+              Assigned
             </Listbox.Label>
             <div className="relative mt-1">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -463,11 +463,11 @@ function CustomerOpportunityForm(props) {
                   name="salesUserIds"
                   // selectType="employee"
                   isColumnWithoutNoCreate
-                  // label="Assigned to"
+                  // label="Assigned"
                   label={
                     <FormattedMessage
                       id="app.assignedto"
-                      defaultMessage="Assigned to"
+                      defaultMessage="Assigned"
                     />
                   }
                   component={SelectComponent}

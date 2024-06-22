@@ -596,11 +596,11 @@ function UpdateEventForm (props) {
 
               <Field
                   name="assignedTo"
-                  // label="Assigned to"
+                  // label="Assigned"
                   label={
                     <FormattedMessage
                       id="app.assignedto"
-                      defaultMessage="Assigned to"
+                      defaultMessage="Assigned"
                     />
                   }
                   isColumn

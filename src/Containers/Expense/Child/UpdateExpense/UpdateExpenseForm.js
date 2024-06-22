@@ -196,7 +196,7 @@ function UpdateExpenseForm(props) {
     <div>
       <table>
         <th>Date</th>
-        <th>Assigned To</th>
+        <th>Assigned</th>
 
         <th>Expense Type</th>
         <th>More Information</th>

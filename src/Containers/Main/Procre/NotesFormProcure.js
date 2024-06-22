@@ -28,7 +28,7 @@ const NotesFormProcure = (props) => {
 
       
 
-      <div className="border-spacing-2 rounded-md shadow-2xl ">
+      <div className="border-spacing-2 rounded-md shadow ">
       <div class="h-[52vh] overflow-auto p-2">
           {fetchingNotesListByProcure ? (
             <BundleLoader />

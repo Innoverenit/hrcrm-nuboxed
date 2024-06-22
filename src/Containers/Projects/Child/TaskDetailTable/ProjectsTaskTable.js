@@ -196,7 +196,7 @@ function ProjectsTaskTable (props)  {
           },
         },
         {
-          title: "Assigned To",
+          title: "Assigned",
           //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
           dataIndex: "assignedToName",
           width:"8%",

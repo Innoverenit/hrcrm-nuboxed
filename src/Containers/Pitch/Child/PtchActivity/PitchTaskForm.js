@@ -1168,11 +1168,11 @@ const [priority,setpriority]=useState(props.selectedTask
                     name="assignedTo"
                     selectType="employee"
                     isColumnWithoutNoCreate
-                    // label="Assigned to"
+                    // label="Assigned"
                     label={
                       <FormattedMessage
                         id="app.assignedto"
-                        defaultMessage="Assigned to"
+                        defaultMessage="Assigned"
                       />
                     }
                     component={SearchSelect}
@@ -1191,7 +1191,7 @@ const [priority,setpriority]=useState(props.selectedTask
             <Listbox.Label className="block font-semibold text-[0.75rem] ">
             <FormattedMessage
                             id="app.assignedto"
-                            defaultMessage="Assigned to"
+                            defaultMessage="Assigned"
                           />
              
             </Listbox.Label>

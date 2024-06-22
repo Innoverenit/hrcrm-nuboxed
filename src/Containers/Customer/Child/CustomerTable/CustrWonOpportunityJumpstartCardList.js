@@ -41,7 +41,7 @@ function CustrWonOpportunityJumpstartCardList(props) {
 
       return (    
   <>
-  <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+  <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex max-sm:hidden  w-[99%] max-xl:w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[31.8rem] max-lg:w-[29.8rem]">Name</div>
         <div className=" w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.12rem] max-lg:w-[15.12rem]">Prospect</div>
@@ -200,7 +200,7 @@ function CustrWonOpportunityJumpstartCardList(props) {
                                     </div> */}
                               
                                 <div className=" flex font-medium flex-col w-32 max-xl:w-[5.12rem] max-lg:w-[3.12rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins max-sm:text-sm">
                                     

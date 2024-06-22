@@ -124,7 +124,7 @@
 //     </div>
 //     {showSmileCard && (
 //           <div className=' flex justify-end sticky top-28 z-auto'>
-//           <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+//           <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 //           <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
 //         <div className=" md:w-[10.5rem]">
 //           <FormattedMessage
@@ -301,7 +301,7 @@
 //                         {`${item.customerName} ${item.contact} ${item.opportunityName}`}</div>
 //                    </div>
 //                     <div className=" flex font-medium flex-col md:w-[4.2rem] max-sm:flex-row justify-between w-full ">
-//                                   {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned To</div> */}
+//                                   {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
 //                                   <div class="text-xs text-cardBody font-poppins mb-2">
 //                                   <span>
 //               {item.assignedToName === null ? (
@@ -606,7 +606,7 @@ const SalesTaskCardList = (props) => {
 
 {showSmileCard && (
           <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[10.5rem]">
           <FormattedMessage
@@ -783,7 +783,7 @@ const SalesTaskCardList = (props) => {
                         {`${item.customerName} ${item.contact} ${item.opportunityName}`}</div>
                    </div>
                     <div className=" flex font-medium flex-col md:w-[4.2rem] max-sm:flex-row justify-between w-full ">
-                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned To</div> */}
+                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs text-cardBody font-poppins mb-2">
                                   <span>
               {item.assignedToName === null ? (

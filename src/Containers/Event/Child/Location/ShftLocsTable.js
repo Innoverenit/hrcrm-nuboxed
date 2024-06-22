@@ -124,7 +124,7 @@ function ShftLocsTable(props) {
     return (
         <>
             <div className=' flex justify-end sticky  z-auto h-[34rem] overflow-auto'>
-            <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[12.1rem]">Name</div>
                         <div className=" md:w-[9.1rem]">Start Date</div>

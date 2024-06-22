@@ -34,7 +34,7 @@ function OrderPhoneListById(props) {
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const [startTime, setStartTime] = useState(null);
     const [isRecording, setIsRecording] = useState(false);
-    const minRecordingTime = 5000; // 5 seconds
+    const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
     const componentRefs = useRef([]);
 
@@ -237,7 +237,7 @@ function OrderPhoneListById(props) {
 
              
 
-                <div class="rounded-lg m-5  max-sm:m-1 p-2 w-full shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded-lg m-5  max-sm:m-1 p-2 w-full shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div class="flex items-center">
                 <div class=" w-72 ml-4 max-sm:w-28">
           <Input

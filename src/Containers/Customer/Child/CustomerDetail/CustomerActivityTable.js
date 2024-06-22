@@ -35,7 +35,7 @@ const CustomerActivityTable = (props) => {
   if (props.fetchingCusActivityTimelineStatus) return <BundleLoader/>;
   return (
     <div className="mt-4 ml-4 ">
-      {/* scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] */}
+      {/* scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] */}
       <Timeline>
         {customerActivityTimeline &&
           customerActivityTimeline.map((status, index) => ( 

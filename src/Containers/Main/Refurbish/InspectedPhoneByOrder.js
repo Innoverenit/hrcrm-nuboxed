@@ -40,7 +40,7 @@ function InspectedPhoneByOrder(props) {
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
-  const minRecordingTime = 5000; // 5 seconds
+  const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
 
     const handleShow = () => {
@@ -142,7 +142,7 @@ function InspectedPhoneByOrder(props) {
             {props.fetchingUpdateDispatchList ?
                 <BundleLoader />
                 : <div className='flex justify-end sticky ticky  z-10 '>
-                    <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div class=" w-72 ml-4 max-sm:w-28">
           <Input
             placeholder="Search by Imei"

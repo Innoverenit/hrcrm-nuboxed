@@ -46,7 +46,7 @@ const InvestorDeals = (props) => {
 console.log("investorDetails",props.investorDetails)
   return (
     <>
-  <div class="rounded-lg m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+  <div class="rounded-lg m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex  w-[98%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[15rem]"><FormattedMessage
                   id="app.name"

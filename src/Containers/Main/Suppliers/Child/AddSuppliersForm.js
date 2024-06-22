@@ -161,7 +161,7 @@ function AddSuppliersForm (props) {
           <>
             <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">
             
-                        <FormattedMessage id="app.assignedto" defaultMessage="Assigned to" />
+                        <FormattedMessage id="app.assignedto" defaultMessage="Assigned" />
                   
          
             </Listbox.Label>

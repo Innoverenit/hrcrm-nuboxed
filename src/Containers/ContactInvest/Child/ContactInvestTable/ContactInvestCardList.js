@@ -105,7 +105,7 @@ function ContactInvestCardList(props) {
     <>
       
 
-      <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex  justify-between max-sm:hidden w-[93%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[15.32rem]"><FormattedMessage
                   id="app.name"

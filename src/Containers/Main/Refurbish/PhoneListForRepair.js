@@ -39,7 +39,7 @@ function PhoneListForRepair(props) {
     const componentRefs = useRef([]);
     const [startTime, setStartTime] = useState(null);
     const [isRecording, setIsRecording] = useState(false); //Code for Search
-    const minRecordingTime = 5000; // 5 seconds
+    const minRecordingTime = 3000; // 3 seconds
     const timerRef = useRef(null);
 
     const handlePrint = () => {
@@ -244,7 +244,7 @@ function PhoneListForRepair(props) {
     return (
         <>
             {props.fetchingRepairPhoneByUser ? <BundleLoader /> : <div className=' flex justify-end sticky flex-col z-auto overflow-x-auto '>
-                <div class=" rounded-lg m-1 max-sm:m-1 p-2 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class=" rounded-lg m-1 max-sm:m-1 p-2 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div class="flex items-center">
                 <div class=" w-72 ml-4 max-sm:w-28">
           <Input

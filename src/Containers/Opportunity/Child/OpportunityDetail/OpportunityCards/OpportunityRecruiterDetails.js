@@ -21,7 +21,7 @@ class OpportunityRecruiterDetailsDetails extends Component {
               />
             </Tooltip> */}
         </FlexContainer>
-        <OpportunityItemRow label="Assigned To"
+        <OpportunityItemRow label="Assigned"
         value={assignedTo} 
         />
           {/* <MultiAvatar

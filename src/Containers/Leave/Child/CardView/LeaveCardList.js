@@ -57,7 +57,7 @@ function LeaveCardList(props) {
     <>
 
 
-      <div class="rounded m-1 p-1 w-wk h-[31rem] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE] max-sm:h-[13rem]">
+      <div class="rounded m-1 p-1 w-wk h-[31rem] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:h-[13rem]">
         {/* <InfiniteScroll
                     dataLength={props.tableRequirement.length}
                 next={handleLoadMore}
@@ -77,13 +77,13 @@ function LeaveCardList(props) {
 
 
               <div>
-                <div className="flex justify-between mt-2 scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                <div className="flex justify-between mt-2 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                   // style={hrStyle}
                   style={{
                     borderBottom: "3px dotted #515050"
                   }}
                 >
-                  <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                     <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
                       <div class=" text-sm text-cardBody font-medium font-poppins">
