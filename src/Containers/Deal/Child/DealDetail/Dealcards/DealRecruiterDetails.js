@@ -14,7 +14,7 @@ class DealRecruiterDetails extends Component {
       <>
         <DealItemRow     label={<FormattedMessage
                 id="app.assignedto"
-                defaultMessage="Assigned To"
+                defaultMessage="Assigned"
               />}
         value={assignedTo} 
         />

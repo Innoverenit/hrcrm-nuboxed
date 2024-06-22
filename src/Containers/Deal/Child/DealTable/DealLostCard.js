@@ -86,7 +86,7 @@ function DealLostCard(props) {
           <>
         
              
-        <div class="rounded  p-1 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div class="rounded  p-1 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               
               <InfiniteScroll
                  dataLength={lostDeals.length}
@@ -239,7 +239,7 @@ function DealLostCard(props) {
                                             </div>
                                        
                                        
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
         
                                             <div class=" text-sm text-cardBody font-poppins">
                                             
@@ -420,7 +420,7 @@ function DealLostCard(props) {
   <>
 
      
-<div class="rounded m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+<div class="rounded m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[13.12rem]"><FormattedMessage
                   id="app.name"
@@ -616,7 +616,7 @@ function DealLostCard(props) {
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins">
                                     

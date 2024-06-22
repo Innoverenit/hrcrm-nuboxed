@@ -110,7 +110,7 @@ function DistributorColletcionArchive(props) {
       </Formik>
 
       {props.fetchingTodayDistributor ? <BundleLoader /> : <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[100%] overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[100%] overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
             <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>

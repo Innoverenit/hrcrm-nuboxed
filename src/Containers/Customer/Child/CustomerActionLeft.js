@@ -31,7 +31,7 @@ const CustomerActionLeft = (props) => {
   const [page, setPage] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
   const [startTime, setStartTime] = useState(null);
-  const minRecordingTime = 5000; // 5 seconds
+  const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
 
   const [searchOnEnter, setSearchOnEnter] = useState(false);

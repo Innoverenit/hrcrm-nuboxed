@@ -152,7 +152,7 @@ function ProjectsAllTable(props) {
   return (
     <>
         <div className=' flex justify-end sticky top-28 z-auto'>
-            <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
+            <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
                 <div className=" flex  w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[21.1rem]"><FormattedMessage
                         id="app.project"

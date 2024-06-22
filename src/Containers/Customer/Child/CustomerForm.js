@@ -695,7 +695,7 @@ country_dial_code
                   <div class=" flex justify-between mb-[0.35rem] mt-3">
                     <div class=" h-full w-full" style={{display:"flex",flexDirection:"column"}}>
 
-                    {/* <label>Assigned to</label>
+                    {/* <label>Assigned</label>
 
 <Select
         showSearch
@@ -721,7 +721,7 @@ country_dial_code
                             >
                               <FormattedMessage
                                 id="app.assignedTo"
-                                defaultMessage="Assigned to"
+                                defaultMessage="Assigned"
                               />
 
                             </Listbox.Label>
@@ -788,11 +788,11 @@ country_dial_code
                     name="assignedTo"
                     selectType="employee"
                     isColumnWithoutNoCreate
-                    // label="Assigned to"
+                    // label="Assigned"
                     label={
                       <FormattedMessage
                         id="app.assignedto"
-                        defaultMessage="Assigned to"
+                        defaultMessage="Assigned"
                       />
                     }
                     // component={SearchSelect}

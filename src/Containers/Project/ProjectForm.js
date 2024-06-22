@@ -379,7 +379,7 @@ class ProjectForm extends Component {
                   {/* <Field
                       name="ownerIds"
                       selectType="user"
-                      label="Assigned to"
+                      label="Assigned"
                       component={SearchSelect}
                       isColumn
                       margintop={"0.25em"}

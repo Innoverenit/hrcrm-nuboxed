@@ -759,7 +759,7 @@ function EmployeeTable(props) {
       <>
       
           <div className=' flex justify-end sticky  z-auto'>
-          <div class="rounded  p-1 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div class="rounded  p-1 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                  
                   {props.filteredData.map((item) => {
                       const currentdate = dayjs().format("DD/MM/YYYY");
@@ -949,7 +949,7 @@ function EmployeeTable(props) {
     <>
      <div class=" h-h86 overflow-auto overflow-x-auto">
         <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                     <div className=" md:w-[15.5rem]">Name</div>
                     <div className=" md:w-[9.1rem]">Department</div>
@@ -965,7 +965,7 @@ function EmployeeTable(props) {
                     const date = dayjs(item.createAt).format("DD/MM/YYYY");
                     return (
                         <div>
-                            <div className="flex rounded  mt-4 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
+                            <div className="flex rounded  mt-4 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
                                 <div class="flex">
                                     <div className=" flex font-medium  md:w-[15.6rem] max-sm:w-full ">
                                     <EmployeeDetailsView

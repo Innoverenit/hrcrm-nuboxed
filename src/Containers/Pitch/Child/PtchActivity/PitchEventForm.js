@@ -449,11 +449,11 @@ const {
                       name="employeesId"
                       isColumnWithoutNoCreate
                       selectType="employee"
-                      // label="Assigned to"
+                      // label="Assigned"
                       label={
                         <FormattedMessage
                           id="app.assignedto"
-                          defaultMessage="Assigned to"
+                          defaultMessage="Assigned"
                         />
                       }
                       component={SearchSelect}
@@ -473,7 +473,7 @@ const {
             <Listbox.Label className="block text-sm font-semibold text-gray-700">
             <FormattedMessage
                             id="app.assignedto"
-                            defaultMessage="Assigned to"
+                            defaultMessage="Assigned"
                           />
             </Listbox.Label>
             <div className="relative mt-1">

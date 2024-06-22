@@ -96,7 +96,7 @@ const handleDeptChange = (event) => {
              
             <div class=" flex  flex-col w-[44%]"
               >
-                   <p class=" w-[6rem]">Assigned To</p>
+                   <p class=" w-[6rem]">Assigned</p>
                 <div>
                       {/* <Popconfirm
                         title="Do you wish to change Status ? "

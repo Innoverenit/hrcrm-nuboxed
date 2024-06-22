@@ -54,7 +54,7 @@ const ProductionOrderList = (props) => {
     const [searchOnEnter, setSearchOnEnter] = useState(false);
     const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false); //Code for Search
-  const minRecordingTime = 5000; // 5 seconds
+  const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
     useEffect(() => {
         setPageNo(pageNo + 1);
@@ -231,7 +231,7 @@ const ProductionOrderList = (props) => {
   ) : (
         <>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 {/* <div class=" w-64 max-sm:w-24">
         <Input
           placeholder="Search by OrderNo "
@@ -515,7 +515,7 @@ const ProductionOrderList = (props) => {
 </div>
 
 <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex max-sm:hidden  justify-between w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[orange]">High </div>
                         <div className=" w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -790,7 +790,7 @@ const ProductionOrderList = (props) => {
 </div>
 
 <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex max-sm:hidden  justify-between w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]">Normal </div>
                         <div className=" w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage

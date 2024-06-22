@@ -19,7 +19,7 @@ function RefurbishActionLeft (props) {
   const [pageNo, setPage] = useState(0);
   const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false); //Code for Search
-  const minRecordingTime = 5000; // 5 seconds
+  const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
   const {
     transcript,

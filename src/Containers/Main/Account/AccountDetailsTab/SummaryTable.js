@@ -10,7 +10,7 @@ const SummaryTable = (props) => {
   const year = currentDate.getFullYear();
   return (
     <>
-     <div class="flex flex-col items-center">
+     <div class="flex flex-col items-center ">
       <label class="font-bold"> {year}</label>
     </div>
    

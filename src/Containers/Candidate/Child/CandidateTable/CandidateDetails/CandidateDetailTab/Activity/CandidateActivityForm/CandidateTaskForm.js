@@ -650,7 +650,7 @@ class CandidateTaskForm extends Component {
                   {/* <Field
                     name="association.ownerIds"
                     selectType="user"
-                    label="Assigned to"
+                    label="Assigned"
                     component={SearchSelect}
                     isColumn
                     margintop={"4px"}

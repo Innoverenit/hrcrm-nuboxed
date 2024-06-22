@@ -349,7 +349,7 @@ const TaskTable = (props) => {
     },
 
     {
-      title: "Assigned To",
+      title: "Assigned",
     // dataIndex: "submittedBy",
 
 width: 8,
@@ -1161,7 +1161,7 @@ handleSetTaskNameId={handleSetTaskNameId}
 //     //     },
 //     //   },
 //     //   {
-//     //     headerName: "Assigned To",
+//     //     headerName: "Assigned",
 //     //     //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
 //     //     field: "assignedToName",
 //     //     width: 90,
@@ -1589,7 +1589,7 @@ handleSetTaskNameId={handleSetTaskNameId}
 //       },
 
 //       {
-//         title: "Assigned To",
+//         title: "Assigned",
 //       // dataIndex: "submittedBy",
  
 //   width: 8,

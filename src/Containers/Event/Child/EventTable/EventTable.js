@@ -326,7 +326,7 @@ function EventTable (props) {
       },
       {
         title: (
-          <FormattedMessage id="app.assignedTo" defaultMessage="Assigned To" />
+          <FormattedMessage id="app.assignedTo" defaultMessage="Assigned" />
         ),
         dataIndex: "assignedToName",
         width: "10%",

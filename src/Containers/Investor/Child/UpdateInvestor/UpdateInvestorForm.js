@@ -339,7 +339,7 @@ function UpdateInvestorForm (props) {
         {({ open }) => (
           <>
             <Listbox.Label className="block font-semibold text-[0.75rem]">
-              Assigned to
+              Assigned
             </Listbox.Label>
             <div className="relative mt-[0.1rem]">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>

@@ -80,7 +80,7 @@ function InvestorActivityJumpstartCardList(props) {
 
 
    
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[92.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[12.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[9.31rem]">
               <FormattedMessage
@@ -128,7 +128,7 @@ function InvestorActivityJumpstartCardList(props) {
             <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.2rem]">
               <FormattedMessage
                 id="app.assignedTo"
-                defaultMessage="Assigned to"
+                defaultMessage="Assigned"
               />
               
 
@@ -271,7 +271,7 @@ function InvestorActivityJumpstartCardList(props) {
                    
               
                     <div className=" flex font-medium items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[8rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
 
                       <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 

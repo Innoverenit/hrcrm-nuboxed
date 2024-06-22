@@ -87,7 +87,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
       
                  return (
                   <div class="rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9.5rem] 
-                  text-[#444444] m-1 p-1 w-[16rem] flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow-2xl  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  text-[#444444] m-1 p-1 w-[16rem] flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                       <div class="w-[200] flex h-[200]">
                    <Tooltip 
                    title={item.country}

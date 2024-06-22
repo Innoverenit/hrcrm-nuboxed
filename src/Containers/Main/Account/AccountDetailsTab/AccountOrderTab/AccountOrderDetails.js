@@ -110,8 +110,8 @@ function DistributorPauseForm(props) {
             <div>
                 {props.fetchingPhoneListById ? <BundleLoader /> :
                     <>
-                        <div className=' flex justify-end sticky flex-col z-auto'>
-                            <div class="rounded-lg m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                        <div className=' flex  sticky flex-col z-auto'>
+                            <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                                 <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                                     <div className=" md:w-[4.2rem]"><FormattedMessage
                                         id="app.brand"
@@ -162,10 +162,10 @@ function DistributorPauseForm(props) {
                                         loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                                         height={"64vh"}
                                     >
-                                        {props.phoneListById.map((item, index) => {
+                                        {props.phoneListById.map((item, index) => { 
                                             return (
                                                 <div>
-                                                    <div className="flex rounded  mt-2 bg-white h-8 items-center p-1 " >
+                                                    <div className="flex rounded  mt-2 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
                                                         <div class="flex">
                                                             <div className=" flex font-medium items-center   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
