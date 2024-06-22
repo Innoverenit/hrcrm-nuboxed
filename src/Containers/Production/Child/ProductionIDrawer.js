@@ -14,7 +14,7 @@ class ProductionIDrawer extends Component {
         <StyledDrawer
           title={<FormattedMessage
             id="app.production"
-            defaultMessage="Production Id"
+            defaultMessage="MFG ID"
           />}
           destroyOnClose
           closable

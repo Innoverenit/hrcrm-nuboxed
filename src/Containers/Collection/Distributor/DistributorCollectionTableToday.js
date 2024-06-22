@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { OnlyWrapCard } from '../../../Components/UI/Layout'
 import { Formik, Form, Field } from "formik";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
@@ -11,7 +10,7 @@ import {
   DistributorCollectionReceivableToday,
   handleDistributorProductModal
 } from "../CollectionAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import DistributorPaymentToggle from "./DistributorPaymentToggle";
 import DistributorProductHistory from "./DistributorProductHistory";
@@ -45,7 +44,7 @@ function DistributorColletcionArchive(props) {
         }}
         onSubmit={(values, { resetForm }) => {
           props.handleClearCheck();
-          let newStartDate = moment(values.date).format("YYYY-MM-DD");
+          let newStartDate = dayjs(values.date).format("YYYY-MM-DD");
 
           props.DistributorCollectionReceivableToday({
             ...values,
@@ -63,19 +62,20 @@ function DistributorColletcionArchive(props) {
           ...rest
         }) => (
           <Form>
-            <div class="flex justify-evenly h-full w-[35%] items-end max-sm:w-wk">
-              <div class="w-[35%] max-sm:w-wk">
-                <Field
-                  isRequired
-                  name="date"
-                  width={"100%"}
-                  label="Search by Payment Date"
-                  component={DatePicker}
-                  value={values.date}
-                  inlineLabel
-                  isColumn
+            <div class="flex justify-evenly h-full w-[52%] items-end max-sm:w-wk">
+              <div class="w-[52%] max-sm:w-wk">
+                <div class="flex flex-row">
+                  Search by Payment Date
 
-                />
+                  <Field
+                    isRequired
+                    name="date"
+                    width={"100%"}
+                    component={DatePicker}
+                    value={values.date}
+                  />
+                </div>
+
               </div>
               <div class="md:w-[0%] mb-[0.35rem]">
                 <Button
@@ -109,8 +109,8 @@ function DistributorColletcionArchive(props) {
         )}
       </Formik>
 
-      {props.fetchingTodayDistributor ? <BundleLoader /> : <div className=' flex justify-end sticky top-28 z-auto'>
-      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[100%] overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      {props.fetchingTodayDistributor ? <BundleLoader /> : <div className=' flex justify-end sticky z-auto'>
+        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[100%] overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
             <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
@@ -123,53 +123,53 @@ function DistributorColletcionArchive(props) {
             <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /></div>
           </div>
           <div className=" overflow-scroll h-[65vh]">
-          {props.todayDistributor.map((item) => {
+            {props.todayDistributor.map((item) => {
 
-            return (
-              <div>
-                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col ">
-                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium flex-col  w-[9.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                        {item.orderSourceName}
+              return (
+                <div>
+                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col ">
+                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                      <div className=" flex font-medium flex-col  w-[9.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          {item.orderSourceName}
+                        </div>
+
+                      </div>
+
+                      <div className=" flex font-medium flex-col  w-[8.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          {item.newOrderNo}
+                        </div>
+
                       </div>
 
                     </div>
+                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                      <div className=" flex font-medium flex-col w-[7.8rem] max-xl:w-[7.8rem] max-lg:w-[4.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
-                    <div className=" flex font-medium flex-col  w-[8.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                        {item.newOrderNo}
+
+                        <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          {item.transactionNumber}
+
+                        </div>
                       </div>
+                      <div className=" flex font-medium flex-col w-[7.15rem] max-xl:w-[2.15rem] max-lg:w-[3.15rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                        <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          {item.paymentType}
 
-                    </div>
-
-                  </div>
-                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium flex-col w-[7.8rem] max-xl:w-[7.8rem] max-lg:w-[4.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-
-
-                      <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                        {item.transactionNumber}
-
+                        </div>
                       </div>
-                    </div>
-                    <div className=" flex font-medium flex-col w-[7.15rem] max-xl:w-[2.15rem] max-lg:w-[3.15rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                        {item.paymentType}
+                      <div className=" flex font-medium flex-col w-[9.36rem] max-xl:w-[8.36rem] max-lg:w-[5.86rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                        <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          {` ${dayjs(item.date).format("DD-MM-YY")}`}
 
+                        </div>
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[9.36rem] max-xl:w-[8.36rem] max-lg:w-[5.86rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                      {` ${moment(item.date).format("DD-MM-YY")}`}
 
-                    </div>
-                  </div>
-                  </div>
-                
 
-                 
-                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+
+                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium flex-col  w-[9.2rem] max-xl:w-[5.9rem] max-lg:w-[4.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {item.paymentAmount} &nbsp; {item.orderCurrencyName}
@@ -190,8 +190,8 @@ function DistributorColletcionArchive(props) {
                         </div>
 
                       </div>
-                   
-                   
+
+
                       <div className=" flex font-medium flex-col  w-[6.07rem] max-xl:w-[6.07rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 
@@ -207,18 +207,18 @@ function DistributorColletcionArchive(props) {
 
                       </div>
                     </div>
-                   
-                     
 
-                  
 
-                 
+
+
+
+
+                  </div>
                 </div>
-              </div>
 
 
-            )
-          })}
+              )
+            })}
           </div>
         </div>
       </div>}
@@ -345,7 +345,7 @@ export default connect(
 //       return 0;
 //     },
 //     render: (name, item, i) => {
-//       return <span>{` ${moment(item.date).format("DD-MM-YY")}`}</span>;
+//       return <span>{` ${dayjs(item.date).format("DD-MM-YY")}`}</span>;
 //     },
 //   },
 //   {
@@ -365,7 +365,7 @@ export default connect(
 //     },
 //     width: "8%",
 //     render: (name, item, i) => {
-//       return <span>{` ${moment(item.paymentDate).format("ll")}`}</span>;
+//       return <span>{` ${dayjs(item.paymentDate).format("ll")}`}</span>;
 //     },
 //   },
 //   ,

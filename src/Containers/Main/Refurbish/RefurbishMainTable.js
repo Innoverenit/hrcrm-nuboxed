@@ -54,7 +54,7 @@ const ProductionOrderList = (props) => {
     const [searchOnEnter, setSearchOnEnter] = useState(false);
     const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false); //Code for Search
-  const minRecordingTime = 5000; // 5 seconds
+  const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
     useEffect(() => {
         setPageNo(pageNo + 1);
@@ -231,7 +231,7 @@ const ProductionOrderList = (props) => {
   ) : (
         <>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 {/* <div class=" w-64 max-sm:w-24">
         <Input
           placeholder="Search by OrderNo "
@@ -464,8 +464,8 @@ const ProductionOrderList = (props) => {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                            <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-base text-cardBody  text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title="Notes">
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer"
@@ -479,21 +479,8 @@ const ProductionOrderList = (props) => {
                                                     </Tooltip>
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Update">
-                                                        <BorderColorOutlined
-                                                            className="!text-icon cursor-pointer"
-                                                            onClick={() => {
-                                                                props.handleTechnicianModal(true)
-                                                                handleRowData(item);
-                                                            }}
-                                                        />
-                                                    </Tooltip>
-                                                </div>
-                                            </div>
-                                            <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                <h4 class=" text-xs text-cardBody font-poppins">
+                                            <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins">
                                                     <Tooltip title="Add Lead">
                                                         <PersonAddAlt1
                                                             className="!text-icon cursor-pointer"
@@ -503,7 +490,20 @@ const ProductionOrderList = (props) => {
                                                                 handleRowData(item)
                                                             }} />
                                                     </Tooltip>
-                                                </h4>
+                                                </div>
+                                            </div>
+                                            <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-base text-cardBody text-[tomato] font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title="Edit">
+                                                        <BorderColorOutlined
+                                                            className="!text-icon cursor-pointer"
+                                                            onClick={() => {
+                                                                props.handleTechnicianModal(true)
+                                                                handleRowData(item);
+                                                            }}
+                                                        />
+                                                    </Tooltip>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -515,7 +515,7 @@ const ProductionOrderList = (props) => {
 </div>
 
 <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex max-sm:hidden  justify-between w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[orange]">High </div>
                         <div className=" w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -738,8 +738,8 @@ const ProductionOrderList = (props) => {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                            <div className=" flex font-medium   max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-base text-green-600  text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title="Notes">
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer"
@@ -753,21 +753,9 @@ const ProductionOrderList = (props) => {
                                                     </Tooltip>
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Update">
-                                                        <BorderColorOutlined
-                                                            className="!text-icon cursor-pointer"
-                                                            onClick={() => {
-                                                                props.handleTechnicianModal(true)
-                                                                handleRowData(item);
-                                                            }}
-                                                        />
-                                                    </Tooltip>
-                                                </div>
-                                            </div>
-                                            <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                <h4 class=" text-xs text-cardBody font-poppins">
+                                           
+                                            <div className=" flex font-medium flex-col  max-sm:flex-row  max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins">
                                                     <Tooltip title="Add Lead">
                                                         <PersonAddAlt1
                                                             className="!text-icon cursor-pointer"
@@ -777,7 +765,20 @@ const ProductionOrderList = (props) => {
                                                                 handleRowData(item)
                                                             }} />
                                                     </Tooltip>
-                                                </h4>
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium   max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-base text-cardBody  text-[tomato] font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title="Edit">
+                                                        <BorderColorOutlined
+                                                            className="!text-icon cursor-pointer"
+                                                            onClick={() => {
+                                                                props.handleTechnicianModal(true)
+                                                                handleRowData(item);
+                                                            }}
+                                                        />
+                                                    </Tooltip>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -789,7 +790,7 @@ const ProductionOrderList = (props) => {
 </div>
 
 <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex max-sm:hidden  justify-between w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]">Normal </div>
                         <div className=" w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -1012,8 +1013,8 @@ const ProductionOrderList = (props) => {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                            <div className=" flex font-medium   max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-base text-cardBody text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title="Notes">
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer"
@@ -1027,21 +1028,9 @@ const ProductionOrderList = (props) => {
                                                     </Tooltip>
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Update">
-                                                        <BorderColorOutlined
-                                                            className="!text-icon cursor-pointer"
-                                                            onClick={() => {
-                                                                props.handleTechnicianModal(true)
-                                                                handleRowData(item);
-                                                            }}
-                                                        />
-                                                    </Tooltip>
-                                                </div>
-                                            </div>
-                                            <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                <h4 class=" text-xs text-cardBody font-poppins">
+                                           
+                                            <div className=" flex font-medium flex-col  max-sm:flex-row  max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins">
                                                     <Tooltip title="Add Lead">
                                                         <PersonAddAlt1
                                                             className="!text-icon cursor-pointer"
@@ -1051,7 +1040,20 @@ const ProductionOrderList = (props) => {
                                                                 handleRowData(item)
                                                             }} />
                                                     </Tooltip>
-                                                </h4>
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium   max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-base text-cardBody text-[tomato] font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title="Edit">
+                                                        <BorderColorOutlined
+                                                            className="!text-icon cursor-pointer"
+                                                            onClick={() => {
+                                                                props.handleTechnicianModal(true)
+                                                                handleRowData(item);
+                                                            }}
+                                                        />
+                                                    </Tooltip>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

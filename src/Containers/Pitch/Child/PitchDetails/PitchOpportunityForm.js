@@ -406,7 +406,7 @@ function PitchOpportunityForm (props) {
                     label={
                       <FormattedMessage
                         id="app.assignedto"
-                        defaultMessage="Assigned to"
+                        defaultMessage="Assigned"
                       />
                     }
                     component={SelectComponent}

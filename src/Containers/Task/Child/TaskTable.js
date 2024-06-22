@@ -349,7 +349,7 @@ const TaskTable = (props) => {
     },
 
     {
-      title: "Assigned To",
+      title: "Assigned",
     // dataIndex: "submittedBy",
 
 width: 8,
@@ -577,9 +577,8 @@ return (
                   <Tooltip title="Edit">
                     {props.userId === item.userId && (
                       <BorderColorIcon
-                        type="edit"
-                        style={{ cursor: "pointer", fontSize: "0.8rem" }}
-                        onClick={() => {
+                        type="edit" class=" cursor-pointer !text-icon text-[tomato]"
+                          onClick={() => {
                           props.setEditTask(item);
                           handleUpdateTaskModal(true);
                         }}
@@ -1162,7 +1161,7 @@ handleSetTaskNameId={handleSetTaskNameId}
 //     //     },
 //     //   },
 //     //   {
-//     //     headerName: "Assigned To",
+//     //     headerName: "Assigned",
 //     //     //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
 //     //     field: "assignedToName",
 //     //     width: 90,
@@ -1590,7 +1589,7 @@ handleSetTaskNameId={handleSetTaskNameId}
 //       },
 
 //       {
-//         title: "Assigned To",
+//         title: "Assigned",
 //       // dataIndex: "submittedBy",
  
 //   width: 8,

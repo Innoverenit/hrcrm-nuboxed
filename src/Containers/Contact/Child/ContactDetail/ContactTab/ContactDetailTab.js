@@ -11,6 +11,7 @@ import { handleDocumentUploadModal } from "../../../ContactAction";
 import { handleContactReactSpeechModal,handleContactOpportunityModal } from "../../../ContactAction";
 import { getOpportunityListByContactId } from "../../../ContactAction";
 import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
 const LinkedDocuments =lazy(()=>import("./Document/LinkedDocuments"));
 const ReactContactSpeechModal =lazy(()=>import("../ReactContactSpeechModal"));
@@ -149,7 +150,7 @@ class ContactDetailTab extends Component {
             <TabPane
               tab={
                 <>
-                 <InsertDriveFileIcon style={{fontSize:"1.1rem"}}/>
+                 <LightbulbIcon style={{fontSize:"1.1rem"}}/>
                     <span class=" ml-1">
                    
                     {/* <FormattedMessage

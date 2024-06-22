@@ -112,9 +112,9 @@ class AccountContactTable extends Component {
 
         return (
             <>
-                <div className=' flex justify-end sticky  z-auto'>
-                    <div class="rounded-lg m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                        <div className=" flex justify-between w-[97.5%] px-2 bg-transparent font-bold sticky top-0 z-10">
+                <div className=' flex  sticky  z-auto'>
+                    <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                        <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                             <div className=" md:w-[5.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
                             <div className=" md:w-[6.01rem]"><FormattedMessage id="app.email" defaultMessage="Email" /></div>
                             <div className=" md:w-[4.8rem] "><FormattedMessage id="app.Mobile No" defaultMessage="Mobile No" /></div>
@@ -135,7 +135,7 @@ class AccountContactTable extends Component {
                             const data = {}
                             return (
                                 <div>
-                                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
+                                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                                     >
                                         <div class="flex">
 
@@ -245,7 +245,7 @@ class AccountContactTable extends Component {
 <div class=" text-xs text-cardBody font-poppins">
     <Tooltip title="Edit">
         <BorderColorIcon
-            className="!text-xl cursor-pointer text-[grey]"
+            className="!text-icon cursor-pointer text-[grey]"
             onClick={() => {
                 this.props.setEditDistributorContact(item);
                 this.props.handleUpdateDistributorContactModal(true);

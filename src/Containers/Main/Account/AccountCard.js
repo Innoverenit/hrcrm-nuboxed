@@ -49,8 +49,8 @@ function AccountTable(props) {
         dataLength={props.distributorsByUserId.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingDistributorsByUserId?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
-        height={"75vh"}
+        loader={props.fetchingDistributorsByUserId?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
+        height={"80vh"}
       >
         {props.distributorsByUserId.map((item) => {
           return (

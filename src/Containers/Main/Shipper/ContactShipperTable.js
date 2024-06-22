@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { StyledTable } from "../../../Components/UI/Antd";
 import {
   getContactShipperList,
   handleUpdateShipperContactModal,
   setEditShipperContact,
 } from "./ShipperAction";
 import { Tooltip, Input, Button, Space } from "antd";
-import { EditOutlined, SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 // import UpdateShipperContactModal from "./UpdateShipperContactModal";
 import Highlighter from "react-highlight-words";
@@ -85,9 +84,9 @@ class ShipperContactTable extends Component {
     onFilter: (value, record) =>
       record[dataIndex]
         ? record[dataIndex]
-            .toString()
-            .toLowerCase()
-            .includes(value.toLowerCase())
+          .toString()
+          .toLowerCase()
+          .includes(value.toLowerCase())
         : "",
     onFilterDropdownVisibleChange: (visible) => {
       if (visible) {
@@ -159,7 +158,7 @@ class ShipperContactTable extends Component {
         render: (name, item, i) => {
           return (
             <Tooltip title="Edit">
-             <BorderColorIcon
+              <BorderColorIcon
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   this.props.setEditShipperContact(item);
@@ -180,11 +179,11 @@ class ShipperContactTable extends Component {
     }
     return (
       <>
-       <div className="flex justify-end sticky top-28 z-auto">
-          <div className="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div className="flex justify-end sticky top-28 z-auto">
+          <div className="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className="flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
               <div className="md:w-[0.5rem]"></div>
-            
+
               <div className="md:w-[5.1rem]">
                 <FormattedMessage id="app.name" defaultMessage="Name" />
               </div>
@@ -209,8 +208,8 @@ class ShipperContactTable extends Component {
                     <div className="flex rounded mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col">
                       <div className="flex w-3/4">
                         <div className="flex font-medium flex-col md:w-[1.56rem] max-sm:w-full">
-                        {` ${item.salutation || ""} ${item.firstName ||
-            ""} ${item.middleName || ""} ${item.lastName || ""}`}
+                          {` ${item.salutation || ""} ${item.firstName ||
+                            ""} ${item.middleName || ""} ${item.lastName || ""}`}
                         </div>
                         <div className="flex font-medium flex-col md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                           <div className="text-xs text-cardBody font-poppins text-center">
@@ -233,16 +232,16 @@ class ShipperContactTable extends Component {
                           </div>
                         </div>
                         <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
-                          <div className="text-xs text-cardBody font-poppins text-center">
-                          <Tooltip title="Edit">
-             <BorderColorIcon
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  this.props.setEditShipperContact(item);
-                  this.props.handleUpdateShipperContactModal(true);
-                }}
-              />
-            </Tooltip>
+                          <div className="text-icon text-cardBody font-poppins text-center">
+                            <Tooltip title="Edit">
+                              <BorderColorIcon
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  this.props.setEditShipperContact(item);
+                                  this.props.handleUpdateShipperContactModal(true);
+                                }}
+                              />
+                            </Tooltip>
                           </div>
                         </div>
                       </div>

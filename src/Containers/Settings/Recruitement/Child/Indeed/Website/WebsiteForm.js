@@ -93,7 +93,7 @@ const { Option } = Select;
                 </FlexContainer>
                 <Spacer />
                 {/* <FlexContainer justifyContent="space-between">
-                  <StyledLabel>Candidate  From This Channel Will be Assigned to</StyledLabel> 
+                  <StyledLabel>Candidate  From This Channel Will be Assigned</StyledLabel> 
                   <div style={{ width: "45%" }}>  
                       <Field
                         name="assignToUserId"
@@ -111,7 +111,7 @@ const { Option } = Select;
                       <FlexContainer justifyContent="space-between">
                       <div style={{ width: "44%" }}>
                       <FlexContainer justifyContent="space-between">                 
-                      <StyledLabel >Talent From This Channel Will be Assigned to</StyledLabel> 
+                      <StyledLabel >Talent From This Channel Will be Assigned</StyledLabel> 
                               
                       {/* <Switch                                              
              

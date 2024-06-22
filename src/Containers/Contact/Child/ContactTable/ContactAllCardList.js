@@ -132,8 +132,8 @@ function ContactAllCardList(props) {
     <>
       
      
-      <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-      <div className=" max-sm:hidden flex justify-between w-[95%] max-lg:w-[89%] max-xl:w-[96%] p-2 bg-transparent font-bold sticky top-0 z-10">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className=" max-sm:hidden flex justify-between w-[99%] max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold sticky z-10">
         <div className=" w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <FormattedMessage
                   id="app.name"
@@ -175,7 +175,7 @@ function ContactAllCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllContacts?<div class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
         
         { !fetchingAllContacts && allContacts.length === 0 ?<NodataFoundPage />:allContacts.map((item,index) =>  {
@@ -203,7 +203,7 @@ function ContactAllCardList(props) {
                     return (
                       <div>
                       <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
                           <div className=" flex font-medium  w-[14rem] max-sm:flex-row  max-sm:justify-between max-sm:w-wk  ">
@@ -352,7 +352,7 @@ function ContactAllCardList(props) {
               </div>
      
                         
-              <div class="rounded-full w-5 h-5 cursor-pointer ">
+              <div class="rounded-full  cursor-pointer ">
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
         <span class=" mr-2 text-xs cursor-pointer"
@@ -376,7 +376,7 @@ function ContactAllCardList(props) {
       )}
     </Tooltip>
                   </div>
-                  <div class=" max-sm:flex justify-end mt-1 max-sm:w-full">
+                  <div class=" max-sm:flex justify-end  max-sm:w-full">
                   <Tooltip title={item.emailId}>
      
       <MailOutlineIcon

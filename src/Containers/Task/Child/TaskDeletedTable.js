@@ -318,7 +318,7 @@ class TaskDeletedTable extends React.Component {
         },
       },
       {
-        headerName: "Assigned To",
+        headerName: "Assigned",
         //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
         field: "assignedToName",
         width:90,

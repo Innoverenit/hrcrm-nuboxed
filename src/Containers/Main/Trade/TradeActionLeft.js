@@ -2,7 +2,6 @@ import React,{useEffect,useState,useRef} from "react";
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
 import {
     inputTradeSearch,ClearReducerDataOfTrade,getInventoryAlllist
 } from "./TradeAction";
@@ -20,7 +19,7 @@ function TradeActionLeft (props) {
     const [pageNo, setPage] = useState(0);
     const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false); //Code for Search
-  const minRecordingTime = 5000; // 5 seconds
+  const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
 
     // useEffect(() => {
@@ -122,7 +121,7 @@ const {
             <div class="flex items-center">
 
                 <Tooltip
-                    title={<FormattedMessage id="app.cardview" defaultMessage="Card View" />}>
+                    title={<FormattedMessage id="app.all" defaultMessage="ALL" />}>
 {/* <Badge
           size="small"
           count={(props.viewType === "table" && props.countSupplier.supplierCount) || 0}
@@ -136,7 +135,9 @@ const {
                     >
 
                         <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
-                            <TocIcon className="text-white" /></Avatar>
+                        {/*   <TocIcon className="text-white" />*/}
+                        <div className="text-white">ALL</div>
+                            </Avatar>
 
                     </span>
                     {/* </Badge> */}

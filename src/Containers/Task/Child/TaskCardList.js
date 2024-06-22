@@ -10,18 +10,16 @@ import {
   CloseCircleOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
-import moment from "moment";
+import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Tooltip, Button,  } from "antd";
-import dayjs from "dayjs";
 import { DeleteOutlined } from "@ant-design/icons";
 import { StyledPopconfirm, } from "../../../Components/UI/Antd";
 import StairsIcon from '@mui/icons-material/Stairs';
-//import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
  import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import {
@@ -195,10 +193,10 @@ const TaskCardList = (props) => {
   return (
     <>
     
-          <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[4.54rem] text-[red]">Urgent </div>
+          <div className=' flex sticky  z-auto'>
+          <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" md:w-[4.54rem] text-white bg-red-600">Urgent </div>
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
@@ -237,7 +235,7 @@ const TaskCardList = (props) => {
         next={handleLoadMore}
       hasMore={hasMore}
         loader={fetchingHighTaskList?<div class="flex justify-center" >Loading...</div>:null}
-        height={"19vh"}
+        height={"22vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {highTaskList.map((item) => { 
@@ -251,19 +249,19 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
-                      <div class="rounded-[50%] h-[2.1875em] w-[3.1875em] bg-[red]"></div>
+                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]" ></div>
+                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
+                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]" ></div>
                     )}
                     <div class=" w-2"></div>
           <div class=" flex w-[8rem] max-sm:w-full">
@@ -307,7 +305,7 @@ const TaskCardList = (props) => {
                        
                       
                        <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
-                        {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
+                        {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
                                 <div class="flex flex-col w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
@@ -407,7 +405,7 @@ const TaskCardList = (props) => {
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium flex-col w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
-                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned To</div> */}
+                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs text-cardBody font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                   <span>
               {item.assignedToName === null ? (
@@ -508,7 +506,7 @@ const TaskCardList = (props) => {
      </div> 
      )}
      </div>
-     <div className="flex font-medium flex-col w-[1.9rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
              {item.assignedToName !== item.submittedBy ? 
                          <Tooltip title="Feedback">
                          <FeedbackIcon
@@ -516,7 +514,7 @@ const TaskCardList = (props) => {
                                     handleTaskFeedbackDrawerModal(true);
                                     handleSetTaskNameId(item);
                                   }}
-                                  className="!text-base cursor-pointer"
+                                  className="!text-icon cursor-pointer"
                                  
                                 />
                              </Tooltip>
@@ -527,7 +525,7 @@ const TaskCardList = (props) => {
      </div> 
 
 
-     <div className="flex font-medium flex-col w-[1.7rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
           <UploadOutlined
@@ -540,10 +538,10 @@ const TaskCardList = (props) => {
 
      
      </div> 
-     <div className="flex font-medium flex-col w-[2.6rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-     <StairsIcon  className="!text-xl cursor-pointer text-[green]"
+     <StairsIcon  className="!text-icon cursor-pointer text-[green]"
          onClick={() => {
           handleTaskStepperDrawerModal(true);
           handleSetTaskNameId(item);
@@ -606,14 +604,14 @@ const TaskCardList = (props) => {
 </div>
                           
 <div class="flex  max-sm:justify-end max-sm:w-wk items-center">    
-                    <div class="flex flex-col w-6 max-sm:flex-row  max-sm:w-auto justify-evenly  ">
+                    <div class="flex max-sm:flex-row  max-sm:w-auto justify-evenly  ">
                     <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
                   handleTaskNotesDrawerModal(true);
                   handleSetTaskNameId(item);
                 }}
-                className="!text-xl cursor-pointer text-[green]"
+                className="!text-icon cursor-pointer text-[green]"
               />
            </Tooltip>
   
@@ -633,21 +631,21 @@ const TaskCardList = (props) => {
                                     props.handleTaskDocumentDrawerModal(true);
                                     handleSetTaskNameId(item);
                                   }}
-                                  className="!text-xl cursor-pointer"
+                                  className="!text-icon cursor-pointer"
                                  
                                 />
                              </Tooltip>
                     {/* )} */}
         
             </div>
-                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto justify-evenly ">
+                    {/*<div class="flex flex-row w-6 max-sm:flex-row max-sm:w-auto justify-evenly ">*/}
    
    
           <Tooltip title="Edit">
           {props.userId === item.userId && (
                       <BorderColorIcon
                         type="edit"
-                        className="!text-xl cursor-pointer"                   
+                        className="!text-icon cursor-pointer"                   
                         onClick={() => {
                           props.setEditTask(item);
                           handleUpdateTaskModal(true);
@@ -672,7 +670,7 @@ const TaskCardList = (props) => {
                                 <Tooltip title="Delete">
                             <DeleteOutlined
                               type="delete"
-                              className="!text-lg cursor-pointer text-[red]"
+                              className="!text-icon cursor-pointer text-[red]"
                               
                             />
                             </Tooltip>
@@ -686,7 +684,7 @@ const TaskCardList = (props) => {
                      </div>
 
                             </div>
-                        </div>
+                      //  { </div>}
 
 
                     )
@@ -695,10 +693,10 @@ const TaskCardList = (props) => {
       </div>
 </div>
 
-<div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[4.54rem] text-[orange]">High </div>
+<div className=' flex sticky  z-auto'>
+          <div class="rounded m-1 max-sm:m-1  p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
+          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" md:w-[4.54rem] bg-orange-600 text-white">High </div>
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
@@ -737,7 +735,7 @@ const TaskCardList = (props) => {
         next={handleLoadMoreMedium}
       hasMore={hasMore}
         loader={fetchingMediumTaskList?<div class="flex justify-center" >Loading...</div>:null}
-        height={"19vh"}
+        height={"22vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {mediumTaskList.map((item) => { 
@@ -751,19 +749,19 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                           <div className="flex rounded  mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
-                      <div class="rounded-[50%] h-[2.1875em] w-[3.1875em] bg-[red]"></div>
+                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]" ></div>
+                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
+                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]" ></div>
                     )}
                     <div class=" w-2"></div>
           <div class=" flex w-[8rem] max-sm:w-full">
@@ -807,7 +805,7 @@ const TaskCardList = (props) => {
                        
                       
                        <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
-                        {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
+                        {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
                                 <div class="flex flex-col w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
@@ -907,7 +905,7 @@ const TaskCardList = (props) => {
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium flex-col w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
-                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned To</div> */}
+                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs text-cardBody font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                   <span>
               {item.assignedToName === null ? (
@@ -1008,7 +1006,7 @@ const TaskCardList = (props) => {
      </div> 
      )}
      </div>
-     <div className="flex font-medium flex-col w-[1.9rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
              {item.assignedToName !== item.submittedBy ? 
                          <Tooltip title="Feedback">
                          <FeedbackIcon
@@ -1016,7 +1014,7 @@ const TaskCardList = (props) => {
                                     handleTaskFeedbackDrawerModal(true);
                                     handleSetTaskNameId(item);
                                   }}
-                                  className="!text-base cursor-pointer"
+                                  className="!text-icon cursor-pointer"
                                  
                                 />
                              </Tooltip>
@@ -1027,7 +1025,7 @@ const TaskCardList = (props) => {
      </div> 
 
 
-     <div className="flex font-medium flex-col w-[1.7rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
           <UploadOutlined
@@ -1040,10 +1038,10 @@ const TaskCardList = (props) => {
 
      
      </div> 
-     <div className="flex font-medium flex-col w-[2.6rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-     <StairsIcon  className="!text-xl cursor-pointer text-[green]"
+     <StairsIcon  className="!text-icon cursor-pointer text-[green]"
          onClick={() => {
           handleTaskStepperDrawerModal(true);
           handleSetTaskNameId(item);
@@ -1106,14 +1104,14 @@ const TaskCardList = (props) => {
 </div>
                           
 <div class="flex  max-sm:justify-end max-sm:w-wk items-center">    
-                    <div class="flex flex-col w-6 max-sm:flex-row  max-sm:w-auto justify-evenly  ">
+                    <div class="flex   max-sm:flex-row  max-sm:w-auto justify-evenly  ">
                     <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
                   handleTaskNotesDrawerModal(true);
                   handleSetTaskNameId(item);
                 }}
-                className="!text-xl cursor-pointer text-[green]"
+                className="!text-icon cursor-pointer text-[green]"
               />
            </Tooltip>
   
@@ -1133,21 +1131,21 @@ const TaskCardList = (props) => {
                                     props.handleTaskDocumentDrawerModal(true);
                                     handleSetTaskNameId(item);
                                   }}
-                                  className="!text-xl cursor-pointer"
+                                  className="!text-icon cursor-pointer"
                                  
                                 />
                              </Tooltip>
                     {/* )} */}
         
             </div>
-                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto justify-evenly ">
+                    <div class="flex  max-sm:flex-row max-sm:w-auto justify-evenly ">
    
    
           <Tooltip title="Edit">
           {props.userId === item.userId && (
                       <BorderColorIcon
                         type="edit"
-                        className="!text-xl cursor-pointer"                   
+                        className="!text-icon cursor-pointer"                   
                         onClick={() => {
                           props.setEditTask(item);
                           handleUpdateTaskModal(true);
@@ -1172,7 +1170,7 @@ const TaskCardList = (props) => {
                                 <Tooltip title="Delete">
                             <DeleteOutlined
                               type="delete"
-                              className="!text-lg cursor-pointer text-[red]"
+                              className="!text-icon cursor-pointer text-[red]"
                               
                             />
                             </Tooltip>
@@ -1195,10 +1193,10 @@ const TaskCardList = (props) => {
       </div>
 </div>
 
-<div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[4.54rem] text-[teal]">Normal </div>
+<div className=' flex sticky  z-auto'>
+          <div class="rounded  m-1 max-sm:m-1  p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
+          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" md:w-[4.54rem] bg-teal-600 text-white">Normal </div>
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
@@ -1237,7 +1235,7 @@ const TaskCardList = (props) => {
         next={handleLoadMoreLow}
       hasMore={hasMore}
         loader={fetchingLowTaskList?<div class="flex justify-center" >Loading...</div>:null}
-        height={"19vh"}
+        height={"22vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {lowTaskList.map((item) => { 
@@ -1251,19 +1249,19 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
-                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                            <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                                 <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
-                      <div class="rounded-[50%] h-[2.1875em] w-[3.1875em] bg-[red]"></div>
+                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]" ></div>
+                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
+                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]" ></div>
                     )}
                     <div class=" w-2"></div>
           <div class=" flex w-[8rem] max-sm:w-full">
@@ -1307,7 +1305,7 @@ const TaskCardList = (props) => {
                        
                       
                        <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
-                        {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
+                        {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
                                 <div class="flex flex-col w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
@@ -1326,7 +1324,7 @@ const TaskCardList = (props) => {
                    
                     <ButtonGroup >
          
-          <StatusIcon
+          <StatusIcon class=" !text-icon"
   type="To Start"
   iconType={<HourglassEmptyIcon />} 
  // iconType="fa-hourglass-start"
@@ -1340,7 +1338,7 @@ const TaskCardList = (props) => {
   }
 />
         
-            <StatusIcon
+            <StatusIcon class=" !text-icon"
               type="In Progress"
              iconType={<HourglassTopIcon/>}
               tooltip="In Progress"
@@ -1354,7 +1352,7 @@ const TaskCardList = (props) => {
               }
             />
          
-            <StatusIcon
+            <StatusIcon class=" !text-icon"
               type="Completed"
             iconType={<HourglassBottomIcon/>}
               tooltip="Completed"
@@ -1394,7 +1392,7 @@ const TaskCardList = (props) => {
 </div>
                      
                    </div>
-                   <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                   <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}
@@ -1407,7 +1405,7 @@ const TaskCardList = (props) => {
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium flex-col w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
-                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned To</div> */}
+                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs text-cardBody font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                   <span>
               {item.assignedToName === null ? (
@@ -1508,7 +1506,7 @@ const TaskCardList = (props) => {
      </div> 
      )}
      </div>
-     <div className="flex font-medium flex-col w-[1.9rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
              {item.assignedToName !== item.submittedBy ? 
                          <Tooltip title="Feedback">
                          <FeedbackIcon
@@ -1516,7 +1514,7 @@ const TaskCardList = (props) => {
                                     handleTaskFeedbackDrawerModal(true);
                                     handleSetTaskNameId(item);
                                   }}
-                                  className="!text-base cursor-pointer"
+                                  className="!text-icon cursor-pointer"
                                  
                                 />
                              </Tooltip>
@@ -1527,7 +1525,7 @@ const TaskCardList = (props) => {
      </div> 
 
 
-     <div className="flex font-medium flex-col w-[1.7rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
           <UploadOutlined
@@ -1540,10 +1538,10 @@ const TaskCardList = (props) => {
 
      
      </div> 
-     <div className="flex font-medium flex-col w-[2.6rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-     <StairsIcon  className="!text-xl cursor-pointer text-[green]"
+     <StairsIcon  className="!text-icon cursor-pointer text-[green]"
          onClick={() => {
           handleTaskStepperDrawerModal(true);
           handleSetTaskNameId(item);
@@ -1606,14 +1604,14 @@ const TaskCardList = (props) => {
 </div>
                           
 <div class="flex  max-sm:justify-end max-sm:w-wk items-center">    
-                    <div class="flex flex-col w-6 max-sm:flex-row  max-sm:w-auto justify-evenly  ">
+                    <div class="flex  max-sm:flex-row  max-sm:w-auto justify-evenly  ">
                     <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
                   handleTaskNotesDrawerModal(true);
                   handleSetTaskNameId(item);
                 }}
-                className="!text-xl cursor-pointer text-[green]"
+                className="!text-icon cursor-pointer text-[green]"
               />
            </Tooltip>
   
@@ -1633,21 +1631,21 @@ const TaskCardList = (props) => {
                                     props.handleTaskDocumentDrawerModal(true);
                                     handleSetTaskNameId(item);
                                   }}
-                                  className="!text-xl cursor-pointer"
+                                  className="!text-icon cursor-pointer"
                                  
                                 />
                              </Tooltip>
                     {/* )} */}
         
             </div>
-                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto justify-evenly ">
+                    <div class="flex max-sm:flex-row max-sm:w-auto justify-evenly ">
    
    
           <Tooltip title="Edit">
           {props.userId === item.userId && (
                       <BorderColorIcon
                         type="edit"
-                        className="!text-xl cursor-pointer"                   
+                        className="!text-icon cursor-pointer"                   
                         onClick={() => {
                           props.setEditTask(item);
                           handleUpdateTaskModal(true);
@@ -1672,7 +1670,7 @@ const TaskCardList = (props) => {
                                 <Tooltip title="Delete">
                             <DeleteOutlined
                               type="delete"
-                              className="!text-lg cursor-pointer text-[red]"
+                              className="!text-icon cursor-pointer text-[red]"
                               
                             />
                             </Tooltip>

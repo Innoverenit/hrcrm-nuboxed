@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Button, Switch} from "antd";
 import { MainWrapper } from "../../../../../../Components/UI/Elements";
 import { Formik, Form, Field } from "formik";
@@ -105,7 +105,7 @@ function CommercialsForm(props) {
                     inlineLabel
                   />
                   </div>
-                  <h4>Updated on {moment(props.commercialsByCustomerId && props.commercialsByCustomerId.length && props.commercialsByCustomerId[0].lastUpdatedOn).format("ll")} by {props.commercialsByCustomerId && props.commercialsByCustomerId.length && props.commercialsByCustomerId[0].ownerName}</h4>
+                  <h4>Updated on {dayjs(props.commercialsByCustomerId && props.commercialsByCustomerId.length && props.commercialsByCustomerId[0].lastUpdatedOn).format("ll")} by {props.commercialsByCustomerId && props.commercialsByCustomerId.length && props.commercialsByCustomerId[0].ownerName}</h4>
                 </div>
                 <Spacer />
                 <Spacer/>

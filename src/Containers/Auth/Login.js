@@ -12,10 +12,10 @@ import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
 import {
   EyeInvisibleOutlined, EyeOutlined,
 } from "@ant-design/icons";
-// import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
+import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
 import FWLogo from "../../Assets/Images/name.jpg";//ct
-import FWLogo1 from "../../Assets/Images/dsdde.jpg"; //ct
-// import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";
+// import FWLogo1 from "../../Assets/Images/dsdde.jpg"; //ct
+import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";
 
 
 /**
@@ -97,7 +97,7 @@ class Login extends Component {
           >
             <img
               className="big-logo"
-              src={FWLogo}
+              src={FWLogo2}
               style={{ width: 200 }}
               alt="Tekorero logo"
             />

@@ -42,10 +42,12 @@ import {
   handleDealContactsDrawerModal,
   LinkStageDeal,
   sendToWonCard,
-  deleteDealsData
+  deleteDealsData,
+  handleOwnModal
 } from "../../DealAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddDealsContactDrawerModal from "../UpdateDeal/AddDealsContactDrawerModal";
+import AddDealsOwnDrawerModal from "./AddDealsOwnDrawerModal";
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const DealSelectStages =lazy(()=>import("./DealSelectStages"));
@@ -114,7 +116,7 @@ function DealCardList(props) {
             return (
               <div class="rounded-md border-2 justify-center bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9rem] 
               text-[#444444] m-2 p-1 w-[16vw] flex flex-col max-sm:w-wk  ">
-                <div class=" flex  flex-nowrap items-center h-[2.81em]"
+                <div class=" flex  flex-nowrap items-center h-8"
                 >
                   <div class=" mr-[0.2rem] flex basis-[15%]">
                     <MultiAvatar
@@ -130,7 +132,7 @@ function DealCardList(props) {
                   >
                     <div 
                       class="font-semibold text-[#337df4] cursor-pointer text-sm ">
-                                                               <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
+         <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
                       {/* <Link
@@ -293,15 +295,19 @@ function DealCardList(props) {
                               type="check-circle"
                               theme="twoTone"
                               twoToneColor="#24D8A7"
-                              onClick={() =>
-                                props.sendToWonCard(
-                                  item.invOpportunityId,
+                              // onClick={() =>
+                              //   props.sendToWonCard(
+                              //     item.invOpportunityId,
 
-                                  {
-                                    wonInd: true,
-                                  }
-                                )
-                              }
+                              //     {
+                              //       wonInd: true,
+                              //     }
+                              //   )
+                              // }
+                              onClick={() => {
+                                props.handleOwnModal(true);
+                                handleSetCurrentItem(item);
+                              }}
                             />
                           </Tooltip>
                         
@@ -435,6 +441,13 @@ function DealCardList(props) {
         handleSetCurrentItem={handleSetCurrentItem}
       />
 
+<AddDealsOwnDrawerModal
+        currentItem={currentItem}
+        addOwnModal={props.addOwnModal}
+        handleOwnModal={props.handleOwnModal}
+        handleSetCurrentItem={handleSetCurrentItem}
+      />
+
     </>
   );
 }
@@ -468,6 +481,7 @@ const mapStateToProps = ({ auth, deal, opportunity }) => ({
   allRecruitmentByOppId: opportunity.allRecruitmentByOppId,
   allRecruitmentDetailsByOppId: opportunity.allRecruitmentDetailsByOppId,
   fetchingOpportunitySkills: opportunity.fetchingOpportunitySkills,
+  addOwnModal: deal.addOwnModal
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -496,6 +510,7 @@ const mapDispatchToProps = (dispatch) =>
       LinkStageOpportunity,
       emptyDeals,
       LinkStageDeal,
+      handleOwnModal,
     },
     dispatch
   );

@@ -2239,6 +2239,48 @@ export const distributorReducer = (state = initialState, action) => {
             return item;
           }
         }),
+        highDistributorOrder: state.highDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        mediumDistributorOrder: state.mediumDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        lowDistributorOrder: state.lowDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        highCompleteOrder: state.highCompleteOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        mediumCompleteOrder: state.mediumCompleteOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        lowCompleteOrder: state.lowCompleteOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.UPDATE_OFFER_PRICE_FAILURE:
       return {

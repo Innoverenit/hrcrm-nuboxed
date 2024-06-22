@@ -127,7 +127,7 @@ class InvestorLinkedDocuments extends Component {
     return (
       <>
           <div className=' flex justify-end sticky top-28 z-auto'>          
-<div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+<div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                   <div className=" flex  w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                   
                   <div className="md:w-[9.7rem]">Date</div>
@@ -186,7 +186,7 @@ class InvestorLinkedDocuments extends Component {
             >
               <DownloadIcon
                 type="download"
-                style={{ cursor: "pointer" ,fontSize:"1.25rem"}}
+               class=" cursor-pointer !text-icon bg-green-600"
               />
             </a>
 
@@ -199,7 +199,8 @@ class InvestorLinkedDocuments extends Component {
               title="Do you want to delete?"
             //   onConfirm={() => deleteDocument(item.documentId)}
            >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", fontSize:"1.25rem",color: "red" }} />
+              <DeleteOutlined type="delete"
+              class=" cursor-pointer !text-icon  bg-red-600 " />
             </StyledPopconfirm>
 
                                       </div>

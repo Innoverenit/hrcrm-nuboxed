@@ -306,6 +306,8 @@ const initialState = {
   rejectPhoneListError: false,
 
   rejectedReasonModal: false,
+
+  custoModal:false,
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -465,15 +467,15 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         addingReceivedUser: false,
-        addCreateAwb: false,
-        addAwbNo: false
+        // addCreateAwb: false,
+        // addAwbNo: false
       };
     case types.ADD_RECEIVED_FAILURE:
       return {
         ...state,
         addingReceivedUser: false,
         addingReceivedUserError: true,
-        addCreateAwb: false,
+        // addCreateAwb: false,
       };
 
 
@@ -1201,6 +1203,11 @@ export const inventoryReducer = (state = initialState, action) => {
           item.orderPhoneId === action.payload.orderPhoneId
             ? action.payload : item
         ),
+        phoneListById: state.phoneListById.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload : item
+        ),
+        
       };
     case types.UPDATE_DISPATCH_INSPECTION_BUTTON_FAILURE:
       return {
@@ -1619,6 +1626,11 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingInventoryLocationRecords: false,
         fetchingInventoryLocationRecordsError: true,
       };
+
+      
+    case types.HANDLE_CUSTOM_MODAL:
+      return { ...state, custoModal: action.payload };
+
     default:
       return state;
   }

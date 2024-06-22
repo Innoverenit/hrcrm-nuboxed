@@ -9,7 +9,6 @@ import {
   CloseCircleOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
-import moment from "moment";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -144,7 +143,7 @@ const TaskDataCardList = (props) => {
     <>
     
           <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
@@ -254,7 +253,7 @@ const TaskDataCardList = (props) => {
                        
                       
                        <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
-                        {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
+                        {`${dayjs.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
                                 <div class="flex flex-col w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
@@ -354,7 +353,7 @@ const TaskDataCardList = (props) => {
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium flex-col w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
-                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned To</div> */}
+                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs text-cardBody font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                   <span>
               {item.assignedToName === null ? (
@@ -490,7 +489,7 @@ const TaskDataCardList = (props) => {
      <div className="flex font-medium flex-col w-[2.6rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-     <StairsIcon  className="!text-xl cursor-pointer text-[green]"
+     <StairsIcon  className="!text-icon cursor-pointer text-[green]"
          onClick={() => {
           handleTaskStepperDrawerModal(true);
           handleSetTaskNameId(item);
@@ -560,7 +559,7 @@ const TaskDataCardList = (props) => {
                   handleTaskNotesDrawerModal(true);
                   handleSetTaskNameId(item);
                 }}
-                className="!text-xl cursor-pointer text-[green]"
+                className=" !text-icon cursor-pointer text-[green]"
               />
            </Tooltip>
   
@@ -580,7 +579,7 @@ const TaskDataCardList = (props) => {
                                     props.handleTaskDocumentDrawerModal(true);
                                     handleSetTaskNameId(item);
                                   }}
-                                  className="!text-xl cursor-pointer"
+                                  className="!text-icon cursor-pointer"
                                  
                                 />
                              </Tooltip>
@@ -594,7 +593,7 @@ const TaskDataCardList = (props) => {
           {props.userId === item.userId && (
                       <BorderColorIcon
                         type="edit"
-                        className="!text-xl cursor-pointer"                   
+                        className="!text-icon cursor-pointer"                   
                         onClick={() => {
                           props.setEditTask(item);
                           handleUpdateTaskModal(true);

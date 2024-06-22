@@ -75,7 +75,7 @@ function AddOrderInAccount(props) {
                 paymentInTerms: "",
                  customPayment: "0",
                 comments: "",
-              
+                lobDetsilsId:"",
                 orderCurrencyId: "",
                 totalPhoneCount: "",
                 advancePayment: "50",

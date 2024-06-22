@@ -380,9 +380,9 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
     const tableHeight = tab && tab.offsetHeight * 0.75;
   return (
     <>
-    <div className=' flex  sticky top-28 z-auto'>
-    <div class="rounded m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-      <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+    <div className=' flex  sticky z-auto'>
+    <div class="rounded m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[16rem]">Name</div>
         <div className=" md:w-[5.1rem]">Start Date</div>
         <div className=" md:w-[6.21rem] ">End Date</div>
@@ -428,7 +428,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
           return (
             <div>
                <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                 <div class="flex ">
                 <div className=" flex font-medium flex-col md:w-[15.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -539,13 +539,9 @@ width={30}
                     <div class=" text-xs text-cardBody font-poppins">
                       <Tooltip title={item.description}>
            
-          <InfoIcon 
-          
-              // type="edit"
-              style={{ cursor: "pointer",fontSize:"1.25rem" }}
-             
-            />
-          
+          <InfoIcon  // type="edit"
+             className=" !text-icon cursor-pointer text-blue-600  "
+              />
           </Tooltip>
                     </div>
                   </div>
@@ -553,7 +549,7 @@ width={30}
                   <Tooltip title="Edit">
              {user.opportunityUpdateInd ===true && (
           <BorderColorIcon 
-          className=" !text-xl cursor-pointer text-[tomato]"
+          className=" !text-icon cursor-pointer text-[tomato]"
               onClick={() => {
                 props.setEditCustomerOpportunity(item);
                 handleUpdateCustomerOpportunityModal(true);

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { getDeleteHistory } from "./SuppliesAction";
 import ReInstateSupplies from "./ReInstateSupplies";
 import InfiniteScroll from "react-infinite-scroll-component";
-import moment from "moment";
+import dayjs from "dayjs";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
@@ -19,8 +19,8 @@ function SuppliesDeletedTable(props) {
   return (
     <>
    <div className=" flex justify-end sticky  z-auto">
-        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[1rem] max-xl:w-[2rem]"></div>
             <div className=" w-[6.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">HSN</div>
             <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
@@ -38,13 +38,13 @@ function SuppliesDeletedTable(props) {
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingDeletedSuppliesHistory ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-            height={"75vh"}
+            height={"80vh"}
             style={{overflowX:"hidden"}}
           >
             {props.deleteSuppliesHistory.length ?
               <>
                 {props.deleteSuppliesHistory.map((item) => {
-                    const currentDate = moment().format("DD/MM/YYYY");
+                    const currentDate = dayjs().format("DD/MM/YYYY");
                   return (
                     <>
                       <div className="flex rounded justify-center bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
@@ -72,7 +72,7 @@ function SuppliesDeletedTable(props) {
 
                                 <div className=" flex font-medium flex-col w-[10rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                                   <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                  <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                                  <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                     <span className="text-xs text-[tomato] font-bold">
                       New
                     </span>
@@ -120,7 +120,7 @@ function SuppliesDeletedTable(props) {
                               imgWidth={"1.8rem"}
                               imgHeight={"1.8rem"}
                             />
-                               {`${moment(item.creationDate).format("ll")}`}
+                               {`${dayjs(item.creationDate).format("ll")}`}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">

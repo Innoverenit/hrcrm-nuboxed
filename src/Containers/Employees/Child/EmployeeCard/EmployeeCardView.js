@@ -82,7 +82,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
                 const showTooltip = tooltipContent.trim() !== ''; 
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9rem] 
-                  text-[#444444] my-3 p-1 ml-3 w-[15vw] flex flex-col  max-sm:w-wk max-sm:ml-0 ">
+                  text-[#444444] my-3 p-1 ml-3 w-[15vw] flex flex-col  max-sm:w-wk max-sm:ml-0 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                       <div class="flex">
                    <Tooltip 
                    title={item.country}
@@ -178,7 +178,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
               }}
             >
                <Tooltip title="Pulse">
-              <MonitorHeartIcon className="!text-base cursor-pointer text-[#df9697]" />
+              <MonitorHeartIcon className="!text-icon cursor-pointer text-[#df9697]" />
               </Tooltip>
      </span>
            </div>

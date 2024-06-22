@@ -64,7 +64,7 @@ class ChangePassword extends Component {
         <div class=" flex">
           <AuthContainer
             style={{
-              backgroundColor: "#E3E8EE",
+              backgroundColor: "#eaedf1",
               flexDirection: "column",
               width: "100%",
             }}

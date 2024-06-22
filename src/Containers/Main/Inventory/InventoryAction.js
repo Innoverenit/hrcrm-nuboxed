@@ -269,7 +269,7 @@ export const createAwbNo = (data, id) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getDispatchList(id))
+      dispatch(getDispatchList(id,0))
       dispatch({
         type: types.ADD_RECEIVED_SUCCESS,
         payload: res.data,
@@ -277,6 +277,7 @@ export const createAwbNo = (data, id) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
+      dispatch(getDispatchList(id,0))
       dispatch({
         type: types.ADD_RECEIVED_FAILURE,
         payload: err,
@@ -1999,3 +2000,10 @@ export const getItemHistoryDataInstock = (locationId,suppliesId) => (dispatch) =
     });
 };
 
+
+export const handleCustomModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CUSTOM_MODAL,
+    payload: modalProps,
+  });
+};

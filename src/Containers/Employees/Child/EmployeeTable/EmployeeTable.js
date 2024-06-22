@@ -30,7 +30,7 @@
 // import EmployeeDetailsView from "../EmployeeGroup/EmployeeDetails/EmployeeDetailsView";
 // import EmployeeDrawerForAdmin from "./EmployeeDrawer/EmployeeDrawerForAdmin";
 // import SuspendEmployee from "../SuspendEmployee/SuspendEmployee";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // import EmployeePulseDrawerModal from "./EmployeePulseDrawerModal";
 // import OpenNotifyDrawer from "../EmployeeCard/OpenNotifyDrawer";
 
@@ -213,8 +213,8 @@
 //       dataIndex:"fullName",
 //      ...getColumnSearchProps('fullName'),
 //        render: (employeeId, item, i) => {
-//         const currentdate = moment().format("DD/MM/YYYY");
-//         const date = moment(item.creationDate).format("DD/MM/YYYY");
+//         const currentdate = dayjs().format("DD/MM/YYYY");
+//         const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 //         return (
 //           <>
 //         <EmployeeDetailsView
@@ -571,7 +571,7 @@ import {
 import EmployeeDetailsView from "../EmployeeGroup/EmployeeDetails/EmployeeDetailsView";
 import EmployeeDrawerForAdmin from "./EmployeeDrawer/EmployeeDrawerForAdmin";
 import SuspendEmployee from "../SuspendEmployee/SuspendEmployee";
-import moment from "moment";
+import dayjs from "dayjs";
 import EmployeePulseDrawerModal from "./EmployeePulseDrawerModal";
 import OpenNotifyDrawer from "../EmployeeCard/OpenNotifyDrawer";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -758,12 +758,12 @@ function EmployeeTable(props) {
     return (
       <>
       
-          <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg  p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=' flex justify-end sticky  z-auto'>
+          <div class="rounded  p-1 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                  
                   {props.filteredData.map((item) => {
-                      const currentdate = moment().format("DD/MM/YYYY");
-                      const date = moment(item.createAt).format("DD/MM/YYYY");
+                      const currentdate = dayjs().format("DD/MM/YYYY");
+                      const date = dayjs(item.createAt).format("DD/MM/YYYY");
                       return (
                           <div>
                              <div
@@ -948,9 +948,9 @@ function EmployeeTable(props) {
   return (
     <>
      <div class=" h-h86 overflow-auto overflow-x-auto">
-        <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className=' flex justify-end sticky z-auto'>
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                     <div className=" md:w-[15.5rem]">Name</div>
                     <div className=" md:w-[9.1rem]">Department</div>
                     <div className=" md:w-[6.8rem] ">Role</div>
@@ -961,11 +961,11 @@ function EmployeeTable(props) {
                     <div className="md:w-[11.2rem]"></div>
                 </div>
                 {props.filteredData.map((item) => {
-                    const currentdate = moment().format("DD/MM/YYYY");
-                    const date = moment(item.createAt).format("DD/MM/YYYY");
+                    const currentdate = dayjs().format("DD/MM/YYYY");
+                    const date = dayjs(item.createAt).format("DD/MM/YYYY");
                     return (
                         <div>
-                            <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
+                            <div className="flex rounded  mt-4 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
                                 <div class="flex">
                                     <div className=" flex font-medium  md:w-[15.6rem] max-sm:w-full ">
                                     <EmployeeDetailsView

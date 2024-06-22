@@ -367,7 +367,7 @@ const handleFinanceClick = (checked) => {
               <div class="flex" >
                 <div class="w-full flex-row">
               <div class=" flex " >
-             <div class="w-[13rem] h-[12rem] bg-white shadow-2xl border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+             <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
              <img
               className="big-logo"
               src={FWLogo}
@@ -396,7 +396,7 @@ const handleFinanceClick = (checked) => {
                     </div>
                     </div>
                     </div>
-                    <div class="w-[13rem] h-[12rem] bg-white shadow-2xl border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
              <img
               className="big-logo"
               src={FWLogo5}
@@ -424,7 +424,7 @@ const handleFinanceClick = (checked) => {
                     </div>
                     </div>
                     </div>
-                    <div class="w-[13rem] h-[12rem] bg-white shadow-2xl border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
                     <img
               className="big-logo"
               src={FWLogo1}
@@ -488,7 +488,7 @@ const handleFinanceClick = (checked) => {
                       </Popconfirm>
                     </div>
 */}
- <div class="w-[13rem] h-[12rem] bg-white shadow-2xl border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+ <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
              <img
               className="big-logo"
               src={FWLogo2}
@@ -523,7 +523,7 @@ const handleFinanceClick = (checked) => {
 
                    
 
-                    <div class="w-[13rem] h-[12rem] bg-white shadow-2xl border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
              <img
               className="big-logo"
               src={FWLogo3}
@@ -553,7 +553,7 @@ const handleFinanceClick = (checked) => {
                     </div>
                     </div>
                     </div>
-                    <div class="w-[13rem] h-[12rem] bg-white shadow-2xl border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
              <img
               className="big-logo"
               src={FWLogo4}

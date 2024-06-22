@@ -661,11 +661,11 @@ const {
                       name="employeesId"
                       isColumnWithoutNoCreate
                       selectType="employee"
-                      // label="Assigned to"
+                      // label="Assigned"
                       label={
                         <FormattedMessage
                           id="app.assignedto"
-                          defaultMessage="Assigned to"
+                          defaultMessage="Assigned"
                         />
                       }
                       component={SearchSelect}

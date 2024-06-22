@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
-import TocIcon from '@mui/icons-material/Toc';
 import { FormattedMessage } from "react-intl";
 import { Badge, Tooltip,Avatar } from "antd";
 import {getLocationRecords,getLocationDeletedCount} from "./LocationAction";
@@ -21,7 +20,7 @@ const LocationActionLeft = (props) => {
     return (
         <div class=" flex items-center" >
           <Tooltip
-        title={<FormattedMessage id="app.listView" defaultMessage="List View" />}
+        title={<FormattedMessage id="app.listView" defaultMessage="All" />}
       >
          <Badge
           size="small"
@@ -36,7 +35,8 @@ const LocationActionLeft = (props) => {
             }}
           >
              <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon className="text-white" />
+  
+            <div className="text-white">ALL</div>
             </Avatar>
           </span>
           </Badge>
@@ -65,7 +65,7 @@ const LocationActionLeft = (props) => {
           </Badge>
       </Tooltip>
 
-      <Tooltip title="Deleted List">
+      <Tooltip title="Inactive">
                 <Badge size="small"
                         count={(props.viewType === "delete" && props.locationDeletedCount.locCount) || 0}
                         overflowCount={999}

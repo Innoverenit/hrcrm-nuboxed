@@ -78,7 +78,7 @@ const PitchAllCardList = (props) => {
 
   return (
     <>
- <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+ <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className=" flex justify-between max-sm:hidden w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
                   id="app.name"
@@ -310,7 +310,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 
                  </div>
                  <div className=" flex font-medium  w-[5.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
-                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
 
                               <div class=" text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               

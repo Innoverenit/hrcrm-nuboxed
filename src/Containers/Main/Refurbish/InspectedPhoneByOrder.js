@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 // import { getDispatchUpdateList } from "../Inventory/InventoryAction"
 import { SubTitle } from "../../../Components/UI/Elements";
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { FormattedMessage } from "react-intl";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 import ReactToPrint from "react-to-print";
 import QRCode from "qrcode.react";
-import { Button,Input } from "antd"
+import { Button,Input,Tooltip } from "antd"
 import {
     searchimeiNamePhone,
     ClearPhoneDataOfrefurbish,
@@ -16,6 +18,7 @@ import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition
 import { AudioOutlined } from '@ant-design/icons';
 import ReceivedSpareList from "./ProductionTab/ReceivedSpareList";
 import { BundleLoader } from "../../../Components/Placeholder";
+import PhoneListOrderTaskTable from "./PhoneListOrderTaskTable";
 const QRCodeModal = lazy(() => import("../../../Components/UI/Elements/QRCodeModal"));
 
 function InspectedPhoneByOrder(props) {
@@ -28,20 +31,31 @@ function InspectedPhoneByOrder(props) {
     const handlePrint = () => {
         window.print();
     };
-
+    const [showTask, setshowTask] = React.useState(false);
+    const [expand, setExpand] = useState(false);
+    const [phoneId, setphoneId] = useState("");
     const [show, setShow] = useState(false)
     const [data, setData] = useState({})
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
-  const minRecordingTime = 5000; // 5 seconds
+  const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
+
     const handleShow = () => {
         setShow(!show)
     }
     const handleParticularRow = (item) => {
         setData(item)
+    }
+
+    function handleExpand(phoneId) {
+        setExpand(!expand);
+        setphoneId(phoneId);
+    }
+    function handlePhoneListOrderTask(){
+        setshowTask(!showTask)
     }
 
     const {
@@ -127,8 +141,8 @@ function InspectedPhoneByOrder(props) {
         <>
             {props.fetchingUpdateDispatchList ?
                 <BundleLoader />
-                : <div className='flex justify-end sticky ticky top-0 z-10 '>
-                    <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                : <div className='flex justify-end sticky ticky  z-10 '>
+                    <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div class=" w-72 ml-4 max-sm:w-28">
           <Input
             placeholder="Search by Imei"
@@ -140,7 +154,7 @@ function InspectedPhoneByOrder(props) {
         
           />
         </div>
-                        <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
+                        <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                             <div className=" md:w-[7.12rem]"><FormattedMessage
                                 id="app.oem"
                                 defaultMessage="OEM"
@@ -160,9 +174,10 @@ function InspectedPhoneByOrder(props) {
                                 id="app.conditions"
                                 defaultMessage="conditions"
                             /></div>
+                            <div className="md:w-[7rem]">Technician Name</div>
                             <div className="md:w-[7.2rem]"></div>
                         </div>
-                        <div class="overflow-y-auto h-[70vh]">
+                        <div class="overflow-y-auto h-[52vh]">
                             {props.updateDispatchList.map((item, index) => {
                                 return (
                                     <div>
@@ -211,6 +226,15 @@ function InspectedPhoneByOrder(props) {
                                             <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center">
                                                     {item.conditions}
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                {item.repairTechnicianName && <MultiAvatar
+                                                        primaryTitle={item.repairTechnicianName}
+                                                        imgWidth={"2.1rem"}
+                                                        imgHeight={"2.1rem"}
+                                                    />}
                                                 </div>
                                             </div>
                                             {/* <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -285,7 +309,23 @@ function InspectedPhoneByOrder(props) {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div>
+                                                                    <Tooltip title={<FormattedMessage
+                                                                        id="app.task"
+                                                                        defaultMessage="Task"
+                                                                    />}>
+                                                                        <FormatListBulletedIcon
+                                                                            className="!text-base cursor-pointer"
+                                                                            style={{ color: expand && item.phoneId === data.phoneId ? "red" : "black" }}
+                                                                            onClick={() => {
+                                                                                handlePhoneListOrderTask();
+                                                                                handleParticularRow(item);
+                                                                                handleExpand(item.phoneId);
+                                                                            }}
+                                                                        />
+                                                                    </Tooltip>
 
+                                                                </div>
 
                                         </div>
                                     </div>
@@ -296,6 +336,9 @@ function InspectedPhoneByOrder(props) {
 
                 </div>}
             {show && <ReceivedSpareList data={data} />}
+            {showTask &&(
+<PhoneListOrderTaskTable data={data}/>
+                )}
         </>
     )
 }

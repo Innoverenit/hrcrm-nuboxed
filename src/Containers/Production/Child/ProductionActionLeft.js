@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
@@ -6,7 +6,6 @@ import { Tooltip, Badge, Avatar } from "antd";
 import { FormattedMessage } from "react-intl";
 import ArchiveIcon from '@mui/icons-material/Archive';
 import TokenIcon from '@mui/icons-material/Token';
-import TocIcon from '@mui/icons-material/Toc';
 import { TableOutlined } from "@ant-design/icons";
 import {getProductRecords} from "../ProductionAction";
 import { TableBarOutlined } from "@mui/icons-material";
@@ -20,7 +19,7 @@ const ProductionActionLeft = (props) => {
   }, [props.viewType, props.locationId]);
   return (
     <div class="flex items-center">
-       <Tooltip title="Table ">
+       <Tooltip title="My Workspace ">
                     <Badge size="small"
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         //overflowCount={999}
@@ -79,7 +78,7 @@ const ProductionActionLeft = (props) => {
 
         </span>
       </Tooltip>
-      <Tooltip title="ALL ">
+      <Tooltip title="All ">
                     <Badge size="small"
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
@@ -92,7 +91,7 @@ const ProductionActionLeft = (props) => {
                             }}
                         >
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white">All</div></Avatar>
+                                <div className="text-white">ALL</div></Avatar>
 
                         </span>
                     </Badge>
@@ -111,7 +110,10 @@ const ProductionActionLeft = (props) => {
                                 color: viewType === "cell" && "#1890ff",
                             }}
                         >
-                            <TokenIcon  />
+                           
+                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                                <div className="text-white"> <TokenIcon  /></div></Avatar>
+
 
                         </span>
                     {/* </Badge> */}

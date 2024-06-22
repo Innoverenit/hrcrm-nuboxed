@@ -70,7 +70,9 @@ const handleDeptChange = (event) => {
               // singleMultiInd: single ? true : false,
             },
             props.rowdata.investorLeadsId,
-          single === false?selectedUser:props.userId,
+          single === false?selectedUser:props.userId, "0",
+          props.filter?props.filter:"creationdate",
+          "hot","cold","warm"
           );
         }}
       >

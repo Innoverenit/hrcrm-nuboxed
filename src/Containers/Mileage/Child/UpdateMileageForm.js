@@ -223,7 +223,7 @@ function UpdateMileageForm(props) {
     <div>
       <table>
         <th>Date</th>
-        <th>Assigned To</th>
+        <th>Assigned</th>
         <th>From</th>
         <th>To</th>
         <th>Distance</th>

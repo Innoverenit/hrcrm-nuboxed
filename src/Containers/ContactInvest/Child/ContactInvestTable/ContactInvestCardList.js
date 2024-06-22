@@ -8,7 +8,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip } from "antd";
-import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import {
   handleUpdateContactModal,
   handleContactReactSpeechModal,
@@ -105,7 +105,7 @@ function ContactInvestCardList(props) {
     <>
       
 
-      <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex  justify-between max-sm:hidden w-[93%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[15.32rem]"><FormattedMessage
                   id="app.name"
@@ -147,7 +147,7 @@ function ContactInvestCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingContactsInvest?<div  class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
        
        { !fetchingContactsInvest && filterData.length === 0 ?<NodataFoundPage />:filterData.map((item,index) =>  {
@@ -281,7 +281,7 @@ function ContactInvestCardList(props) {
           </Tooltip>
 
                    </div>
-                               
+      <div class=" flex justify-end items-center w-[7rem] max-sm:flex   max-sm:w-full">                 
                     <div class="rounded-full bg-white w-5 h-5 cursor-pointer">
                     <Tooltip title={item.mobileNo} >
             {item.doNotCallInd !== true && (
@@ -395,7 +395,7 @@ function ContactInvestCardList(props) {
             </Tooltip>
             )}
             </div>
-            
+            </div>
                             </div>
                         </div>
 

@@ -163,6 +163,9 @@ const initialState = {
   fetchingSuppliesListByIdError: false,
   suppliesBySupplier: [],
 
+  addingSuppliersToggle: false,
+  addingSuppliersToggleError: false,
+
   addingManual: false,
   addingManualError:false,
 
@@ -1736,6 +1739,28 @@ export const suppliersReducer = (state = initialState, action) => {
                                     return { ...state, 
                                       inventoryList: [], 
                                     };
+
+                                    case types.LINK_SUPPLIERS_TOGGLE_REQUEST:
+                                      return { ...state, addingSuppliersToggle: true };
+                                    case types.LINK_SUPPLIERS_TOGGLE_SUCCESS:
+                                      return {
+                                        ...state,
+                                        addingSuppliersToggle: false,
+                                        supplierList: state.supplierList.map((item) => {
+                                          if (item.supplierId === action.payload.supplierId) {
+                                            return action.payload;
+                                          } else {
+                                            return item;
+                                          }
+                                        }),
+                                      };
+                                    case types.LINK_SUPPLIERS_TOGGLE_FAILURE:
+                                      return {
+                                        ...state,
+                                        addingSuppliersToggle: false,
+                                        addingSuppliersToggleError: true,
+                                      };
+
 
     default:
       return state;

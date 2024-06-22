@@ -209,6 +209,7 @@ function UpdateInvestorForm (props) {
                   
                   
                      <div class=" flex justify-between max-sm:flex-col mt-3">
+                     {contract ?
                   <div class=" w-w47.5 max-sm:w-wk">
                       <FastField                      
                         name="sectorId"
@@ -225,6 +226,8 @@ function UpdateInvestorForm (props) {
                         defaultValue={RowData.sector}
                       />
                     </div>
+                     : ( null)}
+                      {contract ?
                     <div class="md:w-w47.5">
                     <FastField
                             name="source"
@@ -247,6 +250,7 @@ function UpdateInvestorForm (props) {
                           />
 
                       </div>
+                       : ( null)}
                  </div>
                  <div class=" flex justify-between">
                   <div class=" w-w47.5">
@@ -278,7 +282,40 @@ function UpdateInvestorForm (props) {
                     />
                   </div>
                     </div> 
-               
+                    <div class="flex justify-between">
+                 <div class=" flex flex-col items-center  mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">UBO</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      //onChange={handleContract}
+                      //checked={contract}
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                    />
+                  </div>
+                  <div class=" flex flex-col items-center  mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Identification</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      //onChange={handleContract}
+                      //checked={contract}
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                    />
+                  </div>
+                  
+                 </div>
+                 
+                  <div class=" flex flex-col   mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Inofocit</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      //onChange={handleContract}
+                      //checked={contract}
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                    />
+                  </div>
                  <div class="mt-3">
                   <Field
                     name="notes"
@@ -302,7 +339,7 @@ function UpdateInvestorForm (props) {
         {({ open }) => (
           <>
             <Listbox.Label className="block font-semibold text-[0.75rem]">
-              Assigned to
+              Assigned
             </Listbox.Label>
             <div className="relative mt-[0.1rem]">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>
@@ -370,6 +407,7 @@ function UpdateInvestorForm (props) {
                     </div>
                    
                     <div class=" flex justify-between max-sm:flex-col mt-[0.35rem]">
+                    {contract ?
                     <div class=" w-1/2 max-sm:w-wk">
                       <Field
                         name="vatNo"
@@ -387,6 +425,8 @@ function UpdateInvestorForm (props) {
                         inlineLabel
                         />
                     </div>
+                     : ( null)}
+                      {contract ?
                     <div class=" w-[10rem] max-sm:w-wk">
                       <Field
                         name="businessRegistration"
@@ -403,7 +443,8 @@ function UpdateInvestorForm (props) {
                         component={InputComponent}
                         inlineLabel
                       />
-                    </div>                    
+                    </div>  
+                    : ( null)}                  
                     </div>
                  
                   <div class="mt-3 w-full" style={{backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>

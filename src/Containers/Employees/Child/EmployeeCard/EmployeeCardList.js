@@ -1,7 +1,7 @@
 import React, { useEffect, useState, } from "react";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import moment from "moment";
+import dayjs from "dayjs";
 import { OnlyWrapCard } from '../../../../Components/UI/Layout'
 import CellTowerIcon from '@mui/icons-material/CellTower';
 import { Select } from "antd";
@@ -78,8 +78,8 @@ function handleSetCurrentCandidateId(candidateId) {
        
  
         {props.filteredData.map((item) => {
-            const currentdate = moment().format("DD/MM/YYYY");
-            const date = moment(item.creationDate).format("DD/MM/YYYY");
+            const currentdate = dayjs().format("DD/MM/YYYY");
+            const date = dayjs(item.creationDate).format("DD/MM/YYYY");
        
           return (
             <>

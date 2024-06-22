@@ -1,17 +1,12 @@
 import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Popconfirm,Switch } from "antd";
-import moment from "moment";
+import { Tooltip, Button  } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
-import MoveToggleProduction from "../Child/MoveToggleProduction";
 import ButtonGroup from "antd/lib/button/button-group";
 import { getAllProductionsbyOrgId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
-import { DeleteOutlined } from "@ant-design/icons";
-import PrintIcon from '@mui/icons-material/Print';
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import InpectProductionToggle from "./InpectProductionToggle";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 const BuilderProductionDrawer = lazy(() => import("./BuilderProductionDrawer"));
 const ProductionIDrawer = lazy(() => import("./ProductionIDrawer"));
@@ -83,19 +78,19 @@ function ProductionAllCardView(props) {
     } = props;
     return (
         <>
-            <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=' flex justify-end sticky  z-auto'>
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky h-8 z-10">
                         <div className=""></div>
-                        <div className=" md:w-[10rem]">ID</div>
+                        <div className=" md:w-[8.1rem]">MFG ID</div>
                         <div className=" md:w-[7rem]">Location</div>
                         <div className=" md:w-[7rem]">Cell</div>
                         <div className=" md:w-[7rem]">Created</div>
-                        <div className=" md:w-[7rem]">Item</div>
-                        <div className="md:w-[5rem]">Category</div>
-                        <div className="md:w-[5rem]">Attribute</div>
-                        <div className=" md:w-[5rem]">Start Date</div>
-                        <div className=" md:w-[5rem]">End Date</div>
+                        <div className=" md:w-[9rem]">Item</div>
+                        <div className="md:w-[8rem]">Category</div>
+                        <div className="md:w-[9rem]">Attribute</div>
+                        <div className=" md:w-[5rem]">Start</div>
+                        <div className=" md:w-[5rem]">End</div>
                         <div className="md:w-[5.2rem]">Workflow</div>
                         <div className="md:w-[5.2rem]"></div>
                         <div className=" md:w-[5rem] ">Status</div>
@@ -110,8 +105,8 @@ function ProductionAllCardView(props) {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={fetchingAllProductionOrgId ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                        height={"75vh"}
-                        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+                        height={"80vh"}
+                        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                     >
                         {productionAllByOrgId.length ?
                             <>
@@ -120,18 +115,18 @@ function ProductionAllCardView(props) {
                                      const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div>
-                                            <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
+                                            <div className="flex rounded justify-between mt-2 bg-white h-8  p-1 ">
                                                 <div class="flex">
-                                                    <div className=" flex font-medium flex-col  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium   md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                                        <div class=" text-[#1890ff] cursor-pointer w-[8rem] flex text-xs  font-poppins"
+                                                        <div class=" text-[#1890ff] cursor-pointer  flex text-xs  font-poppins"
                                                             onClick={() => {
                                                                 handleParticularRowData(item);
                                                                 props.handleProductionIDrawer(true)
                                                             }}
                                                         >
                                                             {item.manufactureId}
-                                                            &nbsp;&nbsp;
+                                
                                 {date === currentdate ? (
                                   <div class="text-xs text-[tomato] mt-[0.4rem] font-bold"
                                   >
@@ -141,17 +136,17 @@ function ProductionAllCardView(props) {
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.cellChamberName}
                                                     </div>
                                                 </div>
-                                                    <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins">
                                                             {/* {props.productionTableData.createdBy} */}
                                                             <MultiAvatar
@@ -167,7 +162,7 @@ function ProductionAllCardView(props) {
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             {item.productName}
@@ -177,34 +172,34 @@ function ProductionAllCardView(props) {
 
                                                 </div>
 
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium  md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins">
 
                                                         {item.categoryName}  {item.subCategoryName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.attributeName}  {item.subAttributeName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins">
 
                                                         {item.startDate}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.endDate}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.workflowName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium  md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                    
                                                         <ButtonGroup>
@@ -236,7 +231,7 @@ function ProductionAllCardView(props) {
                                                         </ButtonGroup>
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
 
                                                     </div>
@@ -255,7 +250,7 @@ function ProductionAllCardView(props) {
                                                         </Button>
                                                     </div>:null}
                                                 </div> */}
-                                                <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* <InpectProductionToggle item={item}/> */}
                                                         <div class=" text-xs text-cardBody font-poppins">
@@ -270,13 +265,13 @@ function ProductionAllCardView(props) {
                                                         </div>
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             {/* {date} */}
-                                                            {`  ${moment.utc(item.inspectedDate).format("DD-MM-YYYY")}`}
+                                                            {`  ${dayjs(item.inspectedDate).format("DD-MM-YYYY")}`}
                                                         </div>
                                                    
         
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* <MoveToggleProduction item={item} /> */}
                                                     </div>

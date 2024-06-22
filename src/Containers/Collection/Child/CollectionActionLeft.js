@@ -1,6 +1,6 @@
 import React, { } from "react";
 import { FlexContainer } from "../../../Components/UI/Layout";
-import { Tooltip,Avatar } from "antd";
+import { Tooltip, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
@@ -11,7 +11,6 @@ import {
   inputDistributorAllDataSearch,
   inputDistributorReceivableDataSearch,
 } from "../CollectionAction";
-import { FormattedMessage } from "react-intl";
 
 const CollectionActionLeft = (props) => {
   const dummy = ["cloud", "azure", "fgfdg"];
@@ -50,7 +49,7 @@ const CollectionActionLeft = (props) => {
 
   return (
     <FlexContainer alignItems="center">
-      <Tooltip
+      <Tooltip title="All"
       // title="Distributor"
       >
         <span
@@ -60,8 +59,8 @@ const CollectionActionLeft = (props) => {
             color: props.viewType === "distributor" && "#1890ff",
           }}
         >
-            <Avatar style={{ background: props.viewType === "distributor" ? "#f279ab" : "#4bc076" }}>
-          <TocIcon />
+          <Avatar style={{ background: props.viewType === "distributor" ? "#f279ab" : "#4bc076" }}>
+            <TocIcon />
           </Avatar>
         </span>
       </Tooltip>

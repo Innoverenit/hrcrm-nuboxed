@@ -5,72 +5,81 @@ import { connect } from 'react-redux';
 import { InputComponent } from '../../../../../../Components/Forms/Formik/InputComponent';
 import { Button } from 'antd';
 import { FlexContainer } from '../../../../../../Components/UI/Layout';
-import { createAwbNo } from "../../../InventoryAction"
+import { createAwbNo,handleAddAWB } from "../../../InventoryAction"
+import { StyledModal } from '../../../../../../Components/UI/Antd';
 
 const AddAWBNo = (props) => {
-    console.log(props.formValue)
+    const [showModal, setShowModal] = useState(false);
+    const [awbFieldValue, setAwbFieldValue] = useState(""); 
+
+    const initialValues = {
+        awbNo: awbFieldValue, // Initialize AWB input field value from state
+        pickUp: props.formValue.pickUp || "",
+        shipperId: props.formValue.shipperId || "",
+        packages: props.formValue.packages || "",
+        weight: props.formValue.weight || "",
+        api: props.formValue.api || "",
+        orderId: props.rowData.orderPhoneId,
+        unloadingAddressId: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].addressId || "",
+        pickUpAddressId: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].addressId || "",
+        pickUpAddress: [
+            {
+                address1: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].address1 || "",
+                addressId: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].addressId || "",
+                state: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].state || "",
+                city: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].city || "",
+                street: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].street || "",
+                postalCode: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].postalCode || "",
+                countryId: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].countryId || "",
+                latitude: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].latitude || "",
+                longitude: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].longitude || "",
+                country: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].country || "",
+            },
+        ],
+        loadingAddress: [
+            {
+                address1: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].address1 || "",
+                addressId: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].addressId || "",
+                state: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].state || "",
+                city: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].city || "",
+                street: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].street || "",
+                postalCode: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].postalCode || "",
+                countryId: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].countryId || "",
+                latitude: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].latitude || "",
+                longitude: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].longitude || "",
+                country: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].country || "",
+            },
+        ],
+    };
+    const handleSubmit = (values, { resetForm }) => {
+        setAwbFieldValue(values.awbNo); 
+        setShowModal(true);
+        resetForm();
+    };
+
+    const handleModalConfirm = () => {
+        props.createAwbNo(initialValues, props.locationDetailsId); 
+        setAwbFieldValue(""); 
+        setShowModal(false); 
+    };
+    const handleModalNoo = () => {
+        props.createAwbNo(initialValues, props.locationDetailsId); 
+        setAwbFieldValue(""); 
+        setShowModal(false); 
+        props.handleAddAWB(false);
+    };
+    const handleModalCancel = () => {
+        setShowModal(false); 
+        props.handleAddAWB(false)
+    };
+
     return (
+        <>
         <Formik
-            initialValues={{
-                awbNo: "",
-                pickUp: props.formValue.pickUp || "",
-                shipperId: props.formValue.shipperId || "",
-                packages: props.formValue.packages || "",
-                weight: props.formValue.weight || "",
-                api: props.formValue.api || "",
-                orderId: props.rowData.orderPhoneId,
-                unloadingAddressId: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].addressId || "",
-                pickUpAddressId: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].addressId || "",
-                pickUpAddress: [
-                    {
-                        address1: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].address1 || "",
-                        addressId: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].addressId || "",
-                        state: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].state || "",
-                        city: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].city || "",
-                        street: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].street || "",
-                        postalCode: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].postalCode || "",
-                        countryId: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].countryId || "",
-                        latitude: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].latitude || "",
-                        longitude: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].longitude || "",
-                        country: props.rowData.pickUpAddress && props.rowData.pickUpAddress[0].country || "",
-                    },
-                ],
-                loadingAddress: [
-                    {
-                        address1: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].address1 || "",
-                        addressId: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].addressId || "",
-                        state: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].state || "",
-                        city: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].city || "",
-                        street: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].street || "",
-                        postalCode: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].postalCode || "",
-                        countryId: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].countryId || "",
-                        latitude: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].latitude || "",
-                        longitude: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].longitude || "",
-                        country: props.rowData.unloadingAddresses && props.rowData.unloadingAddresses[0].country || "",
-                    },
-                ],
-
-
-            }}
-
-            // validationSchema={FormSchema}
-            onSubmit={(values, { resetForm }) => {
-                props.createAwbNo({
-                    ...values,
-                },
-                    props.locationDetailsId
-                )
-            }}
+        initialValues={initialValues}
+         onSubmit={handleSubmit}
         >
-            {({
-                errors,
-                touched,
-                isSubmitting,
-                setFieldValue,
-                setFieldTouched,
-                values,
-                ...rest
-            }) => (
+           {() => (
                 <Form>
                     <FlexContainer justifyContent="space-between">
                         <div class=" w-[60%]"  >
@@ -94,6 +103,26 @@ const AddAWBNo = (props) => {
                 </Form>
             )}
         </Formik>
+        <StyledModal
+       visible={showModal}
+       onCancel={handleModalCancel}
+        footer={[<>
+        <Button key="cancel" onClick={handleModalCancel}>
+             Cancel
+            </Button>
+            <Button key="cancel" onClick={handleModalNoo}>
+                No
+            </Button>
+            <Button key="confirm" type="primary" onClick={handleModalConfirm}>
+                Yes
+            </Button>
+            </>
+        ]}
+    >
+      Do you want to add AWB No ?
+    </StyledModal>
+
+    </>
     );
 }
 const mapStateToProps = ({ inventory, shipper }) => ({
@@ -103,7 +132,8 @@ const mapStateToProps = ({ inventory, shipper }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            createAwbNo
+            createAwbNo,
+            handleAddAWB
         },
         dispatch
     );

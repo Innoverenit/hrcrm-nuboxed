@@ -444,7 +444,7 @@ function PartnerTable(props) {
      
     },
     {
-      title:"Assigned to",
+      title:"Assigned",
        dataIndex: "assignedTo",
       width: "10%",
       filters: AssignedTypeOption,

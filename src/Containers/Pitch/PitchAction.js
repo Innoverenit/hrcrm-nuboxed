@@ -36,6 +36,99 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
       });
   };
 
+  export const getPitchHot = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_PITCHHOT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investorleads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PITCHHOT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_PITCHHOT_FAILURE,
+          payload: err,
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });
+  };
+
+  export const getPitchWarm = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_PITCHWARM_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investorleads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PITCHWARM_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_PITCHWARM_FAILURE,
+          payload: err,
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });
+  };
+
+  export const getPitchCold = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_PITCHCOLD_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investorleads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PITCHCOLD_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_PITCHCOLD_FAILURE,
+          payload: err,
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });
+  };
+
 
 
   export const handlePitchDocumentUploadModal = (modalProps) => (dispatch) => {
@@ -195,7 +288,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         },
       })
       .then((res) => {
-        //  dispatch(getPitch(userId));
+          dispatch(getPitchHot(userId,"0","creationdate","hot"));
+          dispatch(getPitchCold(userId,"0","creationdate","cold"));
+          dispatch(getPitchWarm(userId,"0","creationdate","warm"));
         dispatch({
           type: types.CONVERT_PITCH_STATUS_SUCCESS,
           payload: investorLeadsId,
@@ -301,7 +396,8 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
   };
 
 
-  export const updateTypeForPitch = (investorleadsId,type,data) => (dispatch) => {
+  export const updateTypeForPitch = (investorleadsId,type,data) => (dispatch,getState) => {
+    const { userId } = getState("auth").auth.userDetails;
     dispatch({ type: types.UPDATE_TYPE_FOR_PITCH_REQUEST });
     axios
       .put(
@@ -312,6 +408,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
           },
         })
       .then((res) => {
+        dispatch(getPitchHot(userId,"0","creationdate","hot"));
+        dispatch(getPitchCold(userId,"0","creationdate","cold"));
+        dispatch(getPitchWarm(userId,"0","creationdate","warm"));
         dispatch({
           type: types.UPDATE_TYPE_FOR_PITCH_SUCCESS,
           payload: res.data,

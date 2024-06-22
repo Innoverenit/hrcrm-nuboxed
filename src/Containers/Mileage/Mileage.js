@@ -6,7 +6,7 @@ import { BundleLoader } from "../../Components/Placeholder";
 const MileageHeader = lazy(() => import("./Child/MileageHeader"));
 const AddMileageModal = lazy(() => import("./Child/AddMilegeModal"));
 const MileageCard = lazy(() => import("./Child/MileageCard"));
-const MileageCard2 = lazy(() => import("./Child/MileageCard2"));
+// const MileageCard2 = lazy(() => import("./Child/MileageCard2"));
 const MileageStatusCard=lazy(()=>import("./Child/MileageStatusCard"));
 
 class Mileage extends Component {
@@ -28,9 +28,9 @@ class Mileage extends Component {
               viewType={viewType}
             /> 
           ) 
-          :this.props.viewType === "tile" ? (
-            <MileageCard2/>
-            ):this.props.viewType==="list" ?(
+          // :this.props.viewType === "tile" ? (
+          //   <MileageCard2/>
+            :this.props.viewType==="list" ?(
               <MileageStatusCard/>
             )
           : null}

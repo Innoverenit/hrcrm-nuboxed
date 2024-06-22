@@ -39,7 +39,7 @@ useEffect(()=>{
   return (
     <>
    
-   <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
+   <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[12rem]">Order ID</div>
           <div className=" md:w-[10.4rem]">Customer</div>

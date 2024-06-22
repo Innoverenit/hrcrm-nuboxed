@@ -282,7 +282,7 @@ const LeadsTable = (props) => {
       },
     },
     {
-      title: "Assigned to",
+      title: "Assigned",
       dataIndex: "assignedTo",
       width: "10%",
       render: (name, item, i) => {

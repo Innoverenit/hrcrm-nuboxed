@@ -116,7 +116,7 @@ function ContactInvestAllCardList(props) {
     <>
       
 
-      <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  justify-between max-sm:hidden w-[93%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[15.32rem]"><FormattedMessage
                   id="app.name"
@@ -158,7 +158,7 @@ function ContactInvestAllCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllContactInvest?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
        
        { !fetchingAllContactInvest && props.allContactInvestData.length === 0 ?<NodataFoundPage />:props.allContactInvestData.map((item,index) =>  {
@@ -273,9 +273,7 @@ function ContactInvestAllCardList(props) {
                           </div>
                           </div>
                           <div class="flex">
-                          <div className="flex font-medium   md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">
-                 
-                 {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+        <div className="flex font-medium   md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">
 
              
         <Tooltip title={item.ownerName}>
@@ -292,7 +290,7 @@ function ContactInvestAllCardList(props) {
     </Tooltip>
 
              </div>
-                         
+             <div class=" flex justify-end items-center w-[7rem] max-sm:flex   max-sm:w-full">   
               <div class="rounded-full bg-white w-5 h-5 cursor-pointer">
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
@@ -406,8 +404,9 @@ function ContactInvestAllCardList(props) {
       </Tooltip>
       )}
       </div>
-  
+  </div>
                       </div>
+                    
                   </div>
 
 
@@ -415,7 +414,7 @@ function ContactInvestAllCardList(props) {
                 })}
        </InfiniteScroll>
       </div>
-     
+    
 
       <UpdateContactInvestModal
         contactiData={contactiData}

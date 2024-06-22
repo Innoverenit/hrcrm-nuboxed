@@ -1,9 +1,10 @@
-import React, { Component,Suspense,lazy } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddTaskImportModal from "../Child/AddTaskImportModal"
 import Button from "antd/lib/button";
 import { Tooltip } from "antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { handleTaskModal, handleTaskImportModal,getTaskListRangeByUserId } from "../TaskAction";
 // const TaskSharedForm = lazy(() => import("./TaskSharedForm"));
 
@@ -29,13 +30,11 @@ const TaskActionRight = (props) => {
          <TaskSharedForm/>
          )}  */}
        {props.viewType === "table"  ? 
-      <Tooltip placement="left" title="Create">
+      <Tooltip placement="left" title="Create" >
         <Button
-          type="primary"
-       
-          onClick={() => props.handleTaskModal(true)}
-        >
-          Add
+          type="primary" onClick={() => props.handleTaskModal(true)}>
+        
+          <DataSaverOnIcon/>Add
         </Button>
       </Tooltip>
 :null}

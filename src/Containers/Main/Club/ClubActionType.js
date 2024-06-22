@@ -1,0 +1,1 @@
+export const SET_CLUB_VIEW_TYPE = "SET_CLUB_VIEW_TYPE";

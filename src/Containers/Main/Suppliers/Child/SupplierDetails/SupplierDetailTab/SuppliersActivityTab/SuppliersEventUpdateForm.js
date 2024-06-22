@@ -368,7 +368,7 @@ class SuppliersEventUpdateForm extends Component {
                     <Field
                       type="text"
                       name="association.ownerIds"
-                      label="Assigned to"
+                      label="Assigned"
                       isColumn
                       width={"100%"}
                       disabled
@@ -385,7 +385,7 @@ class SuppliersEventUpdateForm extends Component {
                     <Field
                       name="association.ownerIds"
                       selectType="user"
-                      label="Assigned to"
+                      label="Assigned"
                       component={SearchSelect}
                       isColumn
                       margintop={"4px"}

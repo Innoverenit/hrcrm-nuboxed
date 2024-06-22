@@ -453,11 +453,11 @@ const {
                       name="employeesId"
                       isColumnWithoutNoCreate
                       selectType="employee"
-                      // label="Assigned to"
+                      // label="Assigned"
                       label={
                         <FormattedMessage
                           id="app.assignedto"
-                          defaultMessage="Assigned to"
+                          defaultMessage="Assigned"
                         />
                       }
                       component={SearchSelect}
@@ -475,7 +475,7 @@ const {
         {({ open }) => (
           <>
             <Listbox.Label className="block text-sm font-semibold text-gray-700 mt-3">
-              Assigned to
+              Assigned
             </Listbox.Label>
             <div className="relative mt-1">
             <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" >

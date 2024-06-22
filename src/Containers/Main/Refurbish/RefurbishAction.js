@@ -567,7 +567,7 @@ export const UpdateTechnicianByPhone = (data, id, locationDetailsId) => (dispatc
       // dispatch(getProductionOrderId(locationDetailsId))
       Swal.fire({
         icon: 'success',
-        title: 'Items Assigned To Technician',
+        title: 'Items Assigned Technician',
         showConfirmButton: true,
       })
       dispatch({
@@ -2336,4 +2336,52 @@ export const ClearSearchedDataOfAll = () => (dispatch) => {
   dispatch({
     type: types.HANDLE_CLAER_SEARCHED_DATA_ALL,
   });
+};
+
+export const getQAorderlist = (locationId,pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_QA_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderInventoryLocationLink/get-QAData/${locationId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QA_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_QA_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const updateQAinspection = (data, orderPhoneId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_QA_INSPECTION_REQUEST });
+  axios
+    .put(`${base_url2}/updateNewDispatch/${orderPhoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_QA_INSPECTION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_QA_INSPECTION_FAILURE,
+        payload: err,
+      });
+    });
 };

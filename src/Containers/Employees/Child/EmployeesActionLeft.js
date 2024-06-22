@@ -1,7 +1,6 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { withRouter } from "react-router-dom";
 import { inputEmployeeDataSearch,getEmployeelist,ClearReducerDataOfEmployee, getRecords } from "../EmployeeAction";
@@ -52,10 +51,7 @@ const EmployeesActionLeft = (props) => {
   const suffix = (
     <AudioOutlined
       onClick={SpeechRecognition.startListening}
-      style={{
-        fontSize: 16,
-        color: '#1890ff',
-      }}
+      class=" !text-icon text-[#1890ff]" 
 
     />
   );
@@ -63,7 +59,7 @@ const EmployeesActionLeft = (props) => {
   return (
     <div class=" flex items-center">
       <Tooltip
-        title={<FormattedMessage id="app.tileView" defaultMessage="Tile View" />}
+        title={<FormattedMessage id="app.activeuser" defaultMessage="Active Users" />}
       > 
        <Badge
           size="small"
@@ -88,7 +84,7 @@ const EmployeesActionLeft = (props) => {
           </Badge> 
       </Tooltip>
   
-      <Tooltip title={<FormattedMessage id="app.tableView" defaultMessage="Table View" />}>
+      <Tooltip title={<FormattedMessage id="app.allusers" defaultMessage="All " />}>
       <Badge
           size="small"
           count={
@@ -106,7 +102,7 @@ const EmployeesActionLeft = (props) => {
             }}
           >
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon />
+            <div className="text-white">ALL</div>
             </Avatar>
           </span>
           </Badge>

@@ -8,12 +8,10 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import "jspdf-autotable";
-import LanguageIcon from '@mui/icons-material/Language';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { DeleteOutlined } from "@ant-design/icons";
 import {
-  //getLeads,
   getLeadsCold,
   getLeadsWarm,
   getLeadsHot,
@@ -185,7 +183,7 @@ const LeadsCardList = (props) => {
   ) : (
       <>
      <div className=' flex  justify-center  sticky  z-auto'>
-     <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
       <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-white bg-red-600  justify-center ">Hot</div>
         <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
@@ -209,7 +207,7 @@ const LeadsCardList = (props) => {
       hasMore={hasMore}
         loader={props.fetchingLeadsHot?<div class="flex justify-center">Loading...</div>:null}
         height={"22vh"}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
      
            { !props.fetchingLeadsHot && props.leadsAllDataHot.length === 0 ?<NodataFoundPage />:props.leadsAllDataHot.map((item,index) =>  {
@@ -244,8 +242,7 @@ const LeadsCardList = (props) => {
           return (
             <div>
               <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
-              >
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                     <div>
@@ -493,7 +490,7 @@ const LeadsCardList = (props) => {
                   </div>
                   <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
                   
-                    <div class="w-5">
+                    <div >
                       <Tooltip title="Notes">
                         <NoteAltIcon
                          className=" !text-icon cursor-pointer text-green-800"
@@ -506,7 +503,7 @@ const LeadsCardList = (props) => {
                         />
                       </Tooltip>
                     </div>
-                    <div class="w-5">
+                    <div >
                       <Tooltip
                         title={
                           <FormattedMessage
@@ -532,7 +529,7 @@ const LeadsCardList = (props) => {
                     
                  
                  
-                    <div class="w-5">
+                    <div >
                       <Tooltip
                         overlayStyle={{ maxWidth: "300px" }}
                         title={dataLoc}
@@ -546,7 +543,7 @@ const LeadsCardList = (props) => {
                         </div>
                       </Tooltip>
                     </div>
-                    <div class="w-5">
+                    <div >
                       <Tooltip title={item.email}>
                         <MailOutlineIcon
                           type="mail"
@@ -559,7 +556,7 @@ const LeadsCardList = (props) => {
                       </Tooltip>{" "}
                     </div>
                     {user.leadsUpdateInd === true && user.crmInd === true && (
-                     <div class="w-5">
+                     <div >
                         <Tooltip title="Edit">
                           <BorderColorIcon
                            className="!text-icon cursor-pointer text-[tomato]"
@@ -573,7 +570,7 @@ const LeadsCardList = (props) => {
                       </div>
                     )}
                     {user.leadsDeleteInd === true && user.crmInd === true && (
-                      <div class="w-5">
+                      <div >
                        
                         <StyledPopconfirm
                           title="Do you want to delete?"
@@ -599,7 +596,7 @@ const LeadsCardList = (props) => {
       </div>
 
       <div className=' flex  justify-center  sticky z-auto mt-1'>
-     <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
      <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
       <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-orange-600 text-white">Warm</div>
         <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
@@ -658,7 +655,7 @@ const LeadsCardList = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
              <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
@@ -907,7 +904,7 @@ const LeadsCardList = (props) => {
                 </div>
                 <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
                 
-                  <div class="w-5">
+                  <div >
                     <Tooltip title="Notes">
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
@@ -920,7 +917,7 @@ const LeadsCardList = (props) => {
                       />
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       title={
                         <FormattedMessage
@@ -946,7 +943,7 @@ const LeadsCardList = (props) => {
                   
                
                
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       overlayStyle={{ maxWidth: "300px" }}
                       title={dataLoc}
@@ -960,7 +957,7 @@ const LeadsCardList = (props) => {
                       </div>
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip title={item.email}>
                       <MailOutlineIcon
                         type="mail"
@@ -973,7 +970,7 @@ const LeadsCardList = (props) => {
                     </Tooltip>{" "}
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div class="w-5">
+                   <div >
                       <Tooltip title="Edit">
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
@@ -987,7 +984,7 @@ const LeadsCardList = (props) => {
                     </div>
                   )}
                   {user.leadsDeleteInd === true && user.crmInd === true && (
-                    <div class="w-5">
+                    <div >
                      
                       <StyledPopconfirm
                         title="Do you want to delete?"
@@ -1013,7 +1010,7 @@ const LeadsCardList = (props) => {
       </div>
 
       <div className=' flex  justify-center  sticky  z-auto mt-1'>
-     <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
      <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
       <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-blue-600 text-white">Cold</div>
         <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
@@ -1080,7 +1077,7 @@ const LeadsCardList = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
              <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
@@ -1329,7 +1326,7 @@ const LeadsCardList = (props) => {
                 </div>
                 <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
                 
-                  <div class="w-5">
+                  <div >
                     <Tooltip title="Notes">
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
@@ -1342,7 +1339,7 @@ const LeadsCardList = (props) => {
                       />
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       title={
                         <FormattedMessage
@@ -1368,7 +1365,7 @@ const LeadsCardList = (props) => {
                   
                
                
-                  <div class="w-5">
+                  <div >
                     <Tooltip
                       overlayStyle={{ maxWidth: "300px" }}
                       title={dataLoc}
@@ -1382,7 +1379,7 @@ const LeadsCardList = (props) => {
                       </div>
                     </Tooltip>
                   </div>
-                  <div class="w-5">
+                  <div >
                     <Tooltip title={item.email}>
                       <MailOutlineIcon
                         type="mail"
@@ -1395,7 +1392,7 @@ const LeadsCardList = (props) => {
                     </Tooltip>{" "}
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
-                   <div class="w-5">
+                   <div >
                       <Tooltip title="Edit">
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
@@ -1409,7 +1406,7 @@ const LeadsCardList = (props) => {
                     </div>
                   )}
                   {user.leadsDeleteInd === true && user.crmInd === true && (
-                    <div class="w-5">
+                    <div >
                      
                       <StyledPopconfirm
                         title="Do you want to delete?"

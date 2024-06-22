@@ -79,6 +79,7 @@ import { teamsReducer } from "../Containers/Main/Teams/TeamsReducer";
 import { inventoryReducer } from "../Containers/Main/Inventory/InventoryReducer";
 import { orderReducer } from "../Containers/Main/Order/OrderReducer";
 import { tradeReducer } from "../Containers/Main/Trade/TradeReducer";
+import {clubReducer} from "../Containers/Main/Club/ClubReducer";
 import { shipByReducer } from "../Containers/Settings/Category/ShipBy/ShipByReducer";
 import { catgCustomerReducer } from "../Containers/Settings/Category/Customer/CustomerReducer";
 import { distributorReducer } from "../Containers/Main/Account/AccountReducer";
@@ -137,6 +138,7 @@ const appReducer = combineReducers({
   contact: contactReducer,
   customer: customerReducer,
   trade: tradeReducer,
+  club: clubReducer,
   opportunity: OpportunityReducer,
   candidate: candidateReducer,
   language: languageReducer,

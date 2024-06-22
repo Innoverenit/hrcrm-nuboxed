@@ -28,7 +28,7 @@ class NotesTaskForm extends Component {
       
         <br />
 
-        <div class="border-spacing-2 rounded-md shadow-2xl mb-1 mt-9">
+        <div class="border-spacing-2 rounded-md shadow mb-1 mt-9">
           <div class="h-[200] overflow-auto p-4">
             {fetchingNotesList ? (
               <BundleLoader />

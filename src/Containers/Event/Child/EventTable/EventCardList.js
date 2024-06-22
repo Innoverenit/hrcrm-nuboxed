@@ -2,7 +2,6 @@ import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import moment from "moment";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -17,7 +16,7 @@ import {
 } from "../../EventAction";
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { MultiAvatar2, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
 
@@ -71,10 +70,10 @@ function EventCardList (props) {
     console.log(eventListRangeByUserId)
     return (
       <>
-      <div className=' flex justify-end sticky top-28 z-auto'>
-      <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=' flex  sticky  z-auto'>
+      <div class="rounded-lg m-1  max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
-         <div className=" flex  w-[99%] max-sm:hidden p-2 bg-transparent font-bold sticky top-0 z-10">
+         <div className=" flex  w-[99%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]"><FormattedMessage
                   id="app.type"
                   defaultMessage="type"
@@ -119,7 +118,7 @@ function EventCardList (props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingEventListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
       {eventListRangeByUserId.map((item) => { 
             const handleCopyClick = () => {
@@ -131,7 +130,7 @@ function EventCardList (props) {
             };
                     return (
                         <div>
-                            <div className="flex rounded-xl  mt-4 bg-white h-[2.75rem] items-center p-3 max-sm:h-[7rem] max-sm:flex-col"
+                            <div className="flex rounded   mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                                 style={{
                                     // borderBottom: "3px dotted #515050"
                                 }}>
@@ -165,13 +164,13 @@ function EventCardList (props) {
                                 <div className=" flex font-medium flex-col w-[8.9rem] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
-                                    {` ${moment.utc(item.startDate).format('YYYY-MM-DD')}`}
+                                    {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col w-[5.32rem] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
-                                    {` ${moment.utc(item.endDate).format('YYYY-MM-DD')}`}
+                                    {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
                                 </div>
@@ -210,7 +209,7 @@ function EventCardList (props) {
                                     </div>
                                 </div>
                                 <div className="flex font-medium flex-col w-[7.69rem] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
-                                    {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned To</div> */}
+                                    {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
                                     {/* <Tooltip title={item.assignedToName}> */}
@@ -224,7 +223,7 @@ function EventCardList (props) {
                   
                   null
                 ) : (
-                <MultiAvatar2
+                <MultiAvatar
                   primaryTitle={item.assignedToName}
                   imgWidth={"1.8rem"}
                   imgHeight={"1.8rem"}
@@ -244,7 +243,7 @@ function EventCardList (props) {
                    <div class="max-sm:flex justify-end">
               {/* <Tooltip title={item.woner}> */}
             <SubTitle>
-              <MultiAvatar2
+              <MultiAvatar
               primaryTitle={item.woner}
               imageId={item.ownerImageId}
               imageURL={item.imageURL}
@@ -261,22 +260,22 @@ function EventCardList (props) {
                       <div class="flex  w-[4rem] max-sm:flex-row items-center justify-between max-sm:w-auto">
                     <div class="">
                     {item.rating === 0 ? (<StarBorderIcon
-                     className="!text-base cursor-pointer text-[#eeeedd]"
+                     className="!text-icon cursor-pointer text-[#eeeedd]"
                 />)
                 : (
                   <span>
                     {item.rating}{<StarBorderIcon 
-                    className="!text-base cursor-pointer text-[#FFD700]"/>}
+                    className="!text-icon cursor-pointer text-[#FFD700]"/>}
                   </span>)}
                         </div>
                         <div>
                         {item.completionInd === false ? (
                 <CheckCircleIcon 
-                className="!text-base cursor-pointer text-[#eeeedd]"
+                className="!text-icon cursor-pointer text-[#eeeedd]"
                   />
               ) : (
                 <span><CheckCircleIcon 
-                className="!text-base cursor-pointer text-[#67d239]"
+                className="!text-icon cursor-pointer text-[#67d239]"
                  />
                 </span>
               )}
@@ -299,17 +298,18 @@ function EventCardList (props) {
         {/* {isCopied && <span className="text-green-500 ml-2">Copied!</span>} */}
       </div>
     }>
-      <EventNoteIcon className="!text-base cursor-pointer" />
+      <EventNoteIcon className="!text-icon cursor-pointer" />
     </Tooltip>
                     </div>
                     </div>
                     
-                    <div class="flex flex-col w-[4rem] max-sm:flex-row justify-evenly items-center max-sm:w-auto">
+                    
+        <div class="flex flex-row  w-[4rem] max-sm:flex-row justify-evenly items-center max-sm:w-auto">
        
           <Tooltip title="Edit">
               <BorderColorIcon
                 type="edit"
-                className="!text-base cursor-pointer text-[tomato]"
+                className="!text-icon cursor-pointer text-[tomato]"
                 onClick={() => {
                   props.setEditEvents(item);
                   handleUpdateEventModal(true);
@@ -326,7 +326,7 @@ function EventCardList (props) {
             >
                <Tooltip title="Delete">
               <DeleteOutlined  type="delete"
-                className="!text-base cursor-pointer text-[red]"
+                className="!text-icon cursor-pointer text-[red]"
               />
               </Tooltip>
             </StyledPopconfirm>

@@ -42,8 +42,8 @@ class LinkedDocuments extends Component {
   if (fetchingDocumentsByContactId) return <BundleLoader/>;
     return (
       <>
-         <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+         <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[6.9rem]">
         <FormattedMessage
                   id="app.date"
@@ -72,18 +72,16 @@ class LinkedDocuments extends Component {
         
                     return (
                         <div>
-                            <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
-              >
+                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                      
-                                     <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full items-center"> 
+                             <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                <div className="flex max-sm:w-full items-center"> 
 
-          <div class="max-sm:w-full">
+                                      <div class="max-sm:w-full">
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm  text-cardBody font-poppins  font-medium cursor-pointer">
                                                 
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
      
@@ -132,9 +130,7 @@ class LinkedDocuments extends Component {
           // target="_blank"
           >
             <DownloadIcon
-              type="download"
-              style={{ cursor: "pointer" ,fontSize:"1.25rem"}}
-            />
+              type="download" class=" cursor-pointer !text-icon bg-green-500"/>
           </a>
           </>
                  
@@ -143,11 +139,7 @@ class LinkedDocuments extends Component {
                                     
 
                                     <div class=" text-sm text-cardBody font-poppins text-center">
-                                    <a
-            href={`${base_url}/download/${item.documentTypeId}`}
-          >
-            
-          </a>
+                                    <a href={`${base_url}/download/${item.documentTypeId}`}></a>
 
                                     </div>
                                 </div>
@@ -156,11 +148,11 @@ class LinkedDocuments extends Component {
 
                                     <div class=" text-sm text-cardBody font-poppins text-center">
                                     <StyledPopconfirm
-            title="Do you want to delete?"
-            onConfirm={() => deleteDocument(item.documentId)}
-         >
-            <DeleteOutlined type="delete" style={{ cursor: "pointer", fontSize:"1.25rem",color: "red" }} />
-          </StyledPopconfirm>
+                                      title="Do you want to delete?"
+                                        onConfirm={() => deleteDocument(item.documentId)}
+                                             >
+                                      <DeleteOutlined type="delete" class="cursor-pointer !text-icon bg-red-600" />
+                                        </StyledPopconfirm>
 
                                     </div>
                                 </div>

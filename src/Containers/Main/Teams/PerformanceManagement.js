@@ -80,14 +80,14 @@ function handleSetCurrentEmployeeId(employeeId,) {
             
             <div class=" h-h86 overflow-auto overflow-x-auto">
              
-            <div class="flex flex-wrap w-full justify-center max-sm:justify-between max-sm:flex-col max-sm:items-center"> 
+            <div class="flex flex-wrap w-full justify-start max-sm:justify-between max-sm:flex-col max-sm:items-center"> 
                   
               {props.reportingManger.map((item) => {
                 console.log("noOfDocPending",item.noOfDocPending)
       
                  return (
-                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9.5rem] 
-                  text-[#444444] m-3 p-1 w-[16rem] flex flex-col  ">
+                  <div class="rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9.5rem] 
+                  text-[#444444] m-1 p-1 w-[16rem] flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                       <div class="w-[200] flex h-[200]">
                    <Tooltip 
                    title={item.country}

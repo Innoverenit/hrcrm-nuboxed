@@ -10,6 +10,10 @@ const initialState = {
   fetchingInvestorsError: false,
   investorsbyId: [],
 
+  fetchingDocumentList: false,
+   fetchingDocumentListError: false,
+   documentAllList:[],
+
   opencreateDealModal: false,
 
   fetchingInvestorActivityCount: false,
@@ -18,6 +22,12 @@ const initialState = {
 
   creatingInvestorDeal: false,
   creatingInvestorDealError: false,
+
+  creatingUpdateInvestorShare: false,
+  creatingUpdateInvestorShareError: false,
+
+  creatingInvestorShare: false,
+  creatingInvestorShareError: false,
 
   fetchingDialCode: false,
   fetchingDialCodeError: false,
@@ -40,6 +50,8 @@ const initialState = {
   fetchingAllInvestors: false,
   fetchingAllInvestorsError: false,
   allInvestorsbyId: [],
+
+  priceInvestorDrawer:false,
 
   fetchingInvestorRecords: false,
   fetchingInvestorRecordsError: false,
@@ -64,6 +76,8 @@ const initialState = {
   addDrawerInvestorContactModal:false,
 
   addDrawerInvestorPulseModal:false,
+
+  addDrawerInvestorDocumentModal:false,
 
   fetchingOpportunityRecord: false,
   fetchingOpportunityRecordError: false,
@@ -126,6 +140,10 @@ const initialState = {
   fetchingTeamInvestor: false,
   fetchingTeamInvestorError: false,
   teamInvestor:[],
+
+  fetchingInvenstoryShare: false,
+        fetchingInvenstoryShareError: false,
+        inventoryShare:[],
 
   fetchingInvestorDealsData: false,
   fetchingInvestorDealsDataError: false,
@@ -665,6 +683,9 @@ export const investorReducer = (state = initialState, action) => {
                           case types.HANDLE_INVESTOR_PULSE_DRAWER_MODAL:
                             return { ...state, addDrawerInvestorPulseModal: action.payload }; 
 
+                            case types.HANDLE_INVESTOR_DOCUMENT_DRAWER_MODAL:
+                              return { ...state, addDrawerInvestorDocumentModal: action.payload }; 
+
 
                             case types.GET_INVESTOR_OPP_VALUE_REQUEST:
                               return { ...state, fetchingInvestorOppValue: true, fetchingInvestorOppValueError: false };
@@ -826,7 +847,97 @@ export const investorReducer = (state = initialState, action) => {
                                                 };
                                               case types.DELETE_INVESTOR_DATA_FAILURE:
                                                 return { ...state, deleteInvestorData: false, deleteInvestorDataError: false };
-                                                       
+                                                   
+                                                case types.HANDLE_INVESTORPRICE_DRAWER:
+                                                  return { ...state, priceInvestorDrawer: action.payload };   
+
+                                                  case types.INVESTOR_SHARE_REQUEST:
+                                                    return { ...state, creatingInvestorShare: true };
+                                                  case types.INVESTOR_SHARE_SUCCESS:
+                                                    return {
+                                                      ...state,
+                                                      creatingInvestorShare: false,
+                                                      inventoryShare: [action.payload, ...state.inventoryShare]
+                                                    };
+                                                  case types.INVESTOR_SHARE_FAILURE:
+                                                    return {
+                                                      ...state,
+                                                      creatingInvestorShare: false,
+                                                      creatingInvestorShareError: true,
+                                                    };
+
+                                                    case types.INVESTOR_SHARE_UPDATE_REQUEST:
+                                                    return { ...state, creatingUpdateInvestorShare: true };
+                                                  case types.INVESTOR_SHARE_UPDATE_SUCCESS:
+                                                    return {
+                                                      ...state,
+                                                      creatingUpdateInvestorShare: false,
+                                                      inventoryShare: [action.payload, ...state.inventoryShare]
+                                                    };
+                                                  case types.INVESTOR_SHARE_UPDATE_FAILURE:
+                                                    return {
+                                                      ...state,
+                                                      creatingUpdateInvestorShare: false,
+                                                      creatingUpdateInvestorShareError: true,
+                                                    };
+
+        case types.GET_INVESTOR_SHARE_REQUEST:
+      return {
+        ...state,
+        fetchingInvenstoryShare: true,
+      };
+    case types.GET_INVESTOR_SHARE_SUCCESS:
+      return {
+        ...state,
+        fetchingInvenstoryShare: false,
+        inventoryShare: action.payload,
+      };
+    case types.GET_INVESTOR_SHARE_FAILURE:
+      return {
+        ...state,
+        fetchingInvenstoryShare: false,
+        fetchingInvenstoryShareError: true,
+      };
+
+      case types.GET_DOCUMENT_ALLLIST_REQUEST:
+        return {
+          ...state,
+          fetchingDocumentList: true,
+        };
+      case types.GET_DOCUMENT_ALLLIST_SUCCESS:
+        return {
+          ...state,
+          fetchingDocumentList: false,
+          documentAllList: action.payload,
+        };
+      case types.GET_DOCUMENT_ALLLIST_FAILURE:
+        return {
+          ...state,
+          fetchingDocumentList: false,
+          fetchingDocumentListError: true,
+        };
+
+        case types.LINK_INVESTOR_TOGGLE_REQUEST:
+          return { ...state, addingInvestorToggle: true };
+        case types.LINK_INVESTOR_TOGGLE_SUCCESS:
+          return {
+            ...state,
+            addingInvestorToggle: false,
+            documentAllList: state.documentAllList.map((item) => {
+              if (item.documentTypeId === action.payload.documentTypeId) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
+          };
+        case types.LINK_INVESTOR_TOGGLE_FAILURE:
+          return {
+            ...state,
+            addingInvestorToggle: false,
+            addingInvestorToggleError: true,
+          };
+
 
 
 default:

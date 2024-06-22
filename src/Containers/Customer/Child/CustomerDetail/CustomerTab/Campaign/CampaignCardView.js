@@ -14,7 +14,6 @@ import {
   setEditEvents,
 } from "../../../../../Event/EventAction";
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { getCurrency } from "../../../../../Auth/AuthAction";
 import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
@@ -101,8 +100,8 @@ if(fetchingCustomerCampaign){
     if (isMobile){
       return (
         <>
-        <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg  p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div className=' flex justify-end sticky z-auto'>
+        <div class="rounded  p-1 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
      
           
         <InfiniteScroll
@@ -122,9 +121,7 @@ if(fetchingCustomerCampaign){
               };
                       return (
                           <div>
-                             <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
-              >
+                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  ">
                                       <div class="flex items-center  justify-between">
                                  
  
@@ -233,22 +230,22 @@ if(fetchingCustomerCampaign){
                 />
                  <div class="">
                       {item.rating === 0 ? (<StarBorderIcon
-                       className="!text-xl cursor-pointer text-[#eeeedd]"
+                       className="!text-icon cursor-pointer text-[#eeeedd]"
                   />)
                   : (
                     <span>
                       {item.rating}{<StarBorderIcon 
-                      className="!text-xl cursor-pointer text-[#FFD700]"/>}
+                      className="!text-icon cursor-pointer text-[#FFD700]"/>}
                     </span>)}
                           </div>                 
                           <div>
                           {item.completionInd === false ? (
                   <CheckCircleIcon 
-                  className="!text-xl cursor-pointer text-[#eeeedd]"
+                  className="!text-icon cursor-pointer text-[#eeeedd]"
                     />
                 ) : (
                   <span><CheckCircleIcon 
-                  className="!text-xl cursor-pointer text-[#67d239]"
+                  className="!text-icon cursor-pointer text-[#67d239]"
                    />
                   </span>
                 )}
@@ -262,13 +259,13 @@ if(fetchingCustomerCampaign){
        {item.eventDescription}
        <br />
        <FileCopyIcon
-         className={`!text-xl cursor-pointer ${isCopied ? 'text-white' : ''}`}
+         className={`!text-icon cursor-pointer ${isCopied ? 'text-white' : ''}`}
          onClick={handleCopyClick}
        />
        {/* {isCopied && <span className="text-green-500 ml-2">Copied!</span>} */}
      </div>
    }>
-     <EventNoteIcon className="text-xl cursor-pointer" />
+     <EventNoteIcon className="text-icon cursor-pointer" />
    </Tooltip>
                    </div>
                    
@@ -292,7 +289,7 @@ if(fetchingCustomerCampaign){
              >
                 <Tooltip title="Delete">
                <DeleteOutlined  type="delete"
-                 className="!text-xl cursor-pointer text-[red]"
+                 className="!text-icon cursor-pointer text-[red]"
                />
                </Tooltip>
              </StyledPopconfirm>
@@ -320,10 +317,10 @@ if(fetchingCustomerCampaign){
 
     return (
       <>
-      <div className=' flex justify-end sticky top-28 z-auto'>
-      <div class="rounded-lg m-5 p-2 w-[94%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=' flex  sticky  z-auto'>
+      <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
-         <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+         <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[7.8rem]"><FormattedMessage
                   id="app.type"
                   defaultMessage="type"
@@ -361,13 +358,13 @@ if(fetchingCustomerCampaign){
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingCustomerCampaign?<div class="flex items-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"79vh"}
       >
       {data.map((item) => { 
                     return (
                         <div key={item.eventId}>
                              <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                      <div class="flex ">
                                 <div className=" flex font-medium  w-[6.98rem] max-sm:w-full ">

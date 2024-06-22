@@ -466,7 +466,7 @@ const AddAccountForm = ({
                             >
                               <FormattedMessage
                                 id="app.assignedTo"
-                                defaultMessage="Assigned to"
+                                defaultMessage="Assigned"
                               />
 
                             </Listbox.Label>

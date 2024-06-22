@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select, Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
+import { CheckOutlined } from "@ant-design/icons";
+import { base_url } from "../../../Config/Auth";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field, FieldArray, FastField,setFieldValue  } from "formik";
 import * as Yup from "yup";
@@ -76,7 +78,7 @@ props.emptyClearbit();
     const fetchSource = async () => {
       setIsLoading(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+        const apiEndpoint = `${base_url}/source/${props.organizationId}`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
@@ -111,7 +113,7 @@ props.emptyClearbit();
   const fetchSector = async () => {
     setIsLoadingSector(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+      const apiEndpoint = `${base_url}/sector`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -148,7 +150,7 @@ props.emptyClearbit();
   const fetchLob = async () => {
     setIsLoadingLob(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/lob/all/${props.orgId}`;
+      const apiEndpoint = `${base_url}/lob/all/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -226,7 +228,7 @@ props.emptyClearbit();
                 companyName: "",
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 source: selectedSource,
-                lob:selectedLob,
+                lobId:selectedLob,
                 countryDialCode:values.countryDialCode,
                 // price:values.price,
                 type:priority,
@@ -522,7 +524,9 @@ props.emptyClearbit();
                                  width: "31px", 
                                  height: "31px"
                            }}
-                         />
+                         >
+                          {priority === "hot" && <CheckOutlined style={{ color: "white" }} />}
+                          </Button>
                        </Tooltip>
                        &nbsp;
                        <Tooltip title="Warm">
@@ -537,14 +541,14 @@ props.emptyClearbit();
                                  width: "31px", 
                                  height: "31px",
                            }}
-                         />
+                         >
+                          {priority === "warm" && <CheckOutlined style={{ color: "white" }} />}
+                          </Button>
                        </Tooltip>
                        &nbsp;
                        <Tooltip title="Cold">
                          <Button
-                           
                             shape="circle"
-                   
                            onClick={() => handleButtonClick("cold")}
                            style={{
                              backgroundColor:"teal",
@@ -552,7 +556,9 @@ props.emptyClearbit();
                                  width: "31px", // Adjust the width as needed
                                  height: "31px"
                            }}
-                         ></Button>
+                           >
+                           {priority === "cold" && <CheckOutlined style={{ color: "white" }} />}
+                           </Button>
                        </Tooltip>
                      </div>
                       </div>
@@ -644,7 +650,7 @@ props.emptyClearbit();
                    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-semibold text-[0.75rem]">Assigned to</Listbox.Label>
+          <Listbox.Label className="block font-semibold text-[0.75rem]">Assigned</Listbox.Label>
           <div className="relative">
               <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}

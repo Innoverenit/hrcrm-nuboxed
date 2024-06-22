@@ -3,7 +3,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Badge, Avatar,Input } from "antd";
-import TocIcon from '@mui/icons-material/Toc';
 import { AudioOutlined } from '@ant-design/icons';
 import { getSuppliesCount,getSuppliesDeletedCount,getSuppliesList,ClearReducerDataOfMaterial,inputSuppliesDataSearch } from "./SuppliesAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
@@ -24,7 +23,7 @@ function SuppliesActionLeft (props) {
     const [pageNo, setPage] = useState(0);
     const [startTime, setStartTime] = useState(null);
     const [isRecording, setIsRecording] = useState(false); 
-    const minRecordingTime = 5000; // 5 seconds
+    const minRecordingTime = 3000; // 3 seconds
     const timerRef = useRef(null);
     const dummy = ["cloud", "azure", "fgfdg"];
     const {
@@ -134,7 +133,7 @@ function SuppliesActionLeft (props) {
                             }}
                         >
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white">All</div></Avatar>
+                                <div className="text-white">ALL</div></Avatar>
 
                         </span>
                     </Badge>

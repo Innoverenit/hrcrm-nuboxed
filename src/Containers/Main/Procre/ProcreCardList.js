@@ -1,26 +1,36 @@
 import React, {  useEffect, useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip,Badge } from "antd";
+import { Tooltip,Button,Input ,Popconfirm} from "antd";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import InfiniteScroll from "react-infinite-scroll-component";
-import PaidIcon from '@mui/icons-material/Paid';
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import {
   getAllProcure,
   emptyProcre,
-  handleProcureOrderModal
+  handleProcureOrderModal,
+  updateProcures,
+  handleProcureNotesDrawerModal,
+  procureToAccept
 } from "../Procre/ProcreAction";
-import { PersonAddAlt1 } from "@mui/icons-material";
-import moment from "moment";
-import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
+import dayjs from "dayjs";
+import NextPlanIcon from '@mui/icons-material/NextPlan';
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
-import { BundleLoader } from "../../../Components/Placeholder";
 import ProcureOrderModal from "./Child/ProcureOrderModal";
+import AddProcureNotesDrawerModal from "./AddProcureNotesDrawerModal";
 
 function ProcreCardList(props) {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [editedFields, setEditedFields] = useState({});
+  const [editsuppliesId, setEditsuppliesId] = useState(null);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setData(props.allProcure.map((item, index) => ({ ...item, key: String(index) })));
+  }, [props.allProcure]);
+
   useEffect(() => {
     props.getAllProcure(props.orgId, page);
     setPage(page + 1);
@@ -35,27 +45,89 @@ function ProcreCardList(props) {
     return () => props.emptyProcre();
   }, []);
 
+ 
+
+  // const handleLoadMore = () => {
+  //   setPage(page + 1);
+  //   props.getAllProcure(props.currentUser ? props.currentUser : props.orgId, page,
+  //   );
+  // }
   const handleLoadMore = () => {
-    setPage(page + 1);
-    props.getAllProcure(props.currentUser ? props.currentUser : props.orgId, page,
+    const callPageMapd = props.allProcure && props.allProcure.length &&props.allProcure[0].pageCount
+    setTimeout(() => {
+      const {
+        getAllProcure,
+       // userDetails: { employeeId },
+      } = props;
+      if  (props.allProcure)
+      {
+        if (page < callPageMapd) {
+          setPage(page + 1);
+          getAllProcure(props.currentUser ? props.currentUser : props.orgId, page, );
+      }
+      if (page === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
+
+  const handleInputChange = (value, key, dataIndex) => {
+    const updatedData = data.map((row) =>
+      row.key === key ? { ...row, [dataIndex]: value } : row
     );
-  }
-// if (props.fetchingAllProcure) {
-//     return <BundleLoader />;
-//   }
+    setData(updatedData);
+  };
+  const handleEditClick = (productionBuilderId) => {
+    setEditsuppliesId(productionBuilderId);
+  };
+  const handleCancelClick = (productionBuilderId) => {
+    setEditedFields((prevFields) => ({ ...prevFields, [productionBuilderId]: undefined }));
+    setEditsuppliesId(null);
+  };
+  const handleSave = (key) => {
+    console.log(key)
+  
+      const result = [{
+        // hsn: key.hsn,
+        // suppliesName:key.suppliesName,
+        // attributeName:key.attributeName,
+        // subAttributeName:key.subAttributeName,
+        //       categoryName:key.categoryName,
+        //       subCategoryName:key.subCategoryName,
+        iteamId:key.iteamId,
+              tradeId:key.tradeId,
+              suppliesId:key.suppliesId,
+              tradePrice:key.tradePrice,
+              tradeUnit:key.tradeUnit,
+              procureId:key.procureId,
+              userId:props.userId
+            }];
+      props.updateProcures(result)
+    
+  };
+const {handleProcureNotesDrawerModal,
+  addDrawerProcureNotesModal
+} = props;
   return (
     <>
-    <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-        <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
+    <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[0.5rem]"></div>
-    
-                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.procreid#" defaultMessage="Procure ID"/></div>
-                        <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
-                        <div className=" md:w-[8.1rem]"><FormattedMessage id="app.location" defaultMessage="Location"/></div>
-                        <div className=" md:w-[7.8rem] "><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
-                        
-
-                        <div className="md:w-[3.12rem]"></div>
+                        <div className=" md:w-[11rem]"><FormattedMessage id="app.item" defaultMessage="Item"/></div>
+                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit "/></div>
+                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.unit" defaultMessage="Unit "/></div>
+                        <div className=" md:w-[12rem]"><FormattedMessage id="app.procreid#" defaultMessage="Procure ID"/></div>
+                        <div className=" md:w-[6rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
+                        <div className=" md:w-[5rem]"><FormattedMessage id="app.location" defaultMessage="Location"/></div>
+                        <div className=" md:w-[6.01rem]">Created</div>
+                        <div className=" md:w-[6.03rem]">currency</div>
+                        <div className=" md:w-[3.8rem] "><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
+                        <div className=" md:w-[5rem]"><FormattedMessage id="app.tradeid" defaultMessage="Trade ID"/></div>
+                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit "/></div>
+                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.unit" defaultMessage="Unit "/></div>
+                        <div className=" md:w-[5.8rem]"><FormattedMessage id="app.Submittedby" defaultMessage="Submitted By"/></div>
+                        <div className="md:w-[1rem]"></div>
         </div>
         <InfiniteScroll
             hasMore={hasMore}
@@ -63,36 +135,20 @@ function ProcreCardList(props) {
           next={handleLoadMore}
           loader={props.fetchingAllProcure?<div class="flex justify-center" >Loading...</div>:null}
           height={"75vh"}
+          endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
-          {props.allProcure.map((item) => {
-            const currentDate = moment().format("DD/MM/YYYY");
-            const date = moment(item.creationDate).format("DD/MM/YYYY");
+          {data.map((item) => {
+            const currentDate = dayjs().format("DD/MM/YYYY");
+            const date = dayjs(item.creationDate).format("DD/MM/YYYY");
             const diff = Math.abs(
-              moment().diff(moment(item.lastRequirementOn), "days")
+              dayjs().diff(dayjs(item.lastRequirementOn), "days")
             );
-            const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
-              } 
-                   Street : ${item.address && item.address.length && item.address[0].street
-              }   
-                  State : ${item.address && item.address.length && item.address[0].state
-              }
-                 Country : ${(item.address &&
-                item.address.length &&
-                item.address[0].country) ||
-              ""
-              } 
-                   PostalCode : ${item.address &&
-              item.address.length &&
-              item.address[0].postalCode
-              } `;
+           
             return (
-              <div>
+              <div key={item.iteamId}>
               <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
-                  <div class="flex">
-                  <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
-                  <div className="flex items-center max-sm:w-full">
-                      <div className=" flex font-medium items-center  md:w-[6.56rem] max-sm:w-full  ">
-                                                        <Tooltip>
+<div>
+{/* <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full ">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
@@ -107,21 +163,43 @@ function ProcreCardList(props) {
                                                                         <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
                                                                 </div>
                                                             </div>
-                                                        </Tooltip>
+                                                        </Tooltip> */}
+</div>
+                  <div class="flex">
+                  <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                  <div className="flex items-center max-sm:w-full">
+                      <div className=" flex font-medium items-center  md:w-[12rem] max-sm:w-full  ">
+                                                      {item.category} {item.brand} {item.model} {item.attribute}
                                                     </div>
-
-                        <div class="max-sm:w-full  items-center md:w-[10.02rem]">
+                                                    <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+      
+      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+ 
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.price}</div>
+                      </div>
+                    </div>
+  </div>
+  <div className=" flex font-medium  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+      
+      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.unit}</div>
+                      </div>
+                    </div>
+  </div>
+                        <div class="max-sm:w-full  items-center md:w-[12.02rem]">
                           <Tooltip>
-                          <div class="max-sm:w-full  justify-between flex md: flex flex-row text-sm">                      
+                          <div class="max-sm:w-full  justify-between md: flex flex-row text-sm">                      
                                 <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleProcureOrderModal(true);
                                                                     }}
-                                                                >{item.newOrderNo} 
+                                                                >{item.iteamId} 
                                                                 </span>
-                                                                <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                                                                <span> {date === currentDate ? (
                                                                   <span className="text-xs text-[tomato] font-bold">
                                                                     New
                                                                   </span>
@@ -134,27 +212,40 @@ function ProcreCardList(props) {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[22rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between">
                   
                       
                   <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                  {` ${moment(item.deliveryDate).format("ll")}`}
+                  {dayjs(item.deliveryDate).format("DD/MM/YYYY")}
+
                         </div>
 
                
                 </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[23.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class="text-cardBody font-poppins text-sm">
+                    <div className=" flex font-medium flex-col  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class="text-cardBody font-poppins text-sm">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
          
         `}
-                      </h4>
+                      </div>
+                    </div>
+                    <div className=" flex font-medium flex-col  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class="text-cardBody font-poppins text-sm">
+
+                     {date}
+                      </div>
+                    </div>
+                    <div className=" flex font-medium flex-col  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class="text-cardBody font-poppins text-sm">
+
+                     {item.currencyName} {item.price}
+                      </div>
                     </div>
                   </div>
-                  <div class="flex flex-row items-center md:w-[20.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -164,8 +255,129 @@ function ProcreCardList(props) {
                       />
                     </div>
                   </div>
-                 
-
+                  {props.userId === item.userId && item.tradeId !== null && (
+                  <div class=" text-sm text-cardBody font-poppins">
+                        <Popconfirm
+                          title="Change status to Accepted?"
+                          onConfirm={() => props.procureToAccept(item.iteamId,data,props.orgId)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                         
+                            <Button type="primary"
+                              style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}
+                              disabled={item.acceptedInd || props.fetchingAllProcure}
+                              loading={props.fetchingAllProcure}
+                              >
+                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
+                                   {item.acceptedInd? "Accepted": "Accept"}           
+                                {/* Accept */}
+                                <NextPlanIcon  />
+                              </div>
+                            </Button>
+                         
+                        </Popconfirm>
+                      </div>
+          )}
+                  <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div>
+                    {editsuppliesId === item.iteamId ? (
+                       <Input
+                       style={{ width: "3rem" }}
+                       value={item.tradeId}
+                       onChange={(e) => handleInputChange(e.target.value, item.key, 'tradeId')}
+                     />
+                       
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.tradeId}</div>
+                      </div>
+                    )}
+                  
+                    </div>
+                  </div>
+                  <div className=" flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+      
+      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                   {editsuppliesId === item.iteamId ? (
+                       <Input
+                       style={{ width: "3rem" }}
+                       value={item.tradePrice}
+                       onChange={(e) => handleInputChange(e.target.value, item.key, 'tradePrice')}
+                     />
+                       
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.tradePrice}</div>
+                      </div>
+                    )}
+                    </div>
+  </div>
+  <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+      
+      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                   {editsuppliesId === item.iteamId ? (
+                       <Input
+                       style={{ width: "3rem" }}
+                       value={item.tradeUnit}
+                       onChange={(e) => handleInputChange(e.target.value, item.key, 'tradeUnit')}
+                     />
+                       
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.tradeUnit}</div>
+                      </div>
+                    )}
+                    </div>
+  </div>
+  <div class="flex flex-row items-center md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div>
+                      {item.userName} 
+                    </div>
+                  </div>
+                  <div >
+                      <Tooltip title="Notes">
+                        <NoteAltIcon
+                         className=" !text-icon cursor-pointer text-green-800"
+                          onClick={() => {
+                            handleSetParticularOrderData(item);
+                            handleProcureNotesDrawerModal(true);
+                         
+                          }}
+                         
+                        />
+                      </Tooltip>
+                    </div>
+  <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    {editsuppliesId === item.iteamId ? (
+                        <>
+                      <Button 
+                      type="primary"
+                      loading={props.updatingProcures}
+                      onClick={() => handleSave(item)}>
+                        Save
+                      </Button>
+                        <Button 
+                         type="primary"
+                        onClick={() => handleCancelClick(item.iteamId)} className="ml-[0.5rem]">
+                        Cancel
+                      </Button>
+                      </>
+                      
+                    ) : (
+                      <>
+                       {!item.acceptedInd && (
+                     
+                      <BorderColorIcon
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                        tooltipTitle="Edit"
+                        iconType="edit"
+                        onClick={() => handleEditClick(item.iteamId)}
+                      />
+                       )}
+                      </>
+                    )}
+    </div>
                 </div>
               </div>
               // </div>
@@ -178,6 +390,12 @@ function ProcreCardList(props) {
                 particularRowData={particularRowData}
                 handleProcureOrderModal={props.handleProcureOrderModal}
                 addProcureOrderModal={props.addProcureOrderModal} />
+
+<AddProcureNotesDrawerModal
+        particularRowData={particularRowData}
+        addDrawerProcureNotesModal={props.addDrawerProcureNotesModal}
+        handleProcureNotesDrawerModal={props.handleProcureNotesDrawerModal}
+      />
     </>
   );
 
@@ -193,6 +411,9 @@ const mapStateToProps = ({ shipper,procre,auth }) => ({
   updateTaskModal: shipper.updateTaskModal,
   orgId: auth.userDetails.organizationId,
   addProcureOrderModal:procre.addProcureOrderModal,
+  updatingProcures:procre.updatingProcures,
+  userId: auth.userDetails.userId,
+  addDrawerProcureNotesModal: procre.addDrawerProcureNotesModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -201,7 +422,10 @@ const mapDispatchToProps = (dispatch) =>
     {
 getAllProcure,
 emptyProcre,
-handleProcureOrderModal
+handleProcureOrderModal,
+updateProcures,
+handleProcureNotesDrawerModal,
+procureToAccept
     },
     dispatch
   );

@@ -121,7 +121,7 @@ const ContactActionLeft = (props) => {
   return (
     <div class=" flex  items-center">
       <Tooltip
-        title={<FormattedMessage id="app.customer" defaultMessage="My Contacts" />}
+        title={<FormattedMessage id="app.mycontacts" defaultMessage="My Contacts" />}
       >
         <Badge
           size="small"
@@ -146,7 +146,7 @@ const ContactActionLeft = (props) => {
       </Tooltip>
       {user.teamsAccessInd === true && (
       <Tooltip
-        title="Teams"
+        title="Team View"
       >
         <Badge
           size="small"

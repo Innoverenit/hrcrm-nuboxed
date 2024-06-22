@@ -370,6 +370,7 @@ function InvesterForm(props) {
 
                   
                   <div class=" flex justify-between mt-3">
+                  {contract ?
                   <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
                   {/* <Field                     
                             name="sectorId"
@@ -408,6 +409,8 @@ function InvesterForm(props) {
         ))}
       </Select>
                     </div>
+                     : ( null)}
+                      {contract ?
                     <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
                     {/* <FastField
                             name="source"
@@ -441,6 +444,7 @@ function InvesterForm(props) {
         ))}
       </Select>
                         </div>
+                          : ( null)}
                   </div>
                   <div class=" flex justify-between">
                   <div class=" w-w47.5">
@@ -476,7 +480,40 @@ function InvesterForm(props) {
                     />
                   </div>
                     </div> 
+                 <div class="flex justify-between">
+                 <div class=" flex flex-col items-center  mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">UBO</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      //onChange={handleContract}
+                      //checked={contract}
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                    />
+                  </div>
+                  <div class=" flex flex-col items-center  mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Identification</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      //onChange={handleContract}
+                      //checked={contract}
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                    />
+                  </div>
+                  
+                 </div>
                  
+                  <div class=" flex flex-col   mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Inofocit</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      //onChange={handleContract}
+                      //checked={contract}
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                    />
+                  </div>
                   <div class="mt-3">
                   <Field
                     name="notes"
@@ -499,7 +536,7 @@ function InvesterForm(props) {
         {({ open }) => (
           <>
             <Listbox.Label className="block font-semibold text-[0.75rem] ">
-              Assigned to
+              Assigned
             </Listbox.Label>
             <div className="relative mt-[0.1rem]">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -567,7 +604,8 @@ function InvesterForm(props) {
                     </div>
                     
                     <div class=" flex justify-between max-sm:flex-col mt-3">
-                    <div class=" w-2/5 max-sm:w-wk">
+                    {contract ?
+                     <div class=" w-2/5 max-sm:w-wk">
                       <Field
                         name="vatNo"
                         type="text"
@@ -582,7 +620,9 @@ function InvesterForm(props) {
                         component={InputComponent}
                         inlineLabel
                       />
-                    </div>
+                    </div> 
+                    : ( null)}
+                      {contract ?
                     <div class=" w-[10rem] max-sm:w-wk">
                       <Field
                         name="businessRegistration"
@@ -600,6 +640,7 @@ function InvesterForm(props) {
                         inlineLabel
                       />
                     </div>
+                     : ( null)}
                   </div>
                  
                   <div class="mt-3 w-full" style={{backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>

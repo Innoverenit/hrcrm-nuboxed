@@ -12,7 +12,7 @@
 
 //     return (
 //         <div className=' flex justify-end sticky top-28 z-auto'>
-//              <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+//              <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 //             <h2>Timeline Component</h2>
 //             <Timeline>
 //                 {timelineData.map((item, index) => (
@@ -66,7 +66,7 @@ const Component2 = (props) => {
     return (
         <>
         <div className=' flex justify-end sticky top-28 z-auto' style={{height:"43em"}}>
-             <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+             <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <h2>Steps</h2>
            
 

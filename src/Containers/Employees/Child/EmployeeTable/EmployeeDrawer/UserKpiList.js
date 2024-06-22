@@ -137,9 +137,9 @@ function UserKpiList(props) {
     )}
      </div>
      {activeTab&&(
-  <div className=' flex  justify-center  sticky top-28 z-auto'>
-  <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-    <div className="flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+  <div className=' flex  justify-center  sticky  z-auto'>
+  <div className="rounded m-1 p-1  w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div className="flex justify-between  h-10 w-[99%] p-1 bg-transparent font-bold sticky z-10">
       <div className="md:w-[8.5rem]">
         <FormattedMessage id="app.kpi" defaultMessage="KPI" />
       </div>
@@ -188,8 +188,8 @@ const actualPercentage = AssignedTotal !== 0 ? Math.floor((ActualTotal / Assigne
 const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue / AssignedTotal) * 100) : 0;
      return (
      <>
-      <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
-        <div className="flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between">
+      <div key={index} className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1">
+        <div className="flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
           <div className="flex max-sm:w-full items-center">
             <div className="max-sm:w-full">
               <Tooltip>
@@ -539,7 +539,7 @@ const mapDispatchToProps = (dispatch) =>
   );
 export default connect(mapStateToProps, mapDispatchToProps)(UserKpiList);
 
-// <div class="rounded-lg m-5 p-2 w-[97%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+// <div class="rounded-lg m-5 p-2 w-[97%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 // <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
 // <div className=" md:w-[8.5rem]">
 // <FormattedMessage

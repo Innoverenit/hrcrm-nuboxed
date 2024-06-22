@@ -650,7 +650,7 @@ function PitchCallForm(props) {
           <Listbox.Label className="block font-semibold text-[0.75rem]">
           <FormattedMessage
                   id="app.assignedTo"
-                  defaultMessage="Assigned to"
+                  defaultMessage="Assigned"
                 />
            
             </Listbox.Label>

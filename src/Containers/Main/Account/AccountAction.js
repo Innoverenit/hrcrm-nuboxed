@@ -326,7 +326,7 @@ export const addDistributorActivityEvent = (event, cb) => (dispatch) => {
  */
 
 
-export const addOrderForm = (customer, distributorId,) => (dispatch, getState) => {
+export const addOrderForm = (customer, distributorId) => (dispatch, getState) => {
 
   dispatch({
     type: types.ADD_ORDER_REQUEST,
@@ -365,7 +365,7 @@ export const addOrderForm = (customer, distributorId,) => (dispatch, getState) =
     });
 };
 
-export const addQuotationOrderForm = (customer, distributorId,) => (dispatch, getState) => {
+export const addQuotationOrderForm = (customer) => (dispatch, getState) => {
 
   dispatch({
     type: types.ADD_QUOTATION_ORDER_REQUEST,
@@ -382,7 +382,7 @@ export const addQuotationOrderForm = (customer, distributorId,) => (dispatch, ge
         icon: 'success',
         title: 'Order Created',
         showConfirmButton: false,
-   timer: 1500,
+        timer: 1500,
       })
       // dispatch(getOrderRecords(distributorId));
     

@@ -86,7 +86,7 @@ function DealLostCard(props) {
           <>
         
              
-        <div class="rounded-lg  p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div class="rounded  p-1 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               
               <InfiniteScroll
                  dataLength={lostDeals.length}
@@ -106,7 +106,7 @@ function DealLostCard(props) {
                          return (
                             <div>
                              <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem]  p-3"
+                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem]  p-1"
                 >
                               <div class="flex justify-between ">
                              
@@ -239,7 +239,7 @@ function DealLostCard(props) {
                                             </div>
                                        
                                        
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
         
                                             <div class=" text-sm text-cardBody font-poppins">
                                             
@@ -420,8 +420,8 @@ function DealLostCard(props) {
   <>
 
      
-<div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-      <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+<div class="rounded m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[13.12rem]"><FormattedMessage
                   id="app.name"
                   defaultMessage="name"
@@ -478,7 +478,7 @@ function DealLostCard(props) {
                  return (
                     <div>
                     <div
-                      className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3"
+                      className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-1"
                       // style={{
                       //   borderBottom: "3px dotted #515050",
                       // }}
@@ -616,7 +616,7 @@ function DealLostCard(props) {
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins">
                                     

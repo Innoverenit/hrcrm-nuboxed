@@ -4,9 +4,7 @@ import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
 import {getLeads} from "../Leads/LeadsAction"
 import AddLeadsImportModal from "../Leads/AddLeadsImportModal"
-import { 
-  // setLeadsViewType, 
-  handleLeadsModal,handleLeadsImportModal } from "./LeadsAction";
+import {handleLeadsModal, handleLeadsImportModal } from "./LeadsAction";
 const LeadsHeader=lazy(()=>import ("./Child/LeadsHeader"));
 const AddLeadsModal=lazy(()=>import ("./Child/AddLeadsModal"));
 const LeadsTeamCardList = lazy(()=>import("./Child/LeadsTable/LeadsTeamCardList"));

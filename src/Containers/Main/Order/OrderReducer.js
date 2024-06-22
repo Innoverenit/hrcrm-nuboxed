@@ -717,6 +717,33 @@ export const orderReducer = (state = initialState, action) => {
                       completedLowOrder: [],
                     
                     };
+
+                    case types.INPUT_ORDER_NO_SEARCH_REQUEST:
+                      return { ...state, fetchingInputOrderNosrch: true };
+                    case types.INPUT_ORDER_NO_SEARCH_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingInputOrderNosrch: false,
+                        allHighCompleteOrder: action.payload,
+                        allMediumCompleteOrder: action.payload,
+                        allLowCompleteOrder: action.payload,
+                        completedHighOrder:action.payload,
+                        completedMediumOrder:action.payload,
+                        completedLowOrder:action.payload,
+                      };
+                    case types.INPUT_ORDER_NO_SEARCH_FAILURE:
+                      return { ...state, fetchingInputOrderNosrchError: true };   
+                      
+                      case types.HANDLE_CLAER_SEARCHED_ORDER:
+                        return { ...state, 
+                          allHighCompleteOrder: [], 
+                          allMediumCompleteOrder: [],
+                          allLowCompleteOrder: [],
+                          completedHighOrder:[],
+                          completedMediumOrder:[],
+                          completedLowOrder:[],
+
+                        };
     
     default:
       return state;

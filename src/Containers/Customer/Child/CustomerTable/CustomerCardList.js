@@ -13,6 +13,7 @@ import { getCountries } from "../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Button, Popconfirm } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import NextPlanIcon from '@mui/icons-material/NextPlan';
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -242,9 +243,9 @@ function CustomerCardList(props) {
 console.log(page)
   return (
     <>
-      <div className=' flex  sticky top-28 z-auto'>
-        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden  w-[92.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
+      <div className=' flex  sticky  z-auto'>
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky z-10">
             <div className=" w-[17.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
               <FormattedMessage
                 id="app.name"
@@ -327,7 +328,7 @@ console.log(page)
             next={handleLoadMore}
             hasMore={hasMore}
             loader={fetchingCustomers || fetchingCustomerPagination ? <div class="flex justify-center">Loading...</div> : null}
-            height={"75vh"}
+            height={"80vh"}
           >
 
             {!fetchingCustomers && customerByUserId.length === 0 ? <NodataFoundPage /> : customerByUserId.map((item, index) => {
@@ -349,7 +350,7 @@ console.log(page)
               return (
                 <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex font-medium  w-[15rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
@@ -490,7 +491,7 @@ console.log(page)
                                     </div>
                                 </div> */}
                       <div className=" flex font-medium items-center max-sm:w-auto   w-[6rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
@@ -548,6 +549,7 @@ console.log(page)
                                 {item.convertInd === 0 && "Convert"}
                                 {item.convertInd === 1 && "In progress"}
                                 {item.convertInd === 2 && "Converted"}
+                                <NextPlanIcon  />
                               </div>
                             </Button>
                           )}
@@ -603,7 +605,7 @@ console.log(page)
                      
 
                      
-                        <div class="w-5">
+                        <div >
                           <Tooltip title="Contact">
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
@@ -615,7 +617,7 @@ console.log(page)
                             />
                           </Tooltip>
                         </div>
-                        <div class="w-5">
+                        <div >
                           <Tooltip title="Opportunity">
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
@@ -631,7 +633,7 @@ console.log(page)
                         </div>
                      
                      
-                        <div class="w-5">
+                        <div >
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
@@ -643,7 +645,7 @@ console.log(page)
                             />
                           </Tooltip>
                         </div>
-                        <div class="w-5">
+                        <div >
                           <Tooltip title="Notes">
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-[#4bc076]"
@@ -660,7 +662,7 @@ console.log(page)
                      
 
                       
-                        <div class="w-5">
+                        <div >
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
                             <LocationOnIcon
@@ -670,7 +672,7 @@ console.log(page)
 
                           </Tooltip>
                         </div>
-                        <div class="w-5">
+                        <div >
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title="Edit">
                               <BorderColorIcon

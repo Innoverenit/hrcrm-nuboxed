@@ -4,10 +4,6 @@ import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
-import { BundleLoader } from "../../Components/Placeholder";
-import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import {getDataRoom} from "./DataRoomAction";
 import CountryFlag1 from "../Settings/Category/Country/CountryFlag1";
 
@@ -39,8 +35,8 @@ const DataRoomCard = (props) => {
   return (
     <>
        <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex max-sm:hidden justify-between w-[97.5%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">
                 Room Name
             </div>
@@ -67,7 +63,7 @@ const DataRoomCard = (props) => {
                 console.log(countryCode)
                 return (
                   <div>
-                    <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col">
+                    <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-1 max-sm:h-[5rem] max-sm:flex-col">
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex font-medium  w-[14.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
 

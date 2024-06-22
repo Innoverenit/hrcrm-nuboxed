@@ -14,7 +14,7 @@ const TagInListTable = (props) => {
     return (
         <>
             <div className=' flex justify-end sticky z-auto'>
-                <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
+                <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
                     <div className=" flex justify-between w-[50%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
                         <div className=" md:w-[10rem]">Part Name</div>

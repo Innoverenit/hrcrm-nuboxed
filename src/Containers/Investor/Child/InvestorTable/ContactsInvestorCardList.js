@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Input } from "antd";
-import {
-  StyledTable,
-  StyledPopconfirm,
+import {  StyledPopconfirm,
 } from "../../../../Components/UI/Antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import Highlighter from "react-highlight-words";
@@ -14,8 +12,7 @@ import { Link } from 'react-router-dom';
 import { ActionIcon } from "../../../../Components/Utils";
 import styled from "styled-components";
 import {getContactListByInvestorId,handleUpdateInvestorContactModal} from "../../InvestorAction";
-import moment from "moment";
-import { OnlyWrapCard } from "../../../../Components/UI/Layout";
+import dayjs from "dayjs";
 import { MultiAvatar2, SubTitle } from "../../../../Components/UI/Elements";
 
 const InvestorUpdateContactModal = lazy(() =>
@@ -172,7 +169,7 @@ class ContactInvestorCardList extends Component {
     return (
       <>
       
-      <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[13.5rem]">
         <FormattedMessage
@@ -218,10 +215,10 @@ class ContactInvestorCardList extends Component {
            PostalCode : ${
              item.address && item.address.length && item.address[0].postalCode
            } `;
-         const currentdate = moment().format("DD/MM/YYYY");
-         const date = moment(item.creationDate).format("DD/MM/YYYY");
+         const currentdate = dayjs().format("DD/MM/YYYY");
+         const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(
-            moment().diff(moment(item.lastRequirementOn), "days")
+            dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
         
                     return (

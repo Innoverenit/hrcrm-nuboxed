@@ -74,7 +74,7 @@ function RecruiterForm(props) {
                             name="comPersion"
                      // selectType="employee"
                           isColumnWithoutNoCreate
-                    // label="Assigned to"
+                    // label="Assigned"
                     label={
                       <FormattedMessage
                         id="app.name"

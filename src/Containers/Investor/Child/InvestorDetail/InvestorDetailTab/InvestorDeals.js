@@ -10,7 +10,6 @@ import {getInvestorDeals
 import { CurrencySymbol } from "../../../../../Components/Common"; 
 import { Button, Tooltip,Dropdown ,Menu,Progress} from "antd";
 import { FormattedMessage } from "react-intl";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -47,15 +46,11 @@ const InvestorDeals = (props) => {
 console.log("investorDetails",props.investorDetails)
   return (
     <>
-  <div class="rounded-lg m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+  <div class="rounded-lg m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex  w-[98%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[15rem]"><FormattedMessage
                   id="app.name"
                   defaultMessage="name"
-                /></div>
-        <div className=" md:w-[13.1rem]"><FormattedMessage
-                  id="app.investor"
-                  defaultMessage="investor"
                 /></div>
         <div className=" md:w-[13.2rem] "><FormattedMessage
                   id="app.sponsor"
@@ -72,6 +67,10 @@ console.log("investorDetails",props.investorDetails)
         <div className="md:w-[4.2rem]"><FormattedMessage
                   id="app.stages"
                   defaultMessage="stages"
+                /></div> 
+        <div className="md:w-[4.2rem]"><FormattedMessage
+                  id="app.status"
+                  defaultMessage=""
                 /></div> 
         <div className="md:w-[7.1rem]"><FormattedMessage
                   id="app.assignto"

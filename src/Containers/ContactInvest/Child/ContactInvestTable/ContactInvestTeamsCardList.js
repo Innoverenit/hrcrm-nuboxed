@@ -115,7 +115,7 @@ function ContactInvestTeamsCardList(props) {
     <>
       
 
-      <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  justify-between max-sm:hidden w-[93%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[15.32rem]"><FormattedMessage
                   id="app.name"
@@ -157,7 +157,7 @@ function ContactInvestTeamsCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingTeamsContactInvest?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
        
        { !props.fetchingTeamsContactInvest && props.teamsContactInvestData.length === 0 ?<NodataFoundPage />:props.teamsContactInvestData.map((item,index) =>  {
@@ -293,7 +293,7 @@ function ContactInvestTeamsCardList(props) {
              </div>
                          
        
-                  <div class=" flex justify-end w-[7rem] max-sm:flex justify-end max-sm:w-full">
+                  <div class=" flex justify-end items-center w-[7rem] max-sm:flex   max-sm:w-full">
                     <div>
                   <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (

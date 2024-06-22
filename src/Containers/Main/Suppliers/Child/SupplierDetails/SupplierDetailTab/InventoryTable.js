@@ -124,11 +124,14 @@ function InventoryTable(props) {
 
                 </div>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[92%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" w-[31.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             Trade ID
                             </div>
+                            <div className=" w-[14.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                            Creation 
+                        </div>
                         <div className=" w-[19.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             Category
                             </div>
@@ -182,6 +185,15 @@ function InventoryTable(props) {
                                                                     New
                                                                 </div>
                                                             ) : null}
+                                                    </div>
+                                                           
+                                                    <div className=" flex font-medium justify-between  w-[9.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
+                                                            {dayjs(item.creationDate).format("DD/MM/YYYY")}
+                                                           
+
+                                                        </div>
+                                                        
                                                     </div>
                                                     <div className=" flex font-medium justify-between  w-[9.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">

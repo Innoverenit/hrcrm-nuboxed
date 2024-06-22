@@ -10,6 +10,7 @@ import { SelectComponent } from '../../../../../../Components/Forms/Formik/Selec
 
 function ReceivedPhoneList(props) {
 
+    console.log(props.particularRowData,props.particularRowData.model)
     return (
         <>
             <Formik
@@ -17,26 +18,20 @@ function ReceivedPhoneList(props) {
                 initialValues={{
                     receivePhoneInd: true,
                     orderPhoneId: props.orderPhoneId,
-                    receiveCompany: props.setEdittingPhone.receiveCompany === null ?
-                        props.setEdittingPhone.company : props.setEdittingPhone.receiveCompany,
+                    receiveCompany: props.particularRowData.company ?
+                    props.particularRowData.company : "" ,
 
-                    receiveModel: props.setEdittingPhone.receiveModel === null ?
-                        props.setEdittingPhone.model : props.setEdittingPhone.receiveModel,
+                    receiveModel: props.particularRowData.model ? props.particularRowData.model : "",
 
-                    receiveIMEI: props.setEdittingPhone.receiveIMEI === null ?
-                        props.setEdittingPhone.imei : props.setEdittingPhone.receiveIMEI,
+                    receiveIMEI: props.particularRowData.imei ? props.particularRowData.imei : "",
 
-                    receiveGB: props.setEdittingPhone.receiveGB === null ?
-                        props.setEdittingPhone.gb : props.setEdittingPhone.receiveGB,
+                    receiveGB: props.particularRowData.gb ? props.particularRowData.gb : "",
 
-                    receiveColor: props.setEdittingPhone.receiveColor === null ?
-                        props.setEdittingPhone.color : props.setEdittingPhone.receiveColor,
+                    receiveColor: props.particularRowData.color ? props.particularRowData.color : "",
 
-                    receiveCondition: props.setEdittingPhone.receiveCondition === null ?
-                        props.setEdittingPhone.conditions : props.setEdittingPhone.receiveCondition,
+                    receiveCondition: props.particularRowData.conditions  ? props.particularRowData.conditions : "",
 
-                    receiveOS: props.setEdittingPhone.receiveOS === null ?
-                        props.setEdittingPhone.os : props.setEdittingPhone.receiveOS,
+                    receiveOS: props.particularRowData.os ?  props.particularRowData.os : "",
                     mismatchInd: true,
                     receivePhoneUser: props.userId,
                     receivePhoneDate: moment(),

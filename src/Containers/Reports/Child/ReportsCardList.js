@@ -73,7 +73,7 @@ const ReportsCardList = (props) => {
   
     return (
       <div className=" w-full my-2 h-16 scale-98 hover:scale-100 ease-in duration-100 ">
-      <div class="bg-white rounded-md shadow-2xl border-solid w-w95 h-16 p-1 max-sm:h-28 m-0  md:m-auto ">
+      <div class="bg-white rounded-md shadow border-solid w-w95 h-16 p-1 max-sm:h-28 m-0  md:m-auto ">
         <div class="flex max-sm:flex-col  md:flex flex-row justify-around ">
         <div class="w-full md:flex flex-col justify-center mb-auto">
            <div class="flex justify-evenly">

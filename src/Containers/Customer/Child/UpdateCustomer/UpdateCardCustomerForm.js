@@ -262,11 +262,11 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                     name="assignedTo"
                     selectType="employee"
                     isColumnWithoutNoCreate
-                    // label="Assigned to"
+                    // label="Assigned"
                     label={
                       <FormattedMessage
                         id="app.assignedto"
-                        defaultMessage="Assigned to"
+                        defaultMessage="Assigned"
                       />
                     }
                     // component={SearchSelect}

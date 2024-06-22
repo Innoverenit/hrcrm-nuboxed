@@ -12,10 +12,10 @@ function ProductionIDCard(props) {
   return (
     <>
       <div className='flex justify-end sticky z-auto'>
-        <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className="flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className="flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
             <div className=""></div>
-            <div className="md:w-[7%]">Part #</div>
+            <div className="md:w-[7%]">Part ID</div>
             <div className="md:w-[4.2rem] ">Category</div>
             <div className="md:w-[5.8rem]">Sub Category</div>
             <div className="md:w-[4.2rem] ">Unit</div>
@@ -24,7 +24,7 @@ function ProductionIDCard(props) {
 
           {props.ProdNbldr.map((item, index) => (
             <div key={item.suppliesId}>
-              <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
+              <div className="flex rounded justify-between mt-2 bg-white h-8 items-center p-3 ">
                 <div className="flex font-medium flex-col w-[10rem] max-sm:w-full">
                   <div className="flex max-sm:w-full ">
                     <div>

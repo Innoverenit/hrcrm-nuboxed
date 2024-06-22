@@ -40,6 +40,7 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import NextPlanIcon from '@mui/icons-material/NextPlan';
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
 const CustomerOpportunityDrawerModal =lazy(()=> import("./CustomerOpportunityDrawerModal"));
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
@@ -151,16 +152,16 @@ const [rowdata, setrowdata] = useState("");
     <>
     
  
-         <div className=' flex justify-end sticky top-28 z-auto'>
-         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-        <div className=" flex max-sm:hidden justify-between w-[95.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+         <div className=' flex justify-end sticky  z-auto'>
+         <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
        
             <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
               <FormattedMessage
                 id="app.name"
                 defaultMessage="Name"
               />
-            </div>
+            </div> 
             <div className=" w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
               <FormattedMessage
                 id="app.work"
@@ -207,7 +208,7 @@ const [rowdata, setrowdata] = useState("");
             <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
               <FormattedMessage
                 id="app.assignedTo"
-                defaultMessage="Assigned to"
+                defaultMessage="Assigned"
               />
 
             </div>
@@ -234,7 +235,7 @@ const [rowdata, setrowdata] = useState("");
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllCustomerList?<div class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
       
       { !fetchingAllCustomerList && allCustomers.length === 0 ?<NodataFoundPage />:allCustomers.map((item,index) =>  {
@@ -259,7 +260,7 @@ const [rowdata, setrowdata] = useState("");
            } `;
                     return (
                         <div>
-                            <div className="flex rounded-xl max-sm:flex-col justify-between bg-white mt-[0.5rem] h-[2.75rem] max-sm:h-[9rem] items-center p-3 "
+                            <div className="flex rounded max-sm:flex-col justify-between bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
                                 >
                                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                    <div className=" flex font-medium flex-col w-[18rem] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
@@ -416,6 +417,7 @@ const [rowdata, setrowdata] = useState("");
                                {item.convertInd===0 && "Convert"}
                                {item.convertInd===1 && "In progress"}
                                {item.convertInd===2 && "Converted"}
+                               <NextPlanIcon  />
                               </div>
                             </Button>
                           )}

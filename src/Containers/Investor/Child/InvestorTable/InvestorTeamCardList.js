@@ -13,9 +13,7 @@ import { Tooltip, Select } from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   MultiAvatar,
-  MultiAvatar2,
-  SubTitle,
-} from "../../../../Components/UI/Elements";
+  MultiAvatar2 } from "../../../../Components/UI/Elements";
 import {  DeleteOutlined } from "@ant-design/icons";
 import { Link } from 'react-router-dom';
 import {
@@ -113,8 +111,8 @@ function InvestorTeamCardList(props) {
   return (
     <>
   
-  <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-  <div className=" flex justify-between max-sm:hidden  w-[90%] p-2 bg-transparent font-bold sticky top-0 z-10">
+  <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+  <div className=" flex justify-between max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[14.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] "><FormattedMessage
                   id="app.name"
                   defaultMessage="Name"
@@ -129,7 +127,7 @@ function InvestorTeamCardList(props) {
                   defaultMessage="Deals"
                 /></div>
         <div className="w-[6.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        In Discussion
+                   Discussion
           </div>
           <div className="w-[6.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
         <FormattedMessage
@@ -146,7 +144,7 @@ function InvestorTeamCardList(props) {
         <div className="w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
         <FormattedMessage
                   id="app.assignedto"
-                  defaultMessage="Assigned to"
+                  defaultMessage="Assigned"
                 />
          </div>
         <div className="w-[4.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]"><FormattedMessage
@@ -167,7 +165,7 @@ function InvestorTeamCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingTeamInvestor?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
         
         { !fetchingTeamInvestor && teamInvestor.length === 0 ?<NodataFoundPage />:teamInvestor.map((item,index) =>  {
@@ -193,7 +191,7 @@ function InvestorTeamCardList(props) {
                     return (
                       <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex font-medium  w-[13.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
@@ -299,7 +297,7 @@ function InvestorTeamCardList(props) {
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     
@@ -355,7 +353,7 @@ function InvestorTeamCardList(props) {
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-between">            
-                                <div className="w-5">
+                                <div >
                                 {/* {user.pulseAccessInd === true && */}
                           <Tooltip title="Pulse">
          <MonitorHeartIcon
@@ -368,11 +366,7 @@ function InvestorTeamCardList(props) {
              </Tooltip>
         {/* } */}
                           </div>
-                         
-          
-                   
-                               
-                          <div className="w-5">
+                         <div>
                    <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
@@ -384,7 +378,7 @@ function InvestorTeamCardList(props) {
            </Tooltip>
                    </div>
                    
-                   <div className="w-5">
+                   <div>
                     <Tooltip title={item.url}>
               {item.url !== "" ? (
                 <span class="cursor-pointer"
@@ -405,11 +399,11 @@ function InvestorTeamCardList(props) {
                         </div>                   
                       
         
-                        <div className="w-5">
+                        <div>
           
             <Tooltip title="Investor Contact">
               <LocationCityIcon
-              className=" !text-3xl cursor-pointer p-1 text-blue-500 "
+              className=" !text-icon cursor-pointer p-1 text-blue-500 "
                 onClick={() => {
                   handleInvestorContModal(true);
                     handleCurrentRowData(item);
@@ -423,14 +417,14 @@ function InvestorTeamCardList(props) {
                     
     
                     
-            <div className="w-5">
+            <div>
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span class="cursor-pointer">
             <LocationOnIcon   className=" !text-icon cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
-            <div className="w-5">
+            <div>
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
             <Tooltip title="Edit">
               <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato]"
@@ -443,7 +437,7 @@ function InvestorTeamCardList(props) {
             </Tooltip>
            )} 
             </div>
-            <div className="w-5">
+            <div >
             <StyledPopconfirm
                         title="Do you want to delete?"
                         onConfirm={() =>
