@@ -228,8 +228,8 @@ const UserMachineCrd = (props) => {
                 <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
 
                   <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
-                    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.machinaryName}</div>
                       </div>
                     </div>
@@ -237,9 +237,9 @@ const UserMachineCrd = (props) => {
 
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                    <div class=" text-xs text-cardBody font-poppins" style={{marginLeft:"-9em"}}>
+                    <div class=" text-xs  font-poppins" style={{marginLeft:"-9em"}}>
                     
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.machineCode}</div>
                       </div>
                 
@@ -251,9 +251,9 @@ const UserMachineCrd = (props) => {
 
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-<div class=" text-xs text-cardBody font-poppins">
+<div class=" text-xs  font-poppins">
 
-  <div className="font-normal text-sm text-cardBody font-poppins" style={{marginLeft:"-7em"}}>
+  <div className="font-normal text-sm  font-poppins" style={{marginLeft:"-7em"}}>
     <div>   <Select
             style={{ width: '85%',marginLeft:"-6em" }}
             placeholder="Select a value"
@@ -281,9 +281,9 @@ const UserMachineCrd = (props) => {
 
 
                   {/* <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                    
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                       <StyledPopconfirm
                             title="Do you want to delete?"
                             onConfirm={() => handleDelete(item)}

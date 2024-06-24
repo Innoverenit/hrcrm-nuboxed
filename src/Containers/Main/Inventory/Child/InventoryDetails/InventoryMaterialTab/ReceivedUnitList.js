@@ -49,27 +49,27 @@ const ReceivedUnitList = (props) => {
                             <div>
                                 <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
                                     <div className=" flex font-medium flex-col w-[15.01rem] max-sm:w-full  ">
-                                        <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
+                                        <div class="flex justify-between text-sm  font-semibold  font-poppins ">
 
                                             {item.suppliesFullName.substring(0, 20)}
                                         </div>
                                     </div>
                                     <div class="flex">
                                         <div className=" flex font-medium flex-col w-[14.6rem] max-sm:w-full  ">
-                                            <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
+                                            <div class="flex justify-between text-sm  font-semibold  font-poppins ">
                                                 {item.supplierSuppliesUniqueNumberId}
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* <div className=" flex font-medium flex-col  w-[8.12rem] max-sm:flex-row  max-sm:justify-between  ">
-                                        <div class=" text-xs text-cardBody font-poppins">
+                                        <div class=" text-xs  font-poppins">
                                             {item.unit}
                                         </div>
                                     </div> */}
 
                                     <div className=" flex font-medium  w-[12.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                        <div class=" font-normal flex text-[0.85rem] text-cardBody font-poppins">
+                                        <div class=" font-normal flex text-[0.85rem]  font-poppins">
 
                                             {edit && row.supplierSuppliesUniqueNumberId === item.supplierSuppliesUniqueNumberId ?
                                                 <>
@@ -98,7 +98,7 @@ const ReceivedUnitList = (props) => {
                                         </div>
                                     </div>
                                     <div className=" flex font-medium flex-col w-[7.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                        <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                        <div class=" font-normal text-[0.85rem]  font-poppins">
                                             {/* {item.autoPartInd ? null : */}
                                             <BorderColorIcon
                                                 className=" !text-base cursor-pointer text-[tomato]"
@@ -111,7 +111,7 @@ const ReceivedUnitList = (props) => {
                                         </div>
                                     </div>
                                     <div className=" flex font-medium flex-col w-[7.5rem] max-sm:justify-between  max-sm:flex-row ">
-                                        <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                        <div class=" font-normal text-[0.85rem]  font-poppins">
                                             <AutoPartNoTOggle
                                                 supplierSuppliesUniqueNumberId={item.supplierSuppliesUniqueNumberId}
                                                 autoPartInd={item.autoPartInd}

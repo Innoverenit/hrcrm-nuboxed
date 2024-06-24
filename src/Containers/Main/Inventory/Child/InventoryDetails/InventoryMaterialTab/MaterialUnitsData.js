@@ -126,7 +126,7 @@ const GrnListOfPO = (props) => {
                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[2.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
+                                                <div class="flex justify-between text-sm  font-semibold  font-poppins ">
                                                     <PlusOutlined
                                                         onClick={() => {
                                                             handleItemHistory()
@@ -139,7 +139,7 @@ const GrnListOfPO = (props) => {
 
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
+                                                <div class="flex justify-between text-sm  font-semibold  font-poppins ">
                                                     {item.newPoNumber}
                                                 </div>
                                             </div>
@@ -147,7 +147,7 @@ const GrnListOfPO = (props) => {
 
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[11.12rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm text-cardBody font-semibold font-poppins cursor-pointer underline text-blue-600">
+                                                <div class="flex justify-between text-sm  font-semibold font-poppins cursor-pointer underline text-blue-600">
                                                     <span
                                                         onClick={() => {
                                                             props.handleSTockItemModal(true)
@@ -161,42 +161,42 @@ const GrnListOfPO = (props) => {
                                         </div>
 
                                         {/* <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.grnNumber}
                                             </div>
                                         </div> */}
                                         {/* <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.price}
                                             </div>
                                         </div> */}
                                         <div className=" flex font-medium  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.unit}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium   md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.unitReceived}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium   md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.unitDamaged}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium   md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.remainingCorrectUnit}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.remark}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium  md:w-[8.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
 
                                                     <Select
@@ -212,14 +212,14 @@ const GrnListOfPO = (props) => {
                                                             ))}
                                                     </Select>
                                                 ) : (
-                                                    <div className="font-normal text-sm text-cardBody font-poppins">
+                                                    <div className="font-normal text-sm  font-poppins">
                                                         <div> {item.zone}</div>
                                                     </div>
                                                 )}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium  md:w-[8.6rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
                                                     <Select
                                                         classNames="w-32"
@@ -234,7 +234,7 @@ const GrnListOfPO = (props) => {
                                                     </Select>
 
                                                 ) : (
-                                                    <div className="font-normal text-sm text-cardBody font-poppins">
+                                                    <div className="font-normal text-sm  font-poppins">
                                                         <div> {item.chamber}</div>
                                                     </div>
                                                 )}

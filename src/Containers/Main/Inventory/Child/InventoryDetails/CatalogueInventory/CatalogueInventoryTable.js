@@ -40,7 +40,7 @@ const CatalogueInventoryTable = (props) => {
        <div class="flex">
    
     <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
     {item.name}
                             </div>
     </div>
@@ -48,30 +48,30 @@ const CatalogueInventoryTable = (props) => {
  
     </div>
     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-    <div class=" text-xs text-cardBody font-poppins">
+    <div class=" text-xs  font-poppins">
                       
                       {item.categoryName}
                     </div>
     </div>
     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-    <div class=" text-xs text-cardBody font-poppins">
+    <div class=" text-xs  font-poppins">
                       
                       {item.subCategoryName}
                     </div>
     </div>
     <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-        <div class=" text-xs text-cardBody font-semibold  font-poppins">
+        <div class=" text-xs  font-semibold  font-poppins">
         {item.attributeName} 
                     </div>
     </div>
     <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-        <div class=" text-xs text-cardBody font-semibold  font-poppins">
+        <div class=" text-xs  font-semibold  font-poppins">
      {item.subAttributeName}
                     </div>
     </div>
 
     <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-        <div class=" text-xs text-cardBody font-semibold  font-poppins">
+        <div class=" text-xs  font-semibold  font-poppins">
         {item.unit}
              </div>
     </div>

@@ -38,7 +38,7 @@ function ManufactureListData(props) {
                 <div >
                     <div className="flex rounded-xl mt-2 bg-white h-12 items-center p-3">
                         <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
-                            <div className="flex justify-between text-sm text-cardBody font-semibold font-poppins">
+                            <div className="flex justify-between text-sm  font-semibold font-poppins">
                                 {props.manufactureDetailsData.supplierName}
                             </div>
                         </div>
@@ -46,19 +46,19 @@ function ManufactureListData(props) {
                         <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                             <div 
                             
-                            className="font-normal text-[0.85rem] text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                            className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                               
                                 {/* {props.manufactureDetailsData.supplierName} */}
                             </div>
                         </div>
 
                         <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                            <div className="font-normal text-[0.85rem] text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                            <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                             {props.manufactureDetailsData.newPoNumber}
                             </div>
                         </div>
                         <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                            <div className="font-normal text-[0.85rem] text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                            <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                                 
                                 {`${moment.utc(props.manufactureDetailsData.poCreationDate).format("YYYY/MM/DD")}`}
                             </div>
@@ -66,7 +66,7 @@ function ManufactureListData(props) {
 
 
                         <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                            <div className="font-normal text-[0.85rem] text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                            <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                                 
                             {props.manufactureDetailsData.pouserName}
                             </div>

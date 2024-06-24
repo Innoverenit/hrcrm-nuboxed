@@ -162,10 +162,10 @@ function DealWonCard(props) {
                                    
                                         <Tooltip>
                                         <div class=" flex max-sm:w-full  flex-row md:flex-col">
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
+                                            {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                                            <div class=" text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link> 
@@ -195,8 +195,8 @@ function DealWonCard(props) {
 
                                 <div className=" flex font-medium   w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                            
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
+                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                     <Link to ="/investor">
                         {item.investor}
                         </Link>
@@ -209,8 +209,8 @@ function DealWonCard(props) {
                                 <div className=" flex font-medium  w-[7.4rem] max-xl:w-[4.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
-                                  {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                                  <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                                  <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                  
           {item.contactName === null ? "None" :
             <MultiAvatar2
@@ -225,17 +225,17 @@ function DealWonCard(props) {
                                   </div>
                               </div>
                                 <div className=" flex font-medium  w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                                     </div>
                                 </div>
                              
                                 <div className=" flex font-medium  w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     <CurrencySymbol currencyType={item.currency} />
             &nbsp;
             {item.proposalAmount}
@@ -245,9 +245,9 @@ function DealWonCard(props) {
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex font-medium  w-[9.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     <Dropdown
               overlay={
                 <div>
@@ -281,9 +281,9 @@ function DealWonCard(props) {
                                     </div>
                                 </div>
                                 <div className=" flex font-medium  w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     
                                     <span>
                                     <MultiAvatar2
@@ -297,7 +297,7 @@ function DealWonCard(props) {
                                 </div>
                                 <div className=" flex font-medium  w-[6.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                        
-                       {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+                       {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
 
               <Tooltip title={item.ownerName}>
           <span>

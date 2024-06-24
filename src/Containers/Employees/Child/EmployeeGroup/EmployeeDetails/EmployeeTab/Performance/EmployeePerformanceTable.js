@@ -30,20 +30,20 @@ const EmployeePerformanceTable = (props) => {
                 <div className="flex justify-between w-2/3">
 {/*                  
                   <div className="Ccard__title w-40">
-                    <div className="text-base text-cardBody font-medium font-poppins">
+                    <div className="text-base  font-medium font-poppins">
                     Name
                     </div>
                   
-                      <div className="font-normal text-sm text-cardBody font-poppins">{item.kpiName}</div>
+                      <div className="font-normal text-sm  font-poppins">{item.kpiName}</div>
                    
                   </div> */}
                 
                   {/* <div className="Ccard__title w-28">
-                    <div className="text-base text-cardBody font-medium font-poppins">
+                    <div className="text-base  font-medium font-poppins">
                     Frequency
                     </div>
                 
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <span>
                           {item.frequency} 
                         </span>
@@ -51,19 +51,19 @@ const EmployeePerformanceTable = (props) => {
                   
                   </div> */}
                   <div className="Ccard__title w-36">
-                    <div className="text-base text-cardBody font-medium font-poppins">
+                    <div className="text-base  font-medium font-poppins">
                     Assigned Value
                     </div>
                    
-                      <div className="font-normal text-sm text-cardBody font-poppins">{item.assignedValue}</div>
+                      <div className="font-normal text-sm  font-poppins">{item.assignedValue}</div>
                   
                   </div>
                   <div className="Ccard__title w-[9rem]">
-                    <div className="text-base text-cardBody font-medium font-poppins">
+                    <div className="text-base  font-medium font-poppins">
                     Completed Value
                     </div>
                   
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <span>{item.completedValue}</span>
                       </div>
                 

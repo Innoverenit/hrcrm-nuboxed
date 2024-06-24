@@ -37,14 +37,14 @@ class SingleCurrency extends Component {
                 <div class=" flex flex-row justify-evenly  max-sm:flex-col">
                 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
   Currency
 
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div style={{width:"70%"}}>
 <div class=" basis-11/12 font-semibold">
 {currency_name}
@@ -55,14 +55,14 @@ class SingleCurrency extends Component {
 </div>
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Operations
 
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-2/6">
 <CurrencyStatusToggle
 editInd={editInd}
@@ -76,7 +76,7 @@ currency_id={currency_id}
 </div>
                 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Sales
 </div>
@@ -84,7 +84,7 @@ Sales
 
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-2/6">
 <SalesCurrencyToggle
 editInd={editInd}
@@ -99,7 +99,7 @@ currency_id={currency_id}
 
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Investor
 </div>
@@ -107,7 +107,7 @@ Investor
 
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-2/6">
 <InvestorCurrencyToggle
 editInd={editInd}
@@ -122,14 +122,14 @@ currency_id={currency_id}
                 
                   {/* <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                      Dial Code
 
                     </div>
 
 
-                    <div class=" font-normal text-sm text-cardBody font-poppins">
+                    <div class=" font-normal text-sm  font-poppins">
                     <div style={{width:"20%"}}>
 <CountryName >
 +{country_dial_code}
@@ -140,13 +140,13 @@ currency_id={currency_id}
                   </div> */}
                   {/* <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Currency
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div style={{width:"70%"}}>
 <CountryName >
 {country_currency_name}
@@ -158,13 +158,13 @@ Currency
                
                   {/* <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Sales
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-2/6">
 <CountrySalesToggle
 editInd={editInd}

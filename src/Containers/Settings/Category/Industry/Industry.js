@@ -176,14 +176,14 @@ return <div><BundleLoader/></div>;
 
 <div className=" flex font-medium flex-col md:w-[34rem] max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Industry
 
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-2/6">
 <IndustryStatusToggle
 // editInd={region.editInd}

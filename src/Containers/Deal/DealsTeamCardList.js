@@ -181,10 +181,10 @@ const DealsTeamCardList = (props) => {
                         <div class="max-sm:w-full w-52" >
                           <Tooltip>
                             <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
-                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
+                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                              <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                              <div class=" text-[0.82rem] flex text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                 {/* <Link
                                                  toUrl={`customer/${item.customerId}`}
@@ -209,7 +209,7 @@ const DealsTeamCardList = (props) => {
                     </div>
                     <div className=" flex font-medium  items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <div class=" text-sm text-cardBody font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <Link to="/investor">
                           {item.investor}
                         </Link>
@@ -219,7 +219,7 @@ const DealsTeamCardList = (props) => {
                     <div className=" flex font-medium  items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-sm text-cardBody font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <SubTitle>
                           {item.contactName === null ? "None" :
                             <MultiAvatar2
@@ -238,7 +238,7 @@ const DealsTeamCardList = (props) => {
                     <div className=" flex font-medium items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-sm justify-center text-cardBody font-poppins">
+                      <div class=" text-sm justify-center  font-poppins">
                         {dayjs(item.startDate).format("DD/MM/YYYY")}
                       </div>
                     </div>
@@ -246,7 +246,7 @@ const DealsTeamCardList = (props) => {
                     <div className=" flex font-medium items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-sm text-cardBody font-poppins text-center">
+                      <div class=" text-sm  font-poppins text-center">
                         <CurrencySymbol currencyType={item.currency} />
                         &nbsp;
                         {item.proposalAmount}
@@ -256,7 +256,7 @@ const DealsTeamCardList = (props) => {
                     <div className=" flex font-medium items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-sm text-cardBody font-poppins text-center">
+                      <div class=" text-sm  font-poppins text-center">
                         <Dropdown
                           overlay={
                             <div>
@@ -295,7 +295,7 @@ const DealsTeamCardList = (props) => {
                     <div className=" flex font-medium items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-sm text-cardBody font-poppins">
+                      <div class=" text-sm  font-poppins">
 
                         <span>
                           {item.assignedTo === null ? (

@@ -212,27 +212,27 @@ class ShipperContactTable extends Component {
                             ""} ${item.middleName || ""} ${item.lastName || ""}`}
                         </div>
                         <div className="flex font-medium flex-col md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
-                          <div className="text-xs text-cardBody font-poppins text-center">
+                          <div className="text-xs  font-poppins text-center">
                             {item.emailId}
                           </div>
                         </div>
                         <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
-                          <div className="text-xs text-cardBody font-poppins text-center">
+                          <div className="text-xs  font-poppins text-center">
                             {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
                           </div>
                         </div>
                         <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
-                          <div className="text-xs text-cardBody font-poppins text-center">
+                          <div className="text-xs  font-poppins text-center">
                             {item.designationName}
                           </div>
                         </div>
                         <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
-                          <div className="text-xs text-cardBody font-poppins text-center">
+                          <div className="text-xs  font-poppins text-center">
                             {item.departmentName}
                           </div>
                         </div>
                         <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
-                          <div className="text-icon text-cardBody font-poppins text-center">
+                          <div className="text-icon  font-poppins text-center">
                             <Tooltip title="Edit">
                               <BorderColorIcon
                                 style={{ cursor: "pointer" }}

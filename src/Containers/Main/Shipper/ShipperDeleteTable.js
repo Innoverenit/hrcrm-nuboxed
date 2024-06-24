@@ -88,7 +88,7 @@ function ShipperDeleteTable(props) {
 
 
 
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+<div class=" font-normal text-[0.85rem]  font-poppins">
 <Link
           toUrl={`shipper/${item.shipperId}`}
           title={`${item.shipperName}`}
@@ -97,13 +97,13 @@ function ShipperDeleteTable(props) {
 
 </div>
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+<div class=" font-normal text-[0.85rem]  font-poppins">
 {item.dialCode} {item.phoneNo}
 </div>
 
 </div>
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+<div class=" font-normal text-[0.85rem]  font-poppins">
 {item.emailId} 
 </div>
 
@@ -112,14 +112,14 @@ function ShipperDeleteTable(props) {
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
 
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+<div class=" font-normal text-[0.85rem]  font-poppins">
 {item.shipByName} 
 </div>
 
 </div>
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+<div class=" font-normal text-[0.85rem]  font-poppins">
 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
          
@@ -129,7 +129,7 @@ function ShipperDeleteTable(props) {
 </div>
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+<div class=" font-normal text-[0.85rem]  font-poppins">
 {(item.address &&
                               item.address.length &&
                               item.address[0].city) ||
@@ -139,7 +139,7 @@ function ShipperDeleteTable(props) {
 </div>
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+<div class=" font-normal text-[0.85rem]  font-poppins">
 {(item.address &&
                               item.address.length &&
                               item.address[0].postalCode) ||
@@ -149,7 +149,7 @@ function ShipperDeleteTable(props) {
 </div>
 
 <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateShipper shipperId={item.shipperId} />
                             </div>
                           </div>

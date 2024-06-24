@@ -64,7 +64,7 @@ class ShipperAwbTable extends Component {
                                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                                         <div class="flex w-3/4">
                                             <div className=" flex font-medium flex-col md:w-[14.56rem] max-sm:w-full  ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                     {item.newAwbNo}
                                                 </div>
 
@@ -72,7 +72,7 @@ class ShipperAwbTable extends Component {
 
                                             <div className=" flex font-medium flex-col  md:w-[9.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                    
                                                     {` ${moment(item.createAt).format("lll")}`}
                                                 </div>
@@ -81,19 +81,19 @@ class ShipperAwbTable extends Component {
 
 
                                             <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                 {item.topic}
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                 {` ${moment(item.pickUp).format("lll")}`}
                                                 </div>
                                             </div>
 
                                             <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                 {/* {` ${moment(item.endDate).format("lll")}`} */}
 
                                                 </div>
@@ -101,7 +101,7 @@ class ShipperAwbTable extends Component {
                                         </div>
 {/*                           
                                         <div className=" flex font-medium flex-col  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                            <h4 class=" text-xs  font-poppins">
                                             <Tooltip title="Edit">
               {item.activity === "Event" && (
                <ScheduleOutlined

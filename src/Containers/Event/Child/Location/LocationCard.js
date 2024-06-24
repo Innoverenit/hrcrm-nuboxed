@@ -101,7 +101,7 @@ const LocationCard = (props) => {
                       <div className=" flex font-medium flex-row md:w-[25.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                        <div class=" font-normal text-[0.82rem]text-cardBody font-poppins md:w-[10.1rem]">
+                        <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
                           {item.locationName}
                         </div>
 
@@ -109,7 +109,7 @@ const LocationCard = (props) => {
                         <div className=" flex font-medium  md:w-[7.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
-                          <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                          <div class=" font-normal text-[0.82rem]  font-poppins">
                             <CountryFlag1 countryCode={item.countryAlpha2Code} />
                             &nbsp;
                             {item.countryAlpha2Code}
@@ -118,7 +118,7 @@ const LocationCard = (props) => {
                         <div className=" flex font-medium flex-col md:w-[13rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
-                          <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                          <div class=" font-normal text-[0.82rem]  font-poppins">
 
                             <span>
                               {item.address && item.address.length > 0 ? (
@@ -134,7 +134,7 @@ const LocationCard = (props) => {
 
                     <div className=" flex font-medium flex-row md:w-[7.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         <ProductionToggle
                           locationDetailsId={item.locationDetailsId}
                           productionInd={item.productionInd}
@@ -144,7 +144,7 @@ const LocationCard = (props) => {
                     <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         <RefurbishToggle
                           locationDetailsId={item.locationDetailsId}
                           refurbishInd={item.refurbishInd}
@@ -154,7 +154,7 @@ const LocationCard = (props) => {
                     <div className=" flex font-medium flex-row md:w-[7.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         <InventoryToggle
                           locationDetailsId={item.locationDetailsId}
                           inventoryInd={item.inventoryInd}
@@ -171,7 +171,7 @@ const LocationCard = (props) => {
                     </div>
                     <div className=" flex font-medium flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         <BillingToggle
                           locationDetailsId={item.locationDetailsId}
                           billingInd={item.billingInd}
@@ -190,7 +190,7 @@ const LocationCard = (props) => {
 
                     <div className=" flex font-medium flex-row md:w-[7.11rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
 
                         <CorporateToggle
                           locationDetailsId={item.locationDetailsId}
@@ -208,7 +208,7 @@ const LocationCard = (props) => {
                     </div>
                     <div className=" flex font-medium flex-row md:w-[6.23rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         <ProjectToggle
                           locationDetailsId={item.locationDetailsId}
                           projectInd={item.projectInd}
@@ -225,7 +225,7 @@ const LocationCard = (props) => {
                     </div>
                     <div className=" flex font-medium flex-row md:w-[11.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         <RetailToggle
                           locationDetailsId={item.locationDetailsId}
                           retailInd={item.retailInd}
@@ -241,7 +241,7 @@ const LocationCard = (props) => {
                     </div>
                     <div className=" font-medium flex-col md:w-[4.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         {item.regions}
                       </div>
                     </div>

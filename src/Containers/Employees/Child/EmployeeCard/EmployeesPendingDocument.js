@@ -30,7 +30,7 @@ console.log("employeeName",props.employeeName)
 
 
 
-    <div class=" font-normal text-[0.82rem]text-cardBody font-poppins">
+    <div class=" font-normal text-[0.82rem] font-poppins">
   {item}
 </div>
 

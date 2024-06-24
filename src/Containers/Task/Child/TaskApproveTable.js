@@ -192,10 +192,10 @@ const TaskApproveTable = (props) => {
           <div class=" flex w-[7.1rem] items-center max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
-                                            {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">
+                                            {/* <div class="text-sm  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-xs text-cardBody font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">                                       
+                                            <div class="text-xs  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">                                       
                                             {item.taskType.substring(0, 20)}
        
                                             </div>
@@ -206,8 +206,8 @@ const TaskApproveTable = (props) => {
                                 </div>
 
                                 <div className=" flex font-medium  items-center  w-[15.3rem] max-xl:w-[8.3rem] max-lg:w-[6.3rem] max-sm:flex-row max-sm:w-auto ">
-                                    {/* <div class=" text-sm text-cardBody  font-poppins max-sm:hidden"> Name </div> */}
-                                    <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
+                                    {/* <div class=" text-sm   font-poppins max-sm:hidden"> Name </div> */}
+                                    <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
                 onClick={() => {
                   props.handleTaskopenModal(true);               
@@ -228,8 +228,8 @@ const TaskApproveTable = (props) => {
                         
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex font-medium flex-col  w-[5.35rem] max-xl:w-[4.35rem] max-lg:w-[3.35rem] max-sm:flex-row justify-between max-sm:w-auto ">
-                                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Submitted By</div> */}
-                                    <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                    {/* <div class=" text-sm  font-poppins max-sm:hidden">Submitted By</div> */}
+                                    <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <MultiAvatar
                                     // style={{marginBottom:"0.25rem"}}
                   primaryTitle={item.ownerName}
@@ -241,7 +241,7 @@ const TaskApproveTable = (props) => {
                                 <div className="flex font-medium flex-col w-[4.23rem] max-xl:w-[4.23rem] max-lg:w-[3.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
                        
-                     <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
   {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
    (incompleteDeviationDate > 0 && <span className=" text-red-900 font-semibold">{incompleteDeviationDate} Days</span>)}
 </div>
@@ -249,9 +249,9 @@ const TaskApproveTable = (props) => {
                    </div>
                              </div>  
                                 {/* <div className=" flex font-medium flex-col w-32 ">
-                                    <div class=" text-sm text-cardBody font-poppins">Team</div>
+                                    <div class=" text-sm  font-poppins">Team</div>
 
-                                    <div class=" text-sm text-cardBody font-poppins">
+                                    <div class=" text-sm  font-poppins">
                                     <Avatar.Group
   maxCount={2}
   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -294,8 +294,8 @@ const TaskApproveTable = (props) => {
                    
                    
                                 <div className=" flex font-medium flex-col  w-[5.9rem] ml-3 max-sm:flex-row max-sm:w-auto ">
-                                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned On</div> */}
-                                    <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                    {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned On</div> */}
+                                    <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <span>{` ${moment(item.assignedOn).format("ll")}`}</span>
                                     </div>
                                 </div>
@@ -630,10 +630,10 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
     //      <div class="max-sm:w-full">
     //                                    <Tooltip>
     //                                    <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
-    //                                        <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
+    //                                        <div class="text-[0.875rem]  font-poppins max-sm:hidden">
     //                                        Type
     //                                        </div>
-    //                                        <div class="text-[sm] text-cardBody font-poppins cursor-pointer">                                       
+    //                                        <div class="text-[sm]  font-poppins cursor-pointer">                                       
     //                                        {item.taskType}
       
     //                                        </div>
@@ -644,8 +644,8 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
     //                            </div>
     
     //                            <div className=" flex font-medium flex-col  md:w-36 max-sm:flex-row w-full justify-between ">
-    //                                <div class=" text-[0.875rem] text-cardBody font-[0.875rem] font-poppins max-sm:hidden"> Name </div>
-    //                                <div class=" text-[sm] text-cardBody font-poppins">   
+    //                                <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Name </div>
+    //                                <div class=" text-[sm]  font-poppins">   
     //                                <span   
     //            onClick={() => {
     //              // props.handleTaskopenModal(true);               
@@ -665,8 +665,8 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
     //                                </div>
     //                            </div>
     //                            {/* <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-    //                                <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Customer</div>
-    //                                <div class="text-[sm] text-cardBody font-poppins">
+    //                                <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Customer</div>
+    //                                <div class="text-[sm]  font-poppins">
     //                                {item.customerName === null ? (
     //          ""
     //        ) : (
@@ -681,8 +681,8 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
     //                            </div>
     //                            <div class="flex">
     //                            <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-    //                                <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Submitted By</div>
-    //                                <div class="text-[sm] text-cardBody font-poppins">
+    //                                <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Submitted By</div>
+    //                                <div class="text-[sm]  font-poppins">
     //                                <MultiAvatar
     //              primaryTitle={item.submittedBy}
     //              imgWidth={"1.8rem"}
@@ -691,8 +691,8 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
     //                                </div>
     //                            </div>
     //                            {/* <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-    //                              <div class="text-[0.875rem] text-cardBody font-poppins">Assigned</div>
-    //                              <div class="text-[sm] text-cardBody font-poppins">
+    //                              <div class="text-[0.875rem]  font-poppins">Assigned</div>
+    //                              <div class="text-[sm]  font-poppins">
     //                              {item.assignedToName === null ? (
     //          ""
     //        ) : (
@@ -705,8 +705,8 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
     //                              </div>
     //                          </div> */}
     //                          <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-    //                              <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned On</div>
-    //                              <div class="text-[sm] text-cardBody font-poppins">
+    //                              <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned On</div>
+    //                              <div class="text-[sm]  font-poppins">
     //                              <span>{` ${moment(item.assignedOn).format("ll")}`}</span>
     //                              </div>
     //                          </div>
@@ -714,7 +714,7 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
     //                          <div class="flex">
     //                          <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
                              
-    //                              <div class="text-[sm] text-cardBody font-poppins">
+    //                              <div class="text-[sm]  font-poppins">
     //                              <span>
     //        {item.filterTaskInd === true && item.approvedInd === "Pending"  ? (
     //          <>

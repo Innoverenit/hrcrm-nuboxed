@@ -126,7 +126,7 @@ console.log(page)
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                <div class="flex text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                 <span
                               class="underline cursor-pointer text-[#1890ff]"
@@ -167,15 +167,15 @@ console.log(page)
                       <div className=" flex font-medium  items-center max-sm:w-auto  w-[18.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {` ${item.userName} ${dayjs(item.creationDate).format('DD/MM/YYYY')}`}
                         </div>
 
                       </div>
                       <div className=" flex font-medium  items-center max-sm:w-auto  w-[6.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.status}
                         </div>
 
@@ -184,8 +184,8 @@ console.log(page)
                   <div class=" flex">
                     <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                          {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-                          <h4 class=" text-xs text-cardBody font-poppins">
+                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
+                          <h4 class=" text-xs  font-poppins">
                             <Tooltip title="Notes">
                               <NoteAltIcon
                                 style={{ cursor: "pointer", color: "green", fontSize: "1rem" }}
@@ -204,7 +204,7 @@ console.log(page)
 
 
                         {/* <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <h4 class=" text-xs text-cardBody font-poppins">
+                          <h4 class=" text-xs  font-poppins">
                             <Tooltip title="Status">
                               <EventRepeatIcon
                                 style={{ cursor: "pointer", fontSize: "1rem", }}
@@ -220,7 +220,7 @@ console.log(page)
 
                         </div> */}
                         <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <h4 class=" text-xs text-cardBody font-poppins">
+                          <h4 class=" text-xs  font-poppins">
                             <Tooltip title="Collection">
                               <PaidIcon
                                 style={{ cursor: "pointer", fontSize: "1rem", }}
@@ -233,7 +233,7 @@ console.log(page)
                             </Tooltip>
 
                           </h4>
-                          {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
+                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
 
 
                         </div>

@@ -83,26 +83,26 @@ function ProductionPaymentTable(props) {
                                 <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 "    >
                                     <div class="flex">
                                         <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-                                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                                            <div class="text-sm  font-semibold  font-poppins cursor-pointer">
                                                 {item.transactionNumber}
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs text-cardBody font-poppins">
+                                        <div class=" text-xs  font-poppins">
 
                                             {item.salesExecutive}
                                         </div>
                                     </div>
                                     <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                        <div class=" text-xs  font-semibold  font-poppins">
                                             {dayjs(item.date).format("DD-MM-YY")}
                                         </div>
                                     </div>
                                     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs text-cardBody font-poppins">
+                                        <div class=" text-xs  font-poppins">
                                             {editpaymentId === item.paymentId ? (
                                                 <input
                                                     class="w-8 border-2 border-black "
@@ -112,7 +112,7 @@ function ProductionPaymentTable(props) {
                                                 />
 
                                             ) : (
-                                                <div className="font-normal text-sm text-cardBody font-poppins">
+                                                <div className="font-normal text-sm  font-poppins">
                                                     <span>  {item.paymentAmount} {item.orderCurrencyName}</span>
                                                 </div>
                                             )}
@@ -121,19 +121,19 @@ function ProductionPaymentTable(props) {
                                     </div>
 
                                     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs text-cardBody font-poppins">
+                                        <div class=" text-xs  font-poppins">
 
                                             {item.paymentModeName}
                                         </div>
                                     </div>
                                     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs text-cardBody font-poppins">
+                                        <div class=" text-xs  font-poppins">
 
                                             {item.remarks}
                                         </div>
                                     </div>
                                     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs text-cardBody font-poppins">
+                                        <div class=" text-xs  font-poppins">
                                             {item.approveByFinanceInd === true ? (
                                                 <div class="flex">
                                                     <span class="text-green-700">

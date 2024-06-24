@@ -108,7 +108,7 @@ function MileageDrawerCard(props) {
               >
                 <div className="flex font-medium flex-col w-[9.7rem]">
                   
-                  <div className="text-xs  text-cardBody font-poppins cursor-pointer">
+                  <div className="text-xs   font-poppins cursor-pointer">
                    
                     {item.mileageId}
                   </div>
@@ -123,7 +123,7 @@ function MileageDrawerCard(props) {
                    style={{border:"1px solid lightgrey"}}
               />
             ) : (
-                  <div className="text-xs text-cardBody font-poppins">
+                  <div className="text-xs  font-poppins">
                     {item.clientName}
                   </div>
             )}
@@ -139,7 +139,7 @@ function MileageDrawerCard(props) {
     style={{ border: "1px solid lightgrey",boxShadow:"0 0.01em 0.01em ",margin:"0.25rem",height:"1.4rem" }}
   />
 ) : (
-  <div className="text-xs text-cardBody font-poppins">
+  <div className="text-xs  font-poppins">
     {dayjs(item.mileageDate).format("MMM Do YY")}
   </div>
 )}
@@ -153,7 +153,7 @@ function MileageDrawerCard(props) {
                 onChange={(e) => handleInputChange(index, 'fromLocation', e.target.value)}
               />
             ) : (
-                  <div className="text-xs text-cardBody font-poppins">
+                  <div className="text-xs  font-poppins">
                     {item.fromLocation}
                   </div>
             )}
@@ -168,7 +168,7 @@ function MileageDrawerCard(props) {
                 onChange={(e) => handleInputChange(index, 'toLocation', e.target.value)}
               />
             ) : (
-                  <div className="text-xs text-cardBody font-poppins">
+                  <div className="text-xs  font-poppins">
                     {item.toLocation}
                   </div>
             )}
@@ -182,7 +182,7 @@ function MileageDrawerCard(props) {
                 onChange={(e) => handleInputChange(index, 'distances', e.target.value)}
               />
             ) : (
-                  <div className="text-xs text-cardBody font-poppins">
+                  <div className="text-xs  font-poppins">
                     {item.distances}
                   </div>
             )}
@@ -196,18 +196,18 @@ function MileageDrawerCard(props) {
                 onChange={(e) => handleInputChange(index, 'remark', e.target.value)}
               />
             ) : (
-                  <div className="text-xs text-cardBody font-poppins">
+                  <div className="text-xs  font-poppins">
                     {item.remark}
                   </div>
             )}
                 </div>
 
                 <div className="flex font-medium flex-col w-[5.5rem] justify-center">
-                  {/* <div className="text-xs text-cardBody font-poppins">
+                  {/* <div className="text-xs  font-poppins">
                     Remarks
                   </div> */}
                    {item.status !== 'Approved' && (
-                  <div className="text-xs text-cardBody font-poppins ml-[0.25rem]">
+                  <div className="text-xs  font-poppins ml-[0.25rem]">
                   <button onClick={() => toggleEdit(index)} >
             {editStates[index] ? 'Cancel' : <BorderColorIcon   style={{
                               color: "grey",
@@ -448,7 +448,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                                     </div>
 
 //                                     <div className=" flex font-medium   md:w-[2.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-//                                         <div class=" text-xs text-cardBody font-poppins">
+//                                         <div class=" text-xs  font-poppins">
 //                                         {editStates[index] ? (
 //               <input
 //                 type="text"
@@ -457,7 +457,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                    style={{border:"1px solid grey"}}
 //               />
 //             ) : (
-//                   <div className="text-xs text-cardBody font-poppins">
+//                   <div className="text-xs  font-poppins">
 //                     {item.clientName}
 //                   </div>
 //             )}
@@ -468,7 +468,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 
 
 
-//                                         <div class=" text-sm text-cardBody font-poppins">
+//                                         <div class=" text-sm  font-poppins">
 //                                         {editStates[index] ? (
 //   <DatePicker
 //     value={dayjs(item.mileageDate)} 
@@ -478,7 +478,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //     style={{ border: "1px solid grey" }}
 //   />
 // ) : (
-//   <div className="text-xs text-cardBody font-poppins">
+//   <div className="text-xs  font-poppins">
 //     {dayjs(item.mileageDate).format("MMM Do YY")}
 //   </div>
 // )}
@@ -488,7 +488,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                                 <div className=" flex font-medium  md:w-[2.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-//                                     <div class=" text-xs text-cardBody font-poppins text-center">
+//                                     <div class=" text-xs  font-poppins text-center">
 //                                     {editStates[index] ? (
 //               <input
 //                 type="text"
@@ -497,7 +497,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                 onChange={(e) => handleInputChange(index, 'fromLocation', e.target.value)}
 //               />
 //             ) : (
-//                   <div className="text-xs text-cardBody font-poppins">
+//                   <div className="text-xs  font-poppins">
 //                     {item.fromLocation}
 //                   </div>
 //             )}
@@ -505,7 +505,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                                 </div>
 
 //                                 <div className=" flex font-medium  md:w-[6.6rem] max-sm:flex-row w-full max-sm:justify-between ">
-//                                     <div class=" text-xs text-cardBody font-poppins text-center">
+//                                     <div class=" text-xs  font-poppins text-center">
 //                                     {editStates[index] ? (
 //               <input
 //                 type="text"
@@ -514,7 +514,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                 onChange={(e) => handleInputChange(index, 'toLocation', e.target.value)}
 //               />
 //             ) : (
-//                   <div className="text-xs text-cardBody font-poppins">
+//                   <div className="text-xs  font-poppins">
 //                     {item.toLocation}
 //                   </div>
 //             )}
@@ -522,7 +522,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                                     </div>
 //                                 </div>
 //                                 <div className=" flex font-medium  md:w-[5.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-//                                     <div class=" text-xs text-cardBody font-poppins text-center">
+//                                     <div class=" text-xs  font-poppins text-center">
 //                                     {editStates[index] ? (
 //               <input
 //                 type="text"
@@ -531,7 +531,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                 onChange={(e) => handleInputChange(index, 'distances', e.target.value)}
 //               />
 //             ) : (
-//                   <div className="text-xs text-cardBody font-poppins">
+//                   <div className="text-xs  font-poppins">
 //                     {item.distances}
 //                   </div>
 //             )}
@@ -540,7 +540,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                                 </div>
 
 //                                 <div className=" flex font-medium  md:w-[6.3rem] max-sm:flex-row w-full max-sm:justify-between ">
-//                                     <div class=" text-xs text-cardBody font-poppins text-center">
+//                                     <div class=" text-xs  font-poppins text-center">
 //                                     {editStates[index] ? (
 //               <input
 //                 type="text"
@@ -549,7 +549,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                 onChange={(e) => handleInputChange(index, 'remark', e.target.value)}
 //               />
 //             ) : (
-//                   <div className="text-xs text-cardBody font-poppins">
+//                   <div className="text-xs  font-poppins">
 //                     {item.remark}
 //                   </div>
 //             )}
@@ -557,19 +557,19 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                                     </div>
 //                                 </div>
 //                                 <div className=" flex font-medium  md:w-[8.3rem] max-sm:flex-row w-full max-sm:justify-between ">
-//                                     <div class=" text-xs text-cardBody font-poppins text-center">
+//                                     <div class=" text-xs  font-poppins text-center">
 //                                         {item.estimateRepairTimeHours || "0"}H:{item.estimateRepairTimeMinutes || "0"}M:{item.estimateRepairTimeSeconds || "0"}S
 
 //                                     </div>
 //                                 </div>
 //                                 <div className=" flex font-medium  md:w-[7.3rem] max-sm:flex-row w-full max-sm:justify-between ">
-//                                     <div class=" text-xs text-cardBody font-poppins text-center">
+//                                     <div class=" text-xs  font-poppins text-center">
 //                                         {item.totalhours}
 
 //                                     </div>
 //                                 </div>
 //                                 <div className=" flex font-medium  md:w-[1.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-//                                     <div class=" text-xs text-cardBody font-poppins text-center">
+//                                     <div class=" text-xs  font-poppins text-center">
 //                                         <Tooltip title="Spare">
 //                                             <span style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "black" }}
 
@@ -586,7 +586,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                                     </div>
 //                                 </div>
 //                                 <div className=" flex font-medium  md:w-[1.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-//                                     <div class=" text-xs text-cardBody font-poppins text-center">
+//                                     <div class=" text-xs  font-poppins text-center">
 //                                         <Tooltip title="Task">
 //                                             <FileDoneOutlined
 //                                                 style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "black" }}
@@ -602,7 +602,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //                                     </div>
 //                                 </div>
 //                                 <div className=" flex font-medium  md:w-[1.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-//                                     <div class=" text-xs text-cardBody font-poppins text-center">
+//                                     <div class=" text-xs  font-poppins text-center">
 //                                         <Tooltip title="Notes">
 //                                             <NoteAddOutlined
 //                                                 style={{ cursor: "pointer", fontSize: "13px" }}

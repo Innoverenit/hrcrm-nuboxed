@@ -16,6 +16,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { Popconfirm, Tooltip } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Link } from 'react-router-dom';
+import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import UpdateSupplierModal from "./UpdateSupplierModal";
@@ -71,23 +72,21 @@ function SuppliersCardList(props) {
 
   return (
     <>
-      <div className=' flex justify-end sticky  z-auto'>
-        <div class=" m-1 max-sm:m-1 p-1  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[100%] p-1 bg-transparent font-bold sticky  z-10">
+      <div className=' flex  sticky  z-auto'>
+        <div class=" m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[20.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"
             /></div>
             <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
-              <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
+              <FormattedMessage id="app.phoneNo" defaultMessage="Phone " />
             </div>
-            <div className=" w-[22.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  <FormattedMessage id="app.email" defaultMessage="Email" /></div>
-            <div className="w-[20.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[15.9rem]">
-              <FormattedMessage id="app.address" defaultMessage="Address" />
-
-            </div>
+            <div className=" w-[22.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+               <FormattedMessage id="app.email" defaultMessage="Email" /></div>
+            
             <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
-              <FormattedMessage id="app.city" defaultMessage="City" />
+              <FormattedMessage id="app.country" defaultMessage="Country" />
 
             </div>
 
@@ -106,14 +105,26 @@ function SuppliersCardList(props) {
                   {props.supplierList.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                    const countryCode = item.address[0].country_alpha2_code;
+                    const dataLoc = ` Address : ${
+                      item.address && item.address.length && item.address[0].address1
+                    } 
+                        
+                       Country : ${
+                         (item.address &&
+                           item.address.length &&
+                           item.address[0].country) ||
+                         ""
+                       } 
+                         `;
                     return (
                       <>
                         <div
-                          className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1  max-sm:h-[6rem] max-sm:flex-col">
+                          className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1  max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                           <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className="font-medium  flex items-center w-[14.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
-                                <div class=" font-semibold text-[0.85rem] text-cardBody font-poppins">
+                                <div class=" font-semibold text-[0.85rem]  font-poppins">
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}
                                     title={`${item.shipperName}`}
@@ -134,7 +145,7 @@ function SuppliersCardList(props) {
 
 
 
-                                <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {item.dialCode} {item.phoneNo}
                                 </div>
 
@@ -143,30 +154,22 @@ function SuppliersCardList(props) {
                             <div class="flex items-center max-sm:justify-between max-sm:w-wk ">
                               <div className=" flex font-medium flex-col w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
 
-                                <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {item.emailId}
                                 </div>
 
                               </div>
 
 
-                              <div className=" flex font-medium flex-col w-[16.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.04rem] max-lg:w-[10.03rem] ">
-                                <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                  {`${(item.address && item.address.length && item.address[0].address1) || ""}
-          ${(item.address && item.address.length && item.address[0].state) || ""}
-          ${(item.address && item.address.length && item.address[0].street) || ""} ${(item.address && item.address.length && item.address[0].postalCode) || ""} `}
-                                </div>
-
-                              </div>
+                             
                             </div>
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className=" flex font-medium flex-col w-[9.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
 
-                                <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                  {(item.address &&
-                                    item.address.length &&
-                                    item.address[0].city) ||
-                                    ""}
+                                <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <CountryFlag1 countryCode={countryCode} />
+                                 &nbsp;
+                                   {countryCode}
                                 </div>
 
                               </div>
@@ -174,7 +177,7 @@ function SuppliersCardList(props) {
                             </div>
 
                             <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <SuplierPublishToggle
                                   publishInd={item.publishInd}
                                   supplierId={item.supplierId}

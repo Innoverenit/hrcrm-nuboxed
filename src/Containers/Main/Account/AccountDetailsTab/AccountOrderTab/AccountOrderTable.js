@@ -220,7 +220,7 @@ const AccountOrderTable = (props) => {
                                                     <div className=" flex items-center font-medium  md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -238,7 +238,7 @@ const AccountOrderTable = (props) => {
 
 
                                                     <div className="ml-1 font-medium flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                             <Badge
                                                                 class=" ml-2"
                                                                 size="small"
@@ -269,7 +269,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
                                                     <div className=" flex font-medium  md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        <div class=" text-xs  font-poppins text-center">
                                                             <MultiAvatar2
                                                                 primaryTitle={item.userName}
                                                                 imageURL={item.imageURL}
@@ -280,7 +280,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
                                                     <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        <div class=" text-xs  font-poppins text-center">
                                                             <Badge
                                                                 class=" ml-2"
                                                                 size="small"
@@ -300,7 +300,7 @@ const AccountOrderTable = (props) => {
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium   md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
                                                                 imageURL={item.imageURL}
@@ -313,14 +313,14 @@ const AccountOrderTable = (props) => {
 
 
                                                     <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
                                                     <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 10000).toFixed(2)}k
                                                         </div>
 
@@ -328,7 +328,7 @@ const AccountOrderTable = (props) => {
 
 
                                                     <div className=" flex font-medium  items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />
                                                             {visible && (item.orderId === particularRowData.orderId) ?
                                                                 <Input
@@ -342,7 +342,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium   md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.orderId === particularRowData.orderId) ? (
                                                             <>
@@ -378,12 +378,12 @@ const AccountOrderTable = (props) => {
 
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                         {item.locationName}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                     {item.supervisorUserName ? 
                                                     <MultiAvatar
                                                                 primaryTitle={item.supervisorUserName}
@@ -397,7 +397,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                         {item.productionLocationName}
                                                     </div>
                                                 </div>
@@ -657,7 +657,7 @@ const AccountOrderTable = (props) => {
                                                     <div className=" flex font-medium items-center md:w-[3.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -675,7 +675,7 @@ const AccountOrderTable = (props) => {
 
 
                                                     <div className="ml-1 font-medium flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                             <Badge
                                                                 class=" ml-2"
                                                                 size="small"
@@ -706,7 +706,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
                                                     <div className=" flex font-medium  md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        <div class=" text-xs  font-poppins text-center">
                                                             <MultiAvatar2
                                                                 primaryTitle={item.userName}
                                                                 imageURL={item.imageURL}
@@ -717,7 +717,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
                                                     <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        <div class=" text-xs  font-poppins text-center">
                                                             <Badge
                                                                 class=" ml-2"
                                                                 size="small"
@@ -737,7 +737,7 @@ const AccountOrderTable = (props) => {
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium   md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
                                                                 imageURL={item.imageURL}
@@ -750,14 +750,14 @@ const AccountOrderTable = (props) => {
 
 
                                                     <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                         <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
                                                     <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                         <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 10000).toFixed(2)}k
                                                         </div>
 
@@ -765,7 +765,7 @@ const AccountOrderTable = (props) => {
 
 
                                                     <div className=" flex font-medium  items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />
                                                             {visible && (item.orderId === particularRowData.orderId) ?
                                                                 <Input
@@ -779,7 +779,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium   md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.orderId === particularRowData.orderId) ? (
                                                             <>
@@ -815,12 +815,12 @@ const AccountOrderTable = (props) => {
 
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                         {item.locationName}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                     {item.supervisorUserName ? 
                                                     <MultiAvatar
                                                                 primaryTitle={item.supervisorUserName}
@@ -834,7 +834,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                         {item.productionLocationName}
                                                     </div>
                                                 </div>
@@ -1093,7 +1093,7 @@ const AccountOrderTable = (props) => {
                                                     <div className=" flex font-medium items-center  md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -1111,7 +1111,7 @@ const AccountOrderTable = (props) => {
 
 
                                                     <div className="ml-1 font-medium flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                             <Badge
                                                                 class=" ml-2"
                                                                 size="small"
@@ -1142,7 +1142,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
                                                     <div className=" flex font-medium  md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        <div class=" text-xs  font-poppins text-center">
                                                             <MultiAvatar2
                                                                 primaryTitle={item.userName}
                                                                 imageURL={item.imageURL}
@@ -1153,7 +1153,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
                                                     <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        <div class=" text-xs  font-poppins text-center">
                                                             <Badge
                                                                 class=" ml-2"
                                                                 size="small"
@@ -1173,7 +1173,7 @@ const AccountOrderTable = (props) => {
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium   md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
                                                                 imageURL={item.imageURL}
@@ -1186,14 +1186,14 @@ const AccountOrderTable = (props) => {
 
 
                                                     <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                         <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
                                                     <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                         <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 10000).toFixed(2)}k
                                                         </div>
 
@@ -1201,7 +1201,7 @@ const AccountOrderTable = (props) => {
 
 
                                                     <div className=" flex font-medium  items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />
                                                             {visible && (item.orderId === particularRowData.orderId) ?
                                                                 <Input
@@ -1215,7 +1215,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium   md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.orderId === particularRowData.orderId) ? (
                                                             <>
@@ -1251,12 +1251,12 @@ const AccountOrderTable = (props) => {
 
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                         {item.locationName}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                         {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
                                                         </span> */}
@@ -1270,7 +1270,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                         {item.productionLocationName}
                                                     </div>
                                                 </div>

@@ -116,12 +116,12 @@ useEffect(()=>{
                       <div class="flex">
                         <div className=" flex font-medium flex-col  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                          <h4 class=" text-xs text-cardBody font-poppins">
+                          <h4 class=" text-xs  font-poppins">
                             {item.designationName}
                           </h4>
                         </div>
                         <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <h4 class=" text-xs text-cardBody font-poppins">
+                          <h4 class=" text-xs  font-poppins">
                           {item.departmentId}
                           </h4>
                         </div>

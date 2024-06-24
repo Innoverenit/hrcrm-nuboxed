@@ -34,7 +34,7 @@ function ProgramTable (props)  {
 <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 ">
        <div class="flex">
     <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
     <Link
           toUrl={`/program/${item.programDetailsId}`}
           title={`${item.program}`}
@@ -54,13 +54,13 @@ function ProgramTable (props)  {
 
     <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-    <div class=" text-xs text-cardBody font-poppins">
+    <div class=" text-xs  font-poppins">
                         {item.duration} 
                     </div>
     </div></div>
     
     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-    <div class=" text-xs text-cardBody font-poppins">
+    <div class=" text-xs  font-poppins">
                       
     {item.currency}  {item.price} 
                     </div>
@@ -68,13 +68,13 @@ function ProgramTable (props)  {
     <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
        
 
-        <div class=" text-xs text-cardBody font-semibold  font-poppins">
+        <div class=" text-xs  font-semibold  font-poppins">
         {` ${moment.utc(item.creationDate).format("ll")}`}
                     </div>
     </div>
 
 {/* <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<div class=" text-xs text-cardBody font-poppins">
+<div class=" text-xs  font-poppins">
 <Tooltip title="Edit">
                                         <EditOutlined
                                     style={{ cursor: "pointer", fontSize: "12px" }}

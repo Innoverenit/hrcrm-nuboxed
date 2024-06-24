@@ -151,7 +151,7 @@ if (isMobile){
                                   <Tooltip>
                                     <div class="max-sm:w-full justify-between flex md:flex-col">
                                      
-                                      <h4 class="text-[0.82rem] flex text-cardBody font-semibold  font-poppins cursor-pointer">
+                                      <h4 class="text-[0.82rem] flex  font-semibold  font-poppins cursor-pointer">
                                       {item.name}
                                      &nbsp;&nbsp;
                                      {date === currentdate ? (
@@ -232,7 +232,7 @@ props.updateTypeForLead(item.leadsId,typ)
 </div>
 <div class="flex justify-between items-center w-wk "> 
                           <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                     <h4 class=" text-[0.82rem] text-cardBody font-poppins">  
+                     <h4 class=" text-[0.82rem]  font-poppins">  
                      {item.countryDialCode && item.phoneNumber ? (
 `${item.countryDialCode} ${item.phoneNumber}`
 ) : (
@@ -242,7 +242,7 @@ props.updateTypeForLead(item.leadsId,typ)
                      </h4>
                  </div>
                  <div className=" flex font-medium flex-col justify-center md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                            <h4 class=" text-[0.82rem] text-cardBody font-poppins">
+                            <h4 class=" text-[0.82rem]  font-poppins">
                             <CountryFlag1 countryCode={countryCode} />
                       &nbsp;
                       {countryCode}
@@ -252,7 +252,7 @@ props.updateTypeForLead(item.leadsId,typ)
                  </div>
                  <div class="flex justify-between items-center w-wk "> 
                  <div className=" flex font-medium flex-col justify-center  md:w-40 max-sm:flex-row w-full max-sm:justify-between ">
-                     <h4 class=" text-[0.82rem] text-cardBody font-semibold  font-poppins">   
+                     <h4 class=" text-[0.82rem]  font-semibold  font-poppins">   
                      <Link to={`leads/${item.leadsId}`} title={item.companyName || "No Data"}>
 {item.companyName || "No Data"}
 </Link>
@@ -279,7 +279,7 @@ props.updateTypeForLead(item.leadsId,typ)
                   </div>
                  
                           <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between ">
-                              <h4 class=" text-[0.82rem] text-cardBody font-poppins">   
+                              <h4 class=" text-[0.82rem]  font-poppins">   
                               {item.sector}
                               </h4>
                           </div>
@@ -287,7 +287,7 @@ props.updateTypeForLead(item.leadsId,typ)
                           <div class="flex justify-between items-center w-wk "> 
                           <div className=" flex font-medium flex-col justify-center md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
 
-                              <div class=" text-[0.82rem] text-cardBody font-poppins">
+                              <div class=" text-[0.82rem]  font-poppins">
                               
                               <div>
                       {item.assignedTo === null ? (
@@ -323,7 +323,7 @@ props.updateTypeForLead(item.leadsId,typ)
       </span>
              </div>
              <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-                              <div class=" text-[0.75rem] text-cardBody font-poppins">
+                              <div class=" text-[0.75rem]  font-poppins">
 
                               </div>
                               <div>
@@ -487,7 +487,7 @@ Resinstate
                                   <Tooltip>
                                     <div class="max-sm:w-full justify-between flex md:flex-col">
                                      
-                                      <div class="text-[0.82rem] flex text-cardBody font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
+                                      <div class="text-[0.82rem] flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
                                       {item.name}
                                      &nbsp;&nbsp;
                                      {date === currentdate ? (
@@ -569,7 +569,7 @@ props.updateTypeForLead(item.leadsId,typ)
 </div>
 <div class="flex"> 
                           <div className=" flex font-medium flex-col  w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
-                     <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
+                     <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
                      {item.countryDialCode && item.phoneNumber ? (
 `${item.countryDialCode} ${item.phoneNumber}`
 ) : (
@@ -579,7 +579,7 @@ props.updateTypeForLead(item.leadsId,typ)
                      </div>
                  </div>
                  <div className=" flex font-medium flex-col justify-center w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[3rem] ">
-                            <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <CountryFlag1 countryCode={countryCode} />
                       &nbsp;
                       {countryCode}
@@ -589,7 +589,7 @@ props.updateTypeForLead(item.leadsId,typ)
                  </div>
                  <div class="flex"> 
                  <div className=" flex font-medium flex-col justify-center  w-40 max-sm:flex-row  max-sm:justify-between max-xl:w-[7rem] max-lg:w-[4rem] ">
-                     <div class=" text-[0.82rem] text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
+                     <div class=" text-[0.82rem]  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
                      <Link to={`leads/${item.leadsId}`} title={item.companyName || "No Data"}>
 {item.companyName || "No Data"}
 </Link>
@@ -616,7 +616,7 @@ props.updateTypeForLead(item.leadsId,typ)
                   </div>
                  
                           <div className=" flex font-medium flex-col  w-28 max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[4rem] max-lg:max-w-[10ch] truncate">
-                              <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">   
+                              <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">   
                               {item.sector}
                               </div>
                           </div>
@@ -624,7 +624,7 @@ props.updateTypeForLead(item.leadsId,typ)
                           <div class="flex mb-1"> 
                           <div className=" flex font-medium flex-col justify-center w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[3rem] max-lg:w-[2rem] ">
 
-                              <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               
                               <div>
         {item.assignedTo === null ? (
@@ -653,7 +653,7 @@ props.updateTypeForLead(item.leadsId,typ)
       </div>
              </div>
              <div className=" flex font-medium items-center  md:w-32 max-sm:flex-row w-full  ">
-                              <div class=" text-[0.75rem] text-cardBody font-poppins">
+                              <div class=" text-[0.75rem]  font-poppins">
 
                               </div>
                               <div>

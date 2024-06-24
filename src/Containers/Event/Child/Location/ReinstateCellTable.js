@@ -50,16 +50,16 @@ const ReinstateCellTable = (props) => {
                 <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
 
                   <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:w-full  ">
-                    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
                     {item.cell}
                     </div>
                   </div>
 
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                     
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.cellUnit}</div>
                       </div>
                     
@@ -69,7 +69,7 @@ const ReinstateCellTable = (props) => {
                 
                   <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                  
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.description}</div>
                       </div>
                   
@@ -79,7 +79,7 @@ const ReinstateCellTable = (props) => {
 
 
                     <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
-                    <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateLocCellToggle locationDetailsId={item.locationDetailsId}
                             storedLoc={props.storedLoc} 
                             cellId={item.cellId}/>

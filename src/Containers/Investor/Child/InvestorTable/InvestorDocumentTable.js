@@ -89,7 +89,7 @@ function InvestorDocumentTable(props) {
                                             <div className="flex rounded  mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row  items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[15.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
                                                            {item.documentTypeName}
                                                            
 
@@ -109,7 +109,7 @@ function InvestorDocumentTable(props) {
                                                    
                                                    
                                                     <div className=" flex font-medium  w-[2.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem]  font-poppins">
                                                         <InvestorDocumentToggle
                                                         documentTypeId={item.documentTypeId}
                                                         RowData={props.RowData}

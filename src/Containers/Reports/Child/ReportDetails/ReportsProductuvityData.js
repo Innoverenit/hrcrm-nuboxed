@@ -28,24 +28,24 @@ function ReportsProductivityData(props) {
                         <div key={index}>
                             <div className="flex rounded-xl mt-2 bg-white h-12 items-center p-3">
                                 <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
-                                    <div className="flex justify-between text-sm text-cardBody font-semibold font-poppins">
+                                    <div className="flex justify-between text-sm  font-semibold font-poppins">
                                         {item.productFullName}
                                     </div>
                                 </div>
 
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                                    <div className="font-normal  text-sm text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                                    <div className="font-normal  text-sm  font-poppins" style={{ marginLeft: "9em" }}>
                                         {item.startTime}
                                     </div>
                                 </div>
 
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                                    <div className="font-normal  text-sm text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                                    <div className="font-normal  text-sm  font-poppins" style={{ marginLeft: "9em" }}>
                                         {item.endTime}
                                     </div>
                                 </div>
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                                    <div className="font-normal text-sm text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                                    <div className="font-normal text-sm  font-poppins" style={{ marginLeft: "9em" }}>
                                         {item.totalTimeTaken}
                                     </div>
                                 </div>

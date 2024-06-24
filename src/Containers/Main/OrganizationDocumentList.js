@@ -138,10 +138,10 @@ saveChanges = () => {
 //               <div className="flex flex-row justify-between w-wk max-sm:flex-col">
 //                 <div className="flex">
 //                   <div className="flex font-medium flex-col md:w-40 max-sm:flex-row w-full max-sm:justify-between">
-//                     <div className="text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+//                     <div className="text-sm  font-semibold font-poppins max-sm:hidden">
 //                       Name
 //                     </div>
-//                     <div className="font-normal text-sm text-cardBody font-poppins">
+//                     <div className="font-normal text-sm  font-poppins">
 //                       {item.name}
 //                       {/* {this.state.editedIndex === index ? (
 //                 <input value={item.name} onChange={(e) => this.handleEdit(index, 'name', e.target.value)} />
@@ -151,10 +151,10 @@ saveChanges = () => {
 //                     </div>
 //                   </div>
 //                   <div className="flex font-medium flex-col md:w-40 max-sm:flex-row w-full mt-1 max-sm:justify-between">
-//                     <div className="text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+//                     <div className="text-sm  font-semibold font-poppins max-sm:hidden">
 //                       Category
 //                     </div>
-//                     <div className="font-normal text-sm text-cardBody font-poppins">
+//                     <div className="font-normal text-sm  font-poppins">
 //                       {item.catagory}
 //                       {/* {this.state.editedIndex === index ? (
 //                 <select value={item.catagory} onChange={(e) => this.handleEdit(index, 'catagory', e.target.value)}>
@@ -170,10 +170,10 @@ saveChanges = () => {
 //                     </div>
 //                   </div>
 //                   <div className="flex font-medium flex-col md:w-40 max-sm:flex-row w-full mt-1 max-sm:justify-between">
-//                     <div className="text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+//                     <div className="text-sm  font-semibold font-poppins max-sm:hidden">
 //                       Department
 //                     </div>
-//                     <div className="font-normal text-sm text-cardBody font-poppins">
+//                     <div className="font-normal text-sm  font-poppins">
 //                       {item.department}
 //                       {/* {this.state.editedIndex === index ? (
 //                 <select value={item.department} onChange={(e) => this.handleEdit(index, 'department', e.target.value)}>
@@ -192,10 +192,10 @@ saveChanges = () => {
 //                     </div>
 //                   </div>
 //                   <div className="flex font-medium flex-col md:w-40 max-sm:flex-row w-full mt-1 max-sm:justify-between">
-//                     <div className="text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+//                     <div className="text-sm  font-semibold font-poppins max-sm:hidden">
 //                       Description
 //                     </div>
-//                     <div className="font-normal text-sm text-cardBody font-poppins">
+//                     <div className="font-normal text-sm  font-poppins">
 //                       {item.description}
 //                       {/* {this.state.editedIndex === index ? (
 //                 <input value={item.description} onChange={(e) => this.handleEdit(index, 'description', e.target.value)} />
@@ -205,10 +205,10 @@ saveChanges = () => {
 //                     </div>
 //                   </div>
 //                   <div className="flex font-medium flex-col md:w-40 max-sm:flex-row w-full mt-1 max-sm:justify-between">
-//                     <div className="text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+//                     <div className="text-sm  font-semibold font-poppins max-sm:hidden">
 //                       Include
 //                     </div>
-//                     <div className="font-normal text-sm text-cardBody font-poppins">
+//                     <div className="font-normal text-sm  font-poppins">
 //                       {/* {item.description} */}
 //                       <Avatar.Group
 //                    maxCount={7}
@@ -236,7 +236,7 @@ saveChanges = () => {
 //                   </div>
 //                   <div class="flex">
 //                   <div className=" flex font-medium flex-col max-sm:flex-row w-full mt-1 max-sm:justify-between">
-//                     <div className="text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+//                     <div className="text-sm  font-semibold font-poppins max-sm:hidden">
                  
 //                     </div>
                  
@@ -349,7 +349,7 @@ return (
                   <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium  w-[8.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">                                  
-                            <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                            <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                             {item.name}
                               {date === currentdate ? (
                                 <span class="text-xs font-bold text-[tomato]">
@@ -365,7 +365,7 @@ return (
 
 
                       <div className=" flex font-medium  w-[9.2rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                        <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                         {item.catagory}
                         </div>
                       </div>
@@ -374,7 +374,7 @@ return (
                     <div className=" flex font-medium  w-[10.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                       
 
-                      <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                      <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.department}
 
                       </div>
@@ -382,7 +382,7 @@ return (
                     <div className=" flex font-medium  w-[9.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                     
 
-                      <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                      <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.description}
 
                       </div>

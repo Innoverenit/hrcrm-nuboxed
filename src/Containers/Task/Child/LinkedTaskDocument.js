@@ -56,8 +56,8 @@ const LinkedTaskDocument = (props) => {
                             
 
                                 <div className=" flex font-medium flex-col  md:w-36 max-sm:flex-row w-full justify-between ">
-                                    <div class=" text-[0.875rem] text-cardBody font-[0.875rem] font-poppins"> Name </div>
-                                    <div class=" text-[0.75rem] text-cardBody font-poppins">   
+                                    <div class=" text-[0.875rem]  font-[0.875rem] font-poppins"> Name </div>
+                                    <div class=" text-[0.75rem]  font-poppins">   
                                     <span         
                >
 
@@ -68,14 +68,14 @@ const LinkedTaskDocument = (props) => {
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-                                  <div class="text-[0.875rem] text-cardBody font-poppins">Creation Date</div>
-                                  <div class="text-[0.75rem] text-cardBody font-poppins">
+                                  <div class="text-[0.875rem]  font-poppins">Creation Date</div>
+                                  <div class="text-[0.75rem]  font-poppins">
                                   <span>{` ${moment(item.creationDate).format("ll")}`}</span>
                                   </div>
                               </div>
                               <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-                                  <div class="text-[0.875rem] text-cardBody font-poppins">Uploaded By</div>
-                                  <div class="text-[0.75rem] text-cardBody font-poppins">
+                                  <div class="text-[0.875rem]  font-poppins">Uploaded By</div>
+                                  <div class="text-[0.75rem]  font-poppins">
                                   <span>{` ${item.uploadedBy}`}</span>
                                   </div>
                               </div>

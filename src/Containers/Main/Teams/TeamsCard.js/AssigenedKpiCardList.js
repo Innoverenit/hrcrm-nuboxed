@@ -134,7 +134,7 @@ function AssigenedKpiCardList(props) {
                    <div className="max-sm:w-full">
                      <Tooltip>
                        <div className="flex max-sm:w-full justify-between flex-row md:flex-col w-[9rem]">
-                         <div className="text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                         <div className="text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
                            {item.kpiName}
                          </div>
                        </div>
@@ -144,7 +144,7 @@ function AssigenedKpiCardList(props) {
                  </div>
                </div>
                <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
          
                    {editContactId === item.userKpiLinkId ? (
@@ -162,14 +162,14 @@ function AssigenedKpiCardList(props) {
     ))}
   </select>
 ) : (
-  <div className="font-normal text-sm text-cardBody font-poppins">{item.lobName}</div>
+  <div className="font-normal text-sm  font-poppins">{item.lobName}</div>
 )}
            
                    </>
                  </div>
                </div>
                {/* <div className="flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
          
            {props.rowdata.currency}
@@ -179,7 +179,7 @@ function AssigenedKpiCardList(props) {
                </div> */}
       
                <div className="flex font-medium flex-col md:w-[32.32rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
                    {editContactId === item.userKpiLinkId ? (
             <>
@@ -233,7 +233,7 @@ function AssigenedKpiCardList(props) {
             </>
           ) : (
             <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                        <div className="flex flex-col items-center">
                          <span className="mr-2">M1</span>
                          <span className='ml-2 w-[4rem]'>
@@ -270,9 +270,9 @@ function AssigenedKpiCardList(props) {
                  </div>
                </div>
                <div className="flex font-medium flex-col md:w-[13.3rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                      {item.month3AssignedValue && (
                        <span>
                       {item.currencyInd && `${item.userCurrency} `}{Math.floor(AssignedTotal / 10000)}k
@@ -284,9 +284,9 @@ function AssigenedKpiCardList(props) {
                </div>
           
                <div className="flex font-medium flex-col md:w-[33.3rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                        <div className="flex flex-col items-center">
                          <span className="mr-2">M1</span>
                          <span className='ml-2  w-[4rem]'>   {item.month1CompletedValue && (
@@ -319,9 +319,9 @@ function AssigenedKpiCardList(props) {
                  </div>
                </div>
                <div className="flex font-medium flex-col md:w-[11.13rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                      {item.month3CompletedValue && (
                      <span>
                       {item.currencyInd && `${item.userCurrency} `}
@@ -334,7 +334,7 @@ function AssigenedKpiCardList(props) {
                </div>
                <div className=" flex font-medium flex-col  md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <div class=" text-xs text-cardBody font-poppins">
+         <div class=" text-xs  font-poppins">
          {/* <Tooltip title={item.oppStage}> */}
 {" "}
 <Progress
@@ -352,9 +352,9 @@ width={30}
          </div>
        </div>
                <div className="flex font-medium flex-col md:w-[15.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                        <div className="flex flex-col items-center">
                          <span className="mr-2">M1</span>
                          <span className='ml-2 w-[4rem]'>   {item.month1ActualCompletedValue && (
@@ -387,9 +387,9 @@ width={30}
                  </div>
                </div>
                <div className="flex font-medium flex-col md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                      {item.month3ActualCompletedValue && (
                       <span>
                       {item.currencyInd && `${item.userCurrency} `}
@@ -402,7 +402,7 @@ width={30}
                </div>
                <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <div class=" text-xs text-cardBody font-poppins">
+         <div class=" text-xs  font-poppins">
  
 {" "}
 <Progress
@@ -420,7 +420,7 @@ width={30}
        </div>
                <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                  
-                                 <div class="text-sm text-cardBody font-poppins">
+                                 <div class="text-sm  font-poppins">
                                  {editContactId === item.userKpiLinkId ? (
                   <input
                   style={{border:"2px solid black", width:"90%"}}
@@ -436,7 +436,7 @@ width={30}
                   }}
               />
                  ) : (
-                   <div className="font-normal text-sm text-cardBody font-poppins">
+                   <div className="font-normal text-sm  font-poppins">
                     {item.weitageValue && (
                                       <span>
                                           {/* {item.currencyInd && `${item.userCurrency} `} */}
@@ -580,7 +580,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AssigenedKpiCardList
                                       <Tooltip>
                                         <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                         
-                                          <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                          <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                               
     {item.kpiName}
    
@@ -598,7 +598,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AssigenedKpiCardList
                                       <Tooltip>
                                         <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                         
-                                          <div class="text-sm  text-cardBody font-poppins ">
+                                          <div class="text-sm   font-poppins ">
                                               
     {item.lobName}
    
@@ -616,7 +616,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AssigenedKpiCardList
                           
                           <div className=" flex font-medium flex-col md:w-[23.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                  
-                                 <div class="text-sm text-cardBody font-poppins">
+                                 <div class="text-sm  font-poppins">
                                  {editContactId === item.userKpiLinkId ? (
             <>
             <div class=" flex flex-row">
@@ -670,7 +670,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AssigenedKpiCardList
           ) : (
             <>
           
-            <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+            <div className="font-normal flex flex-row text-sm  font-poppins">
             <div class=" flex flex-col">
   <span className='mr-2'>M1</span>
   <span className='ml-2 w-[6rem]'>   {item.month1AssignedValue && (
@@ -725,7 +725,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AssigenedKpiCardList
                             </div>
                             <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                  
-                                 <div class="text-sm text-cardBody font-poppins">
+                                 <div class="text-sm  font-poppins">
                                  {editContactId === item.userKpiLinkId ? (
                   <input
                   style={{border:"2px solid black", width:"90%"}}
@@ -741,7 +741,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AssigenedKpiCardList
                   }}
               />
                  ) : (
-                   <div className="font-normal text-sm text-cardBody font-poppins">
+                   <div className="font-normal text-sm  font-poppins">
                     {item.weitageValue && (
                                       <span>
                                          
@@ -776,7 +776,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AssigenedKpiCardList
                               <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                   
 
-                                  <div class=" text-sm text-cardBody font-poppins text-center">
+                                  <div class=" text-sm  font-poppins text-center">
                                   <StyledPopconfirm
                 title="Do you want to delete?"
                  onConfirm={() => props.deleteKpiData(item.userKpiLinkId)}

@@ -93,7 +93,7 @@ function SalaryForm(props) {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
       {props.usersalary.basic} {props.usersalary.currency}
      
@@ -110,7 +110,7 @@ function SalaryForm(props) {
                               
                                 <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                  <div class="text-sm text-cardBody font-poppins">
+                                  <div class="text-sm  font-poppins">
                                {props.usersalary.housing} {props.usersalary.currency}
                                   </div>
                               </div>
@@ -118,19 +118,19 @@ function SalaryForm(props) {
 
                               <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                <div class="text-sm text-cardBody font-poppins">
+                                <div class="text-sm  font-poppins">
                              {props.usersalary.transportation} {props.usersalary.currency}
                                 </div>
                             </div>
                             <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                            <div class="text-sm text-cardBody font-poppins">
+                            <div class="text-sm  font-poppins">
                              {props.usersalary.totalSalary} {props.usersalary.currency}
                                 </div>
                                 </div>
 
 
                                 <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                            <div class="text-sm text-cardBody font-poppins">
+                            <div class="text-sm  font-poppins">
                              {props.usersalary.others} {props.usersalary.currency}
                                 </div>
                                 </div>

@@ -57,7 +57,7 @@ const handleStageChange = (value) => {
                         <div class="max-sm:w-full md:flex items-center">
 
                           <div className=" flex font-medium flex-col md:w-[8rem] max-sm:w-full  ">
-                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                            <div class="text-sm  font-semibold  font-poppins cursor-pointer">
                               {item.name}
                             </div>
                           </div>
@@ -66,20 +66,20 @@ const handleStageChange = (value) => {
                     </div>
 
                     <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
 
                         {item.categoryName} {item.subCategoryName}
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                      <div class=" text-xs  font-semibold  font-poppins">
                         {item.attributeName}  {item.subAttributeName}
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                      <div class=" text-xs  font-semibold  font-poppins">
                       <Select value={selectedWorkflowId} onChange={handleWorkflowChange} >
                   {props.productionProcess.map(option => {
                     return <Option key={option.productionWorkflowDetailsId} value={option.productionWorkflowDetailsId}>{option.workflowName}</Option>
@@ -89,7 +89,7 @@ const handleStageChange = (value) => {
                     </div>
                     <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                      <div class=" text-xs  font-semibold  font-poppins">
                       <Select value={selectedStageId} onChange={handleStageChange} >
                   {props.stageProduction.map(option => {
                     return <Option key={option.productionStagesId} value={option.productionStagesId}>{option.stageName}</Option>

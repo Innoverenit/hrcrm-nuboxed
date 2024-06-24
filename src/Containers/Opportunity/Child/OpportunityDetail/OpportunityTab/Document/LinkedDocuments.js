@@ -90,7 +90,7 @@ class LinkedDocuments extends Component {
                                             <Tooltip>
                                               <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                               
-                                                <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                     
                                                 <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
          
@@ -107,22 +107,22 @@ class LinkedDocuments extends Component {
                                   
                                     <div className=" flex font-medium  md:w-[15.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                     
-                                      <div class="text-sm text-cardBody font-poppins">
+                                      <div class="text-sm  font-poppins">
                                       {item.documentTitle}
                                       </div>
                                   </div>
     
                                   <div className=" flex font-medium  md:w-[14.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                     
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm  font-poppins">
                                     <span>{elipsize(item.documentDescription || "", 15)}</span>
                                     </div>
                                 </div>
                                 <div className=" flex font-medium  md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                        
-                                       <div class="text-sm text-cardBody font-poppins">
+                                       <div class="text-sm  font-poppins">
                      
-                         <div className="font-normal text-sm text-cardBody font-poppins">
+                         <div className="font-normal text-sm  font-poppins">
                            <span>{item.uploadedBy}</span>
                          </div>
                      
@@ -130,15 +130,15 @@ class LinkedDocuments extends Component {
                                    </div>
                                    <div className=" flex font-medium  md:w-[20.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                        
-                                       <div class="text-sm text-cardBody font-poppins">
+                                       <div class="text-sm  font-poppins">
                      
-                         <div className="font-normal text-sm text-cardBody font-poppins">
+                         <div className="font-normal text-sm  font-poppins">
                            <span>{item.fileName}</span>
                          </div>
                      
                                        </div>
 
-                                       <div class="text-sm text-cardBody font-poppins">
+                                       <div class="text-sm  font-poppins">
                      
                                  
           <ContractToggle
@@ -172,7 +172,7 @@ class LinkedDocuments extends Component {
                                     <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         
     
-                                        <div class=" text-sm text-cardBody font-poppins text-center">
+                                        <div class=" text-sm  font-poppins text-center">
                                         <StyledPopconfirm
             title="Do you want to delete?"
           onConfirm={() => deleteDocument(item.documentId)}

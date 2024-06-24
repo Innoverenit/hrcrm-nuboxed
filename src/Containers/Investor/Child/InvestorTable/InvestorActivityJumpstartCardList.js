@@ -176,7 +176,7 @@ function InvestorActivityJumpstartCardList(props) {
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                <div class="flex text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.activityType}
@@ -212,15 +212,15 @@ function InvestorActivityJumpstartCardList(props) {
                       <div className=" flex font-medium  items-center max-sm:w-auto  w-[8.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                          {`${item.category} `}
                         </div>
 
                       </div>
                       <div className=" flex font-medium  items-center max-sm:w-auto  w-[6.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {moment.utc(item.endDate).format('DD/MM/YYYY')}
                         </div>
 
@@ -230,7 +230,7 @@ function InvestorActivityJumpstartCardList(props) {
                       <div className=" flex font-medium max-sm:w-auto  items-center  w-[1.215rem] max-xl:w-[4rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                        
                           {moment.utc(item.creationDate).format('DD/MM/YYYY')}
                         </div>
@@ -240,7 +240,7 @@ function InvestorActivityJumpstartCardList(props) {
 
 
                        
-                        <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
                           &nbsp;
                           {countryCode}
@@ -254,7 +254,7 @@ function InvestorActivityJumpstartCardList(props) {
                     <div className=" flex font-medium  items-center max-sm:w-auto  w-[7.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-<div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
  {`${item.status} `}
 </div>
 
@@ -262,7 +262,7 @@ function InvestorActivityJumpstartCardList(props) {
 <div className=" flex font-medium  items-center max-sm:w-auto  w-[7.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-<div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
  {`${item.ageing} `}
 </div>
 
@@ -271,13 +271,13 @@ function InvestorActivityJumpstartCardList(props) {
                    
               
                     <div className=" flex font-medium items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[8rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
+                      {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
-                      <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         <div>
                           {item.assignedTo === null ? (
-                            <div class="text-xs text-cardBody font-poppins">No Data</div>
+                            <div class="text-xs  font-poppins">No Data</div>
                           ) : (
                             <>
                               {/* {item.assignedTo === item.woner ? (

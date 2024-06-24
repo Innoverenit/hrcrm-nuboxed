@@ -142,7 +142,7 @@ const handleLoadMoreLow = () => {
                   <div className=" flex font-medium items-center md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full ">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -215,7 +215,7 @@ const handleLoadMoreLow = () => {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class="text-cardBody font-poppins text-sm">
+                      <h4 class=" font-poppins text-sm">
                         {item.noOfPhones}
                       </h4>
                     </div>
@@ -298,7 +298,7 @@ const handleLoadMoreLow = () => {
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <h4 class=" text-sm text-cardBody font-semibold  font-poppins">
+                      <h4 class=" text-sm  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </h4>
                     </div>
@@ -307,8 +307,8 @@ const handleLoadMoreLow = () => {
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-                      <h4 class=" text-xs text-cardBody font-poppins">
+                      {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
+                      <h4 class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                             className=" !text-xl cursor-pointer text-green-800"
@@ -325,7 +325,7 @@ const handleLoadMoreLow = () => {
                     </div>
 
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
+                      <h4 class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
                             className="!text-xl cursor-pointer"
@@ -338,7 +338,7 @@ const handleLoadMoreLow = () => {
                       </h4>
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
+                      <h4 class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
                           className=" !text-xl cursor-pointer "
@@ -352,7 +352,7 @@ const handleLoadMoreLow = () => {
 
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
+                      <h4 class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
                            className=" !text-xl cursor-pointer"
@@ -435,7 +435,7 @@ const handleLoadMoreLow = () => {
                   <div className=" flex font-medium items-center md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -508,7 +508,7 @@ const handleLoadMoreLow = () => {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class="text-cardBody font-poppins text-sm">
+                      <h4 class=" font-poppins text-sm">
                         {item.noOfPhones}
                       </h4>
                     </div>
@@ -590,7 +590,7 @@ const handleLoadMoreLow = () => {
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <h4 class=" text-sm text-cardBody font-semibold  font-poppins">
+                      <h4 class=" text-sm  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </h4>
                     </div>
@@ -599,8 +599,8 @@ const handleLoadMoreLow = () => {
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-                      <h4 class=" text-xs text-cardBody font-poppins">
+                      {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
+                      <h4 class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                              className=" !text-xl cursor-pointer text-green-800"
@@ -617,7 +617,7 @@ const handleLoadMoreLow = () => {
                     </div>
 
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
+                      <h4 class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
                             className="!text-xl cursor-pointer"
@@ -630,7 +630,7 @@ const handleLoadMoreLow = () => {
                       </h4>
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
+                      <h4 class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
                               className=" !text-xl cursor-pointer "
@@ -644,7 +644,7 @@ const handleLoadMoreLow = () => {
 
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
+                      <h4 class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
                           className=" !text-xl cursor-pointer "
@@ -727,7 +727,7 @@ const handleLoadMoreLow = () => {
                    <div className=" flex font-medium items-center md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -800,7 +800,7 @@ const handleLoadMoreLow = () => {
                    </div>
                    <div class="flex">
                      <div className=" flex font-medium flex-col  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                       <h4 class="text-cardBody font-poppins text-sm">
+                       <h4 class=" font-poppins text-sm">
                          {item.noOfPhones}
                        </h4>
                      </div>
@@ -882,7 +882,7 @@ const handleLoadMoreLow = () => {
                    <div class="flex">
                      <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
  
-                       <h4 class=" text-sm text-cardBody font-semibold  font-poppins">
+                       <h4 class=" text-sm  font-semibold  font-poppins">
                          {item.noOfownerPhones}
                        </h4>
                      </div>
@@ -891,8 +891,8 @@ const handleLoadMoreLow = () => {
                      </div>
                      <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
  
-                       {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-                       <h4 class=" text-xs text-cardBody font-poppins">
+                       {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
+                       <h4 class=" text-xs  font-poppins">
                          <Tooltip title="Notes">
                            <NoteAltIcon
                                 className=" !text-xl cursor-pointer text-green-800"
@@ -909,7 +909,7 @@ const handleLoadMoreLow = () => {
                      </div>
  
                      <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                       <h4 class=" text-xs text-cardBody font-poppins">
+                       <h4 class=" text-xs  font-poppins">
                          <Tooltip title="Add Supervisor">
                            <PersonAddAlt1
                              className="!text-xl cursor-pointer"
@@ -922,7 +922,7 @@ const handleLoadMoreLow = () => {
                        </h4>
                      </div>
                      <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                       <h4 class=" text-xs text-cardBody font-poppins">
+                       <h4 class=" text-xs  font-poppins">
                          <Tooltip title="Status">
                            <EventRepeatIcon
                               className=" !text-xl cursor-pointer "
@@ -936,7 +936,7 @@ const handleLoadMoreLow = () => {
  
                      </div>
                      <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                       <h4 class=" text-xs text-cardBody font-poppins">
+                       <h4 class=" text-xs  font-poppins">
                          <Tooltip title="Collection">
                            <PaidIcon
                              className=" !text-xl cursor-pointer"

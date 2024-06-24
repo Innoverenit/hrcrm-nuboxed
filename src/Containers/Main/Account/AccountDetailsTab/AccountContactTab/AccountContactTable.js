@@ -141,7 +141,7 @@ class AccountContactTable extends Component {
 
                                             <div className=" flex font-medium flex-col  md:w-[6.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                                <div class=" text-xs text-cardBody font-poppins">
+                                                <div class=" text-xs  font-poppins">
                                                     {`${item.salutation || ""} ${item.firstName || ""} ${item.middleName || ""
                                                         } ${item.lastName || ""}`}
                                                 </div>
@@ -152,7 +152,7 @@ class AccountContactTable extends Component {
                                             <div className=" flex font-medium flex-col  md:w-[7.23rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
 
-                                                <div class=" text-xs text-cardBody font-poppins">
+                                                <div class=" text-xs  font-poppins">
                                                     {item.emailId}
                                                 </div>
 
@@ -162,7 +162,7 @@ class AccountContactTable extends Component {
 
                                         <div className=" flex font-medium flex-col md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                 {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
 
                                             </div>
@@ -170,7 +170,7 @@ class AccountContactTable extends Component {
                                         <div className=" flex font-medium flex-col md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                 {item.designationName}
 
                                             </div>
@@ -179,7 +179,7 @@ class AccountContactTable extends Component {
                                         <div className=" flex font-medium flex-col md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                 {item.departmentId}
 
                                             </div>
@@ -190,7 +190,7 @@ class AccountContactTable extends Component {
 
                                        
                                         <div className=" flex font-medium  md:w-[7.27rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                 <div class=" flex justify-evenly" >
                                                     <ButtonGroup>
                                                         <RoleButton
@@ -242,7 +242,7 @@ class AccountContactTable extends Component {
                                         <div className=" flex font-medium flex-col w-[1.01rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-<div class=" text-xs text-cardBody font-poppins">
+<div class=" text-xs  font-poppins">
     <Tooltip title="Edit">
         <BorderColorIcon
             className="!text-icon cursor-pointer text-[grey]"
@@ -256,7 +256,7 @@ class AccountContactTable extends Component {
 
 </div>
                                         <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                 <Select
                                                     style={{ width: "8rem" }}
                                                     onChange={() =>
@@ -280,7 +280,7 @@ class AccountContactTable extends Component {
                                         </div>
                                         <div className=" flex font-medium   md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                 <Input
                                                     onPressEnter={(e) => this.handleKeyPress(item.contactPersonId, e)} // Call handleKeyPress when Enter key is pressed
                                                     onChange={(e) => this.handleInputChange(item.contactPersonId, e)} // Call handleInputChange on input change
@@ -289,7 +289,7 @@ class AccountContactTable extends Component {
                                         </div>
                                         <div className=" flex font-medium   md:w-[8.41rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                 <Select
                                                     style={{ width: "5rem" }}
                                                     onChange={() =>
@@ -310,7 +310,7 @@ class AccountContactTable extends Component {
                                         <div className=" flex font-medium flex-col  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
 
-                                            {item.accessInd === 0 ? <div class=" text-xs text-cardBody font-poppins">
+                                            {item.accessInd === 0 ? <div class=" text-xs  font-poppins">
                                                 <Button
                                                     type="primary"
                                                     loading={this.state.rowData.contactPersonId === item.contactPersonId && this.props.applyingForLoginInContact}

@@ -65,34 +65,34 @@ function LeaveRejectedStatusCard(props) {
                   >
                     <div class=" flex flex-row justify-evenly w-wk">
                       <div className=" flex font-medium flex-col w-44 mb-1">
-                        <div class=" text-sm text-cardBody font-medium font-poppins">
+                        <div class=" text-sm  font-medium font-poppins">
                           Start Date
                         </div>
 
-                        <div class=" font-normal text-xs text-cardBody font-poppins">
+                        <div class=" font-normal text-xs  font-poppins">
                           {` ${dayjs(item.startDate).format("DD/MM/YYYY")}`}
                         </div>
                         <div className=" flex font-medium flex-col w-40">
-                        <div class=" text-sm text-cardBody font-medium font-poppins">
+                        <div class=" text-sm  font-medium font-poppins">
                           Reason
                         </div>
 
-                        <div class=" font-normal text-xs text-cardBody font-poppins">
+                        <div class=" font-normal text-xs  font-poppins">
                           {item.reason}
                         </div>
                       </div>
                       </div>
 
                       <div className=" flex font-medium flex-col w-40">
-                        <div class=" text-sm text-cardBody font-medium font-poppins">
+                        <div class=" text-sm  font-medium font-poppins">
                           End Date
                         </div>
 
-                        <div class=" font-normal text-xs text-cardBody font-poppins">
+                        <div class=" font-normal text-xs  font-poppins">
                           {` ${dayjs(item.endDate).format("DD/MM/YYYY")}`}
                         </div>
                         <div className=" flex font-medium flex-col w-max ">
-                        <div class=" text-xs text-cardBody font-poppins">
+                        <div class=" text-xs  font-poppins">
                           {item.status === "Rejected" && (
                             <div
                               style={{
@@ -111,11 +111,11 @@ function LeaveRejectedStatusCard(props) {
                         {/* </Tooltip>   */}
                       </div>
                       <div className=" flex font-medium flex-col w-40">
-                        <div class=" text-sm text-cardBody font-medium font-poppins">
+                        <div class=" text-sm  font-medium font-poppins">
                           Cover
                         </div>
 
-                        <div class=" font-normal text-xs text-cardBody font-poppins">
+                        <div class=" font-normal text-xs  font-poppins">
                           {item.coverDetails}
                         </div>
                         <div class="flex flex-col w-20">

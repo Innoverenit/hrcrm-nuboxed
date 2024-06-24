@@ -150,7 +150,7 @@ const {handleProcureNotesDrawerModal,
 <div>
 {/* <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full ">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -173,17 +173,17 @@ const {handleProcureNotesDrawerModal,
                                                     </div>
                                                     <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+      <div class=" text-xs  font-semibold  font-poppins">
  
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.price}</div>
                       </div>
                     </div>
   </div>
   <div className=" flex font-medium  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+      <div class=" text-xs  font-semibold  font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.unit}</div>
                       </div>
                     </div>
@@ -225,7 +225,7 @@ const {handleProcureNotesDrawerModal,
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class="text-cardBody font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
          
@@ -233,13 +233,13 @@ const {handleProcureNotesDrawerModal,
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class="text-cardBody font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
 
                      {date}
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class="text-cardBody font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
 
                      {item.currencyName} {item.price}
                       </div>
@@ -256,7 +256,7 @@ const {handleProcureNotesDrawerModal,
                     </div>
                   </div>
                   {props.userId === item.userId && item.tradeId !== null && (
-                  <div class=" text-sm text-cardBody font-poppins">
+                  <div class=" text-sm  font-poppins">
                         <Popconfirm
                           title="Change status to Accepted?"
                           onConfirm={() => props.procureToAccept(item.iteamId,data,props.orgId)}
@@ -289,7 +289,7 @@ const {handleProcureNotesDrawerModal,
                      />
                        
                     ) : (
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.tradeId}</div>
                       </div>
                     )}
@@ -298,7 +298,7 @@ const {handleProcureNotesDrawerModal,
                   </div>
                   <div className=" flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+      <div class=" text-xs  font-semibold  font-poppins">
                    {editsuppliesId === item.iteamId ? (
                        <Input
                        style={{ width: "3rem" }}
@@ -307,7 +307,7 @@ const {handleProcureNotesDrawerModal,
                      />
                        
                     ) : (
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.tradePrice}</div>
                       </div>
                     )}
@@ -315,7 +315,7 @@ const {handleProcureNotesDrawerModal,
   </div>
   <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+      <div class=" text-xs  font-semibold  font-poppins">
                    {editsuppliesId === item.iteamId ? (
                        <Input
                        style={{ width: "3rem" }}
@@ -324,7 +324,7 @@ const {handleProcureNotesDrawerModal,
                      />
                        
                     ) : (
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.tradeUnit}</div>
                       </div>
                     )}

@@ -86,14 +86,14 @@ function LeaveCardList(props) {
                   <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                     <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                      <div class=" text-sm text-cardBody font-medium font-poppins">
+                      <div class=" text-sm  font-medium font-poppins">
 
                         Start Date
 
                       </div>
 
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         {` ${dayjs(item.startDate).format("ll")}`}
                       </div>
 
@@ -101,12 +101,12 @@ function LeaveCardList(props) {
 
                     <div className=" flex font-medium flex-col md:w-40 max-sm:justify-between w-full max-sm:flex-row">
 
-                      <div class=" text-sm text-cardBody font-medium font-poppins">
+                      <div class=" text-sm  font-medium font-poppins">
                         End Date
                       </div>
 
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         {` ${dayjs(item.endDate).format("ll")}`}
                       </div>
 
@@ -115,11 +115,11 @@ function LeaveCardList(props) {
                     <div className=" flex font-medium flex-col md:w-40 max-sm:justify-between w-full max-sm:flex-row">
 
 
-                      <div class=" text-sm text-cardBody font-medium font-poppins">
+                      <div class=" text-sm  font-medium font-poppins">
                         Cover
                       </div>
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         {item.coverDetails}
                       </div>
 
@@ -127,20 +127,20 @@ function LeaveCardList(props) {
                     <div className=" flex font-medium flex-col md:w-[25rem] max-sm:justify-between w-full max-sm:flex-row">
 
 
-                      <div class=" text-sm text-cardBody font-medium font-poppins">
+                      <div class=" text-sm  font-medium font-poppins">
                         Reason
                       </div>
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         {item.reason}
                       </div>
 
                     </div>
 
                     <div className=" flex font-medium flex-col md:w-48 max-sm:justify-between w-full max-sm:flex-row ">
-                      {/* <div class=" text-sm text-cardBody font-poppins">Status</div> */}
+                      {/* <div class=" text-sm  font-poppins">Status</div> */}
 
-                      <div class=" text-base text-cardBody font-poppins">
+                      <div class=" text-base  font-poppins">
                         {item.status === "Approved" && (
                           <div className=" rounded-[0.62em] m-[2px] items-center flex border-2 border-solid border-green-500 p-[0px_0.62em]">
                             {item.status}

@@ -138,14 +138,14 @@ function ProductDeleteList(props) {
                         </SubTitle>
                       </div>
                       <div className=" flex font-medium flex-col w-[5.6rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                        <div class="text-sm text-cardBody font-semibold max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class="text-sm  font-semibold max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.articleNo}
                         </div>
                       </div>
 
                       <div className=" flex font-medium flex-col  w-[10.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                        <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.name}
                         </div>
 
@@ -154,7 +154,7 @@ function ProductDeleteList(props) {
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium flex-col w-[9.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.categoryName} {item.subCategoryName}
                       </div>
@@ -164,20 +164,20 @@ function ProductDeleteList(props) {
                     <div className=" flex font-medium flex-col w-[8.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                      <div class=" text-xs text-cardBody max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {item.attributeName}{item.subAttributeName}
                       </div>
                     </div>
 </div>
 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 <div className=" flex font-medium flex-col w-[8.51rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.brand}
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col w-[12.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.model}
                       </div>
@@ -227,7 +227,7 @@ function ProductDeleteList(props) {
                       </div>
                     {/* </div> */}
                     {/* <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Edit">
                           <BorderColorIcon
                             className="!text-xl cursor-pointer text-[tomato]"
@@ -242,7 +242,7 @@ function ProductDeleteList(props) {
 
                     </div> */}
                     <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title={item.description}>
                         <ContactSupportIcon
                          className="!text-xl cursor-pointer "

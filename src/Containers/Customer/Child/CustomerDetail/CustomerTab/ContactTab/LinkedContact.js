@@ -156,7 +156,7 @@ function LinkedContact(props) {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/contact/${item.contactId}`} title={item.fullName}>
       {item.fullName}
     </Link>                                
@@ -183,27 +183,27 @@ function LinkedContact(props) {
                              
                                 <div className=" flex font-medium flex-col md:w-[11.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm  font-poppins">
                                          {item.emailId}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-[9.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                  <div class="text-sm text-cardBody font-poppins">
+                                  <div class="text-sm  font-poppins">
                                   {item.countryDialCode} {item.mobileNumber}
                                   </div>
                               </div>
                               </div>
                               <div className="flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
 
-  <div className="text-sm text-cardBody font-poppins text-center">
+  <div className="text-sm  font-poppins text-center">
     {item.department}
   </div>
 </div>
 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {item.designation}
 
                                     </div>
@@ -211,7 +211,7 @@ function LinkedContact(props) {
                                 <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
               <span
               className=" !cursor-pointer "
@@ -225,7 +225,7 @@ function LinkedContact(props) {
                                 <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <Tooltip title="LinkedIn">
               <span
                  className=" !cursor-pointer "
@@ -243,7 +243,7 @@ function LinkedContact(props) {
                                 <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <Tooltip title="Edit">
               <span
                 className=" !cursor-pointer "
@@ -262,7 +262,7 @@ function LinkedContact(props) {
             </Tooltip>
 
                                     </div>
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <StyledPopconfirm
               placement="bottom"
               //title="Do you wish to detach?"
@@ -294,7 +294,7 @@ function LinkedContact(props) {
                                     </div>
                                    
                                 </div>
-                                <div class=" text-sm text-cardBody font-poppins text-center">
+                                <div class=" text-sm  font-poppins text-center">
                             
                                     <span>
               {item.thirdPartyAccessInd === true && (

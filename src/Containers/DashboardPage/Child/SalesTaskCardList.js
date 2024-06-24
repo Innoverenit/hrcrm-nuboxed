@@ -193,10 +193,10 @@
 //           <div class=" flex w-[10rem] max-sm:w-full">
 //                                         <Tooltip>
 //                                         <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
-//                                             {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">
+//                                             {/* <div class="text-sm  font-poppins max-sm:hidden">
 //                                             Type
 //                                             </div> */}
-//                                             <div class="text-xs text-cardBody font-poppins cursor-pointer">                                       
+//                                             <div class="text-xs  font-poppins cursor-pointer">                                       
 //                                             {item.taskType}
        
 //                                             </div>
@@ -207,8 +207,8 @@
 //                                 </div>
 
 //                                 <div className=" flex font-medium justify-center flex-col  md:w-32 max-sm:flex-row w-full ">
-//                                     {/* <div class=" text-sm text-cardBody font-sm font-poppins max-sm:hidden"> Name </div> */}
-//                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">   
+//                                     {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
+//                                     <div class=" text-xs  font-semibold  font-poppins">   
 //                                     <span   
 //                 // onClick={() => {
 //                 //   props.handleTaskopenModal(true);               
@@ -229,7 +229,7 @@
 //                                 <div className="flex font-medium flex-col md:w-24 max-sm:flex-row  w-full ">
                        
                       
-//                        <div class="text-xs text-cardBody font-poppins"> 
+//                        <div class="text-xs  font-poppins"> 
 //                         {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
 //                    </div>
                    
@@ -287,8 +287,8 @@
 //                          </div>
 //                     <div className="flex font-medium flex-col md:w-[1rem] max-sm:flex-row  w-full ">
                        
-//                        {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Deviation</div> */}
-//                        <div class="text-xs text-cardBody font-poppins"> 
+//                        {/* <div class="text-sm  font-poppins max-sm:hidden">Deviation</div> */}
+//                        <div class="text-xs  font-poppins"> 
 //                        {item.taskStatus === "Completed" ? `${completeDeviation} Days` : `${incompleteDeviationDate} Days`}
 //                    </div>
                      
@@ -297,12 +297,12 @@
 //                    <div className="flex font-medium flex-col md:w-[7rem] max-sm:flex-row  w-full ">
                        
                       
-//                        <div class="text-xs text-cardBody font-poppins"> 
+//                        <div class="text-xs  font-poppins"> 
 //                         {`${item.customerName} ${item.contact} ${item.opportunityName}`}</div>
 //                    </div>
 //                     <div className=" flex font-medium flex-col md:w-[4.2rem] max-sm:flex-row justify-between w-full ">
-//                                   {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
-//                                   <div class="text-xs text-cardBody font-poppins mb-2">
+//                                   {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
+//                                   <div class="text-xs  font-poppins mb-2">
 //                                   <span>
 //               {item.assignedToName === null ? (
 //                 "Not available"
@@ -327,7 +327,7 @@
 //                     <div class="flex max-sm:mt-4 w-[15rem]">
 //                                 <div className=" flex font-medium flex-col  md:w-24 max-sm:flex-row justify-between w-full ">
                                     
-//                                     <div class="text-xs text-cardBody font-poppins mb-2">
+//                                     <div class="text-xs  font-poppins mb-2">
 //                                     <MultiAvatar
                                    
 //                   primaryTitle={item.submittedBy}
@@ -675,10 +675,10 @@ const SalesTaskCardList = (props) => {
           <div class=" flex w-[10rem] max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
-                                            {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">
+                                            {/* <div class="text-sm  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-xs text-cardBody font-poppins cursor-pointer">                                       
+                                            <div class="text-xs  font-poppins cursor-pointer">                                       
                                             {item.taskType}
        
                                             </div>
@@ -689,8 +689,8 @@ const SalesTaskCardList = (props) => {
                                 </div>
 
                                 <div className=" flex font-medium justify-center flex-col  md:w-32 max-sm:flex-row w-full ">
-                                    {/* <div class=" text-sm text-cardBody font-sm font-poppins max-sm:hidden"> Name </div> */}
-                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">   
+                                    {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
+                                    <div class=" text-xs  font-semibold  font-poppins">   
                                     <span   
                 // onClick={() => {
                 //   props.handleTaskopenModal(true);               
@@ -711,7 +711,7 @@ const SalesTaskCardList = (props) => {
                                 <div className="flex font-medium flex-col md:w-24 max-sm:flex-row  w-full ">
                        
                       
-                       <div class="text-xs text-cardBody font-poppins"> 
+                       <div class="text-xs  font-poppins"> 
                         {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
                    
@@ -769,8 +769,8 @@ const SalesTaskCardList = (props) => {
                          </div>
                     <div className="flex font-medium flex-col md:w-[4rem] max-sm:flex-row  w-full ">
                        
-                       {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Deviation</div> */}
-                       <div class="text-xs text-cardBody font-poppins"> 
+                       {/* <div class="text-sm  font-poppins max-sm:hidden">Deviation</div> */}
+                       <div class="text-xs  font-poppins"> 
                        {item.taskStatus === "Completed" ? `${completeDeviation} Days` : `${incompleteDeviationDate} Days`}
                    </div>
                      
@@ -779,12 +779,12 @@ const SalesTaskCardList = (props) => {
                    <div className="flex font-medium flex-col md:w-[7rem] max-sm:flex-row  w-full ">
                        
                       
-                       <div class="text-xs text-cardBody font-poppins"> 
+                       <div class="text-xs  font-poppins"> 
                         {`${item.customerName} ${item.contact} ${item.opportunityName}`}</div>
                    </div>
                     <div className=" flex font-medium flex-col md:w-[4.2rem] max-sm:flex-row justify-between w-full ">
-                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
-                                  <div class="text-xs text-cardBody font-poppins mb-2">
+                                  {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
+                                  <div class="text-xs  font-poppins mb-2">
                                   <span>
               {item.assignedToName === null ? (
                 "Not available"
@@ -809,7 +809,7 @@ const SalesTaskCardList = (props) => {
                     <div class="flex max-sm:mt-4 w-[15rem]">
                                 <div className=" flex font-medium flex-col  md:w-24 max-sm:flex-row justify-between w-full ">
                                     
-                                    <div class="text-xs text-cardBody font-poppins mb-2">
+                                    <div class="text-xs  font-poppins mb-2">
                                     <MultiAvatar
                                    
                   primaryTitle={item.submittedBy}

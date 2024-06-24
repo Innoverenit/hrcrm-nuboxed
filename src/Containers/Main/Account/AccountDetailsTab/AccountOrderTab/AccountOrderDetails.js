@@ -40,25 +40,7 @@ function DistributorPauseForm(props) {
         props.getPhonelistById(props.particularRowData.orderId, page)
     };
 
-    // const handleLoadMore = () => {
-    //     const callPageMapd = props.opportunityByUserId && props.opportunityByUserId.length &&props.opportunityByUserId[0].pageCount
-    //     setTimeout(() => {
-    //       const {
-    //         getOpportunityListByUserId,
-    //         userDetails: { employeeId },
-    //       } = props;
-    //       if  (props.opportunityByUserId)
-    //       {
-    //         if (page < callPageMapd) {
-    //           setPage(page + 1);
-    //           getOpportunityListByUserId(props.userId,page); 
-    //       }
-    //       if (page === callPageMapd){
-    //         setHasMore(false)
-    //       }
-    //     }
-    //     }, 100);
-    //   };
+    
 
     const [RowData, setRowData] = useState({});
     function handleSetRowData(item) {
@@ -168,64 +150,64 @@ function DistributorPauseForm(props) {
                                                     <div className="flex rounded  mt-2 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
                                                         <div class="flex">
                                                             <div className=" flex font-medium items-center   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.company}
                                                                 </div>
                                                             </div>
 
                                                             <div className=" flex font-medium  items-center   md:w-[4.51rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.model}
                                                                 </div>
 
                                                             </div>
                                                             <div className=" flex font-medium items-center    md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.imei}
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium  items-center   md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.os} {item.gb} {item.color}
                                                                 </div>
                                                             </div>
                                                             {/* <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.gb}
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.color}
                                                                 </div>
                                                             </div> */}
                                                             <div className=" flex font-medium  items-center   md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.condition}
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium  items-center   md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.expectedPrice}
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium  items-center   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.totalhours}
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium  items-center   md:w-[6.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.totalExtraCost}
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium  items-center   md:w-[8.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.totalPrice}
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium items-center    md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     <ButtonGroup>
                                                                         <StatusIcon
                                                                             color="blue"
@@ -262,12 +244,13 @@ function DistributorPauseForm(props) {
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium items-center   md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.issue}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div class="flex items-center">
+                                                            <div className=" flex   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
                                                                     <Tooltip title={<FormattedMessage
                                                                         id="app.spare"
                                                                         defaultMessage="Spare"
@@ -284,8 +267,8 @@ function DistributorPauseForm(props) {
                                                                     </Tooltip>
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex    md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
                                                                     <Tooltip title={<FormattedMessage
                                                                         id="app.task"
                                                                         defaultMessage="Task"
@@ -302,8 +285,8 @@ function DistributorPauseForm(props) {
 
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-green-600  text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs text-green-600   font-poppins">
                                                                     <Tooltip title={<FormattedMessage
                                                                         id="app.Notes"
                                                                         defaultMessage="Notes"
@@ -319,8 +302,9 @@ function DistributorPauseForm(props) {
 
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            </div>
+                                                            <div className=" flex  items-center  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
                                                                     <Tooltip title={<FormattedMessage
                                                                         id="app.Print"
                                                                         defaultMessage="Print"
@@ -332,7 +316,7 @@ function DistributorPauseForm(props) {
                                                                             className="!text-base cursor-pointer"
                                                                         /> */}
                                                                         <ReactToPrint
-                                                                            trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
+                                                                            trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon/></Button>}
                                                                             content={() => componentRefs.current[index]}
                                                                         />
                                                                        

@@ -188,7 +188,7 @@ function ProcureDetailsCardList(props) {
           return (
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -203,12 +203,12 @@ function ProcureDetailsCardList(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.category}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.category}</div>
                   )}
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -223,12 +223,12 @@ function ProcureDetailsCardList(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.brand}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.brand}</div>
                   )}
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   {editContactId === item.id ? (
                     <Select
                       className="w-32"
@@ -242,12 +242,12 @@ function ProcureDetailsCardList(props) {
                       ))}
                     </Select>
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.model}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.model}</div>
                   )}
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -262,12 +262,12 @@ function ProcureDetailsCardList(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.attribute}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.attribute}</div>
                   )}
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -282,12 +282,12 @@ function ProcureDetailsCardList(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.quality}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.quality}</div>
                   )}
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -302,12 +302,12 @@ function ProcureDetailsCardList(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.location}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.location}</div>
                   )}
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[17rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   {editContactId === item.id ? (
                     <Select
                       style={{ width: 100 }}
@@ -320,12 +320,12 @@ function ProcureDetailsCardList(props) {
                       <Option value="HK">HK</Option>
                     </Select>
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.specs}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.specs}</div>
                   )}
                 </div>
               </div>
               <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   {editContactId === item.id ? (
                     <input
                       placeholder="Update Unit"
@@ -335,13 +335,13 @@ function ProcureDetailsCardList(props) {
                       onChange={(e) => setUnitName(e.target.value)}
                     />
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.unit}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.unit}</div>
                   )}
                 </div>
               </div>
 
               <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   {editContactId === item.id ? (
                     <input
                       placeholder="Update Price"
@@ -351,12 +351,12 @@ function ProcureDetailsCardList(props) {
                       onChange={(e) => setPrice(e.target.value)}
                     />
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.price} {item.currency}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.price} {item.currency}</div>
                   )}
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -371,7 +371,7 @@ function ProcureDetailsCardList(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins"></div>
+                    <div className="font-normal text-sm  font-poppins"></div>
                   )}
                 </div>
               </div>

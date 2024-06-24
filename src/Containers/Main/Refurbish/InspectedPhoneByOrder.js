@@ -1,8 +1,6 @@
 import React, { useEffect, lazy, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { getDispatchUpdateList } from "../Inventory/InventoryAction"
-import { SubTitle } from "../../../Components/UI/Elements";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -19,6 +17,7 @@ import { AudioOutlined } from '@ant-design/icons';
 import ReceivedSpareList from "./ProductionTab/ReceivedSpareList";
 import { BundleLoader } from "../../../Components/Placeholder";
 import PhoneListOrderTaskTable from "./PhoneListOrderTaskTable";
+import QrCodeIcon from '@mui/icons-material/QrCode';
 const QRCodeModal = lazy(() => import("../../../Components/UI/Elements/QRCodeModal"));
 
 function InspectedPhoneByOrder(props) {
@@ -141,7 +140,7 @@ function InspectedPhoneByOrder(props) {
         <>
             {props.fetchingUpdateDispatchList ?
                 <BundleLoader />
-                : <div className='flex justify-end sticky ticky  z-10 '>
+                : <div className='flex sticky ticky  z-10 '>
                     <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div class=" w-72 ml-4 max-sm:w-28">
           <Input
@@ -174,21 +173,21 @@ function InspectedPhoneByOrder(props) {
                                 id="app.conditions"
                                 defaultMessage="conditions"
                             /></div>
-                            <div className="md:w-[7rem]">Technician Name</div>
+                            <div className="md:w-[7rem]">Technician</div>
                             <div className="md:w-[7.2rem]"></div>
                         </div>
-                        <div class="overflow-y-auto h-[52vh]">
+                        <div class="overflow-y-auto h-[72vh]">
                             {props.updateDispatchList.map((item, index) => {
                                 return (
                                     <div>
-                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
+                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                             <div class="flex">
                                                 <div className=" flex font-medium  md:w-[7.6rem] max-sm:w-full  ">
                                                     {item.company}
                                                 </div>
 
                                                 <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
                                                         {item.model}
                                                     </div>
 
@@ -197,7 +196,7 @@ function InspectedPhoneByOrder(props) {
 
 
 
-                                                    <div class=" text-sm text-cardBody font-poppins">
+                                                    <div class=" text-sm  font-poppins">
 
                                                         {item.imei}
                                                     </div>
@@ -206,7 +205,7 @@ function InspectedPhoneByOrder(props) {
 
 
 
-                                                    <div class=" text-sm text-cardBody font-poppins">
+                                                    <div class=" text-sm  font-poppins">
 
                                                         Issue
                                                     </div>
@@ -214,7 +213,7 @@ function InspectedPhoneByOrder(props) {
                                             </div>
 
                                             <div className=" flex font-medium  md:w-[10.52rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
 
                                                     {item.os} {item.gb} {item.color}
 
@@ -224,12 +223,12 @@ function InspectedPhoneByOrder(props) {
 
 
                                             <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                     {item.conditions}
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                 {item.repairTechnicianName && <MultiAvatar
                                                         primaryTitle={item.repairTechnicianName}
                                                         imgWidth={"2.1rem"}
@@ -237,31 +236,14 @@ function InspectedPhoneByOrder(props) {
                                                     />}
                                                 </div>
                                             </div>
-                                            {/* <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
-                                                    <SubTitle>
-                                                        {item.qrCodeId ? (
-                                                            <QRCodeModal
-                                                                qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                                                imgHeight={"2.8rem"}
-                                                                imgWidth={"2.8rem"}
-                                                                imgRadius={20}
-                                                            />
-                                                        ) : (
-                                                            <span class="text-xs font-bold">
-                                                                No QR
-                                                            </span>
-                                                        )}
-                                                    </SubTitle>
-                                                </div>
-                                            </div> */}
+                                           
                                             <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                     {item.cannotRepairInd ? "Can't Repair" : null}
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                     <Button
                                                         type="primary"
                                                         style={{ color: show && item.phoneId === data.phoneId ? "black" : "white" }}
@@ -277,12 +259,12 @@ function InspectedPhoneByOrder(props) {
 
 
                                             <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                     <ReactToPrint
                                                         trigger={() => <Button
                                                             onClick={handlePrint}
                                                         >
-                                                            Print</Button>
+                                                            Print<QrCodeIcon/></Button>
                                                         }
                                                         content={() => componentRefs.current[index]
                                                         }

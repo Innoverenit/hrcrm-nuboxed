@@ -109,7 +109,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             <div class="max-sm:w-auto flex items-center">
                               <Tooltip>
                                 <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                  <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer flex items-center">
+                                  <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center">
 
                                     <Link
                                       class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 max-sm:text-sm text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
@@ -131,7 +131,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                         </div>
                         <div className=" flex font-medium  items-center  w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
 
-                          <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-sm ">
+                          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-sm ">
                             {item.dialCode} {item.phoneNo}
                           </div>
 
@@ -140,21 +140,21 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex font-medium flex-col max-sm:w-auto w-[11.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {/* {item.url} */}
                             {item.dCategoryName}
 
                           </div>
                         </div>
                         <div className=" flex font-medium flex-col max-sm:w-auto w-[7rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.clientName}
 
                           </div>
                         </div>
 
                         <div className=" flex font-medium flex-col max-sm:w-auto w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.payment}
 
                           </div>
@@ -163,20 +163,20 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                         <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.5rem] max-xl:w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.countryValue}
                           </div>
 
                         </div>
                         <div className=" flex font-medium flex-col max-sm:w-auto  w-[16.1rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <div class=" text-xs text-cardBody font-poppins max-w-[40ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" text-xs  font-poppins max-w-[40ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {dataLoc}
                           </div>
 
                         </div>
 
                         {/* <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.91rem] max-xl:w-[2.91rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.address && item.address.length && item.address[0].postalCode}
 
                           </div>
@@ -214,7 +214,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                         </div>
 
                         <div className=" flex font-medium flex-col  w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <div class=" text-xs text-cardBody font-poppins">
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Pulse">
                               <MonitorHeartIcon
                                 onClick={() => {
@@ -227,7 +227,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           </div>
                         </div>
                         <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <div class=" text-xs text-cardBody font-poppins">
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Edit">
                               <BorderColorIcon
                                 className=" !text-xl cursor-pointer text-[tomato]"

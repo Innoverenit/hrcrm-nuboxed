@@ -223,13 +223,13 @@ class LinkedContact extends Component {
                                       </div>
 
                                       <div className=" flex font-medium   md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
-                                          <div class=" text-xs text-cardBody font-poppins">
+                                          <div class=" text-xs  font-poppins">
                                              {item.fullName}
                                           </div>
 
                                       </div>
                                       <div className=" flex font-medium  md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
-                                          <div class=" text-xs text-cardBody font-poppins">
+                                          <div class=" text-xs  font-poppins">
                                               {item.designation}
                                           </div>
                                       </div>
@@ -237,25 +237,25 @@ class LinkedContact extends Component {
                                   <div className=" flex font-medium  md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                       {item.department}
 
                                       </div>
                                   </div>
                                   <div className=" flex font-medium  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                         {item.emailId}
 
                                       </div>
                                   </div>
                                   <div className=" flex font-medium  md:w-[10.22rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                       {item.countryDialCode} {item.mobileNumber}
 
                                       </div>
                                   </div>
                                   <div className=" flex font-medium  md:w-[10.23rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                       <div class=" flex justify-evenly" >
               <ButtonGroup>
                 <RoleButton
@@ -317,7 +317,7 @@ class LinkedContact extends Component {
                                       </div>
                                   </div>
                                   <div className=" flex font-medium  md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                       <StyledPopconfirm
               placement="bottom"
               //title="Do you wish to detach?"

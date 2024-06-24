@@ -36,14 +36,14 @@ function DistributorColletcionArchive(props) {
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium   w-[12.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         {item.orderSourceName}
                       </div>
 
                     </div>
 
                     <div className=" flex font-medium   w-[10.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         {item.orderId}
                       </div>
 
@@ -54,19 +54,19 @@ function DistributorColletcionArchive(props) {
                     <div className=" flex font-medium  w-[10.11rem] max-xl:w-[5.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
 
-                      <div class=" text-xs text-cardBody font-poppins text-center">
+                      <div class=" text-xs  font-poppins text-center">
                         {item.transactionNumber}
 
                       </div>
                     </div>
                     <div className=" flex font-medium  w-[9.02rem] max-xl:w-[5.02rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody font-poppins text-center">
+                      <div class=" text-xs  font-poppins text-center">
                         {item.paymentType}
 
                       </div>
                     </div>
                     <div className=" flex font-medium  w-[8.01rem]  max-xl:w-[6.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins text-center">
+                    <div class=" text-xs  font-poppins text-center">
                       {` ${moment(item.date).format("DD-MM-YY")}`}
 
                     </div>
@@ -77,13 +77,13 @@ function DistributorColletcionArchive(props) {
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                    
                       <div className=" flex font-medium   w-[10.03rem] max-xl:w-[4.03rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                        <div class=" text-xs text-cardBody font-poppins">
+                        <div class=" text-xs  font-poppins">
                           {item.paymentAmount} &nbsp; {item.orderCurrencyName}
                         </div>
 
                       </div>
                       <div className=" flex font-medium   w-[11.04rem] max-xl:w-[8.54rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                        <div class=" text-xs text-cardBody font-poppins">
+                        <div class=" text-xs  font-poppins">
                           {item.paymentModeName}
                         </div>
 
@@ -94,7 +94,7 @@ function DistributorColletcionArchive(props) {
                       <div className=" flex font-medium   w-[7.05rem] max-xl:w-[3.85rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
 
 
-                        <div class=" text-xs text-cardBody font-poppins">
+                        <div class=" text-xs  font-poppins">
                           <span>
                             <MultiAvatar
                               primaryTitle={item.salesExecutive}

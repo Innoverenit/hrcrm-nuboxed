@@ -62,25 +62,25 @@ if (props.fetchingALlSPareList){
                                         </div>
 
                                         <div className=" flex font-medium   md:w-[10.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                            <h4 class=" text-xs  font-poppins">
                                                 {item.phoneIMEI}
                                             </h4>
 
                                         </div>
                                         <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class=" text-sm text-cardBody font-poppins">
+                                            <h4 class=" text-sm  font-poppins">
                                                 {item.model}
                                             </h4>
                                         </div>
                                     </div>
 
                                     <div className=" flex font-medium  md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                        <div class=" text-xs  font-poppins text-center">
                                             {item.company}
                                         </div>
                                     </div>
                                     <div className=" flex font-medium  md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                        <div class=" text-xs  font-poppins text-center">
                                            <ApprovedSpareToggle phoneSpareId={item.phoneSpareId}/>
                                         </div>
                                     </div>

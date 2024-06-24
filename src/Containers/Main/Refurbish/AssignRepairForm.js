@@ -1,4 +1,4 @@
-import { Button, DatePicker, Input, Select, } from 'antd'
+import { Button, DatePicker, Select, } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { StyledTable } from '../../../Components/UI/Antd'
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
@@ -7,12 +7,9 @@ import { bindActionCreators } from 'redux'
 import {
     getProductionUsersById,
     getRepairPhoneById,
-    closeRepairModal,
     UpdateTechnicianForRepairPhone,
     getTATQuality
 } from "./RefurbishAction"
-import QRCodeModal from '../../../Components/UI/Elements/QRCodeModal'
-import { SubTitle } from '../../../Components/UI/Elements';
 import dayjs from "dayjs";
 
 const { Option } = Select;
@@ -83,7 +80,7 @@ const AssignRepairForm = (props) => {
             width: "1%",
         },
         {
-            title: "OEM",
+            title: "Brand",
             dataIndex: "company",
             width: "15%",
 
@@ -119,30 +116,6 @@ const AssignRepairForm = (props) => {
             dataIndex: "conditions",
             width: "12%",
         },
-        {
-            title: "QR",
-            width: "8%",
-            render: (name, item, i) => {
-                return (
-                    <SubTitle>
-                        {item.qrCodeId ? (
-                            <QRCodeModal
-                                qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                imgHeight={"2.8em"}
-                                imgWidth={"2.8em"}
-                                imgRadius={20}
-                            />
-                        ) : (
-                            <span color="text-[0.6em] font-bold">
-                                No QR
-                            </span>
-                        )}
-                    </SubTitle>
-                );
-            },
-        },
-
-
     ];
 
 

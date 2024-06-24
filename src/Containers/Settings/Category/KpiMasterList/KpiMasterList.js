@@ -181,7 +181,7 @@ return <div><BundleLoader/></div>;
                                       </span> : null}</div>
             )}
     <div className=" w-[40rem]">
-    <div class=" text-sm text-cardBody font-medium font-poppins">
+    <div class=" text-sm  font-medium font-poppins">
 
 Currency
 </div>

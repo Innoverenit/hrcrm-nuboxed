@@ -113,7 +113,7 @@ function InventoryTableAll(props) {
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
                                                            {item.tradeId}
                                                            
 
@@ -125,60 +125,60 @@ function InventoryTableAll(props) {
                                                             ) : null}
                                                     </div>
                                                     <div className=" flex font-medium  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
                                                         {dayjs(item.creationDate).format("DD/MM/YYYY")}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
                                                            {item.categoryName}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
 
                                                             {item.brand}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
 
                                                             {item.model}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[6.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
 
                                                             {item.attributeName}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[3.32rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins w-20">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins w-20">
                                                            {item.quality}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[5.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
                                                             {item.spces}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[5.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
                                                            {item.unit}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[6.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem]  font-poppins">
                                                         {item.currency} {item.price}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[8.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem]  font-poppins">
                                                             {item.location}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[2.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem]  font-poppins">
                                                         <MultiAvatar
                                 primaryTitle={item.ownerName}
                                 imageId={item.ownerImageId}

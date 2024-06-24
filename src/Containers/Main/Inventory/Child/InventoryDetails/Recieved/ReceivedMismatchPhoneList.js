@@ -72,7 +72,7 @@ const ReceivedMismatchPhoneList = (props) => {
                                                 <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
                                                     <div class="flex">
                                                         <div className=" flex font-medium   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                            <div class=" text-xs text-cardBody font-poppins">
+                                                            <div class=" text-xs  font-poppins">
                                                                 <PlusOutlined onClick={() => {
                                                                     handleMismatchItem();
                                                                     handleSetParticularOrderData(item);
@@ -85,13 +85,13 @@ const ReceivedMismatchPhoneList = (props) => {
                                                         </div>
 
                                                         <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                            <div class=" text-xs text-cardBody font-poppins">
+                                                            <div class=" text-xs  font-poppins">
                                                                 {item.model}
                                                             </div>
 
                                                         </div>
                                                         <div className=" flex font-medium  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                            <div class=" text-sm text-cardBody font-poppins">
+                                                            <div class=" text-sm  font-poppins">
 
                                                                 {item.imei}
                                                             </div>
@@ -99,23 +99,23 @@ const ReceivedMismatchPhoneList = (props) => {
                                                     </div>
 
                                                     <div className=" flex font-medium  md:w-[4.52rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        <div class=" text-xs  font-poppins text-center">
                                                             {item.os}
                                                         </div>
                                                     </div>
 
                                                     <div className=" flex font-medium  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        <div class=" text-xs  font-poppins text-center">
                                                             {item.gb}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        <div class=" text-xs  font-poppins text-center">
                                                             {item.color}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        <div class=" text-xs  font-poppins text-center">
                                                             {item.conditions}
                                                         </div>
                                                     </div>
@@ -129,13 +129,13 @@ const ReceivedMismatchPhoneList = (props) => {
                                                             </div>
 
                                                             <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins text-red-500">
+                                                                <div class=" text-xs  font-poppins text-red-500">
                                                                     {item.receiveModel}
                                                                 </div>
 
                                                             </div>
                                                             <div className=" flex font-medium  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                                <div class=" text-sm text-cardBody font-poppins text-red-500">
+                                                                <div class=" text-sm  font-poppins text-red-500">
 
                                                                     {item.receiveIMEI}
                                                                 </div>
@@ -143,24 +143,24 @@ const ReceivedMismatchPhoneList = (props) => {
                                                         </div>
 
                                                         <div className=" flex font-medium  md:w-[4.52rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                            <div class=" text-xs text-cardBody font-poppins text-center text-red-500">
+                                                            <div class=" text-xs  font-poppins text-center text-red-500">
 
                                                                 {item.receiveOS}
                                                             </div>
                                                         </div>
 
                                                         <div className=" flex font-medium  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                            <div class=" text-xs text-cardBody font-poppins text-center text-red-500">
+                                                            <div class=" text-xs  font-poppins text-center text-red-500">
                                                                 {item.receiveGB}
                                                             </div>
                                                         </div>
                                                         <div className=" flex font-medium  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                            <div class=" text-xs text-cardBody font-poppins text-center text-red-500">
+                                                            <div class=" text-xs  font-poppins text-center text-red-500">
                                                                 {item.receiveColor}
                                                             </div>
                                                         </div>
                                                         <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                            <div class=" text-xs text-cardBody font-poppins text-center text-red-500">
+                                                            <div class=" text-xs  font-poppins text-center text-red-500">
                                                                 {item.receiveCondition}
                                                             </div>
                                                         </div>

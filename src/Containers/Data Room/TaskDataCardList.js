@@ -215,10 +215,10 @@ const TaskDataCardList = (props) => {
           <div class=" flex w-[8rem] max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
-                                            {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">
+                                            {/* <div class="text-sm  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-xs flex items-center text-cardBody font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">                                       
+                                            <div class="text-xs flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">                                       
                                             {item.taskType}
        
                                             </div>
@@ -229,8 +229,8 @@ const TaskDataCardList = (props) => {
                                 </div>
 
                                 <div className=" flex font-medium justify-center flex-col  w-[5.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
-                                    {/* <div class=" text-sm text-cardBody font-sm font-poppins max-sm:hidden"> Name </div> */}
-                                    <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
+                                    {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
+                                    <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
                 onClick={() => {
                   props.handleTaskopenModal(true);               
@@ -252,7 +252,7 @@ const TaskDataCardList = (props) => {
                                 <div className="flex font-medium flex-col w-[5.22rem] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
                        
                       
-                       <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
+                       <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                         {`${dayjs.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
                                 <div class="flex flex-col w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
@@ -330,11 +330,11 @@ const TaskDataCardList = (props) => {
                    
                     <div className="flex font-medium flex-col w-[6.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
-                       {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Deviation</div> */}
-                       {/* <div class="text-xs text-cardBody font-poppins"> 
+                       {/* <div class="text-sm  font-poppins max-sm:hidden">Deviation</div> */}
+                       {/* <div class="text-xs  font-poppins"> 
                        {item.taskStatus === "Completed" ? `${completeDeviation} Days` : `${incompleteDeviationDate} Days`}
                    </div> */}
-                     <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
   {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
    (incompleteDeviationDate > 0 && <span className=" text-red-900 font-semibold">{incompleteDeviationDate} Days</span>)}
 </div>
@@ -353,8 +353,8 @@ const TaskDataCardList = (props) => {
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium flex-col w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
-                                  {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
-                                  <div class="text-xs text-cardBody font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                  {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
+                                  <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                   <span>
               {item.assignedToName === null ? (
                 "Not available"
@@ -381,7 +381,7 @@ const TaskDataCardList = (props) => {
                     
                                 <div className=" flex font-medium flex-col  w-[5.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                     
-                                    <div class="text-xs text-cardBody font-poppins ">
+                                    <div class="text-xs  font-poppins ">
                                     <MultiAvatar
                                    
                   primaryTitle={item.ownerName}
@@ -393,9 +393,9 @@ const TaskDataCardList = (props) => {
                                
                                
                                 {/* <div className=" flex font-medium flex-col w-32 ">
-                                    <div class=" text-sm text-cardBody font-poppins">Team</div>
+                                    <div class=" text-sm  font-poppins">Team</div>
 
-                                    <div class=" text-sm text-cardBody font-poppins">
+                                    <div class=" text-sm  font-poppins">
                                     <Avatar.Group
   maxCount={2}
   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -420,9 +420,9 @@ const TaskDataCardList = (props) => {
                                     </div>
                                 </div> */}
                                 {/* <div className="flex font-medium flex-col md:w-32 max-sm:flex-row justify-between w-full ">
-                                    <div class="text-sm text-cardBody font-poppins">Start</div>
+                                    <div class="text-sm  font-poppins">Start</div>
 
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm  font-poppins">
                                      {`${dayjs(item.startDate).format("YYYY/MM/DD")}`}
                                     </div>
                                 </div> */}

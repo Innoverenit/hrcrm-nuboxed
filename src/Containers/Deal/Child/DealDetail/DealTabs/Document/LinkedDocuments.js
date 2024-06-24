@@ -55,13 +55,13 @@ class LinkedDocuments extends Component {
                                       </div>
 
                                       <div className=" flex font-medium   md:w-[11.3rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
-                                          <div class=" text-xs text-cardBody font-poppins">
+                                          <div class=" text-xs  font-poppins">
                                              {item.documentTitle}
                                           </div>
 
                                       </div>
                                       <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
-                                          <div class=" text-xs text-cardBody font-poppins">
+                                          <div class=" text-xs  font-poppins">
                                               {item.documentDescription}
                                           </div>
                                       </div>
@@ -69,13 +69,13 @@ class LinkedDocuments extends Component {
                                   <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                       {item.uploadedBy}
 
                                       </div>
                                   </div>
                                   <div className=" flex font-medium  md:w-[2.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                       <a
               href={`${base_url}/document/${item.documentId}`}
             // target="_blank"
@@ -89,7 +89,7 @@ class LinkedDocuments extends Component {
                                       </div>
                                   </div>
                                   <div className=" flex font-medium  md:w-[2.22rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                       <a
               href={`${base_url}/download/${item.documentTypeId}`}
             >
@@ -99,7 +99,7 @@ class LinkedDocuments extends Component {
                                       </div>
                                   </div>
                                   <div className=" flex font-medium  md:w-[33.23rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                       <StyledPopconfirm
               title="Do you want to delete?"
                onConfirm={() => this.props.removeDealDocuments(item.documentId)}

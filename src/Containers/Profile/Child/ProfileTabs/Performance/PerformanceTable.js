@@ -175,7 +175,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
                   <div className="max-sm:w-full">
                     <Tooltip>
                       <div className="flex max-sm:w-full justify-between flex-row md:flex-col w-[9rem]">
-                        <div className="text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                        <div className="text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
                           {item.kpiName}
                         </div>
                       </div>
@@ -185,10 +185,10 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   <>
  
- <div className="font-normal text-sm text-cardBody font-poppins">{item.lobName}</div>
+ <div className="font-normal text-sm  font-poppins">{item.lobName}</div>
     
                   </>
                 </div>
@@ -196,9 +196,9 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
            
      
               <div className="flex font-medium flex-col md:w-[26.32rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                 <>
-     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+     <div className="font-normal flex flex-row text-sm  font-poppins">
        <div className="flex flex-col w-[4rem] items-center">
          <span className="mr-2">M1</span>
          <span className='ml-2 w-20'>
@@ -233,9 +233,9 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[13.3rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   <>
-                    <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                    <div className="font-normal flex flex-row text-sm  font-poppins">
                     {item.month3AssignedValue && (
                       <span>
                      {item.currencyInd && `${item.userCurrency} `}{Math.floor(AssignedTotal / 10000)}k
@@ -247,7 +247,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
               </div>
          
               <div className="flex font-medium flex-col md:w-[18.3rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                 <>
    {editContactId === item.userKpiLinkId ? (
 <>
@@ -301,7 +301,7 @@ style={{border:"2px solid black",width:"6rem"}}
 </>
 ) : (
 <>
-     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+     <div className="font-normal flex flex-row text-sm  font-poppins">
        <div className="flex flex-col w-[3rem] items-center">
          <span className="mr-2">M1</span>
          <span className='ml-2'>   {item.month1CompletedValue && (
@@ -336,9 +336,9 @@ style={{border:"2px solid black",width:"6rem"}}
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[11.13rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                   <>
-                    <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                    <div className="font-normal flex flex-row text-sm  font-poppins">
                     {item.month3CompletedValue && (
                     <span>
                      {item.currencyInd && `${item.userCurrency} `}{(AchievedTotal/ 10000).toFixed(2)}k
@@ -350,7 +350,7 @@ style={{border:"2px solid black",width:"6rem"}}
               </div>
               <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <div class=" text-xs text-cardBody font-poppins">
+         <div class=" text-xs  font-poppins">
          {/* <Tooltip title={item.oppStage}> */}
 {" "}
 <Progress
@@ -368,9 +368,9 @@ width={30}
          </div>
        </div>
               <div className="flex font-medium flex-col md:w-[19.3rem]  max-sm:flex-row w-full max-sm:justify-between">
- <div className="text-sm text-cardBody font-poppins">
+ <div className="text-sm  font-poppins">
    <>
-     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+     <div className="font-normal flex flex-row text-sm  font-poppins">
        <div className="flex flex-col items-center">
          <span className="mr-2">M1</span>
          <span className='ml-2'>   {item.month1ActualCompletedValue && (
@@ -403,9 +403,9 @@ width={30}
  </div>
 </div>
 <div className="flex font-medium flex-col md:w-[5.1rem] max-sm:flex-row w-full max-sm:justify-between">
- <div className="text-sm text-cardBody font-poppins">
+ <div className="text-sm  font-poppins">
    <>
-     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+     <div className="font-normal flex flex-row text-sm  font-poppins">
      {item.month3ActualCompletedValue && (
       <span>
       {item.currencyInd && `${item.userCurrency} `}{(ActualTotal / 10000).toFixed(2)}k
@@ -417,7 +417,7 @@ width={30}
 </div>
         <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <div class=" text-xs text-cardBody font-poppins">
+         <div class=" text-xs  font-poppins">
  
 {" "}
 <Progress
@@ -435,9 +435,9 @@ width={30}
        </div>
 <div className=" flex font-medium flex-col md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                  
-                 <div class="text-sm text-cardBody font-poppins">
+                 <div class="text-sm  font-poppins">
   
-   <div className="font-normal text-sm text-cardBody font-poppins">
+   <div className="font-normal text-sm  font-poppins">
     {item.weitageValue && (
                       <span>
                           {/* {item.currencyInd && `${item.userCurrency} `} */}

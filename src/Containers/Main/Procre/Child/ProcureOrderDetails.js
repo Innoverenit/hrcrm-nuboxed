@@ -122,52 +122,52 @@ function ProcureOrderDetails(props) {
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
 
 <div className="flex font-medium flex-col md:w-[13rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                 
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.category}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.category}</div>
                  
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                 
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.brand}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.brand}</div>
                  
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[24rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                 
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.model}</div>
-                
-                </div>
-              </div>
-              <div className="flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
-                
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.attribute}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.model}</div>
                 
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                 
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.price}{item.currency}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.attribute}</div>
+                
+                </div>
+              </div>
+              <div className="flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm  font-poppins">
+                
+                    <div className="font-normal text-sm  font-poppins">{item.price}{item.currency}</div>
                 
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[12rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                  
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.specs}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.specs}</div>
                
                 </div>
               </div>
 
               <div className="flex font-medium flex-col ml-2 md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
+                <div className="text-sm  font-poppins">
                  
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.unit}</div>
+                    <div className="font-normal text-sm  font-poppins">{item.unit}</div>
                 
                 </div>
               </div>
