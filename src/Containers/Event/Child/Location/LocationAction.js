@@ -8,6 +8,13 @@ export const handleLocationModal = (modalProps) => (dispatch) => {
   dispatch({ type: types.HANDLE_LOCATION_MODAL, payload: modalProps });
 };
 
+export const handleLocationMachineModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_LOCATION_MACHINE_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const setLocationViewType = (viewType) => (dispatch) => {
     dispatch({
       type: types.SET_LOCATION_VIEW_TYPE,
@@ -822,7 +829,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
     
     dispatch({ type: types.CREATE_MACHINARY_REQUEST });
     axios
-      .post(`${base_url}/machinary/location`, data, {
+      .post(`${base_url2}/cell/cell-equipment/link/save`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -846,12 +853,12 @@ export const setLocationViewType = (viewType) => (dispatch) => {
 
 
 
-  export const getLocationMachineData = (locationId, pageNo) => (dispatch) => {
+  export const getLocationMachineData = (cellChamberId, pageNo) => (dispatch) => {
     dispatch({
       type: types.GET_LOCATION_MACHINE_DATA_REQUEST,
     });
     axios
-      .get(`${base_url}/machinary/location/${locationId}`,
+      .get(`${base_url2}/cell/cell-equipment/${cellChamberId}`,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",

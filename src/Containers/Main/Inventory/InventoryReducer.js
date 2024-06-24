@@ -7,6 +7,9 @@ const initialState = {
   addingInventory: false,
   addingInventoryError: false,
 
+  removingProductionQuality:false,
+  removingProductionQualityError:false,
+
   fetchingInventoryList: false,
   fetchingInventoryListError: false,
   inventory: [],
@@ -285,6 +288,10 @@ const initialState = {
 
   showStockItem: false,
 
+  fetchingProductionQualityData:false,
+  fetchingProductionQualityDataError:false,
+  productionQualityData:[],
+
   fetchingDispatchProductionLocId: false, fetchingDispatchProductionLocIdError: false,
   productionDispatchByLocsId: [],
 
@@ -515,6 +522,18 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingItemHistoryInStockError: true,
 
       };
+
+
+
+
+
+
+      case types.GET_PRODUCTION_QUALITY_DATA_REQUEST:
+        return { ...state, fetchingProductionQualityData: true, fetchingDispatchProductionLocIdError: false };
+      case types.GET_PRODUCTION_QUALITY_DATA_SUCCESS:
+        return { ...state, fetchingProductionQualityData: false, productionQualityData: action.payload };
+      case types.GET_PRODUCTION_QUALITY_DATA_FAILURE:
+        return { ...state, fetchingProductionQualityData: false, fetchingProductionQualityDataError: true };
 
     case types.HANDLE_FILE_DAMAGED_MODAL:
       return { ...state, fileDamagedModal: action.payload };
@@ -1209,6 +1228,28 @@ export const inventoryReducer = (state = initialState, action) => {
         ),
         
       };
+
+
+
+
+      case types.REMOVE_PRODUCTION_QUALITY_REQUEST:
+        return { ...state, removingProductionQuality: true };
+      case types.REMOVE_PRODUCTION_QUALITY_SUCCESS:
+        return {
+          ...state,
+          removingProductionQuality: false,
+         
+          productionQualityData: state.productionQualityData.filter(
+            (item) => item.productionProductId !== action.payload
+          ),
+        };
+      case types.REMOVE_PRODUCTION_QUALITY_FAILURE:
+        return {
+          ...state,
+          removingProductionQuality: false,
+          removingProductionQualityError: true,
+        };
+  
     case types.UPDATE_DISPATCH_INSPECTION_BUTTON_FAILURE:
       return {
         ...state,

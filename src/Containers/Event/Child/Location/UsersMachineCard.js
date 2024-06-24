@@ -17,7 +17,7 @@ const { Option } = Select;
 
 
 const UserMachineCrd = (props) => {
-  console.log(props.storedLoc.locationDetailsId)
+  //console.log(props.storedLoc.locationDetailsId)
  
   const [machine,setMachine]=useState("")
   const[machinecode,setMachineCode]=useState("")
@@ -32,16 +32,16 @@ const UserMachineCrd = (props) => {
   ];
     useEffect(()=>{
         props.getLocationMachine();
-        props.getLocationMachineData(props.storedLoc.locationDetailsId);
+        props.getLocationMachineData(props.currentItems.cellChamberLinkId);
         // props.getDepartments();
         // props.getUserCell(props.storedLoc.locationDetailsId);
         // props.getCellCode(props.storedLoc.locationDetailsId);
         // props.getUserListLocation()
     },[]);
 
-    function handleChangeMachine(value) {
+    function handleChangeMachine(e) {
     
-      setMachine(value)
+      setMachine(e.target.value)
       //props.getUserListLocation(props.storedLoc.locationDetailsId,value)
       
       // console.log(`Selected user: ${value}`);
@@ -132,9 +132,15 @@ const UserMachineCrd = (props) => {
 
     const handleSaveMachine=()=> {
       let data={
-        machinaryName:machine,
-        machineCode:machinecode,
-        locationId:props.storedLoc.locationDetailsId,
+        cellChamberId:props.currentItems.cellChamberLinkId,
+        cellId:props.currentItems.cellId,
+        equipmentId:machine,
+        equipmentNo:machinecode,
+        locationId:props.locationId,
+
+        // machinaryName:machine,
+        // machineCode:machinecode,
+        //locationId:props.storedLoc.locationDetailsId,
         // cellChamberLinkId:cell,
 
         // // cellId:cell,
@@ -157,19 +163,22 @@ const UserMachineCrd = (props) => {
       <div class="flex">
       <div class="ml-2">
 <label class="block">Machine</label>
-    <Select
+    <select
       placeholder="Select a cell"
       style={{ width: 200 }}
       onChange={handleChangeMachine}
       // value={cell} 
     >
       {props.locationMachine.map(machine => (
-        <Option key={machine.machinaryId} value={machine.machinaryId}>
+        <option 
+        // key={machine.machinaryId} 
+        value={machine.machinaryId}>
           {machine.name}
-        </Option>
+        </option>
       ))}
+      
     
-    </Select>
+    </select>
     </div>
       <div style={{marginLeft:"19px"}}>
         <label style={{display: 'block'}}>Machine Code</label>
@@ -249,7 +258,7 @@ const UserMachineCrd = (props) => {
 
 
 
-                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  {/* <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
 <div class=" text-xs  font-poppins">
 
@@ -276,7 +285,7 @@ const UserMachineCrd = (props) => {
 
 </div>
 
-</div>
+</div> */}
                 
 
 
