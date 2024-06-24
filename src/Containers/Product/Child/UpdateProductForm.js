@@ -8,12 +8,14 @@ import * as Yup from "yup";
 import { Spacer} from "../../../Components/UI/Elements";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
+import MultiImageUpload from "../../../Components/MultiImageUpload";
 import { updateProduct } from "../ProductAction";
 import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { CurrencySymbol } from "../../../Components/Common";
 import { getWorkflowList } from "../../Production/ProductionAction";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
+import ProductImagesView from "./ProductImagesView";
 
 const ProductSchema = Yup.object().shape({
   categoryName: Yup.string().required("Please provide First Name"),
@@ -30,12 +32,27 @@ const ProductSchema = Yup.object().shape({
 
 
 class Productform extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+imageIds:[],
+    };
+    this.handleSetImage = this.handleSetImage.bind(this);
+  }
+
+  handleSetImage(imageId) {
+    console.log(imageId);
+    this.setState((prevState) => ({
+      imageIds: [...prevState.imageIds, imageId]
+    }));
+  }
 
   componentDidMount() {
     this.props.getWorkflowList(this.props.orgId)
   }
 
   render() {
+    const Imagedata = this.state.imageIds && this.state.imageIds.map((str, index) => ({ imageId: str}));
 
     const workFlowOption = this.props.workflowProduction.map((item) => {
       return {
@@ -51,6 +68,8 @@ class Productform extends Component {
         <CurrencySymbol currencyType={"INR"} />
       </span>
     );
+
+    console.log("kkk",this.state.imageIds)
     return (
       <>
         <Formik
@@ -66,7 +85,7 @@ class Productform extends Component {
             price: this.props.setEditingProducts.price || 0,
             tax: this.props.setEditingProducts.tax || 0,
             description: this.props.setEditingProducts.description || "",
-            imageId: this.props.setEditingProducts.imageId || "",
+            // imageId: this.props.setEditingProducts.imageId || "",
             expireDays: this.props.setEditingProducts.expireDays || "",
             bestBefore:this.props.setEditingProducts.bestBefore || "",
             alert:this.props.setEditingProducts.alert || "",
@@ -81,6 +100,7 @@ class Productform extends Component {
             // unitInStock: this.props.setEditingProducts.unitInStock || "",
             brand:this.props.setEditingProducts.brand || "",
             model:this.props.setEditingProducts.model || "",
+            images:Imagedata,
           }}
           validationSchema={ProductSchema}
           onSubmit={(values, { resetForm }) => {
@@ -98,7 +118,7 @@ class Productform extends Component {
                 gstIncludeInd: values.gstIncludeInd === false ? false : true,
                 customerMarginInd: values.customerMarginInd === false ? false : true,
                 distributorMarginInd: values.distributorMarginInd === false ? false : true,
-
+                images:Imagedata,
               },
 
               () => this.callback(resetForm)
@@ -119,7 +139,10 @@ class Productform extends Component {
              <div class="h-full w-[45%]">
 
                   <div class=" flex  flex-nowrap">
-                    <div> <Field name="imageId" component={PostImageUpld} /></div>
+                    <div> 
+                      {/* <Field name="imageId" component={PostImageUpld} /> */}
+                      <MultiImageUpload handleSetImage={this.handleSetImage}/>
+                    </div>
                     <div>  
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-full">
@@ -350,8 +373,12 @@ class Productform extends Component {
                         }}
                       />
                     </div>
+
+                    
                   </div>
-                
+                  <div class="mt-3">
+                      <ProductImagesView />
+                    </div>
                 </div>
               </div>
 
