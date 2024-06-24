@@ -100,7 +100,7 @@ function DealCardList(props) {
             <div class="flex justify-center">Loading...</div>
           ) : null
         }
-        height={"87vh"}
+        height={"80vh"}
       >
     <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center ">
 
@@ -115,7 +115,7 @@ function DealCardList(props) {
             const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
             return (
               <div class="rounded-md border-2 justify-center bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9rem] 
-              text-[#444444] m-2 p-1 w-[16vw] flex flex-col max-sm:w-wk  ">
+              text-[#444444] m-1 p-1 w-[16vw] flex flex-col max-sm:w-wk scale-[0.99] hover:scale-100 ease-in duration-100   border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                 <div class=" flex  flex-nowrap items-center h-8"
                 >
                   <div class=" mr-[0.2rem] flex basis-[15%]">

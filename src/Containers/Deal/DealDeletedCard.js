@@ -61,8 +61,8 @@ const DealDeletedCard = (props) => {
 
   return (
     <>
-      <div class="rounded m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex  w-[96%] justify-between p-1 bg-transparent font-bold sticky  z-10">
+      <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className=" flex  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
           <div className=" md:w-[10.5rem]"><FormattedMessage
             id="app.name"
             defaultMessage="name"
@@ -102,7 +102,7 @@ const DealDeletedCard = (props) => {
           next={handleLoadMore}
           hasMore={hasMore}
           loader={fetchingDeletedDeal ? <div class="flex justify-center">Loading...</div> : null}
-          height={"75vh"}
+          height={"80vh"}
         >
           {!fetchingDeletedDeal && props.deletedDeal.length === 0 ? <NodataFoundPage /> : props.deletedDeal.map((item, index) => {
             var findProbability = item.probability;
@@ -130,7 +130,7 @@ const DealDeletedCard = (props) => {
               } `;
             return (
               <div>
-                <div className="flex justify-between rounded-xl  mt-2 bg-white h-11 items-center p-1"
+                <div className="flex justify-between rounded  mt-2 bg-white h-11 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //     borderBottom: "3px dotted #515050"
                 // }}

@@ -130,7 +130,7 @@ function DealWonCard(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingWonDeals ?<div class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
       >
          {wonDeals.map((item) => {
                  
@@ -143,7 +143,7 @@ function DealWonCard(props) {
                  return (
                     <div>
                     <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium  w-[14.1rem] max-xl:w-[8.1rem] max-lg:w-[6.1rem] max-sm:flex-row max-sm:w-auto  items-center">

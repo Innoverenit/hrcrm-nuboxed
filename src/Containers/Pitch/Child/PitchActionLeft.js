@@ -96,14 +96,14 @@ const PitchActionLeft = (props) => {
         
         overflowCount={999}
       >
-        <span   class=" mr-1 text-sm cursor-pointer"
+        <span   class=" mr-1 !text-icon cursor-pointer"
         onClick={() => props.setPitchViewType("card")}
           style={{
            color: props.viewType === "card" && "#1890ff",
           }}
         >
           <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
-        <TocIcon />
+        <TocIcon className="text-white !text-icon" />
         </Avatar>
         </span>
         </Badge>
@@ -121,14 +121,14 @@ const PitchActionLeft = (props) => {
         
         overflowCount={999}
       >
-        <span   class=" mr-1 text-sm cursor-pointer"
+        <span   class=" mr-1  cursor-pointer"
         onClick={() => props.setPitchViewType("teams")}
           style={{
            color: props.viewType === "teams" && "#1890ff",
           }}
         >
           <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-         <PeopleIcon/>
+         <PeopleIcon className="text-white !text-icon"/>
          </Avatar>
         </span>
         </Badge>
@@ -144,7 +144,7 @@ const PitchActionLeft = (props) => {
         count={(props.viewType === "all" && props.pitchAllRecord.investorLeadsDetails) || 0}
         overflowCount={999}
       >
-        <span   class=" mr-1 text-sm cursor-pointer"
+        <span   class=" mr-1 cursor-pointer"
         onClick={() => props.setPitchViewType("all")}
           style={{
            color: props.viewType === "all" && "#1890ff",
@@ -152,6 +152,7 @@ const PitchActionLeft = (props) => {
         >
            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
             <FormattedMessage
+            class=" text-white !text-icon"
                         id="app.all"
                         defaultMessage="ALL"
                       />
