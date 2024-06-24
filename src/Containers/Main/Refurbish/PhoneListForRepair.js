@@ -8,11 +8,13 @@ import {
     updaterepairStatus,
     getCatalogueByUser,
     handleRepairPhoneNotesOrderModal,
+    handleProcessExpand,
     handlePhoneDetails, 
     handleInTagDrawer,
     updatePauseStatus,
     searchimeiNamerapir,
-    ClearReducerDataOfrepair
+    ClearReducerDataOfrepair,
+    handleSpareProcess
 } from "./RefurbishAction";
 import { Button, Tooltip,  Progress,Input } from "antd";
 import {  RollbackOutlined } from "@ant-design/icons";
@@ -29,6 +31,8 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import { FormattedMessage } from "react-intl";
 import QrCodeIcon from '@mui/icons-material/QrCode';
+import ProcessExpandDrawer from "./ProcessExpandDrawer";
+import ProcessSpareDrawer from "./ProcessSpareDrawer";
 const RepairPhoneNotesOrderModal = lazy(() => import('./RepairPhoneNotesOrderModal'));
 const RepairTaskList = lazy(() => import('./RepairTaskList'));
 
@@ -83,7 +87,7 @@ function PhoneListForRepair(props) {
       const handleSearch = () => {
         if (currentData.trim() !== "") {
           // Perform the search
-          props.searchimeiNamerapir(currentData);
+          props.searchimeiNamerapir(currentData,props.rowData.orderPhoneId);
           setSearchOnEnter(true);  //Code for Search
         } else {
           console.error("Input is empty. Please provide a value.");
@@ -279,10 +283,7 @@ function PhoneListForRepair(props) {
                                                 </div>
                                                 </div>
                     <div className=" flex  w-[99%] max-sm:hidden p-1 bg-transparent font-bold sticky z-10">
-                        <div className=" w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.oem"
-                            defaultMessage="OEM"
-                        /></div>
+                        <div className=" w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Brand</div>
                         <div className=" w-[7.31rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.model"
                             defaultMessage="model"
@@ -324,6 +325,7 @@ function PhoneListForRepair(props) {
                         {props.repairPhone.map((item, index) => {
                              const percentage = Math.floor((item.checkedSpare / item.totalSpare) * 100)
                              const acivedPercentage= Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100) 
+                             const isacivedPercentage = !isNaN(acivedPercentage) && isFinite(acivedPercentage);
                              const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                             let x = item.repairStatus === "In Progress"
                             let y = item.pauseInd
@@ -504,7 +506,8 @@ function PhoneListForRepair(props) {
                                                                 style={{width:"8rem",cursor:"pointer"}} 
                                                                onClick={() => {
                                                                     handleSetRowData(item);
-                                                                    hanldeSpare();
+                                                                   // hanldeSpare();
+                                                                   props.handleSpareProcess(true);
                                                                 }} />
                                                                                                    
                                                     </Tooltip>
@@ -525,7 +528,7 @@ function PhoneListForRepair(props) {
                                                             ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
                                                         </Badge>
                                                     </Tooltip> */}
-                                                     <Tooltip title="Task">
+                                                     {/* <Tooltip title="Task">
                                                      <Progress
                                                      type="circle"
                                                       style={{ cursor: "pointer",color:"red" }}
@@ -535,11 +538,26 @@ function PhoneListForRepair(props) {
                                                         strokeColor={"#005075"}
                                                         onClick={() => {
                                                             handleSetRowData(item);
-                                                            handleExpand(item.phoneId);
+                                                            //handleExpand(item.phoneId);
+                                                            props.handleProcessExpand(true);
+                                                        }}
+                                                          />                                                       
+                                                    </Tooltip> */}
+                                                    {isacivedPercentage?(
+                                                  <Tooltip title="Task">
+                                                     <Progress
+                                                    percent={acivedPercentage}
+                                                    success={{ percent: 30 }}
+                                                    format={() => `${acivedPercentage}%`} 
+                                                     style={{width:"8rem",cursor:"pointer"}} 
+                                                        onClick={() => {
+                                                            handleSetRowData(item);
+                                                            //handleExpand(item.phoneId);
+                                                            props.handleProcessExpand(true);
                                                         }}
                                                           />                                                       
                                                     </Tooltip>
-
+                            ):null}
                                                 </div>
                                             </div>
                                         </div>
@@ -646,6 +664,24 @@ function PhoneListForRepair(props) {
                     phoNotesRepairOrderModal={props.phoNotesRepairOrderModal}
                     handleRepairPhoneNotesOrderModal={props.handleRepairPhoneNotesOrderModal}
                 />
+                
+                <ProcessExpandDrawer
+                   phoneId={phoneId}
+                   RowData={RowData}
+                    processExpandModal={props.processExpandModal}
+                    handleProcessExpand={props.handleProcessExpand}
+                />
+
+<ProcessSpareDrawer
+                  phoneId={phoneId}
+                  RowData={RowData}
+                  rowData={props.rowData}
+                  //orderPhoneId={props.rowData.orderPhoneId}
+                  processSpareModal={props.processSpareModal}
+                    handleSpareProcess={props.handleSpareProcess}
+                />
+
+
                 <PhoneDetailsModal
                     handlePhoneDetails={props.handlePhoneDetails}
                     showPhoneData={props.showPhoneData}
@@ -671,7 +707,9 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     fetchingRepairPhoneByUser: refurbish.fetchingRepairPhoneByUser,
     showPhoneData: refurbish.showPhoneData,
     clickTagInDrawr: refurbish.clickTagInDrawr,
-    updatingRepairStatus:refurbish.updatingRepairStatus
+    updatingRepairStatus:refurbish.updatingRepairStatus,
+    processExpandModal:refurbish.processExpandModal,
+    processSpareModal: refurbish.processSpareModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -685,7 +723,9 @@ const mapDispatchToProps = (dispatch) =>
             handlePhoneDetails,
             updatePauseStatus,
             searchimeiNamerapir,
-            ClearReducerDataOfrepair
+            ClearReducerDataOfrepair,
+            handleProcessExpand,
+            handleSpareProcess
         },
         dispatch
     );

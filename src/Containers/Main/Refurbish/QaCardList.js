@@ -5,11 +5,15 @@ import { getQAorderlist,updateQAinspection
      } from "./RefurbishAction"
 import { Button, Badge ,Input} from "antd";
 import dayjs from "dayjs";
+import {handlePickupDateModal,updateDispatchInspectionButton} from "../../../Containers/Main/Inventory/InventoryAction"
 import { FormattedMessage } from "react-intl";
 import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { BundleLoader } from '../../../Components/Placeholder';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import DispatchPhoneListModal from '../Inventory/Child/InventoryDetails/Dispatch/DispatchPhoneListModal';
+import RefurbishToggle from './RefurbishToggle';
+
 
 
 function QaCardList(props) {
@@ -155,23 +159,23 @@ function QaCardList(props) {
       </div>
 
                     <div className=" flex max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-                        <div className='w-[17.2rem]'></div>
-                        <div className=" w-[23.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order ID</div>
-                        <div className="w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
+                        <div className='w-[7.2rem]'></div>
+                        <div className=" w-[9.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order ID</div>
+                        <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
                         <div className=" w-[36.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.duedate"
                             defaultMessage="duedate"
                         /></div>
-                        <div className=" w-[34.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        {/* <div className=" w-[34.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.lead"
                             defaultMessage="Lead"
-                        /></div>
+                        /></div> */}
 
-                        <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        {/* <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.status"
                             defaultMessage="status"
-                        /></div>
-                        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+                        /></div> */}
+                        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Move to Dispatch</div>
                     </div>
                     <div class="">
                         <InfiniteScroll
@@ -189,7 +193,7 @@ function QaCardList(props) {
                                     <div >
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium w-[8.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                            <div className=" flex font-medium w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     {item.priority === "High" && (
                                                         <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[red]"></div>
                                                     )}
@@ -200,13 +204,13 @@ function QaCardList(props) {
                                                         <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[teal]" ></div>
                                                     )}
                                                 </div>
-                                                <div className=" flex font-medium w-[15.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
-                                                    <Badge size="small" count={`${item.qcCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
+                                                <div className=" flex font-medium w-[12.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                                    <Badge size="small" count={`${item.dispatchPhoneCount} / ${item.phoneReceiveCount}`} overflowCount={5000}>
                                                         <span class="underline text-sm text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
 
                                                             onClick={() => {
                                                                 handleRowData(item);
-                                                                props.handleOrderPhoneModal(true)
+                                                                props.handlePickupDateModal(true)
                                                             }}>
                                                             {item.newOrderNo}
                                                         </span>
@@ -228,7 +232,8 @@ function QaCardList(props) {
                                   loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingDispatchInspectionButton}
                                   onClick={() => {
                                     handleRowData(item);
-                                    props.updateQAinspection({ dispatchInspectionInd: 1 }, item.orderPhoneId, props.locationDetailsId)
+                                   // props.updateQAinspection
+                                   props.updateDispatchInspectionButton({ dispatchInspectionInd: 1 }, item.orderPhoneId, props.locationDetailsId)
                                   }}
                                   style={{ backgroundColor: "#33ad33", color: "white", fontWeight: "500" }}>
                                   Start
@@ -244,7 +249,7 @@ function QaCardList(props) {
                                     null}
                             </div>
                           </div>
-                                                <div className=" flex font-medium   w-[14rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex font-medium   w-[34rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>
@@ -259,13 +264,13 @@ function QaCardList(props) {
 
                                                 </div>
 
-                                                <div className=" flex font-medium   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                {/* <div className=" flex font-medium   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInProgressPhoneCount} In Progress
                                                     </div>
 
-                                                </div>
-                                                <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                </div> */}
+                                                {/* <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInspectionInd === 0 ?
                                                             <Button
@@ -287,7 +292,15 @@ function QaCardList(props) {
                                                                 <Button className="w-32" onClick={handlePauseResume}>{hide ? "Pause Inspection" : "Resume Inspection"}</Button> : <div class="text-green-600">Inspection Completed</div>}
 
                                                     </div>
-                                                </div>
+                                                </div> */}
+                                                 <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <RefurbishToggle        
+                                  orderPhoneId={item.orderPhoneId}
+                                  newDispatchInd={item.newDispatchInd}
+                                />
+                              </div>
+                            </div>
                                             </div>
 
                                         </div>
@@ -303,6 +316,11 @@ function QaCardList(props) {
                         handleOrderPhoneModal={props.handleOrderPhoneModal}
                         rowData={rowData}
                     /> */}
+                    <DispatchPhoneListModal
+        rowData={rowData}
+        handlePickupDateModal={props.handlePickupDateModal}
+        openPickupDateModal={props.openPickupDateModal}
+      />
                 </Suspense>
 
             </div>
@@ -310,9 +328,10 @@ function QaCardList(props) {
     )
 }
 
-const mapStateToProps = ({ refurbish, auth }) => ({
+const mapStateToProps = ({ refurbish, auth ,inventory}) => ({
     locationId: auth.userDetails.locationId,
     // userId: auth.userDetails.userId,
+    openPickupDateModal: inventory.openPickupDateModal,
     QAorderList: refurbish.QAorderList,
     updatingQAinspection: refurbish.updatingQAinspection,
     // showPhoneList: refurbish.showPhoneList,
@@ -324,6 +343,8 @@ const mapDispatchToProps = (dispatch) =>
         {
             getQAorderlist,
             updateQAinspection,
+            handlePickupDateModal,
+            updateDispatchInspectionButton
             // qcInspectionButton,
             // inputQcDataSearch,
             // ClearSearchedDataOfQc

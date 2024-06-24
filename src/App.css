@@ -1161,6 +1161,11 @@ h1 {
   height: 100px;
 }
 
+.scroller {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
 /* HeaderLabel
 -------------
 

@@ -459,7 +459,7 @@ export const getDispatchList = (locationId,pageNo) => (dispatch) => {
     type: types.GET_DISPATCH_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderInventoryLocationLink/get-dispatchData/${locationId}/${pageNo}`, {
+    .get(`${base_url2}/orderInventoryLocationLink/get-newDispatchData/${locationId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

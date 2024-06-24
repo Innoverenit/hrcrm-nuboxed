@@ -4,11 +4,13 @@ import { bindActionCreators } from "redux";
 import {
     getPhoneOrderIdByUser,
     handleQCPhoneNotesOrderModal,
+    handleSpareList,
     getOrderByUser,
     updateCantRepairQC,
     updateQCStatus,
     searchimeiName,
-    ClearReducerDataOfrefurbish
+    ClearReducerDataOfrefurbish,
+    handleQcexpand
 } from "./RefurbishAction";
 import { AudioOutlined } from '@ant-design/icons';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -22,6 +24,8 @@ import ReactToPrint from "react-to-print";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import { BundleLoader } from "../../../Components/Placeholder";
 import QrCodeIcon from '@mui/icons-material/QrCode';
+import QCSpareListModal from "./QCSpareListModal";
+import QCExpandListModal from "./QCExpandListModal";
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
 const DistributorPhoneTaskTable = lazy(() => import('./DistributorPhoneTaskTable'));
@@ -92,7 +96,7 @@ function OrderPhoneListById(props) {
       const handleSearch = () => {
         if (currentData.trim() !== "") {
           // Perform the search
-          props.searchimeiName(currentData);
+          props.searchimeiName(currentData,props.rowData.orderPhoneId);
           setSearchOnEnter(true);  //Code for Search
         } else {
           console.error("Input is empty. Please provide a value.");
@@ -264,10 +268,7 @@ function OrderPhoneListById(props) {
                                                 </div>
                                                 </div>
                     <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky z-10">
-                        <div className=" w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.oem"
-                            defaultMessage="OEM"
-                        /></div>
+                        <div className=" w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Brand</div>
                         <div className=" w-[8.012rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.model"
                             defaultMessage="model"
@@ -317,6 +318,7 @@ function OrderPhoneListById(props) {
                                 const percentage = Math.floor((item.checkedSpare / item.totalSpare) * 100)
                                 const acivedPercentage = Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100)
                                 const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
+                                const isAcivedPercentage = !isNaN(acivedPercentage) && isFinite(acivedPercentage);
                                 const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
                                 const endtimme = time.format('YYYY-MM-DDTHH:mm:ss.SSSZ'); // Using ISO 8601 format
                                 return (
@@ -481,7 +483,8 @@ function OrderPhoneListById(props) {
                                                                 style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
                                                                 onClick={() => {
                                                                     handleSetRowData(item);
-                                                                    hanldeSpare();
+                                                                    //hanldeSpare();
+                                                                    props.handleSpareList(true);
                                                                 }}>
                                                                 {/* <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} /> */}
                                                                 Spares </Button>
@@ -518,7 +521,7 @@ function OrderPhoneListById(props) {
                                                         ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
 
                                                     </Tooltip> */}
-                                                        <Tooltip title="Task">
+                                                        {/* <Tooltip title="Task">
                                                             <Progress
                                                                 type="circle"
                                                                 style={{ cursor: "pointer", color: "red" }}
@@ -531,8 +534,23 @@ function OrderPhoneListById(props) {
                                                                     handleExpand(item.phoneId);
                                                                 }}
                                                             />
-                                                        </Tooltip>
+                                                        </Tooltip> */}
+                                                           {isAcivedPercentage ? (
+                                                            <Tooltip title="Task">
+                                                                <Progress
+                                                                   percent={acivedPercentage}
+                                                                    success={{ percent: 30 }}
+                                                                    format={() => `${acivedPercentage}%`}
+                                                                    strokeColor={"#005075"}
+                                                                    style={{ width: "8rem", cursor: "pointer" }}
+                                                                    onClick={() => {
+                                                                        handleSetRowData(item);
+                                                                       // handleExpand(item.phoneId);
+                                                                       props.handleQcexpand(true);
+                                                                    }}/>
 
+                                                            </Tooltip>
+                                                       ) : null}  
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -620,6 +638,18 @@ function OrderPhoneListById(props) {
                     phoNotesQCOrderModal={props.phoNotesQCOrderModal}
                     handleQCPhoneNotesOrderModal={props.handleQCPhoneNotesOrderModal}
                 />
+                <QCSpareListModal
+                  phoneId={phoneId}
+                    RowData={RowData}
+                    qcSpareList={props.qcSpareList}
+                    handleSpareList={props.handleSpareList}
+                />
+                <QCExpandListModal
+                  phoneId={phoneId}
+                    RowData={RowData}
+                    qcExpandList={props.qcExpandList}
+                    handleQcexpand={props.handleQcexpand}
+                />
             </div>
             {/* } */}
         </>
@@ -636,7 +666,9 @@ const mapStateToProps = ({ refurbish, auth, inventory }) => ({
     updatingCantRepairQc: refurbish.updatingCantRepairQc,
     fetchingOrderIdByUserId: refurbish.fetchingOrderIdByUserId,
     phoNotesQCOrderModal: refurbish.phoNotesQCOrderModal,
-    updatingQCStatus:refurbish.updatingQCStatus
+    updatingQCStatus:refurbish.updatingQCStatus,
+    qcSpareList:refurbish.qcSpareList,
+    qcExpandList: refurbish.qcExpandList
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -648,7 +680,9 @@ const mapDispatchToProps = (dispatch) =>
             getOrderByUser,
             updateCantRepairQC,
             searchimeiName,
-            ClearReducerDataOfrefurbish
+            ClearReducerDataOfrefurbish,
+            handleSpareList,
+            handleQcexpand
         },
         dispatch
     );

@@ -1,27 +1,31 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-const InspectedPhoneByOrder = lazy(() => import("./InspectedPhoneByOrder"));
+import RepairTaskList from "./RepairTaskList";
+import { Modal } from "antd";
 
-const ShowProductBuilderModal = (props) => {
+
+const ProcessExpandDrawer = (props) => {
     const { RowData, ...formProps } = props;
     return (
         <>
-            <StyledDrawer
-                title={`Order No-${props.rowData.newOrderNo}`}
-                width="90%"
-                visible={props.productBuilderList}
-                maskClosable={false}
+            <Modal
+                title={props.RowData.imei}
+                width="60%"
+                visible={props.processExpandModal}
+                closable
                 destroyOnClose
-                onClose={() => props.handleProductBuilder(false)}
-                footer={null}
+                  placement="right"
+                  onCancel={() => props.handleProcessExpand(false)}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <InspectedPhoneByOrder rowData={props.rowData} />
+                <RepairTaskList
+                        phoneId={props.phoneId}
+                        RowData={RowData} />
                 </Suspense>
-            </StyledDrawer>
+            </Modal>
         </>
     );
 
@@ -42,5 +46,5 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ShowProductBuilderModal);
+)(ProcessExpandDrawer);
 
