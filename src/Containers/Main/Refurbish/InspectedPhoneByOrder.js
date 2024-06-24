@@ -83,7 +83,7 @@ function InspectedPhoneByOrder(props) {
           const handleSearch = () => {
             if (currentData.trim() !== "") {
               // Perform the search
-              props.searchimeiNamePhone(currentData);
+              props.searchimeiNamePhone(currentData,props.rowData.orderPhoneId);
               setSearchOnEnter(true);  //Code for Search
             } else {
               console.error("Input is empty. Please provide a value.");
@@ -154,10 +154,7 @@ function InspectedPhoneByOrder(props) {
           />
         </div>
                         <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-                            <div className=" md:w-[7.12rem]"><FormattedMessage
-                                id="app.oem"
-                                defaultMessage="OEM"
-                            /></div>
+                            <div className=" md:w-[7.12rem]">Brand</div>
                             <div className=" md:w-[7.1rem]"><FormattedMessage
                                 id="app.model"
                                 defaultMessage="model"
@@ -174,6 +171,9 @@ function InspectedPhoneByOrder(props) {
                                 defaultMessage="conditions"
                             /></div>
                             <div className="md:w-[7rem]">Technician</div>
+                            <div className="md:w-[6rem]">QC</div>
+                            <div className="md:w-[4rem]">Repair</div>
+                            {/* <div className="md:w-[5rem]">Qa</div> */}
                             <div className="md:w-[7.2rem]"></div>
                         </div>
                         <div class="overflow-y-auto h-[72vh]">
@@ -236,6 +236,21 @@ function InspectedPhoneByOrder(props) {
                                                     />}
                                                 </div>
                                             </div>
+                                            <div className=" flex font-medium  md:w-[5.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div class=" text-xs  font-poppins text-center">
+                                                {item.qcStatus}
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium  md:w-[5.26rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div class=" text-xs  font-poppins text-center">
+                                                {item.repairStatus}
+                                                </div>
+                                            </div>
+                                            {/* <div className=" flex font-medium  md:w-[5.25rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div class=" text-xs  font-poppins text-center">
+                                                
+                                                </div>
+                                            </div> */}
                                            
                                             <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">

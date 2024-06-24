@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect,useState,useRef} from "react";
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
@@ -6,7 +6,9 @@ import { DeleteOutlined } from "@ant-design/icons";
 import {
     inputDataSearch, setSuppliersDashboardType, setSelectedTimeInterval,
     setTimeRange,getSupplierCount,getSupplierAllCount,
-    getSupplierDeletedCount
+    getSupplierDeletedCount,
+    ClearSearchedDataOfSupplier,
+    getSuppliersList
 } from "./SuppliersAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
@@ -19,7 +21,11 @@ const Option = StyledSelect.Option;
 function SuppliersActionLeft (props) {
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
-    const [pageNo, setPage] = useState(0);
+    const [page, setPage] = useState(0);
+    const [startTime, setStartTime] = useState(null);
+    const [isRecording, setIsRecording] = useState(false); //Code for Search
+    const minRecordingTime = 3000; // 3 seconds
+    const timerRef = useRef(null);
 
     useEffect(() => {
         if (props.viewType === "card") {
@@ -50,35 +56,74 @@ const {
           setCurrentData(transcript);
         }
         }, [ transcript]);
-        const handleChange = (e) => {
-            setCurrentData(e.target.value);
-        
-            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
-              setPage(pageNo + 1);
-            //   props.getLeads(props.userId, pageNo, "creationdate");
-            //   props.ClearReducerDataOfLead()
-              setSearchOnEnter(false);
-            }
-          };
-          const handleSearch = () => {
-            if (currentData.trim() !== "") {
-              // Perform the search
-              props.inputDataSearch(currentData);
-              setSearchOnEnter(true);  //Code for Search
-            } else {
-              console.error("Input is empty. Please provide a value.");
-            }
-          };
-          const suffix = (
-            <AudioOutlined
-              onClick={SpeechRecognition.startListening}
-              style={{
-                fontSize: 16,
-                color: '#1890ff',
-              }}
-        
-            />
-          );
+    
+      const handleChange = (e) => {
+        setCurrentData(e.target.value);
+    
+        if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+          //setPage(pageNo + 1);
+          props.getSuppliersList(props.userId, page);
+          props.ClearSearchedDataOfSupplier()
+          setSearchOnEnter(false);
+        }
+      };
+      const handleSearch = () => {
+        if (currentData.trim() !== "") {
+          // Perform the search
+          props.inputDataSearch(currentData);
+          setSearchOnEnter(true);  //Code for Search
+        } else {
+          console.error("Input is empty. Please provide a value.");
+        }
+      };
+      const handleStartListening = () => {
+        setStartTime(Date.now());
+        setIsRecording(true);
+        SpeechRecognition.startListening();
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+          SpeechRecognition.stopListening();
+          setIsRecording(false);
+        }, minRecordingTime);
+      };
+      const suffix = (
+        <AudioOutlined
+          onClick={handleStartListening}
+          style={{
+            fontSize: 16,
+            color: '#1890ff',
+          }}
+    
+        />
+      );
+      const handleStopListening = () => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+        if (transcript.trim() !== "") {
+          setCurrentData(transcript);
+          props.inputDataSearch(transcript);
+          setSearchOnEnter(true);
+        }
+      };
+      useEffect(() => {
+        if (!listening && isRecording) {
+          handleStopListening();
+        }
+      }, [listening]);
+      useEffect(() => {
+        if (isRecording && !listening) {
+          // If recording was stopped but less than 5 seconds have passed, restart listening
+          const elapsedTime = Date.now() - startTime;
+          if (elapsedTime < minRecordingTime) {
+            SpeechRecognition.startListening();
+          } else {
+            setIsRecording(false);
+          }
+        }
+      }, [listening, isRecording, startTime]);
+
 
         return (
             <div class="flex items-center">
@@ -178,7 +223,9 @@ const mapDispatchToProps = (dispatch) =>
             setTimeRange,
             getSupplierCount,
             getSupplierAllCount,
-            getSupplierDeletedCount
+            getSupplierDeletedCount,
+            ClearSearchedDataOfSupplier,
+            getSuppliersList
         },
         dispatch
     );
