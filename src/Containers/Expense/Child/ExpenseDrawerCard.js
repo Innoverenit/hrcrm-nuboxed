@@ -134,10 +134,10 @@ style={{width:"6rem",height:"6rem"}}
 
   
                                     
-                                          {/* <div class=" text-sm text-cardBody font-poppins">
+                                          {/* <div class=" text-sm  font-poppins">
                                            ID
                                           </div> */}
-                                          <div class=" text-xs  text-cardBody font-poppins cursor-pointer">
+                                          <div class=" text-xs   font-poppins cursor-pointer">
                                               
                                           {/* <div onClick={() => { this.handleExpand(item.voucherId) 
               this.props.handleMileageVoucherIdDrwer(true)}}>
@@ -149,7 +149,7 @@ style={{width:"6rem",height:"6rem"}}
                               </div>
                               <div className=" flex font-medium flex-col  w-[10.31rem] ">
                          
-                         {/* <div class=" text-sm text-cardBody font-poppins"> Type </div> */}
+                         {/* <div class=" text-sm  font-poppins"> Type </div> */}
                          {editStates[index] ? (
             // <input
             //   type="text"
@@ -169,14 +169,14 @@ style={{width:"6rem",height:"6rem"}}
   ))}
 </select>
           ) : (
-                         <div class=" text-xs text-cardBody font-poppins">
+                         <div class=" text-xs  font-poppins">
                              {item.expenseType}
                          </div>
                            )}
                      </div>
                               <div className=" flex font-medium flex-col w-[7.8rem] ">
                          
-                                  {/* <div class=" text-sm text-cardBody font-poppins">Date </div> */}
+                                  {/* <div class=" text-sm  font-poppins">Date </div> */}
                                   {editStates[index] ? (
   <DatePicker
     value={dayjs(item.expenseDate)} 
@@ -186,7 +186,7 @@ style={{width:"6rem",height:"6rem"}}
     style={{ border: "1px solid lightgrey",boxShadow:"0 0.01em 0.01em ",margin:"0.25rem",height:"1.4rem" }}
   />
 ) : (
-                                  <div class=" text-xs text-cardBody font-poppins">
+                                  <div class=" text-xs  font-poppins">
                                       
                                   
                                   {dayjs(item.expenseDate).format("MMM Do YY")}
@@ -195,7 +195,7 @@ style={{width:"6rem",height:"6rem"}}
                                   )}
                               </div>
                               <div className="flex font-medium flex-col w-[5.12rem]">
-                              {/* <div class=" text-sm text-cardBody font-poppins w-36 ml-[0.25rem]"> Cost Code </div> */}
+                              {/* <div class=" text-sm  font-poppins w-36 ml-[0.25rem]"> Cost Code </div> */}
                               {editStates[index] ? (
             <input
               type="text"
@@ -204,7 +204,7 @@ style={{width:"6rem",height:"6rem"}}
               style={{border:"1px solid lightgrey",marginRight:"0.25rem"}}
             />
           ) : (
-                         <div class=" text-xs text-cardBody font-poppins">
+                         <div class=" text-xs  font-poppins">
                              {item.clientName}
                          </div>
           )}
@@ -212,7 +212,7 @@ style={{width:"6rem",height:"6rem"}}
                          <div className=" flex font-medium flex-col w-[7.5rem] ">
 
                                 
-                                  {/* <div class=" text-sm text-cardBody font-poppins">Particulars</div> */}
+                                  {/* <div class=" text-sm  font-poppins">Particulars</div> */}
                                   {editStates[index] ? (
                                   <input
               type="text"
@@ -222,7 +222,7 @@ style={{width:"6rem",height:"6rem"}}
             />
           ) : (
         
-                                  <div class=" text-xs text-cardBody font-poppins">
+                                  <div class=" text-xs  font-poppins">
                                        {item.particular}
                                   </div>
           )}
@@ -233,7 +233,7 @@ style={{width:"6rem",height:"6rem"}}
                               <div className=" flex font-medium flex-col w-20 ">
 
 
-                                {/* <div class=" text-sm text-cardBody font-poppins">Amount</div> */}
+                                {/* <div class=" text-sm  font-poppins">Amount</div> */}
                                 {editStates[index] ? (
                                   <input
               type="text"
@@ -244,7 +244,7 @@ style={{width:"6rem",height:"6rem"}}
           ) : (
                                                                
           
-                                <div class=" text-xs text-cardBody font-poppins">
+                                <div class=" text-xs  font-poppins">
                                     {item.amount}   {item.currency}
                                 </div>
           )}
@@ -254,7 +254,7 @@ style={{width:"6rem",height:"6rem"}}
                      <div className=" flex font-medium flex-col w-[4.13rem] ">
 
 
-{/* <div class=" text-sm text-cardBody font-poppins">Curency</div> */}
+{/* <div class=" text-sm  font-poppins">Curency</div> */}
 {editStates[index] ? (
   <input
 type="text"

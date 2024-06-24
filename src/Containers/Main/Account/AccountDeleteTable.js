@@ -55,7 +55,7 @@ function AccountDeleteTable(props) {
        <div class="flex">
    
     <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-    <h4 class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+    <h4 class="text-sm  font-semibold  font-poppins cursor-pointer">
 
         {item.name}
                             </h4>
@@ -63,7 +63,7 @@ function AccountDeleteTable(props) {
 
     <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-    <h4 class=" text-xs text-cardBody font-poppins">
+    <h4 class=" text-xs  font-poppins">
     {item.dialCode} {item.phoneNo} 
                     </h4>
     
@@ -72,7 +72,7 @@ function AccountDeleteTable(props) {
     </div>
     
     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-    <h4 class=" text-xs text-cardBody font-poppins">
+    <h4 class=" text-xs  font-poppins">
                       
                       {item.url}
                     </h4>
@@ -80,7 +80,7 @@ function AccountDeleteTable(props) {
     <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
         
 
-        <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+        <h4 class=" text-xs  font-semibold  font-poppins">
         {item.address[0].address1 || ""} {item.address[0]
           .address2 || ""} {item.address[0].street || ""} 
                 {item.address[0].city || ""}  
@@ -90,12 +90,12 @@ function AccountDeleteTable(props) {
     <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-        <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+        <h4 class=" text-xs  font-semibold  font-poppins">
         {item.address[0].city || ""}
              </h4>
     </div>
     <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-        <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+        <h4 class=" text-xs  font-semibold  font-poppins">
         {item.address[0].pinCode || ""}
              </h4>
     </div>

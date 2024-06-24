@@ -157,14 +157,14 @@ function LocationCustomerList(props) {
                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Name
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       <AccountDetailsView
                         distributorId={item.distributorId}
                         name={item.name}
@@ -174,28 +174,28 @@ function LocationCustomerList(props) {
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Work
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {item.dialCode} {item.phoneNo}
                     </div>
 
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Website
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {item.url}
                     </div>
 
@@ -203,14 +203,14 @@ function LocationCustomerList(props) {
 
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Type
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {item.clientName}
                     </div>
 
@@ -218,14 +218,14 @@ function LocationCustomerList(props) {
           
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Invoice Address
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {/* {item.addresses[0].address1 || ""} ${item.addresses[0]
                         .address2 || ""} ${item.addresses[0].street || ""} ${item.addresses[0].city || ""}`; */}
 
@@ -234,14 +234,14 @@ function LocationCustomerList(props) {
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Pin Code
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {/* {item.addresses[0].pinCode || ""} */}
                     </div>
 

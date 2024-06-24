@@ -123,10 +123,10 @@ function DealLostCard(props) {
                                            
                                                 <Tooltip>
                                                 <div class=" flex max-sm:w-full  flex-row md:flex-col">
-                                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
+                                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                                     Name
                                                     </div> */}
-                                                    <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                                                    <div class=" text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
                                                     <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
               {item.opportunityName}
             </Link> 
@@ -156,8 +156,8 @@ function DealLostCard(props) {
         
                                         
                                    
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                                            <div class=" text-sm text-cardBody font-poppins">   
+                                            {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
+                                            <div class=" text-sm  font-poppins">   
                                             <Link to ="/investor">
                                 {item.investor}
                                 </Link>
@@ -167,8 +167,8 @@ function DealLostCard(props) {
                                        
                                           
         
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                                            <div class=" text-sm text-cardBody font-poppins">
+                                            {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                                            <div class=" text-sm  font-poppins">
                                            
                     {item.contactName === null ? "None" :
                       <MultiAvatar2
@@ -185,17 +185,17 @@ function DealLostCard(props) {
                                         </div>
                                         <div class="flex justify-between">
                                       
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+                                            {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
         
-                                            <div class=" text-sm justify-center text-cardBody font-poppins">
+                                            <div class=" text-sm justify-center  font-poppins">
                                             {dayjs(item.startDate).format("DD/MM/YYYY")}
                                             </div>
                                        
                                      
                                         
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                            {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
         
-                                            <div class=" text-sm text-cardBody font-poppins text-center">
+                                            <div class=" text-sm  font-poppins text-center">
                                             <CurrencySymbol currencyType={item.currency} />
                     &nbsp;
                     {item.proposalAmount}
@@ -203,9 +203,9 @@ function DealLostCard(props) {
                                             </div>
                                        
                                        
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                            {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
         
-                                            <div class=" text-sm text-cardBody font-poppins text-center">
+                                            <div class=" text-sm  font-poppins text-center">
                                             <Dropdown
                       overlay={
                         <div>
@@ -239,9 +239,9 @@ function DealLostCard(props) {
                                             </div>
                                        
                                        
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
+                                            {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
         
-                                            <div class=" text-sm text-cardBody font-poppins">
+                                            <div class=" text-sm  font-poppins">
                                             
                                             <span>
                                             <MultiAvatar2
@@ -255,7 +255,7 @@ function DealLostCard(props) {
                                         
                                       
                                
-                               {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+                               {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
         
                       <Tooltip title={item.ownerName}>
                   <span>
@@ -500,10 +500,10 @@ function DealLostCard(props) {
                                    
                                         <Tooltip>
                                         <div class=" flex max-sm:w-full  flex-row md:flex-col">
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
+                                            {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                                            <div class=" text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link> 
@@ -533,8 +533,8 @@ function DealLostCard(props) {
 
                                 <div className=" flex font-medium flex-col  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                            
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                                    <div class=" text-sm text-cardBody font-poppins">   
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
+                                    <div class=" text-sm  font-poppins">   
                                     <Link to ="/investor">
                         {item.investor}
                         </Link>
@@ -544,8 +544,8 @@ function DealLostCard(props) {
                                 <div className=" flex font-medium flex-col md:w-[6.4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                   
 
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                                    <div class=" text-sm text-cardBody font-poppins">
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                                    <div class=" text-sm  font-poppins">
                                    
             {item.contactName === null ? "None" :
               <MultiAvatar2
@@ -562,17 +562,17 @@ function DealLostCard(props) {
                                 </div>
                                 <div class="flex">
                                 <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center text-cardBody font-poppins">
+                                    <div class=" text-sm justify-center  font-poppins">
                                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                                     </div>
                                 </div>
                              
                                 <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <CurrencySymbol currencyType={item.currency} />
             &nbsp;
             {item.proposalAmount}
@@ -580,9 +580,9 @@ function DealLostCard(props) {
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <Dropdown
               overlay={
                 <div>
@@ -616,9 +616,9 @@ function DealLostCard(props) {
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins">
+                                    <div class=" text-sm  font-poppins">
                                     
                                     <span>
                                     <MultiAvatar2
@@ -632,7 +632,7 @@ function DealLostCard(props) {
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-[5.1rem] max-sm:flex-row w-full mb-1 max-sm:justify-between ">
                        
-                       {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+                       {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
 
               <Tooltip title={item.ownerName}>
           <span>

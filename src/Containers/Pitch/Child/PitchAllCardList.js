@@ -174,10 +174,10 @@ const PitchAllCardList = (props) => {
                                   <div class="max-sm:w-full" >
                                   <Tooltip>
                                     <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
-                                      {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
+                                      {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">
                                       Name
                                       </div> */}
-                                      <div class=" text-[0.82rem] max-sm:text-[0.82rem] flex text-blue-500 text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
+                                      <div class=" text-[0.82rem] max-sm:text-[0.82rem] flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
                                           
                                           {/* <Link
                                            toUrl={`customer/${item.customerId}`}
@@ -266,9 +266,9 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>  
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Phone # </div> */}
+                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Phone # </div> */}
 
-                     <div class="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     <div class="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.countryDialCode && item.phoneNumber
 ? `${item.countryDialCode} ${item.phoneNumber}`
 : 'No Data'}
@@ -278,16 +278,16 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                  <div className=" flex font-medium  w-[4rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                             
 
-                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                            <div class=" text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Country</div> */}
+                            <div class=" text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <CountryFlag1 countryCode={countryCode} />
                 &nbsp;
                 {countryCode} */}
                               </div>
                         </div>
                         <div className=" flex font-medium   w-[15.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
-                     <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                     <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "No Data"}
 </div>
 
@@ -296,23 +296,23 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 
                  <div className=" flex font-medium   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
-                     <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                     <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.source || "No Data"}
 </div>
 
                  </div>
                  <div className=" flex font-medium   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
-                     <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                     <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "No Data"}
 </div>
 
                  </div>
                  <div className=" flex font-medium  w-[5.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
-                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
+                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
-                              <div class=" text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class=" text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               
                               <span>
                 {item.assignedTo === null ? (
@@ -339,7 +339,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           </div>
                           <div className=" flex font-medium  w-[3.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                  
-                 {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+                 {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Owner</div> */}
 
                  <span>
                  <Tooltip title={item.ownerName}>
@@ -385,10 +385,10 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       ) : null}
                   </div>  
              <div className=" flex font-medium flex-col w-12 max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Qualify</div> */}
+                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Qualify</div> */}
    
                   
-                              <div class=" text-[0.82rem] text-cardBody font-poppins">
+                              <div class=" text-[0.82rem]  font-poppins">
           {/* qual */}
                               </div>
                               <div>

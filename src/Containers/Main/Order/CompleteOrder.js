@@ -144,7 +144,7 @@ function CompleteOrder(props) {
                                     </div>
                                     <div class="flex">
                                         <div className=" flex font-medium flex-col  md:w-48 max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                            <h4 class=" text-xs  font-poppins">
                                                 {item.noOfPhones}
                                             </h4>
                                         </div>
@@ -155,7 +155,7 @@ function CompleteOrder(props) {
                                     <div class="flex">
                                         <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                                            <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+                                            <h4 class=" text-xs  font-semibold  font-poppins">
                                                 {item.noOfownerPhones}
                                             </h4>
                                         </div>
@@ -164,8 +164,8 @@ function CompleteOrder(props) {
                                         </div>
                                         <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                            {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
+                                            <h4 class=" text-xs  font-poppins">
                                                 <Tooltip title="Notes">
                                                     <NoteAltIcon
                                                         style={{ cursor: "pointer", color: "green", fontSize: "1rem" }}
@@ -184,7 +184,7 @@ function CompleteOrder(props) {
 
 
                                         <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                            <h4 class=" text-xs  font-poppins">
                                                 <Tooltip title="Status">
                                                     <EventRepeatIcon
                                                         style={{ cursor: "pointer", fontSize: "1rem", }}
@@ -195,12 +195,12 @@ function CompleteOrder(props) {
                                                     />
                                                 </Tooltip>
                                             </h4>
-                                            {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
+                                            {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
 
 
                                         </div>
                                         <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                            <h4 class=" text-xs  font-poppins">
                                                 <Tooltip title="Collection">
                                                     <PaidIcon
                                                         style={{ cursor: "pointer", fontSize: "1rem", }}
@@ -213,7 +213,7 @@ function CompleteOrder(props) {
                                                 </Tooltip>
 
                                             </h4>
-                                            {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
+                                            {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
 
 
                                         </div>

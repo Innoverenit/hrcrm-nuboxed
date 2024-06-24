@@ -291,7 +291,7 @@ const [rowdata, setrowdata] = useState("");
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                <div class="flex text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
@@ -327,7 +327,7 @@ const [rowdata, setrowdata] = useState("");
                       <div className=" flex font-medium  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {
   
   (item.countryDialCode !== null && item.countryDialCode !== undefined) && 
@@ -350,8 +350,8 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                       <div className=" flex font-medium  items-center max-sm:w-auto  w-[5.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.sector}
                         </div>
 
@@ -361,7 +361,7 @@ const [rowdata, setrowdata] = useState("");
                       <div className=" flex font-medium max-sm:w-auto  items-center  w-[5.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.source}
                         </div>
 
@@ -369,8 +369,8 @@ const [rowdata, setrowdata] = useState("");
                       <div className=" flex font-medium max-sm:w-auto  justify-center w-[7.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 
-                        {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
                           {/* &nbsp;
                           {countryCode} */}
@@ -379,9 +379,9 @@ const [rowdata, setrowdata] = useState("");
 
 
                       <div className=" flex font-medium items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.oppNo}
 
                         </div>
@@ -389,15 +389,15 @@ const [rowdata, setrowdata] = useState("");
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium  max-sm:w-auto w-[5.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         {/* {item.totalProposalValue > 0 && (
-      <div class="text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         {`${item.userCurrency} ${item.totalProposalValue}`}
       </div>
     )} */}
                             {item.totalProposalValue && (
-      <div class="text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         {/* {`${item.userCurrency} ${item.totalProposalValue/10000}K`} */}
         {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 10000)}K`}
       </div>
@@ -406,19 +406,19 @@ const [rowdata, setrowdata] = useState("");
                       {/* <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
                                 
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                    <div class=" text-xs  font-poppins text-center">
                                     {item.weight}
 
                                     </div>
                                 </div> */}
                       <div className=" flex font-medium items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
+                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                           <div>
                             {item.assignedTo === null ? (
-                              <div class="text-xs text-cardBody font-poppins">No Data</div>
+                              <div class="text-xs  font-poppins">No Data</div>
                             ) : (
                               <>
                                 {item.assignedTo === item.ownerName ? (
@@ -456,7 +456,7 @@ const [rowdata, setrowdata] = useState("");
 
                       <div className=" flex font-medium justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
-                        <div class=" text-sm text-cardBody font-poppins"></div>
+                        <div class=" text-sm  font-poppins"></div>
                         <Popconfirm
                           title="Change status to Customer?"
                           onConfirm={() => handleConfirm(item.customerId)}

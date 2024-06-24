@@ -177,7 +177,7 @@
 //                   >
 
 //                     <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
-//                       <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+//                       <div class="text-sm  font-semibold  font-poppins cursor-pointer">
 //                         {editroomRackId === item.roomRackId ? (
 //                           <Input
 //                             class="border-[2px] border-black w-12"
@@ -187,7 +187,7 @@
 //                           />
 
 //                         ) : (
-//                           <div className="font-normal text-sm text-cardBody font-poppins">
+//                           <div className="font-normal text-sm  font-poppins">
 //                             <div> {item.zone}</div>
 //                           </div>
 //                         )}
@@ -196,7 +196,7 @@
 
 //                     <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-//                       <div class=" text-xs text-cardBody font-poppins">
+//                       <div class=" text-xs  font-poppins">
 //                         {editroomRackId === item.roomRackId ? (
 //                           <Input
 //                             class="border-[2px] border-black w-12"
@@ -206,7 +206,7 @@
 //                           />
 
 //                         ) : (
-//                           <div className="font-normal text-sm text-cardBody font-poppins">
+//                           <div className="font-normal text-sm  font-poppins">
 //                             <div> {item.rack}</div>
 //                           </div>
 //                         )}
@@ -214,7 +214,7 @@
 
 //                     </div>
 //                     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-//                       <div class=" text-xs text-cardBody font-poppins">
+//                       <div class=" text-xs  font-poppins">
 //                         {editroomRackId === item.roomRackId ? (
 //                           <Select
 //                             classNames="w-32"
@@ -225,7 +225,7 @@
 //                             <Option value="exit">Exit</Option>
 //                           </Select>
 //                         ) : (
-//                           <div className="font-normal text-sm text-cardBody font-poppins">
+//                           <div className="font-normal text-sm  font-poppins">
 //                             <div> {item.zoneType}</div>
 //                           </div>
 //                         )}
@@ -241,7 +241,7 @@
 //                         />
 
 //                       ) : (
-//                         <div className="font-normal text-sm text-cardBody font-poppins">
+//                         <div className="font-normal text-sm  font-poppins">
 //                           <div> {item.description}</div>
 //                         </div>
 //                       )}
@@ -517,7 +517,7 @@ const RoomAndRackForm = (props) => {
                 <div key={item.roomRackId}>
                   <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
                     <div className="flex font-medium flex-col md:w-[9.1rem] max-sm:w-full">
-                      <div className="text-sm text-cardBody font-semibold font-poppins cursor-pointer">
+                      <div className="text-sm  font-semibold font-poppins cursor-pointer">
                         {editroomRackId === item.roomRackId ? (
                           <Input
                             className="border-[2px] border-black w-12"
@@ -525,7 +525,7 @@ const RoomAndRackForm = (props) => {
                             onChange={(e) => handleUpChange(item.roomRackId, 'zone', e.target.value)}
                           />
                         ) : (
-                          <div className="font-normal text-sm text-cardBody font-poppins">
+                          <div className="font-normal text-sm  font-poppins">
                             <div>{item.zone}</div>
                           </div>
                         )}
@@ -533,7 +533,7 @@ const RoomAndRackForm = (props) => {
                     </div>
 
                     <div className="flex font-medium flex-col md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div className="text-xs text-cardBody font-poppins">
+                      <div className="text-xs  font-poppins">
                         {editroomRackId === item.roomRackId ? (
                           <Input
                             className="border-[2px] border-black w-12"
@@ -541,7 +541,7 @@ const RoomAndRackForm = (props) => {
                             onChange={(e) => handleUpChange(item.roomRackId, 'rack', e.target.value)}
                           />
                         ) : (
-                          <div className="font-normal text-sm text-cardBody font-poppins">
+                          <div className="font-normal text-sm  font-poppins">
                             <div>{item.rack}</div>
                           </div>
                         )}
@@ -549,7 +549,7 @@ const RoomAndRackForm = (props) => {
                     </div>
 
                     <div className="flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div className="text-xs text-cardBody font-poppins">
+                      <div className="text-xs  font-poppins">
                         {editroomRackId === item.roomRackId ? (
                           <Select
                             className="w-32"
@@ -560,7 +560,7 @@ const RoomAndRackForm = (props) => {
                             <Option value="exit">Exit</Option>
                           </Select>
                         ) : (
-                          <div className="font-normal text-sm text-cardBody font-poppins">
+                          <div className="font-normal text-sm  font-poppins">
                             <div>{item.zoneType}</div>
                           </div>
                         )}
@@ -575,7 +575,7 @@ const RoomAndRackForm = (props) => {
                           onChange={(e) => handleUpChange(item.roomRackId, 'description', e.target.value)}
                         />
                       ) : (
-                        <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div className="font-normal text-sm  font-poppins">
                           <div>{item.description}</div>
                         </div>
                       )}

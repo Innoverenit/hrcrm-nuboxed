@@ -50,20 +50,20 @@ const SalesMapTable = (props) => {
                                             </div>
                                             <div className=" flex font-medium   md:w-[16.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                         <div class=" text-xs text-cardBody font-poppins text-center">
+                                         <div class=" text-xs  font-poppins text-center">
                                             <LobToggle/>
                                                </div>
                                                 </div>
                                             <div className=" flex font-medium   md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                  <Input/>
                                                 </div>
                                             </div>
                                            
                                               <div className=" flex font-medium   md:w-[7.41rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                          <div class=" text-xs text-cardBody font-poppins text-center">
+                                          <div class=" text-xs  font-poppins text-center">
                                           <Select
                                               style={{width:"8rem"}}            
                                                             //value={item.zone}

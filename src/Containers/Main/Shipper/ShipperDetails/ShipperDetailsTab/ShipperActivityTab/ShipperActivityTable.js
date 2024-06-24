@@ -69,7 +69,7 @@ class ShipperActivityTable extends Component {
 
                                                 <Tooltip>
                                                     <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                        <h4 class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                        <h4 class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                         {item.activity === "Call" && <PhoneOutlined />}
               {item.activity === "Event" && <ScheduleOutlined />}
               {item.activity === "Task" && <FileDoneOutlined />}
@@ -82,7 +82,7 @@ class ShipperActivityTable extends Component {
 
                                             <div className=" flex font-medium flex-col  md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                     {item.type}
                                                 </div>
                                             </div>
@@ -90,19 +90,19 @@ class ShipperActivityTable extends Component {
 
 
                                             <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                 {item.topic}
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                 {` ${moment(item.startDate).format("lll")}`}
                                                 </div>
                                             </div>
 
                                             <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                 {` ${moment(item.endDate).format("lll")}`}
 
                                                 </div>
@@ -110,7 +110,7 @@ class ShipperActivityTable extends Component {
                                         </div>
                           
                                         <div className=" flex font-medium flex-col  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                            <h4 class=" text-xs  font-poppins">
                                             <Tooltip title="Edit">
               {item.activity === "Event" && (
                <ScheduleOutlined

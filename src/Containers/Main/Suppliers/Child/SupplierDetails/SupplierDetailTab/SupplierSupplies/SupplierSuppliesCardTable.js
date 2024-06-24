@@ -133,7 +133,7 @@ function SupplierSuppliesCardTable(props) {
                         >
                           <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
                             <div className=" flex font-medium  w-[12.1rem] max-xl:w-[9.2rem] items-center  max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
                                 {/* <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem]"
                                   to={`supplier/${item.supplierId}`}
                                   title={`${item.suppliesName}`}
@@ -146,13 +146,13 @@ function SupplierSuppliesCardTable(props) {
                             </div>
                             <div className=" flex font-medium  w-[13.01rem] max-xl:w-[10.01rem] items-center max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
                                 {item.categoryName} {item.subCategoryName}
                               </div>
                             </div>
                             <div className=" flex font-medium  w-[15.9rem] max-xl:w-[8.9rem] items-center max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
                               {item.attributeName} {item.subAttributeName}
                               </div>
 

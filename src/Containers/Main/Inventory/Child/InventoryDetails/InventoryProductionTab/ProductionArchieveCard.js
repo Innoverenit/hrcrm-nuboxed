@@ -86,7 +86,7 @@ function ProductionArchieveCard(props) {
              
              
    }}
-class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
     {item.manufactureId}
 </div>
 
@@ -94,7 +94,7 @@ class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.
 
                                         <div className=" flex font-medium   md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                 {item.productName}
                                             </div>
 
@@ -103,7 +103,7 @@ class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.
 
 
                                         <div className=" flex font-medium  md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                                             {item.categoryName}  {item.subCategoryName}
                                             </div>
@@ -111,19 +111,19 @@ class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.
                                         <div className=" flex font-medium  md:w-[16.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                             {item.attributeName}  {item.subAttributeName}
                                             </div>
                                         </div>
 
                                         {/* <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                            <div class=" text-xs  font-semibold  font-poppins">
                                                 {item.attributeName}
                                             </div>
                                         </div> */}
                                         <div className=" flex font-medium  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                 <Tooltip title="Edit">
                                                     <BorderColorIcon
                                                         className="!text-icon cursor-pointer text-[tomato]"
@@ -138,7 +138,7 @@ class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                 <Tooltip title="Print">
 
                                                     <ReactToPrint

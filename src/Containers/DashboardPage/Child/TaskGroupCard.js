@@ -129,7 +129,7 @@ const BussinessCard = (props) => {
             //   }
             />
             </ButtonGroup>
-            <div class="text-xs text-cardBody font-poppins"> 
+            <div class="text-xs  font-poppins"> 
                         {`${customerName} ${contactName} ${opportunityName} `}</div>
             </div>
       </MainWrapper>

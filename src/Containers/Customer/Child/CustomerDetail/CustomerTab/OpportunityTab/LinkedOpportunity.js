@@ -438,7 +438,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col ">
                                           
-                                            <div class="text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500  font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>                                     
@@ -468,14 +468,14 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                 <div class="flex">
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                  
                     </div>
                   </div>
                   <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <div class=" text-xs text-cardBody font-poppins">
+         <div class=" text-xs  font-poppins">
          {dayjs(item.endDate).format("DD/MM/YYYY")}
            {/* {item.endDate} */}
       
@@ -485,7 +485,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                 <div class="flex">
                   <div className=" flex font-medium justify-center flex-col  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                     <span>
             <CurrencySymbol currencyType={item.currency} />
             &nbsp;&nbsp;{item.proposalAmount}
@@ -495,7 +495,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                   </div>
                   <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <div class=" text-xs text-cardBody font-poppins">
+         <div class=" text-xs  font-poppins">
          <Tooltip title={item.oppStage}>
 {" "}
 <Progress
@@ -516,7 +516,7 @@ width={30}
                 <div class="flex">
                   <div className=" flex font-medium flex-col  md:w-14 max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                     <Tooltip title={item.contactName}>
               <span>
                 <MultiAvatar
@@ -536,7 +536,7 @@ width={30}
               
                 <div class="flex md:items-center ">
                   <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       <Tooltip title={item.description}>
            
           <InfoIcon  // type="edit"

@@ -133,19 +133,19 @@ const RepairTechnicianList = (props) => {
                                         </div>
 
                                         <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.mobileNo}
                                             </div>
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.totalPhone}
                                             </div>
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins underline text-cyan-700 cursor-pointer">
+                                            <div class=" text-xs  font-poppins underline text-cyan-700 cursor-pointer">
                                                 <span
                                                     style={{ color: remaining && item.technicianId === row.technicianId ? "rgb(225 158 14)" : "#0f6ace", }}
                                                     onClick={() => {
@@ -158,13 +158,13 @@ const RepairTechnicianList = (props) => {
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.repairInProgressPhoneCount || 0}
                                             </div>
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins underline text-cyan-700 cursor-pointer">
+                                            <div class=" text-xs  font-poppins underline text-cyan-700 cursor-pointer">
                                                 <span
                                                     style={{ color: complete && item.technicianId === row.technicianId ? "rgb(225 158 14)" : "#0f6ace", }}
                                                     onClick={() => {
@@ -175,12 +175,12 @@ const RepairTechnicianList = (props) => {
                                             </div>
                                         </div>
                                         <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins underline text-cyan-700 cursor-pointer">
+                                            <div class=" text-xs  font-poppins underline text-cyan-700 cursor-pointer">
                                                 {item.rejectedPhone || 0}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins underline text-cyan-700 cursor-pointer">
+                                            <div class=" text-xs  font-poppins underline text-cyan-700 cursor-pointer">
                                                 <Button
                                                     onClick={() => {
                                                         handleReassign();

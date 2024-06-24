@@ -141,8 +141,8 @@ function QaCardList(props) {
     }
     return (
         <>
-            <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div className=' flex sticky  z-auto'>
+                <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div class=" w-64 max-sm:w-24">
         <Input
           placeholder="Search by OrderNo "
@@ -154,7 +154,7 @@ function QaCardList(props) {
         />
       </div>
 
-                    <div className=" flex max-sm:hidden  w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" flex max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className='w-[17.2rem]'></div>
                         <div className=" w-[23.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order ID</div>
                         <div className="w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
@@ -187,9 +187,7 @@ function QaCardList(props) {
                                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div >
-                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col "
-
-                                        >
+                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium w-[8.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     {item.priority === "High" && (
@@ -224,7 +222,7 @@ function QaCardList(props) {
                                                 </div>
                                                 
 <div className=" flex font-medium flex-col w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 ?
                                 <Button
                                   loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingDispatchInspectionButton}
@@ -247,7 +245,7 @@ function QaCardList(props) {
                             </div>
                           </div>
                                                 <div className=" flex font-medium   w-[14rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>
 
@@ -255,20 +253,20 @@ function QaCardList(props) {
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex font-medium   w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.lead}
                                                     </div>
 
                                                 </div>
 
                                                 <div className=" flex font-medium   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInProgressPhoneCount} In Progress
                                                     </div>
 
                                                 </div>
                                                 <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInspectionInd === 0 ?
                                                             <Button
                                                                 className="w-32"

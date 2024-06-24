@@ -198,7 +198,7 @@ function CustomerOpportunityCardList(props) {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
          <Link
           toUrl={`/opportunity/${item.opportunityId}`}
@@ -225,14 +225,14 @@ function CustomerOpportunityCardList(props) {
                 <div class="flex">
                   <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <h4 class=" text-xs text-cardBody font-poppins">
+                    <h4 class=" text-xs  font-poppins">
                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                  
                     </h4>
                   </div>
                   <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
          
-         <h4 class=" text-xs text-cardBody font-poppins">
+         <h4 class=" text-xs  font-poppins">
          {dayjs(item.endDate).format("DD/MM/YYYY")}
            {/* {item.endDate} */}
       
@@ -242,7 +242,7 @@ function CustomerOpportunityCardList(props) {
                 <div class="flex">
                   <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <h4 class=" text-xs text-cardBody font-poppins">
+                    <h4 class=" text-xs  font-poppins">
                     <span>
             <CurrencySymbol currencyType={item.currency} />
             &nbsp;&nbsp;{item.proposalAmount}
@@ -252,7 +252,7 @@ function CustomerOpportunityCardList(props) {
                   </div>
                   <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
          
-         <h4 class=" text-xs text-cardBody font-poppins">
+         <h4 class=" text-xs  font-poppins">
          <Tooltip title={item.oppStage}>
 {" "}
 <Progress
@@ -273,7 +273,7 @@ width={30}
                 <div class="flex">
                   <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <h4 class=" text-xs text-cardBody font-poppins">
+                    <h4 class=" text-xs  font-poppins">
                     <Tooltip title={item.contactName}>
               <span>
                 <MultiAvatar
@@ -293,7 +293,7 @@ width={30}
               
                 <div class="flex md:items-center ">
                   <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       <Tooltip title={item.description}>
            
           <InfoIcon 

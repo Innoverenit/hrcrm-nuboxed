@@ -205,7 +205,7 @@ function ContactInvestTeamsCardList(props) {
                                   <Tooltip>
                                     <div class=" flex  max-sm:w-full justify-between flex-row md:flex-col">
                                       
-                                      <div class="text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                      <div class="text-[0.82rem] flex text-blue-500  font-poppins font-semibold  cursor-pointer">
                                       <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
@@ -231,42 +231,42 @@ function ContactInvestTeamsCardList(props) {
                
                           </div>
                           <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[14.01rem]">
-                              {/* <div class=" text-[0.875rem] text-cardBody font-[0.875rem] font-poppins max-sm:hidden"> Company </div> */}
-                              <div class=" text-[0.82rem] text-cardBody font-poppins">   
+                              {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Company </div> */}
+                              <div class=" text-[0.82rem]  font-poppins">   
                               {item.tagWithCompany}
                               </div>
                           </div>
                           <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.5rem]">
-                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Designation</div> */}
-                              <div class="text-[0.82rem] text-cardBody font-poppins">
+                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Designation</div> */}
+                              <div class="text-[0.82rem]  font-poppins">
                                    {item.designation}
                               </div>
                           </div>
                           <div class="flex">
                           <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[12.2rem]">
-                            {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Department</div> */}
-                            <div class="text-[0.82rem] text-cardBody font-poppins">
+                            {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Department</div> */}
+                            <div class="text-[0.82rem]  font-poppins">
                                  {item.department}
                             </div>
                         </div>
                           <div className=" flex font-medium  md:w-[5.22rem] max-sm:flex-row w-full  ">
-                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"># Deals</div> */}
 
-                              <div class=" text-[0.82rem] text-cardBody font-poppins">
+                              <div class=" text-[0.82rem]  font-poppins">
                                {item.oppNo}
                               </div>
                           </div>
                           <div className=" flex font-medium  md:w-[5.05rem] max-sm:flex-row w-full  ">
-                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Deal Value</div> */}
+                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Deal Value</div> */}
 
-                              <div class=" text-[0.82rem] text-cardBody font-poppins">
+                              <div class=" text-[0.82rem]  font-poppins">
                                {item.totalProposalValue}
                               </div>
                           </div>
                           <div className="flex font-medium max-sm:justify-between  md:w-[6.81rem] max-sm:flex-row w-full ">
-                              {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Source</div> */}
+                              {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden"> Source</div> */}
 
-                              <div class="text-[0.82rem] text-cardBody font-poppins">
+                              <div class="text-[0.82rem]  font-poppins">
 
                               </div>
                           </div>
@@ -274,7 +274,7 @@ function ContactInvestTeamsCardList(props) {
                           <div class="flex">
                           <div className="flex font-medium   md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">
                  
-                 {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+                 {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Owner</div> */}
 
              
         <Tooltip title={item.ownerName}>

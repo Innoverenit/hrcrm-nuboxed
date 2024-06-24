@@ -89,7 +89,7 @@ function AllShipperList(props) {
                         <div className=" flex font-medium flex-col w-[11.6rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                            <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                            <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                               <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                 to={`shipper/${item.shipperId}`} title={item.shipperName}>
@@ -100,7 +100,7 @@ function AllShipperList(props) {
                           </div>
                         </div>
                         <div className=" flex font-medium  w-[6.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.dialCode} {item.phoneNo}
                           </div>
 
@@ -109,7 +109,7 @@ function AllShipperList(props) {
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex font-medium  w-[13.3rem] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.emailId}
                           </div>
 
@@ -117,7 +117,7 @@ function AllShipperList(props) {
 
                         <div className=" flex font-medium  w-[9.12rem] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.shipByName}
                           </div>
 
@@ -126,7 +126,7 @@ function AllShipperList(props) {
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex font-medium  w-[12.31rem] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
          
@@ -135,7 +135,7 @@ function AllShipperList(props) {
 
                         </div>
                         <div className=" flex font-medium  w-[12.21rem] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {(item.address &&
                               item.address.length &&
                               item.address[0].city) ||
@@ -147,7 +147,7 @@ function AllShipperList(props) {
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex font-medium  w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {(item.address &&
                               item.address.length &&
                               item.address[0].postalCode) ||

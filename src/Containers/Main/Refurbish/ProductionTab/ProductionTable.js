@@ -136,7 +136,7 @@ const ProductionTable = (props) => {
                                     <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1">
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                <h4 class=" text-xs text-cardBody font-poppins">
+                                                <h4 class=" text-xs  font-poppins">
                                                     {item.name}
                                                 </h4>
                                             </div>
@@ -144,29 +144,29 @@ const ProductionTable = (props) => {
                                         </div>
 
                                         <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                            <h4 class=" text-xs  font-poppins">
 
                                                 {item.categoryName}
                                             </h4>
                                         </div>
                                         <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+                                            <h4 class=" text-xs  font-semibold  font-poppins">
                                                 {item.subCategoryName}
                                             </h4>
                                         </div>
 
                                         <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+                                            <h4 class=" text-xs  font-semibold  font-poppins">
                                                 {item.attributeName}
                                             </h4>
                                         </div>
                                         <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+                                            <h4 class=" text-xs  font-semibold  font-poppins">
                                                 {item.subAttributeName}
                                             </h4>
                                         </div>
                                         <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+                                            <h4 class=" text-xs  font-semibold  font-poppins">
                                                 {item.unit}
                                             </h4>
                                         </div>
@@ -258,7 +258,7 @@ const ProductionTable = (props) => {
                         </div>
             </div>
 <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<h4 class=" text-xs text-cardBody font-poppins">
+<h4 class=" text-xs  font-poppins">
 <Tooltip title="Edit">
                                         <EditOutlined
                                     style={{ cursor: "pointer", fontSize: "12px" }}

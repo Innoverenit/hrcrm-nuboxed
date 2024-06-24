@@ -52,7 +52,7 @@ const handleLoadMore = () => {
                   <div className=" flex font-medium  md:w-[15.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
                       
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
              
 
                         {item.locationName}
@@ -63,7 +63,7 @@ const handleLoadMore = () => {
                     <div className=" flex font-medium  md:w-[7.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
                       
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                       <CountryFlag1 countryCode={item.countryAlpha2Code} />
   &nbsp;
                         {item.countryAlpha2Code}
@@ -72,7 +72,7 @@ const handleLoadMore = () => {
                     <div className=" flex font-medium flex-col md:w-[19rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                        
                       <span>
   {item.address && item.address.length > 0 ? (
@@ -84,12 +84,12 @@ const handleLoadMore = () => {
                     </div>
                     <div className=" font-medium flex-row md:w-[4.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                       
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                        {item.regions}
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateLocation locationDetailsId={item.locationDetailsId} />
                             </div>
                           
@@ -99,7 +99,7 @@ const handleLoadMore = () => {
                     {/* <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         <RefurbishToggle
                         locationDetailsId={item.locationDetailsId}
                         productionInd={item.productionInd}

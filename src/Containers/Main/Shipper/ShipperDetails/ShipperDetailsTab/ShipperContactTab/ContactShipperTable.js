@@ -49,7 +49,7 @@ class ShipperContactTable extends Component {
 
                       <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                        <h4 class=" text-xs text-cardBody font-poppins">
+                        <h4 class=" text-xs  font-poppins">
                           {`${item.salutation || ""} ${item.firstName || ""} ${item.middleName || ""
                             } ${item.lastName || ""}`}
                         </h4>
@@ -60,7 +60,7 @@ class ShipperContactTable extends Component {
                       <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
 
-                        <h4 class=" text-xs text-cardBody font-poppins">
+                        <h4 class=" text-xs  font-poppins">
                           {item.emailId}
                         </h4>
 
@@ -70,7 +70,7 @@ class ShipperContactTable extends Component {
 
                     <div className=" flex font-medium flex-col md:w-[22rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <div class=" text-xs text-cardBody font-poppins text-center">
+                      <div class=" text-xs  font-poppins text-center">
                         {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
 
                       </div>
@@ -78,7 +78,7 @@ class ShipperContactTable extends Component {
                     <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-xs text-cardBody font-poppins text-center">
+                      <div class=" text-xs  font-poppins text-center">
                         {item.designationName}
 
                       </div>
@@ -87,7 +87,7 @@ class ShipperContactTable extends Component {
                     <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-xs text-cardBody font-poppins text-center">
+                      <div class=" text-xs  font-poppins text-center">
                         {item.departmentName}
 
                       </div>
@@ -99,7 +99,7 @@ class ShipperContactTable extends Component {
                         <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
 
-                          <h4 class=" text-xs text-cardBody font-poppins">
+                          <h4 class=" text-xs  font-poppins">
                             <Tooltip title="Edit">
                               <BorderColorIcon
                                  className=" !text-xl cursor-pointer text-[orange]"

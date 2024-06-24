@@ -273,7 +273,7 @@ function ALoctionTable(props) {
                                                     </div>
             
                                                     <div className=" flex font-medium   md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                        <div class=" text-xs  font-poppins">
                                                         {item.shiftName}
                                                         </div>
             

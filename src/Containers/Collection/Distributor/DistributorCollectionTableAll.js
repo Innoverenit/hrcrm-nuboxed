@@ -90,10 +90,10 @@ class AllDistributorList extends Component {
 
                           <Tooltip>
                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                              {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
+                              {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                              <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                              <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                 <Link
                                   toUrl={`distributor/${item.distributorId}`}
@@ -118,8 +118,8 @@ class AllDistributorList extends Component {
 
                         <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
-                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                          <div class=" text-xs text-cardBody font-poppins">
+                          {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                          <div class=" text-xs  font-poppins">
                             {item.phoneNo}
                           </div>
 
@@ -128,17 +128,17 @@ class AllDistributorList extends Component {
                       </div>
                       <div class="flex">
                         <div className=" flex font-medium flex-col md:w-full max-sm:flex-row w-full max-sm:justify-between ">
-                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"># Opportunity</div> */}
+                          {/* <div class=" text-sm  font-poppins max-sm:hidden"># Opportunity</div> */}
 
-                          <div class=" text-xs text-cardBody font-poppins text-center">
+                          <div class=" text-xs  font-poppins text-center">
                             {item.url}
 
                           </div>
                         </div>
                         <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
-                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                          {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                          <div class=" text-xs text-cardBody font-poppins text-center">
+                          <div class=" text-xs  font-poppins text-center">
                             {/* { `${item.addresses[0].address1 || ""} ${item.addresses[0]
                                       .address2 || ""} ${item.addresses[0].street || ""} 
                                           ${item.addresses[0].city || ""},
@@ -148,9 +148,9 @@ class AllDistributorList extends Component {
                         </div>
                       </div>
                       <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Weighted Value</div> */}
+                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Weighted Value</div> */}
 
-                        <div class=" text-xs text-cardBody font-poppins text-center">
+                        <div class=" text-xs  font-poppins text-center">
                           {/* {`${(item.addresses &&
                                     item.addresses.length &&
                                     item.addresses[0].city) ||
@@ -164,8 +164,8 @@ class AllDistributorList extends Component {
                         <div class="flex">
                           <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
-                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                            <div class=" text-xs text-cardBody font-poppins">
+                            {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                            <div class=" text-xs  font-poppins">
                               <span>
                                 <CurrencySymbol currencyType={"INR"} />
                                 {item.totalPayableAmount.toFixed(2)}
@@ -175,8 +175,8 @@ class AllDistributorList extends Component {
                           </div>
                           <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
-                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                            <div class=" text-xs text-cardBody font-poppins">
+                            {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                            <div class=" text-xs  font-poppins">
                               <span>
                                 <CurrencySymbol currencyType={"INR"} />
                                 {item.totalPayablePrev.toFixed(2)}

@@ -28,14 +28,14 @@ const TagInListTable = (props) => {
                                 <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 ">
                                     <div class="flex">
                                         <div className=" flex font-medium flex-col md:w-[20.1rem] max-sm:w-full  ">
-                                            <h4 class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                                            <h4 class="text-sm  font-semibold  font-poppins cursor-pointer">
                                                 {item.suppliesName}
                                             </h4>
                                         </div>
 
                                         <div className=" flex font-medium flex-col  md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                            <h4 class=" text-xs  font-poppins">
                                                 {item.cartNo}
                                             </h4>
                                         </div>

@@ -151,13 +151,13 @@ class InvestorLinkedDocuments extends Component {
                                       </div>
 
                                       <div className=" flex font-medium   md:w-[11.21rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
-                                          <div class=" text-xs text-cardBody font-poppins">
+                                          <div class=" text-xs  font-poppins">
                                              {item.documentTitle}
                                           </div>
 
                                       </div>
                                       <div className=" flex font-medium  md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
-                                          <div class=" text-xs text-cardBody font-poppins">
+                                          <div class=" text-xs  font-poppins">
                                               {item.documentDescription}
                                           </div>
                                       </div>
@@ -165,7 +165,7 @@ class InvestorLinkedDocuments extends Component {
                                   <div className=" flex font-medium  md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                       <Tooltip title={item.uploadedBy}>
               <SubTitle>
                 <MultiAvatar
@@ -179,7 +179,7 @@ class InvestorLinkedDocuments extends Component {
                                       </div>
                                   </div>
                                   <div className=" flex font-medium  md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                       <a
               href={`${base_url}/document/${item.documentId}`}
             // target="_blank"
@@ -194,7 +194,7 @@ class InvestorLinkedDocuments extends Component {
                                   </div>
                                  
                                   <div className=" flex font-medium  md:w-[5.23rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs text-cardBody font-poppins text-center">
+                                      <div class=" text-xs  font-poppins text-center">
                                       <StyledPopconfirm
               title="Do you want to delete?"
             //   onConfirm={() => deleteDocument(item.documentId)}

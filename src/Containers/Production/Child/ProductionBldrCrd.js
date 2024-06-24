@@ -95,7 +95,7 @@ if(props.fetchingBuilderByProductId){
                     <div className="w-[4%]"></div>
                     <div className="max-sm:w-full md:flex items-center">
                       <div className="flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-                        <div className="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                        <div className="text-sm  font-semibold  font-poppins cursor-pointer">
                           {item.suppliesName}
                         </div>
                       </div>
@@ -103,17 +103,17 @@ if(props.fetchingBuilderByProductId){
                   </div>
                 </div>
                 <div className="flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  <div className="text-xs text-cardBody font-poppins">
+                  <div className="text-xs  font-poppins">
                     {item.categoryName}
                   </div>
                 </div>
                 <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  <div className="text-xs text-cardBody font-semibold  font-poppins">
+                  <div className="text-xs  font-semibold  font-poppins">
                     {item.subCategoryName}
                   </div>
                 </div>
                 <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  <div className="flex text-xs text-cardBody font-semibold  font-poppins">
+                  <div className="flex text-xs  font-semibold  font-poppins">
                     {item.quantity}
                     &nbsp;&nbsp;
                     {editableRowIndex === index ? (

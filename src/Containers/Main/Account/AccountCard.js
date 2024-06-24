@@ -64,14 +64,14 @@ function AccountTable(props) {
                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Name
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       <AccountDetailsView
                         distributorId={item.distributorId}
                         name={item.name}
@@ -81,28 +81,28 @@ function AccountTable(props) {
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Work
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {item.dialCode} {item.phoneNo}
                     </div>
 
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Website
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {item.url}
                     </div>
 
@@ -110,56 +110,56 @@ function AccountTable(props) {
 
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Type
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {item.clientName}
                     </div>
 
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Payment
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {item.payment}
                     </div>
 
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       VAT
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {item.countryName}
                     </div>
 
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Invoice Address
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {/* {item.addresses[0].address1 || ""} ${item.addresses[0]
                         .address2 || ""} ${item.addresses[0].street || ""} ${item.addresses[0].city || ""}`; */}
 
@@ -168,14 +168,14 @@ function AccountTable(props) {
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Pin Code
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                    <div class=" font-normal text-[0.82rem]  font-poppins">
                       {/* {item.addresses[0].pinCode || ""} */}
                     </div>
 

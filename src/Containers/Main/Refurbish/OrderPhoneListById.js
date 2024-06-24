@@ -13,17 +13,15 @@ import {
 import { AudioOutlined } from '@ant-design/icons';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip, Progress,Input } from "antd";
-import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
-import { SubTitle } from "../../../Components/UI/Elements";
 import ButtonGroup from "antd/lib/button/button-group";
 import dayjs from "dayjs";
 import QRCode from "qrcode.react";
-import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import { BundleLoader } from "../../../Components/Placeholder";
+import QrCodeIcon from '@mui/icons-material/QrCode';
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
 const DistributorPhoneTaskTable = lazy(() => import('./DistributorPhoneTaskTable'));
@@ -232,14 +230,10 @@ function OrderPhoneListById(props) {
     return (
         <>
             {/* {props.fetchingOrderIdByUserId ? <BundleLoader /> : */}
-             <div className=' flex justify-end sticky flex-col z-auto'>
-
-
-             
-
-                <div class="rounded-lg m-5  max-sm:m-1 p-2 w-full shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+             <div className=' flex  sticky z-auto'>
+                <div class="rounded m-1  max-sm:m-1 p-1 w-full shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div class="flex items-center">
-                <div class=" w-72 ml-4 max-sm:w-28">
+                <div class=" w-72 ml-1 max-sm:w-28">
           <Input
             placeholder="Search by Imei"
             width={"100%"}
@@ -250,7 +244,7 @@ function OrderPhoneListById(props) {
         
           />
         </div>
-        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+        <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title={<FormattedMessage
                                                         id="app.scan"
                                                         defaultMessage="scan"
@@ -269,7 +263,7 @@ function OrderPhoneListById(props) {
 
                                                 </div>
                                                 </div>
-                    <div className=" flex max-sm:hidden  w-[98.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky z-10">
                         <div className=" w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.oem"
                             defaultMessage="OEM"
@@ -316,7 +310,7 @@ function OrderPhoneListById(props) {
                              next={handleLoadMore}
                              hasMore={hasMore}
                             loader={props.fetchingOrderIdByUserId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                            height={"65vh"}
+                            height={"72vh"}
                             endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                         >
                             {props.orderPhoneList.map((item, index) => {
@@ -327,32 +321,32 @@ function OrderPhoneListById(props) {
                                 const endtimme = time.format('YYYY-MM-DDTHH:mm:ss.SSSZ'); // Using ISO 8601 format
                                 return (
                                     <div>
-                                        <div className="flex rounded-xl justify-between  mt-4 bg-white h-12 items-center p-3 max-sm:h-[8rem] max-sm:flex-col ">
+                                        <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 max-sm:h-[8rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex font-medium  w-[5.21rem] max-xl:w-[4.21rem] max-lg:w-[3.1rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                                     {item.company}
                                                 </div>
 
                                                 <div className=" flex font-medium   w-[6.35rem] max-xl:w-[2.5rem] max-lg:w-[2.5rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.model}
                                                     </div>
 
                                                 </div>
                                                 <div className=" flex font-medium  w-[8.82rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.imei}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  w-[4.13rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 {/* <div className=" flex font-medium w-[2rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <SubTitle>
                                                             {item.qrCodeId ? (
                                                                 <QRCodeModal
@@ -371,7 +365,7 @@ function OrderPhoneListById(props) {
                                                     </div>
                                                 </div> */}
                                                 <div className=" flex font-medium  w-[3.32rem] max-xl:w-[3.32rem] max-lg:w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" >
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" >
                                                         <div>
                                                         {props.updatingQCStatus && <span>Loading...</span>}
                                                             {props.rowData.qcInspectionInd === 1 ?
@@ -409,7 +403,7 @@ function OrderPhoneListById(props) {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  w-[4.2rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.totalhours}
 
                                                     </div>
@@ -417,27 +411,27 @@ function OrderPhoneListById(props) {
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex font-medium  w-[4.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcStartTime === null ? "" : dayjs(item.qcStartTime).format('HH:mm:ss')}
 
                                                     </div>
                                                 </div>
 
                                                 <div className=" flex font-medium  w-[4.81rem] max-xl:w-[5.11rem] max-lg:w-[3.51rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <>{item.qcEndTime === null ? "" : dayjs(item.qcEndTime).format('HH:mm:ss')}</>
 
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium w-[4rem] max-xl:w-[6rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.estimateQcTimeHours || "0"}H:{item.estimateQcTimeMinutes || "0"}M:{item.estimateQcTimeSeconds || "0"}S
 
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  md:w-[7.08rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                     {item.qcStatus === "In Progress" &&
                                                         <>
                                                             {!item.cannotRepairInd ?
@@ -474,13 +468,13 @@ function OrderPhoneListById(props) {
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium   md:w-[1.64rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins">
+                                                <div class=" text-xs  font-poppins">
                                                     {item.cannotRepairInd && "Can't Repair"}
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex font-medium w-[4.51rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title="Spare">
                                                             <Button
                                                                 type="primary"
@@ -512,7 +506,7 @@ function OrderPhoneListById(props) {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  w-[3.51rem] max-xl:w-[5.01rem] max-lg:w-[4.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {/* <Tooltip title="Task">
                                                         <Button
                                                             type="primary"
@@ -542,9 +536,9 @@ function OrderPhoneListById(props) {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title="Notes">
-                                                        <NoteAltIcon className="!text-xl mr-1 cursor-pointer text-[green]" 
+                                                        <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
 
                                                               
                                                                 onClick={() => {
@@ -558,7 +552,7 @@ function OrderPhoneListById(props) {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={<FormattedMessage
                                                             id="app.Print"
                                                             defaultMessage="Print"
@@ -568,7 +562,7 @@ function OrderPhoneListById(props) {
                                                                             className="!text-base cursor-pointer"
                                                                         /> */}
                                                             <ReactToPrint
-                                                                trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon/></Button>}
                                                                 content={() => componentRefs.current[index]}
                                                             />
                                                         </Tooltip>

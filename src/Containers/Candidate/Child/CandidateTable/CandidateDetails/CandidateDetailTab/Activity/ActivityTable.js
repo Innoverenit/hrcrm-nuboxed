@@ -146,11 +146,11 @@ class LinkedCandidateActivity extends Component {
                       <div class=" flex rounded-xl justify-between bg-white mt-[0.5rem]  h-[2.75rem] items-center p-3">
                         <div class="flex">
                           <div className=" flex font-medium flex-row md:w-[20.12rem] max-sm:flex-row w-full max-sm:justify-between ">
-                            {/* <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Name
                             </div> */}
        
-                            <div class=" font-normal text-[0.82rem]text-cardBody font-poppins md:w-[10.1rem]">
+                            <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
                             {item.activity === "Call" && <PhoneOutlined type="phone" />}
             {item.activity === "Event" && <ScheduleOutlined type="schedule" />}
             {item.activity === "Task" && <FileDoneOutlined type="file-done" />}
@@ -158,11 +158,11 @@ class LinkedCandidateActivity extends Component {
                          
        
                           <div className=" flex font-medium flex-col md:w-[2.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
-                            {/* <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Country
                             </div> */}
        
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                            <div class=" font-normal text-[0.82rem]  font-poppins">
        {item.type}
                             </div>
                           </div>
@@ -170,37 +170,37 @@ class LinkedCandidateActivity extends Component {
                         </div>
                       
                           <div className=" flex font-medium flex-row md:w-[9.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-                            {/* <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Refurbish
                             </div> */}
        
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                            <div class=" font-normal text-[0.82rem]  font-poppins">
                           {item.topic}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-row md:w-[9.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-                            {/* <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Inventory
                             </div> */}
        
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                            <div class=" font-normal text-[0.82rem]  font-poppins">
                             <span>{` ${dayjs(item.startDate).format("DD/MM/YYYY")}`}</span>
                             </div>
                           </div>
                           <div className=" flex font-medium flex-row md:w-[11.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-                            {/* <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Inventory
                             </div> */}
        
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                            <div class=" font-normal text-[0.82rem]  font-poppins">
                             <span>{` ${dayjs(item.endDate).format("DD/MM/YYYY")}`}</span>
                             </div>
                           </div>
                           <div className=" flex font-medium flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
-                            {/* <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Billing
                             </div> */}
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                            <div class=" font-normal text-[0.82rem]  font-poppins">
                             <span>
             {item.completionInd === true && (
               <CheckCircleOutlined
@@ -215,10 +215,10 @@ class LinkedCandidateActivity extends Component {
                             </div>
                           </div>
                           <div className=" flex font-medium flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
-                            {/* <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Billing
                             </div> */}
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                            <div class=" font-normal text-[0.82rem]  font-poppins">
                             <span>
             
             {item.status} 
@@ -226,10 +226,10 @@ class LinkedCandidateActivity extends Component {
                             </div>
                           </div>
                           <div className=" flex font-medium flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
-                            {/* <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Billing
                             </div> */}
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                            <div class=" font-normal text-[0.82rem]  font-poppins">
                             <span>
             
             {item.priority} 

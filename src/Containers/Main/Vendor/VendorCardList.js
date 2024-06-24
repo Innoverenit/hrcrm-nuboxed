@@ -106,7 +106,7 @@ function VendorCardList(props) {
                           <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="font-medium  flex items-center w-[13.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
-                              <div class=" font-semibold text-[0.85rem] text-cardBody font-poppins">
+                              <div class=" font-semibold text-[0.85rem]  font-poppins">
                                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                   to={`supplier/${item.supplierId}`}
                                   title={`${item.shipperName}`}
@@ -127,7 +127,7 @@ function VendorCardList(props) {
 
 
 
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {item.dialCode} {item.phoneNo}
                               </div>
 
@@ -136,7 +136,7 @@ function VendorCardList(props) {
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className=" flex font-medium flex-col w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
 
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {item.emailId}
                               </div>
 
@@ -144,7 +144,7 @@ function VendorCardList(props) {
 
 
                             <div className=" flex font-medium flex-col w-[16.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.04rem] max-lg:w-[10.03rem] ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
           ${(item.address && item.address.length && item.address[0].street) || ""}`}
@@ -155,7 +155,7 @@ function VendorCardList(props) {
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className=" flex font-medium flex-col w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
 
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].city) ||
@@ -164,7 +164,7 @@ function VendorCardList(props) {
 
                             </div>
                             <div className=" flex font-medium flex-col w-[7.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[4.06rem] max-lg:w-[5.61rem] ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].postalCode) ||

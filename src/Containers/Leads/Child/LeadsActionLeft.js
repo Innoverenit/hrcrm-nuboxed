@@ -152,7 +152,7 @@ const LeadsActionLeft = (props) => {
             }}
           >
             <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
-              <TocIcon className="text-white" /></Avatar>
+              <TocIcon className="text-white !text-icon" /></Avatar>
 
           </span>
         </Badge>

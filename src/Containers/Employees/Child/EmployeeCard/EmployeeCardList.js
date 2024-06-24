@@ -98,12 +98,12 @@ function handleSetCurrentCandidateId(candidateId) {
                     <div class="flex">
                     <div className=" flex font-medium flex-col md:w-44 max-sm:flex-row justify-between w-full">
 
-                    <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                    <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
          
                     Name
          
             </div> 
-            <div class=" font-normal text-[0.82rem]text-cardBody font-semibold  font-poppins">
+            <div class=" font-normal text-[0.82rem] font-semibold  font-poppins">
             {/* <Link to={`/provider/${item.serviceId}`} style={{cursor:"pointer"}}>
             {item.name}
             </Link> */}
@@ -118,11 +118,11 @@ function handleSetCurrentCandidateId(candidateId) {
                   
                     <div className=" flex font-medium flex-col  md:w-40 max-sm:flex-row justify-between w-full mt-1">
 
-                      <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                      <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                       Department
                       </div>
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                         {item.department}
                       </div>
                       {/* </Tooltip>   */}
@@ -130,11 +130,11 @@ function handleSetCurrentCandidateId(candidateId) {
                     <div className=" flex font-medium flex-col md:w-40 max-sm:flex-row justify-between w-full mt-1">
              
 
-                        <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                        <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                         Role
                         </div>
 
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                        <div class=" font-normal text-[0.82rem]  font-poppins">
                           {item.role}
                         </div>
                      
@@ -144,11 +144,11 @@ function handleSetCurrentCandidateId(candidateId) {
                     <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row justify-between w-full mt-1">
                     
 
-                        <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                        <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                         Mobile #
                         </div>
 
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                        <div class=" font-normal text-[0.82rem]  font-poppins">
                           {item.mobileNo}
                         </div>
                    
@@ -156,11 +156,11 @@ function handleSetCurrentCandidateId(candidateId) {
 
                     <div className=" flex font-medium flex-col md:w-44 max-sm:flex-row justify-between w-full mt-1">
 
-                      <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                      <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                       Email #
                       </div>
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem]  font-poppins">
                       {item.emailId}
                       </div>
                     
@@ -171,7 +171,7 @@ function handleSetCurrentCandidateId(candidateId) {
                 
                     <div className=" flex font-medium flex-col md:w-40 max-sm:flex-row justify-between w-full mt-1">
                   
-                      <div class="text-[0.82rem]  text-cardBody font-semibold font-poppins max-sm:hidden">
+                      <div class="text-[0.82rem]   font-semibold font-poppins max-sm:hidden">
                      
                       Type
                       </div>
@@ -189,7 +189,7 @@ function handleSetCurrentCandidateId(candidateId) {
                 
                 <div className=" flex font-medium flex-col md:w-48 max-sm:flex-row justify-between w-full  mt-1">
               
-                  <div class=" text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                  <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                  
                   Suspend
                   </div>
@@ -233,7 +233,7 @@ function handleSetCurrentCandidateId(candidateId) {
           
      
      </div>
-     <div class=" font-normal text-xs text-cardBody font-poppins ">
+     <div class=" font-normal text-xs  font-poppins ">
           <span
               style={{ cursor: "pointer" }}
               onClick={() => {

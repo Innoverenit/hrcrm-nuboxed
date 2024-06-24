@@ -181,8 +181,8 @@ const UsersCellCard = (props) => {
                 <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
 
                   <div className=" flex font-medium  md:w-[12.1rem] max-sm:w-full  ">
-                    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.cellChamber}</div>
                       </div>
                     </div>
@@ -190,9 +190,9 @@ const UsersCellCard = (props) => {
 
                   <div className=" flex font-medium   md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                     
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.departmentName}</div>
                       </div>
                 
@@ -200,9 +200,9 @@ const UsersCellCard = (props) => {
 
                   </div>
                   <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                    
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.userName}</div>
                       </div>
                     </div>
@@ -210,9 +210,9 @@ const UsersCellCard = (props) => {
 
 
                   <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                    
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                       <StyledPopconfirm
                             title="Do you want to delete?"
                             onConfirm={() => handleDelete(item)}

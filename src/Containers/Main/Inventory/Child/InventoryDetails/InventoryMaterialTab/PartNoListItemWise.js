@@ -41,13 +41,13 @@ const PartNoListItemWise = (props) => {
                                 <div>
                                     <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
                                         <div className=" flex font-medium flex-col md:w-[36.1rem] max-sm:w-full  ">
-                                            <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
+                                            <div class="flex justify-between text-sm  font-semibold  font-poppins ">
                                                 {item.supplierSuppliesUniqueNumberId}
                                             </div>
                                         </div>
                                         {/* <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[15.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
+                                                <div class="flex justify-between text-sm  font-semibold  font-poppins ">
                                                     {item.suppliesFullName}
                                                 </div>
                                             </div>
@@ -55,7 +55,7 @@ const PartNoListItemWise = (props) => {
 
 
                                         <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
-                                            <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                            <div class=" font-normal text-[0.85rem]  font-poppins">
                                                 {item.partNumber}
                                             </div>
                                         </div>

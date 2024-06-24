@@ -62,44 +62,44 @@ function SubOrderDetailsList(props) {
                                         <div className="flex rounded-xl  mt-4 bg-white h-10 items-center p-3 " >
                                             <div class="flex">
                                                 <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
                                                         {item.company}
                                                     </div>
                                                 </div>
 
                                                 <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
                                                         {item.model}
                                                     </div>
 
                                                 </div>
                                                 <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
                                                         {item.imei}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
                                                         {item.os}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
                                                         {item.gb}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
                                                         {item.color}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
                                                         {item.condition}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div class=" text-xs  font-poppins">
                                                         <SubTitle>
                                                             {item.qrCodeId ? (
                                                                 <QRCodeModal

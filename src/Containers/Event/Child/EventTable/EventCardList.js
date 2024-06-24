@@ -140,10 +140,10 @@ function EventCardList (props) {
           <div class="max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
-                                            {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
+                                            {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-[0.82rem] text-cardBody font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">                                       
+                                            <div class="text-[0.82rem]  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">                                       
                                             {item.eventType}
        
                                             </div>
@@ -154,22 +154,22 @@ function EventCardList (props) {
                                 </div>
 
                                 <div className=" flex font-medium flex-col  w-[12.26rem] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
-                                    {/* <div class=" text-[0.875rem] text-cardBody font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
-                                    <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">   
+                                    {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
+                                    <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">   
                                     {item.eventSubject}
                                     </div>
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex font-medium flex-col w-[8.9rem] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
-                                    {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Start</div> */}
-                                    <div class="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
+                                    {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
+                                    <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col w-[5.32rem] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
-                                    {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">End</div> */}
-                                    <div class="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
+                                    {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
+                                    <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
@@ -179,9 +179,9 @@ function EventCardList (props) {
                                    
                                 </div>
                                 <div className=" flex font-medium flex-col w-[7.31rem] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
-                                    {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Include</div> */}
+                                    {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
-                                    <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
+                                    <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
                                     <Avatar.Group
                    maxCount={7}
                   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -209,9 +209,9 @@ function EventCardList (props) {
                                     </div>
                                 </div>
                                 <div className="flex font-medium flex-col w-[7.69rem] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
-                                    {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
+                                    {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
-                                    <div class="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
+                                    <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
                                     {/* <Tooltip title={item.assignedToName}> */}
               <SubTitle>
               <span>
@@ -238,7 +238,7 @@ function EventCardList (props) {
                                 </div>
                                 <div className="flex font-medium flex-col w-[6.12rem] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">
                        
-                       {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+                       {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Owner</div> */}
 
                    <div class="max-sm:flex justify-end">
               {/* <Tooltip title={item.woner}> */}

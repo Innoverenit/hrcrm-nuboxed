@@ -85,7 +85,7 @@ class BankTable extends Component {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
       {item.accountHolderName}
      
@@ -102,22 +102,22 @@ class BankTable extends Component {
                               
                                 <div className=" flex font-medium flex-col md:w-[9.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                  <div class="text-sm text-cardBody font-poppins">
+                                  <div class="text-sm  font-poppins">
                                   {item.bankName}
                                   </div>
                               </div>
 
                               <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                <div class="text-sm text-cardBody font-poppins">
+                                <div class="text-sm  font-poppins">
                                 {item.branchName}
                                 </div>
                             </div>
                             <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
-                                   <div class="text-sm text-cardBody font-poppins">
+                                   <div class="text-sm  font-poppins">
                  
-                     <div className="font-normal text-sm text-cardBody font-poppins">
+                     <div className="font-normal text-sm  font-poppins">
                        <span>{item.accountNo}</span>
                      </div>
                  
@@ -126,7 +126,7 @@ class BankTable extends Component {
 
                                <div className=" flex font-medium flex-col md:w-[16.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                <div class="text-sm text-cardBody font-poppins">
+                                <div class="text-sm  font-poppins">
                                 <span>
               {item.ifscCode} 
             </span>
@@ -148,7 +148,7 @@ class BankTable extends Component {
                                 <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <BorderColorIcon 
             style={{ cursor: "pointer", fontSize: "1rem" }}
             onClick={() => {
@@ -162,7 +162,7 @@ class BankTable extends Component {
                                 <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <StyledPopconfirm
             title="Do you want to delete?"
             onConfirm={() => deleteBankTable(item.id)}

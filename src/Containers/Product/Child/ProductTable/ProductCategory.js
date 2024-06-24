@@ -60,7 +60,7 @@ function ProductCategory(props) {
             <div className=" w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">Category</div>
             <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]"></div>
             <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Add">
                           <AddCircleIcon
                             className="!text-icon cursor-pointer text-[tomato]"
@@ -85,7 +85,7 @@ function ProductCategory(props) {
 
                       <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                        <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.categoryName}
                         </div>
 
@@ -94,7 +94,7 @@ function ProductCategory(props) {
                     </div>
                     <div className=" flex font-medium flex-col  w-[7.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-<div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                           {item.imageId ? (
                             <MultiAvatar
@@ -118,7 +118,7 @@ function ProductCategory(props) {
                      
                     
                     {/* <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Add">
                           <AddCircleIcon
                             className="!text-base cursor-pointer text-[tomato]"

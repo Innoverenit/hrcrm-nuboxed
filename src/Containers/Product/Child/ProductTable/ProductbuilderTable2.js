@@ -142,7 +142,7 @@ return (
                       <div class="max-sm:w-full md:flex items-center">
                      
                       <div className=" flex font-medium  md:w-[8.1rem] max-sm:w-full  ">
-    <div class="text-xs text-cardBody   font-poppins cursor-pointer">
+    <div class="text-xs    font-poppins cursor-pointer">
                               {item.suppliesName}
                             </div>
     </div>
@@ -150,7 +150,7 @@ return (
                     </div>
                   </div>
                   <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-    <div class=" text-xs text-cardBody font-poppins">
+    <div class=" text-xs  font-poppins">
                       
                       {item.hsn}
                      
@@ -158,7 +158,7 @@ return (
     </div>
 
     <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-    <div class=" text-xs text-cardBody font-poppins">
+    <div class=" text-xs  font-poppins">
                       
                       {item.categoryName} {item.subCategoryName}
                      
@@ -166,14 +166,14 @@ return (
     </div>
     <div className=" flex font-medium  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-        <div class=" text-xs text-cardBody   font-poppins">
+        <div class=" text-xs    font-poppins">
         {item.attributeName} {item.subAttributeName}
        
                     </div>
     </div>
     <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+      <div class=" text-xs  font-semibold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
                        <Input
                        style={{ width: "3rem" }}
@@ -182,7 +182,7 @@ return (
                      />
                        
                     ) : (
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.quantity}</div>
                       </div>
                     )}
@@ -190,7 +190,7 @@ return (
   </div>
   <div className=" flex font-medium  md:w-[4.23rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+      <div class=" text-xs  font-semibold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
                                          <Input
                                          style={{ width: "3rem" }}
@@ -199,7 +199,7 @@ return (
                                        />
                        
                     ) : (
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.steps}</div>
                       </div>
                     )}
@@ -207,7 +207,7 @@ return (
   </div>
   <div className=" flex font-medium  md:w-[6.24rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+      <div class=" text-xs  font-semibold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
                                              <Input
                                              style={{ width: "3rem" }}
@@ -215,7 +215,7 @@ return (
                                              onChange={(e) => handleInputChange(e.target.value, item.key, 'description')}
                                            />
                     ) : (
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <Tooltip title={item.description}>
                         <div> {item.description}</div>
                         </Tooltip>

@@ -202,7 +202,7 @@ function ProjectsAllTable(props) {
                                     </div>
 
                                     <div className=" flex font-medium   md:w-[26.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                        <div class=" text-xs text-cardBody font-poppins">
+                                        <div class=" text-xs  font-poppins">
                                         <span>
             {item.customerName === null ? (
                 ""
@@ -221,7 +221,7 @@ function ProjectsAllTable(props) {
 
 
 
-                                        <div class=" text-sm text-cardBody font-poppins">
+                                        <div class=" text-sm  font-poppins">
                                         <span>
                  <MultiAvatar2
                   primaryTitle={item.creatorName}

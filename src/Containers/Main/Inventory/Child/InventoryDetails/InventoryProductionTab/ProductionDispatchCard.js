@@ -90,14 +90,14 @@ function ProductionDispatchCard(props) {
                                                              
                                                              
                                                    }}
-                                                class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     {item.manufactureId}
                                                 </div>
 
                                             </div>
                                             <div className=" flex font-medium   w-[7.5rem] max-xl:w-[7.5rem] max-lg:w-[5.9rem]  max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     {item.productName}
                                                 </div>
 
@@ -106,7 +106,7 @@ function ProductionDispatchCard(props) {
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[6.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                                                     {item.categoryName}  {item.subCategoryName}
                                                 </div>
@@ -114,14 +114,14 @@ function ProductionDispatchCard(props) {
                                             <div className=" flex font-medium  w-[17.2rem] max-xl:w-[13.2rem] max-lg:w-[10.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                                                <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     {item.attributeName}  {item.subAttributeName}
                                                 </div>
                                             </div>
 
                                             <div className=" flex font-medium  w-[5.5rem] max-sm:flex-row  max-sm:justify-between ">
 
-                                                <div class="text-xs text-cardBody font-semibold  font-poppins">
+                                                <div class="text-xs  font-semibold  font-poppins">
                                                     {/* {item.userName} */}
                                                     <MultiAvatar
                                                         primaryTitle={item.userName}
@@ -140,7 +140,7 @@ function ProductionDispatchCard(props) {
 
                                             </div>
                                             <div className=" flex font-medium  w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     <Tooltip title="Edit">
                                                         <BorderColorIcon
                                                             className="!text-icon cursor-pointer text-[tomato]"
@@ -157,7 +157,7 @@ function ProductionDispatchCard(props) {
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium  w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     <Tooltip title="Print">
 
                                                         <ReactToPrint

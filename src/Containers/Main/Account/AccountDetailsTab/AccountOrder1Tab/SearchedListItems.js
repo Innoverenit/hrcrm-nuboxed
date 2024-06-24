@@ -62,32 +62,32 @@ const SearchedListItems = (props) => {
                                         <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3">
                                             <div class="flex w-3/4">
                                                 <div className=" flex font-medium flex-col md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                         {item.manufactureId}
 
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                         {item.productFullName}
 
                                                     </div>
                                                 </div>
 
                                                 <div className=" flex font-medium flex-col md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                         {item.categoryName} {item.subCategoryName}
 
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
                                                         {item.attributeName} {item.subAttributeName}
 
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    <div class=" text-xs  font-poppins text-center">
 
                                                         <MoveToProductionArchieve
                                                             orderId={props.orderId}

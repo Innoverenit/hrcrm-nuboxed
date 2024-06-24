@@ -107,7 +107,7 @@ function LeadQualifiedTable (props) {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
       {item.name}
      
@@ -124,14 +124,14 @@ function LeadQualifiedTable (props) {
                               
                                 <div className=" flex font-medium flex-col md:w-[24.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                  <div class="text-sm text-cardBody font-poppins">
+                                  <div class="text-sm  font-poppins">
                                   {item.email}
                                   </div>
                               </div>
 
                               <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                <div class="text-sm text-cardBody font-poppins">
+                                <div class="text-sm  font-poppins">
                                 {item.companyName}
                                 </div>
                             </div>

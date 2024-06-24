@@ -62,33 +62,33 @@ function OrderPaymentTable(props) {
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "    >
                   <div class="flex">
                     <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-                      <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                      <div class="text-sm  font-semibold  font-poppins cursor-pointer">
                         {item.transactionNumber}
                       </div>
                     </div>
                   </div>
 
                   <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
 
                       {item.salesExecutive}
                     </div>
                   </div>
                   <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                    <div class=" text-xs  font-semibold  font-poppins">
                       {dayjs(item.date).format("DD-MM-YY")}
                     </div>
                   </div>
                   <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       {row.paymentId === item.paymentId && edit ? (
                         <Input
                           value={amount}
                           onChange={(e) => handleChange(e.target.value)}
                         />
                       ) : (
-                        <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div className="font-normal text-sm  font-poppins">
                           <span>  {item.paymentAmount} {item.orderCurrencyName}</span>
                         </div>
                       )}
@@ -97,7 +97,7 @@ function OrderPaymentTable(props) {
                   </div>
 
                   <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       {row.paymentId === item.paymentId && edit ? <Select onChange={handlePaymentMode}>
                         {props.paymentModee.map((a) => {
                           return <Option value={a.paymentCatagoryId}>{a.name}</Option>;
@@ -107,13 +107,13 @@ function OrderPaymentTable(props) {
                     </div>
                   </div>
                   <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
 
                       {item.remarks}
                     </div>
                   </div>
                   <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       {item.approveByFinanceInd === true ? (
                         <div class="flex">
                           <span class="text-green-700">

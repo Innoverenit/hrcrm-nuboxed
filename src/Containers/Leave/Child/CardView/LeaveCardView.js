@@ -62,7 +62,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                   <div className=" flex flex-col justify-around w-full ">
                     <div>
                       <div className=" flex font-medium flex-col  ">
-                        <div className=" text-sm text-cardBody font-medium font-poppins">
+                        <div className=" text-sm  font-medium font-poppins">
                           {/* Delivery Date */}
                           Start Date:{" "}
                           {item.startDate === null ? (
@@ -78,7 +78,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                     </div>
 
                     <div>
-                      <div class=" text-sm text-cardBody font-medium font-poppins">
+                      <div class=" text-sm  font-medium font-poppins">
                         {/* Delivery Date */}
                         End Date:{" "}
                         {item.endDate === null ? (
@@ -92,7 +92,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                       </div>
                     </div>
                     <div>
-                      <div class=" text-sm text-cardBody font-medium font-poppins">
+                      <div class=" text-sm  font-medium font-poppins">
                         Cover:{" "}
                         <label class="text-xs"> {item.coverDetails}</label>
                         &nbsp;
@@ -100,7 +100,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                     </div>
 
                     {/* <div >
-                        <div class=" text-xs text-cardBody font-medium font-poppins">
+                        <div class=" text-xs  font-medium font-poppins">
 
                         Reason:    {item.reason}
  
