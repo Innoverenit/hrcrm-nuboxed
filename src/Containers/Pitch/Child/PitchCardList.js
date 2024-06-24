@@ -166,7 +166,7 @@ const handleLoadMore2 = () => {
   return (
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className=" flex justify-between max-sm:hidden w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+    <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-red-600  justify-center ">Hot</div>
         <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
                   id="app.name"
@@ -177,11 +177,8 @@ const handleLoadMore2 = () => {
                   id="app.mobile#"
                   defaultMessage="mobile#"
                 /></div>
-        <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.country"
-                  defaultMessage="country"
-                /></div>
-        <div className="w-[16.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
+        <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
                   id="app.company"
                   defaultMessage="company"
                 /></div>
@@ -200,10 +197,10 @@ const handleLoadMore2 = () => {
                 />
           </div>
           <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          Shares Own
+          Shares #
           </div>
           <div className="w-[5.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          Share Value
+         Value
           </div>
         <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
         <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -251,72 +248,63 @@ const handleLoadMore2 = () => {
                } `;
                     return (
                         <div>
-                            <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
-              >
-                                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                       <div class="flex flex-row items-center w-[6.1rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                        <div>
+                                              <ButtonGroup>
+                                              <RoleButton
+                                              type="Hot"
+                                              iconType="fas fa-mug-hot"
+                                              // tooltip="Hot"
+                                              tooltip={<FormattedMessage
+                                              id="app.hot"
+                                              defaultMessage="Hot"
+                                              />}
+                                              role={item.type}
+                                              onClick={() =>{
+                                              const typ="Hot"
+                                              props.updateTypeForPitch(item.investorLeadsId,typ)
+                                              }}
+                                                />
+                                                </ButtonGroup>
+                                                </div>
+                                                <div><ButtonGroup>
+                                                <RoleButton1
+                                                type="Warm"
+                                                iconType="	fas fa-burn"
+                                                // tooltip="Warm"
+                                                tooltip={<FormattedMessage
+                                                id="app.warm"
+                                                defaultMessage="Warm"
+                                                />}
+                                                role={item.type}
+                                                onClick={() =>{
+                                                const typ="Warm"
+                                                props.updateTypeForPitch(item.investorLeadsId,typ)
+                                                }}
+                                                />
+                                                </ButtonGroup></div>
+                                                <div>
+                                                <ButtonGroup>
+                                                <RoleButton2
+                                                type="Cold"
+                                                iconType="far fa-snowflake"
+                                                // tooltip="Cold"
+                                                tooltip={<FormattedMessage
+                                                id="app.cold"
+                                                defaultMessage="Cold"
+                                                />}
+                                                role={item.type}
+                                                onClick={() => {
+                                                const typ="Cold"
+                                                props.updateTypeForPitch(item.investorLeadsId,typ)
+                                                }}
+                                                />
+                                                </ButtonGroup>
+                                                </div>
 
-                                      <div class="flex flex-row items-center w-[6.1rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
-
-
-
-  
-
-
-<div>
-<ButtonGroup>
-<RoleButton
-type="Hot"
-iconType="fas fa-mug-hot"
-// tooltip="Hot"
-tooltip={<FormattedMessage
-id="app.hot"
-defaultMessage="Hot"
-/>}
-role={item.type}
-onClick={() =>{
-const typ="Hot"
-props.updateTypeForPitch(item.investorLeadsId,typ)
-}}
-/>
-</ButtonGroup>
-</div>
-<div><ButtonGroup>
-<RoleButton1
-type="Warm"
-iconType="	fas fa-burn"
-// tooltip="Warm"
-tooltip={<FormattedMessage
-id="app.warm"
-defaultMessage="Warm"
-/>}
-role={item.type}
-onClick={() =>{
-const typ="Warm"
-props.updateTypeForPitch(item.investorLeadsId,typ)
-}}
-/>
-</ButtonGroup></div>
-<div>
-<ButtonGroup>
-<RoleButton2
-type="Cold"
-iconType="far fa-snowflake"
-// tooltip="Cold"
-tooltip={<FormattedMessage
-id="app.cold"
-defaultMessage="Cold"
-/>}
-role={item.type}
-onClick={() => {
-const typ="Cold"
-props.updateTypeForPitch(item.investorLeadsId,typ)
-}}
-/>
-</ButtonGroup>
-</div>
-
-</div>  
+                                                </div>  
 
 
                                 <div className=" flex font-medium  w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
@@ -373,14 +361,14 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                 <div className=" flex font-medium   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Phone # </div> */}
 
-                           <div class="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-  {item.countryDialCode && item.phoneNumber
-    ? `${item.countryDialCode} ${item.phoneNumber}`
-    : 'No Data'}
-</div>
+                                          <div class="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                  {item.countryDialCode && item.phoneNumber
+                    ? `${item.countryDialCode} ${item.phoneNumber}`
+                    : 'No Data'}
+                </div>
 
                        </div>
-                       <div className=" flex font-medium  w-[4rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex font-medium  w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                   
 
                                   {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Country</div> */}
@@ -390,7 +378,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                       {countryCode}
                                     </div>
                               </div>
-                              <div className=" flex font-medium   w-[15.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex font-medium   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.companyName || "No Data"}
@@ -651,7 +639,7 @@ onClick={()=>{
       </div>
 
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className=" flex justify-between max-sm:hidden w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+    <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] bg-orange-600 text-white  justify-center ">Warm</div>
         <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
                   id="app.name"
@@ -662,11 +650,8 @@ onClick={()=>{
                   id="app.mobile#"
                   defaultMessage="mobile#"
                 /></div>
-        <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.country"
-                  defaultMessage="country"
-                /></div>
-        <div className="w-[16.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
+        <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
                   id="app.company"
                   defaultMessage="company"
                 /></div>
@@ -685,10 +670,10 @@ onClick={()=>{
                 />
           </div>
           <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          Shares Own
+          Shares #
           </div>
           <div className="w-[5.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          Share Value
+          Value
           </div>
         <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
         <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -737,7 +722,7 @@ onClick={()=>{
                     return (
                       <div>
                       <div
-          className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+          className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
         >
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
@@ -865,7 +850,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>
 
                  </div>
-                 <div className=" flex font-medium  w-[4rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex font-medium  w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                             
 
                             {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Country</div> */}
@@ -875,7 +860,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                 {countryCode}
                               </div>
                         </div>
-                        <div className=" flex font-medium   w-[15.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex font-medium   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
                      <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "No Data"}
@@ -1136,7 +1121,7 @@ handleRowData(item)
       </div>
 
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className=" flex justify-between max-sm:hidden w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+    <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] bg-blue-600 text-white justify-center ">Cold</div>
         <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
                   id="app.name"
@@ -1147,11 +1132,8 @@ handleRowData(item)
                   id="app.mobile#"
                   defaultMessage="mobile#"
                 /></div>
-        <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.country"
-                  defaultMessage="country"
-                /></div>
-        <div className="w-[16.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
+        <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
                   id="app.company"
                   defaultMessage="company"
                 /></div>
@@ -1170,10 +1152,10 @@ handleRowData(item)
                 />
           </div>
           <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          Shares Own
+          Shares #
           </div>
           <div className="w-[5.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          Share Value
+          Value
           </div>
         <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
         <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -1222,7 +1204,7 @@ handleRowData(item)
                     return (
                       <div>
                       <div
-          className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+          className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
         >
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
@@ -1350,7 +1332,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>
 
                  </div>
-                 <div className=" flex font-medium  w-[4rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex font-medium  w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                             
 
                             {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Country</div> */}
@@ -1360,7 +1342,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                 {countryCode}
                               </div>
                         </div>
-                        <div className=" flex font-medium   w-[15.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex font-medium   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
                      <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "No Data"}
@@ -1695,9 +1677,9 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
   console.log(role);
   console.log(type);
   if (role === type) {
-    size = "1.37em";
+    size = "1.1rem";
   } else {
-    size = "1em";
+    size = ".95rem";
   }
   return (
     <Tooltip title={tooltip}>
@@ -1719,9 +1701,9 @@ function RoleButton1({ type, iconType, tooltip, role, size, onClick }) {
   console.log(role);
   console.log(type);
   if (role === type) {
-    size = "1.37em";
+    size = "1.1rem";
   } else {
-    size = "1em";
+    size = ".95rem";
   }
   return (
     <Tooltip title={tooltip}>
@@ -1743,9 +1725,9 @@ function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
   console.log(role);
   console.log(type);
   if (role === type) {
-    size = "1.37em";
+    size = "1.1rem";
   } else {
-    size = "1em";
+    size = ".95rem";
   }
   return (
     <Tooltip title={tooltip}>

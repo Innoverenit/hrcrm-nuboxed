@@ -106,7 +106,7 @@ function DealLostCard(props) {
                          return (
                             <div>
                              <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem]  p-1"
+                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem]  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 >
                               <div class="flex justify-between ">
                              
@@ -420,7 +420,7 @@ function DealLostCard(props) {
   <>
 
      
-<div class="rounded m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+<div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[13.12rem]"><FormattedMessage
                   id="app.name"
@@ -478,7 +478,7 @@ function DealLostCard(props) {
                  return (
                     <div>
                     <div
-                      className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-1"
+                      className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                       // style={{
                       //   borderBottom: "3px dotted #515050",
                       // }}

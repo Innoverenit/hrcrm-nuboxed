@@ -63,7 +63,7 @@ const DealsAllCardList = (props) => {
   return (
     <>
       <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  w-[96%] justify-between p-1 bg-transparent font-bold sticky  z-10">
+      <div className=" flex  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
           <div className=" md:w-[14.5rem]"><FormattedMessage
             id="app.name"
             defaultMessage="name"
@@ -104,7 +104,7 @@ const DealsAllCardList = (props) => {
           next={handleLoadMore}
           hasMore={hasMore}
           loader={fetchingAllDealsData ? <div class="flex justify-center">Loading...</div> : null}
-          height={"75vh"}
+          height={"80vh"}
         >
           {!fetchingAllDealsData && props.allDealsData.length === 0 ? <NodataFoundPage /> : props.allDealsData.map((item, index) => {
             var findProbability = item.probability;
@@ -133,7 +133,7 @@ const DealsAllCardList = (props) => {
             return (
               <div>
               <div
-             className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+             className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
                <div class="flex justify-between">
                  <div className=" flex font-medium  w-[15rem]   max-sm:w-full">
