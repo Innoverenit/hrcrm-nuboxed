@@ -267,7 +267,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                      <div class="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.countryDialCode && item.phoneNumber
 ? `${item.countryDialCode} ${item.phoneNumber}`
-: 'No Data'}
+: 'None'}
 </div>
 
                  </div>
@@ -284,7 +284,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         <div className=" flex font-medium   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
                      <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.companyName || "No Data"}
+                     {item.companyName || "None"}
 </div>
 
                  </div>
@@ -294,14 +294,14 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                  <div className=" flex font-medium   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                      {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
                      <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.source || "No Data"}
+                     {item.source || "None"}
 </div>
 
                  </div>
                  <div className=" flex font-medium   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                      {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
                      <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.sector || "No Data"}
+                     {item.sector || "None"}
 </div>
 
                  </div>
@@ -312,7 +312,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                               
                               <span>
                 {item.assignedTo === null ? (
-          "No Data"
+          "None"
         ) : (
           <>
           {item.assignedTo === item.ownerName ? (
