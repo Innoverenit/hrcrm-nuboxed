@@ -567,6 +567,34 @@ export const addReceivedItem = (data) => (dispatch) => {
       });
     });
 };
+
+
+export const getProductionQualityData = (locationDetailsId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_QUALITY_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/product/transferList/${locationDetailsId}/${pageNo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_QUALITY_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCTION_QUALITY_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const addDamagedItem = (data) => (dispatch) => {
   dispatch({
     type: types.ADD_TOTAL_DAMAGED_ITEM_REQUEST,
@@ -1448,7 +1476,7 @@ export const getDispatchProductionsbyLocId = (locationDetailsId, pageNo) => (dis
     type: types.GET_DISPATCH_PRODUCTION_BYLOC_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/production/product/transferList/${locationDetailsId}/${pageNo}`,
+    .get(`${base_url2}/production/dispatch/transferList/${locationDetailsId}/${pageNo}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -2006,4 +2034,32 @@ export const handleCustomModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_CUSTOM_MODAL,
     payload: modalProps,
   });
+};
+
+
+
+export const moveProductionQuality = (productionProductId,userId) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_PRODUCTION_QUALITY_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/production/update/dispatch/${productionProductId}/${userId}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.REMOVE_PRODUCTION_QUALITY_SUCCESS,
+        payload: productionProductId,
+      });
+      message.success(res.data);
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.REMOVE_PRODUCTION_QUALITY_FAILURE,
+        payload: err,
+      });
+      // message.error("Something went wrong");
+    });
 };
