@@ -29,9 +29,9 @@ class LinkedContactInvestDocuments extends Component {
   render() {
     return (
       <>
-          <div className=' flex justify-end sticky top-28 z-auto'>          
-<div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                  <div className=" flex  w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=' flex sticky z-auto'>          
+<div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                  <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                   
                   <div className="md:w-[9.7rem]">Date</div>
                       <div className=" md:w-[14.12rem]">Name</div>
@@ -39,13 +39,13 @@ class LinkedContactInvestDocuments extends Component {
                       <div className=" md:w-[9.8rem] ">Uploaded By</div>
                      
                   </div>
-                  <div class="overflow-y-auto h-[67vh]">
+                  <div class="overflow-y-auto h-[72vh]">
                   { !this.props.fetchingDocumentsByContactId && this.props.documentsByContactId.length === 0 ?<NodataFoundPage />:this.props.documentsByContactId.map((item,index) =>  {
                       
                       return (
                           <div >
                               <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                   <div class="flex">
                                       <div className=" flex font-medium  md:w-[9.8rem] max-sm:w-full  ">

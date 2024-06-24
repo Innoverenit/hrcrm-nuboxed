@@ -88,7 +88,7 @@ const PitchActionLeft = (props) => {
 
 
     <Tooltip
-        title= "Card View"
+        title= "My Pitches"
       >
   <Badge
         size="small"
@@ -113,7 +113,7 @@ const PitchActionLeft = (props) => {
 
       {user.teamsAccessInd === true && (
       <Tooltip
-        title= "Teams"
+        title= "Team View"
       >
           <Badge
         size="small"
@@ -210,7 +210,7 @@ const PitchActionLeft = (props) => {
           <FormattedMessage id="app.clear" defaultMessage="Clear" />
       
         </Button> */}
-          <div style={{ width: "40%",marginTop:"0.5rem" }}>
+          <div class=" w-2/5 mt-2 ml-2">
           <StyledSelect placeholder="Sort"  onChange={(e)  => props.handleFilterChange(e)}>
            <Option value="CreationDate">Creation Date</Option> 
             <Option value="ascending">A To Z</Option>

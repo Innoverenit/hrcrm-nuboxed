@@ -91,8 +91,8 @@ const PitchTeamCardList = (props) => {
                   id="app.Sector"
                   defaultMessage="Sector"
                 /></div>
-        <div className="w-[4.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
-        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[3.521rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
+        <div className="w-[2.52rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.owner"
                   defaultMessage="owner" 
                 /></div>
@@ -256,7 +256,7 @@ const PitchTeamCardList = (props) => {
                            <div class="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
   {item.countryDialCode && item.phoneNumber
     ? `${item.countryDialCode} ${item.phoneNumber}`
-    : 'No Data'}
+    : 'None'}
 </div>
 
                        </div>
@@ -273,7 +273,7 @@ const PitchTeamCardList = (props) => {
                               <div className=" flex font-medium   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.companyName || "No Data"}
+                           {item.companyName || "None"}
 </div>
 
                        </div>
@@ -283,25 +283,25 @@ const PitchTeamCardList = (props) => {
                        <div className=" flex font-medium   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.source || "No Data"}
+                           {item.source || "None"}
 </div>
 
                        </div>
                        <div className=" flex font-medium   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.sector || "No Data"}
+                           {item.sector || "None"}
 </div>
 
                        </div>
-                       <div className=" flex font-medium  w-[5.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex font-medium  w-[3.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class=" text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     
                                     <span>
                       {item.assignedTo === null ? (
-                "No Data"
+                "None"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (
@@ -322,7 +322,7 @@ const PitchTeamCardList = (props) => {
              
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  w-[3.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <div className=" flex font-medium  w-[2.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                        
                        {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Owner</div> */}
 
@@ -333,8 +333,8 @@ const PitchTeamCardList = (props) => {
               <MultiAvatar
                 primaryTitle={item.ownerName}
                 imageId={item.ownerImageId}
-                imgWidth={"1.9rem"}
-                imgHeight={"1.9rem"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             </Tooltip>
             </div>
