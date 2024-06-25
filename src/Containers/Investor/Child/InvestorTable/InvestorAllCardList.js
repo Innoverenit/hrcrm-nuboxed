@@ -282,7 +282,7 @@ function InvestorAllCardList(props) {
 
                                     {item.totalProposalValue && (
       <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-       {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 10000)}K`}
+       {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
       </div>
     )}
                                 </div>

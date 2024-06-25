@@ -314,14 +314,14 @@ const AccountOrderTable = (props) => {
 
                                                     <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 10000).toFixed(2)}k
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
                                                     <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 10000).toFixed(2)}k
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
@@ -336,7 +336,7 @@ const AccountOrderTable = (props) => {
                                                                     value={price}
                                                                     onChange={(e) => handleChange(e.target.value)}
                                                                 />
-                                                                : (item.offerPrice / 10000).toFixed(2)}k
+                                                                : (item.offerPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
@@ -751,14 +751,14 @@ const AccountOrderTable = (props) => {
 
                                                     <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
-                                                        <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 10000).toFixed(2)}k
+                                                        <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
                                                     <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
-                                                        <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 10000).toFixed(2)}k
+                                                        <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
@@ -773,7 +773,7 @@ const AccountOrderTable = (props) => {
                                                                     value={price}
                                                                     onChange={(e) => handleChange(e.target.value)}
                                                                 />
-                                                                : (item.offerPrice / 10000).toFixed(2)}k
+                                                                : (item.offerPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
@@ -1187,14 +1187,14 @@ const AccountOrderTable = (props) => {
 
                                                     <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
-                                                        <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 10000).toFixed(2)}k
+                                                        <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
                                                     <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
-                                                        <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 10000).toFixed(2)}k
+                                                        <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
@@ -1209,7 +1209,7 @@ const AccountOrderTable = (props) => {
                                                                     value={price}
                                                                     onChange={(e) => handleChange(e.target.value)}
                                                                 />
-                                                                : (item.offerPrice / 10000).toFixed(2)}k
+                                                                : (item.offerPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
