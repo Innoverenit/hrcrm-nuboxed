@@ -240,7 +240,7 @@ function AssigenedKpiCardList(props) {
                           {item.month1AssignedValue && (
    <span>
        {item.currencyInd && `${item.userCurrency} `}
-       {Math.floor(item.month1AssignedValue/ 10000)}k 
+       {Math.floor(item.month1AssignedValue/ 1000)}k 
    </span>
 )}</span>
                        </div>
@@ -249,7 +249,7 @@ function AssigenedKpiCardList(props) {
                          <span className='ml-2 w-[4rem]'>{item.month2AssignedValue && (
    <span>
        {item.currencyInd && `${item.userCurrency} `}
-       {Math.floor(item.month2AssignedValue/ 10000)}k 
+       {Math.floor(item.month2AssignedValue/ 1000)}k 
    </span>
 )}</span>
                        </div>
@@ -259,7 +259,7 @@ function AssigenedKpiCardList(props) {
                                    <span className='ml-2 w-[4rem]'>{item.month3AssignedValue && (
    <span>
        {item.currencyInd && `${item.userCurrency} `}
-       {Math.floor(item.month3AssignedValue/ 10000)}k 
+       {Math.floor(item.month3AssignedValue/ 1000)}k 
    </span>
 )}</span>
                        </div> 
@@ -275,7 +275,7 @@ function AssigenedKpiCardList(props) {
                      <div className="font-normal flex flex-row text-sm  font-poppins">
                      {item.month3AssignedValue && (
                        <span>
-                      {item.currencyInd && `${item.userCurrency} `}{Math.floor(AssignedTotal / 10000)}k
+                      {item.currencyInd && `${item.userCurrency} `}{Math.floor(AssignedTotal / 1000)}k
                       </span>
                     )}
                      </div>
@@ -292,7 +292,7 @@ function AssigenedKpiCardList(props) {
                          <span className='ml-2  w-[4rem]'>   {item.month1CompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month1CompletedValue / 10000).toFixed(2)}k
+                                           {(item.month1CompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -301,7 +301,7 @@ function AssigenedKpiCardList(props) {
                          <span className='ml-2  w-[4rem]'>   {item.month2CompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month2CompletedValue / 10000).toFixed(2)}k
+                                           {(item.month2CompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -310,7 +310,7 @@ function AssigenedKpiCardList(props) {
                          <span className='ml-2  w-[4rem]'>   {item.month3CompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month3CompletedValue / 10000).toFixed(2)}k
+                                           {(item.month3CompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -325,7 +325,7 @@ function AssigenedKpiCardList(props) {
                      {item.month3CompletedValue && (
                      <span>
                       {item.currencyInd && `${item.userCurrency} `}
-                      {(AchievedTotal/ 10000).toFixed(2)}k
+                      {(AchievedTotal/ 1000).toFixed(2)}k
                       </span>
                        )}
                      </div>
@@ -360,7 +360,7 @@ width={30}
                          <span className='ml-2 w-[4rem]'>   {item.month1ActualCompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month1ActualCompletedValue / 10000).toFixed(2)}k
+                                           {(item.month1ActualCompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -369,7 +369,7 @@ width={30}
                          <span className='ml-2 w-[4rem]'>   {item.month2ActualCompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month2ActualCompletedValue / 10000).toFixed(2)}k
+                                           {(item.month2ActualCompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -378,7 +378,7 @@ width={30}
                          <span className='ml-2 w-[5.5rem]'>   {item.month3ActualCompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month3ActualCompletedValue / 10000).toFixed(2)}k
+                                           {(item.month3ActualCompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -393,7 +393,7 @@ width={30}
                      {item.month3ActualCompletedValue && (
                       <span>
                       {item.currencyInd && `${item.userCurrency} `}
-                      {(ActualTotal / 10000).toFixed(2)}k
+                      {(ActualTotal / 1000).toFixed(2)}k
                       </span>
                     )}
                      </div>
