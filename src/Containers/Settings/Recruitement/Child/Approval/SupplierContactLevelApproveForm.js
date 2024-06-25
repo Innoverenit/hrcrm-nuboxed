@@ -9,7 +9,7 @@ import { getRoles } from "../../../../Settings/Category/Role/RoleAction";
 import { Field } from "formik";
 const { Option } = Select;
 
-function ContactUserLevelApproveForm(props) {
+function SupplierContactLevelApproveForm(props) {
   useEffect(() => {
     props.getDepartments();
     props.getRoles(props.organizationId);
@@ -40,7 +40,7 @@ function ContactUserLevelApproveForm(props) {
       })),
       approvalIndicator: props.approvalIndicator,
       approvalType: "Standard",
-      subProcessName: "Customer Contact To User",
+      subProcessName: "Supplier Contact To User",
     };
 
     console.log(data);
@@ -171,4 +171,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactUserLevelApproveForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SupplierContactLevelApproveForm);

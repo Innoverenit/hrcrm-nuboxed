@@ -8,7 +8,7 @@ import AppErrorBoundary from "./Helpers/ErrorBoundary/AppErrorBoundary";
 import AppLoginMessage from "./Containers/Auth/AppLoginMessage";
 import OnBoardOrganizationPage from "./Containers/Auth/OnBoardOrganizationPage";
 import OnBoardUserPage from "./Containers/Auth/OnBoardUserPage";
-import LoginHr from "./Containers/Auth/LoginHr";
+
 
 
 /**
@@ -34,7 +34,7 @@ class App extends Component {
           <div className="wrapper">
             <p>You're offline right now. Check your connection.</p>
           </div>
-        </Offline>
+        </Offline> 
         <Online> */}
         <AppErrorBoundary>
           <Suspense fallback={<BundleLoader />}>
@@ -42,10 +42,7 @@ class App extends Component {
               <Route exact path="/register/:type?" component={Register} />
 
               {/* <Route exact path="/login/:username?/:password?" component={Login} /> */}
-              {/* CELL TECH */}
-              <Route exact path="/login" component={Login} />
-              {/* NUBOX */}
-              {/* <Route exact path="/login" component={LoginHr} /> */}
+              <Route exact path="/login" component={Login} /> 
               <Route exact path="/mobilelogin" component={AppLoginMessage} />
               <Route
                 exact

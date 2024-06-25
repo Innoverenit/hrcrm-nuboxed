@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { FormattedMessage } from "react-intl";
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
@@ -22,6 +22,25 @@ const InvestorActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
   const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
+  const [startTime, setStartTime] = useState(null);
+    const [isRecording, setIsRecording] = useState(false); 
+    const minRecordingTime = 3000; // 3 seconds
+    const timerRef = useRef(null);
+ 
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+  console.log(transcript);
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
@@ -41,23 +60,55 @@ const InvestorActionLeft = (props) => {
       console.error("Input is empty. Please provide a value.");
     }
   };
+  const handleStartListening = () => {
+    setStartTime(Date.now());
+    setIsRecording(true);
+    SpeechRecognition.startListening();
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(() => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+    }, minRecordingTime);
+  };
   const dummy = ["cloud", "azure", "fgfdg"];
   const suffix = (
     <AudioOutlined
-      onClick={SpeechRecognition.startListening}
+      onClick={handleStartListening}
       style={{
         fontSize: 16,
-        color: "#1890ff",
+        color: '#1890ff',
       }}
+
     />
   );
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
-  console.log(transcript);
+  const handleStopListening = () => {
+    SpeechRecognition.stopListening();
+    setIsRecording(false);
+    if (transcript.trim() !== "") {
+      setCurrentData(transcript);
+      props.searchInvestorName(transcript);
+      setSearchOnEnter(true);
+    }
+  };
+  useEffect(() => {
+    if (!listening && isRecording) {
+      handleStopListening();
+    }
+  }, [listening]);
+  useEffect(() => {
+    if (isRecording && !listening) {
+      // If recording was stopped but less than 5 seconds have passed, restart listening
+      const elapsedTime = Date.now() - startTime;
+      if (elapsedTime < minRecordingTime) {
+        SpeechRecognition.startListening();
+      } else {
+        setIsRecording(false);
+      }
+    }
+  }, [listening, isRecording, startTime]);
+
   function handleFilterChange(data) {
     setFilter(data)
     props.getInvestorsbyId(props.userId, pageNo, data);
@@ -70,13 +121,7 @@ const InvestorActionLeft = (props) => {
       props.getInvestorTeam(props.userId);
     }
   }, [props.userId, props.teamsAccessInd]);
-  useEffect(() => {
-    // props.getCustomerRecords();
-    if (transcript) {
-      console.log(">>>>>>>", transcript);
-      setCurrentData(transcript);
-    }
-  }, [transcript]);
+ 
   useEffect(() => {
     if (props.viewType === "list") {
       props.getInvestor(props.userId);
