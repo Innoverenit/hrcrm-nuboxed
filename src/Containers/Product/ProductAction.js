@@ -36,6 +36,12 @@ export const getProducts = (pageNo) => (dispatch) => {
       });
     });
 };
+export const handleProductQuality =(modalProps)=>(dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRODUCT_QUALITY_DRAWER,
+    payload: modalProps,
+  });
+}
 
 export const getdeleteProducts = () => (dispatch) => {
   dispatch({

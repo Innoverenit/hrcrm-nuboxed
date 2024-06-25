@@ -6,8 +6,9 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 
 import {getDepartments} from "../../../../Containers/Settings/Department/DepartmentAction"
 import {getUserListLocation} from "../../Child/Location/LocationAction"
+import AddUserCellModal from "./AddUserCellModal"
 //import { Select } from "../../../../Components/UI/Elements";
-import{getAlLoCell,createUserCell,deleteUserCell,getCellCode,getUserCell} from "../../../Event/Child/Location/LocationAction";
+import{getAlLoCell,createUserCell,deleteUserCell,getCellCode,getUserCell,handleUserCellModal} from "../../../Event/Child/Location/LocationAction";
 import { DeleteOutlined } from "@ant-design/icons";
 // import ProductCellToggle from "./ProductCellToggle";
 
@@ -223,6 +224,20 @@ const UsersCellCard = (props) => {
                       </div>
                     </div>
                   </div>
+
+
+                  <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
+  <div>
+  
+ <Button
+ onClick={() => {
+  props.handleUserCellModal(true);
+  // handleSetCurrentItems(item);
+}}
+ >Machine</Button>
+  </div>
+
+</div>
                  
 
                   {/* <div class="flex md:items-center">
@@ -243,6 +258,16 @@ const UsersCellCard = (props) => {
 
         </div>
       </div> 
+
+      <AddUserCellModal
+      addUserCellModal={props.addUserCellModal}
+      handleUserCellModal={props.handleUserCellModal}
+      // currentItems={currentItems}
+      // locationId={props.storedLoc.locationDetailsId}
+      // addLocationMachineModal={props.addLocationMachineModal}
+      // handleLocationMachineModal={props.handleLocationMachineModal}
+      
+      />
       </>
     );
    }
@@ -254,6 +279,7 @@ const mapStateToProps = ({ auth,location,departments,distributor, }) => ({
     allLoCell:location.allLoCell,
     cellCode:location.cellCode,
     userCell:location.userCell,
+    addUserCellModal:location.addUserCellModal,
     departments: departments.departments,
     userListLocation:location.userListLocation
 
@@ -268,7 +294,8 @@ const mapDispatchToProps = (dispatch) =>
            createUserCell,
            getUserCell,
            getCellCode,
-           deleteUserCell
+           deleteUserCell,
+           handleUserCellModal
         },
         dispatch
     );

@@ -8,6 +8,9 @@ const initialState = {
     fetchingCatalogueCellError:false,
     catalogueCell:[],
 
+
+    addUserCellModal:false,
+
     fetchingLocationData: false,
     fetchingLocationDataError: false,
     showLocation:[],
@@ -125,6 +128,11 @@ locationDeletedCount:{},
 deletingUserCellData:false,
 deletingUserCellDataError:false,
 
+
+fetchingUserMachineCard:false,
+fetchingUserMachineCardError:false,
+userMachineCard:[]
+
   };
 
   export const locationReducer = (state = initialState, action) => {
@@ -133,6 +141,8 @@ deletingUserCellDataError:false,
             return { ...state, viewType: action.payload };
             case types.HANDLE_LOCATION_MODAL:
                 return { ...state, addlocationModal: action.payload }; 
+                case types.HANDLE_USER_CELL_MODAL:
+                  return { ...state, addUserCellModal: action.payload };
 
 
 
@@ -302,6 +312,20 @@ deletingUserCellDataError:false,
                                           fetchingAlLocShift: false,
                                           fetchingAlLocShiftError: true,
                                         }; 
+
+
+
+
+
+
+                                        case types.GET_USER_MACHINE_CARD_REQUEST:
+                        return { ...state, fetchingUserMachineCard: true, 
+                          // fetchingProductionTable: false 
+                        };
+                      case types.GET_USER_MACHINE_CARD_SUCCESS:
+                        return { ...state, fetchingUserMachineCard: false, userMachineCard: action.payload };
+                      case types.GET_USER_MACHINE_CARD_FAILURE:
+                        return { ...state, fetchingUserMachineCard: false, fetchingUserMachineCardError: true };
 
 
 
@@ -663,7 +687,7 @@ deletingUserCellDataError:false,
                                                   return {
                                                     ...state,
                                                     creatingMachineCell: false,
-                                                    //locationMachineData:[action.payload,...state.locationMachineData]
+                                                    userMachineCard:[...action.payload,...state.locationMachineData]
                              
                                                   };
                                                 case types.CREATE_MACHINARY_CELL_FAILURE:
