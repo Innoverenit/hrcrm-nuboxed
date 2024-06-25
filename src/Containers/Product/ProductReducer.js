@@ -222,6 +222,8 @@ const initialState = {
   fetchingRecordsByUserIdError: false,
   recordData: {},
 
+  productQualityDrawer:false,
+
   addProductOfferModal: false,
 
   addingOffer: false,
@@ -439,6 +441,10 @@ export const productReducer = (state = initialState, action) => {
         updateProductById: false,
         updateProductByIdError: true,
       };
+
+
+      case types.HANDLE_PRODUCT_QUALITY_DRAWER:
+                  return { ...state, productQualityDrawer: action.payload };
 
     case types.GET_PROFESSIONALDUCTS_REQUEST:
       return { ...state, fetchingProducts: true, fetchingProductsError: false };
