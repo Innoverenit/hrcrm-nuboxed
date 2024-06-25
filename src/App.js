@@ -34,7 +34,7 @@ class App extends Component {
           <div className="wrapper">
             <p>You're offline right now. Check your connection.</p>
           </div>
-        </Offline>
+        </Offline> 
         <Online> */}
         <AppErrorBoundary>
           <Suspense fallback={<BundleLoader />}>
