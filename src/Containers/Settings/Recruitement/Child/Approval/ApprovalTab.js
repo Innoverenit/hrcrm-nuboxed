@@ -4,6 +4,7 @@ import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ProspectCustomerForm from "./ProspectCustomerForm";
+import SupplierContactuserForm from "./SupplierContactuserForm";
 const ApproveForm = lazy(() => import("./ApproveForm"));
 const MileageApproveForm = lazy(() => import("./MileageApproveForm"));
 const ExpenseApproveForm = lazy(() => import("./ExpenseApproveForm"));
@@ -35,19 +36,24 @@ function ApprovalTab(props) {
                         <ExpenseApproveForm/>
                         </div>
                     </TabPane>
-                    <TabPane tab={`Contact User`} key="4">
+                    <TabPane tab={`Customer Contact To User`} key="4">
                         <div style={{ marginTop: 10 }}>
                         <ContactUserForm/>
                         </div>
                     </TabPane>
+                    <TabPane tab={`Supplier Contact To User`} key="5">
+                        <div style={{ marginTop: 10 }}>
+                        <SupplierContactuserForm/>
+                        </div>
+                    </TabPane>
                     {props.user.repairInd === true && (
-                    <TabPane tab={`Repair`} key="5">
+                    <TabPane tab={`Repair`} key="6">
                         <div style={{ marginTop: 10 }}>
                         <PhonesPairApproveForm/>
                         </div>
                     </TabPane>
                     )}
-                      <TabPane tab={`Prospect to Customer`} key="6">
+                      <TabPane tab={`Prospect to Customer`} key="7">
                         <div style={{ marginTop: 10 }}>
                         <ProspectCustomerForm/>
                         </div>

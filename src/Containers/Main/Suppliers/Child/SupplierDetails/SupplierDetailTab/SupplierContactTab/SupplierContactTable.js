@@ -4,7 +4,8 @@ import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { getSupplierContactList, handleUpdateSupplierContactModal, setEditSupplierContact } from "../../../../SuppliersAction";
+import { getSupplierContactList, handleUpdateSupplierContactModal, setEditSupplierContact,applyForLoginInContact } from "../../../../SuppliersAction";
+import { Button } from "antd";
 
 function SupplierContactTable(props) {
 
@@ -23,6 +24,10 @@ function SupplierContactTable(props) {
   const handleLoadMore = () => {
     setPage(page + 1);
   };
+
+  const handleChangeRow = (item) => {
+    setCurrentSupplierId(item);
+};
 
   return (
     <>
@@ -58,6 +63,7 @@ function SupplierContactTable(props) {
               {props.contactSupplier.length ?
                 <>
                   {props.contactSupplier.map((item) => {
+                     const data = {}
                     return (
                       <>
                         <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"
@@ -104,7 +110,32 @@ function SupplierContactTable(props) {
                               </div>
 
                             </div>
-                       
+                            <div className=" flex font-medium flex-col  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+
+{item.accessInd === 0 ? <div class=" text-xs  font-poppins">
+    <Button
+        type="primary"
+        loading={currentSupplierId.contactPersonId === item.contactPersonId && props.applyingForLoginInContact}
+        onClick={() => {
+           handleChangeRow(item)
+            props.setEditSupplierContact(item);
+            props.applyForLoginInContact(
+                data,
+                item.contactPersonId,
+                props.userId,
+                "Supplier Contact To User",
+                props.supplier.supplierId,
+                props.distributorId,
+              
+            )
+        }}
+    ><FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /></Button>
+</div> : item.accessInd === 2 ? <b>Login Applied</b> : <b style={{ color: "#32CD32" }}>Login Approved</b>
+
+}
+
+</div>
                             <div className=" flex font-medium  max-sm:justify-between  max-sm:flex-row ">
                             {/* <Tooltip title="Edit">
             <EditOutlined
@@ -137,11 +168,11 @@ function SupplierContactTable(props) {
 }
 // }
 
-const mapStateToProps = ({ suppliers }) => ({
+const mapStateToProps = ({ suppliers ,auth}) => ({
   contactSupplier: suppliers.contactSupplier,
   fetchingSupplierContactListById: suppliers.fetchingSupplierContactListById,
   updateSupplierContactModal: suppliers.updateSupplierContactModal,
-
+  userId: auth.userDetails.userId,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -150,6 +181,7 @@ const mapDispatchToProps = (dispatch) =>
       getSupplierContactList,
       handleUpdateSupplierContactModal,
       setEditSupplierContact,
+      applyForLoginInContact
     },
     dispatch
   );
