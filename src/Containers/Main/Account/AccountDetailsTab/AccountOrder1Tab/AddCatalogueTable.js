@@ -67,26 +67,26 @@ const AddCatalogueTable = (props) => {
                                         <div class="flex w-3/4">
 
                                             <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                     {item.name}
 
                                                 </div>
                                             </div>
 
                                             <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                     {item.categoryName} {item.subCategoryName}
 
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                     {item.attributeName} {item.subAttributeName}
 
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                     {item.quantity}
 
                                                 </div>

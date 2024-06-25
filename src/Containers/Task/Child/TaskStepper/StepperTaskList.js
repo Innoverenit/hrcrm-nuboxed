@@ -119,7 +119,7 @@ const cancelEdit = () => {
                             </div>
                         </div>
                         <div className="flex font-medium justify-center flex-col  w-[5.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto">
-                            <div className="text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                            <div className="text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                             {editingId === item.id ? (
                 <input
                 placeholder="Update"
@@ -137,7 +137,7 @@ const cancelEdit = () => {
                     </div>
                     <div className="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className="flex font-medium flex-col w-[22.22rem] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto">
-                            <div className="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                            <div className="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                             {editingId === item.id ? (
                 <input
                 placeholder="Update"
@@ -167,7 +167,7 @@ const cancelEdit = () => {
                               <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                   
 
-                                  <div class=" text-sm text-cardBody font-poppins text-center">
+                                  <div class=" text-sm  font-poppins text-center">
                                   <Popconfirm
                         title="Do you want to delete?"
                         okText="Yes"

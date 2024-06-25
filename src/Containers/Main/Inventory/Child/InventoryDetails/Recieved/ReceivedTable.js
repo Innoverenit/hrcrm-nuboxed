@@ -107,7 +107,7 @@ const ReceivedTable = (props) => {
                       <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium  w-[8.62rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
-                            <div class="text-sm text-cardBody font-semibold max-sm:text-sm  font-poppins cursor-pointer  text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div class="text-sm  font-semibold max-sm:text-sm  font-poppins cursor-pointer  text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <div class=" flex ">
                                 <span
                                   onClick={() => {
@@ -126,7 +126,7 @@ const ReceivedTable = (props) => {
                           </div>
 
                           <div className=" flex font-medium  w-[10.12rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               {item.distributorName}
                             </div>
@@ -134,7 +134,7 @@ const ReceivedTable = (props) => {
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium  w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               <MultiAvatar2
                                 primaryTitle={item.contactPersonName}
@@ -145,7 +145,7 @@ const ReceivedTable = (props) => {
                             </div>
                           </div>
                           <div className=" flex font-medium  w-[4.1rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               <MultiAvatar
                                 primaryTitle={item.userName}
@@ -156,12 +156,12 @@ const ReceivedTable = (props) => {
                             </div>
                           </div>
                           <div className=" flex font-medium  w-[6.81rem] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
                             </div>
                           </div>
                           <div className=" flex font-medium  w-[4.52rem] max-xl:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.inspectionInd !== 0 && <MultiAvatar
                                 primaryTitle={item.startInspectionUserName}
                                 imageId={item.imageId}
@@ -171,7 +171,7 @@ const ReceivedTable = (props) => {
                             </div>
                           </div>
                           <div className=" flex font-medium  w-[9.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* {item.phoneReceiveCount}/{item.phoneCount} */}
                               {isValidPercentage ? (
 
@@ -197,7 +197,7 @@ const ReceivedTable = (props) => {
                           </div>
 
                           <div className=" flex font-medium   w-[5.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               {item.productionLocationName && <MultiAvatar
                                 primaryTitle={item.productionLocationName}
@@ -208,7 +208,7 @@ const ReceivedTable = (props) => {
                             </div>
                           </div>
                           <div className=" flex font-medium  w-[8rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.inspectionInd === 0 && item.inventoryReceiveInd ?
                                 <Button
                                   loading={item.orderId === rowData.orderId && props.updatingInspection}

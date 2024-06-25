@@ -119,21 +119,21 @@ function handleSetCurrentEmployeeId(employeeId,) {
                         
                         <div class=" flex flex-row justify-evenly  w-full items-end">
                        
-                        {/* <div class=" text-sm text-cardBody font-medium font-poppins">Department   </div> */}
-                      <div class=" font-normal text-xs text-cardBody font-poppins">{item.department === null ? "Not Available" :item.department}</div>
-                      <div class=" font-normal text-xs text-cardBody font-poppins">{item.roleTypeName  === null ? "Not Available" :item.roleTypeName}</div>
+                        {/* <div class=" text-sm  font-medium font-poppins">Department   </div> */}
+                      <div class=" font-normal text-xs  font-poppins">{item.department === null ? "Not Available" :item.department}</div>
+                      <div class=" font-normal text-xs  font-poppins">{item.roleTypeName  === null ? "Not Available" :item.roleTypeName}</div>
           
                    
                       
                         <div >
-                        {/* <div class=" text-sm text-cardBody font-medium font-poppins">Role   </div> */}
+                        {/* <div class=" text-sm  font-medium font-poppins">Role   </div> */}
                       
           </div>
           
                       </div> 
                    
-                       <div class=" font-normal text-xs text-cardBody font-poppins mt-1 "><PhoneIcon  className="!text-base cursor-pointer text-[grey]"/> {`${item.countryDialCode} ${item.mobileNo}`}</div>
-          <div class=" font-normal text-xs  mt-1 text-cardBody font-poppins flex justify-between ">
+                       <div class=" font-normal text-xs  font-poppins mt-1 "><PhoneIcon  className="!text-base cursor-pointer text-[grey]"/> {`${item.countryDialCode} ${item.mobileNo}`}</div>
+          <div class=" font-normal text-xs  mt-1  font-poppins flex justify-between ">
             <div>
             <DraftsIcon  className="!text-base cursor-pointer text-green-400 mr-1" /> 
           <Tooltip title={item.emailId}>
@@ -147,14 +147,14 @@ function handleSetCurrentEmployeeId(employeeId,) {
       />
       </div>
           </div>
-          <div class=" font-normal text-xs mt-1 text-cardBody font-poppins ">Reports To:    <span>
+          <div class=" font-normal text-xs mt-1  font-poppins ">Reports To:    <span>
           {item.reportingManagerName 
                         ? `${item.reportingManagerName}`
                         : <label class="text-[red]" >Not Assigned</label>}
                       </span>
          </div>
           <div class=" flex flex-row justify-between mt-[0.5rem] w-full items-end">
-          <div class=" font-normal text-xs text-cardBody font-poppins ">
+          <div class=" font-normal text-xs  font-poppins ">
        
           <span class=" cursor-pointer"
             
@@ -166,7 +166,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
    
            </div>
            <div class="flex">
-          <div class=" font-normal text-xs text-cardBody font-poppins ">
+          <div class=" font-normal text-xs  font-poppins ">
           <span class=" cursor-pointer"
          
               onClick={() => {
@@ -182,7 +182,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
               </Tooltip>
      </span>
            </div>
-           <div class=" font-normal text-xs text-cardBody font-poppins ml-[0.15rem]">
+           <div class=" font-normal text-xs  font-poppins ml-[0.15rem]">
             {/* {user.userAccessPlusInd === true ?( */}
           <span
               className=" cursor-pointer"
@@ -204,7 +204,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
      </span>
             {/* ):null} */}
            </div>
-           <div class=" font-normal text-xs text-cardBody font-poppins ml-[0.15rem]">
+           <div class=" font-normal text-xs  font-poppins ml-[0.15rem]">
            <Tooltip title={showTooltip ? tooltipContent : 'Not available'}>
                    {/* title={`${item.workplace} , ${item.location}`}
                    > */}
@@ -215,7 +215,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
      </span>
      </Tooltip>
            </div>
-           <div class=" font-normal text-xs text-cardBody font-poppins ml-[0.15rem]">
+           <div class=" font-normal text-xs  font-poppins ml-[0.15rem]">
            <Tooltip title="Assign as Admin">
            <CircleNotificationsIcon
           className=" !text-base cursor-pointer text-[gold]"
@@ -227,7 +227,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
            </Tooltip>
             </div>
           
-           <div class=" font-normal text-xs text-cardBody font-poppins ml-[0.15rem]">
+           <div class=" font-normal text-xs  font-poppins ml-[0.15rem]">
             <Tooltip title="Onboarding">
               <BadgeIcon   className=" !text-base cursor-pointer text-[#709ab3]"
                 onClick={() => {
@@ -238,7 +238,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
               />
             </Tooltip>
            </div>
-           <div class=" font-normal text-xs text-cardBody font-poppins ml-[0.15rem]">
+           <div class=" font-normal text-xs  font-poppins ml-[0.15rem]">
            {user.userUpdateInd === true || user.role === "ADMIN"  ? (
             <Tooltip title="Edit">
               <BorderColorIcon

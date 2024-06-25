@@ -97,7 +97,7 @@ const MaterialReceivedTable = (props) => {
                                         <div class="flex">
 
                                             <div className=" flex font-medium flex-col w-[16.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins cursor-pointer underline text-blue-600">
+                                                <div class="flex justify-between text-sm  font-semibold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         onClick={() => {
                                                             handleRow(item);
@@ -114,7 +114,7 @@ const MaterialReceivedTable = (props) => {
                                         </div>
                                         <div className=" flex font-medium flex-col  w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 <MultiAvatar
                                                     primaryTitle={item.userName}
                                                     imgWidth={"1.8rem"}
@@ -130,7 +130,7 @@ const MaterialReceivedTable = (props) => {
                                         </div>
                                         <div className=" flex font-medium flex-col  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.supplierName}
                                             </div>
                                         </div>
@@ -180,7 +180,7 @@ const MaterialReceivedTable = (props) => {
                     
 </div> */}
                                         <div className=" flex font-medium flex-col md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            {/* <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                            {/* <div class=" text-xs  font-semibold  font-poppins">
                                                     {item.zone ? <BorderColorOutlined
                                                         onClick={() => {
                                                             handleStore()
@@ -195,7 +195,7 @@ const MaterialReceivedTable = (props) => {
                                                 </div> */}
                                         </div>
                                         <div className=" flex font-medium flex-col  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins cursor-pointer">
+                                            <div class=" text-xs  font-poppins cursor-pointer">
                                                 {/* <Tooltip title="GRN "> */}
                                                 <Button
                                                     onClick={() => {

@@ -102,14 +102,14 @@ const Currency = ({ fetchingCurrencyList, currencyList, getCurrencyList, getCurr
             
             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
   Currency
 
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div style={{width:"70%"}}>
 <div class=" basis-11/12 font-semibold">
 {region.currency_name}
@@ -121,14 +121,14 @@ const Currency = ({ fetchingCurrencyList, currencyList, getCurrencyList, getCurr
  <div className="flex justify-between w-[48rem]">
  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Operations
 
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-2/6">
 <CurrencyStatusToggle
 editInd={region.editInd}
@@ -143,7 +143,7 @@ currency_id={region.currency_id}
                   <div className=" w-[21rem]">
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Sales
 </div>
@@ -151,7 +151,7 @@ Sales
 
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-2/6">
 <SalesCurrencyToggle
 editInd={region.editInd}
@@ -167,7 +167,7 @@ currency_id={region.currency_id}
                   <div className=" w-[21rem]">
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Investor
 </div>
@@ -175,7 +175,7 @@ Investor
 
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-2/6">
 <InvestorCurrencyToggle
 editInd={region.editInd}

@@ -83,41 +83,41 @@ const GrnListOfPO = (props) => {
                                     <div className="flex rounded-xl justify-between  mt-2 bg-white h-8 items-center p-1 ">
                                         <div class="flex w-[22rem]">
                                             <div className=" flex font-medium  w-[12.5rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
+                                                <div class="flex justify-between text-sm  font-semibold  font-poppins ">
                                                     {item.suppliesFullName.substring(0, 20)}
                                                 </div>
                                             </div>
                                        
                                         <div className=" flex font-medium   w-[6.123rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.price}
                                             </div>
 
                                         </div>
                                         <div className=" flex font-medium   w-[6.023rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.unit}
                                             </div>
                                         </div>
                                         </div>
                                         <div class="flex w-[20rem]">
                                         <div className=" flex font-medium   w-[7.033rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.unitReceived}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium   w-[5.043rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.unitDamaged}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium   w-[3.053rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {`${item.unitReceived - item.unitDamaged}`}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium   w-[3.2rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" !text-icon text-cardBody font-poppins cursor-pointer">
+                                            <div class=" !text-icon  font-poppins cursor-pointer">
                                                 <ListAltRounded
                                                     onClick={() => {
                                                         handleRow(item)
@@ -130,12 +130,12 @@ const GrnListOfPO = (props) => {
                                         <div class="flex w-[29rem]">
                                         
                                         <div className=" flex font-medium   w-[7.24rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.remark}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium   w-[6.123rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.grnNumber}
                                             </div>
                                         </div>
@@ -187,7 +187,7 @@ const GrnListOfPO = (props) => {
                                            
                                         }
                                         <div className=" flex font-medium   w-[3.1rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.grnNumber !== null &&
                                                     <TransferToStock
                                                         roomRackId={selectedRoomId}

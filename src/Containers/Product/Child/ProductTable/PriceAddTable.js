@@ -118,7 +118,7 @@
 //                   >
 
 //                     <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
-//                       <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+//                       <div class="text-sm  font-semibold  font-poppins cursor-pointer">
 //                         <Select
 //                           className="w-32"
 //                           value={item.currency_id}
@@ -135,7 +135,7 @@
 
 //                     <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-//                       <div class=" text-xs text-cardBody font-poppins">
+//                       <div class=" text-xs  font-poppins">
 //                         <Input
 //                           className="w-32"
 //                           value={item.price}
@@ -148,7 +148,7 @@
 
 
 //                     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-//                       <div class=" text-xs text-cardBody font-poppins">
+//                       <div class=" text-xs  font-poppins">
 
 //                         <Input
 //                           className="w-32"
@@ -160,7 +160,7 @@
 //                     <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-//                       <div class=" text-xs text-cardBody font-semibold  font-poppins">
+//                       <div class=" text-xs  font-semibold  font-poppins">
 //                         <Input
 //                           className="w-32"
 //                           value={item.vat}
@@ -276,7 +276,7 @@
 //                 >
 
 //                   <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
-//                     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+//                     <div class="text-sm  font-semibold  font-poppins cursor-pointer">
 //                     {editsuppliesId === item.productCurrencyId ? (
 //                       <Select
 //                         classNames="w-32"
@@ -290,7 +290,7 @@
 //                         ))}
 //                       </Select>
 //                     ):(
-//                       <div className="font-normal text-sm text-cardBody font-poppins">
+//                       <div className="font-normal text-sm  font-poppins">
 //                       <div> {item.currencyName}</div>
 //                     </div>
 //                   )}
@@ -299,7 +299,7 @@
 
 //                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 //                   {editsuppliesId === item.productCurrencyId ? (
-//                     <div class=" text-xs text-cardBody font-poppins">
+//                     <div class=" text-xs  font-poppins">
 //                       <Input
 //                         className="w-32"
 //                         value={item.price}
@@ -307,7 +307,7 @@
 //                       />
 //                     </div>
 //  ):(
-//   <div className="font-normal text-sm text-cardBody font-poppins">
+//   <div className="font-normal text-sm  font-poppins">
 //   <div> {item.price}</div>
 // </div>
 // )}
@@ -317,7 +317,7 @@
 
 //                   <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 //                   {editsuppliesId === item.productCurrencyId ? (
-//                     <div class=" text-xs text-cardBody font-poppins">
+//                     <div class=" text-xs  font-poppins">
 //                       <Input
 //                         className="w-32"
 //                         value={item.priceB2C}
@@ -325,7 +325,7 @@
 //                       />
 //                     </div>
 //                      ):(
-//                       <div className="font-normal text-sm text-cardBody font-poppins">
+//                       <div className="font-normal text-sm  font-poppins">
 //                       <div> {item.priceB2C}</div>
 //                     </div>
 //                     )}
@@ -333,7 +333,7 @@
 //                   <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 //                   {editsuppliesId === item.productCurrencyId ? (
 
-//                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
+//                     <div class=" text-xs  font-semibold  font-poppins">
 //                       <Input
 //                         className="w-32"
 //                         value={item.vat}
@@ -341,7 +341,7 @@
 //                       />
 //                     </div>
 //                      ):(
-//                       <div className="font-normal text-sm text-cardBody font-poppins">
+//                       <div className="font-normal text-sm  font-poppins">
 //                       <div> {item.vat}</div>
 //                     </div>
 //                     )}
@@ -678,7 +678,7 @@ function ProductbuilderTable(props) {
                 >
 
                   <div className=" flex font-medium items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
-                    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
                     {editsuppliesId === item.productCurrencyId ? (
                       <Select
                         classNames="w-32"
@@ -692,7 +692,7 @@ function ProductbuilderTable(props) {
                         ))}
                       </Select>
                     ):(
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                       <div> {item.currencyName}</div>
                     </div>
                   )}
@@ -701,7 +701,7 @@ function ProductbuilderTable(props) {
 
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.productCurrencyId ? (
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       <Input
                         className="w-32"
                         value={item.price}
@@ -709,7 +709,7 @@ function ProductbuilderTable(props) {
                       />
                     </div>
  ):(
-  <div className="font-normal text-sm text-cardBody font-poppins">
+  <div className="font-normal text-sm  font-poppins">
   <div> {item.price}</div>
 </div>
 )}
@@ -719,7 +719,7 @@ function ProductbuilderTable(props) {
 
                   <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.productCurrencyId ? (
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       <Input
                         className="w-32"
                         value={item.priceB2C}
@@ -727,7 +727,7 @@ function ProductbuilderTable(props) {
                       />
                     </div>
                      ):(
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                       <div> {item.priceB2C}</div>
                     </div>
                     )}
@@ -735,7 +735,7 @@ function ProductbuilderTable(props) {
                   <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.productCurrencyId ? (
 
-                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                    <div class=" text-xs  font-semibold  font-poppins">
                       <Input
                         className="w-32"
                         value={item.vat}
@@ -743,7 +743,7 @@ function ProductbuilderTable(props) {
                       />
                     </div>
                      ):(
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                       <div> {item.vat}</div>
                     </div>
                     )}

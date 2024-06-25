@@ -178,7 +178,7 @@ function OpenReceivedOrderIdForm(props) {
                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                       <div class="flex">
                         <div className=" flex font-medium   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                          {item.mismatchInd && <div class=" text-xs text-cardBody font-poppins">
+                          {item.mismatchInd && <div class=" text-xs  font-poppins">
                             <PlusOutlined onClick={() => {
                               handleMismatchItem();
                               handleSetParticularOrderData(item);
@@ -191,13 +191,13 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
 
                         <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                          <div class=" text-xs text-cardBody font-poppins">
+                          <div class=" text-xs  font-poppins">
                             {item.model}
                           </div>
 
                         </div>
                         <div className=" flex font-medium  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-sm text-cardBody font-poppins">
+                          <div class=" text-sm  font-poppins">
 
                             {item.imei}
                           </div>
@@ -205,25 +205,25 @@ function OpenReceivedOrderIdForm(props) {
                       </div>
 
                       <div className=" flex font-medium  md:w-[12.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
+                        <div class=" text-xs  font-poppins text-center">
 
                           {item.os} {item.gb}  {item.color}
                         </div>
                       </div>
 
                       <div className=" flex font-medium  md:w-[6.63rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
+                        <div class=" text-xs  font-poppins text-center">
                           {item.conditions}
                         </div>
                       </div>
                       <div className=" flex font-medium  md:w-[12.023rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
+                        <div class=" text-xs  font-poppins text-center">
                           {item.issue}
                         </div>
                       </div>
 
                       <div className=" flex font-medium  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
+                        <div class=" text-xs  font-poppins text-center">
                           <Tooltip title="Task">
                             <FileDoneOutlined   className="!text-icon  text-[black]" type="file-done"
                               onClick={() => {
@@ -236,7 +236,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
                       <div className=" flex font-medium  md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
+                        <div class=" text-xs  font-poppins text-center">
                           <Tooltip title="Notes">
                             <NoteAltIcon
                               className="!text-icon cursor-pointer text-[green]"
@@ -252,7 +252,7 @@ function OpenReceivedOrderIdForm(props) {
                       </div>
 
                       <div className=" flex font-medium  md:w-[7.06rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
+                        <div class=" text-xs  font-poppins text-center">
                           <Tooltip>
                             {item.inspectionInd === 1 &&
                               <ReceiveValidationToggle
@@ -266,7 +266,7 @@ function OpenReceivedOrderIdForm(props) {
                       </div>
 
                       <div className=" flex font-medium  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
+                        <div class=" text-xs  font-poppins text-center">
                           {item.receivePhoneUserName !== null &&
                             <>
                               <Tooltip title={item.receivePhoneUserName}>
@@ -286,7 +286,7 @@ function OpenReceivedOrderIdForm(props) {
                       </div>
 
                       <div className=" flex font-medium  md:w-[3.09rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
+                        <div class=" text-xs  font-poppins text-center">
                           {item.inspectionInd === 1 && item.receivePhoneInd && !item.cannotRepairInd && (
                             <EditOutlined
                             className="!text-icon cursor-pointer text-[orange]"
@@ -303,7 +303,7 @@ function OpenReceivedOrderIdForm(props) {
                       </div>
 
                       <div className=" flex font-medium  md:w-[7.08rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins text-center">
+                        <div class=" text-xs  font-poppins text-center">
                           {item.inspectionInd !== 0 && item.receivePhoneInd &&
                             <>
                               {!item.cannotRepairInd && item.inspectionInd !== 3 ?
@@ -337,12 +337,12 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
                       <div className=" flex font-medium   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                        <div class=" text-xs text-cardBody font-poppins">
+                        <div class=" text-xs  font-poppins">
                           {item.cannotRepairInd && "Can't Repair"}
                         </div>
                       </div>
                       <div className=" flex font-medium   md:w-[5.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                        <div class=" text-xs text-cardBody font-poppins">
+                        <div class=" text-xs  font-poppins">
                           <Tooltip title={<FormattedMessage
                             id="app.Print"
                             defaultMessage="Print"

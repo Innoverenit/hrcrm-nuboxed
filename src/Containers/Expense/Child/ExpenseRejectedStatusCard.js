@@ -43,7 +43,7 @@ function ExpenseRejectedStatusCard(props) {
                 className="absolute left-0 top-0 bottom-0 w-3  rounded-l-md -mt-1 -mb-1 -ml-2 "
 
               ></span>
-              <span class="font-semibold text-sm text-cardBody-heading font-poppins"> Rejected </span>
+              <span class="font-semibold text-sm -heading font-poppins"> Rejected </span>
             </span>
           </div>    
               {rejectedExpenses.map((item) => {
@@ -58,10 +58,10 @@ function ExpenseRejectedStatusCard(props) {
 
                          
                               <Tooltip >
-                                  <div class=" text-sm text-cardBody font-poppins">
+                                  <div class=" text-sm  font-poppins">
                                   Voucher ID
                                   </div>
-                                  <div class=" text-xs text-blue-500 text-cardBody font-poppins cursor-pointer">
+                                  <div class=" text-xs text-blue-500  font-poppins cursor-pointer">
 <div onClick={() => { handleExpand(item.voucherId);
                 handleSetNewParticularRowData(item);
                 props.handlePExpenseVoucherIdDrawer(true);}}>
@@ -71,9 +71,9 @@ function ExpenseRejectedStatusCard(props) {
 
 </Tooltip>
 <div className=" flex font-medium flex-col w-[12rem] ">
-                                    <div class=" text-xs text-cardBody font-poppins"></div>
+                                    <div class=" text-xs  font-poppins"></div>
 
-                                    <div class=" text-xs text-cardBody font-poppins">
+                                    <div class=" text-xs  font-poppins">
          
             
               
@@ -93,8 +93,8 @@ function ExpenseRejectedStatusCard(props) {
 </div>
 <div className=" flex font-medium flex-col  w-52 ">
                            
-                           <div class=" text-sm text-cardBody font-poppins"> Voucher Date </div>
-                           <div class=" text-xs text-cardBody font-poppins">
+                           <div class=" text-sm  font-poppins"> Voucher Date </div>
+                           <div class=" text-xs  font-poppins">
                                
                            
                            {dayjs(item.voucherDate).format("MMM Do YY")}
@@ -104,8 +104,8 @@ function ExpenseRejectedStatusCard(props) {
                        <div className=" flex font-medium flex-col w-32 ml-2 ">
                                   
 
-                                  <div class=" text-sm text-cardBody font-poppins">Amount</div>
-                                  <div class=" text-xs text-cardBody font-poppins">
+                                  <div class=" text-sm  font-poppins">Amount</div>
+                                  <div class=" text-xs  font-poppins">
                                       € {item.amount}
                                   </div>
                               </div>

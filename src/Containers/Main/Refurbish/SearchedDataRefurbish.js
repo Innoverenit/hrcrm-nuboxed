@@ -285,7 +285,7 @@ const SearchedDataRefurbish = (props) => {
                                         <div className=" flex font-medium items-center md:w-[3.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -321,7 +321,7 @@ const SearchedDataRefurbish = (props) => {
                                             </div>
                                            
                                             <div className=" flex font-medium   w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
                                                 </div>
 
@@ -329,7 +329,7 @@ const SearchedDataRefurbish = (props) => {
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium  w-[3.6rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                     <MultiAvatar2
                                                         primaryTitle={item.contactPersonName}
@@ -339,7 +339,7 @@ const SearchedDataRefurbish = (props) => {
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[3.53rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.teamLeadUserName && <MultiAvatar
                                                         primaryTitle={item.teamLeadUserName}
                                                         imgWidth={"2.1em"}
@@ -348,7 +348,7 @@ const SearchedDataRefurbish = (props) => {
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[3.84rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                     {item.supervisorUserName && <MultiAvatar
                                                         primaryTitle={item.supervisorUserName}
@@ -358,7 +358,7 @@ const SearchedDataRefurbish = (props) => {
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[3.7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                     {item.userName && <MultiAvatar
                                                         primaryTitle={item.userName}
@@ -370,23 +370,23 @@ const SearchedDataRefurbish = (props) => {
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium  w-[3.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.expectedPrice}
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                    {item.payableOfferPrice} 
                                                 </div>
                                             </div>
 
                                             <div className=" flex font-medium  w-[5.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {dayjs(item.deliveryDate).format("DD-MM-YYYY")}
                                                 </div>
                                             </div>
                                             {/* <div className=" flex font-medium  w-[4.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.suggestedPrice}
                                                 </div>
                                             </div> */}
@@ -394,7 +394,7 @@ const SearchedDataRefurbish = (props) => {
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                                             <div className=" flex font-medium  w-[9.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.qcStartInd === 0 ? <b>Waiting for QC approval</b>
                                                         : item.qcStartInd === 1 ?
                                                             // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
@@ -415,7 +415,7 @@ const SearchedDataRefurbish = (props) => {
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[9.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.qcRepairInd === 1 ?
                                                         <Tooltip title="Assign For Repair">
                                                             <Button
@@ -432,7 +432,7 @@ const SearchedDataRefurbish = (props) => {
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[4.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.rejectOrderCount > 0 &&
                                                         <Tooltip title="Reject">
                                                             <Badge size="small" count={`${item.rejectOrderCount} `} overflowCount={3000}>
@@ -451,7 +451,7 @@ const SearchedDataRefurbish = (props) => {
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium  w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-base  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title="Notes">
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer"
@@ -466,7 +466,7 @@ const SearchedDataRefurbish = (props) => {
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-base  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title="Update">
                                                         <BorderColorOutlined
                                                             className="!text-icon cursor-pointer"
@@ -479,7 +479,7 @@ const SearchedDataRefurbish = (props) => {
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                <h4 class=" text-xs text-cardBody font-poppins">
+                                                <h4 class=" text-xs  font-poppins">
                                                     <Tooltip title="Add Lead">
                                                         <PersonAddAlt1
                                                             className="!text-icon cursor-pointer"

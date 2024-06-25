@@ -104,7 +104,7 @@ const AddMultipleQCSpare = (props) => {
                 return (
                     <>
                         <div class="flex justify-between">
-                            <div class="w-[30%]">
+                            <div class="w-[50%]">
                                 <label>{`Spare ${i + 1}`}</label>
 
                                 <Select
@@ -163,7 +163,7 @@ const AddMultipleQCSpare = (props) => {
                     </>
                 )
             })}
-            <div class="flex justify-end mr-[47px] mt-[25px]">
+            <div class="flex  mr-[47px] mt-[25px]">
                 <Button className="bg-[#24a3fb] mr-4"
                     type="primary"
                     onClick={handleAddRowClick}

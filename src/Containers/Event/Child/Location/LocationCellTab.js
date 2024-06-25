@@ -148,13 +148,13 @@ class LocationCellTab extends Component {
                 </TabPane>
             
 
-                <TabPane tab="Machinery" key="3">
-                {/* Hello */}
+                {/* <TabPane tab="Machinery" key="3">
+            
                 <UsersMachineCard
                 storedLoc={this.props.storedLoc}
                 />
-                    {/* <UsersCellCard storedLoc={this.props.storedLoc} /> */}
-                </TabPane>
+                   
+                </TabPane> */}
               </StyledTabs>
             </TabsWrapper>
           </div>

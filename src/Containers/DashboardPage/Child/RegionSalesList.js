@@ -115,7 +115,7 @@ function RegionSalesList(props) {
                     <div className="max-sm:w-full">
                       <Tooltip>
                         <div className="flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
-                          <div className="text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                          <div className="text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
                             {employee.kpiSalesName}
                           </div>
                         </div>
@@ -127,13 +127,13 @@ function RegionSalesList(props) {
        
                
                 <div className="flex font-medium flex-col md:w-[19.3rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <div className="text-sm text-cardBody font-poppins">
+                  <div className="text-sm  font-poppins">
                     <>
-                      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                      <div className="font-normal flex flex-row text-sm  font-poppins">
                        {/* {AssignedValue} */}
                        {/* {employee.month3AssignedValue && (
                        <span> */}
-                      {employee.currencyInd && `${employee.userCurrency} `}{AssignedValue/ 10000}k
+                      {employee.currencyInd && `${employee.userCurrency} `}{AssignedValue/ 1000}k
                       {/* </span>
                     )} */}
                       </div>
@@ -143,13 +143,13 @@ function RegionSalesList(props) {
            
               
                 <div className="flex font-medium flex-col md:w-[19.31rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <div className="text-sm text-cardBody font-poppins">
+                  <div className="text-sm  font-poppins">
                     <>
-                      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                      <div className="font-normal flex flex-row text-sm  font-poppins">
                        {/* {Actualcompleted} */}
                        {/* {employee.month3CompletedValue && (
                      <span> */}
-                      {employee.currencyInd && `${employee.userCurrency} `}{Actualcompleted/ 10000}k
+                      {employee.currencyInd && `${employee.userCurrency} `}{Actualcompleted/ 1000}k
                       {/* </span>
                        )} */}
                       </div>
@@ -158,13 +158,13 @@ function RegionSalesList(props) {
                 </div>
               
                 <div className="flex font-medium flex-col md:w-[5.9rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <div className="text-sm text-cardBody font-poppins">
+                  <div className="text-sm  font-poppins">
                     <>
-                      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                      <div className="font-normal flex flex-row text-sm  font-poppins">
                        {/* {actualCompletedValue} */}
                        {/* {employee.month3ActualCompletedValue && (
                       <span> */}
-                      {employee.currencyInd && `${employee.userCurrency} `}{actualCompletedValue/ 10000}k
+                      {employee.currencyInd && `${employee.userCurrency} `}{actualCompletedValue/ 1000}k
                       {/* </span>
                     )} */}
                       </div>
@@ -172,7 +172,7 @@ function RegionSalesList(props) {
                   </div>
                 </div>
                    <div className="flex font-medium flex-col md:w-[4.3rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <div className="text-sm text-cardBody font-poppins">
+                  <div className="text-sm  font-poppins">
                     <>
                    <Button
                    onClick={() => {
@@ -248,7 +248,7 @@ function RegionSalesList(props) {
                    <div className="max-sm:w-full">
                      <Tooltip>
                        <div className="flex max-sm:w-full justify-between flex-row md:flex-col w-[9rem]">
-                         <div className="text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                         <div className="text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
                            {item.kpiName}
                          </div>
                        </div>
@@ -257,7 +257,7 @@ function RegionSalesList(props) {
                    <div className="max-sm:w-full">
                      <Tooltip>
                        <div className="flex max-sm:w-full justify-between flex-row md:flex-col w-[10rem]">
-                         <div className="text-sm  text-cardBody font-poppins  cursor-pointer">
+                         <div className="text-sm   font-poppins  cursor-pointer">
                            {item.lobName}
                          </div>
                        </div>
@@ -267,16 +267,16 @@ function RegionSalesList(props) {
                </div>
       
                <div className="flex font-medium flex-col md:w-[32.32rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                        <div className="flex flex-col items-center">
                          <span className="mr-2">M1</span>
                          <span className='ml-2 w-[4rem]'>
                           {item.month1AssignedValue && (
    <span>
        {item.currencyInd && `${item.userCurrency} `}
-       {Math.floor(item.month1AssignedValue/ 10000)}k 
+       {Math.floor(item.month1AssignedValue/ 1000)}k 
    </span>
 )}</span>
                        </div>
@@ -285,7 +285,7 @@ function RegionSalesList(props) {
                          <span className='ml-2 w-[4rem]'>{item.month2AssignedValue && (
    <span>
        {item.currencyInd && `${item.userCurrency} `}
-       {Math.floor(item.month2AssignedValue/ 10000)}k 
+       {Math.floor(item.month2AssignedValue/ 1000)}k 
    </span>
 )}</span>
                        </div>
@@ -295,7 +295,7 @@ function RegionSalesList(props) {
                                    <span className='ml-2 w-[4rem]'>{item.month3AssignedValue && (
    <span>
        {item.currencyInd && `${item.userCurrency} `}
-       {Math.floor(item.month3AssignedValue/ 10000)}k 
+       {Math.floor(item.month3AssignedValue/ 1000)}k 
    </span>
 )}</span>
                        </div> 
@@ -304,12 +304,12 @@ function RegionSalesList(props) {
                  </div>
                </div>
                <div className="flex font-medium flex-col md:w-[19.3rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                      {item.month3AssignedValue && (
                        <span>
-                      {item.currencyInd && `${item.userCurrency} `}{Math.floor(AssignedTotal / 10000)}k
+                      {item.currencyInd && `${item.userCurrency} `}{Math.floor(AssignedTotal / 1000)}k
                       </span>
                     )}
                      </div>
@@ -318,15 +318,15 @@ function RegionSalesList(props) {
                </div>
           
                <div className="flex font-medium flex-col md:w-[18.3rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                        <div className="flex flex-col items-center">
                          <span className="mr-2">M1</span>
                          <span className='ml-2 w-[4rem]'>   {item.month1CompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month1CompletedValue / 10000).toFixed(2)}k
+                                           {(item.month1CompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -335,7 +335,7 @@ function RegionSalesList(props) {
                          <span className='ml-2 w-[4rem]'>   {item.month2CompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month2CompletedValue / 10000).toFixed(2)}k
+                                           {(item.month2CompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -344,7 +344,7 @@ function RegionSalesList(props) {
                          <span className='ml-2 w-[4rem]'>   {item.month3CompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month3CompletedValue / 10000).toFixed(2)}k
+                                           {(item.month3CompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -353,12 +353,12 @@ function RegionSalesList(props) {
                  </div>
                </div>
                <div className="flex font-medium flex-col md:w-[11.13rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                      {item.month3CompletedValue && (
                      <span>
-                      {item.currencyInd && `${item.userCurrency} `}{(AchievedTotal/ 10000).toFixed(2)}k
+                      {item.currencyInd && `${item.userCurrency} `}{(AchievedTotal/ 1000).toFixed(2)}k
                       </span>
                        )}
                      </div>
@@ -367,7 +367,7 @@ function RegionSalesList(props) {
                </div>
                <div className=" flex font-medium flex-col  md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <div class=" text-xs text-cardBody font-poppins">
+         <div class=" text-xs  font-poppins">
          {/* <Tooltip title={item.oppStage}> */}
 {" "}
 <Progress
@@ -385,15 +385,15 @@ width={30}
          </div>
        </div>
                <div className="flex font-medium flex-col md:w-[19.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                        <div className="flex flex-col items-center">
                          <span className="mr-2">M1</span>
                          <span className='ml-2 w-[4rem]'>   {item.month1ActualCompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month1ActualCompletedValue / 10000).toFixed(2)}k
+                                           {(item.month1ActualCompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -402,7 +402,7 @@ width={30}
                          <span className='ml-2 w-[4rem]'>   {item.month2ActualCompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month2ActualCompletedValue / 10000).toFixed(2)}k
+                                           {(item.month2ActualCompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -411,7 +411,7 @@ width={30}
                          <span className='ml-2 w-[4rem]'>   {item.month3ActualCompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
-                                           {(item.month3ActualCompletedValue / 10000).toFixed(2)}k
+                                           {(item.month3ActualCompletedValue / 1000).toFixed(2)}k
                                        </span>
                                    )}</span>
                        </div>
@@ -420,12 +420,12 @@ width={30}
                  </div>
                </div>
                <div className="flex font-medium flex-col md:w-[5.1rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
+                 <div className="text-sm  font-poppins">
                    <>
-                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+                     <div className="font-normal flex flex-row text-sm  font-poppins">
                      {item.month3ActualCompletedValue && (
                       <span>
-                      {item.currencyInd && `${item.userCurrency} `}{(ActualTotal / 10000).toFixed(2)}k
+                      {item.currencyInd && `${item.userCurrency} `}{(ActualTotal / 1000).toFixed(2)}k
                       </span>
                     )}
                      </div>
@@ -434,7 +434,7 @@ width={30}
                </div>
                <div className=" flex font-medium flex-col  md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <div class=" text-xs text-cardBody font-poppins">
+         <div class=" text-xs  font-poppins">
          {/* <Tooltip title={item.oppStage}> */}
 {" "}
 <Progress

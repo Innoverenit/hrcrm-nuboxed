@@ -208,96 +208,96 @@ class AllRequirementTable extends Component {
                               
                                 <div class="flex">
                                 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center text-cardBody font-poppins">
+                                    <div class=" text-sm justify-center  font-poppins">
                                     {item.jobOrder}
                                     </div>
                                 </div>
                              
                                 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {item.requirementName}
 
                                     </div>
                                     <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {item.category}
 
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {item.customerName}
 
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {item.recruitOwner}
 
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {item.creationDate}
 
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {/* {item.creationDate} */}
 
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {/* {item.creationDate} */}
 
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {/* {item.creationDate} */}
 
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {item.billing}
 
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {item.candidatetList}
 
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {item.candidatetList}
 
                                     </div>

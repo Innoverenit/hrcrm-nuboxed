@@ -80,7 +80,7 @@ class LinkedDocuments extends Component {
                                           <Tooltip>
                                             <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                             
-                                              <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                              <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                   
                                               <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
        
@@ -97,22 +97,22 @@ class LinkedDocuments extends Component {
                                 
                                   <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                   
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm  font-poppins">
                                     {item.documentName}
                                     </div>
                                 </div>
   
                                 <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                   
-                                  <div class="text-sm text-cardBody font-poppins">
+                                  <div class="text-sm  font-poppins">
                                   <span>{elipsize(item.documentDescription || "", 15)}</span>
                                   </div>
                               </div>
                               <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                      
-                                     <div class="text-sm text-cardBody font-poppins">
+                                     <div class="text-sm  font-poppins">
                    
-                       <div className="font-normal text-sm text-cardBody font-poppins">
+                       <div className="font-normal text-sm  font-poppins">
                          <span>{item.uploadedBy}</span>
                        </div>
                    

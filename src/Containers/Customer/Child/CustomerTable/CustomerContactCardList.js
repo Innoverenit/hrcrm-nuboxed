@@ -150,7 +150,7 @@ function CustomerContactCardList(props) {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
          <Link
           toUrl={`contact/${item.contactId}`}
@@ -178,27 +178,27 @@ function CustomerContactCardList(props) {
                              
                                 <div className=" flex font-medium flex-col md:w-[13.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm  font-poppins">
                                          {item.emailId}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-[16.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                  <div class="text-sm text-cardBody font-poppins">
+                                  <div class="text-sm  font-poppins">
                                   {item.countryDialCode} {item.mobileNumber}
                                   </div>
                               </div>
                               </div>
                               <div className="flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
 
-  <div className="text-sm text-cardBody font-poppins text-center">
+  <div className="text-sm  font-poppins text-center">
     {item.department}
   </div>
 </div>
 <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {item.designation}
 
                                     </div>
@@ -206,7 +206,7 @@ function CustomerContactCardList(props) {
                                 <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
               <span
                 style={{
@@ -222,7 +222,7 @@ function CustomerContactCardList(props) {
                                 <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <Tooltip title="LinkedIn">
               <span
                 //type="edit"
@@ -241,7 +241,7 @@ function CustomerContactCardList(props) {
                                 <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <Tooltip title="Edit">
               <span
                 style={{ cursor: "pointer" }}
@@ -257,7 +257,7 @@ function CustomerContactCardList(props) {
             </Tooltip>
 
                                     </div>
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <StyledPopconfirm
               placement="bottom"
               //title="Do you wish to detach?"
@@ -289,7 +289,7 @@ function CustomerContactCardList(props) {
                                     </div>
                                    
                                 </div>
-                                <div class=" text-sm text-cardBody font-poppins text-center">
+                                <div class=" text-sm  font-poppins text-center">
                                     <span>
               {item.thirdPartyAccessInd === true && (
                 <CustomerContactActiveToggle

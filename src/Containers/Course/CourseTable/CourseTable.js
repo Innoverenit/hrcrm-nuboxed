@@ -69,7 +69,7 @@ function CourseTable(props) {
 <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 ">
        <div class="flex">
     <div className=" flex font-medium flex-col md:w-[18.1rem] max-sm:w-full  ">
-    <h4 class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+    <h4 class="text-sm  font-semibold  font-poppins cursor-pointer">
     <Link
           toUrl={`/course/${item.courseId}`}
           title={`${item.courseName}`}
@@ -89,13 +89,13 @@ function CourseTable(props) {
 
     <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-    <h4 class=" text-xs text-cardBody font-poppins">
+    <h4 class=" text-xs  font-poppins">
                         {item.duration} 
                     </h4>
     </div></div>
     
     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-    <h4 class=" text-xs text-cardBody font-poppins">
+    <h4 class=" text-xs  font-poppins">
                       
     {item.currencyName} {item.price}
                     </h4>
@@ -103,7 +103,7 @@ function CourseTable(props) {
     <div className=" flex font-medium flex-col md:w-[19rem] max-sm:flex-row w-full max-sm:justify-between ">
        
 
-        <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+        <h4 class=" text-xs  font-semibold  font-poppins">
         {item.description === null ? (
               "No Data"
             ) : (
@@ -141,7 +141,7 @@ function CourseTable(props) {
             </div>
 
 {/* <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<h4 class=" text-xs text-cardBody font-poppins">
+<h4 class=" text-xs  font-poppins">
 <Tooltip title="Edit">
                                         <EditOutlined
                                     style={{ cursor: "pointer", fontSize: "12px" }}

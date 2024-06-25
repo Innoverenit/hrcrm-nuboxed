@@ -97,14 +97,14 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
             
             <div className=" flex font-medium flex-col md:w-[20rem] max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Name
 
                     </div>
 
 
-                    <div class=" font-normal text-sm text-cardBody font-poppins">
+                    <div class=" font-normal text-sm  font-poppins">
                     <div class=" w-[20rem]" >
   <div class=" basis-11/12 font-semibold">
   <CountryFlag1 countryCode={region.country_alpha2_code} />
@@ -117,14 +117,14 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
                   </div>
                   <div className=" flex font-medium flex-col md:w-[12rem] max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
  Dial Code
 
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-[7rem]" >
 <div class=" font-semibold" >
 +{region.country_dial_code}
@@ -135,13 +135,13 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
 </div>
 <div className=" flex font-medium flex-col md:w-[15rem] max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Currency
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-[15rem]" >
 <div class=" font-semibold" >
 {region.country_currency_name}
@@ -153,14 +153,14 @@ Currency
  <div className="flex justify-between w-[34rem]">
  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Operations
 
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-2/6">
 <CountryStatusToggle
 editInd={region.editInd}
@@ -175,13 +175,13 @@ country_id={region.country_id}
                   <div className=" w-[21rem]">
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Sales
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-2/6">
 <CountrySalesToggle
 editInd={region.editInd}

@@ -174,7 +174,7 @@ const handleLoadMoreLow = () => {
                   <div className=" flex font-medium items-center  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -242,7 +242,7 @@ const handleLoadMoreLow = () => {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class="text-cardBody font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
                         {item.noOfPhones}
                       </div>
                     </div>
@@ -291,7 +291,7 @@ const handleLoadMoreLow = () => {
                   <div class="flex justify-end items-center">
                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <div class=" text-sm text-cardBody font-semibold  font-poppins">
+                      <div class=" text-sm  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
@@ -299,7 +299,7 @@ const handleLoadMoreLow = () => {
                       {item.orderStatus}
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         {item.qcStartInd !== 0 && <Tooltip title="Add Lead">
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer"
@@ -313,8 +313,8 @@ const handleLoadMoreLow = () => {
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xl text-cardBody font-poppins">
+                      {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div class=" text-xl  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                              className=" !text-icon cursor-pointer text-green-800"
@@ -332,7 +332,7 @@ const handleLoadMoreLow = () => {
 
                  
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
                              className="!text-icon cursor-pointer"
@@ -346,7 +346,7 @@ const handleLoadMoreLow = () => {
 
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
                              className="!text-icon cursor-pointer"
@@ -361,7 +361,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                         <Popconfirm
                               title="Do you want to delete?"
@@ -433,7 +433,7 @@ const handleLoadMoreLow = () => {
                   <div className=" flex font-medium  items-center md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -501,7 +501,7 @@ const handleLoadMoreLow = () => {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class="text-cardBody font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
                         {item.noOfPhones}
                       </div>
                     </div>
@@ -549,7 +549,7 @@ const handleLoadMoreLow = () => {
                   <div class="flex justify-end items-center">
                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <div class=" text-sm text-cardBody font-semibold  font-poppins">
+                      <div class=" text-sm  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
@@ -557,7 +557,7 @@ const handleLoadMoreLow = () => {
                       {item.orderStatus}
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         {item.qcStartInd !== 0 && <Tooltip title="Add Lead">
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer"
@@ -571,8 +571,8 @@ const handleLoadMoreLow = () => {
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs text-cardBody font-poppins">
+                      {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                                 className=" !text-icon cursor-pointer text-green-800"
@@ -590,7 +590,7 @@ const handleLoadMoreLow = () => {
 
                  
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
                            className="!text-icon cursor-pointer"
@@ -604,7 +604,7 @@ const handleLoadMoreLow = () => {
 
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
                             className="!text-icon cursor-pointer"
@@ -619,7 +619,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                         <Popconfirm
                               title="Do you want to delete?"
@@ -691,7 +691,7 @@ const handleLoadMoreLow = () => {
                   <div className=" flex font-medium  items-center md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -759,7 +759,7 @@ const handleLoadMoreLow = () => {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class="text-cardBody font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
                         {item.noOfPhones}
                       </div>
                     </div>
@@ -808,7 +808,7 @@ const handleLoadMoreLow = () => {
                   <div class="flex justify-end">
                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <div class=" text-sm text-cardBody font-semibold  font-poppins">
+                      <div class=" text-sm  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
@@ -816,7 +816,7 @@ const handleLoadMoreLow = () => {
                       {item.orderStatus}
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         {item.qcStartInd !== 0 && <Tooltip title="Add Lead">
                           <PersonAddAlt1
                             className="!text-xl cursor-pointer"
@@ -830,8 +830,8 @@ const handleLoadMoreLow = () => {
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs text-cardBody font-poppins">
+                      {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                             className=" !text-icon cursor-pointer text-green-800"
@@ -849,7 +849,7 @@ const handleLoadMoreLow = () => {
 
                   
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
                             className="!text-icon cursor-pointer"
@@ -863,7 +863,7 @@ const handleLoadMoreLow = () => {
 
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
                             className="!text-icon cursor-pointer"
@@ -878,7 +878,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                         <Popconfirm
                               title="Do you want to delete?"

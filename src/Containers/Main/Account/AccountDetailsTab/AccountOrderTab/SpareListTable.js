@@ -55,36 +55,36 @@ function SpareListTable(props) {
                                             {item.suppliesName}
                                         </div>
                                         <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                            <h4 class=" text-xs  font-poppins">
                                                 {item.categoryName} {item.subCategoryName}
                                             </h4>
 
                                         </div>
                                         <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class=" text-sm text-cardBody font-poppins">
+                                            <h4 class=" text-sm  font-poppins">
                                                 {item.attribute} {item.subAttribute}
                                             </h4>
                                         </div>
                                         <div className=" flex font-medium   md:w-[10.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                            <h4 class=" text-xs  font-poppins">
                                                 {item.noOfSpare}
                                             </h4>
 
                                         </div>
                                         <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class=" text-sm text-cardBody font-poppins">
+                                            <h4 class=" text-sm  font-poppins">
                                                 {item.hours}
                                             </h4>
                                         </div>
                                     </div>
 
                                     <div className=" flex font-medium  md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                        <div class=" text-xs  font-poppins text-center">
                                             {item.extraCost}
                                         </div>
                                     </div>
                                     <div className=" flex font-medium  md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                        <div class=" text-xs  font-poppins text-center">
                                             {item.total}
                                         </div>
                                     </div>

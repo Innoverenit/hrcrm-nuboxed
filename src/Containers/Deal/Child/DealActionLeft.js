@@ -60,7 +60,7 @@ const DealActionLeft = (props) => {
           title={
             <FormattedMessage
               id="app.listView"
-              defaultMessage="List View"
+              defaultMessage=" My Deals"
             />
           }
         >
@@ -73,14 +73,14 @@ const DealActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-            <CurrencyExchangeIcon/>
+            <CurrencyExchangeIcon  className="text-white !text-icon"/>
             </Avatar>
           </span>
         </Tooltip>
       </Badge>
       <Tooltip
           title={
-            <FormattedMessage id="app.stageview" defaultMessage="Stage View" />
+            <FormattedMessage id="app.stageview" defaultMessage=" My Deals-Stage View" />
           }
         >
         <Badge
@@ -93,12 +93,11 @@ const DealActionLeft = (props) => {
             style={{
               color: viewType === "stage" && "#1890ff",
             }}
-            // iconType="table"
-            tooltipTitle="Stage View"
+          
             onClick={() => props.setDealViewType("stage")}
           >
              <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
-           <TableOutlined/>
+           <TableOutlined  className="text-white !text-icon"/>
            </Avatar>
           </span>
           </Badge>
@@ -106,7 +105,7 @@ const DealActionLeft = (props) => {
         <Tooltip 
         title={   <FormattedMessage
           id="app.won"
-          defaultMessage="Won"
+          defaultMessage="My Deals-Won"
         />}
    >
       <Badge
@@ -129,7 +128,7 @@ const DealActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#4bc076" }}>
-            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7" />
+            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7"  className=" !text-icon" />
             </Avatar>
           </span>
           </Badge>
@@ -137,7 +136,7 @@ const DealActionLeft = (props) => {
         <Tooltip
           title={   <FormattedMessage
             id="app.close"
-            defaultMessage="Close"
+            defaultMessage="My Deals-Close"
           />}>
         {" "}
         <Badge
@@ -159,7 +158,7 @@ const DealActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "close" ? "#f279ab" : "#4bc076" }}>
-            <LockOpenIcon />
+            <LockOpenIcon  className="text-white !text-icon"/>
             </Avatar>
           </span>
         </Badge>
@@ -167,7 +166,7 @@ const DealActionLeft = (props) => {
       <Tooltip 
         title={   <FormattedMessage
           id="app.lost"
-          defaultMessage="Lost"
+          defaultMessage="My Deals-Lost"
         />}>
         <Badge
           size="small"
@@ -189,7 +188,7 @@ const DealActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#4bc076" }}>
-            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red" />
+            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red"  className=" !text-icon" />
             </Avatar>
           </span>
         </Badge>
@@ -199,7 +198,7 @@ const DealActionLeft = (props) => {
         <Tooltip
           title={   <FormattedMessage
             id="app.teams"
-            defaultMessage="Teams"
+            defaultMessage="My Deals-Teams"
           />}
         >
            <Badge
@@ -218,12 +217,10 @@ const DealActionLeft = (props) => {
               color: viewType === "teams" && "#1890ff",
            
             }}
-            // iconType="table"
-            tooltipTitle="Teams"
             onClick={() => props.setDealViewType("teams")}
           >
             <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-         <PeopleIcon/>
+         <PeopleIcon  className="text-white !text-icon"/>
          </Avatar>
           </span>
           </Badge>
@@ -254,7 +251,7 @@ const DealActionLeft = (props) => {
              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
             <FormattedMessage
                         id="app.all"
-                        defaultMessage="ALL"
+                        defaultMessage="ALL" className="text-white !text-icon"
                       />
                       </Avatar>
           </span>
@@ -265,7 +262,7 @@ const DealActionLeft = (props) => {
         title={
           <FormattedMessage
             id="app.deletedDeal"
-            defaultMessage="Deleted Deal"
+            defaultMessage=" My Deals-Deleted"
           />
         }
       >
@@ -289,7 +286,7 @@ const DealActionLeft = (props) => {
             }}
           >
              <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
-            <DeleteOutlined />
+            <DeleteOutlined  className="text-white !text-icon"/>
             </Avatar>
           </span>
         </Badge>

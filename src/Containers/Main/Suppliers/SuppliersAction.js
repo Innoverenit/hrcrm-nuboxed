@@ -668,7 +668,7 @@ export const inputDataSearch = (name) => (dispatch) => {
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/supplierName/${name}`,{
+    .get(`${base_url2}/supplier/search/supplier/${name}`,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2101,4 +2101,10 @@ export const linkSuplierToggle = ( data,id) => (dispatch, getState) => {
         payload: err,
       });
     })
+};
+
+export const ClearSearchedDataOfSupplier = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_DATA_SUPPLIER,
+  });
 };

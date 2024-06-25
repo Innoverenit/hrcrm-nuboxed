@@ -1087,9 +1087,37 @@ export const handleRepairPhoneNotesOrderModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const handleProcessExpand = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PROCESS_EXPAND,
+    payload: modalProps,
+  });
+};
+
+export const handleSpareProcess = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SPARE_PROCESS,
+    payload: modalProps,
+  });
+};
 export const handleQCPhoneNotesOrderModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_QC_PHONE_NOTES_ORDER_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handleSpareList = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SPARE_LIST,
+    payload: modalProps,
+  });
+};
+
+export const handleQcexpand = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_QC_EXPAND,
     payload: modalProps,
   });
 };
@@ -2131,12 +2159,12 @@ export const getRefurbishAllCount = (userId) => (dispatch) => {
     });
 };
 
-export const searchimeiName = (imei) => (dispatch) => {
+export const searchimeiName = (imei,orderPhoneId) => (dispatch) => {
   dispatch({
     type: types.GET_SEARCH_IMEI_REQUEST,
   });
   axios
-    .get(`${base_url2}/phone/search/${imei}`, {
+    .get(`${base_url2}/phone/search/${imei}/${orderPhoneId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2162,12 +2190,12 @@ export const ClearReducerDataOfrefurbish = () => (dispatch) => {
   });
 };
 
-export const searchimeiNamePhone = (imei) => (dispatch) => {
+export const searchimeiNamePhone = (imei,orderPhoneId) => (dispatch) => {
   dispatch({
     type: types.GET_SEARCH_IMEIPHONE_REQUEST,
   });
   axios
-    .get(`${base_url2}/phone/search/${imei}`, {
+    .get(`${base_url2}/phone/search/${imei}/${orderPhoneId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2193,12 +2221,12 @@ export const ClearPhoneDataOfrefurbish = () => (dispatch) => {
   });
 };
 
-export const searchimeiNamerapir = (imei) => (dispatch) => {
+export const searchimeiNamerapir = (imei,orderPhoneId) => (dispatch) => {
   dispatch({
     type: types.GET_SEARCH_IMEIREPAIR_REQUEST,
   });
   axios
-    .get(`${base_url2}/phone/search/${imei}`, {
+    .get(`${base_url2}/phone/search/${imei}/${orderPhoneId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2384,4 +2412,31 @@ export const updateQAinspection = (data, orderPhoneId) => (dispatch) => {
         payload: err,
       });
     });
+};
+
+export const linkRefurbishToggle = ( data,orderPhoneId) => (dispatch, getState) => {
+  dispatch({
+    type: types.LINK_REFURBISH_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/updateNewDispatch/${orderPhoneId}`, data, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_REFURBISH_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_REFURBISH_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
 };

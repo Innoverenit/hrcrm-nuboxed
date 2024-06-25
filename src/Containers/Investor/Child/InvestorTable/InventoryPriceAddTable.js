@@ -187,9 +187,9 @@ function InventoryPriceAddTable(props) {
           </div>
         ))}
 
-      <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">         
+      <div className=' flex  sticky z-auto'>
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">         
             <div className=" md:w-[10rem]">Quantity Of Share</div>
             <div className=" md:w-[10.1rem]">Value per Share</div>
             {/* <div className=" md:w-[4.2rem] ">Date</div> */}
@@ -199,11 +199,11 @@ function InventoryPriceAddTable(props) {
           {data.length ? data.map((item) => {
             return (
               <div key={item.investorId}>
-                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
+                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 >
 
                   {/* <div className=" flex font-medium items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
-                    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
                     {editsuppliesId === item.investorId ? (
                       <Select
                         classNames="w-32"
@@ -217,7 +217,7 @@ function InventoryPriceAddTable(props) {
                         ))}
                       </Select>
                     ):(
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                       <div> {item.currencyName}</div>
                     </div>
                   )}
@@ -225,7 +225,7 @@ function InventoryPriceAddTable(props) {
                   </div> */}
  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.investorId ? (
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       <Input
                         className="w-32"
                         value={item.quantityOfShare}
@@ -233,14 +233,14 @@ function InventoryPriceAddTable(props) {
                       />
                     </div>
                      ):(
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                       <div> {item.quantityOfShare}</div>
                     </div>
                     )}
                   </div>
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.investorId ? (
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       <Input
                         className="w-32"
                         value={item.amountPerShare}
@@ -248,7 +248,7 @@ function InventoryPriceAddTable(props) {
                       />
                     </div>
  ):(
-  <div className="font-normal text-sm text-cardBody font-poppins">
+  <div className="font-normal text-sm  font-poppins">
   <div> {item.amountPerShare}</div>
 </div>
 )}
@@ -260,7 +260,7 @@ function InventoryPriceAddTable(props) {
                   {/* <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.investorId ? (
 
-                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                    <div class=" text-xs  font-semibold  font-poppins">
                       <Input
                         className="w-32"
                         value={item.vat}
@@ -268,7 +268,7 @@ function InventoryPriceAddTable(props) {
                       />
                     </div>
                      ):(
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                       <div> {item.vat}</div>
                     </div>
                     )}

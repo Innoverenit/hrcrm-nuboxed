@@ -87,7 +87,7 @@ class EducationTable extends Component {
                                         <Tooltip>
                                           <div class=" flex w-[8rem] max-sm:w-full justify-between flex-row md:flex-col ">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
       {item.documentName}
      
@@ -104,22 +104,22 @@ class EducationTable extends Component {
                               
                                 <div className=" flex font-medium flex-col md:w-[15.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                  <div class="text-sm text-cardBody font-poppins">
+                                  <div class="text-sm  font-poppins">
                                   {item.idType}
                                   </div>
                               </div>
 
                               <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                <div class="text-sm text-cardBody font-poppins">
+                                <div class="text-sm  font-poppins">
                                 {item.idNo}
                                 </div>
                             </div>
                             <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
-                                   <div class="text-sm text-cardBody font-poppins">
+                                   <div class="text-sm  font-poppins">
                  
-                     <div className="font-normal text-sm text-cardBody font-poppins">
+                     <div className="font-normal text-sm  font-poppins">
                        <span>{item.description}</span>
                      </div>
                  
@@ -149,7 +149,7 @@ class EducationTable extends Component {
                                 <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <BorderColorIcon 
             style={{ cursor: "pointer", fontSize: "1rem" }}
             onClick={() => {
@@ -163,7 +163,7 @@ class EducationTable extends Component {
                                 <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <StyledPopconfirm
             title="Do you want to delete?"
             onConfirm={() => deletePersonalTable(item.id)}

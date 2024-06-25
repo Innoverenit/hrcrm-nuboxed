@@ -129,7 +129,7 @@ if(fetchingCustomerCampaign){
                                           <Tooltip>
                                          
                                             
-                                              <div class="text-[0.82rem] text-cardBody font-poppins cursor-pointer">                                       
+                                              <div class="text-[0.82rem]  font-poppins cursor-pointer">                                       
                                               {item.eventType}
          
                                               </div>
@@ -141,7 +141,7 @@ if(fetchingCustomerCampaign){
   
                                  
                                      
-                                      <div class=" text-[0.82rem] text-cardBody font-poppins">   
+                                      <div class=" text-[0.82rem]  font-poppins">   
                                       {item.eventSubject}
                                       </div>
                                   
@@ -149,13 +149,13 @@ if(fetchingCustomerCampaign){
                                   <div class="flex  items-center justify-between">
                                   
                                     
-                                      <div class="text-[0.82rem] text-cardBody font-poppins">
+                                      <div class="text-[0.82rem]  font-poppins">
                                       {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                       </div>
                                  
                                  
                                       
-                                      <div class="text-[0.82rem] text-cardBody font-poppins">
+                                      <div class="text-[0.82rem]  font-poppins">
                                       {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                       </div>
                                  
@@ -165,7 +165,7 @@ if(fetchingCustomerCampaign){
                                  
                                     
   
-                                      <div class=" text-[0.82rem] text-cardBody font-poppins">
+                                      <div class=" text-[0.82rem]  font-poppins">
                                       <Avatar.Group
                      maxCount={7}
                     maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -195,7 +195,7 @@ if(fetchingCustomerCampaign){
                                   
                                      
   
-                                      <div class="text-[0.82rem] text-cardBody font-poppins">
+                                      <div class="text-[0.82rem]  font-poppins">
                                       
               
                 <span>
@@ -372,10 +372,10 @@ if(fetchingCustomerCampaign){
           <div class="max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
-                                            {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
+                                            {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-[0.82rem] text-cardBody font-poppins cursor-pointer">                                       
+                                            <div class="text-[0.82rem]  font-poppins cursor-pointer">                                       
                                             {item.eventType}
        
                                             </div>
@@ -386,29 +386,29 @@ if(fetchingCustomerCampaign){
                                 </div>
 
                                 <div className=" flex font-medium   md:w-[4.26rem] max-sm:flex-row  w-full ">
-                                    {/* <div class=" text-[0.875rem] text-cardBody font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
-                                    <div class=" text-[0.82rem] text-cardBody font-poppins">   
+                                    {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
+                                    <div class=" text-[0.82rem]  font-poppins">   
                                     {item.eventSubject}
                                     </div>
                                 </div>
                                 </div>
                                 <div class="flex  items-center ">
                                 <div className=" flex font-medium  md:w-[5.9rem] max-sm:flex-row  w-full">
-                                    {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Start</div> */}
-                                    <div class="text-[0.82rem] text-cardBody font-poppins">
+                                    {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
+                                    <div class="text-[0.82rem]  font-poppins">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium  md:w-[5.32rem] max-sm:flex-row  w-full">
-                                    {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">End</div> */}
-                                    <div class="text-[0.82rem] text-cardBody font-poppins">
+                                    {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
+                                    <div class="text-[0.82rem]  font-poppins">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium  md:w-[5.31rem] max-sm:flex-row  w-full ">
-                                    {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Include</div> */}
+                                    {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
-                                    <div class=" text-[0.82rem] text-cardBody font-poppins">
+                                    <div class=" text-[0.82rem]  font-poppins">
                                     <Avatar.Group
                    maxCount={7}
                   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -484,7 +484,7 @@ if(fetchingCustomerCampaign){
                              
                    <div className=" flex font-medium  md:w-[6.32rem] max-sm:flex-row  w-full">
                                     
-                                    <div class="text-[0.82rem] text-cardBody font-poppins">
+                                    <div class="text-[0.82rem]  font-poppins">
                                     {/* {item.budgetValue} */}
                                     <Input
   style={{ width: "5rem" }}
@@ -495,7 +495,7 @@ if(fetchingCustomerCampaign){
   </div>
   <div className=" flex font-medium  md:w-[5.321rem] max-sm:flex-row  w-full">
                                     
-                                    <div class="text-[0.82rem] text-cardBody font-poppins">
+                                    <div class="text-[0.82rem]  font-poppins">
                                     
                                     <Select
                         style={{width:"5rem"}}

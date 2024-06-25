@@ -9,9 +9,10 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 //import { CustomizeInputComponent } from "../../../../Components/Forms/Formik/CustomizeInputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field,} from "formik";
+import AddLocationMachineModal from "./AddLocationMachineModal"
 import { Select, StyledLabel } from "../../../../Components/UI/Elements";
 import * as Yup from "yup";
-import {createLoCell, getLoCell,deleteLocationCell} from "./LocationAction";
+import {createLoCell, getLoCell,deleteLocationCell,handleLocationMachineModal} from "./LocationAction";
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getUserByLocationDepartment } from "../../../Main/Account/AccountAction"
 
@@ -20,6 +21,7 @@ const { Option } = Select;
 
 
 const LocationCellForm = (props) => {
+  const [currentItems, setCurrentItems] = useState("");
     useEffect(()=>{
         // props.getDepartments();
         props.getLoCell(props.storedLoc.locationDetailsId,props.orgId);
@@ -33,6 +35,12 @@ const LocationCellForm = (props) => {
       // };
        props.deleteLocationCell(item.cellChamberLinkId);
     };
+
+
+    function handleSetCurrentItems(item) {
+      setCurrentItems(item);
+      // console.log("opp",item);
+    }
 
     return (
       <>
@@ -145,16 +153,16 @@ const LocationCellForm = (props) => {
                 <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
 
                   {/* <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:w-full  ">
-                    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
                     {item.cell}
                     </div>
                   </div> */}
 
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                     
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div>   {item.cellChamber} </div>
                       </div>
                     
@@ -162,9 +170,9 @@ const LocationCellForm = (props) => {
 
                   </div>
                   {/* <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                     
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.zoneType}</div>
                       </div>
                   
@@ -172,7 +180,7 @@ const LocationCellForm = (props) => {
                   </div> */}
                   <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                  
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                         <div> {item.description}</div>
                       </div>
                   
@@ -201,6 +209,25 @@ const LocationCellForm = (props) => {
                     </div>
                   </div>
 
+
+
+                  <div class="flex md:items-center">
+
+
+<div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
+  <div>
+  
+ <Button
+ onClick={() => {
+  props.handleLocationMachineModal(true);
+  handleSetCurrentItems(item);
+}}
+ >Machine</Button>
+  </div>
+
+</div>
+</div>
+
                 </div>
               </div>
             );
@@ -209,8 +236,17 @@ const LocationCellForm = (props) => {
 
         </div>
       </div>
-
+      <AddLocationMachineModal
+      currentItems={currentItems}
+      locationId={props.storedLoc.locationDetailsId}
+      addLocationMachineModal={props.addLocationMachineModal}
+      handleLocationMachineModal={props.handleLocationMachineModal}
+      
+      />
       </>
+      
+     
+     
     );
    }
 
@@ -221,6 +257,7 @@ const mapStateToProps = ({ auth,location,distributor, departments, }) => ({
     creatingLocationCell:location.creatingLocationCell,
     showLoCell:location.showLoCell,
     departments: departments.departments,
+    addLocationMachineModal:location.addLocationMachineModal,
     departmentUser: distributor.departmentUser,
 });
 
@@ -231,7 +268,8 @@ const mapDispatchToProps = (dispatch) =>
             createLoCell,
             getDepartments,
             getLoCell,
-            deleteLocationCell
+            deleteLocationCell,
+            handleLocationMachineModal
         },
         dispatch
     );

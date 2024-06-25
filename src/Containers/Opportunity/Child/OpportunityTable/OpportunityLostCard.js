@@ -148,10 +148,10 @@ function OpportunityLostCard(props) {
                                  
                                       <Tooltip>
                                       <div class=" flex max-sm:w-full  flex-row md:flex-col">
-                                          {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
+                                          {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                           Name
                                           </div> */}
-                                          <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                                          <div class=" text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
                                               
                                           <Link class="overflow-ellipsis whitespace-nowrap max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
@@ -175,8 +175,8 @@ function OpportunityLostCard(props) {
 
                               <div className=" flex font-medium flex-col  w-[9.4rem] max-xl:w-[5.7rem]   max-sm:flex-row  max-sm:justify-between ">
                          
-                                  {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                                  <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                                  {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
+                                  <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                   
                                   {item.customer}
                   
@@ -189,8 +189,8 @@ function OpportunityLostCard(props) {
                               <div className=" flex font-medium flex-col w-[6.9rem] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                                 
 
-                                {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                                <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm ">
+                                {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                                <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm ">
                                
                                 {item.contactName === null ? "None" :
           <MultiAvatar2
@@ -205,17 +205,17 @@ function OpportunityLostCard(props) {
                                 </div>
                             </div>
                               <div className=" flex font-medium items-center  w-[11.01rem] max-xl:w-[5.91rem] max-sm:flex-row  max-sm:justify-between ">
-                                  {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+                                  {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                  <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {moment(item.startDate).format("ll")}
                                   </div>
                               </div>
                            
                               <div className=" flex font-medium items-center  w-[6rem] max-xl:w-[5.81rem] max-lg:w-[2.81rem] max-sm:flex-row  max-sm:justify-between ">
-                                  {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                  {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                  <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   <CurrencySymbol currencyType={item.currency} />
           &nbsp;
           {item.proposalAmount}
@@ -225,9 +225,9 @@ function OpportunityLostCard(props) {
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className=" flex font-medium items-center  w-24 max-xl:w-[3.9rem] max-lg:w-[3.2rem] max-sm:flex-row  max-sm:justify-between ">
-                                  {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                  {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                  <div class=" text-sm text-cardBody font-poppins text-center max-sm:text-sm">
+                                  <div class=" text-sm  font-poppins text-center max-sm:text-sm">
                                   <Dropdown
 overlay={
 <div>
@@ -261,9 +261,9 @@ strokeColor={"#005075"}
                                   </div>
                               </div>
                               <div className=" flex font-medium items-center w-[6.01rem] max-xl:w-[4rem] max-lg:w-[3rem] max-sm:flex-row  max-sm:justify-between ">
-                                  {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
+                                  {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
-                                  <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   
                                   <span>
                                   <MultiAvatar2
@@ -277,7 +277,7 @@ strokeColor={"#005075"}
                               </div>
                               <div className=" flex font-medium items-center w-[5rem] max-sm:flex-row max-lg:w-[3rem]  mb-1 max-sm:justify-between ">
                      
-                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+                     {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
 
             <Tooltip title={item.ownerName}>
         <span>

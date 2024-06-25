@@ -112,40 +112,40 @@ function AddedSuppliesTable(props) {
                                         <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3" >
                                             <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                                                 <div className=" flex font-medium flex-col w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
                                                         {item.suppliesFullName}
 
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col w-[5rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
                                                         {item.categoryName}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col w-[5rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
 
                                                         {item.subCategoryName}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col w-[6rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
 
                                                         {item.attributeName}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col w-[8rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
                                                         {item.subAttributeName}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col w-12 max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
                                                         {item.unit}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col w-12 max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
                                                         {item.quality}
                                                     </div>
                                                 </div>

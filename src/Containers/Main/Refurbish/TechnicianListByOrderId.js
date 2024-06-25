@@ -82,31 +82,31 @@ const TechnicianListByOrderId = (props) => {
                                         </div>
 
                                         <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.mobileNo}
                                             </div>
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.totalPhone}
                                             </div>
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.qcToStartPhoneCount}
                                             </div>
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.qcInProgressPhoneCount}
                                             </div>
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.qcCompletePhoneCount}
                                             </div>
 

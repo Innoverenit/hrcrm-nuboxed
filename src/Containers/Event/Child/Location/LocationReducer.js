@@ -111,6 +111,8 @@ cellCode:[],
 reInstatedLocationById: false,
 reInstatedLocationByIdError: false,
 
+addLocationMachineModal:false,
+
 fetchingAllLocationCell: false,
 fetchingAllLocationCellError:false,
 allLoCell:[],
@@ -131,6 +133,11 @@ deletingUserCellDataError:false,
             return { ...state, viewType: action.payload };
             case types.HANDLE_LOCATION_MODAL:
                 return { ...state, addlocationModal: action.payload }; 
+
+
+
+                case types.HANDLE_LOCATION_MACHINE_MODAL:
+      return { ...state, addLocationMachineModal: action.payload };
                 
                 
                 case types.GET_LOCATION_DATA_REQUEST:

@@ -37,14 +37,14 @@ class SingleCountry extends Component {
                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                       Name
 
                     </div>
 
 
-                    <div class=" font-normal text-sm text-cardBody font-poppins">
+                    <div class=" font-normal text-sm  font-poppins">
                     <div style={{width:"70%"}}>
   <div class=" basis-11/12 font-semibold">
   <CountryFlag1 countryCode={country_alpha2_code} />
@@ -57,14 +57,14 @@ class SingleCountry extends Component {
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                      Dial Code
 
                     </div>
 
 
-                    <div class=" font-normal text-sm text-cardBody font-poppins">
+                    <div class=" font-normal text-sm  font-poppins">
                     <div class=" w-[20%]" >
                     <div class=" font-semibold" >
 +{country_dial_code}
@@ -75,13 +75,13 @@ class SingleCountry extends Component {
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Currency
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-[70%]" >
 <div class=" font-semibold" >
 {country_currency_name}
@@ -92,14 +92,14 @@ Currency
 </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
+                    <div class=" text-sm  font-medium font-poppins">
 
                  Operations
 
                     </div>
 
 
-                    <div class=" font-normal text-sm text-cardBody font-poppins">
+                    <div class=" font-normal text-sm  font-poppins">
                     <div class=" w-2/6">
     <CountryStatusToggle
   editInd={editInd}
@@ -113,13 +113,13 @@ Currency
                   </div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm text-cardBody font-medium font-poppins">
+<div class=" text-sm  font-medium font-poppins">
 
 Sales
 </div>
 
 
-<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" font-normal text-sm  font-poppins">
 <div class=" w-2/6">
 <CountrySalesToggle
 editInd={editInd}

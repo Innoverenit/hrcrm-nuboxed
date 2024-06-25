@@ -109,7 +109,7 @@ const handleLoadMoreLow = () => {
                                             <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                                      <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                                      <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                       
                                                                                           {item.priority === "High" && (
                                                                                               <div
@@ -159,7 +159,7 @@ const handleLoadMoreLow = () => {
                                         </div>
                                         <div class="flex">
                                           <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class="text-cardBody font-poppins text-sm">
+                                            <h4 class=" font-poppins text-sm">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
                                
@@ -168,13 +168,13 @@ const handleLoadMoreLow = () => {
                                           </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <h4 class=" font-poppins text-sm">
                                               {item.budget}
                                             </h4>
                                         </div>
                                      
                                         <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <h4 class=" font-poppins text-sm">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
@@ -185,7 +185,7 @@ const handleLoadMoreLow = () => {
                                             </h4>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <h4 class=" font-poppins text-sm">
                                               {item.paymentInTerms}
                                             </h4>
                                         </div>
@@ -256,7 +256,7 @@ const handleLoadMoreLow = () => {
                                             <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                                      <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                                      <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                       
                                                                                           {item.priority === "High" && (
                                                                                               <div
@@ -306,7 +306,7 @@ const handleLoadMoreLow = () => {
                                         </div>
                                         <div class="flex">
                                           <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class="text-cardBody font-poppins text-sm">
+                                            <h4 class=" font-poppins text-sm">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
                                
@@ -315,13 +315,13 @@ const handleLoadMoreLow = () => {
                                           </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <h4 class=" font-poppins text-sm">
                                               {item.budget}
                                             </h4>
                                         </div>
                                      
                                         <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <h4 class=" font-poppins text-sm">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
@@ -332,7 +332,7 @@ const handleLoadMoreLow = () => {
                                             </h4>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <h4 class=" font-poppins text-sm">
                                               {item.paymentInTerms}
                                             </h4>
                                         </div>
@@ -403,7 +403,7 @@ const handleLoadMoreLow = () => {
                       <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -453,7 +453,7 @@ const handleLoadMoreLow = () => {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class="text-cardBody font-poppins text-sm">
+                      <h4 class=" font-poppins text-sm">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
          
@@ -462,13 +462,13 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <h4 class="text-cardBody font-poppins text-sm">
+                  <h4 class=" font-poppins text-sm">
                         {item.budget}
                       </h4>
                   </div>
                
                   <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <h4 class="text-cardBody font-poppins text-sm">
+                  <h4 class=" font-poppins text-sm">
                         {/* {item.contactPersonName} */}
                         <MultiAvatar
                                 primaryTitle={item.contactPersonName}
@@ -479,7 +479,7 @@ const handleLoadMoreLow = () => {
                       </h4>
                   </div>
                   <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <h4 class="text-cardBody font-poppins text-sm">
+                  <h4 class=" font-poppins text-sm">
                         {item.paymentInTerms}
                       </h4>
                   </div>

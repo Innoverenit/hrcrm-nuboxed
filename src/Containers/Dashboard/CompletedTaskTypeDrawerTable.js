@@ -110,7 +110,7 @@ function CompletedTaskTypeDrawerTable (props) {
                                         <Tooltip>
                                         <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
                                             
-                                            <div class="text-xs text-cardBody font-poppins cursor-pointer">                                       
+                                            <div class="text-xs  font-poppins cursor-pointer">                                       
                                             {item.taskType}
        
                                             </div>
@@ -125,7 +125,7 @@ function CompletedTaskTypeDrawerTable (props) {
                                         <Tooltip>
                                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                            
-                                            <h4 class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <h4 class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
         {item.taskName}
        
@@ -136,7 +136,7 @@ function CompletedTaskTypeDrawerTable (props) {
                                 </div>
 
                                 <div className=" flex font-medium flex-col md:w-24 max-sm:flex-row justify-between w-full ">
-                                  <div class="text-xs text-cardBody font-poppins mb-2">
+                                  <div class="text-xs  font-poppins mb-2">
                                   {item.assignedToName === null ? (
               ""
             ) : (
@@ -186,14 +186,14 @@ function CompletedTaskTypeDrawerTable (props) {
                                 <div className=" flex font-medium flex-col md:w-full max-sm:flex-row w-full max-sm:justify-between ">
                                  
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                    <div class=" text-xs  font-poppins text-center">
                                     {`${moment(item.endDate).format("ll")}`}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
                                   
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                    <div class=" text-xs  font-poppins text-center">
                                     {item.taskStatus === "Completed" ? `${completeDeviation} Days` : `${incompleteDeviationDate} Days`}
 
                                     </div>

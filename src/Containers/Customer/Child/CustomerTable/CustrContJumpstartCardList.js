@@ -164,7 +164,7 @@ function CustrContJumpstartCardList(props) {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
                                           
-                                            <div class="text-sm flex text-blue-500 text-cardBody font-poppins  font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500  font-poppins  font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
       {item.fullName}
     </Link>                                               
@@ -188,19 +188,19 @@ function CustrContJumpstartCardList(props) {
 
                                 <div className=" flex font-medium flex-col max-sm:w-auto  w-[14.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
                                    
-                                    <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
+                                    <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col max-sm:w-auto w-[10.2rem] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
                                    
-                                    <div class="text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                    <div class="text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                          {item.designation}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col max-sm:w-auto w-[8.3rem] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
                                 
-                                  <div class="text-sm text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                  <div class="text-sm  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                        {item.department}
                                   </div>
                               </div>
@@ -208,21 +208,21 @@ function CustrContJumpstartCardList(props) {
                               <div class="flex max-sm:justify-between max-sm:w-wk">
                               <div className="flex font-medium flex-col w-32 max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
-  <div className="text-sm text-cardBody font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+  <div className="text-sm  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
     {item.oppNo}
   </div>
 </div>
 <div className=" flex font-medium flex-col w-36 max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody max-sm:text-sm font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                    <div class=" text-sm  max-sm:text-sm font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     {item.totalProposalValue}
 
                                     </div>
                                 </div>
                                 <div className="flex font-medium flex-col w-[7.1rem]  max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
-                                    <div class="text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                    <div class="text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                                     {item.thirdPartyAccessInd === true
     ?<Tooltip title="Provided"><AlarmOnIcon   className=" !text-base text-[green]"/></Tooltip> 

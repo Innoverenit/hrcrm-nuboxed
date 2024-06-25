@@ -95,7 +95,7 @@ function DispatchTable(props) {
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                           <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                            <div class="text-sm flex text-cardBody font-semibold  font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
+                            <div class="text-sm flex  font-semibold  font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
                               <div
                                 onClick={() => {
                                   handleRowData(item);
@@ -117,12 +117,12 @@ function DispatchTable(props) {
 
 
                           <div className=" flex font-medium flex-col w-[5.4rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchPhoneCount}/{item.phoneReceiveCount}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 ?
                                 <Button
                                   loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingDispatchInspectionButton}
@@ -145,7 +145,7 @@ function DispatchTable(props) {
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[4.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 || item.dispatchInspectionInd === 1 ?
                                 null : <DispatchPackedToggle
                                   locationDetailsId={props.locationDetailsId}
@@ -157,25 +157,25 @@ function DispatchTable(props) {
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                           <div className=" flex font-medium flex-col w-[7.76rem] max-xl:w-[4.26rem] max-lg:w-[3.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.unloadingAddresses && item.unloadingAddresses[0].city || ""}
                             </div>
                           </div>
 
                           <div className=" flex font-medium flex-col w-[6.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.shipperName === "null" ? "" : item.shipperName}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[5.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
                             </div>
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium flex-col w-[7.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.unloadingAddresses && item.unloadingAddresses[0].city && !item.newAwbNo ? <Button type="primary"
                                 onClick={() => {
                                   handleRowData(item);
@@ -184,12 +184,12 @@ function DispatchTable(props) {
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.status === "null" ? "" : item.status}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 4 && item.newAwbNo &&
                                 <DispatchValidationToggle
                                   locationDetailsId={props.locationDetailsId}

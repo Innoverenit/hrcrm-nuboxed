@@ -68,7 +68,7 @@ const InventoryCard = (props) => {
 
                           <Tooltip>
                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                              <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                              <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                   to={`locationDetails/${item.locationDetailsId}`}
@@ -90,8 +90,8 @@ const InventoryCard = (props) => {
                         <div className=" flex font-medium  w-[20.2rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
 
-                          {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                          <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                          <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {/* {(item.address && item.address[0].country) || ""} */}
                             <CountryFlag1 countryCode={countryCode} />
                           &nbsp;
@@ -101,17 +101,17 @@ const InventoryCard = (props) => {
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium  w-[17.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"># Opportunity</div> */}
+                        {/* <div class=" text-sm  font-poppins max-sm:hidden"># Opportunity</div> */}
 
-                        <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {`${(item.address && item.address[0].city) || ""} ${" "}${(item.address && item.address[0].state) || ""}`}
 
                         </div>
                       </div>
                       <div className=" flex font-medium  w-[16.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                        <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {(item.address && item.address[0].postalCode) || ""}
 
                         </div>

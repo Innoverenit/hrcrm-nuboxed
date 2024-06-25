@@ -70,14 +70,14 @@ class BankTable extends Component {
                                    
                                         <Tooltip>
                                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                            {/* <h4 class=" text-xs text-cardBody font-poppins max-sm:hidden">
+                                            {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                             Name
-                                            </h4> */}
-                                            <h4 class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            </div> */}
+                                            <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
       {item.accountHolderName}
        
-                                            </h4>
+                                            </div>
                                             </div>
                                         </Tooltip>
                               
@@ -85,36 +85,36 @@ class BankTable extends Component {
 
                                 <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                            
-                                    {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-                                    <h4 class=" text-xs text-cardBody font-poppins">   
+                                    {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                                    <div class=" text-xs  font-poppins">   
                                     {item.bankName} 
-                                    </h4>
+                                    </div>
                                 
                                 </div> 
                              
                                 </div>
                                 
                                 <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"># Opportunity</h4> */}
+                                    {/* <div class=" text-sm  font-poppins max-sm:hidden"># Opportunity</div> */}
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                    <div class=" text-xs  font-poppins text-center">
                                     {item.branchName}
 
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</h4> */}
+                                    {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                    <div class=" text-xs  font-poppins text-center">
                                     {item.accountNo}
 
                                     </div>
                                 </div>
                                 
                                 <div className=" flex font-medium flex-col md:w-[11.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden">Weighted Value</h4> */}
+                                    {/* <div class=" text-sm  font-poppins max-sm:hidden">Weighted Value</div> */}
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                    <div class=" text-xs  font-poppins text-center">
                                     {item.ifscCode}
 
                                     </div>
@@ -124,15 +124,15 @@ class BankTable extends Component {
                                 
                                 <div className=" flex font-medium flex-col  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                            
-                           {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-                           <h4 class=" text-xs text-cardBody font-poppins">   
+                           {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                           <div class=" text-xs  font-poppins">   
                            <DefultToggle
               // partnerId={item.partnerId}
                defaultInd={item.defaultInd}
               // assignedIndicator={item.assignedInd}
               id={item.id}
             />
-                           </h4>
+                           </div>
                        
                        </div> 
                    

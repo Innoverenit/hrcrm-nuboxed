@@ -87,10 +87,10 @@ function CustrWonOpportunityJumpstartCardList(props) {
                                    
                                         <Tooltip>
                                         <div class=" flex max-sm:w-full  flex-row md:flex-col">
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
+                                            {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                                            <div class=" text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
                                                 
                                             <Link class="overflow-ellipsis whitespace-nowrap max-sm:text-sm h-8 text-sm p-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
@@ -115,8 +115,8 @@ function CustrWonOpportunityJumpstartCardList(props) {
 
                                 <div className=" flex font-medium flex-col  w-[10.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                            
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                                    <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
+                                    <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
                                     
                                     {item.customer}
                     
@@ -129,8 +129,8 @@ function CustrWonOpportunityJumpstartCardList(props) {
                                 <div className=" flex font-medium flex-col w-44 max-xl:w-[4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
-                                  {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                                  <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                  {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                                  <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                   
                                   {item.contactName === null ? "None" :
             <MultiAvatar2
@@ -145,17 +145,17 @@ function CustrWonOpportunityJumpstartCardList(props) {
                                   </div>
                               </div>
                                 <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                    <div class=" text-sm justify-center  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     {moment(item.startDate).format("ll")}
                                     </div>
                                 </div>
                              
                                 <div className=" flex font-medium flex-col w-[10.1rem] max-xl:w-[5.1rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                    <div class=" text-sm  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     <CurrencySymbol currencyType={item.currency} />
             &nbsp;
             {item.proposalAmount}
@@ -163,9 +163,9 @@ function CustrWonOpportunityJumpstartCardList(props) {
                                     </div>
                                 </div>
                                 
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    {/* <div class=" text-sm text-cardBody font-poppins text-center">
+                                    {/* <div class=" text-sm  font-poppins text-center">
                                     <Dropdown
               overlay={
                 <div>
@@ -200,9 +200,9 @@ function CustrWonOpportunityJumpstartCardList(props) {
                                     </div> */}
                               
                                 <div className=" flex font-medium flex-col w-32 max-xl:w-[5.12rem] max-lg:w-[3.12rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins max-sm:text-sm">
+                                    <div class=" text-sm  font-poppins max-sm:text-sm">
                                     
                                     <span>
                                     <MultiAvatar2
@@ -218,7 +218,7 @@ function CustrWonOpportunityJumpstartCardList(props) {
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex font-medium flex-col w-20 max-xl:w-[2rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                        
-                       {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+                       {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
 
               <Tooltip title={item.ownerName}>
           <span>

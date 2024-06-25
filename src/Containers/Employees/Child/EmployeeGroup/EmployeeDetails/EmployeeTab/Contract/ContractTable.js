@@ -74,7 +74,7 @@ class ContractTable extends Component {
                             <Tooltip>
                               <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                               
-                                <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                     
                                 <span>{dayjs(item.previous_start_date).format("DD/MM/YYYY")}</span>
 
@@ -91,22 +91,22 @@ class ContractTable extends Component {
                   
                     <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                     
-                      <div class="text-sm text-cardBody font-poppins">
+                      <div class="text-sm  font-poppins">
                       <span>{dayjs(item.previous_end_date).format("DD/MM/YYYY")}</span>
                       </div>
                   </div>
 
                   <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                     
-                    <div class="text-sm text-cardBody font-poppins">
+                    <div class="text-sm  font-poppins">
                     {item.contract_Type}
                     </div>
                 </div>
                 <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                        
-                       <div class="text-sm text-cardBody font-poppins">
+                       <div class="text-sm  font-poppins">
      
-         <div className="font-normal text-sm text-cardBody font-poppins">
+         <div className="font-normal text-sm  font-poppins">
            <span>{item.notes}</span>
          </div>
      
@@ -119,7 +119,7 @@ class ContractTable extends Component {
                     <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                         
 
-                        <div class=" text-sm text-cardBody font-poppins text-center">
+                        <div class=" text-sm  font-poppins text-center">
                         <BorderColorIcon 
 style={{ cursor: "pointer", fontSize: "1rem" }}
 onClick={() => {

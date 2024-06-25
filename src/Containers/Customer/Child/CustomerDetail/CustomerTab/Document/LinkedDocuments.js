@@ -195,7 +195,7 @@ class LinkedDocuments extends Component {
     <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm  text-cardBody font-poppins font-medium  cursor-pointer">
+                                            <div class="text-sm   font-poppins font-medium  cursor-pointer">
                                                 
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
      
@@ -211,7 +211,7 @@ class LinkedDocuments extends Component {
                        
                           <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                              
-                              <div class="text-sm text-cardBody font-poppins">
+                              <div class="text-sm  font-poppins">
                                    {item.documentTitle}
                                    &nbsp;&nbsp;
         {date === currentdate ? (
@@ -224,15 +224,15 @@ class LinkedDocuments extends Component {
                           </div>
                           <div className=" flex font-medium  md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                           
-                            <div class="text-sm text-cardBody font-poppins">
+                            <div class="text-sm  font-poppins">
                             {elipsize(item.documentDescription || "", 15)}
                             </div>
                         </div>
                         </div>
                         <div className="flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-<div className="text-sm text-cardBody font-poppins text-center">
-<div className="font-normal text-sm text-cardBody font-poppins">
+<div className="text-sm  font-poppins text-center">
+<div className="font-normal text-sm  font-poppins">
                      <Tooltip title={item.uploadedBy}>
             <SubTitle>
               <MultiAvatar
@@ -246,13 +246,13 @@ class LinkedDocuments extends Component {
 </div>
 </div>
 <div className=" flex font-medium  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                              <div class=" text-sm text-cardBody font-poppins text-center">
+                              <div class=" text-sm  font-poppins text-center">
                               {item.fileName}
 
                               </div>
                           </div>
                           <div className=" flex font-medium  md:w-[4.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                              <div class=" text-sm text-cardBody font-poppins text-center">
+                              <div class=" text-sm  font-poppins text-center">
                               <ContractToggle
           contractInd={item.contractInd}
           documentId={item.documentId}

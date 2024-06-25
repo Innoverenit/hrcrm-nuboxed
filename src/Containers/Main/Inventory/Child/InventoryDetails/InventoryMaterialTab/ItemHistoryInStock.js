@@ -39,7 +39,7 @@ const ItemHistoryInStock = (props) => {
 
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[11.12rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm text-cardBody font-semibold font-poppins cursor-pointer underline text-blue-600">
+                                                <div class="flex justify-between text-sm  font-semibold font-poppins cursor-pointer underline text-blue-600">
                                                     <span >
                                                         {item.suppliesFullName.substring(0, 20)}
                                                     </span>
@@ -48,27 +48,27 @@ const ItemHistoryInStock = (props) => {
                                         </div>
 
                                         <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.grnNumber}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.price}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.unitUsed}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.unitWasted}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                                 {item.cell}
                                             </div>
                                         </div>

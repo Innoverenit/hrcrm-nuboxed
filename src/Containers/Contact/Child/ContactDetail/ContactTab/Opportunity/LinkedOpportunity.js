@@ -95,7 +95,7 @@ function OpportunityTable(props) {
                                       <Tooltip>
                                       <div class=" flex max-sm:w-full  flex-row md:flex-col">
         
-                                          <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                                          <div class=" text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
                                               
                                           <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap max-xl:text-[0.65rem] max-lg:text-[0.45rem] h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
@@ -109,7 +109,7 @@ function OpportunityTable(props) {
 
                               <div className=" flex font-medium   w-[7.01rem] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
-                                  <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                                  <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                   
                                   {item.customer}
                   
@@ -122,7 +122,7 @@ function OpportunityTable(props) {
                               <div className=" flex font-medium  w-[4rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
 
-                                <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                
                                 {item.contactName === null ? "None" :
           <MultiAvatar2
@@ -139,7 +139,7 @@ function OpportunityTable(props) {
                               <div className=" flex font-medium  w-[7rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                                  <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {dayjs(item.startDate).format("DD/MM/YYYY")}
                                   </div>
                               </div>
@@ -147,7 +147,7 @@ function OpportunityTable(props) {
                               <div className=" flex font-medium  w-[6.01rem] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
    
 
-                                  <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   <CurrencySymbol currencyType={item.currency} />
           &nbsp;
           {item.proposalAmount}
@@ -159,7 +159,7 @@ function OpportunityTable(props) {
                               <div className=" flex font-medium  w-[4.02rem] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
            
 
-                                  <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   <Dropdown
 overlay={
 <div>
@@ -195,7 +195,7 @@ strokeColor={"#005075"}
                               <div className=" flex font-medium  w-[6.02rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                     
 
-                                  <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   
                                   <span>
                                   <MultiAvatar2

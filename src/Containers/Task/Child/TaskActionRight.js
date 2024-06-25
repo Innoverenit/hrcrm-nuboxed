@@ -31,14 +31,14 @@ const TaskActionRight = (props) => {
          )}  */}
        {props.viewType === "table"  ? 
       <Tooltip placement="left" title="Create" >
-        <Button
-          type="primary" onClick={() => props.handleTaskModal(true)}>
+       <Button type="primary"
+                              style={{ width: "-webkit-fill-available" }}
+           onClick={() => props.handleTaskModal(true)}>
         
           <DataSaverOnIcon/>Add
         </Button>
       </Tooltip>
 :null}
-
 <Button
           type="primary"
        

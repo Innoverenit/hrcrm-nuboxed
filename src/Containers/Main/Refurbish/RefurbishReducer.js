@@ -248,6 +248,9 @@ const initialState = {
   fetchingQcInputSearchData: false,
   fetchingQcInputSearchDataError: false,
 
+  processExpandModal:false,
+
+  processSpareModal:false,
 
   fetchingOpenRepairByUser: false,
   fetchingOpenRepairByUserError: false,
@@ -277,6 +280,10 @@ const initialState = {
 
   phoNotesRepairOrderModal: false,
   phoNotesQCOrderModal: false,
+
+  qcSpareList:false,
+
+  qcExpandList:false,
 
   fetchingChoosenCatalogue: false,
   fetchingChoosenCatalogueError: false,
@@ -320,6 +327,10 @@ const initialState = {
   fetchingCompletedPhones: false,
   fetchingCompletedPhonesError: false,
   completedPhone: [],
+
+  addingRefurbishToggle: false,
+  addingRefurbishToggleError: false,
+
 
   fetchingRemainingPhones: false,
   fetchingRemainingPhonesError: false,
@@ -1034,8 +1045,20 @@ export const refurbishReducer = (state = initialState, action) => {
     case types.HANDLE_REPAIR_PHONE_NOTES_ORDER_MODAL:
       return { ...state, phoNotesRepairOrderModal: action.payload };
 
+      case types.HANDLE_PROCESS_EXPAND:
+        return { ...state, processExpandModal: action.payload };
+
+        case types.HANDLE_SPARE_PROCESS:
+          return { ...state, processSpareModal: action.payload };
+
     case types.HANDLE_QC_PHONE_NOTES_ORDER_MODAL:
       return { ...state, phoNotesQCOrderModal: action.payload };
+
+      case types.HANDLE_SPARE_LIST:
+        return { ...state, qcSpareList: action.payload };
+
+        case types.HANDLE_QC_EXPAND:
+          return { ...state, qcExpandList: action.payload };
 
     case types.UPDATE_QC_INSPECTION_BUTTON_REQUEST:
       return { ...state, updatingQcInspectionButton: true };
@@ -1814,6 +1837,27 @@ export const refurbishReducer = (state = initialState, action) => {
                 updatingQAinspection: false,
                 updatingQAinspectionError: true,
               };
+
+              case types.LINK_REFURBISH_TOGGLE_REQUEST:
+                return { ...state, addingRefurbishToggle: true };
+              case types.LINK_REFURBISH_TOGGLE_SUCCESS:
+                return {
+                  ...state,
+                  addingRefurbishToggle: false,
+                  QAorderList: state.QAorderList.map((item) => {
+                    if (item.orderPhoneId === action.payload.orderPhoneId) {
+                      return action.payload;
+                    } else {
+                      return item;
+                    }
+                  }),
+                };
+              case types.LINK_REFURBISH_TOGGLE_FAILURE:
+                return {
+                  ...state,
+                  addingRefurbishToggle: false,
+                  addingRefurbishToggleError: true,
+                };
 
     default:
       return state;

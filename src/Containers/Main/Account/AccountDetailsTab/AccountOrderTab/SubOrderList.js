@@ -82,7 +82,7 @@ function SubOrderList(props) {
                                                 </div>
 
                                                 <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <h4 class=" text-xs text-cardBody font-poppins">
+                                                    <h4 class=" text-xs  font-poppins">
                                                         <MultiAvatar2
                                                             primaryTitle={item.awbUserName}
                                                             imageURL={item.imageURL}
@@ -93,7 +93,7 @@ function SubOrderList(props) {
 
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <h4 class=" text-sm text-cardBody font-poppins">
+                                                    <h4 class=" text-sm  font-poppins">
                                                         {awbUpdate && (item.orderPhoneAwbId === subRow.orderPhoneAwbId) ?
                                                             <>
                                                                 <div class=" flex justify-around">
@@ -122,7 +122,7 @@ function SubOrderList(props) {
                                             </div>
 
                                             <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <div class=" text-xs  font-poppins text-center">
                                                     <BorderColorIcon
                                                         onClick={() => {
                                                             handleAwbNoField();

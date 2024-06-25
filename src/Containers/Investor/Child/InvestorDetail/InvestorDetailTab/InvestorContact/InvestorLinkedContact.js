@@ -250,7 +250,7 @@ class InvestorLinkedContact extends Component {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[12rem]">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/contact/${item.contactId}`} title={item.fullName}>
       {item.fullName}
   </Link>                                               
@@ -281,27 +281,27 @@ class InvestorLinkedContact extends Component {
                              
                                 <div className=" flex font-medium  md:w-[13.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm  font-poppins">
                                          {item.emailId}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium  md:w-[7.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                  <div class="text-sm text-cardBody font-poppins">
+                                  <div class="text-sm  font-poppins">
                                   {item.countryDialCode} {item.mobileNumber}
                                   </div>
                               </div>
                               </div>
                               <div className="flex font-medium  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-  <div className="text-sm text-cardBody font-poppins text-center">
+  <div className="text-sm  font-poppins text-center">
     {item.department}
   </div>
 </div>
 <div className=" flex font-medium  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     {item.designation}
 
                                     </div>
@@ -309,7 +309,7 @@ class InvestorLinkedContact extends Component {
                                 <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
               <span
                 className="!text-icon cursor-pointer text-[#960a0a]"
@@ -323,7 +323,7 @@ class InvestorLinkedContact extends Component {
                                 <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <Tooltip title="LinkedIn">
               <span
                 //type="edit"
@@ -342,7 +342,7 @@ class InvestorLinkedContact extends Component {
                                 <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <Tooltip title="Edit">
               <span
                 
@@ -356,7 +356,7 @@ class InvestorLinkedContact extends Component {
             </Tooltip>
 
                                     </div>
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm  font-poppins text-center">
                                     <StyledPopconfirm
               placement="bottom"
               //title="Do you wish to detach?"

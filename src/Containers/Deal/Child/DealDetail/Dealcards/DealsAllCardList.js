@@ -63,7 +63,7 @@ const DealsAllCardList = (props) => {
   return (
     <>
       <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  w-[96%] justify-between p-1 bg-transparent font-bold sticky  z-10">
+      <div className=" flex  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
           <div className=" md:w-[14.5rem]"><FormattedMessage
             id="app.name"
             defaultMessage="name"
@@ -104,7 +104,7 @@ const DealsAllCardList = (props) => {
           next={handleLoadMore}
           hasMore={hasMore}
           loader={fetchingAllDealsData ? <div class="flex justify-center">Loading...</div> : null}
-          height={"75vh"}
+          height={"80vh"}
         >
           {!fetchingAllDealsData && props.allDealsData.length === 0 ? <NodataFoundPage /> : props.allDealsData.map((item, index) => {
             var findProbability = item.probability;
@@ -133,7 +133,7 @@ const DealsAllCardList = (props) => {
             return (
               <div>
               <div
-             className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+             className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
                <div class="flex justify-between">
                  <div className=" flex font-medium  w-[15rem]   max-sm:w-full">
@@ -156,10 +156,10 @@ const DealsAllCardList = (props) => {
                      <div class="max-sm:w-full w-52" >
                        <Tooltip>
                          <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
-                           {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
+                           {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">
                                          Name
                                          </div> */}
-                           <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                           <div class=" text-[0.82rem] flex text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                              {/* <Link
                                               toUrl={`customer/${item.customerId}`}
@@ -184,7 +184,7 @@ const DealsAllCardList = (props) => {
                  </div>
                  <div className=" flex font-medium  items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                   <div class=" text-sm text-cardBody font-poppins">
+                   <div class=" text-sm  font-poppins">
                      <Link to="/investor">
                        {item.investor}
                      </Link>
@@ -194,7 +194,7 @@ const DealsAllCardList = (props) => {
                  <div className=" flex font-medium  items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                   <div class=" text-sm text-cardBody font-poppins">
+                   <div class=" text-sm  font-poppins">
                      <SubTitle>
                        {item.contactName === null ? "None" :
                          <MultiAvatar2
@@ -213,7 +213,7 @@ const DealsAllCardList = (props) => {
                  <div className=" flex font-medium items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                   <div class=" text-sm justify-center text-cardBody font-poppins">
+                   <div class=" text-sm justify-center  font-poppins">
                      {dayjs(item.startDate).format("DD/MM/YYYY")}
                    </div>
                  </div>
@@ -221,7 +221,7 @@ const DealsAllCardList = (props) => {
                  <div className=" flex font-medium items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                   <div class=" text-sm text-cardBody font-poppins text-center">
+                   <div class=" text-sm  font-poppins text-center">
                      <CurrencySymbol currencyType={item.currency} />
                      &nbsp;
                      {item.proposalAmount}
@@ -231,7 +231,7 @@ const DealsAllCardList = (props) => {
                  <div className=" flex font-medium items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                   <div class=" text-sm text-cardBody font-poppins text-center">
+                   <div class=" text-sm  font-poppins text-center">
                      <Dropdown
                        overlay={
                          <div>
@@ -270,7 +270,7 @@ const DealsAllCardList = (props) => {
                  <div className=" flex font-medium items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                   <div class=" text-sm text-cardBody font-poppins">
+                   <div class=" text-sm  font-poppins">
 
                      <span>
                        {item.assignedTo === null ? (

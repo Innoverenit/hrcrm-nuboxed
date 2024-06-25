@@ -1,14 +1,13 @@
-import React, { useEffect, useState, lazy } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, DatePicker, Select } from 'antd'
 import { StyledTable } from '../../../Components/UI/Antd'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
 import { getProductionUsersById, UpdateTechnicianByPhone, getNoOfPhoneById, closeRepairModal } from "./RefurbishAction"
-import { SubTitle } from '../../../Components/UI/Elements';
 import dayjs from "dayjs";
 
-const QRCodeModal = lazy(() => import('../../../Components/UI/Elements/QRCodeModal'));
+
 
 const { Option } = Select;
 
@@ -82,7 +81,7 @@ const AssignPhoneByTechnician = (props) => {
             width: "1%",
         },
         {
-            title: "OEM",
+            title: "Brand",
             dataIndex: "company",
             width: "15%",
 
@@ -129,28 +128,7 @@ const AssignPhoneByTechnician = (props) => {
                 );
             },
         },
-        {
-            title: "QR",
-            width: "8%",
-            render: (name, item, i) => {
-                return (
-                    <SubTitle>
-                        {item.qrCodeId ? (
-                            <QRCodeModal
-                                qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                imgHeight={"2.8em"}
-                                imgWidth={"2.8em"}
-                                imgRadius={20}
-                            />
-                        ) : (
-                            <span style={{ fontSize: "0.6em", fontWeight: "bold" }}>
-                                No QR
-                            </span>
-                        )}
-                    </SubTitle>
-                );
-            },
-        },
+      
 
 
     ];

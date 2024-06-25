@@ -14,11 +14,14 @@ import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { getCurrency } from "../../Auth/AuthAction"
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
+import MultiImageUpload from "../../../Components/MultiImageUpload";
+// import MaterialImagesView from "./";
 
 const SuppliesSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
   categoryName: Yup.string().required("Input needed!"),
 });
+
 function UpdateSuppliesForm (props) {
   useEffect(()=> {
    props.getCurrency();
@@ -292,7 +295,11 @@ console.log("f",newimageId)
                         inlineLabel
                       />
                     </div>
+                    {/* <div class="mt-3">
+                      <MaterialImagesView />
+                    </div> */}
                   </div>
+
                 </div>
               </div>
               <div class="flex justify-end mt-3">

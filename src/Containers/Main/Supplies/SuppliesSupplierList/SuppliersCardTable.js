@@ -69,7 +69,7 @@ function SuppliersCardTable(props) {
                         >
                           <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                              <div class=" font-normal text-[0.85rem]  font-poppins">
                                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"
                                   to={`${item.supplierId}`}
                                   title={`${item.supplierName}`}
@@ -82,14 +82,14 @@ function SuppliersCardTable(props) {
 
 
 
-                              {/* <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                              {/* <div class=" font-normal text-[0.85rem]  font-poppins">
                                 {item.dialCode} {item.phoneNo}
                               </div>
 
                             </div>
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                              <div class=" font-normal text-[0.85rem]  font-poppins">
                                 {item.emailId}
                               </div>
 
@@ -97,7 +97,7 @@ function SuppliersCardTable(props) {
 
 
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                              <div class=" font-normal text-[0.85rem]  font-poppins">
                                 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
           ${(item.address && item.address.length && item.address[0].street) || ""}`}
@@ -106,7 +106,7 @@ function SuppliersCardTable(props) {
                             </div>
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                              <div class=" font-normal text-[0.85rem]  font-poppins">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].city) ||
@@ -115,7 +115,7 @@ function SuppliersCardTable(props) {
 
                             </div>
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                              <div class=" font-normal text-[0.85rem]  font-poppins">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].postalCode) ||
@@ -124,7 +124,7 @@ function SuppliersCardTable(props) {
 
                             </div>
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">*/}
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+<div class=" font-normal text-[0.85rem]  font-poppins">
 
  <SuppliesCardToggle
 item={item}

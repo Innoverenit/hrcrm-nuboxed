@@ -65,7 +65,7 @@ function SupplierContactTable(props) {
                         >
                           <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                             <div className=" flex font-medium  w-[13.1rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
                                {` ${item.firstName || ""} ${item.middleName || ""} ${item.lastName || ""}`}
 
                               </div>
@@ -73,14 +73,14 @@ function SupplierContactTable(props) {
                             </div>
                             <div className=" flex font-medium  w-[19.2rem] max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
                                 {item.emailId}
                               </div>
 
                             </div>
 
                             <div className=" flex font-medium  w-[8.34rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
                                 {item.dialCode1} {item.mobileNo}
                                
                               </div>
@@ -90,7 +90,7 @@ function SupplierContactTable(props) {
 
 
                             <div className=" flex font-medium  w-[11.32rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
                                 {item.designationName}
                               
                               </div>
@@ -98,7 +98,7 @@ function SupplierContactTable(props) {
                             </div>
                             <div className=" flex font-medium flex-col w-[11.02rem] max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
+                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
                               {item.departmentName}
                              
                               </div>

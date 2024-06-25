@@ -83,14 +83,14 @@
 .main_quarter_box {
   border: "0.0625em solid black";
   padding: 0.125em;
-  background-color: rgb(204, 210, 221);
+
   height: 30vh;
 }
 
 .footer1 {
   text-align: center;
   font-size: 12x;
-  font-family: "Poppins";
+                                                                            font-family: "Poppins";
   margin-top: auto;
 }
 
@@ -248,18 +248,17 @@
 }
 .ant-select-selection-selected-value {
   height: 1.48rem;
-  box-shadow: rgb(170 170 170) 0px 0.25em 0.62em;
+ 
 }
 .ant-calendar-picker {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0 0 0.42rem 0;
-  color: rgba(0, 0, 0, 0.65);
+ 
   font-variant: tabular-nums;
   line-height: 1.5;
   list-style: none;
-  -webkit-font-feature-settings: "tnum";
-  font-feature-settings: "tnum", "tnum";
+  
   position: relative;
   display: inline-block;
   outline: none;
@@ -284,7 +283,7 @@
   background: #ff4d4f;
   border-radius: 10px;
   box-shadow: 0 0 0 1px #ffffff;
-  transition: 0.2s;
+  
 }
 /* :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-inline .ant-menu-item {
   height: 31px;
@@ -304,7 +303,7 @@
   font-variant: tabular-nums;
   line-height: 1.5715;
   list-style: none;
-  font-feature-settings: "tnum", "tnum";
+ 
   /* padding: 0 0 0 0.7em; */
   position: relative;
   display: inline-flex;
@@ -364,7 +363,7 @@
 
 .details {
   width: 12.9375em;
-  padding: 0.625em 0.625em;
+ 
   box-shadow: 0 0.8125em 1.6875em -0.3125em rgba(50, 50, 93, 0.25);
   background-color: #ffffff;
   display: flex;
@@ -415,7 +414,7 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 .mainDiv {
-  right: 0;
+
   border: 0.1875em solid blue;
 }
 .antbtn1 {
@@ -438,25 +437,15 @@ a {
   margin-bottom: 0;
 } */
 
-.ant-menu-sub.ant-menu-inline {
-  margin-top: -12px;
-}
+
 .ant-menu-dark .ant-menu-inline.ant-menu-sub {
-  background: #38445e;
+ 
   -webkit-box-shadow: 0 2px 8px rgb(0 0 0 / 45%) inset;
   box-shadow: 0 2px 8px rgb(0 0 0 / 45%) inset;
-  overflow: revert;
+
 }
 
-.ant-menu-inline.ant-menu-root .ant-menu-item > .ant-menu-title-content,
-.ant-menu-inline.ant-menu-root
-  .ant-menu-submenu-title
-  > .ant-menu-title-content {
-  flex: auto;
-  min-width: 0;
-  overflow: revert;
-  text-overflow: ellipsis;
-}
+
 
 .ant-table-thead > tr > th .ant-table-filter-icon {
   position: absolute;
@@ -472,13 +461,7 @@ a {
   transition: all 0.3s;
 }
 
-.ant-table-thead
-  > tr
-  > th.ant-table-column-has-actions.ant-table-column-has-filters
-  .ant-table-filter-icon.ant-table-filter-open {
-  color: tomato;
-  background: #e5e5e5;
-}
+
 
 .documentId {
   position: absolute;
@@ -490,8 +473,7 @@ a {
   padding: 0;
   font-variant: tabular-nums;
   list-style: none;
-  -webkit-font-feature-settings: "tnum";
-  font-feature-settings: "tnum", "tnum";
+
   position: relative;
   display: inline-block;
   width: 100%;
@@ -523,18 +505,9 @@ a {
   right: 0;
 }
 
-.ant-menu-dark,
-.ant-menu-dark .ant-menu-sub {
-  color: rgba(255, 255, 255, 0.65);
-  background: #696969;
-}
 
-.ant-menu.ant-menu-dark,
-.ant-menu-dark .ant-menu-sub,
-.ant-menu.ant-menu-dark .ant-menu-sub {
-  color: rgba(255, 255, 255, 0.65);
-  background: #696969;
-}
+
+
 
 .load1 {
   font-size: 8px;
@@ -548,11 +521,7 @@ a {
   background-color: tomato;
 }
 
-.ant-tooltip-placement-bottom .ant-tooltip-arrow,
-.ant-tooltip-placement-bottomLeft .ant-tooltip-arrow,
-.ant-tooltip-placement-bottomRight .ant-tooltip-arrow {
-  border-bottom-color: tomato;
-}
+
 .textarea {
   width: 100%;
   min-height: 11.5em;
@@ -568,9 +537,7 @@ a {
   background-color: rgb(213, 213, 213);
   /* background: #09bc8b; */
 }
-.ant-time-picker-input {
-  width: 10rem;
-}
+
 .map-and-address-container {
   display: flex;
   flex-direction: column;
@@ -583,7 +550,6 @@ a {
 
 .chosen-address {
   margin-bottom: 10px;
-  color: "black";
   font-weight: bold;
 }
 
@@ -618,7 +584,7 @@ a {
   font-variant: tabular-nums;
   line-height: 1.1em;
   list-style: none;
-  font-feature-settings: "tnum", "tnum";
+ 
   position: relative;
   display: inline-block;
 }
@@ -629,7 +595,7 @@ a {
   font-variant: tabular-nums;
   line-height: 1.1em;
   list-style: none;
-  font-feature-settings: "tnum", "tnum";
+ 
   position: relative;
   display: inline-block;
 }
@@ -722,13 +688,8 @@ a {
 .ant-select-selection {
   height: 1.48rem;
 }
-.ant-select-selection-item {
-  height: 1.48rem;
-}
-.ant-select-selection__placeholder,
-.ant-select-search__field__placeholder {
-  height: 1.48rem;
-}
+
+
 .ant-select-selection--multiple {
   height: 1.48rem;
 }
@@ -743,8 +704,7 @@ a {
   color: rgba(0, 0, 0, 0.65);
   font-variant: tabular-nums;
   list-style: none;
-  -webkit-font-feature-settings: "tnum";
-  font-feature-settings: "tnum", "tnum";
+
   position: relative;
   display: inline-block;
   outline: 0;
@@ -767,7 +727,7 @@ a {
 }
 .ant-divider-horizontal {
   display: flex;
-  clear: both;
+ 
   width: 100%;
   min-width: 100%;
   margin: 0.2em 0;
@@ -802,7 +762,7 @@ style attribute {
   border-radius: 2px;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   position: relative;
-  height: 1.48rem;
+ 
   font-family: "Poppins";
   margin: 0 0 0.42rem 0.1rem;
   box-shadow: 0 0.25em 0.62em #aaa;
@@ -835,10 +795,7 @@ style attribute {
   font-feature-settings: "tnum", "tnum";
   display: flex;
 }
-.sc-dOSReg-ejwrWx-wifiloader {
-  margin-top: 10%;
-  place-items: center;
-}
+
 .icon {
   margin: 0 2px 0 2px;
 }
@@ -886,13 +843,7 @@ iframe#webpack-dev-server-client-overlay {
 [data-theme="dark"] .editable-row:hover .editable-cell-value-wrap {
   border: 1px solid #434343;
 }
-h1 {
-  display: flex;
-  justify-content: center;
-  font-size: 1.25em;
-  color: #40a9ff;
-  font-family: "Poppins";
-}
+
 .ant-checkbox + span {
   font-size: 0.75rem;
 }
@@ -990,9 +941,7 @@ h1 {
   padding: 8px;
   text-align: center;
 }
-.toggle-clr {
-  background-color: rgb(119, 221, 119);
-}
+
 
 .matrix-table th {
   background-color: #f2f2f2;
@@ -1114,12 +1063,7 @@ h1 {
   background-color: #f0f0f0; /* Adjust the background color as needed */
 }
 
-:where(.css-dev-only-do-not-override-1k979oh).ant-tabs-card
-  > .ant-tabs-nav
-  .ant-tabs-tab,
-:where(.css-dev-only-do-not-override-1k979oh).ant-tabs-card
-  > div
-  > .ant-tabs-nav
+
   .ant-tabs-tab {
   margin: 0;
   padding: 1px 16px;
@@ -1128,14 +1072,7 @@ h1 {
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-:where(.css-dev-only-do-not-override-1k979oh).ant-upload-wrapper
-  .ant-upload-list
-  .ant-upload-list-item-error
-  .ant-upload-list-item-name,
-:where(.css-dev-only-do-not-override-1k979oh).ant-upload-wrapper
-  .ant-upload-list
-  .ant-upload-list-item-error
-  .ant-upload-icon
+
   .anticon {
   color: #1a1818;
 }
@@ -1159,6 +1096,11 @@ h1 {
   justify-content: center;
   width: 150px;
   height: 100px;
+}
+
+.scroller {
+  overflow-y: scroll;
+  scrollbar-width: thin;
 }
 
 /* HeaderLabel
@@ -1229,7 +1171,7 @@ defaultMessage="Year of Passing"
                               <Tooltip>
                                 <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                 
-                                  <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                  <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                                       
 {item.educationType}
 
@@ -1246,22 +1188,22 @@ defaultMessage="Year of Passing"
                     
                       <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                       
-                        <div class="text-sm text-cardBody font-poppins">
+                        <div class="text-sm  font-poppins">
                         {item.courseName}
                         </div>
                     </div>
 
                     <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                       
-                      <div class="text-sm text-cardBody font-poppins">
+                      <div class="text-sm  font-poppins">
                       {item.yearOfPassing}
                       </div>
                   </div>
                   <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                          
-                         <div class="text-sm text-cardBody font-poppins">
+                         <div class="text-sm  font-poppins">
        
-           <div className="font-normal text-sm text-cardBody font-poppins">
+           <div className="font-normal text-sm  font-poppins">
              <span>{item.university}</span>
            </div>
        
@@ -1270,7 +1212,7 @@ defaultMessage="Year of Passing"
 
                      <div className=" flex font-medium flex-col md:w-[16.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                       
-                      <div class="text-sm text-cardBody font-poppins">
+                      <div class="text-sm  font-poppins">
                       <span>
     {item.marksSecured} {item.marksType}
   </span>
@@ -1300,7 +1242,7 @@ defaultMessage="Year of Passing"
                       <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                           
 
-                          <div class=" text-sm text-cardBody font-poppins text-center">
+                          <div class=" text-sm  font-poppins text-center">
                           <BorderColorIcon 
   style={{ cursor: "pointer", fontSize: "1rem" }}
   onClick={() => {
@@ -1314,7 +1256,7 @@ defaultMessage="Year of Passing"
                       <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                           
 
-                          <div class=" text-sm text-cardBody font-poppins text-center">
+                          <div class=" text-sm  font-poppins text-center">
                           <StyledPopconfirm
   title="Do you want to delete?"
   onConfirm={() => deleteEducationTable(item.id)}

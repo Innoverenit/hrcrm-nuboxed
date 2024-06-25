@@ -11,7 +11,7 @@ const ShowProductBuilderModal = (props) => {
         <>
             <StyledDrawer
                 title={`Order No-${props.rowData.newOrderNo}`}
-                width="80%"
+                width="90%"
                 visible={props.productBuilderList}
                 maskClosable={false}
                 destroyOnClose

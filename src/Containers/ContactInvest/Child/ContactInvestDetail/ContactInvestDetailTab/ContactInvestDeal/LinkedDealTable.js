@@ -33,9 +33,9 @@ console.log(props.contactInVestDetail.contactId)
 if (fetchingContactOpportunity) return <BundleLoader/>;
   return (
     <>
-    <div className=' flex justify-end sticky top-28 z-auto'>
-    <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+    <div className=' flex sticky z-auto'>
+    <div class="rounded m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
         <div className=" md:w-[3rem]">Name</div>
         <div className=" md:w-[4.1rem]">Start Date</div>
         <div className=" md:w-[4.2rem] ">End Date</div>
@@ -81,8 +81,7 @@ if (fetchingContactOpportunity) return <BundleLoader/>;
           return (
             <div>
               <div
-                className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
-              >
+                className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                 <div class="flex ">
                 <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
@@ -91,7 +90,7 @@ if (fetchingContactOpportunity) return <BundleLoader/>;
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col ">
                                           
-                                            <div class="text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500  font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>                                     
@@ -118,14 +117,14 @@ if (fetchingContactOpportunity) return <BundleLoader/>;
                 <div class="flex">
                   <div className=" flex font-medium flex-col  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <h4 class=" text-xs text-cardBody font-poppins">
+                    <h4 class=" text-xs  font-poppins">
                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                  
                     </h4>
                   </div>
                   <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <h4 class=" text-xs text-cardBody font-poppins">
+         <h4 class=" text-xs  font-poppins">
          {dayjs(item.endDate).format("DD/MM/YYYY")}
            
       
@@ -135,7 +134,7 @@ if (fetchingContactOpportunity) return <BundleLoader/>;
                 <div class="flex">
                   <div className=" flex font-medium justify-center flex-col  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <h4 class=" text-xs text-cardBody font-poppins">
+                    <h4 class=" text-xs  font-poppins">
                     <div>
             <CurrencySymbol currencyType={item.currency} />
             &nbsp;&nbsp;{item.proposalAmount}
@@ -145,7 +144,7 @@ if (fetchingContactOpportunity) return <BundleLoader/>;
                   </div>
                   <div className=" flex font-medium flex-col  md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <h4 class=" text-xs text-cardBody font-poppins">
+         <h4 class=" text-xs  font-poppins">
          <Tooltip title={item.oppStage}>
 {" "}
 <Progress
@@ -166,7 +165,7 @@ width={30}
                 <div class="flex">
                   <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <h4 class=" text-xs text-cardBody font-poppins">
+                    <h4 class=" text-xs  font-poppins">
                     <Tooltip title={item.contactName}>
               <div>
                 <MultiAvatar
@@ -186,7 +185,7 @@ width={30}
               
                 <div class="flex md:items-center ">
                   <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       <Tooltip title={item.description}>
            
           <InfoIcon 

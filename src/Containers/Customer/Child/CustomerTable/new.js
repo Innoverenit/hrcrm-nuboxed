@@ -181,7 +181,7 @@ function Myleads(props) {
                             className="absolute left-0 top-0 bottom-0 w-3 bg-blue-500 rounded-l-md -mt-1 -mb-1 -ml-2 "
 
                         ></span>
-                        <span class="font-semibold text-base text-cardBody-heading font-montserrat"> {props.translatedMenuItems[25]}:&nbsp;&nbsp; {props.recordData.count}</span>
+                        <span class="font-semibold text-base -heading font-montserrat"> {props.translatedMenuItems[25]}:&nbsp;&nbsp; {props.recordData.count}</span>
 
                     </span>
 
@@ -236,11 +236,11 @@ function Myleads(props) {
 
                                     {/* <Link to={`/cardInfo/${item.requirementId}`}     > */}
                                     <Tooltip title={item.categoryName}>
-                                        <h4 class=" text-sm text-cardBody font-montserrat">
+                                        <h4 class=" text-sm  font-montserrat">
                                             {/* {result ? <span style={{ color: "red", fontWeight: "600" }}>New</span> : null} {translatedMenuItems[2]}:  */}
                                             {` ${moment(item.availabilityDate).subtract(1, 'day').format("DD-MM-YYYY")}`}
                                         </h4>
-                                        {/* <h4 class=" text-sm text-cardBody font-montserrat flex items-center">
+                                        {/* <h4 class=" text-sm  font-montserrat flex items-center">
                                             <ReactCountryFlag
                                                 countryCode={country}
                                                 svg
@@ -260,7 +260,7 @@ function Myleads(props) {
                                     {/* </Link> */}
                                 </div>
                                 <div className=" flex font-bold flex-col w-36 ">
-  <h4 class=" text-sm text-cardBody font-montserrat flex items-center">
+  <h4 class=" text-sm  font-montserrat flex items-center">
                                           
                                             {country},
                                             &nbsp;
@@ -269,7 +269,7 @@ function Myleads(props) {
 
                                 </div>
                                 <div className=" flex font-bold flex-col w-32 ">
-  <h4 class=" text-sm text-cardBody font-montserrat flex items-center">
+  <h4 class=" text-sm  font-montserrat flex items-center">
                                           
                                             {country1},
                                             &nbsp;
@@ -279,10 +279,10 @@ function Myleads(props) {
                                 </div>
                                 <div className=" flex font-bold flex-col  w-56 ">
                                     {/* {delivery date} */}
-                                    <h4 class=" text-sm text-cardBody font-montserrat"> 
+                                    <h4 class=" text-sm  font-montserrat"> 
                                     {/* {props.translatedMenuItems[3]}:  */}
                                     {`  ${moment(item.deliveryFromDate).subtract(1, 'day').format("DD-MM-YYYY")}`}</h4>
-                                    {/* <h4 class=" text-sm text-cardBody font-montserrat flex items-center">
+                                    {/* <h4 class=" text-sm  font-montserrat flex items-center">
                                         <ReactCountryFlag
                                             countryCode={country1}
                                             svg
@@ -298,7 +298,7 @@ function Myleads(props) {
                                         {LocAdd1}
                                     </h4> */}
 
-                                    {/* <h4 class=" text-sm text-cardBody font-montserrat">
+                                    {/* <h4 class=" text-sm  font-montserrat">
                         {item.endDate === null ? null : moment(item.endDate).format("ll")}
                       </h4> */}
                                 </div>
@@ -306,9 +306,9 @@ function Myleads(props) {
                                 {/* <div className=" flex font-bold flex-col ">
                                         <Tooltip title={item.subCategoryName}>
                                             Delivery Date
-                                            <h4 class=" text-sm text-cardBody font-montserrat">{translatedMenuItems[3]}: {`  ${moment(item.endDate).format("DD-MM-YYYY")}`}</h4>
+                                            <h4 class=" text-sm  font-montserrat">{translatedMenuItems[3]}: {`  ${moment(item.endDate).format("DD-MM-YYYY")}`}</h4>
 
-                                            <h4 class="text-sm text-cardBody font-montserrat">
+                                            <h4 class="text-sm  font-montserrat">
                                                 {item.endDate}
                                             </h4>
                                         </Tooltip>
@@ -317,16 +317,16 @@ function Myleads(props) {
                                 <div className=" flex font-bold flex-col w-32 ">
                                     {/* Duration */}
 
-                                    {/* <h4 class=" text-sm text-cardBody font-montserrat">{translatedMenuItems[14]}</h4> */}
-                                    <h4 class=" text-sm text-cardBody font-montserrat">
+                                    {/* <h4 class=" text-sm  font-montserrat">{translatedMenuItems[14]}</h4> */}
+                                    <h4 class=" text-sm  font-montserrat">
                                     € {item.expectedPrice} 
                                     </h4>
                                 </div>
                                 <div className=" flex font-bold flex-col w-12 ">
                                     {/* # Cars */}
-                                    {/* <h4 class=" text-sm text-cardBody font-montserrat">{translatedMenuItems[15]}</h4> */}
+                                    {/* <h4 class=" text-sm  font-montserrat">{translatedMenuItems[15]}</h4> */}
 
-                                    <h4 class=" text-sm text-cardBody font-montserrat"
+                                    <h4 class=" text-sm  font-montserrat"
                                         onClick={() => {
                                             props.handleLoadCarModal(true)
                                             props.setRequirementsData(item);
@@ -342,17 +342,17 @@ function Myleads(props) {
                                 </div>
                                 <div className=" flex font-bold flex-col w-40 ">
                                     {/* Order No */}
-                                    {/* <h4 class=" text-sm text-cardBody font-montserrat">{translatedMenuItems[16]}</h4> */}
+                                    {/* <h4 class=" text-sm  font-montserrat">{translatedMenuItems[16]}</h4> */}
 
-                                    <h4 class=" text-sm text-cardBody font-montserrat">
+                                    <h4 class=" text-sm  font-montserrat">
                                         {item.newOrderNo}
                                     </h4>
                                 </div>
                                 <div className=" flex font-bold flex-col w-32 ">
                                     {/* Order No */}
-                                    {/* <h4 class=" text-sm text-cardBody font-montserrat">Full Truck</h4> */}
+                                    {/* <h4 class=" text-sm  font-montserrat">Full Truck</h4> */}
 
-                                    <h4 class=" text-sm text-cardBody font-montserrat">
+                                    <h4 class=" text-sm  font-montserrat">
                                         {/* {item.newOrderNo} */}
                                         {item.fullLoadTruckInd===true?"Yes":"No"}
                                     </h4>

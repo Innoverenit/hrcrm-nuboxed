@@ -1761,6 +1761,11 @@ export const suppliersReducer = (state = initialState, action) => {
                                         addingSuppliersToggleError: true,
                                       };
 
+                                      case types.HANDLE_CLAER_SEARCHED_DATA_SUPPLIER:
+                                        return { ...state, 
+                                          supplierList: [], 
+                                        };  
+
 
     default:
       return state;

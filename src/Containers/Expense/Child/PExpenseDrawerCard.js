@@ -126,10 +126,10 @@ style={{width:"3rem",height:"3rem"}}
 )}
 </div>   
                               <div className=" flex font-medium flex-col w-[2rem] ">
-                                          <div class=" text-sm text-cardBody font-poppins">
+                                          <div class=" text-sm  font-poppins">
                                            ID
                                           </div>
-                                          <div class=" text-xs text-blue-500 text-cardBody font-poppins cursor-pointer">
+                                          <div class=" text-xs text-blue-500  font-poppins cursor-pointer">
                                               
        <Tooltip title={item.expenseId}>
          
@@ -141,7 +141,7 @@ style={{width:"3rem",height:"3rem"}}
                               </div>
                               <div className=" flex font-medium flex-col  w-20 ">
                          
-                         <div class=" text-sm text-cardBody font-poppins"> Type </div>
+                         <div class=" text-sm  font-poppins"> Type </div>
                          {editStates[index] ? (
             <select
   className="input-field"
@@ -155,14 +155,14 @@ style={{width:"3rem",height:"3rem"}}
   ))}
 </select>
           ) : (
-                         <div class=" text-xs text-cardBody font-poppins">
+                         <div class=" text-xs  font-poppins">
                              {item.expenseType}
                          </div>
                            )}
                      </div>
                               <div className=" flex font-medium flex-col w-32 ml-[0.25rem]">
                          
-                                  <div class=" text-sm text-cardBody font-poppins">Date </div>
+                                  <div class=" text-sm  font-poppins">Date </div>
                                   {editStates[index] ? (
   <DatePicker
     value={dayjs(item.expenseDate)} 
@@ -172,7 +172,7 @@ style={{width:"3rem",height:"3rem"}}
     style={{ border: "1px solid grey" }}
   />
 ) : (
-                                  <div class=" text-xs text-cardBody font-poppins">
+                                  <div class=" text-xs  font-poppins">
                                       
                                   
                                   {dayjs(item.expenseDate).format("MMM Do YY")}
@@ -181,7 +181,7 @@ style={{width:"3rem",height:"3rem"}}
                                   )}
                               </div>
                               <div className="flex font-medium flex-col w-32">
-                              <div class=" text-sm text-cardBody font-poppins w-36 ml-[0.25rem]"> Cost Code </div>
+                              <div class=" text-sm  font-poppins w-36 ml-[0.25rem]"> Cost Code </div>
                               {editStates[index] ? (
             <input
               type="text"
@@ -190,7 +190,7 @@ style={{width:"3rem",height:"3rem"}}
               style={{ border: "1px solid grey" }}
             />
           ) : (
-                         <div class=" text-xs text-cardBody font-poppins">
+                         <div class=" text-xs  font-poppins">
                              {item.clientName}
                          </div>
           )}
@@ -198,7 +198,7 @@ style={{width:"3rem",height:"3rem"}}
                          <div className=" flex font-medium flex-col w-64 ml-[0.25rem]">
 
                                 
-                                  <div class=" text-sm text-cardBody font-poppins">Particulars</div>
+                                  <div class=" text-sm  font-poppins">Particulars</div>
                                   {editStates[index] ? (
                                   <input
               type="text"
@@ -208,7 +208,7 @@ style={{width:"3rem",height:"3rem"}}
             />
           ) : (
         
-                                  <div class=" text-xs text-cardBody font-poppins">
+                                  <div class=" text-xs  font-poppins">
                                        {item.particular}
                                   </div>
           )}
@@ -219,7 +219,7 @@ style={{width:"3rem",height:"3rem"}}
                               <div className=" flex font-medium flex-col w-20 ">
 
 
-                                <div class=" text-sm text-cardBody font-poppins">Amount</div>
+                                <div class=" text-sm  font-poppins">Amount</div>
                                 {editStates[index] ? (
                                   <input
               type="text"
@@ -230,7 +230,7 @@ style={{width:"3rem",height:"3rem"}}
           ) : (
                                                                
           
-                                <div class=" text-xs text-cardBody font-poppins">
+                                <div class=" text-xs  font-poppins">
                                     {item.amount}
                                 </div>
           )}
@@ -240,7 +240,7 @@ style={{width:"3rem",height:"3rem"}}
                      <div className=" flex font-medium flex-col w-20 ml-[0.25rem]">
 
 
-<div class=" text-sm text-cardBody font-poppins">Curency</div>
+<div class=" text-sm  font-poppins">Curency</div>
 {editStates[index] ? (
   <input
 type="text"
@@ -251,7 +251,7 @@ style={{ border: "1px solid grey" }}
 ) : (
                                
 
-<div class=" text-xs text-cardBody font-poppins">
+<div class=" text-xs  font-poppins">
    {item.currency}
 </div>
 )}

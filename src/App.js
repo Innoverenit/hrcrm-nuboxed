@@ -34,7 +34,7 @@ class App extends Component {
           <div className="wrapper">
             <p>You're offline right now. Check your connection.</p>
           </div>
-        </Offline>
+        </Offline> 
         <Online> */}
         <AppErrorBoundary>
           <Suspense fallback={<BundleLoader />}>
@@ -43,9 +43,9 @@ class App extends Component {
 
               {/* <Route exact path="/login/:username?/:password?" component={Login} /> */}
               {/* CELL TECH */}
-              {/* <Route exact path="/login" component={Login} /> */}
+              <Route exact path="/login" component={Login} />
               {/* NUBOX */}
-              <Route exact path="/login" component={LoginHr} />
+              {/* <Route exact path="/login" component={LoginHr} /> */}
               <Route exact path="/mobilelogin" component={AppLoginMessage} />
               <Route
                 exact

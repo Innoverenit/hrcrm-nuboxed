@@ -123,8 +123,8 @@ function handleSetCurrentEmployeeId(employeeId,) {
                         <div class=" flex flex-row justify-evenly  w-full items-end">
                        
                      
-                      <div class=" font-normal text-xs text-cardBody font-poppins">{item.department === null ? "Not Available" :item.department}</div>
-                      <div class=" font-normal text-xs text-cardBody font-poppins">{item.roleTypeName  === null ? "Not Available" :item.roleTypeName}</div>
+                      <div class=" font-normal text-xs  font-poppins">{item.department === null ? "Not Available" :item.department}</div>
+                      <div class=" font-normal text-xs  font-poppins">{item.roleTypeName  === null ? "Not Available" :item.roleTypeName}</div>
           
                    
                       
@@ -135,11 +135,11 @@ function handleSetCurrentEmployeeId(employeeId,) {
           
                       </div> 
                    
-                       <div class=" font-normal text-xs text-cardBody font-poppins mt-2 "><VolumeUpIcon style={{fontSize:"0.75rem"}}/> {`${item.countryDialCode} ${item.mobileNo}`}</div>
-          <div class=" font-normal text-xs  mt-2 text-cardBody font-poppins "><DraftsIcon style={{fontSize:"0.75rem"}} /> {item.emailId}</div>
-          <div class=" font-normal text-xs mt-2 text-cardBody font-poppins ">Reports To:  {item.reportingManagerName}</div>
+                       <div class=" font-normal text-xs  font-poppins mt-2 "><VolumeUpIcon style={{fontSize:"0.75rem"}}/> {`${item.countryDialCode} ${item.mobileNo}`}</div>
+          <div class=" font-normal text-xs  mt-2  font-poppins "><DraftsIcon style={{fontSize:"0.75rem"}} /> {item.emailId}</div>
+          <div class=" font-normal text-xs mt-2  font-poppins ">Reports To:  {item.reportingManagerName}</div>
           <div class=" flex flex-row justify-between mt-[0.3rem] w-full items-end">
-          <div class=" font-normal text-xs text-cardBody font-poppins ">
+          <div class=" font-normal text-xs  font-poppins ">
        
           <span
               style={{ cursor: "pointer" }}
@@ -152,7 +152,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
    
            </div>
            <div className="flex">
-          <div class=" font-normal text-xs text-cardBody font-poppins ">
+          <div class=" font-normal text-xs  font-poppins ">
           <span
               style={{ cursor: "pointer" }}
               onClick={() => {
@@ -170,7 +170,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
               </Tooltip>
      </span>
            </div>
-           <div class=" font-normal text-xs text-cardBody font-poppins ml-[0.15rem] ">
+           <div class=" font-normal text-xs  font-poppins ml-[0.15rem] ">
           
           <span
               style={{ cursor: "pointer" }}
@@ -192,7 +192,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
      </span>
            
            </div>
-           <div class=" font-normal text-xs text-cardBody font-poppins ml-[0.15rem] ">
+           <div class=" font-normal text-xs  font-poppins ml-[0.15rem] ">
            <Tooltip 
                    title={`${item.workplace} , ${item.location}`}
                    >
@@ -206,7 +206,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
      </span>
      </Tooltip>
            </div>
-           <div class=" font-normal text-xs text-cardBody font-poppins ml-[0.15rem] ">
+           <div class=" font-normal text-xs  font-poppins ml-[0.15rem] ">
            <Tooltip title="Notify">
            <CircleNotificationsIcon
            className=" !text-base cursor-pointer text-[gold]"
@@ -217,7 +217,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
            />
            </Tooltip>
             </div>
-           <div class=" font-normal text-xs text-cardBody font-poppins ml-[0.15rem] ">
+           <div class=" font-normal text-xs  font-poppins ml-[0.15rem] ">
            {/* {user.userUpdateInd === true || user.role === "ADMIN"  ? ( */}
             <Tooltip title="Edit">
               <BorderColorIcon

@@ -127,7 +127,7 @@ const ContactInvestActionLeft = (props) => {
             }}
           >
             <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
-            <AccountBalanceIcon className=" text-base cursor-pointer" />
+            <AccountBalanceIcon className=" !text-icon cursor-pointer "  />
             </Avatar>
           </div>
         </Badge>
@@ -154,7 +154,7 @@ const ContactInvestActionLeft = (props) => {
             }}
           >
              <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-           <PeopleIcon className=" text-base cursor-pointer"/>
+           <PeopleIcon className=" !sr-onlytext-icon cursor-pointer"/>
            </Avatar>
           </div>
         </Badge>
@@ -173,14 +173,14 @@ const ContactInvestActionLeft = (props) => {
           overflowCount={5000}
         >
           <div
-            class=" mr-1 text-base cursor-pointer"
+            class=" mr-1 !text-icon cursor-pointer"
             onClick={() => props.setContactInvetViewType("all")}
             style={{
               color: props.viewType === "all" && "#1890ff",
             }}
           >
             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-   <FormattedMessage id="app.all" defaultMessage="All" />
+   <FormattedMessage id="app.all" defaultMessage="All" class="!text-icon " />
    </Avatar>
           </div>
         </Badge>
@@ -215,7 +215,7 @@ const ContactInvestActionLeft = (props) => {
       >
         <FormattedMessage id="app.clear" defaultMessage="Clear" />
       </Button> */}
-      <div class="w-[35%] mt-[0.5rem]">
+      <div class="w-[40%] mt-[0.5rem] ml-2">
           <StyledSelect placeholder="Sort"  onChange={(e)  => props.handleFilterChange(e)}>
           <Option value="CreationDate">Creation Date</Option>
             <Option value="ascending">A To Z</Option>

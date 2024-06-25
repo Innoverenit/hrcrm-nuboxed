@@ -149,7 +149,7 @@ if (props.fetchingDealsContactList) {
                         >
                           <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                             <div className=" flex font-medium flex-col md:w-[34rem] max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                              <div class=" font-normal text-[0.85rem]  font-poppins">
                                {item.name}
 
                               </div>
@@ -157,7 +157,7 @@ if (props.fetchingDealsContactList) {
                             </div>
                             <div className=" flex font-medium flex-col md:w-[30rem] max-sm:justify-between w-full max-sm:flex-row ">
      
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+<div class=" font-normal text-[0.85rem]  font-poppins">
 
  <DealsCardToggle
 item={item}

@@ -226,7 +226,7 @@ console.log(props.clubShareData)
 
 <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.clubId ? (
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       <Input
                         className="w-32"
                         value={item.clubName}
@@ -234,14 +234,14 @@ console.log(props.clubShareData)
                       />
                     </div>
                      ):(
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                       <div> {item.clubName}</div>
                     </div>
                     )}
                   </div>
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.clubId ? (
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs  font-poppins">
                       <Input
                         className="w-32"
                         value={item.noOfShare}
@@ -249,7 +249,7 @@ console.log(props.clubShareData)
                       />
                     </div>
  ):(
-  <div className="font-normal text-sm text-cardBody font-poppins">
+  <div className="font-normal text-sm  font-poppins">
   <div> {item.noOfShare}</div>
 </div>
 )}
@@ -261,7 +261,7 @@ console.log(props.clubShareData)
                   <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.clubId ? (
 
-                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                    <div class=" text-xs  font-semibold  font-poppins">
                       <Input
                         className="w-32"
                         value={item.discount}
@@ -269,7 +269,7 @@ console.log(props.clubShareData)
                       />
                     </div>
                      ):(
-                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div className="font-normal text-sm  font-poppins">
                       <div> {item.discount}</div>
                     </div>
                     )}

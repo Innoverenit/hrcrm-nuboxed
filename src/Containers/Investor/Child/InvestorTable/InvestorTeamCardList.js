@@ -212,10 +212,10 @@ function InvestorTeamCardList(props) {
                                    
                                         <Tooltip>
                                         <div class=" flex max-sm:w-full  flex-row md:flex-col">
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
+                                            {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class=" text-sm text-blue-500 flex text-cardBody font-poppins font-semibold cursor-pointer">
+                                            <div class=" text-sm text-blue-500 flex  font-poppins font-semibold cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
       {item.name}
   </Link>                                
@@ -238,8 +238,8 @@ function InvestorTeamCardList(props) {
 
                                 <div className=" flex font-medium items-center  w-[11.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                            
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
+                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                     {item.sector}
                                     </div>
                                 </div>
@@ -251,8 +251,8 @@ function InvestorTeamCardList(props) {
                                 <div className=" flex font-medium items-center w-[3.21rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
-                                  {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                                  <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                                  <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   <ReactCountryFlag
                         countryCode={item.countryAlpha2Code}
                         svg
@@ -266,40 +266,40 @@ function InvestorTeamCardList(props) {
                                   </div>
                               </div>
                                 <div className=" flex font-medium items-center w-[7.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.totalWonOppProposalValue}
                                     </div>
                                 </div>
                              
                                 <div className=" flex font-medium items-center w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                     {item.totalProposalValue && (
-      <div class="text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-         {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 10000)}K`}
+      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+         {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
       </div>
     )}
                                 </div>
                                 <div className=" flex font-medium items-center w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.signed}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[6.12rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {Category}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
-                                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     
                                     <span>
               {item.assignedTo === null ? (
@@ -326,7 +326,7 @@ function InvestorTeamCardList(props) {
                                 </div>
                                 <div className=" flex font-medium flex-col w-[4.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                        
-                       {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+                       {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
 
                        <span>
                        <Tooltip title={item.ownerName}>
@@ -346,9 +346,9 @@ function InvestorTeamCardList(props) {
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                    <div className=" flex font-medium items-center  w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Source</div> */}
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Source</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.source}
                                     </div>
                                 </div>

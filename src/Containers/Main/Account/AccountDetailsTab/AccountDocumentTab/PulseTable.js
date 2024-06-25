@@ -51,20 +51,20 @@ const PulseTable = (props) => {
                                             </div>
                                             <div className=" flex font-medium   md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                         <div class=" text-xs text-cardBody font-poppins text-center">
+                                         <div class=" text-xs  font-poppins text-center">
                                             {/* <LobToggle/> */}
                                                </div>
                                                 </div>
                                             <div className=" flex font-medium   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center">
                                                  {/* <Input/> */}
                                                 </div>
                                             </div>
                                            
                                               <div className=" flex font-medium   md:w-[4.41rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                          <div class=" text-xs text-cardBody font-poppins text-center">
+                                          <div class=" text-xs  font-poppins text-center">
                                           {/* <Select
                                               style={{width:"8rem"}}            
                                                             //value={item.zone}

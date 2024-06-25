@@ -22,7 +22,6 @@ import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
-import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
@@ -79,7 +78,7 @@ const PitchAllCardList = (props) => {
   return (
     <>
  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className=" flex justify-between max-sm:hidden w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+ <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky z-10">
         <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
                   id="app.name"
                   defaultMessage="name"
@@ -89,11 +88,8 @@ const PitchAllCardList = (props) => {
                   id="app.mobile#"
                   defaultMessage="mobile#"
                 /></div>
-        <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.country"
-                  defaultMessage="country"
-                /></div>
-        <div className="w-[14.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
+        <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
                   id="app.company"
                   defaultMessage="company"
                 /></div>
@@ -122,7 +118,7 @@ const PitchAllCardList = (props) => {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllPitch?<div class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
+        height={"80vh"}
         style={{overflowX:"hidden"}}
       >
   { !fetchingAllPitch && props.allPitchData.length === 0 ?<NodataFoundPage />:props.allPitchData.map((item,index) =>  {
@@ -151,7 +147,7 @@ const PitchAllCardList = (props) => {
                     return (
                       <div>
                       <div
-          className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+          className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
         >
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium  w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
@@ -174,10 +170,10 @@ const PitchAllCardList = (props) => {
                                   <div class="max-sm:w-full" >
                                   <Tooltip>
                                     <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
-                                      {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
+                                      {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">
                                       Name
                                       </div> */}
-                                      <div class=" text-[0.82rem] max-sm:text-[0.82rem] flex text-blue-500 text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
+                                      <div class=" text-[0.82rem] max-sm:text-[0.82rem] flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
                                           
                                           {/* <Link
                                            toUrl={`customer/${item.customerId}`}
@@ -266,29 +262,29 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>  
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Phone # </div> */}
+                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Phone # </div> */}
 
-                     <div class="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     <div class="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.countryDialCode && item.phoneNumber
 ? `${item.countryDialCode} ${item.phoneNumber}`
-: 'No Data'}
+: 'None'}
 </div>
 
                  </div>
-                 <div className=" flex font-medium  w-[4rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex font-medium  w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                             
 
-                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                            <div class=" text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Country</div> */}
+                            <div class=" text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <CountryFlag1 countryCode={countryCode} />
                 &nbsp;
                 {countryCode} */}
                               </div>
                         </div>
-                        <div className=" flex font-medium   w-[15.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
-                     <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.companyName || "No Data"}
+                        <div className=" flex font-medium   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                     <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {item.companyName || "None"}
 </div>
 
                  </div>
@@ -296,27 +292,27 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 
                  <div className=" flex font-medium   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
-                     <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.source || "No Data"}
+                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                     <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {item.source || "None"}
 </div>
 
                  </div>
                  <div className=" flex font-medium   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
-                     <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.sector || "No Data"}
+                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                     <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {item.sector || "None"}
 </div>
 
                  </div>
                  <div className=" flex font-medium  w-[5.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
-                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned</div> */}
+                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
-                              <div class=" text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class=" text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               
                               <span>
                 {item.assignedTo === null ? (
-          "No Data"
+          "None"
         ) : (
           <>
           {item.assignedTo === item.ownerName ? (
@@ -339,7 +335,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           </div>
                           <div className=" flex font-medium  w-[3.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                  
-                 {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+                 {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Owner</div> */}
 
                  <span>
                  <Tooltip title={item.ownerName}>
@@ -385,10 +381,10 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       ) : null}
                   </div>  
              <div className=" flex font-medium flex-col w-12 max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Qualify</div> */}
+                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Qualify</div> */}
    
                   
-                              <div class=" text-[0.82rem] text-cardBody font-poppins">
+                              <div class=" text-[0.82rem]  font-poppins">
           {/* qual */}
                               </div>
                               <div>
@@ -417,99 +413,87 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
     /> */}
 </div>
                           </div>
-                          
-                          <div >
-              <Tooltip title="Notes">
- <NoteAltIcon
-          onClick={() => {
-            props.handlePitchNotesDrawerModal(true);
-            handleSetCurrentLeadsId(item);
-          }}
-          className="!text-icon cursor-pointer text-[green]"
-        />
-     </Tooltip>
-
-      </div>
-      <div>
-<Tooltip
-  title={
-    <FormattedMessage id="app.activity" defaultMessage="Activity" />
-  }
->
-<AddchartIcon
-className="!text-icon cursor-pointer text-blue-500"
-
-onClick={()=>{
-props.handleAssimodal(true)
-handleRowData(item)
-}}
-/>
-</Tooltip>
-</div>
-
-                          </div>
                           <div class="flex max-sm:flex-row  justify-between md:w-20 max-sm:w-[25%] ">
-                         
-                        
-                        
-                      
-                  <div>
-      
+                                                <div >
+                                    <Tooltip title="Notes">
+                      <NoteAltIcon
+                                onClick={() => {
+                                  props.handlePitchNotesDrawerModal(true);
+                                  handleSetCurrentLeadsId(item);
+                                }}
+                                className="!text-icon cursor-pointer text-[green]"
+                              />
+                          </Tooltip>
 
-              </div>
-            
-            
-                <div>
-              <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-      <span class="cursor-pointer" >
-      <LocationOnIcon   className="!text-icon cursor-pointer text-[#960a0a]"/>
-      </span>
-    </Tooltip>
-    </div>
-    <div>
-    <Tooltip title={item.email}>
-        <MailOutlineIcon
-          type="mail"
-          className="!text-icon cursor-pointer text-green-400"
-          // onClick={() => {
-          //   handleSetCurrentLeadsId(item);
-          //   props.handleLeadsEmailDrawerModal(true);
-          // }}
-        />
-      </Tooltip> </div>
-      {user.imInd === true  &&  user.pitchUpdateInd === true && (  
-                          <div>
-      <Tooltip title="Edit">
-        <BorderColorIcon
-          className="!text-icon cursor-pointer text-[tomato]"
-          onClick={() => {
-             props.setEditPitch(item);
-             props.handleUpdatePitchModal(true);
-          handleSetCurrentLeadsId(item);
-            
-          }}
-        />
-      </Tooltip>
-  
-      </div>
-                          )}
-                         
-                  <div>
+                            </div>
+                            <div>
+                                <Tooltip
+                                  title={
+                                    <FormattedMessage id="app.activity" defaultMessage="Activity" />
+                                  }
+                                >
+                                <AddchartIcon
+                                className="!text-icon cursor-pointer text-blue-500"
 
-                  <StyledPopconfirm
-      title="Do you want to delete?"
-      onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
-    > <Tooltip title="Delete">
-       {user.imInd === true  &&  user.plantDeleteInd === true && ( 
-      <DeleteOutlined
-        type="delete"
-        className="!text-icon text-[red] cursor-pointer"
-        
-      />
-       )} 
-       </Tooltip>
-    </StyledPopconfirm>
-                  </div>
+                                onClick={()=>{
+                                props.handleAssimodal(true)
+                                handleRowData(item)
+                                }}
+                                />
+                                </Tooltip>
+                                </div>                                
+                                  
+                                      <div>
+                                                <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
+                                        <span class="cursor-pointer" >
+                                        <LocationOnIcon   className="!text-icon cursor-pointer text-[#960a0a]"/>
+                                        </span>
+                                      </Tooltip>
+                                      </div>
+                                      <div>
+                                      <Tooltip title={item.email}>
+                                          <MailOutlineIcon
+                                            type="mail"
+                                            className="!text-icon cursor-pointer text-green-400"
+                                            // onClick={() => {
+                                //   handleSetCurrentLeadsId(item);
+                                //   props.handleLeadsEmailDrawerModal(true);
+                                // }}
+                              />
+                            </Tooltip> </div>
+                            {user.imInd === true  &&  user.pitchUpdateInd === true && (  
+                                                <div>
+                            <Tooltip title="Edit">
+                              <BorderColorIcon
+                                className="!text-icon cursor-pointer text-[tomato]"
+                                onClick={() => {
+                                  props.setEditPitch(item);
+                                  props.handleUpdatePitchModal(true);
+                                handleSetCurrentLeadsId(item);
+                                  
+                                }}
+                              />
+                            </Tooltip>
+                        
+                            </div>
+                                                )}
+                                              
+                                        <div>
+
+                                        <StyledPopconfirm
+                            title="Do you want to delete?"
+                            onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
+                          > <Tooltip title="Delete">
+                            {user.imInd === true  &&  user.plantDeleteInd === true && ( 
+                            <DeleteOutlined
+                              type="delete"
+                              className="!text-icon text-[red] cursor-pointer"
+                              
+                            />
+                            )} 
+                            </Tooltip>
+                          </StyledPopconfirm>
+                                        </div>
                 
                 
               </div>
@@ -517,7 +501,7 @@ handleRowData(item)
                 </div>
                       </div>
                          
-
+                                </div>
 
                     )
                 })}

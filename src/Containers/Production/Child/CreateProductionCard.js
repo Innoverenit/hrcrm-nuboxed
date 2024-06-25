@@ -122,7 +122,7 @@ function CreateProductionCard(props) {
                                             <div className=" flex font-medium flex-col  w-[13.5rem] max-xl:w-[11.5rem] max-lg:w-[9.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                                                 <div 
-                                                class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                                class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                                 onClick={() => {
                                                     props.addCreateManufactureCardModal(true);
                                                     handleParticularRowData(item)
@@ -139,7 +139,7 @@ function CreateProductionCard(props) {
                                             </div>
                                             <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     {item.productName}
                                                 </div>
 
@@ -148,7 +148,7 @@ function CreateProductionCard(props) {
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                                             <div className=" flex font-medium flex-col w-[13.51rem] max-xl:w-[7.51rem] max-lg:w-[5.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                                                     {item.categoryName}  {item.subCategoryName}
                                                 </div>
@@ -156,13 +156,13 @@ function CreateProductionCard(props) {
                                             <div className=" flex font-medium flex-col w-[15.2rem] max-xl:w-[11.2rem] max-lg:w-[8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                                                <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     {item.attributeName}  {item.subAttributeName}
                                                 </div>
                                             </div>
 
                                             <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                <div class=" text-xs  font-semibold  font-poppins">
                                                     {store && particularDiscountData.manufactureId === item.manufactureId ?
                                                         <>
                                                             <Select
@@ -212,7 +212,7 @@ function CreateProductionCard(props) {
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                <div class=" text-xs  font-semibold  font-poppins">
                                                     {item.zone ? <BorderColorOutlined
                                                         onClick={() => {
                                                             handleStore()
@@ -228,14 +228,14 @@ function CreateProductionCard(props) {
                                             </div>
                                             <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[7.21rem] max-lg:w-[5.21rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
-                                                <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     <MoveToggleProduction item={item} />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium flex-col w-[2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins">
+                                                <div class=" text-xs  font-poppins">
                                                     <Tooltip title="Edit">
                                                         <BorderColorIcon
                                                             className="!text-xl cursor-pointer text-[tomato]"
@@ -250,7 +250,7 @@ function CreateProductionCard(props) {
 
                                             </div>
                                             <div className=" flex font-medium   w-[6rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     <Tooltip title="Print">
 
                                                         <ReactToPrint

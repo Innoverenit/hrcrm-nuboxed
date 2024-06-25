@@ -7,11 +7,11 @@ const AddSpareInRepair = (props) => {
     return (
         <>
             <Suspense fallback={<BundleLoader />}>
-                <div class="flex justify-between">
-                    <div class="w-[30%]">
+                <div class="flex flex-col">
+                    <div class="w-[50%]">
                         <AddMultipleQCSpare RowData={props.RowData} />
                     </div>
-                    <div class="w-[65%]">
+                    <div class="w-wk">
                         <RepairSpareListTable
                             phoneId={props.phoneId}
                             RowData={props.RowData}

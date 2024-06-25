@@ -149,14 +149,14 @@ function ProductCardList(props) {
                         </SubTitle>
                       </div>
                       <div className=" flex font-medium flex-col w-[5.3rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                        <div class="text-xs text-cardBody  max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class="text-xs   max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.articleNo}
                         </div>
                       </div>
 
                       <div className=" flex font-medium flex-col  w-[11.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                        <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.name}
                         </div>
 
@@ -165,7 +165,7 @@ function ProductCardList(props) {
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium flex-col w-[8.1rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.categoryName}  {item.subCategoryName}
                       </div>
@@ -175,20 +175,20 @@ function ProductCardList(props) {
                     <div className=" flex font-medium flex-col w-[8.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                      <div class=" text-xs text-cardBody max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {item.attributeName}  {item.subAttributeName}
                       </div>
                     </div>
 </div>
 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 <div className=" flex font-medium flex-col w-[8.51rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.brand}
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col w-[10.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.model}
                       </div>
@@ -233,7 +233,7 @@ function ProductCardList(props) {
                       </div>
                  
                    
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title={item.description}>
                         <ContactSupportIcon className="!text-icon"/>
                         </Tooltip>
@@ -252,7 +252,7 @@ function ProductCardList(props) {
 
                     
               
-                      <div class=" text-xs text-cardBody font-poppins mt-1">
+                      <div class=" text-xs  font-poppins mt-1">
                         <Tooltip title="Edit">
                           <BorderColorIcon
                             className="!text-icon cursor-pointer text-[tomato]"
