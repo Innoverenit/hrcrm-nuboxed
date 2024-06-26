@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import Button from "antd/lib/button";
 import { Tooltip } from "antd";
 import { handleEventModal } from "../EventAction";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const EventSharedForm =lazy(()=>import("./EventSharedForm"));
 
 class EventActionRight extends React.Component {
@@ -33,7 +34,7 @@ class EventActionRight extends React.Component {
         <Tooltip placement="left" title="Create">
           <Button type="primary"
             onClick={() => handleEventModal(true)}>
-            Add
+          <DataSaverOnIcon/>Add
           </Button>
         </Tooltip>
       </div>

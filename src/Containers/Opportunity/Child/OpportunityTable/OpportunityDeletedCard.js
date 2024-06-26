@@ -89,8 +89,8 @@ function OpportunityDeletedCard(props) {
                 primaryTitle={item.contactName}
                 imageId={item.imageId}
                  imageURL={item.imageURL}
-                imgWidth={"1.8em"}
-                imgHeight={"1.8em"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             }
             </SubTitle>
@@ -151,8 +151,8 @@ function OpportunityDeletedCard(props) {
     <span>
             <MultiAvatar
               primaryTitle={item.assignedTo}
-              imgWidth={"1.8em"}
-              imgHeight={"1.8em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
             </span>
 </div>
@@ -166,8 +166,8 @@ function OpportunityDeletedCard(props) {
               primaryTitle={item.ownerName}
               imageId={item.ownerImageId}
                imageURL={item.imageURL}
-              imgWidth={"2.1em"}
-              imgHeight={"2.1em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
             </span>
            </Tooltip>

@@ -6,6 +6,7 @@ import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip, } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const ContactSharePartnerForm = lazy(()=>import("./ContactSharePartnerForm"));
 const ContactShareCustomerForm = lazy(()=>import("./ContactShareCustomerForm"));
 
@@ -63,6 +64,17 @@ class ContactActionRight extends React.Component {
           Import
         </Button>
         )} */}
+         <Tooltip placement="left" title="Create">
+            {user.contactCreateInd === true &&  user.crmInd === true && (
+          <Button 
+           type="primary"
+           onClick={() => handleContactModal(true)}>
+                 <DataSaverOnIcon/>Add
+
+            
+          </Button>
+             )}
+        </Tooltip>
         <div className="max-sm:hidden">
            <Tooltip placement="left" title="Import">
             {user.contactCreateInd === true &&  user.crmInd === true && (
@@ -76,15 +88,7 @@ class ContactActionRight extends React.Component {
         </div>
         {/* {this.props.viewType === "table" ? ( */}
           
-        <Tooltip placement="left" title="Create">
-            {user.contactCreateInd === true &&  user.crmInd === true && (
-          <Button 
-           type="primary"
-           onClick={() => handleContactModal(true)}>
-            Add
-          </Button>
-             )}
-        </Tooltip>
+       
          
         {/* ): null} */}
       </div>

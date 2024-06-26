@@ -523,8 +523,8 @@ console.log(page)
                               <MultiAvatar
                                 primaryTitle={item.ownerName}
                                 imageId={item.ownerImageId}
-                                imgWidth={"1.9rem"}
-                                imgHeight={"1.9rem"}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
                               />
                             </Tooltip>
                           </div>

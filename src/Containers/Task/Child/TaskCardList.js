@@ -195,7 +195,7 @@ const TaskCardList = (props) => {
     
           <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
           <div className=" md:w-[4.54rem] text-white bg-red-600">Urgent </div>
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
@@ -255,13 +255,13 @@ const TaskCardList = (props) => {
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
-                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]" ></div>
+                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]" ></div>
+                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[teal]" ></div>
                     )}
                     <div class=" w-2"></div>
           <div class=" flex w-[8rem] max-sm:w-full">
@@ -324,23 +324,23 @@ const TaskCardList = (props) => {
                    
                     <ButtonGroup >
          
-          <StatusIcon
-  type="To Start"
-  iconType={<HourglassEmptyIcon />} 
- // iconType="fa-hourglass-start"
-  tooltip="To Start"
-  status={item.taskStatus}
-  difference={difference} 
-  onClick={() =>
-    linkTaskStatus(item.taskId, {
-      taskStatus: "To Start",
-    })
-  }
-/>
+                      <StatusIcon
+              type="To Start"
+              iconType={<HourglassEmptyIcon className=" !text-icon" />} 
+            // iconType="fa-hourglass-start"
+              tooltip="To Start"
+              status={item.taskStatus}
+              difference={difference} 
+              onClick={() =>
+                linkTaskStatus(item.taskId, {
+                  taskStatus: "To Start",
+                })
+              }
+            />
         
             <StatusIcon
               type="In Progress"
-             iconType={<HourglassTopIcon/>}
+             iconType={<HourglassTopIcon  className=" !text-icon"/>}
               tooltip="In Progress"
               status={item.taskStatus}
               difference={difference}
@@ -354,7 +354,7 @@ const TaskCardList = (props) => {
          
             <StatusIcon
               type="Completed"
-            iconType={<HourglassBottomIcon/>}
+            iconType={<HourglassBottomIcon  className=" !text-icon"/>}
               tooltip="Completed"
               status={item.taskStatus}
               difference={difference}
@@ -604,9 +604,9 @@ const TaskCardList = (props) => {
 </div>
                           
 <div class="flex justify-end max-sm:w-wk items-center">    
-                    <div class="flex max-sm:flex-row  max-sm:w-auto justify-evenly  ">
+           <div class="flex max-sm:flex-row  max-sm:w-auto justify-evenly  ">
                     <Tooltip title="Notes">
-       <NoteAltIcon
+                    <NoteAltIcon
                 onClick={() => {
                   handleTaskNotesDrawerModal(true);
                   handleSetTaskNameId(item);
@@ -625,6 +625,8 @@ const TaskCardList = (props) => {
                           handleDownloadTaskModal(true);
                         }}
                       /> */}
+                      </div>
+                      <div class="flex max-sm:flex-row  max-sm:w-auto justify-evenly">
                          <Tooltip title="Document">
                          <DownloadForOfflineIcon
                                   onClick={() => {
@@ -638,9 +640,9 @@ const TaskCardList = (props) => {
                     {/* )} */}
         
             </div>
-                    {/*<div class="flex flex-row w-6 max-sm:flex-row max-sm:w-auto justify-evenly ">*/}
+                   
    
-   
+        <div class="flex max-sm:flex-row  max-sm:w-auto justify-evenly" >
           <Tooltip title="Edit">
           {props.userId === item.userId && (
                       <BorderColorIcon
@@ -653,7 +655,7 @@ const TaskCardList = (props) => {
                       />
                     )}
             </Tooltip>
-          
+          </div>
             <div>
            
             {item.complitionStatus !== "completed" && (
@@ -755,13 +757,13 @@ const TaskCardList = (props) => {
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
-                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]" ></div>
+                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]" ></div>
+                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[teal]" ></div>
                     )}
                     <div class=" w-2"></div>
           <div class=" flex w-[8rem] max-sm:w-full">
@@ -826,7 +828,7 @@ const TaskCardList = (props) => {
          
           <StatusIcon
   type="To Start"
-  iconType={<HourglassEmptyIcon />} 
+  iconType={<HourglassEmptyIcon  className=" !text-icon" />} 
  // iconType="fa-hourglass-start"
   tooltip="To Start"
   status={item.taskStatus}
@@ -840,7 +842,7 @@ const TaskCardList = (props) => {
         
             <StatusIcon
               type="In Progress"
-             iconType={<HourglassTopIcon/>}
+             iconType={<HourglassTopIcon  className=" !text-icon"/>}
               tooltip="In Progress"
               status={item.taskStatus}
               difference={difference}
@@ -854,7 +856,7 @@ const TaskCardList = (props) => {
          
             <StatusIcon
               type="Completed"
-            iconType={<HourglassBottomIcon/>}
+            iconType={<HourglassBottomIcon  className=" !text-icon"/>}
               tooltip="Completed"
               status={item.taskStatus}
               difference={difference}
@@ -1105,16 +1107,16 @@ const TaskCardList = (props) => {
                           
 <div class="flex  max-sm:justify-end max-sm:w-wk items-center">    
                     <div class="flex   max-sm:flex-row  max-sm:w-auto justify-evenly  ">
-                    <Tooltip title="Notes">
-       <NoteAltIcon
-                onClick={() => {
-                  handleTaskNotesDrawerModal(true);
-                  handleSetTaskNameId(item);
-                }}
-                className="!text-icon cursor-pointer text-[green]"
-              />
-           </Tooltip>
-  
+                          <Tooltip title="Notes">
+                          <NoteAltIcon
+                                    onClick={() => {
+                                      handleTaskNotesDrawerModal(true);
+                                      handleSetTaskNameId(item);
+                                    }}
+                                    className="!text-icon cursor-pointer text-[green]"
+                                  />
+                              </Tooltip>
+                    </div>
    
           {/* {props.userId === item.userId && ( */}
                       {/* <DownloadForOfflineIcon
@@ -1125,6 +1127,7 @@ const TaskCardList = (props) => {
                           handleDownloadTaskModal(true);
                         }}
                       /> */}
+                      <div>
                          <Tooltip title="Document">
                          <DownloadForOfflineIcon
                                   onClick={() => {
@@ -1136,23 +1139,24 @@ const TaskCardList = (props) => {
                                 />
                              </Tooltip>
                     {/* )} */}
-        
-            </div>
+                      </div>
+            
                     <div class="flex  max-sm:flex-row max-sm:w-auto justify-evenly ">
    
    
-          <Tooltip title="Edit">
-          {props.userId === item.userId && (
-                      <BorderColorIcon
-                        type="edit"
-                        className="!text-icon cursor-pointer"                   
-                        onClick={() => {
-                          props.setEditTask(item);
-                          handleUpdateTaskModal(true);
-                        }}
-                      />
-                    )}
-            </Tooltip>
+                        <Tooltip title="Edit">
+                        {props.userId === item.userId && (
+                                    <BorderColorIcon
+                                      type="edit"
+                                      className="!text-icon cursor-pointer"                   
+                                      onClick={() => {
+                                        props.setEditTask(item);
+                                        handleUpdateTaskModal(true);
+                                      }}
+                                    />
+                                  )}
+                          </Tooltip>
+                          </div>
           
             <div>
            
@@ -1184,7 +1188,7 @@ const TaskCardList = (props) => {
                      </div>
 
                             </div>
-                        </div>
+                      
 
 
                     )
@@ -1255,13 +1259,13 @@ const TaskCardList = (props) => {
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
-                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]" ></div>
+                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]" ></div>
+                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[teal]" ></div>
                     )}
                     <div class=" w-2"></div>
           <div class=" flex w-[8rem] max-sm:w-full">
@@ -1326,7 +1330,7 @@ const TaskCardList = (props) => {
          
           <StatusIcon class=" !text-icon"
   type="To Start"
-  iconType={<HourglassEmptyIcon />} 
+  iconType={<HourglassEmptyIcon  className=" !text-icon" />} 
  // iconType="fa-hourglass-start"
   tooltip="To Start"
   status={item.taskStatus}
@@ -1340,7 +1344,7 @@ const TaskCardList = (props) => {
         
             <StatusIcon class=" !text-icon"
               type="In Progress"
-             iconType={<HourglassTopIcon/>}
+             iconType={<HourglassTopIcon  className=" !text-icon"/>}
               tooltip="In Progress"
               status={item.taskStatus}
               difference={difference}
@@ -1354,7 +1358,7 @@ const TaskCardList = (props) => {
          
             <StatusIcon class=" !text-icon"
               type="Completed"
-            iconType={<HourglassBottomIcon/>}
+            iconType={<HourglassBottomIcon  className=" !text-icon"/>}
               tooltip="Completed"
               status={item.taskStatus}
               difference={difference}
@@ -1614,7 +1618,9 @@ const TaskCardList = (props) => {
                 className="!text-icon cursor-pointer text-[green]"
               />
            </Tooltip>
-  
+              </div>
+              <div>
+
    
           {/* {props.userId === item.userId && ( */}
                       {/* <DownloadForOfflineIcon
@@ -1653,6 +1659,7 @@ const TaskCardList = (props) => {
                       />
                     )}
             </Tooltip>
+            </div>
           
             <div>
            
@@ -1684,7 +1691,7 @@ const TaskCardList = (props) => {
                      </div>
 
                             </div>
-                        </div>
+                      
 
 
                     )

@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import {  Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../../Components/UI/Antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 
 
@@ -28,7 +29,7 @@ class LocationActionRight extends React.Component {
           >
            
 
-            Add
+           <DataSaverOnIcon/>Add
           </Button>
         </Tooltip>
       </div>

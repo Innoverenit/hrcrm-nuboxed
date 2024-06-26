@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../Components/UI/Antd";
@@ -9,7 +9,7 @@ import {
 } from "./TeamsAction"
 import UpdateTeamsAllocationModal from "./UpdateTeamsAllocationModal";
 import { Tooltip } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 
 function TeamsInventoryTable(props) {
 
@@ -61,7 +61,7 @@ function TeamsInventoryTable(props) {
             width: "10%",
             dataIndex: "locationStartDate",
             render: (name, item, i) => {
-                return <>{moment(item.locationStartDate).format("ll")}</>;
+                return <>{dayjs(item.locationStartDate).format("ll")}</>;
             },
         },
         {
@@ -69,7 +69,7 @@ function TeamsInventoryTable(props) {
             width: "10%",
             dataIndex: "locationEndDate",
             render: (name, item, i) => {
-                return <>{moment(item.locationEndDate).format("ll")}</>;
+                return <>{dayjs(item.locationEndDate).format("ll")}</>;
             },
         },
         {

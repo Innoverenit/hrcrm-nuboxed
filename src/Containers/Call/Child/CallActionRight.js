@@ -1,10 +1,12 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, {  lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Button from "antd/lib/button";
 import { Tooltip } from "antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { handleCallModal } from "../CallAction";
 const CallSharedForm = lazy(() => import("./CallSharedForm"));
+
 
 
 const CallActionRight = (props) => {
@@ -25,7 +27,7 @@ const CallActionRight = (props) => {
           onClick={() => props.handleCallModal(true)}
         >
           {/* <Icon type="plus" /> */}
-          Add
+          <DataSaverOnIcon/>Add
         </Button>
       </Tooltip>
     </div>

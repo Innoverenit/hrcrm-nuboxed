@@ -21,15 +21,15 @@ import {
 import {getAssignedToList} from "../../Employees/EmployeeAction"
 import { getCrm} from "../../Leads/LeadsAction";
 import {getSaleCurrency} from "../../Auth/AuthAction"
-import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
 import { Listbox } from "@headlessui/react";
 import { getAllEmployeelist } from "../../Investor/InvestorAction";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
 
 /**
  * yup validation scheme for creating a opportunity
@@ -556,8 +556,8 @@ const filteredEmployeesData = AllEmplo.filter(
                   <div>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
-                        <span style={{ fontSize: "1.5em", color: "red" }}>
-                          <PlayCircleFilledIcon />
+                        <span  class="!text-icon ml-1 text-red-600">
+                          <RadioButtonCheckedIcon />
                         </span>
                       </Tooltip>
                     </span>
@@ -565,11 +565,8 @@ const filteredEmployeesData = AllEmplo.filter(
                     <span onClick={SpeechRecognition.stopListening}>
                       <Tooltip title="Stop">
                         <span
-                          style={{
-                            fontSize: "1.5em",
-                            color: "green",
-                            marginLeft: "3px",
-                          }}
+                          
+                            class="!text-icon ml-1 text-green-600"
                         >
                           <StopCircleIcon />
                         </span>
@@ -578,7 +575,7 @@ const filteredEmployeesData = AllEmplo.filter(
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span style={{ fontSize: "1.5em", marginLeft: "3px" }}>
+                        <span  class="!text-icon ml-1">
                           <RotateRightIcon />
                         </span>
                       </Tooltip>

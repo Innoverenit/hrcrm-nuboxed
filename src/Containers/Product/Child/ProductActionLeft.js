@@ -43,7 +43,7 @@ const ProductActionLeft = (props) => {
           onClick={() => props.setProductViewType("table")}
         >
           <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-            <MenuIcon className="text-white !text-2xl" />
+            <MenuIcon className="text-white !text-icon" />
           </Avatar>
 
         </div>
@@ -77,7 +77,7 @@ const ProductActionLeft = (props) => {
           onClick={() => props.setProductViewType("category")}
         >
           <Avatar style={{ background: props.viewType === "category" ? "#f279ab" : "#4bc076" }}>
-            <CategoryIcon className="text-white !text-2xl" />
+            <CategoryIcon className="text-white !text-icon" />
           </Avatar>
 
         </div>
@@ -91,7 +91,7 @@ const ProductActionLeft = (props) => {
   >
   <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
     <DeleteOutlined
-      className="!text-2xl cursor-pointer "
+      className="!text-icon cursor-pointer "
       style={{
 
         color: props.viewType === "dashboard" && "red",
