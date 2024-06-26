@@ -217,7 +217,7 @@ function ProductCardList(props) {
                             className="!text-icon cursor-pointer text-[blue]"
                             onClick={() => {
                               props.handleProductQuality(true);
-                              //handleParticularRowData(item);
+                              handleParticularRowData(item);
                             }}
                           />
                         </Tooltip>
@@ -330,7 +330,7 @@ function ProductCardList(props) {
         />
 
 <ProductQualityDrawer
-         //particularDiscountData={particularDiscountData}
+         particularDiscountData={particularDiscountData}
          productQualityDrawer={props.productQualityDrawer}
          handleProductQuality={props.handleProductQuality}
         />
