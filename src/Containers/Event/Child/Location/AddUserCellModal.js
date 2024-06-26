@@ -33,7 +33,9 @@ class AddUserCellModal extends Component {
                 //storedLoc={this.props.storedLoc}
                 /> */}
                 {/* Hello */}
-                <UserCellMachineCard/>
+                <UserCellMachineCard
+                currentItems={this.props.currentItems}
+                />
           </Suspense>
         </StyledDrawer>
       </div>

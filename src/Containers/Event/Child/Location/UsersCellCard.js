@@ -20,6 +20,7 @@ const { Option } = Select;
 const UsersCellCard = (props) => {
   console.log(props.storedLoc.locationDetailsId)
   const [department,setDepartment]=useState("")
+  const[currentItems,setCurrentItems]=useState("")
   const[cell,setCell]=useState("")
   const[user,setUser]=useState("")
   const users = [
@@ -42,6 +43,12 @@ const UsersCellCard = (props) => {
       
       console.log(`Selected user: ${value}`);
       // You can handle the selected user value here
+    }
+
+
+
+    const handleSetCurrentItems=(item)=>{
+      setCurrentItems(item)
     }
 
 
@@ -169,18 +176,37 @@ const UsersCellCard = (props) => {
 <div className=' flex justify-end sticky z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">   
-                
+          <div className=" md:w-[5.1rem]">User </div>
+          <div className=" md:w-[4.2rem] ">Department</div>
             <div className=" md:w-[6rem]">Cell Code</div>
-            <div className=" md:w-[4.2rem] ">Department</div>
+            
          
-            <div className=" md:w-[5.1rem]">User </div>
+           
             <div className="w-12"></div>             </div>
 
            {props.userCell.map((item) => {
             return (
               <div >
                 <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
+                <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div class=" text-xs  font-poppins">
+                   
+                      <div className="font-normal text-sm  font-poppins">
+                        <div> {item.userName}</div>
+                      </div>
+                    </div>
+                  </div>
+                <div className=" flex font-medium   md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
+<div class=" text-xs  font-poppins">
+
+  <div className="font-normal text-sm  font-poppins">
+    <div> {item.departmentName}</div>
+  </div>
+
+</div>
+
+</div>
                   <div className=" flex font-medium  md:w-[12.1rem] max-sm:w-full  ">
                     <div class="text-sm  font-semibold  font-poppins cursor-pointer">
                       <div className="font-normal text-sm  font-poppins">
@@ -189,25 +215,8 @@ const UsersCellCard = (props) => {
                     </div>
                   </div>
 
-                  <div className=" flex font-medium   md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                    <div class=" text-xs  font-poppins">
-                    
-                      <div className="font-normal text-sm  font-poppins">
-                        <div> {item.departmentName}</div>
-                      </div>
-                
-                    </div>
-
-                  </div>
-                  <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs  font-poppins">
-                   
-                      <div className="font-normal text-sm  font-poppins">
-                        <div> {item.userName}</div>
-                      </div>
-                    </div>
-                  </div>
+                 
+               
 
 
                   <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -232,7 +241,7 @@ const UsersCellCard = (props) => {
  <Button
  onClick={() => {
   props.handleUserCellModal(true);
-  // handleSetCurrentItems(item);
+  handleSetCurrentItems(item);
 }}
  >Machine</Button>
   </div>
@@ -262,7 +271,7 @@ const UsersCellCard = (props) => {
       <AddUserCellModal
       addUserCellModal={props.addUserCellModal}
       handleUserCellModal={props.handleUserCellModal}
-      // currentItems={currentItems}
+      currentItems={currentItems}
       // locationId={props.storedLoc.locationDetailsId}
       // addLocationMachineModal={props.addLocationMachineModal}
       // handleLocationMachineModal={props.handleLocationMachineModal}
