@@ -4,6 +4,7 @@ import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+import moment from "moment";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -199,6 +200,9 @@ const handleLoadMore2 = () => {
           <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           Shares #
           </div>
+          <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+         First Meeting
+          </div>
           <div className="w-[4.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
          Value
           </div>
@@ -226,7 +230,8 @@ const handleLoadMore2 = () => {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
- const countryCode = item.address[0].country_alpha2_code  
+//  const countryCode = item.address[0].country_alpha2_code  
+const countryCode = item.countryAlpha2Code  
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -416,11 +421,19 @@ const handleLoadMore2 = () => {
                                     {item.unitOfShare}
                                     </div>
                                 </div>
+                                <div className=" flex font-medium items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+
+                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                   
+                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "No Data"}
+                                    </div>
+                                </div>
                                 <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.valueOfShare}
+                                    {item.shareCurrency} {item.valueOfShare}
                                     </div>
                                 </div>
                        <div className=" flex font-medium  w-[4.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
@@ -674,7 +687,7 @@ const handleLoadMore2 = () => {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
- const countryCode = item.address[0].country_alpha2_code  
+ const countryCode = item.countryAlpha2Code 
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -1125,7 +1138,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
- const countryCode = item.address[0].country_alpha2_code  
+ const countryCode = item.countryAlpha2Code 
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
