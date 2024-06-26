@@ -5,6 +5,7 @@ import { Button, Select,Switch,Tooltip} from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
+import dayjs from "dayjs";
 import { CheckOutlined } from "@ant-design/icons";
 import {getSectors} from "../../Settings/Sectors/SectorsAction"
 import {getSources} from "../../Settings/Category/Source/SourceAction"
@@ -18,7 +19,9 @@ import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponen
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import { Listbox, } from '@headlessui/react'
+import {getInvestorCurrency} from "../../Auth/AuthAction"
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
+import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
@@ -37,6 +40,7 @@ function PitchForm (props) {
 props.getAllEmployeelist();
 props.getSources(props.orgId);
 props.getDialCode();
+props.getInvestorCurrency();
 // props.getSectors();
   },[]);
   const sourceOption = props.sources.map((item) => {
@@ -92,6 +96,11 @@ props.getDialCode();
     const [priority,setpriority]=useState(props.selectedTask
       ? props.selectedTask.priority
       : "hot");
+
+      const handleIconClick = (type) => {
+        setpriority(type);
+      };
+
     const handleContract = (checked) => {
       setContract(checked);
     };
@@ -134,6 +143,24 @@ props.getDialCode();
       }
     };
 
+    const sortedCurrency =props.investorCurrencies.sort((a, b) => {
+      const nameA = a.currency_name.toLowerCase();
+      const nameB = b.currency_name.toLowerCase();
+      // Compare department names
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    const currencyNameOption = sortedCurrency.map((item) => {
+      return {
+        label: `${item.currency_name}`,
+        value: item.currency_id,
+      };
+    });
 
     const fetchSource = async () => {
       setIsLoading(true);
@@ -169,7 +196,10 @@ props.getDialCode();
         setTouched(true);
       }
     };
-
+    const {
+      startDate,
+      endDate,
+    } = props;
     return (
       <>
         <Formik
@@ -180,6 +210,7 @@ props.getDialCode();
             url: "",
             sectorId: selectedSector,
             email: "",
+            shareCurrency :"",
             phoneNumber: "",
             countryDialCode:user.countryDialCode || "",
             fullName:"",
@@ -198,6 +229,7 @@ props.getDialCode();
             lastName:"",
             proposalValue:"",
             opportunityName:"",
+            firstMeetingDate: endDate || null,
             source:selectedSource,
             address: [
               {
@@ -213,6 +245,32 @@ props.getDialCode();
           validationSchema={CustomerSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
+
+            let timeZoneFirst = "GMT+05:30";
+            let mytimeZone = timeZoneFirst.substring(4, 10);
+            var a = mytimeZone.split(":");
+            var timeZoneminutes = +a[0] * 60 + +a[1];
+            
+            if (!values.firstMeetingDate) {
+              values.firstMeetingDate = values.startDate;
+            }
+  
+            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
+            let newEndDate = dayjs(values.firstMeetingDate).format("YYYY-MM-DD");
+  
+            let newStartTime = dayjs(values.startTime).format("HH:mm:ss.SSS[Z]");
+            let firstStartHours = newStartTime.substring(0, 5);
+            let timeEndPart = newStartTime.substring(5, 13);
+            var firstStartTimeSplit = firstStartHours.split(":");
+            var minutes = +firstStartTimeSplit[0] * 60 + +firstStartTimeSplit[1];
+            var firstStartTimeminutes = minutes - timeZoneminutes;
+            let h = Math.floor(firstStartTimeminutes / 60);
+            let m = firstStartTimeminutes % 60;
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            let finalStartTime = `${h}:${m}`;
+            let newFormattedStartTime = `${finalStartTime}${timeEndPart}`;
+
             props.addPitch(
               {
                 ...values,
@@ -221,6 +279,7 @@ props.getDialCode();
                 pvtAndIntunlInd: contract ? "true" : "false",
                 sectorId: selectedSector,
                 source:selectedSource,
+                firstMeetingDate: `${newEndDate}T20:00:00Z`,
               },
               props.userId,
               () => handleReset(resetForm)
@@ -591,7 +650,7 @@ props.getDialCode();
                     />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
-                    <div class="flex">
+                    {/* <div class="flex">
                        <Tooltip title="Hot">
                          <Button
                            
@@ -641,10 +700,96 @@ props.getDialCode();
                            {priority === "cold" && <CheckOutlined style={{ color: "white" }} />}
                            </Button>
                        </Tooltip>
-                     </div>
+                     </div> */}
+                      <div className="flex">
+      <Tooltip title="Hot">
+        <i
+          className={`fas fa-mug-hot${priority === "hot" ? " selected" : ""}`}
+          onClick={() => handleIconClick("hot")}
+          style={{
+            color: priority === "hot" ? "white" : "red",
+            backgroundColor: priority === "hot" ? "red" : "transparent",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+        ></i>
+      </Tooltip>
+      &nbsp;
+      <Tooltip title="Warm">
+        <i
+          className={`fas fa-burn${priority === "warm" ? " selected" : ""}`}
+          onClick={() => handleIconClick("warm")}
+          style={{
+            color: priority === "warm" ? "white" : "orange",
+            backgroundColor: priority === "warm" ? "orange" : "transparent",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+        ></i>
+      </Tooltip>
+      &nbsp;
+      <Tooltip title="Cold">
+        <i
+          className={`far fa-snowflake${priority === "cold" ? " selected" : ""}`}
+          onClick={() => handleIconClick("cold")}
+          style={{
+            color: priority === "cold" ? "white" : "teal",
+            backgroundColor: priority === "cold" ? "teal" : "transparent",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+        ></i>
+      </Tooltip>
+    </div>
                       </div>
 </div>
+<div class=" flex items-center justify-between">
+<div class=" w-w47.5 max-sm:w-wk">
+                    <Field
+                      name="firstMeetingDate"
+                      label="Date"
+                      component={DatePicker}
+                      value={values.firstMeetingDate}
+                      isColumn
+                      inlineLabel
+                    />
+                  </div>
 
+                  <div class=" w-w47.5 max-sm:w-wk">
+                    <Field
+                      name="shareCurrency"
+                      isColumnWithoutNoCreate
+                      defaultValue={{
+                        value: props.currency_id
+                      }}
+                      label={
+                        <FormattedMessage
+                          id="app.currency"
+                          defaultMessage="Currency"
+                        />
+                      }
+                      width="100%"
+                      isColumn
+                      // selectType="currencyName"
+                      isRequired
+                      component={SelectComponent}
+                      options={
+                        Array.isArray(currencyNameOption)
+                          ? currencyNameOption
+                          : []
+                      }
+                    />
+                  </div>
+  </div>
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
                 >
@@ -782,6 +927,7 @@ orgId:auth.userDetails.organizationId,
   organizationId: auth.userDetails.organizationId,
   // countryDialCode:auth.userDetails.countryDialCode,
   sectors: sector.sectors,
+  investorCurrencies: auth.investorCurrencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -793,6 +939,7 @@ const mapDispatchToProps = (dispatch) =>
       getSources,
       getDialCode,
       getSectors,
+      getInvestorCurrency
    
     },
     dispatch

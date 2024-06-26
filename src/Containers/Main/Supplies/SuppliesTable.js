@@ -151,7 +151,8 @@ function SuppliesTable(props) {
                                   </div>
                                   <div class="w-[3.2rem] max-sm:w-auto max-xl:w-[1.2rem] max-lg:w-[0.2rem]">
                                 <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                    {dayjs(item.modifiedAt).format("DD/MM/YYYY")}
+                                    {/* {dayjs(item.modifiedAt).format("DD/MM/YYYY")} */}
+                                    {item.modifiedAt ? dayjs(item.modifiedAt).format("DD/MM/YYYY") : null}
                                     </div>
                                 </div>
                                 </div>
