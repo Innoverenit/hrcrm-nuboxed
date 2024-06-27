@@ -39,6 +39,7 @@ class ContactInvestHeader extends Component {
           }
           rightComponent={
             <ContactInvestActionRight 
+            viewType={viewType}
             addContactInvestModal={addContactInvestModal}
             handleContactInvestModal={handleContactInvestModal}
             />

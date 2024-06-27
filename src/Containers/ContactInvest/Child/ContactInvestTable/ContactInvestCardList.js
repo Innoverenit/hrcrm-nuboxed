@@ -82,11 +82,26 @@ function ContactInvestCardList(props) {
     setContactiData(dta);
   }
 
-  const handleLoadMore = () => {
-            setPage(pageNo + 1);
-        props.getContactInvestByUserId(props.currentUser?props.currentUser:props.userId,pageNo,"creationdate");
+  // const handleLoadMore = () => {
+  //           setPage(pageNo + 1);
+  //       props.getContactInvestByUserId(props.currentUser?props.currentUser:props.userId,pageNo,"creationdate");
   
-  }
+  // }
+  const handleLoadMore = () => {
+
+    const proPag = props.contactiNVESTbyId && props.contactiNVESTbyId.length && props.contactiNVESTbyId[0].pageCount
+    setTimeout(() => {
+      if (props.contactiNVESTbyId) {
+        if (pageNo < proPag) {
+          setPage(pageNo + 1);
+          props.getContactInvestByUserId(props.currentUser?props.currentUser:props.userId,pageNo,"creationdate");
+        }
+        if (pageNo === proPag) {
+          setHasMore(false)
+        }
+      }
+    }, 100);
+  };
   const {
     user,
     fetchingContactsInvest,
@@ -148,6 +163,7 @@ function ContactInvestCardList(props) {
         hasMore={hasMore}
         loader={fetchingContactsInvest?<div  class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
+        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
        
        { !fetchingContactsInvest && filterData.length === 0 ?<NodataFoundPage />:filterData.map((item,index) =>  {
@@ -438,7 +454,7 @@ const mapStateToProps = ({
   contactinvest
 }) => ({
   userId: auth.userDetails.userId,
-  contactiNVESTbyId: contact.contactiNVESTbyId,
+  // contactiNVESTbyId: contact.contactiNVESTbyId,
   user: auth.userDetails,
   addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal,
   addDrawerContactInvestNotesModal:contactinvest.addDrawerContactInvestNotesModal,
