@@ -19,6 +19,23 @@ class InventoryProductionTab extends PureComponent {
 
 
     handleTabChange = (key) => this.setState({ activeKey: key });
+    renderTabContent = (key) => {
+        switch (key) {
+          case "1":
+            return   <CreateProductionCard 
+                                
+            inventory={this.props.inventory}
+            />;
+          case "2":
+            return  <ProductionDispatchCard />;
+          case "3":
+            return  <ProductionArchieveCard />;
+         
+            
+          default:
+            return null;
+        }
+      };
 
     render() {
         const { activeKey } = this.state;
@@ -28,7 +45,7 @@ class InventoryProductionTab extends PureComponent {
             <>
                 <TabsWrapper>
                     <StyledTabs
-                        defaultActiveKey="1"
+                        defaultActiveKey={activeKey}
                         onChange={this.handleTabChange}
                     >
 
@@ -41,12 +58,9 @@ class InventoryProductionTab extends PureComponent {
                             key="1"
                         >
 
-                            <Suspense fallback={"Loading..."}>
-                                <CreateProductionCard 
-                                
-                                inventory={this.props.inventory}
-                                />
-                            </Suspense>
+                            {/* <Suspense fallback={"Loading..."}>
+                              
+                            </Suspense> */}
                         </TabPane>
                         <TabPane
                             tab={
@@ -57,9 +71,9 @@ class InventoryProductionTab extends PureComponent {
                             key="2"
                         >
                             {" "}
-                            <Suspense fallback={"Loading..."}>
-                                <ProductionDispatchCard />
-                            </Suspense>
+                            {/* <Suspense fallback={"Loading..."}>
+                               
+                            </Suspense> */}
                         </TabPane>
                         <TabPane
                             tab={
@@ -70,11 +84,14 @@ class InventoryProductionTab extends PureComponent {
                             key="3"
                         >
                             {" "}
-                            <Suspense fallback={"Loading..."}>
-                                <ProductionArchieveCard />
-                            </Suspense>
+                            {/* <Suspense fallback={"Loading..."}>
+                               
+                            </Suspense> */}
                         </TabPane>
                     </StyledTabs>
+                    <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {this.renderTabContent(activeKey)}
+              </Suspense>
                 </TabsWrapper>
 
             </>

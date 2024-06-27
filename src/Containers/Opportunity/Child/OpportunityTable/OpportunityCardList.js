@@ -375,8 +375,8 @@ width={30}
 <span>
 <MultiAvatar2
 primaryTitle={item.assignedTo}
-imgWidth={"1.8em"}
-imgHeight={"1.8em"}
+imgWidth={"1.8rem"}
+imgHeight={"1.8rem"}
 />
 </span>
 {/* <span>

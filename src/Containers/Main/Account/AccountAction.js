@@ -65,6 +65,15 @@ export const addDistributor = (distributor) => (dispatch) => {
       });
     });
 };
+
+
+
+export const handleAccountImportModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ACCOUNT_IMPORT_MODAL,
+    payload: modalProps,
+  });
+};
 /**
  * get all the distributor of the user
  */

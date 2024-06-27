@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { base_url } from "../../../Config/Auth";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import { Button, Tooltip } from "antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { StyledSelect } from "../../../Components/UI/Antd";
 
 const Option = StyledSelect.Option;
@@ -39,7 +40,7 @@ class EmployeesActionRight extends React.Component {
          
             onClick={() => handleEmployeeModal(true)}
           >
-            Add
+          < DataSaverOnIcon/>  Add
           </Button>
          ):null} 
         </div>

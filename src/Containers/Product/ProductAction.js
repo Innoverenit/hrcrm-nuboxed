@@ -36,6 +36,12 @@ export const getProducts = (pageNo) => (dispatch) => {
       });
     });
 };
+export const handleProductQuality =(modalProps)=>(dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRODUCT_QUALITY_DRAWER,
+    payload: modalProps,
+  });
+}
 
 export const getdeleteProducts = () => (dispatch) => {
   dispatch({
@@ -1825,6 +1831,76 @@ export const getProductHsn = () => (dispatch) => {
       });
     });
 };
+
+
+
+
+
+
+
+export const createQualityProduct = (data) => (dispatch) => {
+  // const { locationId,organizationId } = getState().auth.userDetails;
+  
+  dispatch({ type: types.CREATE_QUALITY_PRODUCT_REQUEST });
+  axios
+    .post(`${base_url2}/qualityCheckBuilder/save`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getRoomRackByLocId(locationId,organizationId))
+      dispatch({
+        type: types.CREATE_QUALITY_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CREATE_QUALITY_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getQualityProducts = (productId) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUALITY_PRODUCTS_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/qualityCheckBuilder/get/${productId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUALITY_PRODUCTS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_QUALITY_PRODUCTS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+
 
 
 

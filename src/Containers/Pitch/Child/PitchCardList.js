@@ -4,6 +4,7 @@ import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+import moment from "moment";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -32,6 +33,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import PitchSearchedData from "./PitchSearchedData";
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
@@ -164,6 +166,12 @@ const handleLoadMore2 = () => {
   
 
   return (
+    <div>
+          {props.serachedPitchData.length > 0 ? (
+    <PitchSearchedData
+    serachedPitchData={props.serachedPitchData}
+    />
+  ) : (
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
@@ -199,6 +207,9 @@ const handleLoadMore2 = () => {
           <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           Shares #
           </div>
+          <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+         First Meeting
+          </div>
           <div className="w-[4.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
          Value
           </div>
@@ -226,7 +237,8 @@ const handleLoadMore2 = () => {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
- const countryCode = item.address[0].country_alpha2_code  
+//  const countryCode = item.address[0].country_alpha2_code  
+const countryCode = item.countryAlpha2Code  
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -416,11 +428,19 @@ const handleLoadMore2 = () => {
                                     {item.unitOfShare}
                                     </div>
                                 </div>
+                                <div className=" flex font-medium items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+
+                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                   
+                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "No Data"}
+                                    </div>
+                                </div>
                                 <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.valueOfShare}
+                                    {item.shareCurrency} {item.valueOfShare}
                                     </div>
                                 </div>
                        <div className=" flex font-medium  w-[4.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
@@ -674,7 +694,7 @@ const handleLoadMore2 = () => {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
- const countryCode = item.address[0].country_alpha2_code  
+ const countryCode = item.countryAlpha2Code 
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -1125,7 +1145,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
- const countryCode = item.address[0].country_alpha2_code  
+ const countryCode = item.countryAlpha2Code 
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -1549,6 +1569,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
            handlePitchConvertModal={props.handlePitchConvertModal}
            />
     </>
+     )}
+    </div>
   );
 };
 
@@ -1568,6 +1590,7 @@ addPitchConvertModal:pitch.addPitchConvertModal,
   fetchingPitchHot:pitch.fetchingPitchHot,
   fetchingPitchWarm:pitch.fetchingPitchWarm,
   fetchingPitchCold:pitch.fetchingPitchCold,
+  serachedPitchData:pitch.serachedPitchData
 
 });
 const mapDispatchToProps = (dispatch) =>

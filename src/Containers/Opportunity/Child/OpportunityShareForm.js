@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, {useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getOpportunityPermissionsList,shareOpportunityPermission,getRecords } from "../OpportunityAction";

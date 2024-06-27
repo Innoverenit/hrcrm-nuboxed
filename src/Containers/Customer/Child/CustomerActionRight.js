@@ -7,6 +7,7 @@ import { Button, Tooltip } from "antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { FormattedMessage } from "react-intl";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const CustomerShareForm=lazy(()=> import("./CustomerShareForm"));
 
 const Option = StyledSelect.Option;
@@ -46,7 +47,7 @@ class CustomerActionRight extends React.Component {
             type="primary"
             onClick={() => handleCustomerModal(true)}
           >
-                             <FormattedMessage
+                          <DataSaverOnIcon/>   <FormattedMessage
                         id="app.add"
                         defaultMessage="Add"
                       />
@@ -54,6 +55,13 @@ class CustomerActionRight extends React.Component {
           </Button>
            )} 
         </Tooltip>
+        <div className="max-sm:hidden">
+          <Button type="primary"  
+        onClick={() => this.props.handleCustomerImportModal(true)}
+        >
+            Import
+          </Button>
+          </div>
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../Components/UI/Antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Tooltip, Button, Input, Space, Form } from "antd";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
@@ -13,7 +13,6 @@ import {
   setEditTeamsAllocation,
   handleUpdateTeamsAllocationModal,
 } from "./TeamsAction";
-import { EditOutlined } from "@ant-design/icons";
 
 function TeamsAllocationTable({
   productionExecutiveAndManager,
@@ -172,7 +171,7 @@ function TeamsAllocationTable({
       width: "10%",
       dataIndex: "locationStartDate",
       render: (name, item, i) => {
-        return <>{moment(item.locationStartDate).format("ll")}</>;
+        return <>{dayjs(item.locationStartDate).format("ll")}</>;
       },
     },
     {
@@ -180,7 +179,7 @@ function TeamsAllocationTable({
       width: "10%",
       dataIndex: "locationEndDate",
       render: (name, item, i) => {
-        return <>{moment(item.locationEndDate).format("ll")}</>;
+        return <>{dayjs(item.locationEndDate).format("ll")}</>;
       },
     },
     {

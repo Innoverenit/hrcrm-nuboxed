@@ -27,7 +27,7 @@ const LocationActionLeft = (props) => {
            count={(props.viewType === "card" && props.recordData.locCount) || 0}
           overflowCount={999}
         >
-          <span class=" mr-2 cursor-pointer"
+          <span class=" mr-1 cursor-pointer"
             onClick={() => props.setLocationViewType("card")}
             style={{
           
@@ -36,7 +36,7 @@ const LocationActionLeft = (props) => {
           >
              <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
   
-            <div className="text-white">ALL</div>
+            <div className="text-white !text-icon">ALL</div>
             </Avatar>
           </span>
           </Badge>
@@ -50,14 +50,14 @@ const LocationActionLeft = (props) => {
           // count={(props.viewType === "card" && props.recordData.customer) || 0}
           overflowCount={999}
         >
-          <span class=" mr-2 cursor-pointer text-[1rem]"
+          <span class=" mr-1 cursor-pointer text-[1rem]"
             onClick={() => props.setLocationViewType("map")}
             style={{
               color: props.viewType === "map" && "#1890ff",
             }}
           >
             <Avatar style={{ background: props.viewType === "map" ? "#f279ab" : "#4bc076" }}>
-            <LanguageIcon  
+            <LanguageIcon  className="text-white !text-icon"
             // icon={solid('users')}
              />
              </Avatar>
@@ -70,14 +70,14 @@ const LocationActionLeft = (props) => {
                         count={(props.viewType === "delete" && props.locationDeletedCount.locCount) || 0}
                         overflowCount={999}
                     >
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class="  mr-1 md:mr-2 text-sm cursor-pointer"
                             onClick={() => props.setLocationViewType("delete")}
                             style={{
                                 color: props.viewType === "delete" && "#1890ff",
                             }}
                         >
                             <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
-                                <DeleteOutlined className="text-white" /></Avatar>
+                                <DeleteOutlined className="text-white !text-icon " /></Avatar>
 
                         </span>
                     </Badge>

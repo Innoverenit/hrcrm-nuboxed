@@ -231,8 +231,8 @@ function ContactTeamCardList(props) {
         primaryTitle={item.firstName}
         imageId={item.imageId}
         imageURL={item.imageURL}
-        imgWidth={"1.8em"}
-        imgHeight={"1.8em"}
+        imgWidth={"1.8rem"}
+        imgHeight={"1.8rem"}
       />
     </div>
     &nbsp;
@@ -314,8 +314,8 @@ function ContactTeamCardList(props) {
         <MultiAvatar
           primaryTitle={item.ownerName}
           imageId={item.ownerImageId}
-          imgWidth={"1.9rem"}
-          imgHeight={"1.9rem"}
+          imgWidth={"1.8rem"}
+          imgHeight={"1.8rem"}
         />
       </Tooltip>
       </div>

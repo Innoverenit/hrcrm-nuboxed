@@ -214,7 +214,7 @@ const LeadsCardList = (props) => {
           //  {leadsAllData.map((item,index) => {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-          const countryCode = item.address[0].country_alpha2_code;
+          const countryCode = item.countryAlpha2Code;
           console.log(countryCode)
           const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
@@ -440,8 +440,8 @@ const LeadsCardList = (props) => {
               
                 primaryTitle={item.assignedBy}
                 // imageId={item.ownerImageId}
-                imgWidth={"1.9rem"}
-                imgHeight={"1.9rem"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             {/* </Tooltip> */}
             </div>
@@ -457,8 +457,8 @@ const LeadsCardList = (props) => {
               <MultiAvatar
                 primaryTitle={item.ownerName}
                 imageId={item.ownerImageId}
-                imgWidth={"1.9rem"}
-                imgHeight={"1.9rem"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             {/* </Tooltip> */}
             </div>
@@ -627,7 +627,7 @@ const LeadsCardList = (props) => {
           
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-          const countryCode = item.address[0].country_alpha2_code;
+          const countryCode = item.countryAlpha2Code;
           console.log(countryCode)
           const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
@@ -854,8 +854,8 @@ const LeadsCardList = (props) => {
             
               primaryTitle={item.assignedBy}
               // imageId={item.ownerImageId}
-              imgWidth={"1.9rem"}
-              imgHeight={"1.9rem"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
           {/* </Tooltip> */}
           </div>
@@ -871,8 +871,8 @@ const LeadsCardList = (props) => {
             <MultiAvatar
               primaryTitle={item.ownerName}
               imageId={item.ownerImageId}
-              imgWidth={"1.9rem"}
-              imgHeight={"1.9rem"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
           {/* </Tooltip> */}
           </div>
@@ -1049,7 +1049,7 @@ const LeadsCardList = (props) => {
           //  {leadsAllData.map((item,index) => {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-          const countryCode = item.address[0].country_alpha2_code;
+          const countryCode = item.countryAlpha2Code;
           console.log(countryCode)
           const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
@@ -1276,8 +1276,8 @@ const LeadsCardList = (props) => {
             
               primaryTitle={item.assignedBy}
               // imageId={item.ownerImageId}
-              imgWidth={"1.9rem"}
-              imgHeight={"1.9rem"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
           {/* </Tooltip> */}
           </div>
@@ -1293,8 +1293,8 @@ const LeadsCardList = (props) => {
             <MultiAvatar
               primaryTitle={item.ownerName}
               imageId={item.ownerImageId}
-              imgWidth={"1.9rem"}
-              imgHeight={"1.9rem"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
           {/* </Tooltip> */}
           </div>

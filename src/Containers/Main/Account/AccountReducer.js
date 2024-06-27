@@ -406,6 +406,9 @@ const initialState = {
 
   updatePaymentModal: false,
 
+
+  addAccountImportModal:false,
+
   updateOrderPayment: false,
   updateOrderPaymentError: false,
 
@@ -582,6 +585,10 @@ export const distributorReducer = (state = initialState, action) => {
 
     case types.HANDLE_DISTRIBUTOR_MODAL:
       return { ...state, addDistributorModal: action.payload, };
+
+
+      case types.HANDLE_ACCOUNT_IMPORT_MODAL:
+        return { ...state, addAccountImportModal: action.payload };
 
     /**
      * Add a distributor

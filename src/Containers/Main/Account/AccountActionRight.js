@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { PlusOutlined } from "@ant-design/icons";
-import { Button, Icon, Tooltip } from "antd";
+import { Button,  Tooltip } from "antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 class AccountActionRight extends React.Component {
     render() {
@@ -15,11 +16,18 @@ class AccountActionRight extends React.Component {
                         {user.accountCreateInd === true && user.erpInd === true &&(
                         <Button
                             type="primary"  onClick={() => handleDistributorModal(true)}>
-                            Add {/* <PlusOutlined /> */}
+                            <DataSaverOnIcon /> Add {/* <PlusOutlined /> */}
                         </Button>
                         )}
                     </Tooltip>
                 ) : null}
+                 <div className="max-sm:hidden">
+          <Button type="primary"  
+        //onClick={() => this.props.handleLeadsImportModal(true)}
+        >
+            Import
+          </Button>
+          </div>
             </FlexContainer>
         );
     }

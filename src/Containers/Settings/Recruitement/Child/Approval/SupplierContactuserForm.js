@@ -12,8 +12,9 @@ import {
     getRoles,
   } from "../../../../Settings/Category/Role/RoleAction";
 import { FormattedMessage } from "react-intl";
+import SupplierContactLevelApproveForm from "./SupplierContactLevelApproveForm";
 const ContactUserLevelApproveForm = lazy(() => import("./ContactUserLevelApproveForm"));
-class ContactUserForm extends Component {
+class SupplierContactuserForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -40,7 +41,7 @@ class ContactUserForm extends Component {
  componentDidMount() {
          this.props.getDepartments();
          this.props.getRoles(this.props.organizationId);
-     this.props.getApproveData( "Customer Contact To User");
+     this.props.getApproveData( "Supplier Contact To User");
  }
 
 
@@ -86,13 +87,13 @@ class ContactUserForm extends Component {
                 <Formik
                     enableReinitialize
                     initialValues={{
-                        // reportingTo: this.props.approvalData.reportingTo || "",
+                       
                         threshold: this.props.approvalData.threshold || "",
                         departmentId: this.props.approvalData.departmentId || "",
                         roleTypeId: this.props.approvalData.roleTypeId || "",
                         jobLevel: this.props.approvalData.jobLevel || 1,
-                        // processName: "BOQ",
-                        subProcessName: "Customer Contact To User",
+                       
+                        subProcessName: "Supplier Contact To User",
                         approvalType: this.props.approvalData.approvalType === "Standard" ? true : false,
                         approvalIndicator: this.props.approvalData.approvalIndicator ? true : false,
                     
@@ -101,7 +102,7 @@ class ContactUserForm extends Component {
 
                     onSubmit={(values, { resetForm }) => {
                         console.log(values);
-                        // if (this.state.approveType) {
+                       
                         this.props.addApprove(
                             {
                                 ...values,
@@ -156,121 +157,16 @@ class ContactUserForm extends Component {
                                 {values.approvalIndicator ? (
                                          <div class=" mt-4">
                                      
-                                        {/* <div>
-                                        <div class=" flex justify-between "
-                                        
-                                        >
-                                                <div class=" flex w-[20%] mb-[2%]"
-                                              
-                                                >
-                                                    <StyledLabel>Type</StyledLabel>
-
-                                                </div>
-
-                                                <div class=" flex justify-between w-[30%]"
-                                        
-                                        >
-                                                <div class=" w-[40%]">
-
-                                                        <Field
-                                                            name="approvalType"
-                                                            component={SwitchComponent}
-                                                             data={values.approvalType}
-                                                            checkedChildren={"Standard"}
-                                                            unCheckedChildren={"Exception"}
-                                                            width={"8em"}
-                                                        />
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> */}
+                                       
                                         <div class=" mt-4" >
-                                        <ContactUserLevelApproveForm
+                                        <SupplierContactLevelApproveForm
                                                   
                                                   approvalIndicator={values.approvalIndicator ? true : false}
                                                   approvalType={values.approvalType ? "Standard" : "Exception"}
                                               />
-                                            {/* {values.approvalType ? (
-                                                <ContactUserLevelApproveForm
-                                                  
-                                                    approvalIndicator={values.approvalIndicator ? true : false}
-                                                    approvalType={values.approvalType ? "Standard" : "Exception"}
-                                                />
-                                            ) : ( 
-                                                <div class=" flex justify-between" >
-                                                <div class=" w-[32%]">
-                                                        <Field
-                                                            name="departmentId"
-                                                            label="Department"
-                                                            options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
-                                                            component={SelectComponent}
-                                                            value={values.departmentId}
-                                                            placeholder
-                                                            isColumn
-                                                            inlineLabel
-                                                            style={{ flexBasis: "80%", marginTop: "0px", width: "100%" }}
-                                                        />
-                                                    </div>
-
-                                                    <div class=" w-[32%]">
-                                                 
-                                                 <Field
-                    name="roleTypeId"
-                    label={<FormattedMessage
-                      id="app.role"
-                      defaultMessage="Role"
-                    />}
-                    isColumnWithoutNoCreate
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.getRoleOptions(
-                          "departmentId",
-                          values.departmentId
-                        )
-                      )
-                        ? this.getRoleOptions(
-                            "departmentId",
-                            values.departmentId
-                          )
-                        : []
-                    }
-                    value={values.roleTypeId}
-                    filterOption={{
-                      filterType: "departmentId",
-                      filterValue: values.departmentId,
-                    }}
-                    disabled={!values.departmentId}
-                    isColumn
-                    margintop={"0"}
-                    inlineLabel
-                    style={{ flexBasis: "80%" }}
-                
-                     /> 
-                                                    </div>
-                                                
-                                                </div>
-                                            )}  */}
+                                            
                                         </div>
-                                        {/* {!values.approvalType ?
-                                            <div class=" flex justify-end " 
-                                            // style={{ marginLeft: "104%", marginTop: "52px" }}
-                                            >
-                                                <Button
-                                                    type="primary"
-                                                    htmlType="submit"
-                                                     loading={this.props.addingApprove}
-                                                    style={{
-                                                        marginRight: "-230px",
-                                                        marginTop: "52px",
-                                                        marginBottom: "5px",
-                                                    }}
-                                                >
-                                                    Update
-                                                </Button>
-                                            </div>
-                                           : null} */}
+                                        
                                     </div>
                                  ) : (null)} 
 
@@ -302,4 +198,4 @@ const mapDispatchToProps = (dispatch) =>
         getApproveData,
     }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactUserForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SupplierContactuserForm);

@@ -188,7 +188,7 @@ const CustomerActionLeft = (props) => {
             }}
           >
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-              <TocIcon className="text-white" />
+              <TocIcon className="text-white !text-icon" />
             </Avatar>
           </span>
         </Badge>
@@ -227,7 +227,7 @@ const CustomerActionLeft = (props) => {
               // }}
             >
               <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-                <PeopleIcon className="text-white" />
+                <PeopleIcon className="text-white !text-icon" />
               </Avatar>
             </span>
           </Badge>
@@ -241,7 +241,7 @@ const CustomerActionLeft = (props) => {
             overflowCount={999}
           >
             <span
-              class=" mr-1 text-sm cursor-pointer"
+              class=" mr-1 text-sm cursor-pointer !text-icon"
               onClick={() => props.setCustomerViewType("all")}
               style={{
                 color: props.viewType === "all" && "#1890ff",
