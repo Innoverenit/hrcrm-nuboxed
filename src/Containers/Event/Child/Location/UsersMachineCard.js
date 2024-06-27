@@ -169,6 +169,7 @@ const UserMachineCrd = (props) => {
       onChange={handleChangeMachine}
       // value={cell} 
     >
+      <option value="">Select</option>
       {props.locationMachine.map(machine => (
         <option 
         // key={machine.machinaryId} 
@@ -228,7 +229,7 @@ const UserMachineCrd = (props) => {
             <div className=" md:w-[6rem]">Machine</div>
             <div className=" md:w-[7.2rem] ">Machine Code</div>
          
-            <div className=" md:w-[5.1rem]">Tag to Cell</div>
+            {/* <div className=" md:w-[5.1rem]">Tag to Cell</div> */}
             <div className="w-12"></div>             </div>
 
            {props.locationMachineData.map((item) => {
@@ -239,7 +240,7 @@ const UserMachineCrd = (props) => {
                   <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                     <div class="text-sm  font-semibold  font-poppins cursor-pointer">
                       <div className="font-normal text-sm  font-poppins">
-                        <div> {item.machinaryName}</div>
+                        <div> {item.equipmentName}</div>
                       </div>
                     </div>
                   </div>
@@ -249,7 +250,7 @@ const UserMachineCrd = (props) => {
                     <div class=" text-xs  font-poppins" style={{marginLeft:"-9em"}}>
                     
                       <div className="font-normal text-sm  font-poppins">
-                        <div> {item.machineCode}</div>
+                        <div> {item.equipmentNo}</div>
                       </div>
                 
                     </div>

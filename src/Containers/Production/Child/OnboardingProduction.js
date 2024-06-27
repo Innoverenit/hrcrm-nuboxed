@@ -185,7 +185,7 @@ const handleStages = (val) => {
                  
                   
                       <>
-                      {props.productionTableStage.length===0?<NodataFoundPage1/>:props.productionTableStage.map((stage, stageIndex) => (
+                      {props.productionTableStage.map((stage, stageIndex) => (
                         <Droppable
                         key={stageIndex}
                         droppableId={stage.productionStagesId}

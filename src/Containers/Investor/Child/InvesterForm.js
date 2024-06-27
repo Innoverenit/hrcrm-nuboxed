@@ -6,6 +6,7 @@ import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
+import dayjs from "dayjs";
 import {getCountries} from "../../Auth/AuthAction"
 import {getAllEmployeelist} from "../InvestorAction"
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
@@ -19,6 +20,7 @@ import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponen
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import {getInvestorList} from "../../Settings/Category/InvestorTab/InvestorListAction";
+import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -206,6 +208,10 @@ function InvesterForm(props) {
         setTouchedSector(true);
       }
     };
+    const {
+      startDate,
+      endDate,
+    } = props;
     return (
       <>
         <Formik
@@ -229,6 +235,7 @@ function InvesterForm(props) {
             businessRegistration: "",
             assignedTo: selectedOption ? selectedOption.employeeId:userId,
             department: "",
+            firstMeetingDate: endDate || null,
             address: [
               {
                 address1: "",
@@ -245,12 +252,39 @@ function InvesterForm(props) {
           validationSchema={InvestorSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
+
+            let timeZoneFirst = "GMT+05:30";
+            let mytimeZone = timeZoneFirst.substring(4, 10);
+            var a = mytimeZone.split(":");
+            var timeZoneminutes = +a[0] * 60 + +a[1];
+            
+            if (!values.firstMeetingDate) {
+              values.firstMeetingDate = values.startDate;
+            }
+  
+            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
+            let newEndDate = dayjs(values.firstMeetingDate).format("YYYY-MM-DD");
+  
+            let newStartTime = dayjs(values.startTime).format("HH:mm:ss.SSS[Z]");
+            let firstStartHours = newStartTime.substring(0, 5);
+            let timeEndPart = newStartTime.substring(5, 13);
+            var firstStartTimeSplit = firstStartHours.split(":");
+            var minutes = +firstStartTimeSplit[0] * 60 + +firstStartTimeSplit[1];
+            var firstStartTimeminutes = minutes - timeZoneminutes;
+            let h = Math.floor(firstStartTimeminutes / 60);
+            let m = firstStartTimeminutes % 60;
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            let finalStartTime = `${h}:${m}`;
+            let newFormattedStartTime = `${finalStartTime}${timeEndPart}`;
+
             AddInvestor(
               {
                 ...values,
                 category: checked ? "Both" : whiteblue ? "White" : "Blue",
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 pvtAndIntunlInd: contract ? "true" : "false",
+                firstMeetingDate: `${newEndDate}T20:00:00Z`,
               },
               props.userId,
               () => handleReset(resetForm)
@@ -320,8 +354,8 @@ function InvesterForm(props) {
                     component={InputComponent}
                     inlineLabel
                   />
-                 
-                  {/* <Field
+                  {!contract ?
+                  <Field
                     name="email"
                     type="text"
                     // label="Email"
@@ -332,7 +366,8 @@ function InvesterForm(props) {
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
-                  />                   */}
+                  />     
+                  : ( null)}             
                    <div class=" flex justify-between mt-3">
                     <div class=" w-3/12 max-sm:w-[30%]">
                     <FastField
@@ -512,6 +547,16 @@ function InvesterForm(props) {
                       //checked={contract}
                       checkedChildren="Yes"
                       unCheckedChildren="No"
+                    />
+                  </div>
+                  <div class=" w-w47.5 max-sm:w-wk">
+                    <Field
+                      name="firstMeetingDate"
+                      label="Date"
+                      component={DatePicker}
+                      value={values.firstMeetingDate}
+                      isColumn
+                      inlineLabel
                     />
                   </div>
                   <div class="mt-3">

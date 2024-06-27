@@ -1,6 +1,8 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ProductQualityDrawer from "../ProductTable/ProductQualityDrawer"
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { DeleteOutlined } from "@ant-design/icons";
 import QrGenerate from "../ProductTable/QrGenerate"
 import {
@@ -16,6 +18,7 @@ import {
   handleProductBuilderDrawer,
   handlePriceDrawer,
   handleProdCellDrawer,
+  handleProductQuality
 } from "../../ProductAction";
 import Token from '@mui/icons-material/Token';
 import ProductPublishToggle from "./ProductPublishToggle";
@@ -207,6 +210,18 @@ function ProductCardList(props) {
                         <ProductPublishToggle item={item} />
 
                       </div>
+
+                      <div>
+                        <Tooltip title="Quality">
+                          <VerifiedUserIcon
+                            className="!text-icon cursor-pointer text-[blue]"
+                            onClick={() => {
+                              props.handleProductQuality(true);
+                              handleParticularRowData(item);
+                            }}
+                          />
+                        </Tooltip>
+                      </div>
     
                       <div>
                         <Tooltip title="Add Price">
@@ -313,6 +328,12 @@ function ProductCardList(props) {
         clickProdclDrwr={props.clickProdclDrwr}
         handleProdCellDrawer={props.handleProdCellDrawer}
         />
+
+<ProductQualityDrawer
+         particularDiscountData={particularDiscountData}
+         productQualityDrawer={props.productQualityDrawer}
+         handleProductQuality={props.handleProductQuality}
+        />
       </Suspense>
     </>
   );
@@ -341,6 +362,7 @@ const mapStateToProps = ({ product, auth, supplies }) => ({
   addCurrencyValue: supplies.addCurrencyValue,
   proBuilderDrawer: product.proBuilderDrawer,
   priceOpenDrawer: product.priceOpenDrawer,
+  productQualityDrawer:product.productQualityDrawer,
   clickProdclDrwr:product.clickProdclDrwr
 });
 
@@ -358,7 +380,8 @@ const mapDispatchToProps = (dispatch) =>
       getProducts,
       handleProductBuilderDrawer,
       handlePriceDrawer,
-      handleProdCellDrawer
+      handleProdCellDrawer,
+      handleProductQuality
     },
     dispatch
   );
