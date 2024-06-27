@@ -1073,9 +1073,9 @@ iframe#webpack-dev-server-client-overlay {
 }
 
 
-  .anticon {
+  /* .anticon {
   color: #1a1818;
-}
+} */
 
 .field-container {
   display: flex;
