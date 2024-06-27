@@ -16,6 +16,7 @@ import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
 import FWLogo from "../../Assets/Images/name.jpg";//ct
 // import FWLogo1 from "../../Assets/Images/dsdde.jpg"; //ct
 import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";
+import DevelopTk from "../../Assets/Images/logo_22.png";
 
 
 /**
@@ -97,7 +98,7 @@ class Login extends Component {
           >
             <img
               className="big-logo"
-              src={FWLogo}
+              src={DevelopTk}
               style={{ width: 200 }}
               alt="Tekorero logo"
             />
