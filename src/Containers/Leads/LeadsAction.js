@@ -1696,8 +1696,8 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
 
 
   export const addLeadsImportForm =
-  (customer, orgId) => (dispatch, getState) => {
-    const userId = getState().auth.userDetails.userId;
+  (customer, userId) => (dispatch, getState) => {
+    //const userId = getState().auth.userDetails.userId;
 
     // const opportunityId = getState().opportunity.opportunity.opportunityId;
     console.log("inside add customer");
@@ -1713,9 +1713,9 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       })
       .then((res) => {
         console.log(res);
-      dispatch(getLeads(userId));
-        const startDate = dayjs().startOf("month").toISOString();
-        const endDate = dayjs().endOf("month").toISOString();
+      //dispatch(getLeads(userId));
+
+       window.location.reload()
         // dispatch(getRecords(userId));
         // dispatch(getLatestCustomers(userId, startDate, endDate));
         // dispatch(getCustomerListByUserId(userId));

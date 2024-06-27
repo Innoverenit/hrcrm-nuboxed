@@ -241,6 +241,7 @@ function CustomerCardList(props) {
   //   return <BundleLoader />;
   // }
 console.log(page)
+console.log(props.userId)
   return (
     <>
       <div className=' flex  sticky  z-auto'>
@@ -334,7 +335,7 @@ console.log(page)
             {!fetchingCustomers && customerByUserId.length === 0 ? <NodataFoundPage /> : customerByUserId.map((item, index) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-              const countryCode = item.address[0].countryAlpha2Code
+              const countryCode = item.countryAlpha2Code
               const diff = Math.abs(
                 dayjs().diff(dayjs(item.lastRequirementOn), "days")
               );

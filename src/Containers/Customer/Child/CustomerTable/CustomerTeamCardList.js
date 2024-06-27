@@ -249,7 +249,7 @@ const [rowdata, setrowdata] = useState("");
       { !fetchingTeamCustomer && teamCustomer.length === 0 ?<NodataFoundPage />:teamCustomer.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-         const countryCode = item.address[0].countryAlpha2Code
+         const countryCode = item.countryAlpha2Code
          const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );

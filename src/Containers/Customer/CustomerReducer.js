@@ -331,6 +331,9 @@ const initialState = {
   addingCommercials: false,
   addingCommercialsError: false,
 
+
+  addingCustomerImportForm:false,
+
   addingCustomerOpportunity: false,
   addingCustomerOpportunityError: false,
   addingCustomerOpportunityModal: false,
@@ -516,6 +519,9 @@ export const customerReducer = (state = initialState, action) => {
     /**
      * handle Customer form modal
      */
+
+    case types.HANDLE_CUSTOMER_IMPORT_MODAL:
+      return { ...state, addCustomerImportModal: action.payload };
     case types.HANDLE_CUSTOMER_MODAL:
       return { ...state, addCustomerModal: action.payload };
 
@@ -1548,6 +1554,31 @@ export const customerReducer = (state = initialState, action) => {
         fetchingAllCustomerByCloser: false,
         fetchingAllCustomerByCloserError: true,
       };
+
+
+
+
+
+      case types.ADD_CUSTOMER_IMPORT_FORM_REQUEST:
+        return { ...state, addingCustomerImportForm: true };
+      case types.ADD_CUSTOMER_IMPORT_FORM_SUCCESS:
+        return {
+          ...state,
+          addingCustomerImportForm: false,
+          addCustomerImportModal: false,
+          // organizationDocumentDrawer: false,
+          // repositoryData: [
+          //   action.payload,
+          //   ...state.repositoryData,
+          //  ],
+  
+        };
+      case types.ADD_CUSTOMER_IMPORT_FORM_FAILURE:
+        return {
+          ...state, addingCustomerImportForm: false,
+          addingCustomerImportFormError:true,
+          // addCustomerModal: false 
+        };
 
     case types.HANDLE_CUSTOMER_EMAIL_DRAWER_MODAL:
       return { ...state, addDrawerCustomerEmailModal: action.payload };

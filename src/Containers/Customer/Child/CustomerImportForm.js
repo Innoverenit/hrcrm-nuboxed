@@ -10,12 +10,12 @@ import { StyledDrawer, StyledModal } from "../../../Components/UI/Antd";
 import { Spacer, StyledLabel } from "../../../Components/UI/Elements";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import {addLeadsImportForm} from "../LeadsAction"
+import {addCustomerImportForm} from "../CustomerAction"
 
 // import { getOppoStages, getLevels } from "../../Settings/SettingsAction";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
-import { leadsReducer } from "../LeadsReducer";
+// import { leadsReducer } from "../LeadsReducer";
 import ImportTaskUpload from "../../../Components/Forms/Formik/ImportTaskUpload";
 
 
@@ -30,7 +30,7 @@ const { Option } = Select;
 
 // documentId: Yup.string().required("Input needed!"),
 // });
-class LeadsImportForm extends Component {
+class CustomerImportForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -90,13 +90,13 @@ class LeadsImportForm extends Component {
             //    validationSchema={documentSchema}
               onSubmit={(values, { resetForm }) => {
                 console.log(values);
-                this.props.addLeadsImportForm(
+                this.props.addCustomerImportForm(
                   // values.documentId,
                   {
                     ...values,
                     //shareInd:this.state.showUserList,
                   },
-                  this.props.userId,
+                this.props.userId,
                   this.callback
                 );
                 resetForm();
@@ -145,7 +145,7 @@ class LeadsImportForm extends Component {
                     <Button
                       htmlType="submit"
                       type="primary"
-                    loading={this.props.addingLeadsImportForm}
+                Loading={this.props.addingCustomerImportForm}
                     >
                       Submit
                     </Button>
@@ -164,8 +164,9 @@ class LeadsImportForm extends Component {
 
 // }
 
-const mapStateToProps = ({ document, settings,leads,employee, departments,auth }) => ({
+const mapStateToProps = ({ document, settings,leads,customer, departments,auth }) => ({
     addingLeadsImportForm:leads.addingLeadsImportForm,
+    addingCustomerImportForm:customer.addingCustomerImportForm,
     userId:auth.userDetails.userId,
 
 });
@@ -173,8 +174,8 @@ const mapStateToProps = ({ document, settings,leads,employee, departments,auth }
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        addLeadsImportForm
+        addCustomerImportForm
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(LeadsImportForm);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerImportForm);
