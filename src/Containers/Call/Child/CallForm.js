@@ -10,6 +10,9 @@ import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
 import { handleCallNotesModal } from "../CallAction";
 import { getFilteredEmailContact } from "../../Candidate/CandidateAction";
 import dayjs from "dayjs";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
@@ -27,7 +30,7 @@ import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComp
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getAssignedToList } from "../../Employees/EmployeeAction";
 import { setClearbitCandidateData } from "../../Candidate/CandidateAction";
-import SpeechRecognition, { } from 'react-speech-recognition';
+import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
 import { Listbox } from '@headlessui/react'
 const { Option } = Select;  
@@ -440,6 +443,20 @@ function CallForm(props) {
       setTouchedInclude(true);
     }
   };
+  const [text, setText] = useState("");
+  function handletext(e) {
+    setText(e.target.value);
+  }
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
 
    return (
       <>
@@ -1138,17 +1155,45 @@ function CallForm(props) {
                    </div>
                    */}
                   <div class="mt-3">
-                    <div class=" w-full"><Field
-                      name="callDescription"
-                      // label="Notes"
-                      label={
-                        <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                      }
-                      isColumn
-                      width={"100%"}
-                      component={TextareaComponent}
-                      inlineLabel
-                    /></div>
+                    <div>Notes</div>
+                    <div>
+                  <div>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span
+                          
+                            class="!text-icon ml-1 text-green-600">
+                          <StopCircleIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span  class="!text-icon ml-1">
+                          <RotateRightIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </div>
+                  <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div>
+                </div>
                   </div>
                  
               

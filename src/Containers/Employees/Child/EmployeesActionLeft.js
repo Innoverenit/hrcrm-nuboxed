@@ -78,7 +78,7 @@ const EmployeesActionLeft = (props) => {
             }}
           >
             <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#4bc076" }}>
-            <GridViewIcon />
+            <GridViewIcon className="text-white !text-icon"/>
             </Avatar>
           </span>
           </Badge> 
@@ -95,14 +95,14 @@ const EmployeesActionLeft = (props) => {
           overflowCount={999}
         >
           <span
-            class=" mr-1 text-sm cursor-pointer"
+            class=" mr-1 text-sm cursor-pointer !text-icon"
             onClick={() => props.setEmployeeViewType("table")}
             style={{
               color: props.viewType === "table" && "#1890ff",
             }}
           >
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-            <div className="text-white">ALL</div>
+            <div class="text-white !text-icon">ALL</div>
             </Avatar>
           </span>
           </Badge>

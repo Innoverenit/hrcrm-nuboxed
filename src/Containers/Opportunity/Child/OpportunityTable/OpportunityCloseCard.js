@@ -114,7 +114,7 @@ function OpportunityCloseCard(props) {
                 primaryTitle={item.contactName}
                 imageId={item.imageId}
                  imageURL={item.imageURL}
-                imgWidth={"1.8em"}
+                imgWidth={"1.8rrem"}
                 imgHeight={"1.8em"}
               />
             }
@@ -174,8 +174,8 @@ function OpportunityCloseCard(props) {
     <span>
             <MultiAvatar2
               primaryTitle={item.assignedTo}
-              imgWidth={"1.8em"}
-              imgHeight={"1.8em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
             </span>
 </div>
@@ -189,8 +189,8 @@ function OpportunityCloseCard(props) {
               primaryTitle={item.ownerName}
               imageId={item.ownerImageId}
                imageURL={item.imageURL}
-              imgWidth={"2.1em"}
-              imgHeight={"2.1em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
             </span>
            </Tooltip>

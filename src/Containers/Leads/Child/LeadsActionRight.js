@@ -1,8 +1,8 @@
-import React, { lazy } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-//import {handleLeadsImportModal} from "../LeadsAction"
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { Button } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 const Option = StyledSelect.Option;
@@ -33,7 +33,7 @@ class LeadsActionRight extends React.Component {
       <>
 
           <Button type="primary"  onClick={() => handleLeadsModal(true)}>
-            Add
+          <DataSaverOnIcon/>Add
           </Button>
           
           </>

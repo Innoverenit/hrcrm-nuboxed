@@ -90,7 +90,7 @@ const OpportunityActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-            <LightbulbIcon />
+            <LightbulbIcon className="text-white !text-icon"/>
             </Avatar>
           </span>
         </Tooltip>
@@ -118,7 +118,7 @@ const OpportunityActionLeft = (props) => {
             onClick={() => props.setOpportunityViewType("stage")}
           >
              <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
-           <TableOutlined/>
+           <TableOutlined className="text-white !text-icon"/>
            </Avatar>
           </span>
           </Badge>
@@ -143,7 +143,7 @@ const OpportunityActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#4bc076" }}>
-            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7" />
+            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7" className="text-white !text-icon"/>
             </Avatar>
           </span>
           </Badge>
@@ -169,7 +169,7 @@ const OpportunityActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "close" ? "#f279ab" : "#4bc076" }}>
-            <LockOpenIcon />
+            <LockOpenIcon className="text-white !text-icon" />
             </Avatar>
           </span>
         </Badge>
@@ -194,7 +194,7 @@ const OpportunityActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#4bc076" }}>
-            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red" />
+            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red" className="text-white !text-icon" />
             </Avatar>
           </span>
         </Badge>
@@ -220,7 +220,7 @@ const OpportunityActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background:props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-            <PeopleIcon/>
+            <PeopleIcon className="text-white !text-icon"/>
             </Avatar>
           </span>
           </Badge>
@@ -238,7 +238,7 @@ const OpportunityActionLeft = (props) => {
         overflowCount={999}
       >
           <span
-            class=" mr-1 text-sm "
+            class=" mr-1 text-sm !text-icon "
             onClick={() => props.setOpportunityViewType("all")}
             style={{
               color: props.viewType === "all" && "#1890ff",cursor:"pointer"
@@ -282,7 +282,7 @@ const OpportunityActionLeft = (props) => {
             }}
           >
              <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
-            <DeleteOutlined />
+            <DeleteOutlined className="text-white !text-icon" />
             </Avatar>
           </span>
         </Badge>
