@@ -95,14 +95,14 @@ const EmployeesActionLeft = (props) => {
           overflowCount={999}
         >
           <span
-            class=" mr-1 text-sm cursor-pointer !text-icon"
+            class=" mr-1 !text-icon cursor-pointer"
             onClick={() => props.setEmployeeViewType("table")}
             style={{
               color: props.viewType === "table" && "#1890ff",
             }}
           >
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-            <div class="text-white !text-icon">ALL</div>
+            <div class="text-white ">ALL</div>
             </Avatar>
           </span>
           </Badge>

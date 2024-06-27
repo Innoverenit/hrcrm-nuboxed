@@ -268,11 +268,7 @@ const OpportunityActionLeft = (props) => {
           size="small"
           count={
             (viewType === "dashboard" &&
-              recorddeleteOpportunityData.opportunityDetails) ||
-            0
-          }
-          overflowCount={999}
-        >
+              recorddeleteOpportunityData.opportunityDetails) ||0}overflowCount={999}>
           <span
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setOpportunityViewType("dashboard")}

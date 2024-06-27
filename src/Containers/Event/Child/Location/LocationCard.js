@@ -10,7 +10,7 @@ import {
   handleLocnCellDrawer
 } from "./LocationAction";
 import TokenIcon from '@mui/icons-material/Token';
-import { Popconfirm, Switch, Tooltip } from "antd";
+import {  Tooltip } from "antd";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -72,8 +72,8 @@ const LocationCard = (props) => {
           <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" md:w-[10.5rem]">
               Name</div>
-            <div className=" md:w-[9.1rem]">
-              Country
+            <div className="  w-16 md:w-[9.1rem]">
+              
             </div>
             <div className=" md:w-[11.1rem] ">
               Address</div>
@@ -98,7 +98,7 @@ const LocationCard = (props) => {
                 <div >
                   <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                     <div class="flex">
-                      <div className=" flex font-medium flex-row md:w-[25.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  flex-row md:w-[25.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                         <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
@@ -106,7 +106,7 @@ const LocationCard = (props) => {
                         </div>
 
 
-                        <div className=" flex font-medium  md:w-[7.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                        <div className=" flex   md:w-[7.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
                           <div class=" font-normal text-[0.82rem]  font-poppins">
@@ -115,7 +115,7 @@ const LocationCard = (props) => {
                             {item.countryAlpha2Code}
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[13rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                        <div className=" flex  flex-col md:w-[13rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
                           <div class=" font-normal text-[0.82rem]  font-poppins">
@@ -132,7 +132,7 @@ const LocationCard = (props) => {
                     </div>
 
 
-                    <div className=" flex font-medium flex-row md:w-[7.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  flex-row md:w-[7.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
                         <ProductionToggle
@@ -141,7 +141,7 @@ const LocationCard = (props) => {
                         />
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
@@ -151,7 +151,7 @@ const LocationCard = (props) => {
                         />
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-row md:w-[7.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  flex-row md:w-[7.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
@@ -169,7 +169,7 @@ const LocationCard = (props) => {
                         /> */}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
+                    <div className=" flex  flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
                         <BillingToggle
@@ -188,7 +188,7 @@ const LocationCard = (props) => {
                     </div>
 
 
-                    <div className=" flex font-medium flex-row md:w-[7.11rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  flex-row md:w-[7.11rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
 
@@ -206,7 +206,7 @@ const LocationCard = (props) => {
                         /> */}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-row md:w-[6.23rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  flex-row md:w-[6.23rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
                         <ProjectToggle
@@ -223,7 +223,7 @@ const LocationCard = (props) => {
                         /> */}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-row md:w-[11.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  flex-row md:w-[11.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
                         <RetailToggle
@@ -239,7 +239,7 @@ const LocationCard = (props) => {
                         /> */}
                       </div>
                     </div>
-                    <div className=" font-medium flex-col md:w-[4.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" w-28  max-md:w-[4.41rem] max-sm:flex-row  mt-1 max-sm:justify-between">
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
                         {item.regions}
@@ -305,7 +305,7 @@ const LocationCard = (props) => {
                           <Tooltip title="Delete">
                             <DeleteOutlined
                               type="delete"
-                              className="!text-icon cursor-pointer text-[red]"
+                              className="!text-icon cursor-pointer text-red-500"
                             />
                           </Tooltip>
                         </StyledPopconfirm>
