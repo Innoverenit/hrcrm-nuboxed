@@ -5,6 +5,8 @@ import { withRouter } from "react-router-dom";
 import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { FormattedMessage } from "react-intl";
+import {handleUploadInvestorModal} from "../InvestorAction";
+import UploadInvestor from "./UploadInvestor";
 
 const Option = StyledSelect.Option;
 
@@ -18,6 +20,7 @@ function InvestorActionRight (props) {
       <div class=" flex  items-center">
         
         {props.viewType === "list"  &&  user.imInd === true  &&  user.investorCreateInd === true &&  (
+          <div>
         <Tooltip placement="left" title="Create">
           <Button
             type="primary"
@@ -29,19 +32,36 @@ function InvestorActionRight (props) {
                       />
           </Button>
      </Tooltip>
+
+     <Tooltip placement="left" title="Create">
+     <Button
+       type="primary"
+       ghost
+       onClick={() => props.handleUploadInvestorModal(true)}
+     >
+       Upload
+     </Button>
+   </Tooltip>
+   </div>
         )}
+         <UploadInvestor
+          handleUploadInvestorModal={props.handleUploadInvestorModal}
+          uploadInvestorList={props.uploadInvestorList}
+        />
       </div>
     );
 }
 
-const mapStateToProps = ({ auth}) => ({
+const mapStateToProps = ({ auth,investor}) => ({
   userId: auth.userDetails.userId,
   role: auth.userDetails.role,
   user: auth.userDetails,
+  uploadInvestorList: investor.uploadInvestorList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      handleUploadInvestorModal
     },
     dispatch
   );
