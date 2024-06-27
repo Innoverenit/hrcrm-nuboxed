@@ -16,6 +16,10 @@ import {
   emptyClearbit,
   getCrm
 } from "../../Leads/LeadsAction";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
+import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -179,6 +183,20 @@ props.emptyClearbit();
     setSelectedLob(value)
     console.log('Selected user:', value);
   };
+  const [text, setText] = useState("");
+  function handletext(e) {
+    setText(e.target.value);
+  }
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
     return (
       <>
         <Formik
@@ -878,16 +896,46 @@ props.emptyClearbit();
                   </FlexContainer> */}
                 </div>
                 )}
-                <div class=" mt-3">
-                  <Field
-                    name="notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                  />
+                <div class="mt-3">
+                    <div>Notes</div>
+                    <div>
+                  <div>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span
+                          
+                            class="!text-icon ml-1 text-green-600">
+                          <StopCircleIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span  class="!text-icon ml-1">
+                          <RotateRightIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </div>
+                  <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div>
+                </div>
                   </div>
                 </div>
               </div>

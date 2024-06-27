@@ -9,7 +9,7 @@ import {
 } from "./TeamsAction"
 import { Tooltip } from "antd";
 import UpdateTeamsAllocationModal from "./UpdateTeamsAllocationModal";
-import moment from "moment";
+import dayjs from "dayjs";
 
 function TeamsClientTable(props) {
 
@@ -74,7 +74,7 @@ function TeamsClientTable(props) {
             width: "10%",
             dataIndex: "locationStartDate",
             render: (name, item, i) => {
-                return <>{moment(item.locationStartDate).format("ll")}</>;
+                return <>{dayjs(item.locationStartDate).format("ll")}</>;
             },
         },
         {
@@ -82,7 +82,7 @@ function TeamsClientTable(props) {
             width: "10%",
             dataIndex: "locationEndDate",
             render: (name, item, i) => {
-                return <>{moment(item.locationEndDate).format("ll")}</>;
+                return <>{dayjs(item.locationEndDate).format("ll")}</>;
             },
         },
         {

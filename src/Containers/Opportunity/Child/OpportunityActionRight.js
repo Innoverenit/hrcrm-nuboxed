@@ -83,11 +83,9 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip } from "antd";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import OpportunityShareForm from "./OpportunityShareForm";
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 const Option = StyledSelect.Option;
 
@@ -263,6 +261,21 @@ const OpportunityActionRight = (props) => {
             <PictureAsPdfIcon/>
                            </span>
           </div> */}
+          <Tooltip placement={"left"} title={<FormattedMessage
+              id="app.create"
+              defaultMessage="Create"
+            />}>
+         {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
+         {user.opportunityCreateInd ===true && user.crmInd === true && (
+        <Button
+          type="primary"
+          // ghost
+          onClick={() => handleOpportunityModal(true)}
+        >
+          <DataSaverOnIcon/>Add
+        </Button>
+          )}  
+      </Tooltip>
       <Button
       style={{lineHeight:"inherit"}}
          type="primary"
@@ -275,21 +288,7 @@ const OpportunityActionRight = (props) => {
               defaultMessage="Export"
             />
       </Button>
-      <Tooltip placement={"left"} title={<FormattedMessage
-              id="app.create"
-              defaultMessage="Create"
-            />}>
-         {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
-         {user.opportunityCreateInd ===true && user.crmInd === true && (
-        <Button
-          type="primary"
-          // ghost
-          onClick={() => handleOpportunityModal(true)}
-        >
-          Add
-        </Button>
-          )}  
-      </Tooltip>
+      
     </div>
   );
 };

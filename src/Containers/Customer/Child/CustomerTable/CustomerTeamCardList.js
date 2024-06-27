@@ -36,7 +36,6 @@ import {
 } from "../../CustomerAction";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
-import ReactCountryFlag from 'react-country-flag';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { FormattedMessage } from "react-intl";
@@ -444,8 +443,8 @@ const [rowdata, setrowdata] = useState("");
                               <MultiAvatar
                                 primaryTitle={item.ownerName}
                                 imageId={item.ownerImageId}
-                                imgWidth={"1.9rem"}
-                                imgHeight={"1.9rem"}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
                               />
                             </Tooltip>
                           </div>

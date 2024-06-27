@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Checkbox } from "antd";
+import { Button, Tooltip } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { StyledLabel } from "../../../Components/UI/Elements";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -20,6 +20,10 @@ import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponen
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import { ProgressiveImage } from "../../../Components/Utils";
 import { FormattedMessage } from "react-intl";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
+import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
@@ -112,6 +116,20 @@ const AddAccountForm = ({
   const [selected, setSelected] = useState(defaultOption);
   const selectedOption = crmAllData.find((item) => item.empName === selected);
   // console.log(category.categoryId)
+  const [text, setText] = useState("");
+  function handletext(e) {
+    setText(e.target.value);
+  }
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
   return (
     <>
       <Formik
@@ -573,18 +591,45 @@ const AddAccountForm = ({
                 </div>
                 )} */}
                 <div class="mt-4">
-                  <Field
-                    name="description"
-                    label={
-                      <FormattedMessage
-                        id="app.description"
-                        defaultMessage="description"
-                      />
-                    }
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                  />
+                <div>Description</div>
+                    <div>
+                  <div>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span
+                          
+                            class="!text-icon ml-1 text-green-600">
+                          <StopCircleIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span  class="!text-icon ml-1">
+                          <RotateRightIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </div> 
+                   <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div>
+                </div>
                 </div>
               </div>
             </div>

@@ -4,11 +4,13 @@ import { connect } from "react-redux";
 import { base_url } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { Tooltip } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 import {
   handleUploadProductModal
 } from "../ProductAction";
+
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { FileExcelOutlined } from "@ant-design/icons";
 import UploadCatalogue from "./UploadCatalogue";
 class ProductActionRight extends React.Component {
@@ -21,8 +23,16 @@ class ProductActionRight extends React.Component {
       <>
 
         <div class="items-center">
+        &nbsp;
+          <Tooltip placement="left" title="Create">
+            <Button
+              type="primary"
+              onClick={() => handleConfigureModal(true)}
+            ><DataSaverOnIcon/>Add
 
-    
+            </Button>
+          </Tooltip>
+ &nbsp;
           <Tooltip title="Export Product">
             <Button
               className="export"
@@ -43,15 +53,7 @@ class ProductActionRight extends React.Component {
               Upload
             </Button>
           </Tooltip>
-          &nbsp;
-          <Tooltip placement="left" title="Create">
-            <Button
-              type="primary"
-              onClick={() => handleConfigureModal(true)}
-            >Add
-
-            </Button>
-          </Tooltip>
+         
         </div>
         
         <UploadCatalogue

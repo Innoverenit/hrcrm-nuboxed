@@ -176,7 +176,7 @@ const LeadsActionLeft = (props) => {
                 // }}
               >
                 <Avatar style={{ background: props.teamsAccessInd||props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-                  <PeopleIcon className="text-white" /></Avatar>
+                  <PeopleIcon className="text-white !text-icon" /></Avatar>
 
               </span>
             </Badge>
@@ -200,7 +200,7 @@ const LeadsActionLeft = (props) => {
                 }}
               >
                 <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                  <div className="text-white">ALL</div></Avatar>
+                  <div class="text-white !text-icon">ALL</div></Avatar>
 
               </span>
             </Badge>

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, } from "antd";
+import { Button,Tooltip } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { base_url2 } from "../../../Config/Auth";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -12,6 +12,10 @@ import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { getCurrency } from "../../Auth/AuthAction";
 import { CurrencySymbol } from "../../../Components/Common";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
+import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import * as Yup from "yup";
 
@@ -115,6 +119,20 @@ class Productform extends Component {
         <CurrencySymbol currencyType={"INR"} />
       </span>
     );
+    // const [text, setText] = useState("");
+    // function handletext(e) {
+    //   setText(e.target.value);
+    // }
+    // const {
+    //   transcript,
+    //   listening,
+    //   resetTranscript,
+    //   browserSupportsSpeechRecognition,
+    // } = useSpeechRecognition();
+  
+    // if (!browserSupportsSpeechRecognition) {
+    //   return <span>Browser doesn't support speech recognition.</span>;
+    // }
     return (
       <>
         <Formik
@@ -363,17 +381,47 @@ class Productform extends Component {
                     </div>
                     </div>
                     <div class="flex justify-between">
-                    <div class="w-full">
-                      <Field
-                        name="description"
-                        label="Description"
-                        isColumn
-                        width={"33.125em"}
-                        component={TextareaComponent}
-                        inlineLabel
+                    <div class="mt-3">
+                    <div>Description</div>
+                    <div>
+                  {/* <div>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
 
-                      />
-                    </div>
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span
+                          
+                            class="!text-icon ml-1 text-green-600">
+                          <StopCircleIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span  class="!text-icon ml-1">
+                          <RotateRightIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </div> */}
+                  {/* <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div> */}
+                </div>
+                  </div>
                   </div>
                 </div>
               </div>

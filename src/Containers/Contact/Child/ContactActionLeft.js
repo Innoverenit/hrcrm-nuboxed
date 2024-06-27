@@ -140,7 +140,7 @@ const ContactActionLeft = (props) => {
             }}
           >
            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-             <AccountBalanceIcon className="text-white" /></Avatar>
+             <AccountBalanceIcon className="text-white !text-icon" /></Avatar>
           </span>
         </Badge>
       </Tooltip>
@@ -162,7 +162,7 @@ const ContactActionLeft = (props) => {
             onClick={() => props.setContactsViewType("teams")}
           >
             <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-         <PeopleIcon className="text-white"/>
+         <PeopleIcon className="text-white !text-icon"/>
          </Avatar>
           </span>
         </Badge>
@@ -189,7 +189,7 @@ const ContactActionLeft = (props) => {
             }}
           >
              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-          <label className="text-white"> ALL</label>
+          <div className="text-white !text-icon"> ALL</div>
            </Avatar>
           </span>
         </Badge>

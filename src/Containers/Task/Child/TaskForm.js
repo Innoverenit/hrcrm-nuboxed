@@ -1839,6 +1839,13 @@ import { getTasks } from "../../../Containers/Settings/Task/TaskAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FastField } from "formik";
 import dayjs from "dayjs";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { getUnits } from "../../../Containers/Settings/Unit/UnitAction";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -1874,6 +1881,30 @@ const { Option } = Select;
 function TaskForm (props) {
   const [selectedTaskType, setSelectedTaskType] = useState('');
   const [selectedWorkflow, setSelectedWorkflow] = useState("");
+  const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
+  const [touchedOpportunity, setTouchedOpportunity] = useState(false);
+  const [defaultOption, setDefaultOption] = useState(props.fullName);
+  const [selected, setSelected] = useState(defaultOption);
+  const selectedOption = props.assignedToList.find((item) => item.empName === selected);
+  const [customer, setCustomer] = useState([]);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [isLoadingCustomer, setIsLoadingCustomer] = useState(false);
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+
+
+  const [include, setInclude] = useState([]);
+const [isLoadingInclude, setIsLoadingInclude] = useState(false);
+const [touchedInclude, setTouchedInclude] = useState(false);
+const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
+
+  const [contact, setContact] = useState([]);
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [isLoadingContact, setIsLoadingContact] = useState(false);
+  const [touchedContact, setTouchedContact] = useState(false);
+
+
+  const [opportunity, setOpportunity] = useState([]);
+  const [selectedOpportunity, setSelectedOpportunity] = useState(null);
 //   const[selectedTaskType,setselectedTaskType]=useState("")
 // const[selectedWorkflow,setselectedWorkflow]=useState("");
 const[workflow,setworkflow]=useState([]);
@@ -1892,11 +1923,24 @@ const [priority,setpriority]=useState(props.selectedTask
     ? props.selectedTask.taskType
     : "Email");
   const[reminder,setreminder]=useState(true);
-    
+  useEffect(()=> {
+    // props.getAssignedToList(props.orgId);
+      props.getTaskForStages();
+      // props.getAllCustomerData(userId)
+      // props.getAllOpportunityData(userId)
+      // props.getFilteredEmailContact(userId);
+    props.getProjectTaskList(props.orgId);
+    props.getTasks();
+    props.getUnits(props.orgId);
+    props.getCandidateTaskList(props.orgId);
+    props.getCandidateTaskFilterList(props.orgId);
+  },[]);
+
  function handleTypeChange(data){
   setType(data);
   setselectedType(data);
   };
+  
  const glassButtoClick = (type) => {
     setactive(type);
   };
@@ -1904,8 +1948,21 @@ const [priority,setpriority]=useState(props.selectedTask
  const handleReminderChange = (checked) => {
   setreminder(checked);
   };
+  const [text, setText] = useState("");
+  function handletext(e) {
+    setText(e.target.value);
+  }
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
 
-  
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
+
   const handleTaskTypeChange = (event) => {
     const selectedTaskType = event.target.value;
     // const filteredWorkflow = props.recruitWorkflowTask.filter((item) => item.taskTypeId === selectedTaskType);
@@ -2034,19 +2091,7 @@ const [priority,setpriority]=useState(props.selectedTask
 
 
  
-  useEffect(()=> {
-    // props.getAssignedToList(props.orgId);
-      props.getTaskForStages();
-      // props.getAllCustomerData(userId)
-      // props.getAllOpportunityData(userId)
-      // props.getFilteredEmailContact(userId);
-    props.getProjectTaskList(props.orgId);
-    props.getTasks();
-    props.getUnits(props.orgId);
-    props.getCandidateTaskList(props.orgId);
-    props.getCandidateTaskFilterList(props.orgId);
-  },[]);
-
+  
     console.log(selectedWorkflow)
     console.log(selectedTaskType)
     const customerData = props.customerTaskList
@@ -2139,30 +2184,8 @@ const [priority,setpriority]=useState(props.selectedTask
     // });
 
 
-    const [defaultOption, setDefaultOption] = useState(props.fullName);
-    const [selected, setSelected] = useState(defaultOption);
-    const selectedOption = props.assignedToList.find((item) => item.empName === selected);
-    const [customer, setCustomer] = useState([]);
-    const [selectedCustomer, setSelectedCustomer] = useState(null);
-    const [isLoadingCustomer, setIsLoadingCustomer] = useState(false);
-    const [touchedCustomer, setTouchedCustomer] = useState(false);
-
-
-    const [include, setInclude] = useState([]);
-  const [isLoadingInclude, setIsLoadingInclude] = useState(false);
-  const [touchedInclude, setTouchedInclude] = useState(false);
-  const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
- 
-    const [contact, setContact] = useState([]);
-    const [selectedContact, setSelectedContact] = useState(null);
-    const [isLoadingContact, setIsLoadingContact] = useState(false);
-    const [touchedContact, setTouchedContact] = useState(false);
- 
- 
-    const [opportunity, setOpportunity] = useState([]);
-    const [selectedOpportunity, setSelectedOpportunity] = useState(null);
-    const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
-    const [touchedOpportunity, setTouchedOpportunity] = useState(false);
+   
+   
  
  
     const fetchCustomer = async () => {
@@ -3000,19 +3023,46 @@ const [priority,setpriority]=useState(props.selectedTask
                           component={DragableUpload}
                         />
                       </div>
-                      <div class=" mt-2">
-                      <Field
-                    name="taskDescription"
-                    //label="Notes"
-                    label={
-                      <FormattedMessage id="app.description" defaultMessage="description" />
-                    }
-                    width={"21.875em"}
-                    isColumn
-                    component={TextareaComponent}
-                    inlineLabel
-                  />
+                      <div className="mt-3">Description</div>
+                <div>
+                  <div>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span
+                          
+                            class="!text-icon ml-1 text-green-600"
+                        >
+                          <StopCircleIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span  class="!text-icon ml-1">
+                          <RotateRightIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
                   </div>
+                  <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div>
+                </div>
                   <div class=" flex justify-between">
                     {values.taskTypeId === "TSK52434477391272022" && (
                       <div class=" w-1/2">

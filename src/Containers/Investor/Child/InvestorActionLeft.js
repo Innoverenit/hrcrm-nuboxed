@@ -154,7 +154,7 @@ const InvestorActionLeft = (props) => {
             }}
           >
             <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
-              <TocIcon />
+              <TocIcon  className="text-white !text-icon" />
             </Avatar>
           </span>
         </Badge>
@@ -177,7 +177,7 @@ const InvestorActionLeft = (props) => {
               }}
             >
               <Avatar style={{ background: props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-                <PeopleIcon />
+                <PeopleIcon  className="text-white !text-icon" />
               </Avatar>
             </span>
           </Badge>
@@ -198,7 +198,7 @@ const InvestorActionLeft = (props) => {
               }}
             >
               <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                <FormattedMessage id="app.all" defaultMessage="ALL" />
+                <FormattedMessage id="app.all" defaultMessage="ALL" class=" text-white !text-icon"/>
               </Avatar>
             </span>
           </Badge>
