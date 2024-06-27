@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { handleMileageModal } from "../MileageAction";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 const Option = StyledSelect.Option;
 
@@ -32,12 +33,6 @@ class MileageActionRight extends React.Component {
         </Button> */}
        
       
-        <Button
-          type={this.state.isClicked === "export" ? "primary" : ""}
-          onClick={() => this.handleClicked("export")}
-        >
-          Export
-        </Button>
       <div class=" ml-2">
         <Tooltip placement="left" title="Create">
           <Button
@@ -46,9 +41,18 @@ class MileageActionRight extends React.Component {
           >
             {/* <Icon type="plus" /> */}
 
-            Add
+           <DataSaverOnIcon/> Add
           </Button>
         </Tooltip>
+        </div>
+        <div class=" ml-2">
+          
+        <Button
+          type={this.state.isClicked === "export" ? "primary" : ""}
+          onClick={() => this.handleClicked("export")}
+        >
+          Export
+        </Button>
         </div>
       </div>
     );
