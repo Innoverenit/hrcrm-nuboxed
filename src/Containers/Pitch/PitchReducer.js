@@ -101,6 +101,10 @@ const initialState = {
     fetchingPitchSearchData:false,
     fetchingPitchSearchDataError:false,
 
+    fetchingPitchSearchData: false,
+    fetchingPitchSearchDataError: false, 
+    serachedPitchData:[],
+
     addingNotesByPitchId: false,
     addingNotesByPitchIdError: false,
 
@@ -507,8 +511,8 @@ case types.GET_PITCH_REQUEST:
                     return {
                       ...state,
                       fetchingPitchSearchData: false,
-                      pitchData: action.payload,
-                      // serachedData: action.payload,
+                      //pitchData: action.payload,
+                       serachedPitchData: action.payload,
                     };
                   case types.GET_PITCH_SEARCH_FAILURE:
                     return { ...state, fetchingPitchSearchDataError: true };
@@ -680,7 +684,8 @@ case types.GET_PITCH_REQUEST:
 
                 case types.HANDLE_CLAER_REDUCER_DATA_PITCH:
                   return { ...state, 
-                    pitchData: [], 
+                   // pitchData: [], 
+                   serachedPitchData: [],
                     // deletedTruck: [] 
                   };
 
