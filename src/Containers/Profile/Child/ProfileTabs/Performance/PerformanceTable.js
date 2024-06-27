@@ -205,7 +205,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
           {item.month1AssignedValue && (
 <span>
 {item.currencyInd && `${item.userCurrency} `}
-{Math.floor(item.month1AssignedValue/ 10000)}k 
+{Math.floor(item.month1AssignedValue/ 1000)}k 
 </span>
 )}</span>
        </div>
@@ -214,7 +214,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
          <span className='ml-2 w-20'>{item.month2AssignedValue && (
 <span>
 {item.currencyInd && `${item.userCurrency} `}
-{Math.floor(item.month2AssignedValue/ 10000)}k 
+{Math.floor(item.month2AssignedValue/ 1000)}k 
 </span>
 )}</span>
        </div>
@@ -224,7 +224,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
                    <span className='ml-2 w-20'>{item.month3AssignedValue && (
 <span>
 {item.currencyInd && `${item.userCurrency} `}
-{Math.floor(item.month3AssignedValue/ 10000)}k 
+{Math.floor(item.month3AssignedValue/ 1000)}k 
 </span>
 )}</span>
        </div> 
@@ -238,7 +238,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
                     <div className="font-normal flex flex-row text-sm  font-poppins">
                     {item.month3AssignedValue && (
                       <span>
-                     {item.currencyInd && `${item.userCurrency} `}{Math.floor(AssignedTotal / 10000)}k
+                     {item.currencyInd && `${item.userCurrency} `}{Math.floor(AssignedTotal / 1000)}k
                      </span>
                    )}
                     </div>
@@ -307,7 +307,7 @@ style={{border:"2px solid black",width:"6rem"}}
          <span className='ml-2'>   {item.month1CompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {(item.month1CompletedValue / 10000).toFixed(2)}k
+                           {(item.month1CompletedValue / 1000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
@@ -316,7 +316,7 @@ style={{border:"2px solid black",width:"6rem"}}
          <span className='ml-2'>   {item.month2CompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {(item.month2CompletedValue / 10000).toFixed(2)}k
+                           {(item.month2CompletedValue / 1000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
@@ -325,7 +325,7 @@ style={{border:"2px solid black",width:"6rem"}}
          <span className='ml-2'>   {item.month3CompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {(item.month3CompletedValue / 10000).toFixed(2)}k
+                           {(item.month3CompletedValue / 1000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
@@ -341,7 +341,7 @@ style={{border:"2px solid black",width:"6rem"}}
                     <div className="font-normal flex flex-row text-sm  font-poppins">
                     {item.month3CompletedValue && (
                     <span>
-                     {item.currencyInd && `${item.userCurrency} `}{(AchievedTotal/ 10000).toFixed(2)}k
+                     {item.currencyInd && `${item.userCurrency} `}{(AchievedTotal/ 1000).toFixed(2)}k
                      </span>
                       )}
                     </div>
@@ -376,7 +376,7 @@ width={30}
          <span className='ml-2'>   {item.month1ActualCompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {(item.month1ActualCompletedValue / 10000).toFixed(2)}k
+                           {(item.month1ActualCompletedValue / 1000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
@@ -385,7 +385,7 @@ width={30}
          <span className='ml-2'>   {item.month2ActualCompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {(item.month2ActualCompletedValue / 10000).toFixed(2)}k
+                           {(item.month2ActualCompletedValue / 1000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
@@ -394,7 +394,7 @@ width={30}
          <span className='ml-2'>   {item.month3ActualCompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {(item.month3ActualCompletedValue / 10000).toFixed(2)}k
+                           {(item.month3ActualCompletedValue / 1000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
@@ -408,7 +408,7 @@ width={30}
      <div className="font-normal flex flex-row text-sm  font-poppins">
      {item.month3ActualCompletedValue && (
       <span>
-      {item.currencyInd && `${item.userCurrency} `}{(ActualTotal / 10000).toFixed(2)}k
+      {item.currencyInd && `${item.userCurrency} `}{(ActualTotal / 1000).toFixed(2)}k
       </span>
     )}
      </div>

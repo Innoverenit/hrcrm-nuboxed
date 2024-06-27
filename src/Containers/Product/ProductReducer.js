@@ -6,6 +6,12 @@ const initialState = {
   addWinModal: false,
   addWonModal: false,
   addCustomerModal: false,
+
+
+  fetchingQualityProducts:false,
+  fetchingQualityProductsError:false,
+
+  qualityProducts:[],
   dateRangeList: [
     {
       id: 1,
@@ -222,6 +228,8 @@ const initialState = {
   fetchingRecordsByUserIdError: false,
   recordData: {},
 
+  productQualityDrawer:false,
+
   addProductOfferModal: false,
 
   addingOffer: false,
@@ -289,6 +297,10 @@ const initialState = {
   fetchingProductBuilder: false,
   fetchingProductBuilderError: false,
   productBuilder: [],
+
+
+  creatingQualityProduct:false,
+  creatingQualityProductError:false,
 
   addingProductBuilder: false,
   addingProductBuilderError: false,
@@ -439,6 +451,10 @@ export const productReducer = (state = initialState, action) => {
         updateProductById: false,
         updateProductByIdError: true,
       };
+
+
+      case types.HANDLE_PRODUCT_QUALITY_DRAWER:
+                  return { ...state, productQualityDrawer: action.payload };
 
     case types.GET_PROFESSIONALDUCTS_REQUEST:
       return { ...state, fetchingProducts: true, fetchingProductsError: false };
@@ -1130,6 +1146,19 @@ export const productReducer = (state = initialState, action) => {
         addingProductBuilderError: true,
       };
 
+
+
+
+
+      case types.GET_QUALITY_PRODUCTS_REQUEST:
+        return { ...state, fetchingQualityProducts: true, fetchingQualityProductsError: false };
+      case types.GET_QUALITY_PRODUCTS_SUCCESS:
+        return { ...state, fetchingQualityProducts: false, 
+          qualityProducts: action.payload
+        }
+      case types.GET_QUALITY_PRODUCTS_FAILURE:
+        return { ...state, fetchingQualityProducts: false, fetchingQualityProductsError: true };
+
     case types.GET_BUILDER_BY_PRODUCT_ID_REQUEST:
       return {
         ...state,
@@ -1305,6 +1334,27 @@ export const productReducer = (state = initialState, action) => {
                         }
                       }),
                     };
+
+
+
+
+                    case types.CREATE_QUALITY_PRODUCT_REQUEST:
+                      return { ...state, creatingQualityProduct: true };
+                    case types.CREATE_QUALITY_PRODUCT_SUCCESS:
+                      return {
+                        ...state,
+                        creatingQualityProduct: false,
+                        qualityProducts:[action.payload,...state.qualityProducts]
+ 
+                      };
+                    case types.CREATE_QUALITY_PRODUCT_FAILURE:
+                      return {
+                        ...state,
+                        creatingQualityProduct: false,
+                        creatingQualityProductError: true,
+        
+                      };
+
                   case types.UPDATE_PROD_SUPPLR_BILDR_FAILURE:
                     return {
                       ...state,

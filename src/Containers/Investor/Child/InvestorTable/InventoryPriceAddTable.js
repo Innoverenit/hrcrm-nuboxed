@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import dayjs from "dayjs";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import { getCurrency } from "../../../Auth/AuthAction";
-import { Button, Input, Select,Tooltip } from "antd";
+import { Button, DatePicker, Input, Select,Tooltip } from "antd";
 import {investorShare,getInvestorShare,investorShareUpdate} from "../../InvestorAction";
-// import { getInvestorShare, investorShare,
-//    handleDiscountModal, handleOfferModal,removeProductPrice } from "../../ProductAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-// import {getSaleCurrency} from "../../../Auth/AuthAction";
+import {getInvestorCurrency} from "../../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { DeleteOutlined } from "@ant-design/icons";
 
@@ -26,6 +24,7 @@ function InventoryPriceAddTable(props) {
 
   useEffect(() => {
     props.getInvestorShare(props.RowData.investorId);
+    props.getInvestorCurrency()
   }, []);
 
   useEffect(() => {
@@ -51,7 +50,7 @@ function InventoryPriceAddTable(props) {
       // key: String(data.length + 1),
       quantityOfShare: '',
       amountPerShare: '',
-      
+      date: null,
 
 
     };
@@ -96,8 +95,11 @@ function InventoryPriceAddTable(props) {
       console.log('Submitting Row:', row);
       const result = {
         quantityOfShare: row.quantityOfShare,
+        currency: row.currency_id,
         amountPerShare: row.amountPerShare,
         investorId: props.RowData.investorId,
+       // buyingDate: row.buyingDate,
+        buyingDate: row.buyingDate ? dayjs(row.buyingDate).format('YYYY-MM-DDTHH:mm:ss[Z]') : null,
       };
       props.investorShare(result)
       setRows([{  amountPerShare: '', quantityOfShare: '', }]);
@@ -128,6 +130,8 @@ function InventoryPriceAddTable(props) {
       amountPerShare: key.amountPerShare,
       investorId: props.RowData.investorId,
       investorsShareId:investorsShareId,
+      currency: key.currency_id,
+      buyingDate: key.buyingDate ? dayjs(key.buyingDate).format('YYYY-MM-DDTHH:mm:ss[Z]') : null,
     };
     props.investorShareUpdate(updatedData,props.RowData.investorId);
     setEditsuppliesId(null);
@@ -139,9 +143,26 @@ function InventoryPriceAddTable(props) {
         Add Row
       </Button>
       {rows.map((row, index) => (
-          <div key={index} class="flex items-center">
+          <div key={index} class="flex items-center justify-between">
             <div class="flex justify-around w-[30rem]">
-              
+            <div>
+                <label>Currency</label>
+                <div class="w-24">
+                <Select
+                style={{width:"5rem"}}
+                      
+                        value={row.currency_id}
+                        onChange={(value) => handleChange(index, 'currency_id',value)}
+                      >
+                        {props.investorCurrencies.map((s) => (
+                          <Option key={s.currency_id} value={s.currency_id}>
+                            {s.currency_name}
+                          </Option>
+                        ))}
+                      </Select>
+
+                </div>
+              </div>
 
               <div>
                 <label>Quantity Of Share</label>
@@ -165,18 +186,17 @@ function InventoryPriceAddTable(props) {
                       />
                        {errors[`amountPerShare${index}`] && <span className="text-red-500">{errors[`amountPerShare${index}`]}</span>}
                       </div></div>
-              {/* <div>
-                <label>Date</label>
-                <div class="w-24">
-                <Input
-                 inputMode="numeric"
-                        className="w-32"
-                        value={row.vat}
-                        onChange={(e) => handleChange(index,'vat',e.target.value)}
-                      />
-                        {errors[`vat${index}`] && <span className="text-red-500">{errors[`vat${index}`]}</span>}
-                </div>
-              </div> */}
+                      <div>
+        <label>Date</label>
+        <div class="w-24">
+          <DatePicker
+            style={{width:"9rem"}}
+            value={row.buyingDate ? dayjs(row.buyingDate) : null}
+            onChange={(date, dateString) => handleChange(index, 'buyingDate', dateString)}
+          />
+        </div>
+      </div>
+    
             </div>
             <div class="mt-4">
             <Button type="primary" onClick={() => handleSave(index)}>
@@ -190,9 +210,9 @@ function InventoryPriceAddTable(props) {
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">         
-            <div className=" md:w-[10rem]">Quantity Of Share</div>
-            <div className=" md:w-[10.1rem]">Value per Share</div>
-            {/* <div className=" md:w-[4.2rem] ">Date</div> */}
+            <div className=" md:w-[21rem]">Quantity Of Share</div>
+            <div className=" md:w-[11.1rem]">Value per Share</div>
+            <div className=" md:w-[6.2rem] ">Purchase date</div>
             <div className="w-12"></div>           
               </div>
 
@@ -202,27 +222,7 @@ function InventoryPriceAddTable(props) {
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 >
 
-                  {/* <div className=" flex font-medium items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
-                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
-                    {editsuppliesId === item.investorId ? (
-                      <Select
-                        classNames="w-32"
-                        value={item.currencyName}
-                        onChange={(value) => handleSelectChange(value, item.key, 'currencyName')}
-                      >
-                        {props.saleCurrencies.map((s) => (
-                          <Option key={s.currency_id} value={s.currency_id}>
-                            {s.currency_name}
-                          </Option>
-                        ))}
-                      </Select>
-                    ):(
-                      <div className="font-normal text-sm  font-poppins">
-                      <div> {item.currencyName}</div>
-                    </div>
-                  )}
-                    </div>
-                  </div> */}
+                 
  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.investorId ? (
                     <div class=" text-xs  font-poppins">
@@ -237,6 +237,27 @@ function InventoryPriceAddTable(props) {
                       <div> {item.quantityOfShare}</div>
                     </div>
                     )}
+                  </div>
+                  <div className=" flex font-medium items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
+                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
+                    {editsuppliesId === item.investorId ? (
+                      <Select
+                      style={{width:"5rem"}}
+                        value={item.currency}
+                        onChange={(value) => handleSelectChange(value, item.key, 'currency')}
+                      >
+                        {props.investorCurrencies.map((s) => (
+                          <Option key={s.currency_id} value={s.currency_id}>
+                            {s.currency_name}
+                          </Option>
+                        ))}
+                      </Select>
+                    ):(
+                      <div className="font-normal text-sm  font-poppins">
+                      <div> {item.currency}</div>
+                    </div>
+                  )}
+                    </div>
                   </div>
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.investorId ? (
@@ -257,22 +278,17 @@ function InventoryPriceAddTable(props) {
 
 
                  
-                  {/* <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.investorId ? (
-
-                    <div class=" text-xs  font-semibold  font-poppins">
-                      <Input
-                        className="w-32"
-                        value={item.vat}
-                        onChange={(e) => handleInputChange(e.target.value, item.key, 'vat')}
-                      />
-                    </div>
-                     ):(
-                      <div className="font-normal text-sm  font-poppins">
-                      <div> {item.vat}</div>
-                    </div>
-                    )}
-                  </div> */}
+  <DatePicker
+  style={{width:"9rem"}}
+    value={item.buyingDate ? dayjs(item.buyingDate) : null}
+    onChange={(buyingDate) => handleInputChange(buyingDate, item.key, 'buyingDate')}
+  />
+) : (
+  <div className="font-normal text-sm font-poppins">
+    <div>{dayjs(item.buyingDate).format('DD/MM/YY')}</div>
+  </div>
+)}
 
                   <div class="flex md:items-center">
 
@@ -335,7 +351,8 @@ const mapStateToProps = ({ investor, auth }) => ({
   currencies: auth.currencies,
   userId: auth.userDetails.userId,
   fetchingSaleCurrency:auth.fetchingSaleCurrency,
-  saleCurrencies:auth.saleCurrencies
+  saleCurrencies:auth.saleCurrencies,
+  investorCurrencies: auth.investorCurrencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -343,12 +360,9 @@ const mapDispatchToProps = (dispatch) =>
     {
        getInvestorShare,
        investorShare,
-       investorShareUpdate
-    //   handleDiscountModal,
-    //   handleOfferModal,
-    //   getCurrency,
-    //   getSaleCurrency,
-    //   removeProductPrice
+       investorShareUpdate,
+       getInvestorCurrency,
+   
     },
     dispatch
   );

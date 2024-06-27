@@ -12,7 +12,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component"; 
 import { Tooltip, Select, } from "antd";
-
+import moment from "moment";
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -168,9 +168,13 @@ function InvestorCardList(props) {
                   defaultMessage="Category"
                 />
           </div>
+          <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+      First Meeting
+          </div>
           <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
        Shares #
           </div>
+         
           <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
         Value
           </div>
@@ -313,7 +317,7 @@ function InvestorCardList(props) {
 
                                     {item.totalProposalValue && (
       <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 10000)}K`}
+        {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
       </div>
     )}
                                 </div>
@@ -329,6 +333,14 @@ function InvestorCardList(props) {
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.category}
+                                    </div>
+                                </div>
+                                <div className=" flex font-medium items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+
+                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                   
+                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "No Data"}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

@@ -1008,12 +1008,12 @@ export const addSupplierContact = (supplier, id, type) => (dispatch) => {
     });
 };
 
-export const applyForLoginInContact = (data, contactPersonId, userId, id) => (dispatch) => {
+export const applyForLoginInContact = (data, contactPersonId, userId,type,supplierId, id) => (dispatch) => {
   dispatch({
     type: types.APPLY_FOR_LOGIN_IN_CONTACT_REQUEST,
   });
   axios
-    .put(`${base_url2}/distributor/convert/contactToUser/${contactPersonId}/${userId}`, data,
+    .put(`${base_url2}/distributor/convert/contactToUser/${contactPersonId}/${userId}/${type}`, data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -1025,6 +1025,7 @@ export const applyForLoginInContact = (data, contactPersonId, userId, id) => (di
         title: 'Applied for login',
         showConfirmButton: true,
       })
+      dispatch(getSupplierContactList(supplierId))
       dispatch(getContactDistributorList(id))
       dispatch({
         type: types.APPLY_FOR_LOGIN_IN_CONTACT_SUCCESS,

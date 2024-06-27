@@ -19,6 +19,9 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { Listbox, } from '@headlessui/react'
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
+import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
+import dayjs from "dayjs";
+import {getInvestorCurrency} from "../../Auth/AuthAction"
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -33,6 +36,10 @@ function UpdatePitchForm (props) {
   const [priority,setpriority]=useState(props.selectedTask
     ? props.selectedTask.priority
     : "hot");
+
+    const handleIconClick = (type) => {
+      setpriority(type);
+    };
   const handleContract = (checked) => {
     setContract(checked);
   };
@@ -47,6 +54,7 @@ function UpdatePitchForm (props) {
     props.getDialCode();
     props.getSources(props.orgId);
     props.getSectors();
+    props.getInvestorCurrency();
   },[])
  
   const sourceOption = props.sources.map((item) => {
@@ -62,6 +70,25 @@ function UpdatePitchForm (props) {
       label: `+${item.country_dial_code || ""}`,
       value: item.country_dial_code
       ,
+    };
+  });
+
+  const sortedCurrency =props.investorCurrencies.sort((a, b) => {
+    const nameA = a.currency_name.toLowerCase();
+    const nameB = b.currency_name.toLowerCase();
+    // Compare department names
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  const currencyNameOption = sortedCurrency.map((item) => {
+    return {
+      label: `${item.currency_name}`,
+      value: item.currency_id,
     };
   });
 
@@ -104,6 +131,7 @@ function UpdatePitchForm (props) {
             countryDialCode:
               props.setEditingPitch.countryDialCode ||
               props.user.countryDialCode,
+              shareCurrency :"",
             phoneNumber: props.setEditingPitch.phoneNumber || "",
             userId: props.userId,
             notes: props.setEditingPitch.notes || "",
@@ -132,6 +160,33 @@ function UpdatePitchForm (props) {
           // validationSchema={UpdatePitchSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
+
+            let timeZoneFirst = "GMT+05:30";
+            let mytimeZone = timeZoneFirst.substring(4, 10);
+            var a = mytimeZone.split(":");
+            var timeZoneminutes = +a[0] * 60 + +a[1];
+            
+            if (!values.firstMeetingDate) {
+              values.firstMeetingDate = values.startDate;
+            }
+  
+            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
+            let newEndDate = dayjs(values.firstMeetingDate).format("YYYY-MM-DD");
+  
+            let newStartTime = dayjs(values.startTime).format("HH:mm:ss.SSS[Z]");
+            let firstStartHours = newStartTime.substring(0, 5);
+            let timeEndPart = newStartTime.substring(5, 13);
+            var firstStartTimeSplit = firstStartHours.split(":");
+            var minutes = +firstStartTimeSplit[0] * 60 + +firstStartTimeSplit[1];
+            var firstStartTimeminutes = minutes - timeZoneminutes;
+            let h = Math.floor(firstStartTimeminutes / 60);
+            let m = firstStartTimeminutes % 60;
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            let finalStartTime = `${h}:${m}`;
+            let newFormattedStartTime = `${finalStartTime}${timeEndPart}`;
+
+
             props.updatePitch(
               {
                 ...values,
@@ -307,6 +362,7 @@ function UpdatePitchForm (props) {
                     />
                     </div>
                   <div class=" flex justify-between max-sm:flex-col">
+                  {contract ?
                     <div class=" w-w47.5 max-sm:w-wk">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                       <Field
@@ -326,6 +382,8 @@ function UpdatePitchForm (props) {
                         />
                         </div>
                     </div>
+                      : ( null)}        
+                    {contract ?
                     <div class=" w-w47.5 max-sm:w-wk">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                       <Field
@@ -344,7 +402,8 @@ function UpdatePitchForm (props) {
                         inlineLabel
                       />
                       </div>
-                    </div>                    
+                    </div>   
+                      : ( null)}                 
                     </div>
 
                     <div class=" flex justify-between">
@@ -379,6 +438,7 @@ function UpdatePitchForm (props) {
 
 
                      <div class=" flex justify-between">
+                     {contract ?
                      <div class=" w-w47.5">
                       <Field
                         name="sectorId"
@@ -397,6 +457,8 @@ function UpdatePitchForm (props) {
                         }
                       />
                     </div>
+                     : ( null)}
+                       {contract ?
                     <div class="w-w47.5">
                   
                         <FastField
@@ -420,6 +482,7 @@ function UpdatePitchForm (props) {
                         />
 
            </div>
+            : ( null)}
                 </div>
                 <div class=" flex items-center justify-between">
                 <div class=" flex flex-col   mt-4">
@@ -433,53 +496,95 @@ function UpdatePitchForm (props) {
                     />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
-                    <div class="flex">
-                       <Tooltip title="Hot">
-                         <Button
-                           
-                            shape="circle"
-                           onClick={() => handleButtonClick("hot")}
-                           style={{
-                             backgroundColor:"red",
-                                 borderRadius: "50%", 
-                                 width: "31px", 
-                                 height: "31px"
-                           }}
-                         />
-                       </Tooltip>
-                       &nbsp;
-                       <Tooltip title="Warm">
-                         <Button
-                           
-                            shape="circle"
-             
-                           onClick={() => handleButtonClick("warm")}
-                           style={{
-                             backgroundColor:"orange",
-                                 borderRadius: "50%", 
-                                 width: "31px", 
-                                 height: "31px",
-                           }}
-                         />
-                       </Tooltip>
-                       &nbsp;
-                       <Tooltip title="Cold">
-                         <Button
-                           
-                            shape="circle"
-                   
-                           onClick={() => handleButtonClick("cold")}
-                           style={{
-                             backgroundColor:"teal",
-                                 borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
-                                 width: "31px", // Adjust the width as needed
-                                 height: "31px"
-                           }}
-                         ></Button>
-                       </Tooltip>
-                     </div>
+                  <div className="flex">
+      <Tooltip title="Hot">
+        <i
+          className={`fas fa-mug-hot${priority === "hot" ? " selected" : ""}`}
+          onClick={() => handleIconClick("hot")}
+          style={{
+            color: priority === "hot" ? "white" : "red",
+            backgroundColor: priority === "hot" ? "red" : "transparent",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+        ></i>
+      </Tooltip>
+      &nbsp;
+      <Tooltip title="Warm">
+        <i
+          className={`fas fa-burn${priority === "warm" ? " selected" : ""}`}
+          onClick={() => handleIconClick("warm")}
+          style={{
+            color: priority === "warm" ? "white" : "orange",
+            backgroundColor: priority === "warm" ? "orange" : "transparent",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+        ></i>
+      </Tooltip>
+      &nbsp;
+      <Tooltip title="Cold">
+        <i
+          className={`far fa-snowflake${priority === "cold" ? " selected" : ""}`}
+          onClick={() => handleIconClick("cold")}
+          style={{
+            color: priority === "cold" ? "white" : "teal",
+            backgroundColor: priority === "cold" ? "teal" : "transparent",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+        ></i>
+      </Tooltip>
+    </div>
                       </div>
                       </div>
+                      <div class=" flex items-center justify-between">
+<div class=" w-w47.5 max-sm:w-wk">
+                    <Field
+                      name="firstMeetingDate"
+                      label="Date"
+                      component={DatePicker}
+                      value={values.firstMeetingDate}
+                      isColumn
+                      inlineLabel
+                    />
+                  </div>
+
+                  <div class=" w-w47.5 max-sm:w-wk">
+                    <Field
+                      name="shareCurrency"
+                      isColumnWithoutNoCreate
+                      defaultValue={{
+                        value: props.currency_id
+                      }}
+                      label={
+                        <FormattedMessage
+                          id="app.currency"
+                          defaultMessage="Currency"
+                        />
+                      }
+                      width="100%"
+                      isColumn
+                      // selectType="currencyName"
+                      isRequired
+                      component={SelectComponent}
+                      options={
+                        Array.isArray(currencyNameOption)
+                          ? currencyNameOption
+                          : []
+                      }
+                    />
+                  </div>
+  </div>
                  </div>
                  <div class=" h-3/4 w-w47.5 max-sm:w-wk "   >
                    
@@ -618,6 +723,7 @@ const mapStateToProps = ({ auth,investor,countrys,source,sector, leads,employee,
     allEmployeeList:investor.allEmployeeList,
     setEditingPitch:pitch.setEditingPitch,
     sources: source.sources,
+    investorCurrencies: auth.investorCurrencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -628,7 +734,8 @@ const mapDispatchToProps = (dispatch) =>
         getDialCode,
         setEditPitch,
         getAllEmployeelist,
-        getSectors
+        getSectors,
+        getInvestorCurrency
     },
     dispatch
   );

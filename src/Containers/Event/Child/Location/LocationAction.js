@@ -8,6 +8,14 @@ export const handleLocationModal = (modalProps) => (dispatch) => {
   dispatch({ type: types.HANDLE_LOCATION_MODAL, payload: modalProps });
 };
 
+
+export const handleUserCellModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_USER_CELL_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleLocationMachineModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_LOCATION_MACHINE_MODAL,
@@ -916,7 +924,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
     
     dispatch({ type: types.CREATE_MACHINARY_CELL_REQUEST });
     axios
-      .post(`${base_url}/machinary/location/cell`, data, {
+      .post(`${base_url2}/cell/user-equipment/link/save`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -933,6 +941,34 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         console.log(err);
         dispatch({
           type: types.CREATE_MACHINARY_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+  export const getUserMachineCard = (userId, pageNo) => (dispatch) => {
+    dispatch({
+      type: types.GET_USER_MACHINE_CARD_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/cell/user-equipment/${userId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_USER_MACHINE_CARD_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_USER_MACHINE_CARD_FAILURE,
           payload: err,
         });
       });
