@@ -65,6 +65,9 @@ const initialState = {
     fetchingPitchCountError: false,
     pitchCount:{},
 
+    uploadingPitchList: false,
+    uploadingPitchListError: false,
+
     fetchingTeamPitch: false,
     fetchingTeamPitchError: false,
     teamPitch:[],
@@ -113,6 +116,7 @@ const initialState = {
     fetchingPitchOpportunityError:false,
     opportunityByPitchId:[],
 
+    uploadPitchList:false,
 
     addingPitchOpportunity:false,
     addingPitchOpportunityError:false,
@@ -707,6 +711,26 @@ case types.GET_PITCH_REQUEST:
                         fetchingPitchActivityCount: false,
                         fetchingPitchActivityCountError: true,
                       };
+
+                      case types.HANDLE_UPLOAD_PITCH_MODAL:
+                        return { ...state, uploadPitchList: action.payload };    
+
+                        case types.UPLOAD_PITCH_LIST_REQUEST:
+                          return { ...state, uploadingPitchList: true };
+                        case types.UPLOAD_PITCH_LIST_SUCCESS:
+                          return {
+                            ...state,
+                            uploadingPitchList: false,
+                            uploadPitchList: false
+                          };
+                        case types.UPLOAD_PITCH_LIST_FAILURE:
+                          return {
+                            ...state,
+                            uploadingPitchList: false,
+                            uploadingPitchListError: true,
+                          };
+                    
+
 
     default:
 return state;

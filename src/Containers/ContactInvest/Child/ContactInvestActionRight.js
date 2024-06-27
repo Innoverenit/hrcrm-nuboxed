@@ -6,6 +6,8 @@ import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip,} from "antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { FormattedMessage } from "react-intl";
+import {handleUploadContactInvestModal} from "../ContactInvestAction";
+import UploadContactInvest from "./UploadContactInvest";
 
 class ContactInvestActionRight extends React.Component {
 
@@ -18,6 +20,8 @@ class ContactInvestActionRight extends React.Component {
         handleContactInvestModal
     } = this.props;
     return (
+      <>
+       {this.props.viewType === "card"  && (
       <div class=" flex  items-center">
         
         {/* {this.props.viewType === "table" && user.contactFullListInd===true && user.employee_type !=="external" ? (
@@ -70,20 +74,36 @@ class ContactInvestActionRight extends React.Component {
           </Button>
         </Tooltip>
         )}
+        <Tooltip placement="left" title="Create">
+        <Button
+          type="primary"
+          ghost
+          onClick={() => this.props.handleUploadContactInvestModal(true)}
+        >
+          Upload
+        </Button>
+      </Tooltip>
       </div>
+      )}
+       <UploadContactInvest
+          handleUploadContactInvestModal={this.props.handleUploadContactInvestModal}
+          uploadContactInvestList={this.props.uploadContactInvestList}
+        />
+      </>
     );
   }
 }
 
-const mapStateToProps = ({ auth, }) => ({
+const mapStateToProps = ({ auth,contactinvest }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   role: auth.userDetails.role,
+  uploadContactInvestList:contactinvest.uploadContactInvestList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-     
+     handleUploadContactInvestModal
     },
     dispatch
   );
