@@ -4295,3 +4295,47 @@ export const quotationToOrder = ( quotationId,userId ) => (dispatch) => {
       // cb && cb("failure");
     });
 };
+
+
+
+
+export const addAccountImportForm =
+(customer, userId) => (dispatch, getState) => {
+  //const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_ACCOUNT_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/excel/import/distributor`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+    //dispatch(getLeads(userId));
+
+     window.location.reload()
+      // dispatch(getRecords(userId));
+      // dispatch(getLatestCustomers(userId, startDate, endDate));
+      // dispatch(getCustomerListByUserId(userId));
+
+      dispatch({
+        type: types.ADD_ACCOUNT_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_ACCOUNT_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
+};
