@@ -20,10 +20,10 @@ module.exports = {
         'w95':'98%'
             },
             fontSize:{
-      'xxs':'0.62rem',
-      'xm':'0.875rem',
-      'ls':'0.78rem',
-      'icon':'1.1rem'
+'xxs':'0.62rem',
+'xm':'0.875rem',
+'ls':'0.8rem',
+'icon':'1.1rem'
             },
             colors: {
               "clr": "tomato",

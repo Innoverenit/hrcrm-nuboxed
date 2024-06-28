@@ -21,9 +21,9 @@ function ProductionArchieveList(props) {
     return (
         <>
 
-            <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=' flex sticky  z-auto'>
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className=""></div>
                         <div className=" md:w-[7%]">Article #</div>
                         <div className=" md:w-[6.1rem]">Name</div>
@@ -45,7 +45,7 @@ function ProductionArchieveList(props) {
                                 {props.archieveProduction.map((item) => {
                                     return (
                                         <div>
-                                            <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
+                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                                 <div class="flex">
                                                     <div className=" flex font-medium flex-col md:w-[5.1rem] max-sm:w-full  ">
                                                         <SubTitle>
