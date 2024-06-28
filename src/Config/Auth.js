@@ -29,10 +29,10 @@
 // const asses_url = "http://Erp-env.eba-2bh9neix.eu-west-3.elasticbeanstalk.com/Assessment-0.0.1-SNAPSHOT";
 
 //TestHr
-// const login_url = "https://develop.tekorero.com/testHr";
-// const base_url = "https://develop.tekorero.com/testHr/api/v1";
-// const base_url2 = "https://develop.tekorero.com/Erp";
-// const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
+const login_url = "https://develop.tekorero.com/testHr";
+const base_url = "https://develop.tekorero.com/testHr/api/v1";
+const base_url2 = "https://develop.tekorero.com/Erp";
+const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
 
 
 
