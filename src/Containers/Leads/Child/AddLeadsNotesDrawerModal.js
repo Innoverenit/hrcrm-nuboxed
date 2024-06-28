@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import NotesForm from "./NotesForm";
+import MainNotes from "../../CustomNote/MainNotes";
 
 class AddLeadsNotesDrawerModal extends Component {
   render() {
@@ -22,8 +23,12 @@ class AddLeadsNotesDrawerModal extends Component {
           onClose={() => this.props.handleLeadsNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <NotesForm rowdata={this.props.rowdata} 
+            {/* <NotesForm rowdata={this.props.rowdata} 
             leadsId={this.props.rowdata.leadsId} 
+            /> */}
+             <MainNotes
+             type="leads"
+             uniqueId={this.props.rowdata.leadsId}
             />
           </Suspense>
         </StyledDrawer>
