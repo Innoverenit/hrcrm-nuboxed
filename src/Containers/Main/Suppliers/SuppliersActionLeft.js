@@ -135,7 +135,7 @@ const {
           count={(props.viewType === "card" && props.countSupplier.supplierCount) || 0}
           overflowCount={999}
         >
-                    <span class=" mr-2 text-sm cursor-pointer"
+                    <span class=" mr-1 text-sm cursor-pointer"
                         onClick={() => setSuppliersViewType("card")}
                         style={{
                             color: viewType === "card" && "#1890ff",
@@ -143,7 +143,7 @@ const {
                     >
 
                         <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#4bc076" }}>
-                            <TocIcon className="text-white" /></Avatar>
+                            <TocIcon className="text-white !text-icon" /></Avatar>
 
                     </span></Badge>
                 </Tooltip>
@@ -154,7 +154,7 @@ const {
           count={(props.viewType === "all" && props.allCountSupplier.AllSupplierCount) || 0}
           overflowCount={999}
         >
-                    <span class=" mr-2 text-sm cursor-pointer"
+                    <span class=" mr-1 text-sm cursor-pointer"
                         onClick={() => setSuppliersViewType("all")}
                         style={{
                             color: viewType === "all" && "#1890ff",
@@ -172,7 +172,7 @@ const {
           count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
           overflowCount={999}
         >
-                    <span class=" mr-2 text-sm cursor-pointer"
+                    <span class=" mr-1 !text-icon cursor-pointer"
                         onClick={() => setSuppliersViewType("delete")}
                         style={{
                             color: viewType === "delete" && "#1890ff",
