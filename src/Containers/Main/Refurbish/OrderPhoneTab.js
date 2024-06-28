@@ -38,9 +38,32 @@ const OrderPhoneTab = (props) => {
         setRepairMain(false)
         setOpenRepair(true)
     }
+    const [activeKey, setActiveKey] = useState("1");
+    const handleTabChange = (key) => setActiveKey(key);
+
+    const renderTabContent = (key) => {
+        switch (key) {
+          case "1":
+            return     <div> 
+                {openQc ? <OpenQcTable /> : qcMain ? <ProductionOrderListById /> : null}
+                </div>;
+          case "2":
+            return  <div>{repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} /> :
+            openRepair ? <OpenRepairTable /> : null}</div>;
+          case "3":
+            return    <QaCardList/>;
+         
+            
+          default:
+            return null;
+        }
+      };
+
     return (
         <div>
-            <StyledTabs>
+            <StyledTabs
+           defaultActiveKey={activeKey} onChange={handleTabChange}
+            >
                 {!props.inspectionRequiredInd &&
                     <TabPane
                         tab={
@@ -56,9 +79,9 @@ const OrderPhoneTab = (props) => {
                             </>
                         }
                         key="1">
-                        <Suspense fallback={<BundleLoader />}>
+                        {/* <Suspense fallback={<BundleLoader />}>
                             {openQc ? <OpenQcTable /> : qcMain ? <ProductionOrderListById /> : null}
-                        </Suspense>
+                        </Suspense> */}
                     </TabPane>}
                 <TabPane
                     tab={
@@ -76,8 +99,8 @@ const OrderPhoneTab = (props) => {
                     }
                     key="2">
                     <Suspense fallback={<BundleLoader />}>
-                        {repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} /> :
-                            openRepair ? <OpenRepairTable /> : null}
+                        {/* {repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} /> :
+                            openRepair ? <OpenRepairTable /> : null} */}
                     </Suspense>
                 </TabPane>
                 
@@ -97,10 +120,10 @@ const OrderPhoneTab = (props) => {
                      </>
                  }
                  key="3">
-                 <Suspense fallback={<BundleLoader />}>
-                     {/* {openQa ? <OpenQcTable /> : qaMain ? <ProductionOrderListById /> : null} */}
+                 {/* <Suspense fallback={<BundleLoader />}>
+                     {openQa ? <OpenQcTable /> : qaMain ? <ProductionOrderListById /> : null}
                      <QaCardList/>
-                 </Suspense>
+                 </Suspense> */}
                  
              </TabPane>
                 {props.inspectionRequiredInd &&
@@ -125,6 +148,9 @@ const OrderPhoneTab = (props) => {
                 }
               
             </StyledTabs>
+            <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
         </div>
     )
 }

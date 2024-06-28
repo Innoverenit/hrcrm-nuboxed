@@ -2308,6 +2308,12 @@ export const ClearSearchedDataOfQc = () => (dispatch) => {
   });
 };
 
+export const ClearSearchedDataOfQa = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_DATA_QA,
+  });
+};
+
 export const inputProcessDataSearch =(orderPhoneId)=>(dispatch)=>{
   dispatch({
     type: types.INPUT_PROCESS_SEARCH_DATA_REQUEST,

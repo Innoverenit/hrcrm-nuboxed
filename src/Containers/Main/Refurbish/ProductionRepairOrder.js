@@ -30,6 +30,7 @@ function ProductionRepairOrder(props) {
     useEffect(() => {
         setPage(page + 1);
         props.getRepairOrderByUser(props.userId)
+        props.ClearSearchedDataOfProcess()
     }, [])
     const [hasMore, setHasMore] = useState(true);
 
