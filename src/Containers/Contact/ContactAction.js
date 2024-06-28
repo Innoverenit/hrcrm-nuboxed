@@ -1491,3 +1491,33 @@ export const getContactAllRecord = (orgId,type) => (dispatch) => {
     });
 };
 
+export const uploadContctList = (data,type) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_CONTACT_LIST_REQUEST });
+  axios
+    .post(`${base_url}/excel/import/Contact/${type}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      window.location.reload();
+      dispatch({
+        type: types.UPLOAD_CONTACT_LIST_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Uploaded Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+     
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPLOAD_CONTACT_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
