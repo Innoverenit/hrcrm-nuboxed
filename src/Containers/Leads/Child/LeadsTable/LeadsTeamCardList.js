@@ -203,7 +203,7 @@ const LeadsTeamCardList = (props) => {
        { !fetchingTeamLeadsHot && teamLeadsHot.length === 0 ?<NodataFoundPage />:teamLeadsHot.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-          const countryCode = item.address[0].country_alpha2_code
+          const countryCode = item.countryAlpha2Code
           const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -615,7 +615,7 @@ const LeadsTeamCardList = (props) => {
        { !fetchingTeamLeadsWarm && teamLeadsWarm.length === 0 ?<NodataFoundPage />:teamLeadsWarm.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-          const countryCode = item.address[0].country_alpha2_code
+          const countryCode = item.countryAlpha2Code
           const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -1026,7 +1026,7 @@ const LeadsTeamCardList = (props) => {
        { !fetchingTeamLeadsCold && teamLeadsCold.length === 0 ?<NodataFoundPage />:teamLeadsCold.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-          const countryCode = item.address[0].country_alpha2_code
+         const countryCode = item.countryAlpha2Code
           const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );

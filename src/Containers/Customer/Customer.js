@@ -1,6 +1,7 @@
 import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddCustomerImportModal from "../Customer/Child/AddCustomerImportModal"
 import { BundleLoader } from "../../Components/Placeholder";
 import {
     handleCustomerModal,
@@ -10,6 +11,7 @@ import {
     emptyCustomer,
     getLatestCustomer,
     getCustomerCloser,
+    handleCustomerImportModal,
     getCustomerFilterData,   
   } from "./CustomerAction";
 import CustomerMap from "./CustomerMap"
@@ -112,6 +114,7 @@ class Customer extends Component {
     return (
       <React.Fragment>
         <CustomerHeader
+        handleCustomerImportModal={this.props.handleCustomerImportModal}
             handleDropChange={this.handleDropChange}
             currentUser={this.state.currentUser}
            viewType={this.props.viewType}
@@ -196,6 +199,10 @@ class Customer extends Component {
       <FloatButton />
       <FloatButton icon={<CommentOutlined />} />
     </FloatButton.Group> */}
+     <AddCustomerImportModal
+        handleCustomerImportModal={this.props.handleCustomerImportModal}
+        addCustomerImportModal={this.props.addCustomerImportModal}
+        />
          
       </React.Fragment>
     );
@@ -205,6 +212,7 @@ class Customer extends Component {
 const mapStateToProps = ({ customer, auth }) => ({
   userId: auth.userDetails.userId,
   addCustomerModal: customer.addCustomerModal,
+  addCustomerImportModal:customer.addCustomerImportModal,
   // viewType: customer.viewType,
   teamsAccessInd:auth.userDetails.teamsAccessInd
 
@@ -214,6 +222,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       handleCustomerModal,
       getCustomerListByUserId,
+      handleCustomerImportModal,
       // setCustomerViewType,
       getCustomerPagination,
       emptyCustomer,

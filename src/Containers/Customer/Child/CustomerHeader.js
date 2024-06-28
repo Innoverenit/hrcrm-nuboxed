@@ -32,6 +32,7 @@ class CustomerHeader extends Component {
           }
           rightComponent={
             <CustomerActionRight
+            handleCustomerImportModal={this.props.handleCustomerImportModal}
             viewType={viewType}
             currentUser={this.props.currentUser} 
             handleDropChange={this.props.handleDropChange}

@@ -55,6 +55,13 @@ class CustomerActionRight extends React.Component {
           </Button>
            )} 
         </Tooltip>
+        <div className="max-sm:hidden">
+          <Button type="primary"  
+        onClick={() => this.props.handleCustomerImportModal(true)}
+        >
+            Import
+          </Button>
+          </div>
       </div>
     );
   }

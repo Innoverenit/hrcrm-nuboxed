@@ -21,6 +21,13 @@ class AccountActionRight extends React.Component {
                         )}
                     </Tooltip>
                 ) : null}
+                 <div className="max-sm:hidden">
+          <Button type="primary"  
+        //onClick={() => this.props.handleLeadsImportModal(true)}
+        >
+            Import
+          </Button>
+          </div>
             </FlexContainer>
         );
     }
