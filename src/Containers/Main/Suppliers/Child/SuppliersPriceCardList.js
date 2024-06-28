@@ -82,8 +82,8 @@ function SuppliersPriceCardList(props) {
         <BundleLoader />
       ) : (
         <div className="flex  sticky z-auto">
-          <div className="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className="flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div className="flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
               <div className="w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">
                 <FormattedMessage id="app.name" defaultMessage="Name" />
               </div>
@@ -104,13 +104,13 @@ function SuppliersPriceCardList(props) {
               </div>
               <div className="w-[5rem]"></div>
             </div>
-            <div className="overflow-x-auto h-[89vh]">
+            <div className="overflow-x-auto h-[75vh]">
               {props.supplierPriceList.length ? (
                 props.supplierPriceList.map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                   return (
-                    <div  className="flex flex-col rounded justify-between bg-white mt-1 p-1 h-8 items-center max-sm:h-[6rem] max-sm:flex-col">
+                    <div  className="flex flex-col rounded justify-between bg-white mt-1 p-1 h-8 items-center max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                       <div className="flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                         <div className="font-medium ml-2 flex items-center w-[15.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem]">
                           <div className="font-semibold text-[0.85rem]  font-poppins">{item.suppliesFullName}</div>

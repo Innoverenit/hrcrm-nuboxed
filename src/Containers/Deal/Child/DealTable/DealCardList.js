@@ -341,7 +341,7 @@ function DealCardList(props) {
                         title={
                           <FormattedMessage
                             id="app.contact"
-                            defaultMessage="Contact"
+                            defaultMessage="Tag Investor"
                           />
                         }
                       >

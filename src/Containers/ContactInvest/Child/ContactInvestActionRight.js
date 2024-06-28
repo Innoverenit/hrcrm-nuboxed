@@ -8,6 +8,7 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { FormattedMessage } from "react-intl";
 import {handleUploadContactInvestModal} from "../ContactInvestAction";
 import UploadContactInvest from "./UploadContactInvest";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 class ContactInvestActionRight extends React.Component {
 
@@ -47,7 +48,19 @@ class ContactInvestActionRight extends React.Component {
             style={{fontSize: "x-large"}}/>
          </a>
          </Tooltip>
-       )}
+       )} {user.imInd === true  && user.investorContactCreateInd === true &&  (
+        <Tooltip placement="left" title="Create">
+          <Button 
+           type="primary"
+         onClick={() => handleContactInvestModal(true)}
+        >
+        <DataSaverOnIcon/> <FormattedMessage
+                        id="app.add"
+                        defaultMessage="Add"
+                      />
+          </Button>
+        </Tooltip>
+        )}
         {user.userType !== "USER" && user.department !== "Partner" && ( 
         <Button
           type="primary"
@@ -61,19 +74,7 @@ class ContactInvestActionRight extends React.Component {
           
         </Button>
         )}
-        {user.imInd === true  && user.investorContactCreateInd === true &&  (
-        <Tooltip placement="left" title="Create">
-          <Button 
-           type="primary"
-         onClick={() => handleContactInvestModal(true)}
-        >
-         <FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
-          </Button>
-        </Tooltip>
-        )}
+       
         <Tooltip placement="left" title="Create">
         <Button
           type="primary"

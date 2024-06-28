@@ -9,6 +9,7 @@ import { StyledSelect } from "../../../Components/UI/Antd";
 import { FormattedMessage } from "react-intl";
 import {handleUploadPitchModal} from "../PitchAction";
 import UploadPitch from "./UploadPitch";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const Option = StyledSelect.Option;
 
 class PitchActionRight extends React.Component {
@@ -50,14 +51,13 @@ class PitchActionRight extends React.Component {
   onMouseOver={(e) => (e.target.style.backgroundColor = 'rgba(142, 202, 154, 0.95)')}
   onMouseOut={(e) => (e.target.style.backgroundColor = 'rgba(255, 113, 88, 0.75)')}
 >
-  <FormattedMessage id="app.add" defaultMessage="Add" />
+<DataSaverOnIcon/><FormattedMessage id="app.add" defaultMessage="Add" />
 </Button>
 <Tooltip placement="left" title="Create">
         <Button
           type="primary"
           ghost
-          onClick={() => this.props.handleUploadPitchModal(true)}
-        >
+          onClick={() => this.props.handleUploadPitchModal(true)}>
           Upload
         </Button>
       </Tooltip>
