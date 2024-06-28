@@ -109,58 +109,9 @@ getContactListByInvestorId(this.props.investorDetails.investorId);
 
     return (
       <>
-        <TabsWrapper>
+        <TabsWrapper style={{height:"85vh"}}>
           <StyledTabs defaultActiveKey="1" onChange={this.handleTabChange}>
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <LightbulbIcon  style={{fontSize:"1.1rem"}}/>
-                    <span class=" ml-1">
-                      <FormattedMessage
-                        id="app.opportunity"
-                        defaultMessage="Opportunity"
-                      />
-                    </span>
-                  </span>
-                  {activeKey === "1" && (
-                    <>
-                      <Tooltip //title="Create"
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
-                      >
-                        {this.props.user.opportunityCreateInd === true && (
-                          <PlusOutlined
-                            type="plus"
-                            //tooltipTitle="Create"
-                            tooltiptitle={
-                              <FormattedMessage
-                                id="app.Create"
-                                defaultMessage="Create"
-                              />
-                            }
-                            onClick={() => {
-                              handleCustomerOpportunityModal(true);
-                            }}
-                            size="0.875em"
-                          />
-                        )}
-                      </Tooltip>
-                    </>
-                  )}
-                </>
-              }
-              key="1"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <LinkedOpportunity />
-              </Suspense>
-            </TabPane> */}
+           
 
             <TabPane
               tab={
