@@ -92,7 +92,7 @@ class LocationCellTab extends Component {
       <>
         <div className="flex flex-no-wrap">
           <div className="w-full">
-            <TabsWrapper>
+            <TabsWrapper  style={ {height: "81vh"}}>
               <StyledTabs defaultActiveKey="1" type="card" onChange={this.handleTabChange}     forceRender={true}>
                 <TabPane
                   tab={

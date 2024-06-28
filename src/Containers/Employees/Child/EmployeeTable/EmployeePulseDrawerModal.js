@@ -56,7 +56,7 @@ class EmployeePulseDrawerModal extends Component {
           <EmployeeTreeMap
           employeeTreeMap={this.props.employeeTreeMap}
           /> */}
-           <TabsWrapper>
+           <TabsWrapper style={{ height:"81vh" }}>
           <StyledTabs defaultActiveKey="1" onChange={this.handleTabChange}>
             
             <TabPane

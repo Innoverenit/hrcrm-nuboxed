@@ -4,12 +4,17 @@
  const base_url2 = "https://develop.tekorero.com/Erp";
  const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT"
 
+//CH
+//  const login_url = "http://Cloudhubdev-env.eba-3cve22xy.us-east-1.elasticbeanstalk.com";
+//  const base_url = "http://Cloudhubdev-env.eba-3cve22xy.us-east-1.elasticbeanstalk.com/api/v1";
+//  const base_url2 = "http://Cloudhubdev-env.eba-3cve22xy.us-east-1.elasticbeanstalk.com/Erp";
+//  const asses_url = "http://Cloudhubdev-env.eba-3cve22xy.us-east-1.elasticbeanstalk.com/Assessment-0.0.1-SNAPSHOT"
+
 //Nubox
 // const login_url = "https://hrnuboxed.azurewebsites.net";
 // const base_url = "https://hrnuboxed.azurewebsites.net/api/v1";
 // const base_url2 = "https://erpnuboxed.azurewebsites.net";
 // const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT"
-
 
 // // CT
 // const login_url = "https://crm.celltechnologies.nl";
