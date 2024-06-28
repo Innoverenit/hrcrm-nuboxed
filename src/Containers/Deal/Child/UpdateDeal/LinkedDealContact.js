@@ -6,7 +6,7 @@ import { getDealsContactList,setDealsContactValue  } from "../../DealAction"
 import {getCurrency} from "../../../Auth/AuthAction";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import moment from "moment";
+import dayjs from "dayjs";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Tooltip,Button ,Input} from "antd";
 import { DatePicker } from "antd";
@@ -43,7 +43,7 @@ function LinkedDealContact(props) {
   };
 
   const handleUpdateAmount = (item) => {
-    const formattedDate = selectedDate ? moment(selectedDate).toISOString() : null;
+    const formattedDate = selectedDate ? dayjs(selectedDate).toISOString() : null;
     const data = {
       contactId: item.contactId,
       invOpportunityId: props.invOpportunityId,
@@ -89,21 +89,21 @@ if (props.fetchingDealsContactList) {
     return <BundleLoader />;
   }
   
-  const currentYear = moment().format('YYYY');
+  const currentYear = dayjs().format('YYYY');
 
   return (
     
     <>
-      <div className=' flex justify-end sticky  z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+      <div className=' flex  sticky  z-auto'>
+        <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" md:w-[10.1rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"
             /></div>
             <div className="w-[8.8rem]"><FormattedMessage
               id="app.tagCustomer"
-              defaultMessage="Tag Customer"
+              defaultMessage="Tag Investor"
             />
             </div>
             <div className="w-[3.8rem]"><FormattedMessage
@@ -131,7 +131,7 @@ if (props.fetchingDealsContactList) {
             <div className="w-[2.8rem]">
             </div>
           </div>
-          <div class="overflow-x-auto h-[64vh]">
+          <div class="overflow-x-auto h-[77vh]">
             {/* <InfiniteScroll
               dataLength={props.dealsContactList.length}
               next={handleLoadMore}
@@ -144,7 +144,7 @@ if (props.fetchingDealsContactList) {
                   {props.dealsContactList.map((item) => {
                     return (
                       <>
-                        <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3"
+                        <div className="flex rounded justify-between mt-[0.5rem] bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
 
                         >
                           <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
@@ -209,8 +209,8 @@ invOpportunityId={props.currentItem.invOpportunityId}
                 
                          <DatePicker
                             style={{marginLeft:"0.5rem"}}
-                          // defaultValue={moment(item.borrowDate)}
-  value={selectedDate ? moment(selectedDate) : null} 
+                          // defaultValue={dayjs(item.borrowDate)}
+  value={selectedDate ? dayjs(selectedDate) : null} 
   onChange={(date, dateString) => setSelectedDate(dateString)}
   picker="date" 
 />
@@ -223,12 +223,12 @@ invOpportunityId={props.currentItem.invOpportunityId}
                     <div className="flex ml-2 w-[7rem]">{item.repayMonth}</div>
                     <div className="flex ml-2 w-[4rem]">{item.interest}</div>
              
-                    <div className="flex ml-2 w-[8rem]">{item.borrowDate ? moment(item.borrowDate).format("ll") : ""}</div>
+                    <div className="flex ml-2 w-[8rem]">{item.borrowDate ? dayjs(item.borrowDate).format("ll") : ""}</div>
                     <BorderColorIcon
                       tooltipTitle="Edit"
                       iconType="edit"
                       onClick={() => handleEditAmount(item.contactId, item.amount,item.currency,item.repayMonth,item.interest,item.borrowDate)}
-                      style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem', }}
+                      className=" text-[tomato] flex justify-center justify-items-center !text-icon"
                     />
                     
                   </div>

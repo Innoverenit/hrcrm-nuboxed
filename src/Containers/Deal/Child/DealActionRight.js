@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { withRouter } from "react-router-dom";
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip, } from "antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 class DealActionRight extends React.Component {
   render() {
@@ -16,6 +17,24 @@ class DealActionRight extends React.Component {
     } = this.props;
     return (
       <div class=" flex items-center">
+        <Tooltip placement={"left"} title={<FormattedMessage
+                id="app.create"
+                defaultMessage="Create"
+              />}>
+           {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
+           {viewType === "table" && user.imInd === true  && user.opportunityCreateInd ===true && (
+          <Button
+            type="primary"
+            // ghost
+            onClick={() => handleDealModal(true)}
+          >
+              <DataSaverOnIcon/> <FormattedMessage
+                        id="app.add"
+                        defaultMessage="Add"
+                      />
+          </Button>
+            )}  
+        </Tooltip>
          {/* {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.opportunityFullListInd===true &&( */}
   {/* <OpportunityShareForm/> */}
          {/* )} */}
@@ -33,24 +52,7 @@ class DealActionRight extends React.Component {
               />
         </Button>
         </div>
-        <Tooltip placement={"left"} title={<FormattedMessage
-                id="app.create"
-                defaultMessage="Create"
-              />}>
-           {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
-           {viewType === "table" && user.imInd === true  && user.opportunityCreateInd ===true && (
-          <Button
-            type="primary"
-            // ghost
-            onClick={() => handleDealModal(true)}
-          >
-               <FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
-          </Button>
-            )}  
-        </Tooltip>
+        
       </div>
     );
   }

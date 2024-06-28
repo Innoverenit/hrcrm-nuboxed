@@ -7,6 +7,7 @@ import { StyledSelect } from "../../../Components/UI/Antd";
 import { FormattedMessage } from "react-intl";
 import {handleUploadInvestorModal} from "../InvestorAction";
 import UploadInvestor from "./UploadInvestor";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 const Option = StyledSelect.Option;
 
@@ -26,7 +27,7 @@ function InvestorActionRight (props) {
             type="primary"
             onClick={() => handleInvestorModal(true)}
           >
-        <FormattedMessage
+       <DataSaverOnIcon/> <FormattedMessage
                         id="app.add"
                         defaultMessage="Add"
                       />

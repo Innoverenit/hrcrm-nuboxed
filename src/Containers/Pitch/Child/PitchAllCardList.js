@@ -84,7 +84,7 @@ const PitchAllCardList = (props) => {
                   defaultMessage="name"
                 /></div>
         <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className=" w-[5.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="  w-[5.3rem]  max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.mobile#"
                   defaultMessage="mobile#"
                 /></div>
