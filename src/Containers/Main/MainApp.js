@@ -4,6 +4,8 @@ import HelpIcon from '@mui/icons-material/Help';
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
 
+import { base_url } from "../../Config/Auth";
+
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
@@ -36,6 +38,7 @@ import AppErrorBoundary from "../../Helpers/ErrorBoundary/AppErrorBoundary";
 import { getPresentNotifications } from "../Notification/NotificationAction";
 import { MultiAvatar } from "../../Components/UI/Elements";
 import AddActionModal from "./AddActionModal";
+import LanguageSelector from "../Translate/LanguageSelector";
 import FAQPage from "./FAQ/FAQPage";
 import DashboardPage from "../DashboardPage/DashboardPage";
 import DataRoom from "../Data Room/DataRoom";
@@ -311,6 +314,33 @@ function MainApp(props) {
     }, 2000);
   };
 
+  const translateText = async (text, targetLanguage) => {
+    // const url = `http://marketplace.eu-west-3.elasticbeanstalk.com/language/translate/word`;
+    const url = `${base_url}/language/translate/word`;
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${props.token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        q: text,
+        target: targetLanguage,
+      }),
+    });
+
+
+    const data = await response.json();
+    const result = data.map((translation) => translation.translatedText);
+    console.log("result", result)
+    if (data) {
+      return data.map((translation) => translation.translatedText);
+    } else {
+      throw new Error('Translation failed');
+    }
+  };
+
   const handleCancel = () => {
     console.log("Clicked cancel button");
     setVisible(false);
@@ -477,6 +507,15 @@ function MainApp(props) {
 
             }}>
               <Header>
+              <div class="max-xl:text-[0.75rem] max-lg:text-[0.5rem]">
+                  <LanguageSelector
+                    translateText={translateText}
+                    selectedLanguage={selectedLanguage}
+                    setSelectedLanguage={setSelectedLanguage}
+                    //onLanguageChange={handleLanguageChange}
+                    supportedLanguages={supportedLanguages}
+                  />
+                </div> 
                 <div class="flex justify-between items-center">
                   <div class="xl:hidden ml-4 "><Navmenu2 selectedLanguage={selectedLanguage} /></div>
 
