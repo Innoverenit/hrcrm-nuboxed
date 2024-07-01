@@ -6,6 +6,7 @@ import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import { Tooltip, Button, Select } from "antd";
 import OnboardingProduction from "../Child/OnboardingProduction.js"
 import dayjs from "dayjs";
+
 import { FormattedMessage } from "react-intl";
 import ReactToPrint from "react-to-print";
 import ButtonGroup from "antd/lib/button/button-group";
@@ -13,6 +14,7 @@ import {updateProStatus,updateProductionPauseStatus} from "../ProductionAction"
 import {  PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import InpectProductionToggle from "./InpectProductionToggle.js";
+import { base_url2 } from "../../../Config/Auth";
 import MoveToggleProduction from "../Child/MoveToggleProduction.js"
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage.js";
 
@@ -79,7 +81,7 @@ function ProductionTableView(props) {
         try {
           // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
           // setCustomers(response.data);
-          const apiEndpoint = `https://erp.celltechnologies.nl/roomrack/exit/roomAndRackDetails/${props.orgId}`;
+          const apiEndpoint = `${base_url2}/roomrack/exit/roomAndRackDetails/${props.orgId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',
             headers: {
@@ -114,7 +116,7 @@ function ProductionTableView(props) {
         try {
           // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
           // setContacts(response.data);
-          const apiEndpoint = `https://erp.celltechnologies.nl/roomrack/${roomRackId}`;
+          const apiEndpoint = `${base_url2}/roomrack/${roomRackId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',
             headers: {
