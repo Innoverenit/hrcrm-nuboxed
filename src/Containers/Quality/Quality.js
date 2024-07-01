@@ -6,18 +6,26 @@ import HourglassTopIcon from '@mui/icons-material/HourglassTop';
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import { Tooltip, Button, Popconfirm, Switch } from "antd";
 import { bindActionCreators } from "redux";
+import AddQualityManufactureDrawerModal from "../Quality/AddQualityManufactureDrawerModal"
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getProductionQualityData } from "../Main/Inventory/InventoryAction";
+import { getProductionQualityData,updateQualityStatus,handleQualityManufactureModal } from "../Main/Inventory/InventoryAction";
 import MoveToggleQuality from "../Quality/MoveToggleQuality"
 import dayjs from "dayjs";
 
 export const Quality = (props) => {
   const [page, setPage] = useState(0);
+  const [currentManufacture,setCurrentManufacture] = useState("");
     const [hasMore, setHasMore] = useState(true);
     useEffect(() => {
       props.getProductionQualityData(props.locationId, page);
       setPage(page + 1);
   }, []);
+
+
+
+  const handleSetCurrentManufacture=(item)=>{
+    setCurrentManufacture(item)
+  }
 
   const handleLoadMore = () => {
     const proPag = props.productionQualityData && props.productionQualityData.length && props.productionQualityData[0].pageCount
@@ -57,6 +65,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
   );
 }
   return (
+    <>
     <div className='flex sticky z-auto'>
             <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className="flex w-[99%] p-1 bg-transparent font-bold sticky  z-10">
@@ -82,7 +91,13 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                         <div key={index}>
                             <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                 <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
-                                    <div className="flex justify-between text-sm  font-semibold font-poppins">
+                                    <div 
+                                    className="flex justify-between text-sm  font-semibold font-poppins"
+                                    onClick={() => {
+                                        props.handleQualityManufactureModal(true);
+                                    handleSetCurrentManufacture(item);
+                                      }}
+                                    >
                                         {item.manufactureId}
                                     </div>
                                 </div>
@@ -104,21 +119,61 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                      
                                                         <ButtonGroup>
-                                                          
+                                                        {item.qualityStatus === "To Start" ||item.qualityStatus===null&& (
                                                                 <StatusIcon
                                                                     type="In Progress"
-                                                                    tooltip="In Progress"
+                                                                    tooltip="To Start"
+                                                                    role={item.qualityStatus}
                                                                     iconType={<HourglassTopIcon className=' !text-icon text-orange-600'/>}
+                                                                    // onClick={() => {
+                                                                    //     props.updateProStatus({
+                                                                    //         type: "In Progress",
+                                                                    //     }, item.productionProductId);
+                                                                    // }}
+                                                                    onClick={() => {
+                                                                        props.updateQualityStatus(item.productionProductId,"In Progress")
+                                                                       
+                                                                       
+                                                                    }}
                                                                    
                                                                 />
-                                                               
+                                                        )}
+                                                        {item.qualityStatus === "In Progress" ?
                                                                 <StatusIcon
                                                                     type="Complete"
+                                                                    role={item.qualityStatus}
                                                                     
                                                                     iconType={<HourglassBottomIcon  className=' !text-icon text-orange-600'/>}
-                                                                    tooltip="Complete"
+                                                                    tooltip={item.qualityStatus}
+                                                                    //  onClick={() => {
+                                                                    //     props.updatePQualityStatus({
+                                                                    //         type: "In Progress",
+                                                                    //     }, 
+                                                                    //     item.productionProductId);
+                                                                    // }}
+                                                                    onClick={() => {
+                                                                        props.updateQualityStatus(item.productionProductId,"Complete")
+                                                                       
+                                                                       
+                                                                    }}
                                                                    
-                                                                /> 
+                                                                /> :null}
+                                                                 {item.qualityStatus === "Complete" ?
+                                                                <StatusIcon
+                                                                    type="Complete"
+                                                                    role={item.qualityStatus}
+                                                                    
+                                                                    iconType={<HourglassBottomIcon  className=' !text-icon text-blue-600'/>}
+                                                                    tooltip={item.qualityStatus}
+                                                                    //  onClick={() => {
+                                                                    //     props.updatePQualityStatus({
+                                                                    //         type: "In Progress",
+                                                                    //     }, 
+                                                                    //     item.productionProductId);
+                                                                    // }}
+                                                                 
+                                                                   
+                                                                /> :null}
                                                         </ButtonGroup>
                                                       
 
@@ -171,6 +226,12 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                 </InfiniteScroll>
             </div>
         </div>
+        <AddQualityManufactureDrawerModal
+        currentManufacture={currentManufacture}
+        handleQualityManufactureModal={props.handleQualityManufactureModal}
+        addQualityManufactureDrawerModal={props.addQualityManufactureDrawerModal}
+        />
+        </>
   )
 }
 
@@ -180,6 +241,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
 // })
 const mapStateToProps = ({ inventory, auth,production }) => ({
   locationId: auth.userDetails.locationId,
+  addQualityManufactureDrawerModal:inventory.addQualityManufactureDrawerModal,
   fetchingProductionQualityData:inventory.fetchingProductionQualityData,
    productionQualityData:inventory.productionQualityData,
 
@@ -187,7 +249,9 @@ const mapStateToProps = ({ inventory, auth,production }) => ({
 const mapDispatchToProps = (dispatch) =>
 bindActionCreators(
   {
-    getProductionQualityData
+    getProductionQualityData,
+    handleQualityManufactureModal,
+    updateQualityStatus
   },
   dispatch
 );

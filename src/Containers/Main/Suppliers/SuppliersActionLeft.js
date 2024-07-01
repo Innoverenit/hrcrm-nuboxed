@@ -148,6 +148,26 @@ const {
                     </span></Badge>
                 </Tooltip>
 
+
+                <Tooltip title="Not Approved">
+                <Badge
+          size="small"
+          //count={(props.viewType === "not approved" && props.allCountSupplier.AllSupplierCount) || 0}
+          overflowCount={999}
+        >
+                    <span class=" mr-1 text-sm cursor-pointer"
+                        onClick={() => setSuppliersViewType("all")}
+                        style={{
+                            color: viewType === "not approved" && "#1890ff",
+                        }}
+                    >
+                        {/* <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                            <div className="text-white">A</div></Avatar> */}
+
+                    </span>
+                    </Badge>
+                </Tooltip>
+
                 <Tooltip title="ALL">
                 <Badge
           size="small"

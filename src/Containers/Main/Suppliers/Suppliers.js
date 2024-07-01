@@ -9,6 +9,7 @@ import SuppliersDeletedCardList from "./Child/SuppliersDeletedCardList";
 
 const SuppliersCardList =lazy(()=>import("./Child/SuppliersCardList"));
 const AllSuppliersCardList=lazy(()=>import("./Child/AllSuppliersCardList"));
+const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalList"))
 class Suppliers extends Component {
   state = { currentData: "" };
 
@@ -33,6 +34,9 @@ class Suppliers extends Component {
           ) 
           : this.props.viewType==="all" ? (
             <AllSuppliersCardList/>
+          )
+          : this.props.viewType==="not approved" ? (
+            <SuppliersNotApprovalList/>
           )
           : this.props.viewType==="delete" ? (
             <SuppliersDeletedCardList/>
