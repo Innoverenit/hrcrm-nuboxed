@@ -1027,7 +1027,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
   </Link>
 </Menu.Item>
 {/* {(user.supplierAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && ( */}
-{( user.erpInd === true &&
+{/* {( user.erpInd === true &&
 <Menu.Item key="/vendor" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/vendor' ? 'tomato' : '#4bc076'}}>
   <Link to="/vendor" onClick={() => handleSelect('/vendor')}>
@@ -1039,7 +1039,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
     </span>
   </Link>
 </Menu.Item>
-)} 
+)}  */} 
+{/* if any body want to use reuse this component */}
 
 
   {(user.procurementAccessInd === true && user.erpInd === true 
