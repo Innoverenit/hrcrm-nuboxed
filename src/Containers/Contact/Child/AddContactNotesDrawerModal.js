@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import LinkedContactNotes from "../Child/ContactDetail/ContactTab/LinkedContactNotes";
 import { StyledDrawer } from "../../../Components/UI/Antd";
+import MainNotes from "../../CustomNote/MainNotes";
 
 
 class AddContactNotesDrawerModal extends Component {
@@ -24,8 +25,12 @@ class AddContactNotesDrawerModal extends Component {
           onClose={() => this.props.handleContactNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <LinkedContactNotes contactData={this.props.contactData} 
+            {/* <LinkedContactNotes contactData={this.props.contactData} 
             contactId={this.props.contactData.contactId} 
+            /> */}
+             <MainNotes
+             type="contact"
+             uniqueId={this.props.contactData.contactId}
             />
           </Suspense>
         </StyledDrawer>
