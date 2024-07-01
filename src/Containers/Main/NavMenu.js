@@ -45,7 +45,64 @@ const SubMenu = Menu.SubMenu;
 function NavMenu(props) {
   const { user } = props;
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   console.log("abv", props.selectedLanguage)
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          'Dashboard',
+            'Planner',
+            'Calls',
+            'Task',
+            'Events',
+            'Reports',
+            'Leads',
+            'Quotation',
+            'Contact',
+            'Prospect',
+            'Pitch',
+            'Data Room',
+            'Deals',
+            'Contact Invest',
+            'Investor',
+            'Club',
+            'Order',
+            'Customer',
+            'Catalogue',
+            'Quality',
+            'Procure',
+            'Material',
+            'Suppliers',
+            'Trade',
+            'Vendor',
+            'Procurement',
+            'Inventory',
+            'Shipper',
+            'Leaves',
+            'Mileage',
+            'Expense',
+            'Holiday',
+            'Teams',
+            'Users',
+            
+             
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   // useEffect(() => {
   //   const fetchMenuTranslations = async () => {
   //     try {
@@ -82,6 +139,7 @@ function NavMenu(props) {
 
   //   fetchMenuTranslations();
   // }, [props.selectedLanguage]);
+
    const [selectedMenuItem, setSelectedMenuItem] = useState("/dashboard");
   // const [selectedMenuItem, setSelectedMenuItem] = useState(user.dashboardRegionalInd ? "/dashboardRegional" : "/dashboard");
 
@@ -133,11 +191,11 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
     />
 
     <span class="text-white text-ls ml-1">
-      <FormattedMessage
+      {/* <FormattedMessage
           id="app.dashboard"
           defaultMessage="Dashboard"
-        />
-      {/* {translatedMenuItems[0]} */}
+        /> */}
+      {translatedMenuItems[0]}
       {/* Dashboard */}
       {/* RecruitProBoard */}
     </span>
@@ -158,9 +216,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               />
 
               <span class="text-white text-ls ml-1">
-                <FormattedMessage id="app.planner" defaultMessage="Planner" />
+                {/* <FormattedMessage id="app.planner" defaultMessage="Planner" /> */}
                 {/* Planner */}
-                {/* {translatedMenuItems[1]} */}
+                {translatedMenuItems[1]}
               </span>
             </Link>
           </Menu.Item>
@@ -178,9 +236,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-                <FormattedMessage id="app.calls" defaultMessage="Calls" />
+                {/* <FormattedMessage id="app.calls" defaultMessage="Calls" /> */}
                 {/* Calls */}
-                {/* {translatedMenuItems[2]} */}
+                {translatedMenuItems[2]}
               </span>
               &nbsp;&nbsp;&nbsp;
               <Badge
