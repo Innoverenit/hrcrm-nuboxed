@@ -515,6 +515,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </Link>
           </Menu.Item>
         )}
+          {(user.imInd === true &&
          <Menu.Item key="/club" style={{ height: "1.45rem", 
           color: selectedMenuItem === '/club' ? 'tomato' : '#4bc076' }}>
             <Link to="/club" onClick={() => handleSelect('/club')}>
@@ -534,6 +535,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               </span>
             </Link>
           </Menu.Item>
+          )}
         {/* {user.userType !== "USER" && user.department !== "Customer" &&user.department == "VENDOR" && ( */}
 
 
@@ -948,7 +950,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Link>
         </Menu.Item>
         )} 
-
+ {( user.erpInd === true &&
 <Menu.Item key="/quality" style={{ height: "1.45rem", 
         color: selectedMenuItem === '/quality' ? 'tomato' : '#4bc076' }}>
           <Link to="/quality" onClick={() => handleSelect('/quality')}>
@@ -962,9 +964,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </span>
           </Link>
         </Menu.Item>
-        
+ )}
 
-<Menu.Item key="/procre" style={{ height: "1.45rem", 
+{/* <Menu.Item key="/procre" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
   <Link to="/procre" onClick={() => handleSelect('/procre')}>
     <LocalMallIcon
@@ -974,7 +976,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
       Procure
     </span>
   </Link>
-</Menu.Item>
+</Menu.Item> */}
 
         {(user.materialAccessInd === true && user.erpInd === true 
         // || user.role === "ADMIN" && user.inventoryInd === true
@@ -1025,7 +1027,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
   </Link>
 </Menu.Item>
 {/* {(user.supplierAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && ( */}
-
+{( user.erpInd === true &&
 <Menu.Item key="/vendor" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/vendor' ? 'tomato' : '#4bc076'}}>
   <Link to="/vendor" onClick={() => handleSelect('/vendor')}>
@@ -1037,7 +1039,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
     </span>
   </Link>
 </Menu.Item>
- {/* )}  */}
+)} 
 
 
   {(user.procurementAccessInd === true && user.erpInd === true 

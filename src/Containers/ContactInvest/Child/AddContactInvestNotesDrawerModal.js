@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import LinkedContactInvestNotes from "./ContactInvestDetail/ContactInvestDetailTab/ContactInvestNotes/LinkedContactInvestNotes";
+import MainNotes from "../../CustomNote/MainNotes";
 
 class AddPitchNotesDrawerModal extends Component {
   render() {
@@ -18,8 +19,12 @@ class AddPitchNotesDrawerModal extends Component {
           onClose={() => this.props.handleContactInvestNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <LinkedContactInvestNotes contactiData={this.props.contactiData} 
+            {/* <LinkedContactInvestNotes contactiData={this.props.contactiData} 
             contactId={this.props.contactiData.contactId} 
+            /> */}
+             <MainNotes
+             type="contactInvest"
+             uniqueId={this.props.contactiData.contactId}
             />
           </Suspense>
         </StyledDrawer>
