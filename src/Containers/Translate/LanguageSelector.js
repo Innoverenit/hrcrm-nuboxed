@@ -172,13 +172,19 @@ function LanguageSelector({ onLanguageChange,supportedLanguages,selectedLanguage
   return (
     <div>
       <select class="notranslate"
-      style={{backgroundColor:"#DFDFDF"}} value={selectedLanguage} onChange={onLanguageChange}>
-        {supportedLanguages.map((lang) => (
+      style={{backgroundColor:"#DFDFDF",width:"7em"}} value={selectedLanguage} onChange={onLanguageChange}>
+        {/* {supportedLanguages.map((lang) => (
           <option key={lang.language} value={lang.language}>
             {lang.language}
-            {/* {getName(lang.language)} */}
+           
           </option>
-        ))}
+        ))} */}
+        <option value="English">EN</option>
+        <option value="Dutch">NL</option>
+        <option value="German">DE</option>
+        <option value="French">FR</option>
+        <option value="Spanish">ES</option>
+        <option value="Italin">IT</option>
       </select>
     </div>
   );

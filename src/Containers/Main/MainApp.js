@@ -4,7 +4,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
 
-import { base_url } from "../../Config/Auth";
+import { base_url,login_url } from "../../Config/Auth";
 
 import {
   handleCandidateResumeModal,
@@ -263,7 +263,7 @@ function MainApp(props) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [selectedLanguage, setSelectedLanguage] = useState('English');
 
   const [supportedLanguages, setSupportedLanguages] = useState([]);
 
@@ -282,6 +282,31 @@ function MainApp(props) {
 
 
 
+
+  // useEffect(() => {
+  //   const fetchMenuTranslations = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const itemsToTranslate = [
+  //         'Dashboard',
+  //         'Planner',
+        
+  //       ];
+
+  //       const translations = await translateText(itemsToTranslate, selectedLanguage);
+  //       setTranslatedMenuItems(translations);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.error('Error translating menu items:', error);
+  //     }
+  //   };
+
+  //   fetchMenuTranslations();
+  // }, [selectedLanguage]);
+
+
+
   useEffect(() => {
     const fetchSupportedLanguages = async () => {
       try {
@@ -295,8 +320,25 @@ function MainApp(props) {
     fetchSupportedLanguages();
   }, []);
 
-  const handleLanguageChange = (language) => {
-    setSelectedLanguage(language);
+  // const handleLanguageChange = (language) => {
+  //   setSelectedLanguage(language);
+  // };
+
+
+
+  const handleLanguageChange = (event) => {
+    // const language = event.target.value;
+    setSelectedLanguage(event.target.value);
+    // {
+    //   props.userType === "serviceProvider" ?
+    //     props.updateServiceLanguage(props.contactId, {
+    //       language: event.target.value,
+    //     }) :
+    //     props.updateCustomerLanguage(props.customerId, {
+    //       language: event.target.value,
+    //     });
+    // }
+    // onLanguageChange(language);
   };
 
   const handleRowData = (data) => {
@@ -316,7 +358,7 @@ function MainApp(props) {
 
   const translateText = async (text, targetLanguage) => {
     // const url = `http://marketplace.eu-west-3.elasticbeanstalk.com/language/translate/word`;
-    const url = `${base_url}/language/translate/word`;
+    const url = `${login_url}/words/convertWord`;
 
     const response = await fetch(url, {
       method: 'POST',
@@ -496,6 +538,7 @@ function MainApp(props) {
                 toggleCollapsed={toggle}
                 toggleTheme={toggleTheme}
                 theme={theme}
+                translateText={translateText}
                 selectedLanguage={selectedLanguage}
               />
             </Sider>
@@ -512,7 +555,7 @@ function MainApp(props) {
                     translateText={translateText}
                     selectedLanguage={selectedLanguage}
                     setSelectedLanguage={setSelectedLanguage}
-                    //onLanguageChange={handleLanguageChange}
+                    onLanguageChange={handleLanguageChange}
                     supportedLanguages={supportedLanguages}
                   />
                 </div> 
@@ -723,7 +766,7 @@ function MainApp(props) {
                     {props.roleType}
                   </div>
                   {/* <Subscription /> */}
-                  <div class=" flex items-center h-full self-start "
+                  {/* <div class=" flex items-center h-full self-start "
                   >
                     <div class=" mr-2 mt-1 max-sm:hidden " >
                       <Select
@@ -739,7 +782,7 @@ function MainApp(props) {
                         <Option value="Italian">IT</Option>
                       </Select>
                     </div>
-                  </div>
+                  </div> */}
                   <div class=" flex items-center h-0">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
                       <SettingsDropdown />
@@ -1089,6 +1132,7 @@ const mapStateToProps = ({
   suscrptionData: subscription.suscrptionData,
   user: auth.userDetails,
   actionCount: auth.actionCount,
+  token: auth.token,
   clickTagInDrawr: refurbish.clickTagInDrawr,
   createSubscriptiondrawer: subscription.createSubscriptiondrawer
 });
