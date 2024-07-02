@@ -4,6 +4,7 @@ import { FormattedMessage } from "react-intl";
 
 import { Tooltip, Button, Popconfirm, Switch } from "antd";
 import { bindActionCreators } from "redux";
+import QualityManufactureToggle from "./QualityManufactureToggle"
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getQualityManufactureData, } from "../Main/Inventory/InventoryAction";
@@ -77,25 +78,32 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
             height={"85vh"}
             endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           > */}
-                {/* {props.productionQualityData.map((item, index) => {
+                {props.qualityManufactureData.map((item, index) => {
                     return (
                         <div key={index}>
                             <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                 <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
                                     <div 
                                     className="flex justify-between text-sm  font-semibold font-poppins"
-                                    onClick={() => {
-                                        props.handleQualityManufactureModal(true);
-                                        // handleSetCurrentCustomer(item);
-                                      }}
+                                   
                                     >
-                                        {item.manufactureId}
+                                        {item.qualityName}
                                     </div>
                                 </div>
 
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                                     <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
-                                   {item.categoryName} {item.subCategoryName} {item.attributeName} {item.subAttributeName}
+                                   {item.steps} 
+                                    </div>
+                                </div>
+
+
+                                <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                    <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
+                                  <QualityManufactureToggle
+                                  item={item}
+                                  currentManufacture={props.currentManufacture}
+                                  />
                                     </div>
                                 </div>
 
@@ -107,7 +115,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                             </div>
                         </div>
                     );
-                })} */}
+                })} 
                 {/* </InfiniteScroll> */}
             </div>
         </div>

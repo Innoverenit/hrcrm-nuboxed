@@ -2130,3 +2130,42 @@ export const updateQualityStatus = (productionProductId,status) => (dispatch) =>
       });
     });
 };
+
+
+
+
+
+
+
+
+export const linkManufactureToggle = (data) => (
+  dispatch) => {
+  // debugger;
+  dispatch({
+    type: types.LINK_MANUFACTURE_STATUS_REQUEST,
+  });
+  axios
+  .put(
+    `${base_url2}/qualityCheckBuilder/qualityCheck/update`,data, 
+    {
+    
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.LINK_MANUFACTURE_STATUS_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_MANUFACTURE_STATUS_FAILURE,
+        payload: err,
+      });
+      // cb && cb("failuer");
+    });
+};
