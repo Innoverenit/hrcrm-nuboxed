@@ -453,7 +453,8 @@ export const suppliersReducer = (state = initialState, action) => {
     case types.ADD_SUPPLIERS_SUCCESS:
       return {
         ...state, addingSuppliers: false, addSuppliersModal: false,
-        supplierList: [action.payload, ...state.supplierList]
+        supplierList: [action.payload, ...state.supplierList].filter(supplier => supplier.approvedInd !== false)
+        //supplierList: [action.payload, ...state.supplierList]
       };
     case types.ADD_SUPPLIERS_FAILURE:
       return {
