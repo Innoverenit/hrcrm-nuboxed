@@ -23,7 +23,12 @@ const UpdateLeadsModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <UpdateLeadsForm leadsId={props.item.leadsId} />{" "}
+          <UpdateLeadsForm leadsId={props.item.leadsId} 
+          
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+         translatedMenuItems={props.translatedMenuItems}
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>
