@@ -832,8 +832,7 @@ function MainApp(props) {
                       <Route exact path="/procre" component={Procre} />
                       {/* <Route exact path="/supplier" component={Supplier} /> */}
                       <Route exact path="/order" component={Order} />
-                      <Route exact path="/account" component={Account} />
-                      <Route exact path="/location" component={Location} />
+                      <Route exact path="/account" component={Account} />                   
                       <Route exact path="/plant" component={Plant} />
                       <Route exact path="/plant/:plantId" component={PlantDetail} />
                       <Route exact path="/suppliers" component={Suppliers} />
@@ -841,9 +840,51 @@ function MainApp(props) {
                       <Route exact path="/vendor" component={Vendor} />
                       <Route exact path="/inventory" component={Inventory} />
                       <Route exact path="/refurbish" component={Refurbish} />
-                      <Route exact path="/teams" component={Teams} />
-                      <Route exact path="/employees" component={Employees} />
-                      <Route exact path="/leads" component={Leads} />
+                      <Route
+                      exact
+                      path="/location"
+                      render={(props) => (
+                        <Location
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/teams"
+                      render={(props) => (
+                        <Teams
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      {/* <Route exact path="/leads" component={Leads} /> */}
+                      <Route
+                      exact
+                      path="/employees"
+                      render={(props) => (
+                        <Employees
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/leads"
+                      render={(props) => (
+                        <Leads
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                       <Route exact path="/accessment" component={Accessment} />
                       <Route exact path="/holiday" component={Holiday} />
                       <Route
@@ -867,12 +908,42 @@ function MainApp(props) {
                       <Route exact path="/setting" component={Settings} />
                       <Route exact path="/reports" component={Reports} />
                       <Route exact path="/partner" component={Partner} />
-                     
-                      <Route exact path="/call" component={Call} />
+                                       
                       <Route exact path="/collection" component={Collection} />
-                      <Route exact path="/task" component={Task} />
-                      <Route exact path="/event" component={Event} />
                       <Route exact path="/dataroom" component={DataRoom} />
+                      <Route
+                      exact
+                      path="/call"
+                      render={(props) => (
+                        <Call
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/event"
+                      render={(props) => (
+                        <Event
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                     <Route
+                      exact
+                      path="/task"
+                      render={(props) => (
+                        <Task
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                       <Route
                         exact
                         path="/employee/:id"
@@ -931,19 +1002,45 @@ function MainApp(props) {
                         component={ChangePassword}
                       />
 
-                      <Route exact path="/recruite" component={Recruitment} />
-                      <Route exact path="/contact" component={Contact} />
-                      <Route exact path="/customer" component={Customer} />
+                      <Route exact path="/recruite" component={Recruitment} />                     
                       <Route exact path="/publish" component={Publish} />
                       <Route exact path="/program" component={Program} />
                       <Route exact path="/course" component={Course} />
                       <Route exact path="/project" component={Projects} />
                       <Route exact path="/billing" component={Billing} />
                       <Route
-                        exact
-                        path="/opportunity"
-                        component={Opportunity}
-                      />
+                      exact
+                      path="/customer"
+                      render={(props) => (
+                        <Customer
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/contact"
+                      render={(props) => (
+                        <Contact
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                       <Route
+                      exact
+                      path="/opportunity"
+                      render={(props) => (
+                        <Opportunity
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                       <Route exact path="/candidate"
                         component={Candidate}
                       />

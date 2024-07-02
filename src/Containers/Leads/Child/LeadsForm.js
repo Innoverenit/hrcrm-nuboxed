@@ -26,6 +26,7 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import { Listbox, } from '@headlessui/react';
+import { BundleLoader } from "../../../Components/Placeholder";
 const { Option } = Select; 
 
 // yup validation scheme for creating a account
@@ -74,11 +75,47 @@ props.emptyClearbit();
     const [selectedSource, setSelectedSource] = useState(null);
     const [isLoadingSector, setIsLoadingSector] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
     const [priority,setpriority]=useState(props.selectedTask
       ? props.selectedTask.priority
       : "hot");
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          'First Name', // 0
+'Middle ', // 1
+'Last Name', // 2
+'Email', // 3
+'Mobile', // 4
+'Phone No', // 5
+'Company', // 6
+'URL', // 7
+'Sector', // 8
+'Source', // 9
+'LOB', // 10
+'VAT Number', // 11
+'Registration', // 12
+'Assigned', // 13
+'Notes', // 14
 
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
     const fetchSource = async () => {
       setIsLoading(true);
       try {
@@ -196,6 +233,10 @@ props.emptyClearbit();
 
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
+  }
+  
+  if (loading) {
+    return <div><BundleLoader/></div>;
   }
     return (
       <>
@@ -333,12 +374,7 @@ props.emptyClearbit();
                             isRequired
                             name="firstName"
                             // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            label={translatedMenuItems[0]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -352,12 +388,7 @@ props.emptyClearbit();
                           <FastField
                             name="middleName"
                             //label="Middle Name"
-                            label={
-                              <FormattedMessage
-                                id="app.middleName"
-                                defaultMessage="Middle"
-                              />
-                            }
+                            label={translatedMenuItems[1]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -369,12 +400,7 @@ props.emptyClearbit();
                           <FastField
                             name="lastName"
                             //label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />
-                            }
+                            label={translatedMenuItems[2]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -390,9 +416,7 @@ props.emptyClearbit();
                     isRequired
                     name="email"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
+                    label={translatedMenuItems[3]}
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -410,12 +434,7 @@ props.emptyClearbit();
                           label:`${props.user.countryDialCode}`,
                         }}
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.phone"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label={translatedMenuItems[4]}
                         isColumn
                         inlineLabel
                       />
@@ -426,7 +445,7 @@ props.emptyClearbit();
                       <FastField
                         type="text"
                         name="phoneNumber"
-                        label="Phone No"
+                        label={translatedMenuItems[5]}
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -441,9 +460,7 @@ props.emptyClearbit();
                   
                     name="companyName"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.company" defaultMessage="Company" />
-                    }
+                    label={translatedMenuItems[6]}
                     isColumn
                     width={"100%"}
                     setClearbitData={props.setClearbitData}
@@ -456,7 +473,7 @@ props.emptyClearbit();
                   <Field
                     name="url"
                     type="text"
-                    label={<FormattedMessage id="app." defaultMessage="URL" />}
+                    label={translatedMenuItems[7]}
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -468,7 +485,7 @@ props.emptyClearbit();
                   <div class=" flex  justify-between mt-3">
                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
 
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Sector</label>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[8]}</label>
 
 <Select
         showSearch
@@ -489,7 +506,7 @@ props.emptyClearbit();
                     </div>
                     <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
                           
-                          <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</label>
+                          <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[9]}</label>
 
 <Select
         showSearch
@@ -511,7 +528,7 @@ props.emptyClearbit();
                   
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">
-                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>LOB</label>
+                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}</label>
 
 <Select
         showSearch
@@ -591,12 +608,7 @@ props.emptyClearbit();
                       <Field
                         name="vatNo"
                         type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="VAT Number"
-                          />
-                        }
+                        label={translatedMenuItems[11]}
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -610,12 +622,7 @@ props.emptyClearbit();
                         name="businessRegistration"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.registration"
-                            defaultMessage="Registration"
-                          />
-                        }
+                        label={translatedMenuItems[12]}
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -668,7 +675,7 @@ props.emptyClearbit();
                    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-semibold text-[0.75rem]">Assigned</Listbox.Label>
+          <Listbox.Label className="block font-semibold text-[0.75rem]">{translatedMenuItems[13]}</Listbox.Label>
           <div className="relative">
               <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -739,6 +746,9 @@ props.emptyClearbit();
                     label="Address"
                     render={(arrayHelpers) => (
                       <AddressFieldArray
+                      translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}
+translatedMenuItems={props.translatedMenuItems}
                         arrayHelpers={arrayHelpers}
                         values={values}
                       />
@@ -897,7 +907,7 @@ props.emptyClearbit();
                 </div>
                 )}
                 <div class="mt-3">
-                    <div>Notes</div>
+                    <div>{translatedMenuItems[14]}</div>
                     <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>
