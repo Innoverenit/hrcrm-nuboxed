@@ -551,6 +551,12 @@ export const inventoryReducer = (state = initialState, action) => {
 
 
 
+      case types.EMPTY_QUALITY_MANUFACTURE_DATA:
+        return { ...state, qualityManufactureData: [] };
+
+
+
+
 
 
       case types.GET_PRODUCTION_QUALITY_DATA_REQUEST:
@@ -572,6 +578,13 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         linkingManufactureStatus: false,
+        qualityManufactureData: state.qualityManufactureData.map((item) => {
+          if (item.qualityCheckBuilderId === action.payload.qualityCheckBuilderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
         // addTeamTransferModal: false,
       };
     case types.LINK_MANUFACTURE_STATUS_FAILURE:

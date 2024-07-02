@@ -7,14 +7,16 @@ import { bindActionCreators } from "redux";
 import QualityManufactureToggle from "./QualityManufactureToggle"
 
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getQualityManufactureData, } from "../Main/Inventory/InventoryAction";
+import { getQualityManufactureData, emptyQualityManufactureData} from "../Main/Inventory/InventoryAction";
 // import MoveToggleQuality from "../Quality/MoveToggleQuality"
 import dayjs from "dayjs";
+import { MultiAvatar } from '../../Components/UI/Elements';
 
 export const QualityManufactureList = (props) => {
   const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
     useEffect(() => {
+      props.emptyQualityManufactureData()
       props.getQualityManufactureData(props.currentManufacture.productId, props.currentManufacture.manufactureId);
     //   setPage(page + 1);
   }, []);
@@ -109,6 +111,26 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
 
 
 
+                                <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                    <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
+                                      {item.updatedBy!=null&&
+                                    <MultiAvatar
+                                                                    primaryTitle={item.updatedBy}
+                                                                    imgWidth={"1.8rem"}
+                                                                    imgHeight={"1.8rem"}
+                                                                />
+
+                                      }
+                                        {item.updatedBy!=null&&
+                                        <>
+                                      {`  ${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
+                                      </>
+                                        }
+                                    </div>
+                                </div>
+
+
+
        
 
                                
@@ -142,7 +164,8 @@ const mapStateToProps = ({ inventory, auth,production }) => ({
 const mapDispatchToProps = (dispatch) =>
 bindActionCreators(
   {
-    getQualityManufactureData
+    getQualityManufactureData,
+    emptyQualityManufactureData
     // getProductionQualityData,
     // handleQualityManufactureModal
   },

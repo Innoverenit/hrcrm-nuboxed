@@ -38,58 +38,105 @@ import Swal from 'sweetalert2'
   // /**
 //  * add a new sector 
 //  */
-export const addInvestorData = (sectors,orgId, cb) => (dispatch) => {
-    console.log(sectors);
-    dispatch({
-      type: types.ADD_INVESTOR_DATA_REQUEST,
-    });
-    axios
-      .post(`${base_url}/investorCategory`, sectors, {
-        headers: {
-          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-        },
-      })
-      .then((res) => {
-        dispatch(getInvestorCount(orgId));
-        if (res.data.message) {
-          Swal.fire({
-            icon: 'error',
-            title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
-          });
-        } else {
+// export const addInvestorData = (sectors,orgId, ) => (dispatch) => {
+   
+//     dispatch({
+//       type: types.ADD_INVESTOR_DATA_REQUEST,
+//     });
+//     axios
+//       .post(`${base_url}/investorCategory`, sectors, {
+//         headers: {
+//           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+//         },
+//       })
+//       .then((res) => {
+//         dispatch(getInvestorCount(orgId));
+//         if (res.data.message) {
+//           Swal.fire({
+//             icon: 'error',
+//             title: res.data.message,
+//             // showConfirmButton: false,
+//             // timer: 1500
+//           });
+//         } else {
          
-          Swal.fire({
-            icon: 'success',
-            title: 'Investor Type added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
-          });
-        }
-        console.log(res);
+//           Swal.fire({
+//             icon: 'success',
+//             title: 'Investor Type added Successfully!',
+//             // showConfirmButton: false,
+//             // timer: 1500
+//           });
+//         }
+//         console.log(res);
+//         dispatch({
+//           type: types.ADD_INVESTOR_DATA_SUCCESS,
+//           payload:res.data,
+//         });
+//         // cb();
+//       })
+//       .catch((err) => {
+//         console.log(err);
+     
+//         dispatch({
+//           type: types.ADD_INVESTOR_DATA_FAILURE,
+//         });
+//         // message.success(res.data.message);
+//         // cb();
+//       });
+//   };
+
+
+
+export const addInvestorData = (sectors, orgId) => (dispatch) => {
+  dispatch({
+    type: types.ADD_INVESTOR_DATA_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/investorCategory`, sectors, {
+      headers: {
+        Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+      },
+    })
+    .then((res) => {
+      dispatch(getInvestorCount(orgId));
+
+      if (res.data.message === "InvestorCategory can not be created as same name already exists!!!") {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+        });
+
+        dispatch({
+          type: types.ADD_INVESTOR_DATA_DUPLICATE,
+        });
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: 'Investor Type added Successfully!',
+        });
+
         dispatch({
           type: types.ADD_INVESTOR_DATA_SUCCESS,
-          payload: { ...sectors, },
+          payload: res.data,
         });
-        cb();
-      })
-      .catch((err) => {
-        console.log(err);
-     
-        dispatch({
-          type: types.ADD_INVESTOR_DATA_FAILURE,
-        });
-        // message.success(res.data.message);
-        cb();
+      }
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+
+      dispatch({
+        type: types.ADD_INVESTOR_DATA_FAILURE,
       });
-  };
+    });
+  }
 
   /**
  * remove a new sector
  */
 export const removeInvestor = ( investorCategoryId,orgId) => (dispatch) => {
-    // console.log(typeId);
+    console.log(investorCategoryId);
     dispatch({
       type: types.REMOVE_INVESTOR_REQUEST,
     });
