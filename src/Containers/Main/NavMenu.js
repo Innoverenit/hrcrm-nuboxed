@@ -515,7 +515,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </Link>
           </Menu.Item>
         )}
-          {(user.imInd === true &&
+          {(user.imInd === true && user.clubAccessInd === true 
+  ) &&  (
          <Menu.Item key="/club" style={{ height: "1.45rem", 
           color: selectedMenuItem === '/club' ? 'tomato' : '#4bc076' }}>
             <Link to="/club" onClick={() => handleSelect('/club')}>
@@ -950,7 +951,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Link>
         </Menu.Item>
         )} 
- {( user.erpInd === true &&
+ {( user.erpInd === true && user.qualityAccessInd === true 
+  ) &&  (
 <Menu.Item key="/quality" style={{ height: "1.45rem", 
         color: selectedMenuItem === '/quality' ? 'tomato' : '#4bc076' }}>
           <Link to="/quality" onClick={() => handleSelect('/quality')}>
