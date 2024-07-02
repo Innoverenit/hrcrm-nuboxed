@@ -42,7 +42,7 @@ class SuppliersActionRight extends React.Component {
             </Button>
           </Tooltip>
           :null} */}
-            { viewType === "not approved" &&
+            {/* { viewType === "not approved" && */}
         <Tooltip placement="left" title="Create">
           <Button
             type="primary"
@@ -54,7 +54,7 @@ class SuppliersActionRight extends React.Component {
             {/* <i class="fas fa-plus"></i> */}
           </Button>
         </Tooltip>
-  }
+  {/* } */}
 <Suspense fallback={"Loading"}>
 <AddSuppliersModal
           handleSuppliersModal={handleSuppliersModal}
