@@ -1765,6 +1765,11 @@ export const refurbishReducer = (state = initialState, action) => {
             orderByUser: [], 
           };
 
+          case types.HANDLE_CLAER_SEARCHED_DATA_QA:
+          return { ...state, 
+            QAorderList: [], 
+          };
+
           case types.INPUT_PROCESS_SEARCH_DATA_REQUEST:
         return { ...state, fetchingProcessInputSearchData: true };
       case types.INPUT_PROCESS_SEARCH_DATA_SUCCESS:

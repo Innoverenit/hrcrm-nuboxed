@@ -15,7 +15,7 @@ export const getProducts = (pageNo) => (dispatch) => {
   });
   axios
     // .get(`${base_url2}/product`,
-    .get(`${base_url2}/product/productList/pagewise/${pageNo}`,
+    .get(`${base_url2}/product/allProductList/pagewise/${pageNo}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

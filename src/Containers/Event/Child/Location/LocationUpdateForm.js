@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch } from "antd";
+import { Button, Switch,Select } from "antd";
 import { FormattedMessage } from "react-intl";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
@@ -11,8 +11,10 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import { updateLocation } from "../../../Event/Child/Location/LocationAction";
 import { getTimeZone } from "../../../Auth/AuthAction";
+import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
+import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 
-
+const { Option } = Select;
 class LocationUpdateForm extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,12 @@ class LocationUpdateForm extends Component {
       project: this.props.storedLoc.projectInd,
       // productionManufac: this.props.storedLoc.prodManufactureInd,
       retail: this.props.storedLoc.retailInd,
+      contract: false,
+      department: "",
+      reportingManager: ""
     };
+    this.handleDepartment = this.handleDepartment.bind(this);
+    this.handlereportingManager = this.handlereportingManager.bind(this);
   }
   handleProduction = () => {
     this.setState((prevState) => ({
@@ -90,11 +97,22 @@ handleInventory = () => {
     this.setState({ retail: true });}
 
   };
+  handleContract = (checked) => {
+    this.setState({ contract: checked });
+  };
+  handleDepartment(val) {
+    this.setState({ department: val });
+    this.props.getDepartmentwiserUser(val);
+  }
+  handlereportingManager(val) {
+    this.setState({ reportingManager: val });
+  }
   componentDidMount() {
     // this.props.getSalesManagerUser();
     // this.props.getProductionManager();
     // this.props.getLocationsType();
     this.props.getTimeZone();
+    this.props.getDepartments();
   }
 
   render() {
@@ -302,7 +320,7 @@ handleInventory = () => {
                         />
                       </div>
                     </div>
-                    <div  class=" w-[47%] mt-2">
+                    {/* <div  class=" w-[47%] mt-2">
                       <div class="font-bold text-xs">Project &nbsp;<i class="fas fa-project-diagram text-base"></i></div>
                       <div>
                         <Switch
@@ -313,7 +331,7 @@ handleInventory = () => {
                           unCheckedChildren="No"
                         />
                       </div>
-                    </div>
+                    </div> */}
                  
                    
                   
@@ -330,6 +348,60 @@ handleInventory = () => {
                         />
                       </div>
                     </div>
+                    <div className="flex  items-center mt-4">
+        <div className="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+          3rd Party Location
+        </div>
+        <Switch
+          style={{ width: '6.25em', marginLeft: '0.625em' }}
+          onChange={this.handleContract}
+          checked={this.state.contract}
+          checkedChildren="Yes"
+          unCheckedChildren="No"
+        />
+      </div>
+      {this.state.contract?
+      <div className="flex justify-between max-sm:flex-col">
+        <div className="w-w48 max-sm:w-wk">
+          <label style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
+            Department
+          </label>
+          <Select
+  className="w-[250px]"
+  value={this.state.department}
+  onChange={(value) => this.handleDepartment(value)}
+  showSearch
+  optionFilterProp="children"
+  filterOption={(input, option) =>
+    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+  }
+>
+  {this.props.departments.map((a) => (
+    <Select.Option key={a.departmentId} value={a.departmentId}>
+      {a.departmentName}
+    </Select.Option>
+  ))}
+</Select>
+        </div>
+
+        <div className="w-w48 max-sm:w-wk">
+          <label style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
+            User
+          </label>
+          <Select
+            className="w-[250px]"
+            value={this.state.reportingManager}
+            onChange={(value) => this.handlereportingManager(value)}
+          >
+            {this.props.departmentwiseUser.map((a) => (
+              <Option key={a.employeeId} value={a.employeeId}>
+                {a.empName}
+              </Option>
+            ))}
+          </Select>
+        </div>
+      </div>
+      : ( null)}  
                 </div>
                 <div class="h-full w-[47.5%] max-sm:w-wk mt-2">
                   <div class=" w-full">
@@ -377,11 +449,14 @@ handleInventory = () => {
     );
   }
 }
-const mapStateToProps = ({ location, auth, teams, plant }) => ({
+const mapStateToProps = ({ location, auth, teams, plant,departments,settings }) => ({
   updatingLocations: location.updatingLocations,
   timeZone: auth.timeZone,
   userId:auth.userDetails.userId,
   orgId:auth.userDetails.organizationId,
+  departmentwiseUser: settings.departmentwiseUser,
+  organizationId: auth.userDetails.organizationId,
+  departments: departments.departments,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -389,6 +464,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       updateLocation,
       getTimeZone,
+      getDepartmentwiserUser,
+      getDepartments,
  
     },
     dispatch

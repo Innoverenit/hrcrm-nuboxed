@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
+import { Button,Switch } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
@@ -32,6 +32,15 @@ function AddSuppliersForm (props) {
   const [defaultOption, setDefaultOption] = useState(props.fullName);
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.employeeAsErp.find((item) => item.empName === selected);
+    const [checked, setChecked] = useState(false);
+
+
+
+
+    const handleChange = (checked) => {
+      setChecked(checked);
+      console.log(checked);
+    };
     return (
       <>
         <Formik
@@ -67,6 +76,7 @@ function AddSuppliersForm (props) {
            props.addSuppliers(
               {
                 ...values,
+                approvedInd:checked,
                 assignedTo: selectedOption ? selectedOption.employeeId:props.userId,
               },
              props.userId,
@@ -151,6 +161,18 @@ function AddSuppliersForm (props) {
                       component={InputComponent}
                       inlineLabel
                     />
+                  </div>
+
+
+                  <div class="w-full">
+                    <label>Approval</label>
+                  <Switch 
+                  checked={checked} 
+                  onChange={handleChange} 
+                   checkedChildren="Yes"
+                  unCheckedChildren="No"
+                  />
+
                   </div>
           
                 </div>

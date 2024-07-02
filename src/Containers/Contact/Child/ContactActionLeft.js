@@ -182,14 +182,14 @@ const ContactActionLeft = (props) => {
           overflowCount={5000}
         >
           <span
-            class=" mr-1 text-sm cursor-pointer"
+            class=" mr-1 !text-icon cursor-pointer"
             onClick={() => props.setContactsViewType("all")}
             style={{
               color: props.viewType === "all" && "#1890ff",
             }}
           >
              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-          <div className="text-white !text-icon"> ALL</div>
+          <div className="text-white "> ALL</div>
            </Avatar>
           </span>
         </Badge>

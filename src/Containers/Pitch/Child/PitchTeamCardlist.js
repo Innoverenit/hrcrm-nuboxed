@@ -27,6 +27,7 @@ import { Button, Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
+import PitchSearchedData from "./PitchSearchedData";
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("./UpdateLPitchModal"));
@@ -66,6 +67,12 @@ const PitchTeamCardList = (props) => {
   // }
 
   return (
+    <div>
+    {props.serachedPitchData.length > 0 ? (
+<PitchSearchedData
+serachedPitchData={props.serachedPitchData}
+/>
+) : (
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
@@ -524,6 +531,8 @@ const PitchTeamCardList = (props) => {
         handlePitchNotesDrawerModal={props.handlePitchNotesDrawerModal}
       />
     </>
+     )}
+    </div>
   );
 };
 
@@ -535,7 +544,8 @@ user: auth.userDetails,
   addDrawerPitchNotesModal:pitch.addDrawerPitchNotesModal,
   updatePitchModal:pitch.updatePitchModal,
   openASSImodal:pitch.openASSImodal,
-  teamPitch:pitch.teamPitch
+  teamPitch:pitch.teamPitch,
+  serachedPitchData:pitch.serachedPitchData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

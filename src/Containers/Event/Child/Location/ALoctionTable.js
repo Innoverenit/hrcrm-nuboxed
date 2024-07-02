@@ -254,9 +254,9 @@ function ALoctionTable(props) {
                  
                   return (
                     <>
-                        <div className=' flex  sticky  z-auto h-[34rem] overflow-auto'>
-                        <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                                <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
+                        <div className=' flex  sticky  z-auto h-[35rem] overflow-auto'>
+                        <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                                <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                                     <div className=" md:w-[12.1rem]">Name</div>
                                     <div className=" md:w-[9.1rem]">Shift</div>
                                     <div className="md:w-[7.7rem]">Effective</div>
@@ -266,25 +266,25 @@ function ALoctionTable(props) {
                                     const date = dayjs(item.startDate).format("DD/MM/YYYY");
                                     return (
                                         <div>
-                                            <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
+                                            <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
                                                 <div class="flex">
-                                                    <div className=" flex font-medium  md:w-[12.2rem] max-sm:w-full ">
+                                                    <div className="  md:w-[12.2rem] max-sm:w-full ">
                                                        {item.fullName}
                                                     </div>
             
-                                                    <div className=" flex font-medium   md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className="    md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                         {item.shiftName}
                                                         </div>
             
                                                     </div>
-                                                    <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className="  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
             
                                                     <span>{` ${dayjs(item.creationDate).format("ll")}`}</span>
             
                                                         
                                                     </div>
-                                                    <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className="   md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
             
                                                     <span>
                   <Typography.Link

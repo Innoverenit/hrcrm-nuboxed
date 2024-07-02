@@ -71,9 +71,9 @@ function EventCardList (props) {
     return (
       <>
       <div className=' flex  sticky  z-auto'>
-      <div class="rounded-lg m-1  max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded  justify-between m-1  max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
-         <div className=" flex  w-[99%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
+         <div className=" flex  w-[99%] max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]"><FormattedMessage
                   id="app.type"
                   defaultMessage="type"
@@ -130,7 +130,7 @@ function EventCardList (props) {
             };
                     return (
                         <div>
-                            <div className="flex rounded   mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                            <div className="flex rounded   mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                                 style={{
                                     // borderBottom: "3px dotted #515050"
                                 }}>
@@ -255,7 +255,7 @@ function EventCardList (props) {
           </div>
                    </div>
                                </div>
-                               <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
+                               <div class="flex justify-end max-sm:w-wk items-center"> 
                     
                       <div class="flex  w-[4rem] max-sm:flex-row items-center justify-between max-sm:w-auto">
                     <div class="">
@@ -333,7 +333,7 @@ function EventCardList (props) {
       
             </div>
                       </div>   
-                      </div>
+                              </div>
                             </div>
                         </div>
 

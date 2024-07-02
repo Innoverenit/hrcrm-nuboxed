@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch } from "antd";
+import { Button, Switch,Select } from "antd";
 import { FormattedMessage } from "react-intl";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { Formik, Form, Field, FieldArray } from "formik";
@@ -11,12 +11,15 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import { addLocation, } from "../../../Event/Child/Location/LocationAction";
 import { getTimeZone } from "../../../Auth/AuthAction";
+import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
+import { getRoles } from "../../../Settings/Category/Role/RoleAction"
+import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 // const FormSchema = Yup.object().shape({
 //   name: Yup.string().required("Input required!"),
 //   management: Yup.string().required("Input required!"),
 //   locationtypeId: Yup.string().required("Input required!"),
 // });
-
+const { Option } = Select;
 class LocationForm extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +31,12 @@ class LocationForm extends Component {
       project: false,
       prodmanuf:false,
       retail: false,
+      contract: false,
+      department: "",
+      reportingManager: ""
     };
+    this.handleDepartment = this.handleDepartment.bind(this);
+    this.handlereportingManager = this.handlereportingManager.bind(this);
   }
 
   handleProduction = (checked) => {
@@ -52,10 +60,22 @@ class LocationForm extends Component {
   handleRetail = (checked) => {
     this.setState({ retail: checked });
   };
+  handleContract = (checked) => {
+    this.setState({ contract: checked });
+  };
+  handleDepartment(val) {
+    this.setState({ department: val });
+    this.props.getDepartmentwiserUser(val);
+  }
+  handlereportingManager(val) {
+    this.setState({ reportingManager: val });
+  }
   componentDidMount() {
     // this.props.getSalesManagerUser();
     // this.props.getProductionManager();
     // this.props.getLocationsType();
+    this.props.getRoles(this.props.organizationId);
+    this.props.getDepartments();
     this.props.getTimeZone();
   }
 
@@ -76,6 +96,7 @@ class LocationForm extends Component {
         ,
       };
     });
+    
     // const managementOption = this.props.salesManagementUsers.map((item) => {
     //   return {
     //     label: `${item.salutation || ""} ${item.firstName ||
@@ -342,7 +363,7 @@ class LocationForm extends Component {
                         />
                       </div>
                     </div>
-                    <div class=" w-[47%] mt-2" >
+                    {/* <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">Project &nbsp;<i class="fas fa-project-diagram text-base"></i></div>
                       <div>
                         <Switch
@@ -353,7 +374,7 @@ class LocationForm extends Component {
                           unCheckedChildren="No"
                         />
                       </div>
-                    </div>
+                    </div> */}
                   
                   </div>
                   <div class=" flex">
@@ -384,6 +405,60 @@ class LocationForm extends Component {
                     </div> */}
                   
                   </div>
+                  <div className="flex  items-center mt-4">
+        <div className="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+          3rd Party Location
+        </div>
+        <Switch
+          style={{ width: '6.25em', marginLeft: '0.625em' }}
+          onChange={this.handleContract}
+          checked={this.state.contract}
+          checkedChildren="Yes"
+          unCheckedChildren="No"
+        />
+      </div>
+      {this.state.contract?
+      <div className="flex justify-between max-sm:flex-col">
+        <div className="w-w48 max-sm:w-wk">
+          <label style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
+            Department
+          </label>
+          <Select
+  className="w-[250px]"
+  value={this.state.department}
+  onChange={(value) => this.handleDepartment(value)}
+  showSearch
+  optionFilterProp="children"
+  filterOption={(input, option) =>
+    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+  }
+>
+  {this.props.departments.map((a) => (
+    <Select.Option key={a.departmentId} value={a.departmentId}>
+      {a.departmentName}
+    </Select.Option>
+  ))}
+</Select>
+        </div>
+
+        <div className="w-w48 max-sm:w-wk">
+          <label style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
+            User
+          </label>
+          <Select
+            className="w-[250px]"
+            value={this.state.reportingManager}
+            onChange={(value) => this.handlereportingManager(value)}
+          >
+            {this.props.departmentwiseUser.map((a) => (
+              <Option key={a.employeeId} value={a.employeeId}>
+                {a.empName}
+              </Option>
+            ))}
+          </Select>
+        </div>
+      </div>
+      : ( null)}  
                 </div>
                 <div class="h-full w-[45%] max-sm:w-wk mt-2">
                   <div class=" w-full" >
@@ -432,12 +507,15 @@ class LocationForm extends Component {
     );
   }
 }
-const mapStateToProps = ({ location, auth, region, plant }) => ({
+const mapStateToProps = ({ location, auth, region, plant,departments,settings,role }) => ({
   addingLocation: location.addingLocation,
   timeZone: auth.timeZone,
   userId:auth.userDetails.userId,
   orgId:auth.userDetails.organizationId,
-  
+  departments: departments.departments,
+  departmentwiseUser: settings.departmentwiseUser,
+  roles: role.roles,
+  organizationId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -445,7 +523,9 @@ const mapDispatchToProps = (dispatch) =>
     {
       addLocation,
       getTimeZone,
- 
+      getDepartmentwiserUser,
+      getRoles,
+      getDepartments,
     },
     dispatch
   );

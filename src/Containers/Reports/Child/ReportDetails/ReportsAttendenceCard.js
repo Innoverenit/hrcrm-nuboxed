@@ -269,7 +269,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Tabs,Spin } from 'antd';
+import { Tabs,Spin,Button } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddReportAttendenceModal from "../ReportDetails/AddReportAttendenceModal"
@@ -287,6 +287,7 @@ const WeekendDates = (props) => {
   const [monday, setMonday] = useState(null);
   const [sunday, setSunday] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [weekOffset, setWeekOffset] = useState(0);
   const [startDateData, setStartDateData] = useState(null);
   console.log(startDateData)
   const locations = [
@@ -370,9 +371,11 @@ useEffect(() => {
     fetchData();
   }, [activeTab]);
 
+
   useEffect(() => {
     const calculateWeekend = () => {
       const today = new Date();
+      today.setDate(today.getDate() + weekOffset * 7); // Adjust for week offset
       const dayOfWeek = today.getDay(); // 0 (Sun) to 6 (Sat)
 
       const daysToMonday = (dayOfWeek + 6) % 7;
@@ -380,8 +383,6 @@ useEffect(() => {
       monday.setDate(today.getDate() - daysToMonday);
       const sunday = new Date(monday);
       sunday.setDate(monday.getDate() + 6);
-      console.log('Start of the week (Monday):', monday);
-      console.log('End of the week (Sunday):', sunday);
 
       setMonday(monday.toISOString().split('T')[0]+'T20:00:00Z');
       setSunday(sunday.toISOString().split('T')[0]+'T20:00:00Z');
@@ -403,7 +404,42 @@ useEffect(() => {
     };
 
     calculateWeekend();
-  }, []);
+  }, [weekOffset]);
+
+  // useEffect(() => {
+  //   const calculateWeekend = () => {
+  //     const today = new Date();
+  //     const dayOfWeek = today.getDay(); // 0 (Sun) to 6 (Sat)
+
+  //     const daysToMonday = (dayOfWeek + 6) % 7;
+  //     const monday = new Date(today);
+  //     monday.setDate(today.getDate() - daysToMonday);
+  //     const sunday = new Date(monday);
+  //     sunday.setDate(monday.getDate() + 6);
+  //     console.log('Start of the week (Monday):', monday);
+  //     console.log('End of the week (Sunday):', sunday);
+
+  //     setMonday(monday.toISOString().split('T')[0]+'T20:00:00Z');
+  //     setSunday(sunday.toISOString().split('T')[0]+'T20:00:00Z');
+
+  //     const weekDates = [];
+  //     const dateOptions = { day: 'numeric', month: 'short' };
+  //     const dayOptions = { weekday: 'short' };
+
+  //     for (let i = 0; i < 7; i++) {
+  //       const date = new Date(monday);
+  //       date.setDate(monday.getDate() + i);
+  //       const formattedDate = date.toLocaleDateString('en-US', dateOptions);
+  //       const isoDate = date.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+  //       const dayOfWeek = date.toLocaleDateString('en-US', dayOptions).toUpperCase();
+  //       weekDates.push({ formattedDate, isoDate, dayOfWeek });
+  //     }
+
+  //     setDates(weekDates);
+  //   };
+
+  //   calculateWeekend();
+  // }, []);
 
   const combinedUsers = props.reportsProductivity.map(user => {
     const user2 = props.reportsAttendence.find(u => u.userId === user.userId);
@@ -432,6 +468,12 @@ useEffect(() => {
 
   return (
     <>
+     <div 
+    //  style={styles.navigation}
+     >
+        <Button onClick={() => setWeekOffset(weekOffset - 1)}>Previous Week</Button>
+        <Button onClick={() => setWeekOffset(weekOffset + 1)}>Next Week</Button>
+      </div>
     <Tabs 
     type='card'
     activeKey={activeTab}

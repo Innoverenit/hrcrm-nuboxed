@@ -18,7 +18,7 @@ const LocationActionLeft = (props) => {
     }
   }, [props.viewType]);
     return (
-        <div class=" flex items-center" >
+        <div class=" flex  items-center" >
           <Tooltip
         title={<FormattedMessage id="app.listView" defaultMessage="All" />}
       >
@@ -27,7 +27,7 @@ const LocationActionLeft = (props) => {
            count={(props.viewType === "card" && props.recordData.locCount) || 0}
           overflowCount={999}
         >
-          <span class=" mr-1 cursor-pointer"
+          <span class=" mr-1 !text-icon cursor-pointer"
             onClick={() => props.setLocationViewType("card")}
             style={{
           
@@ -36,7 +36,7 @@ const LocationActionLeft = (props) => {
           >
              <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
   
-            <div className="text-white !text-icon">ALL</div>
+            <div className="text-white ">ALL</div>
             </Avatar>
           </span>
           </Badge>

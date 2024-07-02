@@ -104,7 +104,7 @@ import { equipmentReducer } from "../Containers/Settings/Category/Equipment/Equi
 import { industryReducer } from "../Containers/Settings/Category/Industry/IndustryReducer";
 import { categoryListReducer } from "../Containers/Settings/Category/CategoryList/CategoryListReducer";
 import { vendorReducer } from "../Containers/Main/Vendor/VendorReducer";
-
+import { mainNoteReducer } from "../Containers/CustomNote/MainNoteReducer";
 import { procreReducer } from "../Containers/Main/Procre/ProcreReducer";
 import { machinaryReducer } from "../Containers/Settings/Category/Machinary/MachinaryReducer";
 import { brandCategoryReducer } from "../Containers/Settings/Category/BrandCategory/BrandCategoryReducer";
@@ -150,6 +150,7 @@ const appReducer = combineReducers({
   permissions: PermissionsReducer,
   designations: designationsReducer,
   region: regionsReducer,
+  mainNotes: mainNoteReducer,
   certifications: certificationReducer,
   departments: departmentsReducer,
   events: eventsReducer,

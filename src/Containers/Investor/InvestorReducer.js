@@ -14,6 +14,11 @@ const initialState = {
    fetchingDocumentListError: false,
    documentAllList:[],
 
+   uploadingInvestorList: false,
+   uploadingInvestorListError: false,
+
+   uploadInvestorList:false,
+
   opencreateDealModal: false,
 
   fetchingInvestorActivityCount: false,
@@ -192,6 +197,7 @@ export const investorReducer = (state = initialState, action) => {
         ...state,
         fetchingInvestors: false,
         investorsbyId: [...state.investorsbyId, ...action.payload],
+        // investorsbyId:action.payload,
         clearbit:null
       };
     case types.GET_INVESTORS_BY_ID_FAILURE:
@@ -937,6 +943,25 @@ export const investorReducer = (state = initialState, action) => {
             addingInvestorToggle: false,
             addingInvestorToggleError: true,
           };
+
+
+          case types.HANDLE_UPLOAD_INVESTOR_MODAL:
+            return { ...state, uploadInvestorList: action.payload };    
+
+            case types.UPLOAD_INVESTOR_LIST_REQUEST:
+              return { ...state, uploadingInvestorList: true };
+            case types.UPLOAD_INVESTOR_LIST_SUCCESS:
+              return {
+                ...state,
+                uploadingInvestorList: false,
+                uploadInvestorList: false
+              };
+            case types.UPLOAD_INVESTOR_LIST_FAILURE:
+              return {
+                ...state,
+                uploadingInvestorList: false,
+                uploadingInvestorListError: true,
+              };
 
 
 

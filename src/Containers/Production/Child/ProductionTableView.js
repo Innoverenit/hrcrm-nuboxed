@@ -1,35 +1,22 @@
-import React, { useState, useEffect, lazy, useRef } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
-import { Tooltip, Button, Popconfirm, Switch, Select } from "antd";
-import InfiniteScroll from "react-infinite-scroll-component";
-import moment from "moment";
+import { Tooltip, Button, Select } from "antd";
 import OnboardingProduction from "../Child/OnboardingProduction.js"
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
-import QRCode from "qrcode.react";
-import ReactToPrint from "react-to-print";
 
+import { FormattedMessage } from "react-intl";
+import ReactToPrint from "react-to-print";
 import ButtonGroup from "antd/lib/button/button-group";
 import {updateProStatus,updateProductionPauseStatus} from "../ProductionAction"
-// import { getProductionsbyLocId, updateProStatus, handleBuilderProduction, handleProductionIDrawer, updateRoomRackProduction } from "../ProductionAction"
-import { DeleteOutlined } from "@ant-design/icons";
-//import { updatePauseStatus } from "../../Main/Refurbish/RefurbishAction.js"
-import { BorderColorOutlined, PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
+import {  PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import InpectProductionToggle from "./InpectProductionToggle.js";
+import { base_url2 } from "../../../Config/Auth";
 import MoveToggleProduction from "../Child/MoveToggleProduction.js"
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage.js";
-// import { updatePauseStatus } from "../../Main/Refurbish/RefurbishAction.js"
-// import { getRoomRackByLocId, getRackList } from "../../Main/Inventory/InventoryAction";
-// import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-// import InpectProductionToggle from "./InpectProductionToggle";
-// import { MultiAvatar } from "../../../Components/UI/Elements";
-// const BuilderProductionDrawer = lazy(() => import("./BuilderProductionDrawer"));
-// const ProductionIDrawer = lazy(() => import("./ProductionIDrawer"));
 
 const { Option } = Select;
 
@@ -94,7 +81,7 @@ function ProductionTableView(props) {
         try {
           // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
           // setCustomers(response.data);
-          const apiEndpoint = `https://erp.celltechnologies.nl/roomrack/exit/roomAndRackDetails/${props.orgId}`;
+          const apiEndpoint = `${base_url2}/roomrack/exit/roomAndRackDetails/${props.orgId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',
             headers: {
@@ -129,7 +116,7 @@ function ProductionTableView(props) {
         try {
           // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
           // setContacts(response.data);
-          const apiEndpoint = `https://erp.celltechnologies.nl/roomrack/${roomRackId}`;
+          const apiEndpoint = `${base_url2}/roomrack/${roomRackId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',
             headers: {
@@ -186,9 +173,9 @@ function ProductionTableView(props) {
                                     return (
                             
                                         <div key={item.productId} >
-                                            <div className="flex rounded justify-between mt-2 bg-white h-8 items-center p-1 ">
+                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                                 <div class="flex">
-                                                    <div className=" flex font-medium  items-center  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-[#1890ff] cursor-pointer w-[8rem] flex text-xs  font-poppins"
                                                             // onClick={() => {
@@ -214,7 +201,7 @@ function ProductionTableView(props) {
                                                            </div>
 
                                                     
-                                                    <div className=" flex font-medium items-center  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex  items-center  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
                                                             {/* {props.productionTableData.createdBy} */}
@@ -222,24 +209,24 @@ function ProductionTableView(props) {
                   primaryTitle={item.createdBy}
                   // imageId={item.ownerImageId}
                   // imageURL={item.imageURL}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
                 />
                                                         </div>
                                                         <div class=" text-xs  font-poppins ml-1">
     {/* {props.productionTableData.createdBy} */}
-    {`  ${moment.utc(item.creationDate).format("DD-MM-YYYY")}`}
+    {`  ${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
 </div>
 
                                                     </div>
 
-                                                    <div className=" flex font-medium items-center  md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex  items-center  md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
 </div>
 
 </div>
-                                                    <div className=" flex font-medium items-center  md:w-[6.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex  items-center  md:w-[6.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
                                                             {item.categoryName} {item.subCategoryName}
@@ -249,7 +236,7 @@ function ProductionTableView(props) {
 
                                                 </div>
 
-                                                <div className=" flex font-medium items-center md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  items-center md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins">
 
                                                         {item.attributeName}  {item.subAttributeName} 
@@ -257,7 +244,7 @@ function ProductionTableView(props) {
                                                 </div>
                                                 
 
-                                                <div className=" flex font-medium items-center md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  items-center md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                      
                                                         <ButtonGroup>
@@ -266,7 +253,7 @@ function ProductionTableView(props) {
                                                                     type="In Progress"
                                                                     //iconType="fa-hourglass-half"
                                                                     tooltip="In Progress"
-                                                                    iconType={<HourglassTopIcon/>}
+                                                                    iconType={<HourglassTopIcon className="!text-icon text-orange-600 cursor-pointer"/>}
                                                                     role={item.type}
                                                                     onClick={() => {
                                                                         props.updateProStatus({
@@ -279,7 +266,7 @@ function ProductionTableView(props) {
                                                                 <StatusIcon
                                                                     type="Complete"
                                                                     //iconType="fa-hourglass"
-                                                                    iconType={<HourglassBottomIcon/>}
+                                                                    iconType={<HourglassBottomIcon className="!text-icon text-orange-600 cursor-pointer"/>}
                                                                     tooltip="Complete"
                                                                     role={item.type}
                                                                     onClick={() => {
@@ -291,7 +278,7 @@ function ProductionTableView(props) {
                                                         </ButtonGroup>
                                                         {item.type === "In Progress" && item.startInd === false &&
 
-<PlayCircleFilledSharp
+<PlayCircleFilledSharp className="!text-icon cursor-pointer "
     // class=" cursor-pointer"
     onClick={() => {
         let data = {
@@ -310,7 +297,7 @@ function ProductionTableView(props) {
 {item.type === "In Progress" && item.startInd === true &&
 
 <PauseCircleFilled
-    class=" cursor-pointer text-orange-400"
+    className="!text-icon text-orange-600 cursor-pointer"
     onClick={() => {
         let data = {
             manufactureId:item.manufactureId,
@@ -345,7 +332,7 @@ function ProductionTableView(props) {
             </div>
 
 
-            <div className=' flex justify-end sticky z-auto'>
+            <div className=' flex  sticky z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">                       
                         <div className=" md:w-[9rem]">Workflow</div>
@@ -367,7 +354,7 @@ function ProductionTableView(props) {
                                     return (
                     <div key={item.productId} >
                                            
-                    <div className="flex rounded justify-between mt-2 bg-white h-8 items-center p-1">
+                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                                  <div className=" flex font-medium  items-center md:w-[10.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins" >
                                                         {/* {stage} */}

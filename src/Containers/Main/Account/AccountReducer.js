@@ -8,6 +8,9 @@ const initialState = {
 
   updateAccountModal: false,
 
+  addingAccountImportForm:false,
+  addingAccountImportFormError:false,
+
   updateOrderModal: false,
 
   addDistributorModal: false,
@@ -972,6 +975,30 @@ export const distributorReducer = (state = initialState, action) => {
         linkingPauseByDistributorIdError: true,
         addOrderDetailsModal: false,
       };
+      case types.ADD_ACCOUNT_IMPORT_FORM_REQUEST:
+        return { ...state, addingAccountImportForm: true };
+      case types.ADD_ACCOUNT_IMPORT_FORM_SUCCESS:
+        return {
+          ...state,
+          addingAccountImportForm: false,
+          //addLeadsImportModal: false,
+          // organizationDocumentDrawer: false,
+          // repositoryData: [
+          //   action.payload,
+          //   ...state.repositoryData,
+          //  ],
+  
+        };
+      case types.ADD_ACCOUNT_IMPORT_FORM_FAILURE:
+        return {
+          ...state, addingAccountImportForm: false,
+          //addingLeadsImportFormError:true,
+          // addCustomerModal: false 
+        };
+
+
+
+
 
     /**
      * update event modal

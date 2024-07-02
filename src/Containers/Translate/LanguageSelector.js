@@ -142,17 +142,18 @@ import React, { useState, useEffect } from 'react';
 import { getSupportedLanguages } from './TranslateService';
 // import { getName } from 'iso-639-1';
 
-function LanguageSelector({ onLanguageChange, supportedLanguages }) {
-  //   const [supportedLanguages, setSupportedLanguages] = useState([]);
-  const [selectedLanguage, setSelectedLanguage] = useState('');
+function LanguageSelector({ onLanguageChange,supportedLanguages,selectedLanguage,setSelectedLanguage }) {
+//   const [supportedLanguages, setSupportedLanguages] = useState([]);
+  // const [selectedLanguage, setSelectedLanguage] = useState('');
   console.log(supportedLanguages)
 
   useEffect(() => {
     async function fetchLanguages() {
       try {
         const languages = await getSupportedLanguages();
+        console.log(languages)
         // setSupportedLanguages(languages);
-        setSelectedLanguage(languages[0]?.code);
+        // setSelectedLanguage(languages[0]?.code);
       } catch (error) {
         console.error('Error fetching supported languages:', error);
       }
@@ -161,21 +162,29 @@ function LanguageSelector({ onLanguageChange, supportedLanguages }) {
     fetchLanguages();
   }, []);
 
-  const handleLanguageChange = (event) => {
-    const language = event.target.value;
-    setSelectedLanguage(language);
-    onLanguageChange(language);
-  };
+  // const handleLanguageChange = (event) => {
+  //   const language = event.target.value;
+  //   setSelectedLanguage(language);
+  //   onLanguageChange(language);
+  // };
+  console.log("selectedLanguage",selectedLanguage)
 
   return (
     <div>
-      <select value={selectedLanguage} onChange={handleLanguageChange}>
-        {supportedLanguages.map((lang) => (
+      <select class="notranslate"
+      style={{backgroundColor:"#DFDFDF",width:"7em"}} value={selectedLanguage} onChange={onLanguageChange}>
+        {/* {supportedLanguages.map((lang) => (
           <option key={lang.language} value={lang.language}>
             {lang.language}
-            {/* {getName(lang.language)} */}
+           
           </option>
-        ))}
+        ))} */}
+        <option value="English">EN</option>
+        <option value="Dutch">NL</option>
+        <option value="German">DE</option>
+        <option value="French">FR</option>
+        <option value="Spanish">ES</option>
+        <option value="Italin">IT</option>
       </select>
     </div>
   );

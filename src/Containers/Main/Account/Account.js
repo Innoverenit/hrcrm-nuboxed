@@ -59,6 +59,7 @@ const Account = ({
         handleClear={handleClear}
         currentData={currentData}
         setCurrentData={setCurrentData}
+        handleAccountImportModal={handleAccountImportModal}
         handleDistributorModal={handleDistributorModal}
       />
       <AddAccountModal

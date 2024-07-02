@@ -985,3 +985,42 @@ export const getPitchActivityRecords = (investorLeadsId) => (dispatch) => {
       });
     });
 };
+
+export const handleUploadPitchModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPLOAD_PITCH_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const uploadPitchList = (data,userId) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_PITCH_LIST_REQUEST });
+  axios
+    .post(`${base_url}/excel/import/investorLeads`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getPitchHot(userId,"0","creationdate","hot"))
+      dispatch(getPitchCold(userId,"0","creationdate","cold"))
+      dispatch(getPitchWarm(userId,"0","creationdate","warm"))
+      dispatch({
+        type: types.UPLOAD_PITCH_LIST_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Uploaded Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPLOAD_PITCH_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};

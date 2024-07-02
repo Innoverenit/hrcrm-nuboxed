@@ -5,6 +5,7 @@ import { base_url } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { Tooltip } from "antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { handleSuppliersModal } from "../../Main/Suppliers/SuppliersAction";
 import { FormattedMessage } from "react-intl";
 
@@ -46,7 +47,7 @@ class SuppliersActionRight extends React.Component {
             type="primary"
             // ghost
             onClick={() => handleSuppliersModal(true)}
-          >
+          ><DataSaverOnIcon/>
             <FormattedMessage id="app.add" defaultMessage="Add" />
             
             {/* <i class="fas fa-plus"></i> */}

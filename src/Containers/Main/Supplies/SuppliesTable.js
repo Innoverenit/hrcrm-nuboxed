@@ -90,13 +90,13 @@ function SuppliesTable(props) {
           <div className=" flex max-sm:hidden justify-between  p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[1rem] max-xl:w-[2rem]"></div>
             <div className=" w-[2.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">HSN</div>
-            <div className=" w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Modify At</div>
+            <div className="w-[6.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">SuppliesId </div>
             <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
             <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Category</div>
             <div className="w-[8.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sub Category</div>
             <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Attribute</div>
             <div className="w-[6.14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Re-order level</div>
-            <div className="w-[6.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">SuppliesId </div>
+            
             <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Created</div>
             <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Unique ID</div>
             {/* <div className="md:w-[4.2rem]">Scan</div> */}
@@ -120,7 +120,7 @@ function SuppliesTable(props) {
                       <div className="flex rounded justify-center bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex font-medium flex-col w-[12.91rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
+                            <div className=" flex font-medium flex-col w-[14.91rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
                               <div className="flex max-sm:w-wk max-sm:justify-between ">
                                 <div className="w-[3rem]">
                                   {item.imageId && (
@@ -151,10 +151,15 @@ function SuppliesTable(props) {
                                   </div>
                                   <div class="w-[3.2rem] max-sm:w-auto max-xl:w-[1.2rem] max-lg:w-[0.2rem]">
                                 <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                    {/* {dayjs(item.modifiedAt).format("DD/MM/YYYY")} */}
-                                    {item.modifiedAt ? dayjs(item.modifiedAt).format("DD/MM/YYYY") : null}
+                                {item.modifiedAt ? "Updated" : null}
+                                    {/* {item.modifiedAt ? dayjs(item.modifiedAt).format("DD/MM/YYYY") : null} */}
                                     </div>
                                 </div>
+                                <div className=" flex font-medium flex-col w-[6.45rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal  text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                {item.newSuppliesNo}
+                              </div>
+                            </div>
                                 </div>
                               </div>
                             </div>
@@ -189,11 +194,7 @@ function SuppliesTable(props) {
                               </div>
                             </div>
 
-                            <div className=" flex font-medium flex-col w-[6.45rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                {item.newSuppliesNo}
-                              </div>
-                            </div>
+                           
                             <div className=" flex font-medium flex-col w-[8.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MultiAvatar

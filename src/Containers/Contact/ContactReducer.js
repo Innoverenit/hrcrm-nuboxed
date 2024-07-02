@@ -220,6 +220,9 @@ addingNotesByContactId:false,
 
   addContactImportModal:false,
 
+  uploadingContactList: false,
+  uploadingContactListError: false,
+
   addingContactLinkByOpportunityId: false,
 
   //SHARE Contact Permission of partner
@@ -1032,6 +1035,24 @@ export const contactReducer = (state = initialState, action) => {
           fetchingContactAllRecords: false,
           fetchingContactAllRecordsError: true,
         };
+
+        case types.UPLOAD_CONTACT_LIST_REQUEST:
+          return { ...state, uploadingContactList: true };
+        case types.UPLOAD_CONTACT_LIST_SUCCESS:
+          return {
+            ...state,
+            uploadingContactList: false,
+            addContactImportModal: false
+          };
+        case types.UPLOAD_CONTACT_LIST_FAILURE:
+          return {
+            ...state,
+            uploadingContactList: false,
+            uploadingContactListError: true,
+          };
+
+
+
 
                   default:
       return state;

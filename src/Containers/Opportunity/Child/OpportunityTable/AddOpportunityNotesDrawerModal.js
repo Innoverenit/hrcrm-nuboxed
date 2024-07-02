@@ -3,6 +3,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
+import MainNotes from "../../../CustomNote/MainNotes";
 const LinkedNotes = lazy(() => import("../OpportunityDetail/OpportunityTab/LinkedNotes"));
 
 class AddOpportunityNotesDrawerModal extends Component {
@@ -22,8 +23,12 @@ class AddOpportunityNotesDrawerModal extends Component {
           onClose={() => this.props.handleOpportunityNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <LinkedNotes opportunityData={this.props.opportunityData} 
+            {/* <LinkedNotes opportunityData={this.props.opportunityData} 
             opportunityId={this.props.opportunityData.opportunityId} 
+            /> */}
+             <MainNotes
+             type="opportunity"
+             uniqueId={this.props.opportunityData.opportunityId}
             />
           </Suspense>
         </StyledDrawer>

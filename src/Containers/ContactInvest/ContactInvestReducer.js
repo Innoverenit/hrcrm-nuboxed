@@ -16,6 +16,11 @@ const initialState = {
     fetchingContactInvestAllRecordsError: false,
     contactInvestAllRecord:{},
 
+    uploadingContactInvestList: false,
+    uploadingContactInvestListError: false,
+
+    uploadContactInvestList:false,
+
 
     addingContactinvestActivityCall:false,
     addingContactinvestActivityCallError:false,
@@ -345,6 +350,25 @@ export const contactInvestReducer = (state = initialState, action) => {
                         fetchingContactInvestAllRecords: false,
                         fetchingContactInvestAllRecordsError: true,
                       };
+
+
+                      case types.HANDLE_UPLOAD_CONTACTINVEST_MODAL:
+                        return { ...state, uploadContactInvestList: action.payload };    
+
+                        case types.UPLOAD_CONTACTINVEST_LIST_REQUEST:
+                          return { ...state, uploadingContactInvestList: true };
+                        case types.UPLOAD_CONTACTINVEST_LIST_SUCCESS:
+                          return {
+                            ...state,
+                            uploadingContactInvestList: false,
+                            uploadContactInvestList: false
+                          };
+                        case types.UPLOAD_CONTACTINVEST_LIST_FAILURE:
+                          return {
+                            ...state,
+                            uploadingContactInvestList: false,
+                            uploadingContactInvestListError: true,
+                          };
 
      
       

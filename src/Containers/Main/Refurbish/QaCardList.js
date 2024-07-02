@@ -1,7 +1,7 @@
 import React, { useState, lazy, Suspense, useEffect,useRef } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getQAorderlist,updateQAinspection
+import { getQAorderlist,updateQAinspection, ClearSearchedDataOfQa
      } from "./RefurbishAction"
 import { Button, Badge ,Input} from "antd";
 import dayjs from "dayjs";
@@ -27,6 +27,7 @@ function QaCardList(props) {
     useEffect(() => {
         // setPageNo(pageNo + 1);
         props.getQAorderlist(props.locationId,pageNo)
+        props.ClearSearchedDataOfQa()
     }, [])
     const [hasMore, setHasMore] = useState(true);
 
@@ -52,7 +53,7 @@ function QaCardList(props) {
           //setPage(pageNo + 1);
           props.getQAorderlist(props.locationId,pageNo)
           //props.ClearReducerDataOfLead()
-          props.ClearSearchedDataOfQc()
+          props.ClearSearchedDataOfQa()
           setSearchOnEnter(false);
         }
       };
@@ -344,10 +345,10 @@ const mapDispatchToProps = (dispatch) =>
             getQAorderlist,
             updateQAinspection,
             handlePickupDateModal,
-            updateDispatchInspectionButton
+            updateDispatchInspectionButton,
             // qcInspectionButton,
             // inputQcDataSearch,
-            // ClearSearchedDataOfQc
+            ClearSearchedDataOfQa
         },
         dispatch
     );

@@ -123,14 +123,14 @@ const AccountActionLeft = (props) => {
                         <Badge size="small"
                             count={props.recordData.distributor || 0}
                         >
-                            <span class=" mr-2 text-sm cursor-pointer"
+                            <span class=" mr-1 text-sm cursor-pointer"
                                 onClick={() => props.setDistributorViewType("list")}
                                 style={{
                                     color: props.viewType === "list" && "#1890ff",
                                 }}
                             >
                                 <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
-                                    <TocIcon className="text-white" /></Avatar>
+                                    <TocIcon className="text-white !text-icon" /></Avatar>
 
                             </span>
                         </Badge>
@@ -145,14 +145,14 @@ const AccountActionLeft = (props) => {
                         <Badge size="small"
                             count={props.accountRecordData.distributor || 0}
                         >
-                            <span class=" mr-2 text-sm cursor-pointer"
+                            <span class=" mr-1 !text-icon cursor-pointer"
                                 onClick={() => props.setDistributorViewType("all")}
                                 style={{
                                     color: props.viewType === "all" && "#1890ff",
                                 }}
                             >
                                 <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                    <div className="text-white">ALL</div></Avatar>
+                                    <div class="text-white ">ALL</div></Avatar>
 
                             </span>
                         </Badge>
@@ -163,14 +163,14 @@ const AccountActionLeft = (props) => {
                 <Badge size="small"
                 // count={props.accountRecordData.distributor || 0}
                 >
-                    <span class=" mr-2 text-sm cursor-pointer"
+                    <span class=" mr-1 text-sm cursor-pointer"
                         onClick={() => props.setDistributorViewType("dashboard")}
                         style={{
                             color: props.viewType === "dashboard" && "#1890ff",
                         }}
                     >
                         <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
-                            <DeleteOutlined className="text-white" /></Avatar>
+                            <DeleteOutlined className="text-white " /></Avatar>
 
                     </span>
                 </Badge>

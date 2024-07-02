@@ -173,6 +173,74 @@ function OrderActionLeft (props) {
             </span>
           </Badge>
         </Tooltip>
+
+        <Tooltip title="Prcoure">
+          {/* <Badge
+            size="small"
+            count={(props.viewType === "list" && props.orderCount.order) || 0}
+
+            overflowCount={999}
+          > */}
+
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => props.setOrderViewType("procure")}
+              style={{
+                color: props.viewType === "procure" && "#1890ff",
+              }}
+            >         
+<Button type={props.viewType === "procure" ? "primary" : ""} style={{ backgroundColor: props.viewType === "procure" ? "" : "tomato" }}>
+                
+                <div class="text-white">Procure</div></Button>
+                
+            </span>
+          {/* </Badge> */}
+        </Tooltip>
+
+        <Tooltip title="Completed Orders">
+          {/* <Badge
+            size="small"
+            count={(props.viewType === "list" && props.orderCount.order) || 0}
+
+            overflowCount={999}
+          > */}
+
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => props.setOrderViewType("completedorders")}
+              style={{
+                color: props.viewType === "completedorders" && "#1890ff",
+              }}
+            >         
+<Button type={props.viewType === "completedorders" ? "primary" : ""} style={{ backgroundColor: props.viewType === "completedorders" ? "" : "tomato" }}>
+                
+                <div class="text-white">Completed Orders</div></Button>
+                
+            </span>
+          {/* </Badge> */}
+        </Tooltip>
+
+        <Tooltip title="Cancelled Orders">
+          {/* <Badge
+            size="small"
+            count={(props.viewType === "list" && props.orderCount.order) || 0}
+
+            overflowCount={999}
+          > */}
+
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => props.setOrderViewType("cancelledorders")}
+              style={{
+                color: props.viewType === "cancelledorders" && "#1890ff",
+              }}
+            >         
+<Button type={props.viewType === "cancelledorders" ? "primary" : ""} style={{ backgroundColor: props.viewType === "cancelledorders" ? "" : "tomato" }}>
+                
+                <div class="text-white">Cancelled Orders</div></Button>
+                
+            </span>
+          {/* </Badge> */}
+        </Tooltip>
+
+
         <Tooltip title="ALL">
           <Badge
             size="small"

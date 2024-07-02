@@ -274,11 +274,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { Tabs, Card } from 'antd';
+import { base_url } from "../../../../../../Config/Auth";
 import {getNotificationConfig} from "../../../../SettingsAction";
 import NottificationToggleTab from './NottificationToggleTab';
 const { TabPane } = Tabs;
 
 function NotificationToggleForm(props) {
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [supportedLanguages, setSupportedLanguages] = useState([]);
   const [activeTab, setActiveTab] = useState("Customer");
   const tabData = [
     { tab: 'Customer' },
@@ -296,6 +299,61 @@ function NotificationToggleForm(props) {
 { tab: 'Supplier' },
 { tab: 'Shipper' },
   ];
+
+  const translateText = async (text, targetLanguage) => {
+    // const url = `http://marketplace.eu-west-3.elasticbeanstalk.com/language/translate/word`;
+    const url = `${base_url}/language/translate/word`;
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${props.token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        q: text,
+        target: targetLanguage,
+      }),
+    });
+
+
+    const data = await response.json();
+    const result = data.map((translation) => translation.translatedText);
+    console.log("result", result)
+    if (data) {
+      return data.map((translation) => translation.translatedText);
+    } else {
+      throw new Error('Translation failed');
+    }
+  };
+
+  const getSupportedLanguages = async () => {
+    //const url = `http://marketplace.eu-west-3.elasticbeanstalk.com/language/mandatory`;
+    const url = `${base_url}/language/mandatory`;
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log("data",data)
+    // console.log(data.data.languages)
+    if (data) {
+      return data;
+    } else {
+      throw new Error('Failed to fetch supported languages');
+    }
+  };
+
+
+  useEffect(() => {
+    const fetchSupportedLanguages = async () => {
+      try {
+        const languages = await getSupportedLanguages();
+        setSupportedLanguages(languages);
+      } catch (error) {
+        console.error("Error fetching supported languages:", error);
+      }
+    };
+
+    fetchSupportedLanguages();
+  }, []);
 
   useEffect(() => {
 

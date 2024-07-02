@@ -9,6 +9,7 @@ class AccountHeader extends Component {
             handleDistributorModal,
             viewType,
             setDistributorViewType,
+            handleAccountImportModal,
             setCurrentData,
             currentData,
             handleClear,
@@ -29,6 +30,7 @@ class AccountHeader extends Component {
                     rightComponent={
                         <AccountActionRight
                             viewType={viewType}
+                            handleAccountImportModal={handleAccountImportModal}
                             handleDistributorModal={handleDistributorModal}
                         />
                     }

@@ -10,6 +10,7 @@ import ProductionOrderCardList from "./ProductionOrderCardList";
 import ProductionHistoryCardList from "./ProductionHistoryCardList";
 import ProductionAllCardList from "./ProductionAllCardList";
 import DeletedOrderList from "./DeletedOrderList";
+import ProcreCardList from "../Procre/ProcreCardList";
 
 const AllOrderList = lazy(() => import("./AllOrderList"));
 const OrderTableByUserID = lazy(() => import("./OrderTableByUserID"));
@@ -57,6 +58,8 @@ class Order extends Component {
               <DeletedOrderList />
           ) : this.props.viewType === "allcomplete" ? (
             <AllCompleteOrderList />
+          ) : this.props.viewType === "procure" ? (
+            <ProcreCardList />
           ) : null}
         </Suspense>
       </React.Fragment>

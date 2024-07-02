@@ -24,7 +24,7 @@ const ProductionActionLeft = (props) => {
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         //overflowCount={999}
                     >
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class=" mr-1 text-sm cursor-pointer"
                             onClick={() => setProductionViewType("table")}
                             style={{
 
@@ -33,13 +33,13 @@ const ProductionActionLeft = (props) => {
                         >
                             <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
                                 {/* <div className="text-white">All</div> */}
-                                <TableBarOutlined/>
+                                <TableBarOutlined className=" text-white !text-icon"/>
                                 </Avatar>
 
                         </span>
                     </Badge>
                 </Tooltip>
-    
+  
       <Tooltip
           title={
             <FormattedMessage id="app.stageview" defaultMessage="Stage View" />
@@ -50,30 +50,28 @@ const ProductionActionLeft = (props) => {
         // count={(viewType === "stage" && recordData.opportunityDetails) || 0}
         overflowCount={999}
       >
-          <span
+          <span class=" mr-1 cursor-pointer"
             style={{
-              fontSize: "1.56em",
-              marginRight: "0.3rem",
-              cursor:"pointer",
+              
               color: props.viewType === "stage" && "#1890ff",
             }}
             onClick={() => props.setProductionViewType("stage")}
           >
              <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
-           <TableOutlined/>
+           <TableOutlined className=" text-white !text-icon"/>
            </Avatar>
           </span>
           </Badge>
         </Tooltip>
       <Tooltip title="Archive">
-        <span class=" md:mr-2 text-sm cursor-pointer"
+        <span class=" mr-1 cursor-pointer"
           onClick={() => setProductionViewType("arch")}
           style={{
             color: viewType === "arch" && "#1890ff",
           }}
         >
           <Avatar style={{ background: viewType === "arch" ? "#f279ab" : "#4bc076" }}>
-            <ArchiveIcon />
+            <ArchiveIcon className=" text-white !text-icon" />
           </Avatar>
 
         </span>
@@ -83,7 +81,7 @@ const ProductionActionLeft = (props) => {
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
                     >
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class=" mr-1 !text-icon cursor-pointer"
                             onClick={() => setProductionViewType("all")}
                             style={{
 
@@ -91,7 +89,7 @@ const ProductionActionLeft = (props) => {
                             }}
                         >
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white">ALL</div></Avatar>
+                                <div className=" text-white ">ALL</div></Avatar>
 
                         </span>
                     </Badge>
@@ -103,7 +101,7 @@ const ProductionActionLeft = (props) => {
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
                     > */}
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class=" mr-1  cursor-pointer"
                             onClick={() => setProductionViewType("cell")}
                             style={{
 
@@ -112,7 +110,7 @@ const ProductionActionLeft = (props) => {
                         >
                            
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white"> <TokenIcon  /></div></Avatar>
+                                <div className="text-white !text-icon "> <TokenIcon  /></div></Avatar>
 
 
                         </span>

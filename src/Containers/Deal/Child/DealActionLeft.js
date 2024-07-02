@@ -71,7 +71,7 @@ const DealActionLeft = (props) => {
               color: viewType === "table" && "#1890ff",
             }}
           >
-            {" "}
+            
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
             <CurrencyExchangeIcon  className="text-white !text-icon"/>
             </Avatar>
@@ -133,36 +133,7 @@ const DealActionLeft = (props) => {
           </span>
           </Badge>
       </Tooltip>
-        <Tooltip
-          title={   <FormattedMessage
-            id="app.close"
-            defaultMessage="My Deals-Close"
-          />}>
-        {" "}
-        <Badge
-          size="small"
-        //   count={
-        //     (viewType === "close" &&
-        //       closeOpportunityData.OpportunityDetailsByCloseInd) ||
-        //     0
-        //   }
-          overflowCount={999}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            // onClick={() => props.setOpportunityViewType("close")}
-            style={{
-              color: props.viewType === "close" && "#1890ff",
-           
-            }}
-          >
-            {" "}
-            <Avatar style={{ background: props.viewType === "close" ? "#f279ab" : "#4bc076" }}>
-            <LockOpenIcon  className="text-white !text-icon"/>
-            </Avatar>
-          </span>
-        </Badge>
-      </Tooltip>
+       
       <Tooltip 
         title={   <FormattedMessage
           id="app.lost"

@@ -23,7 +23,7 @@ class AccountActionRight extends React.Component {
                 ) : null}
                  <div className="max-sm:hidden">
           <Button type="primary"  
-        //onClick={() => this.props.handleLeadsImportModal(true)}
+        onClick={() => this.props.handleAccountImportModal(true)}
         >
             Import
           </Button>

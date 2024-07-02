@@ -6,12 +6,10 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-//import { CustomizeInputComponent } from "../../../../Components/Forms/Formik/CustomizeInputComponent";
-import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field,} from "formik";
 import AddLocationMachineModal from "./AddLocationMachineModal"
-import { Select, StyledLabel } from "../../../../Components/UI/Elements";
-import * as Yup from "yup";
+import { Select} from "../../../../Components/UI/Elements";
+
 import {createLoCell, getLoCell,deleteLocationCell,handleLocationMachineModal} from "./LocationAction";
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getUserByLocationDepartment } from "../../../Main/Account/AccountAction"
@@ -78,7 +76,7 @@ const LocationCellForm = (props) => {
                     }) => (
                         <Form>
                             <div class=" flex" >
-                                <div class=" w-full h-full">
+                                <div class=" w-full ">
 
                                     <div class="flex justify-between">
                                         <div class=" w-[18%] ml-2" >
@@ -137,20 +135,21 @@ const LocationCellForm = (props) => {
                 </Formik>
 
 
-                <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+                <div className=' flex mt-1 sticky h-[31rem] z-auto'>
+        <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
           
             {/* <div className=" md:w-[6rem]">Cell Code</div> */}
             <div className=" md:w-[4.2rem] ">#Cell</div> 
             <div className=" md:w-[5.1rem]">Description</div>
             <div className="w-12"></div>
                          </div>
-                         <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky" }}>
+                         <div className="z-auto"
+                         class=" overflow-x-hidden overflow-y-auto sticky">
            {props.showLoCell.map((item) => {
             return (
               <div key={item.roomRackId}>
-                <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
+                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
 
                   {/* <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:w-full  ">
                     <div class="text-sm  font-semibold  font-poppins cursor-pointer">
@@ -186,48 +185,48 @@ const LocationCellForm = (props) => {
                   
                   </div>
 
+                 
+
+
+
                   <div class="flex md:items-center">
 
 
-                    <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
-                      <div>
+                        <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
+                          <div>
+                          
+                        <Button
+                        onClick={() => {
+                          props.handleLocationMachineModal(true);
+                          handleSetCurrentItems(item);
+                        }}
+                        >Machine</Button>
+                          </div>
+
+                        </div>
+                     </div>
+                     <div class="flex  justify-end md:items-center ">
+
+
+              <div class="flex justify-end  w-20 max-sm:flex-row max-sm:w-[10%]">
+                
+                
+                <StyledPopconfirm
+                      title="Do you want to delete?"
+                      onConfirm={() => handleDelete(item)}
+
+                    >
                       
-                      <StyledPopconfirm
-                            title="Do you want to delete?"
-                            onConfirm={() => handleDelete(item)}
+                      <DeleteOutlined
+                        type="delete"
+                        className=" !text-icon cursor-pointer !text-[red]"
+                      />
+                  
+                    </StyledPopconfirm>
+               
 
-                          >
-                            
-                            <DeleteOutlined
-                              type="delete"
-                              className=" !text-base cursor-pointer !text-[red]"
-                            />
-                         
-                          </StyledPopconfirm>
-                      </div>
-
-                    </div>
-                  </div>
-
-
-
-                  <div class="flex md:items-center">
-
-
-<div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
-  <div>
-  
- <Button
- onClick={() => {
-  props.handleLocationMachineModal(true);
-  handleSetCurrentItems(item);
-}}
- >Machine</Button>
-  </div>
-
-</div>
-</div>
-
+              </div>
+           </div>
                 </div>
               </div>
             );

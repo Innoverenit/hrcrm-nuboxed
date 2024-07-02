@@ -112,7 +112,7 @@ const {handleProcureNotesDrawerModal,
   return (
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[0.5rem]"></div>
                         <div className=" md:w-[11rem]"><FormattedMessage id="app.item" defaultMessage="Item"/></div>
                         <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit "/></div>
@@ -121,7 +121,6 @@ const {handleProcureNotesDrawerModal,
                         <div className=" md:w-[6rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[5rem]"><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className=" md:w-[6.01rem]">Created</div>
-                        <div className=" md:w-[6.03rem]">currency</div>
                         <div className=" md:w-[3.8rem] "><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
                         <div className=" md:w-[5rem]"><FormattedMessage id="app.tradeid" defaultMessage="Trade ID"/></div>
                         <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit "/></div>
@@ -134,7 +133,7 @@ const {handleProcureNotesDrawerModal,
           dataLength={props.allProcure.length}
           next={handleLoadMore}
           loader={props.fetchingAllProcure?<div class="flex justify-center" >Loading...</div>:null}
-          height={"75vh"}
+          height={"83vh"}
           endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
           {data.map((item) => {
@@ -146,7 +145,7 @@ const {handleProcureNotesDrawerModal,
            
             return (
               <div key={item.iteamId}>
-              <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
+              <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
 <div>
 {/* <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full ">
@@ -224,7 +223,7 @@ const {handleProcureNotesDrawerModal,
                 </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-sm">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -232,20 +231,14 @@ const {handleProcureNotesDrawerModal,
         `}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-sm">
 
                      {date}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class=" font-poppins text-sm">
-
-                     {item.currencyName} {item.price}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                    
+                  <div class="flex items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -312,8 +305,15 @@ const {handleProcureNotesDrawerModal,
                       </div>
                     )}
                     </div>
+                    <div className=" flex  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class=" font-poppins text-sm">
+
+                     {item.currencyName} {item.price}
+                      </div>
+                    </div>
+                  </div>
   </div>
-  <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs  font-semibold  font-poppins">
                    {editsuppliesId === item.iteamId ? (
@@ -330,7 +330,7 @@ const {handleProcureNotesDrawerModal,
                     )}
                     </div>
   </div>
-  <div class="flex flex-row items-center md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
+  <div class="flex  items-center md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       {item.userName} 
                     </div>
