@@ -667,7 +667,7 @@ props.getInvestorCurrency();
                       unCheckedChildren="Private"
                     />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" flex justify-between  w-3/5 max-sm:w-wk">
                     {/* <div class="flex">
                        <Tooltip title="Hot">
                          <Button
@@ -719,14 +719,13 @@ props.getInvestorCurrency();
                            </Button>
                        </Tooltip>
                      </div> */}
-                      <div className="flex">
+       <div className="flex">
       <Tooltip title="Hot">
         <i
           className={`fas fa-mug-hot${priority === "hot" ? " selected" : ""}`}
           onClick={() => handleIconClick("hot")}
           style={{
-            color: priority === "hot" ? "white" : "red",
-            backgroundColor: priority === "hot" ? "red" : "transparent",
+            color: priority === "hot" ? "red" : "red",
             borderRadius: "50%",
             fontSize: "1rem",
             height:"1.5rem",
@@ -735,7 +734,7 @@ props.getInvestorCurrency();
           }}
         ></i>
       </Tooltip>
-      &nbsp;
+     
       <Tooltip title="Warm">
         <i
           className={`fas fa-burn${priority === "warm" ? " selected" : ""}`}
@@ -751,7 +750,7 @@ props.getInvestorCurrency();
           }}
         ></i>
       </Tooltip>
-      &nbsp;
+  
       <Tooltip title="Cold">
         <i
           className={`far fa-snowflake${priority === "cold" ? " selected" : ""}`}
@@ -765,6 +764,7 @@ props.getInvestorCurrency();
             padding: "5px",
             cursor: "pointer"
           }}
+         
         ></i>
       </Tooltip>
     </div>
@@ -910,18 +910,16 @@ props.getInvestorCurrency();
 
                     <span onClick={SpeechRecognition.stopListening}>
                       <Tooltip title="Stop">
-                        <span
-                          
-                            class="!text-icon ml-1 text-green-600">
-                          <StopCircleIcon />
+                        <span>
+                          <StopCircleIcon className="!text-icon ml-1 text-green-600" />
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span  class="!text-icon ml-1">
-                          <RotateRightIcon />
+                        <span >
+                          <RotateRightIcon  className="!text-icon ml-1"/>
                         </span>
                       </Tooltip>
                     </span>

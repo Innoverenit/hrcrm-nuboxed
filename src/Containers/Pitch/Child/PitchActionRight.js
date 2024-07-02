@@ -44,23 +44,26 @@ class PitchActionRight extends React.Component {
                         defaultMessage="Add"
                       />
           </Button> */}
-<Button
-  type="primary"
-  onClick={() => this.props.handlePitchModal(true)}
-  className="focus:outline-none focus:shadow-outline transition bg-[#ff7158bf] border-[1px solid #8eca9a] text-white px-3 py-1 rounded-md"
-  onMouseOver={(e) => (e.target.style.backgroundColor = 'rgba(142, 202, 154, 0.95)')}
-  onMouseOut={(e) => (e.target.style.backgroundColor = 'rgba(255, 113, 88, 0.75)')}
->
-<DataSaverOnIcon/><FormattedMessage id="app.add" defaultMessage="Add" />
-</Button>
-<Tooltip placement="left" title="Create">
+          <div class=" flex  items-center">
+            <Button
+              type="primary"
+              onClick={() => this.props.handlePitchModal(true)}
+              className="focus:outline-none focus:shadow-outline transition bg-[#ff7158bf] border-[1px solid #8eca9a] text-white px-3 py-1 rounded-md"
+              onMouseOver={(e) => (e.target.style.backgroundColor = 'rgba(142, 202, 154, 0.95)')}
+             onMouseOut={(e) => (e.target.style.backgroundColor = 'rgba(255, 113, 88, 0.75)')}
+            >
+            <DataSaverOnIcon className=" !text-icon"/><FormattedMessage id="app.add" defaultMessage="Add"  />
+                        </Button>
+          </div>
+          <div><Tooltip placement="left" title="Create">
         <Button
           type="primary"
           ghost
           onClick={() => this.props.handleUploadPitchModal(true)}>
           Upload
         </Button>
-      </Tooltip>
+      </Tooltip></div>
+
         </div>
        
         )}
