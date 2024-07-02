@@ -184,13 +184,14 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
 
                                 <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins">
-                                                       
+                                                    {item.qualityStatus === "Complete"&&
                                                         <MoveToggleQuality 
                                                         item={item} 
                                                         // selectedZone={selectedZone}
                                                         // selectedRack={selectedRack}
                                                     className=' !text-icon'
                                                         />
+                                                    }
                                                     
                                                     </div>
                                                 </div>

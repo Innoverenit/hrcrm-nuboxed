@@ -17,6 +17,14 @@ export const handleQualityManufactureModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+
+export const emptyQualityManufactureData = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_QUALITY_MANUFACTURE_DATA, 
+  });
+};
+
 export const handleInventoryModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_INVENTORY_MODAL,
