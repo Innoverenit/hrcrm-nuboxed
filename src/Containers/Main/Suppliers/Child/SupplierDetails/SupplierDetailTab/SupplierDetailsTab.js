@@ -8,12 +8,13 @@ import {
 import {
   handleLinkSuppliersOrderConfigureModal, getTodayPurchaseOrder,
   handleSuppleirSuppliesDrawer, handleSupplierContactModal,
-  handleSupplierDocumentUploadModal, handleSuppliersActivityModal,handleSupplierExcleUploadModal
+  handleSupplierDocumentUploadModal, handleSupplierInventoryImportModal,handleSuppliersActivityModal,handleSupplierExcleUploadModal
 } from "../../../SuppliersAction"
 import AddPoModal from "./AddPoModal";
+import AddSupplierInventoryImportModal from "../AddSupplierInventoryImportModal"
 import PurchaseOrderTable from "./PurchaseOrderTable";
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { PlusOutlined } from "@ant-design/icons";
+import { FileExcelOutlined, PlusOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 import SupplierSuppliesDrawer from "./SupplierSupplies/SupplierSuppliesDrawer";
 import InventoryTable from "./InventoryTable";
@@ -92,8 +93,14 @@ class SupplierDetailsTab extends Component {
                           }}
                         />
                       </Tooltip>
+                      <FileExcelOutlined
+                       onClick={() => this.props.handleSupplierInventoryImportModal(true)}
+                       //onClick={() => this.props.handleSupplierInventoryImportModal(true)}
+                      />
+                     
                     </>
                   )}
+                  
                 </>
               }
               key="2"
@@ -286,6 +293,10 @@ class SupplierDetailsTab extends Component {
             this.props.handleSuppliersActivityModal
           }
         />
+        <AddSupplierInventoryImportModal
+        handleSupplierInventoryImportModal={this.props.handleSupplierInventoryImportModal}
+        addSupplierInventoryImportModal={this.props.addSupplierInventoryImportModal}
+        />
       </>
     );
   }
@@ -293,6 +304,7 @@ class SupplierDetailsTab extends Component {
 const mapStateToProps = ({ auth, suppliers }) => ({
   userId: auth.userDetails.userId,
   poBySupplier: suppliers.poBySupplier,
+  addSupplierInventoryImportModal:suppliers.addSupplierInventoryImportModal,
   addLinkSuppliersOrderConfigureModal: suppliers.addLinkSuppliersOrderConfigureModal,
   supplierSuppliesdrwr: suppliers.supplierSuppliesdrwr,
   addSupplierContactModal: suppliers.addSupplierContactModal,
@@ -304,6 +316,7 @@ const mapStateToProps = ({ auth, suppliers }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      handleSupplierInventoryImportModal,
       handleLinkSuppliersOrderConfigureModal,
       getTodayPurchaseOrder,
       handleSuppleirSuppliesDrawer,

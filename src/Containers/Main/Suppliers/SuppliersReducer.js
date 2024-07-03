@@ -113,6 +113,8 @@ const initialState = {
   fetchingGeneratorSupplierListError: false,
   generatorSuppliers: [],
 
+  addSupplierInventoryImportModal:false,
+
   moveToInventory: false,
   moveToInventoryError: false,
 
@@ -288,6 +290,10 @@ const initialState = {
   fetchingSupplierContactListByIdError: false,
   contactSupplier: [],
 
+
+  addingSupplierInventoryImportForm:false,
+  addingSupplierInventoryImportFormError:false,
+
   fetchingInventoryAlllist: false,
   fetchingInventoryAlllistError: false,
   inventoryAllList:[],
@@ -448,6 +454,10 @@ export const suppliersReducer = (state = initialState, action) => {
     case types.HANDLE_SUPPLIERS_MODAL:
       return { ...state, addSuppliersModal: action.payload };
 
+
+      case types.HANDLE_SUPPLIER_INVENTORY_IMPORT_MODAL:
+        return { ...state, addSupplierInventoryImportModal: action.payload };
+
     case types.ADD_SUPPLIERS_REQUEST:
       return { ...state, addingSuppliers: true };
     case types.ADD_SUPPLIERS_SUCCESS:
@@ -462,6 +472,30 @@ export const suppliersReducer = (state = initialState, action) => {
         addingSuppliers: false,
         addingSuppliersError: true,
         addSuppliersModal: false,
+      };
+
+
+
+
+      case types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_REQUEST:
+      return { ...state, addingSupplierInventoryImportForm: true };
+    case types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_SUCCESS:
+      return {
+        ...state,
+        addingSupplierInventoryImportForm: false,
+        addSupplierInventoryImportModal: false,
+        // organizationDocumentDrawer: false,
+        // repositoryData: [
+        //   action.payload,
+        //   ...state.repositoryData,
+        //  ],
+
+      };
+    case types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_FAILURE:
+      return {
+        ...state, addingSupplierInventoryImportForm: false,
+        addingSupplierInventoryImportFormError:true,
+        // addCustomerModal: false 
       };
 
       case types.UPDATE_QUALITY_SUPPLIERS_REQUEST:
