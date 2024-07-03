@@ -556,27 +556,24 @@ const filteredEmployeesData = AllEmplo.filter(
                   <div>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
-                        <span  class="!text-icon ml-1 text-red-600">
-                          <RadioButtonCheckedIcon />
+                        <span >
+                          <RadioButtonCheckedIcon  className="!text-icon ml-1 text-red-600" />
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={SpeechRecognition.stopListening}>
                       <Tooltip title="Stop">
-                        <span
-                          
-                            class="!text-icon ml-1 text-green-600"
-                        >
-                          <StopCircleIcon />
+                        <span>
+                          <StopCircleIcon   className="!text-icon ml-1 text-green-600" />
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span  class="!text-icon ml-1">
-                          <RotateRightIcon />
+                        <span >
+                          <RotateRightIcon  className="!text-icon ml-1"/>
                         </span>
                       </Tooltip>
                     </span>

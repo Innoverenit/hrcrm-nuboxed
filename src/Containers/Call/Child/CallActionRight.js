@@ -27,7 +27,7 @@ const CallActionRight = (props) => {
           onClick={() => props.handleCallModal(true)}
         >
           {/* <Icon type="plus" /> */}
-          <DataSaverOnIcon/>Add
+          <DataSaverOnIcon className="!text-icon"/>Add
         </Button>
       </Tooltip>
     </div>

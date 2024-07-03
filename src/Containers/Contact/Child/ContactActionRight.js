@@ -70,7 +70,7 @@ class ContactActionRight extends React.Component {
           <Button 
            type="primary"
            onClick={() => handleContactModal(true)}>
-                 <DataSaverOnIcon/>Add
+                 <DataSaverOnIcon className="!text-icon"/>Add
 
             
           </Button>

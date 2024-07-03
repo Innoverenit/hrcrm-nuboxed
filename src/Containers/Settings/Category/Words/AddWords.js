@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Input } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FlexContainer } from "../../../../Components/UI/Elements";
 import {AddLangWords} from "../../SettingsAction";
 
 function AddWords(props) {

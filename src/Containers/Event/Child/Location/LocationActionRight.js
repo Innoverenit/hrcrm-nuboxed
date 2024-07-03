@@ -29,7 +29,7 @@ class LocationActionRight extends React.Component {
           >
            
 
-           <DataSaverOnIcon/>Add
+           <DataSaverOnIcon className="!text-icon"/>Add
           </Button>
         </Tooltip>
       </div>

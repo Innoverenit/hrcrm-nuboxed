@@ -35,7 +35,6 @@ import CategoryIcon from '@mui/icons-material/Category'
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import ShopTwoIcon from '@mui/icons-material/ShopTwo';
 import PeopleIcon from '@mui/icons-material/People';

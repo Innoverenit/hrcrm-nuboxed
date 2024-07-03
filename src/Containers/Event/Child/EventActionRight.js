@@ -34,7 +34,7 @@ class EventActionRight extends React.Component {
         <Tooltip placement="left" title="Create">
           <Button type="primary"
             onClick={() => handleEventModal(true)}>
-          <DataSaverOnIcon/>Add
+          <DataSaverOnIcon className="!text-icon"/>Add
           </Button>
         </Tooltip>
       </div>

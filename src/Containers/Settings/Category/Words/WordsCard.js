@@ -2,7 +2,7 @@ import React, { useEffect, useState, } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import {getLangWords} from "../../SettingsAction";
-import AddWords from "./AddWords";
+// import AddWords from "./AddWords";
 import { MainWrapper } from "../../../../Components/UI/Elements";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
@@ -50,16 +50,16 @@ function WordsCard(props) {
 
     return (
         <>
-            <MainWrapper>
+            {/* <MainWrapper>
             <AddWords 
 handleChangeWords={handleChangeWords}
 handleAddWordsClick={handleAddWordsClick}
 handleDeleteWords={handleDeleteWords}
 words={words}
 />
-            </MainWrapper>
+            </MainWrapper> */}
 
-            <div className="cwrapper" style={{ height: "80vh", overflowY: "auto" }}>
+            <div className="cwrapper" style={{ height: "89vh", overflowY: "auto" }}>
         {props.langWords.map((translations, index) => {
         
           return (
