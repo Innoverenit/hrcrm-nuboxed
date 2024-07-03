@@ -35,6 +35,7 @@ import CategoryIcon from '@mui/icons-material/Category'
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import ShopTwoIcon from '@mui/icons-material/ShopTwo';
 import PeopleIcon from '@mui/icons-material/People';
@@ -950,8 +951,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Link>
         </Menu.Item>
         )} 
- {( user.erpInd === true && user.qualityAccessInd === true 
-  ) &&  (
+ {/* {( user.erpInd === true && user.qualityAccessInd === true 
+  ) &&  ( */}
 <Menu.Item key="/quality" style={{ height: "1.45rem", 
         color: selectedMenuItem === '/quality' ? 'tomato' : '#4bc076' }}>
           <Link to="/quality" onClick={() => handleSelect('/quality')}>
@@ -965,7 +966,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </span>
           </Link>
         </Menu.Item>
- )}
+ {/* )} */}
 
 {/* <Menu.Item key="/procre" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
@@ -1015,7 +1016,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
   </Link>
 </Menu.Item>
  )} 
-
+  {( user.tradeInd === true 
+       
+      ) &&  (
 <Menu.Item key="/trade" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/trade' ? 'tomato' : '#4bc076'}}>
   <Link to="/trade" onClick={() => handleSelect('/trade')}>
@@ -1027,6 +1030,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
     </span>
   </Link>
 </Menu.Item>
+      )}
 {/* {(user.supplierAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && ( */}
 {/* {( user.erpInd === true &&
 <Menu.Item key="/vendor" style={{ height: "1.45rem", 

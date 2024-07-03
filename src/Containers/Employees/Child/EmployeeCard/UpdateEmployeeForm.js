@@ -11,6 +11,7 @@ import { getCurrency } from "../../../Auth/AuthAction"
 import { 
   // getTimeZone,
    getCountries } from "../../../Auth/AuthAction"
+   import { getDesignations } from "../../../Settings/Designation/DesignationAction";
 import { getRoles } from "../../../Settings/Category/Role/RoleAction"
 import { updateEmployee, } from "../../EmployeeAction";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -57,7 +58,7 @@ class UpdateEmployeeForm extends Component {
 
 
   componentDidMount() {
-    const { getCountries, getEmployeelist, getDepartments,
+    const { getCountries, getEmployeelist, getDepartments,getDesignations,
       //  getTimeZone
         getCurrency, getRoles, getlocation, } = this.props;
     getRoles(this.props.organizationId);
@@ -67,7 +68,7 @@ class UpdateEmployeeForm extends Component {
     getDepartments();
     getCurrency();
     this.props.getDepartmentwiserUser(this.state.department);
-
+    getDesignations()
   }
   handleReset = (resetForm) => {
     resetForm();
@@ -261,7 +262,12 @@ class UpdateEmployeeForm extends Component {
         value: item.country_name,
       };
     });
-
+    const designationNameOption = this.props.designations.map((item) => {
+      return {
+        label: `${item.designationType}`,
+        value: item.designationTypeId,
+      };
+    });
 
     const {
       user: { firstName,empName, middleName, fullName, lastName, timeZone },
@@ -303,7 +309,7 @@ class UpdateEmployeeForm extends Component {
             roleTypeName: currentEmployeeId.roleTypeName || "",
             linkedinPublicUrl: currentEmployeeId.linkedinPublicUrl || "",
             label: currentEmployeeId.label || "",
-
+            designationType:"",
             job_type: this.state.active ? "Full Time" : "Part Time",
             type: this.state.typeInd ? "true" : "false",
             employee_type: this.state.workType,
@@ -756,7 +762,24 @@ name="departmentId"
                       />
                       </div>
                     </div>
-                 
+                    <div class=" max-sm:w-wk">
+                      <Field
+                        name="designationType"
+                        isColumnWithoutNoCreate
+                        placeholder="Designation"
+                        label="Designation"
+                        isColumn
+                        // selectType="currencyName"
+                        isRequired
+                        component={SelectComponent}
+                        options={
+                          Array.isArray(designationNameOption)
+                            ? designationNameOption
+                            : []
+                        }
+
+                      />
+                      </div>
 
                     <div class=" flex justify-between mt-3 max-sm:flex-col" >
                       <div class=" w-w48 flex flex-col max-sm:w-wk">
@@ -1009,6 +1032,7 @@ const mapStateToProps = ({ auth, role, settings, location, currency, employee, d
   departmentId: departments.departmentId,
   designationTypeId: designations.designationTypeId,
   employees: employee.employees,
+  designations:designations.designations,
   departmentwiseUser: settings.departmentwiseUser,
   departments: departments.departments,
   currencies: auth.currencies,
@@ -1023,6 +1047,7 @@ const mapDispatchToProps = (dispatch) =>
     getlocation,
     getCountries,
     getRoles,
+    getDesignations
 
   }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateEmployeeForm);

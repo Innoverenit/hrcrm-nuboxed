@@ -25,9 +25,9 @@ class AddLeadsNotesDrawerModal extends Component {
           <Suspense fallback={<BundleLoader />}>
             {/* <NotesForm rowdata={this.props.rowdata} 
             leadsId={this.props.rowdata.leadsId} 
-            /> */}
+            /> */} 
              <MainNotes
-             type="leads"
+             type="lead"
              uniqueId={this.props.rowdata.leadsId}
             />
           </Suspense>

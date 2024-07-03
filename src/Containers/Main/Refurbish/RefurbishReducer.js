@@ -920,7 +920,8 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingOrderIdByUserId: false,
-        orderPhoneList: action.payload,
+        orderPhoneList: [...state.orderPhoneList, ...action.payload],
+        // orderPhoneList: action.payload,
       };
     case types.GET_ORDERID_BY_USER_FAILURE:
       return {
