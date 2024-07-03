@@ -75,7 +75,7 @@ class LocationForm extends Component {
     // this.props.getProductionManager();
     // this.props.getLocationsType();
     this.props.getRoles(this.props.organizationId);
-    this.props.getDepartments();
+    this.props.getDepartments(); 
     this.props.getTimeZone();
   }
 
@@ -120,7 +120,9 @@ class LocationForm extends Component {
     //   };
     // });
 
+    console.log("3rDep-",this.state.department,"3rDUs-",this.state.reportingManager);
     return (
+  
       <>
         <Formik
           initialValues={{
@@ -139,6 +141,9 @@ class LocationForm extends Component {
             // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
             corporateInd: this.state.corporate ? "true" : "false",
             retailInd: this.state.retail ? "true" : "false",
+            thirdPartyInd: this.state.contract ? "true":"false",
+            thirdPartyContactDpt:this.state.department ? this.state.department : "",
+            thirdPartyContact:this.state.reportingManager ? this.state.reportingManager : "",
             timeZone: "",
             timeZone: undefined,
             address: [
@@ -171,6 +176,9 @@ class LocationForm extends Component {
                 // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
                 corporateInd: this.state.corporate ? "true" : "false",
                 retailInd: this.state.retail ? "true" : "false",
+                thirdPartyInd: this.state.contract ? "true":"false",
+                thirdPartyContactDpt :this.state.department ?this.state.department:"",
+                thirdPartyContact:this.state.reportingManager ? this.state.reportingManager : "",
                 orgId: this.props.orgId,
                 userId: this.props.userId,
                 
