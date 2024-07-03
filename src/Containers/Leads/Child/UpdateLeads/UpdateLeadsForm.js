@@ -24,6 +24,7 @@ import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaC
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Listbox } from '@headlessui/react'
+import { BundleLoader } from "../../../../Components/Placeholder";
 const { Option } = Select; 
 
 // yup validation scheme for creating a account
@@ -95,6 +96,8 @@ function UpdateLeadsForm (props) {
     const [selectedSource, setSelectedSource] = useState(null);
     const [isLoadingSector, setIsLoadingSector] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
     const fetchSource = async () => {
       setIsLoading(true);
       try {
@@ -115,7 +118,42 @@ function UpdateLeadsForm (props) {
         setIsLoading(false);
       }
     };
-    
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+     'First Name', // 0
+'Middle ', // 1
+'Last Name', // 2
+'Email', // 3
+'Mobile', // 4
+'Phone No', // 5
+'Company', // 6
+'URL', // 7
+'Sector', // 8
+'Source', // 9
+'LOB', // 10
+'VAT Number', // 11
+'Registration', // 12
+'Assigned', // 13
+'Notes', // 14
+  
+  
+  
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
   const handleSelectChange = (value) => {
     setSelectedSource(value)
     console.log('Selected user:', value);
@@ -192,6 +230,9 @@ function UpdateLeadsForm (props) {
       setSelectedLob(value)
       console.log('Selected user:', value);
     };
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    }
     return (
       <>
         <Formik
@@ -221,18 +262,26 @@ function UpdateLeadsForm (props) {
         
             propertyType:props.setEditingLeads.propertyType || "",
             assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingLeads.employeeId,
-            address: [
-              {
-                addressId: props.setEditingLeads.address.length ? props.setEditingLeads.address[0].addressId : "",
-                address1: props.setEditingLeads.address.length ? props.setEditingLeads.address[0].address1 : "",
-                address2:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].address2 : "",
-                street:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].street : "",
-                city:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].city : "",
-                state:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].state : "",
-                postalCode:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].postalCode : "",  
-                country:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].country : "",            
-              },
-            ],
+            // address: [
+            //   {
+            //     addressId: props.setEditingLeads.address.length ? props.setEditingLeads.address[0].addressId : "",
+            //     address1: props.setEditingLeads.address.length ? props.setEditingLeads.address[0].address1 : "",
+            //     address2:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].address2 : "",
+            //     street:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].street : "",
+            //     city:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].city : "",
+            //     state:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].state : "",
+            //     postalCode:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].postalCode : "",  
+            //     country:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].country : "",            
+            //   },
+            // ],
+                addressId: props.setEditingLeads.addressId || "",
+                address1: props.setEditingLeads.address1 || "",
+                address2:  props.setEditingLeads.address2 || "",
+                street:  props.setEditingLeads.street || "",
+                city: props.setEditingLeads.city || "",
+                state:  props.setEditingLeads.state || "",
+                postalCode:  props.setEditingLeads.postalCode || "", 
+                country:   props.setEditingLeads.country || "",         
             
           }}
           validationSchema={UpdateLeadsSchema}
@@ -645,6 +694,9 @@ function UpdateLeadsForm (props) {
                     label="Address"
                     render={(arrayHelpers) => (
                       <AddressFieldArray
+                      translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}
+translatedMenuItems={props.translatedMenuItems}
                         arrayHelpers={arrayHelpers}
                         values={values}
                       />

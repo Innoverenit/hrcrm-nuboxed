@@ -21,11 +21,13 @@ const CallActionRight = (props) => {
        {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.callFullListInd === true &&(
          <CallSharedForm/>
          )} 
-      <Tooltip placement="left" title="Create">
+      <Tooltip placement="left" title={props.translatedMenuItems[0]}>
         <Button
           type="primary"
           onClick={() => props.handleCallModal(true)}
         >
+          <DataSaverOnIcon/> {props.translatedMenuItems[1]}
+          {/* Add */}
           {/* <Icon type="plus" /> */}
           <DataSaverOnIcon className="!text-icon"/>Add
         </Button>

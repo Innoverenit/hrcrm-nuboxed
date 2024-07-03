@@ -296,6 +296,12 @@ const initialState = {
   fetchingReceivedUnitOfAnItemError: false,
   reciveUnitData: [],
 
+
+  linkingManufactureStatus:false,
+  linkingManufactureStatusError:false,
+  
+
+
   addingDeliverDate: false,
   addingDeliverDateError: false,
 
@@ -545,6 +551,12 @@ export const inventoryReducer = (state = initialState, action) => {
 
 
 
+      case types.EMPTY_QUALITY_MANUFACTURE_DATA:
+        return { ...state, qualityManufactureData: [] };
+
+
+
+
 
 
       case types.GET_PRODUCTION_QUALITY_DATA_REQUEST:
@@ -558,6 +570,29 @@ export const inventoryReducer = (state = initialState, action) => {
       return { ...state, fileDamagedModal: action.payload };
 
     //add dispatch
+
+
+    case types.LINK_MANUFACTURE_STATUS_REQUEST:
+      return { ...state, linkingManufactureStatus: true };
+    case types.LINK_MANUFACTURE_STATUS_SUCCESS:
+      return {
+        ...state,
+        linkingManufactureStatus: false,
+        qualityManufactureData: state.qualityManufactureData.map((item) => {
+          if (item.qualityCheckBuilderId === action.payload.qualityCheckBuilderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        // addTeamTransferModal: false,
+      };
+    case types.LINK_MANUFACTURE_STATUS_FAILURE:
+      return {
+        ...state,
+        linkingManufactureStatus: false,
+        linkingManufactureStatusError: true,
+      };
 
 
     case types.UPDATE_QUALITY_STATUS_REQUEST:

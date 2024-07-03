@@ -277,6 +277,10 @@ const initialState = {
 
   addSupplierContactModal: false,
 
+
+  removingSupplierNotApproval:false,
+  removingSupplierNotApprovalError:false,
+
   addingContactSupplier: false,
   addingContactSupplierError: false,
 
@@ -301,6 +305,11 @@ const initialState = {
   fetchingContactDistributorsById: false,
   fetchingContactDistributorsByIdError: false,
   contactDistributor: [],
+
+
+  fetchingNotApprovalSupplierList:false,
+  fetchingNotApprovalSupplierListError:false,
+  notApprovalSupplierList:[],
 
   fetchingContactSupplierById: false,
   fetchingContactSupplierByIdError: false,
@@ -444,7 +453,8 @@ export const suppliersReducer = (state = initialState, action) => {
     case types.ADD_SUPPLIERS_SUCCESS:
       return {
         ...state, addingSuppliers: false, addSuppliersModal: false,
-        supplierList: [action.payload, ...state.supplierList]
+        supplierList: [action.payload, ...state.supplierList].filter(supplier => supplier.approvedInd !== false)
+        //supplierList: [action.payload, ...state.supplierList]
       };
     case types.ADD_SUPPLIERS_FAILURE:
       return {
@@ -863,6 +873,42 @@ export const suppliersReducer = (state = initialState, action) => {
     /**
      * generate order with subscription
      */
+
+
+
+    case types.REMOVE_SUPPLIER_NOT_APPROVAL_REQUEST:
+      return { ...state, removingSupplierNotApproval: true };
+    case types.REMOVE_SUPPLIER_NOT_APPROVAL_SUCCESS:
+      return {
+        ...state,
+        removingSupplierNotApproval: false,
+       
+        notApprovalSupplierList: state.notApprovalSupplierList.filter(
+          (item) => item.supplierId !== action.payload
+        ),
+      };
+    case types.REMOVE_SUPPLIER_NOT_APPROVAL_FAILURE:
+      return {
+        ...state,
+        removingSupplierNotApproval: false,
+        removingSupplierNotApprovalError: true,
+      };
+
+
+    case types.GET_SUPPLIERS_NOT_APPROVAL_LIST_REQUEST:
+      return { ...state, fetchingNotApprovalSupplierList: true };
+    case types.GET_SUPPLIERS_NOT_APPROVAL_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingNotApprovalSupplierList: false,
+        notApprovalSupplierList: [...state.notApprovalSupplierList, ...action.payload]
+      };
+    case types.GET_SUPPLIERS_NOT_APPROVAL_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingNotApprovalSupplierList: false,
+        fetchingNotApprovalSupplierListError: true,
+      };
 
     case types.GENERATE_ORDER_BY_SUPPLIER_ID_REQUEST:
       return {

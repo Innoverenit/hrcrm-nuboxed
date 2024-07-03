@@ -156,13 +156,14 @@ const {
           overflowCount={999}
         >
                     <span class=" mr-1 text-sm cursor-pointer"
-                        onClick={() => setSuppliersViewType("all")}
+                        onClick={() => setSuppliersViewType("not approved")}
                         style={{
                             color: viewType === "not approved" && "#1890ff",
                         }}
                     >
-                        {/* <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                            <div className="text-white">A</div></Avatar> */}
+                       <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                       <TocIcon className="text-white !text-icon" />
+                            </Avatar> 
 
                     </span>
                     </Badge>
