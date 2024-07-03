@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { useState, useEffect, Suspense, lazy,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -12,7 +12,9 @@ import {
   handleSuppliersListDrawer
 } from "./SuppliesAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { Tooltip, Popconfirm } from "antd";
+import QRCode from "qrcode.react";
+import ReactToPrint from "react-to-print";
+import { Tooltip, Popconfirm, Button } from "antd";
 import {
   DeleteOutlined,
   PhoneFilled,
@@ -27,6 +29,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import MaterialStatusToggle from "./MaterialStatusToggle";
 import MaterialFifoToggle from "./MaterialFifoToggle";
+import QrCodeIcon from '@mui/icons-material/QrCode';
+import { FormattedMessage } from "react-intl";
 
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const UpdateSuppliesFormDrawer = lazy(() => import("./UpdateSuppliesFormDrawer"));
@@ -39,6 +43,10 @@ function SuppliesTable(props) {
 
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const componentRefs = useRef([]);
+  const handlePrint = () => {
+    window.print();
+};
   useEffect(() => {
     setPage(page + 1);
     props.getSuppliesList(page);
@@ -112,7 +120,7 @@ function SuppliesTable(props) {
           >
             {props.purchaseList.length ?
               <>
-                {props.purchaseList.map((item) => {
+                {props.purchaseList.map((item,index) => {
                   const currentDate = dayjs().format("DD/MM/YYYY");
                   
                   return (
@@ -270,7 +278,39 @@ function SuppliesTable(props) {
                               </Tooltip>
                             </div>
 
+                            <div className=" flex font-medium ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title={<FormattedMessage
+                                                            id="app.Print"
+                                                            defaultMessage="Print"
+                                                        />}>
+                                                            
+                                                            <ReactToPrint
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon/></Button>}
+                                                                content={() => componentRefs.current[index]}
+                                                            />
+                                                        </Tooltip>
 
+                                                    </div>
+                                                </div>
+                                                <div style={{ display: "none", textAlign: "center" }}>
+
+<div
+    ref={(el) => (componentRefs.current[index] = el)}
+    style={{
+        fontSize: "16px",
+        marginBottom: "20px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+    }}
+>
+    <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
+        <QRCode size={150} value={item.imei} />
+    </div>
+    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+</div>
+</div>
                             <div>
                               <Tooltip title="Edit">
                                 <BorderColorIcon

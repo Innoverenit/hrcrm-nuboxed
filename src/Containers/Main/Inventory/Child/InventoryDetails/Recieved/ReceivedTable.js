@@ -125,7 +125,7 @@ const ReceivedTable = (props) => {
                               </div>
                             </div>
                           </div>
-
+{props.user.customerInfoInd?
                           <div className=" flex font-medium  w-[10.12rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
@@ -141,6 +141,7 @@ const ReceivedTable = (props) => {
 
                             </div>
                           </div>
+                          :null}
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           {/* <div className=" flex font-medium  w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -341,7 +342,8 @@ const mapStateToProps = ({ inventory, distributor, auth }) => ({
   orgId: auth.userDetails.organizationId,
   inventory: inventory.inventory,
   addingDeliverDate: inventory.addingDeliverDate,
-  mismatchPhoneModal: inventory.mismatchPhoneModal
+  mismatchPhoneModal: inventory.mismatchPhoneModal,
+  user: auth.userDetails,
 });
 
 const mapDispatchToProps = (dispatch) =>

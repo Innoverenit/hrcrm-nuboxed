@@ -271,7 +271,7 @@ class AccountContactTable extends Component {
                                                 //onChange={this.handleChange}
                                                 >
                                                     {this.props.lobList.map((sd) => (
-                                                        <Option key={sd.lobId} value={sd.lobId}  >
+                                                        <Option key={sd.lobDetsilsId} value={sd.lobDetsilsId}  >
                                                             {sd.name}
                                                         </Option>
                                                     ))}
@@ -299,7 +299,7 @@ class AccountContactTable extends Component {
                                                     }
                                                 >
                                                     {this.props.saleCurrencies.map((sd) => (
-                                                        <Option key={sd.roomRackId} value={sd.roomRackId}>
+                                                        <Option key={sd.currency_id} value={sd.currency_id}>
                                                             {sd.currency_name}
                                                         </Option>
                                                     ))}
