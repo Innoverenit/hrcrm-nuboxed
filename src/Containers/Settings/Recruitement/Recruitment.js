@@ -194,7 +194,7 @@ function Recruitment(props) {
             <Suspense 
             // fallback={"Loading..."}
             >
-            <div class=" w-[74%]" >
+            <div class=" w-[76%]" >
             
               <RecruitmentActionRight current={currentRulesOpen} />
             </div>

@@ -1143,9 +1143,9 @@ const onCheckAllTeamsChange = (e) => {
 <div class="flex flex-col ">
   <div class="text-clr flex justify-center text-base font-bold">General, HR & Self Service</div>
   
-  <div class="flex mt-4 space-x-4">
+  <div class="flex mt-4 ">
     {/* Left Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class=" border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
           <div>
@@ -1231,7 +1231,7 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div >
@@ -1322,9 +1322,9 @@ const onCheckAllTeamsChange = (e) => {
 {props.departmentData.crmInd === true ? 
       <div class="flex flex-col ">
             <div class=" text-clr mt-10 flex justify-center text-base  font-bold">CRM</div>
-            <div class="flex mt-4 space-x-4">
+            <div class="flex mt-4 ">
     {/* Left Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div  >
@@ -1379,7 +1379,7 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div >
@@ -1422,9 +1422,9 @@ const onCheckAllTeamsChange = (e) => {
                 
 <div class=" text-clr text-base flex justify-center mt-10 font-bold">ERP</div>
           
-<div class="flex mt-4 space-x-4">
+<div class="flex mt-4 ">
     {/* Left Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div >
@@ -1513,7 +1513,7 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div >
@@ -1599,9 +1599,9 @@ const onCheckAllTeamsChange = (e) => {
   <div class="flex flex-col ">
             <div class=" text-clr text-base flex justify-center mt-10 font-bold">Accounting</div>
         
-            <div class="flex mt-4 space-x-4">
+            <div class="flex mt-4 ">
     {/* Left Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div >
@@ -1623,7 +1623,7 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div >
@@ -1662,9 +1662,9 @@ const onCheckAllTeamsChange = (e) => {
             <div class=" text-clr text-base flex justify-center mt-10 font-bold">RecruitPro</div>
            
               
-            <div class="flex mt-4 space-x-4">
+            <div class="flex mt-4 ">
     {/* Left Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div  >
@@ -1685,7 +1685,7 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div >
@@ -1711,9 +1711,9 @@ const onCheckAllTeamsChange = (e) => {
                   {props.departmentData.imInd === true ? 
   <div class="flex flex-col ">  
             <div class=" text-clr text-base mt-10 flex justify-center font-bold">IM</div>
-            <div class="flex mt-4 space-x-4">
+            <div class="flex mt-4 ">
     {/* Left Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div >
@@ -1763,7 +1763,7 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div >
@@ -1814,9 +1814,9 @@ const onCheckAllTeamsChange = (e) => {
 {props.departmentData.elearningInd === true ? 
      <div class="flex flex-col ">    
             <div class=" text-clr mt-10 text-base flex justify-center font-bold">E-Learning</div>
-            <div class="flex mt-4 space-x-4">
+            <div class="flex mt-4 ">
     {/* Left Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div >
@@ -1866,7 +1866,7 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex-1 border border-gray-300 p-4">
+    <div class="flex border border-gray-300 p-4">
       <div class="flex flex-col">
         <div class="flex justify-around mt-4">
         <div >
