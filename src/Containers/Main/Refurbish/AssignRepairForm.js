@@ -176,7 +176,10 @@ const AssignRepairForm = (props) => {
                 loading={props.fetchingRepairPhoneById}
             />
             <div class="flex justify-end mt-1">
-                {department && technician && dueDate && checkedValue && <Button
+                {department && technician && dueDate &&  
+                 <div>
+                    {checkedValue.length === 0 ? "":
+                <Button
                     type='primary'
                     loading={props.updatingTechnicianForRepair}
                     onClick={() => props.UpdateTechnicianForRepairPhone({
@@ -193,7 +196,9 @@ const AssignRepairForm = (props) => {
                         handleCallback()
                     )}>
                     Submit
-                </Button>}
+                </Button> }
+                  </div>
+                }
             </div>
         </div>
     )

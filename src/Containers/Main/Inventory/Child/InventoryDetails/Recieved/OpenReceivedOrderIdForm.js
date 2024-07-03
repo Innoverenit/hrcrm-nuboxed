@@ -70,6 +70,27 @@ function OpenReceivedOrderIdForm(props) {
     setphoneId(phoneId);
   }
   const onSearch = (value) => console.log(value);
+
+  const [receivePhoneInd, setReceivePhoneInd] = useState({});
+
+ useEffect(() => {
+    const initialReceivePhoneInd = {};
+    props.phoneListById.forEach(item => {
+      if (item.receivePhoneInd) {
+        initialReceivePhoneInd[item.phoneId] = true;
+      }
+    });
+    setReceivePhoneInd(initialReceivePhoneInd);
+  }, [props.phoneListById]);
+
+  
+  const handleReceiveToggleChange = (phoneId, value) => {
+    setReceivePhoneInd(prevState => ({
+      ...prevState,
+      [phoneId]: value
+    }));
+  };
+
   return (
     <>
       <div class=" flex justify-between">
@@ -91,7 +112,9 @@ function OpenReceivedOrderIdForm(props) {
                 onClick={handlePauseResume}>
                 {pause ? "Resume" : "Pause"}</Button>}
             {props.rowData.inspectionInd === 1 &&
-              <div style={{ marginLeft: '10px' }}>
+           
+              <div style={{ marginLeft: '10px' }}> 
+           {Object.values(receivePhoneInd).includes(true) && (
                 <Button
                   loading={props.updatingInspection}
                   onClick={() => props.updateInspection({
@@ -103,7 +126,9 @@ function OpenReceivedOrderIdForm(props) {
                     props.locationDetailsId)}
                   type="primary"
                 >Inspection Completed</Button>
-              </div>}
+              )}
+              </div>
+                }
           </div>
         </div>
       </div>
@@ -259,7 +284,9 @@ function OpenReceivedOrderIdForm(props) {
                                 orderPhoneId={props.rowData.orderPhoneId}
                                 phoneId={item.phoneId}
                                 receivePhoneInd={item.receivePhoneInd}
-                                inspectionInd={item.inspectionInd} />
+                                inspectionInd={item.inspectionInd}
+                                onReceiveToggleChange={handleReceiveToggleChange}
+                                />
                             }
                           </Tooltip>
                         </div>

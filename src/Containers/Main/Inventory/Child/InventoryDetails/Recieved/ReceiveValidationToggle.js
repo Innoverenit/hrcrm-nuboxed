@@ -17,7 +17,8 @@ function ReceiveValidationToggle(props) {
         },
             props.phoneId,
             props.orderPhoneId,
-        )
+        );
+        props.onReceiveToggleChange(props.phoneId, true);
     };
     return (
         <>
