@@ -85,38 +85,16 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
        <div className=' flex  justify-center sticky  z-auto'>
        <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
        <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.type"
-                  defaultMessage="type"
-                /></div>
-        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.subject"
-                  defaultMessage="subject"
-                /></div>
-        <div className=" w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
-                  id="app.contact"
-                  defaultMessage="contact"
-                /></div>
-        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.date"
-                  defaultMessage="date"
-                /></div>
-        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.include"
-                  defaultMessage="include"
-                /></div> 
-        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.assignedto"
-                  defaultMessage="assignedto"
-                /></div>
-                 <div className="w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.owner"
-                  defaultMessage="owner"
-                /></div>
-        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.completed"
-                  defaultMessage="completed"
-                /></div>
+        <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">            
+        {props.translatedMenuItems[2]}
+</div>
+        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
+        <div className=" w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[4]}</div>
+        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[5]}</div>
+        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div> 
+        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[7]} </div>
+         <div className="w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[8]}</div>
+        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[9]}</div>
        
         <div className="w-12"></div>
       </div>
@@ -124,9 +102,9 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
         dataLength={callListRangeByUserId.length}
         next={handleLoadMore}
       hasMore={hasMore}
-        loader={fetchingCallListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingCallListRangeByUserId?<div class="flex justify-center">{props.translatedMenuItems[10]}...</div>:null}
         height={"80vh"}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">{props.translatedMenuItems[11]}. </p>}
       >
       
           {callListRangeByUserId.map((item) => {
@@ -179,7 +157,8 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                     {item.included &&
                   item.included.map((candidate, i) => {
                     
-                    const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "No data"
+                    const data1 =candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : `${props.translatedMenuItems[12]}`
+                    // "No data"
                     return (
                       <Tooltip title={candidate.empName} key={i}>
                       <Avatar style={{ backgroundColor: "#f56a00" }}>
@@ -209,7 +188,8 @@ return (
               <div class="flex  flex-col w-[7.8rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
              <span>
               {item.assignedTo === null ? (
-                "Not available"
+                // "Not available"
+                <p>{props.translatedMenuItems[13]}</p>
               ) : (
                 <>
                 {item.assignedTo === item.woner ? (
@@ -225,7 +205,6 @@ return (
                 </>
               )}
             </span>
-              {/* <p> {item.assignedTo || "Unassigned"}</p> */}
               </div>
               </div>
               
@@ -235,7 +214,6 @@ return (
              
              <MultiAvatar
                    primaryTitle={item.woner}
-                   //imageId={item.ownerImageId}
                    imageURL={item.imageURL}
                    imgWidth={"1.8em"}
                    imgHeight={"1.8em"}
@@ -244,14 +222,14 @@ return (
              </div>
               <div class="flex  flex-col w-[11.35rem] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
            
-              <p className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"> {item.completionInd ? "Yes" : "No"}</p>
+              <p className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"> {item.completionInd ? `${props.translatedMenuItems[14]}` : `${props.translatedMenuItems[15]}`} </p>
               </div>
             
               
              
               <div class="flex flex-row  w-[6%] max-sm:flex-row max-sm:w-auto">
                     <div>
-                    <Tooltip title="Notes">
+                    <Tooltip title={props.translatedMenuItems[16]}>
        <NoteAltIcon
                 onClick={() => {
                   handleCallNotesDrawerModal(true);
@@ -262,7 +240,7 @@ return (
            </Tooltip>
                     </div>
                     <div>
-                    <Tooltip title="Delete">
+                    <Tooltip title={props.translatedMenuItems[17]}>
                     <DeleteOutlined  type="delete" 
                     className="!text-icon cursor-pointer text-[red]"
                 onClick={() => deleteCall(item.callId, employeeId)}

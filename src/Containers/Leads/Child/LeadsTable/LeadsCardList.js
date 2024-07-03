@@ -1484,6 +1484,9 @@ const LeadsCardList = (props) => {
         updateLeadsModal={updateLeadsModal}
         handleUpdateLeadsModal={handleUpdateLeadsModal}
         handleSetCurrentLeadsId={handleSetCurrentLeadsId}
+        translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}
+translatedMenuItems={props.translatedMenuItems}
       />
       <AddLeadsEmailDrawerModal
         item={currentLeadsId}

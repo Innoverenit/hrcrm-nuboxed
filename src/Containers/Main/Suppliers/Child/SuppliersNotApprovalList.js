@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import {
-//   getSuppliersList, emptysUPPLIERS, deleteSupplierData,
-//   handleUpdateSupplierModal, setEditSuppliers,
-//   handleSuppliersPriceDrawer,
-//   handleSuppliersListDrawer
-// } from "../SuppliersAction"
+import {
+  getSuppliersNotApprovalList, 
+  // emptysUPPLIERS, 
+  // deleteSupplierData,
+  // handleUpdateSupplierModal, 
+  // setEditSuppliers,
+  // handleSuppliersPriceDrawer,
+  // handleSuppliersListDrawer
+} from "../SuppliersAction"
 import InfiniteScroll from "react-infinite-scroll-component";
+import SuplierNotApprovalPublishToggle from "../Child/SuplierNotApprovalPublishToggle"
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import StoreIcon from '@mui/icons-material/Store';
@@ -32,10 +36,10 @@ function SuppliersNotApprovalList(props) {
   const [page, setPage] = useState(0);
 
 
-//   useEffect(() => {
-//     setPage(page + 1);
-//     props.getSuppliersList(props.userId, page);
-//   }, []);
+  useEffect(() => {
+    setPage(page + 1);
+    props.getSuppliersNotApprovalList(props.userId, page);
+  }, []);
 
 
   const handleRowData = (item) => {
@@ -45,25 +49,25 @@ function SuppliersNotApprovalList(props) {
   function handleSetCurrentShipperId(shipperId) {
     setCurrentShipperId(shipperId);
   }
-//   const handleLoadMore = () => {
-//     const PageMapd = props.supplierList && props.supplierList.length && props.supplierList[0].pageCount
-//     setTimeout(() => {
-//       const {
-//         getSuppliersList,
+  const handleLoadMore = () => {
+    const PageMapd = props.supplierList && props.supplierList.length && props.supplierList[0].pageCount
+    setTimeout(() => {
+      const {
+        getSuppliersNotApprovalList,
 
-//         userId
-//       } = props;
-//       if (props.supplierList) {
-//         if (page < PageMapd) {
-//           setPage(page + 1);
-//           getSuppliersList(userId, page);
-//         }
-//         if (page === PageMapd) {
-//           setHasMore(false)
-//         }
-//       }
-//     }, 100);
-//   };
+        userId
+      } = props;
+      if (props.supplierList) {
+        if (page < PageMapd) {
+          setPage(page + 1);
+          getSuppliersNotApprovalList(userId, page);
+        }
+        if (page === PageMapd) {
+          setHasMore(false)
+        }
+      }
+    }, 100);
+  };
 
 //   useEffect(() => {
 //     props.emptysUPPLIERS();
@@ -92,17 +96,17 @@ function SuppliersNotApprovalList(props) {
 
             <div class=" w-[5rem]"></div>
           </div>
-          {/* <div class="overflow-x-auto h-[80vh]">
+         <div class="overflow-x-auto h-[80vh]">
             <InfiniteScroll
-              dataLength={props.supplierList.length}
+              dataLength={props.notApprovalSupplierList.length}
               next={handleLoadMore}
               hasMore={hasMore}
-              loader={props.fetchingSupplierList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+              loader={props.fetchingNotApprovalSupplierList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
               height={"80vh"}
             >
-              {props.supplierList.length ?
+              {props.notApprovalSupplierList.length ?
                 <>
-                  {props.supplierList.map((item) => {
+                  {props.notApprovalSupplierList.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     const countryCode = item.address[0].country_alpha2_code;
@@ -178,15 +182,15 @@ function SuppliersNotApprovalList(props) {
 
                             <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                <SuplierPublishToggle
-                                  publishInd={item.publishInd}
-                                  supplierId={item.supplierId}
+                                <SuplierNotApprovalPublishToggle
+                                 approveInd={item.approveInd}
+                                supplierId={item.supplierId}
                                 />
                               </div>
                             </div>
 
 
-                            <div class="flex max-sm:justify-end max-sm:w-wk items-center">
+                            {/* <div class="flex max-sm:justify-end max-sm:w-wk items-center">
                               <div>
                                 <Tooltip title="Purchase Order">
                                   <StoreIcon
@@ -253,7 +257,7 @@ function SuppliersNotApprovalList(props) {
                                   </Popconfirm>
                                 </Tooltip>
                               </div>
-                            </div>
+                            </div> */}
 
                           </div>
                         </div>
@@ -261,10 +265,10 @@ function SuppliersNotApprovalList(props) {
                     )
                   })}
                 </> :
-                !props.supplierList.length &&
-                  !props.fetchingSupplierList ? <NodataFoundPage /> : null}
+                !props.notApprovalSupplierList.length &&
+                  !props.fetchingNotApprovalSupplierList ? <NodataFoundPage /> : null}
             </InfiniteScroll>
-          </div> */}
+          </div> 
         </div>
       </div>
 
@@ -296,6 +300,8 @@ const mapStateToProps = ({ shipper, suppliers, auth }) => ({
   supplierList: suppliers.supplierList,
   suppliersListOpenDrawer: suppliers.suppliersListOpenDrawer,
   userId: auth.userDetails.userId,
+  fetchingNotApprovalSupplierList:suppliers.fetchingNotApprovalSupplierList,
+  notApprovalSupplierList:suppliers.notApprovalSupplierList,
   fetchingSupplierList: suppliers.fetchingSupplierList,
   suppliersPriceOpenDrawer: suppliers.suppliersPriceOpenDrawer,
   fetchingSupplierListError: suppliers.fetchingSupplierListError,
@@ -308,6 +314,7 @@ const mapStateToProps = ({ shipper, suppliers, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      getSuppliersNotApprovalList
     //   getSuppliersList,
     //   emptysUPPLIERS,
     //   deleteSupplierData,

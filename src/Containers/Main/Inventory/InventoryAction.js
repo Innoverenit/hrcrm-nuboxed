@@ -17,6 +17,14 @@ export const handleQualityManufactureModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+
+export const emptyQualityManufactureData = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_QUALITY_MANUFACTURE_DATA, 
+  });
+};
+
 export const handleInventoryModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_INVENTORY_MODAL,
@@ -2128,5 +2136,44 @@ export const updateQualityStatus = (productionProductId,status) => (dispatch) =>
         type: types.UPDATE_QUALITY_STATUS_FAILURE,
         payload: err
       });
+    });
+};
+
+
+
+
+
+
+
+
+export const linkManufactureToggle = (data) => (
+  dispatch) => {
+  // debugger;
+  dispatch({
+    type: types.LINK_MANUFACTURE_STATUS_REQUEST,
+  });
+  axios
+  .put(
+    `${base_url2}/qualityCheckBuilder/qualityCheck/update`,data, 
+    {
+    
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.LINK_MANUFACTURE_STATUS_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_MANUFACTURE_STATUS_FAILURE,
+        payload: err,
+      });
+      // cb && cb("failuer");
     });
 };

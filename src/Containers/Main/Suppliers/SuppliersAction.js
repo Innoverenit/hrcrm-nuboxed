@@ -2109,3 +2109,61 @@ export const ClearSearchedDataOfSupplier = () => (dispatch) => {
     type: types.HANDLE_CLAER_SEARCHED_DATA_SUPPLIER,
   });
 };
+
+
+
+export const getSuppliersNotApprovalList = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIERS_NOT_APPROVAL_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/user/NotApproved/${userId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIERS_NOT_APPROVAL_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIERS_NOT_APPROVAL_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+export const linkSupplierNotApproval = (supplierId,approveInd) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_SUPPLIER_NOT_APPROVAL_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplier/user/updateApprovedInd/${supplierId}/${approveInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.REMOVE_SUPPLIER_NOT_APPROVAL_SUCCESS,
+        payload: supplierId,
+      });
+      message.success(res.data);
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.REMOVE_SUPPLIER_NOT_APPROVAL_FAILURE,
+        payload: err,
+      });
+      // message.error("Something went wrong");
+    });
+};
