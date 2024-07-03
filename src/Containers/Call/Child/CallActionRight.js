@@ -28,8 +28,6 @@ const CallActionRight = (props) => {
         >
           <DataSaverOnIcon/> {props.translatedMenuItems[1]}
           {/* Add */}
-          {/* <Icon type="plus" /> */}
-          <DataSaverOnIcon className="!text-icon"/>Add
         </Button>
       </Tooltip>
     </div>
