@@ -35,7 +35,7 @@ const TaskActionRight = (props) => {
                               style={{ width: "-webkit-fill-available" }}
            onClick={() => props.handleTaskModal(true)}>
         
-          <DataSaverOnIcon/>Add
+          <DataSaverOnIcon className="!text-icon" />Add
         </Button>
       </Tooltip>
 :null}

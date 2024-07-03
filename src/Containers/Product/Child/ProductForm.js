@@ -395,18 +395,16 @@ class Productform extends Component {
 
                     <span onClick={SpeechRecognition.stopListening}>
                       <Tooltip title="Stop">
-                        <span
-                          
-                            class="!text-icon ml-1 text-green-600">
-                          <StopCircleIcon />
+                        <span>
+                          <StopCircleIcon className="!text-icon ml-1 text-green-600"/>
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span  class="!text-icon ml-1">
-                          <RotateRightIcon />
+                        <span  >
+                          <RotateRightIcon className="!text-icon ml-1" />
                         </span>
                       </Tooltip>
                     </span>

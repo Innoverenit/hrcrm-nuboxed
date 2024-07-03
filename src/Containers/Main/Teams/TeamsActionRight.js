@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { Button, Icon } from "antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 class TeamsActionRight extends React.Component {
 
@@ -19,7 +19,7 @@ class TeamsActionRight extends React.Component {
             type="primary"
             // ghost
             onClick={() => handleTeamsModal(true)}
-          >Add
+          > < DataSaverOnIcon className="!text-icon"/>Add
           </Button>
           : null}
       </div>

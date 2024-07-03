@@ -272,7 +272,7 @@ const OpportunityActionRight = (props) => {
           // ghost
           onClick={() => handleOpportunityModal(true)}
         >
-          <DataSaverOnIcon/>Add
+          <DataSaverOnIcon className="!text-icon"/>Add
         </Button>
           )}  
       </Tooltip>
