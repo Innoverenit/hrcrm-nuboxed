@@ -399,7 +399,7 @@ const SingleDepartment = (props) => {
                         <Switch
                          className="w-[4rem]"
                           onChange={() => {}}
-                          checked={accountingStatus || financeInd}
+                          checked={financeInd||accountingStatus}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -424,7 +424,7 @@ const SingleDepartment = (props) => {
                          className="w-[4rem]"
                           onChange={() => {}}
                           // onChange={handleCrmClick}
-                          checked={crmStatus || crmInd}
+                          checked={crmInd||crmStatus}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -447,7 +447,7 @@ const SingleDepartment = (props) => {
                         <Switch
                          className="w-[4rem]"
                           onChange={() => {}}
-                          checked={imStatus || imInd}
+                          checked={imInd||imStatus }
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -496,7 +496,7 @@ const SingleDepartment = (props) => {
                         <Switch
                          className="w-[4rem]"
                           onChange={() => {}}
-                          checked={hrStatus || hrInd}
+                          checked={hrInd||hrStatus}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -521,7 +521,7 @@ const SingleDepartment = (props) => {
                         <Switch
                          className="w-[4rem]"
                           onChange={() => {}}
-                          checked={elearningStatus || elearningInd}
+                          checked={elearningInd||elearningStatus}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -608,7 +608,7 @@ const SingleDepartment = (props) => {
                         <Switch
                          className="w-[4rem]"
                           onChange={() => {}}
-                          checked={productionStatus || productionInd}
+                          checked={productionInd||productionStatus }
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -633,7 +633,7 @@ const SingleDepartment = (props) => {
                         <Switch
                          className="w-[4rem]"
                           onChange={() => {}}
-                          checked={repairStatus || repairInd}
+                          checked={repairInd||repairStatus}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -650,7 +650,7 @@ const SingleDepartment = (props) => {
                         <Switch
                          className="w-[4rem]"
                           onChange={handleInventoryClick}
-                          checked={inventoryStatus || inventoryInd}
+                          checked={inventoryInd||inventoryStatus}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -673,7 +673,7 @@ const SingleDepartment = (props) => {
                         <Switch
                          className="w-[4rem]"
                           onChange={() => {}}
-                          checked={orderManagStatus || orderManagementInd}
+                          checked={orderManagementInd||orderManagStatus}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -699,7 +699,7 @@ const SingleDepartment = (props) => {
                         <Switch
                          className="w-[4rem]"
                           onChange={() => {}}
-                          checked={logisticsStatus || logisticsInd}
+                          checked={logisticsInd||logisticsStatus }
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -723,7 +723,7 @@ const SingleDepartment = (props) => {
                         <Switch
                          className="w-[4rem]"
                           onChange={() => {}}
-                          checked={procurmentStatus || procurementInd}
+                          checked={procurementInd||procurmentStatus}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />

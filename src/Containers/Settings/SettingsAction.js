@@ -3964,12 +3964,12 @@ export const addNotificationConfig = (data) => (dispatch) => {
       });
     });
 };
-export const getNotificationConfig = (name,type) => (dispatch) => {
+export const getNotificationConfig = () => (dispatch) => {
   dispatch({
     type: types.GET_NOTIFICATION_CONFIG_REQUEST,
   });
   axios
-    .get(`${base_url}/notification/config/${name}`, {
+    .get(`${base_url}/notification/config/get-all`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

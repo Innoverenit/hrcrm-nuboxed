@@ -633,7 +633,7 @@ const initialState = {
 
   gettingNotificationConfig: false,
   gettingNotificationConfigError:false,
-  notificationConfig:{},
+  notificationConfig:[],
 
   fetchingProcessForRepair: false,
   fetchingProcessForRepairError: false,

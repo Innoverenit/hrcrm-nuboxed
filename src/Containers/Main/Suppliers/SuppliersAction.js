@@ -663,6 +663,15 @@ export const getAllSuppliersList = (orgId, pageNo) => (dispatch) => {
     });
 };
 
+
+
+export const handleSupplierInventoryImportModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIER_INVENTORY_IMPORT_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const inputDataSearch = (name) => (dispatch) => {
   dispatch({
     type: types.INPUT_SEARCH_DATA_REQUEST,
@@ -756,6 +765,50 @@ export const handleSupplierExcleUploadModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_SUPPLIER_EXCLE_UPLOAD_MODAL,
     payload: modalProps,
   });
+};
+
+
+
+
+export const addSupplierInventoryImportForm =
+(customer, userId) => (dispatch, getState) => {
+  //const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/excel/supplier-inventory`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+    //dispatch(getLeads(userId));
+
+  window.location.reload()
+      // dispatch(getRecords(userId));
+      // dispatch(getLatestCustomers(userId, startDate, endDate));
+      // dispatch(getCustomerListByUserId(userId));
+
+      dispatch({
+        type: types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
 };
 
 //add supplier document
