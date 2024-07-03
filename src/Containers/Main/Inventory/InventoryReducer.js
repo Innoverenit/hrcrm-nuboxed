@@ -7,6 +7,14 @@ const initialState = {
   addingInventory: false,
   addingInventoryError: false,
 
+
+
+  fetchingQualityManufactureData:false,
+  fetchingQualityManufactureDataError:false,
+  qualityManufactureData:[],
+
+ 
+
   removingProductionQuality:false,
   removingProductionQualityError:false,
 
@@ -15,6 +23,8 @@ const initialState = {
   inventory: [],
 
   addMaterialReceived: false,
+
+  addQualityManufactureDrawerModal:false,
 
   addAwbNo: false,
   addingpickupdate: false,
@@ -182,6 +192,11 @@ const initialState = {
   fetchingOutputPlusReasonList: false,
   fetchingOutputPlusReasonListError: false,
   outputPlusReasonList: [],
+
+
+
+  updateQualityStatus:false,
+  updateQualityStatusError:false,
   //getshipperDetailsList
   fetchingShipperDetailsList: false,
   fetchingShipperDetailsListError: false,
@@ -281,6 +296,12 @@ const initialState = {
   fetchingReceivedUnitOfAnItemError: false,
   reciveUnitData: [],
 
+
+  linkingManufactureStatus:false,
+  linkingManufactureStatusError:false,
+  
+
+
   addingDeliverDate: false,
   addingDeliverDateError: false,
 
@@ -327,6 +348,10 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         viewType1: action.payload
       };
+
+
+      case types.HANDLE_QUALITY_MANUFACTURE_DRAWER_MODAL:
+        return { ...state, addQualityManufactureDrawerModal: action.payload };
 
     case types.HANDLE_INVENTORY_MODAL:
       return { ...state, addInventoryModal: action.payload };
@@ -526,6 +551,12 @@ export const inventoryReducer = (state = initialState, action) => {
 
 
 
+      case types.EMPTY_QUALITY_MANUFACTURE_DATA:
+        return { ...state, qualityManufactureData: [] };
+
+
+
+
 
 
       case types.GET_PRODUCTION_QUALITY_DATA_REQUEST:
@@ -539,6 +570,55 @@ export const inventoryReducer = (state = initialState, action) => {
       return { ...state, fileDamagedModal: action.payload };
 
     //add dispatch
+
+
+    case types.LINK_MANUFACTURE_STATUS_REQUEST:
+      return { ...state, linkingManufactureStatus: true };
+    case types.LINK_MANUFACTURE_STATUS_SUCCESS:
+      return {
+        ...state,
+        linkingManufactureStatus: false,
+        qualityManufactureData: state.qualityManufactureData.map((item) => {
+          if (item.qualityCheckBuilderId === action.payload.qualityCheckBuilderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        // addTeamTransferModal: false,
+      };
+    case types.LINK_MANUFACTURE_STATUS_FAILURE:
+      return {
+        ...state,
+        linkingManufactureStatus: false,
+        linkingManufactureStatusError: true,
+      };
+
+
+    case types.UPDATE_QUALITY_STATUS_REQUEST:
+      return { ...state,updateQualityStatus: true };
+    case types.UPDATE_QUALITY_STATUS_SUCCESS:
+      return {
+        ...state,
+        updateQualityStatus: false,
+        productionQualityData: state.productionQualityData.map((item) => {
+          if (item.productionProductId === action.payload.productionProductId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        // productionTableData: state.productionTableData.map((item) => {
+        //   if (item.productionProductId === action.payload.productionProductId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+
+      case types.UPDATE_QUALITY_STATUS_FAILURE:
+      return { ...state,updateQualityStatus: false,updateQualityStatusError:true, };
 
     case types.ADD_DISPATCH_REQUEST:
       return { ...state, addingDispatch: true };
@@ -592,6 +672,17 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         setEditingShipperContactData: action.payload,
       };
+
+
+
+
+
+      case types.GET_QUALITY_MANUFACTURE_DATA_REQUEST:
+        return { ...state, fetchingQualityManufactureData: true, fetchingQualityManufactureDataError: false };
+      case types.GET_QUALITY_MANUFACTURE_DATA_SUCCESS:
+        return { ...state, fetchingQualityManufactureData: false, qualityManufactureData: action.payload };
+      case types.GET_QUALITY_MANUFACTURE_DATA_FAILURE:
+        return { ...state, fetchingQualityManufactureData: false, fetchingQualityManufactureDataError: true };
 
     //get dispatchList
     case types.GET_DISPATCH_LIST_REQUEST:

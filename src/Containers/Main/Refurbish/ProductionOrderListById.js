@@ -23,6 +23,7 @@ function ProductionOrderListById(props) {
     useEffect(() => {
         setPageNo(pageNo + 1);
         props.getOrderByUser(props.userId,pageNo)
+        props.ClearSearchedDataOfQc()
     }, [])
     const [hasMore, setHasMore] = useState(true);
     // const handleLoadMore = () => {

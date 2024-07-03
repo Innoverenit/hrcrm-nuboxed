@@ -45,7 +45,7 @@ class ContactActionRight extends React.Component {
         ) : null}
         </div>
         <div class="max-sm:hidden">
-       { role == "ADMIN" && (
+       {this.props.viewType === "table" &&  role == "ADMIN" && (
         <Tooltip placement="left" title="XL">
         <a
         href={`${base_url}/excel/export/user/contact/${userId}`}>
@@ -64,17 +64,20 @@ class ContactActionRight extends React.Component {
           Import
         </Button>
         )} */}
+          {this.props.viewType === "table" &&   (
          <Tooltip placement="left" title="Create">
             {user.contactCreateInd === true &&  user.crmInd === true && (
           <Button 
            type="primary"
            onClick={() => handleContactModal(true)}>
-                 <DataSaverOnIcon/>Add
+                 <DataSaverOnIcon className="!text-icon"/>Add
 
             
           </Button>
              )}
         </Tooltip>
+        )}
+         {this.props.viewType === "table" &&   (
         <div className="max-sm:hidden">
            <Tooltip placement="left" title="Import">
             {user.contactCreateInd === true &&  user.crmInd === true && (
@@ -86,6 +89,7 @@ class ContactActionRight extends React.Component {
              )}
         </Tooltip>
         </div>
+         )}
         {/* {this.props.viewType === "table" ? ( */}
           
        

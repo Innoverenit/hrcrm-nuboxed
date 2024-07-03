@@ -3,6 +3,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
+import MainNotes from "../../CustomNote/MainNotes";
 const NotesForm =lazy(()=>import("./NotesForm"));
 
 class AddPitchNotesDrawerModal extends Component {
@@ -22,8 +23,12 @@ class AddPitchNotesDrawerModal extends Component {
           onClose={() => this.props.handlePitchNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <NotesForm item={this.props.item} 
+            {/* <NotesForm item={this.props.item} 
             investorLeadsId={this.props.item.investorLeadsId} 
+            /> */}
+            <MainNotes
+             type="pitch"
+             uniqueId={this.props.item.investorLeadsId}
             />
           </Suspense>
         </StyledDrawer>

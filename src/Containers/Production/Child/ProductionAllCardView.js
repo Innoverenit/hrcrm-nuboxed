@@ -78,7 +78,7 @@ function ProductionAllCardView(props) {
     } = props;
     return (
         <>
-            <div className=' flex justify-end sticky  z-auto'>
+            <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky h-8 z-10">
                         <div className=""></div>
@@ -115,7 +115,7 @@ function ProductionAllCardView(props) {
                                      const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div>
-                                            <div className="flex rounded justify-between mt-2 bg-white h-8  p-1 ">
+                                            <div className="flex rounded justify-between mt-1 bg-white h-8  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                                 <div class="flex">
                                                     <div className=" flex font-medium   md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 

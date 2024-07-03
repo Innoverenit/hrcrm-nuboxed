@@ -82,13 +82,13 @@ const OpportunityActionLeft = (props) => {
           }
         >
           <span
-            class=" mr-1 text-sm "
+            class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setOpportunityViewType("table")}
             style={{
               color: props.viewType === "table" && "#1890ff",cursor:"pointer"
             }}
           >
-            {" "}
+            
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
             <LightbulbIcon className="text-white !text-icon"/>
             </Avatar>
@@ -162,9 +162,9 @@ const OpportunityActionLeft = (props) => {
         >
           <span
             class=" mr-1 text-sm cursor-pointer"
-            onClick={() => props.setOpportunityViewType("close")}
+            onClick={() => props.setOpportunityViewType("all")}
             style={{
-              color: props.viewType === "close" && "#1890ff",
+             color: props.viewType === "all" && "#1890ff",
             }}
           >
             {" "}
@@ -226,8 +226,8 @@ const OpportunityActionLeft = (props) => {
           </Badge>
         </Tooltip>
           )}
-  {/* </div> */}
-  {/* <div class="ml-2"> */}
+ 
+ 
     {user.crmInd=== true && user.opportunityFullListInd===true && ( 
   <Tooltip
           title="All"
@@ -268,11 +268,7 @@ const OpportunityActionLeft = (props) => {
           size="small"
           count={
             (viewType === "dashboard" &&
-              recorddeleteOpportunityData.opportunityDetails) ||
-            0
-          }
-          overflowCount={999}
-        >
+              recorddeleteOpportunityData.opportunityDetails) ||0}overflowCount={999}>
           <span
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setOpportunityViewType("dashboard")}

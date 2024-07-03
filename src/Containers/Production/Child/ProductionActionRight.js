@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Button } from "antd";
 import { createProductionLink } from "../ProductionAction";
-
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 function ProductionActionRight (props) {
   console.log(props.viewType)
@@ -27,9 +27,8 @@ function ProductionActionRight (props) {
     (user.productionCreateInd === true || user.role === "ADMIN") && (
       <Button
         type="primary"
-        onClick={() => props.createProductionLink()}
-      >
-        Add
+        onClick={() => props.createProductionLink()}>
+       <DataSaverOnIcon className="!text-icon"/> Add
       </Button>
     )
   )}

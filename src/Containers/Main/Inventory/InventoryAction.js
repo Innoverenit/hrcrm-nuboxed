@@ -9,6 +9,22 @@ import { message } from "antd";
 export const setInventoryViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_INVENTORY_VIEW_TYPE, payload: viewType });
 
+
+export const handleQualityManufactureModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_QUALITY_MANUFACTURE_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+
+export const emptyQualityManufactureData = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_QUALITY_MANUFACTURE_DATA, 
+  });
+};
+
 export const handleInventoryModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_INVENTORY_MODAL,
@@ -1333,6 +1349,34 @@ export const handlePickupModal = (modalProps) => (dispatch) => {
 };
 
 
+export const getQualityManufactureData = (productId, manufactureId) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUALITY_MANUFACTURE_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/qualityCheckBuilder/qualityCheck/get/${productId}/${manufactureId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUALITY_MANUFACTURE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_QUALITY_MANUFACTURE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 export const getProductRepurbish = (locationDetailsId) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCT_REFURBISH_REQUEST,
@@ -2061,5 +2105,75 @@ export const moveProductionQuality = (productionProductId,userId) => (dispatch) 
         payload: err,
       });
       // message.error("Something went wrong");
+    });
+};
+
+
+
+
+export const updateQualityStatus = (productionProductId,status) => (dispatch) => {
+  dispatch({ type: types.UPDATE_QUALITY_STATUS_REQUEST });
+  axios
+    .put(
+      `${base_url2}/production/quality/updateStatus/${productionProductId}/${status}`, {},
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_QUALITY_STATUS_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_QUALITY_STATUS_FAILURE,
+        payload: err
+      });
+    });
+};
+
+
+
+
+
+
+
+
+export const linkManufactureToggle = (data) => (
+  dispatch) => {
+  // debugger;
+  dispatch({
+    type: types.LINK_MANUFACTURE_STATUS_REQUEST,
+  });
+  axios
+  .put(
+    `${base_url2}/qualityCheckBuilder/qualityCheck/update`,data, 
+    {
+    
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.LINK_MANUFACTURE_STATUS_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_MANUFACTURE_STATUS_FAILURE,
+        payload: err,
+      });
+      // cb && cb("failuer");
     });
 };

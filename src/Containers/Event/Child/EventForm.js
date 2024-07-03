@@ -966,8 +966,8 @@ const {
                       <Tooltip title="Stop">
                         <span
                           
-                            class="!text-icon ml-1 text-green-600">
-                          <StopCircleIcon />
+                           >
+                          <StopCircleIcon  className="!text-icon ml-1 text-green-600" />
                         </span>
                       </Tooltip>
                     </span>
@@ -975,7 +975,7 @@ const {
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
                         <span  class="!text-icon ml-1">
-                          <RotateRightIcon />
+                          <RotateRightIcon className="!text-icon ml-1"/>
                         </span>
                       </Tooltip>
                     </span>

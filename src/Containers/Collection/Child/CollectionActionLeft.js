@@ -49,7 +49,7 @@ const CollectionActionLeft = (props) => {
 
   return (
     <FlexContainer alignItems="center">
-      <Tooltip title="All"
+      <Tooltip title="My Collections "
       // title="Distributor"
       >
         <span
@@ -60,7 +60,7 @@ const CollectionActionLeft = (props) => {
           }}
         >
           <Avatar style={{ background: props.viewType === "distributor" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon />
+            <TocIcon className=" text-white !text-icon"/>
           </Avatar>
         </span>
       </Tooltip>

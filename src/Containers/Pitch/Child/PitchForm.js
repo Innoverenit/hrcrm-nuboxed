@@ -6,7 +6,10 @@ import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import { CheckOutlined } from "@ant-design/icons";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
+import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import {getSectors} from "../../Settings/Sectors/SectorsAction"
 import {getSources} from "../../Settings/Category/Source/SourceAction"
 import {getAllEmployeelist,getDialCode} from "../../Investor/InvestorAction"
@@ -200,6 +203,21 @@ props.getInvestorCurrency();
       startDate,
       endDate,
     } = props;
+    const [text, setText] = useState("");
+  function handletext(e) {
+    setText(e.target.value);
+  }
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
+
     return (
       <>
         <Formik
@@ -649,7 +667,7 @@ props.getInvestorCurrency();
                       unCheckedChildren="Private"
                     />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" flex justify-between  w-3/5 max-sm:w-wk">
                     {/* <div class="flex">
                        <Tooltip title="Hot">
                          <Button
@@ -701,14 +719,13 @@ props.getInvestorCurrency();
                            </Button>
                        </Tooltip>
                      </div> */}
-                      <div className="flex">
+       <div className="flex">
       <Tooltip title="Hot">
         <i
           className={`fas fa-mug-hot${priority === "hot" ? " selected" : ""}`}
           onClick={() => handleIconClick("hot")}
           style={{
-            color: priority === "hot" ? "white" : "red",
-            backgroundColor: priority === "hot" ? "red" : "transparent",
+            color: priority === "hot" ? "red" : "red",
             borderRadius: "50%",
             fontSize: "1rem",
             height:"1.5rem",
@@ -717,7 +734,7 @@ props.getInvestorCurrency();
           }}
         ></i>
       </Tooltip>
-      &nbsp;
+     
       <Tooltip title="Warm">
         <i
           className={`fas fa-burn${priority === "warm" ? " selected" : ""}`}
@@ -733,7 +750,7 @@ props.getInvestorCurrency();
           }}
         ></i>
       </Tooltip>
-      &nbsp;
+  
       <Tooltip title="Cold">
         <i
           className={`far fa-snowflake${priority === "cold" ? " selected" : ""}`}
@@ -747,6 +764,7 @@ props.getInvestorCurrency();
             padding: "5px",
             cursor: "pointer"
           }}
+         
         ></i>
       </Tooltip>
     </div>
@@ -879,15 +897,43 @@ props.getInvestorCurrency();
                   </div>
                   
                 <div class="mt-3">
-                  <Field
-                    name="notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="notes" />
-                    }
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                  />
+                <div>Notes</div>
+                    <div>
+                  <div>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span>
+                          <StopCircleIcon className="!text-icon ml-1 text-green-600" />
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span >
+                          <RotateRightIcon  className="!text-icon ml-1"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </div>
+                  <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div>
+                </div>
                   </div>
                 </div>
               </div>

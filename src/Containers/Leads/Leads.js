@@ -94,6 +94,9 @@ class Leads extends Component {
          <AddLeadsModal
           addLeadsModal={addLeadsModal}
           handleLeadsModal={handleLeadsModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
         />
         <AddLeadsImportModal
         handleLeadsImportModal={this.props.handleLeadsImportModal}
@@ -110,12 +113,28 @@ class Leads extends Component {
         
         :null} */}
          {teamsAccessInd ? (
-          <LeadsTeamCardList />
+          <LeadsTeamCardList 
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+          
+          />
         ) : (
           <>
-            {viewType === 'card' && <LeadsCardList  filter={this.state.filter}/>}
-            {viewType === 'all' && <LeadsAllCardList />}
-            {viewType === 'teams' && <LeadsTeamCardList />}
+            {viewType === 'card' && <LeadsCardList  filter={this.state.filter}  
+            translateText={this.props.translateText}
+               selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems}/>}
+            {viewType === 'all' && <LeadsAllCardList 
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
+            {viewType === 'teams' && <LeadsTeamCardList 
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
           </>
         )}
        

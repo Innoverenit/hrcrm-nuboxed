@@ -4,6 +4,8 @@ import HelpIcon from '@mui/icons-material/Help';
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
 
+import { base_url,login_url } from "../../Config/Auth";
+
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
@@ -36,6 +38,7 @@ import AppErrorBoundary from "../../Helpers/ErrorBoundary/AppErrorBoundary";
 import { getPresentNotifications } from "../Notification/NotificationAction";
 import { MultiAvatar } from "../../Components/UI/Elements";
 import AddActionModal from "./AddActionModal";
+import LanguageSelector from "../Translate/LanguageSelector";
 import FAQPage from "./FAQ/FAQPage";
 import DashboardPage from "../DashboardPage/DashboardPage";
 import DataRoom from "../Data Room/DataRoom";
@@ -260,7 +263,7 @@ function MainApp(props) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [selectedLanguage, setSelectedLanguage] = useState('English');
 
   const [supportedLanguages, setSupportedLanguages] = useState([]);
 
@@ -279,6 +282,31 @@ function MainApp(props) {
 
 
 
+
+  // useEffect(() => {
+  //   const fetchMenuTranslations = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const itemsToTranslate = [
+  //         'Dashboard',
+  //         'Planner',
+        
+  //       ];
+
+  //       const translations = await translateText(itemsToTranslate, selectedLanguage);
+  //       setTranslatedMenuItems(translations);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.error('Error translating menu items:', error);
+  //     }
+  //   };
+
+  //   fetchMenuTranslations();
+  // }, [selectedLanguage]);
+
+
+
   useEffect(() => {
     const fetchSupportedLanguages = async () => {
       try {
@@ -292,8 +320,25 @@ function MainApp(props) {
     fetchSupportedLanguages();
   }, []);
 
-  const handleLanguageChange = (language) => {
-    setSelectedLanguage(language);
+  // const handleLanguageChange = (language) => {
+  //   setSelectedLanguage(language);
+  // };
+
+
+
+  const handleLanguageChange = (event) => {
+    // const language = event.target.value;
+    setSelectedLanguage(event.target.value);
+    // {
+    //   props.userType === "serviceProvider" ?
+    //     props.updateServiceLanguage(props.contactId, {
+    //       language: event.target.value,
+    //     }) :
+    //     props.updateCustomerLanguage(props.customerId, {
+    //       language: event.target.value,
+    //     });
+    // }
+    // onLanguageChange(language);
   };
 
   const handleRowData = (data) => {
@@ -309,6 +354,33 @@ function MainApp(props) {
       setVisible(false);
       setConfirmLoading(false);
     }, 2000);
+  };
+
+  const translateText = async (text, targetLanguage) => {
+    // const url = `http://marketplace.eu-west-3.elasticbeanstalk.com/language/translate/word`;
+    const url = `${login_url}/words/convertWord`;
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${props.token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        q: text,
+        target: targetLanguage,
+      }),
+    });
+
+
+    const data = await response.json();
+    const result = data.map((translation) => translation.translatedText);
+    console.log("result", result)
+    if (data) {
+      return data.map((translation) => translation.translatedText);
+    } else {
+      throw new Error('Translation failed');
+    }
   };
 
   const handleCancel = () => {
@@ -466,6 +538,7 @@ function MainApp(props) {
                 toggleCollapsed={toggle}
                 toggleTheme={toggleTheme}
                 theme={theme}
+                translateText={translateText}
                 selectedLanguage={selectedLanguage}
               />
             </Sider>
@@ -477,6 +550,15 @@ function MainApp(props) {
 
             }}>
               <Header>
+              <div class="max-xl:text-[0.75rem] max-lg:text-[0.5rem]">
+                  <LanguageSelector
+                    translateText={translateText}
+                    selectedLanguage={selectedLanguage}
+                    setSelectedLanguage={setSelectedLanguage}
+                    onLanguageChange={handleLanguageChange}
+                    supportedLanguages={supportedLanguages}
+                  />
+                </div> 
                 <div class="flex justify-between items-center">
                   <div class="xl:hidden ml-4 "><Navmenu2 selectedLanguage={selectedLanguage} /></div>
 
@@ -684,7 +766,7 @@ function MainApp(props) {
                     {props.roleType}
                   </div>
                   {/* <Subscription /> */}
-                  <div class=" flex items-center h-full self-start "
+                  {/* <div class=" flex items-center h-full self-start "
                   >
                     <div class=" mr-2 mt-1 max-sm:hidden " >
                       <Select
@@ -700,7 +782,7 @@ function MainApp(props) {
                         <Option value="Italian">IT</Option>
                       </Select>
                     </div>
-                  </div>
+                  </div> */}
                   <div class=" flex items-center h-0">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
                       <SettingsDropdown />
@@ -750,8 +832,7 @@ function MainApp(props) {
                       <Route exact path="/procre" component={Procre} />
                       {/* <Route exact path="/supplier" component={Supplier} /> */}
                       <Route exact path="/order" component={Order} />
-                      <Route exact path="/account" component={Account} />
-                      <Route exact path="/location" component={Location} />
+                      <Route exact path="/account" component={Account} />                   
                       <Route exact path="/plant" component={Plant} />
                       <Route exact path="/plant/:plantId" component={PlantDetail} />
                       <Route exact path="/suppliers" component={Suppliers} />
@@ -759,9 +840,51 @@ function MainApp(props) {
                       <Route exact path="/vendor" component={Vendor} />
                       <Route exact path="/inventory" component={Inventory} />
                       <Route exact path="/refurbish" component={Refurbish} />
-                      <Route exact path="/teams" component={Teams} />
-                      <Route exact path="/employees" component={Employees} />
-                      <Route exact path="/leads" component={Leads} />
+                      <Route
+                      exact
+                      path="/location"
+                      render={(props) => (
+                        <Location
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/teams"
+                      render={(props) => (
+                        <Teams
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      {/* <Route exact path="/leads" component={Leads} /> */}
+                      <Route
+                      exact
+                      path="/employees"
+                      render={(props) => (
+                        <Employees
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/leads"
+                      render={(props) => (
+                        <Leads
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                       <Route exact path="/accessment" component={Accessment} />
                       <Route exact path="/holiday" component={Holiday} />
                       <Route
@@ -785,12 +908,42 @@ function MainApp(props) {
                       <Route exact path="/setting" component={Settings} />
                       <Route exact path="/reports" component={Reports} />
                       <Route exact path="/partner" component={Partner} />
-                     
-                      <Route exact path="/call" component={Call} />
+                                       
                       <Route exact path="/collection" component={Collection} />
-                      <Route exact path="/task" component={Task} />
-                      <Route exact path="/event" component={Event} />
                       <Route exact path="/dataroom" component={DataRoom} />
+                      <Route
+                      exact
+                      path="/call"
+                      render={(props) => (
+                        <Call
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/event"
+                      render={(props) => (
+                        <Event
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                     <Route
+                      exact
+                      path="/task"
+                      render={(props) => (
+                        <Task
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                       <Route
                         exact
                         path="/employee/:id"
@@ -849,19 +1002,45 @@ function MainApp(props) {
                         component={ChangePassword}
                       />
 
-                      <Route exact path="/recruite" component={Recruitment} />
-                      <Route exact path="/contact" component={Contact} />
-                      <Route exact path="/customer" component={Customer} />
+                      <Route exact path="/recruite" component={Recruitment} />                     
                       <Route exact path="/publish" component={Publish} />
                       <Route exact path="/program" component={Program} />
                       <Route exact path="/course" component={Course} />
                       <Route exact path="/project" component={Projects} />
                       <Route exact path="/billing" component={Billing} />
                       <Route
-                        exact
-                        path="/opportunity"
-                        component={Opportunity}
-                      />
+                      exact
+                      path="/customer"
+                      render={(props) => (
+                        <Customer
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/contact"
+                      render={(props) => (
+                        <Contact
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                       <Route
+                      exact
+                      path="/opportunity"
+                      render={(props) => (
+                        <Opportunity
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                       <Route exact path="/candidate"
                         component={Candidate}
                       />
@@ -1050,6 +1229,7 @@ const mapStateToProps = ({
   suscrptionData: subscription.suscrptionData,
   user: auth.userDetails,
   actionCount: auth.actionCount,
+  token: auth.token,
   clickTagInDrawr: refurbish.clickTagInDrawr,
   createSubscriptiondrawer: subscription.createSubscriptiondrawer
 });

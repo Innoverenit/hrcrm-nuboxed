@@ -501,3 +501,41 @@ export const getContactInvestAllRecord = (orgId,type) => (dispatch) => {
       });
     });
 };
+
+export const handleUploadContactInvestModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPLOAD_CONTACTINVEST_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const uploadContactInvestList = (data,type,userId) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_CONTACTINVEST_LIST_REQUEST });
+  axios
+    .post(`${base_url}/excel/import/Contact/${type}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+       //dispatch(getContactInvestByUserId(userId,"0","creationdate"))
+      dispatch({
+        type: types.UPLOAD_CONTACTINVEST_LIST_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Uploaded Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      window.location.reload();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPLOAD_CONTACTINVEST_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};

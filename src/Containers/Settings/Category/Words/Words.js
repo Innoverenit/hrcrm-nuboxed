@@ -1,4 +1,4 @@
-import React, { useEffect,lazy } from "react";
+import React, {lazy } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 

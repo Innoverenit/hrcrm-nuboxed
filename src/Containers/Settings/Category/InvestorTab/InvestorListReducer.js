@@ -14,6 +14,7 @@ const initialState = {
 
   addingInvestorData: false,
   addingInvestorDataError: false,
+  duplicateInvestorDataError:false,
 
   removingInvestor: false,
   removingInvestorError: false,
@@ -52,22 +53,52 @@ export const investorListReducer = (state = initialState, action) => {
 
  // add sector
 
- case types.ADD_INVESTOR_DATA_REQUEST:
-    return { ...state,  addingInvestorData: true };
-  case types.ADD_INVESTOR_DATA_SUCCESS:
-    return {
-      ...state,
-      addingInvestorData: false,
-      investorListData:[action.payload,...state.investorListData]
-      // investorListData: [...state.investorListData, action.payload],
+//  case types.ADD_INVESTOR_DATA_REQUEST:
+//     return { ...state,  addingInvestorData: true };
+//   case types.ADD_INVESTOR_DATA_SUCCESS:
+//     return {
+//       ...state,
+//       addingInvestorData: false,
+//       investorListData:[action.payload,...state.investorListData]
+//       // investorListData: [...state.investorListData, action.payload],
       
-    };
-  case types.ADD_INVESTOR_DATA_FAILURE:
-    return {
-      ...state,
-      addingInvestorData: false,
-      addingInvestorDataError: true,
-    };
+//     };
+//   case types.ADD_INVESTOR_DATA_FAILURE:
+//     return {
+//       ...state,
+//       addingInvestorData: false,
+//       addingInvestorDataError: true,
+//     };
+
+
+
+
+case types.ADD_INVESTOR_DATA_REQUEST:
+  return { ...state, addingInvestorData: true };
+
+case types.ADD_INVESTOR_DATA_SUCCESS:
+  return {
+    ...state,
+    addingInvestorData: false,
+    investorListData: [action.payload, ...state.investorListData],
+  };
+
+case types.ADD_INVESTOR_DATA_FAILURE:
+  return {
+    ...state,
+    addingInvestorData: false,
+    addingInvestorDataError: true,
+  };
+
+case types.ADD_INVESTOR_DATA_DUPLICATE:
+  return {
+    ...state,
+    addingInvestorData: false,
+    duplicateInvestorDataError: true,
+  };
+
+
+   
 
      // remove sector
 

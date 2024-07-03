@@ -186,17 +186,24 @@ function EmployeeForm(props) {
       value: item.currency_id,
     };
   });
-
+  const designationNameOption = props.designations.map((item) => {
+    return {
+      label: `${item.designationType}`,
+      value: item.designationTypeId,
+    };
+  });
+  
   useEffect(() => {
     const { getCountries, getDepartments,
       //  getTimeZone,
-        getCurrency, getAssignedToList, getRoles, getlocation, } = props;
+        getCurrency, getAssignedToList, getRoles, getlocation,getDesignations } = props;
     getRoles(props.organizationId);
     getCountries(getCountries);
     getlocation(props.orgId);
     getCurrency();
     getDepartments();
     getAssignedToList(props.orgId)
+    getDesignations()
     // getTimeZone();
   }, []);
 
@@ -291,6 +298,7 @@ function EmployeeForm(props) {
           linkedinPublicUrl: "",
           label: "",
           workplace: "",
+          designationType:"",
           assignedTo: selectedOption ? selectedOption.employeeId : userId,
           job_type: active ? "Full Time" : "Part Time",
           type: typeInd ? "true" : "false",
@@ -1082,6 +1090,24 @@ function EmployeeForm(props) {
 
                     </div>
                   </div>
+                  <div class=" max-sm:w-wk">
+                      <Field
+                        name="designationType"
+                        isColumnWithoutNoCreate
+                        placeholder="Designation"
+                        label="Designation"
+                        isColumn
+                        // selectType="currencyName"
+                        isRequired
+                        component={SelectComponent}
+                        options={
+                          Array.isArray(designationNameOption)
+                            ? designationNameOption
+                            : []
+                        }
+
+                      />
+                      </div>
                 </div>
               </div>
 
@@ -1118,6 +1144,7 @@ const mapStateToProps = ({ auth, role, location, currency, settings, employee, d
   departmentId: departments.departmentId,
   designationTypeId: designations.designationTypeId,
   employees: employee.employees,
+  designations:designations.designations,
   departments: departments.departments,
   departmentwiseUser: settings.departmentwiseUser,
 });

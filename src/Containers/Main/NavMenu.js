@@ -35,7 +35,6 @@ import CategoryIcon from '@mui/icons-material/Category'
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import ShopTwoIcon from '@mui/icons-material/ShopTwo';
 import PeopleIcon from '@mui/icons-material/People';
@@ -45,7 +44,64 @@ const SubMenu = Menu.SubMenu;
 function NavMenu(props) {
   const { user } = props;
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   console.log("abv", props.selectedLanguage)
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          'Dashboard',
+            'Planner',
+            'Calls',
+            'Task',
+            'Events',
+            'Reports',
+            'Leads',
+            'Quotation',
+            'Contact',
+            'Prospect',
+            'Pitch',
+            'Data Room',
+            'Deals',
+            'Contact Invest',
+            'Investor',
+            'Club',
+            'Order',
+            'Customer',
+            'Catalogue',
+            'Quality',
+            'Procure',
+            'Material',
+            'Suppliers',
+            'Trade',
+            'Vendor',
+            'Procurement',
+            'Inventory',
+            'Shipper',
+            'Leaves',
+            'Mileage',
+            'Expense',
+            'Holiday',
+            'Teams',
+            'Users',
+            
+             
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   // useEffect(() => {
   //   const fetchMenuTranslations = async () => {
   //     try {
@@ -82,6 +138,7 @@ function NavMenu(props) {
 
   //   fetchMenuTranslations();
   // }, [props.selectedLanguage]);
+
    const [selectedMenuItem, setSelectedMenuItem] = useState("/dashboard");
   // const [selectedMenuItem, setSelectedMenuItem] = useState(user.dashboardRegionalInd ? "/dashboardRegional" : "/dashboard");
 
@@ -133,11 +190,11 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
     />
 
     <span class="text-white text-ls ml-1">
-      <FormattedMessage
+      {/* <FormattedMessage
           id="app.dashboard"
           defaultMessage="Dashboard"
-        />
-      {/* {translatedMenuItems[0]} */}
+        /> */}
+      {translatedMenuItems[0]}
       {/* Dashboard */}
       {/* RecruitProBoard */}
     </span>
@@ -158,9 +215,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               />
 
               <span class="text-white text-ls ml-1">
-                <FormattedMessage id="app.planner" defaultMessage="Planner" />
+                {/* <FormattedMessage id="app.planner" defaultMessage="Planner" /> */}
                 {/* Planner */}
-                {/* {translatedMenuItems[1]} */}
+                {translatedMenuItems[1]}
               </span>
             </Link>
           </Menu.Item>
@@ -178,9 +235,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-                <FormattedMessage id="app.calls" defaultMessage="Calls" />
+                {/* <FormattedMessage id="app.calls" defaultMessage="Calls" /> */}
                 {/* Calls */}
-                {/* {translatedMenuItems[2]} */}
+                {translatedMenuItems[2]}
               </span>
               &nbsp;&nbsp;&nbsp;
               <Badge
@@ -457,6 +514,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </Link>
           </Menu.Item>
         )}
+          {(user.imInd === true && user.clubAccessInd === true 
+  ) &&  (
          <Menu.Item key="/club" style={{ height: "1.45rem", 
           color: selectedMenuItem === '/club' ? 'tomato' : '#4bc076' }}>
             <Link to="/club" onClick={() => handleSelect('/club')}>
@@ -476,6 +535,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               </span>
             </Link>
           </Menu.Item>
+          )}
         {/* {user.userType !== "USER" && user.department !== "Customer" &&user.department == "VENDOR" && ( */}
 
 
@@ -890,7 +950,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Link>
         </Menu.Item>
         )} 
-
+ {( user.erpInd === true && user.qualityAccessInd === true 
+  ) &&  (
 <Menu.Item key="/quality" style={{ height: "1.45rem", 
         color: selectedMenuItem === '/quality' ? 'tomato' : '#4bc076' }}>
           <Link to="/quality" onClick={() => handleSelect('/quality')}>
@@ -904,9 +965,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </span>
           </Link>
         </Menu.Item>
-        
+ )}
 
-<Menu.Item key="/procre" style={{ height: "1.45rem", 
+{/* <Menu.Item key="/procre" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
   <Link to="/procre" onClick={() => handleSelect('/procre')}>
     <LocalMallIcon
@@ -916,7 +977,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
       Procure
     </span>
   </Link>
-</Menu.Item>
+</Menu.Item> */}
 
         {(user.materialAccessInd === true && user.erpInd === true 
         // || user.role === "ADMIN" && user.inventoryInd === true
@@ -967,7 +1028,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
   </Link>
 </Menu.Item>
 {/* {(user.supplierAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && ( */}
-
+{/* {( user.erpInd === true &&
 <Menu.Item key="/vendor" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/vendor' ? 'tomato' : '#4bc076'}}>
   <Link to="/vendor" onClick={() => handleSelect('/vendor')}>
@@ -979,7 +1040,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
     </span>
   </Link>
 </Menu.Item>
- {/* )}  */}
+)}  */} 
+{/* if any body want to use reuse this component */}
 
 
   {(user.procurementAccessInd === true && user.erpInd === true 

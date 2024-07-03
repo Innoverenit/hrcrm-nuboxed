@@ -33,7 +33,7 @@ class LeadsActionRight extends React.Component {
       <>
 
           <Button type="primary"  onClick={() => handleLeadsModal(true)}>
-          <DataSaverOnIcon/>Add
+          <DataSaverOnIcon className="!text-icon"/>Add
           </Button>
           
           </>

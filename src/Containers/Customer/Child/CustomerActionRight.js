@@ -47,7 +47,7 @@ class CustomerActionRight extends React.Component {
             type="primary"
             onClick={() => handleCustomerModal(true)}
           >
-                          <DataSaverOnIcon/>   <FormattedMessage
+                          <DataSaverOnIcon className="!text-icon"/>   <FormattedMessage
                         id="app.add"
                         defaultMessage="Add"
                       />

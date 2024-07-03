@@ -292,10 +292,22 @@ function ContactInvestTeamsCardList(props) {
                          
        
                   <div class=" flex justify-end items-center w-[7rem] max-sm:flex   max-sm:w-full">
+                  <div>
+     <Tooltip title="Pulse">
+ <MonitorHeartIcon
+ className=" !text-icon cursor-pointer text-[#df9697]"
+          onClick={() => {
+            handleContactInvestPulseDrawerModal(true);
+            handleCurrentContactIdata(item);
+          }}
+          
+        />
+     </Tooltip>
+     </div>
                     <div>
                   <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
-        <span class=" mr-2 text-xs cursor-pointer"
+        <span class=" mr-1 text-xs cursor-pointer"
           onClick={() => {
             props.handleDonotCallModal(true);
             handleCurrentContactIdata(item);
@@ -305,7 +317,7 @@ function ContactInvestTeamsCardList(props) {
         </span>
       )}
       {item.doNotCallInd === true && (
-        <span class=" mr-2 text-xs cursor-pointer"
+        <span class=" mr-1 text-xs cursor-pointer"
           onClick={() => {
             props.handleDonotCallModal(true);
             handleCurrentContactIdata(item);
@@ -383,18 +395,7 @@ function ContactInvestTeamsCardList(props) {
         />
      </Tooltip>
      </div>
-     <div>
-     <Tooltip title="Pulse">
- <MonitorHeartIcon
- className=" !text-icon cursor-pointer text-[#df9697]"
-          onClick={() => {
-            handleContactInvestPulseDrawerModal(true);
-            handleCurrentContactIdata(item);
-          }}
-          
-        />
-     </Tooltip>
-     </div>
+     
      <div>
       {user.imInd === true  && user.investorContactUpdateInd === true &&  (
       <Tooltip title="Edit">

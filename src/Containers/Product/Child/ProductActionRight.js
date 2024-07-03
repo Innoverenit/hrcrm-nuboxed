@@ -28,7 +28,7 @@ class ProductActionRight extends React.Component {
             <Button
               type="primary"
               onClick={() => handleConfigureModal(true)}
-            ><DataSaverOnIcon/>Add
+            ><DataSaverOnIcon className="!text-icon"/>Add
 
             </Button>
           </Tooltip>

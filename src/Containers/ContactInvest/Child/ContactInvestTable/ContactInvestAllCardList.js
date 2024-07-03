@@ -290,10 +290,19 @@ function ContactInvestAllCardList(props) {
 
              </div>
              <div class=" flex justify-end items-center w-[7rem] max-sm:flex   max-sm:w-full">   
-              <div class="rounded-full bg-white w-5 h-5 cursor-pointer">
+             <Tooltip title="Pulse">
+ <MonitorHeartIcon
+ className=" !text-icon cursor-pointer text-[#df9697]"
+          onClick={() => {
+            handleContactInvestPulseDrawerModal(true);
+            handleCurrentContactIdata(item);
+          }}
+          
+        />
+     </Tooltip>
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
-        <span class=" mr-2 text-xs cursor-pointer"
+        <span class=" mr-1 text-xs cursor-pointer"
           onClick={() => {
             props.handleDonotCallModal(true);
             handleCurrentContactIdata(item);
@@ -303,7 +312,7 @@ function ContactInvestAllCardList(props) {
         </span>
       )}
       {item.doNotCallInd === true && (
-        <span class=" mr-2 text-xs cursor-pointer"
+        <span class=" mr-1 text-xs cursor-pointer"
           onClick={() => {
             props.handleDonotCallModal(true);
             handleCurrentContactIdata(item);
@@ -313,8 +322,8 @@ function ContactInvestAllCardList(props) {
         </span>
       )}
     </Tooltip>
-                  </div>
-                  <div class=" max-sm:flex justify-end max-sm:w-full">
+                 
+                 
                   <Tooltip title={item.emailId}>
      
       <MailOutlineIcon className="!text-icon cursor-pointer text-green-400"
@@ -326,27 +335,19 @@ function ContactInvestAllCardList(props) {
         }}
       />
      </Tooltip>
-                  </div>
                
-                  <div >
+     <Tooltip>
                   <span class="cursor-pointer"
-        
-        onClick={() => {
-          handleCurrentContactIdata(item);
-          props.handleContactDrawerModal(true);
-        }}
-      >{user.pulseAccessInd === true && (
-        <MonitorHeartIcon className=" !text-icon cursor-pointer text-[#df9697]"/>
-      )}
-      </span>
-                  </div>
-                  <div>
-      
-
-              </div>
-              
-           
-                <div>
+                
+                onClick={() => {
+                  handleCurrentContactIdata(item);
+                  props.handleContactDrawerModal(true);
+                }}
+              >{user.pulseAccessInd === true && (
+                <MonitorHeartIcon className=" !text-icon cursor-pointer text-[#df9697]"/>
+              )}
+              </span>
+     </Tooltip>
               <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
       <span class="cursor-pointer"
        
@@ -354,7 +355,7 @@ function ContactInvestAllCardList(props) {
       <LocationOnIcon  className="!text-icon cursor-pointer text-[#960a0a]"/>
       </span>
     </Tooltip>
-    </div>
+    
     {/* <div><Tooltip title={item.email}>
         <MailOutlineIcon
           type="mail"
@@ -368,7 +369,7 @@ function ContactInvestAllCardList(props) {
       
                
               
-                </div>  
+               
                 
               <Tooltip title="Notes">
  <NoteAltIcon
@@ -379,16 +380,7 @@ function ContactInvestAllCardList(props) {
           className="text-green-500 cursor-pointer !text-icon"
         />
      </Tooltip>
-     <Tooltip title="Pulse">
- <MonitorHeartIcon
- className=" !text-icon cursor-pointer text-[#df9697]"
-          onClick={() => {
-            handleContactInvestPulseDrawerModal(true);
-            handleCurrentContactIdata(item);
-          }}
-          
-        />
-     </Tooltip>
+    
      <div>
       {user.imInd === true  && user.investorContactUpdateInd === true &&  (
       <Tooltip title="Edit">
@@ -403,11 +395,11 @@ function ContactInvestAllCardList(props) {
       </Tooltip>
       )}
       </div>
-  </div>
+             </div>
                       </div>
                     
                   </div>
-
+            </div>
 
                     )
                 })}

@@ -1,4 +1,4 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, {  useEffect,useState,Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -13,56 +13,82 @@ const TeamsClientTable =lazy(()=> import('./TeamsClientTable'));
 const TeamsInventoryTable =lazy(()=> import('./TeamsInventoryTable'));
 const TeamsCardList =lazy(()=> import('./TeamsCard.js/TeamsCardList'));
 
-class Teams extends Component {
-  render() {
-    const {
-      viewType,
-      addTeamsModal,
-      handleTeamsModal,
-      setTeamsViewType,
-      user
-    } = this.props;
 
-    return (
-      <React.Fragment>
-        <TeamsHeader
-          viewType={viewType}
-          handleTeamsModal={handleTeamsModal}
-          setTeamsViewType={setTeamsViewType}
-        />
-        <TeamsModal
-          addTeamsModal={addTeamsModal}
-          handleTeamsModal={handleTeamsModal}
-        />
-        <Suspense fallback={<BundleLoader />}>
-        {  viewType === "table" ?
-         <TeamsCardList/>
-         :viewType==="teams" ?
-         <TeamsList/> 
- 
-  :viewType==="client" ?
- <PerformanceManagement/> 
+function Teams (props) {
 
-          :null}
-      
-        </Suspense>
-      </React.Fragment>
-    );
-  }
+  const {
+    viewType,
+    addTeamsModal,
+    handleTeamsModal,
+    setTeamsViewType,
+    user
+  } = props;
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+          const itemsToTranslate = [
+            'Name',//0
+            'Team Lead',//1
+            'Team Members',//2
+           ];
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  return (
+    <React.Fragment>
+      <TeamsHeader
+        viewType={viewType}
+        handleTeamsModal={handleTeamsModal}
+        setTeamsViewType={setTeamsViewType}
+      />
+      <TeamsModal
+        addTeamsModal={addTeamsModal}
+        handleTeamsModal={handleTeamsModal}
+      />
+
+      <Suspense fallback={<BundleLoader />}>
+      {  viewType === "table" ?
+       <TeamsCardList 
+       
+       translateText={props.translateText}
+       translatedMenuItems={translatedMenuItems}
+       selectedLanguage={props.selectedLanguage}/>
+       :viewType==="teams" ?
+       <TeamsList
+       
+       translateText={props.translateText}
+       translatedMenuItems={translatedMenuItems}
+       selectedLanguage={props.selectedLanguage}/> 
+
+:viewType==="client" ?
+<PerformanceManagement/> 
+
+        :null}
+    
+      </Suspense>
+    </React.Fragment>
+  );
 }
 const mapStateToProps = ({ teams, auth }) => ({
-  role: auth.userDetails.role,
-  department: auth.userDetails.department,
-  user: auth.userDetails,
-  viewType: teams.viewType,
-  addTeamsModal: teams.addTeamsModal,
+role: auth.userDetails.role,
+department: auth.userDetails.department,
+user: auth.userDetails,
+viewType: teams.viewType,
+addTeamsModal: teams.addTeamsModal,
 });
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      setTeamsViewType,
-      handleTeamsModal,
-    },
-    dispatch
-  );
+bindActionCreators(
+  {
+    setTeamsViewType,
+    handleTeamsModal,
+  },
+  dispatch
+);
 export default connect(mapStateToProps, mapDispatchToProps)(Teams);

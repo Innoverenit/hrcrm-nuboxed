@@ -1,4 +1,4 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, {  useEffect,useState,Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader, GridLoader } from "../../Components/Placeholder";
@@ -10,9 +10,35 @@ const TaskApproveTable = lazy(() => import("./Child/TaskApproveTable"));
 const GanttChart = lazy(() => import("./Child/GanttChart"));
 const TaskTable = lazy(() => import("./Child/TaskTable"));
 const TaskCardList = lazy(() => import("./Child/TaskCardList"));
-class Task extends Component {
-  render() {
-    const { addTaskModal, handleTaskModal } = this.props;
+
+    function Task (props) {
+
+      const {
+        addTaskModal, handleTaskModal
+      } = props;
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+           "Type",//0
+            "Name",//1
+            "End",//2
+            "Ageing",//3
+            "Info",//5
+            "Assignedto",//5
+            "Owner"//6
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
     return (
       <React.Fragment>
         <TaskHeader 
@@ -26,7 +52,12 @@ class Task extends Component {
         />
         <Suspense fallback={<BundleLoader />}>
         {this.props.viewType === "table" ?
-          <TaskCardList/> :
+          <TaskCardList
+          
+          translateText={props.translateText}
+          translatedMenuItems={translatedMenuItems}
+          selectedLanguage={props.selectedLanguage}/> :
+          
           this.props.viewType === "gantt" ?
           <GanttChart/> :
           this.props.viewType === "dashboard" ?
@@ -38,7 +69,7 @@ class Task extends Component {
       </React.Fragment>
     );
   }
-}
+
 
 const mapStateToProps = ({ task }) => ({
   addTaskModal: task.addTaskModal,
