@@ -502,10 +502,10 @@ const RoomAndRackForm = (props) => {
           </div>
         ))}
 
-        <div className="flex justify-end sticky z-auto">
-          <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className="flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
-              <div className="md:w-[6rem]">Zone Code</div>
+        <div className="flex sticky z-auto h-[75vh]" >
+          <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div className="flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+              <div className="md:w-[6rem]">Zone </div>
               <div className="md:w-[4.2rem]">#Rack</div>
               <div className="md:w-[5.2rem]">Zone Type</div>
               <div className="md:w-[9.1rem]">Description</div>
@@ -515,7 +515,7 @@ const RoomAndRackForm = (props) => {
             {props.roomRackbyLoc.map((item) => {
               return (
                 <div key={item.roomRackId}>
-                  <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
+                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1">
                     <div className="flex font-medium flex-col md:w-[9.1rem] max-sm:w-full">
                       <div className="text-sm  font-semibold font-poppins cursor-pointer">
                         {editroomRackId === item.roomRackId ? (
