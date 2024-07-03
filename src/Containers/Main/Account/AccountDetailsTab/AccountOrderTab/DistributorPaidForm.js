@@ -45,7 +45,7 @@ function DistributorPaidForm(props) {
           userId: props.userId,
           orderPaymentType: "Repair",
           transactionNumber: "",
-          orderCurrencyId: props.particularRowData.orderCurrencyId || "",
+          orderCurrencyId: props.particularRowData.orderCurrencyName || "",
           orgId: props.orgId,
           approveByFinanceInd: false,
           orderId: props.particularRowData.orderId,

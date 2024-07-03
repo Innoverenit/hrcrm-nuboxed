@@ -35,12 +35,29 @@ function DistributorPauseForm(props) {
     }, [])
 
     const [hasMore, setHasMore] = useState(true);
-    const handleLoadMore = () => {
-        setPage(page + 1);
-        props.getPhonelistById(props.particularRowData.orderId, page)
-    };
+    // const handleLoadMore = () => {
+    //     setPage(page + 1);
+    //     props.getPhonelistById(props.particularRowData.orderId, page)
+    // };
 
-    
+    const handleLoadMore = () => {
+        const callPageMapd = props.phoneListById && props.phoneListById.length &&props.phoneListById[0].pageCount
+        setTimeout(() => {
+          const {
+            getPhonelistById,
+          } = props;
+          if  (props.phoneListById)
+          {
+            if (page < callPageMapd) {
+              setPage(page + 1);
+              getPhonelistById(props.particularRowData.orderId, page)
+          }
+          if (page === callPageMapd){
+            setHasMore(false)
+          }
+        }
+        }, 100);
+      }; 
 
     const [RowData, setRowData] = useState({});
     function handleSetRowData(item) {
@@ -143,6 +160,7 @@ function DistributorPauseForm(props) {
                                         hasMore={hasMore}
                                         loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                                         height={"64vh"}
+                                        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                                     >
                                         {props.phoneListById.map((item, index) => { 
                                             return (

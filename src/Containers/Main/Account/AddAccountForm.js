@@ -31,6 +31,7 @@ const CustomerSchema = Yup.object().shape({
   // clientId: Yup.string().required("Input needed!"),
   country: Yup.string().required("Input needed!"),
   currency: Yup.string().required("Input needed!"),
+  url: Yup.string().required("Input needed!"),
   // phoneNo: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
 

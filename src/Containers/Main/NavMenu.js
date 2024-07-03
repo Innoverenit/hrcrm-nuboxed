@@ -1016,7 +1016,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
   </Link>
 </Menu.Item>
  )} 
-  {( user.tradeInd === true 
+  {( user.tradingInd === true 
        
       ) &&  (
 <Menu.Item key="/trade" style={{ height: "1.45rem", 
