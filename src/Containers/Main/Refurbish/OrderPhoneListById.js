@@ -88,7 +88,8 @@ function OrderPhoneListById(props) {
     
         if (searchOnEnter&&e.target.value.trim() === "") {
             //setPageNo(pageNo + 1);
-            props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId,pageNo)
+            setPageNo(0);
+            props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId,0)
             props.ClearReducerDataOfrefurbish()
           setSearchOnEnter(false);
         }
@@ -130,7 +131,7 @@ function OrderPhoneListById(props) {
         setIsRecording(false);
         if (transcript.trim() !== "") {
           setCurrentData(transcript);
-          props.searchimeiName(transcript);
+          props.searchimeiName(transcript,props.rowData.orderPhoneId);
           setSearchOnEnter(true);
         }
       };

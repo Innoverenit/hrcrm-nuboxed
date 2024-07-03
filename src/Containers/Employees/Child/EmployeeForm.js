@@ -822,7 +822,24 @@ function EmployeeForm(props) {
 
                 
                   </div>
+                  <div class=" max-sm:w-wk">
+                      <Field
+                        name="designationType"
+                        isColumnWithoutNoCreate
+                        placeholder="Designation"
+                        label="Designation"
+                        isColumn
+                        // selectType="currencyName"
+                        isRequired
+                        component={SelectComponent}
+                        options={
+                          Array.isArray(designationNameOption)
+                            ? designationNameOption
+                            : []
+                        }
 
+                      />
+                      </div>
                   <div class=" flex justify-between max-sm:flex-col" >
                     <div class=" w-w48 flex flex-col max-sm:w-wk">
                       {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>WorkPlace</label>
@@ -1090,24 +1107,7 @@ function EmployeeForm(props) {
 
                     </div>
                   </div>
-                  <div class=" max-sm:w-wk">
-                      <Field
-                        name="designationType"
-                        isColumnWithoutNoCreate
-                        placeholder="Designation"
-                        label="Designation"
-                        isColumn
-                        // selectType="currencyName"
-                        isRequired
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(designationNameOption)
-                            ? designationNameOption
-                            : []
-                        }
-
-                      />
-                      </div>
+                  
                 </div>
               </div>
 
