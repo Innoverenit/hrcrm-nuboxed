@@ -1,10 +1,11 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ProductQualityDrawer from "../ProductTable/ProductQualityDrawer"
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { DeleteOutlined } from "@ant-design/icons";
-import QrGenerate from "../ProductTable/QrGenerate"
+import ReactToPrint from "react-to-print";
+import QRCode from "qrcode.react";
 import {
   getProducts,
   getProductByGroup,
@@ -26,10 +27,12 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
-import {  Tooltip } from "antd";
+import {  Tooltip,Button } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
+import QrCodeIcon from '@mui/icons-material/QrCode';
+
 import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
@@ -42,6 +45,7 @@ function ProductCardList(props) {
   const [hasMore, setHasMore] = useState(true);
 
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const componentRefs = useRef([]);
 
   useEffect(() => {
     props.getProducts(page);
@@ -56,6 +60,10 @@ function ProductCardList(props) {
     };
      props.deleteCatalogData(data,item.productId);
   };
+
+  const handlePrint = () => {
+    window.print();
+};
 
   useEffect(() => {
     const handleResize = () => {
@@ -130,7 +138,7 @@ function ProductCardList(props) {
           >
              {products.length ?
               <>
-                {products.map((item) => {
+                {products.map((item,index) => {
                return (
                 <div>
                   <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
@@ -160,7 +168,7 @@ function ProductCardList(props) {
                       <div className=" flex font-medium flex-col  w-[11.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {item.name}
+                          {`${item.productFullName ? `${item.productFullName}`:`${item.name}`}`}
                         </div>
 
                       </div>
@@ -199,12 +207,39 @@ function ProductCardList(props) {
 </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                      {/* <div className=" flex font-medium flex-col  w-[7.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                       
-                        <Button type="primary" >
-                                <div class="max-sm:text-sm"> Print QR Code</div>
-                                </Button>
-                      </div> */}
+                      <ReactToPrint
+                                                        trigger={() => <Button
+                                                            onClick={handlePrint}
+                                                        >
+                                                            Print<QrCodeIcon/></Button>
+                                                        }
+                                                        content={() => componentRefs.current[index]
+                                                        }
+                                                    />
+                                                    <div style={{ display: "none", textAlign: "center" }}>
+
+                                                        <div
+                                                            ref={(el) => (componentRefs.current[index] = el)}
+                                                            style={{
+                                                                fontSize: "16px",
+                                                                marginBottom: "20px",
+                                                                display: "flex",
+                                                                flexDirection: "column",
+                                                                alignItems: "center",
+                                                            }}
+                                                        >
+                                                            <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Product name: {`${item.productFullName ? `${item.productFullName}`:`${item.name}`}`}</div>
+                                                            <div style={{ marginBottom: "10px" }}>Model: {item.model}</div>
+                                                            <div style={{ marginBottom: "10px" }}>Brand: {item.brand}</div>
+                                                            <div style={{ marginBottom: "10px" }}>
+                                                                <QRCode value={item.imei} size={128} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                      </div>
+
                       <div className=" flex font-medium flex-col  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <ProductPublishToggle item={item} />

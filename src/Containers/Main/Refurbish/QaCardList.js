@@ -296,9 +296,11 @@ function QaCardList(props) {
                                                 </div> */}
                                                  <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                               
                                 <RefurbishToggle        
                                   orderPhoneId={item.orderPhoneId}
                                   newDispatchInd={item.newDispatchInd}
+                                  item={item}
                                 />
                               </div>
                             </div>

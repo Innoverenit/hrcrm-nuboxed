@@ -357,7 +357,34 @@ const initialState = {
 
   fetchingQAorderlist: false,
   fetchingQAorderlistError:false,
-  QAorderList:[],
+  QAorderList:[
+    {
+      orderPhoneId: "ORDPG15674578640632024",
+      dispatchPhoneCount: 5,
+      newOrderNo: "000103072024",
+      phoneReceiveCount: 5,
+      transferInd: 2,
+      dispatchInspectionInd: 0,
+      pageCount: 5,
+      dataCount: 20,
+      listCount: 84,
+      creationDate: "2024-07-03T12:29:20.164Z",
+      newDispatchInd: true
+  },
+  {
+    orderPhoneId: "ORDPG15676578640632024",
+    dispatchPhoneCount: 5,
+    newOrderNo: "000103072024",
+    phoneReceiveCount: 5,
+    transferInd: 2,
+    dispatchInspectionInd: 0,
+    pageCount: 5,
+    dataCount: 20,
+    listCount: 84,
+    creationDate: "2024-07-03T12:29:20.164Z",
+    newDispatchInd: false,
+},
+  ],
   updatingQAinspection: false,
   updatingQAinspectionError:false,
   

@@ -183,7 +183,9 @@ const AssignPhoneByTechnician = (props) => {
                 />
             )}
             <div class="flex justify-end mt-1">
-                {department && technician && dueDate && checkedValue &&
+                {department && technician && dueDate && 
+                <div>
+                   {checkedValue.length === 0 ? "":
                     <Button
                         loading={props.updatingtechnicianByPhone}
                         type='primary'
@@ -201,7 +203,8 @@ const AssignPhoneByTechnician = (props) => {
                             handleCallback()
                         )}>
                         Submit
-                    </Button>
+                    </Button>}
+                    </div>
                 }
             </div>
         </div>
