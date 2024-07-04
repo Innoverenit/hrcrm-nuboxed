@@ -24,6 +24,7 @@ const UpdateEmployeeModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
           <UpdateEmployeeForm 
              currentEmployeeId={currentEmployeeId}
+             userData={props.userData}
             />
     </Suspense>
       </StyledDrawer>

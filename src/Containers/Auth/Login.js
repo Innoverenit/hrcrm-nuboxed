@@ -15,7 +15,7 @@ import {
 import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
 import FWLogo from "../../Assets/Images/name.jpg";//ct
 // import FWLogo1 from "../../Assets/Images/dsdde.jpg"; //ct
-import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";
+import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nubox
 import DevelopTk from "../../Assets/Images/logo_22.png";
 
 

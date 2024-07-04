@@ -651,17 +651,17 @@ export const setSuppliesSupplierType = (data) => (dispatch) => {
     });
 };
 
-export const linkMaterialToggle = ( id,uniqueId) => (dispatch, getState) => {
+export const linkMaterialToggle = ( data,suppliesId) => (dispatch, getState) => {
   //console.log(permissions, userId);
-  const orgId = getState().auth.userDetails.organizationId;
+  //const orgId = getState().auth.userDetails.organizationId;
   dispatch({
     type: types.LINK_MATERIAL_TOGGLE_REQUEST,
   });
   axios
-  .put(`${base_url2}/supplies/uniqueId/${id}/${uniqueId}`, {}, {
-    headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-    },
+  .put(`${base_url2}/supplies/update/publishInd/${suppliesId}`,data,  {
+    // headers: {
+    //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    // },
   })
 
     .then((res) => {

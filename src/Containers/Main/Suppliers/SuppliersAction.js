@@ -781,7 +781,7 @@ export const addSupplierInventoryImportForm =
   });
 
   axios
-    .post(`${base_url}/excel/supplier-inventory`, customer, {
+    .post(`${base_url2}/excel/supplier-inventory`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2136,9 +2136,9 @@ export const linkSuplierToggle = ( data,id) => (dispatch, getState) => {
   });
   axios
   .put(`${base_url2}/supplier/update/inventory/supplier/publishInd/${id}`, data, {
-    headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-    },
+    // headers: {
+    //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    // },
   })
 
     .then((res) => {
@@ -2152,6 +2152,35 @@ export const linkSuplierToggle = ( data,id) => (dispatch, getState) => {
       console.log(err);
       dispatch({
         type: types.LINK_SUPPLIERS_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+export const linkSuplierInventoryToggle = ( data,id) => (dispatch, getState) => {
+  //console.log(permissions, userId);
+  //const orgId = getState().auth.userDetails.organizationId;
+  dispatch({
+    type: types.LINK_SUPPLIERS_INVENTORY_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplier/update/inventory/supplier/publishInventoryInd/${id}`, data, {
+    // headers: {
+    //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    // },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_SUPPLIERS_INVENTORY_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_SUPPLIERS_INVENTORY_TOGGLE_FAILURE,
         payload: err,
       });
     })
