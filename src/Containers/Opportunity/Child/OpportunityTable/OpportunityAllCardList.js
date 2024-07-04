@@ -85,6 +85,7 @@ function OpportunityAllCardList(props) {
 
       return (    
   <>
+   <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className="flex max-sm:hidden  w-[99%] max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">Name</div>
@@ -106,7 +107,7 @@ function OpportunityAllCardList(props) {
         loader={fetchingAllOpportunity?<div class="flex justify-center" >Loading...</div> :null}
         height={"82vh"}
       >
- <CardWrapper>      
+ {/* <CardWrapper>       */}
  { !fetchingAllOpportunity && allOpportunity.length === 0 ?<NodataFoundPage />:allOpportunity.map((item,index) =>  {
                  
                  var findProbability = item.probability;
@@ -119,7 +120,7 @@ function OpportunityAllCardList(props) {
 
                   <div className="max-sm:w-wk">
                    <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex  rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium  w-[13rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
@@ -398,10 +399,11 @@ handleSetCurrentOpportunityId(item.opportunityName);
 
                  )  
             })}
-              </CardWrapper>
+              {/* </CardWrapper> */}
   
 
       </InfiniteScroll>
+      </div>
       </div>
       <UpdateOpportunityModal
         opportunityId={currentOpportunityId}
