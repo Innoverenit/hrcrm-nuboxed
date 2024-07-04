@@ -30,7 +30,7 @@ class ModuleTab extends Component {
       <>
            <div class="flex flex-nowrap" >
           <div class ="w-[100%]" >
-            <TabsWrapper>
+            {/* <TabsWrapper> */}
               <StyledTabs defaultActiveKey="0" onChange={this.handleTabChange}>
                 <TabPane
                   tab={
@@ -50,7 +50,7 @@ class ModuleTab extends Component {
                
              
               </StyledTabs>
-            </TabsWrapper>
+            {/* </TabsWrapper> */}
           </div>
         </div>
       </>

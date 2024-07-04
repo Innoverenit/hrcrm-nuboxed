@@ -42,7 +42,8 @@ class ModuleTrading extends Component {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex   flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center"> 
               <div class=" text-sm font-semibold ">Trading</div>
                     <div   class="  ml-2">
                     <Popconfirm
@@ -62,6 +63,8 @@ class ModuleTrading extends Component {
                       </Popconfirm>
                     </div>
                     </div>
+                    <div class="text-xs text-center"> Match Order ~ Options</div>
+                    </div>
                     </div>
       
             <> 
@@ -72,7 +75,8 @@ class ModuleTrading extends Component {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex  flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center"> 
               <div class=" text-sm  ml-2 font-semibold">Ecom</div>
                     <div   class=" ml-2">
                     <Popconfirm
@@ -92,6 +96,8 @@ class ModuleTrading extends Component {
                         />
                       </Popconfirm>
                     </div>
+                    </div>
+                    <div class="text-xs text-center"> D2C / B2B / Customer portal / Supplier Portal.</div>
                     </div> 
                     </div>
    

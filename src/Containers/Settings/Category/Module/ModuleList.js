@@ -350,17 +350,18 @@ const handleFinanceClick = (checked) => {
     return (
       <>
         <div flexWrap="nowrap">
-          <MainWrapper
+          {/* <MainWrapper
             style={{
               flexBasis: "100%",
               overflow: "auto",
               color: "#FFFAFA",
+              
             }}
-          >
+          > */}
             <div class=" flex flex-col" >
               {/* <Title style={{ padding: 8 }}>Designation</Title> */}
-              <MainWrapper style={{ height: "29rem", marginTop: "0.625em" }}>
-              <div class=" w-full cursor-pointer">
+              <MainWrapper style={{  marginTop: "0.625em", cursor:"pointer",height: "70vh", }}>
+              {/* <div class=" w-full cursor-pointer"> */}
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
@@ -374,8 +375,9 @@ const handleFinanceClick = (checked) => {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
-                    <div class=" text-sm font-semibold">CRM</div>
+            <div class="flex  flex-col justify-center mt-1">
+                <div class="flex flex-row  justify-center"> 
+                  <div class=" text-sm font-semibold">CRM</div>
                     <div   class=" ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -393,8 +395,13 @@ const handleFinanceClick = (checked) => {
                           unCheckedChildren="No"
                         />
                       </Popconfirm>
+                      
                     </div>
                     </div>
+                   
+                    <div class="text-xs text-center"> Manage interactions and relationships, streamline processes.</div>
+                    </div>
+                    
                     </div>
                     <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
              <img
@@ -403,16 +410,17 @@ const handleFinanceClick = (checked) => {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex flex-col justify-center mt-1">
+              <div class="flex flex-row  justify-center">
               <div class=" text-sm font-semibold ">Finance</div>
                     <div   class="  ml-2">
                     <Popconfirm
-        title="Do you wish to change Status?"
-        onConfirm={() => handleFinanceClick(!financeStatus)}
-        okText="Yes"
-        cancelText="No"
-      >
-                        <Switch
+                              title="Do you wish to change Status?"
+                              onConfirm={() => handleFinanceClick(!financeStatus)}
+                              okText="Yes"
+                              cancelText="No"
+                            >
+                                              <Switch
                               onChange={() => {}}
                         //  onChange={this.props.handleErpClick}
                           style={{ width: "4em" }}
@@ -423,6 +431,8 @@ const handleFinanceClick = (checked) => {
                       </Popconfirm>
                     </div>
                     </div>
+                    <div class="text-xs text-center">Handle transactions and invoicing, track budgets.</div>
+                    </div>
                     </div>
                     <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
                     <img
@@ -431,7 +441,8 @@ const handleFinanceClick = (checked) => {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-             <div class="flex justify-center mt-1">
+             <div class="flex flex-col justify-center mt-1">
+             <div class="flex flex-row  justify-center">
                     <div class=" text-sm font-semibold  ml-2">IM</div>
                     <div   class="  ml-2">
                     <Popconfirm
@@ -451,6 +462,8 @@ const handleFinanceClick = (checked) => {
                         />
                       </Popconfirm>
                     </div>
+                    </div>
+                    <div class="text-xs text-center"> Track communications and maintaining investment records</div>
                     </div>
                     </div>
                     {/* <div>Account</div>
@@ -495,7 +508,9 @@ const handleFinanceClick = (checked) => {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex flex-col justify-center mt-1">
+              
+             <div class="flex flex-row  justify-center">
                       <div class=" text-sm  ml-2 font-semibold">HR</div>
                     <div   class="  ml-2">
                     <Popconfirm
@@ -519,6 +534,8 @@ const handleFinanceClick = (checked) => {
                     
                     </div> 
                     </div>
+                    <div class="text-xs text-center"> Manage employee goals and performance</div>
+                    </div>
                     </div>
 
                    
@@ -530,8 +547,9 @@ const handleFinanceClick = (checked) => {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex flex-col justify-center mt-1">
            
+            <div class="flex flex-row  justify-center">
                     <div class=" text-sm  ml-2 font-semibold">Rcruitpro</div>
                     <div   class=" ml-2">
                     <Popconfirm
@@ -552,6 +570,8 @@ const handleFinanceClick = (checked) => {
                       </Popconfirm>
                     </div>
                     </div>
+                    <div class="text-xs text-center"> Hire @ Scale</div>
+                    </div>
                     </div>
                     <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
              <img
@@ -560,7 +580,8 @@ const handleFinanceClick = (checked) => {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center">
                     <div class=" text-sm  ml-2 font-semibold">Elearning</div>
                     <div   class="  ml-2">
                     <Popconfirm
@@ -580,6 +601,8 @@ const handleFinanceClick = (checked) => {
                         />
                       </Popconfirm>
                     </div>
+                    </div>
+                    <div class="text-xs text-center"> Interactive lessons, assessment tools</div>
                     </div> 
                     </div>
                    
@@ -621,7 +644,7 @@ const handleFinanceClick = (checked) => {
               )
           }
         </ViewEditCard>
-      </div>
+      {/* </div> */}
                 {/* {departments.length ? (
                   departments.map((department, i) => ( */}
                     <SingleModuleList
@@ -676,7 +699,7 @@ logisticsStatus={logisticsStatus}
               </MainWrapper>
             </div>
            
-          </MainWrapper>
+          {/* </MainWrapper> */}
           <div class=" font-bold">Updated on {dayjs(props.moduleList.updationDate).format('YYYY-MM-DD')} by {props.moduleList.updatedBy}</div>
         </div>
      <StripePaymentModal
