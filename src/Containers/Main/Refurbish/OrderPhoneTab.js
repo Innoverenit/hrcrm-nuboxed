@@ -50,9 +50,7 @@ const OrderPhoneTab = (props) => {
           case "2":
             return  <div>{repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} /> :
             openRepair ? <OpenRepairTable /> : null}</div>;
-          case "3":
-            return    <QaCardList/>;
-         
+        
             
           default:
             return null;
@@ -104,28 +102,7 @@ const OrderPhoneTab = (props) => {
                     </Suspense>
                 </TabPane>
                 
-                 <TabPane
-                 tab={
-                     <>
-                         <span 
-                        //  onClick={handleMainQa}
-                         >
-                             QA
-                         </span>
-                         &nbsp;&nbsp;
-                         {/* <span onClick={handleOpenQa}>
-                             <HandymanIcon className="text-base" />
-                         </span> */}
-
-                     </>
-                 }
-                 key="3">
-                 {/* <Suspense fallback={<BundleLoader />}>
-                     {openQa ? <OpenQcTable /> : qaMain ? <ProductionOrderListById /> : null}
-                     <QaCardList/>
-                 </Suspense> */}
-                 
-             </TabPane>
+                
                 {props.inspectionRequiredInd &&
 
                     <TabPane

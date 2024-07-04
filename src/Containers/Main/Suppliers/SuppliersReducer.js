@@ -168,6 +168,9 @@ const initialState = {
   addingSuppliersToggle: false,
   addingSuppliersToggleError: false,
 
+  addingSuppliersInvetoryToggle: false,
+  addingSuppliersInvetoryToggleError: false,
+
   addingManual: false,
   addingManualError:false,
 
@@ -1840,6 +1843,27 @@ export const suppliersReducer = (state = initialState, action) => {
                                         addingSuppliersToggle: false,
                                         addingSuppliersToggleError: true,
                                       };
+
+                                      case types.LINK_SUPPLIERS_INVENTORY_TOGGLE_REQUEST:
+                                        return { ...state, addingSuppliersInvetoryToggle: true };
+                                      case types.LINK_SUPPLIERS_INVENTORY_TOGGLE_SUCCESS:
+                                        return {
+                                          ...state,
+                                          addingSuppliersInvetoryToggle: false,
+                                          inventoryList: state.inventoryList.map((item) => {
+                                            if (item.inventorySupplieId === action.payload.inventorySupplieId) {
+                                              return action.payload;
+                                            } else {
+                                              return item;
+                                            }
+                                          }),
+                                        };
+                                      case types.LINK_SUPPLIERS_INVENTORY_TOGGLE_FAILURE:
+                                        return {
+                                          ...state,
+                                          addingSuppliersInvetoryToggle: false,
+                                          addingSuppliersInvetoryToggleError: true,
+                                        };
 
                                       case types.HANDLE_CLAER_SEARCHED_DATA_SUPPLIER:
                                         return { ...state, 

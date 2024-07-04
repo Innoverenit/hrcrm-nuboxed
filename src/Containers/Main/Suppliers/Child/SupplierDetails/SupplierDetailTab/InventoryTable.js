@@ -11,6 +11,7 @@ import dayjs from "dayjs";
 import NodataFoundPage from '../../../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { AudioOutlined } from "@ant-design/icons"
+import SuplierInventoryPublishToggle from "./SuplierInventoryPublishToggle";
 
 
 const { Option } = Select;
@@ -241,7 +242,14 @@ function InventoryTable(props) {
                                                            {item.currency} {item.price}
                                                         </div>
                                                     </div>
-                                                    
+                                                    <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <SuplierInventoryPublishToggle
+                                  publishInventoryInd={item.publishInventoryInd}
+                                  inventorySupplieId={item.inventorySupplieId}
+                                />
+                              </div>
+                            </div>
                                                 </div>
                                             </div>
                                         </>

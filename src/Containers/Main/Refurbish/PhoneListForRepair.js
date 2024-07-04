@@ -120,7 +120,7 @@ function PhoneListForRepair(props) {
         setIsRecording(false);
         if (transcript.trim() !== "") {
           setCurrentData(transcript);
-          props.searchimeiNamerapir(transcript);
+          props.searchimeiNamerapir(transcript,props.rowData.orderPhoneId);
           setSearchOnEnter(true);
         }
       };

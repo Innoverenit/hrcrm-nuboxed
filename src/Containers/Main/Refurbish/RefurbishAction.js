@@ -38,7 +38,7 @@ export const updateQCStatus = (data, phoneId, userId) => (dispatch) => {
       },
     })
     .then((res) => {
-      dispatch(getOrderByUser(userId))
+      //dispatch(getOrderByUser(userId))
       dispatch({
         type: types.UPDATE_QC_STATUS_SUCCESS,
         payload: res.data,
@@ -2279,11 +2279,11 @@ export const getDispatchUpdateList = (orderPhoneId) => (dispatch, getState) => {
     });
 };
 
-export const inputQcDataSearch =(orderPhoneId)=>(dispatch)=>{
+export const inputQcDataSearch =(userId,orderId)=>(dispatch)=>{
   dispatch({
     type: types.INPUT_QC_SEARCH_DATA_REQUEST,
   });
-  axios.get(`${base_url2}/phoneOrder/search/order/${orderPhoneId}`,{
+  axios.get(`${base_url2}/phoneOrder/search/QC/orderByUser/${userId}/${orderId}`,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2314,11 +2314,11 @@ export const ClearSearchedDataOfQa = () => (dispatch) => {
   });
 };
 
-export const inputProcessDataSearch =(orderPhoneId)=>(dispatch)=>{
+export const inputProcessDataSearch =(userId,orderId)=>(dispatch)=>{
   dispatch({
     type: types.INPUT_PROCESS_SEARCH_DATA_REQUEST,
   });
-  axios.get(`${base_url2}/phoneOrder/search/order/${orderPhoneId}`,{
+  axios.get(`${base_url2}/phoneOrder/search/process/orderByUser/${userId}/${orderId}`,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
