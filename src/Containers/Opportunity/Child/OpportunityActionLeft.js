@@ -85,7 +85,7 @@ const OpportunityActionLeft = (props) => {
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setOpportunityViewType("table")}
             style={{
-              color: props.viewType === "table" && "#1890ff",cursor:"pointer"
+              color: props.viewType === "table" && "#1890ff"
             }}
           >
             

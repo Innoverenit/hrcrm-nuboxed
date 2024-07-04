@@ -145,7 +145,7 @@ const LeadsActionLeft = (props) => {
         >
 
 
-          <span class=" md:mr-1 text-sm cursor-pointer"
+          <span class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setLeadsViewType("card")}
             style={{
               color: props.viewType === "card" && "#1890ff",
