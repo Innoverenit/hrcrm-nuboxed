@@ -6,7 +6,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { TextInput } from "../../../Components/UI/Elements";
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 
 class SingleLibrary extends Component {
@@ -31,8 +31,8 @@ class SingleLibrary extends Component {
     } = this.props;
     console.log(linkedLibrarys);
     console.log("name", data);
-    const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(creationDate).format("DD/MM/YYYY");
+    const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(creationDate).format("DD/MM/YYYY");
     // const disableDelete = linkedSources && linkedSources.includes(documentTypeId)
     return (
       <LibraryWrapper>

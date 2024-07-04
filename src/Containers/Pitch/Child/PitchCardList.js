@@ -373,11 +373,11 @@ const countryCode = item.countryAlpha2Code
                                 </div>
       
      </div>  
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium   w-[5%] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                <div className=" flex font-medium   w-[5%] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Phone # </div> */}
 
-                                          <div class="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                <div class="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                   {item.countryDialCode && item.phoneNumber
                     ? `${item.countryDialCode} ${item.phoneNumber}`
                     : 'None'}

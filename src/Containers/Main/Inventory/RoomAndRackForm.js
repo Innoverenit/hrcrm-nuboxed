@@ -581,8 +581,8 @@ const RoomAndRackForm = (props) => {
                       )}
                     </div>
 
-                    <div className="flex md:items-center">
-                      <div className="flex w-28 max-sm:flex-row max-sm:w-[10%]">
+                    <div className="flex   md:items-center">
+                      <div className="flex w-28 justify-end max-sm:flex-row max-sm:w-[10%]">
                         <div>
                           {editroomRackId === item.roomRackId ? (
                             <>
@@ -595,7 +595,7 @@ const RoomAndRackForm = (props) => {
                             </>
                           ) : (
                             <BorderColorIcon
-                              className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                              className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                               tooltipTitle="Edit"
                               iconType="edit"
                               onClick={() => handleEditClick(item.roomRackId)}
