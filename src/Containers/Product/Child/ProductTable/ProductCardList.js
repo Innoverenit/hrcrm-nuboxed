@@ -230,12 +230,11 @@ function ProductCardList(props) {
                                                                 alignItems: "center",
                                                             }}
                                                         >
-                                                            <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Product name: {`${item.productFullName ? `${item.productFullName}`:`${item.name}`}`}</div>
-                                                            <div style={{ marginBottom: "10px" }}>Model: {item.model}</div>
-                                                            <div style={{ marginBottom: "10px" }}>Brand: {item.brand}</div>
-                                                            <div style={{ marginBottom: "10px" }}>
-                                                                <QRCode value={item.imei} size={128} />
+                                                           
+                                                            <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
+                                                                <QRCode value={item.newProductNo} size={128} />
                                                             </div>
+                                                            <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>ID:</span> {item.newProductNo}</div>
                                                         </div>
                                                     </div>
                       </div>

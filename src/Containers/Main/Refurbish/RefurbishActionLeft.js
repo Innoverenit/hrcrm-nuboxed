@@ -158,7 +158,7 @@ function RefurbishActionLeft (props) {
 {viewType === "all"?
               <div class=" w-64 max-sm:w-24">
         <Input
-          placeholder="Search by OrderNo"
+          placeholder="Search by OrderID"
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}

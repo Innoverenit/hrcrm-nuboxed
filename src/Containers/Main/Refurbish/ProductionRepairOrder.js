@@ -64,7 +64,7 @@ function ProductionRepairOrder(props) {
       const handleSearch = () => {
         if (currentData.trim() !== "") {
           // Perform the search
-          props.inputProcessDataSearch(currentData);
+          props.inputProcessDataSearch(props.userId,currentData);
           setSearchOnEnter(true);  //Code for Search
         } else {
           console.error("Input is empty. Please provide a value.");
@@ -97,7 +97,7 @@ function ProductionRepairOrder(props) {
         setIsRecording(false);
         if (transcript.trim() !== "") {
           setCurrentData(transcript);
-          props.inputProcessDataSearch(transcript);
+          props.inputProcessDataSearch(props.userId,transcript);
           setSearchOnEnter(true);
         }
       };
@@ -141,7 +141,7 @@ function ProductionRepairOrder(props) {
                 <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div class=" w-64 max-sm:w-24">
         <Input
-          placeholder="Search by OrderNo "
+          placeholder="Search by OrderID "
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
