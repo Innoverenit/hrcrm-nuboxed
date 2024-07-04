@@ -47,7 +47,8 @@ class SingleModuleList extends Component {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center"> 
               <div class=" text-sm font-semibold " onClick={()=> this.props.handleStripeModal(true)} >ERP</div>
                     <div   class="  ml-2" >
                     <Popconfirm
@@ -67,6 +68,8 @@ class SingleModuleList extends Component {
                       </Popconfirm>
                     </div>
                     </div>
+                    <div class="text-xs text-center"> Cellular & Batch Manufacturing processes</div>
+                    </div>
                     </div>
            {this.props.moduleList.erpInd === true && ( 
             <> 
@@ -77,7 +80,8 @@ class SingleModuleList extends Component {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center"> 
               <div class=" text-sm  ml-2 font-semibold">Production</div>
                     <div   class=" ml-2">
                     <Popconfirm
@@ -98,6 +102,8 @@ class SingleModuleList extends Component {
                       </Popconfirm>
                     </div>
                     </div> 
+                    <div class="text-xs text-center"> Track parts, suppliers, manage productivity.</div>
+                    </div>
                     </div>
                     <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
              <img
@@ -106,7 +112,8 @@ class SingleModuleList extends Component {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center"> 
                     <div class=" text-sm  ml-2 font-semibold">Repair</div>
                     <div   class="  ml-2">
                     <Popconfirm
@@ -127,6 +134,8 @@ class SingleModuleList extends Component {
                         />
                       </Popconfirm>
                     </div>
+                    </div>
+                    <div class="text-xs text-center"> Order to Cash.</div>
 </div>
 </div>
                     {/* <div class=" text-sm  ml-2">Inventory</div>
@@ -148,8 +157,9 @@ class SingleModuleList extends Component {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex flex-col justify-center mt-1">
                     {/* <div class=" text-sm  ml-2">Order Management</div> */}
+                    <div class="flex flex-row  justify-center"> 
                     <Tooltip title="Order Management">
                     <div class=" text-sm  ml-2 font-semibold">OMS</div>
                     </Tooltip>
@@ -170,6 +180,8 @@ class SingleModuleList extends Component {
                         />
                       </Popconfirm>
                     </div>
+                    </div>
+                    <div class="text-xs text-center"> Order to Cash.</div>
 </div>
 </div>
 <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
@@ -179,7 +191,8 @@ class SingleModuleList extends Component {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center"> 
                     <div class=" text-sm  ml-2 font-semibold">Logistics</div>
                     <div   class="  ml-2">
                     <Popconfirm
@@ -198,6 +211,8 @@ class SingleModuleList extends Component {
                         />
                       </Popconfirm>
                     </div>
+                    </div>
+                    <div class="text-xs text-center">  Track shipments</div>
 </div>
 </div>
 <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
@@ -207,7 +222,8 @@ class SingleModuleList extends Component {
               style={{ height:"7rem" }}
               alt="Tekorero logo"
             />
-            <div class="flex justify-center mt-1">
+            <div class="flex flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center"> 
                     <div class=" text-sm  ml-2 font-semibold">Procurement</div>
                     <div   class="  ml-2">
                     <Popconfirm
@@ -226,6 +242,8 @@ class SingleModuleList extends Component {
                         />
                       </Popconfirm>
                     </div>
+                    </div>
+                    <div class="text-xs text-center"> Supplier evaluation, procure to pay.</div>
                     </div>
                     </div>
                     </>   
