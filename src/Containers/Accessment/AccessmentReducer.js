@@ -12,6 +12,10 @@ const initialState = {
   fetchingAssessmentError: false,
   assessment:[],
 
+
+  creatingAccessmentQues:false,
+  creatingAccessmentQuesError:false,
+
   fetchingAssessmentInputSearchData: false,
   assessmentName: [],
   
@@ -35,6 +39,10 @@ const initialState = {
   addQuestionModal:false,
 
   updateAssessmentModal:false,
+
+  fetchingAccessQues:false,
+  fetchingAccessQuesError:false,
+  accesQues:[],
 
   updatingAssessmentById: false,
   updatingAssessmentByIdError: false,
@@ -102,6 +110,44 @@ case types.HANDLE_ACCESSMENT_MODAL:
           updateAssessmentModal:false,
           fetchingAssessmentError: true,
         };
+
+
+
+        case types.GET_ACCESSMENT_QUES_REQUEST:
+          return { ...state, fetchingAccessQues: true };
+        case types.GET_ACCESSMENT_QUES_SUCCESS:
+          return {
+            ...state,
+            fetchingAccessQues: false,
+            accesQues: action.payload,
+          };
+        case types.GET_ACCESSMENT_QUES_FAILURE:
+          return {
+            ...state,
+            fetchingAccessQues: false,
+            fetchingAccessQuesError: true,
+          };
+        
+
+
+
+
+        case types.CREATE_ACCESSMENT_QUES_REQUEST:
+          return { ...state, creatingAccessmentQues: true };
+        case types.CREATE_ACCESSMENT_QUES_SUCCESS:
+          return {
+            ...state,
+            creatingAccessmentQues: false,
+            accesQues:[action.payload,...state.accesQues]
+
+          };
+        case types.CREATE_ACCESSMENT_QUES_FAILURE:
+          return {
+            ...state,
+            creatingAccessmentQues: false,
+            creatingAccessmentQuesError: true,
+
+          };
   
         case types.GET_RECORDS_REQUEST:
       return { ...state, fetchingRecordsByUserId: true };
