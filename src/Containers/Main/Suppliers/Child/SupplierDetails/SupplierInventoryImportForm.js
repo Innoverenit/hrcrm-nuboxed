@@ -83,6 +83,8 @@ class SupplierInventoryImportForm extends Component {
               
                
                 excelId:"",
+                userId:this.props.userId,
+                orgId:this.props.orgId,
                
                 // shareInd:"",
                 //opportunityId:this.props.opportunity.opportunityId,
@@ -167,6 +169,7 @@ class SupplierInventoryImportForm extends Component {
 const mapStateToProps = ({ document, suppliers,leads,employee, departments,auth }) => ({
     // addingLeadsImportForm:leads.addingLeadsImportForm,
     userId:auth.userDetails.userId,
+    orgId: auth.userDetails.organizationId,
     addingSupplierInventoryImportForm:suppliers.addingSupplierInventoryImportForm
 
 });

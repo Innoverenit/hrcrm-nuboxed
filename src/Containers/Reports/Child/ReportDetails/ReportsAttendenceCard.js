@@ -373,42 +373,47 @@ useEffect(() => {
 
 
   useEffect(() => {
-    const calculateWeekend = () => {
-      const today = new Date();
-      today.setDate(today.getDate() + weekOffset * 7); // Adjust for week offset
-      const dayOfWeek = today.getDay(); // 0 (Sun) to 6 (Sat)
-
-      const daysToMonday = (dayOfWeek + 6) % 7;
-      const monday = new Date(today);
-      monday.setDate(today.getDate() - daysToMonday);
-      const sunday = new Date(monday);
-      sunday.setDate(monday.getDate() + 6);
-
-      setMonday(monday.toISOString().split('T')[0]+'T20:00:00Z');
-      setSunday(sunday.toISOString().split('T')[0]+'T20:00:00Z');
-
-      const weekDates = [];
-      const dateOptions = { day: 'numeric', month: 'short' };
-      const dayOptions = { weekday: 'short' };
-
-      for (let i = 0; i < 7; i++) {
-        const date = new Date(monday);
-        date.setDate(monday.getDate() + i);
-        const formattedDate = date.toLocaleDateString('en-US', dateOptions);
-        const isoDate = date.toISOString().split('T')[0]; // Format: YYYY-MM-DD
-        const dayOfWeek = date.toLocaleDateString('en-US', dayOptions).toUpperCase();
-        weekDates.push({ formattedDate, isoDate, dayOfWeek });
-      }
-
-      setDates(weekDates);
-    };
-
     calculateWeekend();
   }, [weekOffset]);
+
+  const calculateWeekend = () => {
+    const today = new Date();
+    today.setDate(today.getDate() + weekOffset * 7); // Adjust for week offset
+    const dayOfWeek = today.getDay(); // 0 (Sun) to 6 (Sat)
+
+    const daysToMonday = (dayOfWeek + 6) % 7;
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - daysToMonday);
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6);
+
+    setMonday(monday.toISOString().split('T')[0] + 'T20:00:00Z');
+    setSunday(sunday.toISOString().split('T')[0] + 'T20:00:00Z');
+
+    console.log('Monday:', monday.toISOString().split('T')[0]);
+    console.log('Sunday:', sunday.toISOString().split('T')[0]);
+
+    const weekDates = [];
+    const dateOptions = { day: 'numeric', month: 'short' };
+    const dayOptions = { weekday: 'short' };
+
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(monday);
+      date.setDate(monday.getDate() + i);
+      const formattedDate = date.toLocaleDateString('en-US', dateOptions);
+      const isoDate = date.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+      const dayOfWeek = date.toLocaleDateString('en-US', dayOptions).toUpperCase();
+      weekDates.push({ formattedDate, isoDate, dayOfWeek });
+    }
+
+    setDates(weekDates);
+  };
+
 
   // useEffect(() => {
   //   const calculateWeekend = () => {
   //     const today = new Date();
+  //     today.setDate(today.getDate() + weekOffset * 7); // Adjust for week offset
   //     const dayOfWeek = today.getDay(); // 0 (Sun) to 6 (Sat)
 
   //     const daysToMonday = (dayOfWeek + 6) % 7;
@@ -416,8 +421,6 @@ useEffect(() => {
   //     monday.setDate(today.getDate() - daysToMonday);
   //     const sunday = new Date(monday);
   //     sunday.setDate(monday.getDate() + 6);
-  //     console.log('Start of the week (Monday):', monday);
-  //     console.log('End of the week (Sunday):', sunday);
 
   //     setMonday(monday.toISOString().split('T')[0]+'T20:00:00Z');
   //     setSunday(sunday.toISOString().split('T')[0]+'T20:00:00Z');
@@ -439,7 +442,9 @@ useEffect(() => {
   //   };
 
   //   calculateWeekend();
-  // }, []);
+  // }, [weekOffset]);
+
+  
 
   const combinedUsers = props.reportsProductivity.map(user => {
     const user2 = props.reportsAttendence.find(u => u.userId === user.userId);
@@ -466,13 +471,80 @@ useEffect(() => {
     }
   }, [props.showLocation]);
 
+
+
+
+  const handleNextWeek = () => {
+    if (weekOffset < 0) { // Restrict to current week or past weeks
+      setLoading(true);
+      setTimeout(() => {
+        const newOffset = weekOffset + 1;
+        setWeekOffset(newOffset);
+        const newMonday = getMondayDate(newOffset);
+        const newSunday = getSundayDate(newOffset);
+        console.log('Next Week - Monday:', newMonday);
+        console.log('Next Week - Sunday:', newSunday);
+       
+
+         const nextMonday=`${newMonday+ 'T20:00:00Z'}`
+         const nextSunday=`${newSunday+ 'T20:00:00Z'}`
+
+         const nextAttMonday=`${newMonday+ 'T20:00:00Z'}`
+         const nextAttSunday=`${newSunday+ 'T20:00:00Z'}`
+        props.getReportsProductivity(activeTab,nextMonday,nextSunday)
+      props.getReportsAttendence(activeTab,nextAttMonday,nextAttSunday)
+        setLoading(false);
+      }, 1000);
+    }
+  };
+
+  const handlePreviousWeek = () => {
+    setLoading(true);
+    setTimeout(() => {
+      const newOffset = weekOffset - 1;
+      setWeekOffset(newOffset);
+      const newMonday = getMondayDate(newOffset);
+      const newSunday = getSundayDate(newOffset);
+      console.log('Previous Week - Monday:', newMonday);
+      console.log('Previous Week - Sunday:', newSunday);
+       const nextMonday=`${newMonday+ 'T20:00:00Z'}`
+         const nextSunday=`${newSunday+ 'T20:00:00Z'}`
+
+         const nextAttMonday=`${newMonday+ 'T20:00:00Z'}`
+         const nextAttSunday=`${newSunday+ 'T20:00:00Z'}`
+      props.getReportsProductivity(activeTab,nextMonday,nextSunday)
+      props.getReportsAttendence(activeTab,nextAttMonday,nextAttSunday)
+      setLoading(false);
+    }, 1000);
+  };
+
+
+
+  const getMondayDate = (offset) => {
+    const today = new Date();
+    today.setDate(today.getDate() + offset * 7);
+    const dayOfWeek = today.getDay();
+    const daysToMonday = (dayOfWeek + 6) % 7;
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - daysToMonday);
+    return monday.toISOString().split('T')[0];
+  };
+
+  const getSundayDate = (offset) => {
+    const mondayDate = getMondayDate(offset);
+    const monday = new Date(mondayDate);
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6);
+    return sunday.toISOString().split('T')[0];
+  };
+
   return (
     <>
      <div 
     //  style={styles.navigation}
      >
-        <Button onClick={() => setWeekOffset(weekOffset - 1)}>Previous Week</Button>
-        <Button onClick={() => setWeekOffset(weekOffset + 1)}>Next Week</Button>
+         <Button onClick={handlePreviousWeek} disabled={loading}>Previous Week</Button>
+         <Button onClick={handleNextWeek} disabled={loading}>Next Week</Button>
       </div>
     <Tabs 
     type='card'
