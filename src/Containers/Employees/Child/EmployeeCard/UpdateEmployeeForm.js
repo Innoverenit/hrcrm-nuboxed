@@ -38,18 +38,18 @@ class UpdateEmployeeForm extends Component {
     this.state = {
       active: false,
       checked: true,
-      typeInd:this.props.currentEmployeeId.typeInd || "",
+      typeInd:this.props.userData.typeInd || "",
       role: [],
-      reportingManager: this.props.currentEmployeeId.reportingManager || "",
-      department: this.props.currentEmployeeId.reportingManagerDeptId || "",
-      secondatDepartment:this.props.currentEmployeeId.secondaryReptManagerDept || "",
-      secondaryReportingManager:this.props.currentEmployeeId.secondaryReptManager || "",
+      reportingManager: this.props.userData.reportingManager || "",
+      department: this.props.userData.reportingManagerDeptId || "",
+      secondatDepartment:this.props.userData.secondaryReptManagerDept || "",
+      secondaryReportingManager:this.props.userData.secondaryReptManager || "",
       selectedRole: "",
       selectedCountry: '',
       selectedDept: "",
       locations: [],
       selectedLocation: "",
-      workType:this.props.currentEmployeeId.employee_type || "",
+      workType:this.props.userData.employee_type || "",
     };
   }
 
@@ -198,8 +198,8 @@ class UpdateEmployeeForm extends Component {
     return StagesOptions;
   }
   componentDidMount () {
-    this.setState({active:this.props.currentEmployeeId.job_type==="Full Time"?true : false,
-  checked:this.props.currentEmployeeId.job_type==="Part Time"? false  : true
+    this.setState({active:this.props.userData.job_type==="Full Time"?true : false,
+  checked:this.props.userData.job_type==="Part Time"? false  : true
   })
 };
 
@@ -274,56 +274,56 @@ class UpdateEmployeeForm extends Component {
       userId,
     } = this.props;
 
-    const { clearbit, currentEmployeeId } = this.props;
+    const { clearbit, userData } = this.props;
  
 
-    console.log(currentEmployeeId)
+    console.log(userData)
     console.log(this.props.userDetails)
  
     return (
       <>
         <Formik
           initialValues={{
-            salutation: currentEmployeeId.salutation || "",
-            firstName: currentEmployeeId.firstName || "",
-            lastName: currentEmployeeId.lastName || "",
-            emailId: currentEmployeeId.emailId || "",
-            salary: currentEmployeeId.salary || "",
-            timeZone: currentEmployeeId.timeZone || "",
+            salutation: userData.salutation || "",
+            firstName: userData.firstName || "",
+            lastName: userData.lastName || "",
+            emailId: userData.emailId || "",
+            salary: userData.salary || "",
+            timeZone: userData.timeZone || "",
             // timeZone: timeZone,
-            countryDialCode: currentEmployeeId.countryDialCode || "",
-            countryDialCode1: currentEmployeeId.countryDialCode1 || "",
-            phoneNo: currentEmployeeId.phoneNo || "",
+            countryDialCode: userData.countryDialCode || "",
+            countryDialCode1: userData.countryDialCode1 || "",
+            phoneNo: userData.phoneNo || "",
             // location:this.state.selectedLocation,
             // workplace:this.state.selectedCountry,
             dateOfJoining: dayjs(),
             dob: dayjs(),
-            mobileNo: currentEmployeeId.mobileNo || "",
-            currency:currentEmployeeId.currency || "",
-            country: currentEmployeeId.country || "",
-            workplace: currentEmployeeId.workplace || "",
-            location: currentEmployeeId.location || "",
-            designationTypeId: currentEmployeeId.designationTypeId || "",
-            departmentId: currentEmployeeId.departmentId,
-            roleType: currentEmployeeId.roleType || "",
-            roleTypeName: currentEmployeeId.roleTypeName || "",
-            linkedinPublicUrl: currentEmployeeId.linkedinPublicUrl || "",
-            label: currentEmployeeId.label || "",
+            mobileNo: userData.mobileNo || "",
+            currency:userData.currency || "",
+            country: userData.country || "",
+            workplace: userData.workplace || "",
+            location: userData.location || "",
+            designationTypeId: userData.designationTypeId || "",
+            departmentId: userData.departmentId,
+            roleType: userData.roleType || "",
+            roleTypeName: userData.roleTypeName || "",
+            linkedinPublicUrl: userData.linkedinPublicUrl || "",
+            label: userData.label || "",
             designationType:"",
             job_type: this.state.active ? "Full Time" : "Part Time",
             type: this.state.typeInd ? "true" : "false",
             employee_type: this.state.workType,
-            address: [
-              {
-                addressId: currentEmployeeId.address.length ? currentEmployeeId.address[0].addressId : "",
-                address1: currentEmployeeId.address.length ? currentEmployeeId.address[0].address1 : "",
-                address2: currentEmployeeId.address.length ? currentEmployeeId.address[0].address2 : "",
-                street: currentEmployeeId.address.length ? currentEmployeeId.address[0].street : "",
-                city: currentEmployeeId.address.length ? currentEmployeeId.address[0].city : "",
-                state: currentEmployeeId.address.length ? currentEmployeeId.address[0].state : "",
-                postalCode: currentEmployeeId.address.length ? currentEmployeeId.address[0].postalCode : "",
-              },
-            ],
+            // address: [
+            //   {
+            //     addressId: userData.address.length ? userData.address[0].addressId : "",
+            //     address1: userData.address.length ? userData.address[0].address1 : "",
+            //     address2: userData.address.length ? userData.address[0].address2 : "",
+            //     street: userData.address.length ? userData.address[0].street : "",
+            //     city: userData.address.length ? userData.address[0].city : "",
+            //     state: userData.address.length ? userData.address[0].state : "",
+            //     postalCode: userData.address.length ? userData.address[0].postalCode : "",
+            //   },
+            // ],
 
           }}
           validationSchema={EmployeeSchema}
@@ -333,8 +333,8 @@ class UpdateEmployeeForm extends Component {
                 {
                   ...values,
                   timeZone: timeZone,
-                  // workplace: currentEmployeeId.country_name ,
-                  // location: currentEmployeeId.locationDetailsId ,
+                  // workplace: userData.country_name ,
+                  // location: userData.locationDetailsId ,
                   reportingManagerDeptId: department,
                   secondaryReptManagerDept:secondatDepartment,
                   secondaryReptManager: secondaryReportingManager,
@@ -342,10 +342,10 @@ class UpdateEmployeeForm extends Component {
                   job_type: this.state.active ? "Full Time" : "Part Time",
                   type: this.state.typeInd ? "true" : "false",
                   employee_type: this.state.workType,
-                  employeeId: currentEmployeeId.employeeId,
+                  employeeId: userData.employeeId,
                   // assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
                 },
-                currentEmployeeId.employeeId,
+                userData.employeeId,
                 () => this.handleReset(resetForm)
               );
             }
@@ -611,13 +611,13 @@ class UpdateEmployeeForm extends Component {
                       </div>
 
                     </div>
-                    <div style={{ width: "100%", backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)", marginTop: "0.5rem" }}>
+                    {/* <div style={{ width: "100%", backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)", marginTop: "0.5rem" }}>
                       <div>
                         <div class=" text-[white] text-xs" >
                           Address for  Correspondence</div>
                       </div>
-                    </div>
-
+                    </div> */}
+{/* 
                     <FieldArray
                       name="address"
                       label="Address"
@@ -627,7 +627,7 @@ class UpdateEmployeeForm extends Component {
                           values={values}
                         />
                       )}
-                    />
+                    /> */}
 
                   </div>
                   <div class="  w-[47.5%] max-sm:w-wk ">

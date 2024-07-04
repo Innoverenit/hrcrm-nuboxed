@@ -781,7 +781,7 @@ export const addSupplierInventoryImportForm =
   });
 
   axios
-    .post(`${base_url}/excel/supplier-inventory`, customer, {
+    .post(`${base_url2}/excel/supplier-inventory`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

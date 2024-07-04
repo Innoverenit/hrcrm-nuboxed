@@ -37,12 +37,17 @@ const StepperEmployeeModal =lazy(()=>import("./StepperEmployeeModal"));
 
 
 function EmployeeCardView (props) {
-
+  const [userData, setUserData] = useState("");
   const [currentEmployeeId, setCurrentEmployeeId] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
 function handleSetCurrentEmployeeId(employeeId,) {
   setCurrentEmployeeId(employeeId,);
+ 
+}
+
+function handleSetCurrentUser(item) {
+  setUserData(item,);
  
 }
   if (props.fetchingEmployee) {
@@ -245,6 +250,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
                 className=" !text-base cursor-pointer text-[tomato]"
                 onClick={() => {
                   props.handleUpdateEmployeeModal(true); 
+                  handleSetCurrentUser(item);
                   handleSetCurrentEmployeeId(item);
                    
                 }}
@@ -313,6 +319,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
               </div>
 
               <UpdateEmployeeModal
+              userData={userData}
        currentEmployeeId={currentEmployeeId}
         updateEmployeeModal={props.updateEmployeeModal}
         handleUpdateEmployeeModal={props.handleUpdateEmployeeModal}
