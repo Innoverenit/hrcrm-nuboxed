@@ -23,9 +23,9 @@ function DistributionTab(props) {
                         <OneTimeTable/>
                         </div>
                     </TabPane>
-                    <TabPane tab={`Fiscal`} key="2">
+                    {/* <TabPane tab={`Fiscal`} key="2">
                        fiscla
-                    </TabPane>
+                    </TabPane> */}
                 </StyledTabs>
             </TabsWrapper>
         </>

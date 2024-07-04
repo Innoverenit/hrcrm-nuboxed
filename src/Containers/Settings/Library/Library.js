@@ -187,7 +187,8 @@ const Library = ({
           )}
           </div>
           <div className="flex flex-col">
-            <MainWrapper style={{ height: "34rem" }}>
+            <div>
+            {/* <MainWrapper style={{ height: "34rem" }}> */}
               {librarys.length ? (
                 librarys
                   .slice()
@@ -212,7 +213,7 @@ const Library = ({
               ) : (
                 <p>No Data Available</p>
               )}
-            </MainWrapper>
+            {/* </MainWrapper> */}</div>
           </div>
         </MainWrapper>
       </div>
