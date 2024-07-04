@@ -8,7 +8,7 @@ import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
-import moment from "moment";
+import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LockIcon from "@mui/icons-material/Lock";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -205,7 +205,7 @@ function OpportunityTeamsCard(props) {
 
 
                                   <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                  {moment(item.startDate).format("ll")}
+                                  {dayjs(item.startDate).format("ll")}
                                   </div>
                               </div>
                            

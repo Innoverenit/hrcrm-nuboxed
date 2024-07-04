@@ -360,7 +360,7 @@ const handleFinanceClick = (checked) => {
           > */}
             <div class=" flex flex-col" >
               {/* <Title style={{ padding: 8 }}>Designation</Title> */}
-              <MainWrapper style={{  marginTop: "0.625em", cursor:"pointer",height: "70vh", }}>
+              <MainWrapper style={{  marginTop: "0.625em", cursor:"pointer",height: "79vh", }}>
               {/* <div class=" w-full cursor-pointer"> */}
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
