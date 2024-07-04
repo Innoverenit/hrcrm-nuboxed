@@ -10,6 +10,7 @@ import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import Quality from "../Quality/Quality"
 import Model from "../Model/Model";
 import BrandCategory from "../BrandCategory/BrandCategory";
+import FeedBack from "./FeedBack";
 const ItemTask = lazy(() =>
   import("../ItemTask/ItemTask")
 );
@@ -48,6 +49,8 @@ class OrderTab extends Component {
               return     <BrandCategory/>;
             case "4":
               return     <Quality/>;
+              case "5":
+                return     <FeedBack/>;
 
       default:
         return null;
@@ -163,6 +166,24 @@ class OrderTab extends Component {
                 >
 
                 </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      <RecommendIcon />
+                      <Badge
+                count={this.props.feedBackCount.FeedbackCount}
+                overflowCount={999}
+              >
+                      <span class=" ml-1">
+                       FeedBack
+                      </span>
+                      </Badge>
+                    </>
+                  }
+                  key="5"
+                >
+
+                </TabPane>
               </StyledTabs>
               <Suspense fallback={<div>Loading...</div>}>
                 {this.renderTabContent(activeKey)}
@@ -174,11 +195,12 @@ class OrderTab extends Component {
     );
   }
 }
-const mapStateToProps = ({auth ,itemTask,shipBy,quality}) => ({
+const mapStateToProps = ({auth ,itemTask,shipBy,quality,settings}) => ({
   user: auth.userDetails,
   itemTaskCount:itemTask.itemTaskCount,
   shipByCount:shipBy.shipByCount,
   qualityCount:quality.qualityCount,
+  feedBackCount:settings.feedBackCount,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 

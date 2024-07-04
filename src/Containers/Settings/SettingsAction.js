@@ -5553,3 +5553,184 @@ export const updateClub = (data,clubId) => (dispatch) => {
       });
     });
 };
+
+
+export const getFeedback = () => (dispatch) => {
+  dispatch({
+    type: types.GET_FEEBACK_REQUEST,
+  });
+  axios
+  .get(`${base_url}/feedback/All`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_FEEBACK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_FEEBACK_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+// /**
+//  * add a new sector 
+//  */
+export const addFeedBack = (sectors,orgId, cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_FEEBACK_REQUEST,
+  });
+  axios
+    .post(`${base_url}/feedback`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Feedback added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      dispatch(getFeedBackCount());
+      console.log(res);
+      dispatch({
+        type: types.ADD_FEEBACK_SUCCESS,
+        payload: { ...sectors, },
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_FEEBACK_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
+    });
+};
+
+/**
+* remove a new sector
+*/
+export const removeFeedBack = ( feedbackId,orgId) => (dispatch) => {
+  // console.log(typeId);
+  dispatch({
+    type: types.REMOVE_FEEBACK_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/feedback/${feedbackId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getFeedBackCount());
+      Swal.fire({
+        icon: 'success',
+        title: 'Feedback deleted Successfully!',
+      })
+      // message.success("QUALITY has been deleted successfully!");
+      console.log(res);
+      dispatch({
+        type: types.REMOVE_FEEBACK_SUCCESS,
+        payload:feedbackId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_FEEBACK_FAILURE,
+      });
+    });
+};
+
+/**
+*update label of sector
+*/
+export const updateFeedBack = ( data,feedbackId,cb) => (dispatch) => {
+  
+  dispatch({
+    type: types.UPDATE_FEEBACK_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/feedback/${feedbackId}`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Feedback updated Successfully!',
+      })
+    
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_FEEBACK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_FEEBACK_FAILURE,
+      });
+    });
+};
+
+
+
+
+export const getFeedBackCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_FEEBACK_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/feedback/count/All`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_FEEBACK_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_FEEBACK_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
