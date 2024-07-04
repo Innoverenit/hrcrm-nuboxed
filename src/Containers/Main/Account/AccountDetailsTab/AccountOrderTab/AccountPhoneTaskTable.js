@@ -43,6 +43,7 @@ function AccountPhoneTaskTable(props) {
                 <div class=" h-full w-w47.5 max-sm:w-wk">
                     <div class="flex justify-between">
                         <div class="w-[45%]">
+                            <div class="font-semibold text-sm">Task List</div>
                             <Select onChange={handleTask}>
                                 <Option value={"custom"}>{"Custom"} </Option>
                                 {props.phoTasklist.map((a) => {
@@ -73,7 +74,7 @@ function AccountPhoneTaskTable(props) {
                 </div>
             </div>
             <Suspense fallback={<BundleLoader />}>
-                <AccountPhoneTaskList phoneId={props.phoneId} />
+                <AccountPhoneTaskList phoneId={props.phoneId}   particularRowData={props.particularRowData}/>
             </Suspense>
         </>
     );

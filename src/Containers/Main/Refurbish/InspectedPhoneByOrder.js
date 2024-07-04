@@ -18,6 +18,7 @@ import ReceivedSpareList from "./ProductionTab/ReceivedSpareList";
 import { BundleLoader } from "../../../Components/Placeholder";
 import PhoneListOrderTaskTable from "./PhoneListOrderTaskTable";
 import QrCodeIcon from '@mui/icons-material/QrCode';
+import NodataFoundPageRefubish from "./NodataFoundPageRefubish";
 const QRCodeModal = lazy(() => import("../../../Components/UI/Elements/QRCodeModal"));
 
 function InspectedPhoneByOrder(props) {
@@ -177,7 +178,7 @@ function InspectedPhoneByOrder(props) {
                             <div className="md:w-[7.2rem]"></div>
                         </div>
                         <div class="overflow-y-auto h-[72vh]">
-                            {props.updateDispatchList.map((item, index) => {
+                            {props.updateDispatchList.length === 0 ? <NodataFoundPageRefubish /> :props.updateDispatchList.map((item, index) => {
                                 return (
                                     <div>
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >

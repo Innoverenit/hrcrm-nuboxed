@@ -10,11 +10,11 @@ function AccountPhoneTaskList(props) {
     useEffect(() => {
         props.getTaskByPhoneId(props.phoneId)
     }, [])
-
+console.log(props.particularRowData)
     return (
         <>
             <MainWrapper>
-
+<div class="font-semibold text-sm underline">{props.particularRowData.imei}</div>
                 {props.taskByPhone.map((item) => {
                     return (
                         <div class="cursor-pointer w-[18%] flex justify-center ">

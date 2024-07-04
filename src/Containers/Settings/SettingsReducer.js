@@ -9,6 +9,23 @@ const initialState = {
   addProcessTaskModal: false,
   candidateSequenceModal: false,
 
+  fetchingFeedback: false,
+      fetchingFeedbackError: false,
+      feedBackList:[],
+
+      addingFeedBack: false,
+      addingFeedBackError: false,
+
+      removingFeedBack: false,
+      removingFeedBackError: false,
+
+      updatingFeedBack: false,
+      updatingFeedBackError: false,
+
+      fetchingFeedBackCount: false,
+                fetchingFeedBackCountError: false,
+                feedBackCount:{},
+
   deleteSupplierProcessData: false, 
   deleteSupplierProcessDataError: false,
 
@@ -4133,7 +4150,97 @@ export const settingsReducer = (state = initialState, action) => {
         updatingClub: false,
         updatingClubError: true,
       };
-                                                            
+             
+      case types.GET_FEEBACK_REQUEST:
+    return { ...state,  fetchingFeedback: true };
+  case types.GET_FEEBACK_SUCCESS:
+    return {
+      ...state,
+      fetchingFeedback: false,
+       feedBackList: action.payload,
+    };
+  case types.GET_FEEBACK_FAILURE:
+    return {
+      ...state,
+      fetchingFeedback: false,
+      fetchingFeedbackError: true,
+    };
+
+ // add sector
+
+ case types.ADD_FEEBACK_REQUEST:
+    return { ...state,  addingFeedBack: true };
+  case types.ADD_FEEBACK_SUCCESS:
+    return {
+      ...state,
+      addingFeedBack: false,
+      feedBackList:[action.payload,...state.feedBackList],
+      // qualityCount:[action.payload,...state.qualityCount],
+      
+      // qualityList: [...state.qualityList, action.payload],
+      
+    };
+  case types.ADD_FEEBACK_FAILURE:
+    return {
+      ...state,
+      addingFeedBack: false,
+      addingFeedBackError: true,
+    };
+
+     // remove sector
+
+     case types.REMOVE_FEEBACK_REQUEST:
+        return { ...state,  removingFeedBack: true };
+      case types.REMOVE_FEEBACK_SUCCESS:
+        return {
+          ...state,
+          removingFeedBack: false,
+          feedBackList: state.feedBackList.filter(
+            (item) => item.feedbackId !== action.payload
+        ), 
+        };
+      case types.REMOVE_FEEBACK_FAILURE:
+        return {
+          ...state,
+          removingFeedBack: false,
+          removingFeedBackError: true,
+        };
+
+      //   update an existing SECTOR 
+
+      case types.UPDATE_FEEBACK_REQUEST:
+        return { ...state,   updatingFeedBack: true };
+      case types.UPDATE_FEEBACK_SUCCESS:
+        // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
+        return {
+          ...state,
+          updatingFeedBack: false,
+          feedBackList: state.feedBackList.map((sector) =>
+            sector.feedbackId === action.payload.feedbackId
+              ? action.payload
+              : sector
+          ),
+        };
+      case types.UPDATE_FEEBACK_FAILURE:
+        return {
+          ...state,
+          updatingFeedBack: false,
+          updatingFeedBackError: true,
+        };
+
+     
+            case types.GET_FEEBACK_COUNT_REQUEST:
+              return { ...state, fetchingFeedBackCount: true };
+            case types.GET_FEEBACK_COUNT_SUCCESS:
+              return { ...state, fetchingFeedBackCount: false, 
+                feedBackCount: action.payload };
+            case types.GET_FEEBACK_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingFeedBackCount: false,
+                fetchingFeedBackCountError: true,
+              };
+
 
 
     default:
