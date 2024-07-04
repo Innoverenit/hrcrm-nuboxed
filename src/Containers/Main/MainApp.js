@@ -4,6 +4,8 @@ import HelpIcon from '@mui/icons-material/Help';
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
 
+import AssessmentData from "../AssessmentData/AssessmentData"
+
 import { base_url,login_url } from "../../Config/Auth";
 
 import {
@@ -879,6 +881,19 @@ function MainApp(props) {
                       path="/leads"
                       render={(props) => (
                         <Leads
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+
+
+<Route
+                      exact
+                      path="/assessment"
+                      render={(props) => (
+                        <AssessmentData
                           {...props}
                           translateText={translateText}
                            selectedLanguage={selectedLanguage}

@@ -1252,6 +1252,24 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
         </Menu.Item>
        )} 
 
+
+
+        <Menu.Item key="/assessment" style={{ height: "1.45rem", 
+        color: selectedMenuItem === '/assessment' ? 'tomato' : '#4bc076' }}>
+          <Link to="/assessment" onClick={() => handleSelect('/assessment')}>
+
+            <i class="fas fa-holly-berry"></i>
+            &nbsp;
+            <span class="text-white text-ls ml-1"><FormattedMessage
+              id="app.assessment"
+              defaultMessage="Assessment"
+            />
+
+            </span>
+          </Link>
+        </Menu.Item>
+      
+
         {/* 
            </SubMenu> 
      )}  */}
