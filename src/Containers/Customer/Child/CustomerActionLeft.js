@@ -169,6 +169,7 @@ const CustomerActionLeft = (props) => {
   //   } 
 
   // }, [])
+
   const { user } = props;
   const teamCount = props.teamsAccessInd && props.customerTeamRecordData ? props.customerTeamRecordData.prospectTeam : 0;
   return (
@@ -222,9 +223,9 @@ const CustomerActionLeft = (props) => {
             <span
               class=" mr-1 text-sm cursor-pointer"
               onClick={() => props.setCustomerViewType("teams")}
-              // style={{
-              //   color: props.viewType === "teams" && "#1890ff",
-              // }}
+              style={{
+                color: props.viewType === "teams" && "#1890ff",
+              }}
             >
               <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
                 <PeopleIcon className="text-white !text-icon" />
