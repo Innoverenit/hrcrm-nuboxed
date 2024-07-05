@@ -80,24 +80,24 @@ function CustomerForm(props) {
     function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
     }
-    const sortedSector =props.sectors.sort((a, b) => {
-      const nameA = a.sectorName.toLowerCase();
-      const nameB = b.sectorName.toLowerCase();
-      // Compare department names
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    const sectorOption = sortedSector.map((item) => {
-      return {
-        label: item.sectorName || "",
-        value: item.sectorId,
-      };
-    });
+    // const sortedSector =props.sectors.sort((a, b) => {
+    //   const nameA = a.sectorName.toLowerCase();
+    //   const nameB = b.sectorName.toLowerCase();
+    //   // Compare department names
+    //   if (nameA < nameB) {
+    //     return -1;
+    //   }
+    //   if (nameA > nameB) {
+    //     return 1;
+    //   }
+    //   return 0;
+    // });
+    // const sectorOption = sortedSector.map((item) => {
+    //   return {
+    //     label: item.sectorName || "",
+    //     value: item.sectorId,
+    //   };
+    // });
     const sortedCurrency =props.currencies.sort((a, b) => {
       const nameA = a.currency_name.toLowerCase();
       const nameB = b.currency_name.toLowerCase();

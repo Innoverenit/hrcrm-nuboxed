@@ -455,6 +455,8 @@ useEffect(() => {
   const handleTabClick = (key) => {
     console.log("Hello")
     setActiveTab(key);
+    setWeekOffset(0);
+    calculateWeekend();
     // props.getReportsProductivity()
     // props.getReportsAttendence()
     //props.getMatrixdata(key, props.organizationId);
