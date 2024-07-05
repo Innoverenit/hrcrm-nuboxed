@@ -114,7 +114,7 @@ console.log(page)
                 } `;
               return (
                 <div>
-                  <div className="flex rounded justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+                  <div className="flex rounded justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
 
                   >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
@@ -184,8 +184,8 @@ console.log(page)
                   <div class=" flex">
                     <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                          <h4 class=" text-xs  font-poppins">
+                          {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Notes">
                               <NoteAltIcon
                                 style={{ cursor: "pointer", color: "green", fontSize: "1rem" }}
@@ -197,14 +197,14 @@ console.log(page)
                               />
 
                             </Tooltip>
-                          </h4>
+                          </div>
 
 
                         </div>
 
 
                         {/* <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <h4 class=" text-xs  font-poppins">
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Status">
                               <EventRepeatIcon
                                 style={{ cursor: "pointer", fontSize: "1rem", }}
@@ -214,13 +214,13 @@ console.log(page)
                                 }}
                               />
                             </Tooltip>
-                          </h4>
+                          </div>
                         
 
 
                         </div> */}
                         <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <h4 class=" text-xs  font-poppins">
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Collection">
                               <PaidIcon
                                 style={{ cursor: "pointer", fontSize: "1rem", }}
@@ -232,8 +232,8 @@ console.log(page)
                               />
                             </Tooltip>
 
-                          </h4>
-                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
+                          </div>
+                          {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
 
 
                         </div>

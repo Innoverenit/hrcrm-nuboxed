@@ -173,7 +173,64 @@ function OrderActionLeft (props) {
             </span>
           </Badge>
         </Tooltip>
+        <Tooltip title="ALL">
+          <Badge
+            size="small"
+            count={(props.viewType === "all" && props.allOrderCount.order) || 0}
 
+            overflowCount={999}
+          >
+
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => props.setOrderViewType("all")}
+              style={{
+                color: props.viewType === "all" && "#1890ff",
+              }}
+            >
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                <div className="text-white">ALL</div></Avatar>
+
+            </span>
+          </Badge>
+        </Tooltip>
+        <Tooltip title="All Repair Orders-Completed">
+          <Badge
+            size="small"
+            // count={(props.viewType === "allcomplete" && orderCount.order) || 0}
+
+            overflowCount={999}
+          >
+
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => props.setOrderViewType("allcomplete")}
+              style={{
+                color: props.viewType === "allcomplete" && "#1890ff",
+              }}
+            >
+              <Avatar style={{ background: props.viewType === "allcomplete" ? "#f279ab" : "#4bc076" }}>
+                <HistoryOutlined fontSize="small" className="text-white" /></Avatar>
+
+            </span>
+          </Badge>
+        </Tooltip>
+        <Tooltip title=" All Repair Orders-Deleted">
+                {/* <Badge
+          size="small"
+          count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
+          overflowCount={999}
+        > */}
+                    <span class=" mr-2 text-sm cursor-pointer"
+                        onClick={() => props.setOrderViewType("delete")}
+                        style={{
+                            color: props.viewType === "delete" && "#1890ff",
+                        }}
+                    >
+                        <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
+                        <DeleteOutlined className="text-white" /></Avatar>
+
+                    </span>
+                    {/* </Badge> */}
+                </Tooltip>
         <Tooltip title="Prcoure">
           {/* <Badge
             size="small"
@@ -241,64 +298,7 @@ function OrderActionLeft (props) {
         </Tooltip>
 
 
-        <Tooltip title="ALL">
-          <Badge
-            size="small"
-            count={(props.viewType === "all" && props.allOrderCount.order) || 0}
-
-            overflowCount={999}
-          >
-
-            <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("all")}
-              style={{
-                color: props.viewType === "all" && "#1890ff",
-              }}
-            >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                <div className="text-white">ALL</div></Avatar>
-
-            </span>
-          </Badge>
-        </Tooltip>
-        <Tooltip title="All Repair Orders-Completed">
-          <Badge
-            size="small"
-            // count={(props.viewType === "allcomplete" && orderCount.order) || 0}
-
-            overflowCount={999}
-          >
-
-            <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("allcomplete")}
-              style={{
-                color: props.viewType === "allcomplete" && "#1890ff",
-              }}
-            >
-              <Avatar style={{ background: props.viewType === "allcomplete" ? "#f279ab" : "#4bc076" }}>
-                <HistoryOutlined fontSize="small" className="text-white" /></Avatar>
-
-            </span>
-          </Badge>
-        </Tooltip>
-        <Tooltip title=" All Repair Orders-Deleted">
-                {/* <Badge
-          size="small"
-          count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
-          overflowCount={999}
-        > */}
-                    <span class=" mr-2 text-sm cursor-pointer"
-                        onClick={() => props.setOrderViewType("delete")}
-                        style={{
-                            color: props.viewType === "delete" && "#1890ff",
-                        }}
-                    >
-                        <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
-                        <DeleteOutlined className="text-white" /></Avatar>
-
-                    </span>
-                    {/* </Badge> */}
-                </Tooltip>
+      
       </div>
      
   

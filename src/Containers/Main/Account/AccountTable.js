@@ -82,10 +82,10 @@ function AccountTable(props) {
               defaultMessage="Paymentdays"
             /></div>
             <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]">Tax#</div>
-            <div className="w-[15.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14rem]"><FormattedMessage
+            {/* <div className="w-[15.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14rem]"><FormattedMessage
               id="app.billingaddress"
               defaultMessage="billingaddress"
-            /></div>
+            /></div> */}
 
 <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
               <FormattedMessage
@@ -204,12 +204,12 @@ function AccountTable(props) {
                             </div>
 
                           </div>
-                          <div className=" flex font-medium flex-col max-sm:w-auto  w-[17.1rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
+                          {/* <div className=" flex font-medium flex-col max-sm:w-auto  w-[17.1rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins max-w-[40ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {dataLoc}
                             </div>
 
-                          </div>
+                          </div> */}
                           <div className=" flex font-medium items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
@@ -243,8 +243,8 @@ function AccountTable(props) {
                               <MultiAvatar
                                 primaryTitle={item.ownerName}
                                 imageId={item.ownerImageId}
-                                imgWidth={"1.9rem"}
-                                imgHeight={"1.9rem"}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
                               />
                             </Tooltip>
                           </div>
@@ -302,7 +302,7 @@ function AccountTable(props) {
                                       </a>
                                     </div>
                                   )
-                                    : <div class=" w-3">
+                                    : <div class=" w-0">
 
                                     </div>
                                   }
@@ -310,7 +310,7 @@ function AccountTable(props) {
 
                               </div>
                            
-                            <div className=" flex font-medium flex-col  w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div className=" flex   w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                                 <Tooltip title="Pulse">
                                   <MonitorHeartIcon
@@ -326,7 +326,7 @@ function AccountTable(props) {
       
                          
 
-                            <div className=" flex font-medium flex-col  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div className=" flex   max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                                 <Tooltip title="Edit">
                                   <BorderColorIcon
@@ -343,7 +343,7 @@ function AccountTable(props) {
 
 
                             </div>
-                            <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div className=" flex  w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                                 <Popconfirm
                                 loading={props.deletingDistributorById}

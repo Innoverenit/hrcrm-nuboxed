@@ -204,7 +204,7 @@ const CompleteOrderTable = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingHighCompleteOrders ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"22vh"}
+                        height={"23vh"}
                     >
                         {props.highCompleteOrder.length ?
                             <>
@@ -634,7 +634,7 @@ const CompleteOrderTable = (props) => {
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
                         loader={props.fetchingMediumCompleteOrders ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"22vh"}
+                        height={"23vh"}
                     >
                         {props.mediumCompleteOrder.length ?
                             <>

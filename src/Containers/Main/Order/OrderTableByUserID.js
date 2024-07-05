@@ -156,7 +156,7 @@ const handleLoadMoreLow = () => {
           hasMore={hasMore}
           loader={props.fetchingRepairHighOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
          
-          height={"22vh"}
+          height={"23vh"}
           endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
                         {props.repairHighCompleteOrder.length ?
@@ -171,7 +171,7 @@ const handleLoadMoreLow = () => {
                                          
                 <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                   <div class="flex">
-                  <div className=" flex font-medium items-center  md:w-[4.26rem] max-sm:w-full  ">
+                  <div className=" flex items-center  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -189,7 +189,7 @@ const handleLoadMoreLow = () => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
+                    <div className=" flex  w-wk   max-sm:w-full">
                       <div className="flex max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
@@ -241,7 +241,7 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-sm">
                         {item.noOfPhones}
                       </div>
@@ -273,8 +273,8 @@ const handleLoadMoreLow = () => {
                       <div>
                         {item.teamLeadUserName && <MultiAvatar2
                           primaryTitle={item.teamLeadUserName}
-                          imgWidth={"2.1em"}
-                          imgHeight={"2.1em"}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
                         />}
                       </div>
                     </div>
@@ -417,7 +417,7 @@ const handleLoadMoreLow = () => {
           next={handleLoadMoreMedium}
           hasMore={hasMore}
           loader={props.fetchingRepairMediumOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-          height={"22vh"}
+          height={"23vh"}
           endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
                         {props.repairMediumCompleteOrder.length ?
@@ -532,8 +532,8 @@ const handleLoadMoreLow = () => {
                       <div>
                         {item.teamLeadUserName && <MultiAvatar2
                           primaryTitle={item.teamLeadUserName}
-                          imgWidth={"2.1em"}
-                          imgHeight={"2.1em"}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
                         />}
                       </div>
                     </div>
@@ -675,7 +675,7 @@ const handleLoadMoreLow = () => {
           next={handleLoadMoreLow}
           hasMore={hasMore}
           loader={props.fetchingRepairLowOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-          height={"22vh"}
+          height={"23vh"}
           endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
                         {props.repairLowCompleteOrder.length ?
@@ -790,8 +790,8 @@ const handleLoadMoreLow = () => {
                       <div>
                         {item.teamLeadUserName && <MultiAvatar2
                           primaryTitle={item.teamLeadUserName}
-                          imgWidth={"2.1em"}
-                          imgHeight={"2.1em"}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
                         />}
                       </div>
                     </div>

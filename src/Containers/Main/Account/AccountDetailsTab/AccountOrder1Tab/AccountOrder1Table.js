@@ -82,7 +82,7 @@ const AccountOrder1Table = (props) => {
                             next={handleLoadMore}
                             hasMore={hasMore}
                             loader={props.fetchingProductionOrderById ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"67vh"}
+                            height={"75vh"}
                         >
                             {props.productionOrder.length ? <>
                                 {props.productionOrder.map((item) => {
