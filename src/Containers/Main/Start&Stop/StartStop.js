@@ -397,7 +397,7 @@ function StartStop(props) {
           value={drop1}
           onChange={handleDrop1}
           disabled={startInd === true}
-          style={{ width: 200 }}
+          style={{ width: 146 }}
           placeholder="Select"
         >
           <Option value="">Select</Option>
@@ -424,7 +424,7 @@ function StartStop(props) {
             value={mandatoryCountry}
             onChange={handleMandatoryCountry}
             disabled={startInd === true}
-            style={{ width: 200 }}
+            style={{ width: 164 }}
             placeholder="Select Country"
           >
             <Option value="">Select Country</Option>
@@ -463,7 +463,7 @@ function StartStop(props) {
           style={{ backgroundColor: !startInd ? "#77dd77" : "#ff7158bf" }}
           onClick={handleClick}
         >
-          {startInd ? "Start" : "Stop"}
+          {startInd ? "Stop" : "Start"}
         </Button>
       </div>
     </div>
