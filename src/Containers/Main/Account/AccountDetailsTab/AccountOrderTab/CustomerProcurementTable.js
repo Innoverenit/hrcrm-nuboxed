@@ -93,7 +93,8 @@ const handleLoadMoreLow = () => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfHigh ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"22vh"}
+                        height={"20vh"}
+                        style={{scrollbarWidth:"thin"}}
                     >
                         {props.highDistributorOrder.length ?
                             <>
@@ -240,7 +241,8 @@ const handleLoadMoreLow = () => {
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfMedium ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"22vh"}
+                        height={"20vh"}
+                        style={{scrollbarWidth:"thin"}}
                     >
                         {props.mediumDistributorOrder.length ?
                             <>
@@ -387,7 +389,8 @@ const handleLoadMoreLow = () => {
                         next={handleLoadMoreLow}
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfLow ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"22vh"}
+                        height={"20vh"}
+                        style={{scrollbarWidth:"thin"}}
                     >
                         {props.lowDistributorOrder.length ?
                             <>

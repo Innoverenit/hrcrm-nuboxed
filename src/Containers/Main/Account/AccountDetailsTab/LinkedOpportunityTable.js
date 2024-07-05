@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip,Popconfirm } from "antd";
 import dayjs from "dayjs";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import {
   getQuotationRepairOrder,
   getQuotationProcureOrder,
@@ -85,7 +84,8 @@ const handleConfirm = (quotationId) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingQuotationRepairOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"22vh"}
+                        height={"69vh"}
+                        style={{scrollbarWidth:"thin"}}
                     >
                         {props.quotationRepairOrder.length ?
                             <>
@@ -228,7 +228,8 @@ const handleConfirm = (quotationId) => {
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
                         loader={props.fetchingQuotationProcureOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"22vh"}
+                        height={"23vh"}
+                        style={{scrollbarWidth:"thin"}}
                     >
                         {props.quotationProcureOrder.length ?
                             <>

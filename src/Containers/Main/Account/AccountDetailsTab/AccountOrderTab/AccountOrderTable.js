@@ -206,7 +206,7 @@ const AccountOrderTable = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfHigh ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"19vh"}
+                        height={"21vh"}
                     >
                         {props.highDistributorOrder.length ?
                             <>
@@ -304,8 +304,8 @@ const AccountOrderTable = (props) => {
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
                                                                 imageURL={item.imageURL}
-                                                                imgWidth={"1.8em"}
-                                                                imgHeight={"1.8em"}
+                                                                imgWidth={"1.8rem"}
+                                                                imgHeight={"1.8rem"}
                                                             />
                                                         </div>
 
@@ -370,7 +370,7 @@ const AccountOrderTable = (props) => {
                                                                     handleUpdateRevisePrice()
                                                                     handleSetParticularOrderData(item)
                                                                 }}
-                                                                className="!text-xl cursor-pointer text-[tomato]"
+                                                                className="!text-icon cursor-pointer text-[tomato]"
                                                             />
                                                         </Tooltip> : null}
 
@@ -388,8 +388,8 @@ const AccountOrderTable = (props) => {
                                                     <MultiAvatar
                                                                 primaryTitle={item.supervisorUserName}
                                                                 imageURL={item.imageURL}
-                                                                imgWidth={"1.8em"}
-                                                                imgHeight={"1.8em"}
+                                                                imgWidth={"1.8rem"}
+                                                                imgHeight={"1.8rem"}
                                                             />:<div class="text-[red]">Tag Supervisor</div>}
                                                         {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
@@ -643,7 +643,7 @@ const AccountOrderTable = (props) => {
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfMedium ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"19vh"}
+                        height={"21vh"}
                     >
                         {props.mediumDistributorOrder.length ?
                             <>
@@ -741,8 +741,8 @@ const AccountOrderTable = (props) => {
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
                                                                 imageURL={item.imageURL}
-                                                                imgWidth={"1.8em"}
-                                                                imgHeight={"1.8em"}
+                                                                imgWidth={"1.8rem"}
+                                                                imgHeight={"1.8rem"}
                                                             />
                                                         </div>
 
@@ -807,7 +807,7 @@ const AccountOrderTable = (props) => {
                                                                     handleUpdateRevisePrice()
                                                                     handleSetParticularOrderData(item)
                                                                 }}
-                                                                className="!text-xl cursor-pointer text-[tomato]"
+                                                                className="!text-icon cursor-pointer text-[tomato]"
                                                             />
                                                         </Tooltip> : null}
 
@@ -825,8 +825,8 @@ const AccountOrderTable = (props) => {
                                                     <MultiAvatar
                                                                 primaryTitle={item.supervisorUserName}
                                                                 imageURL={item.imageURL}
-                                                                imgWidth={"1.8em"}
-                                                                imgHeight={"1.8em"}
+                                                                imgWidth={"1.8rem"}
+                                                                imgHeight={"1.8rem"}
                                                             /> : <div class="text-[red]">Tag Supervisor</div>}
                                                         {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
@@ -869,7 +869,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Notes"
                                                             />}>
                                                                 <NoteAltIcon
-                                                                    className="!text-xl cursor-pointer text-[green]"
+                                                                    className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
                                                                         props.handleNotesModalInOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -886,7 +886,7 @@ const AccountOrderTable = (props) => {
                                                             />}>
                                                                 <EventRepeatIcon
 
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatusOfOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -901,7 +901,7 @@ const AccountOrderTable = (props) => {
                                                         <div>
                                                             <Tooltip title="Collection">
                                                                 <PaidIcon
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handlePaidModal(true);
                                                                         handleSetParticularOrderData(item);
@@ -914,7 +914,7 @@ const AccountOrderTable = (props) => {
                                                         {/* {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer"> */}
                                                         <Tooltip title="Add Supervisor">
                                                             <PersonAddAlt1
-                                                                className="!text-xl cursor-pointer"
+                                                                className="!text-icon cursor-pointer"
                                                                 style={{ color: item.supervisorUserName ? "green" : "red" }}
                                                                 onClick={() => {
                                                                     props.handleInventoryLocationInOrder(true)
@@ -932,7 +932,7 @@ const AccountOrderTable = (props) => {
                                                             />}>
                                                                 <StarBorderIcon
 
-                                                                    className="!text-xl cursor-pointer" />
+                                                                    className="!text-icon cursor-pointer" />
                                                             </Tooltip>
 
                                                         </div>
@@ -942,7 +942,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Feedback"
                                                             />}>
                                                                 <FeedbackIcon
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                 />
                                                             </Tooltip>
 
@@ -956,7 +956,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Update Order"
                                                             />}>
                                                                 <BorderColorIcon
-                                                                    className=" !text-xl cursor-pointer text-[tomato]"
+                                                                    className=" !text-icon cursor-pointer text-[tomato]"
                                                                     onClick={() => {
                                                                         props.setEditOrder(item)
                                                                         props.handleUpdateOrder(true)
@@ -971,7 +971,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Detele"
                                                             />}>
                                                                 <DeleteOutlined
-                                                                    className="!text-xl cursor-pointer text-[red]"
+                                                                    className="!text-icon cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
                                                                 />
                                                             </Tooltip>
@@ -1079,7 +1079,7 @@ const AccountOrderTable = (props) => {
                         next={handleLoadMoreLow}
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfLow ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"19vh"}
+                        height={"21vh"}
                     >
                         {props.lowDistributorOrder.length ?
                             <>
@@ -1177,8 +1177,8 @@ const AccountOrderTable = (props) => {
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
                                                                 imageURL={item.imageURL}
-                                                                imgWidth={"1.8em"}
-                                                                imgHeight={"1.8em"}
+                                                                imgWidth={"1.8rem"}
+                                                                imgHeight={"1.8rem"}
                                                             />
                                                         </div>
 
@@ -1243,7 +1243,7 @@ const AccountOrderTable = (props) => {
                                                                     handleUpdateRevisePrice()
                                                                     handleSetParticularOrderData(item)
                                                                 }}
-                                                                className="!text-xl cursor-pointer text-[tomato]"
+                                                                className="!text-icon cursor-pointer text-[tomato]"
                                                             />
                                                         </Tooltip> : null}
 
@@ -1264,8 +1264,8 @@ const AccountOrderTable = (props) => {
                                                     <MultiAvatar
                                                                 primaryTitle={item.supervisorUserName}
                                                                 imageURL={item.imageURL}
-                                                                imgWidth={"1.8em"}
-                                                                imgHeight={"1.8em"}
+                                                                imgWidth={"1.8rem"}
+                                                                imgHeight={"1.8rem"}
                                                             /> : <div class="text-[red]">Tag Supervisor</div>}
                                                     </div>
                                                 </div>
@@ -1305,7 +1305,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Notes"
                                                             />}>
                                                                 <NoteAltIcon
-                                                                    className="!text-xl cursor-pointer text-[green]"
+                                                                    className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
                                                                         props.handleNotesModalInOrder(true);
                                                                         handleSetParticularOrderData(item);

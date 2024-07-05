@@ -107,8 +107,8 @@ function AllCompleteOrderList(props) {
                         dataLength={props.completedHighOrder.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingCompletedHighOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"22vh"}
+                        loader={props.fetchingCompletedHighOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        height={"23vh"}
                     >
                         {props.completedHighOrder.length ?
                             <>
@@ -201,9 +201,9 @@ function AllCompleteOrderList(props) {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class=" font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
                         {item.noOfPhones}
-                      </h4>
+                      </div>
                     </div>
 
 
@@ -280,17 +280,17 @@ function AllCompleteOrderList(props) {
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <h4 class=" text-sm  font-semibold  font-poppins">
+                      <div class=" text-sm  font-semibold  font-poppins">
                         {item.noOfownerPhones}
-                      </h4>
+                      </div>
                     </div>
                     <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                      <h4 class=" text-xs  font-poppins">
+                      {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div class=" font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800"
@@ -301,13 +301,13 @@ function AllCompleteOrderList(props) {
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
 
                     </div>
 
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer"
@@ -317,10 +317,10 @@ function AllCompleteOrderList(props) {
                               handleSetParticularOrderData(item)
                             }} />
                         </Tooltip>
-                      </h4>
+                      </div>
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
                          className=" !text-icon cursor-pointer "
@@ -330,11 +330,11 @@ function AllCompleteOrderList(props) {
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
                            className=" !text-icon cursor-pointer "
@@ -346,7 +346,7 @@ function AllCompleteOrderList(props) {
                           />
                         </Tooltip>
 
-                      </h4>
+                      </div>
                     </div>
 
 
@@ -385,8 +385,8 @@ function AllCompleteOrderList(props) {
                         dataLength={props.completedMediumOrder.length}
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
-                        loader={props.fetchingCompletedMediumOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"22vh"}
+                        loader={props.fetchingCompletedMediumOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        height={"23vh"}
                     >
                         {props.completedMediumOrder.length ?
                             <>
@@ -479,9 +479,9 @@ function AllCompleteOrderList(props) {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class=" font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
                         {item.noOfPhones}
-                      </h4>
+                      </div>
                     </div>
 
 
@@ -558,17 +558,17 @@ function AllCompleteOrderList(props) {
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <h4 class=" text-sm  font-semibold  font-poppins">
+                      <div class=" text-sm  font-semibold  font-poppins">
                         {item.noOfownerPhones}
-                      </h4>
+                      </div>
                     </div>
                     <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                      <h4 class=" text-xs  font-poppins">
+                      {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div class="   font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                            className=" !text-icon cursor-pointer text-green-800"
@@ -579,13 +579,13 @@ function AllCompleteOrderList(props) {
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
 
                     </div>
 
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer"
@@ -595,27 +595,27 @@ function AllCompleteOrderList(props) {
                               handleSetParticularOrderData(item)
                             }} />
                         </Tooltip>
-                      </h4>
+                      </div>
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                         className=" !text-xl cursor-pointer "
+                         className=" !text-icon cursor-pointer "
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                           className=" !text-xl cursor-pointer "
+                           className=" !text-icon cursor-pointer "
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -624,7 +624,7 @@ function AllCompleteOrderList(props) {
                           />
                         </Tooltip>
 
-                      </h4>
+                      </div>
                     </div>
 
 
@@ -664,8 +664,8 @@ function AllCompleteOrderList(props) {
                         dataLength={props.completedLowOrder.length}
                         next={handleLoadMoreLow}
                         hasMore={hasMore}
-                        loader={props.fetchingCompletedLowOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"22vh"}
+                        loader={props.fetchingCompletedLowOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        height={"23vh"}
                     >
                         {props.completedLowOrder.length ?
                             <>
@@ -758,9 +758,9 @@ function AllCompleteOrderList(props) {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class=" font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
                         {item.noOfPhones}
-                      </h4>
+                      </div>
                     </div>
 
 
@@ -837,20 +837,20 @@ function AllCompleteOrderList(props) {
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <h4 class=" text-sm  font-semibold  font-poppins">
+                      <div class=" text-sm  font-semibold  font-poppins">
                         {item.noOfownerPhones}
-                      </h4>
+                      </div>
                     </div>
                     <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                      <h4 class=" text-xs  font-poppins">
+                      {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-green-800"
+                              className=" !text-icon cursor-pointer text-green-800"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -858,43 +858,43 @@ function AllCompleteOrderList(props) {
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
 
                     </div>
 
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
-                            className="!text-xl cursor-pointer"
+                            className="!text-icon cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                             onClick={() => {
                               handleShow()
                               handleSetParticularOrderData(item)
                             }} />
                         </Tooltip>
-                      </h4>
+                      </div>
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                             className=" !text-xl cursor-pointer "
+                             className=" !text-icon cursor-pointer "
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                            className=" !text-xl cursor-pointer "
+                            className=" !text-icon cursor-pointer "
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -903,7 +903,7 @@ function AllCompleteOrderList(props) {
                           />
                         </Tooltip>
 
-                      </h4>
+                      </div>
                     </div>
 
 

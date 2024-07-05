@@ -16,7 +16,7 @@ class AccountActionRight extends React.Component {
                         {user.accountCreateInd === true && user.erpInd === true &&(
                         <Button
                             type="primary"  onClick={() => handleDistributorModal(true)}>
-                            <DataSaverOnIcon /> Add {/* <PlusOutlined /> */}
+                            <DataSaverOnIcon className=" !text-icon" /> Add {/* <PlusOutlined /> */}
                         </Button>
                         )}
                     </Tooltip>

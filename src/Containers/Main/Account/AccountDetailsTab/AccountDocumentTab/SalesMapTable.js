@@ -36,7 +36,7 @@ const SalesMapTable = (props) => {
 
 
                     </div>
-                    <div class="overflow-x-auto h-[64vh]">
+                    <div class="overflow-x-auto h-[69vh]">
                         {props.lobList.map((item) => {
                             
                             return (

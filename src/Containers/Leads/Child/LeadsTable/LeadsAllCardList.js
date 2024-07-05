@@ -14,7 +14,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { DeleteOutlined } from "@ant-design/icons";
 import {
-  getAllLeads,
+  //getAllLeads,
   getAllLeadsHot,
   getAllLeadsWarm,
   getAllLeadsCold,
@@ -52,7 +52,7 @@ const LeadsAllCardList = (props) => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
     setPage(page + 1);
-    props.getAllLeads(page,"creationdate");
+    //props.getAllLeads(page,"creationdate");
     props.getAllLeadsHot(page,"creationdate","hot")
     props.getAllLeadsWarm(page,"creationdate","warm")
     props.getAllLeadsCold(page,"creationdate","cold")
@@ -1492,7 +1492,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getAllLeads,
+      //getAllLeads,
       emptyLeads,
       deleteLeadsData,
       setEditLeads,
