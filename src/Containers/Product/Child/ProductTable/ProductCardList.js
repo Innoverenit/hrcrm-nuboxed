@@ -207,13 +207,20 @@ function ProductCardList(props) {
 </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
+                      
+
+                      <div className=" flex font-medium flex-col  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+
+                        <ProductPublishToggle item={item} />
+
+                      </div>
                       <div className=" flex font-medium flex-col  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                       
                       <ReactToPrint
                                                         trigger={() => <Button
                                                             onClick={handlePrint}
                                                         >
-                                                            Print<QrCodeIcon/></Button>
+                                                            Print<QrCodeIcon className="!text-icon"/></Button>
                                                         }
                                                         content={() => componentRefs.current[index]
                                                         }
@@ -237,12 +244,6 @@ function ProductCardList(props) {
                                                             <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>ID:</span> {item.newProductNo}</div>
                                                         </div>
                                                     </div>
-                      </div>
-
-                      <div className=" flex font-medium flex-col  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
-                        <ProductPublishToggle item={item} />
-
                       </div>
 
                       <div>

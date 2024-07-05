@@ -77,7 +77,7 @@ function IncludedDealCardList(props) {
             <div class="flex justify-center">Loading...</div>
           ) : null
         }
-        height={"75vh"}
+        height={"7vh"}
       >
         <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
 
@@ -107,7 +107,7 @@ function IncludedDealCardList(props) {
                   >
                     <div 
                       class="font-semibold text-[#337df4] cursor-pointer text-sm ">
-                                                               <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
+                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
                       {/* <Link

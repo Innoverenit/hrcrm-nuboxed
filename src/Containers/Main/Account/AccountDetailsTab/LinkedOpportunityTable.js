@@ -13,6 +13,7 @@ import {
   quotationToOrder
 } from "../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
+import NextPlanIcon from '@mui/icons-material/NextPlan';
 import { FormattedMessage } from "react-intl";
 import AccountProcureDetailsModal from "../AccountDetailsTab/AccountProcureDetailsModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -84,7 +85,7 @@ const handleConfirm = (quotationId) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingQuotationRepairOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"69vh"}
+                        height={"28vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
                         {props.quotationRepairOrder.length ?
@@ -185,13 +186,22 @@ const handleConfirm = (quotationId) => {
                   <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-sm">
                   <Popconfirm
-                          title="Change status to Order?"
-                          onConfirm={() => handleConfirm(item.quotationId,props.userId)}
+                          title="Change status to Customer?"
+                          onConfirm={() => handleConfirm(item.customerId)}
                           okText="Yes"
                           cancelText="No"
                         >
-                  <Button type="primary">Convert</Button>
-                  </Popconfirm>
+                          
+                            <Button type="primary"
+                              style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}
+                             
+                              >
+                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
+                              Convert<NextPlanIcon  className="!text-icon"/>
+                              </div>
+                            </Button>
+                          
+                        </Popconfirm>
                       </div>
                   </div>
                                      
@@ -228,7 +238,7 @@ const handleConfirm = (quotationId) => {
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
                         loader={props.fetchingQuotationProcureOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"23vh"}
+                        height={"28vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
                         {props.quotationProcureOrder.length ?

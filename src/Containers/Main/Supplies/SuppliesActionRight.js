@@ -7,6 +7,7 @@ import { withRouter } from "react-router";
 import { Tooltip } from "antd";
 import { handleSuppliesModal } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 const SuppliesAddModal=lazy(()=>import("./SuppliesAddModal"));
 
@@ -33,7 +34,7 @@ class SuppliesActionRight extends React.Component {
             <Button
               type="primary"
               onClick={() => handleSuppliesModal(true)}
-            >Add
+            ><DataSaverOnIcon className="!text-icon"/> Add
             </Button>
           </Tooltip>
         )}

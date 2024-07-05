@@ -236,7 +236,19 @@ function SuppliesTable(props) {
                           </div>
 
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title={<FormattedMessage
+                                                            id="app.Print"
+                                                            defaultMessage="Print"
+                                                        />}>
+                                                            
+                                                            <ReactToPrint
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon className="!text-icon"/></Button>}
+                                                                content={() => componentRefs.current[index]}
+                                                            />
+                                                        </Tooltip>
 
+                                                    </div>
                             <div>
                               <Tooltip title="Material Builder">
                                 <ViewQuiltIcon
@@ -278,22 +290,10 @@ function SuppliesTable(props) {
                               </Tooltip>
                             </div>
 
-                            <div className=" flex font-medium ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        <Tooltip title={<FormattedMessage
-                                                            id="app.Print"
-                                                            defaultMessage="Print"
-                                                        />}>
-                                                            
-                                                            <ReactToPrint
-                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon/></Button>}
-                                                                content={() => componentRefs.current[index]}
-                                                            />
-                                                        </Tooltip>
-
-                                                    </div>
-                                                </div>
-                                                <div style={{ display: "none", textAlign: "center" }}>
+                            {/* <div className=" flex font-medium ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                   
+                                                </div> */}
+                                                {/* <div style={{ display: "none", textAlign: "center" }}>
 
 <div
     ref={(el) => (componentRefs.current[index] = el)}
@@ -310,7 +310,7 @@ function SuppliesTable(props) {
     </div>
     <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>ID:</span> {item.newSuppliesNo}</div>
 </div>
-</div>
+</div> */}
                             <div>
                               <Tooltip title="Edit">
                                 <BorderColorIcon

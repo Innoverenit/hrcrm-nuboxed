@@ -34,7 +34,7 @@ class OrganizationDocumentTab extends Component {
       <>
         <div class=" flex flex-no-wrap" >
         <div class=" w-full" >
-          <TabsWrapper>
+          <TabsWrapper style={ {height:"80vh"}}>
             <StyledTabs defaultActiveKey="0" onChange={this.handleTabChange}>
            
               <TabPane
