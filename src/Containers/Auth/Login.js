@@ -98,7 +98,7 @@ class Login extends Component {
           >
             <img
               className="big-logo"
-              src={ DevelopTk}
+              src={ FWLogo2}
               style={{ width: 200 }}
               alt="Tekorero logo"
             />
