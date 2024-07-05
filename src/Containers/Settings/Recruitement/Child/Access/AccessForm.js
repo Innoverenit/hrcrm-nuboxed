@@ -11,6 +11,7 @@ import { BundleLoader } from '../../../../../Components/Placeholder';
 
 const CheckboxGroup = Checkbox.Group;
 const plainOptions = ['Access', 'Create', 'Update', 'Delete','Full List'];
+const accountOptions =['Access', 'Create', 'Update', 'Delete','Full List','Info'];
 const materialOptions = ['Access', 'Create', 'Update', 'Delete',];
 const userOptions = ['Access', 'Create', 'Update', 'Delete','Access Plus'];
  const defaultCheckedList=['Full List'];
@@ -56,6 +57,8 @@ const AccessForm = (props) => {
     setCheckedOrderList(props.departmentAcces.order)
     setCheckedMaterialsList(props.departmentAcces.material)
     setCheckedSupplierList(props.departmentAcces.supplier)
+    setCheckedQualityList(props.departmentAcces.quality)
+    setCheckedClubList(props.departmentAcces.club)
     setCheckedInventoryList(props.departmentAcces.inventory)
     setCheckedRefurbishList(props.departmentAcces.refurbish)
     setCheckedAccountList(props.departmentAcces.account)
@@ -109,6 +112,8 @@ const AccessForm = (props) => {
   props.departmentAcces.order,
   props.departmentAcces.material,
   props.departmentAcces.supplier,
+  props.departmentAcces.quality,
+  props.departmentAcces.club,
   props.departmentAcces.inventory,
   props.departmentAcces.refurbish,
   props.departmentAcces.account,
@@ -549,6 +554,43 @@ const AccessForm = (props) => {
                                                            setCheckAllSupplier(e.target.checked);
                                                          };
 
+
+                                                         // Quality
+
+                                                         const [checkedQualityList, setCheckedQualityList] = useState(props.departmentAcces.quality              );
+                                                         const [indeterminateQuality, setIndeterminateQuality] = useState(true);
+                                                         const [checkAllQuality, setCheckAllQuality] = useState(false);
+                                                       
+                                                         const onQualityChange = (list) => {
+                                                          setCheckedQualityList(list);
+                                                           setIndeterminateQuality(!!list.length && list.length < plainOptions.length);
+                                                           setCheckAllQuality(list.length === plainOptions.length);
+                                                         };
+                                                       
+                                                         const onCheckAllQualityChange = (e) => {
+                                                          setCheckedQualityList(e.target.checked ? plainOptions : []);
+                                                           setIndeterminateQuality(false);
+                                                           setCheckAllQuality(e.target.checked);
+                                                         };
+
+                                                         // Club
+
+                                                         const [checkedClubList, setCheckedClubList] = useState(props.departmentAcces.club              );
+                                                         const [indeterminateClub, setIndeterminateClub] = useState(true);
+                                                         const [checkAllClub, setCheckAllClub] = useState(false);
+                                                       
+                                                         const onClubChange = (list) => {
+                                                          setCheckedClubList(list);
+                                                          setIndeterminateClub(!!list.length && list.length < plainOptions.length);
+                                                          setCheckAllClub(list.length === plainOptions.length);
+                                                         };
+                                                       
+                                                         const onCheckAllClubChange = (e) => {
+                                                          setCheckedClubList(e.target.checked ? plainOptions : []);
+                                                          setIndeterminateClub(false);
+                                                          setCheckAllClub(e.target.checked);
+                                                         };
+
                                                                // Inventory
 
                                                                const [checkedInventoryList, setCheckedInventoryList] = useState(props.departmentAcces.inventory              );
@@ -586,7 +628,7 @@ const AccessForm = (props) => {
          };
 
 
-            // Account
+            // Account/Customer
 
             const [checkedAccountList, setCheckedAccountList] = useState(props.departmentAcces.account              );
             const [indeterminateAccount, setIndeterminateAccount] = useState(true);
@@ -594,12 +636,12 @@ const AccessForm = (props) => {
           
             const onAccountChange = (list) => {
               setCheckedAccountList(list);
-              setIndeterminateAccount(!!list.length && list.length < plainOptions.length);
-              setCheckAllAccount(list.length === plainOptions.length);
+              setIndeterminateAccount(!!list.length && list.length < accountOptions.length);
+              setCheckAllAccount(list.length === accountOptions.length);
             };
           
             const onCheckAllAccountChange = (e) => {
-              setCheckedAccountList(e.target.checked ? plainOptions : []);
+              setCheckedAccountList(e.target.checked ? accountOptions : []);
               setIndeterminateAccount(false);
               setCheckAllAccount(e.target.checked);
             };
@@ -1089,6 +1131,8 @@ const onCheckAllTeamsChange = (e) => {
       order:checkedOrderList || [],
       material:checkedMaterialsList || [],
       supplier:checkedSupplierList || [],
+      quality:checkedQualityList || [],
+      club:checkedClubList || [],
       inventory:checkedInventoryList || [],
       refurbish:checkedRefurbishList || [],
       account:checkedAccountList || [],
@@ -1135,9 +1179,9 @@ const onCheckAllTeamsChange = (e) => {
     <>
 
       {/* <Form className="form-background"> */}
-      <div class=" flex justify-between h-[100vh] pr-2 overflow-y-auto" >
+      <div class=" flex justify-between h-[75vh] pr-2 overflow-y-auto" >
          
-            <TabsWrapper style={{height:"140rem"}}>
+            <TabsWrapper style={{height:"146rem"}}>
  
             {props.departmentData.hrInd === true ? 
 <div class="flex flex-col ">
@@ -1522,7 +1566,7 @@ const onCheckAllTeamsChange = (e) => {
                   <div class="text-xs">   Check all</div>
                   </Checkbox>
                   <Divider />
-                  <CheckboxGroup options={plainOptions} value={checkedAccountList} onChange={onAccountChange} />
+                  <CheckboxGroup options={accountOptions} value={checkedAccountList} onChange={onAccountChange} />
                 </div>
 
                
@@ -1581,8 +1625,17 @@ const onCheckAllTeamsChange = (e) => {
                   <Divider />
                   <CheckboxGroup options={materialOptions} value={checkedSubscriptionList} onChange={onSubscriptionChange} />
                 </div>
-            </div>
 
+                
+            </div>
+            <div >
+                  <div class="text-sm font-semibold">Quality</div>
+                  <Checkbox indeterminate={indeterminateQuality} onChange={onCheckAllQualityChange} checked={checkAllQuality}>
+                  <div class="text-xs">   Check all</div>
+                  </Checkbox>
+                  <Divider />
+                  <CheckboxGroup options={plainOptions} value={checkedQualityList} onChange={onQualityChange} />
+                </div>
            
 
       </div>
@@ -1803,6 +1856,15 @@ const onCheckAllTeamsChange = (e) => {
                   <CheckboxGroup options={plainOptions} value={checkedPulseList} onChange={onPulseChange} />
 
                 </div> */}
+                 <div  >
+                  <div class="text-sm font-semibold">Club</div>
+                  <Checkbox indeterminate={indeterminateClub} onChange={onCheckAllClubChange} checked={checkAllClub}>
+                  <div class="text-xs">  Check all </div>
+                  </Checkbox>
+                  <Divider />
+                  <CheckboxGroup options={plainOptions} value={checkedClubList} onChange={onClubChange} />
+
+                </div>
       </div>
     </div>
   </div>

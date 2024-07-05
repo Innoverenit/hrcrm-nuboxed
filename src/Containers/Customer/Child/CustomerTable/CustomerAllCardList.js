@@ -241,7 +241,7 @@ const [rowdata, setrowdata] = useState("");
       { !fetchingAllCustomerList && allCustomers.length === 0 ?<NodataFoundPage />:allCustomers.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-         const countryCode = item.address[0].countryAlpha2Code
+         //const countryCode = item.countryAlpha2Code
          const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -334,9 +334,9 @@ const [rowdata, setrowdata] = useState("");
 
 {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
 <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-  <CountryFlag1 countryCode={countryCode} />
+  <CountryFlag1 countryCode={item.countryAlpha2Code} />
   &nbsp;
-  {countryCode}
+  {item.countryAlpha2Code}
 </div>
 </div>
                                 

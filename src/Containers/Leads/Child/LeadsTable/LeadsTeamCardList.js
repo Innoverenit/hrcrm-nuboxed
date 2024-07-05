@@ -13,7 +13,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { DeleteOutlined } from "@ant-design/icons";
 import {
-    getTeamLeads,
+   // getTeamLeads,
     getTeamLeadsHot,
     getTeamLeadsWarm,
     getTeamLeadsCold,
@@ -51,7 +51,7 @@ const LeadsTeamCardList = (props) => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
     setPage(page + 1);
-    props.getTeamLeads(props.userId, page,);
+   // props.getTeamLeads(props.userId, page,);
     props.getTeamLeadsHot(props.userId, page,"hot");
     props.getTeamLeadsWarm(props.userId, page,"warm");
     props.getTeamLeadsCold(props.userId, page,"cold");
@@ -249,26 +249,26 @@ const LeadsTeamCardList = (props) => {
           const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
-          const dataLoc = ` Address : ${
-            item.address && item.address.length && item.address[0].address1
-          } 
-               Street : ${
-                 item.address && item.address.length && item.address[0].street
-               }   
-              State : ${
-                item.address && item.address.length && item.address[0].state
-              }
-             Country : ${
-               (item.address &&
-                 item.address.length &&
-                 item.address[0].country) ||
-               ""
-             } 
-               PostalCode : ${
-                 item.address &&
-                 item.address.length &&
-                 item.address[0].postalCode
-               } `;
+          // const dataLoc = ` Address : ${
+          //   item.address && item.address.length && item.address[0].address1
+          // } 
+          //      Street : ${
+          //        item.address && item.address.length && item.address[0].street
+          //      }   
+          //     State : ${
+          //       item.address && item.address.length && item.address[0].state
+          //     }
+          //    Country : ${
+          //      (item.address &&
+          //        item.address.length &&
+          //        item.address[0].country) ||
+          //      ""
+          //    } 
+          //      PostalCode : ${
+          //        item.address &&
+          //        item.address.length &&
+          //        item.address[0].postalCode
+          //      } `;
           return (
             <div>
               <div
@@ -563,7 +563,7 @@ const LeadsTeamCardList = (props) => {
                     <div >
                       <Tooltip
                         overlayStyle={{ maxWidth: "300px" }}
-                        title={dataLoc}
+                       // title={dataLoc}
                       >
                         <div class="cursor-pointer"
                          
@@ -661,26 +661,26 @@ const LeadsTeamCardList = (props) => {
           const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
-          const dataLoc = ` Address : ${
-            item.address && item.address.length && item.address[0].address1
-          } 
-               Street : ${
-                 item.address && item.address.length && item.address[0].street
-               }   
-              State : ${
-                item.address && item.address.length && item.address[0].state
-              }
-             Country : ${
-               (item.address &&
-                 item.address.length &&
-                 item.address[0].country) ||
-               ""
-             } 
-               PostalCode : ${
-                 item.address &&
-                 item.address.length &&
-                 item.address[0].postalCode
-               } `;
+          // const dataLoc = ` Address : ${
+          //   item.address && item.address.length && item.address[0].address1
+          // } 
+          //      Street : ${
+          //        item.address && item.address.length && item.address[0].street
+          //      }   
+          //     State : ${
+          //       item.address && item.address.length && item.address[0].state
+          //     }
+          //    Country : ${
+          //      (item.address &&
+          //        item.address.length &&
+          //        item.address[0].country) ||
+          //      ""
+          //    } 
+          //      PostalCode : ${
+          //        item.address &&
+          //        item.address.length &&
+          //        item.address[0].postalCode
+          //      } `;
           return (
             <div>
             <div
@@ -975,7 +975,7 @@ const LeadsTeamCardList = (props) => {
                   <div >
                     <Tooltip
                       overlayStyle={{ maxWidth: "300px" }}
-                      title={dataLoc}
+                    //  title={dataLoc}
                     >
                       <div class="cursor-pointer"
                        
@@ -1072,26 +1072,26 @@ const LeadsTeamCardList = (props) => {
           const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
-          const dataLoc = ` Address : ${
-            item.address && item.address.length && item.address[0].address1
-          } 
-               Street : ${
-                 item.address && item.address.length && item.address[0].street
-               }   
-              State : ${
-                item.address && item.address.length && item.address[0].state
-              }
-             Country : ${
-               (item.address &&
-                 item.address.length &&
-                 item.address[0].country) ||
-               ""
-             } 
-               PostalCode : ${
-                 item.address &&
-                 item.address.length &&
-                 item.address[0].postalCode
-               } `;
+          // const dataLoc = ` Address : ${
+          //   item.address && item.address.length && item.address[0].address1
+          // } 
+          //      Street : ${
+          //        item.address && item.address.length && item.address[0].street
+          //      }   
+          //     State : ${
+          //       item.address && item.address.length && item.address[0].state
+          //     }
+          //    Country : ${
+          //      (item.address &&
+          //        item.address.length &&
+          //        item.address[0].country) ||
+          //      ""
+          //    } 
+          //      PostalCode : ${
+          //        item.address &&
+          //        item.address.length &&
+          //        item.address[0].postalCode
+          //      } `;
           return (
             <div>
               <div
@@ -1386,7 +1386,7 @@ const LeadsTeamCardList = (props) => {
                     <div >
                       <Tooltip
                         overlayStyle={{ maxWidth: "300px" }}
-                        title={dataLoc}
+                       // title={dataLoc}
                       >
                         <div class="cursor-pointer"
                          
@@ -1506,7 +1506,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        getTeamLeads,
+        //getTeamLeads,
       handleLeadsConfirmationModal,
       deleteLeadsData,
       setEditLeads,
