@@ -298,7 +298,7 @@ function EmployeeForm(props) {
           linkedinPublicUrl: "",
           label: "",
           workplace: "",
-          designationType:"",
+          designationTypeId:"",
           assignedTo: selectedOption ? selectedOption.employeeId : userId,
           job_type: active ? "Full Time" : "Part Time",
           type: typeInd ? "true" : "false",
@@ -824,7 +824,7 @@ function EmployeeForm(props) {
                   </div>
                   <div class=" max-sm:w-wk">
                       <Field
-                        name="designationType"
+                        name="designationTypeId"
                         isColumnWithoutNoCreate
                         placeholder="Designation"
                         label="Designation"

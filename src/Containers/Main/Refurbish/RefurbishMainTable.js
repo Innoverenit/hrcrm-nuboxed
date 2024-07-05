@@ -48,12 +48,8 @@ const ProductionOrderList = (props) => {
         setRowData(item)
     }
     const [pageNo, setPageNo] = useState(0);
-    const [currentData, setCurrentData] = useState("");
-    const [searchOnEnter, setSearchOnEnter] = useState(false);
-    const [startTime, setStartTime] = useState(null);
-  const [isRecording, setIsRecording] = useState(false); //Code for Search
-  const minRecordingTime = 3000; // 3 seconds
-  const timerRef = useRef(null);
+   
+  
     useEffect(() => {
         setPageNo(pageNo + 1);
         // props.getProductionOrderId(props.userId,pageNo)
@@ -67,88 +63,7 @@ const ProductionOrderList = (props) => {
     //     props.getProductionOrderId(props.userId)
     // };
 
-    const {
-        transcript,
-        listening,
-        resetTranscript,
-        browserSupportsSpeechRecognition
-      } = useSpeechRecognition();
-
-      useEffect(() => {
-        // props.getCustomerRecords();
-        if (transcript) {
-          console.log(">>>>>>>", transcript);
-          setCurrentData(transcript);
-        }
-        }, [ transcript]);
-    
-      const handleChange = (e) => {
-        setCurrentData(e.target.value);
-    
-        if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
-          //setPage(pageNo + 1);
-          props.getProductionOrderId(props.userId,pageNo)
-          //props.ClearReducerDataOfLead()
-          props.ClearSearchedDataOfAll()
-          setSearchOnEnter(false);
-        }
-      };
-      const handleSearch = () => {
-        if (currentData.trim() !== "") {
-          // Perform the search
-          props.inputAllDataSearch(currentData);
-          setSearchOnEnter(true);  //Code for Search
-        } else {
-          console.error("Input is empty. Please provide a value.");
-        }
-      };
-      const handleStartListening = () => {
-        setStartTime(Date.now());
-        setIsRecording(true);
-        SpeechRecognition.startListening();
-        if (timerRef.current) {
-          clearTimeout(timerRef.current);
-        }
-        timerRef.current = setTimeout(() => {
-          SpeechRecognition.stopListening();
-          setIsRecording(false);
-        }, minRecordingTime);
-      };
-      const suffix = (
-        <AudioOutlined
-          onClick={handleStartListening}
-          style={{
-            fontSize: 16,
-            color: '#1890ff',
-          }}
-    
-        />
-      );
-      const handleStopListening = () => {
-        SpeechRecognition.stopListening();
-        setIsRecording(false);
-        if (transcript.trim() !== "") {
-          setCurrentData(transcript);
-          props.inputAllDataSearch(transcript);
-          setSearchOnEnter(true);
-        }
-      };
-      useEffect(() => {
-        if (!listening && isRecording) {
-          handleStopListening();
-        }
-      }, [listening]);
-      useEffect(() => {
-        if (isRecording && !listening) {
-          // If recording was stopped but less than 5 seconds have passed, restart listening
-          const elapsedTime = Date.now() - startTime;
-          if (elapsedTime < minRecordingTime) {
-            SpeechRecognition.startListening();
-          } else {
-            setIsRecording(false);
-          }
-        }
-      }, [listening, isRecording, startTime]);
+   
 
 
 
@@ -277,14 +192,14 @@ const ProductionOrderList = (props) => {
                         style={{ overflowX: "hidden" }}
                         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                     >
-                        {props.productionUrgent.map((item) => {
+                        {props.productionUrgent.map((item,index) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
                             const date = dayjs(item.createAt).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center justify-between p-1  max-sm:h-[8rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                                    <div className="flex rounded  mt-1 bg-white h-8 items-center justify-between p-1  max-sm:h-[8rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={item.orderPhoneId}>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium items-center md:w-[3.26rem] max-sm:w-full  ">
+                                        <div className=" flex font-medium items-center md:w-[3.26rem] max-sm:w-full  " >
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -556,7 +471,7 @@ const ProductionOrderList = (props) => {
                             const date = dayjs(item.createAt).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center justify-between p-1  max-sm:h-[8rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                                    <div className="flex rounded  mt-1 bg-white h-8 items-center justify-between p-1  max-sm:h-[8rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"  key={item.orderPhoneId} >
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                         <div className=" flex font-medium items-center md:w-[3.26rem] max-sm:w-full  ">
                                                         <Tooltip>
@@ -831,7 +746,7 @@ const ProductionOrderList = (props) => {
                             const date = dayjs(item.createAt).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center justify-between p-1  max-sm:h-[8rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                                    <div className="flex rounded  mt-1 bg-white h-8 items-center justify-between p-1  max-sm:h-[8rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"  key={item.orderPhoneId} >
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                         <div className=" flex font-medium items-center md:w-[3.26rem] max-sm:w-full  ">
                                                         <Tooltip>
