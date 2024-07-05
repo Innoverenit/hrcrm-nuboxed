@@ -58,7 +58,7 @@ const handleConfirm = (quotationId) => {
   // Call the function to change the status to "Lost" here
   props.quotationToOrder(quotationId,props.userId);
 };
-
+console.log(props.user.moduleMapper.ecomModInd)
   return (
     <>
      { props.user.repairInd === true &&(
@@ -215,7 +215,7 @@ const handleConfirm = (quotationId) => {
                     </InfiniteScroll>
       </div>
      )}
-     { props.user.ecomModInd === true &&(
+     { props.user.moduleMapper.ecomModInd === true &&(
       <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
 <div class=" w-[8.5rem]">Procure</div>
