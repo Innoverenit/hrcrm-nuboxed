@@ -431,7 +431,7 @@ const handleFinanceClick = (checked) => {
                       </Popconfirm>
                     </div>
                     </div>
-                    <div class="text-xs text-center">Handle transactions and invoicing, track budgets.</div>
+                    <div class="text-xs text-center">Handle transactions and invoicing, track budgets.</div>
                     </div>
                     </div>
                     <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">

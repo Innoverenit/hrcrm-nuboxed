@@ -44,7 +44,7 @@ class DistributorActivityTable extends Component {
 
 
                     </div>
-                    <div class="overflow-x-auto h-[69vh]">
+                    <div class="overflow-x-auto h-[71vh]">
                         {this.props.activityDistributor.map((item) => {
                             
                             return (

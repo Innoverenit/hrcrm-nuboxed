@@ -60,10 +60,10 @@ const AllAccountList = (props) => {
               defaultMessage="Paymentdays"
             /></div>
             <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]">Tax#</div>
-            <div className="w-[15.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14rem]"><FormattedMessage
+            {/* <div className="w-[15.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14rem]"><FormattedMessage
               id="app.billingaddress"
               defaultMessage="billingaddress"
-            /></div>
+            /></div> */}
             
 
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
@@ -168,12 +168,12 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           </div>
 
                         </div>
-                        <div className=" flex font-medium flex-col max-sm:w-auto  w-[16.1rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
+                        {/* <div className=" flex font-medium flex-col max-sm:w-auto  w-[16.1rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins max-w-[40ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {dataLoc}
                           </div>
 
-                        </div>
+                        </div> */}
 
                         {/* <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.91rem] max-xl:w-[2.91rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -187,7 +187,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
 
-                      <div className=" flex font-medium flex-col  w-[1.6rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                       <div>
                         <Tooltip title={item.url}>
                           {item.url !== "" ? (
@@ -198,7 +198,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                               {" "}
                               <a href={`https://${item.url}`} target="_blank">
                                 <ExploreIcon
-                                  className=" !text-xl cursor-pointer text-[green]"
+                                  className=" !text-icon cursor-pointer text-[green]"
 
                                 />
                               </a>
@@ -213,7 +213,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       </div>
                         </div>
 
-                        <div className=" flex font-medium flex-col  w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex font-medium flex-col  max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title="Pulse">
                               <MonitorHeartIcon
@@ -221,16 +221,16 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                   props.handleAccountPulse(true);
                                   handleCurrentRowData(item);
                                 }}
-                                className=" !text-xl cursor-pointer text-[#df9697]"
+                                className=" !text-icon cursor-pointer text-[#df9697]"
                               />
                             </Tooltip>
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex font-medium flex-col  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title="Edit">
                               <BorderColorIcon
-                                className=" !text-xl cursor-pointer text-[tomato]"
+                                className=" !text-icon cursor-pointer text-[tomato]"
                                 onClick={() => {
                                   props.setEditDistributor(item)
                                   handleUpdateAccountModal(true);

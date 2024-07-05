@@ -13,7 +13,6 @@ import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import {
   MultiAvatar,
-  MultiAvatar2,
  } from "../../../Components/UI/Elements";
 
 import {

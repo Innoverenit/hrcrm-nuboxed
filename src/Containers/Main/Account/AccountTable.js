@@ -264,9 +264,9 @@ function AccountTable(props) {
 
                
 
-<div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+<div className=" flex font-medium flex-col max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
   <div class=" text-xs  font-poppins">
-    <Tooltip title="">
+    <Tooltip title="More Info With AI">
       <AcUnitIcon
         className=" !text-icon cursor-pointer text-[tomato]"
         onClick={() => {
@@ -310,7 +310,7 @@ function AccountTable(props) {
 
                               </div>
                            
-                            <div className=" flex   w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div className=" flex    max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                                 <Tooltip title="Pulse">
                                   <MonitorHeartIcon
@@ -343,7 +343,7 @@ function AccountTable(props) {
 
 
                             </div>
-                            <div className=" flex  w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div className=" flex   max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                                 <Popconfirm
                                 loading={props.deletingDistributorById}

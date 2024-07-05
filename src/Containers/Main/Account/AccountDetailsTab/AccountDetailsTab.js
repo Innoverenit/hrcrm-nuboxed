@@ -32,6 +32,7 @@ import AddSupplierDocumentModal from "../../Suppliers/Child/SupplierDetails/Supp
 import AddCustomerProcurementModal from "./AccountOrderTab/AddCustomerProcurementModal";
 import CustomerProcurementTable from "./AccountOrderTab/CustomerProcurementTable";
 import LinkedOpportunityTable from "./LinkedOpportunityTable";
+import ShopIcon from '@mui/icons-material/Shop'
 import AddAccountOpportunityModal from "./AddAccountOpportunityModal";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
@@ -92,7 +93,7 @@ function AccountDetailsTab(props) {
                                                 onClick={() => {
                                                     props.handleAddOrderModal(true);
                                                 }}
-                                                className="!text-base cursor-pointer ml-1"
+                                                className="!text-icon  cursor-pointer ml-1"
                                             />
                                         </Tooltip>
                                     </>
@@ -114,7 +115,7 @@ function AccountDetailsTab(props) {
                                     <span onClick={() => handleOrderClick(false)}>
                                         <Tooltip title="Orders">
                                             <DynamicFeedIcon
-                                                className="!text-base cursor-pointer"
+                                                className="!text-icon  cursor-pointer"
                                             />
                                             <span class="ml-1 text-sm">Repair</span>
                                         </Tooltip>
@@ -139,7 +140,7 @@ function AccountDetailsTab(props) {
                                                 onClick={() => {
                                                     props.handleLinkDistributorOrderConfigureModal(true);
                                                 }}
-                                                className="!text-base -ml-3 cursor-pointer "
+                                                className="!text-icon  -ml-3 cursor-pointer "
                                             />
                                         </Tooltip>
                                     </>
@@ -168,8 +169,8 @@ function AccountDetailsTab(props) {
                                 >
                                    
                                         <Tooltip title="Procure">
-                                            <DynamicFeedIcon
-                                                className="!text-base cursor-pointer"
+                                            <ShopIcon
+                                                className="!text-icon  cursor-pointer"
                                             />
                                             <span class="ml-1 text-sm">Procure</span>
                                         </Tooltip>
@@ -187,7 +188,7 @@ function AccountDetailsTab(props) {
                                                 onClick={() => {
                                                     props.handleLinkCustomerProcurementModal(true);
                                                 }}
-                                                className="!text-base -ml-3 cursor-pointer "
+                                                className="!text-icon  -ml-3 cursor-pointer "
                                             />
                                         </Tooltip>
                                     </>
@@ -277,7 +278,7 @@ function AccountDetailsTab(props) {
                                                 onClick={() => {
                                                     props.handleDistributorActivityModal(true);
                                                 }}
-                                                className="!text-base cursor-pointer ml-1"
+                                                className="!text-icon  cursor-pointer ml-1"
                                             />
                                         </Tooltip>
                                     </>
@@ -342,7 +343,7 @@ function AccountDetailsTab(props) {
                                                     // )
                                                     props.handleSupplierDocumentUploadModal(true)
                                                 }
-                                                className="!text-base cursor-pointer ml-1"
+                                                className="!text-icon  cursor-pointer ml-1"
                                             />
                                         </Tooltip>
                                     </>
@@ -414,7 +415,7 @@ function AccountDetailsTab(props) {
                                                     //  props.handleDistributorContactModal(true);
                                                     props.handleSupplierContactModal(true)
                                                 }}
-                                                className="!text-base cursor-pointer ml-1"
+                                                className="!text-icon  cursor-pointer ml-1"
                                             />
                                         </Tooltip>
                                     </>

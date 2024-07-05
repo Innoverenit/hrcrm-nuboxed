@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { Avatar, Input, Tooltip,Badge } from "antd";
 import { FormattedMessage } from "react-intl";
 import { AudioOutlined } from "@ant-design/icons"
+import ChecklistIcon from '@mui/icons-material/Checklist';
 
 const Option = StyledSelect.Option;
 
@@ -143,7 +144,7 @@ const {
                     >
 
                         <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#4bc076" }}>
-                            <TocIcon className="text-white !text-icon" /></Avatar>
+                            < ChecklistIcon className="text-white !text-icon" /></Avatar>
 
                     </span></Badge>
                 </Tooltip>

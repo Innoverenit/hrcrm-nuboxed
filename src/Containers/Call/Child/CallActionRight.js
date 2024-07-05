@@ -26,7 +26,7 @@ const CallActionRight = (props) => {
           type="primary"
           onClick={() => props.handleCallModal(true)}
         >
-          <DataSaverOnIcon/> {props.translatedMenuItems[1]}
+          <DataSaverOnIcon className="!text-icon"/> {props.translatedMenuItems[1]}
           {/* Add */}
         </Button>
       </Tooltip>

@@ -165,7 +165,7 @@ function DistributorPauseForm(props) {
                                         {props.phoneListById.map((item, index) => { 
                                             return (
                                                 <div>
-                                                    <div className="flex rounded  mt-2 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
+                                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
                                                         <div class="flex">
                                                             <div className=" flex font-medium items-center   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
@@ -236,6 +236,7 @@ function DistributorPauseForm(props) {
                                                                             id={item.phoneId}
                                                                             indStatus={item.qcStatus}
                                                                             phoneId={RowData.phoneId}
+                                                                            className="!text-icon"
 
                                                                         />
                                                                         <StatusIcon
@@ -246,7 +247,7 @@ function DistributorPauseForm(props) {
                                                                             indStatus={item.qcStatus}
                                                                             phoneId={RowData.phoneId}
                                                                             status={active}
-
+                                                                            className="!text-icon"
                                                                         />
                                                                         <StatusIcon
                                                                             type="Complete"
@@ -256,7 +257,7 @@ function DistributorPauseForm(props) {
                                                                             id={item.phoneId}
                                                                             indStatus={item.qcStatus}
                                                                             phoneId={RowData.phoneId}
-
+                                                                             className="!text-icon"
                                                                         />
                                                                     </ButtonGroup>
                                                                 </div>
