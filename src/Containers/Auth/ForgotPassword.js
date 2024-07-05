@@ -292,12 +292,12 @@ class ForgotPassword extends Component {
               <Link to='/login' style={{ textAlign: 'center', fontSize: 16, marginLeft: "0.625em" }}>Back to login</Link> */}
 
                 </FormWrapper>
-                <div className="footer1"
+                <div className="footer1 text-black"
                   style={{
                     textAlign: 'center',
                     fontSize: '12x', fontFamily: 'SFS, Arial, sans-serif', position: 'absolute', bottom: 0
                   }}>
-                  © {new Date().getFullYear()},  {` `} teKorero.com, All rights reserved.
+                  © {new Date().getFullYear()},  {` `} CloudHub, All rights reserved.
                 </div>
               </AuthContainer>
 

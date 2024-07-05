@@ -1,19 +1,11 @@
 
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Input, Popconfirm, Space, Button, Badge } from "antd";
-import OnlyWrapCard from "../../../../Components/UI/Layout/OnlyWrapCard"
-import moment from "moment";
-
-import InfiniteScroll from "react-infinite-scroll-component";
-
-import PaidIcon from '@mui/icons-material/Paid';
+import dayjs from "dayjs";
 import {getCustomerAddedList} from "../../DashboardAction"
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import { dashboardReducer } from "../../DashboardReducer";
-import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
+
+import { MultiAvatar} from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 
@@ -48,7 +40,7 @@ useEffect(()=>{
 </div>
           <div className="md:w-[7.1rem]">Tax#
 </div>
-          <div className="md:w-[37rem]">Billing Address</div>
+          {/* <div className="md:w-[37rem]">Billing Address</div> */}
 
 
         </div>
@@ -59,15 +51,15 @@ useEffect(()=>{
           loader={props.fetchingAllOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
           height={"75vh"}
         > */}
-        <div class="h-[65vh] overflow-auto">
+        <div class="h-[80vh] overflow-auto">
           {props.customerAddedList.length ?
             <>
               {props.customerAddedList.map((item) => {
-                const currentdate = moment().format("DD/MM/YYYY");
-                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
                 const diff = Math.abs(
-                  moment().diff(moment(item.lastRequirementOn), "days")
+                  dayjs().diff(dayjs(item.lastRequirementOn), "days")
                 );
                 const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                   } 
@@ -143,12 +135,12 @@ useEffect(()=>{
                             </div>
 
                           </div>
-                          <div className=" flex font-medium flex-col max-sm:w-auto  w-[17.1rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
+                          {/* <div className=" flex font-medium flex-col max-sm:w-auto  w-[17.1rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins max-w-[40ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {dataLoc}
                             </div>
 
-                          </div>
+                          </div> */}
 
                          
 

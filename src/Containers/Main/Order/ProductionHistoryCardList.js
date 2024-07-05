@@ -1,7 +1,6 @@
 import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import { Tooltip, } from "antd";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -16,7 +15,7 @@ import {
 } from "../Order/OrderAction";
 import { handleOrderDetailsModal } from "../Account/AccountAction";
 import { FormattedMessage } from "react-intl";
-import moment from "moment";
+import dayjs from "dayjs";
 import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
 import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
@@ -115,7 +114,7 @@ console.log(page)
                 } `;
               return (
                 <div>
-                  <div className="flex rounded-xl justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  <div className="flex rounded-xl justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
 
                   >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
@@ -169,7 +168,7 @@ console.log(page)
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {` ${item.userName} ${moment(item.creationDate).format('DD/MM/YYYY')}`}
+                          {` ${item.userName} ${dayjs(item.creationDate).format('DD/MM/YYYY')}`}
                         </div>
 
                       </div>
@@ -185,8 +184,8 @@ console.log(page)
                   <div class=" flex">
                     <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                          <h4 class=" text-xs  font-poppins">
+                          {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Notes">
                               <NoteAltIcon
                                 style={{ cursor: "pointer", color: "green", fontSize: "1rem" }}
@@ -198,14 +197,14 @@ console.log(page)
                               />
 
                             </Tooltip>
-                          </h4>
+                          </div>
 
 
                         </div>
 
 
                         {/* <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <h4 class=" text-xs  font-poppins">
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Status">
                               <EventRepeatIcon
                                 style={{ cursor: "pointer", fontSize: "1rem", }}
@@ -215,13 +214,13 @@ console.log(page)
                                 }}
                               />
                             </Tooltip>
-                          </h4>
+                          </div>
                         
 
 
                         </div> */}
                         <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <h4 class=" text-xs  font-poppins">
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Collection">
                               <PaidIcon
                                 style={{ cursor: "pointer", fontSize: "1rem", }}
@@ -233,8 +232,8 @@ console.log(page)
                               />
                             </Tooltip>
 
-                          </h4>
-                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
+                          </div>
+                          {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
 
 
                         </div>

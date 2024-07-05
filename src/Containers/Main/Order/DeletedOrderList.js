@@ -105,8 +105,8 @@ function DeletedOrderList(props) {
                         dataLength={props.deletedHighOrder.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingDeletedHighOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"22vh"}
+                        loader={props.fetchingDeletedHighOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        height={"23vh"}
                     >
                         {props.deletedHighOrder.length ?
                             <>
@@ -118,7 +118,7 @@ function DeletedOrderList(props) {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
@@ -199,9 +199,9 @@ function DeletedOrderList(props) {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class=" font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
                         {item.noOfPhones}
-                      </h4>
+                      </div>
                     </div>
 
 
@@ -282,20 +282,20 @@ function DeletedOrderList(props) {
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <h4 class=" text-sm  font-semibold  font-poppins">
+                      <div class=" text-sm  font-semibold  font-poppins">
                         {item.noOfownerPhones}
-                      </h4>
+                      </div>
                     </div>
                     <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                      <h4 class=" text-xs  font-poppins">
+                      {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                             className=" !text-xl cursor-pointer text-green-800"
+                             className=" !text-icon cursor-pointer text-green-800"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -303,43 +303,43 @@ function DeletedOrderList(props) {
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
 
                     </div>
 
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
-                            className="!text-xl cursor-pointer"
+                            className="!text-icon cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                             onClick={() => {
                               handleShow()
                               handleSetParticularOrderData(item)
                             }} />
                         </Tooltip>
-                      </h4>
+                      </div>
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                                  className=" !text-xl cursor-pointer "
+                                  className=" !text-icon cursor-pointer "
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                                  className=" !text-xl cursor-pointer"
+                                  className=" !text-icon cursor-pointer"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -348,7 +348,7 @@ function DeletedOrderList(props) {
                           />
                         </Tooltip>
 
-                      </h4>
+                      </div>
                     </div>
 
 
@@ -386,8 +386,8 @@ function DeletedOrderList(props) {
                         dataLength={props.deletedMediumOrder.length}
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
-                        loader={props.fetchingDeletedMediumOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"22vh"}
+                        loader={props.fetchingDeletedMediumOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        height={"23vh"}
                     >
                         {props.deletedMediumOrder.length ?
                             <>
@@ -399,7 +399,7 @@ function DeletedOrderList(props) {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
@@ -480,9 +480,9 @@ function DeletedOrderList(props) {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class=" font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
                         {item.noOfPhones}
-                      </h4>
+                      </div>
                     </div>
 
 
@@ -563,9 +563,9 @@ function DeletedOrderList(props) {
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <h4 class=" text-sm  font-semibold  font-poppins">
+                      <div class=" text-sm  font-semibold  font-poppins">
                         {item.noOfownerPhones}
-                      </h4>
+                      </div>
                     </div>
                     <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
@@ -573,11 +573,11 @@ function DeletedOrderList(props) {
    
                     <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                      <h4 class=" text-xs  font-poppins">
+                      {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                            className=" !text-xl cursor-pointer text-green-800"
+                            className=" !text-icon cursor-pointer text-green-800"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -585,43 +585,43 @@ function DeletedOrderList(props) {
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
 
                     </div>
 
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
-                            className="!text-xl cursor-pointer"
+                            className="!text-icon cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                             onClick={() => {
                               handleShow()
                               handleSetParticularOrderData(item)
                             }} />
                         </Tooltip>
-                      </h4>
+                      </div>
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                              className=" !text-xl cursor-pointer "
+                              className=" !text-icon cursor-pointer "
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                                className=" !text-xl cursor-pointer"
+                                className=" !text-icon cursor-pointer"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -630,7 +630,7 @@ function DeletedOrderList(props) {
                           />
                         </Tooltip>
 
-                      </h4>
+                      </div>
                     </div>
   
 
@@ -668,8 +668,8 @@ function DeletedOrderList(props) {
                         dataLength={props.deletedLowOrder.length}
                         next={handleLoadMoreLow}
                         hasMore={hasMore}
-                        loader={props.fetchingDeletedLowOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-                        height={"22vh"}
+                        loader={props.fetchingDeletedLowOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        height={"23vh"}
                     >
                         {props.deletedLowOrder.length ?
                             <>
@@ -681,7 +681,7 @@ function DeletedOrderList(props) {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
@@ -762,9 +762,9 @@ function DeletedOrderList(props) {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class=" font-poppins text-sm">
+                      <div class=" font-poppins text-sm">
                         {item.noOfPhones}
-                      </h4>
+                      </div>
                     </div>
 
 
@@ -846,20 +846,20 @@ function DeletedOrderList(props) {
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <h4 class=" text-sm  font-semibold  font-poppins">
+                      <div class=" text-sm  font-semibold  font-poppins">
                         {item.noOfownerPhones}
-                      </h4>
+                      </div>
                     </div>
                     <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                      <h4 class=" text-xs  font-poppins">
+                      {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                           className=" !text-xl cursor-pointer text-green-800"
+                           className=" !text-icon cursor-pointer text-green-800"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -867,43 +867,43 @@ function DeletedOrderList(props) {
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
 
                     </div>
 
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
-                            className="!text-xl cursor-pointer"
+                            className="!text-icon cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                             onClick={() => {
                               handleShow()
                               handleSetParticularOrderData(item)
                             }} />
                         </Tooltip>
-                      </h4>
+                      </div>
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                             className=" !text-xl cursor-pointer "
+                             className=" !text-icon cursor-pointer "
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                             className=" !text-xl cursor-pointer "
+                             className=" !text-icon cursor-pointer "
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -912,7 +912,7 @@ function DeletedOrderList(props) {
                           />
                         </Tooltip>
 
-                      </h4>
+                      </div>
                     </div>
 
 

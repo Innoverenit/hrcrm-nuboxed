@@ -692,6 +692,7 @@ const countryCode = item.countryAlpha2Code
         hasMore={hasMore}
         loader={props.fetchingPitchWarm?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
+        style={{scrollbarWidth:"thin"}}
          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
     { !props.fetchingPitchWarm && props.pitchDataWarm.length === 0 ?<NodataFoundPage />:props.pitchDataWarm.map((item,index) =>  {
@@ -1143,6 +1144,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         hasMore={hasMore}
         loader={props.fetchingPitchCold?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
+        style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
     { !props.fetchingPitchCold && props.pitchDataCold.length === 0 ?<NodataFoundPage />:props.pitchDataCold.map((item,index) =>  {
