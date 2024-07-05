@@ -1,7 +1,7 @@
 import React, { useState ,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Switch,  } from "antd";
+import { Switch,Button  } from "antd";
 import { getSectors } from "../../../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -22,6 +22,7 @@ import { InputComponent } from "../../../../../Components/Forms/Formik/InputComp
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import ProgressiveImage from "../../../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../../../Components/Forms/Autocomplete/ClearbitImage";
+import {addCustomerConfigure} from "../../../SettingsAction"
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
@@ -171,7 +172,7 @@ function CustomerForm(props) {
           validationSchema={CustomerSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
-            addCustomer(
+            props.addCustomerConfigure(
               {
                 ...values,
                 category: checked ? "Both" : whiteblue ? "White" : "Blue",
@@ -604,7 +605,16 @@ function CustomerForm(props) {
                
                 </div>
               </div>
-     
+              <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={props.addingCustomerConfig}
+              >
+                
+Update
+              </Button>
+            </div>
           
             </Form>
             </div>
@@ -615,10 +625,11 @@ function CustomerForm(props) {
   }
 
 
-const mapStateToProps = ({ auth, customer,employee ,opportunity,sector,leads}) => ({
+const mapStateToProps = ({ auth, customer,settings,employee ,opportunity,sector,leads}) => ({
   addingCustomer: customer.addingCustomer,
   addingCustomerError: customer.addingCustomerError,
   clearbit: customer.clearbit,
+  addingCustomerConfig:settings.addingCustomerConfig,
   user: auth.userDetails,
   sales: opportunity.sales,
   allCustomerEmployeeList:employee.allCustomerEmployeeList,
@@ -633,6 +644,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       addCustomer,
       setClearbitData,
+      addCustomerConfigure,
       getSectors,
       getAllSalesList,
       getAllCustomerEmployeelist,
