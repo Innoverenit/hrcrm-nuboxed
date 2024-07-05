@@ -576,6 +576,10 @@ const initialState = {
   deleteWorkflowData: false,
   deleteWorkflowDataError: false,
 
+
+  addingCustomerConfig:false,
+  addingCustomerConfigError:false,
+
   deleteOpportunityProcessData: false,
   deleteOpportunityProcessDataError: false,
 
@@ -1761,6 +1765,26 @@ export const settingsReducer = (state = initialState, action) => {
       };
 
     //post
+
+
+    case types.ADD_CUSTOMER_CONFIGURE_REQUEST:
+      return { ...state, addingCustomerConfig: true };
+    case types.ADD_CUSTOMER_CONFIGURE_SUCCESS:
+      return {
+        ...state,
+        addingCustomerConfig: false,
+        //addOpportunityModal: false,
+       // addedOpportunity:action.payload,
+       // opportunityByUserId: [action.payload, ...state.opportunityByUserId],
+        // clearbit: null,
+      };
+    case types.ADD_CUSTOMER_CONFIGURE_FAILURE:
+      return {
+        ...state,
+        addingCustomerConfig: false,
+        addingCustomerConfigError: true,
+        //addOpportunityModal: false,
+      };
 
     case types.ADDING_DEPARTMENT_ACCESS_REQUEST:
       return { ...state, addingDepartmentAccess: true };

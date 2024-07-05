@@ -3292,6 +3292,48 @@ export const addApprove = (data, subProcessName) => (dispatch) => {
     });
 };
 
+
+export const addCustomerConfigure = (opportunity, cb) => (dispatch, getState) => {
+  //const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADD_CUSTOMER_CONFIGURE_REQUEST,
+  });
+  axios
+    .put(`${base_url}/baseForm/update/form`, opportunity, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Opportunity created Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      console.log(res);
+      // const startDate = dayjs()
+      //   .startOf("month")
+      //   .toISOString();
+      // const endDate = dayjs()
+      //   .endOf("month")
+      //   .toISOString();
+    
+      dispatch({
+        type: types.ADD_CUSTOMER_CONFIGURE_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_CUSTOMER_CONFIGURE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getApproveData = (subProcessName, IndentApproval) => (dispatch) => {
   dispatch({
     type: types.GET_APPROVE_DATA_REQUEST,

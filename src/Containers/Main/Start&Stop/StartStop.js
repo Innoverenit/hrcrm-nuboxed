@@ -291,7 +291,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCountries } from "../../Auth/AuthAction";
-import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
+//import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
 import { addAttendence, getAttendanceList, addLocationDetails } from "../../Customer/CustomerAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import dayjs from "dayjs";
@@ -299,7 +299,12 @@ import dayjs from "dayjs";
 const { Option } = Select;
 
 function StartStop(props) {
+  const [selectedOtherValues, setSelectedOtherValues] = useState(props.attendanceByList.other);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [otherInclude, setOtherInclude] = useState([]);
+  
+  const [touched, setTouched] = useState(false);
   const [startInd, setStartInd] = useState(false);
   const [drop1, setDrop1] = useState(props.attendanceByList.location);
   const [mandatoryCountry, setMandatoryCountry] = useState(props.attendanceByList.country);
@@ -324,7 +329,7 @@ function StartStop(props) {
 
   useEffect(() => {
     props.getCountries();
-    props.getCountry();
+    // props.getCountry();
   }, []);
 
   useEffect(() => {
@@ -332,12 +337,13 @@ function StartStop(props) {
       props.attendanceByList.startInd !== undefined &&
       props.attendanceByList.location !== undefined &&
       props.attendanceByList.country !== undefined &&
+      props.attendanceByList.other !== undefined &&
       props.attendanceByList.returnDate !== null
     ) {
       setStartInd(props.attendanceByList.startInd);
       setDrop1(props.attendanceByList.location);
       setMandatoryCountry(props.attendanceByList.country);
-      
+      setSelectedOtherValues(props.attendanceByList.other)
       if (props.attendanceByList.returnDate.length >= 10) {
         setSelectedDate(props.attendanceByList.returnDate.substring(0, 10));
       } else {
@@ -350,6 +356,41 @@ function StartStop(props) {
     setSelectedDate(dateString);
   };
 
+
+
+  const handleSelectOtherChange = (values) => {
+    setSelectedOtherValues(values); // Update selected values
+  };
+
+  const handleSelectOtherFocus = () => {
+    if (!touched) {
+      fetchOtherInclude();
+      setTouched(true);
+    }
+  };
+
+
+  const fetchOtherInclude = async () => {
+    // setIsLoading(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/countries/list`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setOtherInclude(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      // setIsLoading(false);
+    }
+  };
+
   const handleClick = () => {
     const data = {
       userId: props.userId,
@@ -357,7 +398,7 @@ function StartStop(props) {
       attendanceId: props.attendanceByList.attendanceId,
       country: mandatoryCountry ? mandatoryCountry : null,
       location: drop1 ? drop1 : null,
-      other: country ? country : null,
+      other: selectedOtherValues ? selectedOtherValues : null,
       returnDate: returnDate,
     };
     props.addAttendence(data, props.userId);
@@ -440,7 +481,7 @@ function StartStop(props) {
 
       {mandatoryCountry === "Others" && (
         <div className="ml-3">
-          <Select
+          {/* <Select
             className="customize-select"
             onChange={handleAllCountry}
             style={{ width: 200 }}
@@ -452,7 +493,24 @@ function StartStop(props) {
                 {item.country_name}
               </Option>
             ))}
-          </Select>
+          </Select> */}
+                     <Select
+          showSearch
+
+          placeholder="Search or select include"
+          optionFilterProp="children"
+          loading={isLoading}
+          onFocus={handleSelectOtherFocus}
+          onChange={handleSelectOtherChange}
+          defaultValue={selectedOtherValues} 
+          // mode="multiple" 
+        >
+          {otherInclude.map(includes => (
+            <Option key={includes.country_name} value={includes.country_name}>
+              {includes.country_name}
+            </Option>
+          ))}
+        </Select>
         </div>
       )}
 
@@ -475,6 +533,7 @@ const mapStateToProps = ({ customer, auth, countrys }) => ({
   attendanceByList: customer.attendanceByList,
   countries: auth.countries,
   country: countrys.country,
+  token: auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -483,7 +542,7 @@ const mapDispatchToProps = (dispatch) =>
       addAttendence,
       getAttendanceList,
       getCountries,
-      getCountry,
+      // getCountry,
       addLocationDetails,
     },
     dispatch
