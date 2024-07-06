@@ -674,6 +674,11 @@ const initialState = {
   addingLangWords: false,
   addingLangWordsError:false,
 
+  fetchingCustomerConfigure:false,
+  fetchingCustomerConfigureError:false,
+
+  customerConfigure:{},
+
 };
 export const settingsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -1765,6 +1770,22 @@ export const settingsReducer = (state = initialState, action) => {
       };
 
     //post
+
+
+    case types.GET_CUSTOMER_CONFIGURE_REQUEST:
+      return { ...state, fetchingCustomerConfigure: true };
+    case types.GET_CUSTOMER_CONFIGURE_SUCCESS:
+      return {
+        ...state,
+        fetchingCustomerConfigure: false,
+        customerConfigure: action.payload,
+      };
+    case types.GET_CUSTOMER_CONFIGURE_FAILURE:
+      return {
+        ...state,
+        fetchingCustomerConfigure: false,
+        fetchingCustomerConfigureError: true,
+      };
 
 
     case types.ADD_CUSTOMER_CONFIGURE_REQUEST:

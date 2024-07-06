@@ -5776,3 +5776,33 @@ export const getFeedBackCount = (orgId) => (dispatch) => {
     });
 };
 
+
+
+
+export const getCustomerConfigure = (orgId,formType,baseFormType) => (dispatch) => {
+  dispatch({
+    type: types.GET_CUSTOMER_CONFIGURE_REQUEST,
+  });
+  axios
+  .get(`${base_url}/baseForm/get/${orgId}/${formType}/${baseFormType}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CUSTOMER_CONFIGURE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CUSTOMER_CONFIGURE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
