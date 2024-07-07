@@ -66,7 +66,7 @@ console.log(isLastNameVisible)
     props.getSectors();
     props.getAllSalesList();
     props. getCrm();
-    props.getCustomerConfigure(props.orgId)
+    props.getCustomerConfigure(props.orgId,"add","customer")
   }, []);
 
     const {
