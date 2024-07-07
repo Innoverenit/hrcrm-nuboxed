@@ -69,6 +69,35 @@ console.log(isLastNameVisible)
     props.getCustomerConfigure(props.orgId,"add","customer")
   }, []);
 
+
+
+  useEffect(() => {
+    if (
+      props.customerConfigure.addressInd !== undefined &&
+      props.customerConfigure.businessRegInd !== undefined &&
+      props.customerConfigure.vatNoInd !== undefined &&
+      props.customerConfigure.assignedToInd !== undefined &&
+      props.customerConfigure.noteInd !== undefined &&
+      props.customerConfigure.sourceInd !== undefined &&
+      props.customerConfigure.sectorInd !== undefined &&
+      props.customerConfigure.phoneNoInd !== undefined &&
+      props.customerConfigure.dailCodeInd !== undefined 
+      
+    ) {
+      //setIsFirstNameVisible(props.customerConfigure.startInd);
+      setIsLastNameVisible(props.customerConfigure.dailCodeInd);
+      setIsEmailVisible(props.customerConfigure.phoneNoInd);
+      setIsMobileNumberVisible(props.customerConfigure.sectorInd);
+      setIsSourceVisible(props.customerConfigure.sourceInd)
+      setIsVatVisible(props.customerConfigure.vatNoInd)
+      setIsAssignedVisible(props.customerConfigure.assignedToInd)
+      setIsNotesVisible(props.customerConfigure.noteInd)
+      setIsAddressVisible(props.customerConfigure.addressInd)
+      
+     
+    }
+  }, [props.customerConfigure]);
+
     const {
       accounts,
       user,
@@ -142,6 +171,8 @@ console.log(isLastNameVisible)
            potentialInd:"",
            potentialCurrencyInd:'',
            typeInd:"",
+           formType:"add",
+           baseFormType:"customer",
 
             address: [
               {
@@ -250,7 +281,7 @@ console.log(isLastNameVisible)
 <Switch
             checked={isFirstNameVisible}
             onChange={() => toggleFieldVisibility('name')}
-            checkedChildren="Hidden"
+          checkedChildren="Hidden"
             unCheckedChildren="Visible"
           />
               
@@ -290,8 +321,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isLastNameVisible}
             onChange={() => toggleFieldVisibility('countryDialCode')}
-            checkedChildren="Visible"
-            unCheckedChildren="Hidden"
+            checkedChildren="Hidden"
+            unCheckedChildren="Visible"
           />
                     </div>
                     <div class=" w-8/12">
@@ -309,8 +340,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isEmailVisible}
             onChange={() => toggleFieldVisibility('phoneNumber')}
-            checkedChildren="Visible"
-            unCheckedChildren="Hidden"
+          checkedChildren="Hidden"
+            unCheckedChildren="Visible"
           />
                     </div>
                   </div>
@@ -340,8 +371,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isMobileNumberVisible}
             onChange={() => toggleFieldVisibility('sectorId')}
-            checkedChildren="Visible"
-            unCheckedChildren="Hidden"
+         checkedChildren="Hidden"
+            unCheckedChildren="Visible"
           />
                     </div>
                     <div class="w-w47.5">
@@ -368,8 +399,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isSourceVisible}
             onChange={() => toggleFieldVisibility('source')}
-            checkedChildren="Visible"
-            unCheckedChildren="Hidden"
+          checkedChildren="Hidden"
+            unCheckedChildren="Visible"
           />
                         </div>
                   </div>
@@ -391,8 +422,8 @@ console.log(isLastNameVisible)
                   <Switch
             checked={isNotesVisible}
             onChange={() => toggleFieldVisibility('notes')}
-            checkedChildren="Visible"
-            unCheckedChildren="Hidden"
+          checkedChildren="Hidden"
+            unCheckedChildren="Visible"
           />
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
@@ -476,8 +507,8 @@ console.log(isLastNameVisible)
       <Switch
             checked={isAssignedVisible}
             onChange={() => toggleFieldVisibility('assignedTo')}
-            checkedChildren="Visible"
-            unCheckedChildren="Hidden"
+           checkedChildren="Hidden"
+            unCheckedChildren="Visible"
           />
 
       
@@ -530,8 +561,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isVatVisible}
             onChange={() => toggleFieldVisibility('vatNo')}
-            checkedChildren="Visible"
-            unCheckedChildren="Hidden"
+          checkedChildren="Hidden"
+            unCheckedChildren="Visible"
           />
                       
                     </div>
@@ -557,8 +588,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isRegistrationVisible}
             onChange={() => toggleFieldVisibility('businessRegistration')}
-            checkedChildren="Visible"
-            unCheckedChildren="Hidden"
+           checkedChildren="Hidden"
+            unCheckedChildren="Visible"
           />
                     </div>
                   </div>
@@ -584,8 +615,8 @@ console.log(isLastNameVisible)
                   <Switch
             checked={isAddressVisible}
             onChange={() => toggleFieldVisibility('address')}
-            checkedChildren="Visible"
-            unCheckedChildren="Hidden"
+            checkedChildren="Hidden"
+            unCheckedChildren="Visible"
           />
                    {/* <div class=" flex justify-between">
                    <div class=" w-1/2 max-sm:w-wk">
