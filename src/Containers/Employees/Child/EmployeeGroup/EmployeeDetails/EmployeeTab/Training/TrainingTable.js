@@ -75,7 +75,7 @@ class TrainingTable extends Component {
       </div>
    
         
-      {training =="" ? "No data":training.map((item) => { 
+      {training =="" ? "None":training.map((item) => { 
         
         
                     return (

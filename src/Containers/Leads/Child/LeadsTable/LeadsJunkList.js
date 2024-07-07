@@ -236,7 +236,7 @@ props.updateTypeForLead(item.leadsId,typ)
                      {item.countryDialCode && item.phoneNumber ? (
 `${item.countryDialCode} ${item.phoneNumber}`
 ) : (
-"No Data"
+"None"
 )} 
                     
                      </h4>
@@ -253,8 +253,8 @@ props.updateTypeForLead(item.leadsId,typ)
                  <div class="flex justify-between items-center w-wk "> 
                  <div className=" flex font-medium flex-col justify-center  md:w-40 max-sm:flex-row w-full max-sm:justify-between ">
                      <h4 class=" text-[0.82rem]  font-semibold  font-poppins">   
-                     <Link to={`leads/${item.leadsId}`} title={item.companyName || "No Data"}>
-{item.companyName || "No Data"}
+                     <Link to={`leads/${item.leadsId}`} title={item.companyName || "None"}>
+{item.companyName || "None"}
 </Link>
 
                      </h4>
@@ -291,7 +291,7 @@ props.updateTypeForLead(item.leadsId,typ)
                               
                               <div>
                       {item.assignedTo === null ? (
-                "No Data"
+                "None"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (
@@ -573,7 +573,7 @@ props.updateTypeForLead(item.leadsId,typ)
                      {item.countryDialCode && item.phoneNumber ? (
 `${item.countryDialCode} ${item.phoneNumber}`
 ) : (
-"No Data"
+"None"
 )} 
                     
                      </div>
@@ -590,8 +590,8 @@ props.updateTypeForLead(item.leadsId,typ)
                  <div class="flex"> 
                  <div className=" flex font-medium flex-col justify-center  w-40 max-sm:flex-row  max-sm:justify-between max-xl:w-[7rem] max-lg:w-[4rem] ">
                      <div class=" text-[0.82rem]  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
-                     <Link to={`leads/${item.leadsId}`} title={item.companyName || "No Data"}>
-{item.companyName || "No Data"}
+                     <Link to={`leads/${item.leadsId}`} title={item.companyName || "None"}>
+{item.companyName || "None"}
 </Link>
 
                      </div>

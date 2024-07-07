@@ -380,7 +380,7 @@ function CandidateBlackListTable(props) {
         return (
           <>
             {item.availableDate === null ? (
-              "No Data"
+              "None"
             ) : (
               <span>{moment(item.availableDate).format("l")}</span>
             )}

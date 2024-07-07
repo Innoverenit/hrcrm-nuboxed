@@ -63,7 +63,7 @@ const ReportsCardList = (props) => {
          
          <div>
          <div className="cwrapper">
-         { !props.fetchingAllReportInvestors && props.allReportInvestors.length === 0 ?"no data":props.allReportInvestors.map((item,index) =>  {
+         { !props.fetchingAllReportInvestors && props.allReportInvestors.length === 0 ?"None":props.allReportInvestors.map((item,index) =>  {
   
     //    const LocAdd=`${item.addressDetailsViewDTO.city}`;
     //    const country=`${item.addressDetailsViewDTO.country}`;

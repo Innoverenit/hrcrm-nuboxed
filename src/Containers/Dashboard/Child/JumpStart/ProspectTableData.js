@@ -330,7 +330,7 @@ function ProspectTableData (props) {
 
                           <div>
                             {item.assignedTo === null ? (
-                              <div class="text-xs  font-poppins">No Data</div>
+                              <div class="text-xs  font-poppins">None</div>
                             ) : (
                               <>
                                 {item.assignedTo === item.ownerName ? (

@@ -588,7 +588,7 @@ class SubTableClickCandidate extends Component {
       return (
         <>
           {item.documentSetList === [] ? (
-            "No Data"
+            "None"
           ) : (
             <span>
               <DocumentsLoadMore documentSetList={data} />
@@ -621,7 +621,7 @@ class SubTableClickCandidate extends Component {
       render: (name, item) => {
         const onboardDate = dayjs(item.onboardDate).format("ll");
         return <>
-        {item.onboardDate === null ? "No Data" :
+        {item.onboardDate === null ? "None" :
           <span>
             {moment(item.onboardDate).format("L")}
           </span>

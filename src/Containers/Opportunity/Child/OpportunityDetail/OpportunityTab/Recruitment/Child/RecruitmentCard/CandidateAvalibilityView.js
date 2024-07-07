@@ -19,7 +19,7 @@ class CandidateAvailibityView extends Component {
             defaultMessage="Availability"
           />}
           value=
-          {this.props.candidate.availableDate === null ? "No Data" :
+          {this.props.candidate.availableDate === null ? "None" :
           <>
           {dayjs(availableDate).format("ll")}
           </>

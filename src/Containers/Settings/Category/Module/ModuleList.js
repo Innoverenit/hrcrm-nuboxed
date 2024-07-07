@@ -693,7 +693,7 @@ logisticsStatus={logisticsStatus}
                     />
                   {/* )) */}
                   {/* ) : (
-                    <p>No Data Available</p>
+                    <p>None Available</p>
                   )} */}
 
               </MainWrapper>

@@ -585,7 +585,7 @@ const diff = Math.abs(moment(item.availableDate).diff(moment(item.endDate), 'mon
 const date=diff+1
          // const availableDate = moment(item.availableDate).subtract(item.endDate);
           return <>
-          {/* {item.availableDate === null ? "No Data" : */}
+          {/* {item.availableDate === null ? "None" : */}
             <span>
               {/* {moment(item.availableDate).subtract(item.endDate).month()} */}
               {date} months

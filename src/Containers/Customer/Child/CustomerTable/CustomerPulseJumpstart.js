@@ -118,7 +118,7 @@ render() {
       
             value={
               this.props.fetchingOppValue ? "Loading..." :
-              this.props.OppValue.CustomerOppertunityDetails === 0 ? "No Data" :
+              this.props.OppValue.CustomerOppertunityDetails === 0 ? "None" :
               this.props.OppValue.CustomerOppertunityDetails
             }
             // value={
@@ -143,7 +143,7 @@ render() {
   bgColor="#34495E"
   value={
     this.props.fetchingPipelineValue ? "Loading..." :
-    this.props.pipelineValue.pipeLineValue === null ? "No Data" :
+    this.props.pipelineValue.pipeLineValue === null ? "None" :
     pipeLineValue
   }
   isLoading={this.props.fetchingPipelineValue} 
@@ -161,7 +161,7 @@ render() {
     }
     value={
       this.props.fetchingWonCustomerOppValue ? "Loading..." :
-      this.props.WonCustomerOpp.CustomerWonOppertunityDetails === null ? "No Data" :
+      this.props.WonCustomerOpp.CustomerWonOppertunityDetails === null ? "None" :
       this.props.WonCustomerOpp.CustomerWonOppertunityDetails
     }
     // value={this.props.WonCustomerOpp.CustomerWonOppertunityDetails}
@@ -192,7 +192,7 @@ render() {
         }
         value={
           this.props.fetchingCustomerActivityCount ? "Loading..." :
-          this.props.customerActivityCount.count === 0 ? "No Data" :
+          this.props.customerActivityCount.count === 0 ? "None" :
           this.props.customerActivityCount.count
         }
         // value={
@@ -244,7 +244,7 @@ render() {
             // }
             value={
               this.props.fetchingContactValue ? "Loading..." :
-              this.props.contactValue.CustomerContactDetails === 0 ? "No Data" :
+              this.props.contactValue.CustomerContactDetails === 0 ? "None" :
               this.props.contactValue.CustomerContactDetails
             }
             bgColor="linear-gradient(270deg,black,grey)"

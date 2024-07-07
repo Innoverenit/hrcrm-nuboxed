@@ -274,7 +274,7 @@ const DealsAllCardList = (props) => {
 
                      <span>
                        {item.assignedTo === null ? (
-                         "No Data"
+                         "None"
                        ) : (
                          <>
                            {item.assignedTo === item.ownerName ? (

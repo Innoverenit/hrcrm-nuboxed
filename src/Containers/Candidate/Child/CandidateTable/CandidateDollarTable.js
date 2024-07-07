@@ -453,7 +453,7 @@ width:"1%"
         return (
           <>
             {item.skillList === [] ? (
-              "No Data"
+              "None"
             ) : (
               <span>
                 <SkillsLoadMore skillList={data} />
@@ -558,7 +558,7 @@ width:"1%"
         return (
           <>
             {item.availableDate === null ? (
-              "No Data"
+              "None"
             ) : (
               <span>{dayjs(item.availableDate).format("l")}</span>
             )}

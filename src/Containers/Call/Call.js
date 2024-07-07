@@ -28,7 +28,7 @@ function Call (props) {
               'Completed',//9
               'Loading',//10
               'You have reached the end of page',//11
-              'No data',//12
+              'None',//12
               'Not available',//13
               'Yes',//14
               'No',//15

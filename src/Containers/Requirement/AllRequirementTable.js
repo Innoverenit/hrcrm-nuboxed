@@ -590,7 +590,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AllRequirementTable)
 // // const date=diff+1
 // //          // const availableDate = moment(item.availableDate).subtract(item.endDate);
 // //           return <>
-// //           {/* {item.availableDate === null ? "No Data" : */}
+// //           {/* {item.availableDate === null ? "None" : */}
 // //             <span>
 // //               {/* {moment(item.availableDate).subtract(item.endDate).month()} */}
 // //               {date} months

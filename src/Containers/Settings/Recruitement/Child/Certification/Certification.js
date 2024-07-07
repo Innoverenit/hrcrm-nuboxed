@@ -207,7 +207,7 @@ const Certification = ({
                     />
                   ))
               ) : (
-                <p>No Data Available</p>
+                <p>None Available</p>
               )}
             </MainWrapper>
           </div>
@@ -504,7 +504,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Certification);
 //                     />
 //                    ))
 //                    ) : (
-//                     <p>No Data Available</p>
+//                     <p>None Available</p>
 //                   )}
 //               </MainWrapper>
 //             </div>

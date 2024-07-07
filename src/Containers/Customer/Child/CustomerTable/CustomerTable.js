@@ -537,7 +537,7 @@ function CustomerTable(props) {
         return (
           <>
             {item.lastRequirementOn === null ? (
-              "No Data"
+              "None"
             ) : (
               <span
                 style={{

@@ -40,7 +40,7 @@ class NodataFoundPage1 extends React.Component {
                 <div class=" flex text-lg font-bold font-poppins justify-center items-center mt-2"
 
                 >
-                No Data Available!
+                None Available!
                 </div>
                 
               </div>
