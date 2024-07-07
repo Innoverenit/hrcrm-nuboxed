@@ -70,10 +70,10 @@ class DepartmentAssessmentRole extends PureComponent {
         </TabPane>
       ))
     ) : (
-      <div class=" flex items-center">{departmentRoleData.message || 'No data available'}</div>
+      <div class=" flex items-center">{departmentRoleData.message || 'None available'}</div>
     )
   ) : (
-    <div>No data available</div>
+    <div>None available</div>
   )}
 </StyledTabs>
                 </TabsWrapper>

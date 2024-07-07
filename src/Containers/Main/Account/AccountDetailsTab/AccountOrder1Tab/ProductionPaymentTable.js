@@ -143,7 +143,7 @@ function ProductionPaymentTable(props) {
                                                     <span class="text-green-700"> {dayjs(item.approveDate).format('YYYY-MM-DD')}</span>
 
                                                 </div>
-                                            ) : "No Data"}
+                                            ) : "None"}
                                         </div>
                                     </div>
 

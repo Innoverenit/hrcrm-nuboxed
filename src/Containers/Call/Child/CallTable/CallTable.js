@@ -158,7 +158,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                   item.included.map((candidate, i) => {
                     
                     const data1 =candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : `${props.translatedMenuItems[12]}`
-                    // "No data"
+                    // "None"
                     return (
                       <Tooltip title={candidate.empName} key={i}>
                       <Avatar style={{ backgroundColor: "#f56a00" }}>

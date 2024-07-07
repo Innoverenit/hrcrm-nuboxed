@@ -402,7 +402,7 @@ function ContactTable(props) {
         const diff = Math.abs(moment().diff(moment(item.lastRequirementOn), 'days'));
         const date = diff + 1
         return <>
-          {item.lastRequirementOn === null ? "No Data" :
+          {item.lastRequirementOn === null ? "None" :
             <span class=" mr-2 text-xs cursor-pointer">
               {date} days ago
             </span>

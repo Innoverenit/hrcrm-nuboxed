@@ -498,7 +498,7 @@ console.log(props.userId)
       </div>
     )}
                       </div>
-                      {/* <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
+                      {/* <div className=" flex font-medium flex-Nonew-96 max-sm:flex-row w-full max-sm:justify-between ">
                                 
 
                                     <div class=" text-xs  font-poppins text-center">

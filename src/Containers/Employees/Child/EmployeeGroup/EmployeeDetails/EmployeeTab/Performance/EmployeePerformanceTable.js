@@ -20,7 +20,7 @@ const EmployeePerformanceTable = (props) => {
     <>
       <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       {props.employeeKpiList.length === 0 ? (
-          <p>No Data Available</p>
+          <p>None Available</p>
         ) : (
           props.employeeKpiList.map((item) => (
             <div key={item.id}>

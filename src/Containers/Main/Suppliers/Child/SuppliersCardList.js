@@ -106,7 +106,7 @@ function SuppliersCardList(props) {
                     const currentdate = dayjs().format("DD/MM/YYYY");
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     // const countryCode = item.address[0].countryAlpha2Code;
-                    const countryCode = item.address?.[0]?.countryAlpha2Code ?? "no data";
+                    const countryCode = item.address?.[0]?.countryAlpha2Code ?? "None";
                     console.log(countryCode)
                     // const dataLoc = ` Address : ${
                     //   item.address && item.address.length && item.address[0].address1

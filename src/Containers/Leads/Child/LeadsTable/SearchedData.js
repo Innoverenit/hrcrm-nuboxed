@@ -339,7 +339,7 @@ const LeadsTeamCardList = (props) => {
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.countryDialCode && item.phoneNumber
                         ? `${item.countryDialCode} ${item.phoneNumber}`
-                        : "No Data"}
+                        : "None"}
                  
                     </div>
                   </div>
@@ -354,7 +354,7 @@ const LeadsTeamCardList = (props) => {
                   </div>
                   <div className=" flex font-medium flex-col  w-[10rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
                     <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
-                      {item.companyName || "No Data"}
+                      {item.companyName || "None"}
                     </div>
                   </div>
                 </div>
@@ -401,7 +401,7 @@ const LeadsTeamCardList = (props) => {
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       <div>
                       {item.assignedTo === null ? (
-                "No Data"
+                "None"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (

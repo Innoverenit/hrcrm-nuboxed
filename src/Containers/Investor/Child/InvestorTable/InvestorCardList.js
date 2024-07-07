@@ -340,7 +340,7 @@ function InvestorCardList(props) {
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                    
-                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "No Data"}
+                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -374,7 +374,7 @@ function InvestorCardList(props) {
                                     
                                     <span>
               {item.assignedTo === null ? (
-                "No Data"
+                "None"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (

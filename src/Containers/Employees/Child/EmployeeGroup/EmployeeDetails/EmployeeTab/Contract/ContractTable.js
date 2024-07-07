@@ -59,7 +59,7 @@ class ContractTable extends Component {
       </div>
    
         
-      {contractDetails == "" ? "No data":contractDetails.map((item) => { 
+      {contractDetails == "" ? "None":contractDetails.map((item) => { 
         
         
         return (

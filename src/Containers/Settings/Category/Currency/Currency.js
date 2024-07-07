@@ -409,7 +409,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Currency);
 //       />
 //     ))
 //     ) : (
-//       <p>No Data Available</p>
+//       <p>None Available</p>
 //     )}
 
 

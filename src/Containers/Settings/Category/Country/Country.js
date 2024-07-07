@@ -414,7 +414,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Country);
 //       />
 //     ))
 //     ) : (
-//       <p>No Data Available</p>
+//       <p>None Available</p>
 //     )}
 
 

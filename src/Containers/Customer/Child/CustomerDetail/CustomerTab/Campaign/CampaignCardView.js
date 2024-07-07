@@ -200,7 +200,7 @@ if(fetchingCustomerCampaign){
               
                 <span>
                 {item.assignedToName === null ? (
-                  "No Data"
+                  "None"
                 ) : (
                   <>
                   {item.assignedToName === item.woner ? (
@@ -442,7 +442,7 @@ if(fetchingCustomerCampaign){
               <SubTitle>
               <span>
               {item.assignedTo === null ? (
-                "No Data"
+                "None"
               ) : (
                 <>
                 {item.assignedTo === item.woner ? (

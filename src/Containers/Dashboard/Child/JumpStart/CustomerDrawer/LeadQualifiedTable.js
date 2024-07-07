@@ -92,7 +92,7 @@ function LeadQualifiedTable (props) {
       </div>
    
         
-      {props.showQualifiedLeads=="" ? "No data" :props.showQualifiedLeads.map((item) => { 
+      {props.showQualifiedLeads=="" ? "None" :props.showQualifiedLeads.map((item) => { 
         
         
                     return (

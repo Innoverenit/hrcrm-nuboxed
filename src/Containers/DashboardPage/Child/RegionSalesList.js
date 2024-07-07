@@ -469,7 +469,7 @@ width={30}
 
     ) : (
       
-      <p>No Data Available</p>
+      <p>None Available</p>
     )}
          
 

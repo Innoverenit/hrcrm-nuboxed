@@ -112,7 +112,7 @@ class RemarksTable extends Component {
         render: (text, item) => {
           const availableDate = moment(item.creationDate).format("ll");
           return <>
-          {/* {item.availableDate === null ? "No Data" : */}
+          {/* {item.availableDate === null ? "None" : */}
             <span>
               {moment(item.creationDate).format("l")}
             </span>

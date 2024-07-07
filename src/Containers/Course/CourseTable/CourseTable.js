@@ -105,7 +105,7 @@ function CourseTable(props) {
 
         <h4 class=" text-xs  font-semibold  font-poppins">
         {item.description === null ? (
-              "No Data"
+              "None"
             ) : (
               <div>
                 <p>
@@ -377,7 +377,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(CourseTable);
 //         return (
 //           <>
 //             {item.description === null ? (
-//               "No Data"
+//               "None"
 //             ) : (
 //               <div>
 //                 <p>

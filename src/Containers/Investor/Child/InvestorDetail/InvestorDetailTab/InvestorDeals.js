@@ -254,7 +254,7 @@ strokeColor={"#005075"}
 
 <span>
 {item.assignedTo === null ? (
-                "No Data"
+                "None"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (

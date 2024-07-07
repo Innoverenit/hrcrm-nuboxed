@@ -81,7 +81,7 @@ class EducationTable extends Component {
       </div>
    
         
-      {eduDetails=="" ? "No data" :eduDetails.map((item) => { 
+      {eduDetails=="" ? "None" :eduDetails.map((item) => { 
         
         
                     return (

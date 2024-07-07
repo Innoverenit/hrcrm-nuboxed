@@ -211,7 +211,7 @@ const Library = ({
                     />
                   ))
               ) : (
-                <p>No Data Available</p>
+                <p>None Available</p>
               )}
             {/* </MainWrapper> */}</div>
           </div>
@@ -520,7 +520,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Library);
 //                     />
 //                    ))
 //                    ) : (
-//                     <p>No Data Available</p>
+//                     <p>None Available</p>
 //                   )}
                    
 //               </MainWrapper>

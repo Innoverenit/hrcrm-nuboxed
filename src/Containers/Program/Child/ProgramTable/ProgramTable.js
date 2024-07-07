@@ -311,7 +311,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(ProgramTable);
 //     //     // const content = "sdfghjklxcvbnm,wertyuiopcvbnmxm";
 //     //       return <>
           
-//     //       {item.description === null ? "No Data" : 
+//     //       {item.description === null ? "None" : 
 //     //        <div>
 //     //       <p>{isExpanded ? content : `${content && content.slice(0, 7)}...`}</p>
 //     //       {isExpanded ? (

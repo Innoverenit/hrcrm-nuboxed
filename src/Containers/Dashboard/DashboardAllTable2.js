@@ -269,7 +269,7 @@ function DashboardAllTable2(props) {
         const diff = Math.abs(dayjs().diff(dayjs(item.creationDate), 'days'));
         const date = diff + 1
         return <>
-          {item.creationDate === null ? "No Data" :
+          {item.creationDate === null ? "None" :
             <span class=" cursor-pointer mr-[0.5rem] text-[12px] "
               style={{
                 color: date >= 30 && "red",
@@ -296,7 +296,7 @@ function DashboardAllTable2(props) {
               
     //                    return (
     //                      <>
-    //                 {data.creationDate === null ? "No Data" :
+    //                 {data.creationDate === null ? "None" :
     //             <span
     //              style={{
     //                marginRight: "0.5rem",
@@ -337,7 +337,7 @@ function DashboardAllTable2(props) {
       render: (text, item) => {
        const creationDate = dayjs(item.creationDate).format("DD/MM/YYYY");
        return <>
-       {item.creationDate === null ? "No Data" :
+       {item.creationDate === null ? "None" :
          <span>
            {dayjs(item.creationDate).format("DD/MM/YYYY")}
          </span>

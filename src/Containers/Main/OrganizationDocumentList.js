@@ -217,7 +217,7 @@ saveChanges = () => {
 //                     {item.includeds &&
 //                   item.includeds.map((candidate, i) => {
                     
-//                     const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "No data"
+//                     const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "None"
 //                     return (
 //                       <Tooltip title={candidate.empName} key={i}>
 //                       <Avatar style={{ backgroundColor: "#f56a00" }}>
@@ -400,7 +400,7 @@ return (
                     {item.includeds &&
                   item.includeds.map((candidate, i) => {
                     
-                    const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "No data"
+                    const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "None"
                     return (
                       <Tooltip title={candidate.empName} key={i}>
                       <Avatar style={{ backgroundColor: "#f56a00" }}>

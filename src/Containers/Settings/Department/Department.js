@@ -280,7 +280,7 @@ class Department extends Component {
                     />
                   ))
                   ) : (
-                    <p>No Data Available</p>
+                    <p>None Available</p>
                   )}
 
               </MainWrapper>
