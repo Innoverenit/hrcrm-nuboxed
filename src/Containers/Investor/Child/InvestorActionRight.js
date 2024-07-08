@@ -8,6 +8,7 @@ import { FormattedMessage } from "react-intl";
 import {handleUploadInvestorModal} from "../InvestorAction";
 import UploadInvestor from "./UploadInvestor";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import UploadIcon from '@mui/icons-material/Upload';
 
 const Option = StyledSelect.Option;
 
@@ -40,7 +41,7 @@ function InvestorActionRight (props) {
        ghost
        onClick={() => props.handleUploadInvestorModal(true)}
      >
-       Upload
+      <UploadIcon className=" !text-icon"/> Upload
      </Button>
    </Tooltip>
    </div>

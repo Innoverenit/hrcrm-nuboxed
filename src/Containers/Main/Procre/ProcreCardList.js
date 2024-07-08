@@ -165,9 +165,9 @@ const {handleProcureNotesDrawerModal,
                                                         </Tooltip> */}
 </div>
                   <div class="flex">
-                  <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                  <div className=" flex flex-col w-wk items-center   max-sm:w-full">
                   <div className="flex items-center max-sm:w-full">
-                      <div className=" flex font-medium items-center  md:w-[12rem] max-sm:w-full  ">
+                      <div className=" flex items-center  md:w-[12rem] max-sm:w-full  ">
                                                       {item.category} {item.brand} {item.model} {item.attribute}
                                                     </div>
                                                     <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -262,10 +262,10 @@ const {handleProcureNotesDrawerModal,
                               disabled={item.acceptedInd || props.fetchingAllProcure}
                               loading={props.fetchingAllProcure}
                               >
-                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
+                              <div class="text-xs max-xl:text-[0.65rem] text-white  max-lg:text-[0.45rem] flex justify-between items-center " >
                                    {item.acceptedInd? "Accepted": "Accept"}           
                                 {/* Accept */}
-                                <NextPlanIcon  />
+                                <NextPlanIcon className=" !text-icon" />
                               </div>
                             </Button>
                          

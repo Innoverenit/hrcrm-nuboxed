@@ -10,6 +10,8 @@ import { FormattedMessage } from "react-intl";
 import {handleUploadPitchModal} from "../PitchAction";
 import UploadPitch from "./UploadPitch";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import UploadIcon from '@mui/icons-material/Upload';
+
 const Option = StyledSelect.Option;
 
 class PitchActionRight extends React.Component {
@@ -60,7 +62,7 @@ class PitchActionRight extends React.Component {
           type="primary"
           ghost
           onClick={() => this.props.handleUploadPitchModal(true)}>
-          Upload
+          <UploadIcon className=" !text-icon"/>Upload
         </Button>
       </Tooltip></div>
 

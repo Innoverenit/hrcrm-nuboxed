@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FlexContainer } from "../../../Components/UI/Layout";
-import { PlusOutlined } from "@ant-design/icons";
 import { Button,  Tooltip } from "antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import UploadIcon from '@mui/icons-material/Upload';
 
 class AccountActionRight extends React.Component {
     render() {
@@ -25,7 +25,7 @@ class AccountActionRight extends React.Component {
           <Button type="primary"  
         onClick={() => this.props.handleAccountImportModal(true)}
         >
-            Import
+          <UploadIcon className=" !text-icon"/>  Import
           </Button>
           </div>
             </FlexContainer>

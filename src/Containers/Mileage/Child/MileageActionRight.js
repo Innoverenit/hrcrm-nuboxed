@@ -6,6 +6,7 @@ import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { handleMileageModal } from "../MileageAction";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import UploadIcon from '@mui/icons-material/Upload';
 
 const Option = StyledSelect.Option;
 
@@ -51,7 +52,7 @@ class MileageActionRight extends React.Component {
           type={this.state.isClicked === "export" ? "primary" : ""}
           onClick={() => this.handleClicked("export")}
         >
-          Export
+         <UploadIcon className=" !text-icon"/> Export
         </Button>
         </div>
       </div>

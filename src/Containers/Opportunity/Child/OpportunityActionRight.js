@@ -87,6 +87,8 @@ import { StyledSelect } from "../../../Components/UI/Antd";
 import OpportunityShareForm from "./OpportunityShareForm";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
+import UploadIcon from '@mui/icons-material/Upload';
+
 const Option = StyledSelect.Option;
 
 const OpportunityActionRight = (props) => {
@@ -283,6 +285,7 @@ const OpportunityActionRight = (props) => {
       href={`${base_url}/excel/export/user/opportunity/${userId}`}
       >
         {/* Export */}
+        <UploadIcon className=" !text-icon"/>
         <FormattedMessage
               id="app.export"
               defaultMessage="Export"
