@@ -3,8 +3,8 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import NotesTaskForm from "./NotesTaskForm";
-const NotesForm = lazy(() => import("./NotesForm"));
+import MainNotes from "../../CustomNote/MainNotes";
+
 class AddTaskNotesDrawerModal extends Component {
   render() {
     //  console.log("data5", this.props.currentNameId.taskName);
@@ -21,9 +21,10 @@ class AddTaskNotesDrawerModal extends Component {
           visible={this.props.addDrawerTaskNotesModal}
           onClose={() => this.props.handleTaskNotesDrawerModal(false)}
         >
-          <Suspense fallback={<BundleLoader />}>
-            <NotesTaskForm currentNameId={this.props.currentNameId} 
-            taskId={this.props.currentNameId.taskId} 
+          <Suspense fallback={<BundleLoader />}>           
+            <MainNotes
+             type="task"
+             uniqueId={this.props.currentNameId.taskId}
             />
           </Suspense>
         </StyledDrawer>
