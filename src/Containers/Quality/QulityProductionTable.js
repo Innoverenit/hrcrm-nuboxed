@@ -119,25 +119,22 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                      
                                                         <ButtonGroup>
-                                                        {item.qualityStatus === "To Start" ||item.qualityStatus===null&& (
-                                                                <StatusIcon
-                                                                    type="In Progress"
-                                                                    tooltip="To Start"
-                                                                    role={item.qualityStatus}
-                                                                    iconType={<HourglassTopIcon className=' !text-icon text-orange-600'/>}
-                                                                    // onClick={() => {
-                                                                    //     props.updateProStatus({
-                                                                    //         type: "In Progress",
-                                                                    //     }, item.productionProductId);
-                                                                    // }}
-                                                                    onClick={() => {
-                                                                        props.updateQualityStatus(item.productionProductId,"In Progress")
-                                                                       
-                                                                       
-                                                                    }}
-                                                                   
-                                                                />
-                                                        )}
+                                                        {(item.qualityStatus === "To Start" || item.qualityStatus === null) && (
+    <StatusIcon
+        type="In Progress"
+        tooltip="To Start"
+        role={item.qualityStatus}
+        iconType={<HourglassTopIcon className=' !text-icon text-orange-600'/>}
+        // onClick={() => {
+        //     props.updateProStatus({
+        //         type: "In Progress",
+        //     }, item.productionProductId);
+        // }}
+        onClick={() => {
+            props.updateQualityStatus(item.productionProductId, "In Progress")
+        }}
+    />
+)}
                                                         {item.qualityStatus === "In Progress" ?
                                                                 <StatusIcon
                                                                     type="Complete"

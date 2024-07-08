@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button,Select } from "antd";
+import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -60,6 +61,7 @@ function CustomerForm(props) {
     // props.getSectors();
     props.getCrm();
     props.emptyClearbit()
+    props.getCustomerConfigure(props.orgId,"add","customer")
     // setSource("")
     // props.getCurrency();
   }, []);
@@ -462,7 +464,7 @@ console.log(selectedSource)
                       isRequired
                       name="name"
                       type="text"
-                      //label="Name"
+                      // label="Names"
                       label={
                         <FormattedMessage id="app.name" defaultMessage="Name" />
                       }
@@ -968,7 +970,7 @@ country_dial_code
 }
 
 
-const mapStateToProps = ({ auth, customer,employee ,catgCustomer,sector,leads}) => ({
+const mapStateToProps = ({ auth, customer,settings,employee ,catgCustomer,sector,leads}) => ({
   addingCustomer: customer.addingCustomer,
   addingCustomerError: customer.addingCustomerError,
   saleCurrencies: auth.saleCurrencies,
@@ -982,6 +984,7 @@ const mapStateToProps = ({ auth, customer,employee ,catgCustomer,sector,leads}) 
   orgId: auth.userDetails.organizationId,
   sectors: sector.sectors,
   fullName: auth.userDetails.fullName,
+  customerConfigure:settings.customerConfigure,
   crmAllData:leads.crmAllData,
   currencies: auth.currencies,
 });
@@ -996,6 +999,7 @@ const mapDispatchToProps = (dispatch) =>
       getAllCustomerEmployeelist,
       getCrm,
       getCurrency,
+      getCustomerConfigure,
       getCustomer
     },
     dispatch
