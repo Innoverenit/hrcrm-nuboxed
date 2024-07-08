@@ -16,7 +16,6 @@ import {
 
   } from "../Customer/CustomerAction";
   import { PlusOutlined } from "@ant-design/icons";
-import NotesForm from '../Call/Child/NotesForm';
 import { FormattedMessage } from 'react-intl';
 import TaskDataCardList from './TaskDataCardList';
 

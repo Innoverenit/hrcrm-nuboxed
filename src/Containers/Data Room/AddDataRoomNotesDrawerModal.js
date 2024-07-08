@@ -3,7 +3,7 @@ import { BundleLoader } from "../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../Components/UI/Antd";
-import NotesForm from "../Call/Child/NotesForm";
+import MainNotes from "../CustomNote/MainNotes";
 
 
 class AddDataRoomNotesDrawerModal extends Component {
@@ -23,8 +23,9 @@ class AddDataRoomNotesDrawerModal extends Component {
           onClose={() => this.props.handleDataroomNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <NotesForm rowdata={this.props.rowdata} 
-            //leadsId={this.props.rowdata.leadsId} 
+             <MainNotes
+             type="room"
+             uniqueId={this.props.rowdata.roomId}
             />
           </Suspense>
         </StyledDrawer>
