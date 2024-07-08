@@ -22,7 +22,7 @@ class FormChooserModal extends React.Component {
           />}
           visible={chooserModal}
           width={"60%"}
-          style={{ overflow: "visible",marginTop:"3rem"}}
+          style={{ overflow: "visible"}}
           maskClosable={false}
           
           destroyOnClose

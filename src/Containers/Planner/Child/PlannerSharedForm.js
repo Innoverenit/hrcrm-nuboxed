@@ -1,18 +1,7 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, {  useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-  Button,
-  Switch,
-  Icon,
-  Tooltip,
-  Popconfirm,
-  Checkbox,
-  message,
-} from "antd";
-import { Formik, Form, Field, FastField } from "formik";
-import { FlexContainer } from "../../../Components/UI/Layout";
-import { Spacer } from "../../../Components/UI/Elements";
+
 import { 
   getPlannerPermissionsList,
    sharePlannerPermission 
@@ -24,9 +13,6 @@ import {
   getTasksListByUserId,
   
 } from "../../Auth/AuthAction";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
-import { FormattedMessage } from "react-intl";
 import { StyledSelect } from "../../../Components/UI/Antd";
 const Option =StyledSelect;
 

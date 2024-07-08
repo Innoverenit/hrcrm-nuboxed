@@ -42,8 +42,8 @@ const TaskCardList = lazy(() => import("./Child/TaskCardList"));
     return (
       <React.Fragment>
         <TaskHeader 
-          viewType={this.props.viewType}
-          setTaskViewType={this.props.setTaskViewType}
+          viewType={props.viewType}
+          setTaskViewType={props.setTaskViewType}
         handleTaskModal={handleTaskModal} 
         />
         <AddTaskModal
@@ -51,18 +51,18 @@ const TaskCardList = lazy(() => import("./Child/TaskCardList"));
           handleTaskModal={handleTaskModal}
         />
         <Suspense fallback={<BundleLoader />}>
-        {this.props.viewType === "table" ?
+        {props.viewType === "table" ?
           <TaskCardList
           
           translateText={props.translateText}
           translatedMenuItems={translatedMenuItems}
           selectedLanguage={props.selectedLanguage}/> :
           
-          this.props.viewType === "gantt" ?
+          props.viewType === "gantt" ?
           <GanttChart/> :
-          this.props.viewType === "dashboard" ?
+          props.viewType === "dashboard" ?
           <TaskDeletedTable/> :
-          this.props.viewType === "approve" ?
+          props.viewType === "approve" ?
           <TaskApproveTable/> :
           null}
         </Suspense>
