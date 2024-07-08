@@ -524,12 +524,12 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
       });
   };
 
-  export const searchInvestorName = (name) => (dispatch) => {
+  export const searchInvestorName = (name,type) => (dispatch) => {
     dispatch({
       type: types.GET_INVESTOR_SEARCH_REQUEST,
     });
     axios
-      .get(`${base_url}/investor/search/${name}`, {
+      .get(`${base_url}/investor/search/alltype/${name}/${type}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

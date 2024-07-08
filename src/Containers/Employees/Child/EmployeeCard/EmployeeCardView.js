@@ -27,6 +27,7 @@ import {
 import { Link } from 'react-router-dom';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { elipsize } from "../../../../Helpers/Function/Functions";
+import EmployeeSearchedData from "../EmployeeTable/EmployeeSearchedData";
 const EmployeeDrawerForAdmin =lazy(()=>import("../EmployeeTable/EmployeeDrawer/EmployeeDrawerForAdmin"));
 const EmployeePulseDrawerModal =lazy(()=>import("../EmployeeTable/EmployeePulseDrawerModal"));
 const EmployeeDocumentDrawerModal =lazy(()=>import("./EmployeeDocumentDrawerModal"));
@@ -62,7 +63,12 @@ function handleSetCurrentUser(item) {
     return (
       
             <>
-            
+            {props.employeeSerachedData.length > 0 ? (
+    <EmployeeSearchedData
+    employeeSerachedData={props.employeeSerachedData}
+  fetchingEmployeeInputSearchData={props.fetchingEmployeeInputSearchData}
+    />
+  ) : (
             <div class=" h-h86 overflow-auto overflow-x-auto">
              {props.employees=="Data not Found" ? "Data not Found" :
             <div class="flex flex-wrap  w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">  
@@ -317,7 +323,7 @@ function handleSetCurrentUser(item) {
               </div>
 }
               </div>
-
+   )} 
               <UpdateEmployeeModal
               userData={userData}
        currentEmployeeId={currentEmployeeId}
@@ -385,6 +391,8 @@ const mapStateToProps = ({ auth,role, employee,designations,departments }) => ({
     fetchingEmployeeError: employee.fetchingEmployeeError,
     employeeDrawerVisibleForAdmin: employee.employeeDrawerVisibleForAdmin,
     openNotifydrwr:employee.openNotifydrwr,
+    employeeSerachedData: employee.employeeSerachedData,
+    fetchingEmployeeInputSearchData: employee.fetchingEmployeeInputSearchData
 })
 
 const mapDispatchToProps = (dispatch) =>
