@@ -51,11 +51,23 @@ const InvestorActionLeft = (props) => {
       setSearchOnEnter(false);
     }
   };
+
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      // Perform the search
-      props.searchInvestorName(currentData);
-      setSearchOnEnter(true);  //Code for Search
+      if (props.teamsAccessInd) {
+        props.searchInvestorName(currentData, 'team');
+      } else {
+        if (props.viewType === "list") {
+          props.searchInvestorName(currentData, 'user');
+        } else if (props.viewType === "teams") {
+          props.searchInvestorName(currentData, 'team');
+        } else if (props.viewType === "all") {
+          props.searchInvestorName(currentData, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
+      setSearchOnEnter(true);  // Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -88,7 +100,19 @@ const InvestorActionLeft = (props) => {
     setIsRecording(false);
     if (transcript.trim() !== "") {
       setCurrentData(transcript);
-      props.searchInvestorName(transcript);
+      if (props.teamsAccessInd) {
+        props.searchInvestorName(transcript, 'team');
+      } else {
+        if (props.viewType === "list") {
+          props.searchInvestorName(transcript, 'user');
+        } else if (props.viewType === "teams") {
+          props.searchInvestorName(transcript, 'team');
+        } else if (props.viewType === "all") {
+          props.searchInvestorName(transcript, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
       setSearchOnEnter(true);
     }
   };

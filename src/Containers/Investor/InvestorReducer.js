@@ -72,6 +72,7 @@ const initialState = {
 
   fetchingInvestorSearchData: false,
   fetchingInvestorSearchDataError: false,
+  investorSerachedData:[],
 
   fetchingInvestorsfilterdata: false,
   fetchingInvestorsfilterdataError: false,
@@ -528,8 +529,8 @@ export const investorReducer = (state = initialState, action) => {
                               return {
                                 ...state,
                                 fetchingInvestorSearchData: false,
-                                investorsbyId: action.payload,
-                                // serachedData: action.payload,
+                               // investorsbyId: action.payload,
+                                 investorSerachedData: action.payload,
                               };
                             case types.GET_INVESTOR_SEARCH_FAILURE:
                               return { ...state, fetchingInvestorSearchDataError: true };
@@ -644,7 +645,7 @@ export const investorReducer = (state = initialState, action) => {
 
                     case types.HANDLE_CLAER_REDUCER_DATA_INVESTOR:
                       return { ...state, 
-                        investorsbyId: [], 
+                        investorSerachedData: [], 
                         // deletedTruck: [] 
                       };
 
