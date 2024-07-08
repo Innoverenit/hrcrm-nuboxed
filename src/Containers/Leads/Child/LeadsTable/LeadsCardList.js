@@ -226,6 +226,10 @@ const LeadsCardList = (props) => {
          {props.serachedData.length > 0 ? (
     <SearchedData
     serachedData={props.serachedData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
+  translatedMenuItems={props.translatedMenuItems}
+  fetchingLeadsInputSearchData={props.fetchingLeadsInputSearchData}
     />
   ) : (
       <>
@@ -1537,6 +1541,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   openCETmodal: leads.openCETmodal,
   addLeadsConfirmationModal:leads.addLeadsConfirmationModal,
   addDrawerLeadsNotesModal: leads.addDrawerLeadsNotesModal,
+  fetchingLeadsInputSearchData: leads.fetchingLeadsInputSearchData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

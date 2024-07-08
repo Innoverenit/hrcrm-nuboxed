@@ -72,15 +72,38 @@ const LeadsActionLeft = (props) => {
       setSearchOnEnter(false);
     }
   };
+  // const handleSearch = () => {
+  //   if (currentData.trim() !== "") {
+  //     // Perform the search
+  //     props.inputLeadsDataSearch(currentData);
+  //     setSearchOnEnter(true);  //Code for Search
+  //   } else {
+  //     console.error("Input is empty. Please provide a value.");
+  //   }
+  // };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      // Perform the search
-      props.inputLeadsDataSearch(currentData);
-      setSearchOnEnter(true);  //Code for Search
+      if (props.teamsAccessInd) {
+        props.inputLeadsDataSearch(currentData, 'team');
+      } else {
+        if (props.viewType === "card") {
+          props.inputLeadsDataSearch(currentData, 'user');
+        } else if (props.viewType === "teams") {
+          props.inputLeadsDataSearch(currentData, 'team');
+        } else if (props.viewType === "all") {
+          props.inputLeadsDataSearch(currentData, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
+      setSearchOnEnter(true);  // Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
   };
+  
+  
+  
   const handleStartListening = () => {
     setStartTime(Date.now());
     setIsRecording(true);
@@ -108,7 +131,20 @@ const LeadsActionLeft = (props) => {
     setIsRecording(false);
     if (transcript.trim() !== "") {
       setCurrentData(transcript);
-      props.inputLeadsDataSearch(transcript);
+      if (props.teamsAccessInd) {
+        props.inputLeadsDataSearch(transcript, 'team');
+      } else {
+        if (props.viewType === "card") {
+          props.inputLeadsDataSearch(transcript, 'user');
+        } else if (props.viewType === "teams") {
+          props.inputLeadsDataSearch(transcript, 'team');
+        } else if (props.viewType === "all") {
+          props.inputLeadsDataSearch(transcript, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
+     // props.inputLeadsDataSearch(transcript);
       setSearchOnEnter(true);
     }
   };
@@ -132,7 +168,7 @@ const LeadsActionLeft = (props) => {
   console.log(currentData)
   const teamCount = props.teamsAccessInd && props.leadsTeamCountData ? props.leadsTeamCountData.leadsTeam : 0;
 
-  
+  console.log(props.viewType)
   return (
     <div class=" flex  items-center">
       <Tooltip

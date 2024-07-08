@@ -202,6 +202,10 @@ const LeadsAllCardList = (props) => {
        {props.serachedData.length > 0 ? (
     <SearchedData
     serachedData={props.serachedData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
+  translatedMenuItems={props.translatedMenuItems}
+  fetchingLeadsInputSearchData={props.fetchingLeadsInputSearchData}
     />
   ) : (
     <div>
@@ -1486,7 +1490,8 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   fetchingAllLeadsWarm: leads.fetchingAllLeadsWarm,
   allleadsInfoCold: leads.allleadsInfoCold,
   serachedData:leads.serachedData,
-  fetchingAllLeadsCold: leads.fetchingAllLeadsCold
+  fetchingAllLeadsCold: leads.fetchingAllLeadsCold,
+  fetchingLeadsInputSearchData: leads.fetchingLeadsInputSearchData
 
 });
 const mapDispatchToProps = (dispatch) =>

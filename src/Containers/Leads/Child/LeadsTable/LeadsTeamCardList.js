@@ -212,6 +212,10 @@ const LeadsTeamCardList = (props) => {
        {props.serachedData.length > 0 ? (
     <SearchedData
     serachedData={props.serachedData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
+  translatedMenuItems={props.translatedMenuItems}
+  fetchingLeadsInputSearchData={props.fetchingLeadsInputSearchData}
     />
   ) : (
     <>
@@ -1502,6 +1506,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   fetchingTeamLeadsHot:leads.fetchingTeamLeadsHot,
   fetchingTeamLeadsWarm:leads.fetchingTeamLeadsWarm,
   fetchingTeamLeadsCold:leads.fetchingTeamLeadsCold,
+  fetchingLeadsInputSearchData: leads.fetchingLeadsInputSearchData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
