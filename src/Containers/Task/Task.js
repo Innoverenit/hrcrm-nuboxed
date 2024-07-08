@@ -58,11 +58,11 @@ const TaskCardList = lazy(() => import("./Child/TaskCardList"));
           translatedMenuItems={translatedMenuItems}
           selectedLanguage={props.selectedLanguage}/> :
           
-      props.viewType === "gantt" ?
+          props.viewType === "gantt" ?
           <GanttChart/> :
           props.viewType === "dashboard" ?
           <TaskDeletedTable/> :
-         props.viewType === "approve" ?
+          props.viewType === "approve" ?
           <TaskApproveTable/> :
           null}
         </Suspense>

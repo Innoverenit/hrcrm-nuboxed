@@ -2520,7 +2520,7 @@ const [priority,setpriority]=useState(props.selectedTask
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
+            <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
               <div class="flex justify-around pr-2 max-sm:flex-col">
                
@@ -3471,7 +3471,6 @@ const [priority,setpriority]=useState(props.selectedTask
 
 <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select prospect"
         optionFilterProp="children"
         loading={isLoadingCustomer}
@@ -3495,7 +3494,6 @@ const [priority,setpriority]=useState(props.selectedTask
 
 <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select contact"
         optionFilterProp="children"
         loading={isLoadingContact}
@@ -3541,7 +3539,6 @@ const [priority,setpriority]=useState(props.selectedTask
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
               <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select opportunity"
         optionFilterProp="children"
         loading={isLoadingOpportunity}

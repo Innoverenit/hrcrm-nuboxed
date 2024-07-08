@@ -616,12 +616,12 @@ function CallForm(props) {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
+            <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
               <div class=" flex justify-around max-sm:flex-col">
               <div class=" h-full w-w47.5 max-sm:w-wk"   >
               <div class=" flex justify-between w-full max-sm:flex-col">
-                    <div class=" w-2/6 mt-3 max-sm:w-wk ">
+                    <div class=" w-2/6  max-sm:w-wk ">
                      
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                         {/* Type */}
@@ -1044,7 +1044,6 @@ function CallForm(props) {
 
 <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select prospect"
         optionFilterProp="children"
         loading={isLoadingCustomer}
@@ -1069,7 +1068,6 @@ function CallForm(props) {
 
 <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select contact"
         optionFilterProp="children"
         loading={isLoadingContact}
@@ -1115,7 +1113,6 @@ function CallForm(props) {
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
               <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select opportunity"
         optionFilterProp="children"
         loading={isLoadingOpportunity}
@@ -1154,7 +1151,7 @@ function CallForm(props) {
                   />
                    </div>
                    */}
-                  <div class="mt-3">
+                  <div class="mt-2">
                     <div>Notes</div>
                     <div>
                   <div>
@@ -1185,7 +1182,7 @@ function CallForm(props) {
                   <div>
                     <textarea
                       name="description"
-                      className="textarea"
+                      className="textarea h-24"
                       type="text"
                       value={transcript ? transcript : text}
                       onChange={handletext}
@@ -1239,7 +1236,7 @@ function CallForm(props) {
                 </div>
               </div>
              
-              <div class=" flex mt-3 justify-end">
+              <div class=" flex mt-1 justify-end">
                 {isEditing && (
                   <>
                     <StyledPopconfirm

@@ -11,7 +11,6 @@ import dayjs from "dayjs";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 import { TimePicker } from "../../../Components/Forms/Formik/TimePicker";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
@@ -25,7 +24,6 @@ import {
 } from "../EventAction";
 import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
 import { handleChooserModal } from "../../Planner/PlannerAction";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getAssignedToList } from "../../Employees/EmployeeAction";
 import { setClearbitCandidateData } from "../../Candidate/CandidateAction";
@@ -36,14 +34,14 @@ const { Option } = Select;
 // yup validation scheme for creating a opportunity
 const EventSchema = Yup.object().shape({
   eventTypeId: Yup.string().required("Select event type"),
-  eventSubject: Yup.string().required("This field is required !"),
-  timeZone: Yup.string().required("Input required !"),
+  eventSubject: Yup.string().required("Input required!"),
+  timeZone: Yup.string().required("Input required!"),
   // endDate: Yup.string()
   //   .nullable()
   //   .required("Input required !"),
-  startTime: Yup.string().nullable().required("Input required !"),
-  endTime: Yup.string().nullable().required("Input required !"),
-  startDate: Yup.string().nullable().required("Input required !"),
+  startTime: Yup.string().nullable().required("Input required!"),
+  endTime: Yup.string().nullable().required("Input required!"),
+  startDate: Yup.string().nullable().required("Input required!"),
 });
 
 function EventForm (props) {
@@ -518,7 +516,7 @@ const {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
+            <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
               <div class=" flex justify-between max-sm:flex-col">
                 <div class=" h-full w-w47.5  mt-3 max-sm:w-wk">
@@ -707,7 +705,7 @@ const {
 
 <Select
         showSearch
-        style={{ width: 417 }}
+      
         placeholder="Search or select prospect"
         optionFilterProp="children"
         loading={isLoadingCustomer}
@@ -731,7 +729,7 @@ const {
 
 <Select
         showSearch
-        style={{ width: 417 }}
+      
         placeholder="Search or select contact"
         optionFilterProp="children"
         loading={isLoadingContact}
@@ -775,7 +773,7 @@ const {
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
               <Select
         showSearch
-        style={{ width: 417 }}
+      
         placeholder="Search or select opportunity"
         optionFilterProp="children"
         loading={isLoadingOpportunity}
@@ -950,7 +948,7 @@ const {
                       />
                     )}
                   />
-              <div class="mt-3">
+              <div class="mt-2">
                     <div>Notes</div>
                     <div>
                   <div>
@@ -983,7 +981,7 @@ const {
                   <div>
                     <textarea
                       name="description"
-                      className="textarea"
+                      className="textarea h-26"
                       type="text"
                       value={transcript ? transcript : text}
                       onChange={handletext}
@@ -1036,7 +1034,7 @@ const {
                 </div>
               </div>
       
-              <div class=" flex mt-3 justify-end">
+              <div class=" flex mt-31 justify-end">
                 {isEditing && (
                   <>
                     <StyledPopconfirm

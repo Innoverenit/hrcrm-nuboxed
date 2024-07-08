@@ -25,10 +25,10 @@ export class PlannerTab extends Component {
     } = this.props;
     return (
       <>
-        <TabsWrapper>
+        <TabsWrapper style={{height: "81.5vh"}}>
           <StyledTabs
             defaultActiveKey="2"
-            style={{ overflow: "visible", width: "53vw", padding: "0.9375em" }}
+            style={{ overflow: "visible", width: "57vw", padding: "0.9375em" }}
             animated={false}
           >
             <TabPane
