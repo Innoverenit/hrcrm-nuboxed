@@ -40,6 +40,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { FormattedMessage } from "react-intl";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
+import CustomerSearchedData from "./CustomerSearchedData";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
 );
@@ -259,6 +260,12 @@ console.log(page)
 console.log(props.userId)
   return (
     <>
+     {props.customerSearch.length > 0 ? (
+    <CustomerSearchedData
+    customerSearch={props.customerSearch}
+    fetchingCustomerInputSearchData={props.fetchingCustomerInputSearchData}
+    />
+  ) : (
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky z-10">
@@ -726,7 +733,7 @@ console.log(props.userId)
           </InfiniteScroll>
         </div>
       </div>
-
+  )}
 
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
@@ -801,6 +808,8 @@ const mapStateToProps = ({
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   // viewType: customer.viewType,
+  customerSearch: customer.customerSearch,
+  fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

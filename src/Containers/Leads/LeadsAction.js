@@ -928,11 +928,11 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
   };
 
 
-  export const inputLeadsDataSearch =(name)=>(dispatch)=>{
+  export const inputLeadsDataSearch =(name,type)=>(dispatch)=>{
     dispatch({
       type: types.INPUT_LEADS_SEARCH_DATA_REQUEST,
     });
-    axios.get(`${base_url}/leads/search/${name}`,{
+    axios.get(`${base_url}/leads/search/alltype/${name}/${type}`,{
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

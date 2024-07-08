@@ -43,7 +43,6 @@ import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import CustomerContactDrawerModal from "./CustomerContactDrawerModal";
 import CustomerOpportunityDrawerModal from "./CustomerOpportunityDrawerModal";
-import CustomerSearchedData from "./CustomerSearchedData";
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
@@ -56,7 +55,7 @@ function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
-function CustomerTeamCardList(props) {
+function CustomerSearchedData(props) {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
   const [hasMore, setHasMore] = useState(true);
@@ -158,12 +157,7 @@ const [rowdata, setrowdata] = useState("");
   return (
     <>
     
-    {props.customerSearch.length > 0 ? (
-    <CustomerSearchedData
-    customerSearch={props.customerSearch}
-    fetchingCustomerInputSearchData={props.fetchingCustomerInputSearchData}
-    />
-  ) : (
+
          <div className=' flex sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
@@ -244,15 +238,15 @@ const [rowdata, setrowdata] = useState("");
             <div className="w-[4.12rem]"></div>
 
           </div>
-        <InfiniteScroll
+        {/* <InfiniteScroll
         dataLength={teamCustomer.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingTeamCustomer?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"80vh"}
-      >
+      > */}
       
-      { !fetchingTeamCustomer && teamCustomer.length === 0 ?<NodataFoundPage />:teamCustomer.map((item,index) =>  {
+      { !props.fetchingCustomerInputSearchData && props.customerSearch.length === 0 ?<NodataFoundPage />:props.customerSearch.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const countryCode = item.countryAlpha2Code
@@ -635,10 +629,10 @@ const [rowdata, setrowdata] = useState("");
 
                     )
                 })}
-                </InfiniteScroll>
+                {/* </InfiniteScroll> */}
       </div>
       </div>
-       )}
+ 
   
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
@@ -739,5 +733,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(CustomerTeamCardList);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerSearchedData);
 

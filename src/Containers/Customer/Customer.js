@@ -117,7 +117,7 @@ class Customer extends Component {
         handleCustomerImportModal={this.props.handleCustomerImportModal}
             handleDropChange={this.handleDropChange}
             currentUser={this.state.currentUser}
-           viewType={this.props.viewType}
+           viewType={viewType}
            setCustomerViewType={this.setCustomerViewType}
            teamsAccessInd={teamsAccessInd}
           handleCustomerModal={handleCustomerModal}

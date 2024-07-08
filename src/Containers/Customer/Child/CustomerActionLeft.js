@@ -49,11 +49,31 @@ const CustomerActionLeft = (props) => {
       setSearchOnEnter(false);
     }
   };
+  // const handleSearch = () => {
+  //   if (currentData.trim() !== "") {
+  //     // Perform the search
+  //     props.inputCustomerDataSearch(currentData);
+  //     setSearchOnEnter(true);  //Code for Search
+  //   } else {
+  //     console.error("Input is empty. Please provide a value.");
+  //   }
+  // };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      // Perform the search
-      props.inputCustomerDataSearch(currentData);
-      setSearchOnEnter(true);  //Code for Search
+      if (props.teamsAccessInd) {
+        props.inputCustomerDataSearch(currentData, 'team');
+      } else {
+        if (props.viewType === "table") {
+          props.inputCustomerDataSearch(currentData, 'user');
+        } else if (props.viewType === "teams") {
+          props.inputCustomerDataSearch(currentData, 'team');
+        } else if (props.viewType === "all") {
+          props.inputCustomerDataSearch(currentData, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
+      setSearchOnEnter(true);  // Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -100,7 +120,19 @@ const CustomerActionLeft = (props) => {
     setIsRecording(false);
     if (transcript.trim() !== "") {
       setCurrentData(transcript);
-      props.inputCustomerDataSearch(transcript);
+      if (props.teamsAccessInd) {
+        props.inputCustomerDataSearch(transcript, 'team');
+      } else {
+        if (props.viewType === "table") {
+          props.inputCustomerDataSearch(transcript, 'user');
+        } else if (props.viewType === "teams") {
+          props.inputCustomerDataSearch(transcript, 'team');
+        } else if (props.viewType === "all") {
+          props.inputCustomerDataSearch(transcript, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
       setSearchOnEnter(true);
     }
   };
