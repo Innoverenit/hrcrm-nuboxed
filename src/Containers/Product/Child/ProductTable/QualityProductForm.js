@@ -29,7 +29,7 @@ useEffect(() => {
     <>
     <Form form={form} name="basic" onFinish={onFinish} layout="inline">
       <Form.Item
-        label="Quality Name"
+        label="Step"
         name="qualityName"
         rules={[{ required: true, message: 'Please input your first value!' }]}
       >
@@ -37,7 +37,7 @@ useEffect(() => {
       </Form.Item>
 
       <Form.Item
-        label="Steps"
+        label="Serial No"
         name="steps"
         rules={[{ required: true, message: 'Please input your second value!' }]}
       >
@@ -54,8 +54,8 @@ useEffect(() => {
             <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=""></div>
-                    <div className="md:w-[22.12rem]"><FormattedMessage id="app.qualityNmae" defaultMessage="Quality Name" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.steps" defaultMessage="Steps" /></div>
+                    <div className="md:w-[22.12rem]"><FormattedMessage id="app.step" defaultMessage="Step" /></div>
+                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.serialno" defaultMessage="Serial No" /></div>
                     <div className=""></div>
                   
                 </div>

@@ -122,9 +122,24 @@ const LocationCellForm = (props) => {
                                       
                                     }}
                                 >
-                                    Submit
+                                     Add Multiple
                                 </Button>
                                 </div>
+                                <div class="mt-[1.125rem]">
+                                         
+                                         <Button
+                                     type="primary"
+                                     htmlType="submit"
+                                     //onClick={handleSaveCell}
+                                     //loading={props.creatingLocationCell}
+                                     // style={{
+                                     //     marginTop: "20px",
+                                     //     marginLeft: "286px",
+                                     // }}
+                                 >
+                                     Add Single
+                                 </Button>
+                                 </div>
                                     </div>
                                 </div>
                             </div>

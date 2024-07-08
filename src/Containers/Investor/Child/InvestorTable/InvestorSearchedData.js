@@ -42,7 +42,6 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
 import InventoryPriceDrawer from "./InventoryPriceDrawer";
 import InvestorDocumentDrawerModal from "./InvestorDocumentDrawerModal";
-import InvestorSearchedData from "./InvestorSearchedData";
 const AddInvestorNotesDrawerModal = lazy(() => import("../InvestorDetail/AddInvestorNotesDrawerModal"));
 const ContactsInvestorModal = lazy(() => import("./ContactsInvestorModal"));
 const UpdateInvestorModal = lazy(() =>
@@ -53,7 +52,7 @@ function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
-function InvestorCardList(props) {
+function InvestorSearchedData(props) {
 
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
@@ -135,12 +134,7 @@ function InvestorCardList(props) {
 
   return (
     <>
-   {props.investorSerachedData.length > 0 ? (
-    <InvestorSearchedData
-    investorSerachedData={props.investorSerachedData}
-    fetchingInvestorSearchData={props.fetchingInvestorSearchData}
-    />
-  ) : (
+  
   <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[11.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] "><FormattedMessage
@@ -206,15 +200,15 @@ function InvestorCardList(props) {
         {/* <div className="w-12">Action</div> */}
 
       </div>
-        <InfiniteScroll
+        {/* <InfiniteScroll
         dataLength={investorsbyId.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingInvestors?<div  class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
-      >
+      > */}
         
-        { !fetchingInvestors && investorsbyId.length === 0 ?<NodataFoundPage />:investorsbyId.map((item,index) =>  {
+        { !props.fetchingInvestorSearchData && props.investorSerachedData.length === 0 ?<NodataFoundPage />:props.investorSerachedData.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(
@@ -567,9 +561,9 @@ function InvestorCardList(props) {
                     )
                 })}
 
-     </InfiniteScroll> 
+     {/* </InfiniteScroll>  */}
      </div>
-     )}  
+  
 
       <UpdateInvestorModal
         RowData={RowData}
@@ -670,5 +664,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(InvestorCardList);
+export default connect(mapStateToProps, mapDispatchToProps)(InvestorSearchedData);
 

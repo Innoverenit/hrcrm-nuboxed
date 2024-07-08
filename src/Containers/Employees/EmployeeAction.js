@@ -387,12 +387,12 @@ export const suspendEmployee = ( employeeId,suspendInd) => (dispatch) => {
 
 
 //SEARCH
-export const inputEmployeeDataSearch = (name) => (dispatch) => {
+export const inputEmployeeDataSearch = (name,type) => (dispatch) => {
   dispatch({
     type: types.INPUT_EMPLOYEE_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/employee/details/${name}`, {
+    .get(`${base_url}/employee/search/alltype/${name}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

@@ -38,6 +38,7 @@ import AddInvestorNotesDrawerModal from "../InvestorDetail/AddInvestorNotesDrawe
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
 import ContactsInvestorModal from "./ContactsInvestorModal";
+import InvestorSearchedData from "./InvestorSearchedData";
 const UpdateInvestorModal = lazy(() =>
   import("../UpdateInvestor/UpdateInvestorModal")
 );
@@ -124,7 +125,12 @@ function InvestorAllCardList(props) {
 
   return (
     <>
-  
+  {props.investorSerachedData.length > 0 ? (
+    <InvestorSearchedData
+    investorSerachedData={props.investorSerachedData}
+    fetchingInvestorSearchData={props.fetchingInvestorSearchData}
+    />
+  ) : (
   <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
   <div className=" flex justify-between max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[11.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] "><FormattedMessage
@@ -467,7 +473,7 @@ function InvestorAllCardList(props) {
                 })}
      </InfiniteScroll> 
      </div>
-     
+       )}     
 
       <UpdateInvestorModal
         RowData={RowData}
@@ -525,6 +531,8 @@ const mapStateToProps = ({
   fetchingInvestorsError: investor.fetchingInvestorsError,
   updateInvestorModal: investor.updateInvestorModal,
   user: auth.userDetails,
+  investorSerachedData:investor.investorSerachedData,
+  fetchingInvestorSearchData:investor.fetchingInvestorSearchData,
   employees: employee.employees,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
 });

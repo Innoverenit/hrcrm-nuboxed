@@ -105,7 +105,7 @@ const initialState = {
 
   fetchingEmployeeInputSearchData: false,
   fetchingEmployeeInputSearchDataError: false,
-  inputData: [],
+  employeeSerachedData: [],
 
   fetchingUserStageList: false, 
   fetchingUserStageListError: false,
@@ -441,8 +441,8 @@ export const EmployeeReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingEmployeeInputSearchData: false,
-        employees: action.payload,
-        // serachedData: action.payload,
+        //employees: action.payload,
+         employeeSerachedData: action.payload,
       };
     case types.INPUT_EMPLOYEE_SEARCH_DATA_FAILURE:
       return { ...state, fetchingEmployeeInputSearchDataError: true };
@@ -855,7 +855,7 @@ export const EmployeeReducer = (state = initialState, action) => {
 
         case types.HANDLE_CLAER_REDUCER_DATA_EMPLOYEE:
           return { ...state, 
-            employees: [], 
+            employeeSerachedData: [], 
             // deletedTruck: [] 
           };
 

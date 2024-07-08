@@ -219,6 +219,8 @@ const initialState = {
    fetchingDocumentsByContactIdError: false,
    documentsByContactId:[],
 
+   fetchingCustomerInputSearchData:false,
+
   fetchingCustomerById: false,
   fetchingCustomerByIdError: false,
   customerById: [],
@@ -359,7 +361,7 @@ const initialState = {
   //search
   fetchingCustomerInputSearchData: false,
   fetchingCustomerInputSearchDataError: false,
-  inputData: [],
+  customerSearch: [],
 
   addingNotesByCustomerId: false,
   addingNotesByCustomerIdError: false,
@@ -846,10 +848,12 @@ export const customerReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingCustomerInputSearchData: false,
-        customerByUserId: action.payload,
-        latestCustomer: action.payload,
-        customerCloser: action.payload,
-        teamCustomer: action.payload,
+        // customerByUserId: action.payload,
+        // latestCustomer: action.payload,
+        // customerCloser: action.payload,
+        // teamCustomer: action.payload,
+        customerSearch: action.payload,
+
       };
     case types.INPUT_CUSTOMER_SEARCH_DATA_FAILURE:
       return { ...state, fetchingCustomerInputSearchDataError: true };
@@ -1889,7 +1893,7 @@ export const customerReducer = (state = initialState, action) => {
     case types.HANDLE_CLAER_REDUCER_DATA_CUSTOMER:
       return {
         ...state,
-        customerByUserId: [],
+        customerSearch: [],
         // deletedTruck: []
       };
 

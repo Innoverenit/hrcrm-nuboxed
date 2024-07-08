@@ -805,12 +805,12 @@ export const setSelectedTodoTimeIntervalReport = (selectedTodoTime) => (dispatch
 };
 
 //SEARCH
-export const inputCustomerDataSearch = (name) => (dispatch) => {
+export const inputCustomerDataSearch = (name,type) => (dispatch) => {
   dispatch({
     type: types.INPUT_CUSTOMER_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/customer/search/${name}`, {
+    .get(`${base_url}/customer/search/alltype/${name}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

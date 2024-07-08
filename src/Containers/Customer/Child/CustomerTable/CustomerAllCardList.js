@@ -41,6 +41,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
+import CustomerSearchedData from "./CustomerSearchedData";
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
 const CustomerOpportunityDrawerModal =lazy(()=> import("./CustomerOpportunityDrawerModal"));
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
@@ -151,7 +152,12 @@ const [rowdata, setrowdata] = useState("");
   return (
     <>
     
- 
+    {props.customerSearch.length > 0 ? (
+    <CustomerSearchedData
+    customerSearch={props.customerSearch}
+    fetchingCustomerInputSearchData={props.fetchingCustomerInputSearchData}
+    />
+  ) : (
          <div className=' flex justify-end sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
@@ -578,7 +584,7 @@ const [rowdata, setrowdata] = useState("");
                 </InfiniteScroll>
       </div>
       </div>
-      
+        )}
   
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
@@ -652,6 +658,8 @@ const mapStateToProps = ({
   countries: auth.countries,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
+  customerSearch: customer.customerSearch,
+  fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
