@@ -1,7 +1,7 @@
 import React, { useState ,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Switch,Button  } from "antd";
+import { Switch,Button,Select  } from "antd";
 import { getSectors } from "../../../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -30,8 +30,14 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 //   // email: Yup.string().required("Input needed!").email("Enter a valid Email"),
 //   // phoneNumber: Yup.string().required("Input needed!").matches(phoneRegExp, 'Phone number is not valid').min(8,"Minimum 8 digits").max(10,"Number is too long")
 // });
-
+const { Option } = Select;  
 function CustomerForm(props) {
+  const hardcodedCurrencies = [
+    { currency_name: 'USD' },
+    { currency_name: 'EUR' },
+    { currency_name: 'JPY' },
+    // add more currencies as needed
+  ];
 
    const[checked,setChecked]=useState(true);
   const[whiteblue,setWhiteblue]=useState(true);
@@ -47,6 +53,9 @@ function CustomerForm(props) {
 
   const [isRegistrationVisible, setIsRegistrationVisible] = useState(false);
   const [isAddressVisible, setIsAddressVisible] = useState(false);
+  const [isPotentialVisible, setIsPotentialVisible] = useState(false);
+  const [isCurrencyVisible, setIsCurrencyVisible] = useState(false);
+  const [isTypeVisible, setIsTypeVisible] = useState(false);
 console.log(isFirstNameVisible)
 console.log(isLastNameVisible)
   function handleWhiteBlue (checked) {
@@ -81,7 +90,8 @@ console.log(isLastNameVisible)
       props.customerConfigure.sourceInd !== undefined &&
       props.customerConfigure.sectorInd !== undefined &&
       props.customerConfigure.phoneNoInd !== undefined &&
-      props.customerConfigure.dailCodeInd !== undefined 
+      props.customerConfigure.dailCodeInd !== undefined &&
+      props.customerConfigure.nameInd !== undefined 
       
     ) {
       //setIsFirstNameVisible(props.customerConfigure.startInd);
@@ -93,7 +103,7 @@ console.log(isLastNameVisible)
       setIsAssignedVisible(props.customerConfigure.assignedToInd)
       setIsNotesVisible(props.customerConfigure.noteInd)
       setIsAddressVisible(props.customerConfigure.addressInd)
-      
+      setIsFirstNameVisible(props.customerConfigure.nameInd)
      
     }
   }, [props.customerConfigure]);
@@ -157,6 +167,15 @@ console.log(isLastNameVisible)
                                 case 'address':
                                     setIsAddressVisible(!isAddressVisible);
                                     break;
+                                    case 'potential':
+                                      setIsPotentialVisible(!isPotentialVisible);
+                                      break;
+                                      case 'currency':
+                                        setIsCurrencyVisible(!isCurrencyVisible);
+                                        break;
+                                        case 'type':
+                                          setIsTypeVisible(!isTypeVisible);
+                                          break;
           default:
             break;
         }
@@ -202,6 +221,11 @@ console.log(isLastNameVisible)
            vatNoInd:isVatVisible,
            businessRegInd:isRegistrationVisible,
            addressInd:isAddressVisible,
+           nameInd:isFirstNameVisible,
+           typeInd:isTypeVisible,
+           potentialInd:isPotentialVisible,
+           potentialCurrencyInd:isCurrencyVisible,
+
                 // category: checked ? "Both" : whiteblue ? "White" : "Blue",
                 // assignedTo: selectedOption ? selectedOption.employeeId:userId,
               },
@@ -248,7 +272,7 @@ console.log(isLastNameVisible)
                     ) : null}
                   </div>
              <div class=" mt-4"></div>
-           
+             {/* {!isFirstNameVisible && ( */}
                   <Field
                     isRequired
                     name="name"
@@ -264,8 +288,15 @@ console.log(isLastNameVisible)
                     accounts={accounts}
                     inlineLabel
                   />
+             {/* )} */}
+             <Switch
+            checked={isFirstNameVisible}
+            onChange={() => toggleFieldVisibility('name')}
+          checkedChildren="Hidden"
+            unCheckedChildren="Visible"
+          />
                   
-                  {!isFirstNameVisible && (
+               
                   <Field
                     name="url"
                     type="text"
@@ -276,14 +307,9 @@ console.log(isLastNameVisible)
                     component={InputComponent}
                     inlineLabel
                   />
-                  )}
+                
 
-<Switch
-            checked={isFirstNameVisible}
-            onChange={() => toggleFieldVisibility('name')}
-          checkedChildren="Hidden"
-            unCheckedChildren="Visible"
-          />
+
               
                   {/* <Field
                     name="email"
@@ -299,7 +325,7 @@ console.log(isLastNameVisible)
                   />                   */}
                    <div class=" flex justify-between mt-4">
                     <div class=" w-3/12 max-sm:w-[30%]">
-                         {!isLastNameVisible&&(
+                         {/* {!isLastNameVisible&&( */}
                       <FastField
                         name="countryDialCode"
                         selectType="dialCode"
@@ -316,7 +342,7 @@ console.log(isLastNameVisible)
                         value={values.countryDialCode1}
                         inlineLabel
                       />
-                         )}
+                         {/* )} */}
 
 <Switch
             checked={isLastNameVisible}
@@ -326,7 +352,7 @@ console.log(isLastNameVisible)
           />
                     </div>
                     <div class=" w-8/12">
-                        {!isEmailVisible&&(
+                        {/* {!isEmailVisible&&( */}
                       <FastField
                         name="phoneNumber"
                         label="Phone No"
@@ -335,7 +361,7 @@ console.log(isLastNameVisible)
                         inlineLabel
                         width={"100%"}
                       />
-                        )}
+                        {/* )} */}
 
 <Switch
             checked={isEmailVisible}
@@ -349,7 +375,7 @@ console.log(isLastNameVisible)
               
                   <div class=" flex justify-between mt-4">
                   <div class="w-w47.5 max-sm:w-w47.5">
-                    {!isMobileNumberVisible&&(
+                    {/* {!isMobileNumberVisible&&( */}
                   <Field             
                   placeholder="Sector"        
                             name="sectorId"
@@ -366,7 +392,7 @@ console.log(isLastNameVisible)
                               Array.isArray(sectorOption) ? sectorOption : []
                             }
                           />
-                    )}
+                    {/* )} */}
 
 <Switch
             checked={isMobileNumberVisible}
@@ -376,7 +402,7 @@ console.log(isLastNameVisible)
           />
                     </div>
                     <div class="w-w47.5">
-                        {!isSourceVisible&&(
+                        {/* {!isSourceVisible&&( */}
                     <FastField
                             name="source"
                             type="text"
@@ -394,7 +420,7 @@ console.log(isLastNameVisible)
                             className="field"
                             isColumn
                           />
-                        )}
+                        {/* )} */}
 
 <Switch
             checked={isSourceVisible}
@@ -404,10 +430,95 @@ console.log(isLastNameVisible)
           />
                         </div>
                   </div>
+                  <div class="flex justify-between mt-2">
+  <div class="w-w47.5 flex">
+    <div class="w-24">
+      <Field
+        name="potentialValue"
+        label={
+          <FormattedMessage
+            id="app.potential"
+            defaultMessage="Potential"
+          />
+        }
+        isColumn
+        width={"100%"}
+        component={InputComponent}
+        inlineLabel
+      />
+      <Switch
+            checked={isPotentialVisible}
+            onChange={() => toggleFieldVisibility('potential')}
+          checkedChildren="Hidden"
+            unCheckedChildren="Visible"
+          />
+    </div>
+    <div class="w-16 ml-2 max-sm:w-wk">
+      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
+      <Select
+        showSearch
+        style={{ width: 100 }}
+        placeholder="Search or select currency"
+        optionFilterProp="children"
+        // loading={isLoadingCurrency}
+        // onFocus={handleSelectCurrencyFocus}
+        // onChange={handleSelectCurrency}
+      >
+          {hardcodedCurrencies.map(currency => (
+    <Option key={currency.currency_name} value={currency.currency_name}>
+      {currency.currency_name}
+    </Option>
+  ))}
+      </Select>
+      <Switch
+            checked={isCurrencyVisible}
+            onChange={() => toggleFieldVisibility('currency')}
+          checkedChildren="Hidden"
+            unCheckedChildren="Visible"
+          />
+    </div>
+   
+  </div>
+
+
+  <div class="w-w47.5">
+    <Field
+      name="type"
+      label={
+        <FormattedMessage
+          id="app.type"
+          defaultMessage="Type"
+        />
+      }
+      isColumn
+      width={"100%"}
+      component={SelectComponent}
+      options={[
+        { value: "1", label: "Option 1" },
+        { value: "2", label: "Option 2" },
+        { value: "3", label: "Option 3" }
+      ]}
+      // options={
+      //   Array.isArray(typeOption)
+      //     ? typeOption
+      //     : []
+      // }
+     
+      inlineLabel
+    />
+     <Switch
+            checked={isTypeVisible}
+            onChange={() => toggleFieldVisibility('type')}
+          checkedChildren="Hidden"
+            unCheckedChildren="Visible"
+          />
+  </div>
+ 
+</div>
 
                  
                
-                  {!isNotesVisible&&(
+                  {/* {!isNotesVisible&&( */}
                   <Field
                     name="notes"
                     // label="Notes"
@@ -418,7 +529,7 @@ console.log(isLastNameVisible)
                     isColumn
                     component={TextareaComponent}
                   />
-                  )}
+                  {/* )} */}
                   <Switch
             checked={isNotesVisible}
             onChange={() => toggleFieldVisibility('notes')}
@@ -431,7 +542,7 @@ console.log(isLastNameVisible)
        
                  <div class=" flex justify-between mb-[0.35rem] mt-4">
                     <div class=" h-full w-full">
-                        {!isAssignedVisible&&(
+                        {/* {!isAssignedVisible&&( */}
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -502,7 +613,7 @@ console.log(isLastNameVisible)
           </>
         )}
       </Listbox>
-                        )}
+                        {/* )} */}
 
       <Switch
             checked={isAssignedVisible}
@@ -540,7 +651,7 @@ console.log(isLastNameVisible)
                    
                     <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
                     <div class=" w-2/5 max-sm:w-wk">
-                        {!isVatVisible&&(
+                        {/* {!isVatVisible&&( */}
                       <Field
                         name="vatNo"
                         type="text"
@@ -556,7 +667,7 @@ console.log(isLastNameVisible)
                         component={InputComponent}
                         inlineLabel
                       />
-                        )}
+                        {/* )} */}
 
 <Switch
             checked={isVatVisible}
@@ -567,7 +678,7 @@ console.log(isLastNameVisible)
                       
                     </div>
                     <div class=" w-[10rem] max-sm:w-wk">
-                        {!isRegistrationVisible&&(
+                        {/* {!isRegistrationVisible&&( */}
                       <Field
                         name="businessRegistration"
                         type="text"
@@ -583,7 +694,7 @@ console.log(isLastNameVisible)
                         component={InputComponent}
                         inlineLabel
                       />
-                        )}
+                        {/* )} */}
 
 <Switch
             checked={isRegistrationVisible}
@@ -600,7 +711,7 @@ console.log(isLastNameVisible)
                   </div>
                     </div>
            
-                  {!isAddressVisible&&(
+                  {/* {!isAddressVisible&&( */}
                   <FieldArray
                     name="address"
                     label="Address"
@@ -611,7 +722,7 @@ console.log(isLastNameVisible)
                       />
                     )}
                   />
-                  )}
+                  {/* )} */}
                   <Switch
             checked={isAddressVisible}
             onChange={() => toggleFieldVisibility('address')}
