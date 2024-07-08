@@ -261,15 +261,15 @@ function OrderActionLeft (props) {
             overflowCount={999}
           > */}
 
-            <span class=" mr-1 text-sm cursor-pointer"
+            <span class=" mr-2 text-sm cursor-pointer"
               onClick={() => props.setOrderViewType("completedorders")}
               style={{
                 color: props.viewType === "completedorders" && "#1890ff",
               }}
             >         
-<Button type={props.viewType === "completedorders" ? "primary" : ""} style={{ backgroundColor: props.viewType === "completedorders" ? "" : "tomato" }}>
+<Avatar style={{ backgroundColor: props.viewType === "completedorders" ? "#f279ab" : "#4bc076" }}>
                 
-                <div class="text-white">Completed Orders</div></Button>
+<HistoryOutlined fontSize="small" className="text-white" /> </Avatar>
                 
             </span>
           {/* </Badge> */}
@@ -283,15 +283,15 @@ function OrderActionLeft (props) {
             overflowCount={999}
           > */}
 
-            <span class=" mr-1 text-sm cursor-pointer"
+            <span class=" mr-2 text-sm cursor-pointer"
               onClick={() => props.setOrderViewType("cancelledorders")}
               style={{
                 color: props.viewType === "cancelledorders" && "#1890ff",
               }}
             >         
-<Button type={props.viewType === "cancelledorders" ? "primary" : ""} style={{ backgroundColor: props.viewType === "cancelledorders" ? "" : "tomato" }}>
+<Avatar  style={{ backgroundColor: props.viewType === "cancelledorders" ? "#f279ab" : "#4bc076" }}>
                 
-                <div class="text-white">Cancelled Orders</div></Button>
+<DeleteOutlined className="text-white" /></Avatar>
                 
             </span>
           {/* </Badge> */}

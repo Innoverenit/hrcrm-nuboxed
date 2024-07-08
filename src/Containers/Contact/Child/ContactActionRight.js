@@ -7,6 +7,8 @@ import { Button, Tooltip, } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+
+import UploadIcon from '@mui/icons-material/Upload';
 const ContactSharePartnerForm = lazy(()=>import("./ContactSharePartnerForm"));
 const ContactShareCustomerForm = lazy(()=>import("./ContactShareCustomerForm"));
 
@@ -84,7 +86,7 @@ class ContactActionRight extends React.Component {
           <Button 
            type="primary"
            onClick={() => handleContactImportModal(true)}>
-            Import
+            <UploadIcon className=" !text-icon"/>Import
           </Button>
              )}
         </Tooltip>

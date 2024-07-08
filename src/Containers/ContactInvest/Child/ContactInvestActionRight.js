@@ -9,6 +9,7 @@ import { FormattedMessage } from "react-intl";
 import {handleUploadContactInvestModal} from "../ContactInvestAction";
 import UploadContactInvest from "./UploadContactInvest";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import UploadIcon from '@mui/icons-material/Upload';
 
 class ContactInvestActionRight extends React.Component {
 
@@ -67,7 +68,7 @@ class ContactInvestActionRight extends React.Component {
           default
           onClick={() => this.props.history.push("/import/account")}
         >
-           <FormattedMessage
+         <UploadIcon className=" !text-icon"/>  <FormattedMessage
                         id="app.import"
                         defaultMessage="Import"
                       />
@@ -81,7 +82,7 @@ class ContactInvestActionRight extends React.Component {
           ghost
           onClick={() => this.props.handleUploadContactInvestModal(true)}
         >
-          Upload
+         <UploadIcon className=" !text-icon"/> Upload
         </Button>
       </Tooltip>
       </div>

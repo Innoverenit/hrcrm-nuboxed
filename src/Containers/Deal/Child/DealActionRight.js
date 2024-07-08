@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip, } from "antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import UploadIcon from '@mui/icons-material/Upload';
 
 class DealActionRight extends React.Component {
   render() {
@@ -45,7 +46,7 @@ class DealActionRight extends React.Component {
           // default
         href={`${base_url}/excel/export/user/opportunity/${userId}`}
         >
-          {/* Export */}
+          {/* Export */}<UploadIcon className=" !text-icon"/>
           <FormattedMessage
                 id="app.export"
                 defaultMessage="Export"
