@@ -460,6 +460,7 @@ console.log(selectedSource)
                     ) : null}
                   </div>
                   <div class=" mt-3">
+                  {props.customerConfigure.nameInd===true&&
                     <Field
                       isRequired
                       name="name"
@@ -475,6 +476,7 @@ console.log(selectedSource)
                       accounts={accounts}
                       inlineLabel
                     />
+}
                   </div>
                   <Field
                     name="url"
@@ -518,9 +520,10 @@ console.log(selectedSource)
                         }}
                         inlineLabel
                       /> */}
-
+{props.customerConfigure.dailCodeInd===true&&
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Dial code</label>
-
+}
+{props.customerConfigure.dailCodeInd===true&&
 <Select
         showSearch
         style={{ width: 120 }}
@@ -543,8 +546,10 @@ country_dial_code
           </Option>
         ))}
       </Select>
+}
                     </div>
                     <div class=" w-8/12">
+                    {props.customerConfigure.phoneNoInd===true&&
                       <FastField
                         name="phoneNumber"
                         label={
@@ -559,6 +564,7 @@ country_dial_code
                         inlineLabel
                         width={"100%"}
                       />
+}
                     </div>
                   </div>
 
@@ -581,8 +587,10 @@ country_dial_code
                           Array.isArray(sectorOption) ? sectorOption : []
                         }
                       /> */}
+                       {props.customerConfigure.sectorInd===true&&
                       <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Sector</label>
-
+                       }
+                      {props.customerConfigure.sectorInd===true&&
 <Select
         showSearch
         style={{ width: 200 }}
@@ -598,6 +606,7 @@ country_dial_code
           </Option>
         ))}
       </Select>
+}
                     </div>
                     <div class="w-w47.5" style={{display:"flex",flexDirection:"column"}}>
                       {/* <FastField
@@ -617,9 +626,10 @@ country_dial_code
                         className="field"
                         isColumn
                       /> */}
-
+ {props.customerConfigure.sourceInd===true&&
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</label>
-
+}
+{props.customerConfigure.sourceInd===true&&
 <Select
         showSearch
         style={{ width: 200 }}
@@ -635,11 +645,13 @@ country_dial_code
           </Option>
         ))}
       </Select>
+}
                     </div>
                   </div>
                   <div class="flex justify-between mt-2">
   <div class="w-w47.5 flex">
     <div class="w-24">
+    {props.customerConfigure.potentialInd===true&&
       <Field
         name="potentialValue"
         label={
@@ -653,9 +665,13 @@ country_dial_code
         component={InputComponent}
         inlineLabel
       />
+}
     </div>
     <div class="w-16 ml-2 max-sm:w-wk">
+    {props.customerConfigure.potentialCurrencyInd===true&&
       <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
+    }
+     {props.customerConfigure.potentialCurrencyInd===true&&
       <Select
         showSearch
         style={{ width: 100 }}
@@ -671,11 +687,13 @@ country_dial_code
           </Option>
         ))}
       </Select>
+}
     </div>
   </div>
 
 
   <div class="w-w47.5">
+  {props.customerConfigure.typeInd===true&&
     <Field
       name="type"
       label={
@@ -694,10 +712,11 @@ country_dial_code
       }
       inlineLabel
     />
+}
   </div>
 </div>
 
-
+{props.customerConfigure.noteInd===true&&
 <div class="mt-3">
                     <div>Notes</div>
                     <div>
@@ -739,31 +758,15 @@ country_dial_code
                   </div>
                 </div>
                   </div>
+}
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 >
-
+{props.customerConfigure.assignedToInd===true&&
                   <div class=" flex justify-between mb-[0.35rem] mt-3">
                     <div class=" h-full w-full" style={{display:"flex",flexDirection:"column"}}>
 
-                    {/* <label>Assigned</label>
-
-<Select
-        showSearch
-        style={{ width: 200 }}
-        placeholder="Search or select assign"
-        optionFilterProp="children"
-        loading={isLoadingAssign}
-        defaultValue={selectedAssign}
-        onFocus={handleSelectAssignFocus}
-        onChange={handleSelectAssign}
-      >
-        {assign.map(assigned => (
-          <Option key={assigned.employeeId} value={assigned.employeeId}>
-            {assigned.fullName}
-          </Option>
-        ))}
-      </Select> */}
+ 
                       <Listbox value={selected} onChange={setSelected}>
                         {({ open }) => (
                           <>
@@ -860,9 +863,11 @@ country_dial_code
                   /> */}
                     </div>
                   </div>
+}
 
                   <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
                   <div class="w-w47.5">
+                  {props.customerConfigure.vatNoInd===true&&
                       <Field
                         name="vatNo"
                         type="text"
@@ -878,8 +883,10 @@ country_dial_code
                         component={InputComponent}
                         inlineLabel
                       />
+}
                     </div>
                     <div class="w-w47.5">
+                    {props.customerConfigure.businessRegInd===true&&
                       <Field
                         name="businessRegistration"
                         type="text"
@@ -895,10 +902,12 @@ country_dial_code
                         component={InputComponent}
                         inlineLabel
                       />
+}
                     </div>
                   </div>
 
-                 
+                  {props.customerConfigure.addressInd===true&&               
+<div>
 
                   <div class="mt-8 w-full" style={{ backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                     <div>
@@ -923,6 +932,9 @@ country_dial_code
                       )}
                     />
                   </div>
+
+                  </div>
+}
                   {/* <div class=" flex justify-between">
                    <div class=" w-1/2 max-sm:w-wk">
                      <Field
