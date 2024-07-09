@@ -5,6 +5,7 @@ import { StyledTable } from "../../../../Components/UI/Antd";
 import {
   getProducts,
   getAllProductCatagory,
+  emptyProductList,
   setEditProducts,
   handleUpdateProductModal,
   handleDiscountModal,
@@ -37,7 +38,9 @@ function onChange(pagination, filters, sorter) {
 
 function ProductListingTable(props) {
   useEffect(() => {
+    props.emptyProductList()
     props.getProducts();
+   
   }, []);
 
   const [showHistory, setshowHistory] = useState(false);
@@ -938,6 +941,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       getProducts,
       setEditProducts,
+      emptyProductList,
       handleUpdateProductModal,
       handleDiscountModal,
       handleHistoryModal,
