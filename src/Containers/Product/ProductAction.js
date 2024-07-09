@@ -36,6 +36,13 @@ export const getProducts = (pageNo) => (dispatch) => {
       });
     });
 };
+
+
+export const emptyProductList = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_PRODUCT_LIST, 
+  });
+};
 export const handleProductQuality =(modalProps)=>(dispatch) => {
   dispatch({
     type: types.HANDLE_PRODUCT_QUALITY_DRAWER,

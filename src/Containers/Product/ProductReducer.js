@@ -423,6 +423,10 @@ export const productReducer = (state = initialState, action) => {
         updateServiceByIdError: true,
       };
 
+
+      case types.EMPTY_PRODUCT_LIST:
+        return { ...state, products: [] };
+
     case types.UPDATE_PRODUCT_BY_ID_REQUEST:
       return { ...state, updateProductById: true };
     case types.UPDATE_PRODUCT_BY_ID_SUCCESS:
@@ -459,10 +463,13 @@ export const productReducer = (state = initialState, action) => {
     case types.GET_PROFESSIONALDUCTS_REQUEST:
       return { ...state, fetchingProducts: true, fetchingProductsError: false };
     case types.GET_PROFESSIONALDUCTS_SUCCESS:
+      //const newData = action.payload.filter(item => !state.products.includes(item));
       return { ...state, fetchingProducts: false, 
-        products: [
-        ...state.products,
-        ...action.payload] };
+        // products: [
+        // ...state.products,
+        // ...action.payload] };
+        products: action.payload
+      }
     case types.GET_PROFESSIONALDUCTS_FAILURE:
       return { ...state, fetchingProducts: false, fetchingProductsError: true };
 
