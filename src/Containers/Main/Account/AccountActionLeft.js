@@ -4,13 +4,14 @@ import { bindActionCreators } from "redux";
 import { Tooltip, Badge, Avatar, Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { inputDataSearch,ClearSearchedDataOfAccount, getRecords,getCustomerByUser, getAccountRecords, getAllRecords, getDistributorCount ,} from "./AccountAction";
+import { inputDataSearch,ClearSearchedDataOfAccount,getAllDistributorsList, getRecords,getCustomerByUser, getAccountRecords, getAllRecords, getDistributorCount ,} from "./AccountAction";
 import { DeleteOutlined, AudioOutlined } from "@ant-design/icons";
 
 const AccountActionLeft = (props) => {
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
     const [pageNo, setPage] = useState(0);
+    const [page, setpage] = useState(0);
     const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false); 
   const minRecordingTime = 3000; // 3 seconds
@@ -47,8 +48,13 @@ const AccountActionLeft = (props) => {
         setCurrentData(e.target.value);
 
         if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
-            // setPage(pageNo + 1);
-            props.getCustomerByUser(props.userId, pageNo);
+           // setPage(pageNo + 1);
+           if (props.viewType === "list") {
+            props.getCustomerByUser(props.userId, pageNo);     
+        }
+        else if (props.viewType === "all") {
+            props.getAllDistributorsList(props.orgId,page);
+        }
            props.ClearSearchedDataOfAccount()
             setSearchOnEnter(false);
         }
@@ -56,7 +62,13 @@ const AccountActionLeft = (props) => {
     const handleSearch = () => {
         if (currentData.trim() !== "") {
             // Perform the search
-            props.inputDataSearch(currentData);
+            // props.inputDataSearch(currentData);
+            if (props.viewType === "list") {
+                props.inputDataSearch(currentData,'list')
+            }
+            else if (props.viewType === "all") {
+                props.inputDataSearch(currentData,'all')
+            }
             setSearchOnEnter(true);  //Code for Search
         } else {
             console.error("Input is empty. Please provide a value.");
@@ -89,7 +101,13 @@ const AccountActionLeft = (props) => {
         setIsRecording(false);
         if (transcript.trim() !== "") {
           setCurrentData(transcript);
-          props.inputDataSearch(transcript);
+          if (props.viewType === "list") {
+            props.inputDataSearch(transcript,'list')
+        }
+        else if (props.viewType === "all") {
+            props.inputDataSearch(transcript,'all')
+        }
+        //   props.inputDataSearch(transcript);
           setSearchOnEnter(true);
         }
       };
@@ -241,6 +259,7 @@ const mapStateToProps = ({ auth, distributor }) => ({
     userId: auth.userDetails.userId,
     distributorsByUserId: distributor.distributorsByUserId,
     allDistributors: distributor.allDistributors,
+    orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
@@ -252,6 +271,7 @@ const mapDispatchToProps = (dispatch) =>
             getAllRecords,
             getDistributorCount,
             ClearSearchedDataOfAccount,
+            getAllDistributorsList
         },
         dispatch
     );

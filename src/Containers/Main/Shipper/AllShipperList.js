@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import ShipperSearchedData from "./ShipperSearchedData";
 
 function AllShipperList(props) {
   const { handleUpdateShipperModal, updateShipperModal } = props;
@@ -61,6 +62,11 @@ function AllShipperList(props) {
 
   return (
     <>
+     {props.shipperSerachedData.length > 0 ? (
+    <ShipperSearchedData
+    shipperSerachedData={props.shipperSerachedData}
+    />
+  ) : (
       <div className=' flex  sticky  z-auto'>
       <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
@@ -202,6 +208,7 @@ function AllShipperList(props) {
 </InfiniteScroll>
         </div>
       </div>
+        )}
       <UpdateShipperModal
         rowdata={rowdata}
         shipperId={currentShipperId}
@@ -233,6 +240,7 @@ const mapStateToProps = ({ shipper, auth }) => ({
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
   orgId:auth.userDetails.organizationId,
+  shipperSerachedData: shipper.shipperSerachedData
 });
 
 const mapDispatchToProps = (dispatch) =>

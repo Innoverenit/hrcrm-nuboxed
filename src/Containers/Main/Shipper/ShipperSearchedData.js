@@ -18,10 +18,9 @@ import AddShipperOrderModal from "./AddShipperOrderModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import ShipperSearchedData from "./ShipperSearchedData";
 
 
-function ShipperCardList(props) {
+function ShipperSearchedData(props) {
 
 
   const [hasMore, setHasMore] = useState(true);
@@ -68,11 +67,7 @@ function ShipperCardList(props) {
 
   return (
     <>
-      {props.shipperSerachedData.length > 0 ? (
-    <ShipperSearchedData
-    shipperSerachedData={props.shipperSerachedData}
-    />
-  ) : (
+   
       <div className=' flex  sticky  z-auto'>
         <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky -0 z-10">
@@ -85,15 +80,9 @@ function ShipperCardList(props) {
             <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.pinCode" defaultMessage="Pin Code" /></div>
             <div className="w-[10.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
           </div>
-          <InfiniteScroll
-            dataLength={props.shipperByUserId.length}
-            next={handleLoadMore}
-            hasMore={hasMore}
-            loader={props.fetchingShipperByUserId ? <div className="flex justify-center" >Loading...</div> : null}
-            height={"80vh"}
-          >
-            {props.shipperByUserId.length ? <>
-              {props.shipperByUserId.map((item) => {
+          
+            <>
+              {props.shipperSerachedData.map((item) => {
                 return (
                   <>
                     <div  >
@@ -213,13 +202,10 @@ function ShipperCardList(props) {
                   </>
                 )
               })}
-            </> : !props.shipperByUserId.length
-              && !props.fetchingShipperByUserId ? <NodataFoundPage /> : null}
-
-          </InfiniteScroll>
+            </> 
         </div >
       </div>
-      )}
+     
       <UpdateShipperModal
         rowdata={rowdata}
         shipperId={currentShipperId}
@@ -260,4 +246,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShipperCardList);
+export default connect(mapStateToProps, mapDispatchToProps)(ShipperSearchedData);

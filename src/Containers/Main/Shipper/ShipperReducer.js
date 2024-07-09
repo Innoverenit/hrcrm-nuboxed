@@ -80,6 +80,7 @@ const initialState = {
 
   fetchingInputShipperData: false,
   fetchingInputShipperDataError: false,
+  shipperSerachedData:[],
 
   fetchingShipperByUserId: false,
   fetchingShipperByUserIdError: false,
@@ -1176,12 +1177,18 @@ export const shipperReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingInputShipperData: false,
-        shipperByUserId: state.viewType === "all" ? null : action.payload,
-        allShipper: state.viewType === "all" ? action.payload : null,
-        // serachedData: action.payload,
+        // shipperByUserId: state.viewType === "all" ? null : action.payload,
+        // allShipper: state.viewType === "all" ? action.payload : null,
+         shipperSerachedData: action.payload,
       };
     case types.INPUT_SEARCH_DATA_FAILURE:
       return { ...state, fetchingInputShipperDataError: true };
+
+      case types.HANDLE_CLAER_REDUCER_DATA_SHIPPER:
+        return { ...state, 
+          shipperSerachedData: [], 
+        };
+
     ///DLELTESHHHHH
     case types.DELETE_SHIPPER_DATA_REQUEST:
       return { ...state, deletingShipperData: true };

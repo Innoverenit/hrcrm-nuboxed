@@ -979,12 +979,12 @@ export const deleteDistributor = (data, distributorId, userId) => (
  * Input data search
  */
 
-export const inputDataSearch = (name) => (dispatch) => {
+export const inputDataSearch = (name,type) => (dispatch) => {
   dispatch({
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/distributor/distributorName/${name}`,  {
+    .get(`${base_url2}/distributor/api/v1/distributor/search/alltype/${name}/${type}`,  {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

@@ -672,12 +672,12 @@ export const handleSupplierInventoryImportModal = (modalProps) => (dispatch) => 
   });
 };
 
-export const inputDataSearch = (name) => (dispatch) => {
+export const inputDataSearch = (name,type) => (dispatch) => {
   dispatch({
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/search/supplier/${name}`,{
+    .get(`${base_url2}/supplier/api/v1/Supplier/search/alltype/${name}/${type}`,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

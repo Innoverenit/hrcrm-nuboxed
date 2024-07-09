@@ -1191,12 +1191,12 @@ export const getShipperOrderHistory = (orderId) => (dispatch) => {
  * Input data search
  */
 
-export const inputDataSearch = (name) => (dispatch) => {
+export const inputDataSearch = (name,type) => (dispatch) => {
   dispatch({
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/shipper/shipperList/${name}`, {
+    .get(`${base_url2}/shipper/api/v1/shipper/search/alltype/${name}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1218,6 +1218,12 @@ export const inputDataSearch = (name) => (dispatch) => {
         payload: err,
       });
     });
+};
+
+export const ClearReducerDataOfShipper = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_DATA_SHIPPER,
+  });
 };
 
 export const deleteShipperData = (id,userId) => (dispatch, getState) => {
