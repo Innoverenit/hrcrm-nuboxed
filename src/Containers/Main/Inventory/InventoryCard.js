@@ -28,6 +28,11 @@ const InventoryCard = (props) => {
     fetchingInventoryList
   } = props;
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    window.location.assign(`/locationDetails/${props.inventory.locationDetailsId}`);
+  };
+
   useEffect(() => {
     getInventory(orgId);
   }, [getInventory, orgId]);
@@ -68,12 +73,21 @@ const InventoryCard = (props) => {
 
                           <Tooltip>
                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                              <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                              <div class="flex text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                {/* <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                   to={`locationDetails/${item.locationDetailsId}`}
                                   title={`${item.locationName}`}
-                                >{item.locationName}</Link>&nbsp;&nbsp;
+                                >{item.locationName}</Link> */}
+                              <div
+  onClick={() => window.location.assign(`/locationDetails/${item.locationDetailsId}`)}
+  className="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+  title={item.locationName}
+>
+  {item.locationName}
+</div>
+
+                                &nbsp;&nbsp;
                                 {date === currentdate ? (
                                   <span class="text-xs font-bold text-[tomato]">
                                     New

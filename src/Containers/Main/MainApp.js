@@ -481,7 +481,7 @@ function MainApp(props) {
 
       <ThemeProvider theme={props.theme}>
         <LayoutWrapper>
-          <div class="max-sm:hidden overflow-x-auto max-xl:hidden">
+          <div class="max-sm:hidden overflow-x-auto max-xl:hidden scroller">
             <Sider
               trigger={null}
               collapsible

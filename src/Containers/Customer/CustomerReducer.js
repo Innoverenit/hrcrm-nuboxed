@@ -712,7 +712,7 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         addingDocumentByCustomerId: false,
         addingDocumentByCustomerIdError: false,
-        documentUploadModal:false,
+       // documentUploadModal:false,
         documentsByCustomerId: [action.payload, ...state.documentsByCustomerId],
         documentsByContactId: [action.payload, ...state.documentsByContactId],
         documentsByOpportunityId: [action.payload, ...state.documentsByOpportunityId],
