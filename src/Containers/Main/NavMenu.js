@@ -1253,7 +1253,9 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
        )} 
 
 
-
+{(user.hrInd === true   
+ || user.role === "ADMIN"
+) && ( 
         <Menu.Item key="/assessment" style={{ height: "1.45rem", 
         color: selectedMenuItem === '/assessment' ? 'tomato' : '#4bc076' }}>
           <Link to="/assessment" onClick={() => handleSelect('/assessment')}>
@@ -1268,7 +1270,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
             </span>
           </Link>
         </Menu.Item>
-      
+        )} 
 
         {/* 
            </SubMenu> 

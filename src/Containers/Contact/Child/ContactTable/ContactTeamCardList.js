@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
+import { PlusOutlined } from "@ant-design/icons";
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -25,7 +26,8 @@ import {
   handleContactEmailDrawerModal,
   handleContactNotesDrawerModal,
   emptyContact,
-  handleContactPulseDrawerModal
+  handleContactPulseDrawerModal,
+  handleDocumentUploadModal
 } from "../../ContactAction";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
@@ -38,6 +40,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import AddDocumentModals from "../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 
 const Option = Select;
 const UpdateContactModal = lazy(() =>
@@ -123,6 +126,8 @@ function ContactTeamCardList(props) {
  
 
   const {
+    //contact: { contactId, firstName, middleName, lastName },
+    contactId,
     user,
     fetchingContacts,
     newFiltersdata,
@@ -136,7 +141,9 @@ function ContactTeamCardList(props) {
     handleContactReactSpeechModal,
     addContactSpeechModal,
     updateContactModal,
-    fetchingTeamContact
+    fetchingTeamContact,
+    documentUploadModal,
+    handleDocumentUploadModal
   } = props;
 
 //  if(fetchingContacts){
@@ -440,6 +447,19 @@ function ContactTeamCardList(props) {
           }}
         />
       </Tooltip> </div> */}
+      <div><PlusOutlined
+                        type="plus"
+                        // tooltipTitle="Upload Document"
+                        tooltiptitle={<FormattedMessage
+                          id="app.uploaddocument"
+                          defaultMessage="Upload Document"
+                        />}
+                        onClick={() => {
+                          handleSetCurrentContactId(item);
+                          handleDocumentUploadModal(true)}}
+                        size="14px"
+                        style={{ marginLeft: "0.25em", verticalAlign: "center" }}
+                      /></div>
         {user.contactUpdateInd === true &&  user.crmInd === true && (
       <div>
      
@@ -484,6 +504,11 @@ function ContactTeamCardList(props) {
         handleContactNotesDrawerModal={handleContactNotesDrawerModal}
         handleSetCurrentContact={handleSetCurrentContact}
       />
+       <AddDocumentModals
+            documentUploadModal={documentUploadModal}
+            handleDocumentUploadModal={handleDocumentUploadModal}
+            contactId={currentContact.contactId }
+          />
          <AddContactPulseDrawerModal
         contactData={currentContact}
         // fullName={currentContactId}
@@ -538,7 +563,8 @@ const mapStateToProps = ({
   addDrawerContactEmailModal: contact.addDrawerContactEmailModal,
   addContactSpeechModal: contact.addContactSpeechModal,
   addDrawerContactModal: contact.addDrawerContactModal,
-  fetchingTeamContact:contact.fetchingTeamContact
+  fetchingTeamContact:contact.fetchingTeamContact,
+  documentUploadModal: contact.documentUploadModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -555,7 +581,8 @@ const mapDispatchToProps = (dispatch) =>
       handleContactNotesDrawerModal,
       handleContactPulseDrawerModal,
       handleContactEmailDrawerModal,
-      emptyContact
+      emptyContact,
+      handleDocumentUploadModal
     },
     dispatch
   );
