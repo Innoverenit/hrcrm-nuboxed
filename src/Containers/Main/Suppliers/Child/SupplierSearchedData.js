@@ -23,9 +23,8 @@ import UpdateSupplierModal from "./UpdateSupplierModal";
 import SupplierPriceModal from "./SupplierPriceModal";
 import SupplierAddListModal from "./SupplierAddListModal";
 import SuplierPublishToggle from "./SuplierPublishToggle";
-import SupplierSearchedData from "./SupplierSearchedData";
 
-function SuppliersCardList(props) {
+function SupplierSearchedData(props) {
 
   const [hasMore, setHasMore] = useState(true);
   const [currentShipperId, setCurrentShipperId] = useState("");
@@ -73,11 +72,7 @@ function SuppliersCardList(props) {
 
   return (
     <>
-     {props.searchSupplierList.length > 0 ? (
-    <SupplierSearchedData
-    searchSupplierList={props.searchSupplierList}
-    />
-  ) : (
+   
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
@@ -99,16 +94,16 @@ function SuppliersCardList(props) {
             <div class=" w-[5rem]"></div>
           </div>
           <div class="overflow-x-auto h-[80vh]">
-            <InfiniteScroll
+            {/* <InfiniteScroll
               dataLength={props.supplierList.length}
               next={handleLoadMore}
               hasMore={hasMore}
               loader={props.fetchingSupplierList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
               height={"80vh"}
-            >
-              {props.supplierList.length ?
+            > */}
+             
                 <>
-                  {props.supplierList.map((item) => {
+                  {props.searchSupplierList.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     // const countryCode = item.address[0].countryAlpha2Code;
@@ -268,14 +263,12 @@ function SuppliersCardList(props) {
                       </>
                     )
                   })}
-                </> :
-                !props.supplierList.length &&
-                  !props.fetchingSupplierList ? <NodataFoundPage /> : null}
-            </InfiniteScroll>
+                </> 
+              
           </div>
         </div>
       </div>
- )}
+
       <UpdateSupplierModal
         rowdata={rowdata}
 
@@ -311,7 +304,7 @@ const mapStateToProps = ({ shipper, suppliers, auth }) => ({
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
   updateSupplierModal: suppliers.updateSupplierModal,
-  searchSupplierList:suppliers.searchSupplierList
+
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -328,4 +321,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(SuppliersCardList);
+export default connect(mapStateToProps, mapDispatchToProps)(SupplierSearchedData);

@@ -234,6 +234,7 @@ const initialState = {
 
   fetchingInputSupplierData: false,
   fetchingInputSupplierDataError: false,
+  searchSupplierList:[],
 
   updateSupplierById: false,
   updateSupplierByIdError: false,
@@ -856,8 +857,9 @@ export const suppliersReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingInputSupplierData: false,
-        supplierList: state.viewType === "dashboard" ? null : action.payload,
-        allSupplierList: state.viewType === "dashboard" ? action.payload : null,
+        // supplierList: state.viewType === "dashboard" ? null : action.payload,
+        // allSupplierList: state.viewType === "dashboard" ? action.payload : null,
+        searchSupplierList: action.payload,
       };
     case types.INPUT_SEARCH_DATA_FAILURE:
       return {
@@ -1867,7 +1869,7 @@ export const suppliersReducer = (state = initialState, action) => {
 
                                       case types.HANDLE_CLAER_SEARCHED_DATA_SUPPLIER:
                                         return { ...state, 
-                                          supplierList: [], 
+                                          searchSupplierList: [], 
                                         };  
 
 

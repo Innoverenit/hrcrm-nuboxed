@@ -139,7 +139,7 @@ const initialState = {
 
   fetchingInputDistributorData: false,
   fetchingInputDistributorDataError: false,
-  serachedData: [],
+  distributorSearch: [],
 
   fetchingOrderDetailsById: false,
   fetchingOrderDetailsByIdError: false,
@@ -1106,8 +1106,9 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingInputDistributorData: false,
         customerListByUser: action.payload,
-        allDistributors:action.payload,
-        deletedDistributors:action.payload,
+        // allDistributors:action.payload,
+        // deletedDistributors:action.payload,
+        distributorSearch: action.payload,
         // distributorsByUserId: state.viewType === "all" ? null : action.payload,
         // allDistributors: state.viewType === "all" ? action.payload : null,
         // serachedData: action.payload,
@@ -3314,7 +3315,7 @@ export const distributorReducer = (state = initialState, action) => {
 
                           case types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT:
                             return { ...state, 
-                              customerListByUser: [], 
+                              distributorSearch: [], 
                               // deletedTruck: [] 
                             };
 

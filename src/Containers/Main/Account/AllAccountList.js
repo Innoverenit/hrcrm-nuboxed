@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom';
 import { Tooltip } from 'antd';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import AccountSearchedData from './AccountSearchedData';
 const AccountPulseModal = lazy(() => import("./AccountPulseModal"));
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
@@ -39,6 +40,11 @@ const AllAccountList = (props) => {
   } = props;
   return (
     <>
+     {props.distributorSearch.length > 0 ? (
+    <AccountSearchedData
+    distributorSearch={props.distributorSearch}
+    />
+  ) : (
       <div className=' flex  sticky z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
@@ -254,6 +260,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
           </InfiniteScroll>
         </div>
       </div>
+          )}
       <UpdateAccountModal
         RowData={RowData}
         updateAccountModal={props.updateAccountModal}
@@ -274,6 +281,7 @@ const mapStateToProps = ({ distributor,auth }) => ({
   showPulseModal: distributor.showPulseModal,
   updateAccountModal: distributor.updateAccountModal,
   orgId: auth.userDetails.organizationId,
+  distributorSearch:distributor.distributorSearch,
 });
 
 const mapDispatchToProps = (dispatch) =>

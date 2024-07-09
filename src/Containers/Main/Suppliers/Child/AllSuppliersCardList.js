@@ -10,6 +10,7 @@ import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateSupplierModal from "./UpdateSupplierModal";
 import { DeleteOutlined } from "@ant-design/icons";
+import SupplierSearchedData from "./SupplierSearchedData";
 
 function AllSuppliersCardList(props) {
 
@@ -54,6 +55,11 @@ function AllSuppliersCardList(props) {
   
 return(
 <>
+{props.searchSupplierList.length > 0 ? (
+    <SupplierSearchedData
+    searchSupplierList={props.searchSupplierList}
+    />
+  ) : (
 <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
@@ -196,7 +202,7 @@ className=" !text-icon cursor-pointer text-[red]"
 </InfiniteScroll>
   </div>
   </div>
-
+ )}
   <UpdateSupplierModal
         rowdata={rowdata}
      
@@ -217,6 +223,7 @@ const mapStateToProps = ({ shipper, suppliers,auth }) => ({
   addShipperOrderModal: shipper.addShipperOrderModal,
   orgId:auth.userDetails.organizationId,
   updateSupplierModal:suppliers.updateSupplierModal,
+  searchSupplierList:suppliers.searchSupplierList
 });
 
 const mapDispatchToProps = (dispatch) =>

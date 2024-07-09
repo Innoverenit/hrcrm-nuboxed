@@ -781,10 +781,10 @@ function EmployeeTable(props) {
                 </div>
                 {props.filteredData.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
-                    const date = dayjs(item.createAt).format("DD/MM/YYYY");
+                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     return (
                         <div>
-                            <div className="flex rounded  mt-4 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
+                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
                                 <div class="flex">
                                     <div className=" flex font-medium  md:w-[15.6rem] max-sm:w-full ">
                                     <EmployeeDetailsView

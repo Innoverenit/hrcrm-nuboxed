@@ -71,7 +71,12 @@ const {
       const handleSearch = () => {
         if (currentData.trim() !== "") {
           // Perform the search
-          props.inputDataSearch(currentData);
+          //props.inputDataSearch(currentData);
+          if (props.viewType === "card") {
+            props.inputDataSearch(currentData,'card');
+          } else if (props.viewType === "all") {
+            props.inputDataSearch(currentData,'all');
+          } 
           setSearchOnEnter(true);  //Code for Search
         } else {
           console.error("Input is empty. Please provide a value.");
@@ -104,7 +109,11 @@ const {
         setIsRecording(false);
         if (transcript.trim() !== "") {
           setCurrentData(transcript);
-          props.inputDataSearch(transcript);
+          if (props.viewType === "card") {
+            props.inputDataSearch(transcript,'card');
+          } else if (props.viewType === "all") {
+            props.inputDataSearch(transcript,'all');
+          } 
           setSearchOnEnter(true);
         }
       };

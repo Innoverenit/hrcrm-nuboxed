@@ -28,11 +28,10 @@ import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
 import AccountModal from "./AccountModal";
-import AccountSearchedData from "./AccountSearchedData";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
 
-function AccountTable(props) {
+function AccountSearchedData(props) {
   const [page, setPage] = useState(0);
   const [RowData, setRowData] = useState("");
   const [hasMore, setHasMore] = useState(true);
@@ -62,11 +61,7 @@ function AccountTable(props) {
 
   return (
     <>
-    {props.distributorSearch.length > 0 ? (
-    <AccountSearchedData
-    distributorSearch={props.distributorSearch}
-    />
-  ) : (
+    
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
@@ -109,16 +104,16 @@ function AccountTable(props) {
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
           </div>
-          <InfiniteScroll
+          {/* <InfiniteScroll
             dataLength={props.customerListByUser.length}
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingCustomerByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
             height={"80vh"}
-          >
-            {props.customerListByUser.length ?
+          > */}
+          
               <>
-                {props.customerListByUser.map((item) => {
+                {props.distributorSearch.map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                   const diff = Math.abs(
@@ -374,11 +369,11 @@ function AccountTable(props) {
                   )
                 })}
               </>
-              : !props.customerListByUser.length && !props.fetchingCustomerByUser ? <NodataFoundPage /> : null}
-          </InfiniteScroll>
+             
+          {/* </InfiniteScroll> */}
         </div>
       </div>
-        )}
+      
       <UpdateAccountModal
         RowData={RowData}
         updateAccountModal={props.updateAccountModal}
@@ -434,5 +429,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountTable);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountSearchedData);
 
