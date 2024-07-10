@@ -1907,6 +1907,37 @@ export const getQualityProducts = (productId) => (dispatch) => {
 
 
 
+export const addDragQuality = (data) => (dispatch) => {
+  // const { locationId,organizationId } = getState().auth.userDetails;
+  
+  dispatch({ type: types.ADD_DRAG_QUALITY_REQUEST });
+  axios
+    .put(`${base_url2}/qualityCheckBuilder/qualityCheck/update/drag-drop`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getRoomRackByLocId(locationId,organizationId))
+      dispatch({
+        type: types.ADD_DRAG_QUALITY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_DRAG_QUALITY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
 
 
 

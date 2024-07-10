@@ -87,6 +87,10 @@ const initialState = {
   fetchingdeleteProductsError: false,
   deleteproducts:[],
 
+
+  aadingDragQuality:false,
+  aadingDragQualityError:false,
+
   addDrawerProductNotesModal:false,
 
   fetchingLatestProductsByOrganizationId: false,
@@ -472,6 +476,28 @@ export const productReducer = (state = initialState, action) => {
       }
     case types.GET_PROFESSIONALDUCTS_FAILURE:
       return { ...state, fetchingProducts: false, fetchingProductsError: true };
+
+
+
+
+
+
+      case types.ADD_DRAG_QUALITY_REQUEST:
+        return { ...state, aadingDragQuality: true };
+      case types.ADD_DRAG_QUALITY_SUCCESS:
+        return {
+          ...state,
+          aadingDragQuality: false,
+          //qualityProducts:[action.payload,...state.qualityProducts]
+
+        };
+      case types.ADD_DRAG_QUALITY_FAILURE:
+        return {
+          ...state,
+          aadingDragQuality: false,
+          aadingDragQualityError: true,
+
+        };
 
 
       case types.GET_DELETEPRODUCTS_REQUEST:

@@ -4,16 +4,28 @@ import { FormattedMessage } from "react-intl";
 import ButtonGroup from "antd/lib/button/button-group";
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
-import { Tooltip, Button, Popconfirm, Switch } from "antd";
+import { Tooltip, Button, Popconfirm, Select,Switch } from "antd";
 import { bindActionCreators } from "redux";
 import AddQualityManufactureDrawerModal from "../Quality/AddQualityManufactureDrawerModal"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getProductionQualityData,updateQualityStatus,handleQualityManufactureModal } from "../Main/Inventory/InventoryAction";
 import MoveToggleQuality from "../Quality/MoveToggleQuality"
 import dayjs from "dayjs";
+import { base_url2 } from "../../Config/Auth";
+
+
+
+const { Option } = Select;
 
 export const QulityProductionTable = (props) => {
   const [page, setPage] = useState(0);
+  const [zone, setZone] = useState([]);
+  const [rack, setRack] = useState([]);
+  const [isLoadingZone, setIsLoadingZone] = useState(false);
+  const [isLoadingRack, setIsLoadingRack] = useState(false);
+  const [selectedRack, setSelectedRack] = useState(null);
+  const [selectedZone, setSelectedZone] = useState(null);
+  const [touchedZone, setTouchedZone] = useState(false);
   const [currentManufacture,setCurrentManufacture] = useState("");
     const [hasMore, setHasMore] = useState(true);
     useEffect(() => {
@@ -41,6 +53,77 @@ export const QulityProductionTable = (props) => {
         }
     }, 100);
 };
+
+
+const fetchZone = async () => {
+    setIsLoadingZone(true);
+    try {
+      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
+      // setCustomers(response.data);
+      const apiEndpoint = `${base_url2}/roomrack/roomAndRackDetails/quality/${props.locationId}/${props.orgId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setZone(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingZone(false);
+    }
+  };
+
+
+  const handleSelectZoneFocus = () => {
+    if (!touchedZone) {
+      fetchZone();
+      // fetchSector();
+
+      setTouchedZone(true);
+    }
+  };
+
+
+
+  const fetchRack = async (roomRackId) => {
+    setIsLoadingRack(true);
+    try {
+      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+      // setContacts(response.data);
+      const apiEndpoint = `${base_url2}/roomrack/${roomRackId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setRack(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingRack(false);
+    }
+  };
+
+
+
+  const handleZoneChange = (roomRackId) => {
+    setSelectedZone(roomRackId);
+    fetchRack(roomRackId);
+  };
+
+
+  const handleRackChange=(value)=>{
+    setSelectedRack(value);
+  }
 function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, productId, indStatus }) {
 
   if (role === type) {
@@ -179,10 +262,48 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     </div>
                                                 </div>
 
+                                                <div className=" flex font-medium  items-center md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-13em"}} >
+                                                         {item.qualityStatus === "Complete"&&(
+                                                    <Select placeholder="Select zone" 
+                                                    style={{ width: 146 }}
+                                                    loading={isLoadingZone}
+                                                    onFocus={handleSelectZoneFocus}
+                                                    onChange={handleZoneChange}
+                                                    >
+      
+        {zone.map((zone) => (
+          <Option key={zone.roomRackId} value={zone.roomRackId}>
+            {zone.zone}
+          </Option>
+        ))}
+      </Select>
+      )}
+                                                    
+{item.qualityStatus === "Complete"&&(
+      <Select placeholder="Select rack" 
+      style={{ width: 146,marginLeft:"1em" }}
+      loading={isLoadingRack}
+      onChange={handleRackChange}
+      disabled={!selectedZone} 
+      >
+      
+      {rack.map((rack) => (
+        <Option key={rack.roomRackChamberLinkId} value={rack.roomRackChamberLinkId}>
+          {rack.chamber}
+        </Option>
+      ))}
+    </Select>
+)}
+                                                    </div>
+                                                </div>
+
                                 <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                                     {item.qualityStatus === "Complete"&&
                                                         <MoveToggleQuality 
+                                                        selectedZone={selectedZone}
+                                                        selectedRack={selectedRack}
                                                         item={item} 
                                                         // selectedZone={selectedZone}
                                                         // selectedRack={selectedRack}
@@ -239,6 +360,8 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
 // })
 const mapStateToProps = ({ inventory, auth,production }) => ({
   locationId: auth.userDetails.locationId,
+  token: auth.token,
+  orgId: auth.userDetails.organizationId,
   addQualityManufactureDrawerModal:inventory.addQualityManufactureDrawerModal,
   fetchingProductionQualityData:inventory.fetchingProductionQualityData,
    productionQualityData:inventory.productionQualityData,

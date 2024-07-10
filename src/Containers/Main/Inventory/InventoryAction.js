@@ -2082,12 +2082,12 @@ export const handleCustomModal = (modalProps) => (dispatch) => {
 
 
 
-export const moveProductionQuality = (productionProductId,userId) => (dispatch) => {
+export const moveProductionQuality = (data,productionProductId,userId) => (dispatch) => {
   dispatch({
     type: types.REMOVE_PRODUCTION_QUALITY_REQUEST,
   });
   axios
-    .put(`${base_url2}/production/update/dispatch/${productionProductId}/${userId}`, {}, {
+    .put(`${base_url2}/production/update/dispatch/${productionProductId}/${userId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
