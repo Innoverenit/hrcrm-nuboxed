@@ -401,7 +401,7 @@ import {
 } from "../../../../CustomerAction";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
-import LinkedDocuments from "../../../../../Contact/Child/ContactDetail/ContactTab/Document/LinkedDocuments";
+// import LinkedDocuments from "../../../../../Contact/Child/ContactDetail/ContactTab/Document/LinkedDocuments";
 const { Option } = Select;
 const ButtonGroup = Button.Group;
 const documentSchema = Yup.object().shape({
@@ -724,7 +724,7 @@ function AddDocumentModal (props){
             </Form>
           )}
         </Formik>
-        <LinkedDocuments />
+        {/* <LinkedDocuments /> */}
       </StyledDrawer>
     </>
   );

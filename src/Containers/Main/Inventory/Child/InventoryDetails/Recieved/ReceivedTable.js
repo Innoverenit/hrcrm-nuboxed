@@ -40,9 +40,24 @@ const ReceivedTable = (props) => {
   }, [])
 
   const [hasMore, setHasMore] = useState(true);
+
   const handleLoadMore = () => {
-    setPage(page + 1);
-    props.getReceivedUserList(props.locationDetailsId, page)
+    const callPageMapd = props.allReceivedUser && props.allReceivedUser.length &&props.allReceivedUser[0].pageCount
+    setTimeout(() => {
+      const {
+        getReceivedUserList,
+      } = props;
+      if  (props.allReceivedUser)
+      {
+        if (page < callPageMapd) {
+          setPage(page + 1);
+          getReceivedUserList(props.locationDetailsId, page);
+      }
+      if (page === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
   };
 
   const [rowData, setRowData] = useState({})
@@ -72,7 +87,7 @@ const ReceivedTable = (props) => {
   })
   return (
     <>
-      {props.fetchingReceivedUser ? <BundleLoader /> :
+      
         <div className=' flex justify-center sticky  z-auto'>
           <div class="roundedm-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex max-sm:hidden  w-[99%] p-1 bg-transparent font-bold  z-10">
@@ -96,6 +111,7 @@ const ReceivedTable = (props) => {
               loader={props.fetchingReceivedUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
               height={"69vh"}
               style={{overflowX:"hidden"}}
+              endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
             >
               {props.allReceivedUser.length ? <>
                 {props.allReceivedUser.map((item, key) => {
@@ -305,7 +321,7 @@ const ReceivedTable = (props) => {
 
             </InfiniteScroll>
           </div>
-        </div>}
+        </div>
 
       <DeliveryDateModal
         rowData={rowData}

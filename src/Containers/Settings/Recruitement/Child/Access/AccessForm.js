@@ -23,6 +23,7 @@ const userOptions = ['Access', 'Create', 'Update', 'Delete','Access Plus'];
  const collectionCheckedList=['Access','Approve'];
  const requirementCheckedList=['Access'];
  const basicCheckedList=['Access'];
+ const calenderCheckList=['View','Manage']
  const repositoryCheckedList=['Create'];
  const junkCheckedList=['Access',"Transfer"];
 // const defaultCheckedList = ['Apple', 'Orange'];
@@ -72,6 +73,7 @@ const AccessForm = (props) => {
     setCheckedPitchList(props.departmentAcces.pitch)
     setCheckedRepositoryList(props.departmentAcces.repository)
     setCheckedBasicList(props.departmentAcces.basic)
+    setCheckedCalenderList(props.departmentAcces.calender)
     setCheckedShipperList(props.departmentAcces.shipper)
     setCheckedProcurementList(props.departmentAcces.procurement)
     setCheckedProductionList(props.departmentAcces.production)
@@ -122,6 +124,7 @@ const AccessForm = (props) => {
   props.departmentAcces.task,
   props.departmentAcces.junk,
   props.departmentAcces.basic,
+  props.departmentAcces.calender,
   props.departmentAcces.investor,
   props.departmentAcces.investorContact,
   props.departmentAcces.deal,
@@ -738,6 +741,24 @@ const AccessForm = (props) => {
                                   setIndeterminateBasic(false);
                                   setCheckAllBasic(e.target.checked);
                                 };
+
+                                // Clender
+
+                                const [checkedCalenderList, setCheckedCalenderList] = useState(props.departmentAcces.calender              );
+                                const [indeterminateCalender, setIndeterminateCalender] = useState(true);
+                                const [checkAllCalender, setCheckAllCalender] = useState(false);
+                              
+                                const onCalenderChange = (list) => {
+                                  setCheckedCalenderList(list);
+                                  setIndeterminateCalender(!!list.length && list.length < calenderCheckList.length);
+                                  setCheckAllCalender(list.length === calenderCheckList.length);
+                                };
+                              
+                                const onCheckAllCalenderChange = (e) => {
+                                  setCheckedCalenderList(e.target.checked ? calenderCheckList : []);
+                                  setIndeterminateCalender(false);
+                                  setCheckAllCalender(e.target.checked);
+                                };
                                    // Holiday
 
                                    const [checkedHolidayList, setCheckedHolidayList] = useState(props.departmentAcces.holiday              );
@@ -1146,6 +1167,7 @@ const onCheckAllTeamsChange = (e) => {
       pitch:checkedPitchList || [],
       repository:checkedRepositoryList || [],
       basic:checkedBasicList || [],
+      calender:checkedCalenderList || [],
       shipper:checkedShipperList || [],
       procurement:checkedProcurementList || [],
       production:checkedProductionList || [],
@@ -1324,12 +1346,12 @@ const onCheckAllTeamsChange = (e) => {
               </div>
           
           <div>
-            <div class="text-sm font-semibold">Basic</div>
-            <Checkbox indeterminate={indeterminateBasic} onChange={onCheckAllBasicChange} checked={checkAllBasic}>
+            <div class="text-sm font-semibold">Calender</div>
+            <Checkbox indeterminate={indeterminateCalender} onChange={onCheckAllCalenderChange} checked={checkAllCalender}>
               <div class="text-xs">  Check all</div>
             </Checkbox>
             <Divider />
-            <CheckboxGroup options={basicCheckedList} value={checkedBasicList} onChange={onBasicChange} />
+            <CheckboxGroup options={calenderCheckList} value={checkedCalenderList} onChange={onCalenderChange} />
           </div>
         </div>
         

@@ -343,6 +343,13 @@ export const handleDocumentUploadModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleHospitalUploadModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_HOSPITAL_UPLOAD_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const deleteDocument = (documentId) => (dispatch, getState) => {
   console.log("inside deleteDocument", documentId);
   // const { opportunityId } = getState("opportunity").opportunity.opportunity;

@@ -27,7 +27,7 @@ import {
   handleContactNotesDrawerModal,
   emptyContact,
   handleContactPulseDrawerModal,
-  handleDocumentUploadModal
+  handleHospitalUploadModal
 } from "../../ContactAction";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
@@ -41,6 +41,7 @@ import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddDocumentModals from "../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
+import AddHospitalModals from "./AddHospitalModals";
 
 const Option = Select;
 const UpdateContactModal = lazy(() =>
@@ -142,8 +143,8 @@ function ContactTeamCardList(props) {
     addContactSpeechModal,
     updateContactModal,
     fetchingTeamContact,
-    documentUploadModal,
-    handleDocumentUploadModal
+    hospitalUploadModal,
+    handleHospitalUploadModal
   } = props;
 
 //  if(fetchingContacts){
@@ -456,7 +457,7 @@ function ContactTeamCardList(props) {
                         />}
                         onClick={() => {
                           handleSetCurrentContactId(item);
-                          handleDocumentUploadModal(true)}}
+                          handleHospitalUploadModal(true)}}
                         size="14px"
                         style={{ marginLeft: "0.25em", verticalAlign: "center" }}
                       /></div>
@@ -504,10 +505,10 @@ function ContactTeamCardList(props) {
         handleContactNotesDrawerModal={handleContactNotesDrawerModal}
         handleSetCurrentContact={handleSetCurrentContact}
       />
-       <AddDocumentModals
-            documentUploadModal={documentUploadModal}
-            handleDocumentUploadModal={handleDocumentUploadModal}
-            contactId={currentContact.contactId }
+       <AddHospitalModals
+            hospitalUploadModal={hospitalUploadModal}
+            handleHospitalUploadModal={handleHospitalUploadModal}
+            currentContactId={currentContactId }
           />
          <AddContactPulseDrawerModal
         contactData={currentContact}
@@ -564,7 +565,7 @@ const mapStateToProps = ({
   addContactSpeechModal: contact.addContactSpeechModal,
   addDrawerContactModal: contact.addDrawerContactModal,
   fetchingTeamContact:contact.fetchingTeamContact,
-  documentUploadModal: contact.documentUploadModal,
+  hospitalUploadModal: contact.hospitalUploadModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -582,7 +583,7 @@ const mapDispatchToProps = (dispatch) =>
       handleContactPulseDrawerModal,
       handleContactEmailDrawerModal,
       emptyContact,
-      handleDocumentUploadModal
+      handleHospitalUploadModal
     },
     dispatch
   );
