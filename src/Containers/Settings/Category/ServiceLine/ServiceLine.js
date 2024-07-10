@@ -210,7 +210,7 @@ if (props.fetchingServiceLine) {
          
          <MainWrapper className="!h-[69vh] !mt-2" >
             {serviceLine.map(region => (
-              <div className="card9" key={region.serviceLineId}>
+              <div className="card9 h-8" key={region.serviceLineId}>
               {/* Region name display or input field */}
               {editingId === region.serviceLineId ? (
                   <input
@@ -232,11 +232,8 @@ if (props.fetchingServiceLine) {
                           <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
-                      <EditOutlined onClick={() => editRegion(region.serviceLineId, region.serviceLineName)} 
-                      style={{
-                    
-                        cursor:"pointer"
-                      }}
+                      <EditOutlined  className=" cursor-pointer !text-icon text-red-600" onClick={() => editRegion(region.serviceLineId, region.serviceLineName)} 
+                      
                       />
                   )}
 
@@ -247,12 +244,8 @@ if (props.fetchingServiceLine) {
                           cancelText="No"
                           onConfirm={() =>  props.removeServiceLine(region.serviceLineId,props.orgId)}
                         >
-                  <DeleteOutlined 
-                    style={{
+                  <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
                     
-                      color: "red",
-                      cursor:"pointer"
-                    }}
                 // onClick={() => 
                 //     props.removeServiceLine(region.serviceLineId)
                 //  }

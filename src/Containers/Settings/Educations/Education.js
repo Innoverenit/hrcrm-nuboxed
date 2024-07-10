@@ -122,7 +122,7 @@ return <div><BundleLoader/></div>;
   return (
       <div>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex w-[18vw] mt-3"  >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -166,7 +166,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingEducations && educations.length === 0 ? <NodataFoundPage /> : educations.slice().sort((a, b) => a.educationType.localeCompare(b.educationType)).map((region, index) => (
-            <div className="card9" key={region.educationTypeId}>
+            <div className="card9 h-8" key={region.educationTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.educationTypeId ? (
@@ -196,7 +196,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {region.editInd ? (
-                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.educationTypeId, region.educationType)} />
+                    <BorderColorIcon className=" cursor-pointer !text-icon text-red-600"   onClick={() => editRegion(region.educationTypeId, region.educationType)} />
                     ) : null}
                     </>
                 )}
@@ -208,12 +208,8 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeEducation(region.educationTypeId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  style={{
+                <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
                   
-                    color: "red",
-                    cursor:"pointer"
-                  }}
               // onClick={() => 
               //     props.removeServiceLine(item.educationTypeId)
               //  }

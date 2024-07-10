@@ -118,7 +118,7 @@ return <div><BundleLoader/></div>;
   return (
       <div>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex w-[18vw] mt-3" >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -162,7 +162,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingMasterKpi && masterKpiList.length === 0 ? <NodataFoundPage /> : masterKpiList.slice().sort((a, b) => a.kpi.localeCompare(b.kpi)).map((region, index) => (
-            <div className="card9" key={region.performanceManagementId}>
+            <div className="card9 h-12" key={region.performanceManagementId}>
             {/* Region name display or input field */}
             
             {editingId === region.performanceManagementId ? (
@@ -201,7 +201,7 @@ Currency
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.performanceManagementId, region.kpi)} />
+                    <BorderColorIcon  className=" cursor-pointer !text-icon text-red-600"  onClick={() => editRegion(region.performanceManagementId, region.kpi)} />
                 )}
 
                 {/* Delete button */}
@@ -211,12 +211,7 @@ Currency
                         cancelText="No"
                         onConfirm={() =>  props.removeMasterKpi(region.performanceManagementId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
               // onClick={() => 
               //     props.removeServiceLine(item.performanceManagementId)
               //  }

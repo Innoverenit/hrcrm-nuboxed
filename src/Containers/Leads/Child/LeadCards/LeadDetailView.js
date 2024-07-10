@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { SubTitle } from "../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 class LeadDetailView extends Component {
   render() {
@@ -50,8 +49,8 @@ const LeadItemRow = ({ label, value }) => {
   return (
     <div class=" flex items-center flex-nowrap m-1"
     >
-      <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
-      <SubTitle style={{}}>{value}</SubTitle>
+      <div className=" text-[#444] font-semibold" >{label}</div>
+      <div style={{}}>{value}</div>
     </div>
   );
 };

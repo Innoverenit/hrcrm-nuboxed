@@ -16,7 +16,6 @@ import ServiceLine from "./ServiceLine/ServiceLine"
 // import {getRegionCount} from "../Category/Region/RegionAction"
 // import {getServiceLineCount} from "../Category/ServiceLine/ServiceLineAction"
 import KpiMasterList from "./KpiMasterList/KpiMasterList";
-import Industry from "./Industry/Industry";
 import IndustryTab from "./Industry/IndustryTab";
 import Machinary from "./Machinary/Machinary";
 
