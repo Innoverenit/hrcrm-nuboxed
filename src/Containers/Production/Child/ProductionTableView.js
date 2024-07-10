@@ -81,7 +81,7 @@ function ProductionTableView(props) {
         try {
           // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
           // setCustomers(response.data);
-          const apiEndpoint = `${base_url2}/roomrack/exit/roomAndRackDetails/${props.orgId}`;
+          const apiEndpoint = `${base_url2}/roomrack/roomAndRackDetails/quality/${props.locationId}/${props.orgId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',
             headers: {
@@ -471,7 +471,7 @@ const mapStateToProps = ({ production, auth, inventory }) => ({
     token: auth.token,
     // productionByLocsId: production.productionByLocsId,
     // fetchingProductionLocId: production.fetchingProductionLocId,
-    // locationId: auth.userDetails.locationId,
+    locationId: auth.userDetails.locationId,
     // orgId: auth.userDetails.organizationId,
     // user: auth.userDetails,
     

@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import {createQualityProduct,getQualityProducts} from "../../ProductAction"
+import {createQualityProduct,getQualityProducts,addDragQuality} from "../../ProductAction"
 
 const QualityProductForm = (props) => {
   const [qualityProducts, setQualityProducts] = useState(props.qualityProducts);
@@ -16,12 +16,25 @@ const QualityProductForm = (props) => {
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
 
+    // const items = Array.from(qualityProducts);
+    // const [reorderedItem] = items.splice(result.source.index, 1);
+    // items.splice(result.destination.index, 0, reorderedItem);
+    // console.log(items)
+
+    // setQualityProducts(items);
     const items = Array.from(qualityProducts);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-    console.log(items)
 
-    setQualityProducts(items);
+    // Update steps to reflect the new order
+    const updatedItems = items.map((item, index) => ({
+      ...item,
+      steps:parseInt(`${index + 1}`) ,
+    }));
+    console.log(updatedItems)
+    props.addDragQuality(updatedItems)
+
+    setQualityProducts(updatedItems);
   };
 
   const onFinish = (values) => {
@@ -169,7 +182,8 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             createQualityProduct,
-            getQualityProducts
+            getQualityProducts,
+            addDragQuality
         //   getLocationMachine,
         //   createMachinary,
         //   getLocationMachineData,

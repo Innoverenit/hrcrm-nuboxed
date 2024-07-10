@@ -9,13 +9,15 @@ function MoveToggleQuality(props) {
 
   function handleDispatchToggle() {
     props.moveProductionQuality(
-    //   {
+      {
 
         
-    //     dispatchInd: true,
-    //     userId:props.item.userId,
+        // dispatchInd: true,
+        // userId:props.item.userId,
+        roomRackId:props.selectedZone,
+        roomRackChamberLinkId:props.selectedRack
        
-    //   },
+      },
       props.item.productionProductId,
       props.userId
     );
