@@ -229,14 +229,14 @@ const LeadsActionLeft = (props) => {
                size="small"
                count={(props.viewType === "all" && props.leadsAllCountData.leadsDetails) || 0}
                overflowCount={999}>
-              <span class=" md:mr-1 text-sm cursor-pointer"
+              <span class="  !text-icon md:mr-1  cursor-pointer"
                 onClick={() => props.setLeadsViewType("all")}
                 style={{
                   color: props.viewType === "all" && "#1890ff",
                 }}
               >
                 <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                  <div class="text-white !text-icon">ALL</div></Avatar>
+                  <div class="text-white">ALL</div></Avatar>
 
               </span>
             </Badge>

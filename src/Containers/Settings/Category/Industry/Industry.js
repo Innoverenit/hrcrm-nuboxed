@@ -111,10 +111,10 @@ return <div><BundleLoader/></div>;
   return (
       <div>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex w-[18vw] mt-3" >
           <Input
        placeholder="Search by Name"
-      style={{width:"100%",marginLeft:"0.5rem"}}
+      style={{width:"100%" ,marginLeft:"0.5rem"}}
           // suffix={suffix}
           onPressEnter={handleSearch}  
           onChange={handleChange}
@@ -156,7 +156,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingIndustry && industryListData.length === 0 ? <NodataFoundPage /> : industryListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="card9" key={region.industryId}>
+            <div className="card9 h-12" key={region.industryId}>
             {/* Region name display or input field */}
             {editingId === region.industryId ? (
                 <input
@@ -205,7 +205,7 @@ Industry
                         <button className=" ml-4"   onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.industryId, region.name)} />
+                    <BorderColorIcon   className=" cursor-pointer !text-icon text-red-600" onClick={() => editRegion(region.industryId, region.name)} />
                 )}
 
                 {/* Delete button */}
@@ -215,11 +215,8 @@ Industry
                         cancelText="No"
                         onConfirm={() =>  props.removeIndustry(region.industryId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  style={{
-                    cursor:"pointer",
-                    color: "red",
-                  }}
+                <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
+                 
               // onClick={() => 
               //     props.removeServiceLine(item.industryId)
               //  }

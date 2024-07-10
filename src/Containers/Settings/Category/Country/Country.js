@@ -59,7 +59,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
     <>
    <div>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex w-[18vw] mt-3"  >
     <Input
             placeholder="Search by country"
             style={{ width: "100%", marginLeft: "0.5rem" }}

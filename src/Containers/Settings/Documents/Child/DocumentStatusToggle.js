@@ -135,7 +135,7 @@ function DocumentStatusToggle(props) {
             isLoading={true}
             style={{
               width: "9em",
-              backgroundColor: props.editInd || toggle ? "rgb(119, 221, 119)" : "#E6E6E6",
+              backgroundColor: props.editInd || toggle ? "#E6E6E6" :"rgb(119, 221, 119)" ,
             }}
             checkedChildren="Not Mandatory"
              unCheckedChildren="Mandatory"

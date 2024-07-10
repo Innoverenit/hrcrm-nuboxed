@@ -1,4 +1,4 @@
-import React, { useEffect,lazy,useState} from "react";
+import React, { useEffect,useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -118,7 +118,7 @@ return <div><BundleLoader/></div>;
   return (
       <div>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex w-[18vw] mt-3"  >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -162,7 +162,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingExpenses && expenses.length === 0 ? <NodataFoundPage /> : expenses.slice().sort((a, b) => a.expenseType.localeCompare(b.expenseType)).map((region, index) => (
-            <div className="card9" key={region.expenseTypeId}>
+            <div className="card9 h-8" key={region.expenseTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.expenseTypeId ? (
@@ -192,7 +192,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {region.editInd ? (
-                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.expenseTypeId, region.expenseType)} />
+                    <BorderColorIcon  className=" cursor-pointer !text-icon text-red-600" onClick={() => editRegion(region.expenseTypeId, region.expenseType)} />
                     ) : null}
                     </>
                 )}
@@ -204,12 +204,8 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeExpense(region.expenseTypeId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
+                 
               // onClick={() => 
               //     props.removeServiceLine(item.expenseTypeId)
               //  }
