@@ -61,6 +61,8 @@ const initialState = {
 
   documentUploadModal: false,
 
+  hospitalUploadModal:false,
+
   addDrawerContactEmailModal:false,
 
   addingDocumentByContactId: false,
@@ -345,6 +347,9 @@ export const contactReducer = (state = initialState, action) => {
 
     case types.HANDLE_DOCUMENT_UPLOAD_MODAL:
       return { ...state, documentUploadModal: action.payload };
+
+      case types.HANDLE_HOSPITAL_UPLOAD_MODAL:
+        return { ...state, hospitalUploadModal: action.payload };
 
       case types.HANDLE_CONTACT_REACT_SPEECH_MODAL:
         return { ...state, addContactSpeechModal: action.payload };

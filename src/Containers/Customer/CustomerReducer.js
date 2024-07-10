@@ -248,6 +248,9 @@ const initialState = {
   addingDocumentByCustomerId: false,
   addingDocumentByCustomerIdError: false,
 
+  addingDocumentByHospital: false,
+  addingDocumentByHospitalError: false,
+
   fetchingDocumentsByCustomerId: false,
   fetchingDocumentsByCustomerIdError: false,
   documentsByCustomerId: [],
@@ -712,7 +715,7 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         addingDocumentByCustomerId: false,
         addingDocumentByCustomerIdError: false,
-       // documentUploadModal:false,
+        documentUploadModal:false,
         documentsByCustomerId: [action.payload, ...state.documentsByCustomerId],
         documentsByContactId: [action.payload, ...state.documentsByContactId],
         documentsByOpportunityId: [action.payload, ...state.documentsByOpportunityId],
@@ -726,6 +729,31 @@ export const customerReducer = (state = initialState, action) => {
         addingDocumentByCustomerIdError: true,
       };
 
+
+      case types.ADD_HOSPITAL_DOCUMENT_REQUEST:
+      return {
+        ...state,
+        addingDocumentByHospital: true,
+        addingDocumentByHospitalError: false,
+      };
+    case types.ADD_HOSPITAL_DOCUMENT_SUCCESS:
+      return {
+        ...state,
+        addingDocumentByHospital: false,
+        addingDocumentByHospitalError: false,
+       // documentUploadModal:false,
+        documentsByCustomerId: [action.payload, ...state.documentsByCustomerId],
+        documentsByContactId: [action.payload, ...state.documentsByContactId],
+        documentsByOpportunityId: [action.payload, ...state.documentsByOpportunityId],
+        documentsByInnOppId: [action.payload, ...state.documentsByInnOppId],
+        documentsByInvestorId: [action.payload, ...state.documentsByInvestorId]
+      };
+    case types.ADD_HOSPITAL_DOCUMENT_FAILURE:
+      return {
+        ...state,
+        addingDocumentByHospital: false,
+        addingDocumentByHospitalError: true,
+      };
     /*get list of documents of an Customer */
     case types.GET_CUSTOMER_DOCUMENTS_REQUEST:
       return {

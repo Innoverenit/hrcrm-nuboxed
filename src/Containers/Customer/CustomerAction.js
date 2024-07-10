@@ -530,6 +530,32 @@ export const addCustomerDocument = (data) => (dispatch) => {
     });
 };
 
+export const addHospitalDocument = (data) => (dispatch) => {
+  console.log(data);
+  dispatch({ type: types.ADD_HOSPITAL_DOCUMENT_REQUEST });
+  axios
+    .post(`${base_url}/document/save`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_HOSPITAL_DOCUMENT_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_HOSPITAL_DOCUMENT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 /**
  * get documents of an customer
  */
