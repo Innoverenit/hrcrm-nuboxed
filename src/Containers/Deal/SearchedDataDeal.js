@@ -16,7 +16,6 @@ import { BundleLoader } from "../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
-import SearchedDataDeal from "./SearchedDataDeal";
 
 const ButtonGroup = Button.Group;
 
@@ -24,12 +23,12 @@ const DealsTeamCardList = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
-  useEffect(() => {
-    props.getTeamsDeals(props.userId,page);
-    setPage(page + 1);
-    // props.getSectors();
-    // props.getCountries();
-  }, []);
+  // useEffect(() => {
+  //   props.getTeamsDeals(props.userId,page);
+  //   setPage(page + 1);
+  //   // props.getSectors();
+  //   // props.getCountries();
+  // }, []);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -79,19 +78,15 @@ const DealsTeamCardList = (props) => {
   }
   const { user, deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal, fetchingTeamsDealsData, leadsAllData } = props;
 
-  if (fetchingTeamsDealsData) {
-    return <BundleLoader />;
-  }
+  // if (fetchingTeamsDealsData) {
+  //   return <BundleLoader />;
+  // }
 
   
 
   return (
     <>
-      {props.dealSerachedData.length > 0 ? (
-    <SearchedDataDeal
-    dealSerachedData={props.dealSerachedData}
-    />
-  ) : (
+  
       <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
           <div className=" md:w-[14.5rem]"><FormattedMessage
@@ -129,15 +124,8 @@ const DealsTeamCardList = (props) => {
           /></div>
 
         </div>
-        <InfiniteScroll
-          dataLength={props.teamsDealsData.length}
-          next={handleLoadMore}
-          hasMore={hasMore}
-          loader={fetchingTeamsDealsData ? <div class="flex justify-center">Loading...</div> : null}
-          height={"80vh"}
-          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
-        >
-          {!fetchingTeamsDealsData && props.teamsDealsData.length === 0 ? <NodataFoundPage /> : props.teamsDealsData.map((item, index) => {
+       
+          {props.dealSerachedData.map((item, index) => {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
               if (element.oppStage === item.oppStage) {
@@ -345,9 +333,9 @@ const DealsTeamCardList = (props) => {
 
             )
           })}
-        </InfiniteScroll>
+       
       </div>
-       )} 
+    
       {/* <UpdateLPitchModal
         item={currentLeadsId}
         updatePitchModal={props.updatePitchModal}
@@ -386,7 +374,7 @@ const mapStateToProps = ({ auth, leads, deal, sector, pitch }) => ({
   allDealsData: deal.allDealsData,
   teamsDealsData:deal.teamsDealsData,
   fetchingTeamsDealsData:deal.fetchingTeamsDealsData,
-  dealSerachedData: deal.dealSerachedData
+
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

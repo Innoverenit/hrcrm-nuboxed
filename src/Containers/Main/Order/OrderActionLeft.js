@@ -148,8 +148,10 @@ function OrderActionLeft (props) {
      
      
 )}
-{props.user.repairInd === true && (
+
       <div className=" cursor-pointer">
+      {props.user.repairInd === true && (
+        <>
         <Tooltip title="My Repair Orders">
           <Badge
             size="small"
@@ -231,7 +233,11 @@ function OrderActionLeft (props) {
                     </span>
                     {/* </Badge> */}
                 </Tooltip>
-        <Tooltip title="Prcoure">
+                </>
+              )}
+         {props.user.moduleMapper.ecomModInd === true && (
+          <>     
+        <Tooltip title="Procure">
           {/* <Badge
             size="small"
             count={(props.viewType === "list" && props.orderCount.order) || 0}
@@ -296,14 +302,14 @@ function OrderActionLeft (props) {
             </span>
           {/* </Badge> */}
         </Tooltip>
-
-
+        </> 
+  )}
       
       </div>
      
   
      
-      )}
+    
       <div class=" w-64 ml-2 max-sm:w-24">
         <Input
           placeholder="Search by Customer or Order ID"

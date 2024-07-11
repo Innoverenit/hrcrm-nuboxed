@@ -588,12 +588,12 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
   };
 
-  export const searchPitchName = (name) => (dispatch) => {
+  export const searchPitchName = (name,type) => (dispatch) => {
     dispatch({
       type: types.GET_PITCH_SEARCH_REQUEST,
     });
     axios
-      .get(`${base_url}/investorLeads/search/${name}`, {
+      .get(`${base_url}/investorleads/search/alltype/${name}/${type}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

@@ -236,7 +236,7 @@ function SuppliesTable(props) {
                           </div>
 
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          {/* <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={<FormattedMessage
                                                             id="app.Print"
                                                             defaultMessage="Print"
@@ -248,7 +248,7 @@ function SuppliesTable(props) {
                                                             />
                                                         </Tooltip>
 
-                                                    </div>
+                                                    </div> */}
                             <div>
                               <Tooltip title="Material Builder">
                                 <ViewQuiltIcon

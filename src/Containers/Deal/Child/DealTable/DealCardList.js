@@ -48,6 +48,7 @@ import {
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddDealsContactDrawerModal from "../UpdateDeal/AddDealsContactDrawerModal";
 import AddDealsOwnDrawerModal from "./AddDealsOwnDrawerModal";
+import SearchedDataDeal from "../../SearchedDataDeal";
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const DealSelectStages =lazy(()=>import("./DealSelectStages"));
@@ -91,6 +92,11 @@ function DealCardList(props) {
 
   return (
     <>
+     {props.dealSerachedData.length > 0 ? (
+    <SearchedDataDeal
+    dealSerachedData={props.dealSerachedData}
+    />
+  ) : (
       <InfiniteScroll
         dataLength={dealsByuserId.length}
         next={handleLoadMore}
@@ -421,7 +427,7 @@ function DealCardList(props) {
           })}
         </div>
       </InfiniteScroll>
-
+   )} 
       <UpdateDealModal
         currentItem={currentItem}
         openupdateDealModal={openupdateDealModal}
@@ -481,7 +487,8 @@ const mapStateToProps = ({ auth, deal, opportunity }) => ({
   allRecruitmentByOppId: opportunity.allRecruitmentByOppId,
   allRecruitmentDetailsByOppId: opportunity.allRecruitmentDetailsByOppId,
   fetchingOpportunitySkills: opportunity.fetchingOpportunitySkills,
-  addOwnModal: deal.addOwnModal
+  addOwnModal: deal.addOwnModal,
+  dealSerachedData: deal.dealSerachedData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
