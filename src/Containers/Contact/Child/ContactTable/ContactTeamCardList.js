@@ -379,7 +379,7 @@ function ContactTeamCardList(props) {
               <div class="rounded-full  cursor-pointer ">
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
-        <span class=" mr-2 text-xs cursor-pointer"
+        <span class="  text-xs cursor-pointer"
           onClick={() => {
             props.handleDonotCallModal(true);
             handleSetCurrentContactId(item);
@@ -389,7 +389,7 @@ function ContactTeamCardList(props) {
         </span>
       )}
       {item.doNotCallInd === true && (
-        <span class=" mr-2 text-xs cursor-pointer"
+        <span class=" text-xs cursor-pointer"
           onClick={() => {
             props.handleDonotCallModal(true);
             handleSetCurrentContactId(item);

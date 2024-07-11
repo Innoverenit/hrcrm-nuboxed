@@ -373,7 +373,7 @@ console.log(props.userId)
               return (
                 <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex font-medium  w-[15rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
@@ -567,12 +567,12 @@ console.log(props.userId)
                         >
                           {user.erpInd === true && (
                             <Button type="primary"
-                              style={{ width: "8rem" }}>
+                              style={{ width: "8rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}>
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
                                 {item.convertInd === 0 && "Convert"}
                                 {item.convertInd === 1 && "In progress"}
                                 {item.convertInd === 2 && "Converted"}
-                                <NextPlanIcon  />
+                                <NextPlanIcon  className="!text-icon "/>
                               </div>
                             </Button>
                           )}

@@ -50,7 +50,7 @@ const ProductionActionLeft = (props) => {
         // count={(viewType === "stage" && recordData.opportunityDetails) || 0}
         overflowCount={999}
       >
-          <span class=" mr-1 cursor-pointer"
+          <span class=" mr-1 text-sm cursor-pointer"
             style={{
               
               color: props.viewType === "stage" && "#1890ff",
@@ -110,7 +110,7 @@ const ProductionActionLeft = (props) => {
                         >
                            
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white !text-icon "> <TokenIcon  /></div></Avatar>
+                       <TokenIcon className="text-white !text-icon " /></Avatar>
 
 
                         </span>

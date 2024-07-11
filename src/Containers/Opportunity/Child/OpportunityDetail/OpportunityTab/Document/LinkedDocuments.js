@@ -55,7 +55,9 @@ class LinkedDocuments extends Component {
                       defaultMessage="Date"
                     /></div>
      
+          
             <div className="md:w-[10.1rem]">  <FormattedMessage id="app.name" defaultMessage="Name" /></div>
+            <div className="md:w-[10.1rem]">  <FormattedMessage id="app.type" defaultMessage="Type" /></div>
                      <div className="md:w-[11.12rem]">
                      <FormattedMessage
               id="app.description"

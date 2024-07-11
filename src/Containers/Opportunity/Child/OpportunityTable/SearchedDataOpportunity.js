@@ -505,33 +505,7 @@ mapStateToProps,
 mapDispatchToProps
 )(SearchedDataOpportunity);
 
-const Header = styled.div`
-  text-overflow: ellipsis;
 
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1em;
-padding:4px;
-  color:blue;
-  cursor:pointer;
-  // font-family: Poppins;
-  //font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-display: flex;
-    justify-content: flex-end;
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-
-text-align:center
-  }
-`
 const CardWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;

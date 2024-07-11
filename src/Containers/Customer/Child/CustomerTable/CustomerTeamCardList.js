@@ -477,7 +477,7 @@ const [rowdata, setrowdata] = useState("");
                                 {item.convertInd === 0 && "Convert"}
                                 {item.convertInd === 1 && "In progress"}
                                 {item.convertInd === 2 && "Converted"}
-                                <NextPlanIcon  />
+                                <NextPlanIcon className="!text-icon "  />
                               </div>
                             </Button>
                           )}
@@ -502,7 +502,7 @@ const [rowdata, setrowdata] = useState("");
                                 </a>
                               </div>
                             )
-                              : <div class=" w-3">
+                              : <div class=" w-4">
 
                               </div>
                             }
@@ -533,7 +533,7 @@ const [rowdata, setrowdata] = useState("");
                      
 
                      
-                        <div class="w-5">
+                        <div class="w-4">
                           <Tooltip title="Contact">
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
@@ -545,7 +545,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>
-                        <div class="w-5">
+                        <div class="w-4">
                           <Tooltip title="Opportunity">
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
@@ -561,7 +561,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>
                      
                      
-                        <div class="w-5">
+                        <div class="w-4">
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
@@ -573,7 +573,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>
-                        <div class="w-5">
+                        <div class="w-4">
                           <Tooltip title="Notes">
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-[#4bc076]"
@@ -590,7 +590,7 @@ const [rowdata, setrowdata] = useState("");
                      
 
                       
-                        <div class="w-5">
+                        <div class="w-4">
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
                             <LocationOnIcon
@@ -600,7 +600,7 @@ const [rowdata, setrowdata] = useState("");
 
                           </Tooltip>
                         </div>
-                        <div class="w-5">
+                        <div class="w-4">
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title="Edit">
                               <BorderColorIcon
