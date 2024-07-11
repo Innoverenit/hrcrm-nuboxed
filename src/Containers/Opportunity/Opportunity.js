@@ -61,7 +61,7 @@ class Opportunity extends Component {
     return (
       <React.Fragment>
         <OpportunityHeader
-          viewType={this.props.viewType}
+          viewType={viewType}
           teamsAccessInd={teamsAccessInd}
           setOpportunityViewType={this.setOpportunityViewType}
           handleOpportunityModal={handleOpportunityModal}

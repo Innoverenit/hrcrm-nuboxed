@@ -155,7 +155,7 @@ const initialState = {
   //search
   fetchingOpportunityInputSearchData: false,
   fetchingOpportunityInputSearchDataError: false,
-  inputData: [],
+  ooportunitySerachedData: [],
 
   addRequirementModal: false,
 
@@ -760,8 +760,7 @@ export const OpportunityReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingOpportunityInputSearchData: false,
-        opportunityByUserId: action.payload,
-        // serachedData: action.payload,
+         ooportunitySerachedData: action.payload,
       };
     case types.INPUT_OPPORTUNITY_SEARCH_DATA_FAILURE:
       return { ...state, fetchingOpportunityInputSearchDataError: true };
@@ -2629,6 +2628,11 @@ export const OpportunityReducer = (state = initialState, action) => {
               serachingAllCatalogue: false,
               serachingAllCatalogueError: true,
             }; 
+
+            case types.HANDLE_CLAER_SEARCHED_DATA_OPPORTUNITY:
+              return { ...state, 
+                ooportunitySerachedData: [],            
+              };
 
     default:
       return state;

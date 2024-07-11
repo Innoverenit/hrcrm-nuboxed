@@ -47,6 +47,7 @@ import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import OpportunityRowEmailModal from "./OpportunityRowEmailModal";
 import { base_url } from "../../../../Config/Auth";
+import SearchedDataOpportunity from "./SearchedDataOpportunity";
 const Option =Select;
 
 function OpportunityCardList(props) {
@@ -222,6 +223,11 @@ const handleLoadMore = () => {
 console.log(props.userDetails.imageId)
   return (
     <>
+      {props.ooportunitySerachedData.length > 0 ? (
+    <SearchedDataOpportunity
+    ooportunitySerachedData={props.ooportunitySerachedData}
+    />
+  ) : (
        <InfiniteScroll
         dataLength={opportunityByUserId.length}
         next={handleLoadMore}
@@ -560,7 +566,7 @@ imgHeight={"1.8rem"}
     </div>
 
       </InfiniteScroll>
-      
+        )} 
       <UpdateOpportunityModal
         updateOpportunityModal={updateOpportunityModal}
         opportunityData={currentOpportunityId}
@@ -634,6 +640,7 @@ const mapStateToProps = ({ auth, account, opportunity }) => ({
     fetchingOpportunitySkills:opportunity.fetchingOpportunitySkills,
     addOpportunityRowEmailModal:opportunity.addOpportunityRowEmailModal,
     userDetails: auth.userDetails,
+    ooportunitySerachedData: opportunity.ooportunitySerachedData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
