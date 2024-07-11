@@ -951,8 +951,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Link>
         </Menu.Item>
         )} 
- {/* {( user.erpInd === true && user.qualityAccessInd === true 
-  ) &&  ( */}
+ {( user.erpInd === true && user.qualityAccessInd === true 
+  ) &&  (
 <Menu.Item key="/quality" style={{ height: "1.45rem", 
         color: selectedMenuItem === '/quality' ? 'tomato' : '#4bc076' }}>
           <Link to="/quality" onClick={() => handleSelect('/quality')}>
@@ -966,7 +966,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </span>
           </Link>
         </Menu.Item>
- {/* )} */}
+ )}
 
 {/* <Menu.Item key="/procre" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
@@ -1254,7 +1254,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
 
 
 {(user.hrInd === true   
- || user.role === "ADMIN"
+ && user.role === "ADMIN"
 ) && ( 
         <Menu.Item key="/assessment" style={{ height: "1.45rem", 
         color: selectedMenuItem === '/assessment' ? 'tomato' : '#4bc076' }}>
@@ -1262,11 +1262,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
 
             <i class="fas fa-holly-berry"></i>
             &nbsp;
-            <span class="text-white text-ls ml-1"><FormattedMessage
-              id="app.assessment"
-              defaultMessage="Assessment"
-            />
-
+            <span class="text-white text-ls ml-1">
+           KPI Assessment
             </span>
           </Link>
         </Menu.Item>

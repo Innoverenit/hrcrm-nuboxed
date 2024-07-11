@@ -214,7 +214,7 @@ function ProductCardList(props) {
                         <ProductPublishToggle item={item} />
 
                       </div>
-                      <div className=" flex font-medium flex-col  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      {/* <div className=" flex font-medium flex-col  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                       
                       <ReactToPrint
                                                         trigger={() => <Button
@@ -244,7 +244,7 @@ function ProductCardList(props) {
                                                             <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>ID:</span> {item.newProductNo}</div>
                                                         </div>
                                                     </div>
-                      </div>
+                      </div> */}
 
                       <div>
                         <Tooltip title="Quality">

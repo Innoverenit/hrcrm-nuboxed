@@ -77,7 +77,7 @@ const ProductActionLeft = (props) => {
           onClick={() => props.setProductViewType("category")}
         >
           <Avatar style={{ background: props.viewType === "category" ? "#f279ab" : "#4bc076" }}>
-            <CategoryIcon className="text-white !text-icon" />
+            <CategoryIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
         </div>

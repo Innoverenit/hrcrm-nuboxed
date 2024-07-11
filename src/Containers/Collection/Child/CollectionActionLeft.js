@@ -56,11 +56,12 @@ const CollectionActionLeft = (props) => {
           onClick={() => props.setCollectionViewType("distributor")}
           style={{
             marginRight: "0.5rem",
+            cursor:"pointer",
             color: props.viewType === "distributor" && "#1890ff",
           }}
         >
           <Avatar style={{ background: props.viewType === "distributor" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon className=" text-white !text-icon"/>
+           ALL
           </Avatar>
         </span>
       </Tooltip>

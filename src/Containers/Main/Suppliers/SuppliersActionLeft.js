@@ -159,7 +159,7 @@ const {
                 </Tooltip>
 
 
-                <Tooltip title="Not Approved">
+                <Tooltip title="My Suppliers-Not Approved">
                 <Badge
           size="small"
           //count={(props.viewType === "not approved" && props.allCountSupplier.AllSupplierCount) || 0}

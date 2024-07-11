@@ -23,6 +23,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import PitchSearchedData from "./PitchSearchedData";
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
 const StatusPitchToggle =lazy(()=>import("../Child/StatusPitchToggle"));
@@ -77,6 +78,11 @@ const PitchAllCardList = (props) => {
 
   return (
     <>
+     {props.serachedPitchData.length > 0 ? (
+<PitchSearchedData
+serachedPitchData={props.serachedPitchData}
+/>
+) : (
  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky z-10">
         <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
@@ -507,6 +513,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                 })}
                   </InfiniteScroll>
       </div>
+         )}
       <UpdateLPitchModal
         item={currentLeadsId}
         updatePitchModal={props.updatePitchModal}
@@ -542,7 +549,8 @@ user: auth.userDetails,
   addDrawerPitchNotesModal:pitch.addDrawerPitchNotesModal,
   updatePitchModal:pitch.updatePitchModal,
   openASSImodal:pitch.openASSImodal,
-  allPitchData:pitch.allPitchData
+  allPitchData:pitch.allPitchData,
+  serachedPitchData:pitch.serachedPitchData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
