@@ -17,6 +17,9 @@ import { bindActionCreators } from "redux";
 import PerformanceTable from "./Performance/PerformanceTable";
 import LinkAccountForm from "./LinkAccount/LinkAccountForm";
 import EquipmentForm from "./ProfileBoost/EquipmentForm";
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+
 const AddEducationModal = lazy(() => import("./ProfileBoost/Education/AddEducationModal"));
 const AddTrainingModal = lazy(() => import("./ProfileBoost/Training/AddTrainingModal"));
 const AddEmploymentModal = lazy(() => import("./ProfileBoost/Employment/AddEmploymentModal"));
@@ -117,12 +120,12 @@ class ProfileDetailTab extends Component {
           <TabPane
               tab={
                 <>
-                  <span>
+                   <span> 
                     <MailOutlined type="mail" />
                     <span class=" ml-1">
                     Performance
                   </span>
-                  </span>
+                    </span>
                  
                    
                 </>
@@ -239,8 +242,9 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <PhoneOutlined type="phone" />
+                    <MedicalServicesIcon className="!text-icon" type="phone" />
                     <span class=" ml-1">
+
                     Emergency
                     </span>
                   </span>
@@ -384,7 +388,7 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <MailOutlined type="mail" />
+                    <LocalOfferIcon type="mail" />
                     <span class=" ml-1"> 
                  Link Account
                   </span>
