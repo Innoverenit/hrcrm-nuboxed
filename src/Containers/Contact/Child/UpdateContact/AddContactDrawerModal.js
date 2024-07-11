@@ -9,12 +9,11 @@ class AddContactDrawerModal extends Component {
       <div>
         <StyledDrawer
           title={this.props.item.fullName}
-          width={400}
+         className="w-[65%]"
           visible={this.props.addDrawerContactModal}
           closable
           placement="right"
           destroyOnClose
-          style={{marginTop:"5rem"}}
           maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
           onClose={() => this.props.handleContactDrawerModal(false)}
         >

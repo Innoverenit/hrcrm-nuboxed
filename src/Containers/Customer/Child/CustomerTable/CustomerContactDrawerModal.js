@@ -17,7 +17,7 @@ class CustomerContactDrawerModal extends Component {
         <StyledDrawer
         // title="Notes"
           title={this.props.customer.name}
-          width="80%"
+          width="65%"
           visible={this.props.addDrawerCustomerContactModal}
           destroyOnClose
           closable

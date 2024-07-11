@@ -266,7 +266,7 @@ const [rowdata, setrowdata] = useState("");
            } `;
                     return (
                         <div>
-                            <div className="flex rounded max-sm:flex-col justify-between bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+                            <div className="flex rounded max-sm:flex-col justify-between bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
                                 >
                                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                    <div className=" flex font-medium flex-col w-[18rem] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
@@ -423,7 +423,7 @@ const [rowdata, setrowdata] = useState("");
                                {item.convertInd===0 && "Convert"}
                                {item.convertInd===1 && "In progress"}
                                {item.convertInd===2 && "Converted"}
-                               <NextPlanIcon  />
+                               <NextPlanIcon className="!text-icon " />
                               </div>
                             </Button>
                           )}
