@@ -3,6 +3,7 @@ import { Form, Input, Button } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import MoveToggleQualityProduct from "../ProductTable/MoveToggleQualityProduct"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import {createQualityProduct,getQualityProducts,addDragQuality} from "../../ProductAction"
@@ -10,6 +11,13 @@ import {createQualityProduct,getQualityProducts,addDragQuality} from "../../Prod
 const QualityProductForm = (props) => {
   const [qualityProducts, setQualityProducts] = useState(props.qualityProducts);
   const [form] = Form.useForm();
+  const [isDragAndDropEnabled, setIsDragAndDropEnabled] = useState(false);
+
+
+
+  const toggleDragAndDrop = () => {
+    setIsDragAndDropEnabled(!isDragAndDropEnabled);
+  };
 
 
 
@@ -86,6 +94,12 @@ useEffect(() => {
           Submit
         </Button>
       </Form.Item>
+      <button
+        onClick={toggleDragAndDrop}
+        className="m-4 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        {isDragAndDropEnabled ? 'Disable Order Change' : 'Change Order'}
+      </button>
     </Form>
     <div className='flex justify-end sticky z-auto'>
             <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -119,7 +133,7 @@ useEffect(() => {
                     );
                 })} */}
 
-
+{isDragAndDropEnabled ? (
 <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="qualityProducts">
             {(provided) => (
@@ -145,6 +159,21 @@ useEffect(() => {
                           </div>
                         </div>
 
+                        <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                          <div className="font-normal text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
+                            {/* {item.steps} */}
+
+                            <MoveToggleQualityProduct 
+                                                        // selectedZone={selectedZone}
+                                                        // selectedRack={selectedRack}
+                                                        // item={item} 
+                                                        // selectedZone={selectedZone}
+                                                        // selectedRack={selectedRack}
+                                                    className=' !text-icon'
+                                                        />
+                          </div>
+                        </div>
+
                        
                       </div>
                     )}
@@ -155,9 +184,56 @@ useEffect(() => {
             )}
           </Droppable>
         </DragDropContext>
-              
+      ) : (
+
+        <div  
+       
+        >
+                {qualityProducts.map((item, index) => (
+                  
+                 
+                      <div
+                       
+                        className="flex rounded-xl mt-2 bg-white h-12 items-center p-3"
+                      >
+                        <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
+                          <div className="flex justify-between text-sm font-semibold font-poppins">
+                            {item.qualityName}
+                          </div>
+                        </div>
+
+                        <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                          <div className="font-normal text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
+                            {item.steps}
+                          </div>
+                        </div>
+
+                        <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                          <div className="font-normal text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
+                            {/* {item.steps} */}
+
+                            <MoveToggleQualityProduct 
+                                                        // selectedZone={selectedZone}
+                                                        // selectedRack={selectedRack}
+                                                        // item={item} 
+                                                        // selectedZone={selectedZone}
+                                                        // selectedRack={selectedRack}
+                                                    className=' !text-icon'
+                                                        />
+                          </div>
+                        </div>
+
+                       
+                      </div>
+                  
+                ))}
+               
+              </div>
+      )}
             </div>
+          
         </div>
+      
     </>
   );
 };
