@@ -157,7 +157,9 @@ function InventoryTable(props) {
                         <div className=" md:w-[5.9rem]">
                          Price
                         </div>
-                        
+                        <div className=" md:w-[5.9rem]">
+                         Pubish
+                        </div>
                     </div>
                     <div class="">
                         <InfiniteScroll

@@ -33,13 +33,12 @@ import {
          getTeamOpportunity,
 } from "../../OpportunityAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import SearchedDataOpportunity from "./SearchedDataOpportunity";
 const AddOpportunityDrawerModal =lazy(()=> import("./AddOpportunityDrawerModal"));
 const UpdateOpportunityModal =lazy(()=> import("../UpdateOpportunity/UpdateOpportunityModal"));
 const ReinstateToggleForLost =lazy(()=> import("../../Child/OpportunityTable/ReinstateToggleForLost"));
 
 
-function OpportunityTeamsCard(props) {
+function SearchedDataOpportunity(props) {
   const [hasMore, setHasMore] = useState(true);
   const [pageNo, setPageNo] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
@@ -105,11 +104,6 @@ function OpportunityTeamsCard(props) {
 
       return (    
   <>
-    {props.ooportunitySerachedData.length > 0 ? (
-    <SearchedDataOpportunity
-    ooportunitySerachedData={props.ooportunitySerachedData}
-    />
-  ) : (
 <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className="flex max-sm:hidden  w-[99%] max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">Name</div>
@@ -124,16 +118,16 @@ function OpportunityTeamsCard(props) {
         <div className="w-12"></div>
       </div>
 
-      <InfiniteScroll
+      {/* <InfiniteScroll
         dataLength={teamOpportunity.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingTeamOpportunity?<div class="flex justify-center" >Loading...</div> :null}
         height={"80vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
-      >
+      > */}
      
- { !fetchingTeamOpportunity && teamOpportunity.length === 0 ?<NodataFoundPage />:teamOpportunity.map((item,index) =>  {
+ {props.ooportunitySerachedData.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {
@@ -427,10 +421,8 @@ handleSetCurrentOpportunityId(item.opportunityName);
              
   
 
-      </InfiniteScroll>
+      {/* </InfiniteScroll> */}
       </div>
- )} 
-
       <UpdateOpportunityModal
         opportunityId={currentOpportunityId}
         opportunityName={currentOpportunityId}
@@ -484,8 +476,7 @@ const mapStateToProps = ({ auth, account, opportunity }) => ({
     allRecruitmentByOppId: opportunity.allRecruitmentByOppId,
     allRecruitmentDetailsByOppId:opportunity.allRecruitmentDetailsByOppId,
     allOpportunity:opportunity.allOpportunity,
-    teamOpportunity:opportunity.teamOpportunity,
-    ooportunitySerachedData: opportunity.ooportunitySerachedData
+    teamOpportunity:opportunity.teamOpportunity
   
 });
 const mapDispatchToProps = (dispatch) =>
@@ -512,7 +503,7 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
 mapStateToProps,
 mapDispatchToProps
-)(OpportunityTeamsCard);
+)(SearchedDataOpportunity);
 
 const Header = styled.div`
   text-overflow: ellipsis;
