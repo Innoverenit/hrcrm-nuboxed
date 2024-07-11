@@ -1,7 +1,7 @@
 import * as types from "./InventoryActionType";
 
 const initialState = {
-  viewType: "table",
+  viewType: "zone",
   addInventoryModal: false,
 
   addingInventory: false,

@@ -16,6 +16,24 @@ const initialState = {
       addingFeedBack: false,
       addingFeedBackError: false,
 
+      fetchingSupplyCategory: false,
+      fetchingSupplyCategoryError: false,
+      supplyCategory:[],
+
+      addingShipperCategory: false,
+      addingShipperCategoryError: false,
+
+      addingSupplyCategory: false,
+      addingSupplyCategoryError: false,
+
+
+      fetchingShipperCategory: false,
+      fetchingShipperCategoryError: false,
+      shipperCategory:[],
+
+      addingShipperCategory: false,
+addingShipperCategoryError: false,
+
       removingFeedBack: false,
       removingFeedBackError: false,
 
@@ -4285,6 +4303,77 @@ export const settingsReducer = (state = initialState, action) => {
                 fetchingFeedBackCount: false,
                 fetchingFeedBackCountError: true,
               };
+
+              case types.GET_SUPPLIERCATEGORY_REQUEST:
+                return { ...state, fetchingSupplyCategory: true };
+              case types.GET_SUPPLIERCATEGORY_SUCCESS:
+                return {
+                  ...state,
+                  fetchingSupplyCategory: false,
+                  supplyCategory: action.payload,
+                };
+              case types.GET_SUPPLIERCATEGORY_FAILURE:
+                return {
+                  ...state,
+                  fetchingSupplyCategory: false,
+                  fetchingSupplyCategoryError: true,
+                };
+
+                case types.ADD_SUPPLIERCATEGORY_REQUEST:
+    return { ...state, addingSupplyCategory: true };
+  case types.ADD_SUPPLIERCATEGORY_SUCCESS:
+    return {
+      ...state,
+      addingSupplyCategory: false,
+      supplyCategory:[action.payload,...state.supplyCategory]
+      // sectors: [...state.sectors, action.payload],
+      
+    };
+  case types.ADD_SUPPLIERCATEGORY_FAILURE:
+    return {
+      ...state,
+      addingSupplyCategory: false,
+      addingSupplyCategoryError: true,
+    };
+
+    case types.HANDLE_CLAER_REDUCER_DATA_SUPPLIERCATEGORY:
+      return { ...state, 
+        supplyCategory: [], 
+      
+      };        
+
+
+      case types.GET_SHIPPERCATEGORY_REQUEST:
+        return { ...state, fetchingShipperCategory: true };
+      case types.GET_SHIPPERCATEGORY_SUCCESS:
+        return {
+          ...state,
+          fetchingShipperCategory: false,
+          shipperCategory: action.payload,
+        };
+      case types.GET_SHIPPERCATEGORY_FAILURE:
+        return {
+          ...state,
+          fetchingShipperCategory: false,
+          fetchingShipperCategoryError: true,
+        };
+
+        case types.ADD_SHIPPERCATEGORY_REQUEST:
+return { ...state, addingShipperCategory: true };
+case types.ADD_SHIPPERCATEGORY_SUCCESS:
+return {
+...state,
+addingShipperCategory: false,
+shipperCategory:[action.payload,...state.shipperCategory]
+
+
+};
+case types.ADD_SHIPPERCATEGORY_FAILURE:
+return {
+...state,
+addingShipperCategory: false,
+addingShipperCategoryError: true,
+};
 
 
 

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import InventoryHeader from "./InventoryHeader";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { setInventoryViewType } from "./InventoryAction";
+import InventoryLocation from "./InventoryLocation";
 
 const InventoryCard = lazy(() => import("./InventoryCard"));
 
@@ -15,7 +16,9 @@ function Inventory(props) {
         viewType={props.viewType}
       />
       <Suspense fallback={<BundleLoader />}>
-        {props.viewType === "table" ? <InventoryCard /> : null}
+        {props.viewType === "table" ? <InventoryCard /> :
+        props.viewType === "zone" ? <InventoryLocation />
+        : null}
       </Suspense>
     </div>
   );

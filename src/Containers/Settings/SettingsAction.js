@@ -5806,3 +5806,157 @@ export const getCustomerConfigure = (orgId,formType,baseFormType) => (dispatch) 
     });
 };
 
+
+export const getSupplierCategory = () => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIERCATEGORY_REQUEST,
+  });
+  axios
+  .get(`${base_url}/supplierCategory/All`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIERCATEGORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIERCATEGORY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addSupplierCategory = (sectors,cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_SUPPLIERCATEGORY_REQUEST,
+  });
+  axios
+    .post(`${base_url}/supplierCategory`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getSectorCount(orgId));
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'SUPPLIERCATEGORY added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      console.log(res);
+      dispatch({
+        type: types.ADD_SUPPLIERCATEGORY_SUCCESS,
+        payload: { ...sectors, },
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_SUPPLIERCATEGORY_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
+    });
+};
+
+export const ClearReducerDataOfSupplierCategory = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_DATA_SUPPLIERCATEGORY,
+  });
+};
+
+export const getShipperCategory = () => (dispatch) => {
+  dispatch({
+    type: types.GET_SHIPPERCATEGORY_REQUEST,
+  });
+  axios
+  .get(`${base_url}/shipperCategory/All`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SHIPPERCATEGORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SHIPPERCATEGORY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addShipperCategory = (sectors,cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_SHIPPERCATEGORY_REQUEST,
+  });
+  axios
+    .post(`${base_url}/shipperCategory`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getSectorCount(orgId));
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'SUPPLIERCATEGORY added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      console.log(res);
+      dispatch({
+        type: types.ADD_SHIPPERCATEGORY_SUCCESS,
+        payload: { ...sectors, },
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_SHIPPERCATEGORY_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
+    });
+};
