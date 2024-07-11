@@ -19,6 +19,24 @@ const InventoryActionLeft = (props) => {
     return (
       <>
         <div class=" flex items-center" >
+        <Tooltip title="My View">
+          {/* <Badge size="small"
+           count={props.inventoryLocationCount.locCount || 0}
+           >     */}
+            <span class=" mr-[0.5rem] cursor-pointer"
+              onClick={() => setInventoryViewType("zone")}
+              style={{
+       
+                color: viewType === "zone" && "#1890ff",
+                
+              }}
+            >
+               <Avatar style={{ background: viewType === "zone" ? "#f279ab" : "#4bc076" }}>
+               <i class="fab fa-creative-commons-remix"></i>
+              </Avatar>
+            </span>
+            {/* </Badge> */}
+          </Tooltip>
           <Tooltip title={<FormattedMessage id="app.location" defaultMessage="Location" />}>
           <Badge size="small"
            count={props.inventoryLocationCount.locCount || 0}
@@ -37,6 +55,7 @@ const InventoryActionLeft = (props) => {
             </span>
             </Badge>
           </Tooltip>
+         
           {/* <Tooltip title="Catalogue">
             <span
               onClick={() => setInventoryViewType("table1")}
