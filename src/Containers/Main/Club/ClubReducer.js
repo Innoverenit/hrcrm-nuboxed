@@ -29,7 +29,12 @@ const initialState = {
             fetchingClub: false,
             fetchingClubError: true,
           }; 
-    
+          case types.HANDLE_CLAER_INTIAL_DATA:
+            return { ...state, 
+              clubAllData: [], 
+              
+            };
+
   
       default:
         return state;
