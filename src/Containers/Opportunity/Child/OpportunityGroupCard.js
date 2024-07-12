@@ -88,9 +88,7 @@ const BussinessCard = (props) => {
       theme="twoTone"
       twoToneColor="#24D8A7"
       size={140}
-      style={{ fontSize:"1rem" 
-     
-     }}
+      className=" !text-icon"
    
     />
   </Tooltip>
@@ -114,9 +112,7 @@ const BussinessCard = (props) => {
           theme="twoTone"
           twoToneColor="red"
           size={140}
-          style={{
-            fontSize: "1rem"
-          }}
+          className=" !text-icon"
         />
         </Tooltip>
     </Popconfirm>
@@ -127,7 +123,7 @@ const BussinessCard = (props) => {
            
              {user.opportunityDeleteInd ===true && user.crmInd === true && (
             <DeleteOutlined
-            type="delete" style={{ cursor: "pointer", color: "red",fontSize:"1rem"  }} />
+            type="delete" className=" !text-icon cursor-pointer text-red-600 "  />
              )}
           </StyledPopconfirm>
             </SubTitle>      
@@ -135,8 +131,8 @@ const BussinessCard = (props) => {
           <FlexContainer
             style={{ flexBasis: "10%", alignSelf: "flex-start" }}
           ></FlexContainer>
-          <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
-          <EditOutlined
+          <SubTitle >
+          <EditOutlined  className=" !text-icon text-[#337df4]"
           onClick={props.handleEdit}
           />
         </SubTitle>
