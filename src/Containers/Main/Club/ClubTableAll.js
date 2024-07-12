@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-// import {
-//     getInventoryAlllist
+import {
+    getClubAlllist
    
-// } from "../../../../Trade/TradeAction";
+} from "./ClubAction";
 import { Button, Select, Tooltip } from 'antd';
 import dayjs from "dayjs";
 // import PoLocationModal from "./PoLocationModal";
@@ -26,7 +26,7 @@ function ClubTableAll(props) {
         setPageNo(pageNo + 1);
         // props.getCurrency()
         // props.getPurchaseSuppliersList(props.supplier.supplierId);
-      //  props.getInventoryAlllist(props.orgId,pageNo)
+      //  props.getClubAlllist(props.orgId,pageNo)
     }, []);
     const [rowData, setRowData] = useState({})
     const handleRowData = (item) => {
@@ -52,14 +52,14 @@ function ClubTableAll(props) {
         const callPageMapd = props.inventoryAllList && props.inventoryAllList.length &&props.inventoryAllList[0].pageCount
         setTimeout(() => {
           const {
-            getInventoryAlllist,
+            getClubAlllist,
            // userDetails: { employeeId },
           } = props;
           if  (props.inventoryAllList)
           {
             if (pageNo < callPageMapd) {
                 setPageNo(pageNo + 1);
-                getInventoryAlllist(props.orgId,pageNo); 
+                getClubAlllist(props.orgId,pageNo); 
           }
           if (pageNo === callPageMapd){
             setHasMore(false)
@@ -216,7 +216,7 @@ const mapStateToProps = ({ trade, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-           // getInventoryAlllist
+            getClubAlllist
             // getPurchaseSuppliersList,
             // handlePoLocationModal,
             // handlePoListModal,
