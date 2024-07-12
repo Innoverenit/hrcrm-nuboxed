@@ -34,3 +34,9 @@ export const getClubAlllist = (userId,pageNo,clubType) => (dispatch) => {
         });
       });
   };
+  export const clearInitialData = () => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CLAER_INTIAL_DATA,
+    });
+  };
+  

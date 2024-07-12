@@ -19,11 +19,11 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const { Option } = Select;
 
-function ClubTableAll(props) {
+function ClubTableTeam(props) {
     const [pageNo, setPageNo] = useState(0);
     useEffect(() => {
         setPageNo(pageNo + 1);
-        props.getClubAlllist(props.userId,pageNo,props.clubId)
+        props.getClubAlllist("team",pageNo,props.clubId)
     }, []);
     const [rowData, setRowData] = useState({})
     const handleRowData = (item) => {
@@ -56,7 +56,7 @@ function ClubTableAll(props) {
           {
             if (pageNo < callPageMapd) {
                 setPageNo(pageNo + 1);
-                getClubAlllist(props.userId,pageNo,props.clubId);
+                getClubAlllist("team",pageNo,props.clubId);
           }
           if (pageNo === callPageMapd){
             setHasMore(false)
@@ -389,4 +389,4 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClubTableAll);
+export default connect(mapStateToProps, mapDispatchToProps)(ClubTableTeam);
