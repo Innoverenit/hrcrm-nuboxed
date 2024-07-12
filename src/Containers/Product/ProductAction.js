@@ -1022,6 +1022,34 @@ export const getCategoryImage = () => (dispatch) => {
 
 
 
+export const moveProductQuality = (data,qualityCheckBuilderId) => (dispatch) => {
+  dispatch({
+    type: types.MOVE_PRODUCT_QUALITY_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/qualityCheckBuilder/qualityCheck/update/mandatory/${qualityCheckBuilderId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.MOVE_PRODUCT_QUALITY_SUCCESS,
+        payload: res.data,
+      });
+      message.success(res.data);
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.MOVE_PRODUCT_QUALITY_FAILURE,
+        payload: err,
+      });
+      // message.error("Something went wrong");
+    });
+};
+
+
+
 export const getProductDesc = (productionBuilderId) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCT_DESC_REQUEST,

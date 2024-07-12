@@ -15,6 +15,10 @@ const QualityProductForm = (props) => {
 
 
 
+  const [currentData, setCurrentData] = useState(false);
+
+
+
   const toggleDragAndDrop = () => {
     setIsDragAndDropEnabled(!isDragAndDropEnabled);
   };
@@ -54,8 +58,14 @@ productId:props.particularDiscountData.productId,
 steps:values.steps,
     }
     props.createQualityProduct(data)
+    form.resetFields();
   };
 console.log(props.particularDiscountData)
+
+// function handleSetCurrentData(item) {
+//   setCurrentData(item);
+//   // console.log("opp",item);
+// }
 useEffect(() => {
     props.getQualityProducts(props.particularDiscountData.productId);
     // setPage(page + 1);
@@ -94,13 +104,14 @@ useEffect(() => {
           Submit
         </Button>
       </Form.Item>
-      <button
+      
+    </Form> 
+    <button
         onClick={toggleDragAndDrop}
         className="m-4 px-4 py-2 bg-blue-500 text-white rounded"
       >
         {isDragAndDropEnabled ? 'Disable Order Change' : 'Change Order'}
       </button>
-    </Form>
     <div className='flex justify-end sticky z-auto'>
             <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
@@ -166,7 +177,7 @@ useEffect(() => {
                             <MoveToggleQualityProduct 
                                                         // selectedZone={selectedZone}
                                                         // selectedRack={selectedRack}
-                                                        // item={item} 
+                                                        item={item} 
                                                         // selectedZone={selectedZone}
                                                         // selectedRack={selectedRack}
                                                     className=' !text-icon'
@@ -215,7 +226,7 @@ useEffect(() => {
                             <MoveToggleQualityProduct 
                                                         // selectedZone={selectedZone}
                                                         // selectedRack={selectedRack}
-                                                        // item={item} 
+                                                        item={item} 
                                                         // selectedZone={selectedZone}
                                                         // selectedRack={selectedRack}
                                                     className=' !text-icon'

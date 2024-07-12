@@ -17,7 +17,7 @@ class AddQualityManufactureDrawerModal extends Component {
       <div>
         <StyledDrawer
           title="Manufacture"
-          width="55em"
+          width="76em"
           style={{ marginTop: "5rem" }}
           visible={this.props.addQualityManufactureDrawerModal}
           closable
