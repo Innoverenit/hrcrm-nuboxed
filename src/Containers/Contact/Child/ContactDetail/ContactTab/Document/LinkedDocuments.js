@@ -53,25 +53,13 @@ class LinkedDocuments extends Component {
         <div className="md:w-[11.1rem]">  <FormattedMessage id="app.name" defaultMessage="Name" /></div>
         <div className="md:w-[11.1rem]">  <FormattedMessage id="app.type" defaultMessage="Type" /></div>
         <div className="md:w-[11.1rem]">  <FormattedMessage id="app.share" defaultMessage="Share" /></div>
-                 <div className="md:w-[18.12rem]">
-                 <FormattedMessage
-          id="app.description"
-          defaultMessage="Description"
-        /></div>
-                       <div className=" md:w-[7.1rem]">
-                       <FormattedMessage id="app.uploadedBy" defaultMessage="Uploaded By" /></div>
-
-                      
-       
-        
+        <div className="md:w-[18.12rem]"> <FormattedMessage id="app.description"defaultMessage="Description"/></div>
+        <div className=" md:w-[7.1rem]"> <FormattedMessage id="app.uploadedBy" defaultMessage="Uploaded By" /></div>
         <div className="w-[4.2rem]"></div>
 
       </div>
-   
-        
       { !fetchingDocumentsByContactId && documentsByContactId.length === 0 ?<NodataFoundPage />:documentsByContactId.map((item,index) =>  {
-        
-        
+             
                     return (
                         <div>
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
