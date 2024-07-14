@@ -161,7 +161,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingShipBy && ShipByData.length === 0 ? <NodataFoundPage /> : ShipByData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="card9" key={region.shipById}>
+            <div className="card9 h-8" key={region.shipById}>
             {/* Region name display or input field */}
             
             {editingId === region.shipById ? (
@@ -189,7 +189,7 @@ return <div><BundleLoader/></div>;
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.shipById, region.name)} />
+                    <BorderColorIcon     className=" !text-icon text-red-600 cursor-pointer "  onClick={() => editRegion(region.shipById, region.name)} />
                 )}
 
                 {/* Delete button */}
@@ -200,11 +200,7 @@ return <div><BundleLoader/></div>;
                         onConfirm={() =>  props.removeShipBy(region.shipById,props.orgId)}
                       >
                 <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                   className=" !text-icon text-red-600 cursor-pointer " 
               // onClick={() => 
               //     props.removeServiceLine(item.shipById)
               //  }

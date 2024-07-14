@@ -202,7 +202,7 @@ return <div><BundleLoader/></div>;
           <div class=" flex flex-col" >
           <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingRoles && roles.length === 0 ? <NodataFoundPage /> : roles.slice().sort((a, b) => a.roleType.localeCompare(b.roleType)).map((region, index) => (
-            <div className="card9" key={region.roleTypeId}>
+            <div className="card9 h-8" key={region.roleTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.roleTypeId ? (
@@ -254,7 +254,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {region.editInd ? (
-                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.roleTypeId, region.roleType,region.department)} />
+                    <BorderColorIcon    className=" !text-icon text-red-600 cursor-pointer "  onClick={() => editRegion(region.roleTypeId, region.roleType,region.department)} />
                     ) : null}
                     </>
                 )}
@@ -267,11 +267,7 @@ return <div><BundleLoader/></div>;
                         onConfirm={() =>  props.removeRole(region.roleTypeId,props.orgId)}
                       >
                 <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                  className=" !text-icon text-red-600 cursor-pointer " 
               // onClick={() => 
               //     props.removeServiceLine(item.roleTypeId)
               //  }

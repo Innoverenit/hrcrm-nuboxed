@@ -35,13 +35,13 @@ class ModuleTrading extends Component {
                 <div class="w-full flex-row">
               <div class=" flex " >
              
-              <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+              <div class="w-[10.5rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+              <div className=" flex h-28 justify-center "> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={Trading}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
+            /></div>
             <div class="flex   flex-col justify-center mt-1">
             <div class="flex flex-row  justify-center"> 
               <div class=" text-sm font-semibold ">Trading</div>
@@ -63,18 +63,18 @@ class ModuleTrading extends Component {
                       </Popconfirm>
                     </div>
                     </div>
-                    <div class="text-xs text-center"> Match Order ~ Options</div>
+                    <div class="text-xs text-center"> Match Order ~ Options.</div>
                     </div>
                     </div>
       
             <> 
-            <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+            <div class="w-[10.5rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div className=" flex h-28 justify-center "> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo1}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
+            /></div>
             <div class="flex  flex-col justify-center mt-1">
             <div class="flex flex-row  justify-center"> 
               <div class=" text-sm  ml-2 font-semibold">Ecom</div>

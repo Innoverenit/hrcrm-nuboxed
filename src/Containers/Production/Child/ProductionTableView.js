@@ -371,8 +371,8 @@ function ProductionTableView(props) {
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium items-center md:w-[14.081rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins">
+                                                <div className=" flex  items-center md:w-[14.081rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class="flex flex-row text-xs  font-semibold  font-poppins">
                                                         {/* {stage} */}
                                                         {item.type === "Complete" && (
                                                         <InpectProductionToggle item={item} />
