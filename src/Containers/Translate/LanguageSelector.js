@@ -172,7 +172,7 @@ function LanguageSelector({ onLanguageChange,supportedLanguages,selectedLanguage
   return (
     <div>
       <select class="notranslate"
-      style={{backgroundColor:"#DFDFDF",width:"7em"}} value={selectedLanguage} onChange={onLanguageChange}>
+      style={{width:"3rem"}} value={selectedLanguage} onChange={onLanguageChange}>
         {/* {supportedLanguages.map((lang) => (
           <option key={lang.language} value={lang.language}>
             {lang.language}
