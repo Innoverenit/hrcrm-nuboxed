@@ -3,7 +3,7 @@ import {  Popconfirm,Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import { StopTwoTone, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { CheckCircleTwoTone } from "@ant-design/icons";
-import { FlexContainer, MainWrapper } from "../../../Components/UI/Layout";
+import { FlexContainer } from "../../../Components/UI/Layout";
 import {
   MultiAvatar,
   Title,
@@ -30,7 +30,8 @@ const BussinessCard = (props) => {
   
   return (
     <div class="flex-col rounded-[3px]">
-      <MainWrapper style={{height:"6rem"}}>
+      <div className="h-24 m-1 p- shadow-[0 0.5em 0.375em -0.375em rgb(46, 44, 44)] border-2 border-gray-400 bg-white "></div>
+      
       {/* <div class="rounded bg-white m-1 p-1 overflow-auto h-24 border-[0.0625rem] border-[#eee]-600 w-full"> */}
         <FlexContainer
           alignItems="center"
@@ -132,7 +133,7 @@ const BussinessCard = (props) => {
             style={{ flexBasis: "10%", alignSelf: "flex-start" }}
           ></FlexContainer>
           <SubTitle >
-          <EditOutlined  className=" !text-icon text-[#337df4]"
+          <EditOutlined  className=" !text-icon text-[#337df4bf]"
           onClick={props.handleEdit}
           />
         </SubTitle>
@@ -142,8 +143,8 @@ const BussinessCard = (props) => {
 
         
       {/* </div> */}
-      </MainWrapper>
-    </div>
+      </div>
+    
   );
 };
 export default BussinessCard;
