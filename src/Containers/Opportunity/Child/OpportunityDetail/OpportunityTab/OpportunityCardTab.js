@@ -1,10 +1,9 @@
 
 import React, { Component } from "react";
 import Tabs from "react-draggable-tabs";
-import ReactDOM from "react-dom";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Tooltip, Button, message, Icon } from "antd";
+import { Icon } from "antd";
 // import { ShoppingOutlined} from '@ant-design/icons';
 import // addDraggableOpportunity,
   // getOpportunityCard,

@@ -29,9 +29,8 @@ const BussinessCard = (props) => {
   } = props;
   
   return (
-    <div >
-      <div className="h-24 m-1 p- shadow-[0 0.5em 0.375em -0.375em rgb(46, 44, 44)] border-2 border-gray-400 bg-white ">
-    
+    <div class="flex-col rounded-[3px]">
+      <MainWrapper style={{height:"6rem"}}>
       {/* <div class="rounded bg-white m-1 p-1 overflow-auto h-24 border-[0.0625rem] border-[#eee]-600 w-full"> */}
         <FlexContainer
           alignItems="center"
@@ -41,8 +40,8 @@ const BussinessCard = (props) => {
           <FlexContainer style={{ flexBasis: "20%", margin: "0.3rem" }}>
             <MultiAvatar
               primaryTitle={primaryTitle}
-              imgHeight={"1.8rem"}
-              imgWidth={"1.8rem"}
+              imgHeight={"1.56em"}
+              imgWidth={"1.56em"}
             />
           </FlexContainer>
           <FlexContainer
@@ -89,7 +88,7 @@ const BussinessCard = (props) => {
       theme="twoTone"
       twoToneColor="#24D8A7"
       size={140}
-     className="!text-icon"
+      className=" !text-icon"
    
     />
   </Tooltip>
@@ -113,7 +112,7 @@ const BussinessCard = (props) => {
           theme="twoTone"
           twoToneColor="red"
           size={140}
-          className="!text-icon"
+          className=" !text-icon"
         />
         </Tooltip>
     </Popconfirm>
@@ -124,7 +123,7 @@ const BussinessCard = (props) => {
            
              {user.opportunityDeleteInd ===true && user.crmInd === true && (
             <DeleteOutlined
-            type="delete" className="!text-icon cursor-pointer text-red-600 "   />
+            type="delete" className=" !text-icon cursor-pointer text-red-600 "  />
              )}
           </StyledPopconfirm>
             </SubTitle>      
@@ -133,7 +132,7 @@ const BussinessCard = (props) => {
             style={{ flexBasis: "10%", alignSelf: "flex-start" }}
           ></FlexContainer>
           <SubTitle >
-          <EditOutlined className="!text-icon text-[#337df4]"
+          <EditOutlined  className=" !text-icon text-[#337df4]"
           onClick={props.handleEdit}
           />
         </SubTitle>
@@ -143,7 +142,7 @@ const BussinessCard = (props) => {
 
         
       {/* </div> */}
-      </div>
+      </MainWrapper>
     </div>
   );
 };
