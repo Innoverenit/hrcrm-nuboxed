@@ -369,12 +369,12 @@ const handleFinanceClick = (checked) => {
                 <div class="w-full flex-row">
               <div class=" flex " >
              <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+             <div className=" flex h-28 justify-center "> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
+            /></div>
             <div class="flex  flex-col justify-center mt-1">
                 <div class="flex flex-row  justify-center"> 
                   <div class=" text-sm font-semibold">CRM</div>
@@ -404,12 +404,13 @@ const handleFinanceClick = (checked) => {
                     
                     </div>
                     <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+           <div className=" flex h-28 justify-center"> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo5}
-              style={{ height:"7rem" }}
+            
               alt="Tekorero logo"
-            />
+            /></div>
             <div class="flex flex-col justify-center mt-1">
               <div class="flex flex-row  justify-center">
               <div class=" text-sm font-semibold ">Finance</div>
@@ -435,12 +436,12 @@ const handleFinanceClick = (checked) => {
                     </div>
                     </div>
                     <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-                    <img
-              className="big-logo"
+                     <div className=" flex h-28 justify-center"> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo1}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
+            /></div>
              <div class="flex flex-col justify-center mt-1">
              <div class="flex flex-row  justify-center">
                     <div class=" text-sm font-semibold  ml-2">IM</div>
@@ -463,7 +464,7 @@ const handleFinanceClick = (checked) => {
                       </Popconfirm>
                     </div>
                     </div>
-                    <div class="text-xs text-center"> Track communications and maintaining investment records</div>
+                    <div class="text-xs text-center"> Investor outreach and fund management.</div>
                     </div>
                     </div>
                     {/* <div>Account</div>
@@ -502,12 +503,12 @@ const handleFinanceClick = (checked) => {
                     </div>
 */}
  <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+ <div className=" flex h-28 justify-center"> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo2}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
+            /></div>
             <div class="flex flex-col justify-center mt-1">
               
              <div class="flex flex-row  justify-center">
@@ -534,23 +535,23 @@ const handleFinanceClick = (checked) => {
                     
                     </div> 
                     </div>
-                    <div class="text-xs text-center"> Manage employee goals and performance</div>
+                    <div class="text-xs text-center"> Manage employee goals and performance.</div>
                     </div>
                     </div>
 
                    
 
                     <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+                    <div className=" flex h-28 justify-center"> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo3}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
+            /></div>
             <div class="flex flex-col justify-center mt-1">
            
             <div class="flex flex-row  justify-center">
-                    <div class=" text-sm  ml-2 font-semibold">Rcruitpro</div>
+                    <div class=" text-sm  ml-2 font-semibold">RecruitPro</div>
                     <div   class=" ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -570,16 +571,16 @@ const handleFinanceClick = (checked) => {
                       </Popconfirm>
                     </div>
                     </div>
-                    <div class="text-xs text-center"> Hire @ Scale</div>
+                    <div class="text-xs text-center"> Hire @ Scale.</div>
                     </div>
                     </div>
                     <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+                    <div className=" flex h-28 justify-center"> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo4}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
+            /></div>
             <div class="flex flex-col justify-center mt-1">
             <div class="flex flex-row  justify-center">
                     <div class=" text-sm  ml-2 font-semibold">Elearning</div>
@@ -602,7 +603,7 @@ const handleFinanceClick = (checked) => {
                       </Popconfirm>
                     </div>
                     </div>
-                    <div class="text-xs text-center"> Interactive lessons, assessment tools</div>
+                    <div class="text-xs text-center"> Interactive lessons, assessment tools.</div>
                     </div> 
                     </div>
                    

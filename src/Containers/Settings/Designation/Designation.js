@@ -163,7 +163,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingDesignations && designations.length === 0 ? <NodataFoundPage /> : designations.slice().sort((a, b) => a.designationType.localeCompare(b.designationType)).map((region, index) => (
-            <div className="card9" key={region.designationTypeId}>
+            <div className="card9 h-8" key={region.designationTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.designationTypeId ? (
@@ -193,7 +193,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {region.editInd ? (
-                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.designationTypeId, region.designationType)} />
+                    <BorderColorIcon     className=" !text-icon text-red-600 cursor-pointer "  onClick={() => editRegion(region.designationTypeId, region.designationType)} />
                     ) : null}
                     </>
                 )}
@@ -206,11 +206,7 @@ return <div><BundleLoader/></div>;
                         onConfirm={() =>  props.removeDesignations(region.designationTypeId,props.orgId)}
                       >
                 <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                 className=" !text-icon text-red-600 cursor-pointer " 
               // onClick={() => 
               //     props.removeServiceLine(item.designationTypeId)
               //  }

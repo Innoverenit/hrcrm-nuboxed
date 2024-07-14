@@ -164,7 +164,7 @@ const BrandModel = (props) => {
          <MainWrapper className="!h-[69vh] !mt-2" >
             {!props.fetchingBrandModel && brandModel.length === 0 ? <NodataFoundPage /> : brandModel.slice().sort((a, b) => a.brand.localeCompare(b.brand)).map((region, index) => (
      
-              <div className="card9" key={region.phoneMasterListId}>
+              <div className="card9 h-8" key={region.phoneMasterListId}>
               {/* Region name display or input field */}
               
               {editingId === region.phoneMasterListId ? (

@@ -163,7 +163,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingPayment && paymentsListData.length === 0 ? <NodataFoundPage /> : paymentsListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="card9" key={region.paymentCatagoryId}>
+            <div className="card9 h-8" key={region.paymentCatagoryId}>
             {/* Region name display or input field */}
             
             {editingId === region.paymentCatagoryId ? (
@@ -191,7 +191,7 @@ return <div><BundleLoader/></div>;
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.paymentCatagoryId, region.name)} />
+                    <BorderColorIcon className=" !text-icon text-red-600 cursor-pointer" onClick={() => editRegion(region.paymentCatagoryId, region.name)} />
                 )}
 
                 {/* Delete button */}
@@ -202,11 +202,7 @@ return <div><BundleLoader/></div>;
                         onConfirm={() =>  props.removePayment(region.paymentCatagoryId,props.orgId)}
                       >
                 <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                  className=" !text-icon text-red-600 cursor-pointer"
               // onClick={() => 
               //     props.removeServiceLine(item.paymentCatagoryId)
               //  }

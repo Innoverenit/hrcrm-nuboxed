@@ -1201,19 +1201,19 @@ const onCheckAllTeamsChange = (e) => {
     <>
 
       {/* <Form className="form-background"> */}
-      <div class=" flex justify-between h-[75vh] pr-2 overflow-y-auto" >
+      <div class=" flex justify-between h-[75vh]  overflow-y-auto" style={{scrollbarWidth:"thin"}} >
          
-            <TabsWrapper style={{height:"146rem"}}>
+            <TabsWrapper style={{height:"146rem",  width: "-webkit-fill-available"}} >
  
             {props.departmentData.hrInd === true ? 
-<div class="flex flex-col ">
-  <div class="text-clr flex justify-center text-base font-bold">General, HR & Self Service</div>
+<div class="flex flex-col">
+  <div class="text-clr flex justify-center text-base font-bold  mt-6">General, HR & Self Service</div>
   
-  <div class="flex mt-4 ">
+  <div class="flex  ">
     {/* Left Box */}
-    <div class=" border border-gray-300 p-4">
+    <div class=" border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-2">
           <div>
             <div class="text-sm font-semibold">Users</div>
             <Checkbox indeterminate={indeterminateUser} onChange={onCheckAllUserChange} checked={checkAllUser}>
@@ -1225,7 +1225,7 @@ const onCheckAllTeamsChange = (e) => {
 
         
         </div>
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div>
             <div class="text-sm font-semibold">Facility</div>
             <Checkbox indeterminate={indeterminatePlant} onChange={onCheckAllPlantChange} checked={checkAllPlant}>
@@ -1235,7 +1235,7 @@ const onCheckAllTeamsChange = (e) => {
             <CheckboxGroup options={plainOptions} value={checkedPlantList} onChange={onPlantChange} />
           </div>
           </div>
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
           <div>
             <div class="text-sm font-semibold">Repository</div>
             <Checkbox indeterminate={indeterminateRepository} onChange={onCheckAllRepositoryChange} checked={checkAllRepository}>
@@ -1273,7 +1273,7 @@ const onCheckAllTeamsChange = (e) => {
               </div>
         </div>
         
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
           <div>
             <div class="text-sm font-semibold">Dashboard</div>
             <Checkbox indeterminate={indeterminateDashboard} onChange={onCheckAllDashboardChange} checked={checkAllDashboard}>
@@ -1297,9 +1297,9 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2  p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                   <div class="text-sm font-semibold">Locations</div>
                   <Checkbox indeterminate={indeterminateLocation} onChange={onCheckAllLocationChange} checked={checkAllLocation}>
@@ -1312,7 +1312,7 @@ const onCheckAllTeamsChange = (e) => {
 
                
         </div>
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
               <div class="text-sm font-semibold">Teams</div>
               <Checkbox indeterminate={indeterminateTeams} onChange={onCheckAllTeamsChange} checked={checkAllTeams}>
@@ -1324,7 +1324,7 @@ const onCheckAllTeamsChange = (e) => {
             </div>
             </div>
 
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                 <div class="text-sm font-semibold">Mileage</div>
                 <Checkbox indeterminate={indeterminateMileage} onChange={onCheckAllMileageChange} checked={checkAllMileage}>
@@ -1357,7 +1357,7 @@ const onCheckAllTeamsChange = (e) => {
         
         
 
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div  >
                 <div class="text-sm font-semibold">Holiday</div>
                 <Checkbox indeterminate={indeterminateHoliday} onChange={onCheckAllHolidayChange} checked={checkAllHoliday}>
@@ -1387,12 +1387,12 @@ const onCheckAllTeamsChange = (e) => {
      
 {props.departmentData.crmInd === true ? 
       <div class="flex flex-col ">
-            <div class=" text-clr mt-10 flex justify-center text-base  font-bold">CRM</div>
-            <div class="flex mt-4 ">
+            <div class=" text-clr mt-6 flex justify-center text-base  font-bold">CRM</div>
+            <div class="flex ">
     {/* Left Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div  >
                   <div class="text-sm font-semibold">Prospect</div>
                   <Checkbox indeterminate={indeterminateCustomer} onChange={onCheckAllCustomerChange} checked={checkAllCustomer}>
@@ -1405,9 +1405,9 @@ const onCheckAllTeamsChange = (e) => {
 
         
         </div>
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
-                  <div class="text-sm font-semibold">Opportunity</div>
+                  <div class="text-sm font-semibold">Quotation</div>
                   <Checkbox indeterminate={indeterminateOpportunity} onChange={onCheckAllOpportunityChange} checked={checkAllOpportunity}>
                   <div class="text-xs">  Check all </div>
                   </Checkbox>
@@ -1426,15 +1426,16 @@ const onCheckAllTeamsChange = (e) => {
                   <CheckboxGroup options={plainOptions} value={checkedPulseList} onChange={onPulseChange} />
 
                 </div> */}
-          <div class="flex justify-around mt-4">
-          <div >
-              <div class="text-sm font-semibold">Junk Leads</div>
-              <Checkbox indeterminate={indeterminateJunk} onChange={onCheckAllJunkChange} checked={checkAllJunk}>
-              <div class="text-xs"> Check all</div>
-              </Checkbox>
-              <Divider />
-              <CheckboxGroup options={junkCheckedList} value={checkedJunkList} onChange={onJunkChange} />
+          <div class="flex justify-between mt-4">
+        <div >
+                  <div class="text-sm font-semibold">Leads</div>
+                  <Checkbox indeterminate={indeterminateLeads} onChange={onCheckAllLeadsChange} checked={checkAllLeads}>
+                  <div class="text-xs">  Check all </div>
+                  </Checkbox>
+                  <Divider />
+                  <CheckboxGroup options={plainOptions} value={checkedLeadsList} onChange={onLeadsChange} />
 
+                </div>
             </div>
                
 
@@ -1445,9 +1446,9 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                   <div class="text-sm font-semibold">Contact</div>
                   <Checkbox indeterminate={indeterminateContact} onChange={onCheckAllContactChange} checked={checkAllContact}>
@@ -1460,17 +1461,17 @@ const onCheckAllTeamsChange = (e) => {
 
                
         </div>
-        <div class="flex justify-around mt-4">
-        <div >
-                  <div class="text-sm font-semibold">Leads</div>
-                  <Checkbox indeterminate={indeterminateLeads} onChange={onCheckAllLeadsChange} checked={checkAllLeads}>
-                  <div class="text-xs">  Check all </div>
-                  </Checkbox>
-                  <Divider />
-                  <CheckboxGroup options={plainOptions} value={checkedLeadsList} onChange={onLeadsChange} />
+         <div class="flex justify-between mt-4">
+          <div >
+              <div class="text-sm font-semibold">Junk Leads</div>
+              <Checkbox indeterminate={indeterminateJunk} onChange={onCheckAllJunkChange} checked={checkAllJunk}>
+              <div class="text-xs"> Check all</div>
+              </Checkbox>
+              <Divider />
+              <CheckboxGroup options={junkCheckedList} value={checkedJunkList} onChange={onJunkChange} />
 
-                </div>
             </div>
+       
 
       </div>
     </div>
@@ -1486,13 +1487,13 @@ const onCheckAllTeamsChange = (e) => {
            {props.departmentData.erpInd === true ? 
   <div class="flex flex-col ">        
                 
-<div class=" text-clr text-base flex justify-center mt-10 font-bold">ERP</div>
+<div class=" text-clr text-base flex justify-center mt-6 font-bold">ERP</div>
           
-<div class="flex mt-4 ">
+<div class="flex ">
     {/* Left Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
               <div class="text-sm font-semibold">Shipper</div>
               <Checkbox indeterminate={indeterminateShipper} onChange={onCheckAllShipperChange} checked={checkAllShipper}>
@@ -1506,7 +1507,7 @@ const onCheckAllTeamsChange = (e) => {
 
         
         </div>
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                   <div class="text-sm font-semibold">Order</div>
                   <Checkbox indeterminate={indeterminateOrder} onChange={onCheckAllOrderChange} checked={checkAllOrder}>
@@ -1519,7 +1520,7 @@ const onCheckAllTeamsChange = (e) => {
           </div>
 
                
-          <div class="flex justify-around mt-4">
+          <div class="flex justify-between mt-4">
           <div >
                   <div class="text-sm font-semibold">Materials</div>
                   <Checkbox indeterminate={indeterminateMaterials} onChange={onCheckAllMaterialsChange} checked={checkAllMaterials}>
@@ -1532,7 +1533,7 @@ const onCheckAllTeamsChange = (e) => {
 
         
         </div>
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
             <div class="text-sm font-semibold">Inventory</div>
             <Checkbox indeterminate={indeterminateInventory} onChange={onCheckAllInventoryChange} checked={checkAllInventory}>
@@ -1546,7 +1547,7 @@ const onCheckAllTeamsChange = (e) => {
         
         </div>
 
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
               <div class="text-sm font-semibold">Procurement</div>
               <Checkbox indeterminate={indeterminateProcurement} onChange={onCheckAllProcurementChange} checked={checkAllProcurement}>
@@ -1560,7 +1561,7 @@ const onCheckAllTeamsChange = (e) => {
 
         
         </div>
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
               <div class="text-sm font-semibold">Production</div>
               <Checkbox indeterminate={indeterminateProduction} onChange={onCheckAllProductionChange} checked={checkAllProduction}>
@@ -1579,9 +1580,9 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                   <div class="text-sm font-semibold">Customer</div>
                   <Checkbox indeterminate={indeterminateAccount} onChange={onCheckAllAccountChange} checked={checkAllAccount}>
@@ -1593,7 +1594,7 @@ const onCheckAllTeamsChange = (e) => {
 
                
         </div>
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
     <div class="text-sm font-semibold">Catalog</div>
     <Checkbox indeterminate={indeterminateCatalog} onChange={onCheckAllCatalogChange} checked={checkAllCatalog}>
@@ -1605,7 +1606,7 @@ const onCheckAllTeamsChange = (e) => {
   </div> 
             </div>
 
-            <div class="flex justify-around mt-4">
+            <div class="flex justify-between mt-4">
             <div  >
                   <div class="text-sm font-semibold">Supplier</div>
                   <Checkbox indeterminate={indeterminateSupplier} onChange={onCheckAllSupplierChange} checked={checkAllSupplier}>
@@ -1617,7 +1618,7 @@ const onCheckAllTeamsChange = (e) => {
                 </div>
             </div>
 
-            <div class="flex justify-around mt-4">
+            <div class="flex justify-between mt-4">
             <div >
             <div class="text-sm font-semibold">Refurbish</div>
             <Checkbox indeterminate={indeterminateRefurbish} onChange={onCheckAllRefurbishChange} checked={checkAllRefurbish}>
@@ -1637,7 +1638,7 @@ const onCheckAllTeamsChange = (e) => {
 
             </div>
             </div>
-            <div class="flex justify-around mt-4">
+            <div class="flex justify-between mt-4">
               
             <div >
                   <div class="text-sm font-semibold">Subscription</div>
@@ -1672,13 +1673,13 @@ const onCheckAllTeamsChange = (e) => {
 
  {props.departmentData.financeInd === true ?  
   <div class="flex flex-col ">
-            <div class=" text-clr text-base flex justify-center mt-10 font-bold">Accounting</div>
+            <div class=" text-clr text-base flex justify-center mt-6 font-bold">Accounting</div>
         
-            <div class="flex mt-4 ">
+            <div class="flex  ">
     {/* Left Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
           <div class="text-sm font-semibold">Collections</div>
           <Checkbox indeterminate={indeterminateCollection} onChange={onCheckAllCollectionChange} checked={checkAllCollection}>
@@ -1698,9 +1699,9 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
           <div class="text-sm font-semibold">Payments</div>
           <Checkbox indeterminate={indeterminatePayments} onChange={onCheckAllPaymentsChange} checked={checkAllPayments}>
@@ -1712,7 +1713,7 @@ const onCheckAllTeamsChange = (e) => {
 
                
         </div>
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
      {/* <div >
 <div class="text-sm font-semibold">Invoices</div>
 <Checkbox indeterminate={indeterminateDeal} onChange={onCheckAllDealChange} checked={checkAllDeal}>
@@ -1734,14 +1735,14 @@ const onCheckAllTeamsChange = (e) => {
 
 {props.departmentData.recruitProInd === true ? 
   <div class="flex flex-col ">  
-            <div class=" text-clr text-base flex justify-center mt-10 font-bold">RecruitPro</div>
+            <div class=" text-clr text-base flex justify-center mt-6 font-bold">RecruitPro</div>
            
               
             <div class="flex mt-4 ">
     {/* Left Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div  >
           <div class="text-sm font-semibold">Talent</div>
           <Checkbox indeterminate={indeterminateTalent} onChange={onCheckAllTalentChange} checked={checkAllTalent}>
@@ -1760,9 +1761,9 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
           <div class="text-sm font-semibold">Requirement</div>
           <Checkbox indeterminate={indeterminateRequirement} onChange={onCheckAllRequirementChange} checked={checkAllRequirement}>
@@ -1785,12 +1786,12 @@ const onCheckAllTeamsChange = (e) => {
                   : null } 
                   {props.departmentData.imInd === true ? 
   <div class="flex flex-col ">  
-            <div class=" text-clr text-base mt-10 flex justify-center font-bold">IM</div>
-            <div class="flex mt-4 ">
+            <div class=" text-clr text-base mt-6 flex justify-center font-bold">IM</div>
+            <div class="flex  ">
     {/* Left Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                   <div class="text-sm font-semibold">Investor</div>
                   <Checkbox indeterminate={indeterminateInvestor} onChange={onCheckAllInvestorChange} checked={checkAllInvestor}>
@@ -1803,7 +1804,7 @@ const onCheckAllTeamsChange = (e) => {
 
         
         </div>
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                   <div class="text-sm font-semibold">Deal</div>
                   <Checkbox indeterminate={indeterminateDeal} onChange={onCheckAllDealChange} checked={checkAllDeal}>
@@ -1817,7 +1818,7 @@ const onCheckAllTeamsChange = (e) => {
 
         
         </div>
-        <div class=" flex justify-around mt-4" >
+        <div class=" flex justify-between mt-4" >
               <div >
                   <div class="text-sm font-semibold">Data Room</div>
                   <Checkbox indeterminate={indeterminateDataRoom} onChange={onCheckAllDataRoomChange} checked={checkAllDataRoom}>
@@ -1838,9 +1839,9 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                   <div class="text-sm font-semibold">Investor Contact</div>
                   <Checkbox indeterminate={indeterminateInvestorContact} onChange={onCheckAllInvestorContactChange} checked={checkAllInvestorContact}>
@@ -1854,7 +1855,7 @@ const onCheckAllTeamsChange = (e) => {
                
         </div>
 
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div  >
                   <div class="text-sm font-semibold">Pitch</div>
                   <Checkbox indeterminate={indeterminatePitch} onChange={onCheckAllPitchChange} checked={checkAllPitch}>
@@ -1897,12 +1898,12 @@ const onCheckAllTeamsChange = (e) => {
 
 {props.departmentData.elearningInd === true ? 
      <div class="flex flex-col ">    
-            <div class=" text-clr mt-10 text-base flex justify-center font-bold">E-Learning</div>
-            <div class="flex mt-4 ">
+            <div class=" text-clr mt-6 text-base flex justify-center font-bold">E-Learning</div>
+            <div class="flex  ">
     {/* Left Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                   <div class="text-sm font-semibold">Assessment</div>
                   <Checkbox indeterminate={indeterminateAccessment} onChange={onCheckAllAccessmentChange} checked={checkAllAccessment}>
@@ -1915,7 +1916,7 @@ const onCheckAllTeamsChange = (e) => {
 
         
         </div>
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                   <div class="text-sm font-semibold">Course</div>
                   <Checkbox indeterminate={indeterminateCourse} onChange={onCheckAllCourseChange} checked={checkAllCourse}>
@@ -1929,7 +1930,7 @@ const onCheckAllTeamsChange = (e) => {
 
         
         </div>
-        <div class=" flex justify-around mt-4" >
+        <div class=" flex justify-between mt-4" >
         <div >
                   <div class="text-sm font-semibold">Program</div>
                   <Checkbox indeterminate={indeterminateProgram} onChange={onCheckAllProgramChange} checked={checkAllProgram}>
@@ -1950,9 +1951,9 @@ const onCheckAllTeamsChange = (e) => {
     </div>
 
     {/* Right Box */}
-    <div class="flex border border-gray-300 p-4">
+    <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                   <div class="text-sm font-semibold">Test</div>
                   <Checkbox indeterminate={indeterminateTest} onChange={onCheckAllTestChange} checked={checkAllTest}>
@@ -1966,7 +1967,7 @@ const onCheckAllTeamsChange = (e) => {
                
         </div>
 
-        <div class="flex justify-around mt-4">
+        <div class="flex justify-between mt-4">
         <div >
                   <div class="text-sm font-semibold">Topic</div>
                   <Checkbox indeterminate={indeterminateTopic} onChange={onCheckAllTopicChange} checked={checkAllTopic}>

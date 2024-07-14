@@ -169,7 +169,7 @@ const FeedBack = (props) => {
          <MainWrapper className="!h-[69vh] !mt-2" >
             {!props.fetchingFeedback && feedBack.length === 0 ? <NodataFoundPage /> : feedBack.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
      
-              <div className="card9" key={region.feedbackId}>
+              <div className="card9 h-8" key={region.feedbackId}>
               {/* Region name display or input field */}
               
               {/* {editingId === region.feedbackId ? (
@@ -236,11 +236,7 @@ const FeedBack = (props) => {
                            onConfirm={() =>  props.removeFeedBack(region.feedbackId)}
                         >
                   <DeleteOutlined 
-                    style={{
-                    
-                      color: "red",
-                      cursor:"pointer"
-                    }}
+                      className=" !text-icon text-red-600 cursor-pointer flex justify-center "
                 // onClick={() => 
                 //     props.removeServiceLine(item.feedbackId)
                 //  }

@@ -209,9 +209,9 @@ console.log(props.clubShareData)
           </div>
         ))}
 
-      <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">         
+      <div className=' flex sticky z-auto'>
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">         
             <div className=" md:w-[10rem]">Name</div>
             <div className=" md:w-[10.1rem]"># Shares</div>
             <div className=" md:w-[11.2rem] ">Discount %</div>
@@ -294,7 +294,7 @@ console.log(props.clubShareData)
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className=" !text-icon text-red-600 cursor-pointer flex justify-center "
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.clubId)}
@@ -308,8 +308,8 @@ console.log(props.clubShareData)
                           >
                      <Tooltip title="Delete">
                      <DeleteOutlined
-                      style={{ color: 'red' }}
-                          className="!text-xl cursor-pointer  flex justify-center items-center mt-1 ml-1"
+                      
+                         className=" !text-icon text-red-600 cursor-pointer flex justify-center "
                           />
                        </Tooltip>
                        </StyledPopconfirm>

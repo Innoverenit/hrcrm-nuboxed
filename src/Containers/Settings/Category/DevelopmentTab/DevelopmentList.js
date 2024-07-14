@@ -214,7 +214,7 @@ return <div><BundleLoader/></div>;
           <div class=" flex flex-col" >
           <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingDevelopment && developmentList.map((region, index) =>(
-            <div className="card9" key={region.developmentId}>
+            <div className="card9 h-8" key={region.developmentId}>
             {/* Region name display or input field */}
             
         
@@ -282,7 +282,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {/* {region.editInd ? ( */}
-                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.developmentId, region.taskType,region.value,region.developmentType)} />
+                    <BorderColorIcon    className=" !text-icon text-red-600 cursor-pointer "  onClick={() => editRegion(region.developmentId, region.taskType,region.value,region.developmentType)} />
                     {/* ) : null} */}
                     </>
                 )}
@@ -295,10 +295,7 @@ return <div><BundleLoader/></div>;
                         onConfirm={() =>  props.removeDevelopment(region.developmentId,props.orgId)}
                       >
                 <DeleteOutlined 
-                  style={{
-                    cursor:"pointer",
-                    color: "red",
-                  }}
+                    className=" !text-icon text-red-600 cursor-pointer " 
               // onClick={() => 
               //     props.removeServiceLine(item.developmentId)
               //  }

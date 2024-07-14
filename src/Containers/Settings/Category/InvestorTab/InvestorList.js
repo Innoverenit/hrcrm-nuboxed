@@ -174,7 +174,7 @@ return <div><BundleLoader/></div>;
           <MainWrapper className="!h-[69vh] !mt-2">
   {!props.fetchingInvestorList && investorListData.length === 0 ? <NodataFoundPage /> : investorListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
     <>
-    <div className="card9" key={region.investorCategoryId}>
+    <div className="card9 h-8" key={region.investorCategoryId}>
       {/* Region name display or input field */}
       {editingId === region.investorCategoryId ? (
         <input
@@ -204,7 +204,7 @@ return <div><BundleLoader/></div>;
             <button className="ml-4" onClick={cancelEdit}>Cancel</button>
           </div>
         ) : (
-          <BorderColorIcon style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.investorCategoryId, region.name)} />
+          <BorderColorIcon   className=" !text-icon text-red-600 cursor-pointer " onClick={() => editRegion(region.investorCategoryId, region.name)} />
         )}
 
         {/* Delete button */}
@@ -214,11 +214,7 @@ return <div><BundleLoader/></div>;
           cancelText="No"
           onConfirm={() => props.removeInvestor(region.investorCategoryId,props.orgId)}
         >
-          <DeleteOutlined 
-            style={{
-              color: "red",
-              cursor:"pointer"
-            }}
+          <DeleteOutlined   className=" !text-icon text-red-600 cursor-pointer "
           />
         </Popconfirm>
       </div>

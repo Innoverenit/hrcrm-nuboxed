@@ -163,7 +163,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingSectors && sectors.length === 0 ? <NodataFoundPage /> : sectors.slice().sort((a, b) => a.sectorName.localeCompare(b.sectorName)).map((region, index) => (
-            <div className="card9" key={region.sectorId}>
+            <div className="card9 h-8" key={region.sectorId}>
             {/* Region name display or input field */}
             
             {editingId === region.sectorId ? (
@@ -191,7 +191,7 @@ return <div><BundleLoader/></div>;
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.sectorId, region.sectorName)} />
+                    <BorderColorIcon className=" !text-icon text-red-600 cursor-pointer"   onClick={() => editRegion(region.sectorId, region.sectorName)} />
                 )}
 
                 {/* Delete button */}
@@ -201,12 +201,8 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeSectors(region.sectorId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                <DeleteOutlined className=" !text-icon text-red-600 cursor-pointer"
+
               // onClick={() => 
               //     props.removeServiceLine(item.sectorId)
               //  }
