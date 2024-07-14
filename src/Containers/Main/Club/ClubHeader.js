@@ -12,7 +12,7 @@ class ClubHeader extends Component {
             setCurrentData,
             currentData,
             handleClear,
-            handleConfigureModal } = this.props;
+            handleConfigureModal,clubShareData } = this.props;
         return (
             <div>
                 <ActionHeader
@@ -23,6 +23,7 @@ class ClubHeader extends Component {
                             setCurrentData={setCurrentData}
                             currentData={currentData}
                             handleClear={handleClear}
+                            clubShareData={clubShareData}
                         />
                     }
                     // rightComponent={<SuppliersActionRight

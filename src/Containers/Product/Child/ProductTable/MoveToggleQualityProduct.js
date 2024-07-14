@@ -4,36 +4,36 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 //import { moveProductionQuality } from "../Main/Inventory/InventoryAction";
 import dayjs from "dayjs";
+import {moveProductQuality} from "../../ProductAction"
 
 function MoveToggleQualityProduct(props) {
 
-//   function handleDispatchToggle() {
-//     props.moveProductionQuality(
-//       {
+  function handleDispatchToggle() {
+    props.moveProductQuality(
+      {
 
         
-//         // dispatchInd: true,
-//         // userId:props.item.userId,
-//         roomRackId:props.selectedZone,
-//         roomRackChamberLinkId:props.selectedRack
        
-//       },
-//       props.item.productionProductId,
-//       props.userId
-//     );
-//   }
+        mandatoryInd:!props.item.mandatoryInd
+       
+       
+      },
+      props.item.qualityCheckBuilderId,
+      
+    );
+  }
 
   return (
     <div>
       <Popconfirm
         title="Confirm status change?"
-        // onConfirm={handleDispatchToggle}
+        onConfirm={handleDispatchToggle}
         onCancel={null}
         okText="Ok"
         cancelText="Cancel"
       >
         <Switch
-        //   checked={props.item.dispatchInd}
+        checked={props.item.mandatoryInd}
           checkedChildren="Yes"
           unCheckedChildren="No"
         />
@@ -53,6 +53,7 @@ const mapStateToProps = ({ auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      moveProductQuality
     //   moveProduction
     // moveProductionQuality
     },

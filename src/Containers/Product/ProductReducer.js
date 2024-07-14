@@ -303,6 +303,10 @@ const initialState = {
   productBuilder: [],
 
 
+  movingProductQuality:false,
+  movingProductQualityError:false,
+
+
   creatingQualityProduct:false,
   creatingQualityProductError:false,
 
@@ -1086,6 +1090,29 @@ export const productReducer = (state = initialState, action) => {
         uploadingProductList: false,
         uploadingProductListError: true,
       };
+
+
+      case types.MOVE_PRODUCT_QUALITY_REQUEST:
+        return { ...state, movingProductionQuality: true };
+      case types.MOVE_PRODUCT_QUALITY_SUCCESS:
+        return {
+          ...state,
+          movingProductQuality: false,
+         
+          qualityProducts: state.qualityProducts.map((item) => {
+            if (item.qualityCheckBuilderId === action.payload.qualityCheckBuilderId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+        };
+      case types.MOVE_PRODUCT_QUALITY_FAILURE:
+        return {
+          ...state,
+          movingProductQuality: false,
+          movingProductQualityError: true,
+        };
 
     case types.ADD_PRODUCT_CATEGORY_REQUEST:
       return { ...state, addingProductCategory: true, addingProductCategoryError: false };

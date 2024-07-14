@@ -11,6 +11,7 @@ import { FormattedMessage } from "react-intl";
 import LOB from "./LOB/LOB";
 import CategoryList from "./CategoryList/CategoryList";
 import SupplierCategory from "./SupplierCategory";
+import ShipperCategory from "./ShipperCategory";
 
 
 
@@ -30,7 +31,7 @@ class ShipperTab extends Component {
   renderTabContent = (key) => {
     switch (key) {
       case "0":
-      
+        return    <ShipperCategory/>;
       default:
         return null;
     }

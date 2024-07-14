@@ -262,6 +262,24 @@ function OpenReceivedOrderIdForm(props) {
                     <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Condition</div>
                     <div className=" w-[18.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Technician</div>                 
                     <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Inspected</div>
+                    <div class=" flex justify-end" >
+        {/* {props.rowData.dispatchInspectionInd === 1 && <Button type="primary">Pause</Button>} */}
+        {/* {props.rowData.dispatchInspectionInd === 1 && <div>In Progress</div>} */}
+        {props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
+          <div class=" ml-2" >
+            <Button
+              loading={props.updatingDispatchInspectionButton}
+              onClick={() => props.updateDispatchInspectionButton({
+                dispatchInspectionInd: 2,
+                stopDispatchInspectionUser: props.userId,
+                stopDispatchInspectionDate: moment()
+              },
+                props.rowData.orderPhoneId,
+                props.locationDetailsId)}
+              type="primary"
+            >Inspection Completed</Button>
+          </div>}
+      </div>
                 </div>
                 <div class="">
                    
@@ -374,24 +392,7 @@ function OpenReceivedOrderIdForm(props) {
 
                                                 </div>
                                             </div>
-                                            <div class=" flex justify-end" >
-        {/* {props.rowData.dispatchInspectionInd === 1 && <Button type="primary">Pause</Button>} */}
-        {props.rowData.dispatchInspectionInd === 1 && <div>In Progress</div>}
-        {props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
-          <div class=" ml-2" >
-            <Button
-              loading={props.updatingDispatchInspectionButton}
-              onClick={() => props.updateDispatchInspectionButton({
-                dispatchInspectionInd: 2,
-                stopDispatchInspectionUser: props.userId,
-                stopDispatchInspectionDate: moment()
-              },
-                props.rowData.orderPhoneId,
-                props.locationDetailsId)}
-              type="primary"
-            >Inspection Completed</Button>
-          </div>}
-      </div>
+                                         
                                         </div>
 
                                     </div>
@@ -400,6 +401,7 @@ function OpenReceivedOrderIdForm(props) {
                         })}
                     
                 </div>
+              
             </div>
             <Suspense fallback={<BundleLoader />}>
                 

@@ -104,7 +104,7 @@ function AccountDetailsTab(props) {
                             <AccountOrder1Table distributorId={props.distributorData.distributorId} />
                         </Suspense>
                     </TabPane>}
-                    {props.repairInd && <TabPane
+                    {props.user.repairInd && <TabPane
                         tab={
                             <>
                                 <Badge

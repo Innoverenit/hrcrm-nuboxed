@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import {
-    getClubAlllist
+    getClubAlllist,
+    clearInitialData
    
 } from "./ClubAction";
 import moment from "moment";
@@ -19,12 +20,15 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const { Option } = Select;
 
-function ClubTableAll(props) {
+function ClubTableTeam(props) {
     const [pageNo, setPageNo] = useState(0);
     useEffect(() => {
         setPageNo(pageNo + 1);
-        props.getClubAlllist(props.userId,pageNo,props.clubId)
-    }, []);
+        props.getClubAlllist("all",pageNo,props.clubId)
+        return () => {
+            props.clearInitialData();
+        };
+    }, [props.clubId]);
     const [rowData, setRowData] = useState({})
     const handleRowData = (item) => {
         setRowData(item)
@@ -56,7 +60,7 @@ function ClubTableAll(props) {
           {
             if (pageNo < callPageMapd) {
                 setPageNo(pageNo + 1);
-                getClubAlllist(props.userId,pageNo,props.clubId);
+                getClubAlllist("all",pageNo,props.clubId);
           }
           if (pageNo === callPageMapd){
             setHasMore(false)
@@ -378,7 +382,8 @@ const mapStateToProps = ({ trade, auth,club }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getClubAlllist
+            getClubAlllist,
+            clearInitialData
             // getPurchaseSuppliersList,
             // handlePoLocationModal,
             // handlePoListModal,
@@ -389,4 +394,4 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClubTableAll);
+export default connect(mapStateToProps, mapDispatchToProps)(ClubTableTeam);
