@@ -58,6 +58,7 @@ const ButtonGroup = Button.Group;
 const TaskCardList = (props) => {
   const [data, setData] = useState("");
   const [data1, setData1] = useState("");
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   const [currentNameId, setCurrentNameId] = useState("");
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
@@ -67,6 +68,33 @@ const TaskCardList = (props) => {
 
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+
+   useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+           "Type",//0
+            "Name",//1
+            "End",//2
+            "Ageing",//3
+            "Info",//5
+            "Assignedto",//5
+            "Owner",//6
+            "Urgent",//7
+            "High",
+            "Normal"
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
+
   useEffect(() => {
     setPage(page + 1);
     
@@ -196,15 +224,17 @@ const TaskCardList = (props) => {
           <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[4.54rem] text-white bg-red-600">Urgent </div>
-        <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">{props.translatedMenuItems[0]}</div>
-        <div className=" w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">{props.translatedMenuItems[1]}</div>
-             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">{props.translatedMenuItems[2]}</div>
+          <div className=" md:w-[4.54rem] text-white bg-red-600">
+          {translatedMenuItems[7]}
+            </div>
+        <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">{translatedMenuItems[0]}</div>
+        <div className=" w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">{translatedMenuItems[1]}</div>
+             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">{translatedMenuItems[2]}</div>
              <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-             <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">{props.translatedMenuItems[3]}</div>
-            <div className="w-[18.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">{props.translatedMenuItems[4]}</div>
-            <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">{props.translatedMenuItems[5]}</div>
-        <div className="w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">{props.translatedMenuItems[6]}</div>
+             <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">{translatedMenuItems[3]}</div>
+            <div className="w-[18.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">{translatedMenuItems[4]}</div>
+            <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">{translatedMenuItems[5]}</div>
+        <div className="w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">{translatedMenuItems[6]}</div>
         <div className="w-[6.01rem]"></div>
         <div className="w-[3%]"></div>
         <div className="w-[5%]"></div>
@@ -680,7 +710,8 @@ const TaskCardList = (props) => {
 <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1  p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[4.54rem] bg-orange-600 text-white">High </div>
+          <div className=" md:w-[4.54rem] bg-orange-600 text-white">
+          {translatedMenuItems[8]}</div>
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
@@ -1182,7 +1213,8 @@ const TaskCardList = (props) => {
 <div className=' flex sticky  z-auto'>
           <div class="rounded  m-1 max-sm:m-1  p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[4.54rem] bg-teal-600 text-white">Normal </div>
+          <div className=" md:w-[4.54rem] bg-teal-600 text-white">
+          {translatedMenuItems[9]}</div>
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"

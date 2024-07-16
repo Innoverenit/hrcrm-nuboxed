@@ -202,6 +202,11 @@ const initialState = {
   fetchingShipperDetailsListError: false,
   shipperDetailsList: [],
 
+  fetchingQualityManufactureUserData:false,
+
+  fetchingQualityManufactureUserDataError:false,
+  qualityManufactureUserData:[],
+
   viewType1: "repair",
 
   //delivery date
@@ -1741,6 +1746,15 @@ export const inventoryReducer = (state = initialState, action) => {
         rejectPhoneListError: true,
         rejectedReasonModal: false,
       };
+
+
+
+      case types.GET_QUALITY_MANUFACTURE_USER_DATA_REQUEST:
+        return { ...state, fetchingQualityManufactureUserData: true, fetchingQualityManufactureUserDataError: false };
+      case types.GET_QUALITY_MANUFACTURE_USER_DATA_SUCCESS:
+        return { ...state, fetchingQualityManufactureUserData: false, qualityManufactureUserData: action.payload };
+      case types.GET_QUALITY_MANUFACTURE_USER_DATA_FAILURE:
+        return { ...state, fetchingQualityManufactureUserData: false, fetchingQualityManufactureUserDataError: true };
 
 
 
