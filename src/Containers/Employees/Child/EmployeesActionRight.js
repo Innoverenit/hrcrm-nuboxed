@@ -40,7 +40,7 @@ class EmployeesActionRight extends React.Component {
          
             onClick={() => handleEmployeeModal(true)}
           >
-          < DataSaverOnIcon/>  Add
+          < DataSaverOnIcon className="!text-icon"/>  Add
           </Button>
          ):null} 
         </div>

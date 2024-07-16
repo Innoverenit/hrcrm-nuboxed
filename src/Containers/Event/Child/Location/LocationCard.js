@@ -35,6 +35,7 @@ const LocationUpdateDrawer = lazy(() => import("./LocationUpdateDrawer"));
 const LocationCard = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [refurbish, Setrefurbish] = useState(props.showLocation.productionInd,)
   const handleRefurbishClick = (checked) => {
     Setrefurbish(checked);
@@ -46,6 +47,33 @@ const LocationCard = (props) => {
     };
     props.addingLocationToggle(data);
   };
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+       
+          "Name",//0
+          "Address",//1
+          "Production",//2
+          "Refurbish",//3
+          "Inventory",//4
+          "Billing",//5
+          "Corporate",//6
+          "Project",//7
+          "Retail",//8
+          "Regions"//9
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getlocation(props.orgId);
   }, []);
@@ -71,26 +99,38 @@ const LocationCard = (props) => {
         >
           <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" md:w-[10.5rem]">
-              Name</div>
+            {translatedMenuItems[0]}</div>
             <div className="  w-16 md:w-[9.1rem]">
               
             </div>
-            <div className=" md:w-[11.1rem] ">
-              Address</div>
-            <div className=" md:w-[8.2rem] ">Production</div>
+            <div className=" md:w-[11.1rem] ">{translatedMenuItems[1]}
+              {/* Address */}
+              </div>
             <div className=" md:w-[8.2rem] ">
-              Refurbish</div>
+            {translatedMenuItems[2]}
+            {/* Production */}
+            </div>
+            <div className=" md:w-[8.2rem] ">
+            {translatedMenuItems[3]}{/* Refurbish */}
+            </div>
             <div className="md:w-[8.5rem]">
-              Inventory</div>
+            {translatedMenuItems[4]} {/* Inventory */}
+              </div>
             <div className="md:w-[7.5rem]">
-              Billing</div>
+            {translatedMenuItems[5]} {/* Billing */}
+              </div>
             <div className="md:w-[8.51rem]">
-              Corporate</div>
+            {translatedMenuItems[6]} {/* Corporate */}
+              </div>
             <div className="md:w-[8.3rem]">
-              Project</div>
+            {translatedMenuItems[7]} {/* Project */}
+              </div>
             <div className="md:w-[8.9rem]">
-              Retail</div>
-            <div className="md:w-[8.9rem]">Regions</div>
+            {translatedMenuItems[8]}{/* Retail */}
+              </div>
+            <div className="md:w-[8.9rem]">
+            {translatedMenuItems[9]}{/* Regions */}
+              </div>
           </div>
           <div class="">
             {props.showLocation.map((item) => {

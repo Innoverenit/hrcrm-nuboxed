@@ -164,7 +164,7 @@ const BrandModel = (props) => {
          <MainWrapper className="!h-[69vh] !mt-2" >
             {!props.fetchingBrandModel && brandModel.length === 0 ? <NodataFoundPage /> : brandModel.slice().sort((a, b) => a.brand.localeCompare(b.brand)).map((region, index) => (
      
-              <div className="card9 h-8" key={region.phoneMasterListId}>
+              <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8" key={region.phoneMasterListId}>
               {/* Region name display or input field */}
               
               {editingId === region.phoneMasterListId ? (
@@ -175,7 +175,7 @@ const BrandModel = (props) => {
                       onChange={(e) => setBrandModelName(e.target.value)}
                   />
               ) : (
-                  <div className="region">{region.brand}</div>
+                  <div >{region.brand}</div>
               )}
                {editingId === region.phoneMasterListId ? (
                   <input
@@ -185,7 +185,7 @@ const BrandModel = (props) => {
                       onChange={(e) => setModelName(e.target.value)}
                   />
               ) : (
-                  <div className="region" style={{width:"39rem"}}>{region.model}&nbsp;&nbsp;&nbsp;
+                  <div style={{width:"39rem"}}>{region.model}&nbsp;&nbsp;&nbsp;
                   {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                         >
                                           New
@@ -193,7 +193,7 @@ const BrandModel = (props) => {
               )}
   
               {/* Action buttons */}
-              <div className="actions">
+              <div >
                   {/* Edit button */}
                   {/* {editingId === region.phoneMasterListId ? (
                       <div>

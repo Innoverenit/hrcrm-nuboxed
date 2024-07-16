@@ -30,7 +30,7 @@ class LeaveActionRight extends React.Component {
         <Tooltip placement="right" title="Apply">
           <Button type="primary"
           onClick={() => handleLeavesModal(true)}>
-           <DataSaverOnIcon/> Add
+           <DataSaverOnIcon className="!text-icons"/> Add
           </Button>
         </Tooltip>
         <AddLeavesModal

@@ -581,12 +581,37 @@ import EmployeeSearchedData from "./EmployeeSearchedData";
 function EmployeeTable(props) {
   const [page, setPage] = useState(0);
   const [rowData, setRowData] = useState("");
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   function handleRowData(item) {
     setRowData(item);
 
   }
+  
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+       
+          "Name",//0
+          "Department",//1
+          "Role",//2
+          "Mobile #",//3
+          "Email #",//4
+          "Stop Access",//5
+          "Multi Org"//6
+         
+        ];
 
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -767,26 +792,26 @@ function EmployeeTable(props) {
   ) : (
     <div>
      <div class=" h-h86 overflow-auto overflow-x-auto">
-        <div className=' flex justify-end sticky z-auto'>
+        <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-                    <div className=" md:w-[15.5rem]">{props.translatedMenuItems[0]}</div>
+                    <div className=" md:w-[15.5rem]">{translatedMenuItems[0]}</div>
                     {/* Name */}
-                    <div className=" md:w-[9.1rem]">{props.translatedMenuItems[1]}</div>
+                    <div className=" md:w-[9.1rem]">{translatedMenuItems[1]}</div>
                     {/* Department */}
-                    <div className=" md:w-[6.8rem] ">{props.translatedMenuItems[2]}</div>
+                    <div className=" md:w-[6.8rem] ">{translatedMenuItems[2]}</div>
                     {/* Role */}
-                    <div className="md:w-[8.7rem]">{props.translatedMenuItems[3]}</div>
+                    <div className="md:w-[8.7rem]">{translatedMenuItems[3]}</div>
                     {/* Mobile # */}
-                    <div className="md:w-[8.9rem]">{props.translatedMenuItems[4]}</div>
+                    <div className="md:w-[8.9rem]">{translatedMenuItems[4]}</div>
                     {/* Email # */}
-                    <div className="md:w-[9.2rem]">{props.translatedMenuItems[5]}</div>
+                    <div className="md:w-[9.2rem]">{translatedMenuItems[5]}</div>
                     {/* Stop Access */}
-                    <div className="md:w-[10.2rem]">{props.translatedMenuItems[6]}</div>
+                    <div className="md:w-[10.2rem]">{translatedMenuItems[6]}</div>
                     {/* Multi Org */}
                     <div className="md:w-[11.2rem]"></div>
                 </div>
-                {props.filteredData.map((item) => {
+                {props.employees.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     return (

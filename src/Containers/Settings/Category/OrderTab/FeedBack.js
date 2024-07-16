@@ -169,7 +169,7 @@ const FeedBack = (props) => {
          <MainWrapper className="!h-[69vh] !mt-2" >
             {!props.fetchingFeedback && feedBack.length === 0 ? <NodataFoundPage /> : feedBack.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
      
-              <div className="card9 h-8" key={region.feedbackId}>
+              <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8" key={region.feedbackId}>
               {/* Region name display or input field */}
               
               {/* {editingId === region.feedbackId ? (
@@ -193,7 +193,7 @@ const FeedBack = (props) => {
                       onChange={(e) => setCodeName(e.target.value)}
                   />
               ) : (
-                  <div className="region" style={{width:"29rem"}}>{region.name}&nbsp;&nbsp;&nbsp;
+                  <div style={{width:"29rem"}}>{region.name}&nbsp;&nbsp;&nbsp;
                    {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                         >
                                           New
@@ -210,12 +210,12 @@ const FeedBack = (props) => {
                       onChange={(e) => setDescriptionName(e.target.value)}
                   />
               ) : (
-                  <div className="region" style={{width:"39rem"}}>{region.description}
+                  <div  style={{width:"39rem"}}>{region.description}
                   </div>
               )}
   
               {/* Action buttons */}
-              <div className="actions">
+              <div >
                   {/* Edit button */}
                   {editingId === region.feedbackId ? (
                       <div>

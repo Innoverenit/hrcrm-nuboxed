@@ -163,7 +163,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingSectors && sectors.length === 0 ? <NodataFoundPage /> : sectors.slice().sort((a, b) => a.sectorName.localeCompare(b.sectorName)).map((region, index) => (
-            <div className="card9 h-8" key={region.sectorId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8" key={region.sectorId}>
             {/* Region name display or input field */}
             
             {editingId === region.sectorId ? (
@@ -175,7 +175,7 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setSectorName(e.target.value)}
                 />
             ) : (
-                <div className="region">{region.sectorName}&nbsp;&nbsp;&nbsp;
+                <div >{region.sectorName}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -183,7 +183,7 @@ return <div><BundleLoader/></div>;
             )}
 
             {/* Action buttons */}
-            <div className="actions">
+            <div >
                 {/* Edit button */}
                 {editingId === region.sectorId ? (
                     <div>

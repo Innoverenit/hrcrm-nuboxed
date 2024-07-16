@@ -35,7 +35,7 @@ class ModuleTrading extends Component {
                 <div class="w-full flex-row">
               <div class=" flex " >
              
-              <div class="w-[10.5rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+              <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
               <div className=" flex h-28 justify-center "> 
               <img
               className="big-logo w-36 h-24 m-2"
@@ -68,7 +68,7 @@ class ModuleTrading extends Component {
                     </div>
       
             <> 
-            <div class="w-[10.5rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
             <div className=" flex h-28 justify-center "> 
               <img
               className="big-logo w-36 h-24 m-2"
