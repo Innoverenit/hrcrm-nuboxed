@@ -22,7 +22,7 @@ class ReceivedDetailModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <ReceivedDetailCard row={this.props.row} />
+                        <ReceivedDetailCard row={this.props.row}  translatedMenuItems={this.props.translatedMenuItems}/>
                     </Suspense>
                 </StyledDrawer>
             </>

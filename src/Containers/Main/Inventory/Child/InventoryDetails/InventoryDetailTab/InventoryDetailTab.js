@@ -97,7 +97,8 @@ class InventoryDetailTab extends PureComponent {
                   {/* <span
                   //    onClick={() => this.handleOrderCreateClick(false)}
                   > */}
-                  <i class="fas fa-satellite-dish"></i>&nbsp;Receive
+                  <i class="fas fa-satellite-dish"></i>&nbsp;
+                  {/* Receive */}  {this.props.translatedMenuItems[5]}
                   {/* </span> */}
                   {/* {activeKey === "1" && (
                  
@@ -116,7 +117,8 @@ class InventoryDetailTab extends PureComponent {
               tab={
                 <>
                   <span>
-                    <i class="far fa-share-square"></i>&nbsp;Dispatch
+                    <i class="far fa-share-square"></i>&nbsp;
+                    {/* Dispatch */}  {this.props.translatedMenuItems[8]}
 
                   </span>
                   {/* {activeKey === "2" && (

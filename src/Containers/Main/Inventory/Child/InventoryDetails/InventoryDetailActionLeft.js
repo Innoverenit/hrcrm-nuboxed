@@ -27,17 +27,17 @@ class InventoryDetailActionLeft extends Component {
 
           {/* {user.designation === "Manager" && */}
           <Link to="/inventory">
-          <Tooltip title="Back">
+          <Tooltip title={this.props.translatedMenuItems[3]}>
                         <RollbackOutlined
                             style={{ marginRight: "0.3rem", color: "#1890ff" }}
                             // onClick={() => {
-                            //     this.props.history.goBack();
-                            //     this.props.emptyInventory()
+                            //     this.this.props.history.goBack();
+                            //     this.this.props.emptyInventory()
                             // }}
                         />
                     </Tooltip>
                     </Link>
-          <Tooltip title="Material">
+          <Tooltip title={this.props.translatedMenuItems[0]}>
           <div
       className="mr-2  font-medium text-sm"
       style={{
@@ -46,13 +46,13 @@ class InventoryDetailActionLeft extends Component {
       onClick={() => setInventoryDetailViewType("material")}
     >
       <Button type={viewType1 === "material" ? "primary" : ""} style={{ backgroundColor: viewType1 === "material" ? "" : "tomato" }}>
-        <label class="text-white cursor-pointer">Material</label>
+        <label class="text-white cursor-pointer">{this.props.translatedMenuItems[0]}</label>
       </Button>
     </div>
 
           </Tooltip>
           {/* } */}
-          {this.props.productionInd && <Tooltip title="Production">
+          {this.props.productionInd && <Tooltip title={this.props.translatedMenuItems[1]}>
             <div
               className=" mr-2  font-medium text-sm"
               style={{
@@ -62,10 +62,10 @@ class InventoryDetailActionLeft extends Component {
             >
              {/* <Button type="primary">  */}
              <Button type={viewType1 === "production" ? "primary" : ""} style={{ backgroundColor: viewType1 === "production" ? "" : "tomato" }}>
-             <label class="text-white cursor-pointer">Production</label></Button>
+             <label class="text-white cursor-pointer">{this.props.translatedMenuItems[1]}</label></Button>
             </div>
           </Tooltip>}
-          {this.props.repairInd && <Tooltip title="Repair">
+          {this.props.repairInd && <Tooltip title={this.props.translatedMenuItems[2]}>
             <div
               className=" mr-2 cursor-pointer font-medium text-sm"
               style={{
@@ -75,7 +75,7 @@ class InventoryDetailActionLeft extends Component {
             >
               <Button type={viewType1 === "repair" ? "primary" : ""} style={{ backgroundColor: viewType1 === "repair" ? "" : "tomato" }}>
                 
-              <label class="text-white cursor-pointer">Repair</label></Button>
+              <label class="text-white cursor-pointer">{this.props.translatedMenuItems[2]}</label></Button>
             </div>
           </Tooltip>}
 

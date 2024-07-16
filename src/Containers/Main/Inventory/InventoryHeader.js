@@ -10,6 +10,9 @@ class InventoryHeader extends Component {
             <InventoryActionLeft
               viewType={this.props.viewType}
               setInventoryViewType={this.props.setInventoryViewType}
+              translateText={this.props.translateText}
+              translatedMenuItems={this.props.translatedMenuItems}
+              selectedLanguage={this.props.selectedLanguage}
             />
           }
           // rightComponent={<InventoryActionRight />}

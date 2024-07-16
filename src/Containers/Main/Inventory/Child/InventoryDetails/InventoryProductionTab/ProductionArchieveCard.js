@@ -55,19 +55,28 @@ function ProductionArchieveCard(props) {
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-                    <div className="w-[11.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Manufacture ID</div>
-                        <div className=" w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
-                        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Category</div>
-                        <div className=" w-[21.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Attribute</div>  
+                    <div className="w-[11.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {/* Manufacture ID */}  
+                        {props.translatedMenuItems[35]}
+                        </div>
+                        <div className=" w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            {/* Name */}  {props.translatedMenuItems[15]}
+                            </div>
+                        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            {/* Category */}  {props.translatedMenuItems[16]}
+                            </div>
+                        <div className=" w-[21.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                            {/* Attribute */}  {props.translatedMenuItems[17]}
+                            </div>  
                         <div className="w-12"></div>
                     </div>
                     <InfiniteScroll
                         dataLength={archieveInProduction.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={fetchingArchieveProductionLocId ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                        loader={fetchingArchieveProductionLocId ? <div class="text-center font-semibold text-xs"> {props.translatedMenuItems[10]}...</div> : null}
                         height={"75vh"}
-                        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+                        endMessage={<div class="fles text-center font-bold text-xs text-red-500"> {props.translatedMenuItems[38]}. </div>}
                     >
                         {archieveInProduction.map((item, index) => {
                             return (
@@ -124,7 +133,7 @@ class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm
                                         </div> */}
                                         <div className=" flex font-medium  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                                <Tooltip title="Edit">
+                                                <Tooltip title={props.translatedMenuItems[40]}>
                                                     <BorderColorIcon
                                                         className="!text-icon cursor-pointer text-[tomato]"
                                                     // onClick={() => {
@@ -139,7 +148,7 @@ class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm
                                         </div>
                                         <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                                <Tooltip title="Print">
+                                                <Tooltip title={props.translatedMenuItems[41]}>
 
                                                     <ReactToPrint
                                                         trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}
