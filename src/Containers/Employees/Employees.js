@@ -9,9 +9,11 @@ const EmployeeCardView = lazy(() => import("./Child/EmployeeCard/EmployeeCardVie
 const EmployeeTable = lazy(() => import("./Child/EmployeeTable/EmployeeTable"));
 
 class Employees extends Component {
-
-  state = { currentData: "", filter:"cretiondate", currentUser: '',selectedLocation:"",
+  constructor(props) {
+    super(props);
+  this.state = { currentData: "", filter:"cretiondate", currentUser: '',selectedLocation:"",
   filteredData: this.props.employees };
+  }
   handleClear = () => {
     this.setState({ currentData: "" });
     this.props.getEmployeelist();
@@ -100,9 +102,9 @@ class Employees extends Component {
         />:
         this.props.viewType === "table" ?
         <EmployeeTable 
-        filteredData={this.state.filteredData}
-        filter={this.state.filter}
-        viewType={viewType}
+        translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
         />:
         null}
               </Suspense>
