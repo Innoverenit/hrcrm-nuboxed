@@ -285,6 +285,8 @@ class Quality extends Component {
       <React.Fragment>
         <QulityHeader
           setQualityViewType={setQualityViewType}
+          translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
           viewType={viewType}
           handleClear={this.handleClear}
           currentData={this.state.currentData}
@@ -293,10 +295,16 @@ class Quality extends Component {
 
         <Suspense fallback={<BundleLoader />}>
           {this.props.viewType === "production" ? (
-            <QulityProductionTable />
+            <QulityProductionTable 
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            />
           )
           :this.props.viewType === "repair" ? (
-            <QaCardList />
+            <QaCardList 
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            />
           )
           :null}
         </Suspense>

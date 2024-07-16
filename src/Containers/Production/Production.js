@@ -33,16 +33,25 @@ function Production(props) {
       />
 <Suspense fallback={<BundleLoader />}>
       { props.viewType === "arch" ?
-          <ProductionArchieveList viewType={props.viewType} />
+          <ProductionArchieveList 
+          viewType={props.viewType} 
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          />
 
         : props.viewType === "all" ? 
-        <ProductionAllCardView viewType={props.viewType} /> :
+        <ProductionAllCardView 
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        viewType={props.viewType} /> :
         props.viewType === "stage" ?
         <ProductionBoard /> :
         props.viewType === "cell" ?
         <ProductionCellList /> :
         props.viewType === "table" ?
         <ProductionDashCard 
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
         fetchingProductionTable={props.fetchingProductionTable}
         productionTableData={props.productionTableData}
         /> :

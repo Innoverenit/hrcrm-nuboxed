@@ -140,12 +140,38 @@ import { PstoProductionBuilder, getProductionSpareData } from "../../Product/Pro
 const DynamicInputForm = (props) => {
     const quantity = props.step.quantity;
     const [page, setPage] = useState(0);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     const [switchStates, setSwitchStates] = useState([]);
 
     useEffect(() => {
         props.getProductionSpareData(props.step.suppliesId,props.productionProductId,"0");
     }, []);
+
+
+
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+             "System ID",//0
+              "Part # ",//1
+              "Tag",//2
+          
+           
+              
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
 
     useEffect(() => {
         setSwitchStates(props.productionSpareData.map((item) => item.usedInd));
@@ -262,10 +288,19 @@ const DynamicInputForm = (props) => {
             <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=""></div>
-                    <div className="md:w-[22.12rem]"><FormattedMessage id="app.id" defaultMessage="System ID" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.part" defaultMessage="Part #" /></div>
+                    <div className="md:w-[22.12rem]">
+                    {translatedMenuItems[0]}
+                        {/* <FormattedMessage id="app.id" defaultMessage="System ID" /> */}
+                        </div>
+                    <div className="md:w-[15.5rem]">
+                    {translatedMenuItems[1]}
+                        {/* <FormattedMessage id="app.part" defaultMessage="Part #" /> */}
+                        </div>
                     <div className=""></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.tag" defaultMessage="Tag" /></div>
+                    <div className="md:w-[15.5rem]">
+                    {translatedMenuItems[2]}
+                        {/* <FormattedMessage id="app.tag" defaultMessage="Tag" /> */}
+                        </div>
                 </div>
                 <InfiniteScroll
                 dataLength={props.productionSpareData.length}

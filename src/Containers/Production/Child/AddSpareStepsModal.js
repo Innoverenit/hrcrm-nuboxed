@@ -21,6 +21,8 @@ const AddSpareStepsModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
       <SpareStepsForm 
       step={props.step}
+      translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
       productionProductId={props.productionProductId}
       // productionTableData={props.productionTableData}
       />

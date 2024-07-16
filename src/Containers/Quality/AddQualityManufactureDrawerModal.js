@@ -16,7 +16,7 @@ class AddQualityManufactureDrawerModal extends Component {
     return (
       <div>
         <StyledDrawer
-          title="Manufacture"
+          title={this.props.translatedMenuItems[7]}
           width="76em"
           style={{ marginTop: "5rem" }}
           visible={this.props.addQualityManufactureDrawerModal}
@@ -28,6 +28,7 @@ class AddQualityManufactureDrawerModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
          <QualityManufacureList
+         translatedMenuItems={this.props.translatedMenuItems}
            currentManufacture={this.props.currentManufacture}
          />
           

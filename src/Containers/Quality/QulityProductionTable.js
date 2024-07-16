@@ -21,6 +21,7 @@ export const QulityProductionTable = (props) => {
   const [page, setPage] = useState(0);
   const [zone, setZone] = useState([]);
   const [rack, setRack] = useState([]);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [isLoadingZone, setIsLoadingZone] = useState(false);
   const [isLoadingRack, setIsLoadingRack] = useState(false);
   const [selectedRack, setSelectedRack] = useState(null);
@@ -32,6 +33,35 @@ export const QulityProductionTable = (props) => {
       props.getProductionQualityData(props.locationId, page);
       setPage(page + 1);
   }, []);
+
+
+
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Manufacture ID",//0
+          "Name",//1
+          "Date",//2
+          "Status",//3
+          "To Dispatch",//5
+          "Assignedto",//6
+          "Manufacture",//7
+          "Step",//8
+          
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
 
 
@@ -153,12 +183,27 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
             <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className="flex w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                     <div className=""></div>
-                    <div className="md:w-[22.12rem]"><FormattedMessage id="app.manufactureid" defaultMessage="Manufacture ID" /></div>
-                    <div className="md:w-[22.12rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.status" defaultMessage="Status" /></div>
+                    <div className="md:w-[22.12rem]">
+                    {translatedMenuItems[0]}
+                      {/* <FormattedMessage id="app.manufactureid" defaultMessage="Manufacture ID" /> */}
+                      </div>
+                    <div className="md:w-[22.12rem]">
+                    {translatedMenuItems[1]}
+                      {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
+                      </div>
+                    <div className="md:w-[15.5rem]">
+                    {translatedMenuItems[2]}
+                      {/* <FormattedMessage id="app.date" defaultMessage="Date" /> */}
+                      </div>
+                    <div className="md:w-[15.5rem]">
+                    {translatedMenuItems[3]}
+                      {/* <FormattedMessage id="app.status" defaultMessage="Status" /> */}
+                      </div>
                     <div className=""></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.todispatch" defaultMessage="To Dispatch" /></div>
+                    <div className="md:w-[15.5rem]">
+                    {translatedMenuItems[4]}
+                      {/* <FormattedMessage id="app.todispatch" defaultMessage="To Dispatch" /> */}
+                      </div>
                 
                 </div>
                 <InfiniteScroll
@@ -346,6 +391,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
             </div>
         </div>
         <AddQualityManufactureDrawerModal
+        translatedMenuItems={translatedMenuItems}
         currentManufacture={currentManufacture}
         handleQualityManufactureModal={props.handleQualityManufactureModal}
         addQualityManufactureDrawerModal={props.addQualityManufactureDrawerModal}
