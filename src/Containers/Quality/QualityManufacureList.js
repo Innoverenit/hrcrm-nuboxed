@@ -2,21 +2,26 @@ import React,{useEffect,useState} from 'react'
 import { connect } from 'react-redux'
 import { FormattedMessage } from "react-intl";
 
-import { Tooltip, Button, Popconfirm, Switch } from "antd";
+import { Tooltip, Button,Card, Popconfirm, Switch } from "antd";
 import { bindActionCreators } from "redux";
 import QualityManufactureToggle from "./QualityManufactureToggle"
 
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getQualityManufactureData,getQualityManufactureUserData, emptyQualityManufactureData} from "../Main/Inventory/InventoryAction";
+import { getQualityManufactureData,getRejectManufactureData,getQualityManufactureUserData, emptyQualityManufactureData} from "../Main/Inventory/InventoryAction";
 // import MoveToggleQuality from "../Quality/MoveToggleQuality"
 import dayjs from "dayjs";
 import { MultiAvatar } from '../../Components/UI/Elements';
 
 export const QualityManufactureList = (props) => {
   const [page, setPage] = useState(0);
+  const [showMessage, setShowMessage] = useState(false);
     const [hasMore, setHasMore] = useState(true);
+    const handleClick = () => {
+      setShowMessage(true);
+    };
     useEffect(() => {
       props.emptyQualityManufactureData()
+
       props.getQualityManufactureUserData(props.currentManufacture.cellChamberLinkId)
       props.getQualityManufactureData(props.currentManufacture.productId, props.currentManufacture.manufactureId);
     //   setPage(page + 1);
@@ -61,22 +66,33 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
 }
   return (
     <>
-      
+      <div style={{display:"flex"}}>
     <div>
-   
+    <Card   title={`${props.currentManufacture.cellChamberName}`}>
     {props.qualityManufactureUserData.map((item, index) => {
       return(
-        <div>
-          {item.userName}
-
-          {item.cellName}
-          </div>
+        <MultiAvatar
+          primaryTitle={item.userName}
+          imgWidth={"1.8rem"}
+          imgHeight={"1.8rem"}
+          />
       )
 
 })} 
+</Card>
       
     </div>
-    <div className='flex sticky z-auto'>
+    <Button type="primary" 
+    // onClick={handleClick}
+    onClick={() => {
+      handleClick()
+      props.getRejectManufactureData(props.locationId);
+     
+    }}
+    >
+        Show Data
+      </Button>
+    <div className='flex sticky z-auto' style={{width:"62em"}}>
             <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className="flex w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                     <div className=""></div>
@@ -163,6 +179,89 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                 {/* </InfiniteScroll> */}
             </div>
         </div>
+        </div>
+        {showMessage && 
+        <div className='flex sticky z-auto' style={{width:"62em"}}>
+            <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div className="flex w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+                    <div className=""></div>
+                    <div className="md:w-[22.12rem]">
+                  
+                      <FormattedMessage id="app.cell" defaultMessage="Cell" />
+                      </div>
+                    {/* <div className="md:w-[22.12rem]">
+                   
+                      <FormattedMessage id="app.cell" defaultMessage="Cell" />
+                      </div> */}
+                    {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
+                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.status" defaultMessage="Status" /></div> */}
+                    <div className=""></div>
+                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.unitsinqueue" defaultMessage="Units (in queue)" /></div>
+                
+                </div>
+            
+                {props.rejectManufactureData.map((item, index) => {
+                    return (
+                        <div key={index}>
+                            <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
+                                    <div 
+                                    className="flex justify-between text-sm  font-semibold font-poppins"
+                                   
+                                    >
+                                        {item.cellChamber}
+                                    </div>
+                                </div>
+
+                                <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                    <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
+                                   {item.cellUnit} 
+                                    </div>
+                                </div>
+
+
+                                {/* <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                    <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
+                                  <QualityManufactureToggle
+                                  item={item}
+                                  currentManufacture={props.currentManufacture}
+                                  />
+                                    </div>
+                                </div> */}
+
+
+
+                                {/* <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                    <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
+                                      {item.updatedBy!=null&&
+                                    <MultiAvatar
+                                                                    primaryTitle={item.updatedBy}
+                                                                    imgWidth={"1.8rem"}
+                                                                    imgHeight={"1.8rem"}
+                                                                />
+
+                                      }
+                                        {item.updatedBy!=null&&
+                                        <>
+                                      {`  ${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
+                                      </>
+                                        }
+                                    </div>
+                                </div> */}
+
+
+
+       
+
+                               
+                            </div>
+                        </div>
+                    );
+                })} 
+               
+            </div>
+        </div>
+}
         {/* <AddQualityManufactureDrawerModal
         handleQualityManufactureModal={props.handleQualityManufactureModal}
         addQualityManufactureDrawerModal={props.addQualityManufactureDrawerModal}
@@ -177,6 +276,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
 // })
 const mapStateToProps = ({ inventory, auth,production }) => ({
   locationId: auth.userDetails.locationId,
+  rejectManufactureData:inventory.rejectManufactureData,
   qualityManufactureData:inventory.qualityManufactureData,
   qualityManufactureUserData:inventory.qualityManufactureUserData,
 //   addQualityManufactureDrawerModal:inventory.addQualityManufactureDrawerModal,
@@ -189,7 +289,8 @@ bindActionCreators(
   {
     getQualityManufactureData,
     emptyQualityManufactureData,
-    getQualityManufactureUserData
+    getQualityManufactureUserData,
+    getRejectManufactureData
     // getProductionQualityData,
     // handleQualityManufactureModal
   },

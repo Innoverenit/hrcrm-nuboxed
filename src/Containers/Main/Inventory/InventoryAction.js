@@ -2208,3 +2208,32 @@ export const getQualityManufactureUserData = (cellChamberLinkId) => (dispatch) =
       });
     });
 };
+
+
+
+export const getRejectManufactureData = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_REJECT_MANUFACTURE_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/quality/cell-chamber/${locationId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REJECT_MANUFACTURE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_REJECT_MANUFACTURE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};

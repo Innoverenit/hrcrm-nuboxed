@@ -226,6 +226,11 @@ const initialState = {
   fetchingInventoryOutputReportsError: false,
   inventoryReports: [],
 
+
+  fetchingRejectManufactureDataError:false,
+  fetchingRejectManufactureDataError:false,
+  rejectManufactureData:[],
+
   deletingDispatchProductList: false,
   deletingDispatchProductListError: false,
 
@@ -334,6 +339,10 @@ const initialState = {
   fetchingRacklist: false,
   fetchingRacklistError: false,
   rackList: [],
+
+  fetchingRejectManufactureData:false,
+  fetchingRejectManufactureDataError:false,
+  rejectManufactureData:[],
 
   rejectPhoneList: false,
   rejectPhoneListError: false,
@@ -855,6 +864,16 @@ export const inventoryReducer = (state = initialState, action) => {
         addingConsumptionReasonError: true,
         consumptionReasonModal: false,
       };
+
+
+
+
+      case types.GET_REJECT_MANUFACTURE_DATA_REQUEST:
+        return { ...state, fetchingRejectManufactureData: true, fetchingRejectManufactureDataError: false };
+      case types.GET_REJECT_MANUFACTURE_DATA_SUCCESS:
+        return { ...state, fetchingRejectManufactureData: false, rejectManufactureData: action.payload };
+      case types.GET_REJECT_MANUFACTURE_DATA_FAILURE:
+        return { ...state, fetchingRejectManufactureData: false, fetchingRejectManufactureDataError: true };
 
     //get consumption reason list
     case types.GET_CONSUMPTION_REASON_LIST_REQUEST:
