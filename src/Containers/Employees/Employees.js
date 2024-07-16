@@ -8,6 +8,7 @@ const AddEmployeeModal = lazy(() => import("./Child/AddEmployeeModal"));
 const EmployeeCardView = lazy(() => import("./Child/EmployeeCard/EmployeeCardView"));
 const EmployeeTable = lazy(() => import("./Child/EmployeeTable/EmployeeTable"));
 
+
 class Employees extends Component {
   constructor(props) {
     super(props);
@@ -73,6 +74,8 @@ class Employees extends Component {
     return (
       <React.Fragment>
         <EmployeesHeader
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           handleEmployeeModal={handleEmployeeModal}
           setEmployeeViewType={setEmployeeViewType}
           viewType={viewType}
@@ -102,9 +105,8 @@ class Employees extends Component {
         />:
         this.props.viewType === "table" ?
         <EmployeeTable 
-        translateText={this.props.translateText}
-          selectedLanguage={this.props.selectedLanguage}
-        translatedMenuItems={this.props.translatedMenuItems}
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
         />:
         null}
               </Suspense>

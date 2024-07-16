@@ -368,7 +368,7 @@ const handleFinanceClick = (checked) => {
               <div class="flex" >
                 <div class="w-full flex-row">
               <div class=" flex " >
-             <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+             <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
              <div className=" flex h-28 justify-center "> 
               <img
               className="big-logo w-36 h-24 m-2"
@@ -403,7 +403,7 @@ const handleFinanceClick = (checked) => {
                     </div>
                     
                     </div>
-                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
            <div className=" flex h-28 justify-center"> 
               <img
               className="big-logo w-36 h-24 m-2"
@@ -435,7 +435,7 @@ const handleFinanceClick = (checked) => {
                     <div class="text-xs text-center">Handle transactions and invoicing, track budgets.</div>
                     </div>
                     </div>
-                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
                      <div className=" flex h-28 justify-center"> 
               <img
               className="big-logo w-36 h-24 m-2"
@@ -502,7 +502,7 @@ const handleFinanceClick = (checked) => {
                       </Popconfirm>
                     </div>
 */}
- <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+ <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
  <div className=" flex h-28 justify-center"> 
               <img
               className="big-logo w-36 h-24 m-2"
@@ -541,7 +541,7 @@ const handleFinanceClick = (checked) => {
 
                    
 
-                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
                     <div className=" flex h-28 justify-center"> 
               <img
               className="big-logo w-36 h-24 m-2"
@@ -574,7 +574,7 @@ const handleFinanceClick = (checked) => {
                     <div class="text-xs text-center"> Hire @ Scale.</div>
                     </div>
                     </div>
-                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
                     <div className=" flex h-28 justify-center"> 
               <img
               className="big-logo w-36 h-24 m-2"

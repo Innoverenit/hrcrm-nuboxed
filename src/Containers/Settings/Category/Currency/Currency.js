@@ -96,7 +96,7 @@ const Currency = ({ fetchingCurrencyList, currencyList, getCurrencyList, getCurr
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!fetchingCurrencyList && currencyList.length === 0 ? <NodataFoundPage /> : currencyList.slice().sort((a, b) => a.currency_name.localeCompare(b.currency_name)).map((region, index) => (
-            <div className="card9" key={region.currency_id}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center " key={region.currency_id}>
             {/* Region name display or input field */}
             
             

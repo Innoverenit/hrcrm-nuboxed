@@ -214,7 +214,7 @@ return <div><BundleLoader/></div>;
           <div class=" flex flex-col" >
           <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingDevelopment && developmentList.map((region, index) =>(
-            <div className="card9 h-8" key={region.developmentId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8" key={region.developmentId}>
             {/* Region name display or input field */}
             
         
@@ -237,7 +237,7 @@ return <div><BundleLoader/></div>;
                          </select> 
               ) : (
 
-                  <div className="region" style={{width:"20rem"}}>{region.taskType}&nbsp;&nbsp;&nbsp;
+                  <div  style={{width:"20rem"}}>{region.taskType}&nbsp;&nbsp;&nbsp;
                   {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                         >
                                           New
@@ -267,12 +267,12 @@ return <div><BundleLoader/></div>;
      
                 </>
             ) : (
-                <div className="region" style={{width:"15rem"}}>
+                <div  style={{width:"15rem"}}>
                   {region.value} {region.developmentType === 'percentage' ? '%' : region.developmentType}</div>
             )}
 
             {/* Action buttons */}
-            <div className="actions">
+            <div >
                 {/* Edit button */}
                 {editingId === region.developmentId ? (
                     <div>

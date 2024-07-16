@@ -174,7 +174,7 @@ return <div><BundleLoader/></div>;
           <MainWrapper className="!h-[69vh] !mt-2">
   {!props.fetchingInvestorList && investorListData.length === 0 ? <NodataFoundPage /> : investorListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
     <>
-    <div className="card9 h-8" key={region.investorCategoryId}>
+    <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8" key={region.investorCategoryId}>
       {/* Region name display or input field */}
       {editingId === region.investorCategoryId ? (
         <input
@@ -185,7 +185,7 @@ return <div><BundleLoader/></div>;
           onChange={(e) => setInvestorName(e.target.value)}
         />
       ) : (
-        <div className="region">
+        <div >
           {region.name}&nbsp;&nbsp;&nbsp;
           {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") &&
             <span className="text-xs text-[tomato] font-bold">
@@ -196,7 +196,7 @@ return <div><BundleLoader/></div>;
       )}
 
       {/* Action buttons */}
-      <div className="actions">
+      <div >
         {/* Edit button */}
         {editingId === region.investorCategoryId ? (
           <div>

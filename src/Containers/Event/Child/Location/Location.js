@@ -27,6 +27,8 @@ class Location extends Component {
          <Suspense fallback={<BundleLoader />}>
           {this.props.viewType === "card" ? (
              <LocationCard
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
              viewType={viewType}
            />
           ) 
@@ -36,11 +38,15 @@ class Location extends Component {
              )
           :this.props.viewType === "tile" ? (
             
-            <LocationCard2/>
+            <LocationCard2
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}/>
              )
              :this.props.viewType === "delete" ? (
             
-              <DeletedLocationCard/>
+              <DeletedLocationCard
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}/>
                )
           : null}
           </Suspense>

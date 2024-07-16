@@ -185,6 +185,7 @@ function LanguageSelector({ onLanguageChange,supportedLanguages,selectedLanguage
         <option value="French">FR</option>
         <option value="Spanish">ES</option>
         <option value="Italin">IT</option>
+        <option value="Polish">PL</option>
       </select>
     </div>
   );
