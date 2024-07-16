@@ -56,24 +56,40 @@ const GrnListOfPO = (props) => {
                 <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky z-10">
                         <div className=""></div>
-                        <div className=" w-[15rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" w-[7.12rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div>
-                        <div className=" w-[8.1rem]"><FormattedMessage id="app.unit" defaultMessage="Unit" /></div>
-                        <div className=" w-[8.2rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
-                        <div className=" w-[8.3rem]"><FormattedMessage id="app.damage" defaultMessage="Damage" /></div>
-                        <div className=" w-[8.01rem]"><FormattedMessage id="app.final" defaultMessage="Final" /></div>
+                        <div className=" w-[15rem]">
+                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */} {props.translatedMenuItems[15]}
+                            </div>
+                        <div className=" w-[7.12rem]">
+                            {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}{props.translatedMenuItems[44]}
+                            </div>
+                        <div className=" w-[8.1rem]">
+                            {/* <FormattedMessage id="app.unit" defaultMessage="Unit" /> */}{props.translatedMenuItems[18]}
+                            </div>
+                        <div className=" w-[8.2rem]">
+                            {/* <FormattedMessage id="app.received" defaultMessage="Receive" /> */} {props.translatedMenuItems[5]}
+                            </div>
+                        <div className=" w-[8.3rem]">
+                            {/* <FormattedMessage id="app.damage" defaultMessage="Damage" /> */} {props.translatedMenuItems[45]}
+                            </div>
+                        <div className=" w-[8.01rem]">
+                            {/* <FormattedMessage id="app.final" defaultMessage="Final" /> */}{props.translatedMenuItems[46]}
+                            </div>
                         <div className=" w-[5.01rem]"></div>
-                        <div className=" w-[10rem]"><FormattedMessage id="app.remark" defaultMessage="Remark" /></div>
+                        <div className=" w-[10rem]">
+                            {/* <FormattedMessage id="app.remark" defaultMessage="Remark" /> */}{props.translatedMenuItems[21]}
+                            </div>
                         <div className=" w-[10.04rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
                         <div className=" w-[15rem]"></div>
-                        <div className=" w-[5rem]"><FormattedMessage id="app.stock" defaultMessage="To Stock" /></div>
+                        <div className=" w-[5rem]">
+                            {/* <FormattedMessage id="app.stock" defaultMessage="To Stock" /> */}{props.translatedMenuItems[14]}
+                            </div>
                         <div className=""></div>
                     </div>
                     <InfiniteScroll
                         dataLength={props.receivedDetailData.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                        loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
                         height={"73vh"}
                     >
                         {props.receivedDetailData.map((item) => {
@@ -177,7 +193,9 @@ const GrnListOfPO = (props) => {
                                                                 handleSelectZone()
                                                                 handleRow(item)
                                                             }}
-                                                        >Select Zone</Button> :
+                                                        >
+                                                            {/* Select Zone */} {props.translatedMenuItems[47]}
+                                                        </Button> :
                                                             <div>
                                                                 {item.zone}{item.chamber}
                                                             </div>
@@ -214,6 +232,7 @@ const GrnListOfPO = (props) => {
                 row={row}
                 handleReceivedUnit={props.handleReceivedUnit}
                 addReceiveUnit={props.addReceiveUnit}
+             translatedMenuItems={props.translatedMenuItems}
             />
         </>
     );

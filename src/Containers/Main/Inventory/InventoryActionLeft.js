@@ -19,7 +19,7 @@ const InventoryActionLeft = (props) => {
     return (
       <>
         <div class=" flex items-center" >
-        <Tooltip title="My View">
+        <Tooltip title={props.translatedMenuItems[15]}>
           {/* <Badge size="small"
            count={props.inventoryLocationCount.locCount || 0}
            >     */}
@@ -37,7 +37,7 @@ const InventoryActionLeft = (props) => {
             </span>
             {/* </Badge> */}
           </Tooltip>
-          <Tooltip title={<FormattedMessage id="app.location" defaultMessage="Location" />}>
+          <Tooltip title={props.translatedMenuItems[16]}>
           <Badge size="small"
            count={props.inventoryLocationCount.locCount || 0}
            >    

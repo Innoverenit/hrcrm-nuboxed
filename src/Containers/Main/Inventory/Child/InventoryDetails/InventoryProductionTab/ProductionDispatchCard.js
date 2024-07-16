@@ -56,22 +56,36 @@ function ProductionDispatchCard(props) {
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
-                        <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16rem]">Manufacture ID</div>
-                        <div className=" w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.01rem]">Name</div>
-                        <div className=" w-[10.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.1rem]">Category</div>
-                        <div className=" w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Attribute</div>
-                        <div className=" w-[11.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Dispatch By</div>
-                        <div className=" md:w-[4.01rem]">Zone</div>
-                        <div className=" md:w-[4.01rem]">#Rack</div>
+                        <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16rem]">
+                            {/* Manufacture ID */} {props.translatedMenuItems[35]}
+                            </div>
+                        <div className=" w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.01rem]">
+                            {/* Name */} {props.translatedMenuItems[15]}
+                            </div>
+                        <div className=" w-[10.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.1rem]">
+                            {/* Category */} {props.translatedMenuItems[16]}
+                            </div>
+                        <div className=" w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">
+                            {/* Attribute */} {props.translatedMenuItems[17]}
+                            </div>
+                        <div className=" w-[11.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">
+                            {/* Dispatch By */} {props.translatedMenuItems[42]}
+                            </div>
+                        <div className=" md:w-[4.01rem]">
+                            {/* Zone */} {props.translatedMenuItems[32]}
+                            </div>
+                        <div className=" md:w-[4.01rem]">
+                            {/* #Rack */} #{props.translatedMenuItems[33]}
+                            </div>
                         <div className="w-12"></div>
                     </div>
                     <InfiniteScroll
                         dataLength={productionDispatchByLocsId.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={fetchingDispatchProductionLocId ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                        loader={fetchingDispatchProductionLocId ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
                         height={"75vh"}
-                        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+                        endMessage={<div class="fles text-center font-bold text-xs text-red-500">{props.translatedMenuItems[38]}. </div>}
                     >
                         {productionDispatchByLocsId.map((item, index) => {
                             return (
@@ -141,7 +155,7 @@ function ProductionDispatchCard(props) {
                                             </div>
                                             <div className=" flex font-medium  w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                                    <Tooltip title="Edit">
+                                                    <Tooltip title={props.translatedMenuItems[40]}>
                                                         <BorderColorIcon
                                                             className="!text-icon cursor-pointer text-[tomato]"
                                                         // onClick={() => {
@@ -158,7 +172,7 @@ function ProductionDispatchCard(props) {
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium  w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                                    <Tooltip title="Print">
+                                                    <Tooltip title={props.translatedMenuItems[41]}>
 
                                                         <ReactToPrint
                                                             trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}

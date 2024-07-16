@@ -47,10 +47,10 @@ const InventoryCard = (props) => {
       {fetchingInventoryList ? <BundleLoader /> : <div className=' flex justify-end sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-            <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.country" defaultMessage="Country" /></div>
-            <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]"><FormattedMessage id="app.address" defaultMessage="Address" /></div>
-            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.pincode" defaultMessage="Pin Code" /></div>
+            <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">{props.translatedMenuItems[0]}</div>
+            <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[1]}</div>
+            <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]">{props.translatedMenuItems[2]}</div>
+            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
             {/* <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]"><FormattedMessage id="app.zone" defaultMessage="#Zone" /></div> */}
             <div className="w-[4.3rem]"></div>
           </div>
@@ -90,7 +90,7 @@ const InventoryCard = (props) => {
                                 &nbsp;&nbsp;
                                 {date === currentdate ? (
                                   <span class="text-xs font-bold text-[tomato]">
-                                    New
+                                    {props.translatedMenuItems[4]}
                                   </span>
                                 ) : null}
 
@@ -142,7 +142,7 @@ const InventoryCard = (props) => {
                               handleInventoryRoomRackModal(true);
                             }}
                           >
-                             Store Config
+                             {/* Store Config */}      {props.translatedMenuItems[5]}
                             </Button>
                          
                         </div>
@@ -165,6 +165,9 @@ const InventoryCard = (props) => {
         rowData={rowData}
         handleInventoryRoomRackModal={handleInventoryRoomRackModal}
         addroomrackininventory={addroomrackininventory}
+        translateText={props.translateText}
+        translatedMenuItems={props.translatedMenuItems}
+        selectedLanguage={props.selectedLanguage}
       />
     </>
   );

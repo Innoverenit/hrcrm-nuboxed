@@ -38,9 +38,15 @@ const ReceivedUnitList = (props) => {
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
-                        <div className=" w-[17.12rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" w-[12.42rem]"><FormattedMessage id="app.id" defaultMessage="System ID" /></div>
-                        <div className=" w-[15.05rem]"><FormattedMessage id="app.part" defaultMessage="Part #" /></div>
+                        <div className=" w-[17.12rem]">
+                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}{props.translatedMenuItems[15]}
+                        </div>
+                        <div className=" w-[12.42rem]">
+                            {/* <FormattedMessage id="app.id" defaultMessage="System ID" /> */}{props.translatedMenuItems[49]} ID
+                        </div>
+                        <div className=" w-[15.05rem]">
+                            {/* <FormattedMessage id="app.part" defaultMessage="Part #" />  */} {props.translatedMenuItems[50]} #
+                        </div>
                         <div className=""></div>
                     </div>
 
@@ -87,7 +93,9 @@ const ReceivedUnitList = (props) => {
                                                             userId: props.userId,
                                                             poSupplierSuppliesId: props.poSupplierSuppliesId,
                                                         }, item.supplierSuppliesUniqueNumberId, handleCallback())}
-                                                    >Add</Button>
+                                                    >
+                                                        {/* Add */}{props.translatedMenuItems[23]} 
+                                                        </Button>
                                                     <Button onClick={handlePartNo}>Cancel</Button>
                                                 </>
                                                 : <span>

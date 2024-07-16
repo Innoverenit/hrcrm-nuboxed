@@ -76,8 +76,14 @@ const MaterialReceivedTable = (props) => {
                     <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky z-10">
                         <div className=""></div>
                         <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
-                        <div className=" w-[13.52rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
-                        <div className=" w-[11.122rem]">Supplier</div>
+                        <div className=" w-[13.52rem]">
+                            {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
+                            {props.translatedMenuItems[11]}
+                        </div>
+                        <div className=" w-[11.122rem]">        {props.translatedMenuItems[12]} 
+                            {/* Supplier */}
+
+                        </div>
 
                         <div className=" w-[11.322rem]"></div>
                     </div>
@@ -85,7 +91,7 @@ const MaterialReceivedTable = (props) => {
                         dataLength={props.materialReceiveData.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingMaterialReceiveData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                        loader={props.fetchingMaterialReceiveData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]} ...</div> : null}
                         height={"69vh"}
                     >
                         {props.materialReceiveData.map((item) => {
@@ -106,7 +112,8 @@ const MaterialReceivedTable = (props) => {
                                                     >{item.newPoNumber}</div>
                                                     {date === currentdate ? (
                                                         <div class="text-xs font-bold text-[tomato]">
-                                                            New
+                                                          {props.translatedMenuItems[13]}  
+                                                          {/* New */}
                                                         </div>
                                                     ) : null}
                                                 </div>
@@ -204,7 +211,7 @@ const MaterialReceivedTable = (props) => {
                                                     }}
                                                     type="primary"
                                                 >
-                                                    GRN To Stock
+                                                    {/* GRN To Stock */}    GRN {props.translatedMenuItems[14]}  
                                                 </Button>
                                                 {/* <ListAltOutlined
                                                     onClick={() => {
@@ -228,11 +235,13 @@ const MaterialReceivedTable = (props) => {
                 row={row}
                 handleMaterialReceived={props.handleMaterialReceived}
                 addMaterialReceived={props.addMaterialReceived}
+                translatedMenuItems={props.translatedMenuItems}
             />
             <GrnListOfPOModal
                 handlegrnlistmodal={props.handlegrnlistmodal}
                 showGrnListOfPo={props.showGrnListOfPo}
                 row={row}
+                translatedMenuItems={props.translatedMenuItems}
             />
         </>
     );

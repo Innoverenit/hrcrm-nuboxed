@@ -101,23 +101,42 @@ const GrnListOfPO = (props) => {
                     <div className=" flex justify-between  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className="w-[2.5rem]"></div>
                         <div className=" md:w-[4.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
-                        <div className=" md:w-[9.21rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
+                        <div className=" md:w-[9.21rem]">
+                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
+                            {props.translatedMenuItems[15]}
+                            </div>
                         {/* <div className=" md:w-[3.82rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div> */}
                         {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
-                        <div className=" md:w-[4.25rem]"><FormattedMessage id="app.ordered" defaultMessage="Ordered" /></div>
-                        <div className=" md:w-[6.10rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
-                        <div className=" md:w-[4.42rem]"><FormattedMessage id="app.damaged" defaultMessage="Damaged" /></div>
-                        <div className=" md:w-[5.01rem]"><FormattedMessage id="app.balance" defaultMessage="Balance" /></div>
-                        <div className=" md:w-[5.01rem]"><FormattedMessage id="app.remark" defaultMessage="Remark" /></div>
-                        <div className=" md:w-[4.51rem]"><FormattedMessage id="app.room" defaultMessage="Zone" /></div>
-                        <div className=" md:w-[6.01rem]"><FormattedMessage id="app.rack" defaultMessage="#Rack" /></div>
+                        <div className=" md:w-[4.25rem]">
+                            {/* <FormattedMessage id="app.ordered" defaultMessage="Ordered" /> */}  {props.translatedMenuItems[30]}
+
+                            </div>
+                        <div className=" md:w-[6.10rem]">
+                            {/* <FormattedMessage id="app.received" defaultMessage="Receive" /> */}  {props.translatedMenuItems[5]}
+
+                            </div>
+                        <div className=" md:w-[4.42rem]">
+                            {/* <FormattedMessage id="app.damaged" defaultMessage="Damaged" /> */}  {props.translatedMenuItems[20]}
+                        </div>
+                        <div className=" md:w-[5.01rem]">
+                            {/* <FormattedMessage id="app.balance" defaultMessage="Balance" /> */}  {props.translatedMenuItems[31]}
+                        </div>
+                        <div className=" md:w-[5.01rem]">
+                            {/* <FormattedMessage id="app.remark" defaultMessage="Remark" /> */}  {props.translatedMenuItems[21]}
+                            </div>
+                        <div className=" md:w-[4.51rem]">
+                            {/* <FormattedMessage id="app.room" defaultMessage="Zone" /> */}  {props.translatedMenuItems[32]}
+                        </div>
+                        <div className=" md:w-[6.01rem]">
+                            {/* <FormattedMessage id="app.rack" defaultMessage="#Rack" /> */} #{props.translatedMenuItems[33]}
+                        </div>
                         <div className=""></div>
                     </div>
                     <InfiniteScroll
                         dataLength={props.poGrnList.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingGrnListOfAPo ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                        loader={props.fetchingGrnListOfAPo ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
                         height={"72vh"}
                     >
                         {props.poGrnList.map((item, index) => {
@@ -261,13 +280,13 @@ const GrnListOfPO = (props) => {
                                                             type="primary"
                                                             onClick={() => handleUpdateSupplies()}
                                                         >
-                                                            Save
+                                                            {/* Save */} {props.translatedMenuItems[34]}
                                                         </Button>
                                                         <Button
                                                         // type="primary"
                                                         // onClick={handleCancelZone()}
                                                         >
-                                                            Cancel
+                                                            {/* Cancel */} {props.translatedMenuItems[24]}
                                                         </Button>
                                                     </>
 
