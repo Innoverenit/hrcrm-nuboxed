@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
@@ -23,6 +23,7 @@ const { Option } = Select;
 function ProductionTableView(props) {
     const [zone, setZone] = useState([]);
   const [rack, setRack] = useState([]);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [isLoadingZone, setIsLoadingZone] = useState(false);
   const [isLoadingRack, setIsLoadingRack] = useState(false);
   const [selectedRack, setSelectedRack] = useState(null);
@@ -110,6 +111,36 @@ function ProductionTableView(props) {
       };
 
 
+      useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+             "Manufacture ID",//0
+              "Cell",//1
+              "Created",//2
+              "Item",//3
+              "Category",//5
+              "Attribute",//6
+              "Status",//7
+              "Workflow",//8
+              "Stage",//8
+              "Inspected",//8
+              "Store",//8
+              "To Quality",//8
+              
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+
+
 
       const fetchRack = async (roomRackId) => {
         setIsLoadingRack(true);
@@ -152,14 +183,35 @@ function ProductionTableView(props) {
                 <div class="rounded m-1  mt-5 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className=""></div>
-                        <div className=" md:w-[9rem]"> MFG ID</div>
-                        <div className=" md:w-[6.01rem]">Cell</div>
-                        <div className=" md:w-[6rem]">Created</div>
+                        <div className=" md:w-[9rem]"> 
+                            {/* MFG ID */}
+                            {translatedMenuItems[0]}
+                            </div>
+                        <div className=" md:w-[6.01rem]">
+                            {/* Cell */}
+                            {translatedMenuItems[1]}
+                            </div>
+                        <div className=" md:w-[6rem]">
+                            {/* Created */}
+                            {translatedMenuItems[2]}
+                            </div>
                         <div className="md:w-[2rem]"></div>
-                        <div className=" md:w-[4.3rem]">Item</div>
-                        <div className="md:w-[8.4rem]">Category</div>
-                        <div className="md:w-[8.5rem]">Attribute</div>
-                        <div className=" md:w-[5.51rem] ">Status</div>
+                        <div className=" md:w-[4.3rem]">
+                            {/* Item */}
+                            {translatedMenuItems[3]}
+                            </div>
+                        <div className="md:w-[8.4rem]">
+                            {/* Category */}
+                            {translatedMenuItems[4]}
+                            </div>
+                        <div className="md:w-[8.5rem]">
+                            {/* Attribute */}
+                            {translatedMenuItems[5]}
+                            </div>
+                        <div className=" md:w-[5.51rem] ">
+                            {/* Status */}
+                            {translatedMenuItems[6]}
+                            </div>
    
  
                         
@@ -335,12 +387,27 @@ function ProductionTableView(props) {
             <div className=' flex  sticky z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">                       
-                        <div className=" md:w-[9rem]">Workflow</div>
-                        <div className=" md:w-[6.06rem]">Stage</div>
-                        <div className="md:w-[5rem]">Inspected</div>
-                        <div className=" md:w-[6.07rem]">Store</div>
+                        <div className=" md:w-[9rem]">
+                            {/* Workflow */}
+                            {translatedMenuItems[8]}
+                            </div>
+                        <div className=" md:w-[6.06rem]">
+                            {/* Stage */}
+                            {translatedMenuItems[9]}
+                            </div>
+                        <div className="md:w-[5rem]">
+                            {/* Inspected */}
+                            {translatedMenuItems[10]}
+                            </div>
+                        <div className=" md:w-[6.07rem]">
+                            {/* Store */}
+                            {translatedMenuItems[11]}
+                            </div>
                         <div className="md:w-[1.08rem]"></div>
-                        <div className="md:w-[5.07rem]">To Quality</div>
+                        <div className="md:w-[5.07rem]">
+                            {/* To Quality */}
+                            {translatedMenuItems[12]}
+                            </div>
                         {/* <div className=" md:w-[5rem] ">Status</div> */}
    
  

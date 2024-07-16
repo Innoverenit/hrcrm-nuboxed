@@ -80,8 +80,14 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
             <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className="flex w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                     <div className=""></div>
-                    <div className="md:w-[22.12rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                    <div className="md:w-[22.12rem]"><FormattedMessage id="app.step" defaultMessage="Step" /></div>
+                    <div className="md:w-[22.12rem]">
+                    {props.translatedMenuItems[0]}
+                      {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
+                      </div>
+                    <div className="md:w-[22.12rem]">
+                    {props.translatedMenuItems[8]}
+                      {/* <FormattedMessage id="app.step" defaultMessage="Step" /> */}
+                      </div>
                     {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
                     <div className="md:w-[15.5rem]"><FormattedMessage id="app.status" defaultMessage="Status" /></div> */}
                     <div className=""></div>

@@ -12,6 +12,7 @@ const SuppliesDeletedTable =lazy(()=>import("./SuppliesDeletedTable"));
 function Supplies(props) {
     const { setSuppliesViewType, viewType, handleSuppliesModal } = props;
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
+    
     useEffect(() => {
         const handleResize = () => {
             setIsLargeScreen(window.innerWidth > 768);
@@ -34,7 +35,10 @@ function Supplies(props) {
             <Suspense fallback={<BundleLoader />}>
                 {viewType === "all" ? (
               
-                   <SuppliesTable />
+                   <SuppliesTable
+                   translateText={props.translateText}
+                   selectedLanguage={props.selectedLanguage}
+                    />
                   
                 ) : viewType === "dashboard" ? (
                    
