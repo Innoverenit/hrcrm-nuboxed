@@ -132,7 +132,7 @@ const LeadsAllCardList = (props) => {
   };
 
   const handleLoadMore1 = () => {
-    const callPageMapd = props.allleadsInfoWarm && props.allleadsInfoWarm.length &&props.allleadsInfoWarm[0].pageCount
+   const callPageMapd = props.allleadsInfoWarm && props.allleadsInfoWarm.length &&props.allleadsInfoWarm[0].pageCount
     setTimeout(() => {
       const {
         getAllLeadsWarm,

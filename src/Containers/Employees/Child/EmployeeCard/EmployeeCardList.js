@@ -103,7 +103,7 @@ function handleSetCurrentCandidateId(candidateId) {
                     Name
          
             </div> 
-            <div class=" font-normal text-[0.82rem] font-semibold  font-poppins">
+            <div class="  text-[0.82rem] font-semibold  font-poppins">
             {/* <Link to={`/provider/${item.serviceId}`} style={{cursor:"pointer"}}>
             {item.name}
             </Link> */}
