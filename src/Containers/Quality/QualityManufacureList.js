@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import QualityManufactureToggle from "./QualityManufactureToggle"
 
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getQualityManufactureData, emptyQualityManufactureData} from "../Main/Inventory/InventoryAction";
+import { getQualityManufactureData,getQualityManufactureUserData, emptyQualityManufactureData} from "../Main/Inventory/InventoryAction";
 // import MoveToggleQuality from "../Quality/MoveToggleQuality"
 import dayjs from "dayjs";
 import { MultiAvatar } from '../../Components/UI/Elements';
@@ -17,6 +17,7 @@ export const QualityManufactureList = (props) => {
     const [hasMore, setHasMore] = useState(true);
     useEffect(() => {
       props.emptyQualityManufactureData()
+      props.getQualityManufactureUserData(props.currentManufacture.cellChamberLinkId)
       props.getQualityManufactureData(props.currentManufacture.productId, props.currentManufacture.manufactureId);
     //   setPage(page + 1);
   }, []);
@@ -60,6 +61,21 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
 }
   return (
     <>
+      
+    <div>
+   
+    {props.qualityManufactureUserData.map((item, index) => {
+      return(
+        <div>
+          {item.userName}
+
+          {item.cellName}
+          </div>
+      )
+
+})} 
+      
+    </div>
     <div className='flex sticky z-auto'>
             <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className="flex w-[99%] p-1 bg-transparent font-bold sticky  z-10">
@@ -156,6 +172,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
 const mapStateToProps = ({ inventory, auth,production }) => ({
   locationId: auth.userDetails.locationId,
   qualityManufactureData:inventory.qualityManufactureData,
+  qualityManufactureUserData:inventory.qualityManufactureUserData,
 //   addQualityManufactureDrawerModal:inventory.addQualityManufactureDrawerModal,
 //   fetchingProductionQualityData:inventory.fetchingProductionQualityData,
 //    productionQualityData:inventory.productionQualityData,
@@ -165,7 +182,8 @@ const mapDispatchToProps = (dispatch) =>
 bindActionCreators(
   {
     getQualityManufactureData,
-    emptyQualityManufactureData
+    emptyQualityManufactureData,
+    getQualityManufactureUserData
     // getProductionQualityData,
     // handleQualityManufactureModal
   },

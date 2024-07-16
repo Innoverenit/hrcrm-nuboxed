@@ -16,32 +16,34 @@ const TaskCardList = lazy(() => import("./Child/TaskCardList"));
       const {
         addTaskModal, handleTaskModal
       } = props;
-    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-    useEffect(() => {
-      const fetchMenuTranslations = async () => {
-        try {
-          const itemsToTranslate = [
-           "Type",//0
-            "Name",//1
-            "End",//2
-            "Ageing",//3
-            "Info",//5
-            "Assignedto",//5
-            "Owner"//6
-          ];
+    // const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    // useEffect(() => {
+    //   const fetchMenuTranslations = async () => {
+    //     try {
+    //       const itemsToTranslate = [
+    //        "Type",//0
+    //         "Name",//1
+    //         "End",//2
+    //         "Ageing",//3
+    //         "Info",//5
+    //         "Assignedto",//5
+    //         "Owner"//6
+    //       ];
   
-          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-          setTranslatedMenuItems(translations);
-        } catch (error) {
-          console.error('Error translating menu items:', error);
-        }
-      };
+    //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+    //       setTranslatedMenuItems(translations);
+    //     } catch (error) {
+    //       console.error('Error translating menu items:', error);
+    //     }
+    //   };
   
-      fetchMenuTranslations();
-    }, [props.selectedLanguage]);
+    //   fetchMenuTranslations();
+    // }, [props.selectedLanguage]);
     return (
       <React.Fragment>
         <TaskHeader 
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
           viewType={props.viewType}
           setTaskViewType={props.setTaskViewType}
         handleTaskModal={handleTaskModal} 
@@ -55,15 +57,24 @@ const TaskCardList = lazy(() => import("./Child/TaskCardList"));
           <TaskCardList
           
           translateText={props.translateText}
-          translatedMenuItems={translatedMenuItems}
+          //translatedMenuItems={translatedMenuItems}
           selectedLanguage={props.selectedLanguage}/> :
           
           props.viewType === "gantt" ?
-          <GanttChart/> :
+          <GanttChart
+          translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
+          /> :
           props.viewType === "dashboard" ?
-          <TaskDeletedTable/> :
+          <TaskDeletedTable
+          translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
+          /> :
           props.viewType === "approve" ?
-          <TaskApproveTable/> :
+          <TaskApproveTable
+          translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
+          /> :
           null}
         </Suspense>
       </React.Fragment>
