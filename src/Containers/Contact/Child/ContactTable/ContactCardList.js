@@ -39,6 +39,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const ContactCETdrawer =lazy(()=>import("./ContactCETdrawer"));
  
 const Option = Select;
@@ -49,6 +50,8 @@ const UpdateContactModal = lazy(() =>
 function ContactCardList(props) {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
     window.addEventListener('error', e => {
@@ -118,7 +121,36 @@ function ContactCardList(props) {
   function handleSetCurrentContactId(item) {
     setCurrentContactId(item);
   }
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          'Name', // 0
+'Company', // 1
+'Designation', // 2
+'Department', // 3
+'Quotation', // 4
+'Pipeline', // 5
+'Portal Access', // 6
+'Owner' // 7
 
+
+
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
  
 
   const {
@@ -137,6 +169,9 @@ function ContactCardList(props) {
     updateContactModal,
     contactCETdrawer
   } = props;
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
 
   return (
     <>
@@ -145,38 +180,21 @@ function ContactCardList(props) {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[99%] max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
-        <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
-        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]"><FormattedMessage
-                  id="app.company"
-                  defaultMessage="Company"
-                /></div>
-        <div className=" md:w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]"><FormattedMessage
-                  id="app.designation"
-                  defaultMessage="Designation"
-                /></div>
-        <div className="md:w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]"><FormattedMessage
-                  id="app.department"
-                  defaultMessage="Department"
-                /></div>
-        <div className="md:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]"><FormattedMessage
-                  id="app.quotation"
-                  defaultMessage="Quotation"
-                /></div>
-        <div className="md:w-[3.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]"><FormattedMessage
-                  id="app.pipeline"
-                  defaultMessage="Pipeline"
-                /></div>
-        <div className="w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]"><FormattedMessage
-                  id="app.portalacess"
-                  defaultMessage="Portal Acess"
-                /></div>
-        <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]"><FormattedMessage
-                  id="app.owner"
-                  defaultMessage="Owner"
-                /></div>
+        {translatedMenuItems[0]}</div>
+        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        {translatedMenuItems[1]}</div>
+        <div className=" md:w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
+        {translatedMenuItems[2]}</div>
+        <div className="md:w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        {translatedMenuItems[3]}</div>
+        <div className="md:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        {translatedMenuItems[4]}</div>
+        <div className="md:w-[3.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
+        {translatedMenuItems[5]}</div>
+        <div className="w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
+        {translatedMenuItems[6]}</div>
+        <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
+        {translatedMenuItems[7]}</div>
         <div className="w-[4.2rem]"></div>
 
       </div>
@@ -471,6 +489,9 @@ function ContactCardList(props) {
       <UpdateContactModal
         contactData={currentContactId}
         // fullName={currentContactId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
         updateContactModal={updateContactModal}
         handleUpdateContactModal={handleUpdateContactModal}
         handleSetCurrentContactId={handleSetCurrentContactId}

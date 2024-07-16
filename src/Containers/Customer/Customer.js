@@ -135,7 +135,12 @@ class Customer extends Component {
         <Suspense fallback={<BundleLoader />}>
 
         {teamsAccessInd ? (
-            <CustomerTeamCardList/>
+            <CustomerTeamCardList
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
+            
+            />
         ) : (
           <>
             {viewType === 'card' &&   <CustomerCardView/>}
@@ -145,14 +150,24 @@ class Customer extends Component {
              filter={this.state.filter}
              currentUser={this.state.currentUser} 
              viewType={this.props.viewType}
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
              /> }
             {viewType === 'map' &&    <CustomerMap/> }
             {viewType === 'all' &&        <CustomerAllCardList
              filter={this.state.filter}
              currentUser={this.state.currentUser} 
              viewType={this.props.viewType}
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
              />  }
-            {viewType === 'teams' && <CustomerTeamCardList/> }
+            {viewType === 'teams' && <CustomerTeamCardList
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+            /> }
           </>
         )}
         {/* { this.props.viewType==="card"?
