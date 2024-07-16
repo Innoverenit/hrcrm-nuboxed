@@ -46,6 +46,7 @@ const EventSchema = Yup.object().shape({
 
 function EventForm (props) {
 
+      const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
       const [reminder,setRemider] = useState(true);
       const [defaultOption, setDefaultOption] = useState(props.fullName);
       const [selected, setSelected] = useState(defaultOption);
@@ -65,6 +66,41 @@ function EventForm (props) {
   //  props.getAllOpportunityData(userId)
   //  props.getFilteredEmailContact(userId);
   },[])
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Type",//0
+         "Subject",//1
+         "Start Date",//2
+         "Start Time",//3
+          "End Date",//4
+          "End Time",//5
+          " Time Zone",//6
+          "Prospect",//7
+          "Contact",//8
+          "Opportunity",//9
+          "Assigned",//10
+          "Include",//11
+          "Address",//12
+          // "Street",//13
+          // "Zip Code",//14
+          // "City", //15
+          //  "State",//16
+          //  "Country",///17
+           "Notes"//18
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  
   const sortedEmployee =props.assignedToList.sort((a, b) => {
     const nameA = a.empName.toLowerCase();
     const nameB = b.empName.toLowerCase();
@@ -520,14 +556,14 @@ const {
             <Form className="form-background">
               <div class=" flex justify-between max-sm:flex-col">
                 <div class=" h-full w-w47.5  mt-3 max-sm:w-wk">
-                 
+                 <label> {translatedMenuItems[0]} </label>
                   <Field
                     isRequired
                     name="eventTypeId"
                     //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="type" />
-                    }
+                    // label={
+                    //   <FormattedMessage id="app.type" defaultMessage="type" />
+                    // }
                     component={SearchSelect}
                     isColumnWithoutNoCreate
                     selectType="eventType"
@@ -535,16 +571,17 @@ const {
                     isColumn
                     inlineLabel
                   />
+                   <label> {translatedMenuItems[1]} </label>
                   <Field
                     isRequired
                     name="eventSubject"
                     //label="Topic"
-                    label={
-                      <FormattedMessage
-                        id="app.subject"
-                        defaultMessage="subject"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.subject"
+                    //     defaultMessage="subject"
+                    //   />
+                    // }
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -554,16 +591,17 @@ const {
                   <div class="mt-3">
                     <div class=" flex justify-between">
                       <div class=" w-1/2">
+                      <label> {translatedMenuItems[2]} </label>
                         <Field
                           isRequired
                           name="startDate"
                           //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.startDate"
-                              defaultMessage="Start Date"
-                            />
-                          }
+                          // label={
+                          //   <FormattedMessage
+                          //     id="app.startDate"
+                          //     defaultMessage="Start Date"
+                          //   />
+                          // }
                           isColumn
                           component={DatePicker}
                           value={values.startDate}
@@ -574,16 +612,17 @@ const {
                         />
                       </div>
                       <div class=" w-5/12">
+                      <label> {translatedMenuItems[3]} </label>
                         <Field
                           isRequired
                           name="startTime"
                           // label="Start Time"
-                          label={
-                            <FormattedMessage
-                              id="app.startTime"
-                              defaultMessage="Start Time"
-                            />
-                          }
+                          // label={
+                          //   <FormattedMessage
+                          //     id="app.startTime"
+                          //     defaultMessage="Start Time"
+                          //   />
+                          // }
                           isColumn
                           component={TimePicker}
                           use12Hours
@@ -598,16 +637,17 @@ const {
                   </div>
                   <div class=" flex justify-between">
                     <div class=" w-1/2">
+                    <label> {translatedMenuItems[4]} </label>
                       <Field
                         isRequired
                         name="endDate"
                         // label="End "
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="enddate"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.enddate"
+                        //     defaultMessage="enddate"
+                        //   />
+                        // }
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -632,16 +672,17 @@ const {
                       />
                     </div>
                     <div class=" w-5/12">
+                    <label> {translatedMenuItems[5]} </label>
                       <Field
                         isRequired
                         name="endTime"
                         //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="endtime"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.endtime"
+                        //     defaultMessage="endtime"
+                        //   />
+                        // }
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -653,18 +694,19 @@ const {
                       />
                     </div>
                   </div>
+                  <label> {translatedMenuItems[6]} </label>
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
                     isColumnWithoutNoCreate
                     name="timeZone"
                     //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="timeZone"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.timeZone"
+                    //     defaultMessage="timeZone"
+                    //   />
+                    // }
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -698,10 +740,11 @@ const {
                    
                 
                    <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
+                   <label> {translatedMenuItems[7]} </label>
                   {props.user.crmInd === true &&(
               
      <>        
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label>
+{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label> */}
 
 <Select
         showSearch
@@ -722,10 +765,11 @@ const {
                   )} 
                   </div>
                   <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
+                  <label> {translatedMenuItems[8]} </label>
                   {props.user.crmInd === true &&(
                   
                   <>
-                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
+                  {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label> */}
 
 <Select
         showSearch
@@ -746,6 +790,7 @@ const {
                   )} 
                   </div>
                   <div class="mt-3">
+                  <label> {translatedMenuItems[9]} </label>
                   {props.user.crmInd === true &&(
               //    <Field
               //    name="opportunityId"
@@ -770,7 +815,7 @@ const {
               //    inlineLabel
               //  />
               <>
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
+{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label> */}
               <Select
         showSearch
       
@@ -824,16 +869,17 @@ const {
                   
                 </div>
                 <div class="h-full w-w47.5 max-sm:w-wk ">
+                <label> {translatedMenuItems[10]} </label>
                 <div class="mt-3">
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block text-sm font-semibold text-gray-700">            
+            {/* <Listbox.Label className="block text-sm font-semibold text-gray-700">            
               <FormattedMessage
                         id="app.assignedto"
                         defaultMessage="assignedto"
                       />
-            </Listbox.Label>
+            </Listbox.Label> */}
             <div className="relative ">
             <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>
                 {selected}
@@ -898,6 +944,7 @@ const {
       </Listbox>
       </div>
       <div class="mt-1">
+      <label> {translatedMenuItems[11]} </label>
                   {/* <Field
                     name="included"
                     // label="Include"
@@ -918,7 +965,7 @@ const {
                     }}
                   /> */}
 
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
+{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label> */}
                    <Select
           showSearch
           style={{ width: 415 }}
@@ -937,7 +984,7 @@ const {
           ))}
         </Select>
                  </div>
-                 
+                 <label> {translatedMenuItems[12]} </label>
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (
@@ -949,6 +996,7 @@ const {
                     )}
                   />
               <div class="mt-2">
+              <label> {translatedMenuItems[13]} </label>
                     <div>Notes</div>
                     <div>
                   <div>

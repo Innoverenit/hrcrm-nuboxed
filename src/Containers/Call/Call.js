@@ -57,6 +57,8 @@ function Call (props) {
         translateText={props.translateText}
         />
         <AddCallModal
+          selectedLanguage={props.selectedLanguage}
+          translateText={props.translateText}
           addCallModal={addCallModal}
           handleCallModal={handleCallModal}
 

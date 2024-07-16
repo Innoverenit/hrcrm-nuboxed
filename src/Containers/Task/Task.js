@@ -49,6 +49,8 @@ const TaskCardList = lazy(() => import("./Child/TaskCardList"));
         handleTaskModal={handleTaskModal} 
         />
         <AddTaskModal
+          selectedLanguage={props.selectedLanguage}
+          translateText={props.translateText}
           addTaskModal={addTaskModal}
           handleTaskModal={handleTaskModal}
         />
