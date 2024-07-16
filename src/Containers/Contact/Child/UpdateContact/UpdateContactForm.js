@@ -17,6 +17,7 @@ import { getDesignations } from "../../../Settings/Designation/DesignationAction
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getCustomerData } from "../../../Customer/CustomerAction";
 import { property } from "lodash";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 
 const { Option } = Select;
@@ -46,8 +47,46 @@ class UpdateContactForm extends Component {
       currentOption: "",
       candidate: false,
       availability: false,
+      translatedMenuItems: [],
+      loading: true
+
     };
   }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       'First Name', // 0
+'Middle Name', // 1
+'Last Name', // 2
+'Email', // 3
+'Alternate Email', // 4
+'Dial Code', // 5
+'Mobile', // 6
+'WhatsApp', // 7
+'Linkedin', // 8
+'Tag Company', // 9
+'Source', // 10
+'Department', // 11
+'Designation', // 12
+'Notes' //13
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
+
+
   handleCandidate = (checked) => {
     this.setState({ candidate: checked });
   };
@@ -133,7 +172,11 @@ class UpdateContactForm extends Component {
         value: item.customerId,
       };
     });
-   
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
+  
     return (
       <>
         <Formik
@@ -164,16 +207,16 @@ class UpdateContactForm extends Component {
             customerId:this.props.setEditingContact.customerId||"",
             linkedinPublicUrl:
               this.props.setEditingContact.linkedinPublicUrl || "",
-              address: [
-              {
-                addressId: this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].addressId : "",
-                address1: this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].address1 : "",
-                street:  this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].street : "",
-                city:  this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].city : "",
-                state:  this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].state : "",
-                postalCode:  this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].postalCode : "",
-              },
-            ],
+            //   address: [
+            //   {
+            //     addressId: this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].addressId : "",
+            //     address1: this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].address1 : "",
+            //     street:  this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].street : "",
+            //     city:  this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].city : "",
+            //     state:  this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].state : "",
+            //     postalCode:  this.props.setEditingContact.address.length ? this.props.setEditingContact.address[0].postalCode : "",
+            //   },
+            // ],
             notes: this.props.setEditingContact.notes || "",
             bedrooms:this.props.setEditingContact.bedrooms || "",
             price:this.props.setEditingContact.price || "",
@@ -233,12 +276,7 @@ class UpdateContactForm extends Component {
                             isRequired
                             name="firstName"
                             // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            label= {translatedMenuItems[0]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -252,12 +290,7 @@ class UpdateContactForm extends Component {
                           <FastField
                             name="middleName"
                             //label="Middle Name"
-                            label={
-                              <FormattedMessage
-                                id="app.middle"
-                                defaultMessage="Middle"
-                              />
-                            }
+                            label={translatedMenuItems[1]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -269,12 +302,7 @@ class UpdateContactForm extends Component {
                           <FastField
                             name="lastName"
                             //label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />
-                            }
+                            label={translatedMenuItems[2]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -291,12 +319,7 @@ class UpdateContactForm extends Component {
                         type="email"
                         name="emailId"
                         //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.emailId"
-                            defaultMessage="Email"
-                          />
-                        }
+                        label={translatedMenuItems[3]}
                         className="field"
                         isColumn
                         width={"100%"}
@@ -312,12 +335,7 @@ class UpdateContactForm extends Component {
                         type="email"
                         name="alternateEmail"
                         //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.alternateEmail"
-                            defaultMessage="Alternate Email"
-                          />
-                        }
+                        label={translatedMenuItems[4]}
                         className="field"
                         isColumn
                         width={"100%"}
@@ -333,12 +351,7 @@ class UpdateContactForm extends Component {
                       <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label={translatedMenuItems[5]}
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -352,12 +365,7 @@ class UpdateContactForm extends Component {
                       <FastField
                         type="text"
                         name="mobileNumber"
-                        label={
-                          <FormattedMessage
-                            id="app.mobileNumber"
-                            defaultMessage="Mobile #"
-                          />
-                        }
+                        label={translatedMenuItems[6]}
                         //placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
@@ -415,12 +423,7 @@ class UpdateContactForm extends Component {
                         type="text"
                         name="linkedinPublicUrl"
                         //label="Linkedin "
-                        label={
-                          <FormattedMessage
-                            id="app.linkedinPublicUrl"
-                            defaultMessage="Linkedin"
-                          />
-                        }
+                        label={translatedMenuItems[8]}
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -434,9 +437,7 @@ class UpdateContactForm extends Component {
                   <Field
                     name="notes"
                     // label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    label={translatedMenuItems[13]}
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -452,12 +453,7 @@ class UpdateContactForm extends Component {
                         name="customerId"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.tagCompany"
-                            defaultMessage="Tag Company"
-                          />
-                        }
+                        label={translatedMenuItems[9]}
                         component={SelectComponent}
                         isColumn
                         value={values.customerId}
@@ -471,12 +467,7 @@ class UpdateContactForm extends Component {
                 <div class=" w-w47.5 mt-3">
                     <FastField
                             name="source"
-                             label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="Source"
-                              />
-                            }
+                            label={translatedMenuItems[10]}
                             isColumnWithoutNoCreate
                             selectType="sourceName"
                             component={SearchSelect}
@@ -492,12 +483,7 @@ class UpdateContactForm extends Component {
                     <FastField
                       name="departmentId"
                       //label="Department"
-                      label={
-                        <FormattedMessage
-                          id="app.department"
-                          defaultMessage="Department"
-                        />
-                      }
+                      label={translatedMenuItems[11]}
                       width="100%"
                       isColumn
                       isColumnWithoutNoCreate
@@ -512,12 +498,7 @@ class UpdateContactForm extends Component {
                   <FastField
                     name="designationTypeId"
                     //label="Designation"
-                    label={
-                      <FormattedMessage
-                        id="app.designation"
-                        defaultMessage="Designation"
-                      />
-                    }
+                    label={translatedMenuItems[12]}
                     selectType="designationType"
                     isColumn
                     component={SearchSelect}
@@ -529,7 +510,7 @@ class UpdateContactForm extends Component {
                  </div>
                  
                
-                  <div class="mt-8" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
+                  {/* <div class="mt-8" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
                   <HeaderLabel style={{color:"white"}} > Address</HeaderLabel>
                   </div>
@@ -543,7 +524,7 @@ class UpdateContactForm extends Component {
                         values={values}
                       />
                     )}
-                  />
+                  /> */}
 
                
                 {this.props.orgType==="Real Estate"&&(
