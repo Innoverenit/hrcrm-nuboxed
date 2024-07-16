@@ -8,19 +8,26 @@ const EventHeader = lazy(() => import('./Child/EventHeader'))
 const EventCardList = lazy(() => import('./Child/EventTable/EventCardList'))
 
 function Event (props) {
-
+   
         const { addEventModal, handleEventModal } = props;
         return (
             <React.Fragment>
                 <EventHeader
+                    selectedLanguage={props.selectedLanguage}
+                    translateText={props.translateText}
                     handleEventModal={handleEventModal} />
                 <AddEventModal
+                    selectedLanguage={props.selectedLanguage}
+                    translateText={props.translateText}
                     addEventModal={addEventModal}
                     handleEventModal={handleEventModal} />
                 <Suspense fallback={<BundleLoader />}>
                     {/* <EventTable />
                      */}
-                     <EventCardList/>
+                     <EventCardList 
+                     selectedLanguage={props.selectedLanguage}
+                     translateText={props.translateText}
+                     />
                 </Suspense>
             </React.Fragment>
         )
