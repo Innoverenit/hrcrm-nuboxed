@@ -14,13 +14,20 @@ class InventoryDetailHeader extends Component {
               setInventoryDetailViewType={this.props.setInventoryDetailViewType}
               inventory={this.props.inventory}
               handleResetTab={this.props.handleResetTab}
+              translateText={this.props.translateText}
+        translatedMenuItems={this.props.translatedMenuItems}
+        selectedLanguage={this.props.selectedLanguage}
             />
           }
           rightComponent={<InventoryDetailsActionRight
             viewType1={this.props.viewType1}
             setInventoryDetailViewType={this.props.setInventoryDetailViewType}
             inventory={this.props.inventory}
-            handleResetTab={this.props.handleResetTab} />
+            handleResetTab={this.props.handleResetTab} 
+            translateText={this.props.translateText}
+        translatedMenuItems={this.props.translatedMenuItems}
+        selectedLanguage={this.props.selectedLanguage}
+            />
           }
         />
       </div>

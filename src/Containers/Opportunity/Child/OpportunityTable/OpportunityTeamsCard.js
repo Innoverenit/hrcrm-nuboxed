@@ -34,6 +34,7 @@ import {
 } from "../../OpportunityAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddOpportunityDrawerModal =lazy(()=> import("./AddOpportunityDrawerModal"));
 const UpdateOpportunityModal =lazy(()=> import("../UpdateOpportunity/UpdateOpportunityModal"));
 const ReinstateToggleForLost =lazy(()=> import("../../Child/OpportunityTable/ReinstateToggleForLost"));
@@ -42,6 +43,8 @@ const ReinstateToggleForLost =lazy(()=> import("../../Child/OpportunityTable/Rei
 function OpportunityTeamsCard(props) {
   const [hasMore, setHasMore] = useState(true);
   const [pageNo, setPageNo] = useState(0);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
     if(props.role==="USER"&&user.department==="Recruiter"){
@@ -65,6 +68,38 @@ function OpportunityTeamsCard(props) {
   //   setPage(page + 1);
   //     props. getTeamOpportunity(page);
   // }
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+        'Name', // 0
+'Prospect', // 1
+'Sponsor', // 2
+'Start Date', // 3
+'Value', // 4
+'Stages', // 5
+'Sales Rep', // 6
+'Owner' // 7
+
+
+
+
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const handleLoadMore = () => {
     const callPageMapd = props.teamOpportunity && props.teamOpportunity.length &&props.teamOpportunity[0].pageCount
     setTimeout(() => {
@@ -102,7 +137,9 @@ function OpportunityTeamsCard(props) {
       } = props;
 
       
-
+      if (loading) {
+        return <div><BundleLoader/></div>;
+      }
       return (    
   <>
     {props.ooportunitySerachedData.length > 0 ? (
@@ -112,14 +149,14 @@ function OpportunityTeamsCard(props) {
   ) : (
 <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className="flex max-sm:hidden  w-[99%] max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">Name</div>
-        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Prospect</div>
-        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Sponsor</div>
-        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Start Date</div>
-        <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Value</div>
-        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Stages</div> 
-        <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sales Rep</div>
-        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">Owner</div>
+        <div className=" w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]}</div>
+        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]}</div>
+        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> {translatedMenuItems[2]}</div>
+        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]}</div>
+        <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[4]}</div>
+        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
+        <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>
+        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> {translatedMenuItems[7]}</div>
         <div className="w-[4.1rem] "></div>
         <div className="w-12"></div>
       </div>

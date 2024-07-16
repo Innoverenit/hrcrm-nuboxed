@@ -20,6 +20,7 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const { Option } = Select;
 /**
@@ -50,8 +51,45 @@ class ContactForm extends Component {
       whatsapp: false,
       candidate: false,
       availability: false,
+      translatedMenuItems: [],
+      loading: true
     };
   }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       'First Name', // 0
+'Middle Name', // 1
+'Last Name', // 2
+'Email', // 3
+'Alternate Email', // 4
+'Dial Code', // 5
+'Mobile', // 6
+'WhatsApp', // 7
+'Linkedin', // 8
+'Tag Company', // 9
+'Source', // 10
+'Department', // 11
+'Designation' // 12
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
+
+
+
   handleCandidate = (checked) => {
     this.setState({ candidate: checked });
   };
@@ -163,7 +201,10 @@ class ContactForm extends Component {
     //   return <span>Browser doesn't support speech recognition.</span>;
     // }
   
-   
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
   
     return (
       <>
@@ -269,12 +310,7 @@ class ContactForm extends Component {
                             isRequired
                             name="firstName"
                             // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            label= {translatedMenuItems[0]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -288,12 +324,7 @@ class ContactForm extends Component {
                           <FastField
                             name="middleName"
                             //label="Middle Name"
-                            label={
-                              <FormattedMessage
-                                id="app.middleName"
-                                defaultMessage="Middle Name"
-                              />
-                            }
+                            label={translatedMenuItems[1]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -305,12 +336,7 @@ class ContactForm extends Component {
                           <FastField
                             name="lastName"
                             //label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />
-                            }
+                            label={translatedMenuItems[2]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -327,12 +353,7 @@ class ContactForm extends Component {
                         type="email"
                         name="emailId"
                         //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.emailId"
-                            defaultMessage="Email"
-                          />
-                        }
+                        label={translatedMenuItems[3]}
                         className="field"
                         isColumn
                         width={"100%"}
@@ -349,12 +370,7 @@ class ContactForm extends Component {
                         type="email"
                         name="alternateEmail"
                         //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.alternateEmail"
-                            defaultMessage="Alternate Email"
-                          />
-                        }
+                        label={translatedMenuItems[4]}
                         className="field"
                         isColumn
                         width={"100%"}
@@ -370,12 +386,7 @@ class ContactForm extends Component {
                       <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label={translatedMenuItems[5]}
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -389,12 +400,7 @@ class ContactForm extends Component {
                       <FastField
                         type="number"
                         name="mobileNumber"
-                        label={
-                          <FormattedMessage
-                            id="app.mobileNo"
-                            defaultMessage="Mobile #"
-                          />
-                        }
+                        label={translatedMenuItems[6]}
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
@@ -402,7 +408,7 @@ class ContactForm extends Component {
                       />
                     </div>
                     <div class=" w-1/4 font-bold" >
-                      WhatsApp
+                    {translatedMenuItems[7]}
                       <Switch
                         onChange={this.handleWhatsApp}
                         checked={this.state.whatsapp}
@@ -422,13 +428,7 @@ class ContactForm extends Component {
                           isColumnWithoutNoCreate
                           //label="Phone No #"
                           placeholder='+31'
-                          label={
-                            <FormattedMessage
-                              id="app.#whatsApp"
-                              defaultMessage="Dial Code"
-
-                            />
-                          }
+                          label={translatedMenuItems[5]}
                           isColumn
                           component={SearchSelect}
                           defaultValue={{
@@ -445,12 +445,7 @@ class ContactForm extends Component {
                           type="text"
                           name="phoneNumber"
                           placeholder="Phone #"
-                          label={
-                            <FormattedMessage
-                              id="app.phoneNumber"
-                              defaultMessage="Whatsapp #"
-                            />
-                          }
+                          label={translatedMenuItems[7]}
                           isColumn
                           component={InputComponent}
                           inlineLabel
@@ -467,12 +462,7 @@ class ContactForm extends Component {
                         type="text"
                         name="linkedinPublicUrl"
                         //label="Linkedin "
-                        label={
-                          <FormattedMessage
-                            id="app.linkedinPublicUrl"
-                            defaultMessage="Linkedin"
-                          />
-                        }
+                        label={translatedMenuItems[8]}
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -531,12 +521,7 @@ class ContactForm extends Component {
                         name="customerId"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.tagCompany"
-                            defaultMessage="Tag Company"
-                          />
-                        }
+                        label={translatedMenuItems[9]}
                         component={SelectComponent}
                         isColumn
                         value={values.customerId}
@@ -551,12 +536,7 @@ class ContactForm extends Component {
                     <div class=" w-w47.5">
                     <FastField
                             name="source"
-                             label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="Source"
-                              />
-                            }
+                             label={translatedMenuItems[10]}
                             isColumnWithoutNoCreate
                             selectType="sourceName"
                             component={SearchSelect}
@@ -572,12 +552,7 @@ class ContactForm extends Component {
                   <div class="  w-w47.5">
                     <Field
                       name="departmentId"
-                                         label={
-                        <FormattedMessage
-                          id="app.department"
-                          defaultMessage="Department"
-                        />
-                      }
+                                         label={translatedMenuItems[11]}
                       width="100%"
                       isColumn
                       isColumnWithoutNoCreate
@@ -591,12 +566,7 @@ class ContactForm extends Component {
                   <FastField
                         name="designationTypeId"
                         //label="Designation"
-                        label={
-                          <FormattedMessage
-                            id="app.designation"
-                            defaultMessage="Designation"
-                          />
-                        }
+                        label={translatedMenuItems[12]}
                         selectType="designationType"
                         isColumn
                         component={SearchSelect}

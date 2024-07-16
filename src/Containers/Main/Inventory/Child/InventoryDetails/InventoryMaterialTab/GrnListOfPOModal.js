@@ -1,9 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-import GrnListOfPO from "./GrnListOfPO";
-// import ReceivedDetailCard from "./ReceivedDetailCard";
-// const OpenReceivedOrderIdForm = lazy(() => import("./OpenReceivedOrderIdForm.js"));
+const GrnListOfPO = lazy(() => import("./GrnListOfPO"));
 
 
 class GrnListOfPOModal extends Component {
@@ -16,7 +14,7 @@ class GrnListOfPOModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={`GRN list for PO ID - ${this.props.row.newPoNumber}`}
+                    title={`GRN ${this.props.translatedMenuItems[43]}  PO ID - ${this.props.row.newPoNumber}`}
                     width="90%"
                     destroyOnClose
                     closable
@@ -25,7 +23,7 @@ class GrnListOfPOModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <GrnListOfPO row={this.props.row} />
+                        <GrnListOfPO row={this.props.row}    translatedMenuItems={this.props.translatedMenuItems}/>
                     </Suspense>
                 </StyledDrawer>
             </>

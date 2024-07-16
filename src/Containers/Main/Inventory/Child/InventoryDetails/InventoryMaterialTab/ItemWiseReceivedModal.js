@@ -13,7 +13,7 @@ class ItemWiseReceivedModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={`Item - ${this.props.row.suppliesFullName}`}
+                    title={`${this.props.translatedMenuItems[48]} - ${this.props.row.suppliesFullName}`}
                     width="70%"
                     visible={addReceiveUnit}
                     destroyOnClose
@@ -22,7 +22,7 @@ class ItemWiseReceivedModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <ReceivedUnitList poSupplierSuppliesId={this.props.row.poSupplierSuppliesId} />
+                        <ReceivedUnitList poSupplierSuppliesId={this.props.row.poSupplierSuppliesId}  translatedMenuItems={this.props.translatedMenuItems}/>
                     </Suspense>
                 </StyledDrawer>
             </>

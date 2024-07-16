@@ -144,6 +144,9 @@ const filterData = filteredData.filter(item =>
       <AddContactModal
         addContactModal={addContactModal}
         handleContactModal={handleContactModal}
+        translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
       />
         <AddContactImportModal
         addContactImportModal={addContactImportModal}
@@ -152,7 +155,11 @@ const filterData = filteredData.filter(item =>
       <Suspense fallback={<BundleLoader />}>
 
       {teamsAccessInd ? (
-        <ContactTeamCardList/>
+        <ContactTeamCardList
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
+        />
         ) : (
           <>
             {viewType === 'table' &&  <ContactCardList
@@ -160,9 +167,20 @@ const filterData = filteredData.filter(item =>
            currentUser={currentUser} 
            filter={filter}
             filterData={filterData}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
             />}
-            {viewType === 'all' && <ContactAllCardList/>}
-            {viewType === 'teams' &&  <ContactTeamCardList/>}
+            {viewType === 'all' && <ContactAllCardList
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
+            />}
+            {viewType === 'teams' &&  <ContactTeamCardList
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
+            />}
           </>
         )}
         {/* {props.viewType === "table" ?(

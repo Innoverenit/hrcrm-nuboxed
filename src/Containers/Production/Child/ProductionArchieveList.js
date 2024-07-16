@@ -8,11 +8,39 @@ import { MultiAvatar, SubTitle } from "../../../Components/UI/Elements";
 
 function ProductionArchieveList(props) {
     const [page, setPage] = useState(0);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     useEffect(() => {
         props.getArchieveListOfProduction(props.locationId, props.userId, page)
         setPage(page + 1);
     }, []);
+
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+             "Article #",//0
+              "Name",//1
+              "Category",//1
+              "Sub",//1
+              "Attribute",//1
+              "Website",//1
+          
+          
+           
+              
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     const handleLoadMore = () => {
         setPage(page + 1);
         props.getArchieveListOfProduction(props.locationDetailsId, props.userId, page)
@@ -25,12 +53,29 @@ function ProductionArchieveList(props) {
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className=""></div>
-                        <div className=" md:w-[7%]">Article #</div>
-                        <div className=" md:w-[6.1rem]">Name</div>
-                        <div className=" md:w-[4.2rem] ">Category</div>
-                        <div className="md:w-[5.8rem]">Sub</div>
-                        <div className="md:w-[8.5rem]">Attribute</div>
-                        <div className="md:w-[5.2rem]">Website</div>
+                        <div className=" md:w-[7%]">
+                        {translatedMenuItems[0]}
+                            </div>
+                        <div className=" md:w-[6.1rem]">
+                            {/* Name */}
+                            {translatedMenuItems[1]}
+                            </div>
+                        <div className=" md:w-[4.2rem] ">
+                            {/* Category */}
+                            {translatedMenuItems[2]}
+                            </div>
+                        <div className="md:w-[5.8rem]">
+                            {/* Sub */}
+                            {translatedMenuItems[3]}
+                            </div>
+                        <div className="md:w-[8.5rem]">
+                            {/* Attribute */}
+                            {translatedMenuItems[4]}
+                            </div>
+                        <div className="md:w-[5.2rem]">
+                            {/* Website */}
+                            {translatedMenuItems[5]}
+                            </div>
                         <div className="w-12"></div>
                     </div>
                     <InfiniteScroll

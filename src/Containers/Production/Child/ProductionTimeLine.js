@@ -44,11 +44,39 @@ const { Step } = Steps;
 
 const Component2 = (props) => {
     const[step,setStep]=useState("")
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+             "Steps",//0
+              "Add Parts",//1
+          
+          
+           
+              
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+   
     useEffect(() => {
         props.getProductionSteps(props.userId);
         // setPage(page + 1);
         // props.getRoomRackByLocId(props.locationId, props.orgId);
     }, []);
+
+
     // Hardcoded JSON data for the Steps component
     const stepsData = [
         { title: 'Step 1', description: 'Description for Step 1' },
@@ -67,7 +95,10 @@ const Component2 = (props) => {
         <>
         <div className=' flex justify-end sticky top-28 z-auto' style={{height:"43em"}}>
              <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <h2>Steps</h2>
+            <h2>
+                {/* Steps */}
+                {translatedMenuItems[0]}
+                </h2>
            
 
 
@@ -94,7 +125,8 @@ const Component2 = (props) => {
                                                    
                                                 }}
                                             >
-                                                Add Parts
+                                                     {translatedMenuItems[1]}
+                                                {/* Add Parts */}
                                             </Button>
 
                                             <NoteAltIcon
@@ -163,6 +195,8 @@ const Component2 = (props) => {
         </div>
         </div>
         <AddSpareStepsModal
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
         step={step}
         productionProductId={props.productionProductId}
         productionTableData={props.productionTableData}

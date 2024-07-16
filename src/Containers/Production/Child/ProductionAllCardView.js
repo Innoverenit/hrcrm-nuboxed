@@ -14,12 +14,46 @@ const ProductionIDrawer = lazy(() => import("./ProductionIDrawer"));
 function ProductionAllCardView(props) {
 
     const [page, setPage] = useState(0);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
         props.getAllProductionsbyOrgId(props.organizationId);
         setPage(page + 1);
     }, []);
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+             "MFG ID",//0
+              "Location",//1
+              "Cell",//1
+              "Created",//1
+              "Item",//1
+              "Category",//1
+              "Attribute",//1
+              "Start",//1
+              "End",//1
+              "Workflow",//1
+              "Status",//1
+              "Inspected",//1
+              "Dispatch",//1
+          
+          
+           
+              
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
 
     const [particularDiscountData, setParticularDiscountData] = useState({});
 
@@ -82,21 +116,61 @@ function ProductionAllCardView(props) {
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky h-8 z-10">
                         <div className=""></div>
-                        <div className=" md:w-[8.1rem]">MFG ID</div>
-                        <div className=" md:w-[7rem]">Location</div>
-                        <div className=" md:w-[7rem]">Cell</div>
-                        <div className=" md:w-[7rem]">Created</div>
-                        <div className=" md:w-[9rem]">Item</div>
-                        <div className="md:w-[8rem]">Category</div>
-                        <div className="md:w-[9rem]">Attribute</div>
-                        <div className=" md:w-[5rem]">Start</div>
-                        <div className=" md:w-[5rem]">End</div>
-                        <div className="md:w-[5.2rem]">Workflow</div>
+                        <div className=" md:w-[8.1rem]">
+                            {/* MFG ID */}
+                            {translatedMenuItems[0]}
+                            </div>
+                        <div className=" md:w-[7rem]">
+                            {/* Location */}
+                            {translatedMenuItems[1]}
+                            </div>
+                        <div className=" md:w-[7rem]">
+                            {/* Cell */}
+                            {translatedMenuItems[2]}
+                            </div>
+                        <div className=" md:w-[7rem]">
+                            {/* Created */}
+                            {translatedMenuItems[3]}
+                            </div>
+                        <div className=" md:w-[9rem]">
+                            {/* Item */}
+                            {translatedMenuItems[4]}
+                            
+                                </div>
+                        <div className="md:w-[8rem]">
+                            {/* Category */}
+                            {translatedMenuItems[5]}
+                            </div>
+                        <div className="md:w-[9rem]">
+                            {/* Attribute */}
+                            {translatedMenuItems[6]}
+                            </div>
+                        <div className=" md:w-[5rem]">
+                            {/* Start */}
+                            {translatedMenuItems[7]}
+                            </div>
+                        <div className=" md:w-[5rem]">
+                            {/* End */}
+                            {translatedMenuItems[8]}
+                            </div>
+                        <div className="md:w-[5.2rem]">
+                            {/* Workflow */}
+                            {translatedMenuItems[9]}
+                            </div>
                         <div className="md:w-[5.2rem]"></div>
-                        <div className=" md:w-[5rem] ">Status</div>
+                        <div className=" md:w-[5rem] ">
+                            {/* Status */}
+                            {translatedMenuItems[10]}
+                            </div>
                         <div className="md:w-[5rem]"></div>
-                        <div className="md:w-[5rem]">Inspected</div>
-                        <div className="md:w-[5rem]"> Dispatch </div>
+                        <div className="md:w-[5rem]">
+                            {/* Inspected */}
+                            {translatedMenuItems[11]}
+                            </div>
+                        <div className="md:w-[5rem]"> 
+                            {/* Dispatch  */}
+                            {translatedMenuItems[12]}
+                            </div>
                         <div className="md:w-[3rem]"></div>
                         <div className="md:w-[2rem]"></div>
                     </div>
