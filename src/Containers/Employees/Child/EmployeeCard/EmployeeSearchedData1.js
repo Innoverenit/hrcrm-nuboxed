@@ -28,7 +28,6 @@ import { Link } from 'react-router-dom';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { elipsize } from "../../../../Helpers/Function/Functions";
 import EmployeeSearchedData from "../EmployeeTable/EmployeeSearchedData";
-import EmployeeSearchedData1 from "./EmployeeSearchedData1";
 const EmployeeDrawerForAdmin =lazy(()=>import("../EmployeeTable/EmployeeDrawer/EmployeeDrawerForAdmin"));
 const EmployeePulseDrawerModal =lazy(()=>import("../EmployeeTable/EmployeePulseDrawerModal"));
 const EmployeeDocumentDrawerModal =lazy(()=>import("./EmployeeDocumentDrawerModal"));
@@ -38,7 +37,7 @@ const StepperEmployeeModal =lazy(()=>import("./StepperEmployeeModal"));
 
 
 
-function EmployeeCardView (props) {
+function EmployeeSearchedData1 (props) {
   const [userData, setUserData] = useState("");
   const [currentEmployeeId, setCurrentEmployeeId] = useState("");
   const [isCopied, setIsCopied] = useState(false);
@@ -64,16 +63,11 @@ function handleSetCurrentUser(item) {
     return (
       
             <>
-            {props.employeeSerachedData.length > 0 ? (
-    <EmployeeSearchedData1
-    employeeSerachedData={props.employeeSerachedData}
-  fetchingEmployeeInputSearchData={props.fetchingEmployeeInputSearchData}
-    />
-  ) : (
+     
             <div class=" h-h86 overflow-auto overflow-x-auto">
-             {props.employees=="Data not Found" ? "Data not Found" :
+             {props.employeeSerachedData=="Data not Found" ? "Data not Found" :
             <div class="flex flex-wrap  w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">  
-              {props.filteredData.length === 0 ?<span class=" flex items-center mt-8">Data Not Available</span> :props.filteredData.map((item) => {
+              {props.employeeSerachedData.length === 0 ?<span class=" flex items-center mt-8">Data Not Available</span> :props.employeeSerachedData.map((item) => {
                
                 const handleCopyClick = () => {
                   const emailElement = document.createElement('textarea');
@@ -94,7 +88,7 @@ function handleSetCurrentUser(item) {
                 const showTooltip = tooltipContent.trim() !== ''; 
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9rem] 
-                  text-[#444444] my-3 p-1 ml-3 w-[15vw] flex flex-col  max-sm:w-wk max-sm:ml-0 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  text-[#444444] my-3 p-1 ml-3 w-[15vw] flex flex-col  max-sm:w-wk max-sm:ml-0 scale-[0.99] hover:scale-100 ease-in duration-100  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                       <div class="flex">
                    <Tooltip 
                    title={item.country}
@@ -324,7 +318,7 @@ function handleSetCurrentUser(item) {
               </div>
 }
               </div>
-   )} 
+
               <UpdateEmployeeModal
               userData={userData}
        currentEmployeeId={currentEmployeeId}
@@ -413,4 +407,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch,
   )
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeCardView)
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSearchedData1)
