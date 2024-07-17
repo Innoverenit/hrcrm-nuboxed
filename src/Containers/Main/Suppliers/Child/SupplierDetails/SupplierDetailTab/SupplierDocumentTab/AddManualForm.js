@@ -167,7 +167,8 @@ function AddManualForm(props) {
       category:row.category,
       attribute:row.attribute,
       location:row.locationId,
-      supplierId: props.supplierId
+      supplierId: props.supplierId,
+      source:"erp"
                       
     }));
 
