@@ -9,7 +9,7 @@ const UpdateShipperModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage id="app.supplier" defaultMessage="Supplier"/>}
+        title={props.translatedMenuItems[11]}
         width="60%"
         visible={props.updateShipperModal}
         maskClosable={false}
@@ -20,7 +20,9 @@ const UpdateShipperModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
           <UpdateShipperForm 
             rowdata={props.rowdata}
-          shipperId={props.shipperId} />
+          shipperId={props.shipperId}
+          translatedMenuItems={props.translatedMenuItems}
+          />
         </Suspense>
       </StyledDrawer>
     </>

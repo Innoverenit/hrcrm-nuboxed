@@ -13,7 +13,7 @@ class ShipperActionRight extends React.Component {
       <FlexContainer alignItems="center">
         {user.functionName === "Production" && user.designation === "Manager" &&
        viewType === "table" ?
-          <Tooltip title="Export Shipper">
+          <Tooltip title={this.props.translatedMenuItems[21]}>
             <Button
               //type="primary"
               className="export"
@@ -24,9 +24,9 @@ class ShipperActionRight extends React.Component {
             </Button>
           </Tooltip>
           :null}
-        <Tooltip title={<FormattedMessage id="app.create" defaultMessage="Create" />}>
+        <Tooltip title={this.props.translatedMenuItems[15]}>
           <Button type="primary" onClick={() => handleShipperModal(true)}>
-           <FormattedMessage id="app.add" defaultMessage="Add" /> 
+           {/* <FormattedMessage id="app.add" defaultMessage="Add" />  */} {this.props.translatedMenuItems[22]}
           </Button>
         </Tooltip>
       </FlexContainer>

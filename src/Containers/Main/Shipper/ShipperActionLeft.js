@@ -150,7 +150,7 @@ const ShipperActionLeft = (props) => {
 
   return (
     <FlexContainer alignItems="center">
-      <Tooltip title="My Shippers">
+      <Tooltip title={props.translatedMenuItems[17]}>
         <Badge size="small"
           count={props.shippeRecordCount.shipper || 0}
         >
@@ -170,7 +170,7 @@ const ShipperActionLeft = (props) => {
         </Badge>
       </Tooltip>
       {user.shipperAccessInd === true && user.erpInd === true && (
-        <Tooltip title="All">
+        <Tooltip title={props.translatedMenuItems[18]}>
           <Badge size="small"
             count={props.recordAllData.allShipper || 0}
           >
@@ -183,13 +183,13 @@ const ShipperActionLeft = (props) => {
               onClick={() => props.setShipperViewType("all")}
             >
               <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                ALL
+                {/* ALL */}{props.translatedMenuItems[18]}
               </Avatar>
             </span>
           </Badge>
         </Tooltip>
       )}
-      <Tooltip title="My Shippers-Deleted">
+      <Tooltip title={`${props.translatedMenuItems[17]}-${props.translatedMenuItems[19]}`}>
         <Badge size="small"
           count={props.recordDeletedData.deletedShipper || 0}
         >
@@ -240,7 +240,7 @@ const ShipperActionLeft = (props) => {
       &nbsp;&nbsp;
       <div class="ml-[2.5rem] max-sm:w-20">
         <Input
-          placeholder="Search by Name or Sector"
+          placeholder={props.translatedMenuItems[20]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
