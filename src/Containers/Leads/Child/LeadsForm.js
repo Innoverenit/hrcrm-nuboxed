@@ -68,6 +68,7 @@ props.emptyClearbit();
     const selectedOption = props.crmAllData.find((item) => item.empName === selected);
     const [isLoadingLob, setIsLoadingLob] = useState(false);
     const [source, setSource] = useState([]);
+    
     const [sector, setSector] = useState([]);
     const [touched, setTouched] = useState(false);
   const [touchedSector, setTouchedSector] = useState(false);
@@ -224,6 +225,9 @@ props.emptyClearbit();
   function handletext(e) {
     setText(e.target.value);
   }
+
+  
+
   const {
     transcript,
     listening,
@@ -231,9 +235,23 @@ props.emptyClearbit();
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
+  // if (!browserSupportsSpeechRecognition) {
+  //   return <span>Browser doesn't support speech recognition.</span>;
+  // }
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    return <div>Browser does not support speech recognition.</div>;
   }
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+  };
+
+  const startListening = () => {
+    SpeechRecognition.startListening({ continuous: true });
+  };
+
+  const stopListening = () => {
+    SpeechRecognition.stopListening();
+  };
   
   if (loading) {
     return <div><BundleLoader/></div>;
@@ -910,7 +928,7 @@ translatedMenuItems={props.translatedMenuItems}
                     <div>{translatedMenuItems[14]}</div>
                     <div>
                   <div>
-                    <span onClick={SpeechRecognition.startListening}>
+                    <span onClick={startListening}>
                       <Tooltip title="Start">
                         <span  >
                           <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
@@ -918,7 +936,7 @@ translatedMenuItems={props.translatedMenuItems}
                       </Tooltip>
                     </span>
 
-                    <span onClick={SpeechRecognition.stopListening}>
+                    <span onClick={stopListening}>
                       <Tooltip title="Stop">
                         <span >
                           <StopCircleIcon  className="!text-icon ml-1 text-green-600"/>
@@ -935,13 +953,21 @@ translatedMenuItems={props.translatedMenuItems}
                     </span>
                   </div>
                   <div>
-                    <textarea
+                    {/* <textarea
                       name="description"
                       className="textarea"
                       type="text"
                       value={transcript ? transcript : text}
                       onChange={handletext}
-                    ></textarea>
+                    ></textarea> */}
+
+<textarea
+        name="description"
+        className="textarea"
+        type="text"
+        value={transcript || text}
+        onChange={handleTextChange}
+      ></textarea>
                   </div>
                 </div>
                   </div>
