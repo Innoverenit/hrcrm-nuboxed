@@ -44,27 +44,25 @@ function SuppliersDeletedCardList(props) {
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[14.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <FormattedMessage
-              id="app.name"
-              defaultMessage="Name"
-            /></div>
+            <div className=" w-[14.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  {props.translatedMenuItems[0]}
+              </div>
             <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
+            {props.translatedMenuItems[1]}
             </div>
             <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  <FormattedMessage id="app.email" defaultMessage="Email" /></div>
             <div className="w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              <FormattedMessage id="app.address" defaultMessage="Address" />
+            {props.translatedMenuItems[34]}
 
             </div>
             <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              <FormattedMessage id="app.city" defaultMessage="City" />
+            {props.translatedMenuItems[35]}
 
             </div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              <FormattedMessage id="app.pinCode" defaultMessage="PinCode" />
+            {props.translatedMenuItems[36]}
 
             </div>
-            <div className="w-[3.8rem]"><FormattedMessage id="app.reinstate" defaultMessage="Reinstate"/></div>
+            <div className="w-[3.8rem]">  {props.translatedMenuItems[37]}</div>
           </div>
           <div class="overflow-x-auto h-[85vh]">
         
@@ -91,7 +89,7 @@ function SuppliersDeletedCardList(props) {
                                   {date === currentdate ? (
                                     <div class="text-xs  text-[tomato] font-bold"
                                     >
-                                      New
+                                      {/* New */} {props.translatedMenuItems[23]}
                                     </div>
                                   ) : null}
                             </div>
@@ -174,10 +172,10 @@ function SuppliersDeletedCardList(props) {
 
       <UpdateSupplierModal
         rowdata={rowdata}
-     
         updateSupplierModal={props.updateSupplierModal}
         handleRowData={handleRowData}
         handleUpdateSupplierModal={props.handleUpdateSupplierModal}
+        translatedMenuItems={props.translatedMenuItems}
       />
     </>
   )

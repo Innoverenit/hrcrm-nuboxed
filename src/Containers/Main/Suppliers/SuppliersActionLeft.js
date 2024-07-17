@@ -139,7 +139,7 @@ const {
             <div class="flex items-center">
 
                 <Tooltip
-                    title={<FormattedMessage id="app.mysuppliers" defaultMessage="My Suppliers" />}>
+                    title={props.translatedMenuItems[4]}>
 <Badge
           size="small"
           count={(props.viewType === "card" && props.countSupplier.supplierCount) || 0}
@@ -159,7 +159,7 @@ const {
                 </Tooltip>
 
 
-                <Tooltip title="My Suppliers-Not Approved">
+                <Tooltip title={`${props.translatedMenuItems[4]}-${props.translatedMenuItems[5]}`}>
                 <Badge
           size="small"
           //count={(props.viewType === "not approved" && props.allCountSupplier.AllSupplierCount) || 0}
@@ -179,7 +179,7 @@ const {
                     </Badge>
                 </Tooltip>
 
-                <Tooltip title="ALL">
+                <Tooltip title={props.translatedMenuItems[6]}>
                 <Badge
           size="small"
           count={(props.viewType === "all" && props.allCountSupplier.AllSupplierCount) || 0}
@@ -192,12 +192,14 @@ const {
                         }}
                     >
                         <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                            <div className="text-white">ALL</div></Avatar>
+                            <div className="text-white">
+                              {/* ALL */}{props.translatedMenuItems[6]}
+                              </div></Avatar>
 
                     </span>
                     </Badge>
                 </Tooltip>
-                <Tooltip title="My Suppliers-Deleted">
+                <Tooltip title={`${props.translatedMenuItems[4]}-${props.translatedMenuItems[7]}`}>
                 <Badge
           size="small"
           count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
@@ -219,7 +221,7 @@ const {
                 &nbsp;&nbsp;
                 <div class=" ml-6 h-6 w-60 max-sm:w-[11rem]">
                 <Input
-          placeholder="Search by Name or Sector"
+          placeholder={props.translatedMenuItems[8]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}

@@ -103,9 +103,7 @@ function AddSuppliersForm (props) {
                     isRequired
                     name="name"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.name" defaultMessage="Name" />
-                    }
+                    label={props.translatedMenuItems[0]} 
                     width={"100%"}
                     component={InputComponent}
                     // placeholder="Start typing..."
@@ -119,9 +117,8 @@ function AddSuppliersForm (props) {
                       <FastField
                         name="dialCode"
                         selectType="dialCode"
-                        label={
-                          <FormattedMessage id="app.dialcode" defaultMessage="Dial Code" />
-                        }
+                        label={props.translatedMenuItems[14]} 
+                        
                         isColumn
                         component={SearchSelect}
                         defaultValue={{
@@ -136,9 +133,7 @@ function AddSuppliersForm (props) {
                     <div class="w-[68%] max-sm:w-[50%]">
                       <FastField
                         name="phoneNo"
-                        label={
-                          <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
-                        }
+                        label={`${props.translatedMenuItems[15]} #`} 
                         type="text"
                         placeholder="Phone #"
                         isColumn
@@ -152,9 +147,7 @@ function AddSuppliersForm (props) {
                     <FastField
                       type="email"
                       name="emailId"
-                      label={
-                        <FormattedMessage id="app.email" defaultMessage="Email" />
-                      }
+                      label={props.translatedMenuItems[16]} 
                       className="field"
                       isColumn
                       width={"100%"}
@@ -165,7 +158,10 @@ function AddSuppliersForm (props) {
 
 
                   <div class="w-full">
-                    <label>Approval</label>
+                    <label>
+                      {/* Approval */}
+                      {props.translatedMenuItems[17]} 
+                    </label>
                   <Switch 
                   checked={checked} 
                   onChange={handleChange} 
@@ -183,9 +179,9 @@ function AddSuppliersForm (props) {
           <>
             <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">
             
-                        <FormattedMessage id="app.assignedto" defaultMessage="Assigned" />
+                        {/* <FormattedMessage id="app.assignedto" defaultMessage="Assigned" /> */}
                   
-         
+         {props.translatedMenuItems[24]}
             </Listbox.Label>
             <div className="relative ">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -273,7 +269,8 @@ function AddSuppliersForm (props) {
                   htmlType="submit"
                   loading={props.addingSuppliers}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                  {props.translatedMenuItems[12]}
+                  {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */}
                 </Button>
               </div>
             </Form>

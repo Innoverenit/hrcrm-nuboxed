@@ -63,21 +63,19 @@ return(
 <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[18.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  <FormattedMessage
-              id="app.name"
-              defaultMessage="Name"
-            /></div>
+            <div className=" w-[18.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  {props.translatedMenuItems[0]}</div>
             <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
-              <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
+            {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[15.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  <FormattedMessage id="app.email" defaultMessage="Email" /></div>
+            <div className=" w-[15.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[2]}</div>
             <div className="w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[15.9rem]">
-              <FormattedMessage id="app.address" defaultMessage="Address" />
+              {/* <FormattedMessage id="app.address" defaultMessage="Address" /> */}
+               {props.translatedMenuItems[34]}
 
             </div>
             <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
-              <FormattedMessage id="app.city" defaultMessage="City" />
-
+              {/* <FormattedMessage id="app.city" defaultMessage="City" /> */}
+              {props.translatedMenuItems[35]}
             </div>
           
             <div class=" w-[3rem]"></div>
@@ -86,7 +84,7 @@ return(
         dataLength={props.allSupplierList.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingSupplierList?<div class="text-center font-semibold text-xs">Loading...</div>:null}
+        loader={props.fetchingSupplierList?<div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div>:null}
         height={"80vh"}
       >
 {props.allSupplierList.map((item) => {
@@ -108,7 +106,7 @@ return(
                                   {date === currentdate ? (
                                     <div class="text-xs  text-[tomato] font-bold"
                                     >
-                                      New
+                                      {/* New */}               {props.translatedMenuItems[23]}
                                     </div>
                                   ) : null}
                             </div>
@@ -158,7 +156,7 @@ return(
                             </div>
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
                             <div>
-<Tooltip title="Purchase Order">
+<Tooltip title={props.translatedMenuItems[18]}>
 <StoreIcon
                             className="!text-icon cursor-pointer text-[red]"
                             // onClick={() => {
@@ -170,7 +168,7 @@ return(
           </Tooltip>
           </div>            
  <div>
-<Tooltip title="Edit">
+<Tooltip title={props.translatedMenuItems[19]}>
             <BorderColorIcon
              className="!text-icon cursor-pointer text-[tomato]"
               onClick={() => {
@@ -184,7 +182,7 @@ return(
           </div>
           <div>
           <Popconfirm
-              title="Do you want to delete?"
+              title={`${props.translatedMenuItems[22]} ?`}
              onConfirm={() => props.deleteSupplierData(item.supplierId)}
             >
               <DeleteOutlined
@@ -205,10 +203,10 @@ className=" !text-icon cursor-pointer text-[red]"
  )}
   <UpdateSupplierModal
         rowdata={rowdata}
-     
         updateSupplierModal={props.updateSupplierModal}
         handleRowData={handleRowData}
         handleUpdateSupplierModal={props.handleUpdateSupplierModal}
+        translatedMenuItems={props.translatedMenuItems}
       />
 </>
 )

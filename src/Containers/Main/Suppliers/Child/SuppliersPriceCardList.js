@@ -85,22 +85,22 @@ function SuppliersPriceCardList(props) {
           <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className="flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
               <div className="w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">
-                <FormattedMessage id="app.name" defaultMessage="Name" />
+                {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}{props.translatedMenuItems[0]}
               </div>
               <div className="w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
-                <FormattedMessage id="app.category" defaultMessage="Category" />
+                {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */} {props.translatedMenuItems[26]}
               </div>
               <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[15.9rem]">
-                <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
+                {/* <FormattedMessage id="app.attribute" defaultMessage="Attribute" /> */} {props.translatedMenuItems[27]}
               </div>
               <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                <FormattedMessage id="app.quality" defaultMessage="Quality" />
+                {/* <FormattedMessage id="app.quality" defaultMessage="Quality" /> */} {props.translatedMenuItems[28]}
               </div>
               <div className="w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                <FormattedMessage id="app.unitprice" defaultMessage="Price (Last PO)" />
+                {/* <FormattedMessage id="app.unitprice" defaultMessage="Price (Last PO)" /> */} {`${props.translatedMenuItems[19]} (${props.translatedMenuItems[29]} PO)`}
               </div>
               <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                <FormattedMessage id="app.priceDate" defaultMessage="Price (Date)" />
+                {/* <FormattedMessage id="app.priceDate" defaultMessage="Price (Date)" /> */} {`${props.translatedMenuItems[19]} (${props.translatedMenuItems[30]})`}
               </div>
               <div className="w-[5rem]"></div>
             </div>
@@ -114,7 +114,7 @@ function SuppliersPriceCardList(props) {
                       <div className="flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                         <div className="font-medium ml-2 flex items-center w-[15.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem]">
                           <div className="font-semibold text-[0.85rem]  font-poppins">{item.suppliesFullName}</div>
-                          &nbsp;{date === currentdate && <div className="text-xs text-[tomato] font-bold">New</div>}
+                          &nbsp;{date === currentdate && <div className="text-xs text-[tomato] font-bold">{props.translatedMenuItems[23]}</div>}
                         </div>
                         <div className="flex font-medium flex-col w-[13.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem]">
                           <div className="font-normal text-[0.85rem]  font-poppins">{item.categoryName}</div>
@@ -146,9 +146,11 @@ function SuppliersPriceCardList(props) {
                                 type="primary"
                                 onClick={() => handleUpdatePrice(item)}
                               >
-                                Add
+                                {/* Add */} {props.translatedMenuItems[9]}
                               </Button>
-                              <Button onClick={handleCancelEdit}>Cancel</Button>
+                              <Button onClick={handleCancelEdit}>
+                              {props.translatedMenuItems[31]}
+                                </Button>
                             </>
                           ) : (
                             <span>{item.updatePrice} &nbsp; {dayjs(item.updateDate).format('DD/MM/YYYY')}</span>
@@ -157,7 +159,7 @@ function SuppliersPriceCardList(props) {
                         </div>
                         <div className="flex font-medium flex-col md:w-[5rem] max-sm:justify-between w-full max-sm:flex-row">
                           <div className="font-normal text-[0.85rem]  font-poppins">
-                          <Tooltip title="Edit">
+                          <Tooltip title={props.translatedMenuItems[20]}>
                           <BorderColorIcon
                               className="!text-icon cursor-pointer text-[tomato]"
                               onClick={() => handleEditRow(item.suppliesId)}

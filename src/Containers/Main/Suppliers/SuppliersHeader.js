@@ -22,11 +22,17 @@ class SuppliersHeader extends Component {
                             setCurrentData={setCurrentData}
                             currentData={currentData}
                             handleClear={handleClear}
+                            translateText={this.props.translateText}
+                            translatedMenuItems={this.props.translatedMenuItems}
+                            selectedLanguage={this.props.selectedLanguage}
                         />
                     }
                     rightComponent={<SuppliersActionRight
                         viewType={viewType}
-                         />}
+                        translateText={this.props.translateText}
+                            translatedMenuItems={this.props.translatedMenuItems}
+                            selectedLanguage={this.props.selectedLanguage}
+                        />}
                 />
             </div>
         );

@@ -94,9 +94,7 @@ function UpdateSupplierForm (props) {
                     isRequired
                     name="name"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.name" defaultMessage="Name" />
-                    }
+                    label={props.translatedMenuItems[0]} 
                     width={"100%"}
                     component={InputComponent}
                     // placeholder="Start typing..."
@@ -110,9 +108,7 @@ function UpdateSupplierForm (props) {
                       <FastField
                         name="dialCode"
                         selectType="dialCode"
-                        label={
-                          <FormattedMessage id="app.dialcode" defaultMessage="Dial Code" />
-                        }
+                        label={props.translatedMenuItems[14]} 
                         isColumn
                         component={SearchSelect}
                         defaultValue={{
@@ -127,9 +123,7 @@ function UpdateSupplierForm (props) {
                     <div class="w-[68%] max-sm:w-[50%]">
                       <FastField
                         name="phoneNo"
-                        label={
-                          <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
-                        }
+                        label={`${props.translatedMenuItems[15]} #`} 
                         type="text"
                         placeholder="Phone #"
                         isColumn
@@ -143,9 +137,7 @@ function UpdateSupplierForm (props) {
                     <FastField
                       type="email"
                       name="emailId"
-                      label={
-                        <FormattedMessage id="app.email" defaultMessage="Email" />
-                      }
+                      label={props.translatedMenuItems[16]} 
                       className="field"
                       isColumn
                       width={"100%"}
@@ -162,8 +154,8 @@ function UpdateSupplierForm (props) {
           <>
             <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">
             
-                        <FormattedMessage id="app.assignedto" defaultMessage="Assigned" />
-                  
+                        {/* <FormattedMessage id="app.assignedto" defaultMessage="Assigned" /> */}
+                        {props.translatedMenuItems[24]}
          
             </Listbox.Label>
             <div className="relative ">
@@ -252,7 +244,8 @@ function UpdateSupplierForm (props) {
                   htmlType="submit"
                   loading={props.updateSuppliersById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                   {props.translatedMenuItems[25]}
+                  {/* <FormattedMessage id="app.update" defaultMessage="Update" /> */}
                 </Button>
               </div>
             </Form>

@@ -80,7 +80,7 @@ const SuppliersListForm = (props) => {
               <div className="h-full w-w47.5 max-sm:w-full">
                 <Field
                   name="material"
-                  label={<FormattedMessage id="app.material" defaultMessage="Material" />}
+                  label={props.translatedMenuItems[32]}
                   isColumn
                   width={"100%"}
                   component={SelectComponent}
@@ -91,7 +91,7 @@ const SuppliersListForm = (props) => {
                 <div className="w-w47.5">
                   <Field
                     name="date"
-                    label={<FormattedMessage id="app.date" defaultMessage="Date" />}
+                    label={props.translatedMenuItems[30]}
                     component={DatePicker}
                     isColumn
                     width={"100%"}
@@ -102,7 +102,9 @@ const SuppliersListForm = (props) => {
                 </div>
                 <div className="w-w47.5">
                
-               <label style={{ fontWeight: "bold", fontSize: "0.75rem" }}>Quality</label>
+               <label style={{ fontWeight: "bold", fontSize: "0.75rem" }}>
+                {/* Quality */} {props.translatedMenuItems[28]}
+                </label>
 
                <Field
             name="quality"
@@ -128,7 +130,7 @@ const SuppliersListForm = (props) => {
                       isRequired
                       name="price"
                       type="text"
-                      label={<FormattedMessage id="app.Price" defaultMessage="Price" />}
+                      label={props.translatedMenuItems[19]}
                       width={"100%"}
                       component={InputComponent}
                       isColumn
@@ -138,7 +140,7 @@ const SuppliersListForm = (props) => {
                   <div className="w-w47.5 max-sm:w-[50%]">
                     <Field
                       name="currency"
-                      label={<FormattedMessage id="app.currency" defaultMessage="Currency" />}
+                      label={props.translatedMenuItems[33]}
                       isColumn
                       width={"100%"}
                       component={SelectComponent}
@@ -152,7 +154,7 @@ const SuppliersListForm = (props) => {
             </div>
             <div className="flex justify-end mt-3">
               <Button type="primary" htmlType="submit" loading={props.updatingQualitySuppliers}>
-                <FormattedMessage id="app.create" defaultMessage="Create" />
+                {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */} {props.translatedMenuItems[12]}
               </Button>
             </div>
           </Form>
