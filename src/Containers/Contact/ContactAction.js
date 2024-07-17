@@ -1600,3 +1600,40 @@ export const getContactAddressData = (id,type) => (dispatch) => {
       });
     });
 };
+
+
+
+
+
+
+export const addContactMand = (addressId,primaryInd) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.ADD_CONTACT_MAND_REQUEST,
+  });
+  axios
+    .put(`${base_url}/address/makePrimary/${addressId}/${primaryInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.ADD_CONTACT_MAND_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_CONTACT_MAND_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};

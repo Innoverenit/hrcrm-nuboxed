@@ -273,6 +273,11 @@ addingNotesByContactId:false,
    contactCETdrawer:false,
    clickCETcontactActivity:false,
 
+
+
+   addingContactMand:false,
+   addingContactMandError:false,
+
    addingContactActivityCall: false,
    addingContactActivityEvent: false,
    addingContactActivityTask: false,
@@ -933,7 +938,23 @@ export const contactReducer = (state = initialState, action) => {
 
 
 
-
+                        case types.ADD_CONTACT_MAND_REQUEST:
+                          return { ...state, addingContactMand: true };
+                        case types.ADD_CONTACT_MAND_SUCCESS:
+                          return {
+                            ...state,
+                            addingContactMand: false,
+                            //sectors:[action.payload,...state.sectors]
+                            // sectors: [...state.sectors, action.payload],
+                            
+                          };
+                        case types.ADD_CONTACT_MAND_FAILURE:
+                          return {
+                            ...state,
+                            addingContactMand: false,
+                            addingContactMandError: true,
+                          };
+                      
                         case types.GET_CONTACT_ADDRESS_DATA_REQUEST:
                           return { ...state, fetchingContactAddress: true };
                         case types.GET_CONTACT_ADDRESS_DATA_SUCCESS:
