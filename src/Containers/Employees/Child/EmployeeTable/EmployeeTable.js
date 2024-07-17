@@ -787,6 +787,8 @@ function EmployeeTable(props) {
   {props.employeeSerachedData.length > 0 ? (
     <EmployeeSearchedData
     employeeSerachedData={props.employeeSerachedData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
   fetchingEmployeeInputSearchData={props.fetchingEmployeeInputSearchData}
     />
   ) : (

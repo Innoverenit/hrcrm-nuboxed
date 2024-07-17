@@ -35,8 +35,11 @@ const EmployeesActionLeft = (props) => {
 
     if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
       //setPage(pageNo + 1);
-      props.getEmployeelist("cretiondate","active");
-      //props.ClearReducerDataOfLead()
+      if (props.viewType === "tile") {
+        props.getEmployeelist("cretiondate","active");
+      }else if (props.viewType === "table") {
+        props.getEmployeelist("cretiondate","all");
+      }
       props.ClearReducerDataOfEmployee()
       setSearchOnEnter(false);
     }
