@@ -35,6 +35,7 @@ const CustomerSchema = Yup.object().shape({
 const { Option } = Select; 
 function PitchForm (props) {
   
+  
  const handleReset = (resetForm) => {
     resetForm();
   };
@@ -363,11 +364,11 @@ props.getInvestorCurrency();
                           />
                         </div> */}
                         <div class=" w-full max-sm:w-full">
-                          <FastField
+                             <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label={
+                            label="First Name"
+                            Label={
                               <FormattedMessage
                                 id="app.firstname"
                                 defaultMessage="firstname"
@@ -382,11 +383,11 @@ props.getInvestorCurrency();
                         </div>
                       </div>                  
                       <div class=" flex justify-between  max-sm:flex-col">
-                        <div class=" w-2/5 max-sm:w-full">
+                        <div class=" w-2/5 max-sm:w-full">                       
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={
+                            label="Middle Name"
+                            Label={
                               <FormattedMessage
                                 id="app.middle"
                                 defaultMessage="middle"
@@ -399,11 +400,11 @@ props.getInvestorCurrency();
                             inlineLabel
                           />
                         </div>
-                        <div class=" w-1/2 max-sm:w-full">
+                        <div class=" w-1/2 max-sm:w-full">                      
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            label={
+                            label="Last Name"
+                            Label={
                               <FormattedMessage
                                 id="app.lastname"
                                 defaultMessage="lastname"
@@ -418,9 +419,8 @@ props.getInvestorCurrency();
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <Field
+                  </div>         
+              <Field
                   isRequired
                     name="email"
                     type="text"
@@ -431,13 +431,11 @@ props.getInvestorCurrency();
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
-                  /> 
-                               
-                  <div class=" flex justify-between">
+                  />                             
+                <div class=" flex justify-between">
                     <div class=" w-3/12 max-sm:w-[32%]">
-                   
-                    <FastField
-                        name="countryDialCode"
+                      <FastField
+                      name="countryDialCode"
                         isColumnWithoutNoCreate
                         label={
                           <FormattedMessage
@@ -457,7 +455,7 @@ props.getInvestorCurrency();
                   
                     </div>
                     <div class=" w-8/12">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">                 
                       <FastField
                         type="text"
                         name="phoneNumber"
@@ -477,9 +475,9 @@ props.getInvestorCurrency();
                     </div>
                   </div>
                  
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
+                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">               
                   <Field
-                
+
                     name="companyName"
                     type="text"
                     label={
@@ -493,7 +491,7 @@ props.getInvestorCurrency();
                     inlineLabel
                   />
                   </div>
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">                  
                   <Field
                     name="url"
                     type="text"
@@ -508,7 +506,7 @@ props.getInvestorCurrency();
                   {contract ?
                     <div class=" w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                      <Field
+                   <Field
                         name="vatNo"
                         type="text"
                         label={
@@ -528,11 +526,11 @@ props.getInvestorCurrency();
                      {contract ?
                     <div class="w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                      <Field
+                                     <Field
                         name="businessRegistration"
                         type="text"
-                        // label="URL"
-                        label={
+                        label="URL"
+                        Label={
                           <FormattedMessage
                             id="app.businessregistration"
                             defaultMessage=" businessregistration"
@@ -782,7 +780,7 @@ props.getInvestorCurrency();
                     />
                   </div>
 
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5 max-sm:w-wk">               
                     <Field
                       name="shareCurrency"
                       isColumnWithoutNoCreate
@@ -810,7 +808,7 @@ props.getInvestorCurrency();
   </div>
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
-                >
+                >                
                    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
@@ -881,9 +879,9 @@ props.getInvestorCurrency();
         </>
       )}
     </Listbox>
-             
 
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
+    
+                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">                 
                   <FieldArray
                     name="address"
                     label="Address"
@@ -896,8 +894,8 @@ props.getInvestorCurrency();
                   />
                   </div>
                   
-                <div class="mt-3">
-                <div>Notes</div>
+                <div class="mt-3">               
+                  <div>Notes</div>
                     <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>

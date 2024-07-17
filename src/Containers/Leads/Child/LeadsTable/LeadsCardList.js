@@ -98,7 +98,7 @@ const LeadsCardList = (props) => {
 
 
 
-
+  
 
   useEffect(() => {
     return () => props.emptyLeads();

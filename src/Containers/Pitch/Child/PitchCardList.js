@@ -34,6 +34,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import PitchSearchedData from "./PitchSearchedData";
+import { BundleLoader } from "../../../Components/Placeholder";
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
@@ -46,6 +47,9 @@ const PitchCardList = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     props.getPitch(props.userId,page,"creationdate");
     props.getPitchHot(props.userId, page,"creationdate","hot");
@@ -55,6 +59,36 @@ const PitchCardList = (props) => {
     // props.getSectors();
     // props.getCountries();
   }, []);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "Name",//0
+          "Mobile",//1
+          "Company",//2
+          "Source",//3
+          "Sector",//4
+          "Category",//5
+          "Share",//6
+          "Value",//7
+           "Owner",//8
+           "Qualify"//9
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -163,7 +197,9 @@ const handleLoadMore2 = () => {
   //   return <BundleLoader />;
   // }
 
-  
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
 
   return (
     <div>
@@ -176,52 +212,78 @@ const handleLoadMore2 = () => {
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-red-600  justify-center ">Hot</div>
-        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
+        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
+        {translatedMenuItems[0]} {/* <FormattedMessage
                   id="app.name"
                   defaultMessage="name"
-                /></div>
+                /> */}
+                </div>
         <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className=" w-[7.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className=" w-[7.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[1]} {/* <FormattedMessage
                   id="app.mobile#"
                   defaultMessage="mobile#"
-                /></div>
+                /> */}
+                </div>
         <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
+        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        {translatedMenuItems[2]} {/* <FormattedMessage
                   id="app.company"
                   defaultMessage="company"
-                /></div>
-                    <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+                    <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    {translatedMenuItems[3]} 
+                     {/* <FormattedMessage
                   id="app.Source"
                   defaultMessage="Source"
-                /></div>
-                     <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+                     <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {translatedMenuItems[4]}  
+                     {/* <FormattedMessage
                   id="app.Sector"
                   defaultMessage="Sector"
-                /></div>
+                /> */}
+                </div>
                  <div className="w-[5.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
+                 {translatedMenuItems[5]}   {/* <FormattedMessage
                   id="app.Category"
                   defaultMessage="Category"
-                />
+                /> */}
           </div>
           <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          Shares #
+          {translatedMenuItems[6]}   {/* Shares # */}
+         
           </div>
           <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-         First Meeting
+         
+          {translatedMenuItems[7]}  {/* First Meeting */}
+      
           </div>
           <div className="w-[4.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-         Value
+          {translatedMenuItems[8]}  
+         {/* Value */}
+       
           </div>
-        <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
-        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned
+        {translatedMenuItems[9]}
+        </div>
+    
+        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[10]} 
+              {/* <FormattedMessage
                   id="app.owner"
                   defaultMessage="owner" 
-                /></div>
-        <div className="w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        {translatedMenuItems[11]} 
+            {/* <FormattedMessage
                   id="app.qualify"
                   defaultMessage="qualify"
-                /></div>
+                />    */}
+                </div>
 
 
       </div>
@@ -640,49 +702,68 @@ const countryCode = item.countryAlpha2Code
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] bg-orange-600 text-white  justify-center ">Warm</div>
-        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
+        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
+        {translatedMenuItems[0]}{/* <FormattedMessage
                   id="app.name"
                   defaultMessage="name"
-                /></div>
+                /> */}
+                </div>
         <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className=" w-[7.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className=" w-[7.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[1]}  {/* <FormattedMessage
                   id="app.mobile#"
                   defaultMessage="mobile#"
-                /></div>
+                /> */}
+                </div>
         <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
+        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        {translatedMenuItems[2]}{/* <FormattedMessage
                   id="app.company"
                   defaultMessage="company"
-                /></div>
-                    <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+                    <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    {translatedMenuItems[3]} {/* <FormattedMessage
                   id="app.Source"
                   defaultMessage="Source"
-                /></div>
-                     <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+                     <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {translatedMenuItems[4]}{/* <FormattedMessage
                   id="app.Sector"
                   defaultMessage="Sector"
-                /></div>
+                /> */}
+                </div>
                  <div className="w-[5.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
+                 {translatedMenuItems[5]} {/* <FormattedMessage
                   id="app.Category"
                   defaultMessage="Category"
-                />
+                /> */}
           </div>
           <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          Shares #
+          {translatedMenuItems[6]}
+          {/* Shares # */}
           </div>
           <div className="w-[5.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          Value
+          {translatedMenuItems[7]}
+          {/* Value */}
           </div>
-        <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
-        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[8]}
+          {/* Assigned */}
+          </div>
+        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[9]}        {/* <FormattedMessage
                   id="app.owner"
                   defaultMessage="owner" 
-                /></div>
-        <div className="w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        {translatedMenuItems[10]} {/* <FormattedMessage
                   id="app.qualify"
                   defaultMessage="qualify"
-                /></div>
+                /> */}
+                </div>
 
 
       </div>
@@ -1092,49 +1173,69 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] bg-blue-600 text-white justify-center ">Cold</div>
-        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
+        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
+        {translatedMenuItems[0]}  {/* <FormattedMessage
                   id="app.name"
                   defaultMessage="name"
-                /></div>
+                /> */}
+                </div>
         <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className=" w-[7.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className=" w-[7.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[1]}  {/* <FormattedMessage
                   id="app.mobile#"
                   defaultMessage="mobile#"
-                /></div>
+                /> */}
+                </div>
         <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
+        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        {translatedMenuItems[2]}   {/* <FormattedMessage
                   id="app.company"
                   defaultMessage="company"
-                /></div>
-                    <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+                    <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    {translatedMenuItems[3]}   {/* <FormattedMessage
                   id="app.Source"
                   defaultMessage="Source"
-                /></div>
-                     <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+                     <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {translatedMenuItems[4]}   {/* <FormattedMessage
                   id="app.Sector"
                   defaultMessage="Sector"
-                /></div>
+                /> */}
+                </div>
                  <div className="w-[5.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
+                 {translatedMenuItems[5]}   {/* <FormattedMessage
                   id="app.Category"
                   defaultMessage="Category"
-                />
+                /> */}
           </div>
           <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          Shares #
+          {translatedMenuItems[6]}  
+          {/* Shares # */}
           </div>
           <div className="w-[5.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          Value
+          {translatedMenuItems[7]}  
+          {/* Value */}
           </div>
-        <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
-        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[8]}  
+          {/* Assigned */}
+          </div>
+        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[9]}  
+          {/* <FormattedMessage
                   id="app.owner"
                   defaultMessage="owner" 
-                /></div>
-        <div className="w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        {translatedMenuItems[10]}  {/* <FormattedMessage
                   id="app.qualify"
                   defaultMessage="qualify"
-                /></div>
+                /> */}
+                </div>
 
 
       </div>

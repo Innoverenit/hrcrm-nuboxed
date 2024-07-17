@@ -18,6 +18,7 @@ import EventNoteIcon from '@mui/icons-material/EventNote';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
+import { BundleLoader } from "../../../../Components/Placeholder";
 const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
 
 function EventCardList (props) {
@@ -26,30 +27,38 @@ function EventCardList (props) {
   const [isCopied, setIsCopied] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
  
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
+        setLoading(true); 
         const itemsToTranslate = [
-         "Type",//0
+          "Type",//0
           "Subject",//1
           "Start",//2
           "End",//3
           "Include",//4
           "Assigned",//5
            "Owner",//6
-          
+
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error('Error translating menu items:', error);
       }
     };
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
+
+
+
+  
   useEffect(() => {
     const {
       getEventListRangeByUserId,
@@ -91,6 +100,11 @@ function EventCardList (props) {
     } = props;
 
     console.log(eventListRangeByUserId)
+
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    }
+  
     return (
       <>
       <div className=' flex  sticky  z-auto'>

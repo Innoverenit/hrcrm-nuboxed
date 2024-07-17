@@ -79,10 +79,11 @@ class Leads extends Component {
         <LeadsHeader
           handleFilterChange={this.handleFilterChange}
           filter={this.state.filter}
-        handleDropChange={this.handleDropChange}
-        currentUser={this.state.currentUser}
+          handleDropChange={this.handleDropChange}
+          currentUser={this.state.currentUser}
             handleLeadsModal={handleLeadsModal}
         setLeadsViewType={this.setLeadsViewType}
+        
           viewType={viewType}
           teamsAccessInd={teamsAccessInd}
           handleChange={this.handleChange}
