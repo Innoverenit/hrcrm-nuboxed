@@ -20,6 +20,7 @@ import {
   getContactById,
   handleDonotCallModal,
   handleContactDrawerModal,
+  handleContactAddressDrawerModal,
   handleContactEmailDrawerModal,
   handleContactNotesDrawerModal,
   emptyContact,
@@ -40,6 +41,7 @@ import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddContactAddressDrawerModal from "../ContactTable/AddContactAddressDrawerModal"
 const ContactCETdrawer =lazy(()=>import("./ContactCETdrawer"));
  
 const Option = Select;
@@ -335,6 +337,18 @@ function ContactCardList(props) {
     </Tooltip>
 
              </div>
+             <div>
+              <Tooltip title="Address">
+ <NoteAltIcon
+          className=" !text-icon cursor-pointer text-[#4bc076]"
+          onClick={() => {
+            props.handleContactAddressDrawerModal(true);
+            handleSetCurrentContact(item);
+          }}
+          
+        />
+     </Tooltip>
+     </div>
            
               <div>
               <Tooltip title="Notes">
@@ -533,6 +547,11 @@ function ContactCardList(props) {
         addDrawerContactModal={props.addDrawerContactModal}
         handleContactDrawerModal={props.handleContactDrawerModal}
       />
+       <AddContactAddressDrawerModal
+        item={currentContact}
+        addDrawerContactAddressModal={props.addDrawerContactAddressModal}
+        handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
+      />
     </>
   );
 }
@@ -548,6 +567,7 @@ const mapStateToProps = ({
   contactByUserId: contact.contactByUserId,
   sales: opportunity.sales,
   user: auth.userDetails,
+  addDrawerContactAddressModal:contact.addDrawerContactAddressModal,
   addDrawerContactPulseModal:contact.addDrawerContactPulseModal,
   fetchingContacts: contact.fetchingContacts,
   fetchingContactsError: contact.fetchingContactsError,
@@ -576,7 +596,8 @@ const mapDispatchToProps = (dispatch) =>
       handleContactPulseDrawerModal,
       handleContactEmailDrawerModal,
       emptyContact,
-      handleContactCETdrawer
+      handleContactCETdrawer,
+      handleContactAddressDrawerModal
     },
     dispatch
   );

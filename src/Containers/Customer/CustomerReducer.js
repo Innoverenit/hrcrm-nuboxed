@@ -449,7 +449,7 @@ const initialState = {
 
   fetchingAttendanceList: false,
   fetchingAttendanceListError: false,
-  attendanceByList: [],
+  attendanceByList: {},
 
   addingRecruitmentProfile: false,
   addingRecruitmentProfileError: false,

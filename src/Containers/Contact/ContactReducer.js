@@ -16,6 +16,9 @@ const initialState = {
   fetchingContactRecordsError: true,
   contactRecord:[],
 
+  addingContactAddress:false,
+  addingContactAddressError:false,
+
   fetchingContactData:false,
   fetchingContactDataError:false,
   contactData:[],
@@ -222,6 +225,11 @@ addingNotesByContactId:false,
 
   addContactImportModal:false,
 
+
+  fetchingContactAddress:false,
+  fetchingContactAddressError:false,
+  contactAddress:[],
+
   uploadingContactList: false,
   uploadingContactListError: false,
 
@@ -232,6 +240,8 @@ addingNotesByContactId:false,
   addSharingContactPartnerError: false,
 
   addContactSpeechModal:false,
+
+  addDrawerContactAddressModal:false,
 
   //SHARE Contact Permission of customer
   addSharingContactCustomer: false,
@@ -295,6 +305,10 @@ export const contactReducer = (state = initialState, action) => {
        };
     case types.ADD_CONTACT_FAILURE:
       return { ...state, addingContact: false, addContactModal: false };
+
+
+      case types.HANDLE_CONTACT_ADDRESS_DRAWER_MODAL:
+        return { ...state, addDrawerContactAddressModal: action.payload };
 
 
       case types.EMPTY_CONTACT_TABLE:
@@ -651,6 +665,26 @@ export const contactReducer = (state = initialState, action) => {
           fetchingAllContactsError: true,
         };
 
+
+
+
+        case types.ADD_CONTACT_ADDRESS_REQUEST:
+    return { ...state, addingContactAddress: true };
+  case types.ADD_CONTACT_ADDRESS_SUCCESS:
+    return {
+      ...state,
+      addingContactAddress: false,
+      //sectors:[action.payload,...state.sectors]
+      // sectors: [...state.sectors, action.payload],
+      
+    };
+  case types.ADD_CONTACT_ADDRESS_FAILURE:
+    return {
+      ...state,
+      addingContactAddress: false,
+      addingContactAddressError: true,
+    };
+
         case types.GET_RECORDS_REQUEST:
           return { ...state, fetchingRecordsByUserId: true };
         case types.GET_RECORDS_SUCCESS:
@@ -895,6 +929,26 @@ export const contactReducer = (state = initialState, action) => {
     
     
                         return { ...state, fetchingAllContacts: false, fetchingAllContactsError: true }; 
+
+
+
+
+
+                        case types.GET_CONTACT_ADDRESS_DATA_REQUEST:
+                          return { ...state, fetchingContactAddress: true };
+                        case types.GET_CONTACT_ADDRESS_DATA_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingContactAddress: false,
+                            contactAddress: action.payload,
+                          };
+                        case types.GET_CONTACT_ADDRESS_DATA_FAILURE:
+                          return {
+                            ...state,
+                            fetchingContactAddress: false,
+                            fetchingContactAddressError: true,
+                          };
+                      
 
 
 

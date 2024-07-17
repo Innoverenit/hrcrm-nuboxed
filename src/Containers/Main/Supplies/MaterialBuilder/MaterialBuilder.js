@@ -12,11 +12,40 @@ const MaterialBuilderSearchedCard =lazy(()=>import("./MaterialBuilderSearchedCar
 const { Option } = Select;
 
 function MaterialBuilder (props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   useEffect(()=> {
     props.getProductHsn();
     
   },[]);
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "HSN",//0
+          
+          "Name",//1
+          "Category",//1
+          "Sub Category",//1
+          "Unit",//1
+          
+      
+      
+       
+          
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   const prosb=props.productHsn
 
@@ -41,7 +70,10 @@ function MaterialBuilder (props) {
 
                                     <div class="flex justify-between">
                                     <div class=" w-[18%]">
-                                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">HSN</div>
+                                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                                      {/* HSN */}
+                                      {translatedMenuItems[0]}
+                                      </div>
       <Select value={selectedValue} onChange={handleChange}>
         {prosb.map(option => {
           return <Option key={option.suppliesId} value={option.hsn}>{option.hsn}</Option>
@@ -60,7 +92,10 @@ function MaterialBuilder (props) {
 {showCard &&
 <MaterialBuilderSearchedCard particularDiscountData={props.particularDiscountData} searchedMaterialBuilders={props.searchedMaterialBuilders}/>
 }
-<MaterialbuilderCard particularDiscountData={props.particularDiscountData}/>
+<MaterialbuilderCard 
+particularDiscountData={props.particularDiscountData}
+translatedMenuItems={translatedMenuItems}
+/>
 </Suspense>
                        
     </>

@@ -27,6 +27,8 @@ function Supplies(props) {
     return (
         <React.Fragment>
             <SuppliesHeader
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
                 setSuppliesViewType={setSuppliesViewType}
                 viewType={viewType}
                 handleSuppliesModal={handleSuppliesModal}
@@ -42,7 +44,10 @@ function Supplies(props) {
                   
                 ) : viewType === "dashboard" ? (
                    
-                     <SuppliesDeletedTable /> 
+                     <SuppliesDeletedTable 
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage}
+                     /> 
                 ) : null}
             </Suspense>
         </React.Fragment>

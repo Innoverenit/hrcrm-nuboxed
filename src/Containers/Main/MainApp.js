@@ -567,6 +567,7 @@ function MainApp(props) {
                   {/* <div className="border-2"></div>Attendance<div className="border-2"></div> */}
                   <StartStop />
                   <div >
+                  
                     {/* <div class="border border-grey ml-1 p-1 h-10 md:p-4">
   <label class=" bg-white flex px-2 -mt-[1.15rem] h-2 items-center w-[5.5rem]">Attendance</label>
   <StartStop />

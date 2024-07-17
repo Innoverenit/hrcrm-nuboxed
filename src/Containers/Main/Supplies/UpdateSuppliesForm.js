@@ -23,11 +23,49 @@ const SuppliesSchema = Yup.object().shape({
 });
 
 function UpdateSuppliesForm (props) {
+
   useEffect(()=> {
    props.getCurrency();
   },[]);
 
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Category",//0
+          
+         
+          "Sub Category",//1
+          "Attribute",//1
+          "Sub Attribute",//1
+          "Name",//1
+          "HSN",//1
+          "Re-order",//1
+          "Net Weight",//1
+          "UOM",//1
+          "Gross Weight",
+          "Description",
+          "Update"
+          
+      
+      
+       
+          
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   const [newimageId, setnewimageId] = useState("");
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   function setImage(imageId) {
     setnewimageId(imageId);
@@ -103,6 +141,7 @@ console.log("f",newimageId)
                       </div>
                     </div>
                   </div>
+                  <label>{translatedMenuItems[0]}</label>
                   <Field
                     defaultValue={{
                       label:props.particularDiscountData.categoryName,
@@ -110,7 +149,7 @@ console.log("f",newimageId)
                     }}
                     isRequired
                     name="categoryName"
-                    label="Category"
+                    // label="Category"
                     placeholder="Start typing to search or create..."
                     optionLabel="categoryName"
                     optionValue="categoryName"
@@ -120,13 +159,14 @@ console.log("f",newimageId)
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
+                     <label>{translatedMenuItems[1]}</label>
                   <Field
                     defaultValue={{
                       label:props.particularDiscountData.subCategoryName,
                       value:props.particularDiscountData.subCategoryName,
                     }}
                     name="subCategoryName"
-                    label="Sub Category"
+                    // label="Sub Category"
                     placeholder="Start typing to search or create..."
                     optionLabel="subCategoryName"
                     optionValue="subCategoryName"
@@ -137,13 +177,14 @@ console.log("f",newimageId)
                   />
                   <div class="flex justify-between">
                     <div class="w-full">
+                    <label>{translatedMenuItems[2]}</label>
                       <Field
                         defaultValue={{
                           label:props.particularDiscountData.attributeName,
                           value:props.particularDiscountData.attributeName,
                         }}
                         name="attributeName"
-                        label="Attribute"
+                        // label="Attribute"
                         placeholder="Start typing to search or create..."
                         optionLabel="attributeName"
                         optionValue="attributeName"
@@ -152,13 +193,14 @@ console.log("f",newimageId)
                         isColumn
                         inlineLabel
                       />
+                      <label>{translatedMenuItems[3]}</label>
                       <Field
                         defaultValue={{
                           label:props.particularDiscountData.subAttributeName,
                           value:props.particularDiscountData.subAttributeName,
                         }}
                         name="subAttributeName"
-                        label="Sub Attribute"
+                        // label="Sub Attribute"
                         placeholder="Start typing to search or create..."
                         optionLabel="subAttributeName"
                         optionValue="subAttributeName"
@@ -174,9 +216,10 @@ console.log("f",newimageId)
                 <div class="h-full w-[50%]">
                   <div class="flex justify-between">
                     <div class="w-wk">
+                    <label>{translatedMenuItems[4]}</label>
                       <Field
                         name="name"
-                        label="Name"
+                        // label="Name"
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -188,9 +231,10 @@ console.log("f",newimageId)
 
                   <div class="flex justify-between">
                   <div class="w-[47%]">
+                  <label>{translatedMenuItems[5]}</label>
                       <Field
                         name="hsn"
-                        label="HSN"
+                        // label="HSN"
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -198,9 +242,10 @@ console.log("f",newimageId)
                       />
                     </div>
                     <div class="w-[47%]">
+                    <label>{translatedMenuItems[6]}</label>
                       <Field
                         name="reorder"
-                        label="Re-order"
+                        // label="Re-order"
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -223,9 +268,10 @@ console.log("f",newimageId)
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
+                    <label>{translatedMenuItems[7]}</label>
                       <Field
                         name="netWeight"
-                        label="Net Weight"
+                        // label="Net Weight"
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -233,9 +279,10 @@ console.log("f",newimageId)
                       />
                     </div>
                     <div class="w-[47%]">
+                    <label>{translatedMenuItems[8]}</label>
                       <Field
                         name="netUnit"
-                        label="UOM"
+                        // label="UOM"
                         isColumn
                         inlineLabel
                         component={SelectComponent}
@@ -248,9 +295,10 @@ console.log("f",newimageId)
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
+                    <label>{translatedMenuItems[9]}</label>
                       <Field
                         name="grossWeight"
-                        label="Gross Weight"
+                        // label="Gross Weight"
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -258,9 +306,10 @@ console.log("f",newimageId)
                       />
                     </div>
                     <div class="w-[47%]">
+                    <label>{translatedMenuItems[8]}</label>
                       <Field
                         name="grossUnit"
-                        label="UOM"
+                        // label="UOM"
                         isColumn
                         inlineLabel
                         component={SelectComponent}
@@ -285,10 +334,11 @@ console.log("f",newimageId)
                 
                   </div>
                   <div class="flex justify-between mt-4">
+                  <label>{translatedMenuItems[10]}</label>
                     <div class="w-full">
                       <Field
                         name="description"
-                        label="Description"
+                        // label="Description"
                         isColumn
                         width={"21.875em"}
                         component={TextareaComponent}
@@ -308,7 +358,8 @@ console.log("f",newimageId)
                   htmlType="submit"
                   loading={props.addingPurchase}
                 >
-                  Update
+                  {/* Update */}
+                  {translatedMenuItems[11]}
                 </Button>
               </div>
             </Form>

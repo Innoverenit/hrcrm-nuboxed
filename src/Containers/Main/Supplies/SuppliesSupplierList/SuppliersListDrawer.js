@@ -20,7 +20,10 @@ const SuppliersListDrawer = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <SuppliersCardTable particularDiscountData={particularDiscountData} />
+          <SuppliersCardTable 
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+          particularDiscountData={particularDiscountData} />
         </Suspense>
       </StyledDrawer>
     </>
