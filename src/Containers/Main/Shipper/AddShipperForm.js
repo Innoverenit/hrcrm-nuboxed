@@ -107,7 +107,7 @@ function AddShipperForm(props) {
                     isRequired
                     name="name"
                     type="text"
-                    label={<FormattedMessage id="app.name" defaultMessage="Name" />}
+                    label={props.translatedMenuItems[0]}
                     width={"100%"}
                     component={InputComponent}
                     isColumn
@@ -118,7 +118,7 @@ function AddShipperForm(props) {
                       <FastField
                         name="dialCode2"
                         selectType="dialCode"
-                        label={<FormattedMessage id="app.dialcode" defaultMessage="Dial Code" />}
+                        label={props.translatedMenuItems[12]}
                         isColumn
                         component={SearchSelect}
                         defaultValue={{
@@ -133,7 +133,7 @@ function AddShipperForm(props) {
                     <div class="w-[68%] max-sm:w-[50%]">
                       <FastField
                         name="phoneNo"
-                        label={<FormattedMessage id="app.phone" defaultMessage="Phone #" />}
+                        label={`${props.translatedMenuItems[1]} #`}
                         placeholder="Phone #"
                         isColumn
                         component={InputComponent}
@@ -146,7 +146,7 @@ function AddShipperForm(props) {
                     <FastField
                       type="email"
                       name="emailId"
-                      label={<FormattedMessage id="app.email" defaultMessage="Email" />}
+                      label={props.translatedMenuItems[2]}
                       className="field"
                       isColumn
                       width={"100%"}
@@ -157,7 +157,7 @@ function AddShipperForm(props) {
                   <div class="w-full">
                     <FastField
                       name="shipById"
-                      label={<FormattedMessage id="app.shipby" defaultMessage="Ship By" />}
+                      label={props.translatedMenuItems[3]}
                       component={SelectComponent}
                       isColumn
                       value={values.shipById}
@@ -169,7 +169,10 @@ function AddShipperForm(props) {
 
                   </div>
                   <div class=" mt-2">
-                    <b> API Integrated </b>
+                    <b> 
+                      {/* API Integrated  */}
+                      API {props.translatedMenuItems[13]}
+                    </b>
                     <Switch
                       checked={apiInd}
                       onChange={handleApiToggle}
@@ -185,8 +188,8 @@ function AddShipperForm(props) {
                       {({ open }) => (
                         <>
                          <Listbox.Label className="block font-semibold text-[0.75rem] ">
-
-                         Assigned
+                         {props.translatedMenuItems[14]}
+                         {/* Assigned */}
                           </Listbox.Label>
                           <div className="relative ">
                             <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -271,7 +274,8 @@ function AddShipperForm(props) {
                   htmlType="submit"
                   loading={props.addingShipper}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                    {props.translatedMenuItems[15]}
+                  {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */}
                 </Button>
               </div>
             </Form>
