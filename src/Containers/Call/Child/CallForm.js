@@ -1193,7 +1193,7 @@ function CallForm(props) {
                    */}
                   <div class="mt-2">
                   <label>{translatedMenuItems[14]}</label>
-                    <div>Notes</div>
+                  
                     <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>

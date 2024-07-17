@@ -47,6 +47,8 @@ function Pitch (props) {
         return (
             <React.Fragment>
             <PitchHeader
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText}
             setPitchViewType={setPitchViewType}
             viewType={viewType}
             teamsAccessInd={teamsAccessInd}
@@ -64,6 +66,8 @@ function Pitch (props) {
             />
              <AddPitchModal
              
+             selectedLanguage={props.selectedLanguage}
+             translateText={props.translateText}
               addPitchModal={props.addPitchModal}
              
               handlePitchModal={props.handlePitchModal}
@@ -75,12 +79,29 @@ function Pitch (props) {
 
               
       {teamsAccessInd ? (
-      <PitchTeamCardlist/>
+      <PitchTeamCardlist
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
+      />
+      
         ) : (
           <>
-            {viewType === 'card' &&     <PitchCardList       filter={filter}/>}
-            {viewType === 'all' &&  <PitchAllCardList       filter={filter}/> }
-            {viewType === 'teams' &&  <PitchTeamCardlist/>}
+            {viewType === 'card' &&     <PitchCardList       filter={filter}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+             translatedMenuItems={props.translatedMenuItems}
+            />}
+            {viewType === 'all' &&  <PitchAllCardList       filter={filter}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+             translatedMenuItems={props.translatedMenuItems}
+            /> }
+            {viewType === 'teams' &&  <PitchTeamCardlist
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+             translatedMenuItems={props.translatedMenuItems}
+            />}
           </>
         )}
               {/* {viewType==="card" ? (

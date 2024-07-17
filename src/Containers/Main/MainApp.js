@@ -1603,8 +1603,18 @@ function MainApp(props) {
                         component={Procurement}
                       />
                       <Route exact path="/demand" component={Demand} />
-
-                      <Route exact path="/pitch" component={Pitch} />
+                      <Route
+                      exact
+                      path="/pitch"
+                      render={(props) => (
+                        <Pitch
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />  
+                      {/* <Route exact path="/pitch" component={Pitch} /> */}
                       <Route exact path="/deal" component={Deal} />
                       <Route exact path="/contactInvest" component={ContactInvest} />
                       <Route exact path="/investor" component={Investor} />
