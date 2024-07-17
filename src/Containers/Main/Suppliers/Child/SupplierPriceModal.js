@@ -19,7 +19,7 @@ const SupplierPriceModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
           <SuppliersPriceCardList
             rowdata={props.rowdata}
-          // shipperId={props.shipperId} 
+            translatedMenuItems={props.translatedMenuItems}
           />
         </Suspense>
       </StyledDrawer>

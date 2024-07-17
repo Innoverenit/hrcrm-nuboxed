@@ -81,18 +81,18 @@ function SuppliersCardList(props) {
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[20.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  <FormattedMessage
-              id="app.name"
-              defaultMessage="Name"
-            /></div>
+            <div className=" w-[20.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
+              {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */} {props.translatedMenuItems[0]}
+            </div>
             <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
-              <FormattedMessage id="app.phoneNo" defaultMessage="Phone " />
+              {/* <FormattedMessage id="app.phoneNo" defaultMessage="Phone " /> */} {props.translatedMenuItems[1]}
             </div>
             <div className=" w-[22.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
-               <FormattedMessage id="app.email" defaultMessage="Email" /></div>
+               {/* <FormattedMessage id="app.email" defaultMessage="Email" /> */} {props.translatedMenuItems[2]}
+               </div>
             
             <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
-              <FormattedMessage id="app.country" defaultMessage="Country" />
+              {/* <FormattedMessage id="app.country" defaultMessage="Country" /> */} {props.translatedMenuItems[3]}
 
             </div>
 
@@ -103,7 +103,7 @@ function SuppliersCardList(props) {
               dataLength={props.supplierList.length}
               next={handleLoadMore}
               hasMore={hasMore}
-              loader={props.fetchingSupplierList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+              loader={props.fetchingSupplierList ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
               height={"80vh"}
             >
               {props.supplierList.length ?
@@ -143,7 +143,8 @@ function SuppliersCardList(props) {
                                 {date === currentdate ? (
                                   <div class="text-xs  text-[tomato] font-bold"
                                   >
-                                    New
+                                    {/* New */}
+                                    {props.translatedMenuItems[23]}
                                   </div>
                                 ) : null}
                               </div>
@@ -196,7 +197,7 @@ function SuppliersCardList(props) {
 
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
                               <div>
-                                <Tooltip title="Purchase Order">
+                                <Tooltip title={props.translatedMenuItems[18]}>
                                   <StoreIcon
                                     className="!text-icon cursor-pointer text-[red]"
                                   // onClick={() => {
@@ -209,7 +210,7 @@ function SuppliersCardList(props) {
                               </div>
 
                               <div>
-                                <Tooltip title="Price">
+                                <Tooltip title={props.translatedMenuItems[19]}>
                                   <EuroIcon
                                     className="!text-icon cursor-pointer text-[blue]"
                                     onClick={() => {
@@ -236,7 +237,7 @@ function SuppliersCardList(props) {
 
 
                               <div>
-                                <Tooltip title="Edit">
+                                <Tooltip title={props.translatedMenuItems[20]}>
                                   <BorderColorIcon
                                     className="!text-icon cursor-pointer text-[tomato]"
                                     onClick={() => {
@@ -249,9 +250,9 @@ function SuppliersCardList(props) {
                                 </Tooltip>
                               </div>
                               <div>
-                                <Tooltip title="Delete">
+                                <Tooltip title={props.translatedMenuItems[21]}>
                                   <Popconfirm
-                                    title="Do you want to delete?"
+                                    title={`${props.translatedMenuItems[22]} ?`}
                                     onConfirm={() => props.deleteSupplierData(item.supplierId, props.userId)}
                                   >
                                     <DeleteOutlined
@@ -278,24 +279,25 @@ function SuppliersCardList(props) {
  )}
       <UpdateSupplierModal
         rowdata={rowdata}
-
         updateSupplierModal={props.updateSupplierModal}
         handleRowData={handleRowData}
         handleUpdateSupplierModal={props.handleUpdateSupplierModal}
+        translatedMenuItems={props.translatedMenuItems}
       />
       <SupplierPriceModal
         rowdata={rowdata}
-
         suppliersPriceOpenDrawer={props.suppliersPriceOpenDrawer}
         handleRowData={handleRowData}
         handleSuppliersPriceDrawer={props.handleSuppliersPriceDrawer}
+        translatedMenuItems={props.translatedMenuItems}
+
       />
       <SupplierAddListModal
         rowdata={rowdata}
-
         suppliersListOpenDrawer={props.suppliersListOpenDrawer}
         handleRowData={handleRowData}
         handleSuppliersListDrawer={props.handleSuppliersListDrawer}
+        translatedMenuItems={props.translatedMenuItems}
       />
     </>
   )

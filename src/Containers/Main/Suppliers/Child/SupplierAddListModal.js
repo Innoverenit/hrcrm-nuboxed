@@ -19,7 +19,7 @@ const SupplierAddListModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
           <SuppliersListForm
             rowdata={props.rowdata}
-          // shipperId={props.shipperId} 
+            translatedMenuItems={props.translatedMenuItems}
           />
         </Suspense>
       </StyledDrawer>

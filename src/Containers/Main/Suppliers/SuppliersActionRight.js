@@ -21,7 +21,7 @@ class SuppliersActionRight extends React.Component {
         {user.functionName === "Production" && user.designation === "Manager" &&
           viewType === "grid" ?
           <Tooltip 
-          title={<FormattedMessage id="app.exportSupplier" defaultMessage="Export Supplier" />}>
+          title={this.props.translatedMenuItems[11]}>
             <Button
               //type="primary"
               className="export"
@@ -43,15 +43,14 @@ class SuppliersActionRight extends React.Component {
           </Tooltip>
           :null} */}
             {/* { viewType === "not approved" && */}
-        <Tooltip placement="left" title="Create">
+        <Tooltip placement="left" title={this.props.translatedMenuItems[12]}>
           <Button
             type="primary"
             // ghost
             onClick={() => handleSuppliersModal(true)}
           ><DataSaverOnIcon/>
-            <FormattedMessage id="app.add" defaultMessage="Add" />
-            
-            {/* <i class="fas fa-plus"></i> */}
+            {/* <FormattedMessage id="app.add" defaultMessage="Add" /> */}
+            {this.props.translatedMenuItems[9]}
           </Button>
         </Tooltip>
   {/* } */}
@@ -59,6 +58,7 @@ class SuppliersActionRight extends React.Component {
 <AddSuppliersModal
           handleSuppliersModal={handleSuppliersModal}
           addSuppliersModal={addSuppliersModal}
+          translatedMenuItems={this.props.translatedMenuItems}
         />
 </Suspense>
         
