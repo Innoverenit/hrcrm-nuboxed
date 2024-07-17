@@ -404,21 +404,29 @@ function SuppliesTable(props) {
 
       <Suspense fallback={<BundleLoader />}>
         <TagBrandModel
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
           addBrandModel={props.addBrandModel}
           handleBrandModel={props.handleBrandModel}
           particularDiscountData={particularDiscountData}
         />
         <UpdateSuppliesFormDrawer
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
           particularDiscountData={particularDiscountData}
           updateSuppliesDrawer={updateSuppliesDrawer}
           handleUpdateSupplieDrawer={handleUpdateSupplieDrawer}
         />
         <MaterialBuilderDrawer
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
           particularDiscountData={particularDiscountData}
           materialBuildrawer={materialBuildrawer}
           handleMaterialBuilderDrawer={handleMaterialBuilderDrawer}
         />
         <SuppliersListDrawer
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
           particularDiscountData={particularDiscountData}
           suppliersListDrwr={props.suppliersListDrwr}
           handleSuppliersListDrawer={props.handleSuppliersListDrawer}

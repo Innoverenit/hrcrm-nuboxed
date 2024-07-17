@@ -18,6 +18,9 @@ function SuppliersCardTable(props) {
 
   const [hasMore, setHasMore] = useState(true);
 
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
   const [currentShipperId, setCurrentShipperId] = useState("");
   const [rowdata, setrowData] = useState({});
   const [page, setPage] = useState(0);
@@ -36,9 +39,34 @@ function SuppliersCardTable(props) {
     setPage(page + 1);
   };
 
+  // useEffect(() => {
+  //   // props.emptysUPPLIERS();
+  // }, []);
+
   useEffect(() => {
-    // props.emptysUPPLIERS();
-  }, []);
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Supplier",//0
+          
+          "Tag with Supplier",//1
+        
+          
+      
+      
+       
+          
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
 
   return (
@@ -46,8 +74,14 @@ function SuppliersCardTable(props) {
       <div className=' flex justify-end sticky  z-auto'>
         <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[4.1rem]">  Supplier</div>
-            <div className=" md:w-[9.1rem]">Tag with Supplier</div>
+            <div className=" md:w-[4.1rem]">  
+              {/* Supplier */}
+              {translatedMenuItems[0]}
+              </div>
+            <div className=" md:w-[9.1rem]">
+              {/* Tag with Supplier */}
+              {translatedMenuItems[1]}
+              </div>
             <div className="w-[3.8rem]">
             </div>
           </div>

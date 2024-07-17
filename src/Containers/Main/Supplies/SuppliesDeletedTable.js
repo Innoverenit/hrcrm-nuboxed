@@ -13,23 +13,78 @@ function SuppliesDeletedTable(props) {
     props.getDeleteHistory()
   }, []);
   const [hasMore, setHasMore] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const handleLoadMore = () => {
     props.getDeleteHistory()
   };
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "HSN",//0
+          
+          "Name",//1
+          "Category",//1
+          "Sub Category",//1
+          "Attribute",//1
+          "Re-order level",//1
+          "Created",//1
+          "Reinstate",//1
+      
+      
+       
+          
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   return (
     <>
    <div className=" flex justify-end sticky  z-auto">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[1rem] max-xl:w-[2rem]"></div>
-            <div className=" w-[6.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">HSN</div>
-            <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
-            <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Category</div>
-            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sub Category</div>
-            <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Attribute</div>
-            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Re-order level</div>
-            <div className="w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Created</div>
-            <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Reinstate</div>
+            <div className=" w-[6.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* HSN */}
+              {translatedMenuItems[0]}
+              </div>
+            <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Name */}
+              {translatedMenuItems[1]}
+              </div>
+            <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Category */}
+              {translatedMenuItems[2]}
+              </div>
+            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Sub Category */}
+              {translatedMenuItems[3]}
+              </div>
+            <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Attribute */}
+              {translatedMenuItems[4]}
+              </div>
+            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Re-order level */}
+              {translatedMenuItems[5]}
+              </div>
+            <div className="w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Created */}
+              {translatedMenuItems[6]}
+              </div>
+            <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Reinstate */}
+              {translatedMenuItems[7]}
+              </div>
             
           </div>
 

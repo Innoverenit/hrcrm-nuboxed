@@ -17,6 +17,8 @@ class SuppliesHeader extends Component {
                     }
                     rightComponent={<SuppliesActionRight 
                         viewType={viewType}
+                        translateText={this.props.translateText}
+                     selectedLanguage={this.props.selectedLanguage}
                     />}
                 />
             </div>

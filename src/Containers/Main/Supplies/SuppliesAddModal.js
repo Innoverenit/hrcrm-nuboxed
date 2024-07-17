@@ -18,7 +18,10 @@ class SuppliesAddModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader/>}>
-                    <SuppliesForm />
+                    <SuppliesForm
+                     translateText={this.props.translateText}
+                     selectedLanguage={this.props.selectedLanguage}
+                     />
                     </Suspense>
                 </StyledDrawer>
             </div>

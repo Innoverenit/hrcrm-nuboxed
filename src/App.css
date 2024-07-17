@@ -1159,6 +1159,54 @@ iframe#webpack-dev-server-client-overlay {
   margin-right: 10px;
 }
 
+
+.address-table {
+  width: 100%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+.address-table table {
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.address-table th, .address-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.address-table th {
+  background-color: #f4f4f4;
+}
+
+.address-table td {
+  background-color: #ffffff;
+}
+
+.location-search-input {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.autocomplete-dropdown-container {
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  padding: 10px;
+}
+
+.suggestion-item--active {
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+
 /* button {
   background-color: #1890ff;
   color: white;

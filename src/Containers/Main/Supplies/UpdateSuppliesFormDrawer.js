@@ -21,7 +21,10 @@ class UpdateSuppliesFormDrawer extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <UpdateSuppliesForm particularDiscountData={particularDiscountData} />
+                        <UpdateSuppliesForm 
+                         translateText={this.props.translateText}
+                         selectedLanguage={this.props.selectedLanguage}
+                        particularDiscountData={particularDiscountData} />
                     </Suspense>
                 </StyledDrawer>
             </div>

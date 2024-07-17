@@ -14,6 +14,14 @@ export const handleContactModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+export const handleContactAddressDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CONTACT_ADDRESS_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleContactImportModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_CONTACT_IMPORT_MODAL,
@@ -1524,6 +1532,70 @@ export const uploadContctList = (data,type) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.UPLOAD_CONTACT_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const addContactAddress = (data,type,id) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.ADD_CONTACT_ADDRESS_REQUEST,
+  });
+  axios
+    .post(`${base_url}/saveAddressByType/${type}/${id}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.ADD_CONTACT_ADDRESS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_CONTACT_ADDRESS_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};
+
+
+
+
+
+export const getContactAddressData = (id,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_ADDRESS_DATA_REQUEST,
+  });
+  axios
+  .get(`${base_url}/address/type/${id}/${type}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_ADDRESS_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_ADDRESS_DATA_FAILURE,
         payload: err,
       });
     });

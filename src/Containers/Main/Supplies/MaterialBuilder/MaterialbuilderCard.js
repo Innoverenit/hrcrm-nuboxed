@@ -64,10 +64,22 @@ return (
   <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
          <div className=""></div>
-         <div className=" md:w-[7%]">Name</div>
-        <div className=" md:w-[4.2rem] ">Category</div>
-        <div className="md:w-[5.8rem]">Sub Category</div>
-        <div className=" md:w-[4.2rem] ">Unit</div>
+         <div className=" md:w-[7%]">
+          {/* Name */}
+          {props.translatedMenuItems[1]}
+          </div>
+        <div className=" md:w-[4.2rem] ">
+          {/* Category */}
+          {props.translatedMenuItems[2]}
+          </div>
+        <div className="md:w-[5.8rem]">
+          {/* Sub Category */}
+          {props.translatedMenuItems[3]}
+          </div>
+        <div className=" md:w-[4.2rem] ">
+          {/* Unit */}
+          {props.translatedMenuItems[4]}
+          </div>
         <div className="w-12"></div>
             </div>
       

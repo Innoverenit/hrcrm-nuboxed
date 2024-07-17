@@ -20,10 +20,53 @@ const SuppliesSchema = Yup.object().shape({
   // hsn: Yup.string().required("Input needed!"),
 });
 class Suppliesform extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {
     this.props.getCurrency()
   }
+
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "Category",//0
+          
+         
+        "Sub Category",//1
+        "Attribute",//1
+        "Sub Attribute",//1
+        "Name",//1
+        "HSN",//1
+        "Re-order",//1
+        "Net Weight",//1
+        "UOM",//1
+        "Gross Weight",
+        "Description",
+        "Create"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
   render() {
     const currencyType = this.props.currencies.map((item) => {
       return {
@@ -85,10 +128,11 @@ class Suppliesform extends Component {
                       </div>
                     </div>
                   </div>
+                  <label>{this.state.translatedMenuItems[0]}</label>
                   <Field
                     isRequired
                     name="categoryName"
-                    label="Category"
+                    //label="Category"
                     placeholder="Start typing to search or create..."
                     optionLabel="categoryName"
                     optionValue="categoryName"
@@ -98,9 +142,10 @@ class Suppliesform extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
+                    <label>{this.state.translatedMenuItems[1]}</label>
                   <Field
                     name="subCategoryName"
-                    label="Sub Category"
+                    //label="Sub Category"
                     placeholder="Start typing to search or create..."
                     optionLabel="subCategoryName"
                     optionValue="subCategoryName"
@@ -111,9 +156,10 @@ class Suppliesform extends Component {
                   />
                   <div class="flex justify-between">
                     <div class="w-full">
+                    <label>{this.state.translatedMenuItems[2]}</label>
                       <Field
                         name="attributeName"
-                        label="Attribute"
+                        //label="Attribute"
                         placeholder="Start typing to search or create..."
                         optionLabel="attributeName"
                         optionValue="attributeName"
@@ -122,9 +168,10 @@ class Suppliesform extends Component {
                         isColumn
                         inlineLabel
                       />
+                        <label>{this.state.translatedMenuItems[3]}</label>
                       <Field
                         name="subAttributeName"
-                        label="Sub Attribute"
+                        //label="Sub Attribute"
                         placeholder="Start typing to search or create..."
                         optionLabel="subAttributeName"
                         optionValue="subAttributeName"
@@ -140,9 +187,10 @@ class Suppliesform extends Component {
                 <div class="h-full w-[50%]">
                   <div class="flex justify-between">
                     <div class="w-wk">
+                    <label>{this.state.translatedMenuItems[4]}</label>
                       <Field
                         name="name"
-                        label="Name"
+                        //label="Name"
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -154,9 +202,10 @@ class Suppliesform extends Component {
 
                   <div class="flex justify-between">
                   <div class="w-[47%]">
+                  <label>{this.state.translatedMenuItems[5]}</label>
                       <Field
                         name="hsn"
-                        label="HSN"
+                        //label="HSN"
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -164,9 +213,10 @@ class Suppliesform extends Component {
                       />
                     </div>
                     <div class="w-[47%]">
+                    <label>{this.state.translatedMenuItems[6]}</label>
                       <Field
                         name="reorder"
-                        label="Re-order"
+                        //label="Re-order"
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -189,9 +239,10 @@ class Suppliesform extends Component {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
+                    <label>{this.state.translatedMenuItems[7]}</label>
                       <Field
                         name="netWeight"
-                        label="Net Weight"
+                        //label="Net Weight"
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -199,9 +250,10 @@ class Suppliesform extends Component {
                       />
                     </div>
                     <div class="w-[47%]">
+                    <label>{this.state.translatedMenuItems[8]}</label>
                       <Field
                         name="netUnit"
-                        label="UOM"
+                        //label="UOM"
                         isColumn
                         inlineLabel
                         component={SelectComponent}
@@ -214,9 +266,10 @@ class Suppliesform extends Component {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
+                    <label>{this.state.translatedMenuItems[9]}</label>
                       <Field
                         name="grossWeight"
-                        label="Gross Weight"
+                        //label="Gross Weight"
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -224,9 +277,10 @@ class Suppliesform extends Component {
                       />
                     </div>
                     <div class="w-[47%]">
+                    <label>{this.state.translatedMenuItems[8]}</label>
                       <Field
                         name="grossUnit"
-                        label="UOM"
+                        //label="UOM"
                         isColumn
                         inlineLabel
                         component={SelectComponent}
@@ -252,9 +306,10 @@ class Suppliesform extends Component {
                   </div>
                   <div class="flex justify-between mt-4">
                     <div class="w-full">
+                    <label>{this.state.translatedMenuItems[10]}</label>
                       <Field
                         name="description"
-                        label="Description"
+                        //label="Description"
                         isColumn
                         width={"21.875em"}
                         component={TextareaComponent}
@@ -270,7 +325,8 @@ class Suppliesform extends Component {
                   htmlType="submit"
                   loading={this.props.addingPurchase}
                 >
-                  Create
+                  {/* Create */}
+                  <label>{this.state.translatedMenuItems[11]}</label>
                 </Button>
               </div>
             </Form>
