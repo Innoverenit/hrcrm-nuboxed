@@ -16,6 +16,14 @@ export const QualityManufactureList = (props) => {
   const [page, setPage] = useState(0);
   const [showMessage, setShowMessage] = useState(false);
     const [hasMore, setHasMore] = useState(true);
+    const idsFromData1 = props.qualityManufactureUserData.map(item => item.cellChamberLinkId);
+
+  
+  const commonItems = props.rejectManufactureData.filter(item => idsFromData1.includes(item.cellChamberLinkId));
+  const restItems = props.rejectManufactureData.filter(item => !idsFromData1.includes(item.cellChamberLinkId));
+
+  
+  const sortedData = [...commonItems, ...restItems];
     const handleClick = () => {
       setShowMessage(true);
     };
@@ -48,6 +56,9 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
   } else {
       size = "16px";
   }
+
+
+  
   return (
       <Tooltip title={tooltip}>
           <Button
@@ -200,14 +211,14 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                 
                 </div>
             
-                {props.rejectManufactureData.map((item, index) => {
+                {sortedData.map((item, index) => {
                     return (
                         <div key={index}>
                             <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                 <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
                                     <div 
                                     className="flex justify-between text-sm  font-semibold font-poppins"
-                                   
+                                    style={{ color: idsFromData1.includes(item.cellChamberLinkId) ? 'blue' : 'black' }}
                                     >
                                         {item.cellChamber}
                                     </div>
