@@ -5960,3 +5960,78 @@ export const addShipperCategory = (sectors,cb) => (dispatch) => {
       cb();
     });
 };
+
+
+export const getWorkFlowCategory = () => (dispatch) => {
+  dispatch({
+    type: types.GET_WORKFLOWCATEGORY_REQUEST,
+  });
+  axios
+  .get(`${base_url}/workflowCategory/All`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_WORKFLOWCATEGORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_WORKFLOWCATEGORY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addWorkFlowCategory = (sectors,cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_WORKFLOWCATEGORY_REQUEST,
+  });
+  axios
+    .post(`${base_url}/workflowCategory`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getSectorCount(orgId));
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Workflow added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      console.log(res);
+      dispatch({
+        type: types.ADD_WORKFLOWCATEGORY_SUCCESS,
+        payload: { ...sectors, },
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_SWORKFLOWCATEGORY_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
+    });
+};

@@ -35,6 +35,7 @@ import LinkedOpportunityTable from "./LinkedOpportunityTable";
 import ShopIcon from '@mui/icons-material/Shop'
 import AddAccountOpportunityModal from "./AddAccountOpportunityModal";
 import MainNotes from "../../../CustomNote/MainNotes";
+import ErpNote from "../../ErpNote/ErpNote";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -305,9 +306,9 @@ function AccountDetailsTab(props) {
                         key="6"
                     >
                         <Suspense fallback={"Loading ..."}>
-                        <MainNotes
+                        <ErpNote
                          type="distributor"
-                         uniqueId={props.distributorData.distributorId}
+                         id={props.distributorData.distributorId}
                         />
                         </Suspense>
                     </TabPane>

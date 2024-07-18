@@ -25,6 +25,7 @@ import {
 import AddSupplierContactModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
 import AddSupplierDocumentModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
 import ShipperAwbTable from "./ShipperActivityTab/ShipperAwbTable";
+import ErpNote from "../../../ErpNote/ErpNote";
 
 const ShipperDocumentTable = lazy(() =>
   import("./ShipperDocumentTab/ShipperDocumentTable")
@@ -222,7 +223,10 @@ class ShipperDetailsTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedShipperNotes />
+                <ErpNote
+                         type="shipper"
+                         id={this.props.shipper.shipperId}
+                        />
               </Suspense>
             </TabPane>
             {/* <TabPane

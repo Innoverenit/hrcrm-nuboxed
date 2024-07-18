@@ -562,7 +562,9 @@ function MainApp(props) {
                   />
                 </div> 
                 <div class="flex justify-between items-center">
-                  <div class="xl:hidden ml-4 "><Navmenu2 selectedLanguage={selectedLanguage} /></div>
+                  <div class="xl:hidden ml-4 "><Navmenu2 
+                  translateText={translateText}
+                  selectedLanguage={selectedLanguage} /></div>
 
                   {/* <div className="border-2"></div>Attendance<div className="border-2"></div> */}
                   <StartStop />
@@ -1445,13 +1447,42 @@ function MainApp(props) {
                       )}
                     />
                       
-
+                      <Route
+                      exact
+                      path="/course"
+                      render={(props) => (
+                        <Course
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                                           
+                                          <Route
+                      exact
+                      path="/project"
+                      render={(props) => (
+                        <Projects
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                      
-                     
-                      <Route exact path="/course" component={Course} />
-                      <Route exact path="/project" component={Projects} />
-                      <Route exact path="/billing" component={Billing} />
+                     <Route
+                      exact
+                      path="/billing"
+                      render={(props) => (
+                        <Billing
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                                     
                       <Route
                       exact
                       path="/customer"
@@ -1529,80 +1560,163 @@ function MainApp(props) {
                         />
                       )}
                     />
-                      
-                     
-                      <Route exact path="/candidate"
-                        component={Candidate}
-                      />
+                      <Route
+                      exact
+                      path="/candidate"
+                      render={(props) => (
+                        <Candidate
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    /> 
+                                      
 
                       {/* <Route
                         exact
                         path="/candidate"
                         render={(props) => <Candidate {...props} selectedLanguage={selectedLanguage} />}
-                      /> */}
-                      <Route exact path="/message" component={LiveMessage} />
-
+                      /> */}            
+                      <Route
+                      exact
+                      path="/message"
+                      render={(props) => (
+                        <LiveMessage
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    /> 
 
                       <Route
                         exact
                         path="/candidate/:candidateId"
-                        render={(props) => <CandidateDetails {...props} selectedLanguage={selectedLanguage} />}
-                      />
-                      <Route
-                        exact
-                        path="/customer/:customerId"
-                        component={CustomerDetail}
-                      />
-                      <Route
-                        exact
-                        path="/contact/:contactId"
-                        component={ContactDetail}
-                      />
-                     
-                      <Route
-                        exact
-                        path="/supplier/:supplierId"
-                        component={SupplierDetails}
+                        render={(props) => <CandidateDetails {...props} 
+                        translateText={translateText}
+                        selectedLanguage={selectedLanguage} />}
                       />
 
+                    <Route
+                      exact
+                      path="/customer/:customerId"
+                      render={(props) => (
+                        <CustomerDetail
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/contact/:contactId"
+                      render={(props) => (
+                        <ContactDetail
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/supplier/:supplierId"
+                      render={(props) => (
+                        <SupplierDetails
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                     
+                     <Route
+                      exact
+                      path="/opportunity"
+                      render={(props) => (
+                        <Opportunity
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                       {/* <Route
                         exact
                         path="/pitch/:investorLeadsId"
                         component={PitchDetails}
                       /> */}
                       <Route
-                        exact
-                        path="/opportunity"
-                        component={Opportunity}
-                      />
+                      exact
+                      path="/opportunity/:opportunityId"
+                      render={(props) => (
+                        <OpportunityDetail
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/partner/:partnerId"
+                      render={(props) => (
+                        <PartnerDetail
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/import/account"
+                      render={(props) => (
+                        <AccountImport
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                      
-                      <Route
-                        exact
-                        path="/opportunity/:opportunityId"
-                        component={OpportunityDetail}
-                      />
-                      <Route
-                        exact
-                        path="/partner/:partnerId"
-                        component={PartnerDetail}
-                      />
                       {/* <PotectedRoute exact path="/users" component={Users} /> */}
                       <Route
-                        exact
-                        path="/import/account"
-                        component={AccountImport}
-                      />
+                      exact
+                      path="/requirement"
+                      render={(props) => (
+                        <Requirement
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                       <Route
-                        exact
-                        path="/requirement"
-                        component={Requirement}
-                      />
-                      <Route
-                        exact
-                        path="/procurement"
-                        component={Procurement}
-                      />
-                      <Route exact path="/demand" component={Demand} />
+                      exact
+                      path="/procurement"
+                      render={(props) => (
+                        <Procurement
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                     <Route
+                      exact
+                      path="/demand"
+                      render={(props) => (
+                        <Demand
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                     
                       <Route
                       exact
                       path="/pitch"
@@ -1614,18 +1728,95 @@ function MainApp(props) {
                         />
                       )}
                     />  
+                    <Route
+                      exact
+                      path="/deal"
+                      render={(props) => (
+                        <Deal
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                       {/* <Route exact path="/pitch" component={Pitch} /> */}
-                      <Route exact path="/deal" component={Deal} />
-                      <Route exact path="/contactInvest" component={ContactInvest} />
-                      <Route exact path="/investor" component={Investor} />
-                      <Route exact path="/club" component={Club} />
-                      <Route exact path="/investor/:investorId" component={InvestorDetail} />
-                      <Route exact path="/contactinvest/:contactId" component={ContactInvestDetail} />
-                      <Route exact path="/dealDetails/:invOpportunityId" component={DealDetail} />
-                    
-                      <Route exact path="/subscription" component={Subscription} />
-                    
-
+                      <Route
+                      exact
+                      path="/contactInvest"
+                      render={(props) => (
+                        <ContactInvest
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/investor"
+                      render={(props) => (
+                        <Investor
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/club"
+                      render={(props) => (
+                        <Club
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                       <Route
+                      exact
+                      path="/investor/:investorId"
+                      render={(props) => (
+                        <InvestorDetail
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/contactinvest/:contactId"
+                      render={(props) => (
+                        <ContactInvestDetail
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                      <Route
+                      exact
+                      path="/dealDetails/:invOpportunityId"
+                      render={(props) => (
+                        <DealDetail
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                     <Route
+                      exact
+                      path="/subscription"
+                      render={(props) => (
+                        <Subscription
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                       <Route path="**" component={PageNotFound} />
                     </Switch>
                   </Suspense>

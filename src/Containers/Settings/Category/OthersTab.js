@@ -18,6 +18,7 @@ import ServiceLine from "./ServiceLine/ServiceLine"
 import KpiMasterList from "./KpiMasterList/KpiMasterList";
 import IndustryTab from "./Industry/IndustryTab";
 import Machinary from "./Machinary/Machinary";
+import WorkFlowC from "./WorkFlowC";
 
 const Documents = lazy(() =>
   import("../Documents/Documents")
@@ -75,7 +76,8 @@ class OthersTab extends Component {
             return     <IndustryTab />;
             case "11":
               return     <Machinary />;
-       
+              case "12":
+                return     <WorkFlowC />;
         
       default:
         return null;
@@ -279,6 +281,24 @@ class OthersTab extends Component {
                     </>
                   }
                   key="11"
+                >
+         
+                </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      <MonetizationOnIcon />
+                      {/* <Badge
+                count={this.props.machinaryCount.machinaryCount}
+                overflowCount={999}
+              > */}
+                      <span class=" ml-1" >
+                WorkFlow
+                      </span>
+                      {/* </Badge> */}
+                    </>
+                  }
+                  key="12"
                 >
          
                 </TabPane>
