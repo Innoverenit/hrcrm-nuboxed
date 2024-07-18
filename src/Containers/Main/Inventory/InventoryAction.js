@@ -2253,7 +2253,7 @@ export const moveRejectToggle = (productionProductId,cellChamberLinkId) => (disp
     .then((res) => {
       dispatch({
         type: types.MOVE_REJECT_TOGGLE_SUCCESS,
-        payload: res.data,
+        payload: cellChamberLinkId,
       });
       message.success("Item transfered for Quality Check");
     })

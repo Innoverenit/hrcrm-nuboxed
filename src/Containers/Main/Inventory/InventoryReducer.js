@@ -703,7 +703,7 @@ export const inventoryReducer = (state = initialState, action) => {
         movingRejectToggle: false,
         addQualityManufactureDrawerModal:false,
         productionQualityData: state.productionQualityData.filter(
-          (item) => item.productionProductId !== action.payload.productionProductId
+          (item) => item.cellChamberLinkId !== action.payload.cellChamberLinkId
         ),
         // productionTableData: state.productionTableData.filter(
         //   (item) => item.productionProductId !== action.payload.productionProductId
