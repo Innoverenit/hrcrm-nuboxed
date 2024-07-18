@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { Tooltip, Button,Card, Popconfirm, Switch } from "antd";
 import { bindActionCreators } from "redux";
 import QualityManufactureToggle from "./QualityManufactureToggle"
-
+import MoveRejectToggle from "../Quality/MoveRejectToggle"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getQualityManufactureData,getRejectManufactureData,getQualityManufactureUserData, emptyQualityManufactureData} from "../Main/Inventory/InventoryAction";
 // import MoveToggleQuality from "../Quality/MoveToggleQuality"
@@ -218,6 +218,21 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                    {item.cellUnit} 
                                     </div>
                                 </div>
+
+
+                                <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs  font-semibold  font-poppins">
+                                                         
+                                                        <MoveRejectToggle 
+                                                        item={item} 
+                                                        productionProductId={props.currentManufacture.productionProductId}
+                                                        // selectedZone={selectedZone}
+                                                        // selectedRack={selectedRack}
+
+                                                        />
+                                                      
+                                                    </div>
+                                                </div>
 
 
                                 {/* <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
