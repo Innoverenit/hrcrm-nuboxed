@@ -1,32 +1,30 @@
-import React, { lazy, Suspense, useEffect } from "react";
+import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ErpNote from "../ErpNote/ErpNote";
-const RepairPhoneNotesOrderForm = lazy(() => import("./RepairPhoneNotesOrderForm"));
 
-const RepairPhoneNotesOrderModal = (props) => {
+
+
+const RefurbishNoteAll = (props) => {
     const { RowData, ...formProps } = props;
-    return ( 
+    return (
         <>
             <StyledDrawer
                 title={`Notes`}
-                width="35vw"
-                visible={props.phoNotesRepairOrderModal}
-                closable
-                destroyOnClose
-                maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-                style={{ top: 40 }}
-                onClose={() => props.handleRepairPhoneNotesOrderModal(false)}
+                visible={props.productioNoteModal}
+                width="40%"
+                onClose={() => props.handleProductionNotesModal(false)}
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
                 <ErpNote
-                         type="phone"
-                         id={props.RowData.phoneId}
+                         type="orderPhone"
+                         id={props.rowData.orderPhoneId}
                         />
-                    
+                  
+                   
                 </Suspense>
             </StyledDrawer>
         </>
@@ -49,5 +47,5 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(RepairPhoneNotesOrderModal);
+)(RefurbishNoteAll);
 

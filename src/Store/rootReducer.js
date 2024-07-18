@@ -106,6 +106,7 @@ import { industryReducer } from "../Containers/Settings/Category/Industry/Indust
 import { categoryListReducer } from "../Containers/Settings/Category/CategoryList/CategoryListReducer";
 import { vendorReducer } from "../Containers/Main/Vendor/VendorReducer";
 import { mainNoteReducer } from "../Containers/CustomNote/MainNoteReducer";
+import { erpNoteReducer } from "../Containers/Main/ErpNote/ErpNoteReducer";
 import { procreReducer } from "../Containers/Main/Procre/ProcreReducer";
 import { machinaryReducer } from "../Containers/Settings/Category/Machinary/MachinaryReducer";
 import { brandCategoryReducer } from "../Containers/Settings/Category/BrandCategory/BrandCategoryReducer";
@@ -153,6 +154,7 @@ const appReducer = combineReducers({
   designations: designationsReducer,
   region: regionsReducer,
   mainNotes: mainNoteReducer,
+  erpNotes :erpNoteReducer,
   certifications: certificationReducer,
   departments: departmentsReducer,
   events: eventsReducer,

@@ -36,6 +36,7 @@ import { BorderColorOutlined, PersonAddAlt1 } from "@mui/icons-material";
 import AddLeadInRefurbish from "./AddLeadInRefurbish";
 import RefurbishRejectModal from "./RefurbishRejectModal";
 import SearchedDataRefurbish from "./SearchedDataRefurbish";
+import RefurbishNoteAll from "./RefurbishNoteAll";
 const TechnicianModal = lazy(() => import("./TechnicianModal"));
 const AssignOrderModal = lazy(() => import("./AssignOrderModal"));
 const AddAssignRepairModal = lazy(() => import("./AddAssignRepairModal"));
@@ -1001,6 +1002,11 @@ const ProductionOrderList = (props) => {
                         rowData={rowData}
                         refurbhsReject={props.refurbhsReject}
                         refurbishRejectPhone={props.refurbishRejectPhone}
+                    />
+                    <RefurbishNoteAll
+                     rowData={rowData}
+                     productioNoteModal={props.productioNoteModal}
+                    handleProductionNotesModal={props.handleProductionNotesModal}
                     />
                 </Suspense>
             

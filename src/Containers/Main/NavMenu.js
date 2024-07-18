@@ -54,40 +54,53 @@ function NavMenu(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          'Dashboard',
-            'Planner',
-            'Calls',
-            'Task',
-            'Events',
-            'Reports',
-            'Leads',
-            'Quotation',
-            'Contact',
-            'Prospect',
-            'Pitch',
-            'Data Room',
-            'Deals',
-            'Contact Invest',
-            'Investor',
-            'Club',
-            'Order',
-            'Customer',
-            'Catalogue',
-            'Quality',
-            'Procure',
-            'Material',
-            'Suppliers',
-            'Trade',
-            'Vendor',
-            'Procurement',
-            'Inventory',
-            'Shipper',
-            'Leaves',
-            'Mileage',
-            'Expense',
-            'Holiday',
-            'Teams',
-            'Users',
+          'Dashboard', // 0
+'Planner', // 1
+'Calls', // 2
+'Task', // 3
+'Events', // 4
+'Reports', // 5
+'Leads', // 6
+'Quotation', // 7
+'Contact', // 8
+'Prospect', // 9
+'Pitch', // 10
+'Data Room', // 11
+'Deals', // 12
+'Contact Invest', // 13
+'Investor', // 14
+'Club', // 15
+'Order', // 16
+'Customer', // 17
+'Catalogue', // 18
+'Quality', // 19
+'Procure', // 20
+'Material', // 21
+'Suppliers', // 22
+'Trade', // 23
+'Vendor', // 24
+'Procurement', // 25
+'Inventory', // 26
+'Shipper', // 27
+'Leaves', // 28
+'Mileage', // 29
+'Expense', // 30
+'Holiday', // 31
+'Teams', // 32
+'Users', // 33
+'Location', //34
+'KPI Assessment', //35
+'Collections', //36
+'Production', //37
+'Refurbish', //38
+'Subscription', //39
+'Program', //40
+'Course',//41
+'Assessment', //42
+'Demand', //43
+'Project', //44
+'Requirement', //45
+'Talent', //46
             
              
         ];
@@ -257,9 +270,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-                <FormattedMessage id="app.task" defaultMessage="Task" />
+                {/* <FormattedMessage id="app.task" defaultMessage="Task" /> */}
                 {/* Task */}
-                {/* {translatedMenuItems[3]} */}
+                {translatedMenuItems[3]}
               </span>
               &nbsp;&nbsp;&nbsp;
               <Badge
@@ -278,12 +291,12 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-                <FormattedMessage
+                {/* <FormattedMessage
                   id="app.events"
                   defaultMessage="Events"
-                />
+                /> */}
                 {/* Event */}
-                {/* {translatedMenuItems[4]} */}
+                {translatedMenuItems[4]}
               </span>
               &nbsp;&nbsp;&nbsp;
               <Badge
@@ -302,9 +315,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-                <FormattedMessage id="app.reports" defaultMessage="Reports" />
+                {/* <FormattedMessage id="app.reports" defaultMessage="Reports" /> */}
                 {/* Reports */}
-                {/* {translatedMenuItems[5]} */}
+                {translatedMenuItems[5]}
               </span>
             </Link>
           </Menu.Item>
@@ -325,8 +338,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-              <FormattedMessage id="app.leads" defaultMessage="Leads" />
-                {/* {translatedMenuItems[13]} */}
+              {/* <FormattedMessage id="app.leads" defaultMessage="Leads" /> */}
+                {translatedMenuItems[6]}
                 {/* Leads */}
                 &nbsp;&nbsp;&nbsp;
                 <Badge
@@ -348,8 +361,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-              <FormattedMessage id="app.quotation" defaultMessage="Quotation" />
-                {/* {translatedMenuItems[7]} */}
+              {/* <FormattedMessage id="app.quotation" defaultMessage="Quotation" /> */}
+                {translatedMenuItems[7]}
                 
 
                 &nbsp;&nbsp;&nbsp;
@@ -374,8 +387,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-              <FormattedMessage id="app.contact" defaultMessage="Contact" />
-                {/* {translatedMenuItems[8]} */}
+              {/* <FormattedMessage id="app.contact" defaultMessage="Contact" /> */}
+                {translatedMenuItems[8]}
                 
                 &nbsp;&nbsp;&nbsp;
                 <Badge
@@ -400,8 +413,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-              <FormattedMessage id="app.prospect" defaultMessage="Prospect" />
-                
+              {/* <FormattedMessage id="app.prospect" defaultMessage="Prospect" /> */}
+              {translatedMenuItems[9]}
                 &nbsp;&nbsp;&nbsp;
                 <Badge
                   count={props.opportunityRecord.CustomerNo}
@@ -422,8 +435,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-              <FormattedMessage id="app.pitch" defaultMessage="Pitch" />
-                {/* {translatedMenuItems[13]} */}
+              {/* <FormattedMessage id="app.pitch" defaultMessage="Pitch" /> */}
+                {translatedMenuItems[10]}
                 &nbsp;&nbsp;&nbsp;
                 <Badge
                   count={props.opportunityRecord.investorLeads}
@@ -444,8 +457,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-              Data Room
-                {/* {translatedMenuItems[13]} */}
+              {/* Data Room */}
+                {translatedMenuItems[11]}
                 &nbsp;&nbsp;&nbsp;
                 
               </span>
@@ -462,8 +475,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-              <FormattedMessage id="app.deals" defaultMessage="Deals" />
-                {/* {translatedMenuItems[13]} */}
+              {/* <FormattedMessage id="app.deals" defaultMessage="Deals" /> */}
+                {translatedMenuItems[12]}
                 <Badge
                   count={props.opportunityRecord.investorOpportunity}
                   overflowCount={999}
@@ -482,8 +495,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-              <FormattedMessage id="app.contactInvest" defaultMessage="Contact Invest" />
-                {/* {translatedMenuItems[13]} */}
+              {/* <FormattedMessage id="app.contactInvest" defaultMessage="Contact Invest" /> */}
+                {translatedMenuItems[13]}
                 <Badge
                   count={props.opportunityRecord.investorcontact}
                   overflowCount={999}
@@ -504,8 +517,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-              <FormattedMessage id="app.investor" defaultMessage="Investor" />
-                {/* {translatedMenuItems[9]} */}
+              {/* <FormattedMessage id="app.investor" defaultMessage="Investor" /> */}
+                {translatedMenuItems[14]}
                 &nbsp;&nbsp;&nbsp;
                 <Badge
                   count={props.opportunityRecord.investor}
@@ -526,8 +539,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-             Club
-                {/* {translatedMenuItems[9]} */}
+             {/* Club */}
+                {translatedMenuItems[15]}
                 &nbsp;&nbsp;&nbsp;
                 {/* <Badge
                   count={props.opportunityRecord.investor}
@@ -571,9 +584,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                   style={{ fontSize: "large" }}
                 />
                  <span class="text-white text-ls ml-1">
-                 <FormattedMessage id="app.talent" defaultMessage="Talent" />
+                 {/* <FormattedMessage id="app.talent" defaultMessage="Talent" /> */}
               
-                  {/* {translatedMenuItems[10]} */}
+                  {translatedMenuItems[46]}
                   &nbsp;&nbsp;&nbsp;
                   <Badge
                     count={props.opportunityRecord.CandidateNo}
@@ -597,9 +610,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }} />
 
               <span class="text-white text-ls ml-1">
-              <FormattedMessage id="app.requirement" defaultMessage="Requirement" />
+              {/* <FormattedMessage id="app.requirement" defaultMessage="Requirement" /> */}
 
-                {/* {translatedMenuItems[11]} */}
+                {translatedMenuItems[45]}
                 &nbsp;&nbsp;
                 <Badge
                   count={props.opportunityRecord.RecruitmentList}
@@ -619,9 +632,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                   style={{ fontSize: "large" }}
                 />
                 <span class="text-white text-ls ml-1">
-                <FormattedMessage id="app.project" defaultMessage="Project" />
+                {/* <FormattedMessage id="app.project" defaultMessage="Project" /> */}
                 
-                  {/* {translatedMenuItems[15]} */}
+                  {translatedMenuItems[44]}
                 </span>
               </Link>
             </Menu.Item> 
@@ -640,8 +653,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }} />
 
               <span class="text-white text-ls ml-1">
-              <FormattedMessage id="app.demand" defaultMessage="Demand" />
-
+              {/* <FormattedMessage id="app.demand" defaultMessage="Demand" /> */}
+              {translatedMenuItems[43]} 
               
                 &nbsp;&nbsp;&nbsp;&nbsp;
               </span>
@@ -754,11 +767,11 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                     style={{ fontSize: "large" }}
                 />
                  <span class="text-white text-ls ml-1">
-                 <FormattedMessage
+                 {/* <FormattedMessage
                 id="app.assessment"
                 defaultMessage="Assessment"
-              />
-                 
+              /> */}
+                 {translatedMenuItems[42]} 
                 </span>
               </Link>
             </Menu.Item>
@@ -775,11 +788,11 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                   style={{ fontSize: "large" }}
                 />
                <span class="text-white text-ls ml-1">
-               <FormattedMessage
+               {/* <FormattedMessage
                 id="app.course"
                 defaultMessage="Course"
-              />
-                
+              /> */}
+                 {translatedMenuItems[41]}
                 </span>
               </Link>
             </Menu.Item>
@@ -797,10 +810,11 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 />
                 <span class="text-white text-ls ml-1">
               
-                <FormattedMessage
+                {/* <FormattedMessage
                 id="app.program"
                 defaultMessage="Program"
-              />
+              /> */}
+               {translatedMenuItems[40]}
                 </span>
               </Link>
             </Menu.Item>
@@ -853,10 +867,12 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               <DynamicFeedIcon
                 style={{ fontSize: "large" }}
               />
-              <span class="text-white text-ls ml-1"><FormattedMessage
+              <span class="text-white text-ls ml-1">
+                {/* <FormattedMessage
                 id="app.order"
                 defaultMessage="Order"
-              />
+              /> */}
+              {translatedMenuItems[16]}
               </span>
             </Link>
           </Menu.Item>
@@ -872,10 +888,12 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               <AcUnitIcon
                 style={{ fontSize: "large" }}
               />
-              <span class="text-white text-ls ml-1"><FormattedMessage
+              <span class="text-white text-ls ml-1">
+              {translatedMenuItems[17]}
+                {/* <FormattedMessage
                 id="app.customer"
                 defaultMessage="Customer"
-              />
+              /> */}
               </span>
             </Link>
           </Menu.Item>
@@ -889,10 +907,12 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <ViewInArIcon
               style={{ fontSize: "large" }}
             />
-            <span class="text-white text-ls ml-1"><FormattedMessage
+            <span class="text-white text-ls ml-1">
+              {/* <FormattedMessage
               id="app.catalogue"
               defaultMessage="Catalogue"
-            />
+            /> */}
+            {translatedMenuItems[18]}
             </span>
           </Link>
         </Menu.Item>
@@ -906,10 +926,12 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <SubscriptionsIcon
               style={{ fontSize: "large" }}
             />
-            <span class="text-white text-ls ml-1"><FormattedMessage
+            <span class="text-white text-ls ml-1">
+              {/* <FormattedMessage
               id="app.subscription"
               defaultMessage="Subscription"
-            />
+            /> */}
+            {translatedMenuItems[39]}
             </span>
           </Link>
         </Menu.Item>
@@ -926,10 +948,11 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-                <FormattedMessage
+                {/* <FormattedMessage
                   id="app.refurbish"
                   defaultMessage="Refurbish"
-                />
+                /> */}
+                 {translatedMenuItems[38]}
               </span>
             </Link>
           </Menu.Item>
@@ -943,10 +966,12 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <PrecisionManufacturingIcon
               style={{ fontSize: "large" }}
             />
-            <span class="text-white text-ls ml-1"><FormattedMessage
+            <span class="text-white text-ls ml-1">
+              {/* <FormattedMessage
               id="app.production"
               defaultMessage="Production"
-            />
+            /> */}
+              {translatedMenuItems[37]}
             </span>
           </Link>
         </Menu.Item>
@@ -959,10 +984,12 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <VerifiedUserIcon
               style={{ fontSize: "large" }}
             />
-            <span class="text-white text-ls ml-1"><FormattedMessage
+            <span class="text-white text-ls ml-1">
+              {/* <FormattedMessage
               id="app.quality"
               defaultMessage="Quality"
-            />
+            /> */}
+             {translatedMenuItems[19]}
             </span>
           </Link>
         </Menu.Item>
@@ -990,10 +1017,12 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               <CategoryIcon
                 style={{ fontSize: "large" }}
               />
-              <span class="text-white text-ls ml-1"><FormattedMessage
+              <span class="text-white text-ls ml-1">
+                {/* <FormattedMessage
                 id="app.material"
                 defaultMessage="Material"
-              />
+              /> */}
+               {translatedMenuItems[21]}
               </span>
             </Link>
           </Menu.Item>
@@ -1008,10 +1037,12 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
     <CategoryIcon
       style={{ fontSize: "large" }}
     />
-    <span class="text-white text-ls ml-1"><FormattedMessage
+    <span class="text-white text-ls ml-1">
+      {/* <FormattedMessage
       id="app.suppliers"
       defaultMessage="Suppliers"
-    />
+    /> */}
+     {translatedMenuItems[22]}
     </span>
   </Link>
 </Menu.Item>
@@ -1026,7 +1057,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
       style={{ fontSize: "large" }}
     />
     <span class="text-white text-ls ml-1">
-      Trade
+      {/* Trade */}
+      {translatedMenuItems[23]}
     </span>
   </Link>
 </Menu.Item>
@@ -1057,10 +1089,12 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               <CrisisAlertIcon
                 style={{ fontSize: "large" }}
               />
-              <span class="text-white text-ls ml-1"><FormattedMessage
+              <span class="text-white text-ls ml-1">
+                {/* <FormattedMessage
                 id="app.procurement"
                 defaultMessage="Procurement"
-              />
+              /> */}
+               {translatedMenuItems[25]}
               </span>
             </Link>
           </Menu.Item>
@@ -1076,10 +1110,11 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
           style={{ fontSize: "large" }}
         />
         <span className="text-white text-ls ml-1">
-          <FormattedMessage
+          {/* <FormattedMessage
             id="app.inventory"
             defaultMessage="Inventory"
-          />
+          /> */}
+           {translatedMenuItems[26]}
         </span>
       </Link>
     </Menu.Item>
@@ -1097,10 +1132,12 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               <LocalShippingIcon
                 style={{ fontSize: "large" }}
               />
-              <span class="text-white text-ls ml-1"><FormattedMessage
+              <span class="text-white text-ls ml-1">
+                {/* <FormattedMessage
                 id="app.shipper"
                 defaultMessage="Shipper"
-              />
+              /> */}
+               {translatedMenuItems[27]}
               </span>
             </Link>
           </Menu.Item>
@@ -1120,11 +1157,11 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
           <Link to="/collection" onClick={() => handleSelect('/collection')} >
             <ReceiptIcon style={{ fontSize: "large" }} />
             <span class="text-white text-ls ml-1">
-            <FormattedMessage 
+            {/* <FormattedMessage 
                     id="app.collections"
                    defaultMessage="Collections"
-               />
-              
+               /> */}
+               {translatedMenuItems[36]}
             </span>
           </Link>
         </Menu.Item>
@@ -1174,10 +1211,12 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
          color: selectedMenuItem === '/report' ? 'tomato' : '#4bc076' }}>
           <Link to="/leave" onClick={() => handleSelect('/report')}>
             <i class="fas fa-luggage-cart"></i>
-            <span class="text-white text-ls ml-1"><FormattedMessage
+            <span class="text-white text-ls ml-1">
+              {/* <FormattedMessage
               id="app.leaves"
               defaultMessage="Leaves"
-            />
+            /> */}
+             {translatedMenuItems[28]}
               &nbsp;&nbsp;&nbsp;
               <Badge
                 count={props.opportunityRecord.leave}
@@ -1196,10 +1235,12 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
           <Link to="/mileage" onClick={() => handleSelect('/mileage')}>
 
             <i class="fas fa-tachometer-alt"></i>
-            <span class="text-white text-ls ml-[0.3rem]"><FormattedMessage
+            <span class="text-white text-ls ml-[0.3rem]">
+              {/* <FormattedMessage
               id="app.mileage"
               defaultMessage="Mileage"
-            />
+            /> */}
+             {translatedMenuItems[29]}
               &nbsp;&nbsp;&nbsp;
               <Badge
                 count={props.opportunityRecord.mileage}
@@ -1218,10 +1259,12 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
             <ReceiptIcon
               style={{ fontSize: "large" }}
             />
-            <span class="text-white text-ls ml-1"><FormattedMessage
+            <span class="text-white text-ls ml-1">
+              {/* <FormattedMessage
               id="app.expense"
               defaultMessage="Expense"
-            />
+            /> */}
+             {translatedMenuItems[30]}
               &nbsp;&nbsp;&nbsp;
               <Badge
                 count={props.opportunityRecord.expense}
@@ -1242,11 +1285,12 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
 
             <i class="fas fa-holly-berry"></i>
             &nbsp;
-            <span class="text-white text-ls ml-1"><FormattedMessage
+            <span class="text-white text-ls ml-1">
+              {/* <FormattedMessage
               id="app.holiday"
               defaultMessage="Holiday"
-            />
-
+            /> */}
+ {translatedMenuItems[31]}
             </span>
           </Link>
         </Menu.Item>
@@ -1263,7 +1307,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
             <i class="fas fa-holly-berry"></i>
             &nbsp;
             <span class="text-white text-ls ml-1">
-           KPI Assessment
+           {/* KPI Assessment */}
+           {translatedMenuItems[35]}
             </span>
           </Link>
         </Menu.Item>
@@ -1284,10 +1329,12 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
                  <PeopleIcon
                 style={{ fontSize: "large" }}
                   />
-                  <span class="text-white text-ls ml-1"><FormattedMessage 
+                  <span class="text-white text-ls ml-1">
+                    {/* <FormattedMessage 
                     id="app.teams"
                    defaultMessage="Teams"
-               />
+               /> */}
+                {translatedMenuItems[32]}
                    </span>
                  </Link> 
                 </Menu.Item>
@@ -1305,7 +1352,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-                <FormattedMessage id="app.users" defaultMessage="Users" />
+              {translatedMenuItems[33]}
+                {/* <FormattedMessage id="app.users" defaultMessage="Users" /> */}
               </span>
               &nbsp;&nbsp;&nbsp;
               <Badge
@@ -1337,10 +1385,12 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               <LocationOnIcon
                 style={{ fontSize: "large" }}
               />
-              <span class="text-white text-ls ml-1"><FormattedMessage
+              <span class="text-white text-ls ml-1">
+                {/* <FormattedMessage
                 id="app.location"
                 defaultMessage="Location"
-              />
+              /> */}
+              {translatedMenuItems[34]}
               </span>
             </Link>
           </Menu.Item>
