@@ -743,3 +743,10 @@ export const ClearReducerDataOfMaterial = () => (dispatch) => {
     type: types.HANDLE_CLAER_REDUCER_DATA_MATERIAL,
   });
 };
+
+export const handleMaterialInventory = (modalProps) => (dispatch)=> {
+  dispatch({
+    type:types.HANDLE_MATERIAL_INVENTORY,
+    payload: modalProps,
+  });
+};

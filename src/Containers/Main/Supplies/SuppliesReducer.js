@@ -110,7 +110,9 @@ const initialState = {
 
     fetchingSupplieSupplerList: false,
     fetchingSupplieSupplerListError: false,
-    supplieSupplerList: []
+    supplieSupplerList: [],
+
+    materialInveDawer: false,
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -602,7 +604,8 @@ export const suppliesReducer = (state = initialState, action) => {
                           purchaseList: [],
                           // deletedTruck: []
                         };   
-
+                        case types.HANDLE_MATERIAL_INVENTORY:
+                            return { ...state, materialInveDawer: action.payload };
 
         default:
             return state;
