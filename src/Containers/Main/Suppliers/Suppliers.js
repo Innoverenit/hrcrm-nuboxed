@@ -41,7 +41,7 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
           'Dial Code',//14
           'Phone',//15
           'Email',//16
-          'Approval',//17
+          'Approve',//17
           'Purchase Order',//18
           'Price',//19
           'Edit',//20
