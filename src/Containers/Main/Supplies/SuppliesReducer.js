@@ -113,6 +113,10 @@ const initialState = {
     supplieSupplerList: [],
 
     materialInveDawer: false,
+
+    fetchingMaterialInventory: false,
+    materialInventory:[],
+    fetchingMaterialInventoryError: false,
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -606,6 +610,19 @@ export const suppliesReducer = (state = initialState, action) => {
                         };   
                         case types.HANDLE_MATERIAL_INVENTORY:
                             return { ...state, materialInveDawer: action.payload };
+
+                            case types.GET_MATERIAL_INVENTORY_REQUEST:
+                                return { ...state, fetchingMaterialInventory: true };
+                              case types.GET_MATERIAL_INVENTORY_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingMaterialInventory: false,
+                                  materialInventory: action.payload,
+                               
+                                };
+                              case types.GET_MATERIAL_INVENTORY_FAILURE:
+                                return { ...state, fetchingMaterialInventoryError: true };
+                              
 
         default:
             return state;

@@ -439,6 +439,7 @@ function SuppliesTable(props) {
         <MaterialInventoryDrawer
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={translatedMenuItems}
        particularDiscountData={particularDiscountData}
        materialInveDawer={props.materialInveDawer}
        handleMaterialInventory={props.handleMaterialInventory}

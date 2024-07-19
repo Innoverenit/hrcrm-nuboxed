@@ -2,7 +2,7 @@ import React, {useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip,Button } from "antd";
-import { getMaterialBuilderById,removeMaterialBuilder,updateMaterialBuilder } from "../SuppliesAction";
+import { getMaterialInventory,removeMaterialBuilder,updateMaterialBuilder } from "../SuppliesAction";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { DeleteOutlined } from "@ant-design/icons";
@@ -10,7 +10,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 function MaterialInventoryCard (props) {
 
   useEffect(()=> {
-    // props.getMaterialBuilderById(props.particularDiscountData.suppliesId);
+    props.getMaterialInventory(props.particularDiscountData.suppliesId);
   },[]);
 
   const [editedFields, setEditedFields] = useState({});
@@ -57,7 +57,7 @@ function MaterialInventoryCard (props) {
     
   };
 
-  const builderMaterialbyId =[]
+  const materialInventory =[]
 
 return (
     <>
@@ -74,24 +74,22 @@ return (
           {/* {props.translatedMenuItems[2]} */}
           </div>
         <div className="md:w-[5.8rem]">
-          {/* Sub Category */}
-          {props.translatedMenuItems[3]}
+         
           </div>
         <div className=" md:w-[4.2rem] ">
-          {/* Unit */}
-          {props.translatedMenuItems[4]}
+        
           </div>
         <div className="w-12"></div>
             </div>
       
-             {builderMaterialbyId.map((item) => {
+             {props.materialInventory.map((item) => {
           return (
 <div>
 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "    >
        
     <div className=" flex font-medium flex-col md:w-[13.1rem] max-sm:w-full  ">
     <div class="text-sm  font-semibold  font-poppins cursor-pointer">
-                              {item.suppliesName}
+                              {item.locationName}
                             </div>
     </div>
     
@@ -99,7 +97,7 @@ return (
     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs  font-poppins">
                       
-                      {item.categoryName}
+                      {item.balanced}
                     </div>
     </div>
     <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -125,7 +123,7 @@ return (
                     )}
                     </div>
   </div>
-  <div class="flex flex-row justify-between max-sm:flex-row max-sm:w-[10%]">
+  {/* <div class="flex flex-row justify-between max-sm:flex-row max-sm:w-[10%]">
     <div>
       
     {editlinkSuppliesId === item.linkSuppliesId ? (
@@ -167,7 +165,7 @@ return (
                        </Tooltip>
                        </StyledPopconfirm>
                        </div>
-                        </div>
+                        </div> */}
 </div>
 </div>
           );
@@ -181,13 +179,13 @@ return (
 }
 
 const mapStateToProps = ({supplies }) => ({
-  builderMaterialbyId: supplies.builderMaterialbyId,
+  materialInventory: supplies.materialInventory,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getMaterialBuilderById,
+            getMaterialInventory,
             removeMaterialBuilder,
             updateMaterialBuilder
             

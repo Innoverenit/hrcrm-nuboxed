@@ -750,3 +750,30 @@ export const handleMaterialInventory = (modalProps) => (dispatch)=> {
     payload: modalProps,
   });
 };
+
+export const getMaterialInventory = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_INVENTORY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/getInventory/locations/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // message.success(res.data.message);
+
+      dispatch({
+        type: types.GET_MATERIAL_INVENTORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+
+      dispatch({
+        type: types.GET_MATERIAL_INVENTORY_FAILURE,
+        payload: err,
+      });
+    });
+}; 
