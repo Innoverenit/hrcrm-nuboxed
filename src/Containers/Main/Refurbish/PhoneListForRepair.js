@@ -323,8 +323,18 @@ function PhoneListForRepair(props) {
                         height={"72vh"}
                     >
                         {props.repairPhone.map((item, index) => {
-                             const percentage = Math.floor((item.checkedSpare / item.totalSpare) * 100)
-                             const acivedPercentage= Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100) 
+                            
+                             const percentage = isNaN(Math.floor((item.checkedSpare / item.totalSpare) * 100)) ? 0 : Math.floor((item.checkedSpare / item.totalSpare) * 100)
+                             const acivedPercentage = isNaN(Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100)) ? 0 : Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100)
+                             const getGradientStrokeColor = (percent) => {
+                                if (percent === 0) return '#d3d3d3'; // Grey for 0%
+                                if (percent === 100) return '#00FF00'; // Green for 100%
+                                return {
+                                  '0%': '#d3d3d3', // Grey at start
+                                  [`${percent}%`]: '#0000FF', // Blue at current percentage
+                                  '100%': '#00FF00', // Green at end
+                                };
+                              };
                              const isacivedPercentage = !isNaN(acivedPercentage) && isFinite(acivedPercentage);
                              const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                             let x = item.repairStatus === "In Progress"
@@ -497,11 +507,11 @@ function PhoneListForRepair(props) {
                                                             </Button>
                                                         </Badge> 
                                                     </Tooltip> */}
-                                                    { isValidPercentage ? (
+                                                  
                                                      <Tooltip title="Spare">
                                                               <Progress 
                                                                percent={percentage}
-                                                               success={{ percent: 30 }}
+                                                               success={percentage}
                                                                format={() => `${percentage}%`} 
                                                                 style={{width:"8rem",cursor:"pointer"}} 
                                                                onClick={() => {
@@ -511,10 +521,10 @@ function PhoneListForRepair(props) {
                                                                 }} />
                                                                                                    
                                                     </Tooltip>
-                                                 ) : null}
+                                                
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[3.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[11.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {/* <Tooltip title="Task">
                                                         <Badge size="small" count={`${item.totalCompleteTaskCount} / ${item.totalTaskCount}`} overflowCount={5000}>
@@ -543,11 +553,12 @@ function PhoneListForRepair(props) {
                                                         }}
                                                           />                                                       
                                                     </Tooltip> */}
-                                                    {isacivedPercentage?(
+                                                  
                                                   <Tooltip title="Task">
                                                      <Progress
                                                     percent={acivedPercentage}
-                                                    success={{ percent: 30 }}
+                                                    success={acivedPercentage}
+                                                   // strokeColor={getGradientStrokeColor(acivedPercentage)}
                                                     format={() => `${acivedPercentage}%`} 
                                                      style={{width:"8rem",cursor:"pointer"}} 
                                                         onClick={() => {
@@ -557,7 +568,7 @@ function PhoneListForRepair(props) {
                                                         }}
                                                           />                                                       
                                                     </Tooltip>
-                            ):null}
+               
                                                 </div>
                                             </div>
                                         </div>
