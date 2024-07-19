@@ -9,7 +9,8 @@ import {
   handleCurrencyPriceModal,
   handleBrandModel,
   handleMaterialBuilderDrawer,
-  handleSuppliersListDrawer
+  handleSuppliersListDrawer,
+  handleMaterialInventory
 } from "./SuppliesAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import QRCode from "qrcode.react";
@@ -32,6 +33,7 @@ import MaterialFifoToggle from "./MaterialFifoToggle";
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import { FormattedMessage } from "react-intl";
 
+const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const UpdateSuppliesFormDrawer = lazy(() => import("./UpdateSuppliesFormDrawer"));
 const TagBrandModel = lazy(() => import("./TagBrandModel"));
@@ -342,7 +344,10 @@ function SuppliesTable(props) {
                             </div>
                             <div>
                               <Tooltip title="Inventory">
-                                <InventoryIcon className=" !text-icon cursor-pointer" />
+                                <InventoryIcon className=" !text-icon cursor-pointer"  onClick={() => {
+                                    props.handleMaterialInventory(true);
+                                    handleParticularRowData(item);
+                                  }}/>
                               </Tooltip>
                             </div>
 
@@ -431,6 +436,14 @@ function SuppliesTable(props) {
           suppliersListDrwr={props.suppliersListDrwr}
           handleSuppliersListDrawer={props.handleSuppliersListDrawer}
         />
+        <MaterialInventoryDrawer
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={translatedMenuItems}
+       particularDiscountData={particularDiscountData}
+       materialInveDawer={props.materialInveDawer}
+       handleMaterialInventory={props.handleMaterialInventory}
+        />
       </Suspense>
 
     </>
@@ -446,7 +459,8 @@ const mapStateToProps = ({ supplies, auth }) => ({
   addBrandModel: supplies.addBrandModel,
   materialBuildrawer: supplies.materialBuildrawer,
   repairInd: auth.userDetails.repairInd,
-  suppliersListDrwr: supplies.suppliersListDrwr
+  suppliersListDrwr: supplies.suppliersListDrwr,
+  materialInveDawer:supplies.materialInveDawer
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -459,7 +473,8 @@ const mapDispatchToProps = (dispatch) =>
       handleCurrencyPriceModal,
       handleBrandModel,
       handleMaterialBuilderDrawer,
-      handleSuppliersListDrawer
+      handleSuppliersListDrawer,
+      handleMaterialInventory
     },
     dispatch
   );
