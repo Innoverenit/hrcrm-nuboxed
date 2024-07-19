@@ -10,6 +10,7 @@ const QCExpandListModal = (props) => {
   const { handleQcexpand,qcExpandList, ...formProps } = props;
   const isSmallScreen = window.innerWidth <= 600;
   const drawerWidth = isSmallScreen ? "90%" : "60%";
+  console.log(props.RowData.phoneId)
   return (
     <>
       
@@ -25,7 +26,7 @@ const QCExpandListModal = (props) => {
         >
         <Suspense fallback={<BundleLoader />}>
         <DistributorPhoneTaskTable
-                        phoneId={props.phoneId}
+                        phoneId={props.RowData.phoneId}
                         RowData={props.RowData} />
         </Suspense>
       </Modal>
