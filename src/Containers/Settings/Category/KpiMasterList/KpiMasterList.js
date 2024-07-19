@@ -164,7 +164,7 @@ return <div><BundleLoader/></div>;
           {!props.fetchingMasterKpi && masterKpiList.length === 0 ? <NodataFoundPage /> : masterKpiList.slice().sort((a, b) => a.kpi.localeCompare(b.kpi)).map((region, index) => (
             <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-12" key={region.performanceManagementId}>
             {/* Region name display or input field */}
-            
+            <div className=" flex flex-row">
             {editingId === region.performanceManagementId ? (
                 <input
                 placeholder="Update KPI"
@@ -174,7 +174,7 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setMasterKpiName(e.target.value)}
                 />
             ) : (
-                <div >{region.kpi}&nbsp;&nbsp;&nbsp;
+                <div className=" w-[10rem]" >{region.kpi}
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -191,6 +191,7 @@ Currency
                       region={region}
                       performanceManagementId={region.performanceManagementId}
                     />
+                  </div>
                   </div>
             {/* Action buttons */}
             <div >

@@ -12,7 +12,11 @@ import RememberMeIcon from '@mui/icons-material/RememberMe';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import Currency from "./Currency/Currency";
 import Region from "./Region/Region"
-import ServiceLine from "./ServiceLine/ServiceLine"
+import ServiceLine from "./ServiceLine/ServiceLine";
+import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import ConstructionIcon from '@mui/icons-material/Construction';
+import FactoryIcon from '@mui/icons-material/Factory';
 // import {getRegionCount} from "../Category/Region/RegionAction"
 // import {getServiceLineCount} from "../Category/ServiceLine/ServiceLineAction"
 import KpiMasterList from "./KpiMasterList/KpiMasterList";
@@ -95,7 +99,7 @@ class OthersTab extends Component {
               <TabPane
                 tab={
                   <>
-                  <InsertDriveFileIcon/>
+                  <InsertDriveFileIcon className="!text-icon"/>
                   <Badge
                 count={this.props.documentCount.DocumentTypeCount}
                 overflowCount={999}
@@ -112,7 +116,7 @@ class OthersTab extends Component {
               <TabPane
                 tab={
                   <>
-                    <RememberMeIcon 
+                    <RememberMeIcon className="!text-icon"
                     // icon={solid('id-card-clip')}
                      />
                          <Badge
@@ -149,7 +153,7 @@ class OthersTab extends Component {
               <TabPane
                 tab={
                   <>  
-                  <ReceiptIcon  />
+                  <ReceiptIcon className="!text-icon" />
                     <span class=" ml-1" >
                     <Badge
                 count={this.props.expenseCount.ExpenseCount}
@@ -167,7 +171,7 @@ class OthersTab extends Component {
               <TabPane
                 tab={
                   <>
-                 <LanguageIcon/>
+                 <LanguageIcon className="!text-icon"/>
                  <Badge
                 count={this.props.countryCount.CountryCount}
                 overflowCount={999}
@@ -185,7 +189,7 @@ class OthersTab extends Component {
               <TabPane
                 tab={
                   <>
-                 <MonetizationOnIcon/>
+                 <MonetizationOnIcon className="!text-icon"/>
                  <Badge
                 count={this.props.currencyCount.CurrencyCount}
                 overflowCount={999}
@@ -201,7 +205,7 @@ class OthersTab extends Component {
                <TabPane
                 tab={
                   <>
-                 <MonetizationOnIcon/>
+                 <MonetizationOnIcon className="!text-icon"/>
                  <Badge
                 count={this.props.regionCount.RegionsCount}
                 overflowCount={999}
@@ -217,12 +221,12 @@ class OthersTab extends Component {
                 <TabPane
                 tab={
                   <>
-                 <MonetizationOnIcon/>
+                 
                  <Badge
                 count={this.props.masterKpiCount.PerformanceManagementCount}
                 overflowCount={999}
               >
-                    <span class=" ml-1">KPI MasterList 
+                  < PlaylistAddIcon className=" !text-icon"/>  <span class=" ml-1">KPI MasterList 
                     {/* {this.props.regionCount.RegionsCount} */}
                     </span>
                     </Badge>
@@ -234,12 +238,12 @@ class OthersTab extends Component {
 <TabPane
                 tab={
                   <>
-                 <MonetizationOnIcon/>
+                 
                  <Badge
                 count={this.props.serviceLineCount.ServiceLineCount}
                 overflowCount={999}
               >
-                    <span class=" ml-1">Service Line 
+                  <MiscellaneousServicesIcon className="!text-icon"/>  <span class=" ml-1">Service Line 
                     {/* {this.props.serviceLineCount.ServiceLineCount} */}
                      </span>
                     </Badge>
@@ -251,12 +255,12 @@ class OthersTab extends Component {
              <TabPane
                   tab={
                     <>
-                      <MonetizationOnIcon />
+                      
                       <Badge
                 count={this.props.industryCount.IndustryCount}
                 overflowCount={999}
               >
-                      <span class=" ml-1" >
+                    <FactoryIcon className="!text-icon"/>  <span class=" ml-1" >
                 Industry
                       </span>
                       </Badge>
@@ -269,12 +273,12 @@ class OthersTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <MonetizationOnIcon />
+                   
                       <Badge
                 count={this.props.machinaryCount.machinaryCount}
                 overflowCount={999}
               >
-                      <span class=" ml-1" >
+                   <ConstructionIcon className="!text-icon"/>   <span class=" ml-1" >
                 Machinary
                       </span>
                       </Badge>

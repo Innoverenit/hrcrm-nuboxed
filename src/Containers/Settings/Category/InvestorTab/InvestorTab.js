@@ -4,8 +4,9 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import {  Badge } from "antd";
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import ClubList from "./ClubList";
+import GolfCourseIcon from '@mui/icons-material/GolfCourse';
+import CameraIcon from '@mui/icons-material/Camera';
 
 const InvestorList = lazy(() =>
   import("./InvestorList")
@@ -41,7 +42,7 @@ class InvestorTab extends Component {
     return (
       <>
            <div class="flex flex-nowrap" >
-          <div class ="w-[70%]" >
+          <div class ="w-[100%]" >
             <TabsWrapper>
             <StyledTabs
                 defaultActiveKey={activeKey}
@@ -50,7 +51,7 @@ class InvestorTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <MonetizationOnIcon />
+                      <CameraIcon className=" !text-icon" />
                       <Badge
                 count={this.props.investorCount.InvestorCategoryCount}
                 overflowCount={999}
@@ -68,7 +69,7 @@ class InvestorTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <MonetizationOnIcon />
+                      <GolfCourseIcon className=" !text-icon" />
                       {/* <Badge
                 count={this.props.investorCount.InvestorCategoryCount}
                 overflowCount={999}

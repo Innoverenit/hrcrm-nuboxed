@@ -10,6 +10,10 @@ import FactoryIcon from '@mui/icons-material/Factory';
 import { FormattedMessage } from "react-intl";
 import LOB from "./LOB/LOB";
 import CategoryList from "./CategoryList/CategoryList";
+import CameraIcon from '@mui/icons-material/Camera';
+import GavelIcon from '@mui/icons-material/Gavel';
+import FormatLineSpacingIcon from '@mui/icons-material/FormatLineSpacing';
+
 const Payment = lazy(() =>
   import("./Payment/Payment")
 );
@@ -70,8 +74,8 @@ class CustomerSectorTab extends Component {
     const { activeKey } = this.state;
     return (
       <>
-         <div class="flex flex-nowrap" >
-          <div class=" w-[70%]" >
+         <div  >
+          <div class=" w-[100%]" >
             <TabsWrapper>
             <StyledTabs
                 defaultActiveKey={activeKey}
@@ -80,7 +84,7 @@ class CustomerSectorTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <FactoryIcon />
+                      <FactoryIcon  className=" !text-icon"/>
             
                       <span class="font-poppins ml-1 ">
                       <Badge
@@ -104,7 +108,7 @@ class CustomerSectorTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <SourceIcon />
+                      <SourceIcon  className=" !text-icon"/>
              
                           <span class="font-poppins ml-1 ">
                           <Badge
@@ -127,8 +131,7 @@ class CustomerSectorTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <SourceIcon />
-            
+                      <CameraIcon  className=" !text-icon"/>
                         <span class="font-poppins ml-1 ">
                         <Badge
                 count={this.props.customerCount.CustomerTypeCount}
@@ -151,9 +154,9 @@ class CustomerSectorTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <SourceIcon />
+                      <GavelIcon  className=" !text-icon" />
                       <span class="font-poppins ml-1 ">
-                        Vat
+                        VAT
                       </span>
                     </>
                   }
@@ -166,7 +169,7 @@ class CustomerSectorTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <PaymentIcon />
+                      <PaymentIcon  className=" !text-icon"/>
             
                          <span class="font-poppins ml-1 ">
                          <Badge
@@ -188,7 +191,7 @@ class CustomerSectorTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <PaymentIcon />
+                      <FormatLineSpacingIcon  className=" !text-icon"/>
             
                          <span class="font-poppins ml-1 ">
                          <Badge
@@ -210,7 +213,7 @@ class CustomerSectorTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <PaymentIcon />
+                      <PaymentIcon  className=" !text-icon" />
             
                          <span class="font-poppins ml-1 ">
                          <Badge

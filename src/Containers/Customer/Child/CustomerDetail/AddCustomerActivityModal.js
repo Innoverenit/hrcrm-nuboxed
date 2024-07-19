@@ -51,10 +51,10 @@ const AddCustomerActivityModal = (props) => {
       console.log(props.rowdata)
       return (
         <>
-          <TabsWrapper>
+          <TabsWrapper style={{ height:"80vh"}}>
             <StyledTabs
               defaultActiveKey="1"
-              style={{ overflow: "visible", width: "53vw", padding: "15px" }}
+              style={{ overflow: "visible", padding: "4px" ,scrollbar:"thin"}}
               animated={false}
             >
               <TabPane
