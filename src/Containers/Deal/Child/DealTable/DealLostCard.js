@@ -35,14 +35,47 @@ import {
 } from "../../../Opportunity/OpportunityAction";
 import {getLostDeals,handleUpdateDealModal,handleDealsNotesDrawerModal} from "../../DealAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 
 
 function DealLostCard(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+         " Name",//0
+          "Investor",//1
+          "Sponsor",//2
+          "Start Date",//3
+          "Values",//4
+          "Stages",//5
+          "Sales Rep",//6
+          "Owner",//7
+          "Action",//8
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     if(props.role==="USER"&&user.department==="Recruiter"){
       props.getRecruiterList(props.recruiterId);     
@@ -82,6 +115,8 @@ function DealLostCard(props) {
       } = props;
 
       if (isMobile){
+
+      
         return (    
           <>
         
@@ -415,50 +450,70 @@ function DealLostCard(props) {
             </>
           ); 
       }
-
+      if (loading) {
+        return <div><BundleLoader/></div>;
+      }
       return (    
   <>
 
      
 <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[13.12rem]"><FormattedMessage
+        <div className=" md:w-[13.12rem]">
+        {translatedMenuItems[0]}   {/* <FormattedMessage
                   id="app.name"
                   defaultMessage="name"
-                /></div>
-        <div className=" md:w-[6.21rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className=" md:w-[6.21rem]">
+        {translatedMenuItems[1]}  {/* <FormattedMessage
                   id="app.investor"
                   defaultMessage="investor"
-                /></div>
-        <div className=" md:w-[9.21rem] "><FormattedMessage
+                /> */}
+                </div>
+        <div className=" md:w-[9.21rem] ">
+        {translatedMenuItems[2]}  {/* <FormattedMessage
                   id="app.sponsor"
                   defaultMessage="sponsor"
-                /></div>
-        <div className="md:w-[7.11rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="md:w-[7.11rem]">
+        {translatedMenuItems[3]} {/* <FormattedMessage
                   id="app.startdate"
                   defaultMessage="startdate"
-                /></div>
-        <div className="md:w-[11.16rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="md:w-[11.16rem]">
+        {translatedMenuItems[4]} {/* <FormattedMessage
                   id="app.proposalamt"
                   defaultMessage="proposalamt"
-                /></div>
-        <div className="md:w-[5.14rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="md:w-[5.14rem]">
+        {translatedMenuItems[5]} {/* <FormattedMessage
                   id="app.stages"
                   defaultMessage="stages"
-                /></div> 
-        <div className="md:w-[7.1rem]"><FormattedMessage
+                /> */}
+                </div> 
+        <div className="md:w-[7.1rem]">
+        {translatedMenuItems[6]}  {/* <FormattedMessage
                   id="app.salesRep"
                   defaultMessage="salesRep"
-                /></div>
-        <div className="md:w-[3.22rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="md:w-[3.22rem]">
+        {translatedMenuItems[7]} {/* <FormattedMessage
                   id="app.owner"
                   defaultMessage="owner"
-                /></div>
+                /> */}
+                </div>
         <div className="md:w-[5.71rem]"></div>
-        <div className="w-12"><FormattedMessage
+        <div className="w-12">
+        {translatedMenuItems[8]} {/* <FormattedMessage
                   id="app.action"
                   defaultMessage="action"
-                /></div>
+                /> */}
+                </div>
       </div>
       <InfiniteScroll
          dataLength={lostDeals.length}

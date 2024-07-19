@@ -27,7 +27,11 @@ class AddDataRoomModal extends Component {
         
         >
         <Suspense fallback={<BundleLoader />}>
-          <DataRooForm />{" "}
+          <DataRooForm
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
+          />{" "}
         </Suspense>
         </StyledDrawer>
       </>

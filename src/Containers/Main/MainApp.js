@@ -1615,9 +1615,42 @@ function MainApp(props) {
                       )}
                     />  
                       {/* <Route exact path="/pitch" component={Pitch} /> */}
-                      <Route exact path="/deal" component={Deal} />
+                      {/* <Route exact path="/deal" component={Deal} /> */}
+                      <Route
+                      exact
+                      path="/deal"
+                      render={(props) => (
+                        <Pitch
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />  
                       <Route exact path="/contactInvest" component={ContactInvest} />
+                      <Route
+                      exact
+                      path="/contactInvest"
+                      render={(props) => (
+                        <Pitch
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />  
                       <Route exact path="/investor" component={Investor} />
+                      <Route
+                      exact
+                      path="/contactInvest"
+                      render={(props) => (
+                        <Pitch
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />  
                       <Route exact path="/club" component={Club} />
                       <Route exact path="/investor/:investorId" component={InvestorDetail} />
                       <Route exact path="/contactinvest/:contactId" component={ContactInvestDetail} />

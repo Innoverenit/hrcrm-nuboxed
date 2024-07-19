@@ -116,6 +116,7 @@ props.emptyClearbit();
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
+  
     const fetchSource = async () => {
       setIsLoading(true);
       try {

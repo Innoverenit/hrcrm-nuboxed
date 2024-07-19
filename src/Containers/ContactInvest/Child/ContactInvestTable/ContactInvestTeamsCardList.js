@@ -30,6 +30,7 @@ import {getTeamsContactInvest,
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddContactInvestNotesDrawerModal = lazy(() =>
   import("../AddContactInvestNotesDrawerModal")
 );
@@ -39,6 +40,8 @@ const UpdateContactInvestModal = lazy(() =>
 
 function ContactInvestTeamsCardList(props) {
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [pageNo, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
@@ -62,6 +65,35 @@ function ContactInvestTeamsCardList(props) {
     props.getTeamsContactInvest(props.userId,pageNo);
     setPage(pageNo + 1);
   }, []);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "Name",//0
+           "Company",//1
+           "Designation",//2
+           "Department",//3
+           "Deal",//4
+           "Deal Value",//5
+          "Source",//6
+           "Owner",//7
+          
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
 
   useEffect(()=>{
     return()=>props.emptyContactInvest();
@@ -109,7 +141,9 @@ function ContactInvestTeamsCardList(props) {
 //  }
 
 
-
+if (loading) {
+  return <div><BundleLoader/></div>;
+}
 
   return (
     <>
@@ -117,38 +151,54 @@ function ContactInvestTeamsCardList(props) {
 
       <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[15.32rem]"><FormattedMessage
+        <div className=" md:w-[15.32rem]">
+        {translatedMenuItems[0]} {/* <FormattedMessage
                   id="app.name"
                   defaultMessage="name"
-                /></div>
-        <div className=" md:w-[12.72rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className=" md:w-[12.72rem]">
+        {translatedMenuItems[1]}{/* <FormattedMessage
                   id="app.company"
                   defaultMessage="company"
-                /></div>
-        <div className=" md:w-[9.6rem] "><FormattedMessage
+                /> */}
+                </div>
+        <div className=" md:w-[9.6rem] ">
+        {translatedMenuItems[2]} {/* <FormattedMessage
                   id="app.designation"
                   defaultMessage="designation"
-                /></div>
-        <div className="md:w-[11.3rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="md:w-[11.3rem]">
+        {translatedMenuItems[3]}  {/* <FormattedMessage
                   id="app.department"
                   defaultMessage="department"
-                /></div>
-        <div className="md:w-[6.1rem]"># <FormattedMessage
+                /> */}
+                </div>
+        <div className="md:w-[6.1rem]"># 
+        {translatedMenuItems[4]} {/* <FormattedMessage
                   id="app.deals"
                   defaultMessage="deals"
-                /></div>
-        <div className="md:w-[7.21rem]"> <FormattedMessage
+                /> */}
+                </div>
+        <div className="md:w-[7.21rem]">
+        {translatedMenuItems[5]}  {/* <FormattedMessage
                   id="app.dealValue"
                   defaultMessage="dealValue"
-                /></div>
-        <div className="md:w-[5.2rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="md:w-[5.2rem]">
+        {translatedMenuItems[6]} {/* <FormattedMessage
                   id="app.source"
                   defaultMessage="source"
-                /></div>
-        <div className="md:w-[6.8rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="md:w-[6.8rem]">
+        {translatedMenuItems[7]} {/* <FormattedMessage
                   id="app.owner"
                   defaultMessage="owner"
-                /></div>
+                /> */}
+                </div>
         {/* <div className="w-12">Action</div> */}
 
       </div>

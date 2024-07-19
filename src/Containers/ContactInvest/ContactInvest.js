@@ -107,6 +107,8 @@ const{handleContactInvestModal,addContactInvestModal,
         return (
             <React.Fragment>
                 <ContactInvestHeader
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText}
                 viewType={viewType}
                 teamsAccessInd={teamsAccessInd}
                 setContactInvetViewType={setContactInvetViewType}
@@ -127,18 +129,36 @@ const{handleContactInvestModal,addContactInvestModal,
                 filter={filter}
               />
              <AddContactInvestModal
+             selectedLanguage={props.selectedLanguage}
+             translateText={props.translateText}
         addContactInvestModal={addContactInvestModal}
         handleContactInvestModal={handleContactInvestModal}
       />
        <Suspense fallback={<BundleLoader />}>
 
        {teamsAccessInd ? (
-        <ContactInvestTeamsCardList     />
+        <ContactInvestTeamsCardList   
+        translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
+        />
         ) : (
           <>
-            {viewType === 'card' &&   <ContactInvestCardList currentUser={currentUser}  filterData={filterData}/> }
-            {viewType === 'all' &&  <ContactInvestAllCardList     /> }
-            {viewType === 'teams' && <ContactInvestTeamsCardList     />}
+            {viewType === 'card' &&   <ContactInvestCardList currentUser={currentUser}  filterData={filterData}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
+            /> }
+            {viewType === 'all' &&  <ContactInvestAllCardList   
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
+            /> }
+            {viewType === 'teams' && <ContactInvestTeamsCardList    
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
+            />}
           </>
         )}
         {/* {viewType === "card" ?

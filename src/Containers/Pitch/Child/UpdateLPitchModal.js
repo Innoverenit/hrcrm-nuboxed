@@ -26,6 +26,9 @@ console.log(props.item)
         <Suspense fallback={<BundleLoader />}>
          
           <UpdatePitchForm 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
         investorleadsId={props.item.investorLeadsId} 
           />{" "}
         </Suspense>

@@ -10,14 +10,46 @@ import { FormattedMessage } from "react-intl";
 const Option = StyledSelect.Option;
 
 class DataRoomActionRight extends React.Component {
+
   state = {
     isClicked: "import",
+    
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {}
   handleClicked = (value) => {
     this.setState({
       isClicked: value,
     });
+    this.fetchMenuTranslations();
+  };
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+          
+         
+        "Add",
+        
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
   };
   render() {
     const { handleDataroomModal, user } = this.props;
@@ -45,7 +77,9 @@ class DataRoomActionRight extends React.Component {
   type="primary"
   onClick={() => this.props.handleDataroomModal(true)}
 >
-  <FormattedMessage id="app.add" defaultMessage="Add" />
+
+   {this.state.translatedMenuItems[0]}
+{/* <FormattedMessage id="app.add" defaultMessage="Add" /> */}
 </Button>
    )} 
         </div>
