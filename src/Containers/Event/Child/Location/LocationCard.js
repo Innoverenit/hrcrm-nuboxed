@@ -98,34 +98,34 @@ const LocationCard = (props) => {
           height={"80vh"}
         >
           <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" md:w-[10.5rem]">
+            <div className=" md:w-[7.5rem]">
             {translatedMenuItems[0]}</div>
-            <div className="  w-16 md:w-[9.1rem]">
+            <div className="   md:w-[9.1rem]">
               
             </div>
-            <div className=" md:w-[11.1rem] ">{translatedMenuItems[1]}
+            <div className=" md:w-[6.1rem] ">{translatedMenuItems[1]}
               {/* Address */}
               </div>
-            <div className=" md:w-[8.2rem] ">
+            <div className=" md:w-[6.9rem] ">
             {translatedMenuItems[2]}
             {/* Production */}
             </div>
-            <div className=" md:w-[8.2rem] ">
+            <div className=" md:w-[5.9rem] ">
             {translatedMenuItems[3]}{/* Refurbish */}
             </div>
-            <div className="md:w-[8.5rem]">
+            <div className="md:w-[7.5rem]">
             {translatedMenuItems[4]} {/* Inventory */}
               </div>
             <div className="md:w-[7.5rem]">
             {translatedMenuItems[5]} {/* Billing */}
               </div>
-            <div className="md:w-[8.51rem]">
+            <div className="md:w-[6.51rem]">
             {translatedMenuItems[6]} {/* Corporate */}
               </div>
-            <div className="md:w-[8.3rem]">
+            <div className="md:w-[6.3rem]">
             {translatedMenuItems[7]} {/* Project */}
               </div>
-            <div className="md:w-[8.9rem]">
+            <div className="md:w-[5.9rem]">
             {translatedMenuItems[8]}{/* Retail */}
               </div>
             <div className="md:w-[8.9rem]">

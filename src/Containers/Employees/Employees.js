@@ -93,6 +93,8 @@ class Employees extends Component {
           setCurrentData={this.setCurrentData}
         />
         <AddEmployeeModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           addEmployeeModal={addEmployeeModal}
           handleEmployeeModal={handleEmployeeModal}
         />

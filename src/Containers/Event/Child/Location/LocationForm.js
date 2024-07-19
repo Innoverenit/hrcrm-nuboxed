@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {useEffect, useState,Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch,Select } from "antd";
@@ -7,7 +7,7 @@ import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { Formik, Form, Field, FieldArray } from "formik";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
- import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
+import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import { addLocation, } from "../../../Event/Child/Location/LocationAction";
 import { getTimeZone } from "../../../Auth/AuthAction";
@@ -20,6 +20,7 @@ import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 //   locationtypeId: Yup.string().required("Input required!"),
 // });
 const { Option } = Select;
+
 class LocationForm extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +34,8 @@ class LocationForm extends Component {
       retail: false,
       contract: false,
       department: "",
-      reportingManager: ""
+      reportingManager: "",
+      translatedMenuItems: []
     };
     this.handleDepartment = this.handleDepartment.bind(this);
     this.handlereportingManager = this.handlereportingManager.bind(this);
@@ -77,8 +79,31 @@ class LocationForm extends Component {
     this.props.getRoles(this.props.organizationId);
     this.props.getDepartments(); 
     this.props.getTimeZone();
+    this.fetchMenuTranslations();
+  }
+ 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
   }
 
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+    
+        
+        "Add",
+        
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const { locationsTypeName } = this.props;
     // const currencyType = props.currencies.map((item) => {
@@ -87,7 +112,7 @@ class LocationForm extends Component {
     //     value: item.currencyName,
     //   };
     // })
-
+   
     const timeZoneOption = this.props.timeZone.map((item) => {
       return {
         label: item.zoneName
@@ -96,7 +121,7 @@ class LocationForm extends Component {
         ,
       };
     });
-    
+
     // const managementOption = this.props.salesManagementUsers.map((item) => {
     //   return {
     //     label: `${item.salutation || ""} ${item.firstName ||

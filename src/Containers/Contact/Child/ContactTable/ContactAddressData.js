@@ -183,8 +183,9 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+import { Switch, Popconfirm } from "antd";
 //import "./AddressTable.css";
-import {getContactAddressData,addContactAddress} from "../../ContactAction"
+import {getContactAddressData,addContactAddress,addContactMand} from "../../ContactAction"
 
 const data = [
   {
@@ -236,6 +237,7 @@ const data = [
 ];
 
 const AddressTable = (props) => {
+  const [activeSwitchIndex, setActiveSwitchIndex] = useState(null)
     const [addresses, setAddresses] = useState(props.contactAddress);
     const [editingIndex, setEditingIndex] = useState(null);
     const [currentAddress, setCurrentAddress] = useState("");
@@ -311,6 +313,27 @@ const AddressTable = (props) => {
     const handleChange = (address) => {
       setCurrentAddress(address);
     };
+
+
+    const handleSwitchChange = (index, checked,item) => {
+      if (checked) {
+        setActiveSwitchIndex(index); // Set the index of the active switch
+        const updatedAddresses = addresses.map((address, idx) => ({
+          ...address,
+          primaryInd: idx === index,
+        }));
+        setAddresses(updatedAddresses);
+      } else {
+        setActiveSwitchIndex(null); // Clear the active switch index
+        const updatedAddresses = addresses.map((address) => ({
+          ...address,
+          primaryInd: false,
+        }));
+        setAddresses(updatedAddresses);
+      }
+      props.addContactMand(item.addressId,checked)
+      console.log(checked)
+    };
   
     return (
       <div className="address-table">
@@ -318,6 +341,7 @@ const AddressTable = (props) => {
           <thead>
             <tr>
               <th>Address</th>
+              <th>Switch</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -370,6 +394,21 @@ const AddressTable = (props) => {
                   )}
                 </td>
                 <td>
+                <Popconfirm
+                  title="Are you sure you want to switch?"
+                  onConfirm={() => handleSwitchChange(index, !item.primaryInd,item)}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  <Switch
+                   checkedChildren="Yes"
+                        unCheckedChildren="No"
+                    checked={item.primaryInd}
+                    disabled={activeSwitchIndex !== null && activeSwitchIndex !== index}
+                  />
+                </Popconfirm>
+              </td>
+                <td>
                   {editingIndex === index && (
                     <FaSave onClick={() => handleSave(index)} />
                   )}
@@ -391,7 +430,8 @@ const mapStateToProps = ({ sector,auth,contact }) => ({
     bindActionCreators(
       {
         getContactAddressData,
-        addContactAddress
+        addContactAddress,
+        addContactMand
       },
       dispatch
     );

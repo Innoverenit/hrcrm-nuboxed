@@ -26,6 +26,12 @@ const initialState = {
       addingSupplyCategory: false,
       addingSupplyCategoryError: false,
 
+      fetchingWorkflowCategory: false,
+      fetchingWorkflowCategoryError: false,
+      workFlowCategory:[],
+
+      addingWorkflowCategory: false,
+addingWorkflowCategoryError: false,
 
       fetchingShipperCategory: false,
       fetchingShipperCategoryError: false,
@@ -4375,7 +4381,37 @@ addingShipperCategory: false,
 addingShipperCategoryError: true,
 };
 
+case types.GET_WORKFLOWCATEGORY_REQUEST:
+  return { ...state, fetchingWorkflowCategory: true };
+case types.GET_WORKFLOWCATEGORY_SUCCESS:
+  return {
+    ...state,
+    fetchingWorkflowCategory: false,
+    workFlowCategory: action.payload,
+  };
+case types.GET_WORKFLOWCATEGORY_FAILURE:
+  return {
+    ...state,
+    fetchingWorkflowCategory: false,
+    fetchingWorkflowCategoryError: true,
+  };
 
+  case types.ADD_WORKFLOWCATEGORY_REQUEST:
+return { ...state, addingWorkflowCategory: true };
+case types.ADD_WORKFLOWCATEGORY_SUCCESS:
+return {
+...state,
+addingWorkflowCategory: false,
+workFlowCategory:[action.payload,...state.workFlowCategory]
+
+
+};
+case types.ADD_SWORKFLOWCATEGORY_FAILURE:
+return {
+...state,
+addingWorkflowCategory: false,
+addingWorkflowCategoryError: true,
+};
 
     default:
       return state;

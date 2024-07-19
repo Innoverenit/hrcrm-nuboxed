@@ -1006,22 +1006,6 @@ iframe#webpack-dev-server-client-overlay {
   background-color: #709ab3;
 }
 
-.card9 {
-  border-radius: 0.3rem;
-
-  margin-left: 4px;
-  font-family: "poppins";
-  font-weight: bold;
-  box-shadow: 0em 0.25em 0.625em -0.125em;
-  border: 0.0625em solid #eee;
-  background-color: #fff;
-  color: #444;
-  padding: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .add-region {
   margin-bottom: 10px;

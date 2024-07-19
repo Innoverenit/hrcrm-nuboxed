@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select, Tooltip } from "antd";
@@ -68,8 +68,12 @@ props.emptyClearbit();
     const selectedOption = props.crmAllData.find((item) => item.empName === selected);
     const [isLoadingLob, setIsLoadingLob] = useState(false);
     const [source, setSource] = useState([]);
+    
     const [sector, setSector] = useState([]);
     const [touched, setTouched] = useState(false);
+    const [transcript, setTranscript] = useState('');
+    const [isListening, setIsListening] = useState(false);
+    const recognitionRef = useRef(null);
   const [touchedSector, setTouchedSector] = useState(false);
     const [selectedSector, setSelectedSector] = useState(null);
     const [selectedSource, setSelectedSource] = useState(null);
@@ -181,6 +185,7 @@ props.emptyClearbit();
     setSelectedSector(value)
     console.log('Selected user:', value);
   };
+  
   const handleSelectSectorFocus = () => {
     if (!touchedSector) {
      
@@ -222,19 +227,115 @@ props.emptyClearbit();
     console.log('Selected user:', value);
   };
   const [text, setText] = useState("");
+  console.log(text)
   function handletext(e) {
     setText(e.target.value);
   }
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
+
+
+  useEffect(() => {
+    if (!('webkitSpeechRecognition' in window)) {
+      console.log('Browser does not support speech recognition.');
+      return;
+    }
+
+  //   const recognition = new window.webkitSpeechRecognition();
+  //   recognition.continuous = true;
+  //   recognition.interimResults = true;
+  //   recognition.lang = 'en-US';
+
+  //   recognition.onresult = (event) => {
+  //     let finalTranscript = '';
+  //     for (let i = event.resultIndex; i < event.results.length; ++i) {
+  //       if (event.results[i].isFinal) {
+  //         finalTranscript += event.results[i][0].transcript;
+  //       }
+  //     }
+  //     setTranscript(finalTranscript);
+  //   };
+
+  //   recognition.onend = () => {
+  //     setIsListening(false);
+  //   };
+
+  //   recognitionRef.current = recognition;
+
+  //   return () => {
+  //     recognition.stop();
+  //   };
+  // }, []);
+
+  const recognition = new window.webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.lang = 'en-US';
+
+  recognition.onresult = (event) => {
+    let finalTranscript = '';
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        finalTranscript += event.results[i][0].transcript;
+      }
+    }
+    finalTranscript = finalTranscript.trim(); // Trim spaces around the transcript
+
+    // Ensure the final transcript is appended only once
+    setTranscript((prevTranscript) => {
+      setText((prevText) => (prevText + ' ' + finalTranscript).trim());
+      return prevTranscript + ' ' + finalTranscript;
+    });
+  };
+
+  recognition.onend = () => {
+    setIsListening(false);
+  };
+
+  recognitionRef.current = recognition;
+
+  return () => {
+    recognition.stop();
+  };
+}, []);
+
+  const startListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.start();
+      setIsListening(true);
+    }
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    }
+  };
+
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+    setTranscript('');
+  };
+
+  const resetTranscript = () => {
+    setTranscript('');
+    setText('');
+  };
+
+  
+
+  // const {
+  //   transcript,
+  //   listening,
+  //   resetTranscript,
+  //   browserSupportsSpeechRecognition,
+  // } = useSpeechRecognition();
+
+  // if (!browserSupportsSpeechRecognition) {
+  //   return <span>Browser doesn't support speech recognition.</span>;
+  // }
+
+ 
   
   if (loading) {
     return <div><BundleLoader/></div>;
@@ -286,6 +387,7 @@ props.emptyClearbit();
               {
                 ...values,
                 companyName: "",
+                notes: text,
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 source: selectedSource,
                 lobId:selectedLob,
@@ -911,7 +1013,7 @@ translatedMenuItems={props.translatedMenuItems}
                     <div>{translatedMenuItems[14]}</div>
                     <div>
                   <div>
-                    <span onClick={SpeechRecognition.startListening}>
+                    <span onClick={startListening}>
                       <Tooltip title="Start">
                         <span  >
                           <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
@@ -919,7 +1021,7 @@ translatedMenuItems={props.translatedMenuItems}
                       </Tooltip>
                     </span>
 
-                    <span onClick={SpeechRecognition.stopListening}>
+                    <span onClick={stopListening}>
                       <Tooltip title="Stop">
                         <span >
                           <StopCircleIcon  className="!text-icon ml-1 text-green-600"/>
@@ -936,13 +1038,22 @@ translatedMenuItems={props.translatedMenuItems}
                     </span>
                   </div>
                   <div>
-                    <textarea
+                    {/* <textarea
                       name="description"
                       className="textarea"
                       type="text"
                       value={transcript ? transcript : text}
                       onChange={handletext}
-                    ></textarea>
+                    ></textarea> */}
+
+<textarea
+        name="description"
+        className="textarea"
+        type="text"
+        value={text}
+        onChange={handleTextChange}
+      ></textarea>
+
                   </div>
                 </div>
                   </div>

@@ -56,6 +56,364 @@ function DispatchTable(props) {
   const handleRowData = (item) => {
     setRowData(item)
   }
+const AWBtst=[
+  {
+      "userId": "EMP16818052295222021",
+      "orderPhoneId": "ORDPG71890357520182024",
+      "locationId": "LDS65468903772222023",
+      "orderInventoryLocationLinkId": "OILLG87418979421182024",
+      "createAt": "2024-07-18T05:55:42.818Z",
+      "activeInd": true,
+      "transferInd": 2,
+      "phoneCount": 0,
+      "count": 0,
+      "contactPersonId": "COIG1030765006232024",
+      "newOrderNo": "000118072024",
+      "inspectionInd": 0,
+      "phoneReceiveCount": 6,
+      "repairRemainingQuantity": 0,
+      "phoneRemainingQuantity": 0,
+      "qcStartInd": 3,
+      "qcRepairInd": 3,
+      "dispatchPhoneCount": 6,
+      "dispatchInspectionInd": 3,
+      "dispatchedBy": "null",
+      "dispatchDate": "null",
+      "shipperId": "null",
+      "pickedInd": false,
+      "stopDispatchInspectionUser": "EMP88224136459212024",
+      "stopDispatchInspectionDate": "2024-07-18T06:09:23.663Z",
+      "stopDispatchInspectionUserName": "Test Ku Manager",
+      "unloadingAddresses": [
+          {
+              "addressId": null,
+              "addressType": null,
+              "address1": null,
+              "address2": null,
+              "houseNo": null,
+              "town": null,
+              "street": null,
+              "city": "Nilamskj",
+              "postalCode": null,
+              "country": null,
+              "longitude": null,
+              "latitude": null,
+              "creatorId": null,
+              "state": null,
+              "employeeId": null,
+              "contactPersonId": null,
+              "countryCode": null,
+              "countryAlpha2Code": null,
+              "countryAlpha3Code": null
+          }
+      ],
+      "pickUpAddress": [
+          {
+              "addressId": "ADIF24591555098182024",
+              "addressType": null,
+              "address1": "",
+              "address2": null,
+              "houseNo": null,
+              "town": null,
+              "street": null,
+              "city": "",
+              "postalCode": null,
+              "country": "",
+              "longitude": "",
+              "latitude": "",
+              "creatorId": null,
+              "state": "",
+              "employeeId": null,
+              "contactPersonId": null,
+              "countryCode": null,
+              "countryAlpha2Code": "IN",
+              "countryAlpha3Code": "IND"
+          }
+      ],
+      "dispatchReceivedInd": false,
+      "newAwbNo": "4354564",
+      "weight": 0.0,
+      "materialCount": 0,
+      "inventoryReceiveInd": false,
+      "offerPrice": 0.0,
+      "finalPrice": 0.0,
+      "expectedPrice": 0.0,
+      "mismatchOrderInd": false,
+      "cannotRepairCount": 0,
+      "pickUpDate": "2024-07-17T18:30:00Z",
+      "orderCompleteInd": false,
+      "pageCount": 6,
+      "dataCount": 20,
+      "listCount": 102
+  },
+  {
+      "userId": "EMP16818052295222021",
+      "orderPhoneId": "ORDPG4586083473992024",
+      "locationId": "LDS65468903772222023",
+      "orderInventoryLocationLinkId": "OILLG8438439003992024",
+      "createAt": "2024-07-09T05:37:32.026Z",
+      "activeInd": true,
+      "transferInd": 2,
+      "phoneCount": 0,
+      "count": 0,
+      "contactPersonId": "COIG1030765006232024",
+      "newOrderNo": "000109072024",
+      "inspectionInd": 0,
+      "phoneReceiveCount": 6,
+      "repairRemainingQuantity": 6,
+      "phoneRemainingQuantity": 6,
+      "qcStartInd": 3,
+      "qcRepairInd": 3,
+      "dispatchPhoneCount": 6,
+      "dispatchInspectionInd": 4,
+      "dispatchedBy": "null",
+      "dispatchDate": "null",
+      "shipperId": "null",
+      "pickedInd": false,
+      "stopDispatchInspectionUser": "EMP88224136459212024",
+      "stopDispatchInspectionDate": "2024-07-09T06:11:51.817Z",
+      "stopDispatchInspectionUserName": "Test Ku Manager",
+      "unloadingAddresses": [
+          {
+              "addressId": null,
+              "addressType": null,
+              "address1": null,
+              "address2": null,
+              "houseNo": null,
+              "town": null,
+              "street": null,
+              "city": "Chamilkens",
+              "postalCode": null,
+              "country": null,
+              "longitude": null,
+              "latitude": null,
+              "creatorId": null,
+              "state": null,
+              "employeeId": null,
+              "contactPersonId": null,
+              "countryCode": null,
+              "countryAlpha2Code": null,
+              "countryAlpha3Code": null
+          }
+      ],
+      "pickUpAddress": [
+          {
+              "addressId": "ADIF244566826392024",
+              "addressType": null,
+              "address1": "",
+              "address2": null,
+              "houseNo": null,
+              "town": null,
+              "street": null,
+              "city": "",
+              "postalCode": null,
+              "country": "",
+              "longitude": "",
+              "latitude": "",
+              "creatorId": null,
+              "state": "",
+              "employeeId": null,
+              "contactPersonId": null,
+              "countryCode": null,
+              "countryAlpha2Code": "IN",
+              "countryAlpha3Code": "IND"
+          }
+      ],
+      "dispatchReceivedInd": false,
+      "newAwbNo": "null",
+      "weight": 0.0,
+      "materialCount": 0,
+      "inventoryReceiveInd": false,
+      "offerPrice": 0.0,
+      "finalPrice": 0.0,
+      "expectedPrice": 0.0,
+      "mismatchOrderInd": false,
+      "cannotRepairCount": 0,
+      "pickUpDate": "2024-07-08T18:30:00Z",
+      "orderCompleteInd": false,
+      "pageCount": 6,
+      "dataCount": 20,
+      "listCount": 102
+  },
+  {
+      "userId": "EMP16818052295222021",
+      "orderPhoneId": "ORDPG1567078640632024",
+      "locationId": "LDS65468903772222023",
+      "orderInventoryLocationLinkId": "OILLG7738984419032024",
+      "createAt": "2024-07-03T12:29:20.164Z",
+      "activeInd": true,
+      "transferInd": 2,
+      "phoneCount": 0,
+      "count": 0,
+      "contactPersonId": "COIG1030765006232024",
+      "newOrderNo": "000103072024",
+      "inspectionInd": 0,
+      "phoneReceiveCount": 5,
+      "repairRemainingQuantity": 6,
+      "phoneRemainingQuantity": 6,
+      "qcStartInd": 3,
+      "qcRepairInd": 3,
+      "dispatchPhoneCount": 5,
+      "dispatchInspectionInd": 4,
+      "dispatchedBy": "null",
+      "dispatchDate": "null",
+      "shipperId": "null",
+      "pickedInd": false,
+      "stopDispatchInspectionUser": "EMP3230714710282024",
+      "stopDispatchInspectionDate": "2024-07-03T13:34:08.966Z",
+      "stopDispatchInspectionUserName": "Rakesh sahoo",
+      "unloadingAddresses": [
+          {
+              "addressId": null,
+              "addressType": null,
+              "address1": null,
+              "address2": null,
+              "houseNo": null,
+              "town": null,
+              "street": null,
+              "city": null,
+              "postalCode": null,
+              "country": null,
+              "longitude": null,
+              "latitude": null,
+              "creatorId": null,
+              "state": null,
+              "employeeId": null,
+              "contactPersonId": null,
+              "countryCode": null,
+              "countryAlpha2Code": null,
+              "countryAlpha3Code": null
+          }
+      ],
+      "pickUpAddress": [
+          {
+              "addressId": "ADIF2753392581032024",
+              "addressType": null,
+              "address1": "",
+              "address2": null,
+              "houseNo": null,
+              "town": null,
+              "street": null,
+              "city": "",
+              "postalCode": null,
+              "country": "",
+              "longitude": "",
+              "latitude": "",
+              "creatorId": null,
+              "state": "",
+              "employeeId": null,
+              "contactPersonId": null,
+              "countryCode": null,
+              "countryAlpha2Code": "IN",
+              "countryAlpha3Code": "IND"
+          }
+      ],
+      "dispatchReceivedInd": false,
+      "newAwbNo": "765644",
+      "weight": 0.0,
+      "materialCount": 0,
+      "inventoryReceiveInd": false,
+      "offerPrice": 0.0,
+      "finalPrice": 0.0,
+      "expectedPrice": 0.0,
+      "mismatchOrderInd": false,
+      "cannotRepairCount": 0,
+      "pickUpDate": "2024-07-02T18:30:00Z",
+      "orderCompleteInd": false,
+      "pageCount": 6,
+      "dataCount": 20,
+      "listCount": 102
+  },
+  {
+    "userId": "EMP16818052295222021",
+    "orderPhoneId": "ORDPG6454078640632024",
+    "locationId": "LDS65468903772222023",
+    "orderInventoryLocationLinkId": "OILLG7738984419032024",
+    "createAt": "2024-07-03T12:29:20.164Z",
+    "activeInd": true,
+    "transferInd": 2,
+    "phoneCount": 0,
+    "count": 0,
+    "contactPersonId": "COIG1030765006232024",
+    "newOrderNo": "000103072024",
+    "inspectionInd": 0,
+    "phoneReceiveCount": 5,
+    "repairRemainingQuantity": 6,
+    "phoneRemainingQuantity": 6,
+    "qcStartInd": 3,
+    "qcRepairInd": 3,
+    "dispatchPhoneCount": 5,
+    "dispatchInspectionInd": 4,
+    "dispatchedBy": "null",
+    "dispatchDate": "null",
+    "shipperId": "null",
+    "pickedInd": false,
+    "stopDispatchInspectionUser": "EMP3230714710282024",
+    "stopDispatchInspectionDate": "2024-07-03T13:34:08.966Z",
+    "stopDispatchInspectionUserName": "Rakesh sahoo",
+    "unloadingAddresses": [
+        {
+            "addressId": null,
+            "addressType": null,
+            "address1": null,
+            "address2": null,
+            "houseNo": null,
+            "town": null,
+            "street": null,
+            "city": null,
+            "postalCode": null,
+            "country": null,
+            "longitude": null,
+            "latitude": null,
+            "creatorId": null,
+            "state": null,
+            "employeeId": null,
+            "contactPersonId": null,
+            "countryCode": null,
+            "countryAlpha2Code": null,
+            "countryAlpha3Code": null
+        }
+    ],
+    "pickUpAddress": [
+        {
+            "addressId": "ADIF2753392581032024",
+            "addressType": null,
+            "address1": "",
+            "address2": null,
+            "houseNo": null,
+            "town": null,
+            "street": null,
+            "city": "",
+            "postalCode": null,
+            "country": "",
+            "longitude": "",
+            "latitude": "",
+            "creatorId": null,
+            "state": "",
+            "employeeId": null,
+            "contactPersonId": null,
+            "countryCode": null,
+            "countryAlpha2Code": "IN",
+            "countryAlpha3Code": "IND"
+        }
+    ],
+    "dispatchReceivedInd": false,
+    "newAwbNo": "null",
+    "weight": 0.0,
+    "materialCount": 0,
+    "inventoryReceiveInd": false,
+    "offerPrice": 0.0,
+    "finalPrice": 0.0,
+    "expectedPrice": 0.0,
+    "mismatchOrderInd": false,
+    "cannotRepairCount": 0,
+    "pickUpDate": "2024-07-02T18:30:00Z",
+    "orderCompleteInd": false,
+    "pageCount": 6,
+    "dataCount": 20,
+    "listCount": 102
+}
+]
 
   return (
     <>
@@ -78,6 +436,7 @@ function DispatchTable(props) {
             </div>
             <InfiniteScroll
               dataLength={props.allDispatchList.length}
+              // dataLength={AWBtst.length}
                next={handleLoadMore}
                hasMore={hasMore}
                loader={props.fetchingDispatchList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
@@ -85,8 +444,14 @@ function DispatchTable(props) {
               style={{ overflowX: "hidden" }}
               endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
             >
-              {props.allDispatchList.length ? <>
-                {props.allDispatchList.map((item) => {
+              {
+              props.allDispatchList.length 
+              // AWBtst.length
+              ? 
+              <>
+                {
+                props.allDispatchList
+                .map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.createAt).format("DD/MM/YYYY");
                   return (
@@ -176,11 +541,11 @@ function DispatchTable(props) {
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium flex-col w-[7.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.unloadingAddresses && item.unloadingAddresses[0].city && !item.newAwbNo ? <Button type="primary"
+                              {item.unloadingAddresses && item.unloadingAddresses[0].city && item.newAwbNo==="null" ? <Button type="primary"
                                 onClick={() => {
                                   handleRowData(item);
                                   props.handleCreateAWB(true)
-                                }}>Create AWB</Button> : item.newAwbNo}
+                                }}>Create AWB</Button> : item.newAwbNo=== "null" ? "" :item.newAwbNo}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

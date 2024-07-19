@@ -258,6 +258,10 @@ const initialState = {
   fetchingShipperUpdateList: false,
   fetchingShipperUpdateListError: false,
 
+
+  movingRejectToggle:false,
+  movingRejectToggleError:false,
+
   addingAirWayBillInShipper: false,
   addingAirWayBillInShipperError: false,
 
@@ -685,6 +689,31 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         setEditingShipperContactData: action.payload,
+      };
+
+
+
+
+
+      case types.MOVE_REJECT_TOGGLE_REQUEST:
+      return { ...state, movingRejectToggle: true };
+    case types.MOVE_REJECT_TOGGLE_SUCCESS:
+      return {
+        ...state,
+        movingRejectToggle: false,
+        addQualityManufactureDrawerModal:false,
+        productionQualityData: state.productionQualityData.filter(
+          (item) => item.cellChamberLinkId !== action.payload.cellChamberLinkId
+        ),
+        // productionTableData: state.productionTableData.filter(
+        //   (item) => item.productionProductId !== action.payload.productionProductId
+        // ),
+      };
+    case types.MOVE_REJECT_TOGGLE_FAILURE:
+      return {
+        ...state,
+        movingRejectToggle: false,
+        movingRejectToggleError: true,
       };
 
 

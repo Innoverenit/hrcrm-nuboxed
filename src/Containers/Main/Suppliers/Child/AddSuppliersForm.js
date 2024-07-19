@@ -159,7 +159,7 @@ function AddSuppliersForm (props) {
 
                   <div class="w-full">
                     <label>
-                      {/* Approval */}
+                      {/* Approve */}
                       {props.translatedMenuItems[17]} 
                     </label>
                   <Switch 

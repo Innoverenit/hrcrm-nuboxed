@@ -123,7 +123,7 @@ class InventoryMaterialTab extends PureComponent {
                                 
                               )}
                         </TabPane>
-
+{/* {this.props.productionInd===true&&this.props.erpInd===true&&( */}
                         <TabPane
                             tab={
                                 <>
@@ -145,6 +145,7 @@ class InventoryMaterialTab extends PureComponent {
                                 />
                             </Suspense>
                         </TabPane>
+    {/* )} */}
                     </StyledTabs>
                 </TabsWrapper>
 
@@ -153,7 +154,8 @@ class InventoryMaterialTab extends PureComponent {
     }
 }
 const mapStateToProps = ({ inventory, auth }) => ({
-
+    productionInd:auth.userDetails.userDetails,
+    erpInd:auth.userDetails.erpInd,
 });
 
 const mapDispatchToProps = (dispatch) =>

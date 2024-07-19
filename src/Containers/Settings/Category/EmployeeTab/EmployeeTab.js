@@ -1,4 +1,4 @@
-import React, { Component,lazy, Suspense } from "react";
+import React, { Component, Suspense } from "react";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
@@ -53,7 +53,7 @@ class EmployeeTab extends Component {
             <TabPane
                   tab={
                     <>
-                      <SourceIcon />
+                      <SourceIcon className="!text-icon" />
                       <Badge
                 count={this.props.developeCount.DevelopmentCount}
                 overflowCount={999}
@@ -71,7 +71,7 @@ class EmployeeTab extends Component {
                     <TabPane
                   tab={
                     <>
-                      <BuildCircleIcon />
+                      <BuildCircleIcon className="!text-icon" />
                       <Badge
                 count={this.props.equipmentCount.EquipmentCount}
                 overflowCount={999}

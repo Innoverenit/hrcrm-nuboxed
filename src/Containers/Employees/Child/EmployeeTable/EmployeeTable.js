@@ -797,7 +797,7 @@ function EmployeeTable(props) {
         <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-                    <div className=" md:w-[15.5rem]">{translatedMenuItems[0]}</div>
+                    <div className="w-[10rem] md:w-[16.5rem]">{translatedMenuItems[0]}</div>
                     {/* Name */}
                     <div className=" md:w-[9.1rem]">{translatedMenuItems[1]}</div>
                     {/* Department */}
@@ -805,11 +805,11 @@ function EmployeeTable(props) {
                     {/* Role */}
                     <div className="md:w-[8.7rem]">{translatedMenuItems[3]}</div>
                     {/* Mobile # */}
-                    <div className="md:w-[8.9rem]">{translatedMenuItems[4]}</div>
+                    <div className="md:w-[10.9rem]">{translatedMenuItems[4]}</div>
                     {/* Email # */}
                     <div className="md:w-[9.2rem]">{translatedMenuItems[5]}</div>
                     {/* Stop Access */}
-                    <div className="md:w-[10.2rem]">{translatedMenuItems[6]}</div>
+                    <div className="md:w-[8.2rem]">{translatedMenuItems[6]}</div>
                     {/* Multi Org */}
                     <div className="md:w-[11.2rem]"></div>
                 </div>
@@ -917,7 +917,7 @@ function EmployeeTable(props) {
                )}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[10.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium  md:w-[12.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     <span
               style={{ cursor: "pointer" }}

@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { Tooltip, Button,Card, Popconfirm, Switch } from "antd";
 import { bindActionCreators } from "redux";
 import QualityManufactureToggle from "./QualityManufactureToggle"
-
+import MoveRejectToggle from "../Quality/MoveRejectToggle"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getQualityManufactureData,getRejectManufactureData,getQualityManufactureUserData, emptyQualityManufactureData} from "../Main/Inventory/InventoryAction";
 // import MoveToggleQuality from "../Quality/MoveToggleQuality"
@@ -16,6 +16,14 @@ export const QualityManufactureList = (props) => {
   const [page, setPage] = useState(0);
   const [showMessage, setShowMessage] = useState(false);
     const [hasMore, setHasMore] = useState(true);
+    const idsFromData1 = props.qualityManufactureUserData.map(item => item.cellChamberLinkId);
+
+  
+  const commonItems = props.rejectManufactureData.filter(item => idsFromData1.includes(item.cellChamberLinkId));
+  const restItems = props.rejectManufactureData.filter(item => !idsFromData1.includes(item.cellChamberLinkId));
+
+  
+  const sortedData = [...commonItems, ...restItems];
     const handleClick = () => {
       setShowMessage(true);
     };
@@ -48,6 +56,9 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
   } else {
       size = "16px";
   }
+
+
+  
   return (
       <Tooltip title={tooltip}>
           <Button
@@ -200,14 +211,14 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                 
                 </div>
             
-                {props.rejectManufactureData.map((item, index) => {
+                {sortedData.map((item, index) => {
                     return (
                         <div key={index}>
                             <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                 <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
                                     <div 
                                     className="flex justify-between text-sm  font-semibold font-poppins"
-                                   
+                                    style={{ color: idsFromData1.includes(item.cellChamberLinkId) ? 'blue' : 'black' }}
                                     >
                                         {item.cellChamber}
                                     </div>
@@ -218,6 +229,21 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                    {item.cellUnit} 
                                     </div>
                                 </div>
+
+
+                                <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs  font-semibold  font-poppins">
+                                                         
+                                                        <MoveRejectToggle 
+                                                        item={item} 
+                                                        productionProductId={props.currentManufacture.productionProductId}
+                                                        // selectedZone={selectedZone}
+                                                        // selectedRack={selectedRack}
+
+                                                        />
+                                                      
+                                                    </div>
+                                                </div>
 
 
                                 {/* <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">

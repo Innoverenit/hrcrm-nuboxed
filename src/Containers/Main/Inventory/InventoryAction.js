@@ -2237,3 +2237,31 @@ export const getRejectManufactureData = (locationId) => (dispatch) => {
       });
     });
 };
+
+
+
+export const moveRejectToggle = (productionProductId,cellChamberLinkId) => (dispatch) => {
+  dispatch({
+    type: types.MOVE_REJECT_TOGGLE_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/production/quality/reject/${productionProductId}/${cellChamberLinkId}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.MOVE_REJECT_TOGGLE_SUCCESS,
+        payload: cellChamberLinkId,
+      });
+      message.success("Item transfered for Quality Check");
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.MOVE_REJECT_TOGGLE_FAILURE,
+        payload: err,
+      });
+      // message.error("Something went wrong");
+    });
+};
