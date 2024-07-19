@@ -43,7 +43,7 @@ function EmployeeForm(props) {
   const [reportingManager, setreportingManager] = useState("")
   const [secondaryReportingManager, setSecondaryreportingManager] = useState("")
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [bundleLoading, setLoading] = useState(true);
   const [checked, setChecked] = useState(true);
   const [typeInd, setTypeInd] = useState(false);
   const [selectedDept, setSelectedDept] = useState("");
@@ -328,9 +328,9 @@ function EmployeeForm(props) {
       value: item.country_name,
     };
   });
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  }
+  // if (bundleLoading) {
+  //   return <div><BundleLoader/></div>;
+  // }
  
   const { addEmployee, addingEmployee } = props;
   const selectedOption = props.assignedToList.find((item) => item.empName === selected);
@@ -1043,7 +1043,7 @@ function EmployeeForm(props) {
                   <div class=" flex mt-2 " >
                     <div>
                       <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                      translatedMenuItems[27] {/* Job Type */}
+                     {translatedMenuItems[27]}  {/* Job Type */}
                       </div>
                       <Switch
                         checked={active}
@@ -1077,7 +1077,7 @@ function EmployeeForm(props) {
                           id="app.category"
                           defaultMessage="Category"
                         /> */} 
-                        translatedMenuItems[28]
+                        {translatedMenuItems[28]}
                       </div>
                       <Switch
                         checked={typeInd}
@@ -1094,7 +1094,7 @@ function EmployeeForm(props) {
                       {/* <FormattedMessage
                       id="app.employeetype"
                       defaultMessage="Employee Type"
-                    /> */} translatedMenuItems[29]
+                    /> */} {translatedMenuItems[29]}
                     </div>
 
                     <Radio.Group
@@ -1106,7 +1106,7 @@ function EmployeeForm(props) {
                         value={"Employee"}
                         onChange={() => radioClick("employee")}
                       >
-                         translatedMenuItems[30]{/* Employee */}
+                        {translatedMenuItems[30]} {/* Employee */}
                       </Radio>
                       {typeInd === true && (
                         <Radio
@@ -1129,7 +1129,7 @@ function EmployeeForm(props) {
                   </div>
                   <div class="mt-2">
                     <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>
-                      {/* Reports To */} translatedMenuItems[32]
+                      {/* Reports To */} {translatedMenuItems[32]}
                       </label>
                   </div>
 
@@ -1137,7 +1137,7 @@ function EmployeeForm(props) {
                   <div class=" flex justify-between  max-sm:flex-col" >
                     <div class=" w-w48 max-sm:w-wk">
                       <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>
-                      translatedMenuItems[20]{/* Department */}
+                     { translatedMenuItems[20]}{/* Department */}
                         </label>
                       <Select
                         className="w-[250px]"
@@ -1152,7 +1152,7 @@ function EmployeeForm(props) {
 
                     <div class="w-w48  max-sm:w-wk">
                       <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>
-                      translatedMenuItems[33]{/* Reporting Manager */}
+                      {translatedMenuItems[33]}{/* Reporting Manager */}
                         </label>
                       <Select
                         className="w-[250px]"
@@ -1169,7 +1169,7 @@ function EmployeeForm(props) {
                   <div class=" flex justify-between  max-sm:flex-col" >
                     <div class=" w-w48 max-sm:w-wk">
                       <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>
-                      translatedMenuItems[34] {/* Secondary Department */}
+                      {translatedMenuItems[34]} {/* Secondary Department */}
                         </label>
                       <Select
                         className="w-[250px]"
@@ -1184,7 +1184,7 @@ function EmployeeForm(props) {
 
                     <div class="w-w48  max-sm:w-wk">
                       <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>
-                      translatedMenuItems[35] {/* Secondary Reporting Manager */}
+                      {translatedMenuItems[35]} {/* Secondary Reporting Manager */}
                         </label>
                       <Select
                         className="w-[250px]"
@@ -1208,7 +1208,7 @@ function EmployeeForm(props) {
                   type="primary"
                   loading={addingEmployee}
                 >
-                  translatedMenuItems[36] {/* Submit */}
+                  {translatedMenuItems[36]} {/* Submit */}
                 </Button>
               </div>
             </Form>

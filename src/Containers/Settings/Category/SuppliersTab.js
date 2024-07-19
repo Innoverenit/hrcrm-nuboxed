@@ -1,15 +1,9 @@
-import React, { Component, Suspense,lazy } from "react";
+import React, { Component, Suspense} from "react";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { connect } from "react-redux";
-import {  Badge } from "antd";
-import SourceIcon from '@mui/icons-material/Source';
-import PaymentIcon from '@mui/icons-material/Payment';
 import FactoryIcon from '@mui/icons-material/Factory';
-import { FormattedMessage } from "react-intl";
-import LOB from "./LOB/LOB";
-import CategoryList from "./CategoryList/CategoryList";
 import SupplierCategory from "./SupplierCategory";
 
 
@@ -40,7 +34,7 @@ class SuppliersTab extends Component {
     return (
       <>
          <div class="flex flex-nowrap" >
-          <div class=" w-[70%]" >
+          <div class=" w-[100%]" >
             <TabsWrapper>
             <StyledTabs
                 defaultActiveKey={activeKey}
@@ -49,7 +43,7 @@ class SuppliersTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <FactoryIcon />
+                      <FactoryIcon className=" !text-icon"/>
             
                       <span class="font-poppins ml-1 ">
                       {/* <Badge
@@ -57,7 +51,7 @@ class SuppliersTab extends Component {
                 overflowCount={999}
               > */}
                 
-                   SupplierCategory 
+                   Category 
                        
                         {/* </Badge> */}
                       </span>

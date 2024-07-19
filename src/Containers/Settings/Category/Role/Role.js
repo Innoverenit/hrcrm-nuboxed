@@ -200,11 +200,11 @@ return <div><BundleLoader/></div>;
           </div>
           </div>
           <div class=" flex flex-col" >
-          <MainWrapper className="!h-[69vh] !mt-2" >
+          <MainWrapper className= " h-[69vh] !mt-2" >
           {!props.fetchingRoles && roles.length === 0 ? <NodataFoundPage /> : roles.slice().sort((a, b) => a.roleType.localeCompare(b.roleType)).map((region, index) => (
             <div className=" flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444]  p-2 justify-between items-center h-8 mt-1" key={region.roleTypeId}>
             {/* Region name display or input field */}
-            
+            <div className=" flex flex-row">  
             {editingId === region.roleTypeId ? (
               <>
                 <input
@@ -217,7 +217,7 @@ return <div><BundleLoader/></div>;
      
                 </>
             ) : (
-                <div style={{width:"8rem"}}>
+                <div style={{width:"10rem"}}>
                   {region.roleType}</div>
             )}
 
@@ -236,13 +236,13 @@ return <div><BundleLoader/></div>;
                               </select>
               ) : (
 
-                  <div  style={{width:"39rem"}}>{region.department}&nbsp;&nbsp;&nbsp;
+                  <div  style={{width:"12rem"}}>{region.department}
                   {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                         >
                                           New
                                         </span> : null}</div>
               )}
-
+</div>
             {/* Action buttons */}
             <div>
                 {/* Edit button */}

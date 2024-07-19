@@ -21,6 +21,8 @@ class Location extends Component {
         setLocationViewType={setLocationViewType}
         viewType={viewType}/>
         <AddLocationModal
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
           handleLocationModal={this.props.handleLocationModal}
           addlocationModal={this.props.addlocationModal}
         />
