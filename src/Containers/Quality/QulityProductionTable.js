@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import ButtonGroup from "antd/lib/button/button-group";
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
-import { Tooltip, Button, Popconfirm, Select,Switch } from "antd";
+import { Tooltip, Button,message, Popconfirm, Select,Switch } from "antd";
 import { bindActionCreators } from "redux";
 import AddQualityManufactureDrawerModal from "../Quality/AddQualityManufactureDrawerModal"
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -270,16 +270,18 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                                     
                                                                     iconType={<HourglassBottomIcon  className=' !text-icon text-orange-600'/>}
                                                                     tooltip={item.qualityStatus}
-                                                                    //  onClick={() => {
-                                                                    //     props.updatePQualityStatus({
-                                                                    //         type: "In Progress",
-                                                                    //     }, 
-                                                                    //     item.productionProductId);
+                                                                    
+                                                                    // onClick={() => {
+                                                                    //     props.updateQualityStatus(item.productionProductId,"Complete")
+                                                                       
+                                                                       
                                                                     // }}
                                                                     onClick={() => {
-                                                                        props.updateQualityStatus(item.productionProductId,"Complete")
-                                                                       
-                                                                       
+                                                                      if (item.qualityCheckStatusInd) {
+                                                                        props.updateQualityStatus(item.productionProductId, "Complete");
+                                                                      } else {
+                                                                        message.warning('Please complete all mandatory quality checks.');
+                                                                      }
                                                                     }}
                                                                    
                                                                 /> :null}

@@ -9,12 +9,14 @@ import dayjs from "dayjs";
 
 import { FormattedMessage } from "react-intl";
 import ReactToPrint from "react-to-print";
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import ButtonGroup from "antd/lib/button/button-group";
-import {updateProStatus,updateProductionPauseStatus} from "../ProductionAction"
+import {updateProStatus,handleProductionQuality,updateProductionPauseStatus} from "../ProductionAction"
 import {  PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import InpectProductionToggle from "./InpectProductionToggle.js";
 import { base_url2 } from "../../../Config/Auth";
+import AddProductionQualityModal from "../Child/AddProductionQualityModal.js"
 import MoveToggleProduction from "../Child/MoveToggleProduction.js"
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage.js";
 
@@ -23,6 +25,7 @@ const { Option } = Select;
 function ProductionTableView(props) {
     const [zone, setZone] = useState([]);
   const [rack, setRack] = useState([]);
+  const [particularDiscountData, setParticularDiscountData] = useState({});
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [isLoadingZone, setIsLoadingZone] = useState(false);
   const [isLoadingRack, setIsLoadingRack] = useState(false);
@@ -74,6 +77,10 @@ function ProductionTableView(props) {
     //     user,
     //     openbUILDERProductiondrawer, handleBuilderProduction, clickedProductionIdrwr, handleProductionIDrawer
     // } = props;
+
+    function handleParticularRowData(item) {
+        setParticularDiscountData(item);
+      }
 
 
 
@@ -208,6 +215,9 @@ function ProductionTableView(props) {
                             {/* Attribute */}
                             {translatedMenuItems[5]}
                             </div>
+                            <div className=" md:w-[5.51rem] ">
+                          
+                            </div>
                         <div className=" md:w-[5.51rem] ">
                             {/* Status */}
                             {translatedMenuItems[6]}
@@ -292,6 +302,24 @@ function ProductionTableView(props) {
                                                     <div class=" text-xs  font-poppins">
 
                                                         {item.attributeName}  {item.subAttributeName} 
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div className=" flex  items-center md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins">
+                                                    {item.qualityCheckRejectInd === true && (
+                                                    <Tooltip title="Quality">
+                          <VerifiedUserIcon
+                            className="!text-icon cursor-pointer text-[blue]"
+                            onClick={() => {
+                              props.handleProductionQuality(true);
+                            handleParticularRowData(item);
+                            }}
+                          />
+                        </Tooltip>
+                                                    )}
                                                     </div>
                                                 </div>
                                                 
@@ -523,7 +551,11 @@ function ProductionTableView(props) {
             </div>
 
 
-           
+           <AddProductionQualityModal
+           particularDiscountData={particularDiscountData}
+           handleProductionQuality={props.handleProductionQuality}
+           productionQualityModal={props.productionQualityModal}
+           />
             <OnboardingProduction
             productionTableData={props.productionTableData}
             />
@@ -539,6 +571,7 @@ const mapStateToProps = ({ production, auth, inventory }) => ({
     // productionByLocsId: production.productionByLocsId,
     // fetchingProductionLocId: production.fetchingProductionLocId,
     locationId: auth.userDetails.locationId,
+    productionQualityModal:production.productionQualityModal,
     // orgId: auth.userDetails.organizationId,
     // user: auth.userDetails,
     
@@ -557,8 +590,9 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             updateProStatus,
-            updateProductionPauseStatus
-            //getProductionTable,
+            updateProductionPauseStatus,
+            //getProductionTable,,
+            handleProductionQuality
             // getProductionsbyLocId,
             // handleBuilderProduction,
             // updatePauseStatus,

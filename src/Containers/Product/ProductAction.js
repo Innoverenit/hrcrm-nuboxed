@@ -1963,6 +1963,85 @@ export const addDragQuality = (data) => (dispatch) => {
 };
 
 
+export const deleteQualityProductData = (qualityCheckBuilderId,productId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_QUALITY_PRODUCT_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/qualityCheckBuilder/delete/${qualityCheckBuilderId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: res.data,
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch(getQualityProducts(productId));
+      dispatch({
+        type: types.DELETE_QUALITY_PRODUCT_DATA_SUCCESS,
+        payload:qualityCheckBuilderId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_QUALITY_PRODUCT_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const updateQualityProduct = (data,qualityCheckBuilderId) => (dispatch) => {
+  // const { locationId,organizationId } = getState().auth.userDetails;
+  
+  dispatch({ type: types.UPDATE_QUALITY_PRODUCT_REQUEST });
+  axios
+    .put(`${base_url2}/qualityCheckBuilder/update/${qualityCheckBuilderId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getRoomRackByLocId(locationId,organizationId))
+      dispatch({
+        type: types.UPDATE_QUALITY_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_QUALITY_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 
 
 

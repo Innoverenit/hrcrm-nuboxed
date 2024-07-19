@@ -3,14 +3,19 @@ import { Form, Input, Button } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import MoveToggleQualityProduct from "../ProductTable/MoveToggleQualityProduct"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import {createQualityProduct,getQualityProducts,addDragQuality} from "../../ProductAction"
+import {createQualityProduct,getQualityProducts,deleteQualityProductData,addDragQuality,updateQualityProduct} from "../../ProductAction"
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 const QualityProductForm = (props) => {
   const [qualityProducts, setQualityProducts] = useState(props.qualityProducts);
   const [form] = Form.useForm();
+
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [newQualityName, setNewQualityName] = useState("");
   const [isDragAndDropEnabled, setIsDragAndDropEnabled] = useState(false);
 
 
@@ -62,6 +67,32 @@ steps:values.steps,
   };
 console.log(props.particularDiscountData)
 
+
+const handleEditClick = (index, qualityName) => {
+  setEditingIndex(index);
+  setNewQualityName(qualityName);
+};
+
+const handleSaveClick = (index,item) => {
+  console.log(item)
+  console.log(newQualityName)
+  props.updateQualityProduct(
+    {
+qualityName:newQualityName,
+  },
+ item.qualityCheckBuilderId
+)
+setNewQualityName(newQualityName)
+  // Call a function to save the new quality name (e.g., an API call)
+  // props.saveQualityName(index, newQualityName);
+  setEditingIndex(null);
+};
+
+const handleCancelClick = () => {
+  setEditingIndex(null);
+  setNewQualityName("");
+};
+
 // function handleSetCurrentData(item) {
 //   setCurrentData(item);
 //   // console.log("opp",item);
@@ -92,7 +123,7 @@ useEffect(() => {
       </Form.Item>
 
       <Form.Item
-        label="Serial No"
+        label="Serial Nos"
         name="steps"
         rules={[{ required: true, message: 'Please input your second value!' }]}
       >
@@ -118,6 +149,8 @@ useEffect(() => {
                     <div className=""></div>
                     <div className="md:w-[22.12rem]"><FormattedMessage id="app.step" defaultMessage="Step" /></div>
                     <div className="md:w-[15.5rem]"><FormattedMessage id="app.serialno" defaultMessage="Serial No" /></div>
+                    <div className=""></div>
+                    <div className=""></div>
                     <div className=""></div>
                   
                 </div>
@@ -160,7 +193,16 @@ useEffect(() => {
                       >
                         <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
                           <div className="flex justify-between text-sm font-semibold font-poppins">
-                            {item.qualityName}
+                            {/* {item.qualityName} */}
+                            {editingIndex === index ? (
+                <Input
+                  value={newQualityName}
+                  onChange={(e) => setNewQualityName(e.target.value)}
+                  onPressEnter={() => handleSaveClick(index,item)}
+                />
+              ) : (
+                item.qualityName
+              )}
                           </div>
                         </div>
 
@@ -182,6 +224,37 @@ useEffect(() => {
                                                         // selectedRack={selectedRack}
                                                     className=' !text-icon'
                                                         />
+                          </div>
+                        </div>
+
+
+
+                        <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                          <div className="font-normal text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
+                            {/* {item.steps} */}
+
+                            {editingIndex === index ? (
+                <>
+                  <Button type="link" onClick={() => handleSaveClick(index,item)}>Save</Button>
+                  <Button type="link" onClick={handleCancelClick}>Cancel</Button>
+                </>
+              ) : (
+                <EditOutlined onClick={() => handleEditClick(index, item.qualityName)} />
+              )} 
+                          </div>
+                        </div>
+
+
+
+                        <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                          <div className="font-normal text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
+                            {/* {item.steps} */}
+                            <StyledPopconfirm
+            title="Do you want to delete?"
+            onConfirm={() => props.deleteQualityProductData(item.qualityCheckBuilderId)}
+          >
+   <DeleteOutlined/>
+   </StyledPopconfirm>
                           </div>
                         </div>
 
@@ -209,7 +282,17 @@ useEffect(() => {
                       >
                         <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
                           <div className="flex justify-between text-sm font-semibold font-poppins">
-                            {item.qualityName}
+                            {/* {item.qualityName} */}
+
+                            {editingIndex === index ? (
+                <Input
+                  value={newQualityName}
+                  onChange={(e) => setNewQualityName(e.target.value)}
+                  onPressEnter={() => handleSaveClick(index,item)}
+                />
+              ) : (
+                item.qualityName
+              )}
                           </div>
                         </div>
 
@@ -231,6 +314,37 @@ useEffect(() => {
                                                         // selectedRack={selectedRack}
                                                     className=' !text-icon'
                                                         />
+                          </div>
+                        </div>
+
+
+                        <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                          <div className="font-normal text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
+                            {/* {item.steps} */}
+
+   {/* <EditOutlined/> */}
+   {editingIndex === index ? (
+                <>
+                  <Button type="link" onClick={() => handleSaveClick(index,item)}>Save</Button>
+                  <Button type="link" onClick={handleCancelClick}>Cancel</Button>
+                </>
+              ) : (
+                <EditOutlined onClick={() => handleEditClick(index, item.qualityName)} />
+              )}
+                          </div>
+                        </div>
+
+
+
+                        <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                          <div className="font-normal text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
+                            {/* {item.steps} */}
+                            <StyledPopconfirm
+            title="Do you want to delete?"
+            onConfirm={() => props.deleteQualityProductData(item.qualityCheckBuilderId,props.particularDiscountData.productId)}
+          >
+   <DeleteOutlined/>
+   </StyledPopconfirm>
                           </div>
                         </div>
 
@@ -270,7 +384,9 @@ const mapDispatchToProps = (dispatch) =>
         {
             createQualityProduct,
             getQualityProducts,
-            addDragQuality
+            addDragQuality,
+            deleteQualityProductData,
+            updateQualityProduct
         //   getLocationMachine,
         //   createMachinary,
         //   getLocationMachineData,
