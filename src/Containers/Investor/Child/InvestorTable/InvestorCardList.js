@@ -43,6 +43,7 @@ import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
 import InventoryPriceDrawer from "./InventoryPriceDrawer";
 import InvestorDocumentDrawerModal from "./InvestorDocumentDrawerModal";
 import InvestorSearchedData from "./InvestorSearchedData";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddInvestorNotesDrawerModal = lazy(() => import("../InvestorDetail/AddInvestorNotesDrawerModal"));
 const ContactsInvestorModal = lazy(() => import("./ContactsInvestorModal"));
 const UpdateInvestorModal = lazy(() =>
@@ -58,6 +59,44 @@ function InvestorCardList(props) {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+         
+            "Name",//0
+            "Sector",//1
+            "Deals",//2
+            "In Progress",//3
+            "signed",//4
+            "Category",//5
+            "First Meeting",//6
+            "Shares",//7
+            " Value",//8
+            "Club",//9
+            "Assigned",//10
+            "Owner",//11
+            "Source"//12
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -132,7 +171,9 @@ function InvestorCardList(props) {
   // if (fetchingInvestors) {
   //   return <BundleLoader />;
   // }
-
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
    {props.investorSerachedData.length > 0 ? (
@@ -143,65 +184,78 @@ function InvestorCardList(props) {
   ) : (
   <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[11.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] "><FormattedMessage
+        <div className=" w-[11.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
+        {translatedMenuItems[0]} {/* <FormattedMessage
                   id="app.name"
                   defaultMessage="Name"
-                /></div>
-        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        {translatedMenuItems[1]} {/* <FormattedMessage
                   id="app.sector"
                   defaultMessage="Sector"
-                /></div>
+                /> */}
+                </div>
         <div className=" w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[8.2rem] "></div>
-        <div className="w-[3.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># <FormattedMessage
+        <div className="w-[3.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">#
+        {translatedMenuItems[2]} {/* <FormattedMessage
                   id="app.deals"
                   defaultMessage="Deals"
-                /></div>
+                /> */}
+                </div>
         <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
+        {translatedMenuItems[3]}{/* <FormattedMessage
                   id="app.inprogress"
                   defaultMessage="In Progress"
-                />
+                /> */}
           </div>
           <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
+          {translatedMenuItems[4]}{/* <FormattedMessage
                   id="app.Signed"
                   defaultMessage="Signed"
-                />
+                /> */}
           </div>
           <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
+          {translatedMenuItems[5]}{/* <FormattedMessage
                   id="app.Category"
                   defaultMessage="Category"
-                />
+                /> */}
           </div>
           <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-      First Meeting
+          {translatedMenuItems[6]}
+      {/* First Meeting */}
           </div>
           <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-       Shares #
+          {translatedMenuItems[7]}
+       {/* Shares # */}
           </div>
          
           <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        Value
+          {translatedMenuItems[8]}
+        {/* Value */}
           </div>
           <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        Club
+          {translatedMenuItems[9]}
+        {/* Club */}
           </div>
         <div className="w-[4.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
-        <FormattedMessage
+        {translatedMenuItems[10]}
+        {/* <FormattedMessage
                   id="app.assigned"
                   defaultMessage="Assigned"
-                />
+                /> */}
          </div>
-        <div className="w-[2.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]"><FormattedMessage
+        <div className="w-[2.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
+        {translatedMenuItems[11]}{/* <FormattedMessage
                   id="app.owner"
                   defaultMessage="owner"
-                /></div>
+                /> */}
+                </div>
         <div className="w-[5.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        <FormattedMessage
+        {translatedMenuItems[12]}{/* <FormattedMessage
                   id="app.source"
                   defaultMessage="Source"
-                />
+                /> */}
           </div>
         {/* <div className="w-12">Action</div> */}
 

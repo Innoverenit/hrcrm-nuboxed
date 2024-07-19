@@ -24,6 +24,38 @@ const DealsAllCardList = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+         " Name",//0
+          "Investor",//1
+          "Sponsor",//2
+          "Start Date",//3
+          "Values",//4
+          "Stages",//5
+          "Sales Rep",//6
+          "Owner",//7
+          "Action",//8
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     props.getAllDeals("all", page);
     setPage(page + 1);
@@ -59,7 +91,9 @@ const DealsAllCardList = (props) => {
     return <BundleLoader />;
   }
 
-  
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
 
   return (
     <>
@@ -70,39 +104,66 @@ const DealsAllCardList = (props) => {
   ) : (
       <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[14.5rem]"><FormattedMessage
+          <div className=" md:w-[14.5rem]">
+          {translatedMenuItems[0]}
+            {/* <FormattedMessage
             id="app.name"
             defaultMessage="name"
-          /></div>
-          <div className=" md:w-[13.13rem]"><FormattedMessage
+          /> */}
+          </div>
+          <div className=" md:w-[13.13rem]">
+          {translatedMenuItems[1]}
+            {/* <FormattedMessage
             id="app.investor"
             defaultMessage="investor"
-          /></div>
-          <div className=" md:w-[9.2rem] "><FormattedMessage
+          /> */}
+          </div>
+          <div className=" md:w-[9.2rem] ">
+          {translatedMenuItems[2]}
+            {/* <FormattedMessage
             id="app.sponsor"
             defaultMessage="sponsor"
-          /></div>
-          <div className="md:w-[6.12rem]"><FormattedMessage
+          /> */}
+          </div>
+          <div className="md:w-[6.12rem]">
+          {translatedMenuItems[3]}
+            {/* <FormattedMessage
             id="app.startdate"
             defaultMessage="startdate"
-          /></div>
-          <div className="md:w-[7.2rem]"><FormattedMessage
+          /> */}
+          </div>
+          <div className="md:w-[7.2rem]">
+          {translatedMenuItems[4]}
+            {/* <FormattedMessage
             id="app.value"
             defaultMessage="Value"
-          /></div>
-          <div className="md:w-[4.2rem]"><FormattedMessage
+          /> */}
+          </div>
+          <div className="md:w-[4.2rem]">
+          {translatedMenuItems[5]}
+            {/* <FormattedMessage
             id="app.stages"
             defaultMessage="stages"
-          /></div>
-          <div className="md:w-[5.26rem]">Status</div>
-          <div className="md:w-[7.21rem]"><FormattedMessage
+          /> */}
+          </div>
+          <div className="md:w-[5.26rem]">
+          {translatedMenuItems[6]}
+            {/* Status */}
+            </div>
+          <div className="md:w-[7.21rem]">
+          {translatedMenuItems[7]}
+            {/* <FormattedMessage
             id="app.assignto"
             defaultMessage="Assign To"
-          /></div>
-          <div className="md:w-[3rem]"><FormattedMessage
+          /> */}
+          </div>
+          <div className="md:w-[3rem]">
+          {translatedMenuItems[8]}
+            {/* <FormattedMessage
             id="app.owner"
             defaultMessage="owner"
-          /></div>
+          /> */}
+          </div>
 
         </div>
         <InfiniteScroll

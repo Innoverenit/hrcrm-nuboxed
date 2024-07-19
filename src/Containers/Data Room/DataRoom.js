@@ -16,20 +16,30 @@ function DataRoom (props) {
         return (
             <React.Fragment>
             <DataRoomHeader
-      setDataRoomViewType={props.setDataRoomViewType}
-      viewType={props.viewType}
-      handleDataroomModal={handleDataroomModal}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+             setDataRoomViewType={props.setDataRoomViewType}
+             viewType={props.viewType}
+             handleDataroomModal={handleDataroomModal}
             />
              <AddDataRoomModal
-          addDataroomModal={addDataroomModal}
-          handleDataroomModal={handleDataroomModal}
+             selectedLanguage={props.selectedLanguage}
+             translateText={props.translateText}
+             addDataroomModal={addDataroomModal}
+             handleDataroomModal={handleDataroomModal}
         /> 
            
           
             <Suspense fallback={<BundleLoader />}>
             {props.viewType === "list" ? (
            //<DataRoomTab />
-         <DataRoomCard/>
+           
+
+         <DataRoomCard
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
+         translatedMenuItems={props.translatedMenuItems}
+         />
           ) : null}
            
    

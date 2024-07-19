@@ -245,6 +245,7 @@ import * as Yup from "yup";
 import  {addDataroom,getuserList} from  "./DataRoomAction";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
+import { BundleLoader } from "../../Components/Placeholder";
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -257,12 +258,17 @@ const CustomerSchema = Yup.object().shape({
 const { Option } = Select;  
 
 function CustomerForm(props) {
+
    const[checked,setChecked]=useState(true);
   const[whiteblue,setWhiteblue]=useState(true);
   const [include, setInclude] = useState([]);
   const [isLoadingInclude, setIsLoadingInclude] = useState(false);
   const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
   const [touchedInclude, setTouchedInclude] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+  
 
   function handleWhiteBlue(checked) {
     setWhiteblue(checked);
@@ -299,6 +305,28 @@ function CustomerForm(props) {
   };
 
   useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          ' Name', // 0
+          'Include User '// 1
+
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  useEffect(() => {
     props. getuserList(props.orgId);
   }, []);
 
@@ -326,6 +354,9 @@ function CustomerForm(props) {
   //     value: item.employeeId,
   //   };
   // });
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
       <Formik
@@ -370,11 +401,12 @@ function CustomerForm(props) {
                     <div class="w-w47.5">
                       <div class=" flex justify-between max-sm:flex-col">
                        
-                        <div class=" w-wk max-sm:w-full ">
+                        <div class="font-bold text-xs w-wk max-sm:w-full ">
+                        <label>{translatedMenuItems[0]}</label>
                           <FastField
                             isRequired
                             name="name"
-                            label="Name"
+                           // label="Name"
                             type="text"
                             width={"100%"}
                             isColumn
@@ -400,7 +432,7 @@ function CustomerForm(props) {
       }
       inlineLabel
     /> */}
-     <label className="font-bold text-xs">Include User</label>
+     <label className="font-bold text-xs">{translatedMenuItems[1]}</label>
         <Select
           showSearch
           style={{ width: "-webkit-fill-available" }}

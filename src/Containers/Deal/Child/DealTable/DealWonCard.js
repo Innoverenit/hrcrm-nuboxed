@@ -35,14 +35,47 @@ import {
 } from "../../../Opportunity/OpportunityAction";
 import {getWonDeals,handleUpdateDealModal,handleDealsNotesDrawerModal} from "../../DealAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 
 
 function DealWonCard(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+         " Name",//0
+          "Investor",//1
+          "Sponsor",//2
+          "Start Date",//3
+          "Values",//4
+          "Stages",//5
+          "Sales Rep",//6
+          "Owner",//7
+          "Action",//8
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     if(props.role==="USER"&&user.department==="Recruiter"){
       props.getRecruiterList(props.recruiterId);     
@@ -81,49 +114,72 @@ function DealWonCard(props) {
      
       } = props;
 
+      if (loading) {
+        return <div><BundleLoader/></div>;
+      }
+
       return (    
   <>
 
      
 <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[13.82rem] max-xl:w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className=" w-[13.82rem] max-xl:w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[0]}
+        {/* <FormattedMessage
                   id="app.name"
                   defaultMessage="name"
-                /></div>
-        <div className=" w-[8.21rem] max-xl:w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className=" w-[8.21rem] max-xl:w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[1]} {/* <FormattedMessage
                   id="app.investor"
                   defaultMessage="investor"
-                /></div>
-        <div className=" w-[7.21rem] max-xl:w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
+                /> */}
+                </div>
+        <div className=" w-[7.21rem] max-xl:w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+        {translatedMenuItems[2]} {/* <FormattedMessage
                   id="app.sponsor"
                   defaultMessage="sponsor"
-                /></div>
-        <div className="w-[6.11rem] max-xl:w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="w-[6.11rem] max-xl:w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[3]}{/* <FormattedMessage
                   id="app.startdate"
                   defaultMessage="startdate"
-                /></div>
-        <div className="w-[8.16rem] max-xl:w-[9.16rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="w-[8.16rem] max-xl:w-[9.16rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          <FormattedMessage
                   id="app.proposalamt"
                   defaultMessage="proposalamt"
-                /></div>
-        <div className="w-[8.14rem] max-xl:w-[6.14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                />
+                </div>
+        <div className="w-[8.14rem] max-xl:w-[6.14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[5]}  {/* <FormattedMessage
                   id="app.stages"
                   defaultMessage="stages"
-                /></div> 
-        <div className="w-[8.1rem] max-xl:w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div> 
+        <div className="w-[8.1rem] max-xl:w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[6]}{/* <FormattedMessage
                   id="app.salesRep"
                   defaultMessage="salesRep"
-                /></div>
-        <div className="w-[5.22rem] max-xl:w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="w-[5.22rem] max-xl:w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[7]} {/* FormattedMessage
                   id="app.owner"
                   defaultMessage="owner"
-                /></div>
+                /> */}
+                </div>
         <div className="w-[2.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="w-[3.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[3.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[8]}{/* <FormattedMessage
                   id="app.action"
                   defaultMessage="action"
-                /></div>
+                /> */}
+                </div>
       </div>
       <InfiniteScroll
          dataLength={wonDeals.length}
