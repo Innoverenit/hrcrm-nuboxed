@@ -12,12 +12,17 @@ class TeamsHeader extends Component {
         <ActionHeader
           leftComponent={
             <TeamsActionLeft
+            translateText={this.props.translateText}
+      
+       selectedLanguage={this.props.selectedLanguage}
               viewType={viewType}
               setTeamsViewType={setTeamsViewType}
             />
           }
           rightComponent={
             <TeamsActionRight 
+            translateText={ this.props.translateText}
+            selectedLanguage={ this.props.selectedLanguage}
             viewType={viewType}
             handleTeamsModal={handleTeamsModal} />
           }

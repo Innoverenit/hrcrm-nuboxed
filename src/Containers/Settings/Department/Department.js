@@ -7,7 +7,6 @@ import { FormattedMessage } from "react-intl";
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { MainWrapper } from "../../../Components/UI/Layout";
 import { TextInput,  } from "../../../Components/UI/Elements";
 import {
   getDepartments,
@@ -164,15 +163,9 @@ class Department extends Component {
     return (
       <>
         <div flexWrap="nowrap">
-          <MainWrapper
-            style={{
-              flexBasis: "100%",
-              // height: "30.625em",
-              overflow: "auto",
-              color: "#FFFAFA",
-            }}
-          >
+          
               <div class=" flex flex-row justify-between">
+
                        <div class=" flex w-[18vw]" >
                        <Input
          placeholder="Search by Name"
@@ -253,9 +246,11 @@ class Department extends Component {
 
              </div>
              
-
+<div className=" overflow-y-auto"
+           style={{ scroll:"thin"}}>
             <div class=" flex flex-col" >
-            <MainWrapper className="!h-[69vh] !mt-2" >
+            <div className="!h-[69vh] !mt-2" >
+              <div>
               {departments.length ? (
   departments
     .slice() 
@@ -282,11 +277,11 @@ class Department extends Component {
                   ) : (
                     <p>None Available</p>
                   )}
-
-              </MainWrapper>
+</div>
+              </div>
             </div>
            
-          </MainWrapper>
+          </div>
       
   
         </div>
