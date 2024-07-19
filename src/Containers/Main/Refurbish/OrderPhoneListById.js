@@ -317,11 +317,24 @@ function OrderPhoneListById(props) {
                         >
                             {props.orderPhoneList.map((item, index) => {
                                 const percentage = Math.floor((item.checkedSpare / item.totalSpare) * 100)
-                                const acivedPercentage = Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100)
+                                const acivedPercentage = isNaN(Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100)) ? 0 : Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100)
+
+
+                                //  const acivedPercentage = Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100)
                                 const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                                 const isAcivedPercentage = !isNaN(acivedPercentage) && isFinite(acivedPercentage);
                                 const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
+                                const getGradientStrokeColor = (percent) => {
+                                    if (percent === 0) return '#d3d3d3'; // Grey for 0%
+                                    if (percent === 100) return '#00FF00'; // Green for 100%
+                                    return {
+                                      '0%': '#d3d3d3', // Grey at start
+                                      [`${percent}%`]: '#0000FF', // Blue at current percentage
+                                      '100%': '#00FF00', // Green at end
+                                    };
+                                  };
                                 const endtimme = time.format('YYYY-MM-DDTHH:mm:ss.SSSZ'); // Using ISO 8601 format
+                                console.log(acivedPercentage)
                                 return (
                                     <div>
                                         <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 max-sm:h-[8rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
@@ -509,7 +522,7 @@ function OrderPhoneListById(props) {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  w-[3.51rem] max-xl:w-[5.01rem] max-lg:w-[4.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium  w-[11.51rem] max-xl:w-[5.01rem] max-lg:w-[4.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {/* <Tooltip title="Task">
                                                         <Button
@@ -536,13 +549,13 @@ function OrderPhoneListById(props) {
                                                                 }}
                                                             />
                                                         </Tooltip> */}
-                                                           {isAcivedPercentage ? (
+                                                           {/* {isAcivedPercentage ? ( */}
                                                             <Tooltip title="Task">
                                                                 <Progress
                                                                    percent={acivedPercentage}
-                                                                    success={{ percent: 30 }}
+                                                                   // success={{ percent: 0 }}
                                                                     format={() => `${acivedPercentage}%`}
-                                                                    strokeColor={"#005075"}
+                                                                    strokeColor={getGradientStrokeColor(acivedPercentage)}
                                                                     style={{ width: "8rem", cursor: "pointer" }}
                                                                     onClick={() => {
                                                                         handleSetRowData(item);
@@ -551,7 +564,7 @@ function OrderPhoneListById(props) {
                                                                     }}/>
 
                                                             </Tooltip>
-                                                       ) : null}  
+                                                       {/* ) : null}   */}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

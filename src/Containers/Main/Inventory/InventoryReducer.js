@@ -95,6 +95,7 @@ const initialState = {
   addingReceivedUser: false,
   addingReceivedUserError: false,
   receivedModal: false,
+  //addrecivedAwb:{},
 
   //file damaged
   fileDamagedModal: false,
@@ -517,8 +518,9 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         addingReceivedUser: false,
+        //addrecivedAwb: action.payload 
         // addCreateAwb: false,
-        // addAwbNo: false
+         addAwbNo: true
       };
     case types.ADD_RECEIVED_FAILURE:
       return {
