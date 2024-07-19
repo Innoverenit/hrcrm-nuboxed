@@ -64,6 +64,8 @@ const handleChange = (e) => {
         return (
             <React.Fragment>
           <InvestorHeader
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
           viewType={viewType}
           setInvestorViewType={setInvestorViewType}
           teamsAccessInd={teamsAccessInd}
@@ -78,17 +80,31 @@ const handleChange = (e) => {
           filter={filter}
           />
           <AddInvestorModal
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
           addInvestorModal={addInvestorModal}
           handleInvestorModal={handleInvestorModal}
           />
  <Suspense fallback={<BundleLoader />}>
  {teamsAccessInd ? (
-       <InvestorTeamCardList/>
+       <InvestorTeamCardList
+       translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
+       />
         ) : (
           <>
-            {viewType === 'list' && <InvestorCardList/> }
-            {viewType === 'all' && <InvestorAllCardList  filter={filter}/> }
-            {viewType === 'teams' &&  <InvestorTeamCardList/>}
+            {viewType === 'list' && <InvestorCardList
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+            /> }
+            {viewType === 'all' && <InvestorAllCardList  filter={filter}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+            /> }
+            {viewType === 'teams' &&  <InvestorTeamCardList
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+            />}
           </>
         )}
  {/* {  viewType === "list" ?

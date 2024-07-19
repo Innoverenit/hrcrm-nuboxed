@@ -171,6 +171,7 @@ function ContactCardList(props) {
     updateContactModal,
     contactCETdrawer
   } = props;
+  
   if (loading) {
     return <div><BundleLoader/></div>;
   }

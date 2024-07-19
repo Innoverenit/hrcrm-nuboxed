@@ -19,6 +19,39 @@ const UpdateLeavesModal = lazy(() => import("../Tab/UpdateLeavesModal"));
 const { Option } = Select;
 function LeaveCardList(props) {
   const [page, setPage] = useState(0);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+       " Start Date",//0
+          "End Date",//1
+          "Cover",//2
+          " Reason",//2
+          " Waiting for approval",//3
+          "Sector",//4
+          "Category",//5
+          "Share",//6
+          "Value",//7
+           "Owner",//8
+           "Qualify"//9
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
 
   useEffect(() => {
     props.getLeaveListRangeByUserId(props.userId);
@@ -231,6 +264,8 @@ function LeaveCardList(props) {
       </div >
 
       <UpdateLeavesModal
+      selectedLanguage={this.props.selectedLanguage}
+      translateText={this.props.translateText}
         leaveId={currentLeaveId}
         updateLeaveModal={updateLeaveModal}
         handleUpdateLeaveModal={handleUpdateLeaveModal}

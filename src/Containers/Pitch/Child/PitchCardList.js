@@ -213,7 +213,7 @@ const handleLoadMore2 = () => {
     <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-red-600  justify-center ">Hot</div>
         <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
-        {translatedMenuItems[0]} {/* <FormattedMessage
+       {translatedMenuItems[0]}  {/* <FormattedMessage
                   id="app.name"
                   defaultMessage="name"
                 /> */}

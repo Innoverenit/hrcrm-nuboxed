@@ -43,6 +43,9 @@ const OpportunitySchema = Yup.object().shape({
   oppStage: Yup.string().required("Input needed!"),
 });
 function DealForm(props) {
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  
   useEffect(() => {
     props.getInvestorCurrency();
     props.getRecruiterName();
@@ -56,6 +59,36 @@ function DealForm(props) {
     props.getAllDealStages(props.orgId);
   }, []);
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+          " Name",//0
+          "Start Date",//1
+              "End Date",//2
+              "Fund Value",//3
+              "Currency",//4
+              "Assigned",//5
+              "Include",//6
+              "Investor",//7
+              "Contact",//8
+              "Workflow",//9
+              "Stages"//10
+
+
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  
   const [defaultOption, setDefaultOption] = useState(props.fullName);
   const [selected, setSelected] = useState(defaultOption);
 
@@ -359,16 +392,17 @@ function DealForm(props) {
           <Form className="form-background">
             <div class=" flex justify-around max-sm:flex-col">
               <div class=" h-full w-w47.5 max-sm:w-wk">
-              <div class="mt-3">
+              <div class=" text-xs mt-3">
+              <label>{translatedMenuItems[0]} </label>
                 <Field
                   isRequired
                   name="opportunityName"
                   type="text"
                   //label="Name"
 
-                  label={
-                    <FormattedMessage id="app.name" defaultMessage="name" />
-                  }
+                  // label={
+                  //   <FormattedMessage id="app.name" defaultMessage="name" />
+                  // }
                   isColumn
                   width={"100%"}
                   component={InputComponent}
@@ -377,33 +411,35 @@ function DealForm(props) {
                 />
                </div>
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" text-xs w-w47.5 max-sm:w-wk">
+                <label>{translatedMenuItems[1]} </label>
                     <Field
                       name="startDate"
                       //label="Start "
-                      label={
-                        <FormattedMessage
-                          id="app.startdate"
-                          defaultMessage="startdate"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.startdate"
+                      //     defaultMessage="startdate"
+                      //   />
+                      // }
                       component={DatePicker}
                       value={values.startDate}
                       isColumn
                       inlineLabel
                     />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" text-xs w-w47.5 max-sm:w-wk">
+                  <label>{translatedMenuItems[2]} </label>
                     <Field
                       // isRequired
                       name="endDate"
                       // label="End Date"
-                      label={
-                        <FormattedMessage
-                          id="app.enddate"
-                          defaultMessage="enddate"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.enddate"
+                      //     defaultMessage="enddate"
+                      //   />
+                      // }
                       isColumn
                       component={DatePicker}
                       value={values.endDate || values.startDate}
@@ -424,23 +460,25 @@ function DealForm(props) {
                 </div>
                
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class="  w-w47.5 max-sm:w-wk">
+                <div class="  text-xs w-w47.5 max-sm:w-wk">
+                <label>{translatedMenuItems[3]} </label>
                     <Field
                       name="proposalAmount"
                       //label="Value"
 
-                      label={
-                        <FormattedMessage
-                          id="app.fundValue"
-                          defaultMessage="fundValue"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.fundValue"
+                      //     defaultMessage="fundValue"
+                      //   />
+                      // }
                       isColumn
                       width={"100%"}
                       component={InputComponent}
                     />
                   </div>
-                  <div class="  w-w47.5 max-sm:w-wk">
+                  <div class="  text-xs w-w47.5 max-sm:w-wk">
+                  <label>{translatedMenuItems[4]} </label>
                   <Field
                       name="currency"
                       isColumnWithoutNoCreate
@@ -448,12 +486,12 @@ function DealForm(props) {
                         //value: props.user.currency,
                         value: props.currency_name
                       }}
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.currency"
+                      //     defaultMessage="Currency"
+                      //   />
+                      // }
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -518,15 +556,16 @@ function DealForm(props) {
               </div>
             <div
                class=" h-full w-w47.5 max-sm:w-wk">
+                 <label>{translatedMenuItems[5]} </label>
               <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mt-[0.6rem]">
+            {/* <Listbox.Label className="block font-semibold text-[0.75rem] mt-[0.6rem]">
              <FormattedMessage
                           id="app.assignedto"
                           defaultMessage="assignedto"
                         />
-            </Listbox.Label>
+            </Listbox.Label> */}
             <div className="relative ">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} >
                 {selected}
@@ -589,16 +628,17 @@ function DealForm(props) {
           </>
         )}
       </Listbox>
-<div class=" mt-1">
+<div class="text-xs mt-1">
+<label>{translatedMenuItems[6]} </label>
 <Field
                     name="included"
                     // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="include"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.include"
+                    //     defaultMessage="include"
+                    //   />
+                    // }
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -614,16 +654,17 @@ function DealForm(props) {
 <div class="mt-2 flex justify-between max-sm:flex-col">
 <div class=" w-w47.5 max-sm:w-wk">
 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+<label>{translatedMenuItems[7]} </label>
                   <Field
                     name="investorId"
                     // selectType="customerList"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.investor"
-                        defaultMessage="investor"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.investor"
+                    //     defaultMessage="investor"
+                    //   />
+                    // }
                     //component={SearchSelect}
                     component={SelectComponent}
                     options={
@@ -659,16 +700,17 @@ function DealForm(props) {
                         </div>
                         </div>
                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                        <label>{translatedMenuItems[8]} </label>
                   <Field
                     name="contactId"
                     // selectType="contactListFilter"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="contact"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.contact"
+                    //     defaultMessage="contact"
+                    //   />
+                    // }
                     // component={SearchSelect}
                     component={SelectComponent}
                     options={
@@ -722,18 +764,19 @@ function DealForm(props) {
                 <div class="flex justify-between max-sm:flex-col mt-3">
                   <div class=" w-w47.5 max-sm:w-wk">
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                  <label>{translatedMenuItems[9]} </label>
                       <Field
                         name="oppWorkflow"
                         // selectType="contactListFilter"
                         isColumnWithoutNoCreate
                         isRequired
                         placeolder="Select type"
-                        label={
-                          <FormattedMessage
-                            id="app.workflow"
-                            defaultMessage="workflow"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.workflow"
+                        //     defaultMessage="workflow"
+                        //   />
+                        // }
                         // component={SearchSelect}
                         component={SelectComponent}
                         options={
@@ -748,16 +791,17 @@ function DealForm(props) {
                   
                   <div class=" w-w47.5 max-sm:w-wk ">
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                  <label>{translatedMenuItems[10]} </label>
                       <Field
                         name="oppStage"
                         isRequired
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.stages"
-                            defaultMessage="stages"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.stages"
+                        //     defaultMessage="stages"
+                        //   />
+                        // }
                         component={SelectComponent}
                         options={
                           Array.isArray(

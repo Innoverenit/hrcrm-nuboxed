@@ -13,6 +13,8 @@ const DataRoomCard = (props) => {
   const [rowData, setRowData] = useState({});
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const {
     getDataRoom,
@@ -22,6 +24,32 @@ const DataRoomCard = (props) => {
     dataRoomlist,
     fetchingInventoryList
   } = props;
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+           "Room Name",//0
+            "Room Member List",//1
+            "List Of User",//2
+            "List of Contact",//3
+            
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   useEffect(() => {
     getDataRoom(userId);
@@ -38,16 +66,16 @@ const DataRoomCard = (props) => {
         <div class="rounded m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[97.5%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">
-                Room Name
+            {translatedMenuItems[0]}  {/* Room Name */}
             </div>
             <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                Room Memeber List
+            {translatedMenuItems[1]}  {/* Room Member List */}
             </div>
             <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]">
-                List Of user
+            {translatedMenuItems[2]} {/* List Of user */}
             </div>
             <div className="w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                List Of Contact
+            {translatedMenuItems[3]} {/* List Of Contact */}
                 </div>    
             <div className="w-[4.3rem]"></div>
           </div>

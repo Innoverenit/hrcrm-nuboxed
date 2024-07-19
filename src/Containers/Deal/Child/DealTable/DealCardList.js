@@ -49,13 +49,17 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddDealsContactDrawerModal from "../UpdateDeal/AddDealsContactDrawerModal";
 import AddDealsOwnDrawerModal from "./AddDealsOwnDrawerModal";
 import SearchedDataDeal from "../../SearchedDataDeal";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const DealSelectStages =lazy(()=>import("./DealSelectStages"));
 
 function DealCardList(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+
   useEffect(() => {
     if (props.role === "USER" && user.department === "Recruiter") {
       props.getRecruiterList(props.recruiterId);
@@ -70,6 +74,35 @@ function DealCardList(props) {
     props.getDealListbyUserId(props.userId, page);
   };
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+         " Name",//0
+          "Investor",//1
+          "Sponsor",//2
+          "Start Date",//3
+          "Values",//4
+          "Stages",//5
+          "Sales Rep",//6
+          "Owner",//7
+          "Action",//8
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  
   useEffect(() => {
     return () => props.emptyDeals();
   }, []);
@@ -90,6 +123,10 @@ function DealCardList(props) {
     fetchingDeal,
   } = props;
 
+
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
      {props.dealSerachedData.length > 0 ? (
@@ -109,7 +146,7 @@ function DealCardList(props) {
         height={"80vh"}
       >
     <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center ">
-
+    
         { !fetchingDeal && dealsByuserId.length === 0 ?<NodataFoundPage />:dealsByuserId.map((item,index) =>  {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
@@ -429,6 +466,9 @@ function DealCardList(props) {
       </InfiniteScroll>
    )} 
       <UpdateDealModal
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
         currentItem={currentItem}
         openupdateDealModal={openupdateDealModal}
         handleUpdateDealModal={handleUpdateDealModal}

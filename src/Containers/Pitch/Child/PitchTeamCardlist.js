@@ -28,6 +28,7 @@ import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PitchSearchedData from "./PitchSearchedData";
+import { BundleLoader } from "../../../Components/Placeholder";
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("./UpdateLPitchModal"));
@@ -38,6 +39,39 @@ const ButtonGroup = Button.Group;
 const PitchTeamCardList = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+          "Name",//0
+          "Mobile",//1
+          "Company",//2
+          "Source",//3
+          "Sector",//4
+          "Assigned",//5
+          "Owner",//6
+          "Qualify",//7
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+
   useEffect(() => {
     props.getTeamPitch(props.userId,page);
     setPage(page + 1);
@@ -66,6 +100,9 @@ const PitchTeamCardList = (props) => {
   //   return <BundleLoader />;
   // }
 
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <div>
     {props.serachedPitchData.length > 0 ? (
@@ -76,37 +113,54 @@ serachedPitchData={props.serachedPitchData}
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
+        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
+        {translatedMenuItems[0]}{/* <FormattedMessage
                   id="app.name"
                   defaultMessage="name"
-                /></div>
+                /> */}
+                </div>
         <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className=" w-[5.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className=" w-[5.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[1]} {/* <FormattedMessage
                   id="app.mobile#"
                   defaultMessage="mobile#"
-                /></div>
+                /> */}
+                </div>
         <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
+        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        {translatedMenuItems[2]} {/* <FormattedMessage
                   id="app.company"
                   defaultMessage="company"
-                /></div>
-                    <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+                    <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    {translatedMenuItems[3]} {/* <FormattedMessage
                   id="app.Source"
                   defaultMessage="Source"
-                /></div>
-                     <div className="w-[3.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+                     <div className="w-[3.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {translatedMenuItems[4]}  {/* <FormattedMessage
                   id="app.Sector"
                   defaultMessage="Sector"
-                /></div>
-        <div className="w-[3.521rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
-        <div className="w-[2.52rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="w-[3.521rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[5]}
+          {/* Assigned */}
+          </div>
+        <div className="w-[2.52rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[6]} {/* <FormattedMessage
                   id="app.owner"
                   defaultMessage="owner" 
-                /></div>
-        <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        {translatedMenuItems[7]}{/* <FormattedMessage
                   id="app.qualify"
                   defaultMessage="qualify"
-                /></div>
+                /> */}
+                </div>
 
 
       </div>
@@ -510,6 +564,9 @@ serachedPitchData={props.serachedPitchData}
       <UpdateLPitchModal
         item={currentLeadsId}
         updatePitchModal={props.updatePitchModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         // updateLeadsModal={updateLeadsModal}
         handleUpdatePitchModal={props.handleUpdatePitchModal}
         // handleSetCurrentLeadsId={handleSetCurrentLeadsId}
