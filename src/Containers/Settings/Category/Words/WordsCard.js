@@ -65,7 +65,7 @@ words={words}
           return (
             
             <div key={index} className="w-full my-2 h-16 scale-98 hover:scale-100 ease-in duration-100 scroll-overflow ">
-              <div className={`bg-white rounded-md shadow border-solid w-w95 h-16 p-1 max-sm:h-28 m-0 md:m-auto`}>
+              <div className={`bg-white rounded-md  w-w95 h-16 p-1 max-sm:h-28  md:m-auto scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]`}>
                 <div className="flex max-sm:flex-col md:flex flex-row justify-around ">
                   <div className="w-full md:flex flex-col justify-center mb-auto">
                     <div className="flex justify-evenly">

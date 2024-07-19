@@ -170,7 +170,7 @@ const Quality = (props) => {
          <MainWrapper className="!h-[69vh] !mt-2" >
             {!props.fetchingQuality && qualityList.length === 0 ? <NodataFoundPage /> : qualityList.slice().sort((a, b) => a.code.localeCompare(b.code)).map((region, index) => (
      
-              <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center" key={region.qualityId}>
+              <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.qualityId}>
               {/* Region name display or input field */}
               
               {/* {editingId === region.qualityId ? (
@@ -216,7 +216,7 @@ const Quality = (props) => {
               )}
   
               {/* Action buttons */}
-              <div >
+              <div className=" flex flex-row" >
                   {/* Edit button */}
                   {editingId === region.qualityId ? (
                       <div>
@@ -224,7 +224,7 @@ const Quality = (props) => {
                           <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
-                      <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} 
+                      <BorderColorIcon  className=" !text-icon text-red-600 cursor-pointer"
                       onClick={() => editRegion(region.qualityId,region.code,region.description)} 
                       />
                   )}
@@ -236,12 +236,8 @@ const Quality = (props) => {
                           cancelText="No"
                            onConfirm={() =>  props.removeQuality(region.qualityId)}
                         >
-                  <DeleteOutlined 
-                    style={{
-                    
-                      color: "red",
-                      cursor:"pointer"
-                    }}
+                  <DeleteOutlined  className=" !text-icon text-red-600 cursor-pointer"
+                   
                 // onClick={() => 
                 //     props.removeServiceLine(item.qualityId)
                 //  }

@@ -16,6 +16,8 @@ class Location extends Component {
     return (
       <React.Fragment>
         <LocationHeader 
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         handleLocationModal={this.props.handleLocationModal}
         addlocationModal={this.props.addlocationModal}
         setLocationViewType={setLocationViewType}
