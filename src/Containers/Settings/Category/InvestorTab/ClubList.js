@@ -160,7 +160,7 @@ console.log(props.clubShareData)
       </Button>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center">
-            <div class="flex justify-around w-[30rem]">
+            <div class="flex justify-around w-[30rem]  ">
               
 
               <div>
@@ -221,7 +221,7 @@ console.log(props.clubShareData)
           {data.length ? data.map((item) => {
             return (
               <div key={item.clubId}>
-                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
+                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 >
 
 <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">

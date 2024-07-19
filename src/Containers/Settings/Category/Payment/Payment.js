@@ -163,7 +163,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingPayment && paymentsListData.length === 0 ? <NodataFoundPage /> : paymentsListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8" key={region.paymentCatagoryId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.paymentCatagoryId}>
             {/* Region name display or input field */}
             
             {editingId === region.paymentCatagoryId ? (
