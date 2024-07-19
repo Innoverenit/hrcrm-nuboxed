@@ -11,15 +11,48 @@ import { StyledSelect } from "../../../Components/UI/Antd";
 const Option = StyledSelect.Option;
 
 class EmployeesActionRight extends React.Component {
-  state = {
-    isClicked: "import",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
   componentDidMount() {}
   handleClicked = (value) => {
     this.setState({
       isClicked: value,
+      
     });
+    this.fetchMenuTranslations();
   };
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+          
+         
+        "Add",
+        
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+  state = {
+    isClicked: "import",
+  };
+ 
   render() {
     const { handleEmployeeModal, userId,user } = this.props;
     return (
@@ -40,7 +73,8 @@ class EmployeesActionRight extends React.Component {
          
             onClick={() => handleEmployeeModal(true)}
           >
-          < DataSaverOnIcon className="!text-icon"/>  Add
+          < DataSaverOnIcon className="!text-icon"/>  
+          {this.state.translatedMenuItems[0]} {/* Add */}
           </Button>
          ):null} 
         </div>

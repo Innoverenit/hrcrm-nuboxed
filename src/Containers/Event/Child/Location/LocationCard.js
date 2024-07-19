@@ -61,7 +61,7 @@ const LocationCard = (props) => {
           "Corporate",//6
           "Project",//7
           "Retail",//8
-          "Regions"//9
+          "Region"//9
          
         ];
 

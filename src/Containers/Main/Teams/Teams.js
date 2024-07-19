@@ -44,11 +44,19 @@ function Teams (props) {
   return (
     <React.Fragment>
       <TeamsHeader
+       
+       translateText={props.translateText}
+      
+       selectedLanguage={props.selectedLanguage}
         viewType={viewType}
         handleTeamsModal={handleTeamsModal}
         setTeamsViewType={setTeamsViewType}
       />
       <TeamsModal
+       
+       translateText={props.translateText}
+       translatedMenuItems={translatedMenuItems}
+       selectedLanguage={props.selectedLanguage}
         addTeamsModal={addTeamsModal}
         handleTeamsModal={handleTeamsModal}
       />
