@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Tooltip, Badge, Avatar } from "antd";
 import { FormattedMessage } from "react-intl";
+import {getReaasignProduct} from "../ProductionAction"
 import ArchiveIcon from '@mui/icons-material/Archive';
 import TokenIcon from '@mui/icons-material/Token';
 import { TableOutlined } from "@ant-design/icons";
@@ -17,6 +18,11 @@ const ProductionActionLeft = (props) => {
       props.getProductRecords(props.locationId);
     }
   }, [props.viewType, props.locationId]);
+  useEffect(() => {
+    props.getReaasignProduct(props.userId);
+    // setPage(page + 1);
+    // props.getRoomRackByLocId(props.locationId, props.orgId);
+}, []);
   return (
     <div class="flex items-center">
        <Tooltip title="My Workspace ">
@@ -119,7 +125,7 @@ const ProductionActionLeft = (props) => {
 
 
 
-               
+             <div style={{fontWeight:"bold"}}>Reaasign Product:{props.reassignProduct.rejectProduct}</div>  
                
     </div>
   );
@@ -129,12 +135,14 @@ const mapStateToProps = ({ auth,production }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
   locationId: auth.userDetails.locationId,
-  productrecordData:production.productrecordData
+  productrecordData:production.productrecordData,
+  reassignProduct:production.reassignProduct
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getProductRecords
+      getProductRecords,
+      getReaasignProduct
     },
     dispatch
   );

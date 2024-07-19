@@ -155,6 +155,10 @@ const initialState = {
   fetchingServiceByIdError: false,
   serviceById: {},
 
+
+  updateProductQuality:false,
+  updateProductQualityError:false,
+
   uploadProductList: false,
 
   uploadingProductList: false,
@@ -253,6 +257,11 @@ const initialState = {
   clearbitProduct: {},
 
   clearbitProductDistributor: {},
+
+
+
+  deleteQualityProductData:false,
+  deleteQualityProductDataError:false,
 
   updateCustomerOfferModal: false,
 
@@ -483,7 +492,49 @@ export const productReducer = (state = initialState, action) => {
 
 
 
+      case types.DELETE_QUALITY_PRODUCT_DATA_REQUEST:
+        return { ...state, deleteQualityProductData: true };
+      case types.DELETE_QUALITY_PRODUCT_DATA_SUCCESS:
+        return {
+          ...state,
+          deleteQualityProductData: false,
+          qualityProducts: state.qualityProducts.filter(
+            (item) => item.qualityCheckBuilderId !== action.payload
+          ),
+        };
+      case types.DELETE_QUALITY_PRODUCT_DATA_FAILURE:
+        return {
+          ...state,
+          deleteQualityProductData: false,
+          deleteQualityProductDataError: false,
+        };
 
+
+
+
+
+        case types.UPDATE_QUALITY_PRODUCT_REQUEST:
+          return { ...state, updateProductQuality: true };
+        case types.UPDATE_QUALITY_PRODUCT_SUCCESS:
+          return {
+            ...state,
+            updateProductQuality: false,
+            //qualityProducts:[action.payload,...state.qualityProducts]
+            qualityProducts: state.qualityProducts.map((item) => {
+              if (item.qualityCheckBuilderId === action.payload.qualityCheckBuilderId) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
+          };
+        case types.UPDATE_QUALITY_PRODUCT_FAILURE:
+          return {
+            ...state,
+            updateProductQuality: false,
+            updateProductQualityError: true,
+  
+          };
 
 
       case types.ADD_DRAG_QUALITY_REQUEST:

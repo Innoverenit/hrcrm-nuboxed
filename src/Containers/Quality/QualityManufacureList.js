@@ -159,6 +159,17 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                 </div>
 
 
+                                <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                    <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
+                                  {/* <QualityManufactureToggle
+                                  item={item}
+                                  currentManufacture={props.currentManufacture}
+                                  /> */}
+                                  {item.mandatoryInd===true?"Mandatory":"Not Mandatory"}
+                                    </div>
+                                </div>
+
+
 
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                                     <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
@@ -226,7 +237,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
 
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                                     <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
-                                   {item.cellUnit} 
+                                   {item.rejectUnit} 
                                     </div>
                                 </div>
 
