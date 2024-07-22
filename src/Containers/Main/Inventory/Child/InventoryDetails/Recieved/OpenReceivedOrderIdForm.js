@@ -44,6 +44,8 @@ function OpenReceivedOrderIdForm(props) {
   }, [])
 
   const [hasMore, setHasMore] = useState(true);
+  const [selectedRow, setSelectedRow] = useState(null);
+
   // const handleLoadMore = () => {
   //   setPage(page + 1);
   //   props.getPhonelistByOrderId(props.rowData.orderPhoneId, page)
@@ -201,9 +203,15 @@ function OpenReceivedOrderIdForm(props) {
               endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
             >
               {props.phoneListById.map((item, index) => {
+                 const isSelected = selectedRow === item.phoneId;
+
                 return (
                   <div>
-                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
+                   <div
+      className={`flex rounded mt-1  h-8 items-center p-1 ${
+        isSelected ? "bg-[#3bf6eb]" : "bg-white"
+      }`}
+    >
                       <div class="flex">
                         <div className=" flex font-medium   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs  font-poppins">
@@ -251,17 +259,20 @@ function OpenReceivedOrderIdForm(props) {
                       </div>
 
                       <div className=" flex font-medium  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        {item.receivePhoneInd?(
                         <div class=" text-xs  font-poppins text-center">
                           <Tooltip title="Task">
                             <FileDoneOutlined   className="!text-icon  text-[black]" type="file-done"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 handleExpand(item.phoneId);
+                                setSelectedRow(item.phoneId);
                               }}
                             />
 
                           </Tooltip>
                         </div>
+                         ):null}
                       </div>
                       <div className=" flex font-medium  md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">

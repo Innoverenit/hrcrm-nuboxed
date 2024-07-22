@@ -67,6 +67,7 @@ function AccountPhoneTaskTable(props) {
                     <div class="flex justify-between">
                         <div class="w-[48%]">
                             <Button type="primary"
+                             disabled={ props.particularRowData.repairStatus === "Complete"}
                                 loading={props.addingTaskByPhoneById}
                                 onClick={handleSubmitTask}>Add</Button>
                         </div>

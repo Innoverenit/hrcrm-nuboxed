@@ -67,6 +67,7 @@ function RepairTaskList(props) {
                     <div class="flex justify-between">
                         <div class="w-[48%]">
                             <Button type="primary"
+                            disabled={ props.RowData.repairStatus === "To Start" || props.RowData.repairStatus === "Complete"}
                                 loading={props.addingTaskByPhoneById}
                                 onClick={handleSubmitTask}>Add</Button>
                         </div>
@@ -74,7 +75,8 @@ function RepairTaskList(props) {
                 </div>
             </div>
             <Suspense fallback={<BundleLoader />}>
-                <RepairTaskTable phoneId={props.phoneId} />
+                <RepairTaskTable phoneId={props.phoneId} 
+                 RowData={props.RowData}/>
             </Suspense>
         </>
     );
