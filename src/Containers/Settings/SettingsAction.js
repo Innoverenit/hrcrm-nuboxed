@@ -3584,7 +3584,7 @@ export const addLeadsaging = (data) => (dispatch) => {
     });
 };
 
-export const addProcessForDeals = (data, orgId, cb) => (
+export const addProcessForDeals = (data,  cb) => (
   dispatch
 ) => {
   dispatch({
@@ -3592,14 +3592,14 @@ export const addProcessForDeals = (data, orgId, cb) => (
   });
 
   axios
-    .post(`${base_url}/workflow/investorOpportunityWorkflow`, data, {
+    .post(`${base_url}/workflow`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
       console.log(res);
-      dispatch(getProcessForDeals(orgId));
+      //dispatch(getProcessForDeals(orgId));
       dispatch({
         type: types.ADD_PROCESS_FOR_DEALS_SUCCESS,
         payload: res.data,
@@ -3647,7 +3647,7 @@ export const addProcessStageForDeals = (stage, cb) => (dispatch) => {
   dispatch({ type: types.ADD_PROCESS_STAGE_FOR_DEALS_REQUEST });
 
   axios
-    .post(`${base_url}/investorOpportunityWorkflow/opportunityStages`, stage, {
+    .post(`${base_url}/workflow/stages`, stage, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3656,7 +3656,7 @@ export const addProcessStageForDeals = (stage, cb) => (dispatch) => {
       console.log(res);
       dispatch({
         type: types.ADD_PROCESS_STAGE_FOR_DEALS_SUCCESS,
-        payload: { ...stage, stageId: res.data },
+        payload: res.data,
       });
       cb && cb("Success");
     })
@@ -3677,7 +3677,7 @@ export const getProcessStagesForDeals = (investorOppWorkflowId) => (
     type: types.GET_PROCESS_STAGES_FOR_DEALS_REQUEST,
   });
   axios
-    .get(`${base_url}/investorOpportunityWorkflow/opportunityStages/${investorOppWorkflowId}`, {
+    .get(`${base_url}/workflow/stages/${investorOppWorkflowId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3697,11 +3697,11 @@ export const getProcessStagesForDeals = (investorOppWorkflowId) => (
       });
     });
 };
-export const LinkDealsProcessPublish = (data, cb,) => (dispatch) => {
+export const LinkDealsProcessPublish = (data, cb) => (dispatch) => {
   dispatch({ type: types.LINK_DEALS_PROCESS_PUBLISH_REQUEST });
 
   axios
-    .put(`${base_url}/investorOpportunityWorkflow/update/publishInd`, data, {
+    .put(`${base_url}/workflow/update/publishInd`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3713,14 +3713,14 @@ export const LinkDealsProcessPublish = (data, cb,) => (dispatch) => {
         type: types.LINK_DEALS_PROCESS_PUBLISH_SUCCESS,
         payload: res.data,
       });
-      cb && cb("Success", res.data);
+    cb && cb("Success", res.data);
     })
     .catch((err) => {
       console.log(err);
       dispatch({
         type: types.LINK_DEALS_PROCESS_PUBLISH_FAILURE,
       });
-      cb && cb("Failure");
+     cb && cb("Failure");
     });
 };
 
@@ -3752,14 +3752,14 @@ export const LinkDealsStagePublish = (data, cb) => (dispatch) => {
 };
 
 
-export const deleteDealsProcessData = (investorOppWorkflowId, orgId) => (dispatch, getState) => {
+export const deleteDealsProcessData = (workflowDetailsId, cb) => (dispatch, getState) => {
   const { userId } = getState("auth").auth.userDetails;
   // console.log("inside deleteCall", callId);
   dispatch({
     type: types.DELETE_DEALS_PROCESS_DATA_REQUEST,
   });
   axios
-    .delete(`${base_url}/investorOpportunityWorkflow/${investorOppWorkflowId}`, {
+    .delete(`${base_url}/workflow/${workflowDetailsId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3769,8 +3769,9 @@ export const deleteDealsProcessData = (investorOppWorkflowId, orgId) => (dispatc
       //  dispatch(getScheduler(orgId));
       dispatch({
         type: types.DELETE_DEALS_PROCESS_DATA_SUCCESS,
-        payload: investorOppWorkflowId,
+        payload: workflowDetailsId,
       });
+      cb && cb("Success");
     })
     .catch((err) => {
       console.log(err);
@@ -3778,6 +3779,7 @@ export const deleteDealsProcessData = (investorOppWorkflowId, orgId) => (dispatc
         type: types.DELETE_DEALS_PROCESS_DATA_FAILURE,
         payload: err,
       });
+      cb && cb("Failure");
     });
 };
 
@@ -3810,12 +3812,12 @@ export const deleteDealsStagesData = (investorOppStagesId, orgId) => (dispatch, 
     });
 };
 
-export const updateProcessNameForDeals = (process, investorOppWorkflowId, cb) => (dispatch) => {
+export const updateProcessNameForDeals = (process, workflowDetailsId,cb) => (dispatch) => {
   debugger;
   dispatch({ type: types.UPDATE_PROCESS_NAME_FOR_DEALS_REQUEST });
 
   axios
-    .put(`${base_url}/investorOpportunityWorkflow/${investorOppWorkflowId}`, process, {
+    .put(`${base_url}/workflow/${workflowDetailsId}`, process, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -5052,7 +5054,7 @@ export const addProcessForRepair = (data, orgId, cb) => (
     })
     .then((res) => {
       console.log(res);
-       dispatch(getProcessForRepair(orgId));
+       //dispatch(getProcessForRepair(orgId));
       dispatch({
         type: types.ADD_PROCESS_FOR_REPAIR_SUCCESS,
         payload: res.data,
@@ -5068,13 +5070,13 @@ export const addProcessForRepair = (data, orgId, cb) => (
     });
 };
 
-export const getProcessForRepair = (orgId) => (dispatch) => {
+export const getProcessForWorkFlowData = (orgId,type) => (dispatch) => {
   debugger;
   dispatch({
-    type: types.GET_PROCESS_FOR_REPAIR_REQUEST,
+    type: types.GET_PROCESS_FOR_WORKFLOW_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/repairWorkflow/${orgId}`, {
+    .get(`${base_url}/workflow/${orgId}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -5082,14 +5084,14 @@ export const getProcessForRepair = (orgId) => (dispatch) => {
     .then((res) => {
       console.log("print when new process added................", res);
       dispatch({
-        type: types.GET_PROCESS_FOR_REPAIR_SUCCESS,
+        type: types.GET_PROCESS_FOR_WORKFLOW_DATA_SUCCESS,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err);
       dispatch({
-        type: types.GET_PROCESS_FOR_REPAIR_FAILURE,
+        type: types.GET_PROCESS_FOR_WORKFLOW_DATA_FAILURE,
         payload: err,
       });
     });

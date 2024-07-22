@@ -680,9 +680,13 @@ addingShipperCategoryError: false,
   gettingNotificationConfigError:false,
   notificationConfig:[],
 
-  fetchingProcessForRepair: false,
-  fetchingProcessForRepairError: false,
-  repairProcess: [],
+  // fetchingProcessForRepair: false,
+  // fetchingProcessForRepairError: false,
+  // repairProcess: [],
+  fetchingProcessForWorkFlowData:false,
+  fetchingProcessForWorkFlowDataError:false,
+
+  processForWorkflowData:[],
 
   creatingCurrencyConversion: false,
   creatingCurrencyConversionError: false,
@@ -2974,6 +2978,7 @@ export const settingsReducer = (state = initialState, action) => {
         ...state,
         addingProcessForDeals: false,
         addingProcessForDealsError: false,
+        processForWorkflowData: [action.payload, ...state.processForWorkflowData],
         // addProcessHiringModal: false,
       };
     case types.ADD_PROCESS_FOR_DEALS_FAILURE:
@@ -3050,9 +3055,9 @@ export const settingsReducer = (state = initialState, action) => {
       return {
         ...state,
         linkingDealsProcessPublish: false,
-        dealsProcessPublish: state.dealsProcessPublish.map((item) => {
+        processForWorkflowData: state.processForWorkflowData.map((item) => {
           if (
-            item.investorOppWorkflowId === action.payload.investorOppWorkflowId
+            item.workflowDetailsId === action.payload.workflowDetailsId
           ) {
             return action.payload;
           } else {
@@ -3099,8 +3104,8 @@ export const settingsReducer = (state = initialState, action) => {
       return {
         ...state,
         deleteDealsProcessData: false,
-        dealsProcess: state.dealsProcess.filter(
-          (item) => item.investorOppWorkflowId !== action.payload
+        processForWorkflowData: state.processForWorkflowData.filter(
+          (item) => item.workflowDetailsId !== action.payload
         ),
       };
     case types.DELETE_DEALS_PROCESS_DATA_FAILURE:
@@ -3129,8 +3134,8 @@ export const settingsReducer = (state = initialState, action) => {
         ...state,
         updateProcessNameForDeals: false,
 
-        dealsProcess: state.dealsProcess.map((state) =>
-          state.investorOppWorkflowId === action.payload.investorOppWorkflowId
+        processForWorkflowData: state.processForWorkflowData.map((state) =>
+          state.workflowDetailsId === action.payload.workflowDetailsId
             ? action.payload
             : state
         ),
@@ -3896,24 +3901,24 @@ export const settingsReducer = (state = initialState, action) => {
                                 // addProcessHiringModal: false,
                               };
 
-                              case types.GET_PROCESS_FOR_REPAIR_REQUEST:
+                              case types.GET_PROCESS_FOR_WORKFLOW_DATA_REQUEST:
                                 return {
                                   ...state,
-                                  fetchingProcessForRepair: true,
-                                  fetchingProcessForRepairError: false,
+                                  fetchingProcessForWorkFlowData: true,
+                                  fetchingProcessForWorkFlowDataError: false,
                                 };
-                              case types.GET_PROCESS_FOR_REPAIR_SUCCESS:
+                              case types.GET_PROCESS_FOR_WORKFLOW_DATA_SUCCESS:
                                 return {
                                   ...state,
-                                  fetchingProcessForRepair: false,
-                                  fetchingProcessForRepairError: false,
-                                  repairProcess: action.payload,
+                                  fetchingProcessForWorkFlowData: false,
+                                  fetchingProcessForWorkFlowData: false,
+                                  processForWorkflowData: action.payload,
                                 };
-                              case types.GET_PROCESS_FOR_REPAIR_FAILURE:
+                              case types.GET_PROCESS_FOR_WORKFLOW_DATA_FAILURE:
                                 return {
                                   ...state,
-                                  fetchingProcessForRepair: false,
-                                  fetchingProcessForRepairError: true,
+                                  fetchingProcessForWorkFlowData: false,
+                                  fetchingProcessForWorkFlowDataError: true,
                                 };
 
                                 case types.UPDATE_PROCESS_NAME_FOR_REPAIR_REQUEST:
