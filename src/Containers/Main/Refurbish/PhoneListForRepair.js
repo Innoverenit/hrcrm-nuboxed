@@ -396,6 +396,7 @@ function PhoneListForRepair(props) {
                                             </div> */}
 
                                             <div className=" flex font-medium  w-[8.3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                {props.rowData.repairInspectionInd !== 0 &&
                                                 <div class=" text-xs  flex w-[3.5rem] font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {(x === true && y === true) &&
                                                         <Tooltip title="Pause">
@@ -450,7 +451,7 @@ function PhoneListForRepair(props) {
                                                         status={active}
                                                         id={item.phoneId}
                                                         phoneId={RowData.phoneId}
-                                                      
+                                                        disabled={ item.totalTaskCount !== item.totalCompleteTaskCount }
                                                         onClick={() => {
                                                             handleQCRepairStatus("Complete", item);
                                                         }}
@@ -460,6 +461,7 @@ function PhoneListForRepair(props) {
                                                     {/* </ButtonGroup> */}
 
                                                 </div>
+                                               }
                                             </div>
                                             <div className=" flex font-medium  w-[5.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -490,7 +492,7 @@ function PhoneListForRepair(props) {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
+                                        {props.rowData.repairInspectionInd !== 0 &&
                                             <div className=" flex font-medium w-[7.79rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {/* <Tooltip title="Spare">
@@ -511,7 +513,7 @@ function PhoneListForRepair(props) {
                                                      <Tooltip title="Spare">
                                                               <Progress 
                                                                percent={percentage}
-                                                               success={percentage}
+                                                               success={{percentage}}
                                                                format={() => `${percentage}%`} 
                                                                 style={{width:"8rem",cursor:"pointer"}} 
                                                                onClick={() => {
@@ -524,6 +526,8 @@ function PhoneListForRepair(props) {
                                                 
                                                 </div>
                                             </div>
+                        }
+                         {props.rowData.repairInspectionInd !== 0 &&
                                             <div className=" flex font-medium  w-[11.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {/* <Tooltip title="Task">
@@ -557,7 +561,7 @@ function PhoneListForRepair(props) {
                                                   <Tooltip title="Task">
                                                      <Progress
                                                     percent={acivedPercentage}
-                                                    success={acivedPercentage}
+                                                    success={{acivedPercentage}}
                                                    // strokeColor={getGradientStrokeColor(acivedPercentage)}
                                                     format={() => `${acivedPercentage}%`} 
                                                      style={{width:"8rem",cursor:"pointer"}} 
@@ -571,6 +575,7 @@ function PhoneListForRepair(props) {
                
                                                 </div>
                                             </div>
+                        }
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium  w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

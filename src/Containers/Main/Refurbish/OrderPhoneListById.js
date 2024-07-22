@@ -553,7 +553,7 @@ function OrderPhoneListById(props) {
                                                             <Tooltip title="Task">
                                                                 <Progress
                                                                    percent={acivedPercentage}
-                                                                    success={acivedPercentage}
+                                                                    success={{acivedPercentage}}
                                                                     format={() => `${acivedPercentage}%`}
                                                                    // strokeColor={getGradientStrokeColor(acivedPercentage)}
                                                                     style={{ width: "8rem", cursor: "pointer" }}

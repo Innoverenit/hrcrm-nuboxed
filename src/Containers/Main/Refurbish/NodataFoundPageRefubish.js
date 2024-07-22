@@ -38,7 +38,7 @@ class NodataFoundPageRefubish extends React.Component {
                 <div class=" flex text-lg font-bold font-poppins justify-center items-center mt-2"
 
                 >
-                No Phone Recived Yet!
+                Phones NOT  Received In Inventory
                 </div>
                 
               </div>

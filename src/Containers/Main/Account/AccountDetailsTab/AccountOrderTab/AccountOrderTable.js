@@ -474,7 +474,8 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                        {/* {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer"> */}
+                                                        { !item.inventoryReceiveInd ? (
+                                                        <div class=" cursor-pointer">
                                                         <Tooltip title="Add Supervisor">
                                                             <PersonAddAlt1
                                                                 className="!text-icon cursor-pointer"
@@ -484,7 +485,8 @@ const AccountOrderTable = (props) => {
                                                                     handleSetParticularOrderData(item)
                                                                 }} />
                                                         </Tooltip>
-                                                        {/* </div>} */}
+                                                        </div> ) : null
+                                                    }
 
                                                     
                                                    
@@ -911,7 +913,8 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                        {/* {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer"> */}
+                                                        { !item.inventoryReceiveInd ? (
+                                                            <div class=" cursor-pointer">
                                                         <Tooltip title="Add Supervisor">
                                                             <PersonAddAlt1
                                                                 className="!text-icon cursor-pointer"
@@ -921,7 +924,8 @@ const AccountOrderTable = (props) => {
                                                                     handleSetParticularOrderData(item)
                                                                 }} />
                                                         </Tooltip>
-                                                        {/* </div>} */}
+                                                       </div> ) : null
+                                                    }
 
                                                  
                                                    
@@ -1347,7 +1351,8 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                        {/* {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer"> */}
+                                                        { !item.inventoryReceiveInd ? (
+                                                        <div class=" cursor-pointer">
                                                         <Tooltip title="Add Supervisor">
                                                             <PersonAddAlt1
                                                                 className="!text-icon cursor-pointer"
@@ -1357,7 +1362,8 @@ const AccountOrderTable = (props) => {
                                                                     handleSetParticularOrderData(item)
                                                                 }} />
                                                         </Tooltip>
-                                                        {/* </div>} */}
+                                                        </div> ) : null
+                                                    }
 
                                                     
                                                   

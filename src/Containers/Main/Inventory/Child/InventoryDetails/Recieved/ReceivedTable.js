@@ -204,7 +204,7 @@ const ReceivedTable = (props) => {
 
                                 <Progress
                                   percent={percentage}
-                                  success={{ percent: 30 }}
+                                  success={{percentage}}
                                   format={() => `${percentage}%`}
                                   style={{ width: "8rem", cursor: "pointer" }}
                                 />
