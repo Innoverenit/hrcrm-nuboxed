@@ -258,7 +258,7 @@ const Collection = lazy(() => import("../Collection/Collection"));
 const Plant = lazy(() => import("../Plant/Plant"));
 const PlantDetail = lazy(() => import("../Plant/Child/PlantDetail/PlantDetail"));
 const Procurement = lazy(() => import("../Procurement/Procurement"));
-const Subscription = lazy(() => import("../Subscription/Subscription"));
+const SubscriptionMainApps = lazy(() => import("../Subscription/SubscriptionMainApps"));
 const Production = lazy(() => import("../Production/Production"));
 
 function MainApp(props) {
@@ -1806,17 +1806,19 @@ function MainApp(props) {
                         />
                       )}
                     />
-                     <Route
+                    <Route
                       exact
-                      path="/subscription"
+                      path="/subscriptionmainapps"
                       render={(props) => (
-                        <Subscription
+                        <SubscriptionMainApps
                           {...props}
+                          rowData={rowData}
                           translateText={translateText}
                            selectedLanguage={selectedLanguage}
                         />
                       )}
                     />
+                     
                       <Route path="**" component={PageNotFound} />
                     </Switch>
                   </Suspense>

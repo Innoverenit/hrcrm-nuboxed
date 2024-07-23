@@ -920,9 +920,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
          {(user.subscriptionAccessInd === true && user.erpInd === true 
         //  || user.role === "ADMIN" && user.subscriptionAccessInd === true
         ) &&  (
-        <Menu.Item key="/subscription" style={{ height: "1.45rem", 
-        color: selectedMenuItem === '/subscription' ? 'tomato' : '#4bc076' }}>
-          <Link to="/subscription" onClick={() => handleSelect('/subscription')}>
+        <Menu.Item key="/subscriptionmainapps" style={{ height: "1.45rem", 
+        color: selectedMenuItem === '/subscriptionmainapps' ? 'tomato' : '#4bc076' }}>
+          <Link to="/subscriptionmainapps" onClick={() => handleSelect('/subscriptionmainapps')}>
             <SubscriptionsIcon
               style={{ fontSize: "large" }}
             />
