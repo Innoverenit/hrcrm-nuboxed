@@ -1,11 +1,7 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { base_url } from "../../../Config/Auth";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getProductDesc} from "../../../Containers/Product/ProductAction";
-import { Form, Input, Button, Upload, message , Col, Row } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import axios from 'axios';
 import { MultiAvatar } from '../../../Components/UI/Elements';
 
 
@@ -24,9 +20,9 @@ const SpareNoteList = (props) => {
   return (
     <>
     
-    <div className=" flex justify-end sticky top-28 z-auto">
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+    <div className=" flex sticky z-auto">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex max-sm:hidden justify-between w-[97.5%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[2rem] max-xl:w-[2rem]"></div>
             <div className=" w-[8.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Description</div>
            
@@ -41,7 +37,7 @@ const SpareNoteList = (props) => {
                     
                   return (
                     <>
-                      <div className="flex rounded-xl justify-center bg-white mt-[0.5rem]  h-[2.75rem]  p-3 max-sm:h-[7.5rem] max-sm:flex-col">
+                      <div className="flex rounded justify-center bg-white mt-[0.5rem]  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                        
                        

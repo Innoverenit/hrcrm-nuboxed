@@ -30,7 +30,7 @@ const ProductionActionLeft = (props) => {
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         //overflowCount={999}
                     >
-                        <span class=" mr-1 text-sm cursor-pointer"
+                        <span class=" mr-1  cursor-pointer"
                             onClick={() => setProductionViewType("table")}
                             style={{
 
@@ -56,7 +56,7 @@ const ProductionActionLeft = (props) => {
         // count={(viewType === "stage" && recordData.opportunityDetails) || 0}
         overflowCount={999}
       >
-          <span class=" mr-1 text-sm cursor-pointer"
+          <span class=" mr-1 "
             style={{
               
               color: props.viewType === "stage" && "#1890ff",
@@ -64,20 +64,20 @@ const ProductionActionLeft = (props) => {
             onClick={() => props.setProductionViewType("stage")}
           >
              <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
-           <TableOutlined className=" text-white !text-icon"/>
+           <TableOutlined className=" text-white !text-icon  cursor-pointer"/>
            </Avatar>
           </span>
           </Badge>
         </Tooltip>
       <Tooltip title="Archive">
-        <span class=" mr-1 cursor-pointer"
+        <span class=" mr-1 "
           onClick={() => setProductionViewType("arch")}
           style={{
             color: viewType === "arch" && "#1890ff",
           }}
         >
           <Avatar style={{ background: viewType === "arch" ? "#f279ab" : "#4bc076" }}>
-            <ArchiveIcon className=" text-white !text-icon" />
+            <ArchiveIcon className=" text-white !text-icon cursor-pointer " />
           </Avatar>
 
         </span>
@@ -87,7 +87,7 @@ const ProductionActionLeft = (props) => {
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
                     >
-                        <span class=" mr-1 !text-icon cursor-pointer"
+                        <span class=" mr-1 text-sm "
                             onClick={() => setProductionViewType("all")}
                             style={{
 
@@ -95,7 +95,7 @@ const ProductionActionLeft = (props) => {
                             }}
                         >
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className=" text-white ">ALL</div></Avatar>
+                                <div className=" text-white  cursor-pointer ">ALL</div></Avatar>
 
                         </span>
                     </Badge>
@@ -107,7 +107,7 @@ const ProductionActionLeft = (props) => {
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
                     > */}
-                        <span class=" mr-1  cursor-pointer"
+                        <span class=" mr-1  "
                             onClick={() => setProductionViewType("cell")}
                             style={{
 
@@ -116,7 +116,7 @@ const ProductionActionLeft = (props) => {
                         >
                            
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                       <TokenIcon className="text-white !text-icon " /></Avatar>
+                       <TokenIcon className="text-white !text-icon cursor-pointer" /></Avatar>
 
 
                         </span>
@@ -125,7 +125,7 @@ const ProductionActionLeft = (props) => {
 
 
 
-             <div style={{fontWeight:"bold"}}>Reaasign Product:{props.reassignProduct.rejectProduct}</div>  
+             <div style={{fontWeight:"bold"}}> Items Reassigned:{props.reassignProduct.rejectProduct}</div>  
                
     </div>
   );

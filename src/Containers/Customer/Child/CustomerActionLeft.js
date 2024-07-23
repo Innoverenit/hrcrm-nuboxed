@@ -342,7 +342,7 @@ const CustomerActionLeft = (props) => {
             value={currentData}
           />
         </div>
-        <div class="w-[40%] mt-2 ml-2 max-sm:w-[45%]">
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
           <StyledSelect placeholder={
             <span>
               Sort by Creation Date

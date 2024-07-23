@@ -35,8 +35,7 @@ import { bindActionCreators } from "redux";
 import AddSpareNotesModal from "../Child/AddSpareNotesModal"
 import AddSpareStepsModal from "../Child/AddSpareStepsModal"
 import { Button, Steps } from 'antd';
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
-
+import ControlCameraIcon from '@mui/icons-material/ControlCamera';
 import {addSpareStepsModal,getProductionSteps,addSpareNotesModal} from "../ProductionAction"
 import NodataFoundPage1 from '../../../Helpers/ErrorBoundary/NodataFoundPage1';
 
@@ -94,7 +93,7 @@ const Component2 = (props) => {
     return (
         <>
         <div className=' flex justify-end sticky top-28 z-auto' style={{height:"43em"}}>
-             <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+             <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] " style={{scrollbarWidth:"thin"}}>
             <h2>
                 {/* Steps */}
                 {translatedMenuItems[0]}
@@ -129,8 +128,8 @@ const Component2 = (props) => {
                                                 {/* Add Parts */}
                                             </Button>
 
-                                            <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                                            <ControlCameraIcon
+                              className=" !text-icon cursor-pointer text-[#4bc076]"
                               onClick={() => {
                                 props.addSpareNotesModal(true);
                                 handleSteps(step);
