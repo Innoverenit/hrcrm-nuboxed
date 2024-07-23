@@ -2576,7 +2576,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   <div class="mt-3 flex justify-between">
                   <div class=" flex  flex-col mr-1 ">
                  
-                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
                        {/* Priority */}
                       {translatedMenuItems[0]}  {/* <FormattedMessage
                          id="app.priority"
@@ -2789,7 +2789,7 @@ const [priority,setpriority]=useState(props.selectedTask
           
              <div class=" w-[39.5%]  max-sm:w-wk ">
                
-             <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+             <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
              {translatedMenuItems[3]}  {/* <FormattedMessage
                        id="app.type"
                        defaultMessage="type"
@@ -3062,10 +3062,10 @@ const [priority,setpriority]=useState(props.selectedTask
                           component={DragableUpload}
                         />
                       </div>
-                      <div className="mt-3 font-semibold text-[0.75rem]">{translatedMenuItems[6]} </div>
-                      {/* Description */}
-                <div>
-                  <div>
+                      <div class="mt-2">
+              <div>
+            <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</span>
+            <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
                         <span  >
@@ -3076,8 +3076,10 @@ const [priority,setpriority]=useState(props.selectedTask
 
                     <span onClick={SpeechRecognition.stopListening}>
                       <Tooltip title="Stop">
-                        <span >
-                          <StopCircleIcon  className="!text-icon ml-1 text-green-600"/>
+                        <span
+                          
+                           >
+                          <StopCircleIcon  className="!text-icon ml-1 text-green-600" />
                         </span>
                       </Tooltip>
                     </span>
@@ -3089,17 +3091,21 @@ const [priority,setpriority]=useState(props.selectedTask
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                  </span> 
+                  
+                 
                   <div>
                     <textarea
                       name="description"
-                      className="textarea"
+                      className="textarea h-26"
                       type="text"
                       value={transcript ? transcript : text}
                       onChange={handletext}
                     ></textarea>
                   </div>
                 </div>
+                  </div>
+                     
                   <div class=" flex justify-between">
                     {values.taskTypeId === "TSK52434477391272022" && (
                       <div class=" w-1/2">
@@ -3347,12 +3353,12 @@ const [priority,setpriority]=useState(props.selectedTask
                                    <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] ">             
-            {translatedMenuItems[7]}   {/* <FormattedMessage
+            {/* <Listbox.Label className="block font-semibold text-[0.75rem] ">             
+             {/* <FormattedMessage
                                 id="app.assignedto"
                                 defaultMessage="assignedto"
                               /> */}
-            </Listbox.Label>
+            {/* </Listbox.Label> */}<div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div> 
             <div className="relative">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>
                 {selected}
@@ -3486,10 +3492,10 @@ const [priority,setpriority]=useState(props.selectedTask
                     }}
                   /> */}
 
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[8]}</label>
+   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                    <Select
           showSearch
-          style={{ width: 415 }}
+          
           placeholder="Search or select include"
           optionFilterProp="children"
           loading={isLoadingInclude}
@@ -3509,7 +3515,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   {props.user.crmInd === true &&(
               
      <>        
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[9]}</label>
+   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
 {/* prospect */}
 <Select
         showSearch
@@ -3532,7 +3538,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   {props.user.crmInd === true &&(
                   
                   <>
-                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}</label> 
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                   {/* Contact */}
 
 <Select
@@ -3579,7 +3585,7 @@ const [priority,setpriority]=useState(props.selectedTask
               //    inlineLabel
               //  />
               <>
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[11]}</label>
+   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
 {/* Opportunity */}
               <Select
         showSearch
@@ -3600,8 +3606,8 @@ const [priority,setpriority]=useState(props.selectedTask
                   )} 
                   </div>
                 
-                     <div class="  font-semibold text-[0.75rem] mt-4">
-                     <label>{translatedMenuItems[12]}</label>
+                     <div class="   mt-2">
+                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                       <Field
                             type="text"
                             name="link"

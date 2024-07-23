@@ -8,7 +8,7 @@ import { setEditLeads } from "../../LeadsAction";
 
 const UpdateLeadsModal = (props) => {
   const { updateCustomerModal, handleUpdateCustomerModal, ...formProps } = props;
-  console.log("dn",props.setEditingLeads.name)
+
   const isSmallScreen = window.innerWidth <= 600;
   const drawerWidth = isSmallScreen ? "90%" : "60%";
   return (

@@ -33,6 +33,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+import AddLocationIcon from '@mui/icons-material/AddLocation';
 import ReactContactSpeechModal from "../ContactDetail/ReactContactSpeechModal";
 import AddContactDrawerModal from "../UpdateContact/AddContactDrawerModal";
 import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerModal";
@@ -207,6 +208,7 @@ function ContactCardList(props) {
         hasMore={hasMore}
         loader={fetchingContacts?<div class="flex justify-center">Loading ...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         
@@ -330,8 +332,8 @@ function ContactCardList(props) {
         <MultiAvatar
           primaryTitle={item.ownerName}
           imageId={item.ownerImageId}
-          imgWidth={"1.9rem"}
-          imgHeight={"1.9rem"}
+          imgWidth={"1.8rem"}
+          imgHeight={"1.8rem"}
         />
       </Tooltip>
       </div>
@@ -340,8 +342,8 @@ function ContactCardList(props) {
              </div>
              <div>
               <Tooltip title="Address">
- <NoteAltIcon
-          className=" !text-icon cursor-pointer text-[#4bc076]"
+ <AddLocationIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
             props.handleContactAddressDrawerModal(true);
             handleSetCurrentContact(item);
@@ -449,7 +451,7 @@ function ContactCardList(props) {
                   
              
               
-                <div>
+                {/* <div>
               <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
       <span
         style={{
@@ -460,7 +462,7 @@ function ContactCardList(props) {
       className=" !text-icon cursor-pointer text-[#960A0A]"/>
       </span>
     </Tooltip>
-    </div>
+    </div> */}
     {/* <div><Tooltip title={item.email}>
         <MailOutlineIcon
           type="mail"

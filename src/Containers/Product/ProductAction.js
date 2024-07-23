@@ -1,7 +1,7 @@
 import * as types from "./ProductActionTypes";
 import { base_url, base_url2 } from "../../Config/Auth";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 import Swal from 'sweetalert2'
 
@@ -313,8 +313,8 @@ export const setTimeRangeCatalogue = (startDate, endDate) => (dispatch) => {
   dispatch({
     type: types.SET_TIME_INTERVAL_CATALOGUE,
     payload: {
-      startDate: moment(startDate).toISOString(),
-      endDate: moment(endDate).toISOString(),
+      startDate: dayjs(startDate).toISOString(),
+      endDate: dayjs(endDate).toISOString(),
     },
   });
 };

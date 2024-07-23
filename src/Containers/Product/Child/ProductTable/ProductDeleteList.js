@@ -38,7 +38,37 @@ function ProductDeleteList(props) {
   const [hasMore, setHasMore] = useState(true);
 
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+           "Article #",//0
+            "Name",//1
+            "Category",//2
+            "Attribute ",//3
+            " Brand",//5
+            " Model",//5
+            " Website",//6
+            "Reinstate"//7
 
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  
   useEffect(() => {
     props.getdeleteProducts();
   }, []);
@@ -98,14 +128,32 @@ function ProductDeleteList(props) {
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">  
           <div className="w-[7.01rem]"></div>        
-            <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">Article #</div>
-            <div className=" w-[13.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">Name</div>
-            <div className=" w-[9.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">Category</div>
-            <div className="w-[9.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">Attribute</div>
-            <div className="w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">Brand</div>
-            <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">Model</div>
-            <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Website</div>
-            <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Reinstate</div>
+          <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+            {translatedMenuItems[0]} {/* Article # */}
+              </div>
+            <div className=" w-[13.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
+            {translatedMenuItems[1]}  {/* Name */}
+              </div>
+            <div className=" w-[9.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
+            {translatedMenuItems[2]}
+            {/* Category */}
+              </div>
+            <div className="w-[9.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">
+            {translatedMenuItems[3]} {/* Attribute */}
+              </div>
+            <div className="w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">
+            {translatedMenuItems[4]}{/* Brand */}
+              </div>
+            <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">
+            {translatedMenuItems[5]} {/* Model */}
+            
+            </div>
+            <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            {translatedMenuItems[6]}  {/* Website */}
+              </div>
+            <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            {translatedMenuItems[7]} {/* Reinstate */}
+              </div>
             <div className="w-12"></div>
           </div>
           {/* <InfiniteScroll

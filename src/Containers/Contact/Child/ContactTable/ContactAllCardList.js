@@ -195,6 +195,7 @@ if (loading) {
         hasMore={hasMore}
         loader={fetchingAllContacts?<div class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
         
         { !fetchingAllContacts && allContacts.length === 0 ?<NodataFoundPage />:allContacts.map((item,index) =>  {

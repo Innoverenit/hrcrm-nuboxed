@@ -104,6 +104,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
       hasMore={hasMore}
         loader={fetchingCallListRangeByUserId?<div class="flex justify-center">{props.translatedMenuItems[10]}...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">{props.translatedMenuItems[11]}. </p>}
       >
       
