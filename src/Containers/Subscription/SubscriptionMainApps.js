@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import SubscriptionHeader from "./Child/SubscriptionHeader";
 import {handleCreateSubscriptionDrawer} from "./SubscriptionAction";
-const CreateSubscriptionDrawer =lazy(()=>import("./Child/CreateSubscriptionDrawer"));
 
-function Subscription (props) {
+const CreateSubscriptionDrawer =lazy(()=>import("./Child/CreateSubscriptionDrawer"));
+const SubscriptionNewCard =lazy(()=>import("./Child/SubscriptionNewCard"));
+
+function SubscriptionMainApps (props) {
 
     return (
         <>
@@ -14,13 +16,12 @@ function Subscription (props) {
           handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
           />
         <CreateSubscriptionDrawer
+        rowData={props.rowData}
           createSubscriptiondrawer={props.createSubscriptiondrawer}
           handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
         />
 
-        <div class="font-bold text-lg">
-            Subscription
-        </div>
+       <SubscriptionNewCard/>
         </>
     )
 };
@@ -36,4 +37,4 @@ const mapStateToProps = ({ subscription }) => ({
       dispatch
     );
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Subscription);
+  export default connect(mapStateToProps, mapDispatchToProps)(SubscriptionMainApps);
