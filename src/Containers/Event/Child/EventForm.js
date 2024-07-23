@@ -552,11 +552,11 @@ const {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
+            <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]"  style={{scrollbarWidth:"thin"}}>
             <Form className="form-background">
               <div class=" flex justify-between max-sm:flex-col">
                 <div class=" h-full w-w47.5  mt-3 max-sm:w-wk">
-                 <label> {translatedMenuItems[0]} </label>
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                   <Field
                     isRequired
                     name="eventTypeId"
@@ -571,7 +571,7 @@ const {
                     isColumn
                     inlineLabel
                   />
-                   <label> {translatedMenuItems[1]} </label>
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[1]}</div>
                   <Field
                     isRequired
                     name="eventSubject"
@@ -583,15 +583,15 @@ const {
                     //   />
                     // }
                     isColumn
-                    width={"100%"}
+                  style={{ width:"100%"}}
                     component={InputComponent}
                     inlineLabel
                   />
               
                   <div class="mt-3">
                     <div class=" flex justify-between">
-                      <div class=" w-1/2">
-                      <label> {translatedMenuItems[2]} </label>
+                      <div class=" w-5/12">
+                      <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
                         <Field
                           isRequired
                           name="startDate"
@@ -606,13 +606,11 @@ const {
                           component={DatePicker}
                           value={values.startDate}
                           inlineLabel
-                          style={{
-                            width: "100%",
-                          }}
+                        
                         />
                       </div>
                       <div class=" w-5/12">
-                      <label> {translatedMenuItems[3]} </label>
+                      <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
                         <Field
                           isRequired
                           name="startTime"
@@ -628,16 +626,14 @@ const {
                           use12Hours
                           value={values.startTime}
                           inlineLabel
-                          style={{
-                            width: "100%",
-                          }}
+                        
                         />
                       </div>
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-1/2">
-                    <label> {translatedMenuItems[4]} </label>
+                    <div class=" w-5/12">
+                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
                       <Field
                         isRequired
                         name="endDate"
@@ -653,9 +649,7 @@ const {
                         value={values.endDate || values.startDate}
                         defaultValue={dayjs("2015-01-01")}
                         inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
+                       
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (
@@ -672,7 +666,7 @@ const {
                       />
                     </div>
                     <div class=" w-5/12">
-                    <label> {translatedMenuItems[5]} </label>
+                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                       <Field
                         isRequired
                         name="endTime"
@@ -688,13 +682,11 @@ const {
                         use12Hours
                         value={values.endTime}
                         inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
+                        
                       />
                     </div>
                   </div>
-                  <label> {translatedMenuItems[6]} </label>
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
@@ -739,8 +731,8 @@ const {
                     /> */}
                    
                 
-                   <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
-                   <label> {translatedMenuItems[7]} </label>
+                   <div class="mt-3" >
+                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                   {props.user.crmInd === true &&(
               
      <>        
@@ -764,8 +756,8 @@ const {
       </> 
                   )} 
                   </div>
-                  <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
-                  <label> {translatedMenuItems[8]} </label>
+                  <div class="mt-3 "  >
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                   {props.user.crmInd === true &&(
                   
                   <>
@@ -790,7 +782,7 @@ const {
                   )} 
                   </div>
                   <div class="mt-3">
-                  <label> {translatedMenuItems[9]} </label>
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
                   {props.user.crmInd === true &&(
               //    <Field
               //    name="opportunityId"
@@ -869,8 +861,8 @@ const {
                   
                 </div>
                 <div class="h-full w-w47.5 max-sm:w-wk ">
-                <label> {translatedMenuItems[10]} </label>
-                <div class="mt-3">
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
+                <div class="mt-1">
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -944,7 +936,7 @@ const {
       </Listbox>
       </div>
       <div class="mt-1">
-      <label> {translatedMenuItems[11]} </label>
+      <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
                   {/* <Field
                     name="included"
                     // label="Include"
@@ -968,7 +960,7 @@ const {
 {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label> */}
                    <Select
           showSearch
-          style={{ width: 415 }}
+          
           placeholder="Search or select include"
           optionFilterProp="children"
           loading={isLoadingInclude}
@@ -984,7 +976,7 @@ const {
           ))}
         </Select>
                  </div>
-                 <label> {translatedMenuItems[12]} </label>
+                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (
@@ -996,10 +988,9 @@ const {
                     )}
                   />
               <div class="mt-2">
-              <label> {translatedMenuItems[13]} </label>
-                   
-                    <div>
-                  <div>
+              <div>
+            <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</span>
+            <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
                         <span  >
@@ -1020,12 +1011,14 @@ const {
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span  class="!text-icon ml-1">
+                        <span  >
                           <RotateRightIcon className="!text-icon ml-1"/>
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                  </span> 
+                  
+                 
                   <div>
                     <textarea
                       name="description"

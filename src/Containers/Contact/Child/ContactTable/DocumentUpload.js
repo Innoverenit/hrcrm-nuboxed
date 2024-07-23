@@ -10,7 +10,7 @@ import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaC
 import * as Yup from "yup";
 import {
   handleDocumentUploadModal, 
-  addHospitalDocument,
+  documentUpload,
   getCustomerDocument,
   getselectdrop,
 } from "../../../Customer/CustomerAction";
@@ -25,7 +25,7 @@ const documentSchema = Yup.object().shape({
   documentId: Yup.string().required("Input needed !"),
 });
 
-function AddHospitalModals (props){
+function DocumentUpload (props){
   const [documentshare, setDocumentshare] = useState(false);
   const [approvalAbove, setApprovalAbove] = useState(false);
   const [contract, setContract] = useState(false);
@@ -117,7 +117,7 @@ function AddHospitalModals (props){
     customer,
     hospitalUploadModal,
     handleHospitalUploadModal,
-    addHospitalDocument,
+     documentUpload,
     addingDocumentByCustomerId,
     oppoStages,
     subscriptionType,
@@ -148,7 +148,7 @@ console.log(props.currentContactId.contactId)
           }}
           validationSchema={documentSchema}
           onSubmit={(values, { resetForm }) => {
-            addHospitalDocument({ ...values, included:selectedIncludeValues, contract: contract ? "true" : "false" }, callback);
+             documentUpload({ ...values, included:selectedIncludeValues, contract: contract ? "true" : "false" }, callback);
             resetForm();
           }}
         >
@@ -361,11 +361,11 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       handleDocumentUploadModal,
-      addHospitalDocument,
-      getCustomerDocument,
+       documentUpload,
+      documentUpload,
       getselectdrop
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddHospitalModals);
+export default connect(mapStateToProps, mapDispatchToProps)(DocumentUpload);

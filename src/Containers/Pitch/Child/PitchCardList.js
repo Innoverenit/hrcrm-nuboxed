@@ -4,7 +4,6 @@ import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import moment from "moment";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -499,7 +498,7 @@ const countryCode = item.countryAlpha2Code
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                    
-                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
+                                    {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[4.121vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

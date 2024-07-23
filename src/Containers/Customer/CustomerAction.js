@@ -530,7 +530,7 @@ export const addCustomerDocument = (data) => (dispatch) => {
     });
 };
 
-export const addHospitalDocument = (data) => (dispatch) => {
+export const documentUpload = (data) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.ADD_HOSPITAL_DOCUMENT_REQUEST });
   axios

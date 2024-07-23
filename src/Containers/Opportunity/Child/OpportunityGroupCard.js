@@ -30,7 +30,7 @@ const BussinessCard = (props) => {
   
   return (
     <div class="flex-col rounded-[3px]">
-      <div className="h-24 m-1 p- shadow-[0 0.5em 0.375em -0.375em rgb(46, 44, 44)] border-2 border-gray-400 bg-white "></div>
+      <div className="h-24 m-1 p- shadow-[0 0.5em 0.375em -0.375em rgb(46, 44, 44)] border-2 border-gray-400 bg-white ">
       
       {/* <div class="rounded bg-white m-1 p-1 overflow-auto h-24 border-[0.0625rem] border-[#eee]-600 w-full"> */}
         <FlexContainer
@@ -140,7 +140,7 @@ const BussinessCard = (props) => {
         </FlexContainer>
 
        
-
+        </div>
         
       {/* </div> */}
       </div>

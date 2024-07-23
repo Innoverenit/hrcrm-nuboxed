@@ -23,7 +23,7 @@ function Call (props) {
               'Contact',//4
               'Date', //5
               'Include',//6
-              'Assigned To',//7
+              'Assigned',//7
               'Owner',//8
               'Completed',//9
               'Loading',//10

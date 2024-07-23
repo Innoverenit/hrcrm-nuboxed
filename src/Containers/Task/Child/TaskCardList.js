@@ -8,8 +8,10 @@ import styled from "styled-components";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
-  UploadOutlined,
+  
 } from "@ant-design/icons";
+import EscalatorIcon from '@mui/icons-material/Escalator';
+import UploadIcon from '@mui/icons-material/Upload';
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FeedbackIcon from '@mui/icons-material/Feedback';
@@ -19,7 +21,6 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Tooltip, Button,  } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { StyledPopconfirm, } from "../../../Components/UI/Antd";
-import StairsIcon from '@mui/icons-material/Stairs';
  import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import {
@@ -509,7 +510,7 @@ const TaskCardList = (props) => {
              <span>
              <Tooltip overlayStyle={{ maxWidth: "400px" }} title={`Review :${item.feedbackReview}`}>
             {item.feedbackRating === 0 ? (<StarBorderIcon
-            className=" !text-2xl text-[#eeeedd]"/>)
+            className=" !text-icon text-[#eeeedd]"/>)
               : (
                 <span>
                   {item.feedbackRating}
@@ -537,7 +538,7 @@ const TaskCardList = (props) => {
                                     handleTaskFeedbackDrawerModal(true);
                                     handleSetTaskNameId(item);
                                   }}
-                                  className="!text-icon cursor-pointer"
+                                  className="!text-icon cursor-pointer text-[#10d512]"
                                  
                                 />
                              </Tooltip>
@@ -551,7 +552,7 @@ const TaskCardList = (props) => {
      <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-          <UploadOutlined
+          <UploadIcon className="!text-icon cursor-pointer text-[#b3770f]"
               onClick={() => {
                 props.handleUpdateDocumentDrawerModal(true);
                 handleSetTaskNameId(item);
@@ -564,7 +565,7 @@ const TaskCardList = (props) => {
      <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-     <StairsIcon  className="!text-icon cursor-pointer text-[green]"
+     <EscalatorIcon  className="!text-icon cursor-pointer text-[#358fbb]"
          onClick={() => {
           handleTaskStepperDrawerModal(true);
           handleSetTaskNameId(item);
@@ -1053,7 +1054,7 @@ const TaskCardList = (props) => {
                                     handleTaskFeedbackDrawerModal(true);
                                     handleSetTaskNameId(item);
                                   }}
-                                  className="!text-icon cursor-pointer"
+                                  className="!text-icon cursor-pointer text-[#10d512]"
                                  
                                 />
                              </Tooltip>
@@ -1067,7 +1068,7 @@ const TaskCardList = (props) => {
      <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-          <UploadOutlined
+          <UploadIcon className="!text-icon cursor-pointer text-[#b3770f]"
               onClick={() => {
                 props.handleUpdateDocumentDrawerModal(true);
                 handleSetTaskNameId(item);
@@ -1080,7 +1081,7 @@ const TaskCardList = (props) => {
      <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-     <StairsIcon  className="!text-icon cursor-pointer text-[green]"
+     <EscalatorIcon className="!text-icon cursor-pointer text-[#358fbb]"
          onClick={() => {
           handleTaskStepperDrawerModal(true);
           handleSetTaskNameId(item);
@@ -1571,7 +1572,7 @@ const TaskCardList = (props) => {
                                     handleTaskFeedbackDrawerModal(true);
                                     handleSetTaskNameId(item);
                                   }}
-                                  className="!text-icon cursor-pointer"
+                                  className="!text-icon cursor-pointer text-[#10d512]"
                                  
                                 />
                              </Tooltip>
@@ -1585,7 +1586,7 @@ const TaskCardList = (props) => {
      <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-          <UploadOutlined
+          <UploadIcon className="!text-icon cursor-pointer text-[#b3770f]"
               onClick={() => {
                 props.handleUpdateDocumentDrawerModal(true);
                 handleSetTaskNameId(item);
@@ -1598,7 +1599,7 @@ const TaskCardList = (props) => {
      <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-     <StairsIcon  className="!text-icon cursor-pointer text-[green]"
+     <EscalatorIcon  className="!text-icon cursor-pointer text-[#358fbb]"
          onClick={() => {
           handleTaskStepperDrawerModal(true);
           handleSetTaskNameId(item);

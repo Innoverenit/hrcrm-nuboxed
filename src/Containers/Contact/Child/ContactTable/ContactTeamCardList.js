@@ -41,7 +41,7 @@ import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddDocumentModals from "../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
-import AddHospitalModals from "./AddHospitalModals";
+import DocumentUpload from "./DocumentUpload";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const Option = Select;
@@ -219,6 +219,7 @@ if (loading) {
         hasMore={hasMore}
         loader={fetchingTeamContact?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
         
         { !fetchingTeamContact && teamContact.length === 0 ?<NodataFoundPage />:teamContact.map((item,index) =>  {
@@ -526,7 +527,7 @@ if (loading) {
         handleContactNotesDrawerModal={handleContactNotesDrawerModal}
         handleSetCurrentContact={handleSetCurrentContact}
       />
-       <AddHospitalModals
+       <DocumentUpload
             hospitalUploadModal={hospitalUploadModal}
             handleHospitalUploadModal={handleHospitalUploadModal}
             currentContactId={currentContactId }

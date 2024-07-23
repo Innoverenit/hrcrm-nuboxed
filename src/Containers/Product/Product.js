@@ -24,11 +24,15 @@ class Product extends Component {
     return (
       <React.Fragment>
         <ProductHeader
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           setProductViewType={setProductViewType}
           viewType={viewType}
           handleConfigureModal={handleConfigureModal}
         />
         <ConfigureModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           addConfigureModal={addConfigureModal}
           handleConfigureModal={handleConfigureModal}
         />
@@ -36,15 +40,23 @@ class Product extends Component {
 
         <Suspense fallback={<BundleLoader />}>
           {this.props.viewType === "all" ?
-            (<ProductListingTable />) :
+            (<ProductListingTable
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage} />) :
             // this.props.viewType === "dashboard" ? (
             //   <SuspendProductList />) :
               this.props.viewType === "table" ? (
-                <ProductCardList />) :
+                <ProductCardList 
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage} />) :
                 this.props.viewType === "dashboard" ? (
-                  <ProductDeleteList />) :
+                  <ProductDeleteList
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage} />) :
                 this.props.viewType === "category" ? (
-                  <ProductCategory />) :
+                  <ProductCategory 
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}/>) :
                 null}
 
         </Suspense>
