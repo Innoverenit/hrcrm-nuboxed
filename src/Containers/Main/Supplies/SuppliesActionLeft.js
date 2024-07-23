@@ -126,14 +126,14 @@ function SuppliesActionLeft (props) {
                         overflowCount={999}
                     >
                         <span class=" md:mr-2 text-sm cursor-pointer"
-                            onClick={() => setSuppliesViewType("all")}
+                            onClick={() => setSuppliesViewType("all")}text-sm
                             style={{
 
                                 color: viewType === "all" && "#1890ff",
                             }}
                         >
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white">ALL</div></Avatar>
+                                <div className="text-white ">ALL</div></Avatar>
 
                         </span>
                     </Badge>

@@ -4,6 +4,8 @@ import { bindActionCreators } from "redux";
 import { Tooltip, Button  } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
+import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
+ import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import ButtonGroup from "antd/lib/button/button-group";
 import { getAllProductionsbyOrgId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -114,7 +116,7 @@ function ProductionAllCardView(props) {
         <>
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky h-8 z-10">
+                    <div className=" flex  justify-between w-[99%] p-1 bg-transparent font-bold sticky h-8 z-10">
                         <div className=""></div>
                         <div className=" md:w-[8.1rem]">
                             {/* MFG ID */}
@@ -190,7 +192,7 @@ function ProductionAllCardView(props) {
                                     return (
                                         <div>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                                                <div class="flex">
+                                                <div class="flex items-center">
                                                     <div className=" flex font-medium   md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-[#1890ff] cursor-pointer  flex text-xs  font-poppins"
@@ -227,8 +229,8 @@ function ProductionAllCardView(props) {
                   primaryTitle={item.createdBy}
                   // imageId={item.ownerImageId}
                   // imageURL={item.imageURL}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
                 />
                                                         </div>
                                                         <div class=" text-xs  font-poppins">
@@ -280,7 +282,8 @@ function ProductionAllCardView(props) {
                                                         {item.type===null && item.type==="In Progress" && (
                                                             <StatusIcon
                                                                 type="In Progress"
-                                                                iconType="fa-hourglass-half"
+                                                                // iconType="fa-hourglass-half"
+                                                                iconType={<HourglassTopIcon className="!text-icon text-orange-600 cursor-pointer"/>}
                                                                 tooltip="In Progress"
                                                                 role={item.type}
                                                                 onClick={() => {
@@ -293,7 +296,8 @@ function ProductionAllCardView(props) {
                                                             {item.type==="In Progress" ? 
                                                             <StatusIcon
                                                                 type="Complete"
-                                                                iconType="fa-hourglass"
+                                                                // iconType="fa-hourglass"
+                                                                iconType={<HourglassBottomIcon className="!text-icon text-orange-600 cursor-pointer"/>}
                                                                 tooltip="Complete"
                                                                 role={item.type}
                                                                 onClick={() => {

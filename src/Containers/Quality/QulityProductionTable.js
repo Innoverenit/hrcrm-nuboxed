@@ -211,16 +211,17 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingProductionQualityData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-            height={"85vh"}
+            height={"79vh"}
+            style={{scrollbarWidth:"thin"}}
             endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           >
                 {props.productionQualityData.map((item, index) => {
                     return (
                         <div key={index}>
                             <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                                <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full ">
+                                <div className="flex  md:w-[16.1rem] max-sm:w-full ">
                                     <div 
-                                    className="flex justify-between text-sm text-[#1890ff] underline font-semibold font-poppins"
+                                    className="flex justify-between text-xs text-[#1890ff] underline font-semibold font-poppins cursor-pointer"
                                     onClick={() => {
                                         props.handleQualityManufactureModal(true);
                                     handleSetCurrentManufacture(item);
@@ -230,20 +231,20 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                     </div>
                                 </div>
 
-                                <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                                    <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
+                                <div className="flex  md:w-[23rem] max-sm:justify-between  max-sm:flex-row">
+                                    <div className="text-xs text-[0.85rem]  font-poppins ml-[9em] " style={{ marginLeft: "9em" }}>
                                    {item.categoryName} {item.subCategoryName} {item.attributeName} {item.subAttributeName}
                                     </div>
                                 </div>
 
-                                <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                                    <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
+                                <div className="flex md:w-[13rem] max-sm:justify-between max-sm:flex-row">
+                                    <div className="text-xs text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                                     {`  ${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
                                     </div>
                                 </div>
 
 
-                                <div className=" flex font-medium items-center md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center md:w-[6.2rem] max-sm:flex-row max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                      
                                                         <ButtonGroup>
@@ -309,11 +310,10 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium  items-center md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-13em"}} >
+                                                <div className=" flex font-medium  items-center md:w-[17.023rem] max-sm:flex-row  max-sm:justify-between ">
+                                                    <div class="flex text-xs  font-semibold  font-poppins" >
                                                          {item.qualityStatus === "Complete"&&(
                                                     <Select placeholder="Select zone" 
-                                                    style={{ width: 146 }}
                                                     loading={isLoadingZone}
                                                     onFocus={handleSelectZoneFocus}
                                                     onChange={handleZoneChange}
@@ -329,7 +329,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     
 {item.qualityStatus === "Complete"&&(
       <Select placeholder="Select rack" 
-      style={{ width: 146,marginLeft:"1em" }}
+      
       loading={isLoadingRack}
       onChange={handleRackChange}
       disabled={!selectedZone} 
@@ -345,7 +345,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     </div>
                                                 </div>
 
-                                <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                                     {item.qualityStatus === "Complete"&&
                                                         <MoveToggleQuality 

@@ -132,7 +132,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                 {props.qualityManufactureData.map((item, index) => {
                     return (
                         <div key={index}>
-                            <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                            <div className="flex rounded  bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                 <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
                                     <div 
                                     className="flex justify-between text-sm  font-semibold font-poppins"

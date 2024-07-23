@@ -284,9 +284,9 @@ const DynamicInputForm = (props) => {
     };
 
     return (
-        <div className='flex justify-end sticky z-auto'>
-            <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className='flex sticky z-auto'>
+            <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div className="flex w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                     <div className=""></div>
                     <div className="md:w-[22.12rem]">
                     {translatedMenuItems[0]}
@@ -307,13 +307,14 @@ const DynamicInputForm = (props) => {
             next={handleLoadMore}
             hasMore={hasMore}
             //loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-            height={"79vh"}
+            height={"77vh"}
+            style={{scrollbarWidth:"thin"}}
             endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           >
                 {props.productionSpareData.map((item, index) => {
                     return (
                         <div key={index}>
-                            <div className="flex rounded-xl mt-2 bg-white h-12 items-center p-3">
+                            <div className="flex rounded mt-1 bg-white h-8 items-center p-1">
                                 <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
                                     <div className="flex justify-between text-sm  font-semibold font-poppins">
                                         {item.supplierSuppliesUniqueNumberId}

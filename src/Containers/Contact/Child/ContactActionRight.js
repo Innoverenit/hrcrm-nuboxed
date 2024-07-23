@@ -7,7 +7,7 @@ import { Button, Tooltip, } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
-
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import UploadIcon from '@mui/icons-material/Upload';
 const ContactSharePartnerForm = lazy(()=>import("./ContactSharePartnerForm"));
 const ContactShareCustomerForm = lazy(()=>import("./ContactShareCustomerForm"));
@@ -48,10 +48,10 @@ class ContactActionRight extends React.Component {
         </div>
         <div class="max-sm:hidden">
        {this.props.viewType === "table" &&  role == "ADMIN" && (
-        <Tooltip placement="left" title="XL">
+        <Tooltip placement="left" title=" Download-XL">
         <a
         href={`${base_url}/excel/export/user/contact/${userId}`}>
-            <InsertDriveFileIcon 
+            <DownloadForOfflineIcon
             style={{fontSize: "x-large"}}/>
          </a>
          </Tooltip>
