@@ -2446,3 +2446,27 @@ export const linkRefurbishToggle = ( data,orderPhoneId) => (dispatch, getState) 
       });
     })
 };
+
+export const updateDispatchInspectionButton = (data, orderPhoneId,locationId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_DISPATCH_INSPECTION_BUTTON_REQUEST });
+  axios
+    .put(`${base_url2}/phoneOrder/dispatchInspectionIndStatus/${orderPhoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getQAorderlist(locationId,0));
+      dispatch({
+        type: types.UPDATE_DISPATCH_INSPECTION_BUTTON_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_DISPATCH_INSPECTION_BUTTON_FAILURE,
+        payload: err,
+      });
+    });
+};

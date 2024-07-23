@@ -245,11 +245,48 @@ function OpenReceivedOrderIdForm(props) {
   //     />
   //   </>
   // );
+  console.log(props.updateDispatchList?.[0]?.showQualityInspectionInd);
+const brick= props.updateDispatchList?.[0]?.showQualityInspectionInd
+{props.updateDispatchList.map((item) => { 
+  console.log(item.showQualityInspectionInd)
+  const tense = item.showQualityInspectionInd
+})}
+let buttonRendered = false;
   return (
     <>
         <div className=' flex sticky  z-auto'>
             <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-           
+            <div class=" flex justify-end" >  
+{props.updateDispatchList.map((item) => {
+  console.log(item.showQualityInspectionInd)
+  const tense = item.showQualityInspectionInd
+  if (!buttonRendered && props.rowData.dispatchInspectionInd === 1 && itemValue === true && tense) {
+    buttonRendered = true;
+    return (
+      <div className=' flex sticky z-auto'>
+        <div class=" flex justify-end" >
+          <div class=" ml-2" >
+            <Button
+              loading={props.updatingDispatchInspectionButton}
+              onClick={() => props.updateDispatchInspectionButton({
+                dispatchInspectionInd: 2,
+                stopDispatchInspectionUser: props.userId,
+                stopDispatchInspectionDate: moment()
+              }, props.rowData.orderPhoneId, props.locationDetailsId)}
+              type="primary"
+              disabled={!tense}
+            >
+              Inspection Completed
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  } else {
+    return null;
+  }
+})}
+</div>
 
                 <div className=" flex max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                     <div className='w-[5.2rem]'>Brand</div>
@@ -262,10 +299,12 @@ function OpenReceivedOrderIdForm(props) {
                     <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Condition</div>
                     <div className=" w-[18.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Technician</div>                 
                     <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Inspected</div>
-                    <div class=" flex justify-end" >
-        {/* {props.rowData.dispatchInspectionInd === 1 && <Button type="primary">Pause</Button>} */}
-        {/* {props.rowData.dispatchInspectionInd === 1 && <div>In Progress</div>} */}
-        {props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
+                    
+                </div>
+                {/* <div class=" flex justify-end" >   
+               
+        { 
+props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
           <div class=" ml-2" >
             <Button
               loading={props.updatingDispatchInspectionButton}
@@ -276,11 +315,15 @@ function OpenReceivedOrderIdForm(props) {
               },
                 props.rowData.orderPhoneId,
                 props.locationDetailsId)}
-              type="primary"
+              type="primary"       
+              disabled={!props.tense}             
             >Inspection Completed</Button>
           </div>}
-      </div>
-                </div>
+         
+      </div> */}
+
+
+
                 <div class="">
                    
                         {props.updateDispatchList.map((item) => {
@@ -288,6 +331,7 @@ function OpenReceivedOrderIdForm(props) {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div >
+           
                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                         <div className=" flex font-medium w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
