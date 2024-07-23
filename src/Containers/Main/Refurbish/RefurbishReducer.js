@@ -16,6 +16,10 @@ const initialState = {
   fetchingProductionUrgentError: false,
   productionUrgent:[],
 
+  updatingDispatchInspectionButton: false,
+  updatingDispatchInspectionButtonError: false,
+
+
   fetchingProductionHigh: false,
   fetchingProductionHighError: false,
   productionHigh:[],
@@ -1891,6 +1895,26 @@ export const refurbishReducer = (state = initialState, action) => {
                   addingRefurbishToggle: false,
                   addingRefurbishToggleError: true,
                 };
+
+
+                case types.UPDATE_DISPATCH_INSPECTION_BUTTON_REQUEST:
+                  return { ...state, updatingDispatchInspectionButton: true };
+                case types.UPDATE_DISPATCH_INSPECTION_BUTTON_SUCCESS:
+                  return {
+                    ...state,
+                    updatingDispatchInspectionButton: false,
+                    openPickupDateModal: false,
+                    QAorderList: state.QAorderList.map((item) =>
+                      item.orderPhoneId === action.payload.orderPhoneId
+                        ? action.payload : item
+                    ),
+                  };
+                  case types.UPDATE_DISPATCH_INSPECTION_BUTTON_FAILURE:
+              return {
+                ...state,           
+  updatingDispatchInspectionButton: false,
+  updatingDispatchInspectionButtonError: true,
+              };
 
     default:
       return state;

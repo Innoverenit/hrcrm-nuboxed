@@ -737,7 +737,7 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingDispatchList: false,
-        allDispatchList: action.payload,
+        allDispatchList: [...state.allDispatchList, ...action.payload],
       };
     case types.GET_DISPATCH_LIST_FAILURE:
       return {

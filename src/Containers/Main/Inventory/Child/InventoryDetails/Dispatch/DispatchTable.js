@@ -1,7 +1,7 @@
 import React, { useState, lazy, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, } from "antd";
+import { Tooltip, Button,Badge } from "antd";
 import { getAllShipper } from "../../../../Shipper/ShipperAction";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -18,6 +18,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
+import SubOrderList from "../../../../Account/AccountDetailsTab/AccountOrderTab/SubOrderList";
 
 const DispatchPhoneListModal = lazy(() => import("./DispatchPhoneListModal"));
 const DispatchPackedToggle = lazy(() => import("./DispatchPackedToggle"));
@@ -53,8 +54,17 @@ function DispatchTable(props) {
     }, 100);
   };
   const [rowData, setRowData] = useState({})
+  const [particularRowData, setParticularRowData] = useState({});
+  function handleSetParticularOrderData(item) {
+    setParticularRowData(item);
+}
   const handleRowData = (item) => {
     setRowData(item)
+  }
+  const [checkAwb, setCheckAwb] = useState(false)
+
+  const handleCheckAwb = () => {
+      setCheckAwb(!checkAwb)
   }
 const AWBtst=[
   {
@@ -474,7 +484,26 @@ const AWBtst=[
                               ) : null}
                             </div>
                           </div>
-                       
+                          <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                        <div class=" text-xs  font-poppins text-center">
+                                                            <Badge
+                                                                class=" ml-2"
+                                                                size="small"
+                                                                count={item.awbCount || 0}
+                                                                overflowCount={999}
+                                                            >
+                                                                <Button
+                                                                    style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
+                                                                    class=" bg-green-500"
+                                                                    onClick={() => {
+                                                                        handleCheckAwb();
+                                                                        handleSetParticularOrderData(item)
+                                                                    }
+                                                                    }
+                                                                ><span className='!text-[#faad14]'>AWB</span></Button>
+                                                            </Badge>
+                                                        </div>
+                                                    </div>
 
                         </div>
 
@@ -574,6 +603,10 @@ const AWBtst=[
                           </div>
                         </div>
                       </div>
+                      {checkAwb && (item.orderId === particularRowData.orderId) &&
+                   
+                                                <SubOrderList orderId={particularRowData.orderId} />
+                                            }
                     </div>
                   );
                 })}
