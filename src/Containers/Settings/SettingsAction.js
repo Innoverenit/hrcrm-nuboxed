@@ -85,6 +85,16 @@ export const handleProcessModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+
+
+export const handledealStagesModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_DEALS_STAGES_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleTaskDrawer = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_TASK_DRAWER,
@@ -3677,7 +3687,7 @@ export const getProcessStagesForDeals = (investorOppWorkflowId) => (
     type: types.GET_PROCESS_STAGES_FOR_DEALS_REQUEST,
   });
   axios
-    .get(`${base_url}/workflow/stages/${investorOppWorkflowId}`, {
+    .get(`${base_url}/workflow/Stages/${investorOppWorkflowId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3728,7 +3738,7 @@ export const LinkDealsStagePublish = (data, cb) => (dispatch) => {
   dispatch({ type: types.LINK_DEALS_STAGES_PUBLISH_REQUEST });
 
   axios
-    .put(`${base_url}/investorOpportunityWorkflow/opportunityStages/update/publishInd `, data, {
+    .put(`${base_url}/Stages/update/publishInd `, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3783,14 +3793,14 @@ export const deleteDealsProcessData = (workflowDetailsId, cb) => (dispatch, getS
     });
 };
 
-export const deleteDealsStagesData = (investorOppStagesId, orgId) => (dispatch, getState) => {
+export const deleteDealsStagesData = (stagesId, orgId) => (dispatch, getState) => {
   const { userId } = getState("auth").auth.userDetails;
   // console.log("inside deleteCall", callId);
   dispatch({
     type: types.DELETE_DEALS_STAGES_DATA_REQUEST,
   });
   axios
-    .delete(`${base_url}/investorOpportunityWorkflow/opportunityStages/${investorOppStagesId}`, {
+    .delete(`${base_url}/workflow/Stages/${stagesId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3800,7 +3810,7 @@ export const deleteDealsStagesData = (investorOppStagesId, orgId) => (dispatch, 
       //  dispatch(getScheduler(orgId));
       dispatch({
         type: types.DELETE_DEALS_STAGES_DATA_SUCCESS,
-        payload: investorOppStagesId,
+        payload:stagesId,
       });
     })
     .catch((err) => {
@@ -3841,7 +3851,7 @@ export const updateProcessNameForDeals = (process, workflowDetailsId,cb) => (dis
 };
 
 export const updateStageForDeals = (
-  investorOppStagesId,
+  stagesId,
   // responsible,
   stageName,
 
@@ -3855,8 +3865,8 @@ export const updateStageForDeals = (
   });
   axios
     .put(
-      `${base_url}/investorOpportunityWorkflow/opportunityStages/${investorOppStagesId}`,
-      { investorOppStagesId, stageName, probability, days },
+      `${base_url}/workflow/stages/${stagesId}`,
+      { stagesId, stageName, probability, days },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -6035,5 +6045,184 @@ export const addWorkFlowCategory = (sectors,cb) => (dispatch) => {
       });
       // message.success(res.data.message);
       cb();
+    });
+};
+
+
+
+
+
+export const LinkDealsProcessGlobal = (globalInd, workflowId,cb) => (dispatch) => {
+  dispatch({ type: types.LINK_DEALS_PROCESS_GLOBAL_REQUEST });
+
+  axios
+    .put(`${base_url}/workflow/stages/${globalInd}/${workflowId} `, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_DEALS_PROCESS_GLOBAL_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_DEALS_PROCESS_GLOBAL_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+
+
+
+
+export const addProcessTaskStage = (customer) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_PROCESS_TASK_STAGE_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/workflow/stage-task/save`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      // })
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      //   showConfirmButton: false,
+      //   // timer: 1500
+      // })
+      console.log(res);
+      // dispatch(
+      //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
+      // );
+      // message.success(res.data.message)
+     
+
+      dispatch({
+        type: types.ADD_PROCESS_TASK_STAGE_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PROCESS_TASK_STAGE_FAILURE,
+        payload: err,
+      });
+      message.error(err.data.message)
+      // cb && cb();
+    });
+};
+
+
+
+
+
+export const getProcessTaskStage = (orgId,stageId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROCESS_TASK_STAGE_REQUEST,
+  });
+  axios
+    .get(`${base_url}/workflow/stage-task/${orgId}/${stageId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROCESS_TASK_STAGE_SUCCESS,
+        payload: res.data,
+      });
+      // }
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PROCESS_TASK_STAGE_FAILURE,
+        payload: err,
+      });
+    });
+
+};
+
+
+
+
+
+export const deleteTaskStageData = (stagesTaskId,liveInd) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_TASK_STAGE_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/workflow/stage-task/delete/${stagesTaskId}/${liveInd}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     
+     
+      console.log(res);
+      dispatch({
+        type: types.DELETE_TASK_STAGE_DATA_SUCCESS,
+        payload: stagesTaskId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_TASK_STAGE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+export const moveRejectToggleTask = (stageTaskId,mandatoryInd) => (dispatch) => {
+  dispatch({
+    type: types.MOVE_REJECT_TOGGLE_TASK_REQUEST,
+  });
+  axios
+    .put(`${base_url}/workflow/stage-task/${stageTaskId}/${mandatoryInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.MOVE_REJECT_TOGGLE_TASK_SUCCESS,
+        payload: res.data,
+      });
+      message.success("Item transfered for Quality Check");
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.MOVE_REJECT_TOGGLE_TASK_FAILURE,
+        payload: err,
+      });
+      // message.error("Something went wrong");
     });
 };

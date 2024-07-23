@@ -9,6 +9,14 @@ const initialState = {
   addProcessTaskModal: false,
   candidateSequenceModal: false,
 
+
+  movingRejectToggleTask:false,
+  movingRejectToggleTaskError:false,
+
+  fetchingProcessTaskedStage:false,
+  fetchingProcessTaskedStageError:false,
+  processTaskedStage:[],
+
   fetchingFeedback: false,
       fetchingFeedbackError: false,
       feedBackList:[],
@@ -587,6 +595,10 @@ addingShipperCategoryError: false,
   deletingSequenceData: false,
   deletingSequenceDataError: false,
 
+
+  addingProcessTaskStage:false,
+  addingProcessTaskStageError:false,
+
   deletingHiringStagesData: false,
   deletingHiringStagesDataError: false,
 
@@ -629,6 +641,10 @@ addingShipperCategoryError: false,
 
   addingPermissionAccess: false,
   addingPermissionAccessError: false,
+
+
+
+  addDrawerDealsStagesModal:false,
 
   fetchingCommunicationAccess: false,
   fetchingCommunicationAccessError: false,
@@ -673,12 +689,19 @@ addingShipperCategoryError: false,
   addingLeadAging: false,
   addingLeadAgingError: false,
 
+
+  linkingDealsProcessGlobal:false,
+  linkingDealsProcessGlobalError:false,
+
   addingNotificationConfig: false,
   addingNotificationConfigError:false,
 
   gettingNotificationConfig: false,
   gettingNotificationConfigError:false,
   notificationConfig:[],
+
+  deleteTaskStageData:false,
+  deleteTaskStageDataError:false,
 
   // fetchingProcessForRepair: false,
   // fetchingProcessForRepairError: false,
@@ -1732,6 +1755,32 @@ export const settingsReducer = (state = initialState, action) => {
         addingVendorError: false,
       };
 
+
+
+
+
+      case types.ADD_PROCESS_TASK_STAGE_REQUEST:
+        return { ...state, addingProcessTaskStage: true };
+      case types.ADD_PROCESS_TASK_STAGE_SUCCESS:
+        return {
+          ...state,
+          addingProcessTaskStage: false,
+
+          processTaskedStage: [action.payload, ...state.processTaskedStage],
+         
+          // customerByUserId: state.customerByUserId.map((item) => {
+          //   if (item.customerId === action.payload.customerId) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }),
+        };
+      case types.ADD_PROCESS_TASK_STAGE_FAILURE:
+        return { ...state, addingProcessTaskStage: false, 
+          // addCustomerModal: false 
+        };
+
     case types.ADDING_THIRD_PARTY_ACCESS_REQUEST:
       return { ...state, addingThirdPartyAccess: true };
     case types.ADDING_THIRD_PARTY_ACCESS_SUCCESS:
@@ -2543,6 +2592,26 @@ export const settingsReducer = (state = initialState, action) => {
         fetchingRemoteAccessError: false,
       };
 
+
+
+      case types.GET_PROCESS_TASK_STAGE_REQUEST:
+        return { ...state, fetchingProcessTaskedStage: true };
+      case types.GET_PROCESS_TASK_STAGE_SUCCESS:
+        return {
+          ...state,
+          fetchingProcessTaskedStage: false,
+          processTaskedStage: action.payload,
+          //   tableRequirement: [
+          //     ...state.tableRequirement,
+          //     ...action.payload],
+        };
+      case types.GET_PROCESS_TASK_STAGE_FAILURE:
+        return {
+          ...state,
+          fetchingProcessTaskedStage: false,
+          fetchingProcessTaskedStageError: true,
+        };
+
     case types.UPDATE_STAGE_FOR_OPPORTUNITY_REQUEST:
       return { ...state, updatingStagesForOpportunity: true };
     case types.UPDATE_STAGE_FOR_OPPORTUNITY_SUCCESS:
@@ -2591,6 +2660,11 @@ export const settingsReducer = (state = initialState, action) => {
 
     case types.HANDLE_RECRUITMENT_DRAWER_MODAL:
       return { ...state, addDrawerRecruitmentModal: action.payload };
+
+
+
+      case types.HANDLE_DEALS_STAGES_DRAWER_MODAL:
+        return { ...state, addDrawerDealsStagesModal: action.payload };
 
 
 
@@ -3082,8 +3156,8 @@ export const settingsReducer = (state = initialState, action) => {
       return {
         ...state,
         linkingDealsStagesPublish: false,
-        dealsStagesPublish: state.dealsStagesPublish.map((item) => {
-          if (item.investorOppStagesId === action.payload.investorOppStagesId) {
+        dealsProcessStages: state.dealsProcessStages.map((item) => {
+          if (item.stagesId === action.payload.stagesId) {
             return action.payload;
           } else {
             return item;
@@ -3112,6 +3186,23 @@ export const settingsReducer = (state = initialState, action) => {
       return { ...state, deleteDealsProcessData: false, deleteDealsProcessDataError: false };
 
 
+      case types.DELETE_TASK_STAGE_DATA_REQUEST:
+        return { ...state, deleteTaskStageData: true };
+      case types.DELETE_TASK_STAGE_DATA_SUCCESS:
+        return {
+          ...state,
+          deleteTaskStageData: false,
+          processTaskedStage: state.processTaskedStage.filter(
+            (item) => item.stagesTaskId !== action.payload
+          ),
+        };
+      case types.DELETE_TASK_STAGE_DATA_FAILURE:
+        return {
+          ...state,
+          deleteTaskStageData: false,
+          deleteTaskStageDataError: false,
+        };
+
     case types.DELETE_DEALS_STAGES_DATA_REQUEST:
       return { ...state, deletingDealsStagesData: true };
     case types.DELETE_DEALS_STAGES_DATA_SUCCESS:
@@ -3119,7 +3210,7 @@ export const settingsReducer = (state = initialState, action) => {
         ...state,
         deletingDealsStagesData: false,
         dealsProcessStages: state.dealsProcessStages.filter(
-          (item) => item.investorOppStagesId !== action.payload
+          (item) => item.stagesId !== action.payload
         ),
       };
     case types.DELETE_DEALS_STAGES_DATA_FAILURE:
@@ -3155,7 +3246,7 @@ export const settingsReducer = (state = initialState, action) => {
         ...state,
         updatingStagesForDeals: false,
         dealsProcessStages: state.dealsProcessStages.map((state) =>
-          state.investorOppStagesId === action.payload.investorOppStagesId ? action.payload : state
+          state.stagesId === action.payload.stagesId ? action.payload : state
         ),
       };
     case types.UPDATE_STAGE_FOR_DEALS_FAILURE:
@@ -3163,6 +3254,34 @@ export const settingsReducer = (state = initialState, action) => {
         ...state,
         updatingStagesForDeals: false,
         updatingStagesForDealsError: true,
+      };
+
+
+
+
+
+      case types.LINK_DEALS_PROCESS_GLOBAL_REQUEST:
+      return {
+        ...state,
+        linkingDealsProcessGlobal: true,
+      };
+    case types.LINK_DEALS_PROCESS_GLOBAL_SUCCESS:
+      return {
+        ...state,
+        linkingDealsProcessGlobal: false,
+        processForWorkflowData: state.processForWorkflowData.map((item) => {
+          if (item.workflowDetailsId === action.payload.workflowDetailsId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.LINK_DEALS_PROCESS_GLOBAL_FAILURE:
+      return {
+        ...state,
+        linkingDealsProcessGlobal: false,
+        linkingDealsProcessGlobalError: true,
       };
 
     case types.GET_ALL_VAT_REQUEST:
@@ -4260,6 +4379,42 @@ export const settingsReducer = (state = initialState, action) => {
       addingFeedBack: false,
       addingFeedBackError: true,
     };
+
+
+
+
+    case types.MOVE_REJECT_TOGGLE_TASK_REQUEST:
+      return { ...state, movingRejectToggleTask: true };
+    case types.MOVE_REJECT_TOGGLE_TASK_SUCCESS:
+      return {
+        ...state,
+        movingRejectToggleTask: false,
+
+        
+processTaskedStage: state.
+processTaskedStage.map((item) => {
+          if (item.stagesTaskId === action.payload.stagesTaskId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        // productionQualityData: state.productionQualityData.filter(
+        //   (item) => item.cellChamberLinkId !== action.payload
+        // ),
+        
+       
+        // productionTableData: state.productionTableData.filter(
+        //   (item) => item.productionProductId !== action.payload.productionProductId
+        // ),
+      };
+    case types.MOVE_REJECT_TOGGLE_TASK_FAILURE:
+      return {
+        ...state,
+        movingRejectToggleTask: false,
+        movingRejectToggleTaskError: true,
+      };
+
 
      // remove sector
 

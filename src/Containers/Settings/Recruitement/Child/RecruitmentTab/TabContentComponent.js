@@ -178,16 +178,18 @@ import {addProcessForDeals,
  addProcessStageForDeals,
   getProcessStagesForDeals,
  LinkDealsProcessPublish,
-//   LinkDealsStagePublish,
+LinkDealsStagePublish,
   deleteDealsProcessData,
  updateProcessNameForDeals,
- getProcessForWorkFlowData
-//   updateStageForDeals
+ getProcessForWorkFlowData,
+  updateStageForDeals,
+  LinkDealsProcessGlobal
  } from "../../../SettingsAction"
 import {  StyledTabs } from "../../../../../Components/UI/Antd";
 import {  Select } from "../../../../../Components/UI/Elements";
 import { elipsize } from "../../../../../Helpers/Function/Functions";
 import SingleDealsStages from "./Deals/SingleDealsStages";
+import { GlobalOutlined } from "@ant-design/icons";
 //const SingleDealsStages = lazy(() => import("./SingleDealsStages"));
 const { Option } = Select;
 
@@ -219,7 +221,9 @@ class TabContentComponent extends Component {
       isProcessTextInputOpen: false,
       workflowName: "",
       publish: false,
+      currentItem: null,
     };
+    this.handleSetCurrentItem = this.handleSetCurrentItem.bind(this);
   }
 
 //   componentDidMount() {
@@ -294,38 +298,38 @@ class TabContentComponent extends Component {
     });
   };
 
-  handleUpdateStage = (investorOppStagesId, stageName, probability, days) => {
+  handleUpdateStage = (stagesId, stageName, probability, days) => {
     //debugger;
     const { dealsProcessStages } = this.props;
     let exist =
     dealsProcessStages &&
     dealsProcessStages.some((element) => element.stageName == stageName);
     
-      this.props.updateStageForDeals(investorOppStagesId, stageName, probability, days);
+      this.props.updateStageForDeals(stagesId, stageName, probability, days);
     // }
   };
 
-// handleStagePublishClick = (investorOppStagesId, publishInd) => {
-//   const { recruitProcessStages } = this.props;
-//   const data = {
-//     investorOppStagesId,
-//     publishInd: publishInd ? false : true,
-//   };
-//   console.log(publishInd);
-//   this.props.LinkDealsStagePublish(data, this.handleCallBack);
-// };
+handleStagePublishClick = (stagesId, publishInd) => {
+  const { recruitProcessStages } = this.props;
+  const data = {
+    stagesId,
+    publishInd: publishInd ? false : true,
+  };
+  console.log(publishInd);
+  this.props.LinkDealsStagePublish(data, this.handleCallBack);
+};
 
-//   handleCallBack = (status) => {
-//     if (status === "Success") {
-//       const {
-//         currentProcess: { investorOppWorkflowId },
-//       } = this.state;
+  handleCallBack = (status) => {
+    if (status === "Success") {
+      const {
+        currentProcess: { workflowDetailsId },
+      } = this.state;
 
-//        this.props.getProcessStagesForDeals(investorOppWorkflowId);
-//     } else {
-//       alert("error");
-//     }
-//   };
+       this.props.getProcessStagesForDeals(workflowDetailsId);
+    } else {
+      alert("error");
+    }
+  };
 //   handleCallback = (status) => {
 //     if (status === "success") {
 //        return getProcessForDeals(this.props.orgId);
@@ -333,6 +337,11 @@ class TabContentComponent extends Component {
 //       return null;
 //     }
 //   };
+
+
+handleSetCurrentItem(stagesId) {
+  this.setState({ currentItem: stagesId });
+}
   handleAddWorkflow = () => {
     const { addProcessForDeals, workflows } = this.props;
     const {
@@ -369,6 +378,21 @@ class TabContentComponent extends Component {
       isTextOpen:false,
       editInd: true,
     });
+  };
+
+
+
+  handlePublishGlobalClick = () => {
+    const { currentProcess, publish } = this.state;
+    console.log(currentProcess);
+
+    const Id = currentProcess.workflowDetailsId;
+    // let data = {
+    //   workflowDetailsId: Id,
+    //   publishInd: currentProcess.publishInd ? false : true,
+    // };
+
+    this.props.LinkDealsProcessGlobal(currentProcess.global_ind ? false : true,Id,this.handleCallBack1);
   };
 
   handleStageType=(value)=>
@@ -425,6 +449,7 @@ class TabContentComponent extends Component {
     });
   };
   render() {
+    console.log(this.state.currentItem)
     const { addingProcessForDeals, addProcessForDeals } = this.props;
     return (
       <>
@@ -607,6 +632,21 @@ class TabContentComponent extends Component {
                           : "Publish"}
                       </Button>
                     )}
+
+
+
+{this.state.currentProcess.workflowName && (
+           <>
+                      {this.props.primaryOrgType === 'Parent' && (
+                      <GlobalOutlined
+                      style={{ color:this.state.currentProcess.
+                        global_ind? "blue":"white",marginLeft:"1rem"}}
+                       onClick={this.handlePublishGlobalClick}
+
+                      />
+                      )}
+                      </>
+                    )}
                 
                   </h1> 
                 </>
@@ -616,7 +656,9 @@ class TabContentComponent extends Component {
             {this.props.dealsProcessStages.map((dealsProcessStages, i) => (
               <SingleDealsStages
                 key={i}
+                currentItem={this.state.currentItem}
                 stageValue1={this.state.stageName}
+                
                 newStageName="stageName"
                 newProbability="probability"
                 newDays="days"
@@ -626,10 +668,11 @@ class TabContentComponent extends Component {
                 dealsProcessStages={dealsProcessStages}
                 organization={this.props.organization}
                 // handleApproveIconClick={this.handleApproveIconClick}
-                // handleUpdateStage={this.handleUpdateStage}
+                handleUpdateStage={this.handleUpdateStage}
                 // handleStageType={this.handleStageType}
-                //handleStagePublishClick={this.handleStagePublishClick}
-                investorOppStagesId={dealsProcessStages.investorOppStagesId}
+                handleStagePublishClick={this.handleStagePublishClick}
+                stagesId={dealsProcessStages.stagesId}
+                handleSetCurrentItem={this.handleSetCurrentItem}
                 className="scrollbar"
                 id="style-3"
               />
@@ -718,6 +761,7 @@ const mapStateToProps = ({ settings, auth }) => ({
 //   dealsStagesPublish: settings.dealsStagesPublish,
 //   dealsProcessPublish: settings.dealsProcessPublish,
   dealsProcessStages: settings.dealsProcessStages,
+  primaryOrgType:auth.userDetails.primaryOrgType,
  orgId: auth.userDetails && auth.userDetails.organizationId,
 });
 
@@ -728,12 +772,13 @@ const mapDispatchToProps = (dispatch) =>
     //   getProcessForDeals,
     addProcessStageForDeals,
        getProcessStagesForDeals,
+       LinkDealsProcessGlobal,
     LinkDealsProcessPublish,
-    //   LinkDealsStagePublish,
+      LinkDealsStagePublish,
      deleteDealsProcessData,
      updateProcessNameForDeals,
-     getProcessForWorkFlowData
-    //   updateStageForDeals
+     getProcessForWorkFlowData,
+      updateStageForDeals
    
     },
     dispatch

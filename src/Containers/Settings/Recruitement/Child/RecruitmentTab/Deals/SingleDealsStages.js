@@ -3,13 +3,15 @@ import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
- import {deleteDealsStagesData} from "../../../../../Settings/SettingsAction";
+ import {deleteDealsStagesData,handledealStagesModal} from "../../../../../Settings/SettingsAction";
 import { Button, Tooltip, Popconfirm } from "antd";
 import { TextInput, Select } from "../../../../../../Components/UI/Elements";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import { ViewEditCard } from "../../../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddDealsStagesModal from "../AddDealsStagesModal"
+import { EnvironmentOutlined } from "@ant-design/icons";
 const { Option } = Select;
 
 class SingleDealsStages extends Component {
@@ -22,8 +24,14 @@ class SingleDealsStages extends Component {
       fields: {},
       responsible:"",
       publish:false,
+      // currentItem: null,
     };
   }
+
+
+  // handleSetCurrentItem(stagesId) {
+  //   this.setState({ currentItem: stagesId });
+  // }
 
   handleChange = ({ target: { name, value } }) => {
     debugger;
@@ -49,7 +57,7 @@ class SingleDealsStages extends Component {
     const {
       dealsProcessStages: {
         stageName,
-        investorOppStagesId,
+        stagesId,
       
         responsible,
         probability,
@@ -74,15 +82,17 @@ class SingleDealsStages extends Component {
       deleteDealsStagesData,
       currentStage,
     } = this.props;
-    console.log(investorOppStagesId, "----------", linkedStages);
+    //console.log(investorOppStagesId, "----------", linkedStages);
     console.log(stageName);
     console.log(color);
     console.log(currentStage);
+    console.log(this.state.currentItem)
 
     const disabled = probability === 100 || probability === 0 ? true : false;
     // const disabled = false;
-    const disableDelete = linkedStages && linkedStages.includes(investorOppStagesId);
+    //const disableDelete = linkedStages && linkedStages.includes(investorOppStagesId);
     return (
+      <>
       <StageWrapper>
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
@@ -125,7 +135,7 @@ class SingleDealsStages extends Component {
   title="Do you want to delete?"
   okText="Yes"
   cancelText="No"
-  onConfirm={() => deleteDealsStagesData(investorOppStagesId)}
+  onConfirm={() => deleteDealsStagesData(stagesId)}
 >
   <DeleteIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
 </Popconfirm>
@@ -156,7 +166,7 @@ class SingleDealsStages extends Component {
                 <Button
                      onClick={() =>
                       handleStagePublishClick(
-                        this.props.investorOppStagesId,
+                        this.props.stagesId,
                         publishInd
                        
                       )
@@ -167,6 +177,35 @@ class SingleDealsStages extends Component {
                              </Button> 
                              }
                    </span> 
+
+
+
+
+                   <span>
+                       
+                       {/* {dealsProcessStages.probability === 0 || dealsProcessStages.probability === 100 ? null :
+                  
+                  <Button
+                       onClick={() =>
+                        handleStagePublishClick(
+                          this.props.stagesId,
+                          publishInd
+                         
+                        )
+                      }
+                      >
+                           {publishInd? "Unpublish" :"Publish"} 
+                               
+                               </Button> 
+                               } */}
+
+                               <EnvironmentOutlined
+                                onClick={() => {
+                                  this.props.handledealStagesModal(true)
+                                  this.props.handleSetCurrentItem(dealsProcessStages)
+                                }}
+                               />
+                     </span> 
 
                   
 
@@ -229,13 +268,14 @@ class SingleDealsStages extends Component {
                   loading={updatingStages}                  
                   onClick={() =>
                     handleUpdateStage(
-                      this.props.investorOppStagesId,
+                      this.props.stagesId,
                       // this.state.responsible,
                       this.state.fields.stageName,
                       this.state.fields.probability,
                       this.state.fields.days,
                       toggleViewType()
                     )
+                  
                   }
                 >
                   {/* Save */}
@@ -258,8 +298,21 @@ class SingleDealsStages extends Component {
         </ViewEditCard>  
 
          
-
+       
       </StageWrapper>
+     
+      <AddDealsStagesModal
+        // stagesId={stagesId}
+        currentItem={this.props.currentItem}
+      addDrawerDealsStagesModal={this.props.addDrawerDealsStagesModal}
+      handledealStagesModal={this.props.handledealStagesModal}
+        // rowdata={rowdata}
+        // addDrawerCustomerNotesModal={addDrawerCustomerNotesModal}
+        // handleCustomerNotesDrawerModal={handleCustomerNotesDrawerModal}
+        // handleSetCurrentCustomer={handleSetCurrentCustomer}
+      />
+      
+      </>
      
    
      
@@ -271,7 +324,7 @@ class SingleDealsStages extends Component {
 const mapStateToProps = ({ settings, auth }) => ({
   addRecruitmentApprovalModal:settings.addRecruitmentApprovalModal,
  
-
+  addDrawerDealsStagesModal:settings.addDrawerDealsStagesModal
 
 });
 
@@ -280,6 +333,7 @@ const mapDispatchToProps = (dispatch) =>
     {
     
       deleteDealsStagesData,
+      handledealStagesModal
       
      
     },
