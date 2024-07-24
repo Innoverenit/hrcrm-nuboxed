@@ -25,7 +25,7 @@ function PickUpForm(props) {
             completeOrderInd: props.completeOrderInd ? false : true,
             contactPersonId: props.contactPersonId
           },
-            props.locationDetailsId);
+            props.locationDetailsId,0);
         }}
       >
         {({

@@ -110,6 +110,7 @@ import { erpNoteReducer } from "../Containers/Main/ErpNote/ErpNoteReducer";
 import { procreReducer } from "../Containers/Main/Procre/ProcreReducer";
 import { machinaryReducer } from "../Containers/Settings/Category/Machinary/MachinaryReducer";
 import { brandCategoryReducer } from "../Containers/Settings/Category/BrandCategory/BrandCategoryReducer";
+import { promotionReducer } from "../Containers/Main/Promotion/PrmotionReducer";
 
 const appReducer = combineReducers({
   dashboard: dashboardReducer,
@@ -169,6 +170,7 @@ const appReducer = combineReducers({
   assessment: accessmentReducer,
   leads: leadsReducer,
   level: levelsReducer,
+  promotion: promotionReducer,
   stream: streamsReducer,
   unit: unitsReducer,
   program: programsReducer,

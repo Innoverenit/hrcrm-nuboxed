@@ -138,6 +138,8 @@ const initialState = {
   fetchingLeavesByUserIdError: false,
   leavesListByUserId: [],
 
+  addPromotionnModal:false,
+
   deletingOrgDocData: false,
   deletingOrgDocDataError: false,
 
@@ -1009,6 +1011,8 @@ export const authReducer = (state = initialState, action) => {
     case types.HANDLE_ACTION_DRAWER_MODAL:
       return { ...state, addDrawerActionModal: action.payload };
 
+      case types.HANDLE_PROMOTION_MODAL:
+        return { ...state, addPromotionnModal: action.payload };
 
     case types.UPDATE_PREFERED_LANG_REQUEST:
       return { ...state, updatingPreferedLang: true };
