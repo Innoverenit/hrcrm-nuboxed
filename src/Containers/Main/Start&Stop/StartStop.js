@@ -578,7 +578,8 @@ function StartStop(props) {
   const [country, setAllCountry] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
 
-  const returnDate = `${selectedDate}T20:00:00Z`;
+  // const returnDate = `${selectedDate}T20:00:00Z`;
+  const returnDate = selectedDate ? `${selectedDate}T20:00:00Z` : "";
 
   console.log("startInd:", startInd);
   console.log("drop1:", drop1);
@@ -665,7 +666,7 @@ function StartStop(props) {
       country: mandatoryCountry ? mandatoryCountry : null,
       location: drop1 ? drop1 : null,
       other: selectedOtherValues ? selectedOtherValues : null,
-      returnDate: returnDate,
+      returnDate: returnDate?returnDate:"",
     };
     props.addAttendence(data, props.userId);
   };
