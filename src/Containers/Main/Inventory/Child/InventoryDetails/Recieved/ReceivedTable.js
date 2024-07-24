@@ -123,7 +123,7 @@ const ReceivedTable = (props) => {
                     <div>
                       <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium  w-[8.62rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
+                          <div className=" flex font-medium  w-[9.62rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
                             <div class="text-sm  font-semibold max-sm:text-sm  font-poppins cursor-pointer  text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <div class=" flex ">
                                 <span
@@ -197,7 +197,7 @@ const ReceivedTable = (props) => {
                               />}
                             </div>
                           </div>
-                          <div className=" flex font-medium  w-[9.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[10.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* {item.phoneReceiveCount}/{item.phoneCount} */}
                               {isValidPercentage ? (
@@ -213,7 +213,7 @@ const ReceivedTable = (props) => {
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium  w-[7.5rem] max-xl:w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[8.5rem] max-xl:w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div>
                               {item.inspectionInd === 0 ? <ReceivedOrderToggle
                                 orderId={item.orderPhoneId}

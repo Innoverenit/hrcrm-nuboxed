@@ -413,7 +413,7 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
 
                                                 </div>
                                             </div>
-                                            <Tooltip>
+                                            {/* <Tooltip>
             {!item.rejectInd && item.dispatchPhoneInd ? <Button
               onClick={() => {
                 handleRowData(item)
@@ -429,7 +429,7 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
                 // }}
                 >Rejected</Button> : null
             }
-          </Tooltip>
+          </Tooltip> */}
           <div className=" flex font-medium  w-[8.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.reason}
