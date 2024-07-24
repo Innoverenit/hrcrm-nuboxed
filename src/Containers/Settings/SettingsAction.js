@@ -6226,3 +6226,36 @@ export const moveRejectToggleTask = (stageTaskId,mandatoryInd) => (dispatch) => 
       // message.error("Something went wrong");
     });
 };
+
+
+
+
+export const updateProcessTaskStage = (data, stagesTaskId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_PROCESS_TASK_STAGE_REQUEST });
+  axios
+    .put(`${base_url}/workflow/stage-task/${stagesTaskId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Prospect Info updated Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_PROCESS_TASK_STAGE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PROCESS_TASK_STAGE_FAILURE,
+        payload: err,
+      });
+    });
+};

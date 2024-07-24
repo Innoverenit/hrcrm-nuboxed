@@ -4524,6 +4524,29 @@ processTaskedStage.map((item) => {
           fetchingShipperCategoryError: true,
         };
 
+
+        case types.UPDATE_PROCESS_TASK_STAGE_REQUEST:
+      return { ...state, updateProcessTaskStage: true };
+    case types.UPDATE_PROCESS_TASK_STAGE_SUCCESS:
+      return {
+        ...state,
+        updateProcessTaskStage: false,
+        // updateCustomerModal: false,
+        processTaskedStage: state.processTaskedStage.map((item) => {
+          if (item.stagesTaskId === action.payload.stagesTaskId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_PROCESS_TASK_STAGE_FAILURE:
+      return {
+        ...state,
+        updateProcessTaskStage: false,
+        updateProcessTaskStageError: true,
+      };
+
         case types.ADD_SHIPPERCATEGORY_REQUEST:
 return { ...state, addingShipperCategory: true };
 case types.ADD_SHIPPERCATEGORY_SUCCESS:
