@@ -2,8 +2,12 @@
 import React, { Component,lazy,  Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import SupplierConfigureForm from "./SupplierConfigureForm"
+import LeadsConfigureForm from "./LeadsConfigureForm"
+import ShipperConfigureForm from "./ShipperConfigureForm"
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
+import InvestorConfigureForm from "./InvestorConfigureForm";
 const CustomerConfigureForm = lazy(() => import("./CustomerConfigureForm"));
 const TabPane = StyledTabs.TabPane;
 
@@ -62,6 +66,111 @@ class Form extends Component {
                   {/* <EmailandNotificationPanel /> */}
                   {/* <TemplateTable /> */}
                   <CustomerConfigureForm/>
+               </Suspense>             
+            </TabPane>
+
+
+            <TabPane
+              tab={
+                <>
+                  <span onClick={this.handleRecruitClick}>
+                  {/* <DraftsIcon  /> */}
+                    <span class=" ml-[0.25em]" >Leads</span>
+                  </span>
+                  {}
+                 
+                </>
+              }
+              key="2"
+            >
+              <Suspense fallback={"Loading ..."}>
+                  {" "}
+                  {/* <EmailandNotificationPanel /> */}
+                  {/* <TemplateTable /> */}
+                  <LeadsConfigureForm
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                  />
+               </Suspense>             
+            </TabPane>
+
+
+
+            <TabPane
+              tab={
+                <>
+                  <span onClick={this.handleRecruitClick}>
+                  {/* <DraftsIcon  /> */}
+                    <span class=" ml-[0.25em]" >Shipper</span>
+                  </span>
+                  {}
+                 
+                </>
+              }
+              key="3"
+            >
+              <Suspense fallback={"Loading ..."}>
+                  {" "}
+                  {/* <EmailandNotificationPanel /> */}
+                  {/* <TemplateTable /> */}
+                  <ShipperConfigureForm
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                  />
+               </Suspense>             
+            </TabPane>
+
+
+
+            <TabPane
+              tab={
+                <>
+                  <span onClick={this.handleRecruitClick}>
+                  {/* <DraftsIcon  /> */}
+                    <span class=" ml-[0.25em]" >Supplier</span>
+                  </span>
+                  {}
+                 
+                </>
+              }
+              key="4"
+            >
+              <Suspense fallback={"Loading ..."}>
+                  {" "}
+                  {/* <EmailandNotificationPanel /> */}
+                  {/* <TemplateTable /> */}
+                  <SupplierConfigureForm
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                  />
+               </Suspense>             
+            </TabPane>
+
+
+
+
+            <TabPane
+              tab={
+                <>
+                  <span onClick={this.handleRecruitClick}>
+                  {/* <DraftsIcon  /> */}
+                    <span class=" ml-[0.25em]" >Investor</span>
+                  </span>
+                  {}
+                 
+                </>
+              }
+              key="5"
+            >
+              <Suspense fallback={"Loading ..."}>
+                  {" "}
+                  {/* <EmailandNotificationPanel /> */}
+                  {/* <TemplateTable /> */}
+                  <InvestorConfigureForm
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                  />
+                 
                </Suspense>             
             </TabPane>
             {/* <TabPane

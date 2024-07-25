@@ -157,7 +157,7 @@ function QulityActionLeft (props) {
                     >
 
 <Button type={viewType === "repair" ? "primary" : ""} style={{ backgroundColor: viewType === "repair" ? "" : "tomato" }}>
-<div class="text-white">Reapir</div></Button>
+<div class="text-white">Repair</div></Button>
 
                     </span>
                     {/* </Badge> */}

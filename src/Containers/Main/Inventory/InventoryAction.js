@@ -848,7 +848,7 @@ export const addPickupDate = (data, id) => (dispatch) => {
     )
     .then((res) => {
       console.log(res);
-      dispatch(getDispatchList(id))
+      dispatch(getDispatchList(id,0))
       dispatch({
         type: types.ADD_PICKUP_DATE_SUCCESS,
         payload: res.data,

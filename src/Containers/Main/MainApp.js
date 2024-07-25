@@ -28,7 +28,7 @@ import {
 import { Select } from "antd";
 import { handleInTagDrawer } from "../../Containers/Main/Refurbish/RefurbishAction";
 import { getSuscrption } from "../Subscription/SubscriptionAction";
-import { updateUserById, handleActionDrawerModal, getActionRequiredCount } from "../Auth/AuthAction";
+import { updateUserById, handleActionDrawerModal, getActionRequiredCount, handlePromotion } from "../Auth/AuthAction";
 import { setLanguage } from "../../Language/LanguageAction";
 import { getOpportunityRecord } from "../Opportunity/OpportunityAction";
 import { handleMessageModal } from "../LiveMessages/LiveMessageAction";
@@ -54,6 +54,7 @@ import CreateSubscriptionDrawer from "../Subscription/Child/CreateSubscriptionDr
 import { handleCreateSubscriptionDrawer } from "../Subscription/SubscriptionAction";
 import Quality from "../Quality/Quality";
 import Club from "./Club/Club";
+import PromotionsDrawerr from "./PromotionsDrawerr";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -716,7 +717,14 @@ function MainApp(props) {
                       }
                     />
                   </FloatButton.Group> */}
-
+ <div className="flex items-center">           
+                <Button
+                 type="primary"
+                 onClick={() =>{
+                 // handleRowData(props.suscrptionData);
+                  props.handlePromotion(true)}}
+                >Promotions</Button>
+                 </div>
            <div className="flex items-center">
                 <div className=" text-sm font-semibold font-poppins mr-1">{Subscription}</div>
                 <Button
@@ -1852,6 +1860,11 @@ function MainApp(props) {
         createSubscriptiondrawer={props.createSubscriptiondrawer}
         handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
       />
+       <PromotionsDrawerr
+        rowData={rowData}
+        addPromotionnModal={props.addPromotionnModal}
+        handlePromotion={props.handlePromotion}
+      />
       <TagInDrawer
         clickTagInDrawr={props.clickTagInDrawr}
         handleInTagDrawer={props.handleInTagDrawer}
@@ -1916,7 +1929,8 @@ const mapStateToProps = ({
   actionCount: auth.actionCount,
   token: auth.token,
   clickTagInDrawr: refurbish.clickTagInDrawr,
-  createSubscriptiondrawer: subscription.createSubscriptiondrawer
+  createSubscriptiondrawer: subscription.createSubscriptiondrawer,
+  addPromotionnModal: auth.addPromotionnModal
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -1933,7 +1947,8 @@ const mapDispatchToProps = (dispatch) =>
       handleActionDrawerModal,
       handleInTagDrawer,
       handleCreateSubscriptionDrawer,
-      getSuscrption
+      getSuscrption,
+      handlePromotion
     },
     dispatch
   );

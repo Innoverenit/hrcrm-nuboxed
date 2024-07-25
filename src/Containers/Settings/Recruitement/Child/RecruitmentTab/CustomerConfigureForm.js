@@ -91,7 +91,11 @@ console.log(isLastNameVisible)
       props.customerConfigure.sectorInd !== undefined &&
       props.customerConfigure.phoneNoInd !== undefined &&
       props.customerConfigure.dailCodeInd !== undefined &&
-      props.customerConfigure.nameInd !== undefined 
+      props.customerConfigure.nameInd !== undefined &&
+      props.customerConfigure.potentialInd !== undefined &&
+      props.customerConfigure.potentialCurrencyInd !== undefined &&
+      props.customerConfigure.typeInd !== undefined
+      
       
     ) {
       //setIsFirstNameVisible(props.customerConfigure.startInd);
@@ -104,7 +108,9 @@ console.log(isLastNameVisible)
       setIsNotesVisible(props.customerConfigure.noteInd)
       setIsAddressVisible(props.customerConfigure.addressInd)
       setIsFirstNameVisible(props.customerConfigure.nameInd)
-     
+      setIsPotentialVisible(props.customerConfigure.potentialInd )
+      setIsCurrencyVisible(props.customerConfigure.potentialCurrencyInd)
+      setIsTypeVisible(props.customerConfigure.typeInd)
     }
   }, [props.customerConfigure]);
 
@@ -292,8 +298,8 @@ console.log(isLastNameVisible)
              <Switch
             checked={isFirstNameVisible}
             onChange={() => toggleFieldVisibility('name')}
-          checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
                   
                
@@ -347,8 +353,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isLastNameVisible}
             onChange={() => toggleFieldVisibility('countryDialCode')}
-            checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+         checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
                     </div>
                     <div class=" w-8/12">
@@ -366,8 +372,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isEmailVisible}
             onChange={() => toggleFieldVisibility('phoneNumber')}
-          checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
                     </div>
                   </div>
@@ -397,8 +403,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isMobileNumberVisible}
             onChange={() => toggleFieldVisibility('sectorId')}
-         checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+       checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
                     </div>
                     <div class="w-w47.5">
@@ -425,8 +431,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isSourceVisible}
             onChange={() => toggleFieldVisibility('source')}
-          checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+        checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
                         </div>
                   </div>
@@ -449,8 +455,8 @@ console.log(isLastNameVisible)
       <Switch
             checked={isPotentialVisible}
             onChange={() => toggleFieldVisibility('potential')}
-          checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+         checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
     </div>
     <div class="w-16 ml-2 max-sm:w-wk">
@@ -473,8 +479,8 @@ console.log(isLastNameVisible)
       <Switch
             checked={isCurrencyVisible}
             onChange={() => toggleFieldVisibility('currency')}
-          checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+         checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
     </div>
    
@@ -509,8 +515,8 @@ console.log(isLastNameVisible)
      <Switch
             checked={isTypeVisible}
             onChange={() => toggleFieldVisibility('type')}
-          checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
   </div>
  
@@ -533,8 +539,8 @@ console.log(isLastNameVisible)
                   <Switch
             checked={isNotesVisible}
             onChange={() => toggleFieldVisibility('notes')}
-          checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+         checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
@@ -618,8 +624,8 @@ console.log(isLastNameVisible)
       <Switch
             checked={isAssignedVisible}
             onChange={() => toggleFieldVisibility('assignedTo')}
-           checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+           checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
 
       
@@ -672,8 +678,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isVatVisible}
             onChange={() => toggleFieldVisibility('vatNo')}
-          checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+         checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
                       
                     </div>
@@ -699,8 +705,8 @@ console.log(isLastNameVisible)
 <Switch
             checked={isRegistrationVisible}
             onChange={() => toggleFieldVisibility('businessRegistration')}
-           checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+         checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
                     </div>
                   </div>
@@ -726,8 +732,8 @@ console.log(isLastNameVisible)
                   <Switch
             checked={isAddressVisible}
             onChange={() => toggleFieldVisibility('address')}
-            checkedChildren="Hidden"
-            unCheckedChildren="Visible"
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
           />
                    {/* <div class=" flex justify-between">
                    <div class=" w-1/2 max-sm:w-wk">

@@ -46,7 +46,10 @@ function Recruitment(props) {
     {
       rulesName: "Form",
       ruleId: "4",
-      component: <Form/>,
+      component: <Form
+      translateText={props.translateText}
+                           selectedLanguage={props.selectedLanguage}
+      />,
     },
     
     {
