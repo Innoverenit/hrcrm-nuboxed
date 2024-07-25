@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import {
   getPrmotionData
 } from "./PrmotionAction";
+import dayjs from "dayjs";
 import TokenIcon from '@mui/icons-material/Token';
 import {  Tooltip } from "antd";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
@@ -13,7 +14,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FilterTiltShiftIcon from "@mui/icons-material/FilterTiltShift";
 import { BundleLoader } from "../../../Components/Placeholder";
-
+import { Switch, Popconfirm } from "antd";
 
 
 
@@ -21,7 +22,7 @@ const PrmotionTable = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [refurbish, Setrefurbish] = useState(props.promotionsData.productionInd,)
+
 //   const handleRefurbishClick = (checked) => {
 //     Setrefurbish(checked);
 //     let data = {
@@ -60,7 +61,7 @@ const PrmotionTable = (props) => {
 //     fetchMenuTranslations();
 //   }, [props.selectedLanguage]);
   useEffect(() => {
-    props.getPrmotionData();
+    props.getPrmotionData( );
   }, []);
 
   const [storedLoc, setStoredLoc] = useState({});
@@ -72,6 +73,7 @@ const PrmotionTable = (props) => {
 //     props.getPrmotionData(props.orgId);
 //   }
 //   if (props.fetchingLocationData) return <BundleLoader />;
+console.log(props.promotionsData)
   return (
     <>
       <div>
@@ -91,7 +93,7 @@ const PrmotionTable = (props) => {
             <div className=" md:w-[6.1rem] ">
              Discount In %
               </div>
-            <div className=" md:w-[6.9rem] ">
+            <div className=" md:w-[7.9rem] ">
             Apply Catalogue
             </div>
             <div className=" md:w-[5.9rem] ">
@@ -103,51 +105,61 @@ const PrmotionTable = (props) => {
             
           </div>
           <div class="">
-            {/* {props.promotionsData.map((item) => {
-              return (
-                <div >
+         
+                                {props.promotionsData.map((item) => {
+                                    const currentdate = dayjs().format("DD/MM/YYYY");
+                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                    return (
+                                        <>
+                                       <div >
                   <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                     <div class="flex">
-                      <div className=" flex  flex-row md:w-[25.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  flex-row md:w-[14.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                         <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
-                          {item.locationName}
+                          {item.promoCodeName}
                         </div>
 
 
-                        <div className=" flex   md:w-[7.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
-
-
-                          <div class=" font-normal text-[0.82rem]  font-poppins">
-                            <CountryFlag1 countryCode={item.countryAlpha2Code} />
-                            &nbsp;
-                            {item.countryAlpha2Code}
-                          </div>
-                        </div>
-                        <div className=" flex  flex-col md:w-[13rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-
-
-                          <div class=" font-normal text-[0.82rem]  font-poppins">
-
-                            <span>
-                              {item.address && item.address.length > 0 ? (
-                                `${(item.address[0].city || "")} ${(item.address[0].state || "")}`.slice(0, 20)
-                              ) : (
-                                "No address available"
-                              )}
-                            </span>            </div>
-                        </div>
+                       
+                        
                       </div>
+                      <div className=" flex  flex-row md:w-[17.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+
+<div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+  {item.promoCode}
+</div>
+
+
+
+
+</div>
+<div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+
+<div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+  {item.discountValue}%
+</div>
+
+
+
+
+</div>
                     </div>
 
 
-                    <div className=" flex  flex-row md:w-[7.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  flex-row md:w-[11.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
-                        <ProductionToggle
-                          locationDetailsId={item.locationDetailsId}
-                          productionInd={item.productionInd}
+                        <Switch
+                          className="toggle-clr"
+                          checked={item.productInd }
+                         isLoading={true}
+                          checkedChildren="Yes"
+                          unCheckedChildren="No"
+                          //disabled={!props.orderManagementInd}
                         />
                       </div>
                     </div>
@@ -155,9 +167,13 @@ const PrmotionTable = (props) => {
 
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
-                        <RefurbishToggle
-                          locationDetailsId={item.locationDetailsId}
-                          refurbishInd={item.refurbishInd}
+                      <Switch
+                          className="toggle-clr"
+                          checked={item.supplierInventoryInd}
+                          isLoading={true}
+                          checkedChildren="Yes"
+                          unCheckedChildren="No"
+                          //disabled={!props.orderManagementInd}
                         />
                       </div>
                     </div>
@@ -165,136 +181,23 @@ const PrmotionTable = (props) => {
 
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
-                        <InventoryToggle
-                          locationDetailsId={item.locationDetailsId}
-                          inventoryInd={item.inventoryInd}
+                      <Switch
+                          className="toggle-clr"
+                          checked={item.materialInd}
+                          isLoading={true}
+                          checkedChildren="Yes"
+                          unCheckedChildren="No"
+                          //disabled={!props.orderManagementInd}
                         />
-                        
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
-
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
-                        <BillingToggle
-                          locationDetailsId={item.locationDetailsId}
-                          billingInd={item.billingInd}
-                        />
-                        
-                      </div>
-                    </div>
-
-
-                    <div className=" flex  flex-row md:w-[7.11rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
-
-                        <CorporateToggle
-                          locationDetailsId={item.locationDetailsId}
-                          corporateInd={item.corporateInd}
-                        />
-                       
-                      </div>
-                    </div>
-                    <div className=" flex  flex-row md:w-[6.23rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
-                        <ProjectToggle
-                          locationDetailsId={item.locationDetailsId}
-                          projectInd={item.projectInd}
-                        />
-                        
-                      </div>
-                    </div>
-                    <div className=" flex  flex-row md:w-[11.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
-                        <RetailToggle
-                          locationDetailsId={item.locationDetailsId}
-                          retailInd={item.retailInd}
-                        />
-                        
-                      </div>
-                    </div>
-                    <div className=" w-28  max-md:w-[4.41rem] max-sm:flex-row  mt-1 max-sm:justify-between">
-
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
-                        {item.regions}
-                      </div>
-                    </div>
-                    <div class="flex   max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-                      <div>
-                        <Tooltip title="Shift">
-                          <FilterTiltShiftIcon
-                            className="!text-icon cursor-pointer"
-                            onClick={() => {
-                              handleStoredLocations(item);
-                              props.handleLocationShiftDrawer(true);
-                              // handleSetCurrentLeadsId(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                      <div>
-                        <Tooltip title="Customer-Virtual Location">
-                          <AcUnitIcon
-                            className="!text-icon cursor-pointer"
-                            onClick={() => {
-                              handleStoredLocations(item);
-                              props.handleLocationCustomerDrawer(true);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                    </div>
-
-                    <div class="flex  max-sm:flex-row max-sm:w-[10%]">
-                      {item.productionInd ?
-                        <div>
-                          <Tooltip title="Cell">
-                            <TokenIcon
-                              className=" !text-icon cursor-pointer text-[blue]"
-                              onClick={() => {
-                                handleStoredLocations(item);
-                                props.handleLocnCellDrawer(true);
-                              }}
-                            />
-                          </Tooltip>
-                        </div> : null}
-                    </div>
-                    <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-                      <div>
-                        <Tooltip title="Edit">
-                          <BorderColorIcon
-                            className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={() => {
-                              handleStoredLocations(item);
-                              props.handleUpdateLocationDrawer(true);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                      <div>
-                        <StyledPopconfirm
-                          title="Do you want to delete?"
-                          onConfirm={() => props.deleteLocation(item.locationDetailsId, props.orgId)}
-                        >
-                          <Tooltip title="Delete">
-                            <DeleteOutlined
-                              type="delete"
-                              className="!text-icon cursor-pointer text-red-500"
-                            />
-                          </Tooltip>
-                        </StyledPopconfirm>
-
-                      </div>
-                    </div>
-
                   </div>
-                </div>
-              );
-            })} */}
+                </div>   
+                                        </>
+                                    )
+                                })}
           </div>
-        {/* </InfiniteScroll> */}
+   
       </div>
       
     </>
@@ -314,3 +217,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(PrmotionTable);
+
