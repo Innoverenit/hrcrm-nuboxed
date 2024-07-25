@@ -3,12 +3,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch,Select } from "antd";
 import { FormattedMessage } from "react-intl";
+import dayjs from "dayjs";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { Formik, Form, Field, FieldArray } from "formik";
+import {addPromotions} from "./PrmotionAction";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
+import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 // const FormSchema = Yup.object().shape({
 //   name: Yup.string().required("Input required!"),
 //   management: Yup.string().required("Input required!"),
@@ -16,200 +19,88 @@ import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArra
 // });
 const { Option } = Select;
 
-class LocationForm extends Component {
+class PromotionForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      production: false,
-      billing: false,
-      corporate: false,
-      inventory: false,
-      project: false,
-      prodmanuf:false,
-      retail: false,
-      contract: false,
-      department: "",
-      reportingManager: "",
+catlogue: false,
+inventory:false,
+material:false,
       translatedMenuItems: []
     };
-    this.handleDepartment = this.handleDepartment.bind(this);
-    this.handlereportingManager = this.handlereportingManager.bind(this);
+  
   }
-
-  handleProduction = (checked) => {
-    this.setState({ production: checked });
-  };
-  handleBilling = (checked) => {
-    this.setState({ billing: checked });
-  };
-  handleCorporate = (checked) => {
-    this.setState({ corporate: checked });
+  handleCatalogue = (checked) => {
+    this.setState({ catlogue: checked });
   };
   handleInventory = (checked) => {
     this.setState({ inventory: checked });
   };
-  handleProject = (checked) => {
-    this.setState({ project: checked });
+  handleMaterial = (checked) => {
+    this.setState({ material: checked });
   };
-  handleProdManuf = (checked) => {
-    this.setState({ prodmanuf: checked });
-  };
-  handleRetail = (checked) => {
-    this.setState({ retail: checked });
-  };
-  handleContract = (checked) => {
-    this.setState({ contract: checked });
-  };
-  handleDepartment(val) {
-    this.setState({ department: val });
-    this.props.getDepartmentwiserUser(val);
-  }
-  handlereportingManager(val) {
-    this.setState({ reportingManager: val });
-  }
-//   componentDidMount() {
-    
-//     this.props.getRoles(this.props.organizationId);
-//     this.props.getDepartments(); 
-//     this.props.getTimeZone();
-//     this.fetchMenuTranslations();
-//   }
- 
-//   componentDidUpdate(prevProps) {
-//     if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-//       this.fetchMenuTranslations();
-//     }
-//   }
-
-//   fetchMenuTranslations = async () => {
-//     try {
-//       const itemsToTranslate = [
-//           "Name",
-//           "Region",
-//           "inventory",
-//          "Production",
-//         "Corporate",
-//         "Retail",
-//         "Billing",
-//         " 3rd Party Location",
-//         "Department",
-//         "User",
-//         "Address",
-//         "Create"
-//       ];
-
-//       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-//       this.setState({ translatedMenuItems: translations });
-//     } catch (error) {
-//       console.error('Error translating menu items:', error);
-//     }
-//   };
   render() {
-    const { locationsTypeName } = this.props;
-    // const currencyType = props.currencies.map((item) => {
-    //   return {
-    //     label: item.currencyName || "",
-    //     value: item.currencyName,
-    //   };
-    // })
-   
-    // const timeZoneOption = this.props.timeZone.map((item) => {
-    //   return {
-    //     label: item.zoneName
-    //     || null,
-    //     value: item.timezoneId
-    //     ,
-    //   };
-    // });
+  
 
-    // const managementOption = this.props.salesManagementUsers.map((item) => {
-    //   return {
-    //     label: `${item.salutation || ""} ${item.firstName ||
-    //       ""} ${item.middleName || ""} ${item.lastName || ""}`,
-    //     value: item.userId,
-    //   };
-    // });
-
-    // const productionOption = this.props.productionManagement.map((item) => {
-    //   return {
-    //     label: `${item.salutation || ""} ${item.firstName ||
-    //       ""} ${item.middleName || ""} ${item.lastName || ""}`,
-    //     value: item.userId,
-    //   };
-    // });
-
-    // const locationsTypeOption = this.props.locationsType.map((item) => {
-    //   return {
-    //     label: item.locationType || "",
-    //     value: item.locationtypeId,
-    //   };
-    // });
-
-    console.log("3rDep-",this.state.department,"3rDUs-",this.state.reportingManager);
+    const {
+      startDate,
+      endDate,
+    } = this.props;
+  
     return (
   
       <>
         <Formik
           initialValues={{
-            locationName: "",
-            management: "",
-            productionManager: "",
-            userId: this.props.userId,
-            orgId: this.props.orgId,
-            groupId: this.props.groupId,
-            locationtypeId: undefined,
-            regionsId:"",
-            productionInd: this.state.production ? "true" : "false",
-            billingInd: this.state.billing ? "true" : "false",
-            inventoryInd: this.state.inventory ? "true" : "false",
-            projectInd: this.state.project ? "true" : "false",
-            // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
-            corporateInd: this.state.corporate ? "true" : "false",
-            retailInd: this.state.retail ? "true" : "false",
-            thirdPartyInd: this.state.contract ? "true":"false",
-            thirdPartyContactDpt:this.state.department ? this.state.department : "",
-            thirdPartyContact:this.state.reportingManager ? this.state.reportingManager : "",
-            timeZone: "",
-            timeZone: undefined,
-            address: [
-              {
-                addressType: "",
-                address1: "",
-                address2: "",
-                addressId: "",
-                // town: "",
-                // street: "",
-                city: "",
-                pinCode: "",
-                country: "",
-                county: "",
-                latitude: "",
-                longitude: "",
-                location: "",
-              },
-            ],
+            promoCodeName:"",
+            promoCode:"",
+            discountValue:"",
+            startDate:startDate || null,
+            endDate:endDate || null,
+            productInd: this.state.catlogue?"true":"false",
+            supplierInventoryInd: this.state.inventory?"true":"false",
+            materialInd: this.state.material?"true":"false",
           }}
           // validationSchema={FormSchema}
           onSubmit={(values, { resetForm }) => {
-            // this.props.addLocation(
-            //   {
-            //     ...values,
-            //     productionInd: this.state.production ? "true" : "false",
-            //     billingInd: this.state.billing ? "true" : "false",
-            //     inventoryInd: this.state.inventory ? "true" : "false",
-            //     projectInd: this.state.project ? "true" : "false",
-            //     // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
-            //     corporateInd: this.state.corporate ? "true" : "false",
-            //     retailInd: this.state.retail ? "true" : "false",
-            //     thirdPartyInd: this.state.contract ? "true":"false",
-            //     thirdPartyContactDpt :this.state.department ?this.state.department:"",
-            //     thirdPartyContact:this.state.reportingManager ? this.state.reportingManager : "",
-            //     orgId: this.props.orgId,
-            //     userId: this.props.userId,
+            let timeZoneFirst = "GMT+05:30";
+            let mytimeZone = timeZoneFirst.substring(4, 10);
+            var a = mytimeZone.split(":");
+            var timeZoneminutes = +a[0] * 60 + +a[1];
+            if (!values.startDate) {
+              values.startDate = values.startDate;
+            }
+            if (!values.endDate) {
+              values.endDate = values.endDate;
+            }
+  
+            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
+            let newEndDate = dayjs(values.endDate).format("YYYY-MM-DD");
+  
+            let newStartTime = dayjs(values.startTime).format("HH:mm:ss.SSS[Z]");
+            let firstStartHours = newStartTime.substring(0, 5);
+            let timeEndPart = newStartTime.substring(5, 13);
+            var firstStartTimeSplit = firstStartHours.split(":");
+            var minutes = +firstStartTimeSplit[0] * 60 + +firstStartTimeSplit[1];
+            var firstStartTimeminutes = minutes - timeZoneminutes;
+            let h = Math.floor(firstStartTimeminutes / 60);
+            let m = firstStartTimeminutes % 60;
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            let finalStartTime = `${h}:${m}`;
+            let newFormattedStartTime = `${finalStartTime}${timeEndPart}`;
+  
+            this.props.addPromotions(
+              {
+                ...values,
+                startDate: `${newStartDate}T20:00:00Z`,
+                endDate: `${newEndDate}T20:00:00Z`,
+                   productInd: this.state.catlogue?"true":"false" ,
+                   supplierInventoryInd: this.state.inventory?"true":"false",
+            materialInd: this.state.material?"true":"false",
                 
-            //   },
-            //   this.props.orgId,
-            // );
+              },
+            );
           }}
         >
           {({
@@ -227,7 +118,7 @@ class LocationForm extends Component {
                 <div class="h-full w-[45%] max-sm:w-wk">
                   <div>
                     <Field
-                      name="locationName"
+                      name="promoCodeName"
                       // label="Name"
                       label="Name"
                       type="text"
@@ -241,7 +132,7 @@ class LocationForm extends Component {
                   <div class=" flex justify-between w-wk mt-3 max-sm:w-[30%]">
                     <div>
                   <Field
-                      name="locationName"
+                      name="promoCode"
                       // label="Name"
                       label="Code"
                       type="text"
@@ -254,7 +145,7 @@ class LocationForm extends Component {
                     </div>
                     <div>
                     <Field
-                      name="locationName"
+                      name="discountValue"
                       // label="Name"
                       label="Discount%"
                       type="text"
@@ -277,8 +168,8 @@ class LocationForm extends Component {
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
-                          checked={this.state.inventory}
-                          onChange={this.handleInventory}
+                          checked={this.state.catlogue}
+                          onChange={this.handleCatalogue}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -293,8 +184,8 @@ class LocationForm extends Component {
                       <div>
                       <Switch
                           style={{ width: "6.25em" }}
-                          checked={this.state.production}
-                          onChange={this.handleProduction}
+                          checked={this.state.inventory}
+                          onChange={this.handleInventory}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -307,15 +198,40 @@ class LocationForm extends Component {
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
-                          checked={this.state.corporate}
-                          onChange={this.handleCorporate}
+                          checked={this.state.material}
+                          onChange={this.handleMaterial}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
                       </div>
                     </div>
                   </div>
-                  
+                  <div className="flex justify-between">
+                  <div>
+              <Field
+                name="startDate"
+                label="Start Date"
+                component={DatePicker}
+                value={values.startDate}
+                isColumn
+                isRequired
+                width={"100%"}
+                inlineLabel
+              />
+            </div>
+            <div >
+              <Field
+                name="endDate"
+                label="End Date"
+                component={DatePicker}
+                value={values.endDate}
+                isColumn
+                isRequired
+                width={"100%"}
+                inlineLabel
+              />
+            </div>
+                  </div>
                 
      
                 </div>
@@ -325,9 +241,9 @@ class LocationForm extends Component {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={this.props.addingLocation}
+                  loading={this.props.addingPrmotions}
                 >
-                  {this.state.translatedMenuItems[11]}Create
+                 Create
                 </Button>
               </div>
             </Form>
@@ -338,21 +254,18 @@ class LocationForm extends Component {
     );
   }
 }
-const mapStateToProps = ({ location, auth, region, plant,departments,settings,role }) => ({
-  addingLocation: location.addingLocation,
+const mapStateToProps = ({ promotion, auth,}) => ({
+  addingPrmotions: promotion.addingPrmotions,
   timeZone: auth.timeZone,
   userId:auth.userDetails.userId,
   orgId:auth.userDetails.organizationId,
-  departments: departments.departments,
-  departmentwiseUser: settings.departmentwiseUser,
-  roles: role.roles,
   organizationId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   addLocation,
+     addPromotions,
     //   getTimeZone,
     //   getDepartmentwiserUser,
     //   getRoles,
@@ -361,4 +274,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocationForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PromotionForm);

@@ -1,14 +1,9 @@
 import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import {
-//   getlocation, handleLocationShiftDrawer,
-//   handleUpdateLocationDrawer,
-//   handleLocationCustomerDrawer,
-//   handleLocationSupplierDrawer,
-//   deleteLocation, addingLocationToggle,
-//   handleLocnCellDrawer
-// } from "./LocationAction";
+import {
+  getPrmotionData
+} from "./PrmotionAction";
 import TokenIcon from '@mui/icons-material/Token';
 import {  Tooltip } from "antd";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
@@ -26,7 +21,7 @@ const PrmotionTable = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [refurbish, Setrefurbish] = useState(props.showLocation.productionInd,)
+  const [refurbish, Setrefurbish] = useState(props.promotionsData.productionInd,)
 //   const handleRefurbishClick = (checked) => {
 //     Setrefurbish(checked);
 //     let data = {
@@ -64,9 +59,9 @@ const PrmotionTable = (props) => {
 
 //     fetchMenuTranslations();
 //   }, [props.selectedLanguage]);
-//   useEffect(() => {
-//     props.getlocation(props.orgId);
-//   }, []);
+  useEffect(() => {
+    props.getPrmotionData();
+  }, []);
 
   const [storedLoc, setStoredLoc] = useState({});
   const handleStoredLocations = (locs) => {
@@ -74,14 +69,14 @@ const PrmotionTable = (props) => {
   }
 //   const handleLoadMore = () => {
 //     setPage(page + 1);
-//     props.getlocation(props.orgId);
+//     props.getPrmotionData(props.orgId);
 //   }
 //   if (props.fetchingLocationData) return <BundleLoader />;
   return (
     <>
       <div>
         {/* <InfiniteScroll
-          dataLength={props.showLocation.length}
+          dataLength={props.promotionsData.length}
           next={handleLoadMore}
           hasMore={hasMore}
           loader={props.fetchingLocationData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
@@ -108,7 +103,7 @@ const PrmotionTable = (props) => {
             
           </div>
           <div class="">
-            {/* {props.showLocation.map((item) => {
+            {/* {props.promotionsData.map((item) => {
               return (
                 <div >
                   <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
@@ -305,32 +300,16 @@ const PrmotionTable = (props) => {
     </>
   );
 };
-const mapStateToProps = ({ location, auth }) => ({
-  showLocation: location.showLocation,
-  locationSupplierdrawr: location.locationSupplierdrawr,
-  locationCustomerdrawr: location.locationCustomerdrawr,
+const mapStateToProps = ({promotion , auth }) => ({
+
   orgId: auth.userDetails.organizationId,
-  locShiftDrawer: location.locShiftDrawer,
-  locationUpdatedrawr: location.locationUpdatedrawr,
-  financeInd: auth.userDetails.financeInd,
-  repairInd: auth.userDetails.repairInd,
-  productionInd: auth.userDetails.productionInd,
-  orderManagementInd: auth.userDetails.orderManagementInd,
-  recruitProInd: auth.userDetails.recruitProInd,
-  fetchingLocationData: location.fetchingLocationData,
-  clickLocDrwr: location.clickLocDrwr,
+  promotionsData: promotion.promotionsData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   getlocation,
-    //   handleLocationShiftDrawer,
-    //   handleUpdateLocationDrawer,
-    //   deleteLocation,
-    //   handleLocationCustomerDrawer,
-    //   handleLocationSupplierDrawer,
-    //   addingLocationToggle,
-    //   handleLocnCellDrawer
+     getPrmotionData,
+   
     },
     dispatch
   );
