@@ -10,6 +10,11 @@ import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFie
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { addShipper, getEmployeelistAsErp } from "../../../../../Containers/Main/Shipper/ShipperAction";
 import { Listbox } from '@headlessui/react';
+
+import {
+  addCustomerConfigure,
+  getCustomerConfigure
+} from "../../../SettingsAction"
 import { getShipByData } from "../../../../Settings/Category/ShipBy/ShipByAction";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 
@@ -29,9 +34,65 @@ function AddShipperForm(props) {
     props.getShipByData(props.orgId);
   }, []);
 
+
+  useEffect(() => {
+    
+    props.getCustomerConfigure(props.orgId,"add","shipper")
+  }, []);
+
+
+  useEffect(() => {
+    if (
+      props.customerConfigure.addressInd !== undefined &&
+      
+      props.customerConfigure.assignedToInd !== undefined &&
+      
+      props.customerConfigure.phoneNoInd !== undefined &&
+      props.customerConfigure.dailCodeInd !== undefined &&
+      props.customerConfigure.apiInd !== undefined &&
+      props.customerConfigure.shipByInd !== undefined 
+     
+      
+      
+    ) {
+      //setIsFirstNameVisible(props.customerConfigure.startInd);
+     
+      
+      setIsMobileNumberVisible(props.customerConfigure.dailCodeInd);
+      
+      setIsAssignedVisible(props.customerConfigure.assignedToInd)
+    
+      setIsAddressVisible(props.customerConfigure.addressInd)
+      
+      setIsphoneNoVisible(props.customerConfigure.phoneNoInd)
+      setIsShipVisible(props.customerConfigure.shipByInd)
+      setIsApiVisible(props.customerConfigure.apiInd)
+
+    }
+  }, [props.customerConfigure]);
+
   const [defaultOption, setDefaultOption] = useState(props.fullName);
   const [selected, setSelected] = useState(defaultOption);
   const selectedOption = props.employeeAsErp.find((item) => item.empName === selected);
+
+
+
+
+  
+  const [isphoneNoVisible, setIsphoneNoVisible] = useState(false);
+  const [isMobileNumberVisible, setIsMobileNumberVisible] = useState(false);
+ 
+  const [isAssignedVisible, setIsAssignedVisible] = useState(false);
+ 
+
+
+ 
+  const [isAddressVisible, setIsAddressVisible] = useState(false);
+
+
+
+  const [isApiVisible, setIsApiVisible] = useState(false);
+  const [isShipVisible, setIsShipVisible] = useState(false);
 
   const shipByOptions = props.ShipByData.map((item) => {
     return {
@@ -44,19 +105,51 @@ function AddShipperForm(props) {
   const handleApiToggle = () => {
     setApiInd(!apiInd)
   }
+
+
+
+  const toggleFieldVisibility = (fieldName) => {
+    switch (fieldName) {
+    
+     
+      
+           
+            
+            case 'assigned':
+                setIsAssignedVisible(!isAssignedVisible);
+                break;
+                
+                    case 'dialcode':
+                        setIsMobileNumberVisible(!isMobileNumberVisible);
+                        break;
+                         
+                        case 'phoneNo':
+                            setIsphoneNoVisible(!isphoneNoVisible);
+                            break;
+                            case 'address':
+                                setIsAddressVisible(!isAddressVisible);
+                                break;
+
+                                case 'ship':
+                                  setIsShipVisible(!isShipVisible);
+                                  break;
+                                  case 'api':
+                                    setIsApiVisible(!isApiVisible);
+                                    break;
+                               
+                                 
+                                    
+      default:
+        break;
+    }
+  };
   return (
     <>
       <Formik
         // enableReinitialize
         initialValues={{
-          userId: props.userId,
-          name: "",
-          orgId: props.orgId,
-          dialCode: "",
-          phoneNo: "",
-          emailId: "",
-          assignedTo: selectedOption ? selectedOption.employeeId : props.userId,
-          shipById: "",
+          formType:"add",
+          baseFormType:"shipper",
           address: [
             {
               addressId: "",
@@ -75,13 +168,17 @@ function AddShipperForm(props) {
           ],
           // address: "",
         }}
-        validationSchema={CustomerSchema}
+        // validationSchema={CustomerSchema}
         onSubmit={(values, { resetForm }) => {
-          props.addShipper(
+          props.addCustomerConfigure(
             {
               ...values,
-              api: apiInd,
-              assignedTo: selectedOption ? selectedOption.employeeId : props.userId,
+              dailCodeInd:isMobileNumberVisible,
+              phoneNoInd:isphoneNoVisible,
+              assignedToInd:isAssignedVisible,
+              addressInd:isAddressVisible,
+              apiInd:isApiVisible,
+              shipByInd:isShipVisible,
             },
             props.userId,
 
@@ -113,12 +210,7 @@ function AddShipperForm(props) {
                     isColumn
                     inlineLabel
                   />
-                                     <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
-          checkedChildren="Visible"
-            unCheckedChildren="Hidden"
-          />
+          
                   <div class=" flex justify-between">
                     <div class="w-[30%] max-sm:w-[40%] ">
                       <FastField
@@ -134,9 +226,9 @@ function AddShipperForm(props) {
                         inlineLabel
                         isColumnWithoutNoCreate
                       />
-                                         <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+                                        <Switch
+            checked={isMobileNumberVisible}
+            onChange={() => toggleFieldVisibility('dialcode')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -152,9 +244,9 @@ function AddShipperForm(props) {
                         inlineLabel
                         width={"100%"}
                       />
-                                         <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+                                          <Switch
+            checked={isphoneNoVisible}
+           onChange={() => toggleFieldVisibility('phoneNo')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -171,12 +263,7 @@ function AddShipperForm(props) {
                       component={InputComponent}
                       inlineLabel
                     />
-                                       <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
-          checkedChildren="Visible"
-            unCheckedChildren="Hidden"
-          />
+          
                   </div>
                   <div class="w-full">
                     <FastField
@@ -191,8 +278,8 @@ function AddShipperForm(props) {
                       inlineLabel
                     />
                                        <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+          checked={isShipVisible}
+            onChange={() => toggleFieldVisibility('ship')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -211,8 +298,8 @@ function AddShipperForm(props) {
                       unCheckedChildren="No"
                     />
                                        <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+            checked={isApiVisible}
+            onChange={() => toggleFieldVisibility('api')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -288,8 +375,8 @@ function AddShipperForm(props) {
                       )}
                     </Listbox>
                     <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+            checked={isAssignedVisible}
+            onChange={() => toggleFieldVisibility('assigned')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -306,9 +393,9 @@ function AddShipperForm(props) {
                         />
                       )}
                     />
-                                       <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+                                   <Switch
+            checked={isAddressVisible}
+            onChange={() => toggleFieldVisibility('address')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -321,9 +408,9 @@ function AddShipperForm(props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                 // loading={props.addingShipper}
+                 loading={props.addingCustomerConfig}
                 >
-                    Create
+                    Update
                     {/* {props.translatedMenuItems[15]} */}
                   {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */}
                 </Button>
@@ -337,20 +424,24 @@ function AddShipperForm(props) {
 
 }
 
-const mapStateToProps = ({ auth, shipper, employee, shipBy }) => ({
+const mapStateToProps = ({ auth, shipper,settings, employee, shipBy }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   addingShipper: shipper.addingShipper,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   fullName: auth.userDetails.fullName,
   orgId:auth.userDetails.organizationId,
+  addingCustomerConfig:settings.addingCustomerConfig,
   ShipByData: shipBy.ShipByData,
+  customerConfigure:settings.customerConfigure,
   employeeAsErp: shipper.employeeAsErp
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      addCustomerConfigure,
+      getCustomerConfigure,
       addShipper,
       getEmployeelistAsErp,
       getShipByData

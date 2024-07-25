@@ -16,6 +16,7 @@ import {
   emptyClearbit,
   getCrm
 } from "../../Leads/LeadsAction";
+import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
@@ -155,6 +156,13 @@ props.emptyClearbit();
       setTouched(true);
     }
   };
+
+  useEffect(() => {
+   
+    props.getCustomerConfigure(props.orgId,"add","leads")
+    // setSource("")
+    // props.getCurrency();
+  }, []);
 
   const fetchSector = async () => {
     setIsLoadingSector(true);
@@ -452,6 +460,7 @@ props.emptyClearbit();
              <div class="flex justify-between  pr-2 max-sm:flex-col" >
                    
                 <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                {props.customerConfigure.imageUploadInd===true&&
                   <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
                    
@@ -487,6 +496,7 @@ props.emptyClearbit();
                         </div>
                       </div>                  
                       <div class=" flex justify-between max-sm:flex-col">
+                      {props.customerConfigure.middleNameInd===true&&
                         <div class=" w-2/5 max-sm:w-full">
                           <FastField
                             name="middleName"
@@ -499,6 +509,8 @@ props.emptyClearbit();
                             inlineLabel
                           />
                         </div>
+}
+{props.customerConfigure.lastNameInd===true&&
                         <div class=" w-1/2 max-sm:w-full">
                           <FastField
                             name="lastName"
@@ -511,9 +523,11 @@ props.emptyClearbit();
                             inlineLabel
                           />
                         </div>
+}
                       </div>
                     </div>
                   </div>
+}
 
                   <Field
                     isRequired
@@ -527,6 +541,7 @@ props.emptyClearbit();
                   /> 
                                
                   <div class=" flex justify-between">
+                  {props.customerConfigure.dailCodeInd===true&&
                     <div class=" w-3/12 max-sm:w-[35%]">
                    
                       <FastField
@@ -543,7 +558,9 @@ props.emptyClearbit();
                       />
                   
                     </div>
+}
                     <div class=" w-8/12">
+                    {props.customerConfigure.phoneNoInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <FastField
                         type="text"
@@ -555,6 +572,7 @@ props.emptyClearbit();
                         width={"100%"}
                       />
                       </div>
+}
                     </div>
                   </div>
               
@@ -573,6 +591,7 @@ props.emptyClearbit();
                   />
                   </div>
                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                  {props.customerConfigure.urlInd===true&&
                   <Field
                     name="url"
                     type="text"
@@ -582,14 +601,16 @@ props.emptyClearbit();
                     component={InputComponent}
                     inlineLabel
                   />
+}
                   </div>
                          
                  
                   <div class=" flex  justify-between mt-3">
                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
-
+                   {props.customerConfigure.sectorInd===true&&
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[8]}</label>
-
+}
+{props.customerConfigure.sectorInd===true&&
 <Select
         showSearch
         //style={{ width: 200 }}
@@ -605,12 +626,14 @@ props.emptyClearbit();
           </Option>
         ))}
       </Select>
+}
                     
                     </div>
                     <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
-                          
+                    {props.customerConfigure.sourceInd===true&&
                           <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[9]}</label>
-
+                    }
+                          {props.customerConfigure.sourceInd===true&&
 <Select
         showSearch
        // style={{ width: 200 }}
@@ -626,13 +649,16 @@ props.emptyClearbit();
           </Option>
         ))}
       </Select>
+}
                         </div>
                     </div>
                   
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">
+                    {props.customerConfigure.lobInd===true&&
                     <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}</label>
-
+}
+{props.customerConfigure.lobInd===true&&
 <Select
         showSearch
        
@@ -648,8 +674,10 @@ props.emptyClearbit();
           </Option>
         ))}
       </Select>
+}
                     </div>
                     <div class=" w-w47.5 max-sm:w-wk">
+                    {props.customerConfigure.typeInd===true&&
                     <div class="flex">
                        <Tooltip title="Hot">
                          <Button
@@ -699,6 +727,7 @@ props.emptyClearbit();
                            </Button>
                        </Tooltip>
                      </div>
+}
                       </div>
 
 
@@ -707,6 +736,7 @@ props.emptyClearbit();
                  
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">
+                    {props.customerConfigure.vatNoInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <Field
                         name="vatNo"
@@ -718,8 +748,10 @@ props.emptyClearbit();
                         inlineLabel
                       />
                       </div>
+}
                     </div>
                     <div class="w-w47.5">
+                    {props.customerConfigure.businessRegInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <Field
                         name="businessRegistration"
@@ -732,6 +764,7 @@ props.emptyClearbit();
                         inlineLabel
                       />
                       </div>
+}
                     </div>
                   </div>
              
@@ -775,6 +808,7 @@ props.emptyClearbit();
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
                 >
+                    {props.customerConfigure.assignedToInd===true&&
                    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
@@ -841,9 +875,11 @@ props.emptyClearbit();
         </>
       )}
     </Listbox>
+}
              
                 
                   <div class=" mt-3">
+                  {props.customerConfigure.addressInd===true&&
                   <FieldArray
                     name="address"
                     label="Address"
@@ -857,6 +893,7 @@ translatedMenuItems={props.translatedMenuItems}
                       />
                     )}
                   />
+}
                   </div>
                   {props.orgType==="Real Estate"&&(
                   <div class=" h-3/4  max-sm:w-wk "
@@ -1009,6 +1046,7 @@ translatedMenuItems={props.translatedMenuItems}
                   </FlexContainer> */}
                 </div>
                 )}
+                 {props.customerConfigure.noteInd===true&&
                 <div class="mt-3">
                     <div>{translatedMenuItems[14]}</div>
                     <div>
@@ -1057,6 +1095,7 @@ translatedMenuItems={props.translatedMenuItems}
                   </div>
                 </div>
                   </div>
+}
                 </div>
               </div>
             
@@ -1079,7 +1118,7 @@ translatedMenuItems={props.translatedMenuItems}
     );
 }
 
-const mapStateToProps = ({ auth, leads,lob }) => ({
+const mapStateToProps = ({ auth, leads,settings,lob }) => ({
   addingLeads: leads.addingLeads,
   crmAllData:leads.crmAllData,
   addingLeadsError: leads.addingLeadsError,
@@ -1092,6 +1131,7 @@ const mapStateToProps = ({ auth, leads,lob }) => ({
   userId: auth.userDetails.userId,
   fullName: auth.userDetails.fullName,
   token: auth.token,
+  customerConfigure:settings.customerConfigure,
 
 });
 
@@ -1101,7 +1141,8 @@ const mapDispatchToProps = (dispatch) =>
        addLeads,
        getCrm,
       setClearbitData,
-      emptyClearbit
+      emptyClearbit,
+      getCustomerConfigure,
 
     },
     dispatch

@@ -3,25 +3,28 @@ import React, { useState ,useEffect, Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Button, Select, Switch } from "antd";
-import {getCustomerConfigure} from "../../Settings/SettingsAction"
+import {
+    addCustomerConfigure,
+    getCustomerConfigure
+} from "../../../SettingsAction"
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import {getDepartments} from "../../Settings/Department/DepartmentAction"
-import { HeaderLabel,  } from "../../../Components/UI/Elements";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
-import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
-import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { addContact, addLinkContactByOpportunityId } from "../ContactAction";
-import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
-import { getCustomerData } from "../../Customer/CustomerAction";
+import {getDepartments} from "../../../../Settings/Department/DepartmentAction"
+import { HeaderLabel,  } from "../../../../../Components/UI/Elements";
+import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
+import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFieldArray";
+import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
+import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
+import { addContact, addLinkContactByOpportunityId } from "../../../../Contact/ContactAction";
+import PostImageUpld from "../../../../../Components/Forms/Formik/PostImageUpld";
+import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
+import { getCustomerData } from "../../../../Customer/CustomerAction";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
-import { BundleLoader } from "../../../Components/Placeholder";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 
 const { Option } = Select;
 /**
@@ -36,35 +39,44 @@ const ContactSchema = Yup.object().shape({
   // mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5, "Number is too short").max(10, "Number is too long")
 });
 
-class ContactForm extends Component {
-  componentDidMount() {
-    this.props.getCustomerData(this.props.userId);
-    this.props.getDepartments();
-    this.props.getCustomerConfigure(this.props.orgId,"add","shipper")
-  }
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-      option: "Mobile",
-      option1: "Mobile",
-      option2: "Work",
-      currentOption: "",
-      whatsapp: false,
-      candidate: false,
-      availability: false,
-      translatedMenuItems: [],
-      loading: true
-    };
-  }
+function ContactForm (props) {
 
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
 
-  async fetchMenuTranslations() {
-    try {
-      this.setState({ loading: true });
+    const [isLoading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [isAddressVisible, setIsAddressVisible] = useState(false);
+    const [isOtherVisible, setIsOtherVisible] = useState(false);
+    const [islinkedinVisible, setIslinkedinVisible] = useState(false)
+    const [isCustomerVisible, setIsCustomerVisible] = useState(false)
+    const [isAlternateEmailVisible, setIsAlternateEmailVisible] = useState(false)
+    const [isDepartmentVisible, setIsdepartmentVisible] = useState(false)
+    const [isDesignationVisible, setIsdesignationVisible] = useState(false)
+    const [isUploadVisible, setIsUploadVisible] = useState(false);
+    const [isSourceVisible, setIsSourceVisible] = useState(false);
+    const [isphoneNoVisible, setIsphoneNoVisible] = useState(false);
+  const [isMobileNumberVisible, setIsMobileNumberVisible] = useState(false);
+    const [isLastNameVisible, setIsLastNameVisible] = useState(false);
+    const [isMiddleVisible, setIsMiddleVisible] = useState(false);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+//   componentDidMount() {
+//     props.getCustomerData(props.userId);
+//     props.getDepartments();
+//   }
+  
+useEffect(() => {
+props.getCustomerData(props.userId);
+props.getDepartments();
+}, []);
+
+useEffect(() => {
+    
+    props.getCustomerConfigure(props.orgId,"add","contact")
+  }, []);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
       const itemsToTranslate = [
        'First Name', // 0
 'Middle Name', // 1
@@ -85,60 +97,137 @@ class ContactForm extends Component {
   'Property Type',
   'Create'
       ];
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations ,loading: false});
-     
+      const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+      setTranslatedMenuItems(translations);
+      setLoading(false);
     } catch (error) {
-      this.setState({ loading: false });
+      setLoading(false);
       console.error('Error translating menu items:', error);
     }
-  }
+  };
+
+
+  fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
 
 
-  handleCandidate = (checked) => {
-    this.setState({ candidate: checked });
-  };
-  handleAvailability = (checked) => {
-    this.setState({ availability: checked });
-  };
-  handleWhatsApp = (checked) => {
-    this.setState({ whatsapp: checked });
-  };
-  handleReset = (resetForm) => {
-    const { callback } = this.props;
-    callback && callback();
-    resetForm();
-  };
-  handleClick = (option) => {
-    ////debugger;
-    this.setState({
-      currentOption: option,
-    });
-    console.log(this.state.option);
-    console.log(this.state.currentOption);
-  };
-  onChange = (value) => {
-    console.log(value);
-    this.setState({
-      option: value,
-    });
-  };
-  onChange1 = (value) => {
-    console.log(value);
-    this.setState({
-      option1: value,
-    });
-  };
-  onChange2 = (value) => {
-    ////debugger;
-    console.log(value);
-    this.setState({
-      option2: value,
-    });
+
+  useEffect(() => {
+    // if (
+    //   props.customerConfigure.addressInd !== undefined &&
+    //   props.customerConfigure.businessRegInd !== undefined &&
+    //   props.customerConfigure.vatNoInd !== undefined &&
+    //   props.customerConfigure.assignedToInd !== undefined &&
+    //   props.customerConfigure.noteInd !== undefined &&
+    //   props.customerConfigure.sourceInd !== undefined &&
+    //   props.customerConfigure.sectorInd !== undefined &&
+    //   props.customerConfigure.phoneNoInd !== undefined &&
+    //   props.customerConfigure.dailCodeInd !== undefined &&
+    //   props.customerConfigure.lobInd !== undefined &&
+    //   props.customerConfigure.middleNameInd !== undefined &&
+    //   props.customerConfigure.imageUploadInd !== undefined &&
+    //   props.customerConfigure.nameInd !== undefined &&
+    //   props.customerConfigure.lastNameInd !== undefined &&
+    //   props.customerConfigure.urlInd !== undefined &&
+      
+    //   props.customerConfigure.typeInd !== undefined
+      
+      
+    // ) {
+      //setIsFirstNameVisible(props.customerConfigure.startInd);
+      setIsLastNameVisible(props.customerConfigure.lastNameInd);
+      
+      setIsMobileNumberVisible(props.customerConfigure.dailCodeInd);
+      setIsSourceVisible(props.customerConfigure.sourceInd)
+      setIsOtherVisible(props.customerConfigure.whatsupInd)
+      setIslinkedinVisible(props.customerConfigure.linkedinInd)
+      setIsCustomerVisible(props.customerConfigure.tagCompanyInd)
+      setIsAddressVisible(props.customerConfigure.addressInd)
+      setIsdepartmentVisible(props.customerConfigure.departmentInd)
+      setIsphoneNoVisible(props.customerConfigure.phoneNoInd)
+      setIsUploadVisible(props.customerConfigure.imageUploadInd)
+      setIsMiddleVisible(props.customerConfigure.middleNameInd)
+      setIsdesignationVisible(props.customerConfigure.designationInd)
+      setIsAlternateEmailVisible(props.customerConfigure.alternateEmailInd)
+     
+     
+    // }
+  }, [props.customerConfigure]);
+
+
+
+
+
+
+  const toggleFieldVisibility = (fieldName) => {
+    switch (fieldName) {
+     
+    
+        
+            case 'middle':
+            setIsMiddleVisible(!isMiddleVisible);
+            break;
+             case 'upload':
+            setIsUploadVisible(!isUploadVisible);
+            break;
+             case 'lastName':
+            setIsLastNameVisible(!isLastNameVisible);
+            break;
+           
+                
+                
+                    case 'dialcode':
+                        setIsMobileNumberVisible(!isMobileNumberVisible);
+                        break;
+                        
+                        case 'phoneNo':
+                            setIsphoneNoVisible(!isphoneNoVisible);
+                            break;
+                            case 'address':
+                                setIsAddressVisible(!isAddressVisible);
+                                break;
+                               
+                                 
+                                    case 'other':
+                                        setIsOtherVisible(!isOtherVisible);
+                                      break;
+                                       case 'source':
+                                      setIsSourceVisible(!isSourceVisible);
+                                      break;
+
+
+                                      case 'linkedin':
+                                        setIslinkedinVisible(!islinkedinVisible);
+                                        break;
+
+                                        case 'customer':
+                                            setIsCustomerVisible(!isCustomerVisible);
+                                            break;
+
+
+                                            case 'department':
+                                                setIsdepartmentVisible(!isDepartmentVisible);
+                                                break;
+
+                                                case 'designation':
+                                                    setIsdesignationVisible(!isDesignationVisible);
+                                                break;
+
+                                                case 'upload':
+                                                    setIsUploadVisible(!isUploadVisible);
+                                                    break;
+
+                                                    case 'alternate':
+                                                        setIsAlternateEmailVisible(!isAlternateEmailVisible);
+                                                    break;
+      default:
+        break;
+    }
   };
 
-  render() {
+
+ 
     const {
       user: { userId, firstName, lastName },
       addContact,
@@ -148,66 +237,12 @@ class ContactForm extends Component {
       opportunityId,
       addLinkContactByOpportunityId,
       defaultCustomers,
-    } = this.props;
-    const customerNameOption = this.props.customerData
-    .sort((a, b) => {
-      const libraryNameA = a.name && a.name.toLowerCase();
-      const libraryNameB = b.name && b.name.toLowerCase();
-      if (libraryNameA < libraryNameB) {
-        return -1;
-      }
-      if (libraryNameA > libraryNameB) {
-        return 1;
-      }
+    } = props;
   
-      // names must be equal
-      return 0;
-    }
-  )
-    .map((item) => {
-      return {
-        label: `${item.name || ""}`,
-        value: item.customerId,
-      };
-    });
-
-    const departmentNameOption = this.props.departments
-    .sort((a, b) => {
-      const libraryNameA = a.name && a.name.toLowerCase();
-      const libraryNameB = b.name && b.name.toLowerCase();
-      if (libraryNameA < libraryNameB) {
-        return -1;
-      }
-      if (libraryNameA > libraryNameB) {
-        return 1;
-      }
+   
+    
   
-      // names must be equal
-      return 0;
-    }
-  )
-    .map((item) => {
-      return {
-        label: `${item.departmentName || ""}`,
-        value: item.departmentId,
-      };
-    });
-    // const [text, setText] = useState("");
-    // function handletext(e) {
-    //   setText(e.target.value);
-    // }
-    // const {
-    //   transcript,
-    //   listening,
-    //   resetTranscript,
-    //   browserSupportsSpeechRecognition,
-    // } = useSpeechRecognition();
-  
-    // if (!browserSupportsSpeechRecognition) {
-    //   return <span>Browser doesn't support speech recognition.</span>;
-    // }
-  
-    const {loading,translatedMenuItems } = this.state;
+    
     if (loading) {
       return <div><BundleLoader/></div>;
     } 
@@ -216,32 +251,9 @@ class ContactForm extends Component {
       <>
         <Formik
           initialValues={{
-            salutation: "",
-            // designation: undefined,
-            designationTypeId: this.props.designationTypeId,
-            description: "",
-            //department: undefined,
-            departmentId: "",
-            departmentDetails: "",
-            userId: this.props.userId,
-            customerId: this.props.customerId,
-            opportunityId: this.props.opportunityId,
-            source:"",
-            tagWithCompany: "",
-            firstName: "",
-            middleName: "",
-            lastName: "",
-            countryDialCode: this.props.user.countryDialCode,
-            countryDialCode1: this.props.user.countryDialCode,
-            phoneNumber: "",
-            mobileNumber: "",
-            emailId: "",
-            alternateEmail:"",
-            linkedinPublicUrl: "",
-            bedrooms:"",
-        
-            propertyType:"",
-            whatsapp: this.state.whatsapp ? "Different" : "Same",
+            formType:"add",
+            baseFormType:"contact",
+            // whatsapp: this.state.whatsapp ? "Different" : "Same",
             address: [
               {
                 addressType: "",
@@ -251,27 +263,40 @@ class ContactForm extends Component {
                 street: "",
                 city: "",
                 postalCode: "",
-                country: this.props.user.country,
+                country: props.user.country,
                 latitude: "",
                 longitude: "",
               },
             ],
             notes: "",
           }}
-          validationSchema={ContactSchema}
+        //   validationSchema={ContactSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
-            linkContact
-              ? addLinkContactByOpportunityId(values, opportunityId, () =>
-                this.handleReset(resetForm)
-              )
-              : addContact(
+         
+            props.addCustomerConfigure(
                 {
                   ...values,
-                  whatsapp: this.state.whatsapp ? "Different" : "Same",
-                  price:values.price,
+                  dailCodeInd:isMobileNumberVisible,
+                  phoneNoInd:isphoneNoVisible,
+                
+                  sourceInd:isSourceVisible,
+                 
+                  addressInd:isAddressVisible,
+                  
+                  middleNameInd:isMiddleVisible,
+                  lastNameInd:isLastNameVisible,
+                 
+                  imageUploadInd:isUploadVisible,
+                  departmentInd:isDepartmentVisible,
+                  designationInd:isDesignationVisible,
+                  linkedinInd:islinkedinVisible,
+                  whatsupInd:isOtherVisible,
+                  alternateEmailInd:isAlternateEmailVisible,
+                  tagCompanyInd:isCustomerVisible
+
                 },
-                this.props.userId,
+                props.userId,
                 () => this.handleReset(resetForm)
               );
           }}
@@ -292,6 +317,12 @@ class ContactForm extends Component {
                 >
                   <div class=" flex  flex-nowrap justify-between">
                     <FastField name="imageId" component={PostImageUpld} />
+                    <Switch
+            checked={isUploadVisible}
+            onChange={() => toggleFieldVisibility('upload')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                     <div>
                       <div class=" flex justify-between max-sm:flex-col">
                         {/* <div class=" w-2/5 max-sm:w-full">
@@ -339,6 +370,12 @@ class ContactForm extends Component {
                             component={InputComponent}
                             inlineLabel
                           />
+                                               <Switch
+            checked={isMiddleVisible}
+        onChange={() => toggleFieldVisibility('middle')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                         </div>
                         <div class=" w-1/2 max-sm:w-full">
                         <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
@@ -352,6 +389,12 @@ class ContactForm extends Component {
                             component={InputComponent}
                             inlineLabel
                           />
+                                                           <Switch
+        checked={isLastNameVisible}
+    onChange={() => toggleFieldVisibility('lastName')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                         </div>
                       </div>
                     </div>
@@ -389,6 +432,14 @@ class ContactForm extends Component {
                         inlineLabel
                         // isRequired
                       />
+
+
+<Switch
+        checked={isAlternateEmailVisible}
+    onChange={() => toggleFieldVisibility('alternate')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                     </div>
                   
                   </div>               
@@ -403,10 +454,16 @@ class ContactForm extends Component {
                         selectType="dialCode"
                         component={SearchSelect}
                         defaultValue={{
-                          label:`+${this.props.user.countryDialCode}`,
+                          label:`+${props.user.countryDialCode}`,
                         }}
                         inlineLabel
                       />
+                                                     <Switch
+            checked={isMobileNumberVisible}
+            onChange={() => toggleFieldVisibility('dialcode')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                     </div>
                     <div class=" w-2/5 max-sm:w-2/5">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
@@ -419,54 +476,54 @@ class ContactForm extends Component {
                         width={"100%"}
                         isColumn
                       />
+                                                     <Switch
+          checked={isphoneNoVisible}
+           onChange={() => toggleFieldVisibility('phoneNo')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                     </div>
                     <div class=" w-1/4 " >
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                       <Switch
-                        onChange={this.handleWhatsApp}
-                        checked={this.state.whatsapp}
+                        // onChange={this.handleWhatsApp}
+                        // checked={this.state.whatsapp}
                         checkedChildren="Different"
                         unCheckedChildren="Same"
                       />
                     </div>
+                    <Switch
+            checked={isOtherVisible}
+        onChange={() => toggleFieldVisibility('other')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                   </div>
                  
                   <div class=" flex justify-between">
-                    <div class=" w-2/4">
+                    {/* <div class=" w-2/4">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                       {" "}
-                      {this.state.whatsapp && (
+                      {whatsapp && (
                         <FastField
                           name="countryDialCode1"
                           selectType="dialCode"
                           isColumnWithoutNoCreate
-                          //label="Phone No #"
+                        
                           placeholder='+31'
-                          // label={translatedMenuItems[5]}
+                         
                           isColumn
                           component={SearchSelect}
                           defaultValue={{
-                            value: this.props.user.countryDialCode,
+                            value: props.user.countryDialCode,
                           }}
                           value={values.countryDialCode1}
                           inlineLabel
                         />
                       )}
-                    </div>
+                    </div> */}
                     <div class=" w-2/4">
-                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
-                      {this.state.whatsapp && (
-                        <FastField
-                          type="text"
-                          name="phoneNumber"
-                          placeholder="Phone #"
-                          // label={translatedMenuItems[7]}
-                          isColumn
-                          component={InputComponent}
-                          inlineLabel
-                          width={"100%"}
-                        />
-                      )}
+                    
                     </div>
                   </div>
                  
@@ -484,6 +541,13 @@ class ContactForm extends Component {
                         component={InputComponent}
                         inlineLabel
                       />
+
+<Switch
+            checked={islinkedinVisible}
+        onChange={() => toggleFieldVisibility('linkedin')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                     </div>
                   </div>
                 
@@ -542,11 +606,22 @@ class ContactForm extends Component {
                         component={SelectComponent}
                         isColumn
                         value={values.customerId}
+                        options={[
+                            { value: "1", label: "Option 1" },
+                            { value: "2", label: "Option 2" },
+                            { value: "3", label: "Option 3" }
+                          ]}
                         isDisabled={defaultCustomers}
-                        options={Array.isArray(customerNameOption) ? customerNameOption : []}
+                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
                         // defaultValue={defaultCustomers ? defaultCustomers : null}
                         inlineLabel
                       />
+                            <Switch
+            checked={isCustomerVisible}
+        onChange={() => toggleFieldVisibility('customer')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                     </div>
 
                    
@@ -561,6 +636,12 @@ class ContactForm extends Component {
                             value={values.source}
                             isColumn
                           />
+                             <Switch
+            checked={isSourceVisible}
+        onChange={() => toggleFieldVisibility('source')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                         </div>
                      
                     
@@ -580,6 +661,12 @@ class ContactForm extends Component {
                       // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
                       inlineLabel
                     />
+                       <Switch
+        checked={isDepartmentVisible}
+        onChange={() => toggleFieldVisibility('department')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                   </div>
                   <div class="w-w47.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
@@ -594,6 +681,12 @@ class ContactForm extends Component {
                         isColumnWithoutNoCreate
                         inlineLabel
                       />
+                         <Switch
+          checked={isDesignationVisible}
+        onChange={() => toggleFieldVisibility('designation')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                       </div>
                   </div>
                  
@@ -612,9 +705,15 @@ class ContactForm extends Component {
                       />
                     )}
                   />
+                                             <Switch
+            checked={isAddressVisible}
+            onChange={() => toggleFieldVisibility('address')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
 
                  
-                  {this.props.orgType==="Real Estate"&&(
+                  {props.orgType==="Real Estate"&&(
                   <div class=" h-3/4 max-sm:w-wk mt-3 "
                 >
                   <div class=" flex  justify-between max-sm:mt-20">
@@ -856,9 +955,12 @@ class ContactForm extends Component {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={addingContact}
+                  loading={props.addingCustomerConfig}
                 >
-                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[17]}</div>
+                  <div class=" text-xs font-bold font-poppins"> 
+                    {/* {translatedMenuItems[17]} */}
+                    Update
+                    </div>
                   {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */}
                   {/*                     
                     Create */}
@@ -871,16 +973,16 @@ class ContactForm extends Component {
       </>
     );
   }
-}
+
 
 const mapStateToProps = ({ auth, contact,settings, customer, opportunity, departments, designations }) => ({
   addingContact: contact.addingContact,
+  customerConfigure:settings.customerConfigure,
+  addingCustomerConfig:settings.addingCustomerConfig,
   addingContactError: contact.addingContactError,
   user: auth.userDetails,
   departments: departments.departments,
-  customerConfigure:settings.customerConfigure,
   userId: auth.userDetails.userId,
-  orgId: auth.userDetails.organizationId,
   orgType:auth.userDetails.orgType,
   customerData:customer.customerData,
   customerId: customer.customer.customerId,
@@ -896,6 +998,7 @@ const mapDispatchToProps = (dispatch) =>
     {
 
       addContact,
+      addCustomerConfigure,
       getDepartments,
       getCustomerConfigure,
       addLinkContactByOpportunityId,

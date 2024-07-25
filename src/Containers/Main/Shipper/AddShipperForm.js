@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
+import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -27,6 +28,12 @@ function AddShipperForm(props) {
   useEffect(() => {
     props.getEmployeelistAsErp();
     props.getShipByData(props.orgId);
+  }, []);
+  useEffect(() => {
+   
+    props.getCustomerConfigure(props.orgId,"add","shipper")
+    // setSource("")
+    // props.getCurrency();
   }, []);
 
   const [defaultOption, setDefaultOption] = useState(props.fullName);
@@ -114,6 +121,7 @@ function AddShipperForm(props) {
                     inlineLabel
                   />
                   <div class=" flex justify-between">
+                  {props.customerConfigure.dailCodeInd===true&&
                     <div class="w-[30%] max-sm:w-[40%] ">
                       <FastField
                         name="dialCode2"
@@ -130,7 +138,10 @@ function AddShipperForm(props) {
                       />
 
                     </div>
+}
+
                     <div class="w-[68%] max-sm:w-[50%]">
+                    {props.customerConfigure.phoneNoInd===true&&
                       <FastField
                         name="phoneNo"
                         label={`${props.translatedMenuItems[1]} #`}
@@ -140,7 +151,9 @@ function AddShipperForm(props) {
                         inlineLabel
                         width={"100%"}
                       />
+                    }
                     </div>
+
                   </div>
                   <div class="w-full">
                     <FastField
@@ -155,6 +168,7 @@ function AddShipperForm(props) {
                     />
                   </div>
                   <div class="w-full">
+                  {props.customerConfigure.shipByInd===true&&
                     <FastField
                       name="shipById"
                       label={props.translatedMenuItems[3]}
@@ -166,8 +180,10 @@ function AddShipperForm(props) {
                       }
                       inlineLabel
                     />
+}
 
                   </div>
+                  {props.customerConfigure.apiInd===true&&
                   <div class=" mt-2">
                     <b> 
                       {/* API Integrated  */}
@@ -180,9 +196,11 @@ function AddShipperForm(props) {
                       unCheckedChildren="No"
                     />
                   </div>
+}
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
                 >
+                   {props.customerConfigure.assignedToInd===true&&
                  <div class=" h-full w-full">
                     <Listbox value={selected} onChange={setSelected}>
                       {({ open }) => (
@@ -251,7 +269,9 @@ function AddShipperForm(props) {
                       )}
                     </Listbox>
                   </div>
+}
                   <div>
+                  {props.customerConfigure.addressInd===true&&
                 <div class="mt-3">
                     <FieldArray
                       name="address"
@@ -264,6 +284,7 @@ function AddShipperForm(props) {
                       )}
                     />
                   </div>
+}
                   </div>
                 </div>
               </div>
@@ -287,7 +308,7 @@ function AddShipperForm(props) {
 
 }
 
-const mapStateToProps = ({ auth, shipper, employee, shipBy }) => ({
+const mapStateToProps = ({ auth, shipper,settings, employee, shipBy }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   addingShipper: shipper.addingShipper,
@@ -295,7 +316,8 @@ const mapStateToProps = ({ auth, shipper, employee, shipBy }) => ({
   fullName: auth.userDetails.fullName,
   orgId:auth.userDetails.organizationId,
   ShipByData: shipBy.ShipByData,
-  employeeAsErp: shipper.employeeAsErp
+  employeeAsErp: shipper.employeeAsErp,
+  customerConfigure:settings.customerConfigure,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -303,7 +325,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       addShipper,
       getEmployeelistAsErp,
-      getShipByData
+      getShipByData,
+      getCustomerConfigure
     },
     dispatch
   );

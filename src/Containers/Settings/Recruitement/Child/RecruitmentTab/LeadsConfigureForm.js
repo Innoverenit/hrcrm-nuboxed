@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button,Select, Tooltip,Switch } from "antd";
 import { FormattedMessage } from "react-intl";
 import {
-    // addCustomerConfigure,
+    addCustomerConfigure,
     getCustomerConfigure
 } from "../../../SettingsAction"
 import { CheckOutlined } from "@ant-design/icons";
@@ -96,15 +96,21 @@ props.emptyClearbit();
   const [isLastNameVisible, setIsLastNameVisible] = useState(false);
   
   const [isEmailVisible, setIsEmailVisible] = useState(false);
+  const [isphoneNoVisible, setIsphoneNoVisible] = useState(false);
   const [isMobileNumberVisible, setIsMobileNumberVisible] = useState(false);
   const [isSourceVisible, setIsSourceVisible] = useState(false);
+  const [isLobVisible, setIsLobVisible] = useState(false);
   const [isVatVisible, setIsVatVisible] = useState(false);
+  const [isUploadVisible, setIsUploadVisible] = useState(false);
   const [isAssignedVisible, setIsAssignedVisible] = useState(false);
   const [isNotesVisible, setIsNotesVisible] = useState(false);
 
+
+  const [isUrlVisible, setIsUrlVisible] = useState(false);
+
   const [isRegistrationVisible, setIsRegistrationVisible] = useState(false);
   const [isAddressVisible, setIsAddressVisible] = useState(false);
-  const [isPotentialVisible, setIsPotentialVisible] = useState(false);
+  const [isSectorVisible, setIsSectorVisible] = useState(false);
   const [isCurrencyVisible, setIsCurrencyVisible] = useState(false);
   const [isTypeVisible, setIsTypeVisible] = useState(false);
 
@@ -150,6 +156,51 @@ props.emptyClearbit();
     
     props.getCustomerConfigure(props.orgId,"add","leads")
   }, []);
+
+
+
+  useEffect(() => {
+    if (
+      props.customerConfigure.addressInd !== undefined &&
+      props.customerConfigure.businessRegInd !== undefined &&
+      props.customerConfigure.vatNoInd !== undefined &&
+      props.customerConfigure.assignedToInd !== undefined &&
+      props.customerConfigure.noteInd !== undefined &&
+      props.customerConfigure.sourceInd !== undefined &&
+      props.customerConfigure.sectorInd !== undefined &&
+      props.customerConfigure.phoneNoInd !== undefined &&
+      props.customerConfigure.dailCodeInd !== undefined &&
+      props.customerConfigure.lobInd !== undefined &&
+      props.customerConfigure.middleNameInd !== undefined &&
+      props.customerConfigure.imageUploadInd !== undefined &&
+      props.customerConfigure.nameInd !== undefined &&
+      props.customerConfigure.lastNameInd !== undefined &&
+      props.customerConfigure.urlInd !== undefined &&
+      
+      props.customerConfigure.typeInd !== undefined
+      
+      
+    ) {
+      //setIsFirstNameVisible(props.customerConfigure.startInd);
+      setIsLastNameVisible(props.customerConfigure.lastNameInd);
+      
+      setIsMobileNumberVisible(props.customerConfigure.dailCodeInd);
+      setIsSourceVisible(props.customerConfigure.sourceInd)
+      setIsVatVisible(props.customerConfigure.vatNoInd)
+      setIsAssignedVisible(props.customerConfigure.assignedToInd)
+      setIsNotesVisible(props.customerConfigure.noteInd)
+      setIsAddressVisible(props.customerConfigure.addressInd)
+      setIsFirstNameVisible(props.customerConfigure.nameInd)
+      setIsphoneNoVisible(props.customerConfigure.phoneNoInd)
+      setIsUploadVisible(props.customerConfigure.imageUploadInd)
+      setIsMiddleVisible(props.customerConfigure.middleNameInd)
+      setIsSectorVisible(props.customerConfigure.sectorInd)
+      setIsTypeVisible(props.customerConfigure.typeInd)
+      setIsLobVisible(props.customerConfigure.lobInd)
+      setIsUrlVisible(props.customerConfigure.urlInd)
+      setIsRegistrationVisible(props.customerConfigure.businessRegInd)
+    }
+  }, [props.customerConfigure]);
   
     const fetchSource = async () => {
       setIsLoading(true);
@@ -337,41 +388,53 @@ props.emptyClearbit();
       case 'name':
         setIsFirstNameVisible(!isFirstNameVisible);
         break;
-      case 'countryDialCode':
-        setIsLastNameVisible(!isLastNameVisible);
+      case 'lob':
+        setIsLobVisible(!isLobVisible);
         break;
-      case 'phoneNumber':
-        setIsEmailVisible(!isEmailVisible);
+      case 'url':
+        setIsUrlVisible(!isUrlVisible);
         break;
-      case 'sectorId':
-        setIsMobileNumberVisible(!isMobileNumberVisible);
-        break;
+    
         case 'notes':
             setIsNotesVisible(!isNotesVisible);
             break;
-            case 'assignedTo':
+            case 'middle':
+            setIsMiddleVisible(!isMiddleVisible);
+            break;
+             case 'upload':
+            setIsUploadVisible(!isUploadVisible);
+            break;
+             case 'lastName':
+            setIsLastNameVisible(!isLastNameVisible);
+            break;
+            case 'assigned':
                 setIsAssignedVisible(!isAssignedVisible);
                 break;
-                case 'vatNo':
+                 case 'sector':
+                setIsSectorVisible(!isSectorVisible);
+                break;
+                case 'vat':
                     setIsVatVisible(!isVatVisible);
                     break;
-                    case 'source':
-                        setIsSourceVisible(!isSourceVisible);
+                    case 'dialcode':
+                        setIsMobileNumberVisible(!isMobileNumberVisible);
                         break;
-                        case 'businessRegistration':
-                            setIsRegistrationVisible(!isRegistrationVisible);
+                          case 'business':
+                        setIsRegistrationVisible(!isRegistrationVisible);
+                        break;
+                        case 'phoneNo':
+                            setIsphoneNoVisible(!isphoneNoVisible);
                             break;
                             case 'address':
                                 setIsAddressVisible(!isAddressVisible);
                                 break;
-                                case 'potential':
-                                  setIsPotentialVisible(!isPotentialVisible);
-                                  break;
-                                  case 'currency':
-                                    setIsCurrencyVisible(!isCurrencyVisible);
-                                    break;
+                               
+                                 
                                     case 'type':
                                       setIsTypeVisible(!isTypeVisible);
+                                      break;
+                                       case 'source':
+                                      setIsSourceVisible(!isSourceVisible);
                                       break;
       default:
         break;
@@ -401,30 +464,13 @@ props.emptyClearbit();
         <Formik
           // enableReinitialize
           initialValues={{
-            partnerName: "",
-            // price:"",
-            source: selectedSource,
-            url: "",
-            sectorId: selectedSector,
-            email: "",
-            phoneNumber: "",
-            fullName:"",
-            userId: props.userId,
-            notes: "",
-            businessRegistration: "",
-            assignedTo: selectedOption ? selectedOption.employeeId:userId,
-            department: "",
-            salutation:"",
-            firstName:"",
-            type:priority,
-            middleName:"",
-            lastName:"",
-            proposalValue:"",
-            opportunityName:"",
-            countryDialCode:props.user.countryDialCode,
+           
+            
             // bedrooms:"",
         
             // propertyType:"",
+            formType:"add",
+            baseFormType:"leads",
             address: [
               {
                 address1: "",
@@ -439,21 +485,30 @@ props.emptyClearbit();
         //   validationSchema={LeadsSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
-            // addLeads(
-            //   {
-            //     ...values,
-            //     companyName: "",
-            //     notes: text,
-            //     assignedTo: selectedOption ? selectedOption.employeeId:userId,
-            //     source: selectedSource,
-            //     lobId:selectedLob,
-            //     countryDialCode:values.countryDialCode,
-            //     // price:values.price,
-            //     type:priority,
-            //     sectorId: selectedSector,
-            //   },
-            //   props.userId,
-            // );
+            props.addCustomerConfigure(
+              {
+                ...values,
+                  dailCodeInd:isMobileNumberVisible,
+           phoneNoInd:isphoneNoVisible,
+           sectorInd:isSectorVisible,
+           sourceInd:isSourceVisible,
+           noteInd:isNotesVisible,
+           assignedToInd:isAssignedVisible,
+           vatNoInd:isVatVisible,
+           businessRegInd:isRegistrationVisible,
+           addressInd:isAddressVisible,
+           nameInd:isFirstNameVisible,
+           typeInd:isTypeVisible,
+           middleNameInd:isMiddleVisible,
+           lastNameInd:isLastNameVisible,
+           urlInd:isUrlVisible,
+           lobInd:isLobVisible,
+           imageUploadInd:isUploadVisible,
+         
+           
+              },
+              props.userId,
+            );
             resetForm()
   //           setFieldValue("sectorId", "");
 
@@ -510,7 +565,12 @@ props.emptyClearbit();
                 <div class=" h-full w-w47.5 max-sm:w-wk"   >
                   <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
-                   
+                    <Switch
+            checked={isUploadVisible}
+            onChange={() => toggleFieldVisibility('upload')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                     <div>
                       <div class=" flex justify-between max-sm:flex-col">
                         {/* <div class=" w-2/5 max-sm:w-full">
@@ -594,12 +654,12 @@ props.emptyClearbit();
                     component={InputComponent}
                     inlineLabel
                   /> 
-                                     <Switch
+                                     {/* <Switch
             checked={isEmailVisible}
             onChange={() => toggleFieldVisibility('email')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
-          />
+          /> */}
                                
                   <div class=" flex justify-between">
                     <div class=" w-3/12 max-sm:w-[35%]">
@@ -636,8 +696,8 @@ props.emptyClearbit();
                         width={"100%"}
                       />
                                          <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+            checked={isphoneNoVisible}
+           onChange={() => toggleFieldVisibility('phoneNo')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -676,8 +736,8 @@ props.emptyClearbit();
                     inlineLabel
                   />
                                      <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+            checked={isUrlVisible}
+            onChange={() => toggleFieldVisibility('url')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -705,8 +765,8 @@ props.emptyClearbit();
         ))}
       </Select>
       <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+            checked={isSectorVisible}
+            onChange={() => toggleFieldVisibility('sector')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -732,8 +792,8 @@ props.emptyClearbit();
         ))}
       </Select>
       <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+            checked={isSourceVisible}
+          onChange={() => toggleFieldVisibility('source')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -760,8 +820,8 @@ props.emptyClearbit();
         ))}
       </Select>
       <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+            checked={isLobVisible}
+            onChange={() => toggleFieldVisibility('lob')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -818,7 +878,12 @@ props.emptyClearbit();
                      </div>
                       </div>
 
-
+                      <Switch
+            checked={isTypeVisible}
+            onChange={() => toggleFieldVisibility('type')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                   </div>
                
                  
@@ -835,8 +900,8 @@ props.emptyClearbit();
                         inlineLabel
                       />
                                          <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+            checked={isVatVisible}
+            onChange={() => toggleFieldVisibility('vat')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -855,8 +920,8 @@ props.emptyClearbit();
                         inlineLabel
                       />
                                          <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+            checked={isRegistrationVisible}
+            onChange={() => toggleFieldVisibility('business')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -971,8 +1036,8 @@ props.emptyClearbit();
       )}
     </Listbox>
     <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+            checked={isAssignedVisible}
+            onChange={() => toggleFieldVisibility('assigned')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -993,8 +1058,8 @@ translatedMenuItems={props.translatedMenuItems}
                     )}
                   />
                                      <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+            checked={isAddressVisible}
+            onChange={() => toggleFieldVisibility('address')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -1213,8 +1278,8 @@ translatedMenuItems={props.translatedMenuItems}
         // onChange={handleTextChange}
       ></textarea>
                          <Switch
-            // checked={isFirstNameVisible}
-            // onChange={() => toggleFieldVisibility('name')}
+          checked={isNotesVisible}
+            onChange={() => toggleFieldVisibility('notes')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -1229,7 +1294,7 @@ translatedMenuItems={props.translatedMenuItems}
                 <Button
                type="primary"
                htmlType="submit"
-                //   loading={addingLeads}
+                   loading={props.addingCustomerConfig}
                 >
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/*                     
@@ -1244,7 +1309,7 @@ translatedMenuItems={props.translatedMenuItems}
     );
 }
 
-const mapStateToProps = ({ auth, leads,lob }) => ({
+const mapStateToProps = ({ auth, leads,lob,settings }) => ({
   addingLeads: leads.addingLeads,
   crmAllData:leads.crmAllData,
   addingLeadsError: leads.addingLeadsError,
@@ -1252,10 +1317,12 @@ const mapStateToProps = ({ auth, leads,lob }) => ({
    orgType:auth.userDetails.orgType,
   user: auth.userDetails,
   lobListData: lob.lobListData,
+  addingCustomerConfig:settings.addingCustomerConfig,
   organizationId: auth.userDetails.organizationId,
   orgId: auth.userDetails.organizationId,
   userId: auth.userDetails.userId,
   fullName: auth.userDetails.fullName,
+  customerConfigure:settings.customerConfigure,
   token: auth.token,
 
 });
@@ -1264,6 +1331,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getCustomerConfigure,
+        addCustomerConfigure,
     //    addLeads,
        getCrm,
       setClearbitData,
