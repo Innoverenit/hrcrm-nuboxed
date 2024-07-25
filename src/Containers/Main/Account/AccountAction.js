@@ -4339,3 +4339,33 @@ export const addAccountImportForm =
       // cb && cb();
     });
 };
+
+export const updateAccountPrice = (data, distributorId,  cb) => (dispatch) => {
+  // debugger;
+  dispatch({
+    type: types.UPDATE_ACCOUNT_PRICE_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/distributor/dispatchPayment/${distributorId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_ACCOUNT_PRICE_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb();
+      message.success("ACCOUNT price has been updated!")
+    })
+    .catch((err) => {
+      // debugger;
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ACCOUNT_PRICE_FAILURE,
+        payload: err,
+      });
+      // cb && cb("failuer", null, null);
+    });
+};

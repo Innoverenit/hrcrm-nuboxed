@@ -155,6 +155,9 @@ const initialState = {
 
   setEditingOrder: {},
 
+  updatingAccountPrice: false,
+  updatingAccountPriceError: false,
+
 
   setEdittingProcure: {},
 
@@ -2322,6 +2325,27 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         updatingOfferPriceOfOrder: false,
         updatingOfferPriceOfOrderError: true,
+      };
+
+      case types.UPDATE_ACCOUNT_PRICE_REQUEST:
+      return { ...state, updatingAccountPrice: true };
+    case types.UPDATE_ACCOUNT_PRICE_SUCCESS:
+      return {
+        ...state,
+        updatingAccountPrice: false,
+        customerListByUser: state.customerListByUser.map((item) => {
+          if (item.distributorId == action.payload.distributorId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_ACCOUNT_PRICE_FAILURE:
+      return {
+        ...state,
+        updatingAccountPrice: false,
+        updatingAccountPriceError: true,
       };
 
     case types.CHECK_TASK_COMPLETION_REQUEST:

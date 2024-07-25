@@ -94,14 +94,15 @@ console.log(props.promotionsData)
              Discount In %
               </div>
             <div className=" md:w-[7.9rem] ">
-            Apply Catalogue
-            </div>
-            <div className=" md:w-[5.9rem] ">
-          SupplierInventory
+           Catalogue
             </div>
             <div className="md:w-[7.5rem]">
            Material
               </div>
+            <div className=" md:w-[5.9rem] ">
+          SupplierInventory
+            </div>
+           
             
           </div>
           <div class="">
@@ -163,6 +164,20 @@ console.log(props.promotionsData)
                         />
                       </div>
                     </div>
+                    <div className=" flex  flex-row md:w-[7.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+
+
+<div class=" font-normal text-[0.82rem]  font-poppins">
+<Switch
+    className="toggle-clr"
+    checked={item.materialInd}
+    isLoading={true}
+    checkedChildren="Yes"
+    unCheckedChildren="No"
+    //disabled={!props.orderManagementInd}
+  />
+</div>
+</div>
                     <div className=" flex  flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
@@ -177,20 +192,7 @@ console.log(props.promotionsData)
                         />
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[7.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-
-
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
-                      <Switch
-                          className="toggle-clr"
-                          checked={item.materialInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                          //disabled={!props.orderManagementInd}
-                        />
-                      </div>
-                    </div>
+                   
                   </div>
                 </div>   
                                         </>
