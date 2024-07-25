@@ -3,6 +3,11 @@ import * as types from "./SubscriptionActionTypes";
 const initialState = {
     createSubscriptiondrawer:false,
 
+    addingSuscrpitionModal:false,
+
+    addingSuscrptions: false,
+    addingSuscrptionsError:false,
+
     updatingSuscrption: false,
     updatingSuscrptionError: false,
 
@@ -110,6 +115,23 @@ export const subscriptionReducer = (state = initialState, action) => {
                     fetchingSuscrption: false,
                     fetchingSuscrptionError: true,
                   };
+
+                  case types.HANDLE_SUSCRIPTION_MODAL:
+                    return { ...state, addingSuscrpitionModal: action.payload }; 
+
+                    case types.ADD_SUSCRIPTIONS_REQUEST:
+                      return { ...state, addingSuscrptions: true };
+                    case types.ADD_SUSCRIPTIONS_SUCCESS:
+                      return { ...state, 
+                        addingSuscrptions: false, 
+                        addingSuscrpitionModal: false ,
+                        newSubscriptionList:[action.payload,...state.newSubscriptionList]
+                      };
+                    case types.ADD_SUSCRIPTIONS_FAILURE:
+                      return { ...state, 
+                        addingSuscrptions: false,
+                        addingSuscrptionsError:true,
+                        addingSuscrpitionModal: false };    
 
 
     default:

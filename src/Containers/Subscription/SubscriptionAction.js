@@ -1,7 +1,7 @@
 import * as types from "./SubscriptionActionTypes";
 import axios from "axios";
 import Swal from 'sweetalert2'
-import { base_url,base_url2 } from "../../Config/Auth";
+import { base_url,base_url2, login_url } from "../../Config/Auth";
 
 export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
     dispatch({
@@ -98,12 +98,12 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
         });
       });
   };
-  export const getNewSubscription = () => (dispatch) => {
+  export const getNewSubscription = (orgId) => (dispatch) => {
     dispatch({
       type: types.GET_NEW_SUBSCRIPTION_REQUEST,
     });
     axios
-      .get(`${base_url}/subscription`, {
+      .get(`${base_url2}/subscription/getByOrg/${orgId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -124,3 +124,33 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
       });
   };
   
+  export const handleSuscrptionModal = (modalProps) => (dispatch) => {
+    dispatch({ type: types.HANDLE_SUSCRIPTION_MODAL, payload: modalProps });
+  };
+
+  export const addSuscrptions = (data) => (dispatch) => {
+    dispatch({
+      type: types.ADD_SUSCRIPTIONS_REQUEST,
+    });
+    axios
+      .post(`${base_url2}/subscription`, data,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+       // dispatch(getDispatchList(id,0))
+        dispatch({
+          type: types.ADD_SUSCRIPTIONS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.ADD_SUSCRIPTIONS_FAILURE,
+        });
+      });
+  };

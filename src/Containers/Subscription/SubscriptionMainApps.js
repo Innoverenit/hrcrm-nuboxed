@@ -2,7 +2,8 @@ import React,{lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import SubscriptionHeader from "./Child/SubscriptionHeader";
-import {handleCreateSubscriptionDrawer} from "./SubscriptionAction";
+import {handleCreateSubscriptionDrawer,handleSuscrptionModal} from "./SubscriptionAction";
+import MainSuscriptionModal from "./MainSuscriptionModal";
 
 const CreateSubscriptionDrawer =lazy(()=>import("./Child/CreateSubscriptionDrawer"));
 const SubscriptionNewCard =lazy(()=>import("./Child/SubscriptionNewCard"));
@@ -12,14 +13,13 @@ function SubscriptionMainApps (props) {
     return (
         <>
         <SubscriptionHeader 
-          createSubscriptiondrawer={props.createSubscriptiondrawer}
-          handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
+           handleSuscrptionModal={props.handleSuscrptionModal}
+           addingSuscrpitionModal={props.addingSuscrpitionModal}
           />
-        <CreateSubscriptionDrawer
-        rowData={props.rowData}
-          createSubscriptiondrawer={props.createSubscriptiondrawer}
-          handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
-        />
+       <MainSuscriptionModal
+       handleSuscrptionModal={props.handleSuscrptionModal}
+       addingSuscrpitionModal={props.addingSuscrpitionModal}
+       />
 
        <SubscriptionNewCard/>
         </>
@@ -27,12 +27,14 @@ function SubscriptionMainApps (props) {
 };
 
 const mapStateToProps = ({ subscription }) => ({
-  createSubscriptiondrawer:subscription.createSubscriptiondrawer
+  createSubscriptiondrawer:subscription.createSubscriptiondrawer,
+  addingSuscrpitionModal: subscription.addingSuscrpitionModal
   });
   const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
       {
-        handleCreateSubscriptionDrawer
+        handleCreateSubscriptionDrawer,
+        handleSuscrptionModal
       },
       dispatch
     );

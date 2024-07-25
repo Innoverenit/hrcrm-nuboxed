@@ -2,9 +2,10 @@ import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { Popconfirm, Tooltip } from "antd";
+import { Popconfirm, Tooltip,Input,Button } from "antd";
 import { Link } from 'react-router-dom';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
+import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import InfiniteScroll from "react-infinite-scroll-component";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import {
@@ -18,7 +19,8 @@ import {
   handleUpdateAccountModal,
   handleAccountModal,
   emptyDistributor,
-  handleAccountPulse
+  handleAccountPulse,
+  updateAccountPrice
 } from "./AccountAction";
 import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
@@ -36,12 +38,43 @@ function AccountTable(props) {
   const [page, setPage] = useState(0);
   const [RowData, setRowData] = useState("");
   const [hasMore, setHasMore] = useState(true);
+  const [particularRowData, setParticularRowData] = useState({});
   useEffect(() => {
     props.getCustomerByUser(props.userId, page);
     setPage(page + 1);
   }, []);
   function handleCurrentRowData(datas) {
     setRowData(datas);
+  }
+  function handleSetParticularOrderData(item) {
+    setParticularRowData(item);
+}
+  const [visible, setVisible] = useState(false)
+  const handleUpdateRevisePrice = () => {
+      setVisible(!visible)
+  }
+  const [price, setPrice] = useState(particularRowData.dispatchPaymentPercentage)
+ 
+
+  const handleChange = (val) => {
+      //  setPrice(val)
+      if (!isNaN(val) && val > 0 && val < 100) {
+        setPrice(val);
+      } else {
+        setPrice(''); // Reset the input if the value is not valid
+      }
+  
+  }
+  const handleSubmitPrice = () => {
+      props.updateAccountPrice(
+          {
+              dispatchPaymentPercentage: price,
+              
+          },
+          particularRowData.distributorId,
+
+      );
+      setVisible(false)
   }
 
   const handleLoadMore = () => {
@@ -87,6 +120,9 @@ function AccountTable(props) {
               id="app.Paymentdays"
               defaultMessage="Paymentdays"
             /></div>
+            <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
+              payment %
+            </div>
             <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]">Tax#</div>
             {/* <div className="w-[15.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14rem]"><FormattedMessage
               id="app.billingaddress"
@@ -201,6 +237,53 @@ function AccountTable(props) {
 
                             </div>
                           </div>
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[11rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">       
+                              {visible && (item.distributorId === particularRowData.distributorId) ?
+                                                                <Input
+                                                                    type='text'
+                                                                    value={price}
+                                                                    onChange={(e) => handleChange(e.target.value)}
+                                                                />
+                                                                : item.dispatchPaymentPercentage}
+                            </div>
+                          </div>
+                          <div className=" flex font-medium   md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins">
+
+                                                        {visible && (item.distributorId === particularRowData.distributorId) ? (
+                                                            <>
+                                                                <div className=" flex justify-between flex-col">
+                                                                    <Button onClick={() => {
+                                                                        handleSubmitPrice()
+                                                                    }} >
+                                                                        <FormattedMessage
+                                                                            id="app.save"
+                                                                            defaultMessage="Save"
+                                                                        />
+                                                                    </Button>
+                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}><FormattedMessage
+                                                                        id="app.cancel"
+                                                                        defaultMessage="Cancel"
+                                                                    /></Button>
+                                                                </div>
+                                                            </>
+                                                        ) : <Tooltip title={<FormattedMessage
+                                                            id="app.updaterevisedprice"
+                                                            defaultMessage="Update Revised Price"
+                                                        />}>
+                                                            <PublishedWithChangesIcon
+                                                                onClick={() => {
+                                                                    handleUpdateRevisePrice()
+                                                                    handleSetParticularOrderData(item)
+                                                                }}
+                                                                className="!text-xl cursor-pointer text-[tomato]"
+                                                            />
+                                                        </Tooltip> }
+
+                                                    </div>
+
+                                                </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
@@ -243,18 +326,16 @@ function AccountTable(props) {
                         </div>
                       </div>
                       <div className=" flex font-medium items-center max-sm:w-auto flex-col w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
-                        <Tooltip title={item.ownerName}>
                           <div class="max-sm:flex justify-end">
-                            <Tooltip title={item.ownerName}>
+                            <Tooltip title={item.salesExecutive}>
                               <MultiAvatar
-                                primaryTitle={item.ownerName}
+                                primaryTitle={item.salesExecutive}
                                 imageId={item.ownerImageId}
                                 imgWidth={"1.8rem"}
                                 imgHeight={"1.8rem"}
                               />
                             </Tooltip>
-                          </div>
-                        </Tooltip>
+                          </div>                      
                       </div>
 
                           {/* <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.91rem] max-xl:w-[2.91rem] max-sm:flex-row  max-sm:justify-between  ">
@@ -429,7 +510,8 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateAccountModal,
       handleAccountModal,
       emptyDistributor,
-      handleAccountPulse
+      handleAccountPulse,
+      updateAccountPrice
     },
     dispatch
   );

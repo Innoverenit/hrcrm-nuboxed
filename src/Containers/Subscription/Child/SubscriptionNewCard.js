@@ -28,7 +28,7 @@ function SubscriptionNewCard (props) {
     const observer = useRef();
 
   useEffect(() => {
-   props.getNewSubscription();
+   props.getNewSubscription(props.orgId);
   }, []);
 
 
@@ -707,7 +707,7 @@ function SubscriptionNewCard (props) {
                    >
                   {
                 //   props.newSubscriptionList
-                  drb.map((item,index) => {
+                props.newSubscriptionList.map((item,index) => {
                     //  const currentdate = moment().format("YYYY/MM/DD");
                     //  const date = moment(item.creationDate).format("YYYY/MM/DD");
                     //  const isLastElement = index === props.products.length - 1;
@@ -763,12 +763,12 @@ function SubscriptionNewCard (props) {
                           
                                                      
                                                                 </div>
-                                                                <h2>HARDCODED LIST</h2>
+                                                               
                                                           <h3 class=" mt-2 h-4 font-bold text-xs ">
-                                                            {item.categoryName}
+                                                            {item.subscriptionName}
                                                           </h3>
                                                           <h3 class=" mt-2 h-4 font-bold text-xs ">
-                                                            {item.subCategoryName}
+                                                            {item.noOfAppointments}
                                                           </h3> 
                                                         </div>
 
@@ -838,7 +838,7 @@ const mapStateToProps = ({ subscription,auth }) => ({
   newSubscriptionList: subscription.newSubscriptionList,
   fetchingSuscrption:subscription.fetchingSuscrption,
   userId: auth.userDetails.userId,
-  // locationId: auth.userDetails.locationId,
+  orgId: auth.userDetails.organizationId,
   organizationId: auth.userDetails.organizationId,
   
 });
