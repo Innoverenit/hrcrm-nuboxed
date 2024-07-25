@@ -2,7 +2,7 @@ import * as types from "./PrmotionActionType";
 import axios from "axios";
 import { message } from "antd";
 import Swal from 'sweetalert2';
-import { base_url } from "../../../Config/Auth";
+import { base_url, login_url } from "../../../Config/Auth";
 
 export const handlePromotionsDrawer = (modalProps) => (dispatch) => {
     dispatch({ type: types.HANDLE_PROMOTIOND_MODAL, payload: modalProps });
@@ -21,7 +21,7 @@ export const handlePromotionsDrawer = (modalProps) => (dispatch) => {
       type: types.ADD_PROMOTIONS_REQUEST,
     });
     axios
-      .put(`${base_url}/promocode/save`, data,
+      .post(`${login_url}/promocode/save`, data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -50,7 +50,7 @@ export const handlePromotionsDrawer = (modalProps) => (dispatch) => {
       type: types.GET_PRMOTION_DATA_REQUEST,
     });
     axios
-      .get(`${base_url}/promocode/getAll`, {
+      .get(`${login_url}/promocode/getAll`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

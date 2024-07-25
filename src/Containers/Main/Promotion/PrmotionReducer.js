@@ -39,7 +39,8 @@ const initialState = {
                       return {
                         ...state,
                         fetchingPromotionsData: false,
-                        promotionsData:[action.payload,...state.promotionsData]                     
+                       // promotionsData:[action.payload,...state.promotionsData] 
+                       promotionsData: action.payload             
                       };
                     case types.GET_PRMOTION_DATA_FAILURE:
                       return {
