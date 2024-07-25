@@ -144,27 +144,28 @@ const ReceivedDetailCard = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
-                        height={"72vh"}
+                        height={"79vh"}
+                        style={{ scrollbarWidth:"thin"}}
                     >
                         {props.receivedDetailData.map((item) => {
 
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-2 bg-white h-8 items-center p-1 ">
+                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
                                         <div class="flex">
-                                            <div className=" flex font-medium flex-col w-[12.422rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm  font-semibold  font-poppins ">
+                                            <div className=" flex  w-[12.422rem] max-sm:w-full  ">
+                                                <div class="flex justify-between text-xs  font-semibold  font-poppins ">
                                                     {item.suppliesFullName.substring(0, 20)}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.categoryName} {item.subCategoryName}
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[6.13rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[6.13rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.attributeName} {item.subAttributeName}
                                             </div>
@@ -174,12 +175,12 @@ const ReceivedDetailCard = (props) => {
                                                 {item.price}
                                             </div>
                                         </div> */}
-                                        <div className=" flex font-medium flex-col  w-[5.10rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[5.10rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unit}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[8.03rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex   w-[8.03rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class="flex items-center">
                                             <div class=" text-xs  font-poppins mr-1">
                                                 <PoReceiveToggle
@@ -201,7 +202,7 @@ const ReceivedDetailCard = (props) => {
                                                 {item.userName}
                                             </div>
                                         </div> */}
-                                        <div className=" flex font-medium flex-col  w-[7.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[7.12rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     <Input
@@ -213,7 +214,7 @@ const ReceivedDetailCard = (props) => {
                                                     : item.unitReceived}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[6.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[6.12rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     <Input
@@ -225,7 +226,7 @@ const ReceivedDetailCard = (props) => {
                                                     : item.unitDamaged}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col w-[6.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[6.22rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     <Input
@@ -238,7 +239,7 @@ const ReceivedDetailCard = (props) => {
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium flex-col  w-[7.32rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[7.32rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     <>
@@ -281,7 +282,7 @@ const ReceivedDetailCard = (props) => {
                                                 }
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[5.52rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[5.52rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unitReceiveInd && !item.grnReceivedInd ? <Tooltip 
                                                 // title="Check for grn"

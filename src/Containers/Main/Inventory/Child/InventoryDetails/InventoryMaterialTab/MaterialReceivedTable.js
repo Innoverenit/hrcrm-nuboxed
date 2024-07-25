@@ -92,7 +92,8 @@ const MaterialReceivedTable = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]} ...</div> : null}
-                        height={"69vh"}
+                        height={"71vh"}
+                        style={{ scrollbarWidth:"thin"}}
                     >
                         {props.materialReceiveData.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
@@ -102,8 +103,8 @@ const MaterialReceivedTable = (props) => {
                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
                                         <div class="flex">
 
-                                            <div className=" flex font-medium flex-col w-[16.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm  font-semibold  font-poppins cursor-pointer underline text-blue-600">
+                                            <div className=" flex  w-[16.1rem] max-sm:w-full  ">
+                                                <div class="flex justify-between text-xs font-semibold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         onClick={() => {
                                                             handleRow(item);
@@ -119,7 +120,7 @@ const MaterialReceivedTable = (props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
                                                 <MultiAvatar
@@ -130,12 +131,12 @@ const MaterialReceivedTable = (props) => {
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[8.32rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[8.32rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             {date}
 
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex   w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
                                                 {item.supplierName}
@@ -186,7 +187,7 @@ const MaterialReceivedTable = (props) => {
                                                         </>
                     
 </div> */}
-                                        <div className=" flex font-medium flex-col md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             {/* <div class=" text-xs  font-semibold  font-poppins">
                                                     {item.zone ? <BorderColorOutlined
                                                         onClick={() => {
@@ -201,7 +202,7 @@ const MaterialReceivedTable = (props) => {
                                                         }}>Send To Store</Button>}
                                                 </div> */}
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins cursor-pointer">
                                                 {/* <Tooltip title="GRN "> */}
                                                 <Button

@@ -57,6 +57,7 @@ const InventoryCard = (props) => {
           <InfiniteScroll
             dataLength={filteredData.length}
             height={"80vh"}
+            style={{ scrollbarWidth:"thin"}}
           >
             {filteredData.length ? <>
               {filteredData.map((item) => {
@@ -68,12 +69,12 @@ const InventoryCard = (props) => {
                   <div>
                     <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col">
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium  w-[14.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
+                        <div className=" flex   w-[14.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
 
 
                           <Tooltip>
                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                              <div class="flex text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                              <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                 {/* <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                   to={`locationDetails/${item.locationDetailsId}`}
@@ -81,7 +82,7 @@ const InventoryCard = (props) => {
                                 >{item.locationName}</Link> */}
                               <div
   onClick={() => window.location.assign(`/locationDetails/${item.locationDetailsId}`)}
-  className="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+  className="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
   title={item.locationName}
 >
   {item.locationName}
@@ -105,7 +106,7 @@ const InventoryCard = (props) => {
 
 
                           {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
-                          <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {/* {(item.address && item.address[0].country) || ""} */}
                             <CountryFlag1 countryCode={countryCode} />
                           &nbsp;
@@ -114,7 +115,7 @@ const InventoryCard = (props) => {
                         </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium  w-[17.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex   w-[17.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden"># Opportunity</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -122,7 +123,7 @@ const InventoryCard = (props) => {
 
                         </div>
                       </div>
-                      <div className=" flex font-medium  w-[16.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex   w-[16.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
