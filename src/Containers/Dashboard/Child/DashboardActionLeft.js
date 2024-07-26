@@ -58,6 +58,7 @@ const DashboardActionLeft = (props) => {
         {user.dashboardFullListInd === true && (
           <Tag
             color={showShareForm && viewType === "ALL" ? "tomato" : "#FFA500"}
+            
             style={{
               cursor: "pointer",
               fontWeight: viewType === "ALL" ? "tomato" : "#FFA500",
@@ -105,7 +106,7 @@ const DashboardActionLeft = (props) => {
                         style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}
 
                       >
-                        <span class=" text-white ">Region</span>
+                        <div class=" text-white  ">Region</div>
                       </Button>
                     </Tooltip>
                   </span>
@@ -314,7 +315,7 @@ const DashboardActionLeft = (props) => {
                         style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}
                         type="primary"
                       >
-                        <span class=" text-white !text-icon">Region</span>
+                        <span class=" text-white ">Region</span>
                       </Button>
                     </Tooltip>
                   </span>
@@ -551,7 +552,7 @@ const DashboardActionLeft = (props) => {
 
 
             {activeButton === "Regional" || activeButton === "multiOrg" ? (
-              <div class="ml-[14rem] mt-[1rem] max-sm:hidden">
+              <div class="ml-[14rem]  max-sm:hidden">
                 <Tabs type="card" activeKey={props.activeTab} onChange={props.handleTabClick}>
                   {props.tab.map((tabs) => (
                     <TabPane key={tabs} tab={tabs}></TabPane>

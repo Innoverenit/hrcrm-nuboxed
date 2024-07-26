@@ -135,7 +135,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </div>
                           </div>
                         </div>
-                        <div className=" flex font-medium  items-center  w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
+                        <div className=" flex   items-center  w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
 
                           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-sm ">
                             {item.dialCode} {item.phoneNo}
@@ -145,21 +145,21 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium flex-col max-sm:w-auto w-[11.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  flex-col max-sm:w-auto w-[11.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {/* {item.url} */}
                             {item.dCategoryName}
 
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col max-sm:w-auto w-[7rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex flex-col max-sm:w-auto w-[7rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.clientName}
 
                           </div>
                         </div>
 
-                        <div className=" flex font-medium flex-col max-sm:w-auto w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex flex-col max-sm:w-auto w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.payment}
 
@@ -168,7 +168,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                        <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.5rem] max-xl:w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex flex-col max-sm:w-auto  w-[3.5rem] max-xl:w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.countryValue}
                           </div>
@@ -193,7 +193,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
 
-                      <div className=" flex font-medium flex-col  max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  flex-col  max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                       <div>
                         <Tooltip title={item.url}>
                           {item.url !== "" ? (
@@ -219,7 +219,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       </div>
                         </div>
 
-                        <div className=" flex font-medium flex-col  max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex  flex-col  max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title="Pulse">
                               <MonitorHeartIcon
@@ -232,7 +232,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </Tooltip>
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex  flex-col  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title="Edit">
                               <BorderColorIcon

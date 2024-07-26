@@ -105,22 +105,22 @@ const handleLoadMoreLow = () => {
                                       <div>
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
-                                          <div className=" flex font-medium  flex-col w-wk items-center   max-sm:w-full">
+                                          <div className=" flex  flex-col w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
+                                            <div className=" flex  items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                                      <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                                      <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
                       
                                                                                           {item.priority === "High" && (
                                                                                               <div
-                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                                                  class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                                                           )}
                                                                                           {item.priority === "Medium" && (
                                                                                               <div
-                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                                                  class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
                                                                                           {item.priority === "Low" && (
-                                                                                              <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
+                                                                                              <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                                       </div>
                                                                                   </div>
                                                                               </Tooltip>
@@ -128,7 +128,7 @@ const handleLoadMoreLow = () => {
                       
                                               <div class="max-sm:w-full items-center  md:w-[10.02rem]">
                                                 <Tooltip>
-                                                  <div class="max-sm:w-full  justify-between flex md:flex flex-row text-sm">
+                                                  <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                                                   <span
                                                                                           class="underline cursor-pointer text-[#1890ff]"
                                                                                           onClick={() => {
@@ -151,7 +151,7 @@ const handleLoadMoreLow = () => {
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
-                                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                                            <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                                             {` ${dayjs(item.deliveryDate).format("ll")}`}
                                                   </div>
                       
@@ -159,36 +159,36 @@ const handleLoadMoreLow = () => {
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class=" font-poppins text-sm">
+                                          <div className=" flex  flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
                                
                               `}
-                                            </h4>
+                                            </div>
                                           </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {item.budget}
-                                            </h4>
+                                            </div>
                                         </div>
                                      
                                         <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
                                                   
-                                                      imgWidth={"1.9rem"}
-                                                      imgHeight={"1.9rem"}
+                                                      imgWidth={"1.8rem"}
+                                                      imgHeight={"1.8rem"}
                                                     />
-                                            </h4>
+                                            </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
-                                            </h4>
+                                            </div>
                                         </div>
                                      
                                         <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
@@ -253,22 +253,22 @@ const handleLoadMoreLow = () => {
                                       <div>
                                       <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
-                                          <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                                          <div className=" flex flex-col w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
+                                            <div className=" flex  items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                                      <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                                      <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
                       
                                                                                           {item.priority === "High" && (
                                                                                               <div
-                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                                                  class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                                                           )}
                                                                                           {item.priority === "Medium" && (
                                                                                               <div
-                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                                                  class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
                                                                                           {item.priority === "Low" && (
-                                                                                              <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
+                                                                                              <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                                       </div>
                                                                                   </div>
                                                                               </Tooltip>
@@ -276,7 +276,7 @@ const handleLoadMoreLow = () => {
                       
                                               <div class="max-sm:w-full items-center  md:w-[10.02rem]">
                                                 <Tooltip>
-                                                  <div class="max-sm:w-full  justify-between flex md:flex flex-row text-sm">
+                                                  <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                                                   <span
                                                                                           class="underline cursor-pointer text-[#1890ff]"
                                                                                           onClick={() => {
@@ -299,7 +299,7 @@ const handleLoadMoreLow = () => {
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
-                                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                                            <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                                             {` ${dayjs(item.deliveryDate).format("ll")}`}
                                                   </div>
                       
@@ -307,36 +307,36 @@ const handleLoadMoreLow = () => {
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class=" font-poppins text-sm">
+                                          <div className=" flex  flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
                                
                               `}
-                                            </h4>
+                                            </div>
                                           </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {item.budget}
-                                            </h4>
+                                            </div>
                                         </div>
                                      
                                         <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
                                                   
-                                                      imgWidth={"1.9rem"}
-                                                      imgHeight={"1.9rem"}
+                                                      imgWidth={"1.8rem"}
+                                                      imgHeight={"1.8rem"}
                                                     />
-                                            </h4>
+                                            </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
-                                            </h4>
+                                            </div>
                                         </div>
                                      
                                         <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
@@ -401,22 +401,22 @@ const handleLoadMoreLow = () => {
                                       <div>
                <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                   <div class="flex">
-                    <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                    <div className=" flex flex-col w-wk items-center   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                      <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
+                      <div className=" flex  items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                            class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                                     )}
                                                                     {item.priority === "Medium" && (
                                                                         <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                            class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
                                                                     {item.priority === "Low" && (
-                                                                        <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
+                                                                        <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                 </div>
                                                             </div>
                                                         </Tooltip>
@@ -424,7 +424,7 @@ const handleLoadMoreLow = () => {
 
                         <div class="max-sm:w-full items-center  md:w-[10.02rem]">
                           <Tooltip>
-                            <div class="max-sm:w-full  justify-between flex md:flex flex-row text-sm">
+                            <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                             <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
@@ -447,7 +447,7 @@ const handleLoadMoreLow = () => {
                     <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                   
                       
-                      <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                      <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                       {` ${dayjs(item.deliveryDate).format("ll")}`}
                             </div>
 
@@ -455,36 +455,36 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class=" font-poppins text-sm">
+                    <div className=" flex flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class=" font-poppins text-xs">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
          
         `}
-                      </h4>
+                      </div>
                     </div>
                   </div>
                   <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <h4 class=" font-poppins text-sm">
+                  <div class=" font-poppins text-xs">
                         {item.budget}
-                      </h4>
+                      </div>
                   </div>
                
                   <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <h4 class=" font-poppins text-sm">
+                  <div class=" font-poppins text-xs">
                         {/* {item.contactPersonName} */}
                         <MultiAvatar
                                 primaryTitle={item.contactPersonName}
                             
-                                imgWidth={"1.9rem"}
-                                imgHeight={"1.9rem"}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
                               />
-                      </h4>
+                      </div>
                   </div>
                   <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <h4 class=" font-poppins text-sm">
+                  <div class=" font-poppins text-xs">
                         {item.paymentInTerms}
-                      </h4>
+                      </div>
                   </div>
                
                   <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">

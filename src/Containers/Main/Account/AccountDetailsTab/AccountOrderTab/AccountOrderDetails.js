@@ -167,64 +167,64 @@ function DistributorPauseForm(props) {
                                                 <div>
                                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
                                                         <div class="flex">
-                                                            <div className=" flex font-medium items-center   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex   items-center   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.company}
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex font-medium  items-center   md:w-[4.51rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[4.51rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.model}
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex font-medium items-center    md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex   items-center    md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.imei}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium  items-center   md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.os} {item.gb} {item.color}
                                                                 </div>
                                                             </div>
-                                                            {/* <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            {/* <div className=" flex     md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.gb}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex     md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.color}
                                                                 </div>
                                                             </div> */}
-                                                            <div className=" flex font-medium  items-center   md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.condition}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium  items-center   md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.expectedPrice}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium  items-center   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.totalhours}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium  items-center   md:w-[6.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[6.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.totalExtraCost}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium  items-center   md:w-[8.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[8.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.totalPrice}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium items-center    md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex   items-center    md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     <ButtonGroup>
                                                                         <StatusIcon
@@ -262,7 +262,7 @@ function DistributorPauseForm(props) {
                                                                     </ButtonGroup>
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium items-center   md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex   items-center   md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.issue}
                                                                 </div>
@@ -335,7 +335,7 @@ function DistributorPauseForm(props) {
                                                                             className="!text-base cursor-pointer"
                                                                         /> */}
                                                                         <ReactToPrint
-                                                                            trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon/></Button>}
+                                                                            trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon className=" !text-icon"/></Button>}
                                                                             content={() => componentRefs.current[index]}
                                                                         />
                                                                        
@@ -374,12 +374,15 @@ function DistributorPauseForm(props) {
                             </div>
 
                         </div>
-                        <div class=" w-10 flex justify-end">
+                        <div class="flex justify-end mr-4">
+                            <div class=" w-10">
                             <Button
                                 type="primary"
                                 onClick={handlePrint}>
                                 Print</Button>
                         </div>
+                        </div>
+                        
                     </>}
             </div>
             <Suspense fallback={<BundleLoader />}>

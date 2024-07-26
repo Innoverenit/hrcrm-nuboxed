@@ -20,7 +20,7 @@ const StyledDrawer = styled(Drawer)`
     }
     .ant-drawer-body {
        // background-color: ${props => props.theme.applicationBackground} !important;
-       background-color:whitesmoke; 
+       background-color: #eaefed; 
        color: ${props => props.theme.color};
         padding: 0.7rem;
         border: none !important;
