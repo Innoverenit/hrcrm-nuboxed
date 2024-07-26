@@ -1,10 +1,9 @@
-import React, { Suspense, Component ,lazy} from "react";
-import { MultiAvatar, MultiAvatar2 } from "../../Components/UI/Elements";
+import React, {Component ,lazy} from "react";
+import { MultiAvatar2 } from "../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import{getPartnerListByUserId,getPartnerDocument,handlePartnerDrawerModal} from './PartnerAction';
-import AddPartnerDrawerModal from "./AddPartnerDrawerModal";
 const PartnerDetailsView =lazy(()=>import("../Partner/child/PartnerTable/PartnerDetailView"));
 class PartnerCardView extends Component {
   render() {
@@ -30,7 +29,7 @@ class PartnerCardView extends Component {
                 </CardImage>
                 <Price>100</Price>
                 <span
-                  className="hover_button"
+                 className="hover:bg-black"
                   onClick={() => {
                     this.props.getPartnerListByUserId(item.partnerId);
                     this.props.getPartnerDocument(item.partnerId);
@@ -45,12 +44,7 @@ class PartnerCardView extends Component {
             );
           })}
         </CardWrapper>
-        {/* <AddPartnerDrawerModal
-          partner={this.props.partner}
-          documentsByPartnerId={this.props.documentsByPartnerId}
-          addDrawerPartnerModal={this.props.addDrawerPartnerModal}
-          handlePartnerDrawerModal={this.props.handlePartnerDrawerModal}
-        /> */}
+       
       </>
     )
   }

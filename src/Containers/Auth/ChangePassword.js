@@ -93,7 +93,7 @@ class ChangePassword extends Component {
               >
                 {({ errors, touched, values, isSubmitting }) => (
                   <Form style={{ width: "25vw" }}>
-                    <div className="set_password items-center">
+                    <div className="flex flex-row items-center">
                       <div class=" w-full" >
                         <Field
                           name="password"
@@ -121,7 +121,7 @@ class ChangePassword extends Component {
                     </div>
                   
 
-                    <div  className="set_password ">
+                    <div  className="flex flex-row">
                       {/* <div class=" flex justify-between" > */}
                       <div class=" w-full" >
                           <Field
@@ -147,24 +147,10 @@ class ChangePassword extends Component {
                             onClick={this.handleClick1}
                             style={{ marginLeft: "-1.25em",  }}
                           size="24"
-                          // style={{ size: 24 }}
+                        
                           />
                         )}
-                        {/* <div >
-                          <Button
-                            type="primary"
-                            onClick={() => {
-                              this.props.generateOtpByEmail({
-                                emailId: this.props.emailId
-                              })
-                              // this.handleOtpField()
-                            }}
-                            style={{ marginLeft: "-6.25em", marginTop: "0.4em" }}
-
-                          >
-                            <ArrowRightOutlined />
-                          </Button>
-                        </div> */}
+                      
                       </div>
                       {values.password.length &&
                         values.password === values.confirmPassword ? (
@@ -180,67 +166,20 @@ class ChangePassword extends Component {
                           }}
                         />
                       ) : null}
-                    {/* </div> */}
-
-                    {/* <Spacer /> */}
-                    {/* <div >
-                      <Button
-                        type="primary"
-                        onClick={() => {
-                          this.props.generateOtpByEmail({
-                            emailId: this.props.emailId
-                          })
-                          // this.handleOtpField()
-                        }}
-                        style={{ marginLeft: "85%" }}
-
-                      >
-                        <ArrowRightOutlined />
-                      </Button>
-                    </div> */}
+                    
 
                     
 
                  
-                   
-                      {/* <FlexContainer justifyContent="space-between">
-                        <div>
-                         
-                          <Field
-                            name="otp"
-                            placeholder="Enter OTP"
-                            
-                            component={InputComponent}
-                         
-
-                          />
-                        </div>
-                        <div  style={{ marginRight: "12.25em"}}>
-
-                          <Button
-                            type="primary"
-                            onClick={() => {
-                              this.props.validateOtp({
-                                otp: values.otp,
-                                emailId: this.props.emailId
-                              })
-                            }}
-                          >
-                            Validate
-                          </Button>
-                        </div>
-                      </FlexContainer> */}
-                   
-
-                   <div class="mt-2">
+                    <div class="mt-2">
                     <Button
                       type="primary"
                       htmlType="submit"
                       Loading={this.props.changingPassword}
                       style={{ width: "100%", height: "2.5em" }}
-                    // onClick={() => this.props.login('prabeen.strange@gmail.com', 'chicharito14')}
+                   
                     >
-                      {/* Save Password */}
+                   
                       <FormattedMessage
                         id="app.savepassword"
                         defaultMessage="Save Password"
@@ -251,7 +190,7 @@ class ChangePassword extends Component {
                 )}
               </Formik>
               <br />
-              {/* <Link to='/register' style={{ textAlign: 'center' }}>Doesn't have an account? Register</Link> */}
+        
             </FormWrapper>
           </AuthContainer>
         </div>

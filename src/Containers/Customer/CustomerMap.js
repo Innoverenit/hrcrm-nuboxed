@@ -110,7 +110,7 @@ const MyPopupMarker = ({ mark }) => {
 
   return (
     <Marker position={[mark.lat, mark.lng]} icon={image}>
-      <Popup className="popup-wrapper">
+      <Popup className="!w-[18rem]">
         <FlexContainer justifyContent="center" flexDirection="column">
           <FlexContainer flexWrap="nowrap" alignItems="center">
             <MultiAvatar

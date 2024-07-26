@@ -72,7 +72,7 @@ export default function PartnerMapPopUpMarker({ mark }) {
     position={[mark.lat, mark.lng]}
       icon={image}
      >
-      <Popup className="popup-wrapper">
+      <Popup className="!w-[18rem]">
         <div className="details">
           <Title
             fontSize="1.1rem"
