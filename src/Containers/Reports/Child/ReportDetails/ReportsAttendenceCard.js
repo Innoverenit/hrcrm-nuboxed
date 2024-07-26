@@ -648,9 +648,22 @@ const styles = {
     gridTemplateColumns: 'repeat(8, 1fr)',
     gridGap: '10px',
     width: '100%',
+    maxHeight: '500px',  // Set the maximum height
+    maxWidth: '100%',
+    overflow: 'auto',
   },
+  // grid: {
+  //   display: 'grid',
+  //   gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+  //   gridGap: '10px',
+  //   maxHeight: '500px',  // Set the maximum height
+  //   maxWidth: '100%',    // Set the maximum width
+  //   overflow: 'auto',    // Enable scrolling
+  // },
   emptyCell: {
     gridColumn: 'span 1',
+    width: '100px',
+    height: '40px',
   },
   headerCell: {
     border: '1px solid #ccc',
