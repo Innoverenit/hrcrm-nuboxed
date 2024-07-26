@@ -22,6 +22,7 @@ const userOptions = ['Access', 'Create', 'Update', 'Delete','Access Plus'];
  const accountingCheckedList=['Access'];
  const collectionCheckedList=['Access','Approve'];
  const requirementCheckedList=['Access'];
+ const ecomChecklist=['Publish on Portal']
  const basicCheckedList=['Access'];
  const calenderCheckList=['View','Manage']
  const repositoryCheckedList=['Create'];
@@ -1732,6 +1733,58 @@ const onCheckAllTeamsChange = (e) => {
            
               </div> 
                   : null }  
+
+
+<div class="flex flex-col ">
+            <div class=" text-clr text-base flex justify-center mt-6 font-bold">Ecom</div>
+        
+            <div class="flex  ">
+    {/* Left Box */}
+    <div class="flex border border-gray-300  w-1/2 p-1">
+      <div class="flex flex-col">
+        <div class="flex justify-between mt-4">
+        <div >
+          <div class="text-sm font-semibold">Material</div>
+          <Checkbox indeterminate={indeterminateCollection} onChange={onCheckAllCollectionChange} checked={checkAllCollection}>
+          <div class="text-xs"> Check all</div>
+          </Checkbox>
+          <Divider />
+          <CheckboxGroup options={ecomChecklist } value={checkedCollectionList} onChange={onCollectionChange} />
+
+        </div>
+               
+
+        
+        </div>
+     
+      
+      </div>
+    </div>
+
+    {/* Right Box */}
+    <div class="flex border border-gray-300  w-1/2 p-1">
+      <div class="flex flex-col">
+        <div class="flex justify-between mt-4">
+        <div >
+          <div class="text-sm font-semibold">Catalouge</div>
+          <Checkbox indeterminate={indeterminatePayments} onChange={onCheckAllPaymentsChange} checked={checkAllPayments}>
+          <div class="text-xs">  Check all  </div>
+          </Checkbox>
+          <Divider />
+          <CheckboxGroup options={ecomChecklist} value={checkedPaymentsList} onChange={onPaymentsChange} />
+        </div>
+
+               
+        </div>
+      </div>
+    </div>
+  </div>
+            
+           
+              </div> 
+
+
+
 
 {props.departmentData.recruitProInd === true ? 
   <div class="flex flex-col ">  
