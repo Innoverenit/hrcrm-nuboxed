@@ -568,7 +568,7 @@ import dayjs from "dayjs";
 const { Option } = Select;
 
 function StartStop(props) {
-  const [selectedOtherValues, setSelectedOtherValues] = useState(props.attendanceByList?.other || []);
+  const [selectedOtherValues, setSelectedOtherValues] = useState(props.attendanceByList?.other ||null);
   const [isLoading, setIsLoading] = useState(true);
   const [otherInclude, setOtherInclude] = useState([]);
   const [touched, setTouched] = useState(false);
@@ -606,24 +606,29 @@ function StartStop(props) {
   }, []);
 
   useEffect(() => {
-    if (
-      props.attendanceByList &&
-      props.attendanceByList.startInd !== undefined &&
-      props.attendanceByList.location !== undefined &&
-      props.attendanceByList.country !== undefined &&
-      props.attendanceByList.other !== undefined &&
-      props.attendanceByList.returnDate !== null
-    ) {
+    // if (
+    //   props.attendanceByList &&
+    //   props.attendanceByList.startInd !== undefined &&
+    //   props.attendanceByList.location !== undefined &&
+    //   props.attendanceByList.country !== undefined &&
+    //   props.attendanceByList.other !== undefined &&
+    //   props.attendanceByList.returnDate !== null
+    // ) {
       setStartInd(props.attendanceByList.startInd);
       setDrop1(props.attendanceByList.location);
       setMandatoryCountry(props.attendanceByList.country);
       setSelectedOtherValues(props.attendanceByList.other);
-      if (props.attendanceByList.returnDate.length >= 10) {
-        setSelectedDate(props.attendanceByList.returnDate.substring(0, 10));
+      if (props.attendanceByList.returnDate) {
+        if (props.attendanceByList.returnDate.length >= 10) {
+          setSelectedDate(props.attendanceByList.returnDate.substring(0, 10));
+        } else {
+          setSelectedDate(props.attendanceByList.returnDate);
+        }
       } else {
-        setSelectedDate(props.attendanceByList.returnDate);
+        // Handle the case when returnDate is undefined or null
+        setSelectedDate(''); // Or any default value you prefer
       }
-    }
+    // }
   }, [props.attendanceByList]);
 
   const handleDateChange = (date, dateString) => {
