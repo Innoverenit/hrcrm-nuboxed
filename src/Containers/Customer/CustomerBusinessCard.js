@@ -1,13 +1,11 @@
-import React, { Component } from "react";
-import { Avatar, Divider, Button, Menu, Dropdown, Tooltip } from "antd";
+import React from "react";
+import { Button, Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
-import { PlusOutlined, ReadOutlined } from '@ant-design/icons';
+import { PlusOutlined,} from '@ant-design/icons';
 import styled from "styled-components";
 import { FlexContainer, MainWrapper, ResponsiveCard } from "../../Components/UI/Layout";
-// import { CurrencySymbol } from "../../Common";
-import { ActionIcon } from "../../Utils";
 import { MultiAvatar } from "../../Components/UI/Elements";
-import { Title, SubTitle } from "../../Components/UI/Elements";
+import { Title} from "../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
@@ -55,8 +53,7 @@ const CustomerBusinessCard = (props) => {
           <FlexContainer style={{ flexBasis: "25%", marginRight: "0.2rem" }}>
             <MultiAvatar
               primaryTitle={primaryTitle}
-              // imageId={imageId}
-              // imageURL={imageURL}
+             
               imgHeight={40}
               imgWidth={40}
             />
@@ -71,7 +68,7 @@ const CustomerBusinessCard = (props) => {
               overflow="hidden"
               textOverflow="ellipsis"
               style={{ color: "#337df4", cursor: "pointer", fontSize: "1em" }}
-            // onClick={handleClick || null}
+           
             >
               {primaryTitle || ""}
             </Title>
@@ -93,7 +90,6 @@ const CustomerBusinessCard = (props) => {
             marginBottom: "0.31em",
           }}
         >
-          {/* <Tooltip placement="right" title="Pulse"> */}
           <Tooltip placement="right" title={<FormattedMessage
             id="app.pulse"
             defaultMessage="Pulse"
@@ -101,7 +97,7 @@ const CustomerBusinessCard = (props) => {
 
             <div style={{ marginTop: "6%" }}>
               <Button
-                className="hover_button"
+                className="hover:bg-black"
                 size={"small"}
                 type="ghost"
                 style={{
@@ -109,14 +105,13 @@ const CustomerBusinessCard = (props) => {
                   borderColor: "transparent",
                   alignSelf: "flex-end",
                 }}
-              // onClick={handlePreview}
+          
               > {user.pulseAccessInd === true && (
                 <MonitorHeartIcon
-                // icon={solid("heartbeat")}
+               
                 />
               )}
-                {/* <PulseIcon></PulseIcon> */}
-                {/* <PulseIcon class="fas fa-heartbeat" style={{ fontSize: '145%' }}></PulseIcon> */}
+              
               </Button>
             </div>
           </Tooltip>

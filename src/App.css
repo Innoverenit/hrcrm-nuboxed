@@ -3,224 +3,31 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-.clock-container .react-clock {
+.react-clock {
   width: 41px; /* Adjust the width as needed */
   height: 40px; /* Adjust the height as needed */
 }
-.editable-row .ant-form-explain {
-  position: absolute;
-  font-size: 0.75em;
-  margin-top: -0.25em;
-}
-.text-red {
-  color: red;
-}
 
-.required-field {
-  border: 1px solid red;
-}
-.hide-resize-observer {
-  display: none !important;
-}
-.ant-menu {
-  font-size: 0.8125rem;
-}
 .recharts-default-legend {
   padding: revert;
   margin: revert;
   width: max-content;
   text-align: center;
 }
-.login_image {
-  height: 17.5em;
-  width: 36.0625em;
-}
-.hover_button:hover {
-  color: black;
-}
-.modal_show_hide {
-  display: none;
-}
-.setpassword_button {
-  display: flex;
-  justify-content: flex-end;
-}
-.register_message {
-  font-size: 1.0625em;
-  width: auto;
-  font-family: "Poppins";
-}
-.set_password {
-  display: flex;
-  flex-direction: row;
-}
-.login_password {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-.randome_text2 {
-  line-height: 1.1;
-  font-family: "Poppins";
-  color: black;
-  font-size: 1.125em;
-  font-weight: bold;
-  margin-top: 1.125em;
-  text-align: center;
-}
-.randome_text3 {
-  line-height: 1.1;
-  font-family: "Poppins";
-  color: rgba(0, 0, 0, 0.65);
-  font-size: 0.875em;
-  font-weight: 500;
 
-  text-align: center;
-}
-.main_quarter_box {
-  border: "0.0625em solid black";
-  padding: 0.125em;
 
-  height: 30vh;
-}
 
-.footer1 {
-  text-align: center;
-  font-size: 12x;
-                                                                            font-family: "Poppins";
-  margin-top: auto;
-}
-
-.quarter1 {
-  width: 22%;
-}
-.quarter1_header {
-  width: 30%;
-  display: flex;
-}
-
-.register {
-  width: 100%;
-}
 @media only screen and (max-width: 37.5em) {
-  .modal_show_hide {
-    display: block;
-  }
-  .setpassword_button {
-    width: 320%;
-  }
-  .register {
-    width: 84%;
-  }
-  .para {
-    display: none;
-  }
-  .quarter1_header {
-    width: 0%;
-    display: flex;
-  }
-  .main_quarter_box {
-    height: 30vh;
-  }
-  .set_password {
-    width: 320%;
-  }
 
+  
+ 
+ 
   .css-1w5m2wr-MuiDataGrid-virtualScroller {
     overflow: hidden;
     position: relative;
   }
-  .register_message {
-    font-size: 0.75em;
-    width: auto;
-  }
   .reg_text {
     font-size: 0.6875em;
-  }
-}
-@media only screen and (max-width: 33.75em) {
-  .register {
-    width: 74%;
-  }
-  .para {
-    display: none;
-  }
-  .quarter1 {
-    width: 15%;
-  }
-  .quarter1_header {
-    width: 24%;
-    display: flex;
-  }
-  .main_quarter_box {
-    height: 31vh;
-  }
-}
-@media only screen and (min-width: 25.6875em) and (max-width: 45.6875em) {
-  .register {
-    width: 84%;
-  }
-  .quarter1 {
-    width: 18%;
-  }
-  .para {
-    display: none;
-  }
-  .quarter1_header {
-    width: 26%;
-    display: flex;
-  }
-  .main_quarter_box {
-    height: 27vh;
-  }
-}
-@media only screen and (min-device-width: 20em) and (max-device-width: 35.5em) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) {
-  .register {
-    width: 63%;
-  }
-  .quarter1 {
-    width: 11.5%;
-  }
-  .para {
-    display: none;
-  }
-  .quarter1_header {
-    width: 24%;
-    display: flex;
-  }
-  .main_quarter_box {
-    height: 35vh;
-  }
-}
-
-@media only screen and (min-device-width: 48em) and (max-device-width: 64em) {
-  .randome_text2 {
-    line-height: 1.1;
-    font-family: "Poppins";
-    color: black;
-    font-size: 0.875em;
-    font-weight: bold;
-    margin-top: 0.9375em;
-    text-align: center;
-  }
-  .randome_text3 {
-    line-height: 1.1;
-    font-family: "Poppins";
-    color: rgba(0, 0, 0, 0.65);
-    font-size: 0.75em;
-    font-weight: 500;
-
-    text-align: center;
-  }
-  .login_image {
-    height: 17.5em;
-    width: 30.25em;
-  }
-  .set_password {
-    width: 120%;
   }
 }
 
@@ -246,53 +53,8 @@
     color: red;
   }
 }
-/* .ant-select-selection-selected-value {
-  height: 1.48rem;
- 
-}
-.ant-calendar-picker {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0 0 0.42rem 0;
- 
-  font-variant: tabular-nums;
-  line-height: 1.5;
-  list-style: none;
-  
-  position: relative;
-  display: inline-block;
-  outline: none;
-  cursor: text;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
-}
 
-.ant-select-multiple .ant-select-selector {
-  height: 1.48rem;
-}
-:where(.css-dev-only-do-not-override-1e3x2xa).ant-badge .ant-badge-count {
-  z-index: auto;
-  min-width: 15px;
-  height: 15px;
-  color: #ffffff;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 15px;
-  white-space: nowrap;
-  text-align: center;
-  background: #ff4d4f;
-  border-radius: 10px;
-  box-shadow: 0 0 0 1px #ffffff;
-  
-}
-/* :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-inline .ant-menu-item {
-  height: 31px;
-  line-height: 40px;
-  list-style-position: inside;
-  list-style-type: disc;
-  margin-left: 0;
-} */
-.ant-picker {
+/* .ant-picker {
   box-sizing: border-box;
   box-shadow: 0 0.25em 0.62em #aaa;
   height: 1.48rem;
@@ -303,8 +65,6 @@
   font-variant: tabular-nums;
   line-height: 1.5715;
   list-style: none;
- 
-  /* padding: 0 0 0 0.7em; */
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -312,15 +72,15 @@
   border: 0.0625em solid #d9d9d9;
   border-radius: 2px;
   transition: border 0.3s, box-shadow 0.3s;
-}
-
+} */
+/* 
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
   height: 1.48rem;
-}
+} */
 .ant-select-selection.ant-select-selection--single {
   height: 1.48rem;
 }
-.stages {
+/* .stages {
   box-shadow: 0 0.8125em 1.6875em -0.3125em rgba(118, 118, 184, 0.432);
   background-color: #09bc8b;
   display: flex;
@@ -328,10 +88,8 @@
   justify-content: center;
   align-items: center;
   margin-top: -0.3125em;
-}
-.popup-wrapper {
-  width: 18.75em !important;
-}
+} */
+
 .avatar {
   justify-content: "center";
   flex-direction: "column";
@@ -348,12 +106,7 @@
   align-items: center;
   margin-left: 5em;
 }
-.vl {
-  border-left: 0.375em solid rgb(95, 93, 92);
-  height: 25em;
-  margin: 0.5rem;
-  margin-left: 2.5em;
-}
+
 .edit_hover_class {
   visibility: hidden;
 }
@@ -361,7 +114,7 @@
   visibility: visible;
 }
 
-.details {
+/* .details {
   width: 12.9375em;
  
   box-shadow: 0 0.8125em 1.6875em -0.3125em rgba(50, 50, 93, 0.25);
@@ -372,25 +125,10 @@
   align-items: center;
   margin-top: -0.3125em;
   margin-left: 0.5em;
-}
+} */
 
-body {
-  overflow: auto;
-}
 
-body::-webkit-scrollbar {
-  width: 0.3125em;
-}
 
-body::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 0.375em rgba(0, 0, 0, 0.3);
-  background-color: #0f0f0f;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: rgb(65, 65, 65);
-  outline: 0.0625em solid rgb(121, 122, 122);
-}
 
 .DraftEditor-root {
   height: auto !important;
@@ -404,7 +142,7 @@ body::-webkit-scrollbar-thumb {
   background-color: #1890ff;
   border-color: #1890ff;
 }
-a {
+/* a {
   color: #24d8a7;
   text-decoration: none;
   background-color: transparent;
@@ -412,11 +150,8 @@ a {
   cursor: pointer;
   transition: color 0.3s;
   -webkit-text-decoration-skip: objects;
-}
-.mainDiv {
+} */
 
-  border: 0.1875em solid blue;
-}
 .antbtn1 {
   background-color: teal;
   height: 2.1em;
@@ -433,10 +168,6 @@ a {
   height: 2.1em;
   width: 43%;
 }
-/* .ant-menu-inline .ant-menu-item:not(:last-child) {
-  margin-bottom: 0;
-} */
-
 
 .ant-menu-dark .ant-menu-inline.ant-menu-sub {
  
@@ -444,9 +175,6 @@ a {
   box-shadow: 0 2px 8px rgb(0 0 0 / 45%) inset;
 
 }
-
-
-
 .ant-table-thead > tr > th .ant-table-filter-icon {
   position: absolute;
   top: 0;
@@ -460,9 +188,6 @@ a {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-
-
-
 .documentId {
   position: absolute;
 }
@@ -473,7 +198,6 @@ a {
   padding: 0;
   font-variant: tabular-nums;
   list-style: none;
-
   position: relative;
   display: inline-block;
   width: 100%;
@@ -504,11 +228,6 @@ a {
   height: 54px;
   right: 0;
 }
-
-
-
-
-
 .load1 {
   font-size: 8px;
   margin-top: 9px;
@@ -520,8 +239,6 @@ a {
   color: white;
   background-color: tomato;
 }
-
-
 .textarea {
   width: 100%;
   min-height: 11.5em;
@@ -535,7 +252,6 @@ a {
 }
 .ant-switch {
   background-color: rgb(213, 213, 213);
-  /* background: #09bc8b; */
 }
 
 .map-and-address-container {
@@ -556,7 +272,6 @@ a {
 .map-container {
   width: 330px;
   height: 200px;
-  /* border-radius: 10px; */
   overflow: hidden;
 }
 
@@ -569,7 +284,6 @@ a {
   right: 8px;
   font-weight: normal;
   font-size: 0.75em;
-  /* line-height: 1.1em; */
   white-space: nowrap;
   text-align: center;
   background: #f5222da3;
@@ -588,29 +302,7 @@ a {
   position: relative;
   display: inline-block;
 }
-.header-icon {
-  box-sizing: border-box;
-  color: #24d8a7;
-  font-size: 0.75rem;
-  font-variant: tabular-nums;
-  line-height: 1.1em;
-  list-style: none;
- 
-  position: relative;
-  display: inline-block;
-}
 
-/* .ant-btn-primary {
-  color: #fff;
-  height: 1.58rem;
-  font-size: 0.8125em;
-  border-color: #fff;
-  padding: 3px 8px; 
-  background-color: #ff7158bf; 
-  border-radius: 3px;
-  margin-left: 0.75rem;
-  box-shadow: grey 1px 2px 0px 0px;
-} */
 .ant-btn-background-ghost {
   color: #fff;
   border-color: #fff;
@@ -637,12 +329,6 @@ a {
   font-family: "Poppins";
   scrollbar-width: "thin";
 }
-/* .pulse-background{
-  position: relative;
-  background-color:whitesmoke;
-  box-shadow: 0 0.25em 0.62em #aaa;
-  border-radius: 2px;
-} */
 
 .ant-input-affix-wrapper {
   position: relative;
@@ -797,12 +483,6 @@ style attribute {
   display: flex;
 }
 
-.icon {
-  margin: 0 2px 0 2px;
-}
-.icon1 {
-  font-size: 1rem;
-}
 .ant-upload.ant-upload-select-picture-card {
   border: 0.0625em dashed #eee;
   height: 5.9375em;
@@ -996,29 +676,8 @@ iframe#webpack-dev-server-client-overlay {
   padding: 20px;
 }
 
-/* .ant-avatar .ant-avatar-string {
-  position: absolute;
-  left: 50%;
-  transform-origin: 0 center;
-  top: -7%;
-} */
-
 .ant-menu .ant-menu-item-selected {
   background-color: #709ab3;
-}
-
-
-.add-region {
-  margin-bottom: 10px;
-}
-
-.add-region input {
-  margin-right: 10px;
-}
-
-.add-region button {
-  margin-right: 10px;
-  margin-top: 14px;
 }
 
 .region {
@@ -1026,28 +685,12 @@ iframe#webpack-dev-server-client-overlay {
   margin-right: 10px;
 }
 
-.actions {
-  flex-shrink: 0;
-  display: flex;
-  gap: 10px;
-}
 
 @media print {
   .print-content {
     font-size: 2rem; /* adjust as needed */
   }
 }
-
-.circle-icon {
-  width: 40px; /* Adjust the size as needed */
-  height: 40px; /* Adjust the size as needed */
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f0f0; /* Adjust the background color as needed */
-}
-
 
   .ant-tabs-tab {
   margin: 0;
@@ -1057,24 +700,6 @@ iframe#webpack-dev-server-client-overlay {
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-
-  /* .anticon {
-  color: #1a1818;
-} */
-
-.field-container {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px; /* Space between description and upload components */
-  margin-bottom: 16px;
-}
-
-.description-textarea {
-  flex: 1;
-  height: 100px;
-  width: 100%;
-}
-
 .upload-container {
   display: flex;
   align-items: center;
@@ -1082,18 +707,6 @@ iframe#webpack-dev-server-client-overlay {
   width: 150px;
   height: 100px;
 }
-
-.scroller {
-  overflow-y: scroll;
-  scrollbar-width: thin;
-}
-
-
-
-
-
-
-
 .name-list-container {
   max-height: 512px;
   overflow-y: auto;
@@ -1190,196 +803,3 @@ iframe#webpack-dev-server-client-overlay {
   background-color: #fafafa;
   cursor: pointer;
 }
-
-
-/* button {
-  background-color: #1890ff;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  border-radius: 5px;
-} */
-
-/* button:hover {
-  background-color: #40a9ff;
-} */
-
-/* HeaderLabel
--------------
-
-<div class=" text-[white] text-xs" >
- */
-/* cardwrapper code
-----------------------
-
-<div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">  
- */
-
-/* cardelement code 
----------------------
-
- <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[10rem] 
-text-[#444444] m-3 p-1 w-[19vw] flex flex-col  ">
- */
-
-/* ONLYWRAPCARD CODE 
-------------------------
- <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]"> */
-
-/* STYLEDLABEL */
-/* <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"> */
-
-/* CARDVIEW DESIGN CODE */
-
-/* <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-<div className=" md:w-[6.5rem]">
-<FormattedMessage
-        id="app.type"
-        defaultMessage="Type"
-      /></div>
-
-<div className="md:w-[10.1rem]">  <FormattedMessage id="app.courseName" defaultMessage="Course Name" /></div>
-       <div className="md:w-[10.1rem]">
-       <FormattedMessage
-id="app.yearOfPassing"
-defaultMessage="Year of Passing"
-/></div>
-             <div className=" md:w-[8.1rem]">
-             <FormattedMessage id="app.college" defaultMessage="School /College" /></div>
-
-             <div className=" md:w-[8.1rem]">
-             <FormattedMessage id="app.MarksSecured" defaultMessage="Marks Secured" /></div>
-
-
-<div className="w-[10.2rem]"></div>
-
-</div>
-
-
-{eduDetails.map((item) => { 
-
-
-          return (
-              <div>
-                  <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
-                      >
-                           
-                           <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full items-center"> 
-
-<div class="max-sm:w-full">
-                              <Tooltip>
-                                <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
-                                
-                                  <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                      
-{item.educationType}
-
-
-                                  </div>
-                                  </div>
-                              </Tooltip>
-                              </div>
-                              </div>
-                      </div>
-                      <div class="flex">
-
-                   
-                    
-                      <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                      
-                        <div class="text-sm  font-poppins">
-                        {item.courseName}
-                        </div>
-                    </div>
-
-                    <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                      
-                      <div class="text-sm  font-poppins">
-                      {item.yearOfPassing}
-                      </div>
-                  </div>
-                  <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                         
-                         <div class="text-sm  font-poppins">
-       
-           <div className="font-normal text-sm  font-poppins">
-             <span>{item.university}</span>
-           </div>
-       
-                         </div>
-                     </div>
-
-                     <div className=" flex font-medium flex-col md:w-[16.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                      
-                      <div class="text-sm  font-poppins">
-                      <span>
-    {item.marksSecured} {item.marksType}
-  </span>
-                      </div>
-                  </div>
-                    </div>
-                    <div className=" flex  " style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
-         
-                    <>
-  {item.documentId ? (
-    <a
-      href={`${base_url}/document/${item.documentId}`}
-      target="_blank"
-    >
-      {user.userAccessInd ? (
-      <DownloadIcon 
-        type="download"
-        // onClick={() => startDownload()}
-        style={{ cursor: "pointer",fontSize: "1rem", }}
-      />
-      ):null}
-    </a>
-  ) : null}
-</>
-       
-        </div>
-                      <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          
-
-                          <div class=" text-sm  font-poppins text-center">
-                          <BorderColorIcon 
-  style={{ cursor: "pointer", fontSize: "1rem" }}
-  onClick={() => {
-    setEditEducation(item);
-    handleUpdateEducationModal(true);
-  }}
-/>
-
-                          </div>
-                      </div>
-                      <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          
-
-                          <div class=" text-sm  font-poppins text-center">
-                          <StyledPopconfirm
-  title="Do you want to delete?"
-  onConfirm={() => deleteEducationTable(item.id)}
->
-  <DeleteIcon
-    type="delete"
-    style={{ cursor: "pointer", fontSize: "1rem", color: "red" }}
-  />
-</StyledPopconfirm>
-
-                          </div>
-                      </div>
-
-                    
-                   
-                  </div>
-              </div>
-
-
-          )
-      })}
-          
-</div>
- */

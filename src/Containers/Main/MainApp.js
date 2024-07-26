@@ -1,19 +1,13 @@
 import React, { lazy, Suspense, useEffect, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
-import HelpIcon from '@mui/icons-material/Help';
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
-
 import AssessmentData from "../AssessmentData/AssessmentData"
-
 import { base_url,login_url } from "../../Config/Auth";
-
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
-import { bindActionCreators } from "redux";
-
-import {
+import { bindActionCreators } from "redux";import {
   Button,
   Layout,
   message,
@@ -48,7 +42,6 @@ import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
 import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
 import Vendor from "./Vendor/Vendor";
 import Procre from "./Procre/Procre";
-import InventoryTableAll from "./Suppliers/Child/SupplierDetails/SupplierDetailTab/InventoryTableAll";
 import Trade from "./Trade/Trade";
 import CreateSubscriptionDrawer from "../Subscription/Child/CreateSubscriptionDrawer";
 import { handleCreateSubscriptionDrawer } from "../Subscription/SubscriptionAction";
@@ -144,9 +137,6 @@ const CandidateTotalBilling = lazy(() =>
 const Location = lazy(() =>
   import("../Event/Child/Location/Location")
 );
-// const PitchDetails = lazy(() =>
-//   import("../Pitch/Child/PitchDetails/PitchDetails")
-// );
 const Navmenu2 = lazy(() =>
   import("./Navmenu2")
 );
@@ -283,33 +273,6 @@ function MainApp(props) {
     props.getSuscrption(props.orgId)
   }, []);
 
-
-
-
-  // useEffect(() => {
-  //   const fetchMenuTranslations = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const itemsToTranslate = [
-  //         'Dashboard',
-  //         'Planner',
-        
-  //       ];
-
-  //       const translations = await translateText(itemsToTranslate, selectedLanguage);
-  //       setTranslatedMenuItems(translations);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       setLoading(false);
-  //       console.error('Error translating menu items:', error);
-  //     }
-  //   };
-
-  //   fetchMenuTranslations();
-  // }, [selectedLanguage]);
-
-
-
   useEffect(() => {
     const fetchSupportedLanguages = async () => {
       try {
@@ -323,25 +286,8 @@ function MainApp(props) {
     fetchSupportedLanguages();
   }, []);
 
-  // const handleLanguageChange = (language) => {
-  //   setSelectedLanguage(language);
-  // };
-
-
-
   const handleLanguageChange = (event) => {
-    // const language = event.target.value;
     setSelectedLanguage(event.target.value);
-    // {
-    //   props.userType === "serviceProvider" ?
-    //     props.updateServiceLanguage(props.contactId, {
-    //       language: event.target.value,
-    //     }) :
-    //     props.updateCustomerLanguage(props.customerId, {
-    //       language: event.target.value,
-    //     });
-    // }
-    // onLanguageChange(language);
   };
 
   const handleRowData = (data) => {
@@ -360,7 +306,6 @@ function MainApp(props) {
   };
 
   const translateText = async (text, targetLanguage) => {
-    // const url = `http://marketplace.eu-west-3.elasticbeanstalk.com/language/translate/word`;
     const url = `${login_url}/words/convertWord`;
 
     const response = await fetch(url, {
@@ -408,7 +353,6 @@ function MainApp(props) {
     });
     message.success(`Language sucessfully changed to ${data} `);
   }
-  // render() {
   const background = theme === "light" ? "#fff" : null;
   const { organization, user, imageId, orgImageId, organizationName } = props;
   console.log("Done", props.imageId);
@@ -418,10 +362,7 @@ function MainApp(props) {
 
   const organizationLogo = (
     <MultiAvatar
-      // style={{width:"8rem"}}
       imageId={imageId}
-    //marginLeft="30px"
-    // primaryTitle={organizationName}
     />
   );
 
@@ -451,24 +392,6 @@ function MainApp(props) {
       setData(result.text);
     }
   };
-  // const handleScan = async (result, error) => {
-  //   try {
-  //     if (result && result.text) {
-  //       setData(result.text);
-  //     } else if (result instanceof MediaStream) {
-  //     }
-
-  //     if (error) {
-  //       throw new Error(error);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error in QR code scanner:', error);
-
-  //     // Additional handling based on the error, if needed
-
-  //   }
-  // };
-
   const Subscription = 
   props.suscrptionData.subscriptionType === "1" ? "Starter" :
   props.suscrptionData.subscriptionType === "2" ? "Professional" :
@@ -492,18 +415,8 @@ function MainApp(props) {
                 minHeight: "100vh",
                 background: "#38445E",
                 overflow: "auto",
-                //flex:"0 0 11vw"
-                // height: "100vh",
-                // position: "fixed",
               }}
             >
-              {/* <div
-            className="logo"
-            style={{
-              justifyContent: !collapsed ? "flex-start" : "center",
-              height: 50,
-            }}
-          > */}
               <div class="  h-3 ml-[2.5rem] "
                 className="logo1"
                 style={{
@@ -515,26 +428,7 @@ function MainApp(props) {
               >
                 {collapsed && organizationLogo}
                 {!collapsed && organizationLogo}
-                {/* {collapsed && organizationLogo}
-            {!collapsed && organizationLogo} */}
-                {/* {this.state.collapsed && organizationLogo}
-                            {!this.state.collapsed && organizationLogo}
-                            {!this.state.collapsed && <span style={{ color: 'white', fontWeight: 'bold', fontSize: 20 }} >{organization.organizationName}</span>} */}
-
-                {/* {collapsed && (
-              <img
-                className="small-logo"
-                src={FWShortLogo}
-                style={{ height: 50 }}
-              />
-            )}
-            {!collapsed && (
-              <img
-                className="big-logo"
-                src={FWLogo}
-                style={{ height: "40px", marginLeft: "28px" }}
-              />
-            )} */}
+               
               </div>
               <NavMenu
                 collapsed={collapsed}
@@ -566,23 +460,10 @@ function MainApp(props) {
                   <div class="xl:hidden ml-4 "><Navmenu2 
                   translateText={translateText}
                   selectedLanguage={selectedLanguage} /></div>
-
-                  {/* <div className="border-2"></div>Attendance<div className="border-2"></div> */}
                   <StartStop />
                   <div >
-                  
-                    {/* <div class="border border-grey ml-1 p-1 h-10 md:p-4">
-  <label class=" bg-white flex px-2 -mt-[1.15rem] h-2 items-center w-[5.5rem]">Attendance</label>
-  <StartStop />
-</div> */}
-                  </div>
-                  {/* <Button
-                  onClick={() => {
-                    props.handleInTagDrawer(true)
-                  }}
-                  class=" bg-green-600 cursor-pointer text-gray-50"
-                >
-                  Scan </Button> */}
+                     </div>
+                
                   <div class="ml-2">
                     <QRCodeList
                       handleScan={handleScan}
@@ -596,132 +477,15 @@ function MainApp(props) {
                     />
                   </div>
                 </div>
-                {/* <Popconfirm
-                title="Stop"
-                visible={visible}
-                onConfirm={handleOk}
-                okButtonProps={{
-                  loading: confirmLoading,
-                }}
-                onCancel={handleCancel}
-              >
-                <Button
-                  type="primary"
-                  htmlType="start"
-                  // Loading={isSubmitting}
-                  // Loading={this.state.Loading}
-                  style={{ width: "10%", height: "2.5em", backgroundColor: "green" }}
-                  onClick={showPopconfirm}
-                // onClick={() => this.props.login('prabeen.strange@gmail.com', 'chicharito14')}
-                >
-                  Start
-                </Button>
-
-              </Popconfirm>  */}
+            
 
                 <div class="mr-3 flex items-center h-[2.5rem]"
                 >
-                  {/* <ReactChat /> */}
-
-                  {/* <FloatButton.Group
-                    trigger="click"
-                    type="primary"
-                    style={{
-                      right: 24,
-                    }}
-                    icon={<CustomerServiceOutlined />}
-                  >
-                   
-                    <FloatButton
-                      tooltip={<div>Customer</div>}
-                      icon={
-                        <ApartmentIcon
-                          onClick={() => {
-                            props.handleCustomerModal(true);
-                          }}
-                        />
-                      }
-                    />
-                    <FloatButton
-                      tooltip={<div>Contact</div>}
-                      icon={
-                        <ContactsIcon
-                          onClick={() => {
-                            props.handleContactModal(true);
-                          }}
-                        />
-                      }
-                    />
-                    <FloatButton
-                      tooltip={<div>Opportunity</div>}
-                      icon={
-                        <LightbulbIcon
-                          onClick={() => {
-                            props.handleOpportunityModal(true);
-                          }}
-                        />
-                      }
-                    />
-                    <FloatButton
-                      tooltip={<div>Partner</div>}
-                      icon={
-                        <HandshakeIcon
-                          onClick={() => {
-                            props.handlePartnerModal(true);
-                          }}
-                        />
-                      }
-                    />
-
-                    <FloatButton
-                      tooltip={<div>Talent</div>}
-                      icon={
-                        <PortraitIcon
-                          onClick={() => {
-                            props.handleCandidateResumeModal(true);
-                          }}
-                        />
-                      }
-                    />
-
-                    <FloatButton
-                      tooltip={<div>Call</div>}
-                      icon={
-                        <VolumeUpIcon
-                          onClick={() => {
-                            props.handleCallModal(true);
-                          }}
-                        />
-                      }
-                    />
-
-                    <FloatButton
-                      tooltip={<div>Event</div>}
-                      icon={
-                        <EventAvailableIcon
-                          onClick={() => {
-                            props.handleEventModal(true);
-                          }}
-                        />
-                      }
-                    />
-
-                    <FloatButton
-                      tooltip={<div>Task</div>}
-                      icon={
-                        <FactCheckIcon
-                          onClick={() => {
-                            props.handleTaskModal(true);
-                          }}
-                        />
-                      }
-                    />
-                  </FloatButton.Group> */}
+                 
  <div className="flex items-center">           
                 <Button
                  type="primary"
                  onClick={() =>{
-                 // handleRowData(props.suscrptionData);
                   props.handlePromotion(true)}}
                 >Promotions</Button>
                  </div>
@@ -734,10 +498,8 @@ function MainApp(props) {
                   props.handleCreateSubscriptionDrawer(true)}}
                 >Upgrade</Button>
                  </div>
-                  {/* <Subscription /> */}
                   <div class=" text-base cursor-pointer font-normal text-[blue]  ml-1 max-sm:hidden "
                     onClick={() => {
-                      // handleRowData(item);
                       props.handleActionDrawerModal(true);
 
                     }}
@@ -745,7 +507,6 @@ function MainApp(props) {
                     count={props.actionCount.ActionRecordCount}
                     overflowCount={999}
                   ></Badge>
-                    {/* <span class=" text-[tomato] font-semibold">{props.actionCount.ActionRecordCount}</span> */}
                   </div>
                   <div class=" text-white bg-mainclr h-[1.75rem] ml-8 mr-3 max-sm:hidden"
                     style={{
@@ -778,24 +539,7 @@ function MainApp(props) {
                   >
                     {props.roleType}
                   </div>
-                  {/* <Subscription /> */}
-                  {/* <div class=" flex items-center h-full self-start "
-                  >
-                    <div class=" mr-2 mt-1 max-sm:hidden " >
-                      <Select
-                        value={props.preferedLanguage}
-                        style={{ width: "3.8rem" }}
-                        onChange={(value) => handleLanguageSelect(value)}
-                      >
-                        <Option value="English">EN</Option>
-                        <Option value="Dutch">NL</Option>
-                        <Option value="German">DE</Option>
-                        <Option value="French">FR</Option>
-                        <Option value="Spanish">ES</Option>
-                        <Option value="Italian">IT</Option>
-                      </Select>
-                    </div>
-                  </div> */}
+                
                   <div class=" flex items-center h-0">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
                       <SettingsDropdown />
@@ -814,7 +558,7 @@ function MainApp(props) {
                   </div>
                   <ProfileDropdown />
 
-                  {/* <Theme /> */}
+               
                 </div>
               </Header>
             </NavbarWrapper>
@@ -1071,7 +815,6 @@ function MainApp(props) {
                         />
                       )}
                     />
-                      {/* <Route exact path="/leads" component={Leads} /> */}
                       <Route
                       exact
                       path="/employees"
@@ -1094,9 +837,7 @@ function MainApp(props) {
                         />
                       )}
                     />
-
-
-<Route
+                    <Route
                       exact
                       path="/assessment"
                       render={(props) => (
@@ -1174,7 +915,6 @@ function MainApp(props) {
                         />
                       )}
                     />
-                      {/* <Route exact path="/documents" component={Documents} /> */}
                       <Route
                       exact
                       path="/categoryTab"
@@ -1263,10 +1003,7 @@ function MainApp(props) {
                         />
                       )}
                     />
-                                    
-                      
-                      
-                      <Route
+                     <Route
                       exact
                       path="/call"
                       render={(props) => (
@@ -1578,14 +1315,7 @@ function MainApp(props) {
                            selectedLanguage={selectedLanguage}
                         />
                       )}
-                    /> 
-                                      
-
-                      {/* <Route
-                        exact
-                        path="/candidate"
-                        render={(props) => <Candidate {...props} selectedLanguage={selectedLanguage} />}
-                      /> */}            
+                    />          
                       <Route
                       exact
                       path="/message"
@@ -1651,11 +1381,6 @@ function MainApp(props) {
                         />
                       )}
                     />
-                      {/* <Route
-                        exact
-                        path="/pitch/:investorLeadsId"
-                        component={PitchDetails}
-                      /> */}
                       <Route
                       exact
                       path="/opportunity/:opportunityId"
@@ -1689,8 +1414,6 @@ function MainApp(props) {
                         />
                       )}
                     />
-                     
-                      {/* <PotectedRoute exact path="/users" component={Users} /> */}
                       <Route
                       exact
                       path="/requirement"
@@ -1747,7 +1470,6 @@ function MainApp(props) {
                         />
                       )}
                     />
-                      {/* <Route exact path="/pitch" component={Pitch} /> */}
                       <Route
                       exact
                       path="/contactInvest"
@@ -1837,7 +1559,6 @@ function MainApp(props) {
         </LayoutWrapper>
       </ThemeProvider>
       <AddActionModal
-        // rowdata={rowdata}
         addDrawerActionModal={props.addDrawerActionModal}
         handleActionDrawerModal={props.handleActionDrawerModal}
       />
@@ -1852,9 +1573,7 @@ function MainApp(props) {
       <AddCandidateResumeModal
         addCandidateResumeModal={props.addCandidateResumeModal}
         handleCandidateResumeModal={props.handleCandidateResumeModal}
-      // handleResponseData={this.handleResponseData}
-      // responseData={this.state.responseData}
-      />
+     />
       <CreateSubscriptionDrawer
         rowData={rowData}
         createSubscriptiondrawer={props.createSubscriptiondrawer}
@@ -1872,7 +1591,7 @@ function MainApp(props) {
     </>
   );
 }
-// }
+
 
 const mapStateToProps = ({
   auth,
@@ -1894,7 +1613,6 @@ const mapStateToProps = ({
   userDetails: auth.userDetails,
   addDrawerActionModal: auth.addDrawerActionModal,
   addMessageModal: opportunity.addMessageModal,
-  // employeeId: auth.userDetails.employeeId,
   userId: auth.userDetails.employeeId,
   theme: theme.theme,
   organization:
@@ -1905,7 +1623,6 @@ const mapStateToProps = ({
   roleType: auth.userDetails && auth.userDetails.roleType,
   role: auth.userDetails && auth.userDetails.role,
   orgId: auth.userDetails.organizationId,
-  // orgImageId:auth.userDetails.orgImageId,
 
   imageId:
     (auth.userDetails &&

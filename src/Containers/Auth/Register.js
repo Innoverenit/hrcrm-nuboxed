@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Formik, Form, Field } from "formik";
-import { Alert, Button, Carousel, Checkbox, Switch } from "antd";
+import { Button, Carousel} from "antd";
 import * as Yup from "yup";
 import { get } from "lodash";
 import dayjs from "dayjs";
 import { AuthContainer, FormWrapper, Datepicker } from "./styled";
 import {
-  SubTitle,
   ValidationError,
-  Spacer,
+ 
   HeaderText,
 } from "../../Components/UI/Elements";
 import { FlexContainer } from "../../Components/UI/Layout";
@@ -18,16 +17,10 @@ import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 import { register, getTimeZone, getCurrency } from "./AuthAction";
-// import FWLogo from "../../Assets/Images/Axis_logo_Big.png";
-import { Radio } from "antd";
-import { StyledLabel } from "../../Components/UI/Elements";
-
 import FlagWithoutDialCode from "../../Components/Forms/Formik/FlagWithoutDialCode";
-// import { getTimeZone } from "../Task/TaskAction";
-// import { getCurrency } from "../Opportunity/OpportunityAction";
 import RandomImageScreen from "./RandomImageScreen";
 import { DaysCompressorWithMonth } from "./DaysCompressorWithMonth";
-// import { opportunityReducer } from "../Opportunity/OpportunityReducer";
+
 const MONTHS = [
   "Jan",
   "Feb",
@@ -245,8 +238,9 @@ class Register extends Component {
                     <HeaderText style={{ width: "auto", fontSize: 26 }}>
                       Registration successful !
                     </HeaderText>
-                    <Spacer />
-                    <div className="register_message">
+                    <div class="mt-3" />
+                    <div className="text-xs w-auto font-poppins"> 
+  
                       {" "}
                       We have sent an activation link to your registered email
                       id.
@@ -320,7 +314,7 @@ class Register extends Component {
                                           boxShadow: "0em 0em 0em 0em",
                                         }}
                                       />
-                                      <Spacer />
+                                      <div class="mt-3" />
                                     </div>
 
                                     {/* <div className="register">
@@ -338,10 +332,10 @@ class Register extends Component {
                                         boxShadow: "0em 0em 0em 0em",
                                       }}
                                     />
-                                    <Spacer />
+                                    <div class="mt-3" />
                                   </div> */}
 
-                                    <Spacer />
+                                    <div class="mt-3" />
 
                                     <FlexContainer
                                       style={{
@@ -393,7 +387,7 @@ class Register extends Component {
                                         </div>
                                       </FlexContainer>
                                     </FlexContainer>
-                                    <Spacer />
+                                    <div class="mt-3" />
 
                                     <FlexContainer
                                       style={{
@@ -432,7 +426,7 @@ class Register extends Component {
                                         />
                                       </div>
                                     </FlexContainer>
-                                    <Spacer />
+                                    <div class="mt-3" />
                                     <Button
                                       type="primary"
                                       style={{
@@ -496,7 +490,7 @@ class Register extends Component {
                                           />
                                         </div>
                                       </FlexContainer>
-                                      <Spacer />
+                                      <div class="mt-3" />
                                       <Field
                                         isShadow
                                         type="email"
@@ -531,7 +525,7 @@ class Register extends Component {
                                       //   option={["Male", "female"]}
                                       //   style={{ width: "99%", height: "2.0625em" }}
                                       // /> */}
-                                      <Spacer />
+                                      <div class="mt-3" />
 
                                       <div
                                         style={{
@@ -548,7 +542,7 @@ class Register extends Component {
                                           component={SearchSelect}
                                         />
                                       </div>
-                                      <Spacer />
+                                      <div class="mt-3" />
                                       <div>
                                         <Field
                                           name="employee.Currency"
@@ -659,14 +653,8 @@ class Register extends Component {
                 )}
             </FormWrapper>
             <div
-              className="footer1"
-            // style={{
-            //   textAlign: "center",
-            //   fontSize: "12x",
-            //   fontFamily: "SFS, Arial, sans-serif",
-            //   position: "absolute",
-            //   bottom: 0
-            // }}
+              className="text-xs text-center font-poppins mt-auto text-black "
+          
             >
               <span style={{ marginTop: "0.625em" }}>
                 {" "}

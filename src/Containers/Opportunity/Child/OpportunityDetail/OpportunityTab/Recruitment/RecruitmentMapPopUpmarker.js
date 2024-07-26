@@ -142,7 +142,7 @@ L.Icon.Default.mergeOptions({
      // icon={image}
       // icon={<FontAwesomeIcon icon={solid('flag-checkered')} />}
      >
-      <Popup className="popup-wrapper">
+      <Popup className="!w-[18rem]">
       
             <div>
                  <Checkbox

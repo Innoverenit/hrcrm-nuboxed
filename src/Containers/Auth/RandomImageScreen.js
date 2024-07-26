@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { ImageGradient } from "./styled";
 import { Title } from "../../Components/UI/Elements";
-// import LoginBackground from "../../Assets/Images/login-background1.jpg";
-// import TimeToConnectImage from "../../Assets/Images/BusinessLeaders.jpg";
-// import DashboardImage from "../../Assets/Images/BusinessLeaders.jpg";
-import { Carousel } from "antd";
 class RandomImageScreen extends Component {
   constructor(props) {
     super(props);
@@ -20,18 +16,15 @@ class RandomImageScreen extends Component {
     let randomNumber = getRandomInt(3);
     if (randomNumber <= 1) {
       this.setState({
-        //screenshot: DashboardImage,
       });
     } else if (randomNumber === 2) {
       this.setState({
-       // screenshot: TimeToConnectImage,
       });
     }
   }
   render() {
     return (
       <ImageGradient
-        // backgroundImage={LoginBackground}
         style={{ padding: "0 auto" }}
       >
         <div style={{}}>
@@ -44,15 +37,6 @@ class RandomImageScreen extends Component {
               lineHeight: " 1.1",
             }}
 
-          // style={{
-          //     whiteSpace: "inherit",
-          //     lineHeight: " 1.1",
-          //     fontSize: "1.5rem",
-          //     // fontWeight: "bold",
-          //     color: "#fffff",
-          //     fontFamily: " Segoe UI",
-          //     marginTop: "0.75em"
-          // }}
           >
             <div>Empower your remotely located teams to collaborate</div>
             <div>and complete tasks.</div>
@@ -73,12 +57,12 @@ class RandomImageScreen extends Component {
                 marginTop: "0em",
               }}
             >
-              {/* <img src={TimeToConnectImage} className="login_image"></img> */}
+            
             </div>
           </Title>
 
           <div>
-            <div className="randome_text2">
+            <div className="font-poppins font-bold mt-5 text-black text-center"> 
               <div>
                 Watch out this space as we keep rolling out interesting features
                 so that
