@@ -36,13 +36,8 @@ class DataRoomActionRight extends React.Component {
 
   fetchMenuTranslations = async () => {
     try {
-      const itemsToTranslate = [
-        
-          
-         
-        "Add",
-        
-        
+      const itemsToTranslate = [                    
+        "Add",              
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -55,40 +50,23 @@ class DataRoomActionRight extends React.Component {
     const { handleDataroomModal, user } = this.props;
     return (
       <>
+               <div class=" flex  items-center">
        
-        <div class=" flex  items-center">
-          {/* {user.customerFullListInd === true &&(  */}
-        {/* <LeadShareForm
-      handleDropChange={this.props.handleDropChange}
-      currentUser={this.props.currentUser} 
-      /> */}
-      {/* )} */}
-          {/* <Button type="primary" 
-           onClick={() => this.props.handlePitchModal(true)}
-           className="hover:bg-[#8eca9af2] focus:outline-none focus:shadow-outline"
-          >
-                    <FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
-          </Button> */}
            {this.props.user.dataRoomCreateInd ===true && user.imInd === true &&(
 <Button
   type="primary"
   onClick={() => this.props.handleDataroomModal(true)}
 >
-
-   {this.state.translatedMenuItems[0]}
-{/* <FormattedMessage id="app.add" defaultMessage="Add" /> */}
+                     Add
+            {/* {this.state.translatedMenuItems[0]} */}
+{/* add */}
 </Button>
    )} 
-        </div>
-    
+        </div>    
       </>
     );
   }
 }
-
 const mapStateToProps = ({ auth, team, account }) => ({ user: auth.userDetails,});
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 export default withRouter(

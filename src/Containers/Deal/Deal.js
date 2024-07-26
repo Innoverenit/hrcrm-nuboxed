@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader} from "../../Components/Placeholder";
 import DealLostCard from './Child/DealTable/DealLostCard';
-import {
-  // setDealViewType,
-  handleDealModal}from "./DealAction";
+import {handleDealModal}from "./DealAction";
 import DealDeletedCard from './DealDeletedCard';
 const DealsTeamCardList=lazy(()=>import ("./DealsTeamCardList"));
 const DealsBoard=lazy(()=>import ("./Child/DealsBoard"));
@@ -45,9 +43,7 @@ function Deal (props) {
                         translateText={props.translateText}
                        opencreateDealModal={opencreateDealModal}
                        handleDealModal={handleDealModal}/>
-
                        <Suspense fallback={<BundleLoader />}>
-
                        {teamsAccessInd ? (
         <DealsTeamCardList
         translateText={props.translateText}
