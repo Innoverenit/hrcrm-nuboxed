@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState ,lazy} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
@@ -42,9 +41,7 @@ const PitchAllCardList = (props) => {
     const fetchMenuTranslations = async () => {
       try {
         setLoading(true); 
-        const itemsToTranslate = [
-   
-           
+        const itemsToTranslate = [        
             "Name",//0
             "Mobile",//1
             "Company",//2
@@ -52,9 +49,7 @@ const PitchAllCardList = (props) => {
             "Sector",//4
             "Assigned",//5
             "Owner",//6
-            "Qualify",//7
-            
-
+            "Qualify",//7          
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -94,8 +89,6 @@ const PitchAllCardList = (props) => {
     setPage(page + 1);
     props.getAllPitch(props.currentUser?props.currentUser:page,
       props.filter?props.filter:"creationdate"
- 
-
       );
       setPage(page + 1);
 }
@@ -111,8 +104,6 @@ const PitchAllCardList = (props) => {
   if (loading) {
     return <div><BundleLoader/></div>;
   }
-
-
   return (
     <>
      {props.serachedPitchData.length > 0 ? (
@@ -123,55 +114,39 @@ serachedPitchData={props.serachedPitchData}
  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky z-10">
         <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
-        {translatedMenuItems[0]}{/* <FormattedMessage
-                  id="app.name"
-                  defaultMessage="name"
-                /> */}
+        {translatedMenuItems[0]}
+        {/* name */}
                 </div>
         <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
         <div className="  w-[5.3rem]  max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[1]} {/* <FormattedMessage
-                  id="app.mobile#"
-                  defaultMessage="mobile#"
-                /> */}
+        {translatedMenuItems[1]} 
+        {/* Mobile */}
                 </div>
         <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
         <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
-        {translatedMenuItems[2]} {/* <FormattedMessage
-                  id="app.company"
-                  defaultMessage="company"
-                /> */}
+        {translatedMenuItems[2]} 
+        {/* company */}
                 </div>
                     <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                    {translatedMenuItems[3]}   {/* <FormattedMessage
-                  id="app.Source"
-                  defaultMessage="Source"
-                /> */}
+                    {translatedMenuItems[3]}  
+                    {/* source */}
                 </div>
                      <div className="w-[3.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {translatedMenuItems[4]} {/* <FormattedMessage
-                  id="app.Sector"
-                  defaultMessage="Sector"
-                /> */}
+                     {translatedMenuItems[4]} 
+                     {/* sector */}
                 </div>
         <div className="w-[4.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
           {/* Assigned */}
         {translatedMenuItems[5]}
         </div>
         <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[6]}{/* <FormattedMessage
-                  id="app.owner"
-                  defaultMessage="owner" 
-                /> */}
+        {translatedMenuItems[6]}
+        {/* owner */}
                 </div>
         <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
-        {translatedMenuItems[7]} {/* <FormattedMessage
-                  id="app.qualify"
-                  defaultMessage="qualify"
-                /> */}
+        {translatedMenuItems[7]}
+        {/* qualify */}
                 </div>
-
-
       </div>
       <InfiniteScroll
         dataLength={props.allPitchData.length}
@@ -179,7 +154,8 @@ serachedPitchData={props.serachedPitchData}
         hasMore={hasMore}
         loader={fetchingAllPitch?<div class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
-        style={{overflowX:"hidden"}}
+        style={{overflowX:"hidden",scrollbarWidth:"thin"}}
+    
       >
   { !fetchingAllPitch && props.allPitchData.length === 0 ?<NodataFoundPage />:props.allPitchData.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
@@ -218,12 +194,12 @@ serachedPitchData={props.serachedPitchData}
         primaryTitle={item.name}
         imageId={item.imageId}
         imageURL={item.imageURL}
-        imgWidth={"1.8em"}
-        imgHeight={"1.8em"}
+        imgWidth={"1.8rem"}
+        imgHeight={"1.8rem"}
       />
     
 </div>
-                             <div class="w-[4%]">
+                             <div>
 
                              </div>
 
@@ -233,7 +209,7 @@ serachedPitchData={props.serachedPitchData}
                                       {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">
                                       Name
                                       </div> */}
-                                      <div class=" text-[0.82rem] max-sm:text-[0.82rem] flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
+                                      <div class=" text-xs max-sm:text-xs flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
                                           
                                           {/* <Link
                                            toUrl={`customer/${item.customerId}`}
@@ -322,54 +298,41 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>  
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Phone # </div> */}
-
-                     <div class="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.countryDialCode && item.phoneNumber
 ? `${item.countryDialCode} ${item.phoneNumber}`
 : 'None'}
 </div>
 
                  </div>
-                 <div className=" flex font-medium  w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                            
-
-                            {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Country</div> */}
-                            <div class=" text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <CountryFlag1 countryCode={countryCode} />
-                &nbsp;
-                {countryCode} */}
+                 <div className=" flex  w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                   
+                            <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                     
                               </div>
                         </div>
-                        <div className=" flex font-medium   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
-                     <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" flex  w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                  {/* country */}
+                     <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "None"}
 </div>
-
                  </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 
-                 <div className=" flex font-medium   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
-                     <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                 <div className=" flex   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                     {/* Company  */}
+                     <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.source || "None"}
 </div>
-
                  </div>
-                 <div className=" flex font-medium   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
-                     <div className="text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                 <div className=" flex   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+               {/* sector */}
+                     <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "None"}
 </div>
-
                  </div>
-                 <div className=" flex font-medium  w-[5.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
-                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
-
-                              <div class=" text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                              
+                 <div className=" flex  w-[5.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                            {/* Assigned */}
+                              <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                             
                               <span>
                 {item.assignedTo === null ? (
           "None"
@@ -393,10 +356,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
        
                               </div>
                           </div>
-                          <div className=" flex font-medium  w-[3.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                 
-                 {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Owner</div> */}
-
+                          <div className=" flex  w-[3.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          {/* Owner */}
                  <span>
                  <Tooltip title={item.ownerName}>
           <div class="max-sm:flex justify-end">
@@ -412,24 +373,15 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
     </Tooltip>
       </span>
              </div>
-                          </div>
-                          
-                          
-                         
-    
+                          </div>                                                                     
 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-<div class="flex justify-between items-center max-sm:w-[50%] ">
-
-
-                         
+<div class="flex justify-between items-center max-sm:w-[50%] ">                       
              <div class="rounded-full bg-white  h-5 cursor-pointer w-8 max-xl:w-[1.5rem]">
               {item.url !== null ? (
         <Tooltip title={item.url}>
           <span className=" cursor-pointer"
-            //type="edit"
-           
-            onClick={() => {}}
-          >
+            //type="edit"         
+            onClick={() => {}}          >
             {" "}
             <a href={`item.url`} target="_blank">
               <ExploreIcon
@@ -440,12 +392,9 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         </Tooltip>
       ) : null}
                   </div>  
-             <div className=" flex font-medium flex-col w-12 max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Qualify</div> */}
-   
-                  
-                              <div class=" text-[0.82rem]  font-poppins">
-          {/* qual */}
+             <div className=" flex  w-12 max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                            {/* Qualify */}                 
+                              <div class=" text-xs  font-poppins">                    
                               </div>
                               <div>
                               {item.companyName ? (
@@ -484,7 +433,6 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                 className="!text-icon cursor-pointer text-[green]"
                               />
                           </Tooltip>
-
                             </div>
                             <div>
                                 <Tooltip
@@ -494,15 +442,13 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                 >
                                 <AddchartIcon
                                 className="!text-icon cursor-pointer text-blue-500"
-
                                 onClick={()=>{
                                 props.handleAssimodal(true)
                                 handleRowData(item)
                                 }}
                                 />
                                 </Tooltip>
-                                </div>                                
-                                  
+                                </div>                                                                
                                       <div>
                                                 <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
                                         <span class="cursor-pointer" >
@@ -529,17 +475,13 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                 onClick={() => {
                                   props.setEditPitch(item);
                                   props.handleUpdatePitchModal(true);
-                                handleSetCurrentLeadsId(item);
-                                  
+                                handleSetCurrentLeadsId(item);                                
                                 }}
                               />
-                            </Tooltip>
-                        
+                            </Tooltip>                   
                             </div>
-                                                )}
-                                              
+                                                )}                                             
                                         <div>
-
                                         <StyledPopconfirm
                             title="Do you want to delete?"
                             onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
@@ -547,22 +489,17 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                             {user.imInd === true  &&  user.plantDeleteInd === true && ( 
                             <DeleteOutlined
                               type="delete"
-                              className="!text-icon text-[red] cursor-pointer"
-                              
+                              className="!text-icon text-[red] cursor-pointer"                             
                             />
                             )} 
                             </Tooltip>
                           </StyledPopconfirm>
-                                        </div>
-                
-                
+                                        </div>               
               </div>
               </div>
                 </div>
-                      </div>
-                         
+                      </div>                       
                                 </div>
-
                     )
                 })}
                   </InfiniteScroll>
@@ -573,17 +510,9 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
         translatedMenuItems={props.translatedMenuItems}
-        updatePitchModal={props.updatePitchModal}
-        // updateLeadsModal={updateLeadsModal}
-        handleUpdatePitchModal={props.handleUpdatePitchModal}
-        // handleSetCurrentLeadsId={handleSetCurrentLeadsId}
+        updatePitchModal={props.updatePitchModal}      
+        handleUpdatePitchModal={props.handleUpdatePitchModal}    
       />
-      {/* <AddLeadsEmailDrawerModal
-        item={currentLeadsId}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        addDrawerLeadsEmailModal={props.addDrawerLeadsEmailModal}
-        handleLeadsEmailDrawerModal={props.handleLeadsEmailDrawerModal}
-      /> */}
       <OpenASSimodal 
         rowdata={rowdata}
         openASSImodal={props.openASSImodal}
@@ -599,7 +528,6 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 };
 
 const mapStateToProps = ({ auth, leads, sector,pitch }) => ({
-//   leadsAllData: leads.leadsAllData,
 user: auth.userDetails,
   userId: auth.userDetails.userId,
   fetchingAllPitch:pitch.fetchingAllPitch,
@@ -614,16 +542,10 @@ const mapDispatchToProps = (dispatch) =>
     {
         getAllPitch,
          deletePitchData,
-        // handleUpdatePitchModal,
-        // setEditPitch,
-        // updateTypeForPitch,
-        // handlePitchNotesDrawerModal,
-        // handleAssimodal
- 
+     
     },
     dispatch
   );
-
 export default connect(mapStateToProps, mapDispatchToProps)(PitchAllCardList);
 function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
   console.log(role);
@@ -644,7 +566,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-       <i className={`${iconType} text-base max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+       <i className={`${iconType} !text-icon max-sm:text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );
@@ -668,7 +590,7 @@ function RoleButton1({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-         <i className={`${iconType} text-base max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+         <i className={`${iconType} !text-icon max-sm:text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );
@@ -692,7 +614,7 @@ function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-         <i className={`${iconType} text-base max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+         <i className={`${iconType} !text-icon max-sm:text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );

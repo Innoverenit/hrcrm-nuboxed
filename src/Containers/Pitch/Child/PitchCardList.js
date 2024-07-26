@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState,lazy} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
@@ -38,8 +37,6 @@ const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const AddConvertPitchStatusModal =lazy(()=>import("./PitchDetails/AddConvertPitchStatusModal"));
-
-
 const ButtonGroup = Button.Group;
 
 const PitchCardList = (props) => {
@@ -103,13 +100,6 @@ const PitchCardList = (props) => {
   const handleRowData = (data) => {
     setrowData(data);
   };
-//   const handleLoadMore = () => {
-//     setPage(page + 1);
-//     props.getPitch(props.currentUser?props.currentUser:props.userId,page,
-//       props.filter?props.filter:"creationdate"
-
-//       );
-// }
 
 const handleLoadMore = () => {
   const callPageMapd = props.pitchDataHot && props.pitchDataHot.length &&props.pitchDataHot[0].pageCount
