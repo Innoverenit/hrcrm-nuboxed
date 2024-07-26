@@ -10,8 +10,10 @@ import {
   handleBrandModel,
   handleMaterialBuilderDrawer,
   handleSuppliersListDrawer,
-  handleMaterialInventory
+  handleMaterialInventory,
+  handlePriceModal
 } from "./SuppliesAction";
+import EuroIcon from '@mui/icons-material/Euro';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
@@ -32,6 +34,7 @@ import MaterialStatusToggle from "./MaterialStatusToggle";
 import MaterialFifoToggle from "./MaterialFifoToggle";
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import { FormattedMessage } from "react-intl";
+import PriceModal from "./PriceModal";
 
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
@@ -121,7 +124,11 @@ function SuppliesTable(props) {
     setParticularDiscountData(item);
   }
 
-  const { updateSuppliesDrawer, handleUpdateSupplieDrawer, materialBuildrawer, handleMaterialBuilderDrawer } = props;
+  const { updateSuppliesDrawer,
+     handleUpdateSupplieDrawer,
+      materialBuildrawer, 
+      handleMaterialBuilderDrawer,
+      handlePriceModal } = props;
   return (
     <>
       <div className=" flex justify-end sticky z-auto">
@@ -307,6 +314,17 @@ function SuppliesTable(props) {
                                                         </Tooltip>
 
                                                     </div> */}
+                                                     <div>
+                        <Tooltip title="Add Price">
+                          <EuroIcon
+                            className="!text-icon cursor-pointer text-[blue]"
+                            onClick={() => {
+                              props.handlePriceModal(true);
+                              handleParticularRowData(item);
+                            }}
+                          />
+                        </Tooltip>
+                      </div>
                             <div>
                               <Tooltip title="Material Builder">
                                 <ViewQuiltIcon
@@ -444,6 +462,11 @@ function SuppliesTable(props) {
        materialInveDawer={props.materialInveDawer}
        handleMaterialInventory={props.handleMaterialInventory}
         />
+        <PriceModal
+          particularDiscountData={particularDiscountData}
+          handlePriceModal={handlePriceModal}
+          priceOpenModal={props.priceOpenModal}
+        />
       </Suspense>
 
     </>
@@ -460,7 +483,8 @@ const mapStateToProps = ({ supplies, auth }) => ({
   materialBuildrawer: supplies.materialBuildrawer,
   repairInd: auth.userDetails.repairInd,
   suppliersListDrwr: supplies.suppliersListDrwr,
-  materialInveDawer:supplies.materialInveDawer
+  materialInveDawer:supplies.materialInveDawer,
+  priceOpenModal: supplies.priceOpenModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -474,7 +498,8 @@ const mapDispatchToProps = (dispatch) =>
       handleBrandModel,
       handleMaterialBuilderDrawer,
       handleSuppliersListDrawer,
-      handleMaterialInventory
+      handleMaterialInventory,
+      handlePriceModal
     },
     dispatch
   );

@@ -48,7 +48,10 @@ function General(props) {
           birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
           trnsfrEvthngToErpInd:props.requirementDuration.trnsfrEvthngToErpInd,
           trnsfrToErpQtionWinInd:props.requirementDuration.trnsfrToErpQtionWinInd,
+          piInd:props.requirementDuration.piInd,
+          autoCiInd:props.requirementDuration.autoCiInd,
           partNoInd:props.requirementDuration.partNoInd,
+          inniInspectInd:props.requirementDuration.inniInspectInd,
           typeInd: props.requirementDuration.typeInd,
           repairOrdInd: props.requirementDuration.repairOrdInd,
           qcInd: props.requirementDuration.qcInd,
@@ -223,8 +226,21 @@ function General(props) {
 
 <div class=" flex flex-row mt-2">
                       <div class=" text-sm  ml-2 font-bold">Inventory</div>
-                       
                       </div>
+                      <div class=" flex flex-row justify-between mt-2">
+                      <div class=" text-sm  ml-2 ">Inception</div>
+                      <div>
+                        <Field
+                          name="inniInspectInd"
+                          component={SwitchComponent}
+                          data={values.inniInspectInd}
+                          checkedChildren={"Manual"}
+                          unCheckedChildren={"Automatic"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+                     
 
                       {/* {props.user.orderManagementInd === true &&
                         <>
@@ -326,6 +342,50 @@ function General(props) {
                           name="trnsfrEvthngToErpInd"
                           component={SwitchComponent}
                           data={values.trnsfrEvthngToErpInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+
+                      <div class=" text-sm  ml-2 font-bold ">INVOICE</div>
+                      <div class=" flex flex-row justify-between mt-3">
+                      <div class=" text-sm  ml-2 ">Proforma Invoice (PI) needed 
+</div>
+                      <div>
+                        <Field
+                          name="piInd"
+                          component={SwitchComponent}
+                          data={values.piInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+                      <div class=" flex flex-row justify-between mt-3">
+                      <div class=" text-sm  ml-2 ">Invoice can be cancelled 
+</div>
+                      <div>
+                        <Field
+                          name="trnsfrToErpQtionWinInd"
+                          component={SwitchComponent}
+                          data={values.trnsfrToErpQtionWinInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+                      <div class=" flex flex-row justify-between mt-3">
+                      <div class=" text-sm  ml-2 ">Auto generate Commercial Invoice 
+</div>
+                      <div>
+                        <Field
+                          name="autoCiInd"
+                          component={SwitchComponent}
+                          data={values.autoCiInd}
                           checkedChildren={"Yes"}
                           unCheckedChildren={"No"}
                           width={"7em"}
