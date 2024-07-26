@@ -90,6 +90,8 @@ const AccessForm = (props) => {
     setCheckedReportList(props.departmentAcces.report)
     setCheckedDataRoomList(props.departmentAcces.dataRoom)
     setCheckedScannerList(props.departmentAcces.scanner)
+    setCheckedMaterialList (props.departmentAcces.material)
+    setCheckedCatalougeList (props.departmentAcces.catalouge)
     
   }, [props.departmentAcces.vendor,
   props.departmentAcces.customer,
@@ -145,6 +147,8 @@ const AccessForm = (props) => {
   props.departmentAcces.report,
   props.departmentAcces.dataRoom,
   props.departmentAcces.scanner,
+  props.departmentAcces.material,
+  props.departmentAcces.catalouge,
  
   
   
@@ -1051,6 +1055,46 @@ const onCheckAllTeamsChange = (e) => {
                               };
 
 
+
+                                              // Material
+
+                                              const [checkedMaterialList, setCheckedMaterialList] = useState(props.departmentAcces.material);
+                                              const [indeterminateMaterial, setIndeterminateMaterial] = useState(true);
+                                              const [checkAllMaterial, setCheckAllMaterial] = useState(false);
+                                            
+                                              const onMaterialChange = (list) => {
+                                                setCheckedMaterialList(list);
+                                                setIndeterminateMaterial(!!list.length && list.length < ecomChecklist.length);
+                                                setCheckAllMaterial(list.length === ecomChecklist.length);
+                                              };
+                                            
+                                              const onCheckAllMaterialChange = (e) => {
+                                                setCheckedMaterialList(e.target.checked ? ecomChecklist : []);
+                                                setIndeterminateMaterial(false);
+                                                setCheckAllMaterial(e.target.checked);
+                                              };
+
+ // Catalouge
+
+ const [checkedCatalougeList, setCheckedCatalougeList] = useState(props.departmentAcces.catalouge);
+ const [indeterminateCatalouge, setIndeterminateCatalouge] = useState(true);
+ const [checkAllCatalouge, setCheckAllCatalouge] = useState(false);
+
+ const onCatalougeChange = (list) => {
+  setCheckedCatalougeList(list);
+  setIndeterminateCatalouge(!!list.length && list.length < ecomChecklist.length);
+  setCheckAllCatalouge(list.length === ecomChecklist.length);
+ };
+
+ const onCheckAllCatalougeChange = (e) => {
+  setCheckedCatalougeList(e.target.checked ? ecomChecklist : []);
+  setIndeterminateCatalouge(false);
+  setCheckAllCatalouge(e.target.checked);
+ };
+
+
+
+
                                   // Collections
 
                                   const [checkedCollectionList, setCheckedCollectionList] = useState(props.departmentAcces.collection              );
@@ -1183,7 +1227,8 @@ const onCheckAllTeamsChange = (e) => {
       report:checkedReportList || [],
       dataRoom:checkedDataRoomList || [],
       scanner:checkedScannerList || [],
-      
+      catalouge:checkedCatalougeList || [],
+      material: checkedMaterialList || [],
       
       departmentId: props.departmentId,
       roleTypeId:props.roleTypeId,
@@ -1745,11 +1790,11 @@ const onCheckAllTeamsChange = (e) => {
         <div class="flex justify-between mt-4">
         <div >
           <div class="text-sm font-semibold">Material</div>
-          <Checkbox indeterminate={indeterminateCollection} onChange={onCheckAllCollectionChange} checked={checkAllCollection}>
+          <Checkbox indeterminate={indeterminateMaterial} onChange={onCheckAllMaterialChange} checked={checkAllMaterial}>
           <div class="text-xs"> Check all</div>
           </Checkbox>
           <Divider />
-          <CheckboxGroup options={ecomChecklist } value={checkedCollectionList} onChange={onCollectionChange} />
+          <CheckboxGroup options={ecomChecklist } value={checkedMaterialList} onChange={onMaterialChange} />
 
         </div>
                
@@ -1767,11 +1812,11 @@ const onCheckAllTeamsChange = (e) => {
         <div class="flex justify-between mt-4">
         <div >
           <div class="text-sm font-semibold">Catalouge</div>
-          <Checkbox indeterminate={indeterminatePayments} onChange={onCheckAllPaymentsChange} checked={checkAllPayments}>
+          <Checkbox indeterminate={indeterminateCatalouge} onChange={onCheckAllCatalougeChange} checked={checkAllCatalouge}>
           <div class="text-xs">  Check all  </div>
           </Checkbox>
           <Divider />
-          <CheckboxGroup options={ecomChecklist} value={checkedPaymentsList} onChange={onPaymentsChange} />
+          <CheckboxGroup options={ecomChecklist} value={checkedCatalougeList} onChange={onCatalougeChange} />
         </div>
 
                

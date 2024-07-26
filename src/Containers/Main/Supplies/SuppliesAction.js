@@ -777,3 +777,175 @@ export const getMaterialInventory = (suppliesId) => (dispatch) => {
       });
     });
 }; 
+
+export const handlePriceModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRICE_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const createMaterialCurrency = (data,) => (dispatch) => {
+  dispatch({ type: types.CREATE_MATERIAL_CURRENCY_REQUEST });
+  axios
+    .post(`${base_url2}/supplies/suppliesPrice`, data, {
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.CREATE_MATERIAL_CURRENCY_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Created Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CREATE_MATERIAL_CURRENCY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getMaterialCurrency = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_CURRENCY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/suppliesPrice/${suppliesId}`, {
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MATERIAL_CURRENCY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_CURRENCY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const createMaterialDiscount = (data,) => (dispatch) => {
+  dispatch({ type: types.CREATE_MATERIAL_DISCOUNT_REQUEST });
+  axios
+    .post(`${base_url2}/Discount`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.CREATE_MATERIAL_DISCOUNT_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Created Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CREATE_MATERIAL_DISCOUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getMaterialDiscount = (suppliesId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_DISCOUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/Discount/discount/supplies/discount-history/${suppliesId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MATERIAL_DISCOUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_DISCOUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const createMaterialDiscountB2C = (data,) => (dispatch) => {
+  dispatch({ type: types.CREATE_MATERIAL_DISCOUNTB2C_REQUEST });
+  axios
+    .post(`${base_url2}/Discount`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.CREATE_MATERIAL_DISCOUNTB2C_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Created Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CREATE_MATERIAL_DISCOUNTB2C_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getMaterialDiscountB2C = (suppliesId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_DISCOUNTB2C_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/Discount/discount/supplies/discount-history/${suppliesId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MATERIAL_DISCOUNTB2C_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_DISCOUNTB2C_FAILURE,
+        payload: err,
+      });
+    });
+};

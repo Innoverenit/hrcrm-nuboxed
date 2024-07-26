@@ -7,6 +7,30 @@ const initialState = {
 
     addBrandModel: false,
 
+    priceOpenModal:false,
+
+    creatingMaterialCurrency: false,
+    creatingMaterialCurrencyError: false,
+
+    fetchingMaterialCurrency: false,
+    fetchingMaterialCurrencyError: false,
+    materialCurrency:[],
+    
+    creatingMaterialDiscount: false,
+    creatingMaterialDiscountError: false,
+
+    fetchingMaterialDiscount: false,
+          fetchingMaterialDiscountError: false,
+          materialDiscount:[],
+
+
+          fetchingMaterialDiscountB2C: false,
+          fetchingMaterialDiscountB2CError: false,
+          materialDiscountB2C:[],
+
+          creatingMaterialDiscountB2C: false,
+          creatingMaterialDiscountB2CError: false,
+
     addingMaterialToggle: false,
     addingMaterialToggleError: false,
 
@@ -623,6 +647,110 @@ export const suppliesReducer = (state = initialState, action) => {
                               case types.GET_MATERIAL_INVENTORY_FAILURE:
                                 return { ...state, fetchingMaterialInventoryError: true };
                               
+                                case types.HANDLE_PRICE_MODAL:
+                                    return { ...state, priceOpenModal: action.payload };
+
+
+
+       case types.CREATE_MATERIAL_CURRENCY_REQUEST:
+      return { ...state, creatingMaterialCurrency: true };
+    case types.CREATE_MATERIAL_CURRENCY_SUCCESS:
+      return {
+        ...state,
+        creatingMaterialCurrency: false,
+        materialCurrency: [action.payload, ...state.materialCurrency]
+      };
+    case types.CREATE_MATERIAL_CURRENCY_FAILURE:
+      return {
+        ...state,
+        creatingMaterialCurrency: false,
+        creatingMaterialCurrencyError: true,
+      };
+
+      case types.GET_MATERIAL_CURRENCY_REQUEST:
+      return {
+        ...state,
+        fetchingMaterialCurrency: true,
+      };
+    case types.GET_MATERIAL_CURRENCY_SUCCESS:
+      return {
+        ...state,
+        fetchingMaterialCurrency: false,
+        materialCurrency: action.payload,
+      };
+    case types.GET_MATERIAL_CURRENCY_FAILURE:
+      return {
+        ...state,
+        fetchingMaterialCurrency: false,
+        fetchingMaterialCurrencyError: true,
+      };
+          
+      case types.CREATE_MATERIAL_DISCOUNT_REQUEST:
+        return { ...state, creatingMaterialDiscount: true };
+      case types.CREATE_MATERIAL_DISCOUNT_SUCCESS:
+        return {
+          ...state,
+          creatingMaterialDiscount: false,
+          materialDiscount: [action.payload, ...state.materialDiscount]
+        };
+      case types.CREATE_MATERIAL_DISCOUNT_FAILURE:
+        return {
+          ...state,
+          creatingMaterialDiscount: false,
+          creatingMaterialDiscountError: true,
+        };
+  
+        case types.GET_MATERIAL_DISCOUNT_REQUEST:
+        return {
+          ...state,
+          fetchingMaterialDiscount: true,
+        };
+      case types.GET_MATERIAL_DISCOUNT_SUCCESS:
+        return {
+          ...state,
+          fetchingMaterialDiscount: false,
+          materialDiscount: action.payload,
+        };
+      case types.GET_MATERIAL_DISCOUNT_FAILURE:
+        return {
+          ...state,
+          fetchingMaterialDiscount: false,
+          fetchingMaterialDiscountError: true,
+        };
+
+        case types.CREATE_MATERIAL_DISCOUNTB2C_REQUEST:
+            return { ...state, creatingMaterialDiscountB2C: true };
+          case types.CREATE_MATERIAL_DISCOUNTB2C_SUCCESS:
+            return {
+              ...state,
+              creatingMaterialDiscountB2C: false,
+              materialDiscountB2C: [action.payload, ...state.materialDiscountB2C]
+            };
+          case types.CREATE_MATERIAL_DISCOUNTB2C_FAILURE:
+            return {
+              ...state,
+              creatingMaterialDiscountB2C: false,
+              creatingMaterialDiscountB2CError: true,
+            };
+      
+            case types.GET_MATERIAL_DISCOUNTB2C_REQUEST:
+            return {
+              ...state,
+              fetchingMaterialDiscountB2C: true,
+            };
+          case types.GET_MATERIAL_DISCOUNTB2C_SUCCESS:
+            return {
+              ...state,
+              fetchingMaterialDiscountB2C: false,
+              materialDiscountB2C: action.payload,
+            };
+          case types.GET_MATERIAL_DISCOUNTB2C_FAILURE:
+            return {
+              ...state,
+              fetchingMaterialDiscountB2C: false,
+              fetchingMaterialDiscountB2CError: true,
+            };
+
 
         default:
             return state;
