@@ -738,24 +738,24 @@ function SubscriptionNewCard (props) {
           <span
 
           >
-                 <MinusOutlined 
-                //  onClick={() => handleDecrement(item.productId)}
+                 {/* <MinusOutlined 
+                  onClick={() => handleDecrement(item.productId)}
                  />
           </span>
         
           <input type="number"  
            value={units[item.productId] || 1}
-        //    onChange={(event) => handleQuantityChange(event, item.productId)}
+            onChange={(event) => handleQuantityChange(event, item.productId)}
           min="1" 
           step="1" 
           />
          
           <span
 
-          >
-          <PlusOutlined 
-        //   onClick={() => handleIncrement(item.productId)} 
-          />
+          > */}
+          {/* <PlusOutlined 
+          onClick={() => handleIncrement(item.productId)} 
+          /> */}
           </span>
 
         </div>
@@ -815,7 +815,7 @@ function SubscriptionNewCard (props) {
                                                                 // }
                                                               >
                                                                   <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white cursor-pointer">
-                                                            Add +
+                                                             Update
                                                               </label>
                                                               </div>
 </div>
