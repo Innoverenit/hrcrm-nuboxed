@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import {  Tooltip, Button,Select,Switch } from "antd";
 import { getSectors } from "../../../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
+import {getCustomerConfigure} from "../../../SettingsAction"
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
@@ -57,6 +58,7 @@ function InvesterForm(props) {
      props.getCountries();
      props.getDialCode();
      props.getInvestorList(props.orgId)
+     props.getCustomerConfigure(props.orgId,"add","investor")
   }, []);
 
     const {
@@ -802,7 +804,8 @@ const mapDispatchToProps = (dispatch) =>
       setClearbitData,
       getSectors,
       getAllEmployeelist,
-      getInvestorList
+      getInvestorList,
+      getCustomerConfigure
     },
     dispatch
   );
