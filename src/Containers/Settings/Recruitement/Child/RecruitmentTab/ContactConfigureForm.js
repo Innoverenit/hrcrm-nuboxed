@@ -989,6 +989,7 @@ const mapStateToProps = ({ auth, contact,settings, customer, opportunity, depart
   tagWithCompany: customer.customer.name,
   opportunityId: opportunity.opportunity.opportunityId,
   departmentId: departments.departmentId,
+  orgId: auth.userDetails.organizationId,
   designationTypeId: designations.designationTypeId,
 
 });

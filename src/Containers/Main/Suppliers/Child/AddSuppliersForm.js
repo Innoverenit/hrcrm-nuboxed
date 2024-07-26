@@ -5,6 +5,7 @@ import { Button,Switch } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
+import {getCustomerConfigure} from "../../../Settings/SettingsAction"
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { addSuppliers } from "../SuppliersAction";
@@ -25,6 +26,7 @@ const CustomerSchema = Yup.object().shape({
 function AddSuppliersForm (props) {
   useEffect(() => {
     props.getEmployeelistAsErp();
+    props.getCustomerConfigure(props.orgId,"add","supplier")
     // props.getShipByData(props.orgId);
     // props.getAllSalesList();
   }, []);
@@ -113,7 +115,7 @@ function AddSuppliersForm (props) {
                    <div class=" flex justify-between">
                     <div class="w-[30%] max-sm:w-[40%] ">
                       {/* <label>Dial Code</label> */}
-                  
+                      {props.customerConfigure.dailCodeInd===true&&
                       <FastField
                         name="dialCode"
                         selectType="dialCode"
@@ -128,9 +130,11 @@ function AddSuppliersForm (props) {
                         inlineLabel
                         isColumnWithoutNoCreate
                       />
+}
                   
                     </div>
                     <div class="w-[68%] max-sm:w-[50%]">
+                    {props.customerConfigure.phoneNoInd===true&&
                       <FastField
                         name="phoneNo"
                         label={`${props.translatedMenuItems[15]} #`} 
@@ -141,6 +145,7 @@ function AddSuppliersForm (props) {
                         inlineLabel
                         width={"100%"}
                       />
+                    }
                     </div>
                   </div>
                   <div class="w-full">
@@ -158,21 +163,26 @@ function AddSuppliersForm (props) {
 
 
                   <div class="w-full">
+                  {props.customerConfigure.approveInd===true&&
                     <label>
-                      {/* Approve */}
+                     
                       {props.translatedMenuItems[17]} 
                     </label>
+}
+                    {props.customerConfigure.approveInd===true&&
                   <Switch 
                   checked={checked} 
                   onChange={handleChange} 
                    checkedChildren="Yes"
                   unCheckedChildren="No"
                   />
+                    }
 
                   </div>
           
                 </div>
                 <div class="h-full w-w47.5 max-sm:w-full">
+                {props.customerConfigure.assignedToInd===true&&
                 <div class=" h-full w-full">
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
@@ -246,8 +256,10 @@ function AddSuppliersForm (props) {
         )}
       </Listbox>
       </div>
+}
                   <div>
                     <div class="mt-3">
+                    {props.customerConfigure.addressInd===true&&
                     <FieldArray
                       name="address"
                       render={(arrayHelpers) => (
@@ -258,6 +270,7 @@ function AddSuppliersForm (props) {
                         />
                       )}
                     />
+}
                     </div>
                   </div>
                 </div>
@@ -282,7 +295,7 @@ function AddSuppliersForm (props) {
   
 }
 
-const mapStateToProps = ({ auth, shipper,employee,suppliers,shipBy }) => ({
+const mapStateToProps = ({ auth, shipper,settings,employee,suppliers,shipBy }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   addingSuppliers: suppliers.addingSuppliers,
@@ -290,6 +303,7 @@ const mapStateToProps = ({ auth, shipper,employee,suppliers,shipBy }) => ({
   fullName: auth.userDetails.fullName,
   orgId:auth.userDetails.organizationId,
   ShipByData:shipBy.ShipByData,
+  customerConfigure:settings.customerConfigure,
   employeeAsErp:shipper.employeeAsErp
 });
 
@@ -298,6 +312,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       addSuppliers,
       getEmployeelistAsErp,
+      getCustomerConfigure
   
     },
     dispatch
