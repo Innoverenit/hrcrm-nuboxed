@@ -15,7 +15,9 @@ const AddContactModal = (props) => {
           id="app.contact"
           defaultMessage="Contact"
         />}
+       
         width={drawerWidth}
+        destroyOnClose
         visible={addContactModal}
         onClose={() => handleContactModal(false)}
       >
