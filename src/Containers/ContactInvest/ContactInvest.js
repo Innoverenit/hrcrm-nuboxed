@@ -83,8 +83,6 @@ function handleCurrentData (value){
     console.log("valid", value);
   };
 
-
-
   useEffect(() => {
  
     const filteredJobs = props.contactiNVESTbyId.sort((a, b) => {
@@ -161,19 +159,11 @@ const{handleContactInvestModal,addContactInvestModal,
             />}
           </>
         )}
-        {/* {viewType === "card" ?
-          <ContactInvestCardList currentUser={currentUser}  filterData={filterData}/> 
-
-         :viewType === "all" ?
-         <ContactInvestAllCardList     /> 
-         :viewType === "teams" ?
-         <ContactInvestTeamsCardList     /> 
-         : null} */}
+       
       </Suspense>
             </React.Fragment>
         )
 }
-
 const mapStateToProps = ({ contactinvest,auth }) => ({
     addContactInvestModal:contactinvest.addContactInvestModal,
     // viewType:contactinvest.viewType,

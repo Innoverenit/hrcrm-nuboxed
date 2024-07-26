@@ -88,7 +88,6 @@ function DealCardList(props) {
           "Sales Rep",//6
           "Owner",//7
           "Action",//8
-
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -123,7 +122,6 @@ function DealCardList(props) {
     fetchingDeal,
   } = props;
 
-
   if (loading) {
     return <div><BundleLoader/></div>;
   }
@@ -144,6 +142,7 @@ function DealCardList(props) {
           ) : null
         }
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
     <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center ">
     
@@ -171,19 +170,14 @@ function DealCardList(props) {
                     />
                   </div>
                   &nbsp;
-                  <div class=" flex flex-col basis-[100%] overflow-hidden"
+                  <div class=" flex  basis-[100%] overflow-hidden"
                   >
                     <div 
                       class="font-semibold text-[#337df4] cursor-pointer text-sm ">
          <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
-                      {/* <Link
-                        toUrl={`dealDetails/${item.invOpportunityId}`}
-                        title={`${item.opportunityName}`}
-                      >
-                        {item.opportunityName}
-                      </Link> */}
+                  
                     </div>
                   </div>
                 </div>
@@ -196,20 +190,17 @@ function DealCardList(props) {
                     )}
                   </div>
                   <div>
-                    <div class="font-medium text-xs ml-1 "
-                     
-                    >
-                     
+                    <div class="font-medium text-xs ml-1 ">
+                                                  
                       {<CurrencySymbol currencyType={item.currency} />}
                       &nbsp;{item.proposalAmount || ""}
                     </div>
                   </div>
                 </div>
 
-                <div className="flex ">
-        
+                <div className="flex ">    
         <div>
-        <div class="font-medium text-xs ">
+        <div class=" text-xs ">
         </div>
         </div>
         </div>
@@ -237,7 +228,6 @@ function DealCardList(props) {
                                   stageClick={(investorOppStagesId) => {
                                     props.LinkStageDeal({
                                       invOpportunityId: item.invOpportunityId,
-
                                       invOpportunityStagesId:
                                         investorOppStagesId,
                                     });
@@ -337,16 +327,7 @@ function DealCardList(props) {
                                className="!text-icon text-[#24D8A7] cursor-pointer"
                               type="check-circle"
                               theme="twoTone"
-                              twoToneColor="#24D8A7"
-                              // onClick={() =>
-                              //   props.sendToWonCard(
-                              //     item.invOpportunityId,
-
-                              //     {
-                              //       wonInd: true,
-                              //     }
-                              //   )
-                              // }
+                              twoToneColor="#24D8A7"                           
                               onClick={() => {
                                 props.handleOwnModal(true);
                                 handleSetCurrentItem(item);

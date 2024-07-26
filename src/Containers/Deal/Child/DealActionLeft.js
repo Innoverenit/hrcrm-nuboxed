@@ -6,7 +6,6 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { DeleteOutlined } from "@ant-design/icons";
-import LockOpenIcon from "@mui/icons-material/LockOpen";
 import PeopleIcon from '@mui/icons-material/People';
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import { AudioOutlined } from '@ant-design/icons';
@@ -126,7 +125,6 @@ const DealActionLeft = (props) => {
   
       />
     );
-
     const handleStopListening = () => {
       SpeechRecognition.stopListening();
       setIsRecording(false);
@@ -179,7 +177,7 @@ const DealActionLeft = (props) => {
   const teamCount = props.teamsAccessInd && props.dealsTeamRecord ? props.dealsTeamRecord.investorOpportunityTeam : 0;
 
   return (
-    <div class=" flex items-center">
+    <div class=" flex items-center cursor-pointer">
       <Badge
         size="small"
          count={(viewType === "table" &&   props.dealsRecord.opportunityDetails) || 0}
@@ -199,8 +197,7 @@ const DealActionLeft = (props) => {
             style={{
               color: viewType === "table" && "#1890ff",
             }}
-          >
-            
+          >          
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
             <CurrencyExchangeIcon  className="text-white !text-icon"/>
             </Avatar>
@@ -226,7 +223,7 @@ const DealActionLeft = (props) => {
             onClick={() => props.setDealViewType("stage")}
           >
              <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
-           <TableOutlined  className="text-white !text-icon"/>
+           <TableOutlined  className="text-white !text-icon cursor:pointer"/>
            </Avatar>
           </span>
           </Badge>
@@ -238,26 +235,20 @@ const DealActionLeft = (props) => {
         />}
    >
       <Badge
-          size="small"
-          // count={
-          //   (viewType === "won" &&
-          //   wonOpportunityData.OpportunityDetailsbyWonInd) ||
-          //   0
-          // }
+          size="small"     
           overflowCount={999}
         >
           <span
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setDealViewType("won")}
-            style={{
-           
+            style={{        
               color: props.viewType === "won" && "#1890ff",
               // cursor:"pointer"
             }}
           >
             {" "}
             <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#4bc076" }}>
-            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7"  className=" !text-icon" />
+            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7"  className=" !text-icon cursor:pointer" />
             </Avatar>
           </span>
           </Badge>
@@ -288,7 +279,7 @@ const DealActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#4bc076" }}>
-            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red"  className=" !text-icon" />
+            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red"  className=" !text-icon cursor:pointer" />
             </Avatar>
           </span>
         </Badge>
@@ -320,7 +311,7 @@ const DealActionLeft = (props) => {
             onClick={() => props.setDealViewType("teams")}
           >
             <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-         <PeopleIcon  className="text-white !text-icon"/>
+         <PeopleIcon  className="text-white !text-icon cursor:pointer"/>
          </Avatar>
           </span>
           </Badge>
@@ -351,7 +342,7 @@ const DealActionLeft = (props) => {
              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
             <FormattedMessage
                         id="app.all"
-                        defaultMessage="ALL" className="text-white !text-icon"
+                        defaultMessage="ALL" className="text-white !text-icon cursor:pointer"
                       />
                       </Avatar>
           </span>
@@ -402,25 +393,7 @@ const DealActionLeft = (props) => {
         />
         </div>
     
-      {/* <Tooltip
-        title={
-          <FormattedMessage
-            id="app.deletedOpportunity"
-            defaultMessage="Deleted Opportunity"
-          />
-        }
-      >
-        <span
-          class=" mr-1 text-sm cursor-pointer"
-          onClick={() => props.setOpportunityViewType("Map")}
-          style={{
-            color: props.viewType === "Map" && "#1890ff",
-          }}
-        >
-          <DeleteIcon />
-        </span>
-       
-      </Tooltip> */}
+    
     </div>
   );
 };

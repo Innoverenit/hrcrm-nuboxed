@@ -2,8 +2,6 @@ import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../Components/Placeholder";
 import { StyledDrawer, StyledTabs } from "../../Components/UI/Antd";
 import DataRooForm from "./DataRooForm";
-
-
 const TabPane = StyledTabs.TabPane;
 
 class AddDataRoomModal extends Component {
@@ -38,5 +36,4 @@ class AddDataRoomModal extends Component {
     );
   }
 }
-
 export default AddDataRoomModal;
