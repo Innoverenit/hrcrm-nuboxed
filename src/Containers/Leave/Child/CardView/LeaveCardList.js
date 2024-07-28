@@ -86,10 +86,7 @@ function LeaveCardList(props) {
   } = props;
 
   return (
-
     <>
-
-
       <div class="rounded m-1 p-1 w-wk h-[31rem] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:h-[13rem]">
         {/* <InfiniteScroll
                     dataLength={props.tableRequirement.length}
@@ -97,18 +94,12 @@ function LeaveCardList(props) {
                 hasMore={true}
                 height={"20vh"}
             > */}
-
-
         {props.leaveListRangeByUserId.map((item) => {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
           return (
             <>
-
-
-
-
               <div>
                 <div className="flex justify-between mt-2 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                   // style={hrStyle}
@@ -120,25 +111,18 @@ function LeaveCardList(props) {
                     <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
                       <div class=" text-sm  font-medium font-poppins">
-
                         Start Date
 
                       </div>
-
-
                       <div class=" font-normal text-[0.82rem]  font-poppins">
                         {` ${dayjs(item.startDate).format("ll")}`}
                       </div>
 
                     </div>
-
                     <div className=" flex font-medium flex-col md:w-40 max-sm:justify-between w-full max-sm:flex-row">
-
                       <div class=" text-sm  font-medium font-poppins">
                         End Date
                       </div>
-
-
                       <div class=" font-normal text-[0.82rem]  font-poppins">
                         {` ${dayjs(item.endDate).format("ll")}`}
                       </div>
@@ -146,7 +130,6 @@ function LeaveCardList(props) {
                       {/* </Tooltip>   */}
                     </div>
                     <div className=" flex font-medium flex-col md:w-40 max-sm:justify-between w-full max-sm:flex-row">
-
 
                       <div class=" text-sm  font-medium font-poppins">
                         Cover
@@ -158,7 +141,6 @@ function LeaveCardList(props) {
 
                     </div>
                     <div className=" flex font-medium flex-col md:w-[25rem] max-sm:justify-between w-full max-sm:flex-row">
-
 
                       <div class=" text-sm  font-medium font-poppins">
                         Reason
@@ -202,9 +184,7 @@ function LeaveCardList(props) {
                                 props.setEditLeave(item);
                                 handleUpdateLeaveModal(true);
                                 handleSetCurrentLeaveId(item.leaveId);
-
                               }}
-
                             >
 
                             </BorderColorIcon>
@@ -224,9 +204,7 @@ function LeaveCardList(props) {
                               //   handleRowData(item);
                               //   handleSetCurrentProvider(item.name);
                               // }}
-
                               >
-
                               </DeleteOutlined>
                             </Tooltip>
                           ) : null}
@@ -239,28 +217,15 @@ function LeaveCardList(props) {
                             </Button>
                           )}
                         </div>
-
                       </div>
                     </div>
-
-
-
-
-
                   </div>
-
-
                 </div>
-
               </div>
-
             </>
-
           )
         })}
-
         {/* </InfiniteScroll> */}
-
       </div >
 
       <UpdateLeavesModal
@@ -272,10 +237,7 @@ function LeaveCardList(props) {
         handleSetCurrentLeaveId={handleSetCurrentLeaveId}
       />
     </>
-
-
   )
-
 }
 
 const mapStateToProps = ({ leave, auth }) => ({
@@ -300,7 +262,6 @@ const mapDispatchToProps = (dispatch) =>
   )
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeaveCardList)
-
 const MainWrapper = styled.div`
   /* */
   margin: 0px 20px;
@@ -333,7 +294,7 @@ border-radius: 0.75rem;
     flex-direction: column;
   @media only screen and (max-width: 600px) {
     width: 100%;
-    
+   
   }
 `
 const CardDescription = styled.div`

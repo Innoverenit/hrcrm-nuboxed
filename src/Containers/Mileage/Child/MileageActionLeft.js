@@ -1,6 +1,5 @@
 import React from 'react'
 import GridViewIcon from '@mui/icons-material/GridView';
-import TocIcon from '@mui/icons-material/Toc';
 import { FormattedMessage } from "react-intl";
 import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 import { Tooltip, Avatar, Badge } from "antd";

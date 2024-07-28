@@ -31,9 +31,7 @@ class MileageActionRight extends React.Component {
           // onClick={() => this.props.history.push("/import/product")}
         >
           Import
-        </Button> */}
-       
-      
+        </Button> */}   
       <div class=" ml-2">
         <Tooltip placement="left" title="Create">
           <Button

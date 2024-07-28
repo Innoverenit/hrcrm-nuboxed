@@ -6,8 +6,6 @@ import { Tooltip, } from "antd";
 import { getMileageByUserId,deleteMileageVoucher,handleMileageVoucherIdDrwer,getApprovedMileage } from "../MileageAction";
 const MileageVoucherIdDrawer = lazy(() => import("./MileageVoucherIdDrawer"))
 
-
-
 class MileageApprovedStatusCard extends React.Component {
   state = {
     expand: false,
@@ -54,8 +52,7 @@ class MileageApprovedStatusCard extends React.Component {
                                 }}>
                                      
                                 <div className=" flex font-medium flex-col w-72 mb-1 ">
-
-                                   
+                            
                                         <Tooltip >
                                             <div class=" text-sm  font-poppins">
                                             Voucher ID
@@ -67,16 +64,13 @@ class MileageApprovedStatusCard extends React.Component {
          {item.voucherId}
          </div>
                                             </div>
-
                                         </Tooltip>
                                         <div className=" flex font-medium flex-col w-max ">
                                     <div class=" text-xs  font-poppins"></div>
 
-                                    <div class=" text-xs  font-poppins">
-         
-            
-              
-                                    <div
+                                    <div class=" text-xs  font-poppins">     
+
+                                   <div
                  style={{
                    border: "2px solid green",
                    padding: "0px 0.62em",
@@ -95,31 +89,21 @@ class MileageApprovedStatusCard extends React.Component {
                            
                                     <div class=" text-sm  font-poppins"> Voucher Date </div>
                                     <div class=" text-xs  font-poppins">
-                                        
-                                    
+                                                                       
                                     {dayjs(item.voucherDate).format("MMM Do YY")}
-
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-36 ">
-                                  
-
+                                <div className=" flex font-medium flex-col w-36 ">                              
                                     <div class=" text-sm  font-poppins">Amount</div>
                                     <div class=" text-xs  font-poppins">
                                         € {item.amount}
                                     </div>
-                                </div>
-                     
-                               
-                              
+                                </div>                                                                              
                             </div>
                         </div>
                     )
                 })}
       </div>
-
-
-
 
         <MileageVoucherIdDrawer 
         voucherId={this.state.voucherId}
