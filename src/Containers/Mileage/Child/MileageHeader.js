@@ -28,10 +28,7 @@ class MileageHeader extends Component {
                         }
                     />
                 </div>
-
-
             </>
-
         );
     }
 }

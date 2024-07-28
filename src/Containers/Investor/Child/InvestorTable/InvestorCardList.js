@@ -184,81 +184,60 @@ function InvestorCardList(props) {
   ) : (
   <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[11.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
-        {translatedMenuItems[0]} {/* <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /> */}
+        <div className=" w-[11.6rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
+        {translatedMenuItems[0]} 
+        {/* "Name" */}          
+                     </div>
+        <div className=" w-[10.1rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        {translatedMenuItems[1]}
+        {/* "Sector" */}
+                    </div>
+        <div className=" w-[2.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[8.2rem] "></div>
+        <div className="w-[3.12rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">#
+        {translatedMenuItems[2]}
+         {/* "Deals" */}          
                 </div>
-        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
-        {translatedMenuItems[1]} {/* <FormattedMessage
-                  id="app.sector"
-                  defaultMessage="Sector"
-                /> */}
-                </div>
-        <div className=" w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[8.2rem] "></div>
-        <div className="w-[3.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">#
-        {translatedMenuItems[2]} {/* <FormattedMessage
-                  id="app.deals"
-                  defaultMessage="Deals"
-                /> */}
-                </div>
-        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        {translatedMenuItems[3]}{/* <FormattedMessage
-                  id="app.inprogress"
-                  defaultMessage="In Progress"
-                /> */}
+        <div className="w-[6.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        {translatedMenuItems[3]}
+        {/* "In Progress" */}           
           </div>
-          <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[4]}{/* <FormattedMessage
-                  id="app.Signed"
-                  defaultMessage="Signed"
-                /> */}
+          <div className="w-[5.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {translatedMenuItems[4]}
+          {/* "Signed" */}            
           </div>
-          <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[5]}{/* <FormattedMessage
-                  id="app.Category"
-                  defaultMessage="Category"
-                /> */}
+          <div className="w-[6.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {translatedMenuItems[5]}
+          {/* "Category" */}            
           </div>
-          <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className="w-[6.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[6]}
       {/* First Meeting */}
           </div>
-          <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className="w-[4.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[7]}
        {/* Shares # */}
-          </div>
-         
-          <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          </div>         
+          <div className="w-[3.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[8]}
         {/* Value */}
           </div>
-          <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className="w-[3.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[9]}
         {/* Club */}
           </div>
-        <div className="w-[4.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+        <div className="w-[4.3rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
         {translatedMenuItems[10]}
-        {/* <FormattedMessage
-                  id="app.assigned"
-                  defaultMessage="Assigned"
-                /> */}
+      {/* Assigned" */}         
          </div>
-        <div className="w-[2.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
-        {translatedMenuItems[11]}{/* <FormattedMessage
-                  id="app.owner"
-                  defaultMessage="owner"
-                /> */}
+        <div className="w-[2.813rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
+        {translatedMenuItems[11]}
+        {/* "owner" */}       
                 </div>
-        <div className="w-[5.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        {translatedMenuItems[12]}{/* <FormattedMessage
-                  id="app.source"
-                  defaultMessage="Source"
-                /> */}
+        <div className="w-[5.34rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+        {translatedMenuItems[12]}
+        {/* "Source"         */}
           </div>
-        {/* <div className="w-12">Action</div> */}
-
+     
       </div>
         <InfiniteScroll
         dataLength={investorsbyId.length}
@@ -310,12 +289,11 @@ function InvestorCardList(props) {
                                    </div>
                                    
                                         <Tooltip>
-                                        <div class=" flex max-sm:w-full  flex-row md:flex-col">
-                                            {/* <div class=" text-xs  font-poppins max-sm:hidden">
-                                            Name
-                                            </div> */}
-                                            <div class=" text-sm text-blue-500 flex  font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                        <div class=" flex max-sm:w-full  flex-row md:flex-col">                                         
+                                            {/* Name */}
+                                  
+                                            <div class="text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
+                                            <Link class="overflow-ellipsis whitespace-nowrap h-8text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
                                             {item.name}
                                         </Link>                                
                                               {/* <Link
@@ -335,23 +313,19 @@ function InvestorCardList(props) {
                               
                                 </div>
 
-                                <div className=" flex font-medium items-center  w-[10.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                           
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                                <div className=" flex items-center  w-[10.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                {/* Sector                     */}
+                                    <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">   
                                     {item.sector}
                                     </div>
                                 </div>
-                                </div>
-                               
-                                
-                                
+                                </div>                                                                                      
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium items-center w-8 max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-8 max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
-                                  <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                               <ReactCountryFlag
                                     countryCode={item.countryAlpha2Code}
                                     svg
@@ -365,73 +339,65 @@ function InvestorCardList(props) {
                                               </div>
                                           </div>
                                 <div className=" flex font-medium items-center w-[3.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                                   {/* Deals */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.oppNo}
                                     </div>
-                                </div>
-                             
+                                </div>                           
                                 <div className=" flex font-medium items-center w-[6.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                   {/* Pipeline Value */}
 
                                     {item.totalProposalValue && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-xs max-lg:text-[0.45rem]">
         {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
       </div>
     )}
                                 </div>
-                                <div className=" flex font-medium items-center w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
-
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div className=" flex items-center w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                  {/* # Deals */}
+                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.signed}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                                <div className=" flex  items-center w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* # Deals */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.category}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
-
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                   
+                                <div className=" flex  items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* Deals */}
+                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                               
                                     {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                                <div className=" flex  items-center w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                             {/* Deals */}
 
-                                    <div class=" text-sm text-[blue] cursor-pointer justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs text-[blue] cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                   <div  onClick={() => {
                               props.handleInvestorPriceDrawer(true);
                               handleCurrentRowData(item);
                             }}>{item.allTotalQuantityOfShare}</div>
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
-
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div className=" flex items-center w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* # Deals */}
+                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                    {item.allTotalAmountOfShare}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
-
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div className=" flexitems-center w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Deals */}
+                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                    {item.club}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
-
-                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    
+                                <div className=" flex  items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Assigned */}
+                                    <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                                    
                                     <span>
               {item.assignedTo === null ? (
                 "None"
@@ -451,14 +417,11 @@ function InvestorCardList(props) {
                 )}
                 </>
               )}
-            </span>
-             
+            </span>          
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col w-[2.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
-                       
-                       {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
-
+                                {/* Owner */}                    
                        <span>
                        <Tooltip title={item.ownerName}>
                 <div class="max-sm:flex justify-end">
@@ -476,10 +439,10 @@ function InvestorCardList(props) {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                   <div className=" flex font-medium items-center  w-[8.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Source</div> */}
+                   <div className=" flex items-center  w-[8.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* >Source */}
 
-                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.source}
                                     </div>
                                 </div>
@@ -504,11 +467,7 @@ function InvestorCardList(props) {
                   className=" !text-icon cursor-pointer text-[#df9697]"
                 />
              </Tooltip>
-                          </div>
-                         
-          
-                   
-                               
+                          </div>                                                                            
                           <div >
                    <Tooltip title="Notes">
        <NoteAltIcon
@@ -519,8 +478,7 @@ function InvestorCardList(props) {
                 className=" !text-icon cursor-pointer text-green-800"
               />
            </Tooltip>
-                   </div>
-                   
+                   </div>                 
                    <div >
                     <Tooltip title={item.url}>
               {item.url !== "" ? (
@@ -535,12 +493,10 @@ function InvestorCardList(props) {
                     />
                   </a>
                 </span>
-              ):<div class=" w-3">
-                      
+              ):<div class=" w-3">                   
               </div>}
             </Tooltip>
-                        </div>                   
-                    
+                        </div>                                    
                     <div >
                         <span 
               className=" !text-icon cursor-pointer"
@@ -555,10 +511,8 @@ function InvestorCardList(props) {
               {" "}
               {user.pulseAccessInd === true && <MonitorHeartIcon  className=" !text-icon cursor-pointer text-[#df9697]" />}
             </span> 
-                        </div>
-        
-                        <div >
-          
+                        </div>      
+                        <div >         
             <Tooltip title="Investor Contact">
               <LocationCityIcon
               className=" !text-icon cursor-pointer p-1 text-blue-500 "
@@ -569,12 +523,7 @@ function InvestorCardList(props) {
                 }}
               />
             </Tooltip>
- 
-            </div>
-                      
-                    
-    
-                    
+            </div>                                                   
             <div >
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span class="cursor-pointer">
@@ -588,8 +537,7 @@ function InvestorCardList(props) {
               <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato]"
                 onClick={() => {
                     handleUpdateInvestorModal(true);
-                    handleCurrentRowData(item);
-                  
+                    handleCurrentRowData(item);                 
                 }}
               />
             </Tooltip>
@@ -616,8 +564,6 @@ function InvestorCardList(props) {
                       </div>   
                             </div>
                         </div>
-
-
                     )
                 })}
 

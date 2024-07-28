@@ -6,8 +6,6 @@ import { Tooltip,Button } from "antd";
 import { getMileageByUserId,getRejectdMileage,deleteMileageVoucher,handleMileageVoucherIdDrwer } from "../MileageAction";
 const MileageVoucherIdDrawer = lazy(() => import("./MileageVoucherIdDrawer"))
 
-
-
 class MileageRejectedStatusCard extends React.Component {
   state = {
     expand: false,
@@ -32,15 +30,13 @@ class MileageRejectedStatusCard extends React.Component {
     } = this.props;
 
     return (
-      <>
-        
+      <>      
         <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className="p-0.5 inline-flex items-center rounded-md w-max ml-1">
             <span className="pl-2 pr-4 relative">
               <span
-                className="absolute left-0 top-0 bottom-0 w-3  rounded-l-md -mt-1 -mb-1 -ml-2 "
-
-              ></span>
+                className="absolute left-0 top-0 bottom-0 w-3  rounded-l-md -mt-1 -mb-1 -ml-2 ">
+              </span>
               <span class="font-semibold text-xs -heading font-poppins"> Rejected </span>
             </span>
           </div>   
@@ -53,8 +49,7 @@ class MileageRejectedStatusCard extends React.Component {
                                 }}>
                                      
                                 <div className=" flex font-medium flex-col w-72 mb-1 ">
-
-                                   
+                              
                                         <Tooltip >
                                             <div class=" text-sm  font-poppins">
                                             Voucher ID
@@ -71,10 +66,8 @@ class MileageRejectedStatusCard extends React.Component {
                                         <div className=" flex font-medium flex-col w-max ">
                                     <div class=" text-xs  font-poppins"></div>
 
-                                    <div class=" text-xs  font-poppins">
-         
-            
-              
+                                    <div class=" text-xs  font-poppins">      
+
                                     <div
                 style={{
                   border: "2px solid red",
@@ -93,9 +86,7 @@ class MileageRejectedStatusCard extends React.Component {
                                 <div className=" flex font-medium flex-col  w-52 ml-1 ">
                            
                                     <div class=" text-sm  font-poppins"> Voucher Date </div>
-                                    <div class=" text-xs  font-poppins">
-                                        
-                                    
+                                    <div class=" text-xs  font-poppins">                                                                       
                                     {dayjs(item.voucherDate).format("MMM Do YY")}
 
                                     </div>
@@ -113,36 +104,23 @@ class MileageRejectedStatusCard extends React.Component {
     </Button>
   )}
       </div>
-
             </div>
             </div>
                                 </div>
                                 <div className=" flex font-medium flex-col w-36 ">
                                   
-
                                     <div class=" text-sm  font-poppins">Amount</div>
                                     <div class=" text-xs  font-poppins">
                                         € {item.amount}
                                     </div>
                                 </div>
-                     
-                               
-
-
-                         
-                              
                             </div>
                         </div>
-
-
                     )
                 })}
       </div>
 
-
-
-
-        <MileageVoucherIdDrawer 
+       <MileageVoucherIdDrawer 
         voucherId={this.state.voucherId}
         mileageVoucherIdDrawer={this.props.mileageVoucherIdDrawer}
         handleMileageVoucherIdDrwer={this.props.handleMileageVoucherIdDrwer}

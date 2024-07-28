@@ -92,12 +92,7 @@ function LeaveGranttChart(props){
     //             // progress: 45,
     //             isDisabled: true,
     //             styles: { progressColor: '#0093d7', progressSelectedColor: '#0093d7' }
-    //             }
-                
-        
-
-
-    
+    //             }          
     //     })
     let tasks= [
         {
@@ -134,8 +129,7 @@ function LeaveGranttChart(props){
 
     return(
     
-        <OnlyWrapCard1><Gantt tasks={tasks}/></OnlyWrapCard1>
-    
+        <OnlyWrapCard1><Gantt tasks={tasks}/></OnlyWrapCard1> 
     )
 }
 const mapStateToProps = ({ auth }) => ({
@@ -150,6 +144,5 @@ const mapStateToProps = ({ auth }) => ({
        
       },
       dispatch
-    );
-  
+    ); 
   export default connect(mapStateToProps, mapDispatchToProps)(LeaveGranttChart);

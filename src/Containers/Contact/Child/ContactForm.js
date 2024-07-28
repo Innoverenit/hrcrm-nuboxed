@@ -1,26 +1,18 @@
-import React, { useState ,useEffect, Component } from "react";
-
+import React, {Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Button, Select, Switch } from "antd";
 import {getCustomerConfigure} from "../../Settings/SettingsAction"
-import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import {getDepartments} from "../../Settings/Department/DepartmentAction"
-import { HeaderLabel,  } from "../../../Components/UI/Elements";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { addContact, addLinkContactByOpportunityId } from "../ContactAction";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { getCustomerData } from "../../Customer/CustomerAction";
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import { BundleLoader } from "../../../Components/Placeholder";
 
 const { Option } = Select;
@@ -53,7 +45,6 @@ class ContactForm extends Component {
       loading: true
     };
   }
-
 
   componentDidMount() {
     this.props.getCustomerData(this.props.userId);

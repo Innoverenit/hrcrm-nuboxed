@@ -103,8 +103,6 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                         <div class=" text-xs  font-medium font-poppins">
 
                         Reason:    {item.reason}
- 
-
   &nbsp;
 </div>
           </div> */}
@@ -186,9 +184,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                                 handleSetCurrentLeaveId(item.leaveId);
 
                               }}
-
                             >
-
                             </BorderColorIcon>
                           </Tooltip>
                           : ""}
@@ -208,14 +204,12 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                               // }}
 
                               >
-
                               </DeleteOutlined>
                             </Tooltip>
                             ) : null}
                             </div>
                             </div>
                     </span>
-
                     <span>
                       {item.status === "Pending" ? (
                         <div class="cursor-pointer">
@@ -241,7 +235,6 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
         handleUpdateLeaveModal={handleUpdateLeaveModal}
         handleSetCurrentLeaveId={handleSetCurrentLeaveId}
       />
-
       <StatusLeavesModal
         leaveId={currentLeaveId}
         updateStatusLeaveModal={updateStatusLeaveModal}

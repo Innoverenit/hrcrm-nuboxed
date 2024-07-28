@@ -158,8 +158,7 @@ const{handleContactInvestModal,addContactInvestModal,
             translatedMenuItems={props.translatedMenuItems}
             />}
           </>
-        )}
-       
+        )}      
       </Suspense>
             </React.Fragment>
         )
