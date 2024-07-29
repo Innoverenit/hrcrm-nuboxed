@@ -96,7 +96,7 @@ function PriceDiscountCardB2C(props) {
     // if (targetRow) {
       console.log('Submitting Row:', row);
       const result = {
-        volume: row.volume,
+        volume: 0,
         discountType: "B2C",
         allowedDiscount: row.allowedDiscount,
         suppliesId: props.particularDiscountData.suppliesId,
@@ -131,7 +131,7 @@ function PriceDiscountCardB2C(props) {
   function handleUpdate(key) {
     console.log('Submitting Row:', key);
     const updatedData = {
-      volume: key.volume,
+      // volume: key.volume,
       allowedDiscount: key.allowedDiscount,
       suppliesId: props.particularDiscountData.suppliesId,
       investorsShareId:investorsShareId,

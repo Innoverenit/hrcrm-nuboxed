@@ -58,7 +58,7 @@ function AccountTable(props) {
 
   const handleChange = (val) => {
       //  setPrice(val)
-      if (!isNaN(val) && val > 0 && val < 100) {
+      if (!isNaN(val) && val > 0 && val < 101) {
         setPrice(val);
       } else {
         setPrice(''); // Reset the input if the value is not valid
@@ -121,7 +121,7 @@ function AccountTable(props) {
               defaultMessage="Paymentdays"
             /></div>
             <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
-              payment %
+              Payment %
             </div>
             <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]">Tax#</div>
             {/* <div className="w-[15.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14rem]"><FormattedMessage

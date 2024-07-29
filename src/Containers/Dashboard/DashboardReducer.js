@@ -11,6 +11,13 @@ const initialState = {
   fetchingContactAddedListError: false,
   contactAddedList:[],
 
+  fetchingFinaceorderDetails: false,
+  fetchingFinaceorderDetailsError: false,
+  finaceOrderinDashboard:[],
+
+  fetchingEnterPriseorderDetails: false,
+  fetchingEnterPriseorderDetailsError: false,
+  enterpriseOrderinDashboard:[],
 
   fetchingOrderClosedList:false,
   fetchingOrderClosedListError:false,
@@ -2017,6 +2024,38 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingorderDetailsError: true,
 
       };
+
+      case types.GET_FINACE_ORDER_DETAIL_REQUEST:
+      return { ...state, fetchingFinaceorderDetails: true };
+    case types.GET_FINACE_ORDER_DETAIL_SUCCESS:
+      return {
+        ...state,
+        fetchingFinaceorderDetails: false,
+        finaceOrderinDashboard: action.payload,
+      };
+    case types.GET_FINACE_ORDER_DETAIL_FAILURE:
+      return {
+        ...state,
+        fetchingFinaceorderDetails: false,
+        fetchingFinaceorderDetailsError: true,
+
+      };
+
+      case types.GET_ENTERPRISE_ORDER_DETAIL_REQUEST:
+        return { ...state, fetchingEnterPriseorderDetails: true };
+      case types.GET_ENTERPRISE_ORDER_DETAIL_SUCCESS:
+        return {
+          ...state,
+          fetchingEnterPriseorderDetails: false,
+          enterpriseOrderinDashboard: action.payload,
+        };
+      case types.GET_ENTERPRISE_ORDER_DETAIL_FAILURE:
+        return {
+          ...state,
+          fetchingEnterPriseorderDetails: false,
+          fetchingEnterPriseorderDetailsError: true,
+  
+        };
 
       case types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_REQUEST:
         return { ...state, fetchingdistributorDetails: true };

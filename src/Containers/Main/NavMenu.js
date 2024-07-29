@@ -101,6 +101,7 @@ function NavMenu(props) {
 'Project', //44
 'Requirement', //45
 'Talent', //46
+'Promotions',//47
             
              
         ];
@@ -995,6 +996,21 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         </Menu.Item>
  )}
 
+<Menu.Item key="/promotion" style={{ height: "1.45rem", 
+        color: selectedMenuItem === '/promotion' ? 'tomato' : '#4bc076' }}>
+          <Link to="/promotion" onClick={() => handleSelect('/promotion')}>
+            <VerifiedUserIcon
+              style={{ fontSize: "large" }}
+            />
+            <span class="text-white text-ls ml-1">
+              {/* <FormattedMessage
+              id="app.quality"
+              defaultMessage="Quality"
+            /> */}
+             {translatedMenuItems[47]}
+            </span>
+          </Link>
+        </Menu.Item>
 {/* <Menu.Item key="/procre" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
   <Link to="/procre" onClick={() => handleSelect('/procre')}>

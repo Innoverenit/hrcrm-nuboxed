@@ -48,6 +48,7 @@ import { handleCreateSubscriptionDrawer } from "../Subscription/SubscriptionActi
 import Quality from "../Quality/Quality";
 import Club from "./Club/Club";
 import PromotionsDrawerr from "./PromotionsDrawerr";
+import Prmotion from "./Promotion/Prmotion";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -482,13 +483,13 @@ function MainApp(props) {
                 <div class="mr-3 flex items-center h-[2.5rem]"
                 >
                  
- <div className="flex items-center">           
+ {/* <div className="flex items-center">           
                 <Button
                  type="primary"
                  onClick={() =>{
                   props.handlePromotion(true)}}
                 >Promotions</Button>
-                 </div>
+                 </div> */}
            <div className="flex items-center">
                 <div className=" text-sm font-semibold font-poppins mr-1">{Subscription}</div>
                 <Button
@@ -1508,6 +1509,17 @@ function MainApp(props) {
                       path="/investor/:investorId"
                       render={(props) => (
                         <InvestorDetail
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                     <Route
+                      exact
+                      path="/promotion"
+                      render={(props) => (
+                        <Prmotion
                           {...props}
                           translateText={translateText}
                            selectedLanguage={selectedLanguage}
