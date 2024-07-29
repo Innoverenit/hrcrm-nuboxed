@@ -10,7 +10,6 @@ import {
   updatePriceSuppliers,
   handleSuppliersPriceDrawer
 } from "../SuppliersAction";
-import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import { Tooltip, Button, Input } from "antd";
 import { BorderColor as BorderColorIcon } from "@mui/icons-material";
@@ -85,22 +84,28 @@ function SuppliersPriceCardList(props) {
           <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className="flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
               <div className="w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">
-                {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}{props.translatedMenuItems[0]}
+               {/* "Name" */}
+               {props.translatedMenuItems[0]}
               </div>
               <div className="w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
-                {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */} {props.translatedMenuItems[26]}
+               {/* Category  */}
+               {props.translatedMenuItems[26]}
               </div>
               <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[15.9rem]">
-                {/* <FormattedMessage id="app.attribute" defaultMessage="Attribute" /> */} {props.translatedMenuItems[27]}
+               {/* Attribute  */}
+               {props.translatedMenuItems[27]}
               </div>
-              <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                {/* <FormattedMessage id="app.quality" defaultMessage="Quality" /> */} {props.translatedMenuItems[28]}
+              <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">             
+                {/* Quality    */}
+                 {props.translatedMenuItems[28]}
               </div>
               <div className="w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                {/* <FormattedMessage id="app.unitprice" defaultMessage="Price (Last PO)" /> */} {`${props.translatedMenuItems[19]} (${props.translatedMenuItems[29]} PO)`}
+              {/* Price (Last PO) */}
+              {`${props.translatedMenuItems[19]} (${props.translatedMenuItems[29]} PO)`}
               </div>
               <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                {/* <FormattedMessage id="app.priceDate" defaultMessage="Price (Date)" /> */} {`${props.translatedMenuItems[19]} (${props.translatedMenuItems[30]})`}
+              {/* Price (Date) */}
+               {`${props.translatedMenuItems[19]} (${props.translatedMenuItems[30]})`}
               </div>
               <div className="w-[5rem]"></div>
             </div>

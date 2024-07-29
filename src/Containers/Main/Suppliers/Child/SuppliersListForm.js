@@ -5,7 +5,6 @@ import { Button, Select } from "antd";
 import dayjs from "dayjs";
 import {getCurrency} from "../../../Auth/AuthAction"
 import {
-
   getSupplierSupplies,
   getSupplierSuppliesQuality,
 } from "../SuppliersAction";
@@ -14,7 +13,6 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import { updateQualitySuppliers } from "../SuppliersAction";
 import { getEmployeelistAsErp } from "../../Shipper/ShipperAction";
-import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 const { Option } = Select;
 const SuppliersListForm = (props) => {
@@ -27,7 +25,6 @@ const SuppliersListForm = (props) => {
     props.getSupplierSupplies(props.rowdata.supplierId);
   }, []);
 
- 
   const handleSetCurrentType = (value, item) => {
     setCurrentType({
       ...currentType,
@@ -60,16 +57,12 @@ const SuppliersListForm = (props) => {
       onSubmit={(values, { resetForm }) => {
         const newDate = dayjs(values.date).format("YYYY-MM-DD");
 
-        
-
         const payload = {
           ...values,
           date: `${newDate}T20:00:00Z`,
         
         };
-
         // props.updateQualitySuppliers(payload, props.userId);
-
         resetForm();
       }}
     >
@@ -114,14 +107,10 @@ const SuppliersListForm = (props) => {
             placeholder="Select"
             component={SelectComponent}
             options={Array.isArray(qualityData) ? qualityData : []}
-            value={values.quality}
-          
-          />
-
-             
+            value={values.quality}   
+          />      
              </div>
-                </div>
-               
+                </div>               
               </div>
               <div className="h-full w-w47.5 max-sm:w-full">
               <div className="flex justify-between">
@@ -154,7 +143,8 @@ const SuppliersListForm = (props) => {
             </div>
             <div className="flex justify-end mt-3">
               <Button type="primary" htmlType="submit" loading={props.updatingQualitySuppliers}>
-                {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */} {props.translatedMenuItems[12]}
+               {/* Create*/}
+                {props.translatedMenuItems[12]} 
               </Button>
             </div>
           </Form>

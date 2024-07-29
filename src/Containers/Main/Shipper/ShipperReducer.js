@@ -316,18 +316,6 @@ const mergeFiscalAndQuarter = (dateRange, newDate) => {
           newDate.metaData.fiscalMapper.metaData.currentQuarterEndDate +
           "T00:00:00Z",
       };
-      // if (moment().isBetween(moment(q1s), moment(q1e))) {
-      //   return { ...date, startDate: q1s, endDate: q1e };
-      // }
-      // if (moment().isBetween(moment(q2s), moment(q2e))) {
-      //   return { ...date, startDate: q2s, endDate: q2e };
-      // }
-      // if (moment().isBetween(moment(q3s), moment(q3e))) {
-      //   return { ...date, startDate: q3s, endDate: q3e };
-      // }
-      // if (moment().isBetween(moment(q4s), moment(q4e))) {
-      //   return { ...date, startDate: q4s, endDate: q4e };
-      // }
     } else if (date.value === "FY") {
       return {
         ...date,
@@ -992,16 +980,6 @@ export const shipperReducer = (state = initialState, action) => {
         ...state,
         addingPaidByShipperId: false,
         addPaidButtonModal: false,
-        // distributorOrder: state.distributorOrder.map((item) => {
-        //   if (
-        //     item.distributorDistributorId ==
-        //     action.payload.distributorDistributorId
-        //   ) {
-        //     return action.payload;
-        //   } else {
-        //     return item;
-        //   }
-        // }),
       };
     case types.ADD_PAID_BY_SHIPPER_ID_FAILURE:
       return {

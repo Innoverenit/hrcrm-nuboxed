@@ -13,7 +13,6 @@ import {
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
 import { Avatar, Input, Tooltip,Badge } from "antd";
-import { FormattedMessage } from "react-intl";
 import { AudioOutlined } from "@ant-design/icons"
 import ChecklistIcon from '@mui/icons-material/Checklist';
 
@@ -133,8 +132,6 @@ const {
           }
         }
       }, [listening, isRecording, startTime]);
-
-
         return (
             <div class="flex items-center">
 
@@ -151,13 +148,11 @@ const {
                             color: viewType === "card" && "#1890ff",
                         }}
                     >
-
                         <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#4bc076" }}>
                             < ChecklistIcon className="text-white !text-icon" /></Avatar>
 
                     </span></Badge>
                 </Tooltip>
-
 
                 <Tooltip title={`${props.translatedMenuItems[4]}-${props.translatedMenuItems[5]}`}>
                 <Badge
@@ -174,7 +169,6 @@ const {
                        <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
                        <TocIcon className="text-white !text-icon" />
                             </Avatar> 
-
                     </span>
                     </Badge>
                 </Tooltip>
@@ -195,7 +189,6 @@ const {
                             <div className="text-white">
                               {/* ALL */}{props.translatedMenuItems[6]}
                               </div></Avatar>
-
                     </span>
                     </Badge>
                 </Tooltip>
@@ -213,7 +206,6 @@ const {
                     >
                         <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#4bc076" }}>
                         <DeleteOutlined className="text-white" /></Avatar>
-
                     </span>
                     </Badge>
                 </Tooltip>
@@ -227,15 +219,12 @@ const {
           onPressEnter={handleSearch}
           onChange={handleChange}
         value={currentData}
-        />
-                  
-
+        />              
                 </div>
 
             </div>
         );
 }
-
 const mapStateToProps = ({ auth, suppliers }) => ({
     user: auth.userDetails,
     dateRangeList: suppliers.dateRangeList,

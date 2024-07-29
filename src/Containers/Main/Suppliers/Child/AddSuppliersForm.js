@@ -11,7 +11,6 @@ import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { addSuppliers } from "../SuppliersAction";
 import {getEmployeelistAsErp} from "../../Shipper/ShipperAction"
 import { Listbox } from '@headlessui/react';
-import { FormattedMessage } from "react-intl";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -35,9 +34,6 @@ function AddSuppliersForm (props) {
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.employeeAsErp.find((item) => item.empName === selected);
     const [checked, setChecked] = useState(false);
-
-
-
 
     const handleChange = (checked) => {
       setChecked(checked);
@@ -131,7 +127,6 @@ function AddSuppliersForm (props) {
                         isColumnWithoutNoCreate
                       />
 }
-                  
                     </div>
                     <div class="w-[68%] max-sm:w-[50%]">
                     {props.customerConfigure.phoneNoInd===true&&
@@ -187,10 +182,8 @@ function AddSuppliersForm (props) {
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">
-            
-                        {/* <FormattedMessage id="app.assignedto" defaultMessage="Assigned" /> */}
-                  
+            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">          
+                    {/* Assigned*/}
          {props.translatedMenuItems[24]}
             </Listbox.Label>
             <div className="relative ">
@@ -283,7 +276,7 @@ function AddSuppliersForm (props) {
                   loading={props.addingSuppliers}
                 >
                   {props.translatedMenuItems[12]}
-                  {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */}
+                  {/* Create */}
                 </Button>
               </div>
             </Form>
@@ -292,7 +285,6 @@ function AddSuppliersForm (props) {
         </Formik>
       </>
     );
-  
 }
 
 const mapStateToProps = ({ auth, shipper,settings,employee,suppliers,shipBy }) => ({

@@ -1,7 +1,7 @@
 import * as types from "./SuppliersActionType";
 import { base_url, base_url2 } from "../../../Config/Auth";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 import Swal from "sweetalert2";
 
@@ -938,7 +938,6 @@ export const deletePurchaseData = (data, purchaseId) => (dispatch) => {
       });
     });
 };
-
 /**
  * get deleted supplies list
  */
@@ -1265,8 +1264,8 @@ export const setTimeRange = (startDate, endDate) => (dispatch) => {
   dispatch({
     type: types.SET_TIME_INTERVAL,
     payload: {
-      startDate: moment(startDate).toISOString(),
-      endDate: moment(endDate).toISOString(),
+      startDate: dayjs(startDate).toISOString(),
+      endDate: dayjs(endDate).toISOString(),
     },
   });
 };
@@ -1293,11 +1292,9 @@ export const getSupplierHistory = (supplierId) => (dispatch) => {
       });
     });
 };
-
 /**
  * get activity list by SuppliersId
  */
-
 export const getActivityListBySupplierId = (supplierId) => (dispatch) => {
   dispatch({
     type: types.GET_ACTIVITY_LIST_BY_SUPPLIERID_REQUEST,

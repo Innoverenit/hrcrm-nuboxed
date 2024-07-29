@@ -23,7 +23,6 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { StyledRangePicker } from "../../../Components/UI/Antd";
 import { TimeInterval } from "../../../Utils";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
 
 const { Search } = Input;
 
@@ -204,15 +203,6 @@ const ShipperActionLeft = (props) => {
           </Avatar>
         </Badge>
       </Tooltip>
-      {/* <Tooltip title="Dashboard View">
-        <AreaChartOutlined
-          style={{
-            marginRight: "0.5rem",
-            color: props.viewType === "dashboard" && "#1890ff",
-          }}
-          onClick={() => props.setShipperViewType("dashboard")}
-        />
-      </Tooltip> */}
       {viewType === "dashboard" && (
         <div class="flex items-center">
           <TimeInterval
@@ -247,35 +237,6 @@ const ShipperActionLeft = (props) => {
           onChange={handleChange}
           value={currentData}
         /></div>
-      {/* <Search
-          placeholder="Search By Name"
-          onSearch={(value) => {
-            props.inputDataSearch(value);
-            props.setCurrentData(value);
-          }}
-          allowClear
-          enterButton
-        />
-      </div>
-      &nbsp; &nbsp;
-      <Button
-        type={props.currentData ? "primary" : "default"}
-        onClick={props.handleClear}
-      >
-        <FormattedMessage id="app.clear" defaultMessage="Clear"/>
-        
-      </Button> */}
-
-      {/* &nbsp; &nbsp;
-      {props.viewType === "table" ? (
-        <div style={{ fontSize: "15px", fontWeight: "bold", color: "tomato" }}>
-          # Records - {props.recordData.shipper || 0}{" "}
-        </div>
-      ) : props.viewType === "all" ? (
-        <div style={{ fontSize: "15px", fontWeight: "bold", color: "tomato" }}>
-          # Records - {props.recordAllData.shipper || 0}{" "}
-        </div>
-      ) : null} */}
     </FlexContainer>
   );
 };

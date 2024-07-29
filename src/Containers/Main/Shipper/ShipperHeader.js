@@ -43,5 +43,4 @@ class ShipperHeader extends Component {
         )
     }
 }
-
 export default ShipperHeader;

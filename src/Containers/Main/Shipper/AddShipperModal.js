@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer, StyledModal } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
 const AddShipperForm = lazy(() => import("./AddShipperForm"));
 

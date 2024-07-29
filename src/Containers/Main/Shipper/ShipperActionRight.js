@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { Button, Tooltip } from "antd";
 import {base_url} from "../../../Config/Auth";
-import { FormattedMessage } from "react-intl";
 class ShipperActionRight extends React.Component {
   render() {
     const { handleShipperModal, user,viewType } = this.props;
@@ -18,8 +17,7 @@ class ShipperActionRight extends React.Component {
               //type="primary"
               className="export"
               href={`${base_url}/export/shipper/${user.userId}`}
-            >
-             
+            >           
               {/* <i class="fas fa-download"></i> */}
             </Button>
           </Tooltip>
@@ -40,7 +38,7 @@ const mapStateToProps = ({ auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-     
+    
     },
     dispatch
   );
