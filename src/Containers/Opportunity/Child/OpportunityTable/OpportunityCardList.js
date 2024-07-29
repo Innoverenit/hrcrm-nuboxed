@@ -505,9 +505,7 @@ imgHeight={"1.8rem"}
             />
           }
         >
-         
-              
-            <span
+           <span
 
               onClick={() => {
               

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   MultiAvatar,
   SubTitle,
@@ -47,6 +47,7 @@ function OpportunityDeletedCard(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingDeletedOpportunity?<div class="flex justify-center">Loading...</div>:null}
+        style={{ scrollbarWidth:"thin"}}
         height={"86vh"}
       >
 <div class="flex  justify-center flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">       
@@ -55,50 +56,42 @@ function OpportunityDeletedCard(props) {
                  var findProbability = 0;
                  return (
 
-                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[16rem] 
-                  text-[#444444]  p-1 w-[20vw] flex flex-col max-sm:w-wk scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-
-                      <div class="flex items-center justify-between ">
-                      <div>Name</div>
-                        <Header>
-                        <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[7.5rem] 
+                  text-[#444444] m-3 p-1 w-[15.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                      <div class="flex items-center  flex-no-wrap h-[2.81em] ">
+                      <div class=" flex basis-[15%] mr-[0.2rem]" >
+                            <MultiAvatar
+                              primaryTitle={item.opportunityName}
+                              imageId={item.imageId}
+                              imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
+                            />
+                          </div>
+                          <div class="flex flex-col basis-[100%] overflow-hidden">
+          
+                     <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >     
+                        <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xsp-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
-                        </Header> 
-                       
+                     
+    </div> 
+    </div>      
                
             
                           
             
-          </div>                  
-                 
-                     
-           
-                        <div class="flex  justify-between">
-                            <h3>Customer</h3>
-                            <div>{item.customer}</div>
+          </div>      
+            <div class="flex  justify-between">
+                          <div>{item.customer}</div>
                         </div>
                         <div class="flex justify-between">
                             <div>
-                    <div>Sponsor</div> 
-                    </div>
-                    <div>
-                    <SubTitle>
-            {item.contactName === null ? "None" :
-              <MultiAvatar
-                primaryTitle={item.contactName}
-                imageId={item.imageId}
-                 imageURL={item.imageURL}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              />
-            }
-            </SubTitle>
+                   
             </div>
                     </div>
                     <div class="flex justify-between">
                     <div>Start Date</div> 
-            <div>{moment(item.startDate).format("ll")}</div>
+            <div>{dayjs(item.startDate).format("ll")}</div>
                     </div>
                     <div class="flex justify-between">
                     <div>Value</div> 
@@ -178,10 +171,7 @@ function OpportunityDeletedCard(props) {
             opportunityId={item.opportunityId} 
             />
               </div>           
-                      
-                       
-                        
-                    </div>
+                   </div>
                  )  
             })}
               </div>
