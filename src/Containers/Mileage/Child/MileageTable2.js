@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getMileageByVoucherId,handleUpdateMileageModal,
@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons';
 import { Tooltip, Icon,Button,Input } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import moment from "moment";
+import dayjs from "dayjs";
 import { CurrencySymbol } from "../../../Components/Common";
 const UpdateMileageModal=lazy(()=>import("../Child/UpdateMileageModal"));
 
@@ -46,7 +46,7 @@ class MileageTable2 extends React.Component {
       {
         title: "Date",
         render: (name, item, i) => {
-          return <span>{moment(item.mileageDate).format("ll")}</span>;
+          return <span>{dayjs(item.mileageDate).format("ll")}</span>;
         },
       },
       {

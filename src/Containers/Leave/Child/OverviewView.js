@@ -122,27 +122,7 @@ class OverviewView extends Component {
                             >{`${leaveFetching.employeeName || ""}  ${leaveFetching.lastName || ""}`}</Title>
                         </FlexContainer>
                     </FlexContainer>
-                    <FlexContainer style={{ width: "15%" }} justifyContent="flex-end">
-                        {/* <ActionIcon
-              tooltipTitle="Address"
-              iconType="environment"
-              handleIconClick={this.handleMapModalVisible}
-              size="1em"
-            />{" "}
-            &nbsp; */}
-                        {/* <ActionIcon
-              tooltipTitle="Address"
-              iconType="environment"
-              handleIconClick={this.handleMapModalVisible}
-              size="1em"
-            />{" "}
-            &nbsp;&nbsp;
-            <ActionIcon
-              tooltipTitle="Edit"
-              iconType="edit"
-              handleIconClick={toggleViewType}
-              size="1em"
-            /> */}
+                    <FlexContainer style={{ width: "15%" }} justifyContent="flex-end">                   
                     </FlexContainer>
                 </FlexContainer>
 
@@ -159,12 +139,7 @@ class OverviewView extends Component {
                     <>
                         <FlexContainer>
                             {!address ? (
-                                <>
-                                    {/* <ActionIcon
-                    iconType={addAddressVisible ? "close" : "plus"}
-                    tooltipTitle={addAddressVisible ? "Close" : "Add address"}
-                    handleIconClick={this.handleAddAddressVisible}
-                  /> */}
+                                <>                             
                                     {addAddressVisible && (
                                         <AddressField
                                             userId={leaveFetching.userId}

@@ -147,8 +147,6 @@ export const handleUpdateLeaveModal = (modalProps) => (dispatch) => {
       });
   };
   
-
-  
   export const DeleteLeaves = (expensdeId) => (dispatch, getState) => {
 
     dispatch({

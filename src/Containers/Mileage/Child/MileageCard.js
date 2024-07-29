@@ -62,8 +62,7 @@ class MileageCard extends React.Component {
          {item.voucherId}
          </div>
            </div>                                                
-          </div>                  
-                                        
+          </div>                                                       
                         <div class="flex  justify-between">
                             <h3 class="text-sm">Voucher Date</h3>
                             <div class="text-[0.82rem]">{dayjs(item.voucherDate).format("MMM Do YY")}</div>

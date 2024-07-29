@@ -9,7 +9,6 @@ const LeaveStatusCard = lazy(() => import("./Child/CardView/LeaveStatusCard"));
 const LeaveGranttChart = lazy(() => import("./Child/Chart/LeaveGranttChart"));
 const LeaveJumpstart = lazy(() => import("./Child/JumpStartBoxes/LeaveJumpstart"));
 
-
 class Leave extends Component {
   state = { currentData: "", currentUser: "" };
   setCurrentData = (value) => {
@@ -75,17 +74,7 @@ class Leave extends Component {
                   selectedLanguage={this.props.selectedLanguage}
             translateText={this.props.translateText}
                 /> :
-                null}
-        {/* <div style={{ width: "25%", height: "100%" }}>
-                <LeaveDetailLeft leaveFetching={this.props.leaveFetching} />
-              </div> */}
-        {/* <div style={{ width: "100%", height: "100%" }}>
-                <LeaveDetailRight />
-              </div> */}
-        {/* </FlexContainer>
-          </Suspense>
-        </FlexContainer> */}
-        {/* )} */}
+                null}      
       </>
     );
   }
