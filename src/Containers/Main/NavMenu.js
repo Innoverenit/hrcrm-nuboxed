@@ -39,6 +39,7 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import ShopTwoIcon from '@mui/icons-material/ShopTwo';
 import PeopleIcon from '@mui/icons-material/People';
+import { BundleLoader } from '../../Components/Placeholder';
 
 const SubMenu = Menu.SubMenu;
 
@@ -176,6 +177,9 @@ function NavMenu(props) {
   console.log("path", path);
   console.log(user);
   console.log("userDetails",props.userDetails)
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <div style={{ marginLeft: "-1.1875em" }}>
 

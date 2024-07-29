@@ -209,7 +209,7 @@ function InspectedPhoneByOrder(props) {
 
                                                     <div class=" text-sm  font-poppins">
 
-                                                        Issue
+                                                        {item.issue}
                                                     </div>
                                                 </div>
                                             </div>
