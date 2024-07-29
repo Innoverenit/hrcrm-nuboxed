@@ -365,7 +365,8 @@ function PhoneListForRepair(props) {
                                             </div>
                                             <div className=" flex font-medium  w-[7.98rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                <span title={item.issue}>{item.issue.substring(0, 10)}{item.issue.length > 20 && '...'}</span>
+                                                {/* <span title={item.issue}>{item.issue.substring(0, 10)}{item.issue.length > 20 && '...'}</span> */}
+                                                <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div>
                                                 </div>
                                             </div>
                                         </div>

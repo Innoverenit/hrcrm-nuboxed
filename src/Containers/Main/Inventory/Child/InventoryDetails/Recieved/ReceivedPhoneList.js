@@ -69,7 +69,7 @@ function ReceivedPhoneList(props) {
                             <div style={{ width: "47%" }}>
                                 <Field
                                     name="receiveCompany"
-                                    label="OEM"
+                                    label="Brand"
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -132,7 +132,7 @@ function ReceivedPhoneList(props) {
                                     isColumn
 
                                     width={"100%"}
-                                    options={["Andriod", "Apple"]}
+                                    options={["Android", "Apple","Windows"]}
                                     component={SelectComponent}
                                     inlineLabel
                                     isRequired

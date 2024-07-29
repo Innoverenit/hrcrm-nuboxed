@@ -6,7 +6,7 @@ import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import ReactToPrint from "react-to-print";
 import QRCode from "qrcode.react";
-import { Button,Input,Tooltip } from "antd"
+import { Button,Input,Tooltip,Progress } from "antd"
 import {
     searchimeiNamePhone,
     ClearPhoneDataOfrefurbish,
@@ -175,10 +175,11 @@ function InspectedPhoneByOrder(props) {
                             <div className="md:w-[6rem]">QC</div>
                             <div className="md:w-[4rem]">Repair</div>
                             {/* <div className="md:w-[5rem]">Qa</div> */}
-                            <div className="md:w-[7.2rem]"></div>
+                            <div className="md:w-[7.2rem]">Task</div>
                         </div>
                         <div class="overflow-y-auto h-[72vh]">
                             {props.updateDispatchList.length === 0 ? <NodataFoundPageRefubish /> :props.updateDispatchList.map((item, index) => {
+                                const acivedPercentage = isNaN(Math.floor((item.totalExtraCost / item.totalPrice) * 100)) ? 0 : Math.floor((item.totalExtraCost / item.totalPrice) * 100)
                                 return (
                                     <div>
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
@@ -312,7 +313,7 @@ function InspectedPhoneByOrder(props) {
                                                                         id="app.task"
                                                                         defaultMessage="Task"
                                                                     />}>
-                                                                        <FormatListBulletedIcon
+                                                                        {/* <FormatListBulletedIcon
                                                                             className="!text-base cursor-pointer"
                                                                             style={{ color: expand && item.phoneId === data.phoneId ? "red" : "black" }}
                                                                             onClick={() => {
@@ -320,7 +321,17 @@ function InspectedPhoneByOrder(props) {
                                                                                 handleParticularRow(item);
                                                                                 handleExpand(item.phoneId);
                                                                             }}
-                                                                        />
+                                                                        /> */}
+                                                                        <Progress
+                                                                   percent={acivedPercentage}
+                                                                    success={{acivedPercentage}}
+                                                                    format={() => `${acivedPercentage}%`} 
+                                                                    style={{ width: "8rem", cursor: "pointer" }}
+                                                                    onClick={() => {
+                                                                        handlePhoneListOrderTask();
+                                                                     handleParticularRow(item);
+                                                                     handleExpand(item.phoneId);
+                                                                    }}/>
                                                                     </Tooltip>
 
                                                                 </div>

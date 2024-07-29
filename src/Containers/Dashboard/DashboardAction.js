@@ -2246,6 +2246,59 @@ export const getJumpOrderDetail = (type, orderType) => (dispatch) => {
     });
 };
 
+
+export const getFinaceOrderDetails = (userId,type) => (dispatch) => {
+  dispatch({ type: types.GET_FINACE_ORDER_DETAIL_REQUEST });
+  axios
+    .get(
+      `${base_url2}/dashboard/repairCount/${userId}/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_FINACE_ORDER_DETAIL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_FINACE_ORDER_DETAIL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getEnterpriseOrderDetails = (type) => (dispatch) => {
+  dispatch({ type: types.GET_ENTERPRISE_ORDER_DETAIL_REQUEST });
+  axios
+    .get(
+      `${base_url2}/dashboard/org/orderCount/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_ENTERPRISE_ORDER_DETAIL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ENTERPRISE_ORDER_DETAIL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getJumpDistributorDetail = (type) => (dispatch) => {
   dispatch({ type: types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_REQUEST });
   axios

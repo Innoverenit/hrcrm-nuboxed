@@ -803,3 +803,7 @@ iframe#webpack-dev-server-client-overlay {
   background-color: #fafafa;
   cursor: pointer;
 }
+/* this is important dont delete */
+.scroller {  
+scrollbar-width: thin;
+}
