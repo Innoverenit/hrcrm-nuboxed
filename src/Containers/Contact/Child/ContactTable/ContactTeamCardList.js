@@ -267,8 +267,8 @@ if (loading) {
                                   <Tooltip>
                                     <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
                                     
-                                      <div class="text-sm flex text-blue-500  font-poppins  font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
+                                      <div class="text-xs flex text-blue-500  font-poppins  font-semibold  cursor-pointer">
+                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   
@@ -288,43 +288,43 @@ if (loading) {
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk">
 
-                          <div className=" flex font-medium  max-sm:w-auto  w-[14.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
+                          <div className=" flex  max-sm:w-auto  w-[14.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
                              
-                              <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
+                              <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex font-medium  max-sm:w-auto w-[10.2rem] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex max-sm:w-auto w-[10.2rem] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
                              
-                              <div class="text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                    {item.designation}
                               </div>
                           </div>
-                          <div className=" flex font-medium  max-sm:w-auto w-[8.3rem] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
+                          <div className=" flex max-sm:w-auto w-[8.3rem] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
                           
-                            <div class="text-sm  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div class="text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                  {item.department}
                             </div>
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk">
-                        <div className="flex font-medium  w-[6.01rem] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className="flex  w-[6.01rem] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
-<div className="text-sm  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div className="text-xs  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.oppNo}
 </div>
 </div>
-<div className=" flex font-medium  w-[5.01rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex  w-[5.01rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
                               
 
-                              <div class=" text-sm  max-sm:text-sm font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class=" text-xs  max-sm:text-sm font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.totalProposalValue}
 
                               </div>
                           </div>
-                          <div className="flex font-medium  w-[5.1rem]  max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                          <div className="flex  w-[5.1rem]  max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                           
-                              <div class="text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                               {item.thirdPartyAccessInd === true
 ?<Tooltip title="Provided"><AlarmOnIcon   className=" !text-icon text-[green]"/></Tooltip> 
@@ -334,7 +334,7 @@ if (loading) {
                           </div>
                           </div>
                           <div class="flex items-center max-sm:justify-between max-sm:w-wk">
-                          <div className="flex font-medium  w-[3.01rem] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
+                          <div className="flex w-[3.01rem] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
         <Tooltip title={item.ownerName}>
           <div class="max-sm:flex justify-end">
           <Tooltip title={item.ownerName}>

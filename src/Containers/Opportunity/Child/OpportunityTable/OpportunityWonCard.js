@@ -142,6 +142,7 @@ function OpportunityWonCard(props) {
         hasMore={hasMore}
         loader={fetchingWonOpportunity ?<div class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
+        style={{ scrollbarWidth:"thin"}}
       >
 { !fetchingWonOpportunity && wonOpportunity.length === 0 ?<NodataFoundPage />:wonOpportunity.map((item,index) =>  {
                  
@@ -157,7 +158,7 @@ function OpportunityWonCard(props) {
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium  w-[16rem] max-lg:w-[10rem] max-sm:flex-row  max-sm:w-auto ">
+                      <div className=" flex  w-[16rem] max-lg:w-[10rem] max-sm:flex-row  max-sm:w-auto ">
                                 <div>
 
             <MultiAvatar
@@ -178,22 +179,11 @@ function OpportunityWonCard(props) {
                                             {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class=" text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
+                                            <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
                                                 
-                                            <Link class="overflow-ellipsis whitespace-nowrap max-sm:text-sm h-8 text-sm p-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap max-sm:text-sm h-8 text-xs p-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
-         &nbsp;&nbsp;
-        {/* {date === currentdate ? (
-          <span
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
-            New
-          </span>
-        ) : null} */}
        
                                             </div>
 </div>
@@ -201,10 +191,10 @@ function OpportunityWonCard(props) {
                               
                                 </div>
 
-                                <div className=" flex font-medium   w-[10.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex   w-[10.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                            
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                                    <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
+                                    <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
                                     
                                     {item.customer}
                     
@@ -214,11 +204,11 @@ function OpportunityWonCard(props) {
                                 
                                
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium  w-[8.01rem] max-xl:w-[4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  w-[8.01rem] max-xl:w-[4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
-                                  <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                  <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                   
                                   {item.contactName === null ? "None" :
             <MultiAvatar2
@@ -232,18 +222,18 @@ function OpportunityWonCard(props) {
           
                                   </div>
                               </div>
-                                <div className=" flex font-medium  w-[9.1rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex  w-[9.1rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                    <div class=" text-xs justify-center  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     {moment(item.startDate).format("ll")}
                                     </div>
                                 </div>
                              
-                                <div className=" flex font-medium  w-[10.1rem] max-xl:w-[5.1rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex   w-[10.1rem] max-xl:w-[5.1rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                    <div class=" text-xs  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     <CurrencySymbol currencyType={item.currency} />
             &nbsp;
             {item.proposalAmount}
@@ -287,10 +277,10 @@ function OpportunityWonCard(props) {
 
                                     </div> */}
                               
-                                <div className=" flex font-medium  w-32 max-xl:w-[5.12rem] max-lg:w-[3.12rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex  w-32 max-xl:w-[5.12rem] max-lg:w-[3.12rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
-                                    <div class=" text-sm  font-poppins max-sm:text-sm">
+                                    <div class=" text-xs  font-poppins max-sm:text-sm">
                                     
                                     <span>
                                     <MultiAvatar2
@@ -304,7 +294,7 @@ function OpportunityWonCard(props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium  w-20 max-xl:w-[2rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
+                                <div className=" flex  w-20 max-xl:w-[2rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                        
                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
 
@@ -374,7 +364,7 @@ function OpportunityWonCard(props) {
                 }}
               >
                             <BorderColorIcon
-                             className=" !text-xl cursor-pointer text-[tomato]"
+                             className=" !text-icon cursor-pointer text-[tomato]"
                             />
                           </span>
                         )}

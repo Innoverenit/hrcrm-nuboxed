@@ -250,6 +250,7 @@ const [rowdata, setrowdata] = useState("");
         hasMore={hasMore}
         loader={fetchingTeamCustomer?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"80vh"}
+        style={{ scrollbarWidth:"thin"}}
       >
       
       { !fetchingTeamCustomer && teamCustomer.length === 0 ?<NodataFoundPage />:teamCustomer.map((item,index) =>  {
@@ -278,7 +279,7 @@ const [rowdata, setrowdata] = useState("");
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex font-medium  w-[15rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex   w-[15rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                           <div>
                             {/* <Tooltip title={item.name}> */}
@@ -296,9 +297,9 @@ const [rowdata, setrowdata] = useState("");
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
                                   </Link>
 
@@ -329,7 +330,7 @@ const [rowdata, setrowdata] = useState("");
                           </div>
                         </div>
                       </div>
-                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -353,7 +354,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>
 
                       </div>
-                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[5.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center max-sm:w-auto  w-[5.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                         {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -363,7 +364,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex font-medium max-sm:w-auto  items-center  w-[5.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto  items-center  w-[5.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -371,7 +372,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>
 
                       </div>
-                      <div className=" flex font-medium max-sm:w-auto  justify-center w-[7.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto  justify-center w-[7.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 
                         {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
@@ -383,7 +384,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
 
 
-                      <div className=" flex font-medium items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -393,7 +394,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium  max-sm:w-auto w-[5.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex  max-sm:w-auto w-[5.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         {/* {item.totalProposalValue > 0 && (
@@ -416,7 +417,7 @@ const [rowdata, setrowdata] = useState("");
 
                                     </div>
                                 </div> */}
-                      <div className=" flex font-medium items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -442,7 +443,7 @@ const [rowdata, setrowdata] = useState("");
 
                         </div>
                       </div>
-                      <div className=" flex font-medium items-center max-sm:w-auto w-[2rem] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                      <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                         <Tooltip title={item.ownerName}>
                           <div class="max-sm:flex justify-end">
                             <Tooltip title={item.ownerName}>
@@ -459,9 +460,9 @@ const [rowdata, setrowdata] = useState("");
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                      <div className=" flex font-medium justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      <div className=" flexjustify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
-                        <div class=" text-sm  font-poppins"></div>
+                        <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
                           title="Change status to Customer?"
                           onConfirm={() => handleConfirm(item.customerId)}

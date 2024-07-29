@@ -194,7 +194,7 @@ class LinkedContact extends Component {
       <>
         <div className=' flex  sticky  z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                  <div className=" flex  w-[97.5%] p-2 bg-trandivrent font-bold sticky top-0 z-10">
+                  <div className=" flex  w-[99%] p-1 bg-trandivrent font-bold sticky  z-10">
                   <div className=" md:w-[5.12rem]"></div>
                       <div className=" md:w-[11.12rem]">Name</div>
                       <div className=" md:w-[9.5rem]">Designation</div>
@@ -203,7 +203,7 @@ class LinkedContact extends Component {
                       <div className="md:w-[6.8rem]">Mobile #"</div>
                      
                   </div>
-                  <div class="overflow-y-auto h-[67vh]">
+                  <div class="overflow-y-auto h-[64vh]">
                   { !fetchingContactListByOpportunityId && contactListByOpportunityId.length === 0 ?<NodataFoundPage />:contactListByOpportunityId.map((item,index) =>  {
                       
                       return (
@@ -212,29 +212,29 @@ class LinkedContact extends Component {
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                   <div class="flex">
-                                      <div className=" flex font-medium  md:w-[5.1rem] max-sm:w-full  ">
+                                      <div className=" flex   md:w-[5.1rem] max-sm:w-full  ">
                                       <MultiAvatar
                 primaryTitle={item.firstName}
                 // imageId={item.imageId}
                 // imageURL={item.imageURL}
-                imgWidth={"2.5em"}
-                imgHeight={"2.5em"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
                                       </div>
 
-                                      <div className=" flex font-medium   md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
+                                      <div className=" flex   md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
                                           <div class=" text-xs  font-poppins">
                                              {item.fullName}
                                           </div>
 
                                       </div>
-                                      <div className=" flex font-medium  md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
+                                      <div className=" flex  md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
                                           <div class=" text-xs  font-poppins">
                                               {item.designation}
                                           </div>
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                                       <div class=" text-xs  font-poppins text-center">
@@ -242,19 +242,19 @@ class LinkedContact extends Component {
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                         {item.emailId}
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex md:w-[10.22rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       {item.countryDialCode} {item.mobileNumber}
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[10.23rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <div class=" flex justify-evenly" >
               <ButtonGroup>
@@ -316,7 +316,7 @@ class LinkedContact extends Component {
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <StyledPopconfirm
               placement="bottom"
