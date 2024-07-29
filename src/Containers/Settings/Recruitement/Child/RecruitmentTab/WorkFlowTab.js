@@ -136,10 +136,12 @@ useEffect(() => {
 
   const handleTabChange = (key) => {
     setActiveKey(key);
+    //const selectedTypedata = type.find(type => type.workflowCategoryId === value);
   };
 
   const renderTabContent = (key) => {
     const tab = props.workFlowCategory.find(tab => tab.workflowCategoryId === key);
+    console.log(tab)
     if (!tab) return null;
 
     return <TabContentComponent 

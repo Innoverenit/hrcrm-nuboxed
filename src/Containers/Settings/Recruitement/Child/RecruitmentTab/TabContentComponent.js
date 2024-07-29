@@ -190,6 +190,7 @@ import {  Select } from "../../../../../Components/UI/Elements";
 import { elipsize } from "../../../../../Helpers/Function/Functions";
 import SingleDealsStages from "./Deals/SingleDealsStages";
 import { GlobalOutlined } from "@ant-design/icons";
+import { base_url } from "../../../../../Config/Auth";
 //const SingleDealsStages = lazy(() => import("./SingleDealsStages"));
 const { Option } = Select;
 
@@ -208,16 +209,20 @@ class TabContentComponent extends Component {
       isTextInputOpen: false,
       addingStage: false,
       stageName: "",
+      setType:[],
       probability: null,
       days: null,
       visible: false,
       isViewAll: false,
+      setTouched:false,
       currentProcess: [],
+      setIsLoading:false,
       currentStageId: "",
       currentStage: [],
       currentStageName: "",
       exist: false,
       responsible:"",
+      setSelectedType:null,
       isProcessTextInputOpen: false,
       workflowName: "",
       publish: false,
@@ -342,6 +347,61 @@ handleStagePublishClick = (stagesId, publishInd) => {
 handleSetCurrentItem(stagesId) {
   this.setState({ currentItem: stagesId });
 }
+
+handleSelectChange=(value) =>{
+  this.setState({setSelectedType:value})
+
+  //const selectedTypedata = type.find(type => type.workflowCategoryId === value);
+  // if (selectedTypedata) {
+  //    let data={
+  //   name:selectedTypedata.name,
+  //   workflowCategoryId:selectedTypedata.workflowCategoryId
+  // }
+  // props.addGloalType(data)
+  //   console.log('Selected Department ID:', selectedTypedata.workflowCategoryId);
+  //   console.log('Selected Department Name:', selectedTypedata.name);
+  // }
+
+  // let data={
+  //   name:value
+  // }
+  // props.addGloalType()
+  // console.log('Selected user:', value);
+};
+
+ handleSelectFocus=()=>{
+  if (!this.state.setTouched) {
+    this.fetchType();
+    // fetchSector();
+
+    this.setState({setTouched:true});
+  }
+};
+
+
+fetchType = async () => {
+  // setIsLoading(true);
+  this.setState({setIsLoading:true});
+  try {
+    const apiEndpoint = `${base_url}/workflow/globalIndTrueList/${this.props.label}`;
+    const response = await fetch(apiEndpoint,{
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${this.props.token}`,
+        'Content-Type': 'application/json',
+        // Add any other headers if needed
+      },
+    });
+    const data = await response.json();
+    // setType(data);
+    this.setState({setType:data});
+  } catch (error) {
+    console.error('Error fetching users:', error);
+  } finally {
+    // setIsLoading(false);
+    this.setState({setIsLoading:false});
+  }
+};
   handleAddWorkflow = () => {
     const { addProcessForDeals, workflows } = this.props;
     const {
@@ -531,6 +591,21 @@ handleSetCurrentItem(stagesId) {
                     Add
                  
                   </Button>
+                  <Select
+        showSearch
+        style={{ width: 200,marginLeft:'20px' }}
+        placeholder="Search or select type"
+        optionFilterProp="children"
+        loading={this.state.setIsLoading}
+        onFocus={this.handleSelectFocus}
+        onChange={this.handleSelectChange}
+      >
+        {this.state.setType.map(sources => (
+          <Option key={sources.workflowDetailsId} value={sources.workflowDetailsId}>
+            {sources.workflowName}
+          </Option>
+        ))}
+      </Select>
                 </div>
               </>
             )}
@@ -588,7 +663,7 @@ handleSetCurrentItem(stagesId) {
               ) : 
               (
                 <>
-                   <h1 style ={{color:"white"}}>
+                   <h1 style ={{color:"white",backgroundColor:"blueviolet"}}>
                     {this.state.currentProcess.workflowName ||
                       `${"Select Workflow"}`}{" "}
                   
@@ -758,6 +833,7 @@ const mapStateToProps = ({ settings, auth }) => ({
 //   auth.userDetails &&
 //   auth.userDetails.metaData &&
 //   auth.userDetails.metaData.organization,
+token: auth.token,
 //   dealsStagesPublish: settings.dealsStagesPublish,
 //   dealsProcessPublish: settings.dealsProcessPublish,
   dealsProcessStages: settings.dealsProcessStages,
