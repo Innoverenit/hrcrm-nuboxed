@@ -39,8 +39,6 @@ export const addLeaves = (data) => (dispatch, getState) => {
         });
 };
 
-
-
 export const getLeaveListRangeByUserId = (employeeId, startDate, endDate) => (
     dispatch
 ) => {

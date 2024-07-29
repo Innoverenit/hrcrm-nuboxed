@@ -12,7 +12,6 @@ import draftToHtml from "draftjs-to-html";
 import { addLeaveNote } from "../../LeavesAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-
 /**
  * yup validation scheme for creating a note
  */
@@ -102,11 +101,8 @@ class LeaveNoteForm extends Component {
 
             return (
               <Form className="form-background">
-                {/* <Field
-                                name='description'
-                                placeholder='Leave notes here ...'
-                                component={TextareaComponent}
-                            /> */}
+                 {/* name='description' */}
+                            
                 <Editor
                   editorState={editorState}
                   wrapperClassName="demo-wrapper"

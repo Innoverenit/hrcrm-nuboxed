@@ -67,11 +67,6 @@ function LeavePendingStatusCard(props) {
                         <div class=" font-normal text-xs  font-poppins">
                           {item.reason}
                         </div>
-                        {/* <div className=" flex font-medium flex-col w-24 ">
-                        <div class=" text-base  font-poppins">
-                          Status
-                        </div>               
-                      </div> */}
                       </div>
                       <div class=" text-xs  font-poppins w-max mb-1 ">
                           {item.status === "Pending" && (

@@ -2,7 +2,6 @@ import React, { Component, lazy, Suspense } from "react";
 import { Icon, Button, Tooltip } from "antd";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { FlexContainer, TabsWrapper } from "../../../../Components/UI/Layout";
-import { ActionIcon } from "../../../../Components/Utils";
 import { connect } from "react-redux";
 import { handleLeavesModal } from "../../LeavesAction";
 import { bindActionCreators } from "redux";
