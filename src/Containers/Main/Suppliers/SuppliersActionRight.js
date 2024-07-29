@@ -7,7 +7,6 @@ import { withRouter } from "react-router";
 import { Tooltip } from "antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { handleSuppliersModal } from "../../Main/Suppliers/SuppliersAction";
-import { FormattedMessage } from "react-intl";
 
 const AddSuppliersModal =lazy(()=>import("./Child/AddSuppliersModal"));
 
@@ -49,7 +48,7 @@ class SuppliersActionRight extends React.Component {
             // ghost
             onClick={() => handleSuppliersModal(true)}
           ><DataSaverOnIcon/>
-            {/* <FormattedMessage id="app.add" defaultMessage="Add" /> */}
+           {/* Add */}
             {this.props.translatedMenuItems[9]}
           </Button>
         </Tooltip>

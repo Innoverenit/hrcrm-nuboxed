@@ -15,10 +15,7 @@ import {
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateShipperModal from "./UpdateShipperModal";
 import AddShipperOrderModal from "./AddShipperOrderModal";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-
 
 function ShipperSearchedData(props) {
 
@@ -64,7 +61,6 @@ function ShipperSearchedData(props) {
     }, 100);
   };
 
-
   return (
     <>
    
@@ -101,43 +97,41 @@ function ShipperSearchedData(props) {
 
                             </div>
                           </div>
-                          <div className=" flex font-medium  w-[6.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                            <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex   w-[6.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                            <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dialCode} {item.phoneNo}
                             </div>
 
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium  w-[13.3rem] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex   w-[13.3rem] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                            <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" font-normal  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.emailId}
                             </div>
-
                           </div>
 
-                          <div className=" flex font-medium  w-[7.12rem] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex   w-[7.12rem] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                            <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.shipByName}
                             </div>
 
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium  w-[11.31rem] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex  w-[11.31rem] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                            <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
          
         `}
                             </div>
-
                           </div>
-                          <div className=" flex font-medium  w-[12.21rem] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                            <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex   w-[12.21rem] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                            <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {(item.address &&
                                 item.address.length &&
                                 item.address[0].city) ||
@@ -147,9 +141,8 @@ function ShipperSearchedData(props) {
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium  w-[6.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-
-                            <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[6.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                            <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {(item.address &&
                                 item.address.length &&
                                 item.address[0].postalCode) ||
@@ -157,7 +150,7 @@ function ShipperSearchedData(props) {
                             </div>
 
                           </div>
-                          <div class="w-[4rem]">
+                          <div>
                             <Switch
                               className="toggle-clr"
                               //checked={item.productionInd}
@@ -189,14 +182,10 @@ function ShipperSearchedData(props) {
                             >
                               <DeleteOutlined
                                 className=" !text-icon cursor-pointer text-[red]"
-
                               />
                             </Popconfirm>
                           </div>
                         </div>
-
-
-
                       </div>
                     </div>
                   </>

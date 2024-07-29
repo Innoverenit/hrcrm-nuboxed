@@ -9,7 +9,6 @@ import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArra
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { updateShipper,getEmployeelistAsErp } from "./ShipperAction";
 import {getShipByData} from "../../Settings/Category/ShipBy/ShipByAction";
-import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { Listbox } from '@headlessui/react';
 
@@ -170,12 +169,10 @@ function UpdateShipperForm(props) {
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2  "
-            // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
-            >
-                 {/* {<FormattedMessage id="app.assignedto" defaultMessage="Assigned"/>}
-                  */}
-                                           {props.translatedMenuItems[14]}
+            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2  ">
+            // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}          
+                 {/* Assigned */}
+                 {props.translatedMenuItems[14]}
             </Listbox.Label>
             <div className="relative ">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -212,8 +209,7 @@ function UpdateShipperForm(props) {
                               className={`absolute inset-y-0 right-0 flex items-center pr-4 ${
                                 active ? "text-white" : "text-indigo-600"
                               }`}
-                            >
-                              
+                            >                           
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -262,7 +258,7 @@ function UpdateShipperForm(props) {
                 htmlType="submit"
                 loading={props.updateShipperById}
               >
- {/* <FormattedMessage id="app.update" defaultMessage="Update"/> */}
+{/* Update */}
  {props.translatedMenuItems[16]}
               </Button>
             </div>
@@ -283,7 +279,6 @@ const mapStateToProps = ({ auth, shipper,shipBy,employee }) => ({
   fullName: auth.userDetails.fullName,
   orgId:auth.userDetails.organizationId,
   fullName: auth.userDetails.fullName,
-
 });
 
 const mapDispatchToProps = (dispatch) =>

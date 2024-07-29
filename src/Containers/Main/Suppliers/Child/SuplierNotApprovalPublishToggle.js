@@ -12,9 +12,7 @@ function SuplierNotApprovalPublishToggle(props) {
 
     function handleDispatchToggle() {
         props.linkSupplierNotApproval(
-        //   {
-    
-            
+        //   {     
         //     dispatchInd: true,
         //     userId:props.item.userId,
            
@@ -23,8 +21,6 @@ function SuplierNotApprovalPublishToggle(props) {
           true
         );
       }
-
-    
     return (
         <>
             <div>

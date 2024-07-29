@@ -10,7 +10,6 @@ import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { updateSupplierById } from "../SuppliersAction";
 import {getEmployeelistAsErp} from "../../Shipper/ShipperAction"
 import { Listbox } from '@headlessui/react';
-import { FormattedMessage } from "react-intl";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -103,8 +102,7 @@ function UpdateSupplierForm (props) {
                   />
                    <div class=" flex justify-between">
                     <div class="w-[30%] max-sm:w-[40%] ">
-                      {/* <label>Dial Code</label> */}
-                  
+                      {/* <label>Dial Code</label> */}               
                       <FastField
                         name="dialCode"
                         selectType="dialCode"
@@ -131,6 +129,7 @@ function UpdateSupplierForm (props) {
                         inlineLabel
                         width={"100%"}
                       />
+
                     </div>
                   </div>
                   <div class="w-full">
@@ -154,7 +153,7 @@ function UpdateSupplierForm (props) {
           <>
             <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">
             
-                        {/* <FormattedMessage id="app.assignedto" defaultMessage="Assigned" /> */}
+                        {/* Assigned */}
                         {props.translatedMenuItems[24]}
          
             </Listbox.Label>
@@ -193,8 +192,7 @@ function UpdateSupplierForm (props) {
                               className={`absolute inset-y-0 right-0 flex items-center pr-4 ${
                                 active ? "text-white" : "text-indigo-600"
                               }`}
-                            >
-                              
+                            >                           
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -245,7 +243,7 @@ function UpdateSupplierForm (props) {
                   loading={props.updateSuppliersById}
                 >
                    {props.translatedMenuItems[25]}
-                  {/* <FormattedMessage id="app.update" defaultMessage="Update" /> */}
+               {/* Update */}
                 </Button>
               </div>
             </Form>
@@ -254,7 +252,6 @@ function UpdateSupplierForm (props) {
         </Formik>
       </>
     );
-  
 }
 
 const mapStateToProps = ({ auth, shipper,employee,suppliers,shipBy }) => ({

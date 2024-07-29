@@ -31,7 +31,6 @@ function SuppliersDeletedCardList(props) {
     setCurrentShipperId(shipperId);
   }
 
-
   useEffect(() => {
     props.emptysUPPLIERS();
   }, []);
@@ -49,7 +48,8 @@ function SuppliersDeletedCardList(props) {
             <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  <FormattedMessage id="app.email" defaultMessage="Email" /></div>
+            <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> 
+               <FormattedMessage id="app.email" defaultMessage="Email" /></div>
             <div className="w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {props.translatedMenuItems[34]}
 
@@ -83,7 +83,6 @@ function SuppliersDeletedCardList(props) {
                                   to={`supplier/${item.supplierId}`}
                                   title={`${item.shipperName}`}
                                 >{item.name}</Link>
-
                               </div>
                           
                                   {date === currentdate ? (
@@ -93,30 +92,22 @@ function SuppliersDeletedCardList(props) {
                                     </div>
                                   ) : null}
                             </div>
-
-                            
-                            <div className=" flex font-medium flex-col w-[8.12rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
-
-
-
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+             
+                            <div className=" flex  w-[8.12rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                              <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {item.dialCode} {item.phoneNo}
                               </div>
-
                             </div>
                             </div>
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex font-medium flex-col w-[18.26rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                            <div className=" flex  w-[18.26rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
 
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {item.emailId}
                               </div>
-
                             </div>
-
-
-                            <div className=" flex font-medium flex-col w-[17.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div className=" flex  w-[17.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                              <div class=" font-normal text-xs  font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
           ${(item.address && item.address.length && item.address[0].street) || ""}`}
@@ -124,10 +115,9 @@ function SuppliersDeletedCardList(props) {
 
                             </div>
                             </div>
-                            {/* <div class="flex max-sm:justify-between max-sm:w-wk items-center"> */}
-                            <div className=" flex font-medium flex-col w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                            <div className=" flex  w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
 
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].city) ||
@@ -135,29 +125,21 @@ function SuppliersDeletedCardList(props) {
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col w-[8.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div className=" flex  w-[8.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                              <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].postalCode) ||
                                   ""}
                               </div>
-
                             </div>
 
-                            <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className=" flex  w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class=" font-normal text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateSuppliers supplierId={item.supplierId} />
                             </div>
                           </div>
-                            {/* </div> */}
-            
-
                           </div>
-
-
-
-
                         </div>
                       </>
                     )
@@ -165,7 +147,6 @@ function SuppliersDeletedCardList(props) {
                 </> :
                 !props.supplierDeletedList.length &&
                   !props.fetchingSupplierDeletedList ? <NodataFoundPage /> : null}
-   
           </div>
         </div>
       </div>

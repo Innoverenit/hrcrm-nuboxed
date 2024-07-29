@@ -3,7 +3,6 @@ import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const AddSuppliersForm =lazy(()=>import("./AddSuppliersForm"));
 
-
 const AddSuppliersModal = (props) => {
     const { addSuppliersModal, handleSuppliersModal, ...formProps } = props;
     return (

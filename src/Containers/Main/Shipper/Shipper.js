@@ -16,7 +16,6 @@ const ShipperDeleteTable =lazy(()=>import("./ShipperDeleteTable"));
 const ShipperDashboard =lazy(()=>import("./ShipperDashboard"));
 const ShipperCardList =lazy(()=>import("./ShipperCardList"));
 
-
 function  Shipper (props) {
   const [currentData, setCurrntData] = useState("");
 

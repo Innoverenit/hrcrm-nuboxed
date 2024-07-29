@@ -94,14 +94,6 @@ function SupplierSearchedData(props) {
             <div class=" w-[5rem]"></div>
           </div>
           <div class="overflow-x-auto h-[80vh]">
-            {/* <InfiniteScroll
-              dataLength={props.supplierList.length}
-              next={handleLoadMore}
-              hasMore={hasMore}
-              loader={props.fetchingSupplierList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-              height={"80vh"}
-            > */}
-             
                 <>
                   {props.searchSupplierList.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
@@ -109,17 +101,6 @@ function SupplierSearchedData(props) {
                     // const countryCode = item.address[0].countryAlpha2Code;
                     const countryCode = item.address?.[0]?.countryAlpha2Code ?? "None";
                     console.log(countryCode)
-                    // const dataLoc = ` Address : ${
-                    //   item.address && item.address.length && item.address[0].address1
-                    // } 
-                        
-                    //    Country : ${
-                    //      (item.address &&
-                    //        item.address.length &&
-                    //        item.address[0].country) ||
-                    //      ""
-                    //    } 
-                    //      `;
                     return (
                       <>
                         <div
@@ -132,7 +113,6 @@ function SupplierSearchedData(props) {
                                     to={`supplier/${item.supplierId}`}
                                     title={`${item.shipperName}`}
                                   >{item.name}</Link>
-
                                 </div>
 
                                 {date === currentdate ? (
@@ -143,11 +123,7 @@ function SupplierSearchedData(props) {
                                 ) : null}
                               </div>
 
-
                               <div className=" flex font-medium items-center flex-col w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
-
-
-
                                 <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {item.dialCode} {item.phoneNo}
                                 </div>
@@ -160,23 +136,17 @@ function SupplierSearchedData(props) {
                                 <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {item.emailId}
                                 </div>
-
                               </div>
-
-
-                             
                             </div>
+
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className=" flex font-medium flex-col w-[9.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
-
                                 <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 <CountryFlag1 countryCode={countryCode} />
                                  &nbsp;
                                    {countryCode}
                                 </div>
-
                               </div>
-
                             </div>
 
                             <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
@@ -188,17 +158,11 @@ function SupplierSearchedData(props) {
                               </div>
                             </div>
 
-
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
                               <div>
                                 <Tooltip title="Purchase Order">
                                   <StoreIcon
-                                    className="!text-icon cursor-pointer text-[red]"
-                                  // onClick={() => {
-                                  //    props.setEditSuppliers(item);
-                                  //   handleRowData(item);
-                                  //   props.handleSuppliersPriceDrawer(true);
-                                  // }}
+                                    className="!text-icon cursor-pointer text-[red]"                                
                                   />
                                 </Tooltip>
                               </div>
@@ -228,8 +192,6 @@ function SupplierSearchedData(props) {
                                 </Tooltip>
                               </div>
 
-
-
                               <div>
                                 <Tooltip title="Edit">
                                   <BorderColorIcon
@@ -250,21 +212,18 @@ function SupplierSearchedData(props) {
                                     onConfirm={() => props.deleteSupplierData(item.supplierId, props.userId)}
                                   >
                                     <DeleteOutlined
-
                                       className=" !text-icon cursor-pointer text-[red]"
                                     />
                                   </Popconfirm>
                                 </Tooltip>
                               </div>
                             </div>
-
                           </div>
                         </div>
                       </>
                     )
                   })}
                 </> 
-              
           </div>
         </div>
       </div>
