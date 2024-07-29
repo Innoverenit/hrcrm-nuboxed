@@ -5,13 +5,15 @@ import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm, Input,Tooltip } from "antd";
+import { Popconfirm,Switch, Input,Tooltip,Select } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   getWorkFlowCategory,
+  updateGlobalWorkflow,
   //getSectorCount,
   addWorkFlowCategory,
+  addGloalType,
   //removeSectors,
   //updateSectors,
   //searchSectorName,
@@ -20,8 +22,12 @@ import {
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MainWrapper } from "../../../Components/UI/Layout";
 
-
+const { Option } = Select;  
 const WorkFlowC = (props) => {
+  const [touched, setTouched] = useState(false);
+  const [type, setType] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedType, setSelectedType] = useState(null);
   const [currentData, setCurrentData] = useState("");
   const [workFlowCategory, setworkFlowCategory] = useState(props.workFlowCategory);
   const [editingId, setEditingId] = useState(null);
@@ -29,7 +35,7 @@ const WorkFlowC = (props) => {
   const [newCategoryName, setCategoryName] = useState('');
   useEffect(() => {
       props.getWorkFlowCategory(); 
-    //  props.getSectorCount(props.orgId) 
+   
   }, [])
 
   const editRegion = (sectorId, name) => {
@@ -72,7 +78,7 @@ const WorkFlowC = (props) => {
       if (e.target.value.trim() === "") {
       //   setPage(pageNo + 1);
       props.getWorkFlowCategory();
-      //   props.ClearReducerDataOfLoad()
+     
       }
     };
 
@@ -92,6 +98,82 @@ const WorkFlowC = (props) => {
   const cancelEdit = () => {
       setEditingId(null);
   };
+
+
+  const handleSelectChange = (value) => {
+    setSelectedType(value)
+
+    const selectedTypedata = type.find(type => type.workflowCategoryId === value);
+    if (selectedTypedata) {
+       let data={
+      name:selectedTypedata.name,
+      workflowCategoryId:selectedTypedata.workflowCategoryId
+    }
+    props.addGloalType(data)
+      console.log('Selected Department ID:', selectedTypedata.workflowCategoryId);
+      console.log('Selected Department Name:', selectedTypedata.name);
+    }
+
+    // let data={
+    //   name:value
+    // }
+    // props.addGloalType()
+    // console.log('Selected user:', value);
+  };
+
+  const handleSelectFocus = () => {
+    if (!touched) {
+      fetchType();
+      // fetchSector();
+
+      setTouched(true);
+    }
+  };
+
+
+  const fetchType = async () => {
+    setIsLoading(true);
+    try {
+      const apiEndpoint = `${base_url}/workflowCategory/get/All/globalInd`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setType(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const SwitchWithConfirm = ({ checked, onChange }) => (
+    <Popconfirm
+      title={`Are you sure you want to turn ${checked ? 'off' : 'on'} the switch?`}
+      onConfirm={() => onChange(!checked)}
+      okText="Yes"
+      cancelText="No"
+    >
+      <Switch 
+       checkedChildren="Yes"
+                        unCheckedChildren="No"
+      checked={checked} />
+    </Popconfirm>
+  );
+
+  const handleSwitchChange = (key, checked) => {
+    
+    let data={
+      globalInd:checked,
+    }
+    props.updateGlobalWorkflow(data,key)
+    console.log(`Row ${key} switch is now ${checked}`);
+  };
   useEffect(() => {
       
       if (props.workFlowCategory.length > 0) {
@@ -107,25 +189,7 @@ return <div><BundleLoader/></div>;
   return (
       <div>
     <div class=" flex flex-row justify-between">
-    {/* <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
-          <Input
-       placeholder="Search by Name"
-      style={{width:"100%",marginLeft:"0.5rem"}}
-          // suffix={suffix}
-          onPressEnter={handleSearch}  
-          onChange={handleChange}
-          // value={currentData}
-        />
-          </div> */}
-          {/* <div class="w-[18rem]">
-  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"sector"}`}>
-    <div className="circle-icon !text-base cursor-pointer text-[green]">
-      <Tooltip placement="top" title="Download XL">
-        <DownloadIcon />
-      </Tooltip>
-    </div>
-  </a>
-</div> */}
+ 
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -147,6 +211,22 @@ return <div><BundleLoader/></div>;
                    style={{backgroundColor:"tomato",color:"white"}}
                   onClick={handleAddSector}> Add More</button>
               )}
+
+<Select
+        showSearch
+        style={{ width: 200,marginLeft:'20px' }}
+        placeholder="Search or select type"
+        optionFilterProp="children"
+        loading={isLoading}
+        onFocus={handleSelectFocus}
+        onChange={handleSelectChange}
+      >
+        {type.map(sources => (
+          <Option key={sources.workflowCategoryId} value={sources.workflowCategoryId}>
+            {sources.name}
+          </Option>
+        ))}
+      </Select>
           </div>
           </div>
           <div class=" flex flex-col" >
@@ -172,35 +252,16 @@ return <div><BundleLoader/></div>;
                                       </span> : null}</div>
             )}
 
-            {/* Action buttons */}
+           
             <div >
-                {/* Edit button */}
-                {editingId === region.sectorId ? (
-                    <div>
-                        {/* <button onClick={() => handleUpdateSector(region)}>Save</button> */}
-                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
-                    </div>
-                ) : (
-                    // <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.sectorId, region.sectorName)} />
-                    <></>
-                )}
+            {props.primaryOrgType === 'Parent' && (
+                <SwitchWithConfirm
+          checked={region.globalInd}
+          onChange={checked => handleSwitchChange(region.workflowCategoryId, checked)}
+        />
+            )}
 
-                {/* Delete button */}
-                {/* <Popconfirm
-                        title="Do you want to delete?"
-                        okText="Yes"
-                        cancelText="No"
-                        onConfirm={() =>  props.removeSectors(region.sectorId,props.orgId)}
-                      >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
-            
-                 />
-                 </Popconfirm> */}
+               
             </div>
         </div>
         ))}
@@ -216,6 +277,7 @@ const mapStateToProps = ({ sector,auth,settings }) => ({
     addingWorkflowCategory: settings.addingWorkflowCategory,
     addingWorkflowCategoryError: settings.addingWorkflowCategoryError,
   workFlowCategory: settings.workFlowCategory,
+  primaryOrgType:auth.userDetails.primaryOrgType,
   sectorCount:sector.sectorCount,
   orgId: auth.userDetails.organizationId,
   removingSectors: sector.removingSectors,
@@ -224,6 +286,8 @@ const mapStateToProps = ({ sector,auth,settings }) => ({
   fetchingWorkflowCategoryError: settings.fetchingWorkflowCategoryError,
 
   updatingSectors: sector.updatingSectors,
+  token: auth.token,
+  orgId: auth.userDetails.organizationId,
   updatingSectorsError: sector.updatingSectorsError,
 
 });
@@ -233,6 +297,8 @@ const mapDispatchToProps = (dispatch) =>
       //getSectorCount,
       getWorkFlowCategory,
       addWorkFlowCategory,
+      updateGlobalWorkflow,
+      addGloalType
       //removeSectors,
      // updateSectors,
       //searchSectorName,

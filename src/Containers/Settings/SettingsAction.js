@@ -6199,6 +6199,32 @@ export const deleteTaskStageData = (stagesTaskId,liveInd) => (dispatch) => {
 
 
 
+export const updateGlobalWorkflow = (data, workflowCategoryId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_GLOBAL_WORKFLOW_REQUEST });
+  axios
+    .put(`${base_url}/workflowCategory/update/globalInd/${workflowCategoryId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_GLOBAL_WORKFLOW_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_GLOBAL_WORKFLOW_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
 
 
 export const moveRejectToggleTask = (stageTaskId,mandatoryInd) => (dispatch) => {
@@ -6257,5 +6283,42 @@ export const updateProcessTaskStage = (data, stagesTaskId) => (dispatch) => {
         type: types.UPDATE_PROCESS_TASK_STAGE_FAILURE,
         payload: err,
       });
+    });
+};
+
+
+
+
+
+export const addGloalType = (sectors,cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_GLOBAL_TYPE_REQUEST,
+  });
+  axios
+    .post(`${base_url}/workflowCategory`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getSectorCount(orgId));
+     
+    
+      console.log(res);
+      dispatch({
+        type: types.ADD_GLOBAL_TYPE_SUCCESS,
+        payload:res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_GLOBAL_TYPE_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
     });
 };

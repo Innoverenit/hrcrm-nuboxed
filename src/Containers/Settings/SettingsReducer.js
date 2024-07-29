@@ -530,6 +530,10 @@ addingShipperCategoryError: false,
   scheduler: [],
 
 
+  updateGlobalWorkflow:false,
+  updateGlobalWorkflowError:false,
+
+
   fetchingOrgType:false,
   orgTypeData:{},
 
@@ -3346,6 +3350,31 @@ export const settingsReducer = (state = initialState, action) => {
       case types.GET_DEPARTMENTWISE_USER_FAILURE:
         return { ...state, fetchingDepartmentWiseUser: false, fetchingDepartmentWiseUserError: true };
 
+
+
+        case types.UPDATE_GLOBAL_WORKFLOW_REQUEST:
+          return { ...state, updateGlobalWorkflow: true };
+        case types.UPDATE_GLOBAL_WORKFLOW_SUCCESS:
+          return {
+            ...state,
+            updateGlobalWorkflow: false,
+            // updatePartnerModal: false,
+            workFlowCategory: state.workFlowCategory.map((item) => {
+              if (item.workflowCategoryId === action.payload.workflowCategoryId) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
+          };
+        case types.UPDATE_GLOBAL_WORKFLOW_FAILURE:
+          return {
+            ...state,
+            updateGlobalWorkflow: false,
+            updateGlobalWorkflowError: true,
+          };
+    
+
         case types.ADD_NOTIFICATION_CONFIG_REQUEST:
           return { ...state, addingNotificationConfig: true };
         case types.ADD_NOTIFICATION_CONFIG_SUCCESS:
@@ -4501,6 +4530,29 @@ processTaskedStage.map((item) => {
       addingSupplyCategory: false,
       addingSupplyCategoryError: true,
     };
+
+
+
+
+    case types.ADD_GLOBAL_TYPE_REQUEST:
+return { ...state, addingGlobalType: true };
+case types.ADD_GLOBAL_TYPE_SUCCESS:
+return {
+...state,
+addingGlobalType: false,
+workFlowCategory:[action.payload,...state.workFlowCategory]
+
+
+};
+
+
+
+case types.ADD_GLOBAL_TYPE_FAILURE:
+return {
+...state,
+addingGlobalType: false,
+addingGlobalTypeError: true,
+};
 
     case types.HANDLE_CLAER_REDUCER_DATA_SUPPLIERCATEGORY:
       return { ...state, 
