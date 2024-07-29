@@ -51,10 +51,10 @@ class MileagePendingStatusCard extends React.Component {
                                 style={{
                                     borderBottom: "3px dotted #515050"
                                 }}>                                    
-                                <div className=" flex font-medium flex-col w-72 mb-1 ">
+                                <div className=" flex w-72 mb-1 ">
                                 
                                         <Tooltip >
-                                            <div class=" text-sm  font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                             Voucher ID
                                             </div>
                                             <div class=" text-xs text-blue-500  font-poppins cursor-pointer">
@@ -65,12 +65,9 @@ class MileagePendingStatusCard extends React.Component {
          </div>
                                             </div>
                                         </Tooltip>
-                                        <div className=" flex font-medium flex-col w-max ">
+                                        <div className=" flex  w-max ">
                                     <div class=" text-xs  font-poppins"></div>
-                                    <div class=" text-xs  font-poppins">
-         
-            
-              
+                                    <div class=" text-xs  font-poppins">                          
                             <div
                   style={{
                     border: "2px solid #e1d16c",
@@ -87,25 +84,20 @@ class MileagePendingStatusCard extends React.Component {
                                     </div>
                                 </div>
 
-                                <div className=" flex font-medium flex-col  w-52 ">
-                           
-                                    <div class=" text-sm  font-poppins"> Voucher Date </div>
-                                    <div class=" text-xs  font-poppins">
-                                                                       
+                                <div className=" flex  w-52 ">                         
+                                    <div class=" text-xs  font-poppins"> Voucher Date </div>
+                                    <div class=" text-xs  font-poppins">                                                                    
                                     {dayjs(item.voucherDate).format("MMM Do YY")}
-
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-36 ">
-                                  
-                                    <div class=" text-sm  font-poppins">Amount</div>
+
+                                <div className=" flex  w-36 ">                                 
+                                    <div class=" text-xs  font-poppins">Amount</div>
                                     <div class="  text-xs  font-poppins">
                                         € {item.amount}
                                     </div>
-                                </div>
-                                             
-                                <div class="flex flex-col w-[4%]">
-                
+                                </div>                                       
+                                <div>
                         <div >
                         <div >
                            {item.status === "Pending" ? (
@@ -128,14 +120,6 @@ class MileagePendingStatusCard extends React.Component {
               />
            </StyledPopconfirm>
             ):null}
-             {/* {item.status==="Rejected" && (
-            <Button type="primary"
-            onClick={()=>{
-              // this.props.reapply();
-            }}>
-            Reapply
-            </Button>
-          )} */}
               </div>
                     </div>
                     </div>                        

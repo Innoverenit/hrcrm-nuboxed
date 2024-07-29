@@ -51,7 +51,7 @@ class MileageRejectedStatusCard extends React.Component {
                                 <div className=" flex font-medium flex-col w-72 mb-1 ">
                               
                                         <Tooltip >
-                                            <div class=" text-sm  font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                             Voucher ID
                                             </div>
                                             <div class=" text-xs text-blue-500  font-poppins cursor-pointer">
@@ -61,13 +61,10 @@ class MileageRejectedStatusCard extends React.Component {
          {item.voucherId}
          </div>
                                             </div>
-
                                         </Tooltip>
                                         <div className=" flex font-medium flex-col w-max ">
                                     <div class=" text-xs  font-poppins"></div>
-
                                     <div class=" text-xs  font-poppins">      
-
                                     <div
                 style={{
                   border: "2px solid red",
@@ -83,12 +80,10 @@ class MileageRejectedStatusCard extends React.Component {
                         </div>
                                 </div>
 
-                                <div className=" flex font-medium flex-col  w-52 ml-1 ">
-                           
-                                    <div class=" text-sm  font-poppins"> Voucher Date </div>
+                                <div className=" flex font-medium flex-col  w-52 ml-1 ">                    
+                                    <div class=" text-xs  font-poppins"> Voucher Date </div>
                                     <div class=" text-xs  font-poppins">                                                                       
                                     {dayjs(item.voucherDate).format("MMM Do YY")}
-
                                     </div>
                                     <div class="flex flex-col w-[4%]">
                 
@@ -107,9 +102,8 @@ class MileageRejectedStatusCard extends React.Component {
             </div>
             </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-36 ">
-                                  
-                                    <div class=" text-sm  font-poppins">Amount</div>
+                                <div className=" flex font-medium flex-col w-36 ">                               
+                                    <div class=" text-xs font-poppins">Amount</div>
                                     <div class=" text-xs  font-poppins">
                                         € {item.amount}
                                     </div>

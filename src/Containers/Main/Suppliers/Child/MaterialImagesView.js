@@ -1,8 +1,6 @@
 
 
 import ImageGallery from 'react-image-gallery';
-import React, { Component, Suspense, lazy } from "react";
-import { connect } from "react-redux";
 import '../../../../node_modules/react-image-gallery/styles/css/image-gallery.css';
 
 const images = [
@@ -27,8 +25,9 @@ class MaterialImagesView extends React.Component {
         items={images}
         // items={this.props.images}
         
-        width={400}
-        height={800} />;
+        width={"1.8rem"}
+        height={"1.8rem"}
+        ></ImageGallery>
     }
 }
 

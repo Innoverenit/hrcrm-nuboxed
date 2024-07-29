@@ -7,12 +7,11 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import {  DeleteOutlined } from "@ant-design/icons";
 import LocationCityIcon from '@mui/icons-material/LocationCity';
-import dayjs from "dayjs";
 import ArticleIcon from '@mui/icons-material/Article';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component"; 
 import { Tooltip, Select, } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -286,8 +285,7 @@ function InvestorCardList(props) {
                                         </div>
                                    <div class="w-[4%]">
 
-                                   </div>
-                                   
+                                   </div>                 
                                         <Tooltip>
                                         <div class=" flex max-sm:w-full  flex-row md:flex-col">                                         
                                             {/* Name */}
@@ -370,7 +368,7 @@ function InvestorCardList(props) {
                                 <div className=" flex  items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Deals */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                               
-                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
+                                    {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
                                 <div className=" flex  items-center w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

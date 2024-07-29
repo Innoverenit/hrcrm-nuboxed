@@ -55,7 +55,6 @@ function UpdateMileageForm(props) {
           return row;
         }
       });
-  
   }
   function handleCurrencyChange(currency, id) {
     console.log(id);
@@ -94,7 +93,6 @@ function UpdateMileageForm(props) {
           return row;
         }
       });
- 
   }
   function handleChange(id, billType) {
     setRows((value) => {
@@ -105,8 +103,7 @@ function UpdateMileageForm(props) {
         } else {
           return row;
         }
-      });
-
+    });
   }
   function handleChangetoLocation(e) {
     e.persist();
@@ -119,7 +116,6 @@ function UpdateMileageForm(props) {
           return row;
         }
       });
-
   }
 
   function handleChangedistances(e) {
@@ -145,7 +141,6 @@ function UpdateMileageForm(props) {
           return row;
         }
       });
-  
   }
 
   function handleChangemileageRate(e) {
@@ -196,27 +191,8 @@ function UpdateMileageForm(props) {
   function handleSubmit() {
     // validateYupSchema={MileageSchema}
     console.log(row);
-    // console.log(row["attribute"]);
-    // if (row) {
-    //   row.map((item) => {
-    //     if (
-    //       !item.date &&
-    //       !item.clientName &&
-    //       !item.fromLocation &&
-    //       !item.toLocation &&
-    //       !item.distances &&
-    //       !item.remark &&
-    //       !item.mileageRate &&
-    //       !item.currency
-    //     ) {
-    //       alert("All Fields Required");
-    //     } else {
           props.updateMileage(row, handleCallBack);
-        // }
-        
-      // });
-    // } else {
-    // }
+
   }
   const { updatingMileage } = props;
   return (
@@ -228,10 +204,7 @@ function UpdateMileageForm(props) {
         <th>To</th>
         <th>Distance</th>
         <th>Unit</th>
-        <th>Remarks</th>
-
-        {/* <th>Rate</th>
-        <th>Currency</th> */}
+        <th>Remarks</th> 
             <tr>
               <td style={{ width: "14%" }}>
                 <DatePicker
@@ -283,10 +256,8 @@ function UpdateMileageForm(props) {
                   // onChange={(value) => handleChange(`${item.id}select`, value)}
                   isRequired
                    disabled
-                   value="km"
-                  
-                >
-                  
+                   value="km"               
+                >               
                   {/* <Option value="Km" disabled>Km</Option> */}
                   {/* <Option value="Mile">Mile</Option> */}
                 </Select>
@@ -298,46 +269,8 @@ function UpdateMileageForm(props) {
                   value={`${row.remark}`}
                   onChange={handleChangeremark}
                 />
-              </td>
-              {/* <td>
-                <TextInput
-                  name={`${item.id}mileageRate`}
-                  value={`${item.mileageRate}`}
-                  onChange={handleChangemileageRate}
-                  style={{ width: "50%" }}
-                />
-              </td> */}
-              {/* <td>
-                <Select
-                  style={{ width: 120 }}
-                  onSelect={(value) =>
-                    handleCurrencyChange(value, `${item.id}curr`)
-                  }
-                >
-                  {props.currencies.map((item) => {
-                    return (
-                      <Option value={item.currencyName}>
-                        {item.currencyName}
-                      </Option>
-                    );
-                  })}
-                </Select>
-              </td> */}
-
-              {/* {row.length > 1 && (
-                <DeleteOutlined
-                  style={{
-                    color: "red",
-                    fontSize: "1.125em",
-                    marginLeft: "0.3125em",
-                  }}
-                  type="delete"
-                  onClick={() => handleDelete(item)}
-                />
-              )} */}
+              </td>          
             </tr>
-          {/* ); */}
-        {/* })} */}
       </table>
   <div class=" mt-3">
       <Button
@@ -349,15 +282,6 @@ function UpdateMileageForm(props) {
         Submit
       </Button>
       </div>
-      {/* &nbsp; &nbsp; &nbsp;
-      <Button
-        style={{ float: "right", marginRight: "1%" }}
-        type="primary"
-        onClick={handleAddRowClick}
-        Loading={addingMileage}
-      >
-        Add more
-      </Button> */}
     </div>
   );
 }

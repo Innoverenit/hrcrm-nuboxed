@@ -30,8 +30,7 @@ const MileageActionLeft = (props) => {
           </span>
         </Badge>
       </Tooltip>
-
-      
+  
       <Tooltip title="Category">
         <Badge
           size="small"
@@ -67,7 +66,6 @@ const MileageActionLeft = (props) => {
             >
               <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
                 <FormattedMessage id="app.all" defaultMessage="ALL" />
-
               </Avatar>
             </span>
           </Badge>

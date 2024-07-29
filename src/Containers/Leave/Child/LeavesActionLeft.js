@@ -34,21 +34,6 @@ const LeavesActionLeft = (props) => {
 
       </Tooltip>
 
-      {/* <Tooltip
-        title={<FormattedMessage id="app.tableView" defaultMessage="Table View" />}
-      >  <span
-            class=" mr-2 text-sm cursor-pointer"
-            onClick={() => props.setLeavesViewType("table")}
-            style={{
-              color: props.viewType === "table" && "#1890ff",
-            }}
-          >
-              <GroupsIcon />
-          </span>
-      
-      </Tooltip> */}
-      
-
       <Tooltip
         title="Category"
       >
@@ -74,7 +59,6 @@ const LeavesActionLeft = (props) => {
       <Tooltip
         title="Gantt View"
       >
-
         <span
           onClick={() => props.setLeavesViewType("grant")}
           style={{
@@ -90,7 +74,6 @@ const LeavesActionLeft = (props) => {
             />
           </Avatar>
         </span>
-
       </Tooltip>
 
       {props.user.leaveFullListInd === true && (
@@ -110,7 +93,6 @@ const LeavesActionLeft = (props) => {
 
             </Avatar>
           </span>
-
         </Tooltip>
       )}
     </div>

@@ -12,8 +12,6 @@ import { DeleteOutlined } from "@ant-design/icons";
 import MileageVoucherIdDrawer from "./MileageVoucherIdDrawer";
 const MileageTable2=lazy(()=>import("./MileageTable2"));
 
-
-
 class MileageTable extends React.Component {
   state = {
     expand: false,
@@ -43,7 +41,6 @@ class MileageTable extends React.Component {
      
       {
         title: "Voucher ID",
-
         dataIndex: "voucherId",
         render: (name, item, i) => {
           return (
@@ -185,11 +182,7 @@ class MileageTable extends React.Component {
           scroll={{ y: tableHeight }}
           //  style={{height:"20%"}}
           pagination={false}
-        />
-        {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {this.state.expand && (
-          <MileageTable2 voucherId={this.state.voucherId} /> 
-        )}*/}
+        />     
         <MileageVoucherIdDrawer 
         voucherId={this.state.voucherId}
         mileageVoucherIdDrawer={this.props.mileageVoucherIdDrawer}

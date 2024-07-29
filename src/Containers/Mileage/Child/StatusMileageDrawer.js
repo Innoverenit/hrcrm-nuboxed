@@ -3,8 +3,6 @@ import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const StatusMileageForm = lazy(() => import("./StatusMileageForm"));
 
-
-
 const StatusMileageDrawer = (props) => {
   const { updateStatusMileageModal, handleStatusMileageModal,voucherId, ...formProps } = props;
   console.log("voucherId",voucherId);
@@ -12,10 +10,7 @@ const StatusMileageDrawer = (props) => {
     <>
       <StyledDrawer
   title={`Status - ${voucherId}`}
-        // title={<FormattedMessage
-        //   id="app.applyforleaves"
-        //   defaultMessage="Status "
-        // />}
+      //  status
         width="60%"
         destroyOnClose
         closable
