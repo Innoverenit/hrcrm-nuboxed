@@ -56,24 +56,21 @@ const LeadsTeamHotcard = (props) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-    'Hot', // 0
-'Name', // 1
-'Phone', // 2
-'Country', // 3
-'Company', // 4
-'Sector', // 5
-'Source', // 6
-'LOB', // 7
-'Assigned', // 8
-'By', // 9
-'Owner', // 10
-'Qualify', // 11
-'Warm', //12
-'Cold', //13
-
-
-
-        ];
+              'Hot', // 0
+          'Name', // 1
+          'Phone', // 2
+          'Country', // 3
+          'Company', // 4
+          'Sector', // 5
+          'Source', // 6
+          'LOB', // 7
+          'Assigned', // 8
+          'By', // 9
+          'Owner', // 10
+          'Qualify', // 11
+          'Warm', //12
+          'Cold', //13
+            ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -156,14 +153,14 @@ const LeadsTeamHotcard = (props) => {
     />
   ) : (
     <>
-     <div className=' flex  sticky  z-auto'>
-     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-     <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
-      <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-white bg-red-600  justify-center "> {translatedMenuItems[0]}</div>
+        <div className=' flex  sticky  z-auto'>
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className=" flex  w-[99%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-white bg-red-600  justify-center "> {translatedMenuItems[0]}</div>
         <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
         <div className=" w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
         <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
-        <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[3]}</div>
+        <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> </div>
         <div className=" w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
         <div className=" w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
         <div className= " w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
@@ -181,7 +178,8 @@ const LeadsTeamHotcard = (props) => {
         hasMore={hasMore}
         loader={fetchingTeamLeadsHot?<div class="flex justify-center">Loading...</div>:null}
         height={"22vh"}
-        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+        style={{ scrollbarWidth: "thin"}}
+        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
        { !fetchingTeamLeadsHot && teamLeadsHot.length === 0 ?<NodataFoundPage />:teamLeadsHot.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
@@ -190,26 +188,7 @@ const LeadsTeamHotcard = (props) => {
           const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
-          // const dataLoc = ` Address : ${
-          //   item.address && item.address.length && item.address[0].address1
-          // } 
-          //      Street : ${
-          //        item.address && item.address.length && item.address[0].street
-          //      }   
-          //     State : ${
-          //       item.address && item.address.length && item.address[0].state
-          //     }
-          //    Country : ${
-          //      (item.address &&
-          //        item.address.length &&
-          //        item.address[0].country) ||
-          //      ""
-          //    } 
-          //      PostalCode : ${
-          //        item.address &&
-          //        item.address.length &&
-          //        item.address[0].postalCode
-          //      } `;
+        
           return (
             <div>
               <div
@@ -278,7 +257,7 @@ const LeadsTeamHotcard = (props) => {
                       </ButtonGroup>
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col w-[9rem] max-xl:w-[9.5rem] max-lg:w-[5rem]   max-sm:w-auto">
+                  <div className=" flex w-[9rem] max-xl:w-[9.5rem] max-lg:w-[5rem]   max-sm:w-auto">
                     <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                       <div>
                        
@@ -296,7 +275,7 @@ const LeadsTeamHotcard = (props) => {
                       <div class="max-sm:w-full md:flex items-center">
                         <Tooltip>
                           <div class="max-sm:w-full justify-between flex md:flex-col">
-                            <div class="text-sm flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                            <div class="text-xs flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                               {item.name}
                               &nbsp;&nbsp;
                               {date === currentdate ? (
@@ -316,7 +295,7 @@ const LeadsTeamHotcard = (props) => {
                   
                 </div>
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                  <div className=" flex font-medium flex-col w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
+                  <div className=" flex  w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
          
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.countryDialCode && item.phoneNumber
@@ -325,7 +304,7 @@ const LeadsTeamHotcard = (props) => {
                  
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col w-[3.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
+                  <div className=" flex w-[3.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                      
                        <CountryFlag1 countryCode={countryCode} />
@@ -334,7 +313,7 @@ const LeadsTeamHotcard = (props) => {
                      
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col  w-[10rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
+                  <div className=" flex  w-[10rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
                     <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                       {item.companyName || "None"}
                     </div>
@@ -359,19 +338,19 @@ const LeadsTeamHotcard = (props) => {
                     ) : null}
                   </div>
 
-                  <div className=" flex font-medium flex-col  w-[5.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
+                  <div className=" flex w-[5.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
            
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.sector}
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col  w-[6rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
+                  <div className=" flex  w-[6rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
            
            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
              {item.source}
            </div>
          </div>
-         <div className=" flex font-medium flex-col  w-[5.5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
+         <div className=" flex w-[5.5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
            
            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
              {item.lob}
@@ -379,7 +358,7 @@ const LeadsTeamHotcard = (props) => {
          </div>
                 </div>
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                  <div className=" flex font-medium flex-col w-[2.02rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
+                  <div className=" flex w-[2.02rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       <div>
                       {item.assignedTo === null ? (
@@ -402,42 +381,32 @@ const LeadsTeamHotcard = (props) => {
                       </div>
                     </div>
                   </div>
-                     <div className=" flex font-medium flex-col w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                     <div className=" flex w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                       {item.assignedBy && (
                     <div>
-                    {/* <Tooltip title={item.assignedBy}> */}
                 <div class="max-sm:flex justify-end">
-                {/* <Tooltip title={item.assignedBy}> */}
               <MultiAvatar
-              
                 primaryTitle={item.assignedBy}
-                // imageId={item.ownerImageId}
                 imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
               />
-            {/* </Tooltip> */}
             </div>
-          {/* </Tooltip> */}
                     </div>
                     )}
                   </div>
-                  <div className=" flex font-medium flex-col w-[3.11rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                  <div className=" flex  w-[3.11rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     <div>
-                    {/* <Tooltip title={item.ownerName}> */}
                 <div class="max-sm:flex justify-end">
-                {/* <Tooltip title={item.ownerName}> */}
               <MultiAvatar
                 primaryTitle={item.ownerName}
                 imageId={item.ownerImageId}
                 imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
               />
-            {/* </Tooltip> */}
             </div>
-          {/* </Tooltip> */}
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                  <div className=" flex w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins"></div>
                     <div>
     {item.companyName ? (
@@ -494,17 +463,9 @@ const LeadsTeamHotcard = (props) => {
                         />
                       </Tooltip>
                     </div>
-                 
-
-                 
-                    
-                    
-                 
-                 
-                    <div >
+                   <div >
                       <Tooltip
                         overlayStyle={{ maxWidth: "300px" }}
-                       // title={dataLoc}
                       >
                         <div class="cursor-pointer"
                          
@@ -561,7 +522,7 @@ const LeadsTeamHotcard = (props) => {
                
               </div>
             </div>
-            // </div>
+          
           );
         })}
          </InfiniteScroll>

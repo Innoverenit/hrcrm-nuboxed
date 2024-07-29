@@ -15,7 +15,7 @@ import { OnlyWrapCard } from '../../../Components/UI/Layout';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal";
 import { Tooltip, Input, Button, Avatar,FloatButton } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledPopconfirm, StyledTable } from "../../../Components/UI/Antd";
 import { withRouter } from "react-router-dom";
@@ -153,15 +153,16 @@ const TaskApproveTable = (props) => {
 <InfiniteScroll
         dataLength={approvalTaskTable.length}
         next={handleLoadMore}
-      hasMore={hasMore}
+        hasMore={hasMore}
         loader={fetchingApproveTaskTable?<div class="flex justify-center" >Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
           {approvalTaskTable.map((item) => { 
-        const currentDate = moment();
-        const completionDate = moment(item.completionDate);
-        const endDate = moment(item.endDate);
+        const currentDate = dayjs();
+        const completionDate = dayjs(item.completionDate);
+        const endDate = dayjs(item.endDate);
         const difference = currentDate.diff(endDate, 'days');
         const incompleteDeviationDate = currentDate.diff(endDate, 'days');
         const completeDeviation = completionDate.diff(endDate, 'days');
@@ -171,21 +172,21 @@ const TaskApproveTable = (props) => {
                         <div>
                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[13.3rem] max-xl:w-[10.3rem] max-lg:w-[10.3rem] max-sm:w-auto max-sm:flex-row justify-between ">
+                                <div className=" flex  w-[13.3rem] max-xl:w-[10.3rem] max-lg:w-[10.3rem] max-sm:w-auto max-sm:flex-row justify-between ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
                       <div
-                      class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[red]"
+                      class="rounded-[50%] h-6 w-6 bg-[red]"
                       ></div>
                     )}
                     {item.priority === "Medium" && (
                       <div
-                      class="rounded-[50%] h-[2rem] w-[2rem] bg-[orange]"
+                      class="rounded-[50%] h-6 w-6 bg-[orange]"
                       ></div>
                     )}
                     {item.priority === "Low" && (
                       <div
-                      class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]"
+                      class="rounded-[50%] h-6 w-6 bg-[teal]"
                       ></div>
                     )}
                     <div class=" w-1"></div>
@@ -205,7 +206,7 @@ const TaskApproveTable = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium  items-center  w-[15.3rem] max-xl:w-[8.3rem] max-lg:w-[6.3rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex   items-center  w-[15.3rem] max-xl:w-[8.3rem] max-lg:w-[6.3rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm   font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
@@ -216,7 +217,7 @@ const TaskApproveTable = (props) => {
                 }}
                 className="cursor-pointer text-[#042E8A]"        
                >
-                 {`${item.taskName.substring(0, 20)} `} &nbsp;
+                 {`${item.taskName.substring(0, 20)} `} 
 
 
                </span>
@@ -227,7 +228,7 @@ const TaskApproveTable = (props) => {
                    
                         
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col  w-[5.35rem] max-xl:w-[4.35rem] max-lg:w-[3.35rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex  w-[5.35rem] max-xl:w-[4.35rem] max-lg:w-[3.35rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-poppins max-sm:hidden">Submitted By</div> */}
                                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <MultiAvatar
@@ -238,7 +239,7 @@ const TaskApproveTable = (props) => {
                 />
                                     </div>
                                 </div>
-                                <div className="flex font-medium flex-col w-[4.23rem] max-xl:w-[4.23rem] max-lg:w-[3.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex w-[4.23rem] max-xl:w-[4.23rem] max-lg:w-[3.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
                        
                      <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -248,42 +249,14 @@ const TaskApproveTable = (props) => {
                      
                    </div>
                              </div>  
-                                {/* <div className=" flex font-medium flex-col w-32 ">
-                                    <div class=" text-sm  font-poppins">Team</div>
-
-                                    <div class=" text-sm  font-poppins">
-                                    <Avatar.Group
-  maxCount={2}
-  maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
->
-  {item.owner &&
-    item.owner.map((candidate, i) => {
-      if (candidate && candidate.fullName) {
-        const data1 = candidate.fullName.slice(0, 2);
-        console.log("datas", data1);
-        return (
-          <Tooltip title={candidate.fullName} key={i}>
-            <Avatar style={{ backgroundColor: "#94b3e4" }}>
-              {data1}
-            </Avatar>
-          </Tooltip>
-        );
-      } else {
-        return null; 
-      }
-    })}
-</Avatar.Group>
-                                    </div>
-                                </div> */}
                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                     <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[6.23rem]  max-sm:flex-row  max-sm:w-auto ">
-                     {item.customerName ? (
-  <>{item.customerName}</>
-) : null}
-&nbsp;&nbsp;
-{item.contact ? (
-  <>{item.contact}</>
-) : null}        
+                     <div className="flex  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[6.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                                  {item.customerName ? (
+                                      <>{item.customerName}</>
+                                    ) : null} 
+                                    {item.contact ? (
+                                      <>{item.contact}</>
+                                    ) : null}        
 
                    </div>
 
@@ -293,10 +266,10 @@ const TaskApproveTable = (props) => {
   
                    
                    
-                                <div className=" flex font-medium flex-col  w-[5.9rem] ml-3 max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex  w-[5.9rem] ml-3 max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned On</div> */}
                                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
-                                    <span>{` ${moment(item.assignedOn).format("ll")}`}</span>
+                                    <span>{` ${dayjs(item.assignedOn).format("ll")}`}</span>
                                     </div>
                                 </div>
                       
@@ -380,7 +353,7 @@ const TaskApproveTable = (props) => {
                   handleTaskNotesDrawerModal(true);
                   handleSetTaskNameId(item);
                 }}
-                className="!text-icon cursor-pointer text-[#green]"
+                className="!text-icon cursor-pointer text-green-600 "
               />
            </Tooltip>
   
@@ -533,264 +506,3 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
         }
       `;
 
-
-//       <div class="flex flex-col md:w-40 justify-center  max-sm:flex-row w-full">
-//       <div class=" w-36">
-//       {item.filterTaskInd === true && item.approvedInd === "Pending"  ? (
-// <>
-// <div>
-// <Button
-// onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-// style={{ backgroundColor: "teal", color: "white" }}
-// >
-// <FormattedMessage id="app.approve" defaultMessage="Approve" />
-// </Button>
-// <Button
-// style={{
-// backgroundColor: "rgb(233, 79, 79)",
-// color: "white",
-// }}
-// onClick={() => rejectTaskByTaskId(item.taskId)}
-// >
-// <FormattedMessage id="app.reject" defaultMessage="Reject" />
-// </Button>
-// </div>
-// </>
-// ) : (
-// <>
-// {  item.filterTaskInd === true && item.approvedInd === "Approved" ? (
-// <CheckCircleOutlined
-// type="check-circle"
-// theme="twoTone"
-// twoToneColor="#52c41a"
-// size={140}
-// style={{ fontSize: "1rem" }}
-// />
-// ) : item.filterTaskInd === true && item.approvedInd === "Rejected" ? (
-// <CloseCircleOutlined
-// type="close-circle"
-// theme="twoTone"
-// twoToneColor="red"
-// size={140}
-// style={{ fontSize: "1rem" }}
-// />
-// ) : (
-// <></>
-// )}
-// </>
-// )}
-// </div>
-// </div>
-
-
-
-    //   {approvalTaskTable.map((item) => { 
-        
-    //     console.log("item",item.taskId)
-    //                return (
-    //                    <div>
-    //                        <div className="flex justify-between mt-4 max-sm:flex-col"
-    //                            style={{
-    //                                borderBottom: "3px dotted #515050"
-    //                            }}>
-    //                                 <div class="flex">
-    //                            <div className=" flex font-medium flex-col md:w-52 max-sm:flex-row w-full justify-between  ">
-    // <div className="flex max-sm:w-full"> 
-    // {item.priority === "High" && (
-    //                  <div
-    //                    style={{
-    //                      borderRadius: "50%",
-    //                      height: "2.1875em",
-    //                      width: "2.1875em",
-    //                      backgroundColor: "red",
-    //                    }}
-    //                  ></div>
-    //                )}
-    //                {item.priority === "Medium" && (
-    //                  <div
-    //                    style={{
-    //                      borderRadius: "50%",
-    //                      height: "2.1875em",
-    //                      width: "2.1875em",
-    //                      backgroundColor: "orange",
-    //                    }}
-    //                  ></div>
-    //                )}
-    //                {item.priority === "Low" && (
-    //                  <div
-    //                    style={{
-    //                      borderRadius: "50%",
-    //                      height: "2.1875em",
-    //                      width: "2.1875em",
-    //                      backgroundColor: "teal",
-    //                    }}
-    //                  ></div>
-    //                )}
-    //                <div class=" w-1"></div>
-    //      <div class="max-sm:w-full">
-    //                                    <Tooltip>
-    //                                    <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
-    //                                        <div class="text-[0.875rem]  font-poppins max-sm:hidden">
-    //                                        Type
-    //                                        </div>
-    //                                        <div class="text-[sm]  font-poppins cursor-pointer">                                       
-    //                                        {item.taskType}
-      
-    //                                        </div>
-    //                                    </div>
-    //                                    </Tooltip>
-    //                                    </div>
-    //                                    </div>
-    //                            </div>
-    
-    //                            <div className=" flex font-medium flex-col  md:w-36 max-sm:flex-row w-full justify-between ">
-    //                                <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Name </div>
-    //                                <div class=" text-[sm]  font-poppins">   
-    //                                <span   
-    //            onClick={() => {
-    //              // props.handleTaskopenModal(true);               
-    //              handleSetCurrentProcessName(item)
-    //              // this.props.setCurrentOpportunityRecruitMentData(item);
-    //            }}
-    //            style={{
-    //              cursor: "pointer",
-    //              color: "#042E8A",
-    //            }}          
-    //           >
-    
-    //             {`${item.taskName} `} &nbsp;
-    
-    
-    //           </span>
-    //                                </div>
-    //                            </div>
-    //                            {/* <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-    //                                <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Customer</div>
-    //                                <div class="text-[sm]  font-poppins">
-    //                                {item.customerName === null ? (
-    //          ""
-    //        ) : (
-    //                                <MultiAvatar
-    //              primaryTitle={item.customerName}
-    //              imgWidth={"1.8rem"}
-    //              imgHeight={"1.8rem"}
-    //            />
-    //            )}
-    //                                </div>
-    //                            </div> */}
-    //                            </div>
-    //                            <div class="flex">
-    //                            <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-    //                                <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Submitted By</div>
-    //                                <div class="text-[sm]  font-poppins">
-    //                                <MultiAvatar
-    //              primaryTitle={item.submittedBy}
-    //              imgWidth={"1.8rem"}
-    //              imgHeight={"1.8rem"}
-    //            />
-    //                                </div>
-    //                            </div>
-    //                            {/* <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-    //                              <div class="text-[0.875rem]  font-poppins">Assigned</div>
-    //                              <div class="text-[sm]  font-poppins">
-    //                              {item.assignedToName === null ? (
-    //          ""
-    //        ) : (
-    //          <MultiAvatar
-    //            primaryTitle={item.assignedToName}
-    //            imgWidth={"1.8em"}
-    //            imgHeight={"1.8em"}
-    //          />
-    //        )}
-    //                              </div>
-    //                          </div> */}
-    //                          <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-    //                              <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned On</div>
-    //                              <div class="text-[sm]  font-poppins">
-    //                              <span>{` ${moment(item.assignedOn).format("ll")}`}</span>
-    //                              </div>
-    //                          </div>
-    //                          </div>
-    //                          <div class="flex">
-    //                          <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
-                             
-    //                              <div class="text-[sm]  font-poppins">
-    //                              <span>
-    //        {item.filterTaskInd === true && item.approvedInd === "Pending"  ? (
-    //          <>
-    //            <div>
-    //              <Button
-    //                onClick={() => approveTaskByTaskId(item.taskId)}
-    //                style={{ backgroundColor: "teal", color: "white" }}
-    //              >
-    //                {/* Approve */}
-    //                <FormattedMessage
-    //                  id="app.approve"
-    //                  defaultMessage="Approve"
-    //                />
-    //              </Button>
-    //              <Button
-    //                style={{
-    //                  backgroundColor: "rgb(233, 79, 79)",
-    //                  color: "white",
-    //                }}
-    //                onClick={() => rejectTaskByTaskId(item.taskId)}
-    //              >
-    //                {/* Reject */}
-    //                <FormattedMessage
-    //                  id="app.reject"
-    //                  defaultMessage="Reject"
-    //                />
-    //              </Button>
-    //            </div>
-    //          </>
-    //        ) :  (
-    //          <>
-    //            {  item.filterTaskInd === true && item.approvedInd === "Approved" ? (
-    //              <CheckCircleOutlined
-    //                type="check-circle"
-    //                theme="twoTone"
-    //                twoToneColor="#52c41a"
-    //                size={140}
-    //                style={{ fontSize: "1rem" }}
-    //              />
-    //            ) : item.filterTaskInd === true && item.approvedInd === "Rejected" ? (
-    //              <CloseCircleOutlined
-    //                type="close-circle"
-    //                theme="twoTone"
-    //                twoToneColor="red"
-    //                size={140}
-    //                style={{ fontSize: "1rem" }}
-    //              />
-    //            ) : (
-    //              <></>
-    //            )}
-    //          </>
-    //        )}
-    //      </span>
-    //                              </div>
-    //                          </div>
-    
-    
-              
-    //                <div class="flex flex-col w-[2%]">
-    //   <div>
-    //   <NoteAltIcon
-    //            onClick={() => {
-    //              handleTaskNotesDrawerModal(true);
-    //              handleSetTaskNameId(item);
-    //            }}
-    //            style={{ color: "green", cursor: "pointer", fontSize: "0.8rem" }}
-    //          />
-    //   </div>
-      
-         
-       
-    //                  </div>    
-    //                  </div>
-    //                        </div>
-    //                    </div>
-    
-    
-    //                )
-    //            })}

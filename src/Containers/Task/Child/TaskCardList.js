@@ -257,9 +257,10 @@ const TaskCardList = (props) => {
       <InfiniteScroll
         dataLength={highTaskList.length}
         next={handleLoadMore}
-      hasMore={hasMore}
+        hasMore={hasMore}
         loader={fetchingHighTaskList?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
+        style={{ scrollbarWidth:"thin"}}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {highTaskList.map((item) => { 
@@ -275,17 +276,17 @@ const TaskCardList = (props) => {
                         <div>
                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex   w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
-                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[red]"></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[orange]" ></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[teal]" ></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
                     <div class=" w-2"></div>
           <div class=" flex w-[8rem] max-sm:w-full">
@@ -304,7 +305,7 @@ const TaskCardList = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium justify-center flex-col  w-[5.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex justify-center  w-[5.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
@@ -317,7 +318,7 @@ const TaskCardList = (props) => {
                           
                >
 
-                 {`${item.taskName} `} &nbsp;
+                 {`${item.taskName} `} 
 
 
                </span>
@@ -325,13 +326,13 @@ const TaskCardList = (props) => {
                                 </div>
                                </div>
                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className="flex font-medium flex-col w-[5.22rem] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex  w-[5.22rem] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
                        
                       
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
-                                <div class="flex flex-col w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                                <div class="flex  w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
                       {/* <Tooltip title={`To Start - ${difference}`}>
@@ -393,18 +394,9 @@ const TaskCardList = (props) => {
         </ButtonGroup>
         <div></div>
                         </div>
-                        {/* <div>
-                       
-                        {item.complitionStatus === "completed" && (
-              <TaskStatusToggle
-                completionInd={item.completionInd}
-                taskId={item.taskId}
-              />
-            )}
-                    </div> */}
-                    </div>
+                             </div>
                    
-                    <div className="flex font-medium flex-col w-[6.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                    <div className="flex  w-[6.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
                        {/* <div class="text-sm  font-poppins max-sm:hidden">Deviation</div> */}
                        {/* <div class="text-xs  font-poppins"> 
@@ -416,11 +408,10 @@ const TaskCardList = (props) => {
 </div>
                      
                    </div>
-                   <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                   <div className="flex  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row  max-sm:w-auto ">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}
-&nbsp;&nbsp;&nbsp;
 {item.contact ? (
   <>{item.contact}</>
 ) : null}        
@@ -428,7 +419,7 @@ const TaskCardList = (props) => {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium flex-col w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                    <div className=" flex  w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                   {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                   <span>
@@ -455,7 +446,7 @@ const TaskCardList = (props) => {
                               </div>
                         
                     
-                                <div className=" flex font-medium flex-col  w-[5.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex  w-[5.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                     
                                     <div class="text-xs  font-poppins ">
                                     <MultiAvatar
@@ -466,46 +457,10 @@ const TaskCardList = (props) => {
                 />
                                     </div>
                                 </div>
-                               
-                               
-                                {/* <div className=" flex font-medium flex-col w-32 ">
-                                    <div class=" text-sm  font-poppins">Team</div>
-
-                                    <div class=" text-sm  font-poppins">
-                                    <Avatar.Group
-  maxCount={2}
-  maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
->
-  {item.owner &&
-    item.owner.map((candidate, i) => {
-      if (candidate && candidate.fullName) {
-        const data1 = candidate.fullName.slice(0, 2);
-        console.log("datas", data1);
-        return (
-          <Tooltip title={candidate.fullName} key={i}>
-            <Avatar style={{ backgroundColor: "#94b3e4" }}>
-              {data1}
-            </Avatar>
-          </Tooltip>
-        );
-      } else {
-        return null; 
-      }
-    })}
-</Avatar.Group>
-                                    </div>
-                                </div> */}
-                                {/* <div className="flex font-medium flex-col md:w-32 max-sm:flex-row justify-between w-full ">
-                                    <div class="text-sm  font-poppins">Start</div>
-
-                                    <div class="text-sm  font-poppins">
-                                     {`${dayjs(item.startDate).format("YYYY/MM/DD")}`}
-                                    </div>
-                                </div> */}
                        
 <div>
 {item.taskStatus==="Completed"&&(
-                   <div className="flex font-medium flex-col w-[5.23rem] max-sm:flex-row  max-sm:w-auto justify-center ">
+                   <div className="flex  w-[5.23rem] max-sm:flex-row  max-sm:w-auto justify-center ">
              {item.assignedToName !== item.submittedBy ? 
              <span>
              <Tooltip overlayStyle={{ maxWidth: "400px" }} title={`Review :${item.feedbackReview}`}>
@@ -516,7 +471,7 @@ const TaskCardList = (props) => {
                   {item.feedbackRating}
                  
                   {<StarBorderIcon
-                  className=" !text-2xl text-[#FFD700]"
+                  className=" !text-icon text-[#FFD700]"
                     />}
                 
                 </span>)}
@@ -578,7 +533,7 @@ const TaskCardList = (props) => {
   
                   
                    
-                   <div class="flex flex-col w-[8.21rem] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
+                   <div class="flex w-[8.21rem] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <div class=" w-36">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
     <>
@@ -776,6 +731,7 @@ const TaskCardList = (props) => {
       hasMore={hasMore}
         loader={fetchingMediumTaskList?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
+        style={{ scrollbarWidth:"thin"}}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {mediumTaskList.map((item) => { 
@@ -791,17 +747,17 @@ const TaskCardList = (props) => {
                         <div>
                            <div className="flex rounded  mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
-                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[red]"></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[orange]" ></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[teal]" ></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
                     <div class=" w-2"></div>
           <div class=" flex w-[8rem] max-sm:w-full">
@@ -820,7 +776,7 @@ const TaskCardList = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium justify-center flex-col  w-[5.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex justify-center  w-[5.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
@@ -833,7 +789,7 @@ const TaskCardList = (props) => {
                           
                >
 
-                 {`${item.taskName} `} &nbsp;
+                 {`${item.taskName} `}
 
 
                </span>
@@ -841,13 +797,13 @@ const TaskCardList = (props) => {
                                 </div>
                                </div>
                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className="flex font-medium flex-col w-[5.22rem] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex  w-[5.22rem] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
                        
                       
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
-                                <div class="flex flex-col w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                                <div class="flex  w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
                       {/* <Tooltip title={`To Start - ${difference}`}>
@@ -920,7 +876,7 @@ const TaskCardList = (props) => {
                     </div> */}
                     </div>
                    
-                    <div className="flex font-medium flex-col w-[6.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                    <div className="flex w-[6.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
                        {/* <div class="text-sm  font-poppins max-sm:hidden">Deviation</div> */}
                        {/* <div class="text-xs  font-poppins"> 
@@ -932,11 +888,11 @@ const TaskCardList = (props) => {
 </div>
                      
                    </div>
-                   <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                   <div className="flex  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row  max-sm:w-auto ">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}
-&nbsp;&nbsp;&nbsp;
+
 {item.contact ? (
   <>{item.contact}</>
 ) : null}        
@@ -944,7 +900,7 @@ const TaskCardList = (props) => {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium flex-col w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                    <div className=" flex  w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                   {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                   <span>
@@ -971,7 +927,7 @@ const TaskCardList = (props) => {
                               </div>
                         
                     
-                                <div className=" flex font-medium flex-col  w-[5.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex  w-[5.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                     
                                     <div class="text-xs  font-poppins ">
                                     <MultiAvatar
@@ -981,58 +937,22 @@ const TaskCardList = (props) => {
                   imgHeight={"1.8rem"}
                 />
                                     </div>
-                                </div>
-                               
-                               
-                                {/* <div className=" flex font-medium flex-col w-32 ">
-                                    <div class=" text-sm  font-poppins">Team</div>
-
-                                    <div class=" text-sm  font-poppins">
-                                    <Avatar.Group
-  maxCount={2}
-  maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
->
-  {item.owner &&
-    item.owner.map((candidate, i) => {
-      if (candidate && candidate.fullName) {
-        const data1 = candidate.fullName.slice(0, 2);
-        console.log("datas", data1);
-        return (
-          <Tooltip title={candidate.fullName} key={i}>
-            <Avatar style={{ backgroundColor: "#94b3e4" }}>
-              {data1}
-            </Avatar>
-          </Tooltip>
-        );
-      } else {
-        return null; 
-      }
-    })}
-</Avatar.Group>
-                                    </div>
-                                </div> */}
-                                {/* <div className="flex font-medium flex-col md:w-32 max-sm:flex-row justify-between w-full ">
-                                    <div class="text-sm  font-poppins">Start</div>
-
-                                    <div class="text-sm  font-poppins">
-                                     {`${dayjs(item.startDate).format("YYYY/MM/DD")}`}
-                                    </div>
-                                </div> */}
+                                </div> 
                        
 <div>
 {item.taskStatus==="Completed"&&(
-                   <div className="flex font-medium flex-col w-[5.23rem] max-sm:flex-row  max-sm:w-auto justify-center ">
+                   <div className="flex w-[5.23rem] max-sm:flex-row  max-sm:w-auto justify-center ">
              {item.assignedToName !== item.submittedBy ? 
              <span>
              <Tooltip overlayStyle={{ maxWidth: "400px" }} title={`Review :${item.feedbackReview}`}>
             {item.feedbackRating === 0 ? (<StarBorderIcon
-            className=" !text-2xl text-[#eeeedd]"/>)
+            className=" !text-icon text-[#eeeedd]"/>)
               : (
                 <span>
                   {item.feedbackRating}
                  
                   {<StarBorderIcon
-                  className=" !text-2xl text-[#FFD700]"
+                  className=" !text-icon text-[#FFD700]"
                     />}
                 
                 </span>)}
@@ -1094,7 +1014,7 @@ const TaskCardList = (props) => {
   
                   
                    
-                   <div class="flex flex-col w-[8.21rem] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
+                   <div class="flex w-[8.21rem] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <div class=" w-36">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
     <>
@@ -1180,9 +1100,7 @@ const TaskCardList = (props) => {
                       </div>
             
                     <div class="flex  max-sm:flex-row max-sm:w-auto justify-evenly ">
-   
-   
-                        <Tooltip title="Edit">
+                      <Tooltip title="Edit">
                         {props.userId === item.userId && (
                                     <BorderColorIcon
                                       type="edit"
@@ -1200,7 +1118,6 @@ const TaskCardList = (props) => {
            
             {item.complitionStatus !== "completed" && (
                           <StyledPopconfirm
-                            // title="Do you want to delete?"
                             title={
                               <FormattedMessage
                                 id="app.doyouwishtodelete?"
@@ -1213,23 +1130,16 @@ const TaskCardList = (props) => {
                             <DeleteOutlined
                               type="delete"
                               className="!text-icon cursor-pointer text-[red]"
-                              
-                            />
+                              />
                             </Tooltip>
                           </StyledPopconfirm>
                         )}
       
             </div>
-
-          
-                      </div>   
+                 </div>   
                      </div>
-
-                            </div>
-                      
-
-
-                    )
+                         </div>
+                      )
                 })}
                  </InfiniteScroll>
       </div>
@@ -1291,6 +1201,7 @@ const TaskCardList = (props) => {
       <InfiniteScroll
         dataLength={lowTaskList.length}
         next={handleLoadMoreLow}
+        style={{ scrollbarWidth:"thin"}}
       hasMore={hasMore}
         loader={fetchingLowTaskList?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
@@ -1309,17 +1220,17 @@ const TaskCardList = (props) => {
                         <div>
                            <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
-                                <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
-                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[red]"></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[orange]" ></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="border rounded-[50%] h-[1.8rem] w-[1.8rem] bg-[teal]" ></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
                     <div class=" w-2"></div>
           <div class=" flex w-[8rem] max-sm:w-full">
@@ -1338,7 +1249,7 @@ const TaskCardList = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium justify-center flex-col  w-[5.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex justify-center flex-col  w-[5.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
@@ -1351,7 +1262,7 @@ const TaskCardList = (props) => {
                           
                >
 
-                 {`${item.taskName} `} &nbsp;
+                 {`${item.taskName} `} 
 
 
                </span>
@@ -1359,27 +1270,15 @@ const TaskCardList = (props) => {
                                 </div>
                                </div>
                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className="flex font-medium flex-col w-[5.22rem] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex w-[5.22rem] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
                        
                       
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
-                                <div class="flex flex-col w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                                <div class="flex  w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
-                      {/* <Tooltip title={`To Start - ${difference}`}>
-                      <StatusIcon   type="To Start"
-  status={item.taskStatus}
-  difference={difference} 
-  onClick={() =>
-    linkTaskStatus(item.taskId, {
-      taskStatus: "To Start",
-    })
-  }/>
-  </Tooltip> */}
-                     
-                   
                     <ButtonGroup >
          
           <StatusIcon class=" !text-icon"
@@ -1438,7 +1337,7 @@ const TaskCardList = (props) => {
                     </div> */}
                     </div>
                    
-                    <div className="flex font-medium flex-col w-[6.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                    <div className="flex w-[6.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
                        {/* <div class="text-sm  font-poppins max-sm:hidden">Deviation</div> */}
                        {/* <div class="text-xs  font-poppins"> 
@@ -1450,11 +1349,11 @@ const TaskCardList = (props) => {
 </div>
                      
                    </div>
-                   <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
+                   <div className="flex justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}
-&nbsp;&nbsp;&nbsp;
+
 {item.contact ? (
   <>{item.contact}</>
 ) : null}        
@@ -1462,7 +1361,7 @@ const TaskCardList = (props) => {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium flex-col w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                    <div className=" flex w-[6.23rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                   {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                   <span>
@@ -1489,68 +1388,34 @@ const TaskCardList = (props) => {
                               </div>
                         
                     
-                                <div className=" flex font-medium flex-col  w-[5.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex   w-[5.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                     
                                     <div class="text-xs  font-poppins ">
                                     <MultiAvatar
                                    
-                  primaryTitle={item.ownerName}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-                />
-                                    </div>
+                                  primaryTitle={item.ownerName}
+                                  imgWidth={"1.8rem"}
+                                  imgHeight={"1.8rem"}
+                                />
+                                                    </div>
                                 </div>
                                
-                               
-                                {/* <div className=" flex font-medium flex-col w-32 ">
-                                    <div class=" text-sm  font-poppins">Team</div>
-
-                                    <div class=" text-sm  font-poppins">
-                                    <Avatar.Group
-  maxCount={2}
-  maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
->
-  {item.owner &&
-    item.owner.map((candidate, i) => {
-      if (candidate && candidate.fullName) {
-        const data1 = candidate.fullName.slice(0, 2);
-        console.log("datas", data1);
-        return (
-          <Tooltip title={candidate.fullName} key={i}>
-            <Avatar style={{ backgroundColor: "#94b3e4" }}>
-              {data1}
-            </Avatar>
-          </Tooltip>
-        );
-      } else {
-        return null; 
-      }
-    })}
-</Avatar.Group>
-                                    </div>
-                                </div> */}
-                                {/* <div className="flex font-medium flex-col md:w-32 max-sm:flex-row justify-between w-full ">
-                                    <div class="text-sm  font-poppins">Start</div>
-
-                                    <div class="text-sm  font-poppins">
-                                     {`${dayjs(item.startDate).format("YYYY/MM/DD")}`}
-                                    </div>
-                                </div> */}
+                             
                        
 <div>
 {item.taskStatus==="Completed"&&(
-                   <div className="flex font-medium flex-col w-[5.23rem] max-sm:flex-row  max-sm:w-auto justify-center ">
+                   <div className="flex  w-[5.23rem] max-sm:flex-row  max-sm:w-auto justify-center ">
              {item.assignedToName !== item.submittedBy ? 
              <span>
              <Tooltip overlayStyle={{ maxWidth: "400px" }} title={`Review :${item.feedbackReview}`}>
             {item.feedbackRating === 0 ? (<StarBorderIcon
-            className=" !text-2xl text-[#eeeedd]"/>)
+            className=" !text-icon text-[#eeeedd]"/>)
               : (
                 <span>
                   {item.feedbackRating}
                  
                   {<StarBorderIcon
-                  className=" !text-2xl text-[#FFD700]"
+                  className=" !text-icon text-[#FFD700]"
                     />}
                 
                 </span>)}
@@ -1674,17 +1539,6 @@ const TaskCardList = (props) => {
            </Tooltip>
               </div>
               <div>
-
-   
-          {/* {props.userId === item.userId && ( */}
-                      {/* <DownloadForOfflineIcon
-                        // type="edit"
-                        className="!text-xl cursor-pointer"
-                        onClick={() => {
-                          handleSetCurrentProcessName(item)
-                          handleDownloadTaskModal(true);
-                        }}
-                      /> */}
                          <Tooltip title="Document">
                          <DownloadForOfflineIcon
                                   onClick={() => {
@@ -1698,9 +1552,7 @@ const TaskCardList = (props) => {
                     {/* )} */}
         
             </div>
-                    <div class="flex max-sm:flex-row max-sm:w-auto justify-evenly ">
-   
-   
+                    <div class="flex max-sm:flex-row max-sm:w-auto justify-evenly ">   
           <Tooltip title="Edit">
           {props.userId === item.userId && (
                       <BorderColorIcon
@@ -1739,15 +1591,9 @@ const TaskCardList = (props) => {
                         )}
       
             </div>
-
-          
                       </div>   
                      </div>
-
                             </div>
-                      
-
-
                     )
                 })}
                  </InfiniteScroll>

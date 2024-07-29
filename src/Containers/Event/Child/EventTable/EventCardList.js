@@ -170,6 +170,7 @@ function EventCardList (props) {
         hasMore={hasMore}
         loader={fetchingEventListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
       {eventListRangeByUserId.map((item) => { 
             const handleCopyClick = () => {
@@ -186,7 +187,7 @@ function EventCardList (props) {
                                     // borderBottom: "3px dotted #515050"
                                 }}>
                                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[8.98rem] max-xl:w-[6.98rem] max-lg:w-[5.28rem] max-sm:w-auto ">
+                                <div className=" flex w-[8.98rem] max-xl:w-[6.98rem] max-lg:w-[5.28rem] max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
           <div class="max-sm:w-full">
                                         <Tooltip>
@@ -204,7 +205,7 @@ function EventCardList (props) {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium flex-col  w-[12.26rem] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[12.26rem] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">   
                                     {item.eventSubject}
@@ -212,13 +213,13 @@ function EventCardList (props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[8.9rem] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[8.9rem] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[5.32rem] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[5.32rem] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
@@ -226,10 +227,10 @@ function EventCardList (props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[9.32rem] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[9.32rem] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
                                    
                                 </div>
-                                <div className=" flex font-medium flex-col w-[7.31rem] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[7.31rem] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
                                     <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
@@ -259,7 +260,7 @@ function EventCardList (props) {
             </Avatar.Group>
                                     </div>
                                 </div>
-                                <div className="flex font-medium flex-col w-[7.69rem] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex  w-[7.69rem] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
@@ -287,7 +288,7 @@ function EventCardList (props) {
              {/* </Tooltip> */}
                                     </div>
                                 </div>
-                                <div className="flex font-medium flex-col w-[6.12rem] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex w-[6.12rem] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">
                        
                        {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Owner</div> */}
 
@@ -343,7 +344,7 @@ function EventCardList (props) {
         {item.eventDescription}
         <br />
         <FileCopyIcon
-          className={`!text-base cursor-pointer ${isCopied ? 'text-white' : ''}`}
+          className={`!text-icon cursor-pointer ${isCopied ? 'text-white' : ''}`}
           onClick={handleCopyClick}
         />
         {/* {isCopied && <span className="text-green-500 ml-2">Copied!</span>} */}
