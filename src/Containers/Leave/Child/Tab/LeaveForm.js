@@ -1,20 +1,15 @@
-import React, { useState ,Component } from "react";
+import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {Tooltip, Button,Switch } from "antd";
+import {Button,Switch } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import { handleChooserModal } from "../../../Planner/PlannerAction";
 import { addLeaves } from "../../LeavesAction";
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 
 
 const EventSchema = Yup.object().shape({

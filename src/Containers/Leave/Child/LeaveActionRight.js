@@ -41,7 +41,6 @@ class LeaveActionRight extends React.Component {
     );
   }
 }
-
 const mapStateToProps = ({ leave }) => ({
   addLeaveModal: leave.addLeaveModal,
   //   userId: auth.userDetails.userId,
