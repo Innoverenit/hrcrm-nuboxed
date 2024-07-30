@@ -194,25 +194,21 @@ const handleLoadMoreLow = () => {
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
-                                                                              <div>
-                                                                              <Tooltip title={<FormattedMessage
-                                                                                 id="app.edit"
-                                                                                     defaultMessage="Edit"
-                                                                                    />}>
-                                                                                   <BorderColorIcon
-                                                                                          className=" !text-icon cursor-pointer text-[tomato]"
-                                                                                          onClick={() => {
-                                                                                              props.setEditProcure(item)
-                                                                                              props.handleUpdateProcureDetailModal(true)
-                                                                                              handleSetParticularOrderData(item)
-                                                                                          }}
-                                                                                      />
-                                                                            </Tooltip>
-                                                                              </div>
-                                                                           
-                      
-                                                                          </div>
+                                        <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
+                                            <Tooltip title={<FormattedMessage
+                                                                id="app.status"
+                                                                defaultMessage="Status"
+                                                            />}>
+                                                                <EventRepeatIcon
+
+                                                                    className="!text-base cursor-pointer"
+                                                                    onClick={() => {
+                                                                        props.handleStatuShowDrawer(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+                                                                />
+                                                            </Tooltip>
+                                            </div> 
                                       </div>
                                     </div>
 
@@ -342,25 +338,21 @@ const handleLoadMoreLow = () => {
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
-                                                                              <div>
-                                                                              <Tooltip title={<FormattedMessage
-                                                                id="app.edit"
-                                                                defaultMessage="Edit"
+                                        <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
+                                            <Tooltip title={<FormattedMessage
+                                                                id="app.status"
+                                                                defaultMessage="Status"
                                                             />}>
-                                                                                      <BorderColorIcon
-                                                                                          className=" !text-icon cursor-pointer text-[tomato]"
-                                                                                          onClick={() => {
-                                                                                              props.setEditProcure(item)
-                                                                                              props.handleUpdateProcureDetailModal(true)
-                                                                                              handleSetParticularOrderData(item)
-                                                                                          }}
-                                                                                      />
-                                                                            </Tooltip>
-                                                                              </div>
-                                                                           
-                      
-                                                                          </div>
+                                                                <EventRepeatIcon
+
+                                                                    className="!text-base cursor-pointer"
+                                                                    onClick={() => {
+                                                                        props.handleStatuShowDrawer(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+                                                                />
+                                                            </Tooltip>
+                                            </div> 
                                       </div>
                                     </div>
 
@@ -505,7 +497,7 @@ const handleLoadMoreLow = () => {
                                                                     }}
                                                                 />
                                                                 </Tooltip> */}
-                                                       {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
+                                                       <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
                                             <Tooltip title={<FormattedMessage
                                                                 id="app.status"
                                                                 defaultMessage="Status"
@@ -519,7 +511,7 @@ const handleLoadMoreLow = () => {
                                                                     }}
                                                                 />
                                                             </Tooltip>
-                                            </div>  */}
+                                            </div> 
                                                         </div>
                                                      
 
