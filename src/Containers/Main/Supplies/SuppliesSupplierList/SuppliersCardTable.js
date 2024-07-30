@@ -50,13 +50,8 @@ function SuppliersCardTable(props) {
          "Supplier",//0
           
           "Tag with Supplier",//1
-        
-          
-      
-      
-       
-          
-        ];
+              
+       ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -92,6 +87,7 @@ function SuppliersCardTable(props) {
               hasMore={hasMore}
               loader={props.fetchingSupplieSupplerList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
               height={"67vh"}
+              style={{scrollbarWidth:"thin"}}
             >
               {props.supplieSupplerList.length ?
                 <>
@@ -112,7 +108,7 @@ function SuppliersCardTable(props) {
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                            <div className=" flex md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
 
 
@@ -158,7 +154,7 @@ function SuppliersCardTable(props) {
 
                             </div>
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">*/}
-<div class=" font-normal text-[0.85rem]  font-poppins">
+<div class="  text-xs font-poppins">
 
  <SuppliesCardToggle
 item={item}
@@ -227,9 +223,8 @@ suppliesId={props.particularDiscountData.suppliesId}
                   </div>
                   </>
 )}
-
                 </div>
-              
+           
                           </div>
                         </div>
                       </>

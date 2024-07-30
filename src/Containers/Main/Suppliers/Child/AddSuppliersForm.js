@@ -16,18 +16,12 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 
 const CustomerSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
-  // emailId: Yup.string()
-  //   .email("Enter a valid Email")
-  //   .required("Input needed!"),
-  // phoneNo: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5, "Too Short").max(10, "Too Large")
 });
 
 function AddSuppliersForm (props) {
   useEffect(() => {
     props.getEmployeelistAsErp();
     props.getCustomerConfigure(props.orgId,"add","supplier")
-    // props.getShipByData(props.orgId);
-    // props.getAllSalesList();
   }, []);
 
   const [defaultOption, setDefaultOption] = useState(props.fullName);
@@ -41,8 +35,7 @@ function AddSuppliersForm (props) {
     };
     return (
       <>
-        <Formik
-          // enableReinitialize
+        <Formik     
           initialValues={{
             userId: props.userId,
             name: "",
@@ -104,13 +97,13 @@ function AddSuppliersForm (props) {
                     label={props.translatedMenuItems[0]} 
                     width={"100%"}
                     component={InputComponent}
-                    // placeholder="Start typing..."
+                  
                     isColumn
                     inlineLabel
                   />
                    <div class=" flex justify-between">
                     <div class="w-[30%] max-sm:w-[40%] ">
-                      {/* <label>Dial Code</label> */}
+                    {/* dial Code */}
                       {props.customerConfigure.dailCodeInd===true&&
                       <FastField
                         name="dialCode"
@@ -172,9 +165,7 @@ function AddSuppliersForm (props) {
                   unCheckedChildren="No"
                   />
                     }
-
-                  </div>
-          
+                  </div>       
                 </div>
                 <div class="h-full w-w47.5 max-sm:w-full">
                 {props.customerConfigure.assignedToInd===true&&

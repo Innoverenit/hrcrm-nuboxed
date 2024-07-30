@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Button, Select } from "antd";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../../../../Components/Forms/Formik/AddressFieldArray";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
@@ -136,7 +135,7 @@ class SupplierContactForm extends Component {
                                                         }}
                                                     />
                                                 </div> */}
-                                                <div style={{ width: "63%" }}>
+                                                <div  className="w-[63%] h-[2.0625em] flex-[0_0_80%] mt-0">
                                                     <FastField
                                                         isRequired
                                                         name="firstName"
@@ -146,17 +145,13 @@ class SupplierContactForm extends Component {
                                                         isColumn
                                                         component={InputComponent}
                                                         inlineLabel
-                                                        style={{
-                                                            height: "2.0625em",
-                                                            flexBasis: "80%",
-                                                            marginTop: "0em",
-                                                        }}
+                                                   
                                                     />
                                                 </div>
                                             </FlexContainer>
-                                            <Spacer />
+                                            <mt-3 />
                                             <FlexContainer justifyContent="space-between">
-                                                <div style={{ width: "40%" }}>
+                                            <div className="w-[63%] h-[2.0625em] flex-[0_0_80%] mt-0">
                                                     <FastField
                                                         name="middleName"
                                                         label="Middle Name"
@@ -165,14 +160,10 @@ class SupplierContactForm extends Component {
                                                         isColumn
                                                         component={InputComponent}
                                                         inlineLabel
-                                                        style={{
-                                                            height: "2.0625em",
-                                                            flexBasis: "80%",
-                                                            marginTop: "0em",
-                                                        }}
+                                                      
                                                     />
                                                 </div>
-                                                <div style={{ width: "55%" }}>
+                                                <div className="w-[63%] h-[2.0625em] flex-[0_0_80%] mt-0">
                                                     <FastField
                                                         name="lastName"
                                                         label="Last Name"
@@ -181,19 +172,15 @@ class SupplierContactForm extends Component {
                                                         isColumn
                                                         component={InputComponent}
                                                         inlineLabel
-                                                        style={{
-                                                            height: "2.0625em",
-                                                            flexBasis: "80%",
-                                                            marginTop: "0em",
-                                                        }}
+                                                    
                                                     />
                                                 </div>
                                             </FlexContainer>
                                         </div>
                                     </FlexContainer>
-                                    <Spacer />
+                                    <mt-3 />
                                     <FlexContainer justifyContent="space-between">
-                                        <div style={{ width: "47%" }}>
+                                    <div className="w-[47%] flex-[0_0_80%] ">
                                             <FastField
                                                 name="dialCode1"
                                                 label="Mobile #"
@@ -206,10 +193,10 @@ class SupplierContactForm extends Component {
                                                 }}
                                                 value={values.countryDialCode}
                                                 inlineLabel
-                                                style={{ flexBasis: "80%" }}
+                                               
                                             />
                                         </div>
-                                        <div style={{ width: "47%" }}>
+                                        <div className="w-[47%] h-[2.0625em] flex-[0_0_80%] mt-0">
                                             <FastField
                                                 type="text"
                                                 name="mobileNo"
@@ -218,17 +205,13 @@ class SupplierContactForm extends Component {
                                                 inlineLabel
                                                 width={"100%"}
                                                 isColumn
-                                                style={{
-                                                    flexBasis: "80%",
-                                                    height: "2.0625em",
-                                                    marginTop: "0em",
-                                                }}
+                                               
                                             />
                                         </div>
                                     </FlexContainer>
-                                    <Spacer />
+                                    <mt-3 />
                                     <FlexContainer justifyContent="space-between">
-                                        <div style={{ width: "47%" }}>
+                                    <div className="w-[47%] flex-[0_0_80%] ">
                                             <FastField
                                                 name="dialCode2"
                                                 selectType="dialCode"
@@ -241,10 +224,10 @@ class SupplierContactForm extends Component {
                                                 }}
                                                 value={values.countryDialCode1}
                                                 inlineLabel
-                                                style={{ flexBasis: "80%" }}
+                                               
                                             />
                                         </div>
-                                        <div style={{ width: "47%" }}>
+                                        <div className="w-[47%] h-[2.0625em] flex-[0_0_80%] mt-0">
                                             <FastField
                                                 type="text"
                                                 name="phoneNo"
@@ -253,18 +236,14 @@ class SupplierContactForm extends Component {
                                                 component={InputComponent}
                                                 inlineLabel
                                                 width={"100%"}
-                                                style={{
-                                                    flexBasis: "80%",
-                                                    height: "2.0625em",
-                                                    marginTop: "0em",
-                                                }}
+                                               
                                             />
                                         </div>
                                     </FlexContainer>
 
-                                    <Spacer />
+                                    <mt-3 />
                                     <FlexContainer justifyContent="space-between">
-                                        <div style={{ width: "100%" }}>
+                                    <div className="w-[100%] h-[2.0625em] flex-[0_0_80%] mt-0 border-r-3 border-r-custom-red ">
                                             <FastField
                                                 // isRequired
                                                 type="email"
@@ -276,18 +255,13 @@ class SupplierContactForm extends Component {
                                                 component={InputComponent}
 
                                                 inlineLabel
-                                                style={{
-                                                    borderRight: "3px red solid",
-                                                    flexBasis: "80%",
-                                                    height: "2.0625em",
-                                                    marginTop: "0em",
-                                                }}
+                                              
                                             />
                                         </div>
                                     </FlexContainer>
-                                    <Spacer />
+                                    <mt-3 />
                                     <FlexContainer justifyContent="space-between">
-                                        <div style={{ width: "100%" }}>
+                                    <div className="w-[100%] h-[2.0625em] flex-[0_0_80%] mt-0 ">
                                             <FastField
                                                 type="text"
                                                 name="linkedIn"
@@ -296,15 +270,11 @@ class SupplierContactForm extends Component {
                                                 width={"100%"}
                                                 component={InputComponent}
                                                 inlineLabel
-                                                style={{
-                                                    flexBasis: "80%",
-                                                    height: "2.0625em",
-                                                    marginTop: "0em",
-                                                }}
+                                             
                                             />
                                         </div>
                                     </FlexContainer>
-                                    <Spacer style={{ marginTop: "25px" }} />
+                                    <mt-3 style={{ marginTop: "25px" }} />
                                     <Field
                                         name="notes"
                                         label="Notes"
@@ -356,7 +326,7 @@ class SupplierContactForm extends Component {
                                             />
                                         </div>
                                     </FlexContainer>
-                                    <Spacer />
+                                    <mt-3 />
 
                                     <div style={{ marginTop: "30px" }}>
                                         <FieldArray

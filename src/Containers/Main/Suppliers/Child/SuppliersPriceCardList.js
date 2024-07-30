@@ -118,26 +118,26 @@ function SuppliersPriceCardList(props) {
                     <div  className="flex flex-col rounded justify-between bg-white mt-1 p-1 h-8 items-center max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                       <div className="flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                         <div className="font-medium ml-2 flex items-center w-[15.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem]">
-                          <div className="font-semibold text-[0.85rem]  font-poppins">{item.suppliesFullName}</div>
+                          <div className="font-semibold text-xs  font-poppins">{item.suppliesFullName}</div>
                           &nbsp;{date === currentdate && <div className="text-xs text-[tomato] font-bold">{props.translatedMenuItems[23]}</div>}
                         </div>
-                        <div className="flex font-medium flex-col w-[13.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem]">
-                          <div className="font-normal text-[0.85rem]  font-poppins">{item.categoryName}</div>
+                        <div className="flex  w-[13.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem]">
+                          <div className=" text-xs  font-poppins">{item.categoryName}</div>
                         </div>
-                        <div className="flex font-medium flex-col w-[12.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
-                          <div className="font-normal text-[0.85rem]  font-poppins">{item.attributeName}</div>
+                        <div className="flex  w-[12.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
+                          <div className=" text-xs  font-poppins">{item.attributeName}</div>
                         </div>
                        <div className="flex font-medium flex-col w-[13.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
-                          <div className="font-normal text-[0.85rem]  font-poppins">{item.quality}</div>
+                          <div className=" text-xs  font-poppins">{item.quality}</div>
                         </div>
-                        <div className="flex font-medium flex-col w-[10rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
-                          <div className="font-normal text-[0.85rem]  font-poppins">{item.price}</div>
+                        <div className="flex  w-[10rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
+                          <div className=" text-xs  font-poppins">{item.price}</div>
                         </div>
                         {/* <div className="flex font-medium flex-col w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
-                          <div className="font-normal text-[0.85rem]  font-poppins">{item.updatePrice}</div>
+                          <div className="font-normal text-xs  font-poppins">{item.updatePrice}</div>
                         </div> */}
-                        <div className="flex font-medium flex-col md:w-[13rem] max-sm:justify-between w-full max-sm:flex-row">
-                          <div className="font-normal text-[0.85rem]  font-poppins">
+                        <div className="flex  md:w-[13rem] max-sm:justify-between w-full max-sm:flex-row">
+                          <div className=" text-xs  font-poppins">
                           {editRowId === item.suppliesId ? (
                             <>
                               <Input
@@ -162,8 +162,8 @@ function SuppliersPriceCardList(props) {
                           )}
                           </div>
                         </div>
-                        <div className="flex font-medium flex-col md:w-[5rem] max-sm:justify-between w-full max-sm:flex-row">
-                          <div className="font-normal text-[0.85rem]  font-poppins">
+                        <div className="flex  md:w-[5rem] max-sm:justify-between w-full max-sm:flex-row">
+                          <div className=" text-xs  font-poppins">
                           <Tooltip title={props.translatedMenuItems[20]}>
                           <BorderColorIcon
                               className="!text-icon cursor-pointer text-[tomato]"

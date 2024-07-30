@@ -24,17 +24,11 @@ function MaterialBuilder (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "HSN",//0
-          
+         "HSN",//0      
           "Name",//1
           "Category",//1
           "Sub Category",//1
-          "Unit",//1
-          
-      
-      
-       
-          
+          "Unit",//1                              
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -80,7 +74,6 @@ function MaterialBuilder (props) {
 })}
       </Select>
       </div>
-
         <div>
                                 </div>
                                     </div>

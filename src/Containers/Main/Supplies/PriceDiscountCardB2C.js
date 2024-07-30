@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { Button, DatePicker, Input, Select,Tooltip } from "antd";
 import {createMaterialDiscountB2C,getMaterialDiscountB2C,
     //createMaterialDiscountB2CUpdate
 } from "./SuppliesAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-// import {getInvestorCurrency} from "../../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -44,17 +41,12 @@ function PriceDiscountCardB2C(props) {
   }, [props.materialDiscountB2C]);
 
  
-
-
-
   const handleAddRow = () => {
     const newRow = {
       // key: String(data.length + 1),
       volume: '',
       allowedDiscount: '',
       date: null,
-
-
     };
     setRows([...rows, newRow]);
   };
@@ -225,9 +217,8 @@ function PriceDiscountCardB2C(props) {
         ))}
 
       <div className=' flex  sticky z-auto'>
-        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">         
-            {/* <div className=" md:w-[21rem]">Volume</div> */}
+        <div class="rounded m-1 p-1 w-[99%] w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">                
             <div className=" md:w-[11.1rem]">Value</div>
             <div className=" md:w-[6.2rem] ">Start date</div>
             <div className=" md:w-[6.2rem] ">End date</div>
@@ -278,7 +269,7 @@ function PriceDiscountCardB2C(props) {
                   )}
                     </div>
                   </div> */}
-                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex   md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.suppliesId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -288,15 +279,11 @@ function PriceDiscountCardB2C(props) {
                       />
                     </div>
  ):(
-  <div className="font-normal text-sm  font-poppins">
+  <div className=" text-xs  font-poppins">
   <div> {item.allowedDiscount}</div>
 </div>
 )}
-                  </div>
-
-
-
-                 
+                  </div>            
                   {editsuppliesId === item.suppliesId ? (
   <DatePicker
   style={{width:"9rem"}}
@@ -304,7 +291,7 @@ function PriceDiscountCardB2C(props) {
     onChange={(startDate) => handleInputChange(startDate, item.key, 'startDate')}
   />
 ) : (
-  <div className="font-normal text-sm font-poppins">
+  <div className=" text-xs font-poppins">
     <div>{dayjs(item.startDate).format('DD/MM/YY')}</div>
   </div>
 )}
@@ -316,12 +303,11 @@ function PriceDiscountCardB2C(props) {
     onChange={(endDate) => handleInputChange(endDate, item.key, 'endDate')}
   />
 ) : (
-  <div className="font-normal text-sm font-poppins">
+  <div className=" text-xs font-poppins">
     <div>{dayjs(item.endDate).format('DD/MM/YY')}</div>
   </div>
 )}
                   <div class="flex md:items-center">
-
 
  {editsuppliesId === item.suppliesId ? (
                         <>
@@ -345,34 +331,16 @@ function PriceDiscountCardB2C(props) {
                         onClick={() => handleEditClick(item.suppliesId)}
                       />
                     )}
- {/* <div>
-      <StyledPopconfirm
-                          title="Do you want to delete?"
-                          onConfirm={() => props.removeProductPrice(item.suppliesId)}
-
-                          >
-                     <Tooltip title="Delete">
-                     <DeleteOutlined
-                      style={{ color: 'red' }}
-                          className="!text-xl cursor-pointer  flex justify-center items-center mt-1 ml-1"
-                          />
-                       </Tooltip>
-                       </StyledPopconfirm>
-                       </div> */}
                   </div>
 
                 </div>
               </div>
             );
           }) : !data.length && !props.fetchingMaterialDiscountB2C ? <NodataFoundPage /> : null}
-
         </div>
       </div>
-
     </div>
   );
-
-
 };
 
 const mapStateToProps = ({ investor, auth ,supplies}) => ({
@@ -390,10 +358,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
        getMaterialDiscountB2C,
-       createMaterialDiscountB2C,
-       //createMaterialDiscountB2CUpdate,
-      // getInvestorCurrency,
-   
+       createMaterialDiscountB2C, 
     },
     dispatch
   );

@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { getleaveLeftSideDetails } from "../../../Leave/LeavesAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import { getDateWiseList, getSalesDateWiseList, getTasklist, getavgHour, } from "../../DashboardAction";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 class DashboardJumpStart extends React.Component {
   constructor() {
@@ -23,10 +24,30 @@ class DashboardJumpStart extends React.Component {
     this.state = {
       date: date,
       startDate,
-      endDate
+      endDate,
+      translatedMenuItems: [],
+      loading: true
     };
   }
 
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+      "Leave Balance", // 0
+"Average work hours", // 1
+"Open Tasks", // 2
+"Joining Date", // 3
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
   componentDidMount() {
 
     if (this.props.role === "USER" && this.props.user.department === "Recruiter") {
@@ -79,18 +100,25 @@ class DashboardJumpStart extends React.Component {
 
     console.log(startDate)
     console.log(this.state.endDate.format('DD-MM-YYYY'))
+
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
     return (
       <div class=" flex flex-row w-full" >
         <div class="flex w-full max-sm:flex-col" >
           <div class="flex w-1/2">
             <JumpStartBox
               noProgress
-              title={
-                <FormattedMessage
-                  id="app.leavebalance"
-                  defaultMessage="Leave Balance"
-                />
-              }
+              title= {translatedMenuItems[0]}
+                        
+              // {
+              //   <FormattedMessage
+              //     id="app.leavebalance"
+              //     defaultMessage="Leave Balance"
+              //   />
+              // }
               bgColor="linear-gradient(270deg,#F15753,orange)"
 
               value={this.props.leaveFetching.leaveBalance}

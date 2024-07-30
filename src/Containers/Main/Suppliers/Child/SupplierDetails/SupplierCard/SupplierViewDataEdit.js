@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateShipperById } from "../../../../Shipper/ShipperAction";
 import { Button } from "antd";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
-import { TextInput, Spacer } from "../../../../../../Components/UI/Elements";
+import { TextInput } from "../../../../../../Components/UI/Elements";
 
 class SupplierViewDataEdit extends Component {
   constructor(props) {

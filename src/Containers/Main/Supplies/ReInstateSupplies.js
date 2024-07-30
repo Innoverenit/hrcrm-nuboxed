@@ -15,7 +15,6 @@ function ReInstateSupplies(props) {
             props.suppliesId
         );
     }
-
     return (
         <>
             <div>

@@ -62,7 +62,6 @@
 
 
 import React, { useEffect } from 'react'
-import { StyledTable } from '../../../../../../Components/UI/Antd'
 import { getGeneratorSuppliersList } from "../../../SuppliersAction"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -98,8 +97,6 @@ function AddedSuppliesTable(props) {
                             Quality
                         </div>
 
-
-
                     </div>
                     <div class="overflow-x-auto h-[64vh]">
 
@@ -112,40 +109,40 @@ function AddedSuppliesTable(props) {
                                         <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3" >
                                             <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                                                 <div className=" flex font-medium flex-col w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
+                                                    <div class=" font-normal text-xs  font-poppins">
                                                         {item.suppliesFullName}
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col w-[5rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
+                                                <div className=" flex w-[5rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div class="  text-xs  font-poppins">
                                                         {item.categoryName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col w-[5rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
+                                                <div className=" flex  w-[5rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div class="  text-xs  font-poppins">
 
                                                         {item.subCategoryName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col w-[6rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
+                                                <div className=" flex w-[6rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div class="  text-xs  font-poppins">
 
                                                         {item.attributeName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col w-[8rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
+                                                <div className=" flex w-[8rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div class="  text-xs  font-poppins">
                                                         {item.subAttributeName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col w-12 max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
+                                                <div className=" flex  w-12 max-sm:justify-between  max-sm:flex-row ">
+                                                    <div class="  text-xs  font-poppins">
                                                         {item.unit}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col w-12 max-sm:justify-between  max-sm:flex-row ">
-                                                    <div class=" font-normal text-[0.85rem]  font-poppins">
+                                                <div className=" flex  w-12 max-sm:justify-between  max-sm:flex-row ">
+                                                    <div class="  text-xs  font-poppins">
                                                         {item.quality}
                                                     </div>
                                                 </div>

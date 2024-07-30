@@ -31,17 +31,6 @@ class SuppliersActionRight extends React.Component {
             </Button>
           </Tooltip>
           : null}
-        {/* {user.functionName === "Production" && user.designation === "Manager" && viewType === "all" ?
-          <Tooltip title="Download Suppliers Library">
-            <Button
-              type="primary"
-              href={`${base_url}/export/supplier`}
-            >
-              <i class="fas fa-download"></i>
-            </Button>
-          </Tooltip>
-          :null} */}
-            {/* { viewType === "not approved" && */}
         <Tooltip placement="left" title={this.props.translatedMenuItems[12]}>
           <Button
             type="primary"

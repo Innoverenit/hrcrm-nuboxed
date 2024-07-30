@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Icon, Tooltip } from "antd";
+import { Button, Tooltip } from "antd";
 import {
   ExclamationCircleOutlined,
 } from "@ant-design/icons";
-import { Formik, Form, Field, FastField } from "formik";
-import moment from "moment";
+import { Formik, Form, Field} from "formik";
+import dayjs from "dayjs";
 import { Spacer } from "../../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePicker";
@@ -71,7 +71,7 @@ class SuppliersActivityTaskForm extends Component {
         value: item.taskTypeId,
       };
     });
-    const today = moment();
+    const today = dayjs();
     var todayDate = new Date();
     console.log(today);
     const {
@@ -90,7 +90,7 @@ class SuppliersActivityTaskForm extends Component {
             priority: this.state.priority,
             type: this.state.Type,
             taskTypeId: "",
-            startDate: startDate || moment(),
+            startDate: startDate || dayjs(),
             endDate: endDate || null,
             description: "",
             supplierId: this.props.supplier.supplierId,
@@ -321,8 +321,8 @@ class SuppliersActivityTaskForm extends Component {
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (
-                              moment(currentDate).isBefore(
-                                moment(values.startDate)
+                              dayjs(currentDate).isBefore(
+                                dayjs(values.startDate)
                               )
                             ) {
                               return true;
@@ -339,8 +339,8 @@ class SuppliersActivityTaskForm extends Component {
 
                     {values.startDate && (
                       <>
-                        {moment(todayDate).isSameOrBefore(
-                          moment(values.startDate)
+                        {dayjs(todayDate).isSameOrBefore(
+                          dayjs(values.startDate)
                         ) ? (
                           <></>
                         ) : (

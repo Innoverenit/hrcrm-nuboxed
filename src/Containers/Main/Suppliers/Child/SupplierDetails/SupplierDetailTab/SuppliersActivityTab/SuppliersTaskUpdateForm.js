@@ -5,14 +5,9 @@ import { Button, Icon, Tooltip } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import * as Yup from "yup";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Spacer } from "../../../../../../Components/UI/Elements";
-
-import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
-
-import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
-
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { handleTaskModal } from "../../../../../Task/TaskAction";
 import { addSuppliers, updateSuppliersTask } from "../../../SuppliersAction";
@@ -72,7 +67,7 @@ class SuppliersTaskUpdateForm extends Component {
     // alert(this.state.priority)
   };
   render() {
-    const today = moment();
+    const today = dayjs();
     var todayDate = new Date();
     console.log(today);
     const {
@@ -130,9 +125,9 @@ class SuppliersTaskUpdateForm extends Component {
             status: this.state.active,
             priority: this.state.priority,
             type: this.state.Type,
-            startDate: moment(this.props.setEditingTask.startDate),
+            startDate: dayjs(this.props.setEditingTask.startDate),
 
-            endDate: moment(this.props.setEditingTask.endDate),
+            endDate: dayjs(this.props.setEditingTask.endDate),
             description: this.props.setEditingTask.description || "",
             userId: this.props.userId,
             timeZone: this.props.setEditingTask.timeZone,
@@ -147,8 +142,8 @@ class SuppliersTaskUpdateForm extends Component {
                 status: this.state.active,
                 priority: this.state.priority,
 
-                startDate: moment(values.startDate).toISOString(),
-                endDate: moment(values.endDate).toISOString(),
+                startDate: dayjs(values.startDate).toISOString(),
+                endDate: dayjs(values.endDate).toISOString(),
               },
               this.props.setEditingTask.taskId,
               this.handleCallback
@@ -507,8 +502,8 @@ class SuppliersTaskUpdateForm extends Component {
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (
-                              moment(currentDate).isBefore(
-                                moment(values.startDate)
+                              dayjs(currentDate).isBefore(
+                                dayjs(values.startDate)
                               )
                             ) {
                               return true;
@@ -538,8 +533,8 @@ class SuppliersTaskUpdateForm extends Component {
 
                     {values.startDate && (
                       <>
-                        {moment(todayDate).isSameOrBefore(
-                          moment(values.startDate)
+                        {dayjs(todayDate).isSameOrBefore(
+                          dayjs(values.startDate)
                         ) ? (
                           <></>
                         ) : (

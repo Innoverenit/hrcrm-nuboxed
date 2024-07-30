@@ -5,6 +5,7 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { FormattedMessage } from "react-intl";
+import { BundleLoader } from "../../Components/Placeholder";
 const TaskOrganizationNew=lazy(()=>import("./TaskOrganizationNew"));
 
 const TabPane = StyledTabs.TabPane;
@@ -16,9 +17,25 @@ class TaskOrganizationTab extends Component {
     super(props);
     this.state = {
       activeKey: "1",
+      translatedMenuItems: [],
+      loading: true
     };
   }
 
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+        ' Tasks', // 0
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
   componentDidMount() {
     // const { getTodosCount, userId, startDate, endDate } = this.props;
     // getTodosCount(userId, startDate, endDate);
@@ -28,7 +45,11 @@ class TaskOrganizationTab extends Component {
     this.setState({ activeKey: key });
   };
   render() {
-    const { activeKey } = this.state;
+    const { activeKey, loading, translatedMenuItems } = this.state;
+
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
     return (
       <>
         <TabsWrapper1>
@@ -43,10 +64,11 @@ class TaskOrganizationTab extends Component {
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
                <span class=" ml-1 font-semibold">
-               <FormattedMessage
+               {translatedMenuItems[0]}
+               {/* <FormattedMessage
           id="app.tasks"
           defaultMessage="Tasks"
-        />
+        /> */}
                 </span>
               
 

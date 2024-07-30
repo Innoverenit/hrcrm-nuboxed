@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { getSupplierSupplies,setSupplierSuppliesType,getSupplierSuppliesQuality  } from "../../../../SuppliersAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
-import { Link } from 'react-router-dom';
 import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Tooltip,Button,Select } from "antd";
 import SupplierSuppliesToggle from "./SupplierSuppliesToggle";
@@ -45,13 +44,6 @@ function SupplierSuppliesCardTable(props) {
       [item.suppliesId]: value
     });
   };
-
-  // const handleSetCurrentType = (value, item) => {
-  //   setCurrentType({
-  //     ...currentType,
-  //     [item.suppliesId]: value
-  //   });
-  // };
 
   const handleLoadMore = () => {
     setPage(page + 1);
@@ -94,23 +86,7 @@ function SupplierSuppliesCardTable(props) {
                 <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
               id="app.quality"
               defaultMessage="Quality"
-            /></div>
-            {/* <div className=" md:w-[5.1rem]">
-              <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
-            </div>
-            <div className=" md:w-[6.8rem] ">  <FormattedMessage id="app.email" defaultMessage="Email" /></div>
-            <div className="md:w-[7.8rem]">
-              <FormattedMessage id="app.address" defaultMessage="Address" />
-
-            </div>
-            <div className="md:w-[7.9rem]">
-              <FormattedMessage id="app.city" defaultMessage="City" />
-
-            </div>
-            <div className="md:w-[5.2rem]">
-              <FormattedMessage id="app.pinCode" defaultMessage="PinCode" />
-
-            </div> */}
+            /></div>       
             <div className="w-[1.5rem]">
             </div>
           </div>
@@ -121,6 +97,7 @@ function SupplierSuppliesCardTable(props) {
               hasMore={hasMore}
               loader={props.fetchingSupplierSupplies ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
               height={"75vh"}
+              style={{scrollbarWidth:"thin"}}
             >
               {props.supplierSuppliesList.length ?
                 <>
@@ -133,32 +110,25 @@ function SupplierSuppliesCardTable(props) {
                         >
                           <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
                             <div className=" flex font-medium  w-[12.1rem] max-xl:w-[9.2rem] items-center  max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
-                                {/* <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem]"
-                                  to={`supplier/${item.supplierId}`}
-                                  title={`${item.suppliesName}`}
-                                > */}
+                              <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem]">                        
                                   {item.suppliesName}
                                   {/* </Link> */}
 
                               </div>
-
                             </div>
-                            <div className=" flex font-medium  w-[13.01rem] max-xl:w-[10.01rem] items-center max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex   w-[13.01rem] max-xl:w-[10.01rem] items-center max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
+                              <div class="  text-xs font-poppins max-xl:text-[0.65rem]">
                                 {item.categoryName} {item.subCategoryName}
                               </div>
                             </div>
-                            <div className=" flex font-medium  w-[15.9rem] max-xl:w-[8.9rem] items-center max-sm:justify-between  max-sm:flex-row ">
-
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
+                            <div className=" flex  w-[15.9rem] max-xl:w-[8.9rem] items-center max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" text-xs font-poppins max-xl:text-[0.65rem]">
                               {item.attributeName} {item.subAttributeName}
                               </div>
-
                             </div>
 
-                            <div className=" flex font-medium  w-[6.25rem] max-xl:w-[9.2rem] items-center max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex   w-[6.25rem] max-xl:w-[9.2rem] items-center max-sm:justify-between  max-sm:flex-row ">
                             
 <SupplierSuppliesToggle
 item={item}
@@ -237,10 +207,6 @@ Save
               )}
  </div>
                           </div>
-
-
-
-
                         </div>
                       </>
                     )
@@ -252,8 +218,6 @@ Save
           </div>
         </div>
       </div>
-
-
     </>
   )
 }
