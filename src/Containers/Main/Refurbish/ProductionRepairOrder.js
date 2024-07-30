@@ -7,10 +7,9 @@ import { getRepairOrderByUser, handleRepairPhone,
       inputProcessDataSearch,ClearSearchedDataOfProcess
     } from "./RefurbishAction"
 import { Button, Badge,Input } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { BundleLoader } from "../../../Components/Placeholder";
 import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 
@@ -173,28 +172,29 @@ function ProductionRepairOrder(props) {
                             hasMore={hasMore}
                             loader={props.fetchingRepairorderById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                             height={"75vh"}
+                            style={{ scrollbarWidth:"thin"}}
                         >
                             {props.repairOrder.map((item) => {
-                                const currentdate = moment().format("DD/MM/YYYY");
-                                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                                const currentdate = dayjs().format("DD/MM/YYYY");
+                                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div>
                                         <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"   >
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium w-[7.2rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                            <div className=" flex  w-[7.2rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                 {item.priority === "High" && (
-                      <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[red]"></div>
+                      <div class="rounded-[50%] h-6 w-6 bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[orange]" ></div>
+                      <div class="rounded-[50%] h-6 w-6 bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[teal]" ></div>
+                      <div class="rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
                     </div>
-                                                <div className=" flex font-medium  w-[17.4rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
+                                            <div className=" flex   w-[17.4rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
-                                                        <span class="underline text-sm text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        <span class="underline text-xs text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                             onClick={() => {
                                                                 handleRowData(item);
                                                                 props.handleRepairPhone(true)
@@ -204,16 +204,16 @@ function ProductionRepairOrder(props) {
                                                     </Badge>
                                                     &nbsp;&nbsp;
                                                     {date === currentdate ? (
-                                                        <span class="text-[tomato] font-bold text-sm">
+                                                        <span class="text-[tomato] font-bold text-xs">
                                                             New
                                                         </span>
                                                     ) : null}
                                                 </div>
                         
 
-                                                <div className=" flex font-medium   w-[21rem] max-xl:w-[15rem] max-lg:w-[9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        {item.repairDueDate === null ? "" : moment(item.repairDueDate).format("DD-MM-YYYY")}
+                                                <div className=" flex w-[21rem] max-xl:w-[15rem] max-lg:w-[9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.repairDueDate === null ? "" : dayjs(item.repairDueDate).format("DD-MM-YYYY")}
                                                     </div>
 
                                                 </div>
@@ -224,19 +224,19 @@ function ProductionRepairOrder(props) {
                                             </div> */}
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium  md:w-[15.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-sm  font-poppins">
+                                                <div className=" flex  md:w-[15.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins">
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   w-[8.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div className=" flex  w-[8.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInProgressPhoneCount} {item.repairStatus}
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex font-medium justify-center w-[8rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
-                                                    <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div className=" flex justify-center w-[8rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInspectionInd === 0 ?
                                                             <Button
                                                                 style={{ width: "8rem" }}
@@ -262,8 +262,8 @@ function ProductionRepairOrder(props) {
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium  w-[.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div className=" flex   w-[.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.reason}
                                                     </div>
                                                 </div>

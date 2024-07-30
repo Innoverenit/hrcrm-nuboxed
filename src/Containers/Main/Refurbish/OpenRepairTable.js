@@ -23,7 +23,7 @@ function OpenRepairTable(props) {
 
     return (
         <>
-            {props.fetchingOpenRepairByUser ? <BundleLoader /> : <div className=' flex justify-end sticky  z-auto'>
+            {props.fetchingOpenRepairByUser ? <BundleLoader /> : <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className=" w-[34.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -51,6 +51,7 @@ function OpenRepairTable(props) {
                             hasMore={hasMore}
                             loader={props.fetchingOpenRepairByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                             height={"75vh"}
+                            style={{ scrollbarWidth:"thin"}}
                         >
                             {props.openRepair.map((item) => {
                                 const currentdate = dayjs().format("DD/MM/YYYY");
@@ -60,35 +61,31 @@ function OpenRepairTable(props) {
                                         <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
-                                                <div className=" flex font-medium  w-[28.8rem] max-xl:w- max-sm:w-auto  ">
+                                                <div className=" flex w-[28.8rem] max-xl:w- max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
-                                                        <span class="text-sm cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <span class="text-xs cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                             {item.newOrderNo}
                                                         </span>
                                                     </Badge>
                                                 </div>
 
-                                                <div className=" flex font-medium   w-[29.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div className=" flex  w-[29.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairDueDate === null ? "" : dayjs(item.repairDueDate).format("DD-MM-YYYY")}
                                                     </div>
 
                                                 </div>
-                                                {/* <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-<div class=" text-sm  font-poppins">
-                               {item.repairCompletePhoneCount}/{item.totalPhone}
-                               </div>
-                           </div> */}
+                                               
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[11.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                            <div className=" flex   w-[11.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div className=" flex  w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.reason}
 
                                                     </div>

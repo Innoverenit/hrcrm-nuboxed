@@ -256,7 +256,7 @@ const handleLoadMore2 = () => {
         loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
         style={{scrollbarWidth:"thin"}}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
     { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<NodataFoundPage />:props.pitchDataHot.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
@@ -736,7 +736,7 @@ const countryCode = item.countryAlpha2Code
         loader={props.fetchingPitchWarm?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
         style={{scrollbarWidth:"thin"}}
-         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
     { !props.fetchingPitchWarm && props.pitchDataWarm.length === 0 ?<NodataFoundPage />:props.pitchDataWarm.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
@@ -1203,7 +1203,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         loader={props.fetchingPitchCold?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
         style={{scrollbarWidth:"thin"}}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
     { !props.fetchingPitchCold && props.pitchDataCold.length === 0 ?<NodataFoundPage />:props.pitchDataCold.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");

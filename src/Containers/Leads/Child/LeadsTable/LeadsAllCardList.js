@@ -236,7 +236,7 @@ const LeadsAllCardList = (props) => {
         hasMore={hasMore}
         loader={fetchingAllLeadsHot?<div  class="flex justify-center">Loading...</div>:null}
         height={"22vh"}
-        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
              { !fetchingAllLeadsHot && allleadsInfoHot.length === 0 ?<NodataFoundPage />:allleadsInfoHot.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
@@ -649,7 +649,7 @@ const LeadsAllCardList = (props) => {
         hasMore={hasMore}
         loader={fetchingAllLeadsWarm?<div class="flex justify-center">Loading...</div>:null}
         height={"22vh"}
-        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
        { !fetchingAllLeadsWarm && allleadsInfoWarm.length === 0 ?<NodataFoundPage />:allleadsInfoWarm.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
@@ -1062,7 +1062,7 @@ const LeadsAllCardList = (props) => {
         hasMore={hasMore}
         loader={fetchingAllLeadsCold?<div class="flex justify-center">Loading...</div>:null}
         height={"22vh"}
-        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
        { !fetchingAllLeadsCold && allleadsInfoCold.length === 0 ?<NodataFoundPage />:allleadsInfoCold.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");

@@ -464,7 +464,7 @@ const {
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block text-sm font-semibold text-gray-700 mt-3">
+            <Listbox.Label className="block text-xs font-semibold text-gray-700 mt-3">
               Assigned
             </Listbox.Label>
             <div className="relative mt-1">

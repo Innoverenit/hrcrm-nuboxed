@@ -125,7 +125,7 @@ function ProductionCreateCard(props) {
                         hasMore={hasMore}
                         loader={fetchingProductionLocId ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
                         height={"75vh"}
-                        endMessage={<div class="fles text-center font-bold text-xs text-red-500">{props.translatedMenuItems[38]}. </div>}
+                        endMessage={<div class="flex text-center font-bold text-xs text-red-500">{props.translatedMenuItems[38]}. </div>}
                     >
                         {productionByLocsId.map((item, index) => {
                             return (

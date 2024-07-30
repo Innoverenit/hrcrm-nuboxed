@@ -438,15 +438,15 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col ">
                                           
-                                            <div class="text-sm flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                            <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>                                     
          {/* <Link
           toUrl={`/opportunity/${item.opportunityId}`}
           title={`${item.opportunityName || ""} `}
         >{item.opportunityName}</Link> */}
-        &nbsp;&nbsp;
+        
         {date === currentdate ? (
           <span class="text-xs mt-[0.4rem]"
             style={{
@@ -466,14 +466,14 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                                 </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between ">
          
                     <div class=" text-xs  font-poppins">
                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                  
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
          <div class=" text-xs  font-poppins">
          {dayjs(item.endDate).format("DD/MM/YYYY")}
@@ -483,7 +483,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex font-medium justify-center flex-col  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex justify-center  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
                     <div class=" text-xs  font-poppins">
                     <span>
@@ -493,7 +493,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                  
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
          <div class=" text-xs  font-poppins">
          <Tooltip title={item.oppStage}>
@@ -514,7 +514,7 @@ width={30}
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex font-medium flex-col  md:w-14 max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex md:w-14 max-sm:flex-row w-full max-sm:justify-between ">
          
                     <div class=" text-xs  font-poppins">
                     <Tooltip title={item.contactName}>
@@ -523,8 +523,8 @@ width={30}
                   primaryTitle={item.contactName}
                   imageId={item.imageId}
                   imageURL={item.imageURL}
-                  imgWidth={"1.8em"}
-                  imgHeight={"1.8em"}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
                 />
               </span>
             </Tooltip>
@@ -535,7 +535,7 @@ width={30}
                 </div>
               
                 <div class="flex md:items-center ">
-                  <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                       <Tooltip title={item.description}>
            
@@ -545,7 +545,7 @@ width={30}
           </Tooltip>
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[2rem]  max-sm:flex-row w-full max-sm:justify-between">
+                  <div className=" flex md:w-[2rem]  max-sm:flex-row w-full max-sm:justify-between">
                   <Tooltip title="Edit">
              {user.opportunityUpdateInd ===true && (
           <BorderColorIcon 

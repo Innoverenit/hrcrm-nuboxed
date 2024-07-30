@@ -58,7 +58,7 @@ function CourseTable(props) {
       // hasMore={hasMore}
         // loader={fetchingTaskListRangeByUserId?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
         height={"75vh"}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
              {props.courseById.map((item) => {
                const currentdate = moment().format("DD/MM/YYYY");

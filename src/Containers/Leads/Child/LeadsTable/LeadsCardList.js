@@ -677,7 +677,7 @@ const LeadsCardList = (props) => {
       hasMore={hasMore}
         loader={props.fetchingLeadsWarm?<div class="flex justify-center">Loading...</div>:null}
         height={"22vh"}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       
            { !props.fetchingLeadsWarm && props.leadsAllDataWarm.length === 0 ?<NodataFoundPage />:props.leadsAllDataWarm.map((item,index) =>  {
@@ -1093,7 +1093,7 @@ const LeadsCardList = (props) => {
       hasMore={hasMore}
         loader={props.fetchingLeadsCold?<div class="flex justify-center">Loading...</div>:null}
         height={"22vh"}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {/* <InfiniteScroll
         dataLength={leadsAllData.length}
@@ -1102,7 +1102,7 @@ const LeadsCardList = (props) => {
         loader={fetchingLeads?<div class="flex justify-center" >Loading...</div>:null}
         height={"75vh"}
         style={{overflowX:"hidden"}}
-        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       > */}
            { !props.fetchingLeadsCold && props.leadsAllDataCold.length === 0 ?<NodataFoundPage />:props.leadsAllDataCold.map((item,index) =>  {
           //  {leadsAllData.map((item,index) => {

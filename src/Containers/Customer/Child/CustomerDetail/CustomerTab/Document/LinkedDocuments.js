@@ -188,14 +188,14 @@ class LinkedDocuments extends Component {
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
-                          <div className=" flex font-medium  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 
     <div class="max-sm:w-full">
     <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm   font-poppins font-medium  cursor-pointer">
+                                            <div class="text-xs   font-poppins font-medium  cursor-pointer">
                                                 
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
      
@@ -209,9 +209,9 @@ class LinkedDocuments extends Component {
                           <div class="flex">
 
                        
-                          <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                              
-                              <div class="text-sm  font-poppins">
+                              <div class="text-xs  font-poppins">
                                    {item.documentTitle}
                                    &nbsp;&nbsp;
         {date === currentdate ? (
@@ -224,21 +224,21 @@ class LinkedDocuments extends Component {
                           </div>
                           <div className=" flex font-medium  md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                           
-                            <div class="text-sm  font-poppins">
+                            <div class="text-xs  font-poppins">
                             {elipsize(item.documentDescription || "", 15)}
                             </div>
                         </div>
                         </div>
                         <div className="flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-<div className="text-sm  font-poppins text-center">
-<div className="font-normal text-sm  font-poppins">
+<div className="text-xs  font-poppins text-center">
+<div className="font-normal text-xs font-poppins">
                      <Tooltip title={item.uploadedBy}>
             <SubTitle>
               <MultiAvatar
                 primaryTitle={item.uploadedBy}
-                imgWidth={"1.8em"}
-                imgHeight={"1.8em"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             </SubTitle>
           </Tooltip>
@@ -246,13 +246,13 @@ class LinkedDocuments extends Component {
 </div>
 </div>
 <div className=" flex font-medium  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                              <div class=" text-sm  font-poppins text-center">
+                              <div class=" text-xs  font-poppins text-center">
                               {item.fileName}
 
                               </div>
                           </div>
                           <div className=" flex font-medium  md:w-[4.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                              <div class=" text-sm  font-poppins text-center">
+                              <div class=" text-xs  font-poppins text-center">
                               <ContractToggle
           contractInd={item.contractInd}
           documentId={item.documentId}
