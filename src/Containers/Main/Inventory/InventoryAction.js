@@ -31,6 +31,12 @@ export const handleInventoryModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+export const handleInventoryDispatchModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVENTORY_DISPATCH_MODAL,
+    payload: modalProps,
+  });
+};
 export const handleAddDispatchModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_ADD_DISPATCH_MODAL,
