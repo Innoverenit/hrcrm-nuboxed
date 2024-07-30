@@ -22,25 +22,7 @@ function SuppliesCategoryCard(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [drb, setDrb] = useState([
-{
-    "categoryId": "PCD25385047540302024",
-    "categoryName": "You Toonz",
-    "imageId": "IMG61364983721302024",
-    "categoryCount": 1
-},
-{
-    "categoryId": "PCD26070175596302024",
-    "categoryName": "Binho",
-    "imageId": "IMG39851439245302024",
-    "categoryCount": 1
-},
-{
-    "categoryId": "PCD43701083406242023",
-    "categoryName": "Colddrinks",
-    "imageId": "IMG29369233111242023",
-    "categoryCount": 1
-},]);
+  const [drb, setDrb] = useState([]);
   const [error, setError] = useState(null)
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -81,12 +63,12 @@ function SuppliesCategoryCard(props) {
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
+
   useEffect(() => {
     const fetchData = async () => {
         setLoading(true); 
         try {
-            const response = await axios.get(`${base_url2}/supplies/allSuppliesCatagory
-`,{
+            const response = await axios.get(`${base_url2}/supplies/allSuppliesCatagory`,{
                 headers: {
                   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
                 },
@@ -140,19 +122,37 @@ function SuppliesCategoryCard(props) {
         setEditsuppliesId(null);
       };
 
-      const handleSave = (item) => {
+      const handleSave = async (item) => {
         console.log(item)
         const updatedItem = {
             categoryId:item.categoryId,
             // orderId:props.particularRowData.orderId,
             categoryName: item.categoryName, 
-            imageId: newimageId.imageId
-        };
-          
+            imageId: newimageId
+        }; 
      console.log("resd",updatedItem);  
-    //  props.updateOrdrSuplrItems(updatedItem,props.particularRowData.orderId);  
-                setEditsuppliesId(null);
-      };
+     try {
+
+      const response = await axios.put(`${base_url2}/supplies/suppliescatagory/${item.categoryId}`, updatedItem, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      console.log("API Response:", response.data);
+      setDrb(prevData => 
+        prevData.map(cat =>
+          cat.categoryId === item.categoryId ? response.data : cat
+        )
+      );
+  
+      setEditsuppliesId(null);
+  
+    } catch (error) {
+      // Handle errors
+      console.error("Error updating item:", error);
+      setEditsuppliesId(null);
+    }
+  };
 
   return (
     <>
