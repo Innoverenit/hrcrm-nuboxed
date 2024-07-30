@@ -6,6 +6,7 @@ import { Tooltip, Badge, Avatar,Input } from "antd";
 import { AudioOutlined } from '@ant-design/icons';
 import { getSuppliesCount,getSuppliesDeletedCount,getSuppliesList,ClearReducerDataOfMaterial,inputSuppliesDataSearch } from "./SuppliesAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import CategoryIcon from '@mui/icons-material/Category';
 
 function SuppliesActionLeft (props) {
 
@@ -138,7 +139,21 @@ function SuppliesActionLeft (props) {
                         </span>
                     </Badge>
                 </Tooltip>
+                <Tooltip title="Category">
+        <div
+          class=" ml-2 text-sm cursor-pointer"
+          style={{
 
+            color: viewType === "category" && "red",
+          }}
+          onClick={() => setSuppliesViewType("category")}
+        >
+          <Avatar style={{ background: viewType === "category" ? "#f279ab" : "#4bc076" }}>
+            <CategoryIcon className="text-white cursor-pointer !text-icon" />
+          </Avatar>
+
+        </div>
+      </Tooltip>
 
                 <Tooltip title="Deleted Materials">
                 <Badge size="small"

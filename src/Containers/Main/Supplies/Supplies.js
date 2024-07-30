@@ -7,7 +7,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 
 const SuppliesTable =lazy(()=>import("./SuppliesTable"));
 const SuppliesDeletedTable =lazy(()=>import("./SuppliesDeletedTable"));
-
+const SuppliesCategoryCard =lazy(()=>import("./SuppliesCategoryCard"));
 
 function Supplies(props) {
     const { setSuppliesViewType, viewType, handleSuppliesModal } = props;
@@ -48,7 +48,11 @@ function Supplies(props) {
                      translateText={props.translateText}
                      selectedLanguage={props.selectedLanguage}
                      /> 
-                ) : null}
+                ) : viewType === "category" ? (
+                <SuppliesCategoryCard translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}/>) :
+                
+                null}
             </Suspense>
         </React.Fragment>
     );
