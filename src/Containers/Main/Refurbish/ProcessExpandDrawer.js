@@ -17,6 +17,7 @@ const ProcessExpandDrawer = (props) => {
                 visible={props.processExpandModal}
                 closable
                 destroyOnClose
+                footer={null}
                   placement="right"
                   onCancel={() => props.handleProcessExpand(false)}
             >

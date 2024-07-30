@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import {
   SubTitle,
 } from "../../../../Components/UI/Elements";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 class OrganizationStatsView extends Component {
   render() {
@@ -20,6 +22,7 @@ class OrganizationStatsView extends Component {
     return (
       <>
           <div class=" flex justify-end">
+          {this.props.role==="ADMIN"&&(
           <BorderColorIcon
             tooltipTitle="Edit"
             iconType="edit"
@@ -30,6 +33,7 @@ class OrganizationStatsView extends Component {
               fontSize: "1rem",
             }}
           />
+          )}
         </div>
         <OrganizationItemRow label="Website" value={organizationUrl} isLink />
         {/* <OrganizationItemRow label="Mobile #" value={""} />
@@ -42,7 +46,20 @@ class OrganizationStatsView extends Component {
   }
 }
 
-export default OrganizationStatsView;
+
+
+
+
+const mapStateToProps = ({ settings,auth }) => ({
+  role: auth.userDetails.role
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  // getWorkFlowCategory,
+  // getProcessForWorkFlowData
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrganizationStatsView);
 
 const OrganizationItemRow = ({ label, value, isLink }) => {
   return (

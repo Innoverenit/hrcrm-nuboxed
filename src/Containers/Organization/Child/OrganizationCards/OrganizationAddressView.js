@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import BorderColorIcon from '@mui/icons-material/Edit';
 import { SubTitle } from "../../../../Components/UI/Elements";
 class OrganizationAddressView extends Component {
@@ -19,6 +21,7 @@ class OrganizationAddressView extends Component {
        
       <>
       <div class=" flex justify-end">
+      {this.props.role==="ADMIN"&&(
       <BorderColorIcon 
               // tooltipTitle="Edit"
               // iconType="edit"
@@ -29,6 +32,7 @@ class OrganizationAddressView extends Component {
                 fontSize: "1rem",
               }}
             />
+      )}
         </div>
 
 <OrganizationItemRow label="Address" value={addressdata||""} />
@@ -42,7 +46,17 @@ class OrganizationAddressView extends Component {
     );
   }
 }
-export default OrganizationAddressView;
+
+const mapStateToProps = ({ settings,auth }) => ({
+  role: auth.userDetails.role
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  // getWorkFlowCategory,
+  // getProcessForWorkFlowData
+}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(OrganizationAddressView);
+
 const OrganizationItemRow = ({ label, value }) => {
   return (    
     <div class=" items-center flex flex-no-wrap"

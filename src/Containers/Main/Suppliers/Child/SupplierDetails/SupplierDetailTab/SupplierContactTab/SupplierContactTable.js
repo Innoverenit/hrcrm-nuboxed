@@ -33,7 +33,7 @@ function SupplierContactTable(props) {
     <>
     <div className=' flex justify-end sticky  z-auto'>
         <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[13.8rem] max-xl:text-[0.65rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"
@@ -52,13 +52,14 @@ function SupplierContactTable(props) {
             </div>
             
           </div>
-          <div class="overflow-x-auto h-[64vh]">
+          <div class="overflow-x-auto h-[80vh]">
             <InfiniteScroll
               dataLength={props.contactSupplier.length}
               next={handleLoadMore}
               hasMore={hasMore}
               loader={props.fetchingSupplierContactListById ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-              height={"75vh"}
+              height={"79vh"}
+              style={{scrollbarWidth:"thin"}}
             >
               {props.contactSupplier.length ?
                 <>
@@ -70,47 +71,40 @@ function SupplierContactTable(props) {
 
                         >
                           <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                            <div className=" flex font-medium  w-[13.1rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
+                            <div className=" flex  font-bold w-[13.1rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal text-[0.85rem] font-poppins max-xl:text-[0.65rem]">
                                {` ${item.firstName || ""} ${item.middleName || ""} ${item.lastName || ""}`}
-
                               </div>
-
                             </div>
-                            <div className=" flex font-medium  w-[19.2rem] max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
+                            <div className=" flex   w-[19.2rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" text-xs  font-poppins max-xl:text-[0.65rem]">
                                 {item.emailId}
                               </div>
-
                             </div>
 
-                            <div className=" flex font-medium  w-[8.34rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
-                                {item.dialCode1} {item.mobileNo}
-                               
+                            <div className=" flex  w-[8.34rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs  font-poppins max-xl:text-[0.65rem]">
+                                {item.dialCode1} {item.mobileNo}                             
                               </div>
+                            </div>     
 
-                            </div>
-                            
-
-
-                            <div className=" flex font-medium  w-[11.32rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
+                            <div className=" flex   w-[11.32rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs  font-poppins max-xl:text-[0.65rem]">
                                 {item.designationName}
                               
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col w-[11.02rem] max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[11.02rem] max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem]">
+                              <div class="  text-xs  font-poppins max-xl:text-[0.65rem]">
                               {item.departmentName}
                              
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                            <div className=" flex   md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
 
 {item.accessInd === 0 ? <div class=" text-xs  font-poppins">
@@ -147,8 +141,6 @@ function SupplierContactTable(props) {
             />
           </Tooltip> */}
 </div>
-
-
                           </div>
                         </div>
                       </>

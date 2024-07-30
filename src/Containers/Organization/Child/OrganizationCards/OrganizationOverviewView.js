@@ -3,6 +3,8 @@ import {
   Title,
   MultiAvatar,
 } from "../../../../Components/UI/Elements";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 class OrganizationOverviewView extends Component {
   render() {
@@ -27,7 +29,8 @@ class OrganizationOverviewView extends Component {
               {/* <SubTitle>{designation}</SubTitle> */}
             </div>
           </div>
-          <BorderColorIcon
+          {this.props.role==="ADMIN"&&(
+            <BorderColorIcon
             tooltipTitle="Edit"
             iconType="edit"
             onClick={toggleViewType}
@@ -37,6 +40,8 @@ class OrganizationOverviewView extends Component {
               fontSize: "1rem",
             }}
           />
+          )}
+          
         </div>
 
         {/* <SubTitle>{email}</SubTitle> */}
@@ -46,4 +51,15 @@ class OrganizationOverviewView extends Component {
   }
 }
 
-export default OrganizationOverviewView;
+const mapStateToProps = ({ settings,auth }) => ({
+  role: auth.userDetails.role
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  // getWorkFlowCategory,
+  // getProcessForWorkFlowData
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrganizationOverviewView);
+
+

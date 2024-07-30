@@ -2,15 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { Button, Input, Select,Tooltip } from "antd";
 import { getMaterialCurrency, createMaterialCurrency,
-
-//    handleDiscountModal, handleOfferModal,removeProductPrice
  } from "./SuppliesAction";
 import {getSaleCurrency} from "../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const { Option } = Select;
@@ -171,18 +167,6 @@ function PriceAddCard(props) {
                       />
                        {errors[`suppliesPriceB2C${index}`] && <span className="text-red-500">{errors[`suppliesPriceB2C${index}`]}</span>}
                       </div></div>
-              {/* <div>
-                <label>VAT (in %)</label>
-                <div class="w-24">
-                <Input
-                 inputMode="numeric"
-                        className="w-32"
-                        value={row.vat}
-                        onChange={(e) => handleChange(index,'vat',e.target.value)}
-                      />
-                        {errors[`vat${index}`] && <span className="text-red-500">{errors[`vat${index}`]}</span>}
-                </div>
-              </div> */}
             </div>
             <div class="mt-4">
             <Button type="primary" onClick={() => handleSave(index)}>
@@ -208,8 +192,8 @@ function PriceAddCard(props) {
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
                 >
 
-                  <div className=" flex font-medium items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
-                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
+                  <div className=" flex items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
+                    <div class="text-xs font-semibold  font-poppins cursor-pointer">
                     {editsuppliesId === item.id ? (
                       <Select
                         classNames="w-32"
@@ -223,14 +207,14 @@ function PriceAddCard(props) {
                         ))}
                       </Select>
                     ):(
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                       <div> {item.currencyName}</div>
                     </div>
                   )}
                     </div>
                   </div>
 
-                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.id ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -240,7 +224,7 @@ function PriceAddCard(props) {
                       />
                     </div>
  ):(
-  <div className="font-normal text-sm  font-poppins">
+  <div className=" text-xs font-poppins">
   <div> {item.suppliesPrice}</div>
 </div>
 )}
@@ -248,7 +232,7 @@ function PriceAddCard(props) {
 
 
 
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.id ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -258,32 +242,17 @@ function PriceAddCard(props) {
                       />
                     </div>
                      ):(
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-sm  font-poppins">
                       <div> {item.suppliesPriceB2C}</div>
                     </div>
                     )}
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  {/* {editsuppliesId === item.Id ? (
-
-                    <div class=" text-xs  font-semibold  font-poppins">
-                      <Input
-                        className="w-32"
-                        value={item.vat}
-                        onChange={(e) => handleInputChange(e.target.value, item.key, 'vat')}
-                      />
-                    </div>
-                     ):(
-                      <div className="font-normal text-sm  font-poppins">
-                      <div> {item.vat}</div>
-                    </div>
-                    )} */}
+                  <div className=" flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                
                   </div>
 
                   <div class="flex md:items-center">
-
-
-                    
+       
  {editsuppliesId === item.id ? (
                         <>
                       <Button 

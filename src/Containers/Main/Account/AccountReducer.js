@@ -8,6 +8,11 @@ const initialState = {
 
   updateAccountModal: false,
 
+  showStatusDrwr: false,
+
+  updatingOrdrSuplrItems: false,
+  updatingOrdrSuplrItemsError: false,
+
   addingAccountImportForm:false,
   addingAccountImportFormError:false,
 
@@ -214,6 +219,10 @@ const initialState = {
   fetchingFeedbackByOrderId: false,
   fetchingFeedbackByOrderIdError: false,
   orderFeedbacks: [],
+
+  fetchingProcureStatusItem: false,
+  fetchingProcureStatusItemError: false,
+  statusItems: {},
 
   fetchingDistributorHistory: false,
   fetchingDistributorHistoryError: true,
@@ -3343,7 +3352,49 @@ export const distributorReducer = (state = initialState, action) => {
                               // deletedTruck: [] 
                             };
 
+                            case types.HANDLE_STATUS_SHOW_DRAWER:
+                              return { ...state, showStatusDrwr: action.payload };
 
+                              case types.GET_PROCURE_STATUS_ITEM_REQUEST:
+      return { ...state, fetchingProcureStatusItem: true };
+    case types.GET_PROCURE_STATUS_ITEM_SUCCESS:
+      return {
+        ...state,
+        fetchingProcureStatusItem: false,
+        statusItems: action.payload,
+      };
+    case types.GET_PROCURE_STATUS_ITEM_FAILURE:
+      return {
+        ...state,
+        fetchingProcureStatusItem: false,
+        fetchingProcureStatusItemError: true,
+      };
+
+
+      case types.UPDATE_ORDR_SUPLR_ITEMS_REQUEST:
+      return {
+        ...state,
+        updatingOrdrSuplrItems: true,
+      };
+
+    case types.UPDATE_ORDR_SUPLR_ITEMS_SUCCESS:
+      return {
+        ...state,
+        updatingOrdrSuplrItems: false,
+        // orderListData: state.orderListData.map((item) => {
+        //   if (item.orderId === action.payload.orderId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+    case types.UPDATE_ORDR_SUPLR_ITEMS_FAILURE:
+      return {
+        ...state,
+        updatingOrdrSuplrItems: false,
+        updatingOrdrSuplrItemsError: true,
+      };
 
     default:
       return state;

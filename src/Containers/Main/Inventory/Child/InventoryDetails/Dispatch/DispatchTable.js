@@ -4,13 +4,15 @@ import { bindActionCreators } from "redux";
 import { Tooltip, Button,Badge } from "antd";
 import { getAllShipper } from "../../../../Shipper/ShipperAction";
 import dayjs from "dayjs";
+import DispatchPhoneListModalInventory from "../../InventoryDetails/Dispatch/DispatchPhoneListModalInventory"
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
   getDispatchList,
   addFinalDispatchData,
   handlePickupDateModal,
   updateDispatchInspectionButton,
-  handleCreateAWB
+  handleCreateAWB,
+  handleInventoryDispatchModal
 } from "../../../InventoryAction"
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
@@ -474,7 +476,7 @@ const AWBtst=[
                               <div
                                 onClick={() => {
                                   handleRowData(item);
-                                  props.handlePickupDateModal(true);
+                                  props.handleInventoryDispatchModal(true);
                                 }}
                               >{item.newOrderNo}</div>&nbsp;&nbsp;
                               {date === currentdate ? (
@@ -622,10 +624,10 @@ const AWBtst=[
 
 
 
-      <DispatchPhoneListModal
+      <DispatchPhoneListModalInventory
         rowData={rowData}
-        handlePickupDateModal={props.handlePickupDateModal}
-        openPickupDateModal={props.openPickupDateModal}
+        handleInventoryDispatchModal={props.handleInventoryDispatchModal}
+        inventoryDispatchModal={props.inventoryDispatchModal}
       />
       <DispatchOrderAwbModal
         rowData={rowData}
@@ -639,6 +641,7 @@ const AWBtst=[
 const mapStateToProps = ({ shipper, inventory, auth, dispatch }) => ({
   allDispatchList: inventory.allDispatchList,
   allShipper: shipper.allShipper,
+  inventoryDispatchModal:inventory.inventoryDispatchModal,
   openPickupDateModal: inventory.openPickupDateModal,
   updatingDispatchInspectionButton: inventory.updatingDispatchInspectionButton,
   pickUpModal: inventory.pickUpModal,
@@ -656,7 +659,8 @@ const mapDispatchToProps = (dispatch) =>
       handlePickupDateModal,
       updateDispatchInspectionButton,
       addFinalDispatchData,
-      handleCreateAWB
+      handleCreateAWB,
+      handleInventoryDispatchModal
     },
     dispatch
   );

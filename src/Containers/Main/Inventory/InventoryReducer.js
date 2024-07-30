@@ -68,6 +68,9 @@ const initialState = {
   fetchingItemHistoryDataInStockError:false,
   itemHistoryDataInStock:[],
 
+
+  inventoryDispatchModal:false,
+
   transferingPoGrnToStock: false,
   transferingPoGrnToStockError: false,
   //output table
@@ -398,6 +401,14 @@ export const inventoryReducer = (state = initialState, action) => {
         addingInventoryError: true,
         addInventoryModal: false,
       };
+
+
+
+      case types.HANDLE_INVENTORY_DISPATCH_MODAL:
+        return {
+          ...state,
+          inventoryDispatchModal: action.payload,
+        };
 
     // get inventory
 

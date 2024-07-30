@@ -116,16 +116,7 @@ function SuppliersCardList(props) {
                     // const countryCode = item.address[0].countryAlpha2Code;
                     const countryCode = item.address?.[0]?.countryAlpha2Code ?? "None";
                     console.log(countryCode)
-                    // const dataLoc = ` Address : ${
-                    //   item.address && item.address.length && item.address[0].address1
-                    // }            
-                    //    Country : ${
-                    //      (item.address &&
-                    //        item.address.length &&
-                    //        item.address[0].country) ||
-                    //      ""
-                    //    } 
-                    //      `;
+                   
                     return (
                       <>
                         <div
@@ -133,8 +124,8 @@ function SuppliersCardList(props) {
                           <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className="font-medium  flex items-center w-[14.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
-                                <div class=" font-semibold text-xs  font-poppins">
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                <div>
+                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-xs underline font-bold font-poppins text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}
                                     title={`${item.shipperName}`}
                                   >{item.name}</Link>
@@ -142,7 +133,7 @@ function SuppliersCardList(props) {
                                 </div>
 
                                 {date === currentdate ? (
-                                  <div class="text-xs  text-[tomato] font-bold"
+                                  <div class="text-[0.65rem]  text-[tomato] font-bold"
                                   >
                                     {/* New */}
                                     {props.translatedMenuItems[23]}
@@ -150,9 +141,9 @@ function SuppliersCardList(props) {
                                 ) : null}
                               </div>
 
-                              <div className=" flex font-medium items-center flex-col w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
+                              <div className=" flex items-center flex-col w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
 
-                                <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {item.dialCode} {item.phoneNo}
                                 </div>
 
@@ -161,7 +152,7 @@ function SuppliersCardList(props) {
                             <div class="flex items-center max-sm:justify-between max-sm:w-wk ">
                               <div className=" flex  w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
 
-                                <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {item.emailId}
                                 </div>
 
@@ -171,7 +162,7 @@ function SuppliersCardList(props) {
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className=" flex  w-[9.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
 
-                                <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 <CountryFlag1 countryCode={countryCode} />
                                  &nbsp;
                                    {countryCode}
@@ -180,7 +171,7 @@ function SuppliersCardList(props) {
                             </div>
 
                             <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <SuplierPublishToggle
                                   publishInd={item.publishInd}
                                   supplierId={item.supplierId}

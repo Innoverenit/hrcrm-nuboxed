@@ -4369,3 +4369,60 @@ export const updateAccountPrice = (data, distributorId,  cb) => (dispatch) => {
       // cb && cb("failuer", null, null);
     });
 };
+
+export const handleStatuShowDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_STATUS_SHOW_DRAWER,
+    payload: modalProps
+  })
+};
+
+export const getProcureStatusItem = (orderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROCURE_STATUS_ITEM_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/orders/status/${orderId}`, 
+      {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_PROCURE_STATUS_ITEM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_PROCURE_STATUS_ITEM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateOrdrSuplrItems = (data,orderId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ORDR_SUPLR_ITEMS_REQUEST });
+
+  axios
+    .put(`${base_url2}/phoneOrder/order/customer/shipping`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      dispatch(getProcureStatusItem(orderId));
+      dispatch({
+        type: types.UPDATE_ORDR_SUPLR_ITEMS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+  
+      dispatch({
+        type: types.UPDATE_ORDR_SUPLR_ITEMS_FAILURE,
+      });
+    });
+};

@@ -17,6 +17,7 @@ const ProcessSpareDrawer = (props) => {
                 visible={props.processSpareModal}
                 closable
                 destroyOnClose
+                footer={null}
                   placement="right"
                   onCancel={() => props.handleSpareProcess(false)}
             >

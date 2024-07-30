@@ -211,7 +211,7 @@ return <div><BundleLoader/></div>;
                    style={{backgroundColor:"tomato",color:"white"}}
                   onClick={handleAddSector}> Add More</button>
               )}
-
+  {props.primaryOrgType === 'Parent' && (
 <Select
         showSearch
         style={{ width: 200,marginLeft:'20px' }}
@@ -227,6 +227,7 @@ return <div><BundleLoader/></div>;
           </Option>
         ))}
       </Select>
+   )} 
           </div>
           </div>
           <div class=" flex flex-col" >

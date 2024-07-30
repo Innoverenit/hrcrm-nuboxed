@@ -86,7 +86,7 @@ function SuppliersDeletedCardList(props) {
                               </div>
                           
                                   {date === currentdate ? (
-                                    <div class="text-xs  text-[tomato] font-bold"
+                                    <div class="text-[0.65rem] text-[tomato] font-bold"
                                     >
                                       {/* New */} {props.translatedMenuItems[23]}
                                     </div>
@@ -102,12 +102,12 @@ function SuppliersDeletedCardList(props) {
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className=" flex  w-[18.26rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
 
-                              <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {item.emailId}
                               </div>
                             </div>
                             <div className=" flex  w-[17.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
-                              <div class=" font-normal text-xs  font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" text-xs  font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
           ${(item.address && item.address.length && item.address[0].street) || ""}`}
@@ -117,7 +117,7 @@ function SuppliersDeletedCardList(props) {
                             </div>
                             <div className=" flex  w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
 
-                              <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].city) ||
@@ -126,7 +126,7 @@ function SuppliersDeletedCardList(props) {
 
                             </div>
                             <div className=" flex  w-[8.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
-                              <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].postalCode) ||
@@ -135,7 +135,7 @@ function SuppliersDeletedCardList(props) {
                             </div>
 
                             <div className=" flex  w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class=" font-normal text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div class="  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateSuppliers supplierId={item.supplierId} />
                             </div>
                           </div>

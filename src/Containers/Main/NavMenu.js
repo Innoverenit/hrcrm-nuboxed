@@ -71,7 +71,7 @@ function NavMenu(props) {
 'Contact Invest', // 13
 'Investor', // 14
 'Club', // 15
-'Order', // 16
+'Orders', // 16
 'Customer', // 17
 'Catalogue', // 18
 'Quality', // 19

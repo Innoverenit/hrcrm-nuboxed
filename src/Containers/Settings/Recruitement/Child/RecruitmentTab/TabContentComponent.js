@@ -183,7 +183,8 @@ LinkDealsStagePublish,
  updateProcessNameForDeals,
  getProcessForWorkFlowData,
   updateStageForDeals,
-  LinkDealsProcessGlobal
+  LinkDealsProcessGlobal,
+  addConfigureGlobalType
  } from "../../../SettingsAction"
 import {  StyledTabs } from "../../../../../Components/UI/Antd";
 import {  Select } from "../../../../../Components/UI/Elements";
@@ -351,16 +352,15 @@ handleSetCurrentItem(stagesId) {
 handleSelectChange=(value) =>{
   this.setState({setSelectedType:value})
 
-  //const selectedTypedata = type.find(type => type.workflowCategoryId === value);
-  // if (selectedTypedata) {
-  //    let data={
-  //   name:selectedTypedata.name,
-  //   workflowCategoryId:selectedTypedata.workflowCategoryId
-  // }
-  // props.addGloalType(data)
-  //   console.log('Selected Department ID:', selectedTypedata.workflowCategoryId);
-  //   console.log('Selected Department Name:', selectedTypedata.name);
-  // }
+
+  //this.props.addConfigureGlobalType()
+
+  const selectedTypedata = this.state.setType.find(type => type.workflowDetailsId === value);
+  
+     
+
+    this.props.addConfigureGlobalType(this.props.orgId,selectedTypedata.workflowDetailsId,this.props.activeKey)
+  console.log(selectedTypedata)
 
   // let data={
   //   name:value
@@ -533,10 +533,17 @@ fetchType = async () => {
                     <TabPane
                       key={i}
                       tab={
+                        <>
                         <span onClick={() => this.handleProcessClick(item)}>
                           {elipsize(item.workflowName, 15)}
+                          
                         </span>
+                        {/* Hello */}
+                    
+                        {/* {item.globalInd && <GlobalOutlined style={{ marginLeft: 8 }} />} */}
+                        </>
                       }
+                      
                     ></TabPane>
                   );
                 })}
@@ -591,6 +598,7 @@ fetchType = async () => {
                     Add
                  
                   </Button>
+                  {this.props.primaryOrgType === 'Child' && (
                   <Select
         showSearch
         style={{ width: 200,marginLeft:'20px' }}
@@ -606,6 +614,7 @@ fetchType = async () => {
           </Option>
         ))}
       </Select>
+                  )}
                 </div>
               </>
             )}
@@ -845,6 +854,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addProcessForDeals,
+      addConfigureGlobalType,
     //   getProcessForDeals,
     addProcessStageForDeals,
        getProcessStagesForDeals,

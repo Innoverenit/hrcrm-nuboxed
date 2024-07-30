@@ -1,6 +1,5 @@
 import { Field, Form, Formik } from 'formik'
 import React, { useEffect, Suspense,useState } from 'react'
-import { SelectComponent } from '../../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from '../../../../../../Components/Forms/Formik/InputComponent';
 import { Button,Select } from 'antd';
 import { linkPurchaseToSuppliers, getSuppliesListBySupplier,getSupplierwiseQuality } from "../../../SuppliersAction"

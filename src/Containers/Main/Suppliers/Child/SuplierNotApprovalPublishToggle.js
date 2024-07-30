@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Checkbox, Popconfirm, message, Select } from "antd";
+import { Switch, Checkbox, Popconfirm} from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
