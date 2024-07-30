@@ -21,6 +21,7 @@ const QCExpandListModal = (props) => {
           destroyOnClose
           closable
           placement="right"
+          footer={null}
           visible={qcExpandList}
           onCancel={() => handleQcexpand(false)}
         >

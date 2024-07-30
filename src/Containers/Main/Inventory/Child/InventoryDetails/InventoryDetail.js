@@ -16,7 +16,7 @@ function InventoryDetail(props) {
   const [tabData, setTabData] = useState("1");
 
   useEffect(() => {
-    props.getInventoryById(props.match.params.locationDetailsId);
+    props.getInventoryById(props.match.params.locationDetailsId||props.locationId);
 
     if (props.match.params.data === "Receive") {
       // alert("f");
@@ -166,6 +166,7 @@ const mapStateToProps = ({ inventory, auth }) => ({
   fetchingInventoryById: inventory.fetchingInventoryById,
   inventory: inventory.inventoryDetailById,
   viewType1: inventory.viewType1,
+  locationId: auth.userDetails.locationId,
   productionInd: auth.userDetails.productionInd,
   repairInd: auth.userDetails.repairInd,
 });

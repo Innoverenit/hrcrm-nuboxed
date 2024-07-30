@@ -502,6 +502,11 @@ addingShipperCategoryError: false,
   fetchingProcessStagesForSupplierError: false,
   supplierProcessStages: [],
 
+  addingGlobalType:false,
+  addingGlobalTypeError:false,
+
+  duplicateGlobalTypeError:false,
+
   addingWeekendAccess: false,
   addingWeekendAccessError: false,
 
@@ -636,6 +641,11 @@ addingShipperCategoryError: false,
   linkingProductionProcessPublish: false,
   linkingProductionProcessPublishError: false,
   productionProcessPublish:[],
+
+
+  addingConfigureGlobalType:false,
+  addingConfigureGlobalTypeError:false,
+  duplicateConfigureGlobalTypeError:false,
 
   addingNotificationAccess: false,
   addingNotificationAccessError: false,
@@ -4554,6 +4564,14 @@ addingGlobalType: false,
 addingGlobalTypeError: true,
 };
 
+
+case types.ADD_GLOBAL_TYPE_DUPLICATE:
+  return {
+    ...state,
+    addingGlobalType: false,
+    duplicateGlobalTypeError: true,
+  };
+
     case types.HANDLE_CLAER_REDUCER_DATA_SUPPLIERCATEGORY:
       return { ...state, 
         supplyCategory: [], 
@@ -4647,6 +4665,40 @@ return {
 addingWorkflowCategory: false,
 addingWorkflowCategoryError: true,
 };
+
+
+
+
+case types.ADD_CONFIGURE_GLOBAL_TYPE_REQUEST:
+  return {
+    ...state,
+    addingConfigureGlobalType: true,
+    addingConfigureGlobalTypeError: false,
+  };
+case types.ADD_CONFIGURE_GLOBAL_TYPE_SUCCESS:
+  return {
+    ...state,
+    addingConfigureGlobalType: false,
+    addingConfigureGlobalTypeError: false,
+  processForWorkflowData: [action.payload, ...state.processForWorkflowData],
+    // addProcessHiringModal: false,
+  };
+case types.ADD_CONFIGURE_GLOBAL_TYPE_FAILURE:
+  return {
+    ...state,
+    addingConfigureGlobalType: false,
+    addingConfigureGlobalTypeError: true,
+    // addProcessHiringModal: false,
+  };
+  case types.ADD_CONFIGURE_GLOBAL_TYPE_DUPLICATE:
+  return {
+    ...state,
+    addingConfigureGlobalType: false,
+    duplicateConfigureGlobalTypeError: true,
+    // addProcessHiringModal: false,
+  };
+
+
 
     default:
       return state;

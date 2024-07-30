@@ -5,6 +5,7 @@ import InventoryHeader from "./InventoryHeader";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { setInventoryViewType } from "./InventoryAction";
 import InventoryLocation from "./InventoryLocation";
+import InventoryDetail from "./Child/InventoryDetails/InventoryDetail";
 
 const InventoryCard = lazy(() => import("./InventoryCard"));
 
@@ -53,12 +54,22 @@ function Inventory(props) {
         selectedLanguage={props.selectedLanguage}
       />
       <Suspense fallback={<BundleLoader />}>
-        {props.viewType === "table" ? <InventoryCard  translateText={props.translateText}
+        {props.viewType === "table" ? 
+        <InventoryCard  
+        translateText={props.translateText}
           translatedMenuItems={translatedMenuItems}
-          selectedLanguage={props.selectedLanguage}/> :
-        props.viewType === "zone" ? <InventoryLocation  translateText={props.translateText}
-        translatedMenuItems={translatedMenuItems}
-        selectedLanguage={props.selectedLanguage}/>
+          selectedLanguage={props.selectedLanguage}
+          /> 
+          :
+        props.viewType === "zone" ? 
+       <InventoryDetail
+       translateText={props.translateText}
+          translatedMenuItems={translatedMenuItems}
+          selectedLanguage={props.selectedLanguage}
+       />
+        // <InventoryLocation  translateText={props.translateText}
+        // translatedMenuItems={translatedMenuItems}
+        // selectedLanguage={props.selectedLanguage}/>
         : null}
       </Suspense>
     </div>

@@ -6304,12 +6304,28 @@ export const addGloalType = (sectors,cb) => (dispatch) => {
     .then((res) => {
      // dispatch(getSectorCount(orgId));
      
-    
-      console.log(res);
+     if (res.data.message === "WorkflowCategory can not be created as same name already exists!!!") {
+      Swal.fire({
+        icon: 'error',
+        title: res.data.message,
+      });
+
+      dispatch({
+        type: types.ADD_GLOBAL_TYPE_DUPLICATE,
+      });
+    } else {
+      Swal.fire({
+        icon: 'success',
+        title: 'Type added Successfully!',
+      });
+
       dispatch({
         type: types.ADD_GLOBAL_TYPE_SUCCESS,
-        payload:res.data,
+        payload: res.data,
       });
+    }
+     
+     
       // cb();
     })
     .catch((err) => {
@@ -6320,5 +6336,55 @@ export const addGloalType = (sectors,cb) => (dispatch) => {
       });
       // message.success(res.data.message);
       cb();
+    });
+};
+
+
+
+
+export const addConfigureGlobalType = (orgId,workflowId,workflowType,  cb) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.ADD_CONFIGURE_GLOBAL_TYPE_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/workflow/createNew/${orgId}/${workflowId}/${workflowType}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //dispatch(getProcessForDeals(orgId));
+      if (res.data.message === "200 OK") {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+        });
+  
+        dispatch({
+          type: types.ADD_CONFIGURE_GLOBAL_TYPE_DUPLICATE,
+        });
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: 'Type added Successfully!',
+        });
+  
+        dispatch({
+          type: types.ADD_CONFIGURE_GLOBAL_TYPE_SUCCESS,
+          payload: res.data,
+        });
+      }
+      cb && cb("success");
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_CONFIGURE_GLOBAL_TYPE_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
     });
 };
