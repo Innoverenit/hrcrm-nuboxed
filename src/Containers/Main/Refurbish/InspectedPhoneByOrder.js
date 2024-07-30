@@ -171,50 +171,50 @@ function InspectedPhoneByOrder(props) {
                                 id="app.conditions"
                                 defaultMessage="conditions"
                             /></div>
-                            <div className="md:w-[7rem]">Technician</div>
+                            <div className="md:w-[7rem]">Technician</div> 
                             <div className="md:w-[6rem]">QC</div>
                             <div className="md:w-[4rem]">Repair</div>
                             {/* <div className="md:w-[5rem]">Qa</div> */}
                             <div className="md:w-[7.2rem]">Task</div>
                         </div>
-                        <div class="overflow-y-auto h-[72vh]">
+                        <div class="overflow-y-auto h-[72vh]"  style={{ scrollbarWidth:"thin"}}>
                             {props.updateDispatchList.length === 0 ? <NodataFoundPageRefubish /> :props.updateDispatchList.map((item, index) => {
                                 const acivedPercentage = isNaN(Math.floor((item.totalExtraCost / item.totalPrice) * 100)) ? 0 : Math.floor((item.totalExtraCost / item.totalPrice) * 100)
                                 return (
                                     <div>
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                             <div class="flex">
-                                                <div className=" flex font-medium  md:w-[7.6rem] max-sm:w-full  ">
+                                                <div className=" flex  md:w-[7.6rem] max-sm:w-full  ">
                                                     {item.company}
                                                 </div>
 
-                                                <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.model}
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 
-                                                    <div class=" text-sm  font-poppins">
+                                                    <div class=" text-xs  font-poppins">
 
                                                         {item.imei}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 
-                                                    <div class=" text-sm  font-poppins">
+                                                    <div class=" text-xs  font-poppins">
 
                                                         {item.issue}
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium  md:w-[10.52rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[10.52rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
 
                                                     {item.os} {item.gb} {item.color}
@@ -224,12 +224,12 @@ function InspectedPhoneByOrder(props) {
                                             </div>
 
 
-                                            <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     {item.conditions}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {item.repairTechnicianName && <MultiAvatar
                                                         primaryTitle={item.repairTechnicianName}
@@ -238,28 +238,28 @@ function InspectedPhoneByOrder(props) {
                                                     />}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  md:w-[5.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[5.22rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {item.qcStatus}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  md:w-[5.26rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[5.26rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {item.repairStatus}
                                                 </div>
                                             </div>
-                                            {/* <div className=" flex font-medium  md:w-[5.25rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            {/* <div className=" flex  md:w-[5.25rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                 
                                                 </div>
                                             </div> */}
                                            
-                                            <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     {item.cannotRepairInd ? "Can't Repair" : null}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     <Button
                                                         type="primary"
@@ -275,13 +275,13 @@ function InspectedPhoneByOrder(props) {
                                             </div>
 
 
-                                            <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     <ReactToPrint
                                                         trigger={() => <Button
                                                             onClick={handlePrint}
                                                         >
-                                                            Print<QrCodeIcon/></Button>
+                                                            Print<QrCodeIcon className="!text-icon"/></Button>
                                                         }
                                                         content={() => componentRefs.current[index]
                                                         }
@@ -302,7 +302,7 @@ function InspectedPhoneByOrder(props) {
                                                             <div style={{ marginBottom: "10px" }}>Model: {item.model}</div>
                                                             <div style={{ marginBottom: "10px" }}>IMEI: {item.imei}</div>
                                                             <div style={{ marginBottom: "10px" }}>
-                                                                <QRCode value={item.imei} size={128} />
+                                                                <QRCode value={item.imei} className="!text-icon" />
                                                             </div>
                                                         </div>
                                                     </div>

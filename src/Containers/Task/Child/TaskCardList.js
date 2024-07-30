@@ -236,7 +236,7 @@ const TaskCardList = (props) => {
           <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[4.54rem] bg-teal-600 text-white">
+          <div className=" md:w-[4.54rem] bg-red-600 text-white">
           {translatedMenuItems[7]}</div>
         <div className=" w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         {translatedMenuItems[0]} 
@@ -270,7 +270,7 @@ const TaskCardList = (props) => {
         loader={fetchingHighTaskList?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
         style={{ scrollbarWidth:"thin"}}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex  text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {highTaskList.map((item) => { 
         const currentDate = dayjs();
@@ -425,7 +425,7 @@ const TaskCardList = (props) => {
 
                    </div>
                    </div>
-                   <div class="flex max-sm:justify-between max-sm:w-wk items-center w-[26rem]">
+                   <div class="flex max-sm:justify-between max-sm:w-wk items-center w-[20rem]">
                     <div className=" flex w-[4.33rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                   {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -494,7 +494,62 @@ const TaskCardList = (props) => {
      </div> 
      )}
      </div>
-     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
+    
+  
+                  
+                   
+                   <div class="flex  w-[8.21rem] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
+                    <div class=" w-36">
+  {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
+    <>
+      <div>
+        <Button
+        onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
+          style={{ backgroundColor: "teal", color: "white" }}
+        >
+          <FormattedMessage id="app.approve" defaultMessage="Approve" />
+        </Button>
+        <Button
+          style={{
+            backgroundColor: "rgb(233, 79, 79)",
+            color: "white",
+          }}
+          onClick={() => rejectTaskByTaskId(item.taskId)}
+        >
+          <FormattedMessage id="app.reject" defaultMessage="Reject" />
+        </Button>
+      </div>
+    </>
+  ) : (
+    <>
+      {item.approvedInd === "Approved" ? (
+        <CheckCircleOutlined
+          type="check-circle"
+          theme="twoTone"
+          twoToneColor="#52c41a"
+          size={140}
+          style={{ fontSize: "1rem" }}
+        />
+      ) : item.approvedInd === "Rejected" ? (
+        <CloseCircleOutlined
+          type="close-circle"
+          theme="twoTone"
+          twoToneColor="red"
+          size={140}
+          className="text-base"
+        // style={{ fontSize: "1rem" }}
+        />
+      ) : (
+        <></>
+      )}
+    </>
+  )}
+  </div>
+</div>
+</div>
+                          
+<div class="flex  max-sm:justify-end w-wk items-center justify-end">    
+<div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
              {item.assignedToName !== item.submittedBy ? 
                          <Tooltip title="Feedback">
                          <FeedbackIcon
@@ -539,59 +594,6 @@ const TaskCardList = (props) => {
  
       
       </div> 
-  
-                  
-                   
-                   <div class="flex flex-col w-[8.21rem] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
-                    <div class=" w-36">
-  {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
-    <>
-      <div>
-        <Button
-        onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-          style={{ backgroundColor: "teal", color: "white" }}
-        >
-          <FormattedMessage id="app.approve" defaultMessage="Approve" />
-        </Button>
-        <Button
-          style={{
-            backgroundColor: "rgb(233, 79, 79)",
-            color: "white",
-          }}
-          onClick={() => rejectTaskByTaskId(item.taskId)}
-        >
-          <FormattedMessage id="app.reject" defaultMessage="Reject" />
-        </Button>
-      </div>
-    </>
-  ) : (
-    <>
-      {item.approvedInd === "Approved" ? (
-        <CheckCircleOutlined
-          type="check-circle"
-          theme="twoTone"
-          twoToneColor="#52c41a"
-          size={140}
-          style={{ fontSize: "1rem" }}
-        />
-      ) : item.approvedInd === "Rejected" ? (
-        <CloseCircleOutlined
-          type="close-circle"
-          theme="twoTone"
-          twoToneColor="red"
-          size={140}
-          style={{ fontSize: "1rem" }}
-        />
-      ) : (
-        <></>
-      )}
-    </>
-  )}
-  </div>
-</div>
-</div>
-                          
-<div class="flex  max-sm:justify-end max-sm:w-wk items-center justify-end">    
                     <div class="flex  max-sm:flex-row  max-sm:w-auto justify-evenly  ">
                     <Tooltip title="Notes">
        <NoteAltIcon
@@ -672,7 +674,7 @@ const TaskCardList = (props) => {
 <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1  p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[4.54rem] bg-teal-600 text-white">
+          <div className=" md:w-[4.54rem] bg-orange-600 text-white">
           {translatedMenuItems[8]}</div>
         <div className=" w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         {translatedMenuItems[0]} 
@@ -706,7 +708,7 @@ const TaskCardList = (props) => {
         loader={fetchingMediumTaskList?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
         style={{ scrollbarWidth:"thin"}}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex  text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {mediumTaskList.map((item) => { 
         const currentDate = dayjs();
@@ -861,7 +863,7 @@ const TaskCardList = (props) => {
 
                    </div>
                    </div>
-                   <div class="flex max-sm:justify-between max-sm:w-wk items-center w-[26rem]">
+                   <div class="flex max-sm:justify-between max-sm:w-wk items-center w-[20rem]">
                     <div className=" flex w-[4.33rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                   {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -930,55 +932,11 @@ const TaskCardList = (props) => {
      </div> 
      )}
      </div>
-     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
-             {item.assignedToName !== item.submittedBy ? 
-                         <Tooltip title="Feedback">
-                         <FeedbackIcon
-                                  onClick={() => {
-                                    handleTaskFeedbackDrawerModal(true);
-                                    handleSetTaskNameId(item);
-                                  }}
-                                  className="!text-icon cursor-pointer text-[#10d512]"
-                                 
-                                />
-                             </Tooltip>
-              
-                :null}
-
      
-     </div> 
-
-
-     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
-           
-                      
-          <UploadIcon className="!text-icon cursor-pointer text-[#b3770f]"
-              onClick={() => {
-                props.handleUpdateDocumentDrawerModal(true);
-                handleSetTaskNameId(item);
-              }}
-          />    
-              
-
-     
-     </div> 
-     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
-           
-                      
-     <EscalatorIcon  className="!text-icon cursor-pointer text-[#358fbb]"
-         onClick={() => {
-          handleTaskStepperDrawerModal(true);
-          handleSetTaskNameId(item);
-        }}
-     />
-               
- 
-      
-      </div> 
   
                   
                    
-                   <div class="flex flex-col w-[8.21rem] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
+                   <div class="flex  w-[8.21rem] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <div class=" w-36">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
     <>
@@ -1027,7 +985,49 @@ const TaskCardList = (props) => {
 </div>
 </div>
                           
-<div class="flex  max-sm:justify-end max-sm:w-wk items-center justify-end">    
+<div class="flex  max-sm:justify-end w-wk items-center justify-end ">    
+<div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
+             {item.assignedToName !== item.submittedBy ? 
+                         <Tooltip title="Feedback">
+                         <FeedbackIcon
+                                  onClick={() => {
+                                    handleTaskFeedbackDrawerModal(true);
+                                    handleSetTaskNameId(item);
+                                  }}
+                                  className="!text-icon cursor-pointer text-[#10d512]"
+                                 
+                                />
+                             </Tooltip>
+              
+                :null}
+
+     
+     </div> 
+
+
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+           
+                      
+          <UploadIcon className="!text-icon cursor-pointer text-[#b3770f]"
+              onClick={() => {
+                props.handleUpdateDocumentDrawerModal(true);
+                handleSetTaskNameId(item);
+              }}
+          />    
+              
+
+     
+     </div> 
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+           
+                      
+     <EscalatorIcon  className="!text-icon cursor-pointer text-[#358fbb]"
+         onClick={() => {
+          handleTaskStepperDrawerModal(true);
+          handleSetTaskNameId(item);
+        }}
+     />
+    </div> 
                     <div class="flex  max-sm:flex-row  max-sm:w-auto justify-evenly  ">
                     <Tooltip title="Notes">
        <NoteAltIcon
@@ -1138,7 +1138,7 @@ const TaskCardList = (props) => {
       hasMore={hasMore}
         loader={fetchingLowTaskList?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {lowTaskList.map((item) => { 
         const currentDate = dayjs();
@@ -1163,7 +1163,7 @@ const TaskCardList = (props) => {
                       <div class="border rounded-[50%] h-6 w-6 bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="border rounded-[50%] h-6 w-6 bg-[teal]" ></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-[#0f0f0f]" ></div>
                     )}
                     <div class=" w-9"></div>
           <div class=" flex w-[8rem] max-sm:w-full">
@@ -1293,7 +1293,7 @@ const TaskCardList = (props) => {
 
                    </div>
                    </div>
-                   <div class="flex max-sm:justify-between max-sm:w-wk items-center w-[26rem]">
+                   <div class="flex max-sm:justify-between max-sm:w-wk items-center w-[20rem]">
                     <div className=" flex w-[4.33rem] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                   {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
                                   <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -1362,51 +1362,7 @@ const TaskCardList = (props) => {
      </div> 
      )}
      </div>
-     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
-             {item.assignedToName !== item.submittedBy ? 
-                         <Tooltip title="Feedback">
-                         <FeedbackIcon
-                                  onClick={() => {
-                                    handleTaskFeedbackDrawerModal(true);
-                                    handleSetTaskNameId(item);
-                                  }}
-                                  className="!text-icon cursor-pointer text-[#10d512]"
-                                 
-                                />
-                             </Tooltip>
-              
-                :null}
-
-     
-     </div> 
-
-
-     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
-           
-                      
-          <UploadIcon className="!text-icon cursor-pointer text-[#b3770f]"
-              onClick={() => {
-                props.handleUpdateDocumentDrawerModal(true);
-                handleSetTaskNameId(item);
-              }}
-          />    
-              
-
-     
-     </div> 
-     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
-           
-                      
-     <EscalatorIcon  className="!text-icon cursor-pointer text-[#358fbb]"
-         onClick={() => {
-          handleTaskStepperDrawerModal(true);
-          handleSetTaskNameId(item);
-        }}
-     />
-               
- 
-      
-      </div> 
+    
   
                   
                    
@@ -1459,7 +1415,52 @@ const TaskCardList = (props) => {
 </div>
 </div>
                           
-<div class="flex  max-sm:justify-end max-sm:w-wk items-center justify-end">    
+<div class="flex  max-sm:justify-end w-wk items-center justify-end">    
+<div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
+             {item.assignedToName !== item.submittedBy ? 
+                         <Tooltip title="Feedback">
+                         <FeedbackIcon
+                                  onClick={() => {
+                                    handleTaskFeedbackDrawerModal(true);
+                                    handleSetTaskNameId(item);
+                                  }}
+                                  className="!text-icon cursor-pointer text-[#10d512]"
+                                 
+                                />
+                             </Tooltip>
+              
+                :null}
+
+     
+     </div> 
+
+
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+           
+                      
+          <UploadIcon className="!text-icon cursor-pointer text-[#b3770f]"
+              onClick={() => {
+                props.handleUpdateDocumentDrawerModal(true);
+                handleSetTaskNameId(item);
+              }}
+          />    
+              
+
+     
+     </div> 
+     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+           
+                      
+     <EscalatorIcon  className="!text-icon cursor-pointer text-[#358fbb]"
+         onClick={() => {
+          handleTaskStepperDrawerModal(true);
+          handleSetTaskNameId(item);
+        }}
+     />
+               
+ 
+      
+      </div> 
                     <div class="flex  max-sm:flex-row  max-sm:w-auto justify-evenly  ">
                     <Tooltip title="Notes">
        <NoteAltIcon

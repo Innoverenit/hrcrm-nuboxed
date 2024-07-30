@@ -194,7 +194,7 @@ function ContactInvestCardList(props) {
         hasMore={hasMore}
         loader={fetchingContactsInvest?<div  class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
-        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         style={{scrollbarWidth:"thin"}}
       >
        

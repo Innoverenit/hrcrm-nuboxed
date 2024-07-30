@@ -309,7 +309,7 @@ const DynamicInputForm = (props) => {
             //loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
             height={"77vh"}
             style={{scrollbarWidth:"thin"}}
-            endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+            endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           >
                 {props.productionSpareData.map((item, index) => {
                     return (

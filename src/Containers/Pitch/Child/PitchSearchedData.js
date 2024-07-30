@@ -143,7 +143,7 @@ const PitchSearchedData = (props) => {
         hasMore={hasMore}
         loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       > */}
     { !props.fetchingPitchHot && props.serachedPitchData.length === 0 ?<NodataFoundPage />:props.serachedPitchData.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");

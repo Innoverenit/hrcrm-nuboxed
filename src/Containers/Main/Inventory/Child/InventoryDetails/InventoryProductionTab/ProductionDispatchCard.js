@@ -85,7 +85,7 @@ function ProductionDispatchCard(props) {
                         hasMore={hasMore}
                         loader={fetchingDispatchProductionLocId ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
                         height={"75vh"}
-                        endMessage={<div class="fles text-center font-bold text-xs text-red-500">{props.translatedMenuItems[38]}. </div>}
+                        endMessage={<div class="flex text-center font-bold text-xs text-red-500">{props.translatedMenuItems[38]}. </div>}
                     >
                         {productionDispatchByLocsId.map((item, index) => {
                             return (

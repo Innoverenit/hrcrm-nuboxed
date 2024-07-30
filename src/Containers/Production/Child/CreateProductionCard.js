@@ -112,7 +112,7 @@ function CreateProductionCard(props) {
                         hasMore={hasMore}
                         loader={fetchingProductionLocId ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
                         height={"75vh"}
-                        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+                        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                     >
                         {productionByLocsId.map((item, index) => {
                             return (

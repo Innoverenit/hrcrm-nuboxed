@@ -186,7 +186,7 @@ const LeadsTeamWarmcard = (props) => {
         loader={fetchingTeamLeadsWarm?<div class="flex justify-center">Loading...</div>:null}
         height={"22vh"}
         style={{ scrollbarWidth: "thin"}}
-        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
        { !fetchingTeamLeadsWarm && teamLeadsWarm.length === 0 ?<NodataFoundPage />:teamLeadsWarm.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");

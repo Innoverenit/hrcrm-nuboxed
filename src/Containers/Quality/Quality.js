@@ -84,7 +84,7 @@
 //             hasMore={hasMore}
 //             loader={props.fetchingProductionQualityData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
 //             height={"85vh"}
-//             endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+//             endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
 //           >
 //                 {props.productionQualityData.map((item, index) => {
 //                     return (
