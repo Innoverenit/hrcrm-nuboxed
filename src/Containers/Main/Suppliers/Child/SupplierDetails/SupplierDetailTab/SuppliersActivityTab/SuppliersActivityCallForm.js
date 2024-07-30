@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Icon, Switch, Tooltip } from "antd";
+import { Button, Tooltip } from "antd";
 import { Formik, Form, Field } from "formik";
 import moment from "moment";
 import { Spacer, StyledLabel } from "../../../../../../../Components/UI/Elements";

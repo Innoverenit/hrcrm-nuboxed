@@ -5,6 +5,7 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { FormattedMessage } from "react-intl";
+import { BundleLoader } from "../../Components/Placeholder";
 
 const TabPane = StyledTabs.TabPane;
 
@@ -13,14 +14,36 @@ class FinanceDashTab extends Component {
     super(props);
     this.state = {
       activeKey: "1",
+      translatedMenuItems: [],
+      loading: true
     };
   }
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       "Receivable", // 0
+
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
+
 
   handleTabChange = (key) => {
     this.setState({ activeKey: key });
   };
   render() {
-    const { activeKey } = this.state;
+    const { activeKey,translatedMenuItems,loading } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
     return (
       <>
         <TabsWrapper1>
@@ -34,10 +57,13 @@ class FinanceDashTab extends Component {
                 <>
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
-               <span class=" ml-1 font-semibold"><FormattedMessage
+               <span class=" ml-1 font-semibold">
+                {/* <FormattedMessage
               id="app.receivable"
               defaultMessage="Receivable"
-            /></span>
+            /> */}
+                 {translatedMenuItems[0]}
+            </span>
               
 
                   {activeKey === "1" && (

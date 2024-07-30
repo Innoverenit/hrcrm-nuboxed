@@ -1,42 +1,31 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import StackedChart from "./StackedChart"
-import DashboardDetailsTab from "./DashboardDetailsTab";
-import { Icon, Switch, Button, Popconfirm } from "antd";
 import { FlexContainer, MainWrapper } from "../../Components/UI/Layout";
 import WordCloud from "../../Components/WordCloud/WordCloud";
  import DashboardTodo from "./Child/DashboardTodo";
-import SatckedSummaryChart from "./SatckedSummaryChart";
-import Example from "./ParetoChart";
 import Indicator from "./Indicator";
  const DashboardCustomerTab = lazy(() => import("../Dashboard/DashboardCustomerTab"));
-
 function DashboardDetailsRight(props) {
   return (
     <>
-     {/* <div style={{ width: "100%" }}>
-       <WordCloud />
-       </div> */}
+
        <FlexContainer flexDirection="column" style={{ display: "block" }}>
       
-      <DashboardCustomerTab/>
-      
+      <DashboardCustomerTab/> 
        <FlexContainer justifyContent="space-between" >
     
        <MainWrapper
-        style={{width:"54%",height:"30vh"}}
-       >
+        style={{width:"54%",height:"30vh"}}>
+       
         Todays Onboard Rate
        <Indicator/>
-       </MainWrapper>
-       
-      
-       
+       </MainWrapper>      
+            
        <div style={{ width: "44%",marginLeft:"auto" ,height:"14em"}}>
-       {/* <MainWrapper> */}
+    
        <DashboardTodo />
-       {/* </MainWrapper> */}
+    
        </div>
       
        </FlexContainer>

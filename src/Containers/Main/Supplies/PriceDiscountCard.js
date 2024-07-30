@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { Button, DatePicker, Input, Select,Tooltip } from "antd";
 import {createMaterialDiscount,getMaterialDiscount,
     //createMaterialDiscountUpdate
@@ -10,7 +9,6 @@ import {createMaterialDiscount,getMaterialDiscount,
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 // import {getInvestorCurrency} from "../../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -43,9 +41,6 @@ function PriceDiscountCard(props) {
     setData(props.materialDiscount.map((item, index) => ({ ...item, key: String(index) })));
   }, [props.materialDiscount]);
 
- 
-
-
 
   const handleAddRow = () => {
     const newRow = {
@@ -53,7 +48,6 @@ function PriceDiscountCard(props) {
       volume: '',
       allowedDiscount: '',
       date: null,
-
 
     };
     setRows([...rows, newRow]);
@@ -241,7 +235,7 @@ function PriceDiscountCard(props) {
                 >
 
                  
- <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+ <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.suppliesId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -251,7 +245,7 @@ function PriceDiscountCard(props) {
                       />
                     </div>
                      ):(
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className="text-xs font-poppins">
                       <div> {item.volume}</div>
                     </div>
                     )}
@@ -278,7 +272,7 @@ function PriceDiscountCard(props) {
                   )}
                     </div>
                   </div> */}
-                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex   md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.suppliesId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -288,7 +282,7 @@ function PriceDiscountCard(props) {
                       />
                     </div>
  ):(
-  <div className="font-normal text-sm  font-poppins">
+  <div className="font-normal text-xs  font-poppins">
   <div> {item.allowedDiscount}</div>
 </div>
 )}
@@ -304,7 +298,7 @@ function PriceDiscountCard(props) {
     onChange={(startDate) => handleInputChange(startDate, item.key, 'startDate')}
   />
 ) : (
-  <div className="font-normal text-sm font-poppins">
+  <div className=" text-xs font-poppins">
     <div>{dayjs(item.startDate).format('DD/MM/YY')}</div>
   </div>
 )}
@@ -316,12 +310,11 @@ function PriceDiscountCard(props) {
     onChange={(endDate) => handleInputChange(endDate, item.key, 'endDate')}
   />
 ) : (
-  <div className="font-normal text-sm font-poppins">
+  <div className=" text-xs font-poppins">
     <div>{dayjs(item.endDate).format('DD/MM/YY')}</div>
   </div>
 )}
                   <div class="flex md:items-center">
-
 
  {editsuppliesId === item.suppliesId ? (
                         <>

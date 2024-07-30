@@ -2,6 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
+import CategoryIcon from '@mui/icons-material/Category';
 import {
   TabsWrapper,
 } from "../../../../../../Components/UI/Layout";
@@ -56,13 +57,8 @@ class SupplierDetailsTab extends Component {
                   {activeKey === "1" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined
-                          onClick={() => this.props.handleLinkSuppliersOrderConfigureModal(true)}
-                          size="14px"
-                          style={{
-                            verticalAlign: "center",
-                            marginLeft: "0.25em",
-                          }}
+                        <PlusOutlined className=" !text-icon  ml-1 items-center"
+                          onClick={() => this.props.handleLinkSuppliersOrderConfigureModal(true)}                                  
                         />
                       </Tooltip>
                     </>
@@ -84,23 +80,16 @@ class SupplierDetailsTab extends Component {
                   {activeKey === "2" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined
-                          onClick={() => this.props.handleSupplierExcleUploadModal(true)}
-                          size="14px"
-                          style={{
-                            verticalAlign: "center",
-                            marginLeft: "0.25em",
-                          }}
+                        <PlusOutlined className=" !text-icon  ml-1 items-center"
+                          onClick={() => this.props.handleSupplierExcleUploadModal(true)}                                               
                         />
                       </Tooltip>
                       <FileExcelOutlined
                        onClick={() => this.props.handleSupplierInventoryImportModal(true)}
                        //onClick={() => this.props.handleSupplierInventoryImportModal(true)}
-                      />
-                     
+                      />                     
                     </>
-                  )}
-                  
+                  )}                 
                 </>
               }
               key="2"
@@ -114,28 +103,8 @@ class SupplierDetailsTab extends Component {
               tab={
                 <>
 
-                  <i class="fab fa-connectdevelop"></i>
+                  <CategoryIcon className="!text-icon"/>
                   <span className="max-xl:text-[0.65rem] ml-1" >Materials</span>
-
-                  {/* {activeKey === "2" && (
-                    <>
-                      <Tooltip title="Create">
-                        <PlusOutlined
-                          onClick={() =>
-                            this.props.handleSuppleirSuppliesDrawer(
-                              true
-                            )
-                          }
-                          size="14px"
-                          style={{
-                            verticalAlign: "center",
-                            marginLeft: "0.25em",
-                          }}
-                        />
-                      </Tooltip>
-                    
-                    </>
-                  )} */}
                 </>
               }
               key="3"
@@ -150,23 +119,18 @@ class SupplierDetailsTab extends Component {
               tab={
                 <>
 
-                  <ContactsIcon className="!text-base " />
+                  <ContactsIcon className="!text-icon "/>
                   <span className="max-xl:text-[0.65rem] ml-1">Contact</span>
 
                   {activeKey === "4" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined
+                        <PlusOutlined className=" !text-icon  ml-1 items-center"
                           onClick={() =>
                             this.props.handleSupplierContactModal(
                               true
                             )
-                          }
-                          size="14px"
-                          style={{
-                            verticalAlign: "center",
-                            marginLeft: "0.25em",
-                          }}
+                          }                                             
                         />
                       </Tooltip>
 
@@ -192,17 +156,10 @@ class SupplierDetailsTab extends Component {
                   {activeKey === "5" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined
-                          // type="plus"
-                          // tooltipTitle="Create"
+                        <PlusOutlined className=" !text-icon  ml-1 items-center"                     
                           onClick={() =>
                             this.props.handleSupplierDocumentUploadModal(true)
-                          }
-                          size="14px"
-                          style={{
-                            verticalAlign: "center",
-                            marginLeft: "0.25em",
-                          }}
+                          }                      
                         />
                       </Tooltip>
                     </>
@@ -226,17 +183,12 @@ class SupplierDetailsTab extends Component {
                   {activeKey === "6" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined
+                        <PlusOutlined className=" !text-icon  ml-1 items-center"
                           // type="plus"
                           // tooltipTitle="Create"
                           onClick={() =>
                             this.props.handleSuppliersActivityModal(true)
-                          }
-                          size="14px"
-                          style={{
-                            verticalAlign: "center",
-                            marginLeft: "0.25em",
-                          }}
+                          }                     
                         />
                       </Tooltip>
                     </>

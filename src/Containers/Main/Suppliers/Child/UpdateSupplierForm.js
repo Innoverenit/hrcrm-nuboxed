@@ -15,17 +15,11 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 
 const CustomerSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
-  // emailId: Yup.string()
-  //   .email("Enter a valid Email")
-  //   .required("Input needed!"),
-  // phoneNo: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5, "Too Short").max(10, "Too Large")
 });
 
 function UpdateSupplierForm (props) {
   useEffect(() => {
     props.getEmployeelistAsErp();
-    // props.getShipByData(props.orgId);
-    // props.getAllSalesList();
   }, []);
 
   const [defaultOption, setDefaultOption] = useState(props.fullName);
@@ -95,14 +89,13 @@ function UpdateSupplierForm (props) {
                     type="text"
                     label={props.translatedMenuItems[0]} 
                     width={"100%"}
-                    component={InputComponent}
-                    // placeholder="Start typing..."
+                    component={InputComponent}             
                     isColumn
                     inlineLabel
                   />
                    <div class=" flex justify-between">
                     <div class="w-[30%] max-sm:w-[40%] ">
-                      {/* <label>Dial Code</label> */}               
+                      {/* Dial Code               */}
                       <FastField
                         name="dialCode"
                         selectType="dialCode"
@@ -151,8 +144,7 @@ function UpdateSupplierForm (props) {
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">
-            
+            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">         
                         {/* Assigned */}
                         {props.translatedMenuItems[24]}
          

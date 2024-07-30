@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter } from "react-router";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";

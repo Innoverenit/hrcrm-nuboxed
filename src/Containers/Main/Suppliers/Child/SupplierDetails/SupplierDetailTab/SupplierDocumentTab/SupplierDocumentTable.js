@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   getSupplierDocument,
   // deleteDocument
@@ -27,7 +27,7 @@ class SupplierDocumentTable extends Component {
 
         // dataIndex: "creationDate",
         // render: (name, item, i) => {
-        //   return <span>{` ${moment(item.creationDate).format("ll")}`}</span>;
+        //   return <span>{` ${dayjs(item.creationDate).format("ll")}`}</span>;
         // },
       },
       {
@@ -64,8 +64,8 @@ class SupplierDocumentTable extends Component {
     return (
       <>
        <div className="flex justify-end sticky  z-auto">
-          <div className="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className="flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div className="flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
               <div className="md:w-[0.5rem]"></div>
               <div className="md:w-[7.4rem]">
                 <FormattedMessage id="app.date" defaultMessage="Date" />
@@ -86,20 +86,20 @@ class SupplierDocumentTable extends Component {
                   <div key={item.id}>
                     <div className="flex rounded mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col">
                       <div className="flex w-3/4">
-                        <div className="flex font-medium flex-col md:w-[1.56rem] max-sm:w-full">
-                          {moment(item.creationDate).format("ll")}
+                        <div className="flex  md:w-[1.56rem] max-sm:w-full">
+                          {dayjs(item.creationDate).format("ll")}
                         </div>
-                        <div className="flex font-medium flex-col md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                        <div className="flex md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                           <div className="text-xs  font-poppins text-center">
                             {item.contactDocumentName}
                           </div>
                         </div>
-                        <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
+                        <div className="flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
                           <div className="text-xs  font-poppins text-center">
                             {item.description}
                           </div>
                         </div>
-                        <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
+                        <div className="flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
                           <div className="text-xs  font-poppins text-center">
                             {item.uploadedBy}
                           </div>

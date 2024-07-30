@@ -162,6 +162,8 @@ class Dashboard extends Component {
         setDashboardViewType={setDashboardViewType}
         handleButtonClick={this.handleButtonClick}
         activeButton={this.state.activeButton}
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}
         />
         <Suspense fallback={<BundleLoader />}>
         <MainWrapper
@@ -182,7 +184,10 @@ class Dashboard extends Component {
              )
              : 
                this.state.activeButton==="Tasks" ?
-             (<DashboardTaskOrganizationJumpstart/>)
+             (<DashboardTaskOrganizationJumpstart
+              selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}
+             />)
              : 
              this.state.activeButton==="RecruitPro" ?
            (<DashboardJumpstartAll/>)
@@ -192,7 +197,10 @@ class Dashboard extends Component {
              :viewType === "ALL" && this.state.activeButton==="Customer" ?
              (<DashboardCustomerOrgJumpstart/>)
              : this.state.activeButton==="Order" ?
-             (<DashboardOrderJumpstart/>)
+             (<DashboardOrderJumpstart
+              selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}
+             />)
            
              : this.state.activeButton==="Finance" ?
              (<DashboardFinanceJumpstart/>)
@@ -232,7 +240,10 @@ class Dashboard extends Component {
              <div class=" flex flex-col " >
        <div class=" flex justify-between" >
        {this.state.activeButton==="Tasks" ? (
-       <TaskOrganizationTab/>)
+       <TaskOrganizationTab
+       selectedLanguage={this.props.selectedLanguage}
+       translateText={this.props.translateText}
+       />)
        :this.state.activeButton==="Investors" ?(
         <InvestorsPitchTab/>)
         // <CustomerLeadsTab/>)
@@ -262,9 +273,10 @@ class Dashboard extends Component {
       />
           // <CustomerLeadsTab/>
           )
-       :<TaskDashboardTab
-      viewType={viewType}
-      />
+       :<TaskDashboardTab viewType={viewType}
+       selectedLanguage={this.props.selectedLanguage}
+       translateText={this.props.translateText}
+       />
        }
       </div>
       
@@ -281,7 +293,10 @@ class Dashboard extends Component {
   
   // ) 
   : this.state.activeButton === "RecruitPro" ? (
-    <DashboardDetailsTab viewType={viewType} />
+    <DashboardDetailsTab viewType={viewType}
+    selectedLanguage={this.props.selectedLanguage}
+    translateText={this.props.translateText}
+    />
     // ) : this.state.activeButton === "Customer"  ? (
     //   <FunnelTab />
    
@@ -316,7 +331,10 @@ class Dashboard extends Component {
     )}
 
     {this.state.activeButton === "Order" && (
-        <DashOrderJumpstart />
+        <DashOrderJumpstart
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}
+        />
     )}
 
     {this.state.activeButton === "Finance" && (
@@ -361,8 +379,6 @@ class Dashboard extends Component {
     )}
 </div>
 
-
-
          <div class=" flex justify-between" >
                 {/* {this.state.activeButton==="Customer"&&
        <PieChart/>
@@ -374,8 +390,6 @@ class Dashboard extends Component {
       />) :null
              }
 
-
-   
       </div>
       
     </div>
@@ -393,14 +407,9 @@ class Dashboard extends Component {
     <div class=" h-[21rem]   max-sm:h-[12rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[47.5%] max-sm:w-wk">
-           <div class=" flex flex-col " >
-          
-     
+           <div class=" flex flex-col " >            
 
-    <div class=" flex justify-between " >
-                
-              
-                 
+    <div class=" flex justify-between " >                                          
                     { viewType==="ALL" && this.state.activeButton==="Customer" ? ( <CustomerGoogleMap
                     handleMapClick={this.handleMapClick}
                     selectedCountry={this.state.selectedCountry}
@@ -434,16 +443,11 @@ class Dashboard extends Component {
                                 <StackedClosureChart />)
                                 : this.state.activeButton === "Finance" ? (
                                   <StackedClosureChart />)
-                  //  : viewType==="ALL" || this.state.activeButton==="Customer" ? (<DashCustomerChartTab/>)
-            
-           
-            :(
-              
+                  //  : viewType==="ALL" || this.state.activeButton==="Customer" ? (<DashCustomerChartTab/>)               
+            :(           
           null
-          )}
-               
+          )}           
             </div> 
-
     </div>
     </div>
 
@@ -478,17 +482,7 @@ class Dashboard extends Component {
        <StackedClosureChart />
              } */}
              </div>
-
-
- 
- 
-
-
-   
-      </div>
-
-  
-      
+      </div>    
     </div>
    
     </div>

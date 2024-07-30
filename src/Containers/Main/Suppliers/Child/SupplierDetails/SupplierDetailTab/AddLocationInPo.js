@@ -4,9 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
-import moment from "moment";
-// import moment from "moment";
-// import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
+import dayjs from "dayjs";
 import { getLocationList } from "../../../../Account/AccountAction"
 import { movePoToInventory } from "../../../SuppliersAction"
 import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -15,9 +13,9 @@ function AddLocationInPo(props) {
     useEffect(() => {
         props.getLocationList(props.orgId);
     }, []);
-    moment.addRealYear = function addRealYear(y) {
-        var fm = moment(y).add(10, "Y");
-        var fmEnd = moment(fm).endOf("year");
+    dayjs.addRealYear = function addRealYear(y) {
+        var fm = dayjs(y).add(10, "Y");
+        var fmEnd = dayjs(fm).endOf("year");
         return y.date() != fm.date() && fm.isSame(fmEnd.format("YYYY-MM-DD"))
             ? fm.add(10, "y")
             : fm;
@@ -58,7 +56,7 @@ function AddLocationInPo(props) {
                 }) => (
                     <Form>
                         <div class="flex justify-between">
-                            <div class="w-[85%]">
+                            <div class="w-[50%]">
                                 <Field
                                     name="locationId"
                                     type="text"

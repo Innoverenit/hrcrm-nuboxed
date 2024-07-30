@@ -1,35 +1,14 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, {  Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import { Button, Switch, Tooltip, Icon,Select } from "antd";
-
-// import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
+import { Button,Select } from "antd";
 import { Formik, Form, Field, FieldArray,FastField } from "formik";
-import { StyledDrawer, StyledModal } from "../../../../../Components/UI/Antd";
-import { Spacer, StyledLabel } from "../../../../../Components/UI/Elements";
-import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
-import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import {addSupplierInventoryImportForm} from "../../SuppliersAction"
-
-// import { getOppoStages, getLevels } from "../../Settings/SettingsAction";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
-import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
-// import { leadsReducer } from "../LeadsReducer";
 import ImportTaskUpload from "../../../../../Components/Forms/Formik/ImportTaskUpload";
 
-
 const { Option } = Select;
-// const documentSchema = Yup.object().shape({
-// documentName: Yup.string().required("This field is required !"),
-// documentId: Yup.string().required("Input needed !"),
-// documentDescription: Yup.string().required("This field is required !"),
-// stageId: Yup.string().required("This field is required !")
-// });
-// const documentSchema = Yup.object().shape({
 
-// documentId: Yup.string().required("Input needed!"),
-// });
 class SupplierInventoryImportForm extends Component {
   constructor(props) {
     super(props);
@@ -43,11 +22,7 @@ class SupplierInventoryImportForm extends Component {
     };
   }
  
-
- 
-
   render() {
-   
    
    const catagory=[
     {
@@ -68,26 +43,15 @@ class SupplierInventoryImportForm extends Component {
       },
    ]
 
-
-  
-
- 
- 
     return (
-      <>
-       
-         
+      <>    
             <Formik
               // enableReinitialize
               initialValues={{
-              
-               
+                      
                 excelId:"",
                 userId:this.props.userId,
-                orgId:this.props.orgId,
-               
-                // shareInd:"",
-                //opportunityId:this.props.opportunity.opportunityId,
+                orgId:this.props.orgId,                      
               }}
             //    validationSchema={documentSchema}
               onSubmit={(values, { resetForm }) => {
@@ -134,15 +98,11 @@ class SupplierInventoryImportForm extends Component {
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
-                  
-                  <Spacer />
-                   
-                    </div>
-                    
+                      <mt-3 />             
+                  <mt-3 />                 
+                    </div>                 
                   </div>
-
-                  <Spacer />
+                  <mt-3 />
                   <FlexContainer justifyContent="flex-end">
                     <Button
                       htmlType="submit"
@@ -155,17 +115,13 @@ class SupplierInventoryImportForm extends Component {
                 </Form>
               )}
             </Formik>
-        
-       
       </>
     );
   }
 }
 // const DocumentUploadModal = (props) => {
 //     console.log(props)
-
 // }
-
 const mapStateToProps = ({ document, suppliers,leads,employee, departments,auth }) => ({
     // addingLeadsImportForm:leads.addingLeadsImportForm,
     userId:auth.userDetails.userId,

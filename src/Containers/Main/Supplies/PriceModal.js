@@ -1,11 +1,9 @@
-import React, { lazy, Suspense } from "react";
+import React, {  Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import PriceAddCard from "./PriceAddCard";
 import PriceDiscountCard from "./PriceDiscountCard";
 import PriceDiscountCardB2C from "./PriceDiscountCardB2C";
-
-
 
 const PriceModal = (props) => {
   const { priceOpenModal, handlePriceModal, particularDiscountData, ...formProps } = props;

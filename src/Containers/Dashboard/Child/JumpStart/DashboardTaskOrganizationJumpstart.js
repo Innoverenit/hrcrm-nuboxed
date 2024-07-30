@@ -9,6 +9,7 @@ import {
   getJumpBulblist3, getavgHour, getJumpTasklist, getTasklist, getJumpTask2list
 } from "../../DashboardAction";
 import { FormattedMessage } from "react-intl";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 class DashboardTaskOrganizationJumpstart extends React.Component {
   constructor() {
@@ -26,7 +27,9 @@ class DashboardTaskOrganizationJumpstart extends React.Component {
     this.state = {
       date: date,
       startDate,
-      endDate
+      endDate,
+      translatedMenuItems: [],
+      loading: true
     };
   }
 
@@ -44,6 +47,25 @@ class DashboardTaskOrganizationJumpstart extends React.Component {
       getSalesDateWiseList(orgId, startDate, endDate);
     }
 
+  }
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+        'Open Tasks', // 0
+         ' Deadline', // 1
+         'High Priority Tasks', // 2
+         ' Status ', // 3
+
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
   }
   componentWillReceiveProps(nextProps) {
     if (
@@ -73,6 +95,11 @@ class DashboardTaskOrganizationJumpstart extends React.Component {
   render() {
     const { showDatelist, fetchingDatewiseReport } = this.props;
     const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
+    const { activeKey, loading, translatedMenuItems } = this.state;
+
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
     return (
       <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
@@ -80,10 +107,11 @@ class DashboardTaskOrganizationJumpstart extends React.Component {
             <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-              title={<FormattedMessage
-                id="app.openTasks"
-                defaultMessage="Open Tasks"
-              />}
+                 title= {translatedMenuItems[0]}
+              // {<FormattedMessage
+              // //   id="app.openTasks"
+              // //   defaultMessage="Open Tasks"
+              // // />}
 
 
               value={this.props.taskperCount.totalTask}
@@ -93,10 +121,11 @@ class DashboardTaskOrganizationJumpstart extends React.Component {
             <JumpStartBox
               bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-              title={<FormattedMessage
-                id="app.tasksDeadline"
-                defaultMessage="Tasks > Deadline"
-              />}
+              title={translatedMenuItems[1]}
+              // {<FormattedMessage
+              //   id="app.tasksDeadline"
+              //   defaultMessage="Tasks > Deadline"
+              // />}
               // title="Tasks > Deadline"
               value={this.props.jumpstartTask2listCount.no}
               isLoading={this.props.fetchingJumpstartTask2list}
@@ -108,10 +137,11 @@ class DashboardTaskOrganizationJumpstart extends React.Component {
             <JumpStartBox
               bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
-              title={<FormattedMessage
-                id="app.highPriorityTasks"
-                defaultMessage="High Priority Tasks"
-              />}
+              title={translatedMenuItems[2]}
+              // {<FormattedMessage
+              //   id="app.highPriorityTasks"
+              //   defaultMessage="High Priority Tasks"
+              // />}
               // title="High Priority Tasks"
               value={this.props.jumpstartTasklistCount.no}
               isLoading={this.props.fetchingJumpstartTasklist}
@@ -119,10 +149,11 @@ class DashboardTaskOrganizationJumpstart extends React.Component {
             <JumpStartBox
               bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
-              title={<FormattedMessage
-                id="app.status"
-                defaultMessage="Status"
-              />}
+              title={translatedMenuItems[3]}
+              // {<FormattedMessage
+              //   id="app.status"
+              //   defaultMessage="Status"
+              // />}
             // title="Status"
             // value={this.props.jumpstartBulb3Count.junkedLeadsList}
 

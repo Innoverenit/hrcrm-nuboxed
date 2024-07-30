@@ -54,7 +54,6 @@ function MaterialbuilderCard (props) {
     props.updateMaterialBuilder(data)
       setEditedFields((prevFields) => ({ ...prevFields, [linkSuppliesId]: undefined }));
       setEditlinkSuppliesId(null);
-    
   };
 
 return (
@@ -95,19 +94,19 @@ return (
     </div>
     
     
-    <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs  font-poppins">
                       
                       {item.categoryName}
                     </div>
     </div>
-    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
       
         <div class=" text-xs  font-semibold  font-poppins">
                       {item.subCategoryName}
                     </div>
     </div>
-    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
       <div class=" text-xs  font-semibold  font-poppins">
                    {editlinkSuppliesId === item.linkSuppliesId ? (
                        <input
@@ -118,7 +117,7 @@ return (
                        />
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs font-poppins">
                         <span> {item.quantity}</span>
                       </div>
                     )}

@@ -1,5 +1,4 @@
-import React, { useEffect, } from "react";
-import { FormattedMessage } from "react-intl";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import OrdersAddedModal from "./OrdersAddedModal"
@@ -15,13 +14,43 @@ handleOrderClosedModal,
 handleOrderOpenModal
 } from "../../DashboardAction";
 import OrdersClosedModal from "./OrdersClosedModal"
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 function DashboardOrderJumpstart(props) {
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+       "Orders Added", // 0
+       "Orders Open", // 1
+        "Orders Closed", // 2
+       "Orders Cancelled"//3
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getJumpOrderDetail(props.timeRangeType, "Catalog")
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
+
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  } 
   return (
     <>
       <div class=" flex flex-row w-full" >
@@ -30,10 +59,8 @@ function DashboardOrderJumpstart(props) {
             <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-              title={<FormattedMessage
-                id="app.ordersAdded"
-                defaultMessage="Orders Added"
-              />}
+              title= {translatedMenuItems[0]}
+            
               jumpstartClick={()=>props.handleOrderAddedModal(true)}
               cursorData={"pointer"}
               value={props.orderinDashboard.totalOrder}
@@ -43,10 +70,8 @@ function DashboardOrderJumpstart(props) {
             <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-              title={<FormattedMessage
-                id="app.ordersopen"
-                defaultMessage="Orders Open"
-              />}
+              title= {translatedMenuItems[1]}
+              
             jumpstartClick={()=>props.handleOrderOpenModal(true)}
               cursorData={"pointer"}
             // value={ props.orderinDashboard.pendingOrder}
@@ -57,10 +82,8 @@ function DashboardOrderJumpstart(props) {
             <JumpStartBox
 bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
-              title={<FormattedMessage
-                id="app.ordersclosed"
-                defaultMessage="Orders Closed"
-              />}
+              title= {translatedMenuItems[2]}
+          
               jumpstartClick={()=>props.handleOrderClosedModal(true)}
               cursorData={"pointer"}
             // value={props.orderinDashboard.completeOrder}
@@ -69,10 +92,8 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
             <JumpStartBox
                         bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
-              title={<FormattedMessage
-                id="app.orderscancelled"
-                defaultMessage="Orders Cancelled"
-              />}
+              title= {translatedMenuItems[3]}
+              
               jumpstartClick={()=>props.handleOrderCancelModal(true)}
               cursorData={"pointer"}
               value={props.orderinDashboard.cancelOrder}
@@ -100,19 +121,27 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
       </div>
    
      <OrdersAddedModal
+      selectedLanguage={this.props.selectedLanguage}
+      translateText={this.props.translateText}
        orderAddedModal={props.orderAddedModal}
        handleOrderAddedModal={props.handleOrderAddedModal}
       />
         <OrdersCancelModal
+         selectedLanguage={this.props.selectedLanguage}
+         translateText={this.props.translateText}
        orderCancelModal={props.orderCancelModal}
        handleOrderCancelModal={props.handleOrderCancelModal}
       />
        <OrdersClosedModal
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}
        orderClosedModal={props.orderClosedModal}
        handleOrderClosedModal={props.handleOrderClosedModal}
       />
 
 <OrdersOpenModal
+ selectedLanguage={this.props.selectedLanguage}
+ translateText={this.props.translateText}
        orderOpenModal={props.orderOpenModal}
        handleOrderOpenModal={props.handleOrderOpenModal}
       />

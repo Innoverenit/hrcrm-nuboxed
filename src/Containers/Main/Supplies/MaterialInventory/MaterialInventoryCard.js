@@ -1,11 +1,7 @@
 import React, {useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip,Button } from "antd";
 import { getMaterialInventory,removeMaterialBuilder,updateMaterialBuilder } from "../SuppliesAction";
-import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
 
 function MaterialInventoryCard (props) {
 
@@ -47,8 +43,7 @@ function MaterialInventoryCard (props) {
       categoryName:editedFields[linkSuppliesId]?.categoryName !== undefined ? editedFields[linkSuppliesId].categoryName : categoryName,
       subCategoryName: editedFields[linkSuppliesId]?.subCategoryName !== undefined ? editedFields[linkSuppliesId].subCategoryName : subCategoryName,                 
       quantity: editedFields[linkSuppliesId]?.quantity !== undefined ? editedFields[linkSuppliesId].quantity : quantity,     
-      suppliesId:props.particularDiscountData.suppliesId,    
-                     
+      suppliesId:props.particularDiscountData.suppliesId,                      
     };
   
     // props.updateMaterialBuilder(data)
@@ -94,19 +89,19 @@ return (
     </div>
     
     
-    <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs  font-poppins">
                       
                       {item.balanced}
                     </div>
     </div>
-    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
       
         <div class=" text-xs  font-semibold  font-poppins">
                       {item.subCategoryName}
                     </div>
     </div>
-    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
       <div class=" text-xs  font-semibold  font-poppins">
                    {editlinkSuppliesId === item.linkSuppliesId ? (
                        <input

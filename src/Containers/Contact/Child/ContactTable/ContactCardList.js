@@ -31,8 +31,6 @@ import { FormattedMessage } from "react-intl";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
-import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
-import AddLocationIcon from '@mui/icons-material/AddLocation';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import ReactContactSpeechModal from "../ContactDetail/ReactContactSpeechModal";
 import AddContactDrawerModal from "../UpdateContact/AddContactDrawerModal";
@@ -137,9 +135,6 @@ function ContactCardList(props) {
 'Pipeline', // 5
 'Portal Access', // 6
 'Owner' // 7
-
-
-
 
         ];
 
