@@ -12,15 +12,18 @@ import {
   handleUpdateProcureDetailModal,
   setEditProcure,
   getProcureRecords,
-  handleProcureDetailsModal
+  handleProcureDetailsModal,
+  handleStatuShowDrawer
 } from "../../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
+import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import UpdateProcureModal from "./UpdateProcureModal";
 import AccountProcureDetailsModal from "../AccountProcureDetailsModal";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import ProcureStatusShowDrawer from "./ProcureStatusShowDrawer";
 
 function CustomerProcurementTable(props) {
   const [page, setPage] = useState(0);
@@ -489,7 +492,7 @@ const handleLoadMoreLow = () => {
                
                   <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
-                                                        <Tooltip title={<FormattedMessage
+                                                        {/* <Tooltip title={<FormattedMessage
                                                                 id="app.edit"
                                                                 defaultMessage="Edit"
                                                             />}>
@@ -501,8 +504,22 @@ const handleLoadMoreLow = () => {
                                                                         handleSetParticularOrderData(item)
                                                                     }}
                                                                 />
-                                                                </Tooltip>
-                                                      
+                                                                </Tooltip> */}
+                                                       {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
+                                            <Tooltip title={<FormattedMessage
+                                                                id="app.status"
+                                                                defaultMessage="Status"
+                                                            />}>
+                                                                <EventRepeatIcon
+
+                                                                    className="!text-base cursor-pointer"
+                                                                    onClick={() => {
+                                                                        props.handleStatuShowDrawer(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+                                                                />
+                                                            </Tooltip>
+                                            </div>  */}
                                                         </div>
                                                      
 
@@ -527,6 +544,12 @@ const handleLoadMoreLow = () => {
                 particularRowData={particularRowData}
                 handleProcureDetailsModal={props.handleProcureDetailsModal}
                 addProcureDetailsModal={props.addProcureDetailsModal} />
+
+<ProcureStatusShowDrawer
+           particularRowData={particularRowData}
+           showStatusDrwr={props.showStatusDrwr}
+           handleStatuShowDrawer={props.handleStatuShowDrawer}
+           />
     </>
   );
 
@@ -546,6 +569,7 @@ const mapStateToProps = ({ distributor }) => ({
     fetchingDistributorOfMedium:distributor.fetchingDistributorOfMedium,
     lowDistributorOrder:distributor.lowDistributorOrder,
     fetchingDistributorOfLow:distributor.fetchingDistributorOfLow,
+    showStatusDrwr:distributor.showStatusDrwr,
 
 });
 
@@ -559,7 +583,8 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateProcureDetailModal,
       setEditProcure,
       getProcureRecords,
-      handleProcureDetailsModal
+      handleProcureDetailsModal,
+      handleStatuShowDrawer
     },
     dispatch
   );

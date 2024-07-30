@@ -190,11 +190,7 @@ const [rowdata, setrowdata] = useState("");
 
             </div>
             <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] max-lg:w-[3.35rem] ">
-              <FormattedMessage
-                id="app.country"
-                defaultMessage="Country"
-              />
-
+             
             </div>
             <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
               <FormattedMessage
