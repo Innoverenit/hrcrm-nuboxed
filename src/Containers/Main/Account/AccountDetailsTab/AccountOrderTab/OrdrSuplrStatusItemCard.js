@@ -4,9 +4,11 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from "react-infinite-scroll-component";
 import {updateOrdrSuplrItems} from "../../AccountAction";
-import { Tooltip,Button,Input,Popconfirm } from "antd";
+import { Tooltip,Button,Input,Select } from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import moment from "moment";
+
+const { Option } = Select;
 
 function OrdrSuplrStatusItemCard (props) {
   
@@ -44,7 +46,12 @@ const handleInputChange = (value, key, dataIndex) => {
         alert('Shipping date cannot be earlier than delivery date');
     }
 };
-
+const handleSelectChange = (value, key, dataIndex) => {
+    const updatedData = data.map((item) =>
+        item.itemId === key ? { ...item, [dataIndex]: value } : item
+    );
+    setData(updatedData);
+};
 
   const handleEditClick = (itemId) => {
     setEditsuppliesId(itemId);
@@ -68,7 +75,15 @@ const handleInputChange = (value, key, dataIndex) => {
             setEditsuppliesId(null);
   };
 
-
+  const stss = [{
+    stsid:"3434",
+    stsnm:"ADASd"
+  },
+  {
+    stsid:"4556",
+    stsnm:"Ddsgfh"
+  }
+]
     return (
         <>
              <div> 
@@ -113,10 +128,10 @@ const handleInputChange = (value, key, dataIndex) => {
                                         id="app."
                                         defaultMessage="Ship By"
                                     /></div>
-                                    {/* <div className=" md:w-[6.5rem]"><FormattedMessage
-                                        id="app.price"
-                                        defaultMessage="Price"
-                                    /></div> */}
+                                    <div className=" md:w-[6.5rem]"><FormattedMessage
+                                        id="app.status"
+                                        defaultMessage="status"
+                                    /></div>
                         
                                    
                                     <div className=" md:w-[2rem]"></div>
@@ -194,6 +209,26 @@ const handleInputChange = (value, key, dataIndex) => {
                        onChange={(e) => handleInputChange(e.target.value, item.itemId, 'shipBy')}
                      />
                        
+                    ) : (
+                      <div className="font-normal text-sm  font-poppins">
+                        <div> {item.shipBy}</div>
+                      </div>
+                    )}
+                                                                     
+                                                                </div>
+                                                            </div>
+                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                {editsuppliesId === item.itemId ? (
+                       <Select
+                       style={{ width: "3rem" }}
+                       value={item.shipBy}
+                       onChange={(e) => handleSelectChange(e.target.value, item.itemId, 'shipBy')}
+                     >
+                       {stss.map((a) => (
+                      <Option key={a.stsid} value={a.stsid}>{a.stsnm}</Option>
+                    ))}
+                       </Select>
                     ) : (
                       <div className="font-normal text-sm  font-poppins">
                         <div> {item.shipBy}</div>

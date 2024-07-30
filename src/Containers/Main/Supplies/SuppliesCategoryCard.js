@@ -1,28 +1,19 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-    handleCategoryModal,
-    getCategory
-} from "../../ProductAction";
-import ProductPublishToggle from "./ProductPublishToggle";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
-import { Button, Tooltip,Input,Popconfirm } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import { MultiAvatar, SubTitle } from "../../../Components/UI/Elements";
+import { Button, Tooltip,Input } from "antd";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import InfiniteScroll from "react-infinite-scroll-component";
-import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
-import EuroIcon from '@mui/icons-material/Euro';
-import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import { base_url2 } from "../../../../Config/Auth";
+import { getSuppliesCategory } from "./SuppliesAction";
+import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
-import EditUpload from "../../../../Components/Forms/Edit/EditUpload";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 
-const CategoryProductModal = lazy(() => import("../CategoryProductModal"));
+const SuppliesCategoryModal = lazy(() => import("./SuppliesCategoryModal"));
 
 
-function ProductCategory(props) {
+function SuppliesCategoryCard(props) {
 
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
@@ -30,10 +21,22 @@ function ProductCategory(props) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [editedFields, setEditedFields] = useState({});
-  const [editsuppliesId, setEditsuppliesId] = useState(null);
-  const [data, setData] = useState([]);
+
+  const [drb, setDrb] = useState([]);
   const [error, setError] = useState(null)
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+  const handleSuppliesCategoryModal = () => {
+    openModal(); 
+  };
 
 
   useEffect(() => {
@@ -60,13 +63,31 @@ function ProductCategory(props) {
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
-  useEffect(() => {
-    props.getCategory()
-  }, []);
 
- useEffect(() => {
-        setData(props.categoryProducts);
-    }, [props.categoryProducts]);
+  useEffect(() => {
+    const fetchData = async () => {
+        setLoading(true); 
+        try {
+            const response = await axios.get(`${base_url2}/supplies/allSuppliesCatagory`,{
+                headers: {
+                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                },
+              }); 
+            if (response.drb.length === 0) {
+                setHasMore(false); 
+            }
+            setDrb(prevData => [...prevData, ...response.drb]); 
+        } catch (error) {
+            setError(error); 
+            console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false); 
+        }
+    };
+
+    fetchData();
+}, []);
+
 
   const [particularDiscountData, setParticularDiscountData] = useState({});
 
@@ -74,95 +95,64 @@ function ProductCategory(props) {
     setParticularDiscountData(item);
   }
 
- 
+  const [editedFields, setEditedFields] = useState({});
+    const [editsuppliesId, setEditsuppliesId] = useState(null);
+    const [data, setData] = useState([]);
 
-  const {
-    fetchingProducts,
-    products,
-    handleCategoryModal,
-    categoryProductModal,
-    user,
-    proBuilderDrawer,
-    handleProductBuilderDrawer,
-    handlePriceDrawer,
-    priceOpenDrawer,
-    categoryProducts
-  } = props;
+    useEffect(() => {
+        setData(drb);
+    }, [drb]);
 
-  const handleInputChange = (value, key, dataIndex) => {
-    const updatedData = data.map((item) =>
-        item.categoryId === key ? { ...item, [dataIndex]: value } : item
-    );
-    setData(updatedData);
-};
-const [newimageId, setnewimageId] = useState("");
-function handleSetImage(imageId) {
-  setnewimageId(imageId);
-}
+    const handleInputChange = (value, key, dataIndex) => {
+        const updatedData = data.map((item) =>
+            item.categoryId === key ? { ...item, [dataIndex]: value } : item
+        );
+        setData(updatedData);
+    };
+    const [newimageId, setnewimageId] = useState("");
+    function handleSetImage(imageId) {
+      setnewimageId(imageId);
+    }
 
-const handleEditClick = (categoryId) => {
-    setEditsuppliesId(categoryId);
-  };
-  const handleCancelClick = (categoryId) => {
-    setEditedFields((prevFields) => ({ ...prevFields, [categoryId]: undefined }));
-    setEditsuppliesId(null);
-  };
+    const handleEditClick = (categoryId) => {
+        setEditsuppliesId(categoryId);
+      };
+      const handleCancelClick = (categoryId) => {
+        setEditedFields((prevFields) => ({ ...prevFields, [categoryId]: undefined }));
+        setEditsuppliesId(null);
+      };
 
-  const handleSave = async (item) => {
-    console.log(item)
-    const updatedItem = {
-        categoryId:item.categoryId,
-        // orderId:props.particularRowData.orderId,
-        categoryName: item.categoryName, 
-        imageId: newimageId
-    }; 
- console.log("resd",updatedItem);  
- try {
+      const handleSave = async (item) => {
+        console.log(item)
+        const updatedItem = {
+            categoryId:item.categoryId,
+            // orderId:props.particularRowData.orderId,
+            categoryName: item.categoryName, 
+            imageId: newimageId
+        }; 
+     console.log("resd",updatedItem);  
+     try {
 
-  const response = await axios.put(`${base_url2}/product/${item.categoryId}`, updatedItem, {
-    headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-    },
-  });
-  console.log("API Response:", response.data);
-  setData(prevData => 
-    prevData.map(cat =>
-      cat.categoryId === item.categoryId ? response.data : cat
-    )
-  );
-
-  setEditsuppliesId(null);
-
-} catch (error) {
-  // Handle errors
-  console.error("Error updating item:", error);
-  setEditsuppliesId(null);
-}
-};
-
-const DeleteOnClick = async (item) => {
-
-  try {
-    const result = await axios.put(
-      `${base_url2}/product/deleteCatagory/${item.categoryId}`,{active:false},{
+      const response = await axios.put(`${base_url2}/supplies/suppliescatagory/${item.categoryId}`, updatedItem, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
-      }
-    );
-
-    if (result.data === 'Deleted successfully') {
-      const updatedOrderItems = props.categoryProducts.filter(itm => itm.itemId !== item.itemId);
-      setData(updatedOrderItems);
-    } else {
-      console.log(result.data);
+      });
+      console.log("API Response:", response.data);
+      setDrb(prevData => 
+        prevData.map(cat =>
+          cat.categoryId === item.categoryId ? response.data : cat
+        )
+      );
+  
+      setEditsuppliesId(null);
+  
+    } catch (error) {
+      // Handle errors
+      console.error("Error updating item:", error);
+      setEditsuppliesId(null);
     }
-  } catch (error) {
-    setError(error);
-    console.error(error); 
-  }
-};
-
+  };
 
   return (
     <>
@@ -179,10 +169,7 @@ const DeleteOnClick = async (item) => {
                         <Tooltip title="Add">
                           <AddCircleIcon
                             className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={() => {
-                              //props.setEditProducts(item);
-                              handleCategoryModal(true);
-                            }}
+                            onClick={handleSuppliesCategoryModal}
                           />
                         </Tooltip>
                       </div>
@@ -194,7 +181,7 @@ const DeleteOnClick = async (item) => {
             {data.map((item) => {
               return (
                 <div>
-                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  <div key={item.categoryId} className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     
 
@@ -214,6 +201,7 @@ const DeleteOnClick = async (item) => {
                         <div>  {item.categoryName}</div>
                       </div>
                     )}
+                         
                         </div>
 
                       </div>
@@ -222,7 +210,6 @@ const DeleteOnClick = async (item) => {
                     <div className=" flex font-medium flex-col  w-[7.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-
 {editsuppliesId === item.categoryId ? (
     
     <EditUpload
@@ -250,6 +237,18 @@ const DeleteOnClick = async (item) => {
                           </div>
                       </div>
                     )}
+                          {/* {item.imageId ? (
+                            <MultiAvatar
+                              imageId={item.imageId ? item.imageId : ''}
+                              imgHeight={"1.8em"}
+                              imgWidth={"1.8em"}
+                              imgRadius={20}
+                            />
+                          ) : (
+                            <div class="font-bold text-xs" >
+                              No Image
+                            </div>
+                          )} */}
                       
 </div>
 
@@ -286,16 +285,6 @@ const DeleteOnClick = async (item) => {
                       />
                     )}
     </div>
-
-    <div>
-                              <Popconfirm
-                                title="Do you want to delete?"
-                                onConfirm={() => DeleteOnClick(item)}
-                              >
-
-                                <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
-                              </Popconfirm>
-                            </div>
                     </div>
                    
                   </div>
@@ -306,9 +295,10 @@ const DeleteOnClick = async (item) => {
         </div>
       </div>
       <Suspense fallback={"Loading"}>
-      <CategoryProductModal
-          categoryProductModal={categoryProductModal}
-          handleCategoryModal={handleCategoryModal}
+      <SuppliesCategoryModal
+           modalVisible={modalVisible}
+           closeModal={closeModal}
+           handleSuppliesCategoryModal={handleSuppliesCategoryModal}
         />
       </Suspense>
     </>
@@ -317,34 +307,17 @@ const DeleteOnClick = async (item) => {
 
 
 const mapStateToProps = ({ product, auth, supplies }) => ({
-  productByGroup: product.productByGroup,
-  fetchingProductByGroup: product.fetchingProductByGroup,
-  groupId: auth.userDetails.groupId,
-  fetchingProducts: product.fetchingProducts,
-  fetchingAllProducts: product.fetchingAllProducts,
-  fetchingAllProductsError: product.fetchingAllProductsError,
-  products: product.products,
-  allproducts: product.allproducts,
-  categoryProductModal: product.categoryProductModal,
-  // addDiscountModal: product.addDiscountModal,
-  // addProductOfferModal: product.addProductOfferModal,
-  addHistoryModal: product.addHistoryModal,
-  addCatalogueConfigureModal: product.addCatalogueConfigureModal,
-  addCatalogueWipModal: product.addCatalogueWipModal,
   role: auth.userDetails.role,
   department: auth.userDetails.department,
   user: auth.userDetails,
-  addCurrencyValue: supplies.addCurrencyValue,
-  proBuilderDrawer: product.proBuilderDrawer,
-  priceOpenDrawer: product.priceOpenDrawer,
   categoryProducts:product.categoryProducts
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        handleCategoryModal,
-        getCategory
+        // handleCategoryModal,
+        // getCategory
     },
     dispatch
   );
@@ -352,4 +325,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductCategory);
+)(SuppliesCategoryCard);

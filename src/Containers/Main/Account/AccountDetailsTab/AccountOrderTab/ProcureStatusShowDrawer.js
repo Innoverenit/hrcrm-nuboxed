@@ -1,10 +1,9 @@
 import React, { lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import OrderSupplierStatuShower from "./OrderSupplierStatuShower";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
-
+const OrderSupplierStatuShower =lazy(()=> import("./OrderSupplierStatuShower"));
 
 const ProcureStatusShowDrawer = (props) => {
     const isSmallScreen = window.innerWidth <= 600;
