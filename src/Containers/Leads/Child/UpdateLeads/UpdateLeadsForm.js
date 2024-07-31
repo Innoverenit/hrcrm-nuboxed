@@ -688,7 +688,7 @@ function UpdateLeadsForm (props) {
     </Listbox>
                     </div>
                  
-                  <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
+                  {/* <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
                   <FieldArray
                     name="address"
                     label="Address"
@@ -702,7 +702,7 @@ translatedMenuItems={props.translatedMenuItems}
                       />
                     )}
                   />
-                  </div>
+                  </div> */}
                  
                   {props.orgType==="Real Estate"&&(
                   <div class=" h-3/4  max-sm:w-wk "
