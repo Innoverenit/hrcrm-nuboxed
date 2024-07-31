@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
-import { getSectors } from "../../../Settings/Sectors/SectorsAction";
+// import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { getCountries } from "../../../Auth/AuthAction";
@@ -38,7 +38,7 @@ import {
 } from "../../CustomerAction";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
+// import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import CustomerSearchedData from "./CustomerSearchedData";
@@ -81,9 +81,9 @@ function CustomerAllCardList(props) {
     })
     setPage(page + 1);
     props.getAllCustomerlIST(page,props.filter?props.filter:"creationdate");
-      props.getSectors();
-    props.getCountries();
-    props.getAllCustomerEmployeelist();
+    //   props.getSectors();
+    // props.getCountries();
+    // props.getAllCustomerEmployeelist();
   }, []);
 
   useEffect(() => {
@@ -662,7 +662,7 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
       setEditCustomer,
-      getSectors,
+      // getSectors,
       customerToAccount,
       emptyCustomer,
       updateOwnercustomerById,
@@ -673,7 +673,7 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerNotesDrawerModal,
       getCustomerById,
       getCountries,
-      getAllCustomerEmployeelist,
+      // getAllCustomerEmployeelist,
       handleCustomerContactDrawerModal,
       handleCustomerOpportunityDrawerModal,
     },

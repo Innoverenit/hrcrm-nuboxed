@@ -27,6 +27,7 @@ import {
   updateTypeForLead,
   handleCETmodal,
   emptyLeads,
+  handleLeadsConfirmationModal,
 } from "../../../Leads/LeadsAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import AddchartIcon from "@mui/icons-material/Addchart";
@@ -36,6 +37,7 @@ import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedData from "./SearchedData";
+import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 const UpdateLeadsModal =lazy(()=>import("../UpdateLeads/UpdateLeadsModal"));
 const AddLeadsEmailDrawerModal =lazy(()=>import("../UpdateLeads/AddLeadsEmailDrawerModal"));
 const BorderColorIcon =lazy(()=>import("@mui/icons-material/BorderColor"));
@@ -1475,6 +1477,10 @@ const LeadsAllCardList = (props) => {
         addDrawerLeadsNotesModal={props.addDrawerLeadsNotesModal}
         handleLeadsNotesDrawerModal={props.handleLeadsNotesDrawerModal}
       />
+       <AddConfirmLedsStatusModal
+           addLeadsConfirmationModal={props.addLeadsConfirmationModal}
+           handleLeadsConfirmationModal={props.handleLeadsConfirmationModal}
+           />
       </Suspense>
     </>
   );
@@ -1496,6 +1502,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   fetchingAllLeadsWarm: leads.fetchingAllLeadsWarm,
   allleadsInfoCold: leads.allleadsInfoCold,
   serachedData:leads.serachedData,
+  addLeadsConfirmationModal:leads.addLeadsConfirmationModal,
   fetchingAllLeadsCold: leads.fetchingAllLeadsCold,
   fetchingLeadsInputSearchData: leads.fetchingLeadsInputSearchData
 
@@ -1514,6 +1521,7 @@ const mapDispatchToProps = (dispatch) =>
       updateTypeForLead,
       handleCETmodal,
       getAllLeadsHot,
+      handleLeadsConfirmationModal,
   getAllLeadsWarm,
   getAllLeadsCold
     },

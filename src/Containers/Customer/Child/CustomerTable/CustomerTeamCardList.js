@@ -4,9 +4,9 @@ import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
-import { getSectors } from "../../../Settings/Sectors/SectorsAction";
+//import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
-import { getCountries } from "../../../Auth/AuthAction";
+//import { getCountries } from "../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select,Button ,Popconfirm} from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
@@ -35,7 +35,7 @@ import {
   handleCustomerOpportunityDrawerModal
 } from "../../CustomerAction";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
+//import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { FormattedMessage } from "react-intl";
@@ -83,9 +83,9 @@ function CustomerTeamCardList(props) {
    
     props.getTeamCustomer(props.userId, pageNo);
     setPageNo(pageNo + 1);
-      props.getSectors();
-    props.getCountries();
-    props.getAllCustomerEmployeelist();
+    //   props.getSectors();
+    // props.getCountries();
+    // props.getAllCustomerEmployeelist();
   }, []);
 
   useEffect(() => {
@@ -719,7 +719,7 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
       setEditCustomer,
-      getSectors,
+      // getSectors,
       customerToAccount,
       emptyCustomer,
       updateOwnercustomerById,
@@ -729,8 +729,8 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerEmailDrawerModal,
       handleCustomerNotesDrawerModal,
       getCustomerById,
-      getCountries,
-      getAllCustomerEmployeelist,
+      // getCountries,
+      // getAllCustomerEmployeelist,
       handleCustomerContactDrawerModal,
       handleCustomerOpportunityDrawerModal
     },

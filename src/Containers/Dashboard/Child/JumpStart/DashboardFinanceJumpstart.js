@@ -1,6 +1,7 @@
 import React, { useEffect, } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
+import AddDashboardRepairOrdersAddedModal from "../../Child/JumpStart/AddDashboardRepairOrdersAddedModal"
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
@@ -79,6 +80,8 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                </div> */}
         </div>
       </div>
+
+      <AddDashboardRepairOrdersAddedModal/>
    
       {/* <PitchQualifiedDrawer
       openPitchQualified={openPitchQualified}
