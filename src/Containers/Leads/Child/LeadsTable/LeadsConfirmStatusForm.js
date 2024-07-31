@@ -80,22 +80,12 @@ const handleDeptChange = (event) => {
         <Form className="form-background">
           <div class=" flex justify-between w-full"
           >
-            <div class=" flex flex-col w-[44%] mt-[0.625rem] ml-[1rem]"
-            >
-            
-        
-             
-              <div class=" flex justify-between w-[74%] "
-              >
-              
+            <div class=" flex  mt-[0.625rem] ml-[1rem]"
+            >             
+              <div class=" flex justify-between w-[30%] "
+              >           
                 <div>
-                      {/* <Popconfirm
-                        title="Do you wish to change Status ? "
-                        // onConfirm={handleAppClick}
-                        // onCancel={handleCancel}
-                        okText="Yes"
-                        cancelText="No"
-                      > */}
+                     
                       <StyledLabel>Assign To</StyledLabel>
                         <Switch
                           style={{ width: "5em" }}
@@ -104,13 +94,13 @@ const handleDeptChange = (event) => {
                           checkedChildren="Self"
                           unCheckedChildren="Select"
                         />
-                      {/* </Popconfirm> */}
+                  
                     </div>
               </div>
               {single === false &&(
               <div class=" flex justify-between" >
-                                                    <div class=" w-[35%] mt-4" >
-                                                    <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</label>
+                                                    <div  >
+                                                    <div  className="text-black text-xs font-bold"  >Department</div>
                       <select   className="customize-select"
                    
                       onChange={handleDeptChange}>
@@ -126,9 +116,8 @@ const handleDeptChange = (event) => {
         </div>
         {selectedDept && (
           <>                                           
-
-<div class=" w-[35%] mt-4" >
-            <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>User</label>
+<div  >
+            <div className="text-black text-xs font-bold" >User</div>
             <select   className="customize-select"
                  onChange={handleUserChange}
               >
@@ -142,19 +131,14 @@ const handleDeptChange = (event) => {
       </option>
     ))}
   </select>
-  </div> 
-
-
-                       
+  </div>                  
 </> 
         )}                                                  
-                                                </div>
+                                         </div>
                                            
-                                           )}
+                                          )}
             </div>
-          </div>
-        
-             
+          </div>       
               <div class=" flex justify-end mt-3" >
                 <Button
                   type="primary"
