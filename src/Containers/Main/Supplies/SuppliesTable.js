@@ -31,6 +31,7 @@ import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import MaterialStatusToggle from "./MaterialStatusToggle";
+import MaterialFeatureToggle from "./MaterialFeatureToggle";
 import MaterialFifoToggle from "./MaterialFifoToggle";
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import { FormattedMessage } from "react-intl";
@@ -296,7 +297,14 @@ function SuppliesTable(props) {
                                 />
                               </div>
                             </div>
-
+                            <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <MaterialFeatureToggle
+                                  fifoInd={item.fifoInd}
+                                  suppliesId={item.suppliesId}
+                                />
+                              </div>
+                            </div>
 
                           </div>
 

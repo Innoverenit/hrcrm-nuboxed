@@ -32,7 +32,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
 import QrCodeIcon from '@mui/icons-material/QrCode';
-
+import FeatureProductToggle from "./FeatureProductToggle";
 import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
@@ -260,6 +260,11 @@ function ProductCardList(props) {
                         <ProductPublishToggle item={item} />
 
                       </div>
+                      <div className=" flex font-medium flex-col  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+
+<FeatureProductToggle item={item} />
+
+</div>
                       {/* <div className=" flex font-medium flex-col  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                       
                       <ReactToPrint

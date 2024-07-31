@@ -141,6 +141,9 @@ const initialState = {
     fetchingMaterialInventory: false,
     materialInventory:[],
     fetchingMaterialInventoryError: false,
+
+    featuredMaterialToggle: false,
+    featuredMaterialToggleError:false,
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -751,6 +754,26 @@ export const suppliesReducer = (state = initialState, action) => {
               fetchingMaterialDiscountB2CError: true,
             };
 
+            case types.FEATURED_MATERIAL_TOGGLE_REQUEST:
+                return { ...state, featuredMaterialToggle: true };
+              case types.FEATURED_MATERIAL_TOGGLE_SUCCESS:
+                return {
+                  ...state,
+                  featuredMaterialToggle: false,
+                  purchaseList: state.purchaseList.map((item) => {
+                    if (item.suppliesId === action.payload.suppliesId) {
+                      return action.payload;
+                    } else {
+                      return item;
+                    }
+                  }),
+                };
+              case types.FEATURED_MATERIAL_TOGGLE_FAILURE:
+                return {
+                  ...state,
+                  featuredMaterialToggle: false,
+                  featuredMaterialToggleError: true,
+                };
 
         default:
             return state;
