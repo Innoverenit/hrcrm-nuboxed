@@ -949,3 +949,30 @@ export const getMaterialDiscountB2C = (suppliesId,type) => (dispatch) => {
       });
     });
 };
+
+export const featureMaterialToggle = ( data,suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.FEATURED_MATERIAL_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/update/featDummy/${suppliesId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.FEATURED_MATERIAL_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.FEATURED_MATERIAL_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
