@@ -7,6 +7,14 @@ const initialState = {
   fetchingSkillsCloudError: false,
   skillsCloud: [],
 
+  fetchingRepairDashboardOrderClose:false,
+  fetchingRepairDashboardOrderCloseError:false,
+  repairDashboardOrderClose:[],
+
+  fetchingRepairDashboardOrderOpenError:false,
+  fetchingRepairDashboardOrderOpenErrorError:false,
+  repairDashboardOrderOpen:[],
+
   fetchingContactAddedList: false,
   fetchingContactAddedListError: false,
   contactAddedList:[],
@@ -251,6 +259,10 @@ const initialState = {
   gettingDevelopChartError:false,
   developChart:[],
 
+  fetchingRepairDashboardOrderAdded:false,
+  fetchingRepairDashboardOrderAddedError:false,
+  repairDashboardOrderAdded:[],
+
 
   prospectQuotationYearModal:false,
 
@@ -381,6 +393,8 @@ const initialState = {
   fetchingLeadsQualifiedError: false,
   showQualifiedLeads: [],
 
+  addDashboardRepairOrderCloseModal:false,
+
   openLeadAdded: false,
   fetchingLeadsAdded: false,
   fetchingLeadsAddedError: false,
@@ -411,6 +425,7 @@ const initialState = {
   fetchingDealAdded: false,
   fetchingDealAddedError: false,
   showAddedDeal: [],
+  addDashboardRepairOrderModal:false,
 
   openDealClosed: false,
   fetchingDealClosed: false,
@@ -434,6 +449,9 @@ const initialState = {
   fetchingHottestPitch: false,
   fetchingHottestPitchError: false,
   showHottestPitch: [],
+
+
+  addDashboardRepairOrderOpenModal:false,
 
   fetchingColdestPitch: false,
   fetchingColdestPitchError: false,
@@ -485,6 +503,18 @@ export const dashboardReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_DASHBOARD_VIEW_TYPE:
       return { ...state, viewType: action.payload };
+
+
+      case types.HANDLE_DASHBOARD_REPAIR_ORDER_MODAL:
+        return { ...state, addDashboardRepairOrderModal: action.payload };
+
+
+        case types.HANDLE_DASHBOARD_REPAIR_ORDER_CLOSE_MODAL:
+          return { ...state, addDashboardRepairOrderCloseModal: action.payload };
+
+
+        case types.HANDLE_DASHBOARD_REPAIR_ORDER_OPEN_MODAL:
+          return { ...state, addDashboardRepairOrderOpenModal: action.payload };
 
 
       case types.HANDLE_ORDER_ADDED_MODAL:
@@ -572,6 +602,26 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingDatewiseReportError: true,
         selectedReportType: "dashboard",
       };
+
+
+
+      case types.GET_REPAIR_DASHBOARD_ORDER_ADDED_REQUEST:
+        return { ...state, fetchingRepairDashboardOrderAdded: true };
+      case types.GET_REPAIR_DASHBOARD_ORDER_ADDED_SUCCESS:
+        return {
+          ...state,
+          fetchingRepairDashboardOrderAdded: false,
+          repairDashboardOrderAdded:action.payload,
+          // opportunityByUserId: action.payload,
+  
+         // opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_REPAIR_DASHBOARD_ORDER_ADDED_FAILURE:
+        return {
+          ...state,
+          fetchingRepairDashboardOrderAdded: false,
+          fetchingRepairDashboardOrderAddedError: true,
+        };
 
     case types.GET_DASHBOARD_TABLE_REQUEST:
       return { ...state, fetchingdashboardTable: true };
@@ -889,6 +939,26 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingJumpstartFinanceDetail: false,
         fetchingJumpstartFinanceDetailError: true,
       };
+
+
+
+      case types.GET_REPAIR_DASHBOARD_ORDER_OPEN_REQUEST:
+        return { ...state, fetchingRepairDashboardOrderOpenError: true };
+      case types.GET_REPAIR_DASHBOARD_ORDER_ADDED_SUCCESS:
+        return {
+          ...state,
+          fetchingRepairDashboardOrderOpenError: false,
+          repairDashboardOrderOpen:action.payload,
+          // opportunityByUserId: action.payload,
+  
+         // opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_REPAIR_DASHBOARD_ORDER_OPEN_FAILURE:
+        return {
+          ...state,
+          fetchingRepairDashboardOrderOpen: false,
+          fetchingRepairDashboardOrderOpenError: true,
+        };
 
     case types.GET_TASKS_DASHBOARD_GANTT_REQUEST:
       return { ...state, fetchingTaskDashboardGantt: true };
@@ -1846,6 +1916,28 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingDealClosed: false,
         fetchingDealClosedError: true,
       };
+
+
+
+
+      case types.GET_REPAIR_DASHBOARD_ORDER_CLOSE_REQUEST:
+        return { ...state, fetchingRepairDashboardOrderClose: true };
+      case types.GET_REPAIR_DASHBOARD_ORDER_CLOSE_SUCCESS:
+        return {
+          ...state,
+          fetchingRepairDashboardOrderClose: false,
+          repairDashboardOrderClose:action.payload,
+          // opportunityByUserId: action.payload,
+  
+         // opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_REPAIR_DASHBOARD_ORDER_CLOSE_FAILURE:
+        return {
+          ...state,
+          fetchingRepairDashboardOrderClose: false,
+          fetchingRepairDashboardOrderCloseError: true,
+        };
+
 
     case types.HANDLE_LEAD_HCW_DRAWER:
       return { ...state, openLeadHCWdrawer: action.payload };
