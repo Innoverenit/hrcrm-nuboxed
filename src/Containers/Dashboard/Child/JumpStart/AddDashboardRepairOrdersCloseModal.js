@@ -3,12 +3,13 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
+import RepairDashboardOrderCloseList from "../../Child/JumpStart/RepairDashboardOrderCloseList"
 
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import RepairDashboardOrderAddedList from "./InvestorDrawer/RepairDashboardOrderAddedList"
+//import RepairDashboardOrderAddedList from "./InvestorDrawer/RepairDashboardOrderAddedList"
 
 
-class RepairDashboardModal extends Component {
+class RepairDashboardCloseModal extends Component {
   render() {
    
 
@@ -18,15 +19,16 @@ class RepairDashboardModal extends Component {
           title="Orders Added"
           width="55em"
           style={{ marginTop: "5rem" }}
-          visible={this.props.addDashboardRepairOrderModal}
+          visible={this.props.addDashboardRepairOrderCloseModal}
           closable
           placement="right"
           destroyOnClose
           maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-          onClose={() => this.props.handleDasboardRepairOrderDrawer(false)}
+          onClose={() => this.props.handleDasboardRepairOrderCloseDrawer(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-          <RepairDashboardOrderAddedList/>
+          <RepairDashboardOrderCloseList/>
+          
           </Suspense>
         </StyledDrawer>
       </div>
@@ -43,4 +45,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RepairDashboardModal);
+)(RepairDashboardCloseModal);
