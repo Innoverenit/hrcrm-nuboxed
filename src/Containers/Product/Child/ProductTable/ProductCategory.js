@@ -119,7 +119,7 @@ const handleEditClick = (categoryId) => {
  console.log("resd",updatedItem);  
  try {
 
-  const response = await axios.put(`${base_url2}/product/categoryUpdate${item.categoryId}`, updatedItem, {
+  const response = await axios.put(`${base_url2}/product/categoryUpdate/${item.categoryId}`, updatedItem, {
     headers: {
       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     },
