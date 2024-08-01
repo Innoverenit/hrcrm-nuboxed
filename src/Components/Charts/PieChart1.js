@@ -23,9 +23,9 @@ function Piechart1(props) {
     setStudentMarks([1, 1, 2]);
   }, []);
 console.log(props.showHotColdWarm)
-if(props.gettingHotColdWarm){
-  return <BundleLoader/>
-}
+// if(props.gettingHotColdWarm){
+//   return <BundleLoader/>
+// }
   return (
     <React.Fragment>
       <div className="container-fluid mb-3">
