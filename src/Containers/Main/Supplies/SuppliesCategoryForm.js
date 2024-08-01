@@ -11,29 +11,30 @@ import { CurrencySymbol } from "../../../Components/Common";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 import * as Yup from "yup";
+import {addMaterialCategory} from "./SuppliesAction";
 
-async function addSuppliesCategory(values, setLoading,callback) {
-    try {
-        setLoading(true);
-        const response = await axios.post(
-            `${base_url2}/supplies/suppliescategory`,
-            values,
-            {
-                headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('token') || ''}`,
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
-        console.log("API Response:", response.data);
-        if (callback) callback();
-    } catch (error) {
-        console.error("Error adding category:", error);
-    }
-    finally {
-        setLoading(false); 
-    }
-}
+// async function addSuppliesCategory(values, setLoading,callback) {
+//     try {
+//         setLoading(true);
+//         const response = await axios.post(
+//             `${base_url2}/supplies/suppliescategory`,
+//             values,
+//             {
+//                 headers: {
+//                     Authorization: `Bearer ${sessionStorage.getItem('token') || ''}`,
+//                     'Content-Type': 'application/json'
+//                 }
+//             }
+//         );
+//         console.log("API Response:", response.data);
+//         if (callback) callback();
+//     } catch (error) {
+//         console.error("Error adding category:", error);
+//     }
+//     finally {
+//         setLoading(false); 
+//     }
+// }
 
 const formSchema = Yup.object().shape({
     categoryName: Yup.string().required("Input Required!"),
@@ -53,12 +54,13 @@ function SuppliesCategoryForm (props) {
           validationSchema={formSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
-            addSuppliesCategory(
+            props.addMaterialCategory(
               {
                 ...values,
                 
               },
               setLoading, 
+              props.closeModal(),
               () => resetForm(),
             );
           }}
@@ -115,14 +117,14 @@ function SuppliesCategoryForm (props) {
     )
 }
 
-const mapStateToProps = ({  product }) => ({
-    
+const mapStateToProps = ({  supplies }) => ({
+  addingMaterialCategory:supplies.addingMaterialCategory
   });
   
   const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
       {
-
+        addMaterialCategory
       },
       dispatch
     );

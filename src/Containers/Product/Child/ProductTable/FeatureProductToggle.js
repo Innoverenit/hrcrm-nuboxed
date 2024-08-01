@@ -6,32 +6,32 @@ import { featureProductToggle } from "../../ProductAction";
 
 function FeatureProductToggle(props) {
 
-  const[data,setData]=useState(props.purchaseList)
+  const[data,setData]=useState(props.products)
   useEffect(()=>{
-    setData(props.purchaseList)
-  },[props.purchaseList])
-  const [toggle, setToggle] = useState(props.publishInd);
+    setData(props.products)
+  },[props.products])
+  const [toggle, setToggle] = useState(props.featureInd);
 
   function handleToggleClick(item) {
-    if (props.publishInd) {
+    if (props.featureInd) {
       props.featureProductToggle({
         suppliesId: props.suppliesId,
-        publishInd: props.publishInd ? false : true,
+        featureInd: props.featureInd ? false : true,
          
       },props.suppliesId);
-      setToggle( props.publishInd ? false : true);
+      setToggle( props.featureInd ? false : true);
  
     } else {
       props.featureProductToggle({
         suppliesId: props.suppliesId,
-        publishInd: props.publishInd ? false : true,
+        featureInd: props.featureInd ? false : true,
       },props.suppliesId);
-      setToggle( props.publishInd ? false : true);
+      setToggle( props.featureInd ? false : true);
     }
   }
 
   function handleCancel() {
-    if (props.publishInd) {
+    if (props.featureInd) {
       setToggle(true);
     } else {
       setToggle(false);
@@ -49,7 +49,7 @@ function FeatureProductToggle(props) {
       >
         <Switch
          className="toggle-clr"
-         checked={props.publishInd || toggle}
+         checked={props.featureInd || toggle}
          isLoading={true}
           checkedChildren="Yes"
           unCheckedChildren="No"
@@ -62,7 +62,7 @@ function FeatureProductToggle(props) {
 const mapStateToProps = ({ auth, supplies }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
-  purchaseList: supplies.purchaseList,
+  products: supplies.products,
 });
 
 const mapDispatchToProps = (dispatch) =>

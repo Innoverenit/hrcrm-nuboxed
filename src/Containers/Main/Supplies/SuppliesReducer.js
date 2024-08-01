@@ -144,6 +144,10 @@ const initialState = {
 
     featuredMaterialToggle: false,
     featuredMaterialToggleError:false,
+
+    fetchingMaterialCategory: false, materialCategorys:[],fetchingMaterialCategoryError: false,
+
+    fetchingMaterialCatSrchError:true,
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -633,6 +637,7 @@ export const suppliesReducer = (state = initialState, action) => {
                         return {
                           ...state,
                           purchaseList: [],
+                          materialCategorys:[],
                           // deletedTruck: []
                         };   
                         case types.HANDLE_MATERIAL_INVENTORY:
@@ -774,6 +779,40 @@ export const suppliesReducer = (state = initialState, action) => {
                   featuredMaterialToggle: false,
                   featuredMaterialToggleError: true,
                 };
+
+                case types.GET_MATERIAL_CATEGORY_REQUEST:
+                    return { ...state, fetchingMaterialCategory: true, fetchingMaterialCategoryError: false };
+                  case types.GET_MATERIAL_CATEGORY_SUCCESS:
+                    return { ...state, fetchingMaterialCategory: false, materialCategorys: action.payload };
+                  case types.GET_MATERIAL_CATEGORY_FAILURE:
+                    return { ...state, fetchingMaterialCategory: false, fetchingMaterialCategoryError: true };
+              
+                    case types.ADD_MATERIAL_CATEGORY_REQUEST:
+                        return { ...state, addingMaterialCategory: true };
+                      case types.ADD_MATERIAL_CATEGORY_SUCCESS:
+                        return {
+                          ...state, addingMaterialCategory: false, 
+                          materialCategorys: [action.payload, ...state.materialCategorys]
+                        };
+                      case types.ADD_MATERIAL_CATEGORY_FAILURE:
+                        return {
+                          ...state,
+                          addingMaterialCategory: false,
+                          addingMaterialCategoryError: true,
+                          
+                        };
+
+                        case types.MATERIAL_CATEGORY_SEARCH_REQUEST:
+                            return { ...state, fetchingMaterialCatSrch: true };
+                          case types.MATERIAL_CATEGORY_SEARCH_SUCCESS:
+                            return {
+                              ...state,
+                              fetchingMaterialCatSrch: false,
+                              materialCategorys: action.payload,
+                           
+                            };
+                          case types.MATERIAL_CATEGORY_SEARCH_FAILURE:
+                            return { ...state, fetchingMaterialCatSrchError: true };                     
 
         default:
             return state;

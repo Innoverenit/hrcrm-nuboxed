@@ -955,7 +955,7 @@ export const featureMaterialToggle = ( data,suppliesId) => (dispatch) => {
     type: types.FEATURED_MATERIAL_TOGGLE_REQUEST,
   });
   axios
-  .put(`${base_url2}/supplies/update/featDummy/${suppliesId}`,data,  {
+  .put(`${base_url2}/supplies/update/featuredInd/${suppliesId}`,data,  {
     headers: {
       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     },
@@ -976,3 +976,82 @@ export const featureMaterialToggle = ( data,suppliesId) => (dispatch) => {
       });
     })
 };
+export const getMaterialCategory = () => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_CATEGORY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/allSuppliesCatagory`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MATERIAL_CATEGORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_MATERIAL_CATEGORY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addMaterialCategory = (product, cb) => (dispatch) => {
+  dispatch({ type: types.ADD_MATERIAL_CATEGORY_REQUEST });
+  axios
+    .post(`${base_url2}/supplies/suppliescategory`, product, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_MATERIAL_CATEGORY_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_MATERIAL_CATEGORY_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};
+
+export const materialCategorySearch = (categoryName) => (dispatch) => {
+  dispatch({
+    type: types.MATERIAL_CATEGORY_SEARCH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/category/${categoryName}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      message.success(res.data.message);
+
+      dispatch({
+        type: types.MATERIAL_CATEGORY_SEARCH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      message.error("Material list is empty");
+      dispatch({
+        type: types.MATERIAL_CATEGORY_SEARCH_FAILURE,
+        payload: err,
+      });
+    });
+}; 

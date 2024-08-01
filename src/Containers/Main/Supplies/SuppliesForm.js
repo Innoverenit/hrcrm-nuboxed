@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
+import { Button,DatePicker } from "antd";
 import * as Yup from "yup";
+import moment from 'moment';
 import { Formik, Form, Field } from "formik";
 import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
 import { base_url2 } from "../../../Config/Auth";
@@ -48,16 +49,21 @@ class Suppliesform extends Component {
           
          
         "Sub Category",//1
-        "Attribute",//1
-        "Sub Attribute",//1
-        "Name",//1
-        "HSN",//1
-        "Re-order",//1
-        "Net Weight",//1
-        "UOM",//1
-        "Gross Weight",
-        "Description",
-        "Create"
+        "Attribute",//2
+        "Sub Attribute",//3
+        "Name",//4
+        "HSN",//5
+        "Re-order",//6
+        "Net Weight",//7
+        "UOM",//8
+        "Gross Weight",//9
+        "Description",//10
+        "Create",//11
+        "Weight",//12
+        "Length",//13
+        "Width",//14
+        "Height",//15
+
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -66,7 +72,12 @@ class Suppliesform extends Component {
       console.error('Error translating menu items:', error);
     }
   };
-
+  convertToUTC = (localDateTime) => {
+    if (!localDateTime) return null;
+    const localDate = new Date(localDateTime);
+    const utcDate = new Date(localDate.toUTCString());
+    return utcDate.toISOString(); // Format as 2024-07-31T18:30:00.000Z
+  };
   render() {
     const currencyType = this.props.currencies.map((item) => {
       return {
@@ -95,7 +106,12 @@ class Suppliesform extends Component {
             tax: 0,
             fifoInd:false,
             userId: this.props.userId,
-            currencyName: ""
+            currencyName: "",
+            availabilityDate: "",
+            weight: "",
+            width: "",
+             length:"",
+              height: "",
           }}
           validationSchema={SuppliesSchema}
           onSubmit={(values, { resetForm }) => {
@@ -105,6 +121,7 @@ class Suppliesform extends Component {
                 ...values,
     
                 fifoInd: values.fifoInd ? true : false,
+                availabilityDate: this.convertToUTC(values.availabilityDate),
               },
             );
           }}
@@ -180,6 +197,57 @@ class Suppliesform extends Component {
                         isColumn
                         inlineLabel
                         style={{ flexBasis: "80%" }}
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="w-[47%]">
+                    <label>{this.state.translatedMenuItems[12]}</label>
+                      <Field
+                        name="weight"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <label>{this.state.translatedMenuItems[13]}</label>
+                      <Field
+                        name="length"
+                        //label="UOM"
+                        isColumn
+                        inlineLabel
+                        component={InputComponent}
+                      
+                        style={{
+                          width: "100%",
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="w-[47%]">
+                    <label>{this.state.translatedMenuItems[14]}</label>
+                      <Field
+                        name="width"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <label>{this.state.translatedMenuItems[15]}</label>
+                      <Field
+                        name="height"
+                        isColumn
+                        inlineLabel
+                        component={InputComponent}
+                      
+                        style={{
+                          width: "100%",
+                        }}
                       />
                     </div>
                   </div>
@@ -315,6 +383,23 @@ class Suppliesform extends Component {
                         component={TextareaComponent}
                         inlineLabel
                       />
+                    </div>
+                  </div>
+                  <div className="flex justify-between mt-4">
+                    <div className="w-full">
+                      <label>Date</label>
+                      <Field name="availabilityDate">
+                        {({ field, form }) => (
+                          <input
+                            type="date"
+                            value={field.value || ''}
+                            onChange={(e) => {
+                              setFieldValue('availabilityDate', e.target.value);
+                            }}
+                            style={{ width: '100%' }}
+                          />
+                        )}
+                      </Field>
                     </div>
                   </div>
                 </div>

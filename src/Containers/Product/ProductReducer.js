@@ -373,6 +373,8 @@ const initialState = {
   removingNotesOfProducts: false,
   removingNotesOfProductsError:false,
 
+  fetchingCatalogueCatSrch: false,
+  fetchingCatalogueCatSrchError: false,
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -1617,7 +1619,19 @@ export const productReducer = (state = initialState, action) => {
                                           featuredProductToggleError: true,
                                         };
 
-                                        
+                                        case types.CATALOGUE_CATEGORY_SEARCH_REQUEST:
+                                          return { ...state, fetchingCatalogueCatSrch: true };
+                                        case types.CATALOGUE_CATEGORY_SEARCH_SUCCESS:
+                                          return {
+                                            ...state,
+                                            fetchingCatalogueCatSrch: false,
+                                            categoryProducts: action.payload,
+                                         
+                                          };
+                                        case types.CATALOGUE_CATEGORY_SEARCH_FAILURE:
+                                          return { ...state, fetchingCatalogueCatSrchError: true };                     
+
+                                          
     default:
       return state;
   }

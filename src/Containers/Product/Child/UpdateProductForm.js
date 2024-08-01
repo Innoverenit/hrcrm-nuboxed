@@ -101,6 +101,11 @@ imageIds:[],
             brand:this.props.setEditingProducts.brand || "",
             model:this.props.setEditingProducts.model || "",
             images:Imagedata,
+            weight: "",
+            width: "",
+             length:"",
+              height: "",
+
           }}
           validationSchema={ProductSchema}
           onSubmit={(values, { resetForm }) => {
@@ -319,6 +324,57 @@ imageIds:[],
                       />
                     </div>
                   </div> */}
+<div class="flex justify-between">
+                    <div class="w-[47%]">
+                    <label>Weight</label>
+                      <Field
+                        name="weight"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <label>Length</label>
+                      <Field
+                        name="length"
+                        //label="UOM"
+                        isColumn
+                        inlineLabel
+                        component={InputComponent}
+                      
+                        style={{
+                          width: "100%",
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="w-[47%]">
+                    <label>Width</label>
+                      <Field
+                        name="width"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <label>Height</label>
+                      <Field
+                        name="height"
+                        isColumn
+                        inlineLabel
+                        component={InputComponent}
+                      
+                        style={{
+                          width: "100%",
+                        }}
+                      />
+                    </div>
+                  </div>
 
                 </div>
 

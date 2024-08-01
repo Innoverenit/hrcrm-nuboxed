@@ -119,7 +119,7 @@ const handleEditClick = (categoryId) => {
  console.log("resd",updatedItem);  
  try {
 
-  const response = await axios.put(`${base_url2}/product/${item.categoryId}`, updatedItem, {
+  const response = await axios.put(`${base_url2}/product/categoryUpdate/${item.categoryId}`, updatedItem, {
     headers: {
       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     },
@@ -152,7 +152,7 @@ const DeleteOnClick = async (item) => {
     );
 
     if (result.data === 'Deleted successfully') {
-      const updatedOrderItems = props.categoryProducts.filter(itm => itm.itemId !== item.itemId);
+      const updatedOrderItems = props.categoryProducts.filter(itm => itm.categoryId !== item.categoryId);
       setData(updatedOrderItems);
     } else {
       console.log(result.data);
@@ -285,7 +285,7 @@ const DeleteOnClick = async (item) => {
                         onClick={() => handleEditClick(item.categoryId)}
                       />
                     )}
-    </div>
+    </div> 
 
 {item.categoryCount===1 &&
     <div>
