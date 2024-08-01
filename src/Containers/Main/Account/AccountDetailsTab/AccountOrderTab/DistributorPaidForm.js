@@ -45,7 +45,7 @@ function DistributorPaidForm(props) {
           userId: props.userId,
           orderPaymentType: "Repair",
           transactionNumber: "",
-          orderCurrencyId: props.particularRowData.orderCurrencyId || "",
+          orderCurrencyId: props.particularRowData.orderCurrencyName || "",
           orgId: props.orgId,
           approveByFinanceInd: false,
           orderId: props.particularRowData.orderId,
@@ -85,6 +85,18 @@ function DistributorPaidForm(props) {
                           id="app.amount"
                           defaultMessage="Amount"
                         />}
+                      isRequired
+                      isColumn
+                      inlineLabel
+                      width={"100%"}
+                      component={InputComponent}
+                      value={values.paymentAmount}
+                    />
+                  </div>
+                  <div class="w-[31%]">
+                    <Field
+                      name="paymentAmount"
+                      label="Invoice Id"
                       isRequired
                       isColumn
                       inlineLabel

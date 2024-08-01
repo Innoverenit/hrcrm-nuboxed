@@ -50,10 +50,8 @@ class MileageCard extends React.Component {
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7.5rem] 
                   text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-        
-                                
-                   <div >
-                          
+                                     
+                   <div >                       
                          </div>
                       <div class="flex items-center justify-between ">
                       <div class="text-sm">Voucher ID</div>
@@ -63,16 +61,8 @@ class MileageCard extends React.Component {
                 this.props.handleMileageVoucherIdDrwer(true)}}>
          {item.voucherId}
          </div>
-                        </div> 
-                       
-               
-            
-                          
-            
-          </div>                  
-                 
-                     
-           
+           </div>                                                
+          </div>                                                       
                         <div class="flex  justify-between">
                             <h3 class="text-sm">Voucher Date</h3>
                             <div class="text-[0.82rem]">{dayjs(item.voucherDate).format("MMM Do YY")}</div>
@@ -157,17 +147,12 @@ this.handleExpand(item.voucherId)
             </Button>
           )}
           </div>
-              </div>           
-                      
-         
-                        
+              </div>                                                             
                     </div>
                  )  
             })}
               </div>
-
               </div> 
-
 
         <MileageVoucherIdDrawer 
         voucherId={this.state.voucherId}
@@ -180,7 +165,6 @@ handleExpand={this.handleExpand}
         updateStatusMileageModal={this.props.updateStatusMileageModal}
         handleStatusMileageModal={this.props.handleStatusMileageModal}
         />
- 
       </>
     );
   }
@@ -192,7 +176,6 @@ const mapStateToProps = ({ auth, mileage }) => ({
   fetchingMileageByUserId: mileage.fetchingMileageByUserId,
   fetchingMileageByUserIdError: mileage.fetchingMileageByUserIdError,
   mileageVoucherIdDrawer:mileage.mileageVoucherIdDrawer,
-
 
 });
 const mapDispatchToProps = (dispatch) =>

@@ -49,18 +49,19 @@ const CollectionActionLeft = (props) => {
 
   return (
     <FlexContainer alignItems="center">
-      <Tooltip title="All"
+      <Tooltip title="My Collections "
       // title="Distributor"
       >
         <span
           onClick={() => props.setCollectionViewType("distributor")}
           style={{
             marginRight: "0.5rem",
+            cursor:"pointer",
             color: props.viewType === "distributor" && "#1890ff",
           }}
         >
           <Avatar style={{ background: props.viewType === "distributor" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon />
+           ALL
           </Avatar>
         </span>
       </Tooltip>

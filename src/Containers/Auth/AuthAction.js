@@ -1347,6 +1347,13 @@ export const handleActionDrawerModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handlePromotion = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PROMOTION_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const getActionRequiredCount = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_ACTION_REQUIRED_COUNT_REQUEST,

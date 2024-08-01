@@ -33,7 +33,7 @@ class DistributorDocumentTable extends Component {
 
 
                     </div>
-                    <div class="overflow-x-auto h-[64vh]">
+                    <div class="overflow-x-auto h-[69vh]">
                         {this.props.documentTable.map((item) => {
                             
                             return (

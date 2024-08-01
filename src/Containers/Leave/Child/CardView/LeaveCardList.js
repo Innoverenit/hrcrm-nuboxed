@@ -19,6 +19,39 @@ const UpdateLeavesModal = lazy(() => import("../Tab/UpdateLeavesModal"));
 const { Option } = Select;
 function LeaveCardList(props) {
   const [page, setPage] = useState(0);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+       " Start Date",//0
+          "End Date",//1
+          "Cover",//2
+          " Reason",//2
+          " Waiting for approval",//3
+          "Sector",//4
+          "Category",//5
+          "Share",//6
+          "Value",//7
+           "Owner",//8
+           "Qualify"//9
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
 
   useEffect(() => {
     props.getLeaveListRangeByUserId(props.userId);
@@ -53,10 +86,7 @@ function LeaveCardList(props) {
   } = props;
 
   return (
-
     <>
-
-
       <div class="rounded m-1 p-1 w-wk h-[31rem] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:h-[13rem]">
         {/* <InfiniteScroll
                     dataLength={props.tableRequirement.length}
@@ -64,18 +94,12 @@ function LeaveCardList(props) {
                 hasMore={true}
                 height={"20vh"}
             > */}
-
-
         {props.leaveListRangeByUserId.map((item) => {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
           return (
             <>
-
-
-
-
               <div>
                 <div className="flex justify-between mt-2 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                   // style={hrStyle}
@@ -87,25 +111,18 @@ function LeaveCardList(props) {
                     <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
                       <div class=" text-sm  font-medium font-poppins">
-
                         Start Date
 
                       </div>
-
-
                       <div class=" font-normal text-[0.82rem]  font-poppins">
                         {` ${dayjs(item.startDate).format("ll")}`}
                       </div>
 
                     </div>
-
                     <div className=" flex font-medium flex-col md:w-40 max-sm:justify-between w-full max-sm:flex-row">
-
                       <div class=" text-sm  font-medium font-poppins">
                         End Date
                       </div>
-
-
                       <div class=" font-normal text-[0.82rem]  font-poppins">
                         {` ${dayjs(item.endDate).format("ll")}`}
                       </div>
@@ -113,7 +130,6 @@ function LeaveCardList(props) {
                       {/* </Tooltip>   */}
                     </div>
                     <div className=" flex font-medium flex-col md:w-40 max-sm:justify-between w-full max-sm:flex-row">
-
 
                       <div class=" text-sm  font-medium font-poppins">
                         Cover
@@ -125,7 +141,6 @@ function LeaveCardList(props) {
 
                     </div>
                     <div className=" flex font-medium flex-col md:w-[25rem] max-sm:justify-between w-full max-sm:flex-row">
-
 
                       <div class=" text-sm  font-medium font-poppins">
                         Reason
@@ -169,9 +184,7 @@ function LeaveCardList(props) {
                                 props.setEditLeave(item);
                                 handleUpdateLeaveModal(true);
                                 handleSetCurrentLeaveId(item.leaveId);
-
                               }}
-
                             >
 
                             </BorderColorIcon>
@@ -191,9 +204,7 @@ function LeaveCardList(props) {
                               //   handleRowData(item);
                               //   handleSetCurrentProvider(item.name);
                               // }}
-
                               >
-
                               </DeleteOutlined>
                             </Tooltip>
                           ) : null}
@@ -206,41 +217,27 @@ function LeaveCardList(props) {
                             </Button>
                           )}
                         </div>
-
                       </div>
                     </div>
-
-
-
-
-
                   </div>
-
-
                 </div>
-
               </div>
-
             </>
-
           )
         })}
-
         {/* </InfiniteScroll> */}
-
       </div >
 
       <UpdateLeavesModal
+      selectedLanguage={this.props.selectedLanguage}
+      translateText={this.props.translateText}
         leaveId={currentLeaveId}
         updateLeaveModal={updateLeaveModal}
         handleUpdateLeaveModal={handleUpdateLeaveModal}
         handleSetCurrentLeaveId={handleSetCurrentLeaveId}
       />
     </>
-
-
   )
-
 }
 
 const mapStateToProps = ({ leave, auth }) => ({
@@ -265,7 +262,6 @@ const mapDispatchToProps = (dispatch) =>
   )
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeaveCardList)
-
 const MainWrapper = styled.div`
   /* */
   margin: 0px 20px;
@@ -298,7 +294,7 @@ border-radius: 0.75rem;
     flex-direction: column;
   @media only screen and (max-width: 600px) {
     width: 100%;
-    
+   
   }
 `
 const CardDescription = styled.div`
@@ -337,32 +333,6 @@ const WithOutImage = styled.div`
   }
 `
 
-const Header = styled.div`
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1em;
-padding:4px;
-  color:blue;
-  cursor:pointer;
-  // font-family: Poppins;
-  //font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-
-text-align:center
-  }
-`
 const Desc = styled.p`
   height: 0px;
 `

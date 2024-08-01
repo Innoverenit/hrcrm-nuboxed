@@ -5,7 +5,7 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { bindActionCreators } from "redux";
 import StatusToggle from "./StatusToggle";
-import moment from "moment";
+import dayjs from "dayjs";
 import styled from "styled-components";
 import {
   SearchOutlined,
@@ -301,8 +301,8 @@ function PartnerTable(props) {
                 primaryTitle={item.partnerName}
                 imageId={item.imageId}
                 imageURL={item.imageURL}
-                imgWidth={"1.8em"}
-                imgHeight={"1.8em"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             </SubTitle>
           </Tooltip>
@@ -330,8 +330,8 @@ function PartnerTable(props) {
         const fullName = ` ${item.salutation || ""} ${item.firstName ||
           ""} ${item.middleName || ""} ${item.lastName || ""}`;
 
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         console.log(date, currentdate, currentdate === date);
         const dataLoc = ` Address : ${item.address &&
           item.address.length &&

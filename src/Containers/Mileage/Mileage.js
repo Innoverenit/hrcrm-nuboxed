@@ -34,8 +34,8 @@ class Mileage extends Component {
               <MileageStatusCard/>
             )
           : null}
-          </Suspense>
-       
+          </Suspense>  
+          
       </React.Fragment>
     );
   }

@@ -10,7 +10,7 @@ import {
   handleUpdateLeaveModal,
 } from "../../LeavesAction";
 import UpdateLeavesModal from "../Tab/UpdateLeavesModal";
-import moment from "moment";
+import dayjs from "dayjs";
 import APIFailed from "../../../../Helpers/ErrorBoundary/APIFailed";
 import { FormattedMessage } from "react-intl";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -58,14 +58,14 @@ function LeaveTable(props) {
       title: "Start Date",
       dataIndex: "startDate",
       render: (name, item, i) => {
-        return <span>{moment(item.startDate).format("LL")}</span>;
+        return <span>{dayjs(item.startDate).format("LL")}</span>;
       },
     },
     {
       title: "End Date",
       dataIndex: "endDate",
       render: (name, item, i) => {
-        return <span>{moment(item.endDate).format("LL")}</span>;
+        return <span>{dayjs(item.endDate).format("LL")}</span>;
       },
     },
     {

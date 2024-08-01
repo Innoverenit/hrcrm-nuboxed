@@ -67,7 +67,8 @@ function DistributorPhoneTaskTable(props) {
                         <div class="w-[48%]">
                             <Button type="primary"
                                 loading={props.addingTaskByPhoneById}
-                                onClick={handleSubmitTask}>Add</Button>
+                                onClick={handleSubmitTask}
+                                disabled={props.RowData.qcInspectionInd === 0 || props.RowData.repairStatus === "Complete"}>Add</Button>
                         </div>
                     </div>
                 </div>

@@ -12,17 +12,18 @@ const ProcessExpandDrawer = (props) => {
     return (
         <>
             <Modal
-                title={props.RowData.imei}
+                title={RowData.imei}
                 width="60%"
                 visible={props.processExpandModal}
                 closable
                 destroyOnClose
+                footer={null}
                   placement="right"
                   onCancel={() => props.handleProcessExpand(false)}
             >
                 <Suspense fallback={<BundleLoader />}>
                 <RepairTaskList
-                        phoneId={props.phoneId}
+                        phoneId={RowData.phoneId}
                         RowData={RowData} />
                 </Suspense>
             </Modal>

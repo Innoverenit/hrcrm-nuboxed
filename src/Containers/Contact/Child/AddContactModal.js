@@ -15,12 +15,19 @@ const AddContactModal = (props) => {
           id="app.contact"
           defaultMessage="Contact"
         />}
+       
         width={drawerWidth}
+        destroyOnClose
         visible={addContactModal}
         onClose={() => handleContactModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <ContactForm {...formProps} />
+          <ContactForm {...formProps}
+          
+          translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
+          />
         </Suspense>
       </StyledDrawer>
     </>

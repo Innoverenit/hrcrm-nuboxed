@@ -5,9 +5,7 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { MultiAvatar, MultiAvatar2, SubTitle } from "../../Components/UI/Elements";
 import "jspdf-autotable";
-import {
-  getTeamsDeals
-} from "./DealAction";
+import {getTeamsDeals} from "./DealAction";
 import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import { FormattedMessage } from "react-intl";
@@ -16,6 +14,7 @@ import { BundleLoader } from "../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
+import SearchedDataDeal from "./SearchedDataDeal";
 
 const ButtonGroup = Button.Group;
 
@@ -23,6 +22,38 @@ const DealsTeamCardList = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+         " Name",//0
+          "Investor",//1
+          "Sponsor",//2
+          "Start Date",//3
+          "Values",//4
+          "Stages",//5
+          "Sales Rep",//6
+          "Owner",//7
+          "Action",//8
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getTeamsDeals(props.userId,page);
     setPage(page + 1);
@@ -44,12 +75,6 @@ const DealsTeamCardList = (props) => {
   const handleRowData = (data) => {
     setrowData(data);
   };
-  // const handleLoadMore = () => {
-  //   setPage(page + 1);
-  //   props.getTeamsDeals(props.userId,page);
-  //  // props.getTeamsDeals("all", page);
-  
-  // }
   const handleLoadMore = () => {
     const callPageMapd = props.teamsDealsData && props.teamsDealsData.length &&props.teamsDealsData[0].pageCount
     setTimeout(() => {
@@ -72,7 +97,6 @@ const DealsTeamCardList = (props) => {
     }, 100);
   };
 
-
   function handleSetCurrentLeadsId(item) {
     setCurrentLeadsId(item);
   }
@@ -82,46 +106,54 @@ const DealsTeamCardList = (props) => {
     return <BundleLoader />;
   }
 
-  
-
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
+      {props.dealSerachedData.length > 0 ? (
+    <SearchedDataDeal
+    dealSerachedData={props.dealSerachedData}
+    />
+  ) : (
       <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[14.5rem]"><FormattedMessage
-            id="app.name"
-            defaultMessage="name"
-          /></div>
-          <div className=" md:w-[13.13rem]"><FormattedMessage
-            id="app.investor"
-            defaultMessage="investor"
-          /></div>
-          <div className=" md:w-[9.2rem] "><FormattedMessage
-            id="app.sponsor"
-            defaultMessage="sponsor"
-          /></div>
-          <div className="md:w-[6.12rem]"><FormattedMessage
-            id="app.startdate"
-            defaultMessage="startdate"
-          /></div>
-          <div className="md:w-[7.2rem]"><FormattedMessage
-            id="app.value"
-            defaultMessage="Value"
-          /></div>
-          <div className="md:w-[4.2rem]"><FormattedMessage
-            id="app.stages"
-            defaultMessage="stages"
-          /></div>
-          <div className="md:w-[5.26rem]">Status</div>
-          <div className="md:w-[7.21rem]"><FormattedMessage
-            id="app.assignto"
-            defaultMessage="Assign To"
-          /></div>
-          <div className="md:w-[3rem]"><FormattedMessage
-            id="app.owner"
-            defaultMessage="owner"
-          /></div>
-
+          <div className=" md:w-[14.5rem]">
+          {translatedMenuItems[0]}
+           {/* "name" */}    
+          </div>
+          <div className=" md:w-[13.13rem]">
+          {translatedMenuItems[1]}
+         {/* investor" */}     
+          </div>
+          <div className=" md:w-[9.2rem] ">
+          {translatedMenuItems[2]}
+                    {/* sponsor */}     
+          </div>
+          <div className="md:w-[6.12rem]">
+          {translatedMenuItems[3]}
+                {/* startdate" */}
+          </div>
+          <div className="md:w-[7.2rem]">
+          {translatedMenuItems[4]}
+         {/* Value */} 
+          </div>
+          <div className="md:w-[4.2rem]">
+          {translatedMenuItems[5]}
+          {/* "stages" */}
+          </div>
+          <div className="md:w-[5.26rem]">
+          {translatedMenuItems[6]}
+            {/* Status */}
+            </div>
+          <div className="md:w-[7.21rem]">
+          {translatedMenuItems[7]}
+          {/* Assign To" */}  
+          </div>
+          <div className="md:w-[3rem]">
+          {translatedMenuItems[8]}
+        {/* owner */}
+          </div>
         </div>
         <InfiniteScroll
           dataLength={props.teamsDealsData.length}
@@ -129,7 +161,8 @@ const DealsTeamCardList = (props) => {
           hasMore={hasMore}
           loader={fetchingTeamsDealsData ? <div class="flex justify-center">Loading...</div> : null}
           height={"80vh"}
-          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+          endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+          style={{scrollbarWidth:"thin"}}
         >
           {!fetchingTeamsDealsData && props.teamsDealsData.length === 0 ? <NodataFoundPage /> : props.teamsDealsData.map((item, index) => {
             var findProbability = item.probability;
@@ -181,45 +214,34 @@ const DealsTeamCardList = (props) => {
                         <div class="max-sm:w-full w-52" >
                           <Tooltip>
                             <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
-                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">
-                                            Name
-                                            </div> */}
-                              <div class=" text-[0.82rem] flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-
-                                {/* <Link
-                                                 toUrl={`customer/${item.customerId}`}
-                                                 title={`${item.name}`} 
-                                               > */}
+                            {/* Name */}                                                                      
+                              <div class=" text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
+                             
                                 {item.opportunityName}
                                 {/* </Link> */}
                                 &nbsp;&nbsp;
                                 {date === currentdate ? (
                                   <span class="text-[tomato] mt-[0.4rem] font-bold"
-
                                   >
                                     New
                                   </span>
                                 ) : null}
-
                               </div>
                             </div>
                           </Tooltip>
                         </div>
                       </div>
                     </div>
-                    <div className=" flex font-medium  items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <div class=" text-sm  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <Link to="/investor">
                           {item.investor}
                         </Link>
                       </div>
                     </div>
-
-                    <div className=" flex font-medium  items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-
-                      <div class=" text-sm  font-poppins">
+                    <div className=" flex   items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class=" text-xs  font-poppins">
                         <SubTitle>
                           {item.contactName === null ? "None" :
                             <MultiAvatar2
@@ -235,28 +257,24 @@ const DealsTeamCardList = (props) => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-sm justify-center  font-poppins">
+                      <div class=" text-xs justify-center  font-poppins">
                         {dayjs(item.startDate).format("DD/MM/YYYY")}
                       </div>
                     </div>
 
-                    <div className=" flex font-medium items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-
-                      <div class=" text-sm  font-poppins text-center">
+                    <div className=" flex  items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class=" text-xs font-poppins text-center">
                         <CurrencySymbol currencyType={item.currency} />
                         &nbsp;
                         {item.proposalAmount}
-
                       </div>
                     </div>
-                    <div className=" flex font-medium items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-
-                      <div class=" text-sm  font-poppins text-center">
+                    <div className=" flex items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class=" text-xs  font-poppins text-center">
                         <Dropdown
                           overlay={
                             <div>
@@ -268,7 +286,6 @@ const DealsTeamCardList = (props) => {
                                     backgroundColor: "#F5F5F5",
                                   }}
                                 >
-
                                 </Menu.Item>
                               </Menu>
                             </div>
@@ -289,17 +306,17 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium items-center  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
                     {myIndicator}
                     </div>
-                    <div className=" flex font-medium items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-sm  font-poppins">
+                      <div class=" text-xs  font-poppins">
 
                         <span>
                           {item.assignedTo === null ? (
-                            "No Data"
+                            "None"
                           ) : (
                             <>
                               {item.assignedTo === item.ownerName ? (
@@ -318,9 +335,7 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium items-center  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
-
-
+                    <div className=" flex  items-center  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
 
                       <span>
                         <MultiAvatar2
@@ -334,40 +349,14 @@ const DealsTeamCardList = (props) => {
                   </div>
                 </div>
               </div>
-
-
-
             )
           })}
         </InfiniteScroll>
       </div>
-      {/* <UpdateLPitchModal
-        item={currentLeadsId}
-        updatePitchModal={props.updatePitchModal}
-        // updateLeadsModal={updateLeadsModal}
-        handleUpdatePitchModal={props.handleUpdatePitchModal}
-        // handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-      /> */}
-      {/* <AddLeadsEmailDrawerModal
-        item={currentLeadsId}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        addDrawerLeadsEmailModal={props.addDrawerLeadsEmailModal}
-        handleLeadsEmailDrawerModal={props.handleLeadsEmailDrawerModal}
-      /> */}
-      {/* <OpenASSimodal 
-        rowdata={rowdata}
-        openASSImodal={props.openASSImodal}
-      handleAssimodal={props.handleAssimodal}
-      />
-         <AddPitchNotesDrawerModal 
-       item={currentLeadsId}
-        addDrawerPitchNotesModal={props.addDrawerPitchNotesModal}
-        handlePitchNotesDrawerModal={props.handlePitchNotesDrawerModal}
-      /> */}
+       )} 
     </>
   );
 };
-
 const mapStateToProps = ({ auth, leads, deal, sector, pitch }) => ({
   //   leadsAllData: leads.leadsAllData,
   user: auth.userDetails,
@@ -379,18 +368,12 @@ const mapStateToProps = ({ auth, leads, deal, sector, pitch }) => ({
   allDealsData: deal.allDealsData,
   teamsDealsData:deal.teamsDealsData,
   fetchingTeamsDealsData:deal.fetchingTeamsDealsData,
+  dealSerachedData: deal.dealSerachedData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getTeamsDeals,
-      // deletePitchData,
-      // handleUpdatePitchModal,
-      // setEditPitch,
-      // updateTypeForPitch,
-      // handlePitchNotesDrawerModal,
-      // handleAssimodal
-
     },
     dispatch
   );

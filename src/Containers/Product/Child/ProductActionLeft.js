@@ -1,22 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { DeleteOutlined } from "@ant-design/icons";
-import { Tooltip, Avatar,Badge } from "antd";
+import { Tooltip, Avatar,Badge,Input } from "antd";
+import { AudioOutlined } from '@ant-design/icons';
 import MenuIcon from '@mui/icons-material/Menu';
-import { getRecords ,getDeletedProductRecords} from "../ProductAction";
+import { getRecords,getCategory,getDeletedProductRecords,catalogueCategorySearch} from "../ProductAction";
 import CategoryIcon from '@mui/icons-material/Category';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 
 const ProductActionLeft = (props) => {
-  const {
-    viewType,
-    setProductViewType,
-    user,
-  } = props;
-  // useEffect(() => {
-  //   props.getRecords()
-  // }, []);
+
+  const [searchOnEnter, setSearchOnEnter] = useState(false); 
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); 
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
+
+  const [currentCatData, setCurrentCatData] = useState("");
+
   useEffect(() => {
     if (props.viewType === "table") {
       props.getRecords();
@@ -26,6 +29,88 @@ const ProductActionLeft = (props) => {
 
   }, [props.viewType]);
 
+
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+
+    useEffect(() => {
+      // props.getCustomerRecords();
+      if (transcript) {
+        console.log(">>>>>>>", transcript);
+        setCurrentCatData(transcript);
+      }
+      }, [ transcript]);
+
+      const handleCatChange = (e) => {
+        setCurrentCatData(e.target.value);
+    
+        if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
+           
+          props.getCategory();
+          setSearchOnEnter(false);
+        }
+      };
+      const handleCatSearch = () => {
+        if (currentCatData.trim() !== "") {
+          // Perform the search
+          props.catalogueCategorySearch(currentCatData);
+          setSearchOnEnter(true);  //Code for Search
+        } else {
+          console.error("Input is empty. Please provide a value.");
+        }
+      };
+
+      const handleStartListening = () => {
+        setStartTime(Date.now());
+        setIsRecording(true);
+        SpeechRecognition.startListening();
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+          SpeechRecognition.stopListening();
+          setIsRecording(false);
+        }, minRecordingTime);
+      };
+      const suffix = (
+        <AudioOutlined
+          onClick={handleStartListening}
+          style={{
+            fontSize: 16,
+            color: '#1890ff',
+          }}
+    
+        />
+      );
+    const handleStopListening = () => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+        if (transcript.trim() !== "") {
+          setCurrentCatData(transcript);
+          props.catalogueCategorySearch(currentCatData);
+          setSearchOnEnter(true);
+        }
+      };
+      useEffect(() => {
+        if (!listening && isRecording) {
+          handleStopListening();
+        }
+      }, [listening]);
+      useEffect(() => {
+        if (isRecording && !listening) {
+          // If recording was stopped but less than 5 seconds have passed, restart listening
+          const elapsedTime = Date.now() - startTime;
+          if (elapsedTime < minRecordingTime) {
+            SpeechRecognition.startListening();
+          } else {
+            setIsRecording(false);
+          }
+        }
+      }, [listening, isRecording, startTime]);
   return (
     <FlexContainer alignItems="center">
       <Tooltip title="Active Products">
@@ -77,7 +162,7 @@ const ProductActionLeft = (props) => {
           onClick={() => props.setProductViewType("category")}
         >
           <Avatar style={{ background: props.viewType === "category" ? "#f279ab" : "#4bc076" }}>
-            <CategoryIcon className="text-white !text-icon" />
+            <CategoryIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
         </div>
@@ -101,7 +186,18 @@ const ProductActionLeft = (props) => {
   </Avatar>
   </Badge>
 </Tooltip>
-
+<div class=" w-64 max-sm:w-24">
+                
+{props.viewType === "category" &&
+<Input
+          placeholder="Search by Category Name "
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleCatSearch}
+          onChange={handleCatChange}
+        value={currentCatData}
+        />}
+            </div>
     </FlexContainer>
   );
 
@@ -116,7 +212,9 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getRecords,
-      getDeletedProductRecords
+      getDeletedProductRecords,
+      catalogueCategorySearch,
+      getCategory
     },
     dispatch
   );

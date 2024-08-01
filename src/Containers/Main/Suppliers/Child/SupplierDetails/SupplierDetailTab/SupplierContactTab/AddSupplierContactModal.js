@@ -1,5 +1,4 @@
 import React, { lazy, Suspense, Component } from "react";
-import { Button } from "antd";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 import SupplierContactForm from "./SupplierContactForm";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";

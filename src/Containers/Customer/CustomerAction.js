@@ -530,6 +530,32 @@ export const addCustomerDocument = (data) => (dispatch) => {
     });
 };
 
+export const documentUpload = (data) => (dispatch) => {
+  console.log(data);
+  dispatch({ type: types.ADD_HOSPITAL_DOCUMENT_REQUEST });
+  axios
+    .post(`${base_url}/document/save`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_HOSPITAL_DOCUMENT_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_HOSPITAL_DOCUMENT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 /**
  * get documents of an customer
  */
@@ -805,12 +831,12 @@ export const setSelectedTodoTimeIntervalReport = (selectedTodoTime) => (dispatch
 };
 
 //SEARCH
-export const inputCustomerDataSearch = (name) => (dispatch) => {
+export const inputCustomerDataSearch = (name,type) => (dispatch) => {
   dispatch({
     type: types.INPUT_CUSTOMER_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/customer/search/${name}`, {
+    .get(`${base_url}/customer/search/alltype/${name}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1139,11 +1165,11 @@ export const addAttendence = (attendance,userId) => (dispatch) => {
     });
 };
 
-export const putCustomerContactToggle = (data, contactId) => (dispatch) => {
+export const putCustomerContactToggle = (contactId,userId,type) => (dispatch) => {
   dispatch({ type: types.PUT_CUSTO_CONTACT_TOGGLE_REQUEST });
 
   axios
-    .post(`${base_url}/task/convert/contact/${contactId}`, data, {
+    .put(`${base_url2}/distributor/convert/contactToUser/${contactId}/${userId}/${type}`, {}, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

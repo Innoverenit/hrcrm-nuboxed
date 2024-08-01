@@ -144,7 +144,7 @@ function MileageDrawerCard(props) {
   </div>
 )}
                 </div>
-                <div className=" flex font-medium flex-col w-[7.2rem] ">
+                <div className=" flex  w-[7.2rem] ">
                   {editStates[index] ? (
               <input
                 type="text"
@@ -158,7 +158,7 @@ function MileageDrawerCard(props) {
                   </div>
             )}
                 </div>
-                <div className=" flex font-medium flex-col w-[7.23rem] ">
+                <div className=" flex  w-[7.23rem] ">
                 
                   {editStates[index] ? (
               <input
@@ -173,7 +173,7 @@ function MileageDrawerCard(props) {
                   </div>
             )}
                 </div>
-                <div className=" flex font-medium flex-col w-[6.5rem] ">
+                <div className=" flex  w-[6.5rem] ">
                   {editStates[index] ? (
               <input
                 type="text"
@@ -187,7 +187,7 @@ function MileageDrawerCard(props) {
                   </div>
             )}
                 </div>
-                <div className="flex font-medium flex-col w-[7.1rem]">
+                <div className="flex  w-[7.1rem]">
                   {editStates[index] ? (
               <input
                 type="text"
@@ -202,10 +202,9 @@ function MileageDrawerCard(props) {
             )}
                 </div>
 
-                <div className="flex font-medium flex-col w-[5.5rem] justify-center">
-                  {/* <div className="text-xs  font-poppins">
-                    Remarks
-                  </div> */}
+                <div className="flex  w-[5.5rem] justify-center">               
+                    {/* Remarks */}
+                 
                    {item.status !== 'Approved' && (
                   <div className="text-xs  font-poppins ml-[0.25rem]">
                   <button onClick={() => toggleEdit(index)} >
@@ -222,7 +221,7 @@ function MileageDrawerCard(props) {
                    )}
                 </div>
                 <div class="flex flex-col items-center">
-                <div className="flex font-medium flex-col  justify-center">
+                <div className="flex   justify-center">
                 <Tooltip title={"Note"}>
                     <NoteAltIcon 
                     style={{ cursor: "pointer",padding: "2px",fontSize:"1.2rem" }}
@@ -233,7 +232,7 @@ function MileageDrawerCard(props) {
                     />
                   </Tooltip>
                   </div>
-                  <div className="flex font-medium flex-col  justify-center">
+                  <div className="flex   justify-center">
                 {item.status === "Pending" ? (
             <Tooltip title="Delete">
               <DeleteOutlined
@@ -247,19 +246,7 @@ function MileageDrawerCard(props) {
              </Tooltip>
              ):null}
              </div>
-             </div>
-                {/* <div className="flex flex-col w-[4%]">
-                  {item.status === "Pending" ? (
-                    <div>
-                      <Button
-                        type="primary"
-                        onClick={() => saveEditedData(item.mileageId)}
-                      >
-                        Save
-                      </Button>
-                    </div>
-                  ) : null}
-                </div> */}
+             </div>           
               </div>
             </div>
           );

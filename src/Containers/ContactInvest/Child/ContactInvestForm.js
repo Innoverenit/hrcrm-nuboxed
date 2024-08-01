@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Select, } from "antd";
+import { Button, Select,Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
@@ -12,12 +12,14 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { addLinkContactByOpportunityId } from "../../Contact/ContactAction";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { getDesignations } from "../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../Settings/Department/DepartmentAction";
 import {addContactInvest} from "../ContactInvestAction";
 import {getInvestorData,getDialCode} from "../../Investor/InvestorAction";
-
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
+import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 const { Option } = Select;
 /**
  * yup validation scheme for creating a contact
@@ -164,7 +166,21 @@ class ContactInvestForm extends Component {
         value: item.investorId,
       };
     });
-
+    // const [text, setText] = useState("");
+    // function handletext(e) {
+    //   setText(e.target.value);
+    // }
+    // const {
+    //   transcript,
+    //   listening,
+    //   resetTranscript,
+    //   browserSupportsSpeechRecognition,
+    // } = useSpeechRecognition();
+  
+    // if (!browserSupportsSpeechRecognition) {
+    //   return <span>Browser doesn't support speech recognition.</span>;
+    // }
+  
     return (
       <>
         <Formik
@@ -475,16 +491,45 @@ class ContactInvestForm extends Component {
                     </div>
                   </div>
                   <div class="mt-3">
-                  <Field
-                    name="notes"
-                    // label="Notes"
-                    label={
-                      <FormattedMessage id="app.description" defaultMessage="Description" />
-                    }
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                  />
+                  <div>Descriptions</div>
+                    <div>
+                  {/* <div>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span
+                          
+                         >
+                          <StopCircleIcon    className="!text-icon ml-1 text-green-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span  >
+                          <RotateRightIcon className="!text-icon ml-1"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </div> */}
+                  <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      // value={transcript ? transcript : text}
+                      // onChange={handletext}
+                    ></textarea>
+                  </div>
+                </div>
 </div>
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " >

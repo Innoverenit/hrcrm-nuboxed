@@ -1,5 +1,4 @@
 import * as types from "./LeadsActionTypes";
-import dayjs from "dayjs"; 
 const initialState = {
   viewType: "card",
 
@@ -7,6 +6,8 @@ const initialState = {
 
   removingLeadsNote: false,
   removingLeadsNoteError: false,
+
+  addDrawerLeadsSubscriptionModal:false,
 
   addingLeadsActivityCall: false,
   addingLeadsActivityCallError: false,
@@ -271,6 +272,9 @@ case types.HANDLE_LEADS_MODAL:
       return { ...state, addLeadsConfirmationModal: action.payload };
 
      
+
+      case types.HANDLE_LEADS_SUBSCRIPTION_DRAWER_MODAL:
+        return { ...state, addDrawerLeadsSubscriptionModal: action.payload };
 
       case types.ADD_LEADS_REQUEST:
         return { ...state, addingLeads: true };

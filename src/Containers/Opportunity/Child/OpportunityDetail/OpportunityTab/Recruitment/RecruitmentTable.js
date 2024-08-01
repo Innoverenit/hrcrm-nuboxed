@@ -708,7 +708,7 @@ class RecruitmentTable extends Component {
           // const availableDate = moment(item.availableDate).subtract(item.endDate);
           return (
             <>
-              {/* {item.availableDate === null ? "No Data" : */}
+              {/* {item.availableDate === null ? "None" : */}
               <span>
                 {/* {moment(item.availableDate).subtract(item.endDate).month()} */}
                 {date} months

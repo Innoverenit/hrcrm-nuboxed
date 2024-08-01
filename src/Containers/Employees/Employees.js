@@ -8,10 +8,13 @@ const AddEmployeeModal = lazy(() => import("./Child/AddEmployeeModal"));
 const EmployeeCardView = lazy(() => import("./Child/EmployeeCard/EmployeeCardView"));
 const EmployeeTable = lazy(() => import("./Child/EmployeeTable/EmployeeTable"));
 
-class Employees extends Component {
 
-  state = { currentData: "", filter:"cretiondate", currentUser: '',selectedLocation:"",
+class Employees extends Component {
+  constructor(props) {
+    super(props);
+  this.state = { currentData: "", filter:"cretiondate", currentUser: '',selectedLocation:"",
   filteredData: this.props.employees };
+  }
   handleClear = () => {
     this.setState({ currentData: "" });
     this.props.getEmployeelist();
@@ -71,6 +74,8 @@ class Employees extends Component {
     return (
       <React.Fragment>
         <EmployeesHeader
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           handleEmployeeModal={handleEmployeeModal}
           setEmployeeViewType={setEmployeeViewType}
           viewType={viewType}
@@ -88,6 +93,8 @@ class Employees extends Component {
           setCurrentData={this.setCurrentData}
         />
         <AddEmployeeModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           addEmployeeModal={addEmployeeModal}
           handleEmployeeModal={handleEmployeeModal}
         />
@@ -100,9 +107,8 @@ class Employees extends Component {
         />:
         this.props.viewType === "table" ?
         <EmployeeTable 
-        filteredData={this.state.filteredData}
-        filter={this.state.filter}
-        viewType={viewType}
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
         />:
         null}
               </Suspense>

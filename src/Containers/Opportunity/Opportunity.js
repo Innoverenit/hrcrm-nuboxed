@@ -61,7 +61,7 @@ class Opportunity extends Component {
     return (
       <React.Fragment>
         <OpportunityHeader
-          viewType={this.props.viewType}
+          viewType={viewType}
           teamsAccessInd={teamsAccessInd}
           setOpportunityViewType={this.setOpportunityViewType}
           handleOpportunityModal={handleOpportunityModal}
@@ -70,24 +70,68 @@ class Opportunity extends Component {
           setCurrentData={this.setCurrentData}
         />
         <AddOpportunityModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
           addOpportunityModal={addOpportunityModal}
           handleOpportunityModal={handleOpportunityModal}
         />
         <Suspense fallback={<BundleLoader />}>
 
         {teamsAccessInd ? (
-          <OpportunityTeamsCard/>
+          <OpportunityTeamsCard
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+          />
         ) : (
           <>
-            {viewType === "table" && <OpportunityCardList/>}
-            { viewType === "stage" &&  <OpportunityBoard/>}
-            { viewType === "dashboard" &&  <OpportunityDeletedCard/>}
-            {  viewType === "close" &&  <OpportunityCloseCard/>}
-            { viewType === "teams" &&  <OpportunityTeamsCard/>}
-            {   viewType === "lost" &&  <OpportunityLostCard/>}
-            { viewType === "card" &&  <OpportunityCardView/>}
-            {  viewType === "won" &&   <OpportunityWonCard/>}
-            { viewType==="all" &&  <OpportunityAllCardList/>}
+            {viewType === "table" && <OpportunityCardList
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            
+            />}
+            { viewType === "stage" &&  <OpportunityBoard
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
+            { viewType === "dashboard" &&  <OpportunityDeletedCard
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
+            {  viewType === "close" &&  <OpportunityCloseCard
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
+            { viewType === "teams" &&  <OpportunityTeamsCard
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
+            {   viewType === "lost" &&  <OpportunityLostCard
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
+            { viewType === "card" &&  <OpportunityCardView
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
+            {  viewType === "won" &&   <OpportunityWonCard
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
+            { viewType==="all" &&  <OpportunityAllCardList
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
           </>
         )}
           {/* {  this.props.viewType === "table" ?    

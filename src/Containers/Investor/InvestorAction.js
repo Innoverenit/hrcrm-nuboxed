@@ -524,12 +524,12 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
       });
   };
 
-  export const searchInvestorName = (name) => (dispatch) => {
+  export const searchInvestorName = (name,type) => (dispatch) => {
     dispatch({
       type: types.GET_INVESTOR_SEARCH_REQUEST,
     });
     axios
-      .get(`${base_url}/investor/search/${name}`, {
+      .get(`${base_url}/investor/search/alltype/${name}/${type}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -1366,4 +1366,43 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
           payload: err,
         });
       })
+  };
+
+  export const handleUploadInvestorModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_UPLOAD_INVESTOR_MODAL,
+      payload: modalProps,
+    });
+  };
+  
+  export const uploadInvestorList = (data,userId) => (dispatch) => {
+    dispatch({ type: types.UPLOAD_INVESTOR_LIST_REQUEST });
+    axios
+      .post(`${base_url}/excel/import/investor`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+
+        //dispatch(getInvestorsbyId(userId, "0","creationdate"))
+        dispatch({
+          type: types.UPLOAD_INVESTOR_LIST_SUCCESS,
+          payload: res.data,
+        });
+        Swal.fire({
+          icon: 'success',
+          title: 'Uploaded Successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPLOAD_INVESTOR_LIST_FAILURE,
+          payload: err,
+        });
+      });
   };

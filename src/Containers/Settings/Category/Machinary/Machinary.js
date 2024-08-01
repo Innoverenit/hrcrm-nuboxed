@@ -2,14 +2,11 @@ import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
-import { base_url } from "../../../../Config/Auth";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Button,Popconfirm,Tooltip, Input } from "antd";
+import { Popconfirm, Input } from "antd";
 import dayjs from "dayjs";
-import DownloadIcon from '@mui/icons-material/Download';
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { MainWrapper, } from "../../../../Components/UI/Layout";
-import { TextInput, } from "../../../../Components/UI/Elements";
 import {
     getMachinary,
     getMachinaryCount,
@@ -115,7 +112,7 @@ return <div><BundleLoader/></div>;
   return (
       <div>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex w-[18vw] mt-3"  >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -160,7 +157,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingMachinary && machinaryListData.length === 0 ? <NodataFoundPage /> : machinaryListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="card9" key={region.machinaryId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.machinaryId}>
             {/* Region name display or input field */}
             {editingId === region.machinaryId ? (
                 <input
@@ -171,7 +168,7 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setName(e.target.value)}
                 />
             ) : (
-                <div className="region" style={{width:"13rem"}}>{region.name}&nbsp;&nbsp;&nbsp;
+                <div style={{width:"13rem"}}>{region.name}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -187,12 +184,12 @@ return <div><BundleLoader/></div>;
                       onChange={(e) => setDescriptionName(e.target.value)}
                   />
               ) : (
-                  <div className="region" style={{width:"39rem"}}>{region.description}
+                  <div  style={{width:"39rem"}}>{region.description}
                   </div>
               )}
 
             {/* Action buttons */}
-            <div className="actions">
+            <div >
               
                 {editingId === region.machinaryId ? (
                     <div>
@@ -200,7 +197,7 @@ return <div><BundleLoader/></div>;
                         <button className=" ml-4"   onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.machinaryId, region.name,region.description)} />
+                    <BorderColorIcon   className=" cursor-pointer !text-icon text-red-600" onClick={() => editRegion(region.machinaryId, region.name,region.description)} />
                 )}
 
                
@@ -210,12 +207,7 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeMachinary(region.machinaryId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                  cursor:"pointer",
-                  }}
+                <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
               // onClick={() => 
               //     props.removeServiceLine(item.machinaryId)
               //  }

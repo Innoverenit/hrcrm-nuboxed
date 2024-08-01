@@ -7,11 +7,47 @@ import { Spacer, } from "../../UI/Elements";
 import FormikPlacesAutoComplete from "./FormikPlacesAutoComplete";
 import { InputComponent } from "../Formik/InputComponent";
 import { FormattedMessage } from "react-intl";
+import { BundleLoader } from "../../Placeholder";
 class AddressFieldArray extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true
+    };
+  }
+  // componentDidMount() {
+  //   this.fetchMenuTranslations();
+    
+  // }
+//   async fetchMenuTranslations() {
+//     try {
+//       this.setState({ loading: true });
+//         const itemsToTranslate = [
+//             'Address input is only allowed using Location feature', //0
+// 'Address', //1
+// 'Street', //2
+// 'Zip code', //3
+// 'City', //4
+// 'State/Province', //5
+// 'Country', //6
+
+  
+//           ];
+//       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+//       this.setState({ translatedMenuItems: translations ,loading: false });
+//     } catch (error) {
+//       this.setState({ loading: false });
+//       console.error('Error translating menu items:', error);
+//     }
+//   }
   render() {
     console.log(this.props);
     const { arrayHelpers, values, singleAddress } = this.props;
     console.log(singleAddress);
+    const {loading, activeKey,translatedMenuItems } = this.state;
+    // if (loading) {
+    //   return <div><BundleLoader/></div>;
+    // }
     return (
       <div >
         <Spacer />
@@ -103,23 +139,17 @@ class AddressFieldArray extends Component {
                     color: "#1890ff",                   
                   }}
                 >
-                        <FormattedMessage
-                        id="app.addressInputLocation"
-                        defaultMessage="Address input is only allowed using Location feature"
-                      />
+                                            {/* {translatedMenuItems[0]} */}
+                                            Address input is only allowed using Location feature
                  </p>
                 
                 <div class="flex justify-between max-sm:flex-col">
                 <div class="w-[32%] max-sm:w-wk">     
                  <Field
                   name={`address.${index}.address1`}
-                  label={
-                    <FormattedMessage
-                      id="app.address"
-                      defaultMessage="Address 1"
-                    />
-                  }
-                  // label="Address 1"
+                  //label={translatedMenuItems[1]}
+
+                   label="Address "
                   isColumn
                   component={InputComponent}
                   width={"100%"}
@@ -129,13 +159,8 @@ class AddressFieldArray extends Component {
                 <div class="w-[32%] max-sm:w-wk">                         
                 <Field
                   name={`address.${index}.street`}
-                  // label="Street"
-                  label={
-                    <FormattedMessage
-                      id="app.street"
-                      defaultMessage="Street"
-                    />
-                  }
+                   label="Street"
+                  //label={translatedMenuItems[2]}
                   component={InputComponent}
                   width={"100%"}
                   isColumn
@@ -146,13 +171,8 @@ class AddressFieldArray extends Component {
                     <Tooltip title="Use Location feature for easy search ">
                       <Field
                         name={`address.${index}.postalCode`}
-                        // label="Pin code"
-                        label={
-                          <FormattedMessage
-                            id="app.zipcode"
-                            defaultMessage="Zip code"
-                          />
-                        }
+                         label="Zip code"
+                        //label={translatedMenuItems[3]}
                         // disabled
                         component={InputComponent}
                         isColumn
@@ -167,13 +187,8 @@ class AddressFieldArray extends Component {
                     <Tooltip title="Use Location feature for easy search ">
                       <Field
                         name={`address.${index}.city`}
-                        // label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.city"
-                            defaultMessage="City"
-                          />
-                        }
+                         label="City"
+                        //label={translatedMenuItems[4]}
                         component={InputComponent}
                         disabled
                         width={"100%"}
@@ -187,13 +202,8 @@ class AddressFieldArray extends Component {
                     <Tooltip title="Use Location feature for easy search ">
                       <Field
                         name={`address.${index}.state`}
-                        // label="State/Province"
-                        label={
-                          <FormattedMessage
-                            id="app.stateProvince"
-                            defaultMessage="State/Province"
-                          />
-                        }
+                         label="State/Province"
+                        //label={translatedMenuItems[5]}
                         component={InputComponent}
                         disabled
                         width={"100%"}
@@ -206,13 +216,8 @@ class AddressFieldArray extends Component {
                     <Tooltip title="Use Location feature for easy search ">
                       <Field
                         name={`address.${index}.country`}
-                        // label="Country"
-                        label={
-                          <FormattedMessage
-                            id="app.country"
-                            defaultMessage="Country"
-                          />
-                        }
+                         label="Country"
+                        //label={translatedMenuItems[6]}
                         disabled
                         component={InputComponent}
                         isColumn

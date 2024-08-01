@@ -40,7 +40,6 @@ function LeavePendingStatusCard(props) {
           .map((item) => {
             const currentdate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-
             return (
               <>
                 <div>
@@ -68,13 +67,6 @@ function LeavePendingStatusCard(props) {
                         <div class=" font-normal text-xs  font-poppins">
                           {item.reason}
                         </div>
-                        {/* <div className=" flex font-medium flex-col w-24 ">
-                        <div class=" text-base  font-poppins">
-                          Status
-                        </div>
-
-                       
-                      </div> */}
                       </div>
                       <div class=" text-xs  font-poppins w-max mb-1 ">
                           {item.status === "Pending" && (
@@ -103,24 +95,17 @@ function LeavePendingStatusCard(props) {
 
                         <div class=" font-normal text-xs  font-poppins">
                           {` ${dayjs(item.endDate).format("DD/MM/YYYY")}`}
-                        </div>
-                       
-                        {/* </Tooltip>   */}
-                       
+                        </div>               
+                        {/* </Tooltip>   */}                     
                       </div>
                       <div className=" flex font-medium flex-col w-20">
                         <div class=" text-sm  font-medium font-poppins">
                           Cover
                         </div>
-
                         <div class=" font-normal text-xs  font-poppins">
                           {item.coverDetails}
-                        </div>
-                        
-                      </div>
-                     
-
-                      
+                        </div>                   
+                      </div>                                      
                     </div>
                   </div>
                 </div>

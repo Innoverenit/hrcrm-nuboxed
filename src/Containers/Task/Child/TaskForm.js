@@ -1879,6 +1879,7 @@ import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 const { Option } = Select;
 
 function TaskForm (props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [selectedTaskType, setSelectedTaskType] = useState('');
   const [selectedWorkflow, setSelectedWorkflow] = useState("");
   const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
@@ -1935,6 +1936,37 @@ const [priority,setpriority]=useState(props.selectedTask
     props.getCandidateTaskList(props.orgId);
     props.getCandidateTaskFilterList(props.orgId);
   },[]);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         " Priority",//0
+          "Name",//1
+          "End date",//2
+          "Type",//3
+          "WorkFlow",//4
+          "Status",//5
+          "Description",//6
+          "Assigned",//7
+          "Include",//8
+          "Prospect",//9
+          "Contact",//10
+          "Opportunity",//11
+          "Link",//12
+          "Contact",//13
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
  function handleTypeChange(data){
   setType(data);
@@ -2520,7 +2552,7 @@ const [priority,setpriority]=useState(props.selectedTask
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
+            <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
               <div class="flex justify-around pr-2 max-sm:flex-col">
                
@@ -2544,12 +2576,12 @@ const [priority,setpriority]=useState(props.selectedTask
                   <div class="mt-3 flex justify-between">
                   <div class=" flex  flex-col mr-1 ">
                  
-                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
                        {/* Priority */}
-                       <FormattedMessage
+                      {translatedMenuItems[0]}  {/* <FormattedMessage
                          id="app.priority"
                          defaultMessage="priority"
-                       />
+                       /> */}
                        
                      </div>
                    
@@ -2599,35 +2631,37 @@ const [priority,setpriority]=useState(props.selectedTask
                        </Tooltip>
                      </div>
                    </div>
-                  <div class=" w-[30.5%] mr-1">
+                  <div class=" w-[30.5%] mr-1 font-semibold text-[0.75rem]">
+                  {translatedMenuItems[1]} 
                           <Field
                             isRequired
                             name="taskName"
                             //label="Name"
                             // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.name"
-                                defaultMessage="name"
-                              />
-                            }
+                            // label={
+                            //   // <FormattedMessage
+                            //   //   id="app.name"
+                            //   //   defaultMessage="name"
+                            //   // />
+                            // }
                             component={InputComponent}
                             isColumn
                             width={"100%"}
                             inlineLabel
                           />
                         </div>
-                    <div class=" w-[30.5%] ">
+                    <div class="  font-semibold text-[0.75rem]  w-[30.5%] ">
+                    {translatedMenuItems[2]} 
                       <Field
                         isRequired
                         name="endDate"
                         // label="End "
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="enddate"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.enddate"
+                        //     defaultMessage="enddate"
+                        //   />
+                        // }
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -2755,10 +2789,12 @@ const [priority,setpriority]=useState(props.selectedTask
           
              <div class=" w-[39.5%]  max-sm:w-wk ">
                
-             <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
+             <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
+             {translatedMenuItems[3]}  {/* <FormattedMessage
                        id="app.type"
                        defaultMessage="type"
-                     /></div>
+                     /> */}
+                     </div>
                <select 
                  style={{ border: "0.06em solid #aaa" }}
                 onChange={handleTaskTypeChange}
@@ -2800,10 +2836,13 @@ const [priority,setpriority]=useState(props.selectedTask
              {/* {values.taskTypeId === "TSK42340139329302023" && ( */}
                <div class=" w-[40%] ml-2 max-sm:w-wk">
                    
-               <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
+               <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+               {translatedMenuItems[4]} 
+               {/* <FormattedMessage
                        id="app.workflow"
                        defaultMessage="workflow"
-                     /></div>
+                     /> */}
+                     </div>
                    <select
           style={{ border: "0.06em solid #aaa",width:"100%" }}
                 onChange={handleWorkflowChange}
@@ -2902,10 +2941,10 @@ const [priority,setpriority]=useState(props.selectedTask
              <div class="w-[16%] ml-2">
               
              <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                 <FormattedMessage
+             {translatedMenuItems[5]}  {/* <FormattedMessage
                    id="app.status"
                    defaultMessage="status"
-                 />
+                 /> */}
                
                </div>
 
@@ -3016,16 +3055,17 @@ const [priority,setpriority]=useState(props.selectedTask
                    
                     
                   </div> */}
-                  <div class=" w-full mt-4">
+                  <div class="   w-full mt-4">
                         <Field
                           name="documentId"
                           isRequired
                           component={DragableUpload}
                         />
                       </div>
-                      <div className="mt-3">Description</div>
-                <div>
-                  <div>
+                      <div class="mt-2">
+              <div>
+            <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</span>
+            <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
                         <span  >
@@ -3038,31 +3078,34 @@ const [priority,setpriority]=useState(props.selectedTask
                       <Tooltip title="Stop">
                         <span
                           
-                            class="!text-icon ml-1 text-green-600"
-                        >
-                          <StopCircleIcon />
+                           >
+                          <StopCircleIcon  className="!text-icon ml-1 text-green-600" />
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span  class="!text-icon ml-1">
-                          <RotateRightIcon />
+                        <span  >
+                          <RotateRightIcon className="!text-icon ml-1"/>
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                  </span> 
+                  
+                 
                   <div>
                     <textarea
                       name="description"
-                      className="textarea"
+                      className="textarea h-26"
                       type="text"
                       value={transcript ? transcript : text}
                       onChange={handletext}
                     ></textarea>
                   </div>
                 </div>
+                  </div>
+                     
                   <div class=" flex justify-between">
                     {values.taskTypeId === "TSK52434477391272022" && (
                       <div class=" w-1/2">
@@ -3241,14 +3284,16 @@ const [priority,setpriority]=useState(props.selectedTask
                     <div class=" w-2/5">
                       <div class=" flex justify-between w-full">
                         {values.taskTypeId === "TSK52434477391272022" && (
-                          <div class=" w-full">
+                          <div class=" w-full">                         
                             <Field
                               isRequired
                               name="assignedDate"
-                              label={<FormattedMessage
+                              label={
+                              <FormattedMessage
                                 id="app.assignedDate"
                                 defaultMessage="assignedDate"
-                              />}
+                              />
+                            }
                               component={DatePicker}
                               isColumn
                               value={values.assignedDate}
@@ -3308,12 +3353,12 @@ const [priority,setpriority]=useState(props.selectedTask
                                    <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] ">             
-              <FormattedMessage
+            {/* <Listbox.Label className="block font-semibold text-[0.75rem] ">             
+             {/* <FormattedMessage
                                 id="app.assignedto"
                                 defaultMessage="assignedto"
-                              />
-            </Listbox.Label>
+                              /> */}
+            {/* </Listbox.Label> */}<div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div> 
             <div className="relative">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>
                 {selected}
@@ -3447,10 +3492,10 @@ const [priority,setpriority]=useState(props.selectedTask
                     }}
                   /> */}
 
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
+   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                    <Select
           showSearch
-          style={{ width: 415 }}
+          
           placeholder="Search or select include"
           optionFilterProp="children"
           loading={isLoadingInclude}
@@ -3470,11 +3515,10 @@ const [priority,setpriority]=useState(props.selectedTask
                   {props.user.crmInd === true &&(
               
      <>        
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label>
-
+   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
+{/* prospect */}
 <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select prospect"
         optionFilterProp="children"
         loading={isLoadingCustomer}
@@ -3494,11 +3538,11 @@ const [priority,setpriority]=useState(props.selectedTask
                   {props.user.crmInd === true &&(
                   
                   <>
-                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
+                  {/* Contact */}
 
 <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select contact"
         optionFilterProp="children"
         loading={isLoadingContact}
@@ -3541,10 +3585,10 @@ const [priority,setpriority]=useState(props.selectedTask
               //    inlineLabel
               //  />
               <>
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
+   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
+{/* Opportunity */}
               <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select opportunity"
         optionFilterProp="children"
         loading={isLoadingOpportunity}
@@ -3562,18 +3606,19 @@ const [priority,setpriority]=useState(props.selectedTask
                   )} 
                   </div>
                 
-                     <div class=" mt-4">
+                     <div class="   mt-2">
+                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                       <Field
                             type="text"
                             name="link"
                             //label="Name"
                             // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.link"
-                                defaultMessage="link"
-                              />
-                            }
+                            // label={
+                            //   <FormattedMessage
+                            //     id="app.link"
+                            //     defaultMessage="link"
+                            //   />
+                            // }
                             component={InputComponent}
                             isColumn
                             width={"100%"}

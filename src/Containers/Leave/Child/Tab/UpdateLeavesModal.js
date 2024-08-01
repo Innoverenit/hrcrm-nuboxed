@@ -17,7 +17,6 @@ const UpdateLeavesModal = (props) => {
         width="60%"
         visible={updateLeaveModal}
         onClose={() => handleUpdateLeaveModal(false)}
-
       >
         <Suspense fallback={<BundleLoader />}>
           <UpdateLeavesForm leaveId={props.leaveId} />{" "} 

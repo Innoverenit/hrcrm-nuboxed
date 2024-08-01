@@ -3,6 +3,7 @@ import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ErpNote from "../ErpNote/ErpNote";
 const QCPhoneNotesOrderForm = lazy(() => import("./QCPhoneNotesOrderForm"));
 
 const QCPhoneNotesOrderModal = (props) => {
@@ -17,7 +18,12 @@ const QCPhoneNotesOrderModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <QCPhoneNotesOrderForm RowData={props.RowData} />
+                <ErpNote
+                         type="phone"
+                         id={props.RowData.phoneId}
+                        />
+                  
+                   
                 </Suspense>
             </StyledDrawer>
         </>

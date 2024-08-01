@@ -10,6 +10,7 @@ import { getCustomerActivityTimeline,
    getCustomerNoteList, getCustomerActivityRecords, handleCustomerNoteDrawerModal, handleCustomerActivityModal } from '../../CustomerAction';
 import { BundleLoader } from '../../../../Components/Placeholder';
 import AddCustomerActivityDrawerModal from '../CustomerActivity/AddCustomerActivityDrawerModal';
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 
 const CustomerActivityTable = (props) => {
   useEffect(() => {
@@ -41,27 +42,29 @@ const CustomerActivityTable = (props) => {
           customerActivityTimeline.map((status, index) => ( 
             <Timeline.Item key={index} > 
               <div className="flex flex-row justify-between items-center">           
-                <div class="w-[30rem]">
-                  {dayjs(status.creationDate).format('DD/MM/YYYY')} {status.category} &nbsp;
+                <div class=" flex flex-col w-[30rem]">
+                 <div> {dayjs(status.creationDate).format('DD/MM/YYYY')} </div>
+                <div class="flex flex-row"> 
+                  <div class="mr-2">{status.category} </div>
                   {currentDate === dayjs(status.creationDate).format("DD/MM/YYYY") ? (
-                    <span className="text-xs text-[tomato] font-bold">
+                    <span className="text-xs text-[tomato] font-bold  mr-2">
                       New
                     </span>
-                  ) : null} 
-                  &nbsp;{status.activityType}, completion By {dayjs(status.endDate).format('DD/MM/YYYY')}
+                  ) : null}{status.activityType}</div>
+                  Completion by {dayjs(status.endDate).format('DD/MM/YYYY')}
                   {status.category === 'Task' ? status.statusTask : null}
                 </div>
-
-                <div class="w-[13rem]">
-                  <Button
+          <div class="flex  items-end  justify-end">
+          <div class="">
+                  <div
                     type="link"
                     style={{ margin: '0 8px', padding: 0 }}
                     onClick={() => handleNotesClick(status)}
                   >
-                    Notes
-                  </Button>
+                    <NoteAltIcon className=' !text-icon  text-green-600 cursor-pointer'/>
+                  </div>
                 </div>
-                <div class="w-[13rem]">
+                <div >
                   <Tooltip title="Edit">
                     <BorderColorIcon
                       className="!text-icon cursor-pointer text-[tomato]"
@@ -71,6 +74,8 @@ const CustomerActivityTable = (props) => {
                     />
                   </Tooltip>
                 </div>
+            </div>
+                
               </div>
             </Timeline.Item>
           ))}

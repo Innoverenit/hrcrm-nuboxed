@@ -18,6 +18,7 @@ import EventNoteIcon from '@mui/icons-material/EventNote';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
+import { BundleLoader } from "../../../../Components/Placeholder";
 const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
 
 function EventCardList (props) {
@@ -25,8 +26,39 @@ function EventCardList (props) {
   const [hasMore, setHasMore] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
  
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "Type",//0
+          "Subject",//1
+          "Start",//2
+          "End",//3
+          "Include",//4
+          "Assigned",//5
+           "Owner",//6
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+
+
+  
   useEffect(() => {
     const {
       getEventListRangeByUserId,
@@ -68,42 +100,61 @@ function EventCardList (props) {
     } = props;
 
     console.log(eventListRangeByUserId)
+
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    }
+  
     return (
       <>
       <div className=' flex  sticky  z-auto'>
-      <div class="rounded-lg m-1  max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded  justify-between m-1  max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
-         <div className=" flex  w-[99%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]"><FormattedMessage
+         <div className=" flex  w-[99%] max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
+        {translatedMenuItems[0]} {/* <FormattedMessage
                   id="app.type"
                   defaultMessage="type"
-                /></div>
-        <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.23rem]"><FormattedMessage
+                /> */}
+                </div>
+        <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.23rem]">
+        {translatedMenuItems[1]} {/* <FormattedMessage
                   id="app.subject"
                   defaultMessage="subject"
-                /></div>
-        <div className=" w-[9.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.25rem] "><FormattedMessage
-                  id="app.start"
-                  defaultMessage="start"
-                /></div>
-        <div className=" w-[13.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.13rem] max-lg:w-[11.13rem] "><FormattedMessage
-                  id="app.end"
-                  defaultMessage="end"
-                /></div>
+                /> */}
+                </div>
+        <div className=" w-[9.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.25rem] ">
+        {translatedMenuItems[2]} {/* <FormattedMessage
+                  id="app.subject"
+                  defaultMessage="subject"
+                /> */}
+                </div>
+        <div className=" w-[13.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
+        {translatedMenuItems[3]} {/* <FormattedMessage
+                  id="app.subject"
+                  defaultMessage="subject"
+                /> */}
+                </div>
      
-        <div className="w-[6.32rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.32rem] max-lg:w-[4.32rem]"><FormattedMessage
-                  id="app.include"
-                  defaultMessage="include"
-                /></div>
+        <div className="w-[6.32rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.32rem] max-lg:w-[4.32rem]">
+        {translatedMenuItems[4]} {/* <FormattedMessage
+                  id="app.subject"
+                  defaultMessage="subject"
+                /> */}
+                </div>
      
-        <div className="w-[8.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.15rem]"><FormattedMessage
-                  id="app.assignedto"
-                  defaultMessage="assignedto"
-                /></div>
-        <div className="w-24 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]"><FormattedMessage
-                  id="app.owner"
-                  defaultMessage="owner"
-                /></div>
+        <div className="w-[8.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.15rem]">
+        {translatedMenuItems[5]} {/* <FormattedMessage
+                  id="app.subject"
+                  defaultMessage="subject"
+                /> */}
+                </div>
+        <div className="w-24 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
+        {translatedMenuItems[0]} {/* <FormattedMessage
+                  id="app.subject"
+                  defaultMessage="subject"
+                /> */}
+                </div>
                    {/* <div className="md:w-[5%]"><FormattedMessage
                   id="app.rating"
                   defaultMessage="rating"
@@ -119,6 +170,7 @@ function EventCardList (props) {
         hasMore={hasMore}
         loader={fetchingEventListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
       {eventListRangeByUserId.map((item) => { 
             const handleCopyClick = () => {
@@ -130,12 +182,12 @@ function EventCardList (props) {
             };
                     return (
                         <div>
-                            <div className="flex rounded   mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                            <div className="flex rounded   mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                                 style={{
                                     // borderBottom: "3px dotted #515050"
                                 }}>
                                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[8.98rem] max-xl:w-[6.98rem] max-lg:w-[5.28rem] max-sm:w-auto ">
+                                <div className=" flex w-[8.98rem] max-xl:w-[6.98rem] max-lg:w-[5.28rem] max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
           <div class="max-sm:w-full">
                                         <Tooltip>
@@ -153,7 +205,7 @@ function EventCardList (props) {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium flex-col  w-[12.26rem] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[12.26rem] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">   
                                     {item.eventSubject}
@@ -161,13 +213,13 @@ function EventCardList (props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[8.9rem] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[8.9rem] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[5.32rem] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[5.32rem] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
@@ -175,10 +227,10 @@ function EventCardList (props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[9.32rem] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[9.32rem] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
                                    
                                 </div>
-                                <div className=" flex font-medium flex-col w-[7.31rem] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[7.31rem] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
                                     <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
@@ -208,7 +260,7 @@ function EventCardList (props) {
             </Avatar.Group>
                                     </div>
                                 </div>
-                                <div className="flex font-medium flex-col w-[7.69rem] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex  w-[7.69rem] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
@@ -236,7 +288,7 @@ function EventCardList (props) {
              {/* </Tooltip> */}
                                     </div>
                                 </div>
-                                <div className="flex font-medium flex-col w-[6.12rem] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex w-[6.12rem] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">
                        
                        {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Owner</div> */}
 
@@ -255,7 +307,7 @@ function EventCardList (props) {
           </div>
                    </div>
                                </div>
-                               <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
+                               <div class="flex justify-end max-sm:w-wk items-center"> 
                     
                       <div class="flex  w-[4rem] max-sm:flex-row items-center justify-between max-sm:w-auto">
                     <div class="">
@@ -292,7 +344,7 @@ function EventCardList (props) {
         {item.eventDescription}
         <br />
         <FileCopyIcon
-          className={`!text-base cursor-pointer ${isCopied ? 'text-white' : ''}`}
+          className={`!text-icon cursor-pointer ${isCopied ? 'text-white' : ''}`}
           onClick={handleCopyClick}
         />
         {/* {isCopied && <span className="text-green-500 ml-2">Copied!</span>} */}
@@ -333,7 +385,7 @@ function EventCardList (props) {
       
             </div>
                       </div>   
-                      </div>
+                              </div>
                             </div>
                         </div>
 

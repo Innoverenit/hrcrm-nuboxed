@@ -11,7 +11,6 @@ import dayjs from "dayjs";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 import { TimePicker } from "../../../Components/Forms/Formik/TimePicker";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
@@ -25,7 +24,6 @@ import {
 } from "../EventAction";
 import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
 import { handleChooserModal } from "../../Planner/PlannerAction";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getAssignedToList } from "../../Employees/EmployeeAction";
 import { setClearbitCandidateData } from "../../Candidate/CandidateAction";
@@ -36,18 +34,19 @@ const { Option } = Select;
 // yup validation scheme for creating a opportunity
 const EventSchema = Yup.object().shape({
   eventTypeId: Yup.string().required("Select event type"),
-  eventSubject: Yup.string().required("This field is required !"),
-  timeZone: Yup.string().required("Input required !"),
+  eventSubject: Yup.string().required("Input required!"),
+  timeZone: Yup.string().required("Input required!"),
   // endDate: Yup.string()
   //   .nullable()
   //   .required("Input required !"),
-  startTime: Yup.string().nullable().required("Input required !"),
-  endTime: Yup.string().nullable().required("Input required !"),
-  startDate: Yup.string().nullable().required("Input required !"),
+  startTime: Yup.string().nullable().required("Input required!"),
+  endTime: Yup.string().nullable().required("Input required!"),
+  startDate: Yup.string().nullable().required("Input required!"),
 });
 
 function EventForm (props) {
 
+      const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
       const [reminder,setRemider] = useState(true);
       const [defaultOption, setDefaultOption] = useState(props.fullName);
       const [selected, setSelected] = useState(defaultOption);
@@ -67,6 +66,41 @@ function EventForm (props) {
   //  props.getAllOpportunityData(userId)
   //  props.getFilteredEmailContact(userId);
   },[])
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Type",//0
+         "Subject",//1
+         "Start Date",//2
+         "Start Time",//3
+          "End Date",//4
+          "End Time",//5
+          " Time Zone",//6
+          "Prospect",//7
+          "Contact",//8
+          "Opportunity",//9
+          "Assigned",//10
+          "Include",//11
+          "Address",//12
+          // "Street",//13
+          // "Zip Code",//14
+          // "City", //15
+          //  "State",//16
+          //  "Country",///17
+           "Notes"//18
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  
   const sortedEmployee =props.assignedToList.sort((a, b) => {
     const nameA = a.empName.toLowerCase();
     const nameB = b.empName.toLowerCase();
@@ -518,18 +552,18 @@ const {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
+            <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]"  style={{scrollbarWidth:"thin"}}>
             <Form className="form-background">
               <div class=" flex justify-between max-sm:flex-col">
                 <div class=" h-full w-w47.5  mt-3 max-sm:w-wk">
-                 
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                   <Field
                     isRequired
                     name="eventTypeId"
                     //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="type" />
-                    }
+                    // label={
+                    //   <FormattedMessage id="app.type" defaultMessage="type" />
+                    // }
                     component={SearchSelect}
                     isColumnWithoutNoCreate
                     selectType="eventType"
@@ -537,87 +571,85 @@ const {
                     isColumn
                     inlineLabel
                   />
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[1]}</div>
                   <Field
                     isRequired
                     name="eventSubject"
                     //label="Topic"
-                    label={
-                      <FormattedMessage
-                        id="app.subject"
-                        defaultMessage="subject"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.subject"
+                    //     defaultMessage="subject"
+                    //   />
+                    // }
                     isColumn
-                    width={"100%"}
+                  style={{ width:"100%"}}
                     component={InputComponent}
                     inlineLabel
                   />
               
                   <div class="mt-3">
                     <div class=" flex justify-between">
-                      <div class=" w-1/2">
+                      <div class=" w-5/12">
+                      <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
                         <Field
                           isRequired
                           name="startDate"
                           //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.startDate"
-                              defaultMessage="Start Date"
-                            />
-                          }
+                          // label={
+                          //   <FormattedMessage
+                          //     id="app.startDate"
+                          //     defaultMessage="Start Date"
+                          //   />
+                          // }
                           isColumn
                           component={DatePicker}
                           value={values.startDate}
                           inlineLabel
-                          style={{
-                            width: "100%",
-                          }}
+                        
                         />
                       </div>
                       <div class=" w-5/12">
+                      <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
                         <Field
                           isRequired
                           name="startTime"
                           // label="Start Time"
-                          label={
-                            <FormattedMessage
-                              id="app.startTime"
-                              defaultMessage="Start Time"
-                            />
-                          }
+                          // label={
+                          //   <FormattedMessage
+                          //     id="app.startTime"
+                          //     defaultMessage="Start Time"
+                          //   />
+                          // }
                           isColumn
                           component={TimePicker}
                           use12Hours
                           value={values.startTime}
                           inlineLabel
-                          style={{
-                            width: "100%",
-                          }}
+                        
                         />
                       </div>
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-1/2">
+                    <div class=" w-5/12">
+                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
                       <Field
                         isRequired
                         name="endDate"
                         // label="End "
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="enddate"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.enddate"
+                        //     defaultMessage="enddate"
+                        //   />
+                        // }
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
                         defaultValue={dayjs("2015-01-01")}
                         inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
+                       
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (
@@ -634,39 +666,39 @@ const {
                       />
                     </div>
                     <div class=" w-5/12">
+                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                       <Field
                         isRequired
                         name="endTime"
                         //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="endtime"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.endtime"
+                        //     defaultMessage="endtime"
+                        //   />
+                        // }
                         isColumn
                         component={TimePicker}
                         use12Hours
                         value={values.endTime}
                         inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
+                        
                       />
                     </div>
                   </div>
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
                     isColumnWithoutNoCreate
                     name="timeZone"
                     //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="timeZone"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.timeZone"
+                    //     defaultMessage="timeZone"
+                    //   />
+                    // }
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -699,15 +731,16 @@ const {
                     /> */}
                    
                 
-                   <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
+                   <div class="mt-3" >
+                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                   {props.user.crmInd === true &&(
               
      <>        
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label>
+{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label> */}
 
 <Select
         showSearch
-        style={{ width: 417 }}
+      
         placeholder="Search or select prospect"
         optionFilterProp="children"
         loading={isLoadingCustomer}
@@ -723,15 +756,16 @@ const {
       </> 
                   )} 
                   </div>
-                  <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
+                  <div class="mt-3 "  >
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                   {props.user.crmInd === true &&(
                   
                   <>
-                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
+                  {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label> */}
 
 <Select
         showSearch
-        style={{ width: 417 }}
+      
         placeholder="Search or select contact"
         optionFilterProp="children"
         loading={isLoadingContact}
@@ -748,6 +782,7 @@ const {
                   )} 
                   </div>
                   <div class="mt-3">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
                   {props.user.crmInd === true &&(
               //    <Field
               //    name="opportunityId"
@@ -772,10 +807,10 @@ const {
               //    inlineLabel
               //  />
               <>
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
+{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label> */}
               <Select
         showSearch
-        style={{ width: 417 }}
+      
         placeholder="Search or select opportunity"
         optionFilterProp="children"
         loading={isLoadingOpportunity}
@@ -826,16 +861,17 @@ const {
                   
                 </div>
                 <div class="h-full w-w47.5 max-sm:w-wk ">
-                <div class="mt-3">
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
+                <div class="mt-1">
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block text-sm font-semibold text-gray-700">            
+            {/* <Listbox.Label className="block text-sm font-semibold text-gray-700">            
               <FormattedMessage
                         id="app.assignedto"
                         defaultMessage="assignedto"
                       />
-            </Listbox.Label>
+            </Listbox.Label> */}
             <div className="relative ">
             <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>
                 {selected}
@@ -900,6 +936,7 @@ const {
       </Listbox>
       </div>
       <div class="mt-1">
+      <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
                   {/* <Field
                     name="included"
                     // label="Include"
@@ -920,10 +957,10 @@ const {
                     }}
                   /> */}
 
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
+{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label> */}
                    <Select
           showSearch
-          style={{ width: 415 }}
+          
           placeholder="Search or select include"
           optionFilterProp="children"
           loading={isLoadingInclude}
@@ -939,7 +976,7 @@ const {
           ))}
         </Select>
                  </div>
-                 
+                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (
@@ -950,10 +987,10 @@ const {
                       />
                     )}
                   />
-              <div class="mt-3">
-                    <div>Notes</div>
-                    <div>
-                  <div>
+              <div class="mt-2">
+              <div>
+            <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</span>
+            <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
                         <span  >
@@ -966,24 +1003,26 @@ const {
                       <Tooltip title="Stop">
                         <span
                           
-                            class="!text-icon ml-1 text-green-600">
-                          <StopCircleIcon />
+                           >
+                          <StopCircleIcon  className="!text-icon ml-1 text-green-600" />
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span  class="!text-icon ml-1">
-                          <RotateRightIcon />
+                        <span  >
+                          <RotateRightIcon className="!text-icon ml-1"/>
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                  </span> 
+                  
+                 
                   <div>
                     <textarea
                       name="description"
-                      className="textarea"
+                      className="textarea h-26"
                       type="text"
                       value={transcript ? transcript : text}
                       onChange={handletext}
@@ -1036,7 +1075,7 @@ const {
                 </div>
               </div>
       
-              <div class=" flex mt-3 justify-end">
+              <div class=" flex mt-31 justify-end">
                 {isEditing && (
                   <>
                     <StyledPopconfirm

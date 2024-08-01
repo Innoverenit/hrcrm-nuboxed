@@ -11,7 +11,30 @@ import ReInstateLocation from "./ReInstateLocation";
 const DeletedLocationCard = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+       
+          "Name",//0
+          "Country",//1
+          "Address",//2
+          "Regions",//3
+          "Reinstate"//4
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getLocationDeleteHistory(props.orgId);
   }, []);
@@ -36,12 +59,23 @@ const handleLoadMore = () => {
         height={"80vh"}
       >
       <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[7.5rem]">Name</div>
-        <div className=" md:w-[12.1rem]">Country</div>
-        <div className=" md:w-[4.1rem] ">Address</div>
+        <div className=" md:w-[7.5rem]">
+        {translatedMenuItems[0]}
+        {/* Name */}
+        </div>
+        <div className=" md:w-[12.1rem]">
+        {translatedMenuItems[1]} {/* Country */}
+          </div>
+        <div className=" md:w-[4.1rem] ">
+        {translatedMenuItems[2]} {/* Address */}
+          </div>
        
-        <div className="md:w-[1.9rem]">Regions</div>
-        <div className="md:w-[30.9rem]">Reinstate</div>
+        <div className="md:w-[1.9rem]">
+        {translatedMenuItems[3]} {/* Regions */}
+          </div>
+        <div className="md:w-[30.9rem]">
+        {translatedMenuItems[54]}{/* Reinstate */}
+          </div>
       </div>
       <div class="">
           {props.deletedLocationHistory.map((item) => {

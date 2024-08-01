@@ -1,10 +1,11 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ProductQualityDrawer from "../ProductTable/ProductQualityDrawer"
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { DeleteOutlined } from "@ant-design/icons";
-import QrGenerate from "../ProductTable/QrGenerate"
+import ReactToPrint from "react-to-print";
+import QRCode from "qrcode.react";
 import {
   getProducts,
   getProductByGroup,
@@ -26,10 +27,12 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
-import {  Tooltip } from "antd";
+import {  Tooltip,Button } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
+import QrCodeIcon from '@mui/icons-material/QrCode';
+import FeatureProductToggle from "./FeatureProductToggle";
 import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
@@ -42,7 +45,38 @@ function ProductCardList(props) {
   const [hasMore, setHasMore] = useState(true);
 
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const componentRefs = useRef([]);
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+           "Article #",//0
+            "Name",//1
+            "Category",//2
+            "Attribute ",//3
+            " Brand",//5
+            " Model",//5
+            " Website",//6
+            
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getProducts(page);
     setPage(page + 1);
@@ -56,6 +90,10 @@ function ProductCardList(props) {
     };
      props.deleteCatalogData(data,item.productId);
   };
+
+  const handlePrint = () => {
+    window.print();
+};
 
   useEffect(() => {
     const handleResize = () => {
@@ -111,13 +149,29 @@ function ProductCardList(props) {
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">  
           <div className="w-[7.01rem]"></div>        
-            <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">Article #</div>
-            <div className=" w-[13.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">Name</div>
-            <div className=" w-[9.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">Category</div>
-            <div className="w-[9.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">Attribute</div>
-            <div className="w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">Brand</div>
-            <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">Model</div>
-            <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Website</div>
+            <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+            {translatedMenuItems[0]} {/* Article # */}
+              </div>
+            <div className=" w-[13.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
+            {translatedMenuItems[1]}  {/* Name */}
+              </div>
+            <div className=" w-[9.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
+            {translatedMenuItems[2]}
+            {/* Category */}
+              </div>
+            <div className="w-[9.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">
+            {translatedMenuItems[3]} {/* Attribute */}
+              </div>
+            <div className="w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">
+            {translatedMenuItems[4]}{/* Brand */}
+              </div>
+            <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">
+            {translatedMenuItems[5]} {/* Model */}
+            
+            </div>
+            <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            {translatedMenuItems[6]}  {/* Website */}
+              </div>
             <div className="w-[7rem]"></div>
           </div>
           <InfiniteScroll
@@ -126,11 +180,11 @@ function ProductCardList(props) {
             hasMore={hasMore}
             loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
             height={"85vh"}
-            endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+            endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           >
              {products.length ?
               <>
-                {products.map((item) => {
+                {products.map((item,index) => {
                return (
                 <div>
                   <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
@@ -160,7 +214,7 @@ function ProductCardList(props) {
                       <div className=" flex font-medium flex-col  w-[11.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {item.name}
+                          {`${item.productFullName ? `${item.productFullName}`:`${item.name}`}`}
                         </div>
 
                       </div>
@@ -199,17 +253,49 @@ function ProductCardList(props) {
 </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                      {/* <div className=" flex font-medium flex-col  w-[7.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                       
-                        <Button type="primary" >
-                                <div class="max-sm:text-sm"> Print QR Code</div>
-                                </Button>
-                      </div> */}
+
                       <div className=" flex font-medium flex-col  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <ProductPublishToggle item={item} />
 
                       </div>
+                      <div className=" flex font-medium flex-col  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+
+<FeatureProductToggle item={item}    publishInd={item.publishInd}  suppliesId={item.productId}/>
+
+</div>
+                      {/* <div className=" flex font-medium flex-col  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      
+                      <ReactToPrint
+                                                        trigger={() => <Button
+                                                            onClick={handlePrint}
+                                                        >
+                                                            Print<QrCodeIcon className="!text-icon"/></Button>
+                                                        }
+                                                        content={() => componentRefs.current[index]
+                                                        }
+                                                    />
+                                                    <div style={{ display: "none", textAlign: "center" }}>
+
+                                                        <div
+                                                            ref={(el) => (componentRefs.current[index] = el)}
+                                                            style={{
+                                                                fontSize: "16px",
+                                                                marginBottom: "20px",
+                                                                display: "flex",
+                                                                flexDirection: "column",
+                                                                alignItems: "center",
+                                                            }}
+                                                        >
+                                                           
+                                                            <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
+                                                                <QRCode value={item.newProductNo} size={128} />
+                                                            </div>
+                                                            <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>ID:</span> {item.newProductNo}</div>
+                                                        </div>
+                                                    </div>
+                      </div> */}
 
                       <div>
                         <Tooltip title="Quality">

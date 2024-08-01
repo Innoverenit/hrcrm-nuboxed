@@ -38,7 +38,7 @@ export const updateQCStatus = (data, phoneId, userId) => (dispatch) => {
       },
     })
     .then((res) => {
-      dispatch(getOrderByUser(userId))
+      //dispatch(getOrderByUser(userId))
       dispatch({
         type: types.UPDATE_QC_STATUS_SUCCESS,
         payload: res.data,
@@ -2279,11 +2279,11 @@ export const getDispatchUpdateList = (orderPhoneId) => (dispatch, getState) => {
     });
 };
 
-export const inputQcDataSearch =(orderPhoneId)=>(dispatch)=>{
+export const inputQcDataSearch =(userId,orderId)=>(dispatch)=>{
   dispatch({
     type: types.INPUT_QC_SEARCH_DATA_REQUEST,
   });
-  axios.get(`${base_url2}/phoneOrder/search/order/${orderPhoneId}`,{
+  axios.get(`${base_url2}/phoneOrder/search/QC/orderByUser/${userId}/${orderId}`,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2308,11 +2308,17 @@ export const ClearSearchedDataOfQc = () => (dispatch) => {
   });
 };
 
-export const inputProcessDataSearch =(orderPhoneId)=>(dispatch)=>{
+export const ClearSearchedDataOfQa = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_DATA_QA,
+  });
+};
+
+export const inputProcessDataSearch =(userId,orderId)=>(dispatch)=>{
   dispatch({
     type: types.INPUT_PROCESS_SEARCH_DATA_REQUEST,
   });
-  axios.get(`${base_url2}/phoneOrder/search/order/${orderPhoneId}`,{
+  axios.get(`${base_url2}/phoneOrder/search/process/orderByUser/${userId}/${orderId}`,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2439,4 +2445,28 @@ export const linkRefurbishToggle = ( data,orderPhoneId) => (dispatch, getState) 
         payload: err,
       });
     })
+};
+
+export const updateDispatchInspectionButton = (data, orderPhoneId,locationId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_DISPATCH_INSPECTION_BUTTON_REQUEST });
+  axios
+    .put(`${base_url2}/phoneOrder/dispatchInspectionIndStatus/${orderPhoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getQAorderlist(locationId,0));
+      dispatch({
+        type: types.UPDATE_DISPATCH_INSPECTION_BUTTON_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_DISPATCH_INSPECTION_BUTTON_FAILURE,
+        payload: err,
+      });
+    });
 };

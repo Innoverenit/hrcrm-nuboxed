@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setPlannerViewType } from "./PlannerAction";
 import { BundleLoader } from "../../Components/Placeholder";
-import { set } from "lodash";
+
 
 const PlannerCalendar = lazy(() =>
   import("./Child/PlannerCalendar/PlannerCalendar")

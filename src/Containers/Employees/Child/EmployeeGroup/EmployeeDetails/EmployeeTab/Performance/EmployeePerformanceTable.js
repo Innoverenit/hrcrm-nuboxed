@@ -18,9 +18,9 @@ const EmployeePerformanceTable = (props) => {
 
   return (
     <>
-      <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       {props.employeeKpiList.length === 0 ? (
-          <p>No Data Available</p>
+          <p>None Available</p>
         ) : (
           props.employeeKpiList.map((item) => (
             <div key={item.id}>
@@ -30,20 +30,20 @@ const EmployeePerformanceTable = (props) => {
                 <div className="flex justify-between w-2/3">
 {/*                  
                   <div className="Ccard__title w-40">
-                    <div className="text-base  font-medium font-poppins">
+                    <div className="text-base   font-poppins">
                     Name
                     </div>
                   
-                      <div className="font-normal text-sm  font-poppins">{item.kpiName}</div>
+                      <div className="text-xsfont-poppins">{item.kpiName}</div>
                    
                   </div> */}
                 
                   {/* <div className="Ccard__title w-28">
-                    <div className="text-base  font-medium font-poppins">
+                    <div className="text-base   font-poppins">
                     Frequency
                     </div>
                 
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className="text-xsfont-poppins">
                         <span>
                           {item.frequency} 
                         </span>
@@ -51,19 +51,19 @@ const EmployeePerformanceTable = (props) => {
                   
                   </div> */}
                   <div className="Ccard__title w-36">
-                    <div className="text-base  font-medium font-poppins">
+                    <div className="text-base   font-poppins">
                     Assigned Value
                     </div>
                    
-                      <div className="font-normal text-sm  font-poppins">{item.assignedValue}</div>
+                      <div className="text-xsfont-poppins">{item.assignedValue}</div>
                   
                   </div>
                   <div className="Ccard__title w-[9rem]">
-                    <div className="text-base  font-medium font-poppins">
+                    <div className="text-base   font-poppins">
                     Completed Value
                     </div>
                   
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className="text-xsfont-poppins">
                         <span>{item.completedValue}</span>
                       </div>
                 

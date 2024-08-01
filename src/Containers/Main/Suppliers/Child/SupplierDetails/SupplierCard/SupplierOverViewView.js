@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import { Title, MultiAvatar } from "../../../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { handleFeedbackModal } from "../../ShipperAction";
-// import ShipperFeedbackModal from "./ShipperFeedbackModal";
 import { Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 
@@ -45,11 +42,7 @@ class SupplierOverViewView extends Component {
               </span>
             </Tooltip>
           </div>
-        </div>
-        {/* <ShipperFeedbackModal
-          handleFeedbackModal={handleFeedbackModal}
-          feedbackModal={feedbackModal}
-        /> */}
+        </div>    
       </>
     );
   }

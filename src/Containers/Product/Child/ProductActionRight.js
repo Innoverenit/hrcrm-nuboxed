@@ -5,7 +5,6 @@ import { base_url } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { Tooltip } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
 import {
   handleUploadProductModal
 } from "../ProductAction";
@@ -13,6 +12,8 @@ import {
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { FileExcelOutlined } from "@ant-design/icons";
 import UploadCatalogue from "./UploadCatalogue";
+import UploadIcon from '@mui/icons-material/Upload';
+
 class ProductActionRight extends React.Component {
   render() {
     const {
@@ -28,7 +29,7 @@ class ProductActionRight extends React.Component {
             <Button
               type="primary"
               onClick={() => handleConfigureModal(true)}
-            ><DataSaverOnIcon/>Add
+            ><DataSaverOnIcon className="!text-icon"/>Add
 
             </Button>
           </Tooltip>
@@ -50,7 +51,7 @@ class ProductActionRight extends React.Component {
               ghost
               onClick={() => this.props.handleUploadProductModal(true)}
             >
-              Upload
+             <UploadIcon className=" !text-icon"/> Upload
             </Button>
           </Tooltip>
          

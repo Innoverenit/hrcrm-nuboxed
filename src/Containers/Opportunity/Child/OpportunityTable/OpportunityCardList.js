@@ -47,6 +47,7 @@ import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import OpportunityRowEmailModal from "./OpportunityRowEmailModal";
 import { base_url } from "../../../../Config/Auth";
+import SearchedDataOpportunity from "./SearchedDataOpportunity";
 const Option =Select;
 
 function OpportunityCardList(props) {
@@ -222,13 +223,18 @@ const handleLoadMore = () => {
 console.log(props.userDetails.imageId)
   return (
     <>
+      {props.ooportunitySerachedData.length > 0 ? (
+    <SearchedDataOpportunity
+    ooportunitySerachedData={props.ooportunitySerachedData}
+    />
+  ) : (
        <InfiniteScroll
         dataLength={opportunityByUserId.length}
         next={handleLoadMore}
       hasMore={hasMore}
         loader={fetchingOpportunity?<div class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
 
 {/* <InfiniteScroll
@@ -499,9 +505,7 @@ imgHeight={"1.8rem"}
             />
           }
         >
-         
-              
-            <span
+           <span
 
               onClick={() => {
               
@@ -560,12 +564,15 @@ imgHeight={"1.8rem"}
     </div>
 
       </InfiniteScroll>
-      
+        )} 
       <UpdateOpportunityModal
         updateOpportunityModal={updateOpportunityModal}
         opportunityData={currentOpportunityId}
         handleUpdateOpportunityModal={handleUpdateOpportunityModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
 <OpportunityRowEmailModal
@@ -573,6 +580,9 @@ imgHeight={"1.8rem"}
         addOpportunityRowEmailModal={addOpportunityRowEmailModal}
         handleOpportunityRowEmailModal={handleOpportunityRowEmailModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
        <AddOpportunityNotesDrawerModal
@@ -580,6 +590,9 @@ imgHeight={"1.8rem"}
         opportunityData={currentOpportunityId}
         handleOpportunityNotesDrawerModal={handleOpportunityNotesDrawerModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
       />
 
 <AddOpportunityDrawerModal
@@ -634,6 +647,7 @@ const mapStateToProps = ({ auth, account, opportunity }) => ({
     fetchingOpportunitySkills:opportunity.fetchingOpportunitySkills,
     addOpportunityRowEmailModal:opportunity.addOpportunityRowEmailModal,
     userDetails: auth.userDetails,
+    ooportunitySerachedData: opportunity.ooportunitySerachedData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

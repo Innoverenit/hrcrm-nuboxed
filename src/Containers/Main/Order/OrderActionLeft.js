@@ -148,8 +148,10 @@ function OrderActionLeft (props) {
      
      
 )}
-{props.user.repairInd === true && (
+
       <div className=" cursor-pointer">
+      {props.user.repairInd === true && (
+        <>
         <Tooltip title="My Repair Orders">
           <Badge
             size="small"
@@ -231,11 +233,83 @@ function OrderActionLeft (props) {
                     </span>
                     {/* </Badge> */}
                 </Tooltip>
+                </>
+              )}
+         {props.user.moduleMapper.ecomModInd === true && (
+          <>     
+        <Tooltip title="Procure">
+          {/* <Badge
+            size="small"
+            count={(props.viewType === "list" && props.orderCount.order) || 0}
+
+            overflowCount={999}
+          > */}
+
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => props.setOrderViewType("procure")}
+              style={{
+                color: props.viewType === "procure" && "#1890ff",
+              }}
+            >         
+<Button type={props.viewType === "procure" ? "primary" : ""} style={{ backgroundColor: props.viewType === "procure" ? "" : "tomato" }}>
+                
+                <div class="text-white">Procure</div></Button>
+                
+            </span>
+          {/* </Badge> */}
+        </Tooltip>
+
+        <Tooltip title="Completed Orders">
+          {/* <Badge
+            size="small"
+            count={(props.viewType === "list" && props.orderCount.order) || 0}
+
+            overflowCount={999}
+          > */}
+
+            <span class=" mr-2 text-sm cursor-pointer"
+              onClick={() => props.setOrderViewType("completedorders")}
+              style={{
+                color: props.viewType === "completedorders" && "#1890ff",
+              }}
+            >         
+<Avatar style={{ backgroundColor: props.viewType === "completedorders" ? "#f279ab" : "#4bc076" }}>
+                
+<HistoryOutlined fontSize="small" className="text-white" /> </Avatar>
+                
+            </span>
+          {/* </Badge> */}
+        </Tooltip>
+
+        <Tooltip title="Cancelled Orders">
+          {/* <Badge
+            size="small"
+            count={(props.viewType === "list" && props.orderCount.order) || 0}
+
+            overflowCount={999}
+          > */}
+
+            <span class=" mr-2 text-sm cursor-pointer"
+              onClick={() => props.setOrderViewType("cancelledorders")}
+              style={{
+                color: props.viewType === "cancelledorders" && "#1890ff",
+              }}
+            >         
+<Avatar  style={{ backgroundColor: props.viewType === "cancelledorders" ? "#f279ab" : "#4bc076" }}>
+                
+<DeleteOutlined className="text-white" /></Avatar>
+                
+            </span>
+          {/* </Badge> */}
+        </Tooltip>
+        </> 
+  )}
+      
       </div>
      
   
      
-      )}
+    
       <div class=" w-64 ml-2 max-sm:w-24">
         <Input
           placeholder="Search by Customer or Order ID"

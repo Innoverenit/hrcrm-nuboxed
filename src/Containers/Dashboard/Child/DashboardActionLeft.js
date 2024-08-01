@@ -17,6 +17,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
+import ShopIcon from '@mui/icons-material/Shop'
 import DashboardShareForm from "./DashboardShareForm";
 const { TabPane } = Tabs;
 const DashboardActionLeft = (props) => {
@@ -58,6 +59,7 @@ const DashboardActionLeft = (props) => {
         {user.dashboardFullListInd === true && (
           <Tag
             color={showShareForm && viewType === "ALL" ? "tomato" : "#FFA500"}
+            
             style={{
               cursor: "pointer",
               fontWeight: viewType === "ALL" ? "tomato" : "#FFA500",
@@ -105,7 +107,7 @@ const DashboardActionLeft = (props) => {
                         style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}
 
                       >
-                        <span class=" text-white !text-icon">Region</span>
+                        <div class=" text-white  ">Region</div>
                       </Button>
                     </Tooltip>
                   </span>
@@ -314,7 +316,7 @@ const DashboardActionLeft = (props) => {
                         style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}
                         type="primary"
                       >
-                        <span class=" text-white !text-icon">Region</span>
+                        <span class=" text-white ">Region</span>
                       </Button>
                     </Tooltip>
                   </span>
@@ -462,7 +464,7 @@ const DashboardActionLeft = (props) => {
                       color: activeButton === "Order" && "tomato",
 
                     }}
-                  >  <Tooltip title="Orders">
+                  >  <Tooltip title="Production">
                       <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#4bc076" }}>
                         <DynamicFeedIcon className="text-white !text-icon"
 
@@ -486,7 +488,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="Refurbish">
+                    <Tooltip title="Repair">
                       <Avatar style={{ background: activeButton === "Finance" ? "#f279ab" : "#4bc076" }}>
                         <OnDeviceTrainingIcon className="text-white !text-icon" />
                       </Avatar>
@@ -495,6 +497,28 @@ const DashboardActionLeft = (props) => {
                   </span>
                 </Badge>
               )}
+
+                <Badge
+                  size="small"
+                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+                // overflowCount={999}
+                >
+                  <span class="cursor-pointer mr-1"
+                    onClick={() => handleButtonClick("Procure")}
+                    style={{
+                      color: activeButton === "Procure" && "tomato",
+
+                    }}
+                  >
+                    <Tooltip title="Procure">
+                      <Avatar style={{ background: activeButton === "Procure" ? "#f279ab" : "#4bc076" }}>
+                        <ShopIcon className="text-white !text-icon" />
+                      </Avatar>
+                    </Tooltip>
+
+                  </span>
+                </Badge>
+
               {user.imInd === true && (
                 <Badge
                   size="small"
@@ -551,7 +575,7 @@ const DashboardActionLeft = (props) => {
 
 
             {activeButton === "Regional" || activeButton === "multiOrg" ? (
-              <div class="ml-[14rem] mt-[1rem] max-sm:hidden">
+              <div class="ml-[14rem]  max-sm:hidden">
                 <Tabs type="card" activeKey={props.activeTab} onChange={props.handleTabClick}>
                   {props.tab.map((tabs) => (
                     <TabPane key={tabs} tab={tabs}></TabPane>

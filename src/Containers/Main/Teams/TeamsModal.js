@@ -19,7 +19,11 @@ const TeamsModal = props => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <TeamsForm {...formProps} />
+          <TeamsForm {...formProps}
+           
+       translateText={props.translateText}
+     
+       selectedLanguage={props.selectedLanguage} />
         </Suspense>
       </StyledDrawer>
     </>

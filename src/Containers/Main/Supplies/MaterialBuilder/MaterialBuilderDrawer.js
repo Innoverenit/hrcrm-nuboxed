@@ -20,7 +20,11 @@ const MaterialBuilderDrawer = (props) => {
         onClose={() => handleMaterialBuilderDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <MaterialBuilder particularDiscountData={particularDiscountData} />
+          <MaterialBuilder 
+          particularDiscountData={particularDiscountData} 
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          />
         </Suspense>
       </StyledDrawer>
     </>

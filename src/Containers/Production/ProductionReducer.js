@@ -26,6 +26,11 @@ const initialState = {
   productionCellList:[],
 
 
+  fetchingReassignProduct:false,
+  fetchingReassignProductError:false,
+  reassignProduct:{},
+
+
   addCreateManufactureCard:false,
 
   creatingProductionLink: false,
@@ -64,6 +69,9 @@ const initialState = {
 
 
   addSparePartsDrawerModal:false,
+
+
+  productionQualityModal:false,
 
   fetchingArchieveProduction: false,
   fetchingArchieveProductionError: false,
@@ -117,6 +125,11 @@ export const productionReducer = (state = initialState, action) => {
 
     case types.HANDLE_CREATE_PRODUCTION_DRAWER:
       return { ...state, openProductiondrawer: action.payload, searchedProduction: [] };
+
+
+
+      case types.HANDLE_PRODUCTION_QUALITY_MODAL:
+        return { ...state, productionQualityModal: action.payload };
 
     case types.SET_PRODUCTION_VIEW_TYPE:
       return { ...state, viewType: action.payload };
@@ -337,6 +350,16 @@ export const productionReducer = (state = initialState, action) => {
         fetchingProdNbldr: false,
         fetchingProdNbldrError: true,
       };
+
+
+
+
+      case types.GET_REASSIGN_PRODUCT_REQUEST:
+        return { ...state, fetchingReassignProduct: true, fetchingReassignProduct: false };
+      case types.GET_REASSIGN_PRODUCT_SUCCESS:
+        return { ...state, fetchingReassignProduct: false, reassignProduct: action.payload };
+      case types.GET_REASSIGN_PRODUCT_FAILURE:
+        return { ...state, fetchingReassignProduct: false, fetchingReassignProductError: true };
 
     case types.GET_ARCHIEVE_PRODOCTION_LIST_REQUEST:
       return {

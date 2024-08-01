@@ -1,11 +1,19 @@
 import * as types from "./InventoryActionType";
 
 const initialState = {
-  viewType: "table",
+  viewType: "zone",
   addInventoryModal: false,
 
   addingInventory: false,
   addingInventoryError: false,
+
+
+
+  fetchingQualityManufactureData:false,
+  fetchingQualityManufactureDataError:false,
+  qualityManufactureData:[],
+
+ 
 
   removingProductionQuality:false,
   removingProductionQualityError:false,
@@ -15,6 +23,8 @@ const initialState = {
   inventory: [],
 
   addMaterialReceived: false,
+
+  addQualityManufactureDrawerModal:false,
 
   addAwbNo: false,
   addingpickupdate: false,
@@ -58,6 +68,9 @@ const initialState = {
   fetchingItemHistoryDataInStockError:false,
   itemHistoryDataInStock:[],
 
+
+  inventoryDispatchModal:false,
+
   transferingPoGrnToStock: false,
   transferingPoGrnToStockError: false,
   //output table
@@ -85,6 +98,7 @@ const initialState = {
   addingReceivedUser: false,
   addingReceivedUserError: false,
   receivedModal: false,
+  //addrecivedAwb:{},
 
   //file damaged
   fileDamagedModal: false,
@@ -182,10 +196,20 @@ const initialState = {
   fetchingOutputPlusReasonList: false,
   fetchingOutputPlusReasonListError: false,
   outputPlusReasonList: [],
+
+
+
+  updateQualityStatus:false,
+  updateQualityStatusError:false,
   //getshipperDetailsList
   fetchingShipperDetailsList: false,
   fetchingShipperDetailsListError: false,
   shipperDetailsList: [],
+
+  fetchingQualityManufactureUserData:false,
+
+  fetchingQualityManufactureUserDataError:false,
+  qualityManufactureUserData:[],
 
   viewType1: "repair",
 
@@ -205,6 +229,11 @@ const initialState = {
   fetchingInventoryOutputReports: false,
   fetchingInventoryOutputReportsError: false,
   inventoryReports: [],
+
+
+  fetchingRejectManufactureDataError:false,
+  fetchingRejectManufactureDataError:false,
+  rejectManufactureData:[],
 
   deletingDispatchProductList: false,
   deletingDispatchProductListError: false,
@@ -232,6 +261,10 @@ const initialState = {
 
   fetchingShipperUpdateList: false,
   fetchingShipperUpdateListError: false,
+
+
+  movingRejectToggle:false,
+  movingRejectToggleError:false,
 
   addingAirWayBillInShipper: false,
   addingAirWayBillInShipperError: false,
@@ -281,6 +314,12 @@ const initialState = {
   fetchingReceivedUnitOfAnItemError: false,
   reciveUnitData: [],
 
+
+  linkingManufactureStatus:false,
+  linkingManufactureStatusError:false,
+  
+
+
   addingDeliverDate: false,
   addingDeliverDateError: false,
 
@@ -309,6 +348,10 @@ const initialState = {
   fetchingRacklistError: false,
   rackList: [],
 
+  fetchingRejectManufactureData:false,
+  fetchingRejectManufactureDataError:false,
+  rejectManufactureData:[],
+
   rejectPhoneList: false,
   rejectPhoneListError: false,
 
@@ -327,6 +370,10 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         viewType1: action.payload
       };
+
+
+      case types.HANDLE_QUALITY_MANUFACTURE_DRAWER_MODAL:
+        return { ...state, addQualityManufactureDrawerModal: action.payload };
 
     case types.HANDLE_INVENTORY_MODAL:
       return { ...state, addInventoryModal: action.payload };
@@ -354,6 +401,14 @@ export const inventoryReducer = (state = initialState, action) => {
         addingInventoryError: true,
         addInventoryModal: false,
       };
+
+
+
+      case types.HANDLE_INVENTORY_DISPATCH_MODAL:
+        return {
+          ...state,
+          inventoryDispatchModal: action.payload,
+        };
 
     // get inventory
 
@@ -474,8 +529,9 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         addingReceivedUser: false,
+        //addrecivedAwb: action.payload 
         // addCreateAwb: false,
-        // addAwbNo: false
+         addAwbNo: true
       };
     case types.ADD_RECEIVED_FAILURE:
       return {
@@ -526,6 +582,12 @@ export const inventoryReducer = (state = initialState, action) => {
 
 
 
+      case types.EMPTY_QUALITY_MANUFACTURE_DATA:
+        return { ...state, qualityManufactureData: [] };
+
+
+
+
 
 
       case types.GET_PRODUCTION_QUALITY_DATA_REQUEST:
@@ -539,6 +601,55 @@ export const inventoryReducer = (state = initialState, action) => {
       return { ...state, fileDamagedModal: action.payload };
 
     //add dispatch
+
+
+    case types.LINK_MANUFACTURE_STATUS_REQUEST:
+      return { ...state, linkingManufactureStatus: true };
+    case types.LINK_MANUFACTURE_STATUS_SUCCESS:
+      return {
+        ...state,
+        linkingManufactureStatus: false,
+        qualityManufactureData: state.qualityManufactureData.map((item) => {
+          if (item.qualityCheckBuilderId === action.payload.qualityCheckBuilderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        // addTeamTransferModal: false,
+      };
+    case types.LINK_MANUFACTURE_STATUS_FAILURE:
+      return {
+        ...state,
+        linkingManufactureStatus: false,
+        linkingManufactureStatusError: true,
+      };
+
+
+    case types.UPDATE_QUALITY_STATUS_REQUEST:
+      return { ...state,updateQualityStatus: true };
+    case types.UPDATE_QUALITY_STATUS_SUCCESS:
+      return {
+        ...state,
+        updateQualityStatus: false,
+        productionQualityData: state.productionQualityData.map((item) => {
+          if (item.productionProductId === action.payload.productionProductId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        // productionTableData: state.productionTableData.map((item) => {
+        //   if (item.productionProductId === action.payload.productionProductId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+
+      case types.UPDATE_QUALITY_STATUS_FAILURE:
+      return { ...state,updateQualityStatus: false,updateQualityStatusError:true, };
 
     case types.ADD_DISPATCH_REQUEST:
       return { ...state, addingDispatch: true };
@@ -593,6 +704,43 @@ export const inventoryReducer = (state = initialState, action) => {
         setEditingShipperContactData: action.payload,
       };
 
+
+
+
+
+      case types.MOVE_REJECT_TOGGLE_REQUEST:
+      return { ...state, movingRejectToggle: true };
+    case types.MOVE_REJECT_TOGGLE_SUCCESS:
+      return {
+        ...state,
+        movingRejectToggle: false,
+        productionQualityData: state.productionQualityData.filter(
+          (item) => item.cellChamberLinkId !== action.payload
+        ),
+        addQualityManufactureDrawerModal:false,
+       
+        // productionTableData: state.productionTableData.filter(
+        //   (item) => item.productionProductId !== action.payload.productionProductId
+        // ),
+      };
+    case types.MOVE_REJECT_TOGGLE_FAILURE:
+      return {
+        ...state,
+        movingRejectToggle: false,
+        movingRejectToggleError: true,
+      };
+
+
+
+
+
+      case types.GET_QUALITY_MANUFACTURE_DATA_REQUEST:
+        return { ...state, fetchingQualityManufactureData: true, fetchingQualityManufactureDataError: false };
+      case types.GET_QUALITY_MANUFACTURE_DATA_SUCCESS:
+        return { ...state, fetchingQualityManufactureData: false, qualityManufactureData: action.payload };
+      case types.GET_QUALITY_MANUFACTURE_DATA_FAILURE:
+        return { ...state, fetchingQualityManufactureData: false, fetchingQualityManufactureDataError: true };
+
     //get dispatchList
     case types.GET_DISPATCH_LIST_REQUEST:
       return { ...state, fetchingDispatchList: true };
@@ -600,7 +748,7 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingDispatchList: false,
-        allDispatchList: action.payload,
+        allDispatchList: [...state.allDispatchList, ...action.payload],
       };
     case types.GET_DISPATCH_LIST_FAILURE:
       return {
@@ -759,6 +907,16 @@ export const inventoryReducer = (state = initialState, action) => {
         addingConsumptionReasonError: true,
         consumptionReasonModal: false,
       };
+
+
+
+
+      case types.GET_REJECT_MANUFACTURE_DATA_REQUEST:
+        return { ...state, fetchingRejectManufactureData: true, fetchingRejectManufactureDataError: false };
+      case types.GET_REJECT_MANUFACTURE_DATA_SUCCESS:
+        return { ...state, fetchingRejectManufactureData: false, rejectManufactureData: action.payload };
+      case types.GET_REJECT_MANUFACTURE_DATA_FAILURE:
+        return { ...state, fetchingRejectManufactureData: false, fetchingRejectManufactureDataError: true };
 
     //get consumption reason list
     case types.GET_CONSUMPTION_REASON_LIST_REQUEST:
@@ -1650,6 +1808,15 @@ export const inventoryReducer = (state = initialState, action) => {
         rejectPhoneListError: true,
         rejectedReasonModal: false,
       };
+
+
+
+      case types.GET_QUALITY_MANUFACTURE_USER_DATA_REQUEST:
+        return { ...state, fetchingQualityManufactureUserData: true, fetchingQualityManufactureUserDataError: false };
+      case types.GET_QUALITY_MANUFACTURE_USER_DATA_SUCCESS:
+        return { ...state, fetchingQualityManufactureUserData: false, qualityManufactureUserData: action.payload };
+      case types.GET_QUALITY_MANUFACTURE_USER_DATA_FAILURE:
+        return { ...state, fetchingQualityManufactureUserData: false, fetchingQualityManufactureUserDataError: true };
 
 
 

@@ -87,6 +87,10 @@ const initialState = {
   fetchingdeleteProductsError: false,
   deleteproducts:[],
 
+
+  aadingDragQuality:false,
+  aadingDragQualityError:false,
+
   addDrawerProductNotesModal:false,
 
   fetchingLatestProductsByOrganizationId: false,
@@ -150,6 +154,10 @@ const initialState = {
   fetchingServiceById: false,
   fetchingServiceByIdError: false,
   serviceById: {},
+
+
+  updateProductQuality:false,
+  updateProductQualityError:false,
 
   uploadProductList: false,
 
@@ -250,6 +258,11 @@ const initialState = {
 
   clearbitProductDistributor: {},
 
+
+
+  deleteQualityProductData:false,
+  deleteQualityProductDataError:false,
+
   updateCustomerOfferModal: false,
 
   setEditingCustomerOffer: {},
@@ -297,6 +310,10 @@ const initialState = {
   fetchingProductBuilder: false,
   fetchingProductBuilderError: false,
   productBuilder: [],
+
+
+  movingProductQuality:false,
+  movingProductQualityError:false,
 
 
   creatingQualityProduct:false,
@@ -356,6 +373,8 @@ const initialState = {
   removingNotesOfProducts: false,
   removingNotesOfProductsError:false,
 
+  fetchingCatalogueCatSrch: false,
+  fetchingCatalogueCatSrchError: false,
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -423,6 +442,10 @@ export const productReducer = (state = initialState, action) => {
         updateServiceByIdError: true,
       };
 
+
+      case types.EMPTY_PRODUCT_LIST:
+        return { ...state, products: [] };
+
     case types.UPDATE_PRODUCT_BY_ID_REQUEST:
       return { ...state, updateProductById: true };
     case types.UPDATE_PRODUCT_BY_ID_SUCCESS:
@@ -459,12 +482,79 @@ export const productReducer = (state = initialState, action) => {
     case types.GET_PROFESSIONALDUCTS_REQUEST:
       return { ...state, fetchingProducts: true, fetchingProductsError: false };
     case types.GET_PROFESSIONALDUCTS_SUCCESS:
+      //const newData = action.payload.filter(item => !state.products.includes(item));
       return { ...state, fetchingProducts: false, 
-        products: [
-        ...state.products,
-        ...action.payload] };
+        // products: [
+        // ...state.products,
+        // ...action.payload] };
+        products: action.payload
+      }
     case types.GET_PROFESSIONALDUCTS_FAILURE:
       return { ...state, fetchingProducts: false, fetchingProductsError: true };
+
+
+
+      case types.DELETE_QUALITY_PRODUCT_DATA_REQUEST:
+        return { ...state, deleteQualityProductData: true };
+      case types.DELETE_QUALITY_PRODUCT_DATA_SUCCESS:
+        return {
+          ...state,
+          deleteQualityProductData: false,
+          qualityProducts: state.qualityProducts.filter(
+            (item) => item.qualityCheckBuilderId !== action.payload
+          ),
+        };
+      case types.DELETE_QUALITY_PRODUCT_DATA_FAILURE:
+        return {
+          ...state,
+          deleteQualityProductData: false,
+          deleteQualityProductDataError: false,
+        };
+
+
+
+
+
+        case types.UPDATE_QUALITY_PRODUCT_REQUEST:
+          return { ...state, updateProductQuality: true };
+        case types.UPDATE_QUALITY_PRODUCT_SUCCESS:
+          return {
+            ...state,
+            updateProductQuality: false,
+            //qualityProducts:[action.payload,...state.qualityProducts]
+            qualityProducts: state.qualityProducts.map((item) => {
+              if (item.qualityCheckBuilderId === action.payload.qualityCheckBuilderId) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
+          };
+        case types.UPDATE_QUALITY_PRODUCT_FAILURE:
+          return {
+            ...state,
+            updateProductQuality: false,
+            updateProductQualityError: true,
+  
+          };
+
+
+      case types.ADD_DRAG_QUALITY_REQUEST:
+        return { ...state, aadingDragQuality: true };
+      case types.ADD_DRAG_QUALITY_SUCCESS:
+        return {
+          ...state,
+          aadingDragQuality: false,
+          //qualityProducts:[action.payload,...state.qualityProducts]
+
+        };
+      case types.ADD_DRAG_QUALITY_FAILURE:
+        return {
+          ...state,
+          aadingDragQuality: false,
+          aadingDragQualityError: true,
+
+        };
 
 
       case types.GET_DELETEPRODUCTS_REQUEST:
@@ -1054,6 +1144,29 @@ export const productReducer = (state = initialState, action) => {
         uploadingProductListError: true,
       };
 
+
+      case types.MOVE_PRODUCT_QUALITY_REQUEST:
+        return { ...state, movingProductionQuality: true };
+      case types.MOVE_PRODUCT_QUALITY_SUCCESS:
+        return {
+          ...state,
+          movingProductQuality: false,
+         
+          qualityProducts: state.qualityProducts.map((item) => {
+            if (item.qualityCheckBuilderId === action.payload.qualityCheckBuilderId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+        };
+      case types.MOVE_PRODUCT_QUALITY_FAILURE:
+        return {
+          ...state,
+          movingProductQuality: false,
+          movingProductQualityError: true,
+        };
+
     case types.ADD_PRODUCT_CATEGORY_REQUEST:
       return { ...state, addingProductCategory: true, addingProductCategoryError: false };
     case types.ADD_PRODUCT_CATEGORY_SUCCESS:
@@ -1485,7 +1598,40 @@ export const productReducer = (state = initialState, action) => {
                                         fetchingProductHsnError: true,
                                       };
 
+                                      case types.FEATURED_PRODUCT_TOGGLE_REQUEST:
+                                        return { ...state, featuredProductToggle: true };
+                                      case types.FEATURED_PRODUCT_TOGGLE_SUCCESS:
+                                        return {
+                                          ...state,
+                                          featuredProductToggle: false,
+                                          products: state.products.map((item) => {
+                                            if (item.productId === action.payload.productId) {
+                                              return action.payload;
+                                            } else {
+                                              return item;
+                                            }
+                                          }),
+                                        };
+                                      case types.FEATURED_PRODUCT_TOGGLE_FAILURE:
+                                        return {
+                                          ...state,
+                                          featuredProductToggle: false,
+                                          featuredProductToggleError: true,
+                                        };
 
+                                        case types.CATALOGUE_CATEGORY_SEARCH_REQUEST:
+                                          return { ...state, fetchingCatalogueCatSrch: true };
+                                        case types.CATALOGUE_CATEGORY_SEARCH_SUCCESS:
+                                          return {
+                                            ...state,
+                                            fetchingCatalogueCatSrch: false,
+                                            categoryProducts: action.payload,
+                                         
+                                          };
+                                        case types.CATALOGUE_CATEGORY_SEARCH_FAILURE:
+                                          return { ...state, fetchingCatalogueCatSrchError: true };                     
+
+                                          
     default:
       return state;
   }

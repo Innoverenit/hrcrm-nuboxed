@@ -28,6 +28,11 @@ const InventoryCard = (props) => {
     fetchingInventoryList
   } = props;
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    window.location.assign(`/locationDetails/${props.inventory.locationDetailsId}`);
+  };
+
   useEffect(() => {
     getInventory(orgId);
   }, [getInventory, orgId]);
@@ -42,16 +47,17 @@ const InventoryCard = (props) => {
       {fetchingInventoryList ? <BundleLoader /> : <div className=' flex justify-end sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-            <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.country" defaultMessage="Country" /></div>
-            <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]"><FormattedMessage id="app.address" defaultMessage="Address" /></div>
-            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.pincode" defaultMessage="Pin Code" /></div>
+            <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">{props.translatedMenuItems[0]}</div>
+            <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[1]}</div>
+            <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]">{props.translatedMenuItems[2]}</div>
+            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
             {/* <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]"><FormattedMessage id="app.zone" defaultMessage="#Zone" /></div> */}
             <div className="w-[4.3rem]"></div>
           </div>
           <InfiniteScroll
             dataLength={filteredData.length}
             height={"80vh"}
+            style={{ scrollbarWidth:"thin"}}
           >
             {filteredData.length ? <>
               {filteredData.map((item) => {
@@ -63,20 +69,29 @@ const InventoryCard = (props) => {
                   <div>
                     <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col">
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium  w-[14.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
+                        <div className=" flex   w-[14.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
 
 
                           <Tooltip>
                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                              <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                              <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                {/* <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                   to={`locationDetails/${item.locationDetailsId}`}
                                   title={`${item.locationName}`}
-                                >{item.locationName}</Link>&nbsp;&nbsp;
+                                >{item.locationName}</Link> */}
+                              <div
+  onClick={() => window.location.assign(`/locationDetails/${item.locationDetailsId}`)}
+  className="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+  title={item.locationName}
+>
+  {item.locationName}
+</div>
+
+                                &nbsp;&nbsp;
                                 {date === currentdate ? (
                                   <span class="text-xs font-bold text-[tomato]">
-                                    New
+                                    {props.translatedMenuItems[4]}
                                   </span>
                                 ) : null}
 
@@ -91,7 +106,7 @@ const InventoryCard = (props) => {
 
 
                           {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
-                          <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {/* {(item.address && item.address[0].country) || ""} */}
                             <CountryFlag1 countryCode={countryCode} />
                           &nbsp;
@@ -100,7 +115,7 @@ const InventoryCard = (props) => {
                         </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium  w-[17.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex   w-[17.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden"># Opportunity</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -108,7 +123,7 @@ const InventoryCard = (props) => {
 
                         </div>
                       </div>
-                      <div className=" flex font-medium  w-[16.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex   w-[16.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -128,7 +143,7 @@ const InventoryCard = (props) => {
                               handleInventoryRoomRackModal(true);
                             }}
                           >
-                             Store Config
+                             {/* Store Config */}      {props.translatedMenuItems[5]}
                             </Button>
                          
                         </div>
@@ -151,6 +166,9 @@ const InventoryCard = (props) => {
         rowData={rowData}
         handleInventoryRoomRackModal={handleInventoryRoomRackModal}
         addroomrackininventory={addroomrackininventory}
+        translateText={props.translateText}
+        translatedMenuItems={props.translatedMenuItems}
+        selectedLanguage={props.selectedLanguage}
       />
     </>
   );

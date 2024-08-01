@@ -44,7 +44,7 @@ class DistributorActivityTable extends Component {
 
 
                     </div>
-                    <div class="overflow-x-auto h-[64vh]">
+                    <div class="overflow-x-auto h-[71vh]">
                         {this.props.activityDistributor.map((item) => {
                             
                             return (
@@ -56,7 +56,7 @@ class DistributorActivityTable extends Component {
 
                                                 <Tooltip>
                                                     <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                        <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                        <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                         {item.activity === "Call" && (
                                 <PhoneOutlined />
@@ -74,7 +74,7 @@ class DistributorActivityTable extends Component {
 
                                             </div>
 
-                                            <div className=" flex font-medium flex-col  md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex flex-col  md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins text-center">
                                                     {item.type}
@@ -83,7 +83,7 @@ class DistributorActivityTable extends Component {
 
 
 
-                                            <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {item.topic}
                                                 </div>
@@ -94,7 +94,7 @@ class DistributorActivityTable extends Component {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {` ${dayjs(item.endDate).format("YYYY-MM-DD")}`}
@@ -102,7 +102,7 @@ class DistributorActivityTable extends Component {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium flex-col  md:w-[7.3rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex  flex-col  md:w-[7.3rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                 <div class=" text-xs  font-poppins">
                                                    
@@ -111,17 +111,17 @@ class DistributorActivityTable extends Component {
                                             </div>
 
 
-                                            <div className=" flex font-medium flex-col  md:w-[3.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex flex-col  md:w-[3.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                                {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                                                {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
                                                 <div class=" text-xs  font-poppins">
                                                     {item.expectedPrice}
                                                 </div>
 
                                             </div>
-                                            <div className=" flex font-medium flex-col  md:w-[4.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex flex-col  md:w-[4.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                                {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                                                {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
                                                 <div class=" text-xs  font-poppins">
                                                     {item.suggestedPrice}
                                                 </div>
@@ -129,7 +129,7 @@ class DistributorActivityTable extends Component {
                                             </div>
                                         </div>
                           
-                                        <div className=" flex font-medium flex-col  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  flex-col  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                             <Tooltip title="Edit">
                             {item.activity === "Event" && (

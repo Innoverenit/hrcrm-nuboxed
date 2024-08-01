@@ -16,17 +16,23 @@ class Location extends Component {
     return (
       <React.Fragment>
         <LocationHeader 
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         handleLocationModal={this.props.handleLocationModal}
         addlocationModal={this.props.addlocationModal}
         setLocationViewType={setLocationViewType}
         viewType={viewType}/>
         <AddLocationModal
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
           handleLocationModal={this.props.handleLocationModal}
           addlocationModal={this.props.addlocationModal}
         />
          <Suspense fallback={<BundleLoader />}>
           {this.props.viewType === "card" ? (
              <LocationCard
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
              viewType={viewType}
            />
           ) 
@@ -36,11 +42,15 @@ class Location extends Component {
              )
           :this.props.viewType === "tile" ? (
             
-            <LocationCard2/>
+            <LocationCard2
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}/>
              )
              :this.props.viewType === "delete" ? (
             
-              <DeletedLocationCard/>
+              <DeletedLocationCard
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}/>
                )
           : null}
           </Suspense>

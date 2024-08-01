@@ -85,6 +85,16 @@ export const handleProcessModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+
+
+export const handledealStagesModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_DEALS_STAGES_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleTaskDrawer = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_TASK_DRAWER,
@@ -3292,6 +3302,48 @@ export const addApprove = (data, subProcessName) => (dispatch) => {
     });
 };
 
+
+export const addCustomerConfigure = (opportunity, cb) => (dispatch, getState) => {
+  //const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADD_CUSTOMER_CONFIGURE_REQUEST,
+  });
+  axios
+    .put(`${base_url}/baseForm/update/form`, opportunity, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Opportunity created Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      console.log(res);
+      // const startDate = dayjs()
+      //   .startOf("month")
+      //   .toISOString();
+      // const endDate = dayjs()
+      //   .endOf("month")
+      //   .toISOString();
+    
+      dispatch({
+        type: types.ADD_CUSTOMER_CONFIGURE_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_CUSTOMER_CONFIGURE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getApproveData = (subProcessName, IndentApproval) => (dispatch) => {
   dispatch({
     type: types.GET_APPROVE_DATA_REQUEST,
@@ -3542,7 +3594,7 @@ export const addLeadsaging = (data) => (dispatch) => {
     });
 };
 
-export const addProcessForDeals = (data, orgId, cb) => (
+export const addProcessForDeals = (data,  cb) => (
   dispatch
 ) => {
   dispatch({
@@ -3550,14 +3602,14 @@ export const addProcessForDeals = (data, orgId, cb) => (
   });
 
   axios
-    .post(`${base_url}/workflow/investorOpportunityWorkflow`, data, {
+    .post(`${base_url}/workflow`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
       console.log(res);
-      dispatch(getProcessForDeals(orgId));
+      //dispatch(getProcessForDeals(orgId));
       dispatch({
         type: types.ADD_PROCESS_FOR_DEALS_SUCCESS,
         payload: res.data,
@@ -3605,7 +3657,7 @@ export const addProcessStageForDeals = (stage, cb) => (dispatch) => {
   dispatch({ type: types.ADD_PROCESS_STAGE_FOR_DEALS_REQUEST });
 
   axios
-    .post(`${base_url}/investorOpportunityWorkflow/opportunityStages`, stage, {
+    .post(`${base_url}/workflow/stages`, stage, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3614,7 +3666,7 @@ export const addProcessStageForDeals = (stage, cb) => (dispatch) => {
       console.log(res);
       dispatch({
         type: types.ADD_PROCESS_STAGE_FOR_DEALS_SUCCESS,
-        payload: { ...stage, stageId: res.data },
+        payload: res.data,
       });
       cb && cb("Success");
     })
@@ -3635,7 +3687,7 @@ export const getProcessStagesForDeals = (investorOppWorkflowId) => (
     type: types.GET_PROCESS_STAGES_FOR_DEALS_REQUEST,
   });
   axios
-    .get(`${base_url}/investorOpportunityWorkflow/opportunityStages/${investorOppWorkflowId}`, {
+    .get(`${base_url}/workflow/Stages/${investorOppWorkflowId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3655,11 +3707,11 @@ export const getProcessStagesForDeals = (investorOppWorkflowId) => (
       });
     });
 };
-export const LinkDealsProcessPublish = (data, cb,) => (dispatch) => {
+export const LinkDealsProcessPublish = (data, cb) => (dispatch) => {
   dispatch({ type: types.LINK_DEALS_PROCESS_PUBLISH_REQUEST });
 
   axios
-    .put(`${base_url}/investorOpportunityWorkflow/update/publishInd`, data, {
+    .put(`${base_url}/workflow/update/publishInd`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3671,14 +3723,14 @@ export const LinkDealsProcessPublish = (data, cb,) => (dispatch) => {
         type: types.LINK_DEALS_PROCESS_PUBLISH_SUCCESS,
         payload: res.data,
       });
-      cb && cb("Success", res.data);
+    cb && cb("Success", res.data);
     })
     .catch((err) => {
       console.log(err);
       dispatch({
         type: types.LINK_DEALS_PROCESS_PUBLISH_FAILURE,
       });
-      cb && cb("Failure");
+     cb && cb("Failure");
     });
 };
 
@@ -3686,7 +3738,7 @@ export const LinkDealsStagePublish = (data, cb) => (dispatch) => {
   dispatch({ type: types.LINK_DEALS_STAGES_PUBLISH_REQUEST });
 
   axios
-    .put(`${base_url}/investorOpportunityWorkflow/opportunityStages/update/publishInd `, data, {
+    .put(`${base_url}/Stages/update/publishInd `, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3710,14 +3762,14 @@ export const LinkDealsStagePublish = (data, cb) => (dispatch) => {
 };
 
 
-export const deleteDealsProcessData = (investorOppWorkflowId, orgId) => (dispatch, getState) => {
+export const deleteDealsProcessData = (workflowDetailsId, cb) => (dispatch, getState) => {
   const { userId } = getState("auth").auth.userDetails;
   // console.log("inside deleteCall", callId);
   dispatch({
     type: types.DELETE_DEALS_PROCESS_DATA_REQUEST,
   });
   axios
-    .delete(`${base_url}/investorOpportunityWorkflow/${investorOppWorkflowId}`, {
+    .delete(`${base_url}/workflow/${workflowDetailsId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3727,8 +3779,9 @@ export const deleteDealsProcessData = (investorOppWorkflowId, orgId) => (dispatc
       //  dispatch(getScheduler(orgId));
       dispatch({
         type: types.DELETE_DEALS_PROCESS_DATA_SUCCESS,
-        payload: investorOppWorkflowId,
+        payload: workflowDetailsId,
       });
+      cb && cb("Success");
     })
     .catch((err) => {
       console.log(err);
@@ -3736,17 +3789,18 @@ export const deleteDealsProcessData = (investorOppWorkflowId, orgId) => (dispatc
         type: types.DELETE_DEALS_PROCESS_DATA_FAILURE,
         payload: err,
       });
+      cb && cb("Failure");
     });
 };
 
-export const deleteDealsStagesData = (investorOppStagesId, orgId) => (dispatch, getState) => {
+export const deleteDealsStagesData = (stagesId, orgId) => (dispatch, getState) => {
   const { userId } = getState("auth").auth.userDetails;
   // console.log("inside deleteCall", callId);
   dispatch({
     type: types.DELETE_DEALS_STAGES_DATA_REQUEST,
   });
   axios
-    .delete(`${base_url}/investorOpportunityWorkflow/opportunityStages/${investorOppStagesId}`, {
+    .delete(`${base_url}/workflow/Stages/${stagesId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3756,7 +3810,7 @@ export const deleteDealsStagesData = (investorOppStagesId, orgId) => (dispatch, 
       //  dispatch(getScheduler(orgId));
       dispatch({
         type: types.DELETE_DEALS_STAGES_DATA_SUCCESS,
-        payload: investorOppStagesId,
+        payload:stagesId,
       });
     })
     .catch((err) => {
@@ -3768,12 +3822,12 @@ export const deleteDealsStagesData = (investorOppStagesId, orgId) => (dispatch, 
     });
 };
 
-export const updateProcessNameForDeals = (process, investorOppWorkflowId, cb) => (dispatch) => {
+export const updateProcessNameForDeals = (process, workflowDetailsId,cb) => (dispatch) => {
   debugger;
   dispatch({ type: types.UPDATE_PROCESS_NAME_FOR_DEALS_REQUEST });
 
   axios
-    .put(`${base_url}/investorOpportunityWorkflow/${investorOppWorkflowId}`, process, {
+    .put(`${base_url}/workflow/${workflowDetailsId}`, process, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3797,7 +3851,7 @@ export const updateProcessNameForDeals = (process, investorOppWorkflowId, cb) =>
 };
 
 export const updateStageForDeals = (
-  investorOppStagesId,
+  stagesId,
   // responsible,
   stageName,
 
@@ -3811,8 +3865,8 @@ export const updateStageForDeals = (
   });
   axios
     .put(
-      `${base_url}/investorOpportunityWorkflow/opportunityStages/${investorOppStagesId}`,
-      { investorOppStagesId, stageName, probability, days },
+      `${base_url}/workflow/stages/${stagesId}`,
+      { stagesId, stageName, probability, days },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3964,12 +4018,12 @@ export const addNotificationConfig = (data) => (dispatch) => {
       });
     });
 };
-export const getNotificationConfig = (name,type) => (dispatch) => {
+export const getNotificationConfig = () => (dispatch) => {
   dispatch({
     type: types.GET_NOTIFICATION_CONFIG_REQUEST,
   });
   axios
-    .get(`${base_url}/notification/config/${name}`, {
+    .get(`${base_url}/notification/config/get-all`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -5010,7 +5064,7 @@ export const addProcessForRepair = (data, orgId, cb) => (
     })
     .then((res) => {
       console.log(res);
-       dispatch(getProcessForRepair(orgId));
+       //dispatch(getProcessForRepair(orgId));
       dispatch({
         type: types.ADD_PROCESS_FOR_REPAIR_SUCCESS,
         payload: res.data,
@@ -5026,13 +5080,13 @@ export const addProcessForRepair = (data, orgId, cb) => (
     });
 };
 
-export const getProcessForRepair = (orgId) => (dispatch) => {
+export const getProcessForWorkFlowData = (orgId,type) => (dispatch) => {
   debugger;
   dispatch({
-    type: types.GET_PROCESS_FOR_REPAIR_REQUEST,
+    type: types.GET_PROCESS_FOR_WORKFLOW_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/repairWorkflow/${orgId}`, {
+    .get(`${base_url}/workflow/${orgId}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -5040,14 +5094,14 @@ export const getProcessForRepair = (orgId) => (dispatch) => {
     .then((res) => {
       console.log("print when new process added................", res);
       dispatch({
-        type: types.GET_PROCESS_FOR_REPAIR_SUCCESS,
+        type: types.GET_PROCESS_FOR_WORKFLOW_DATA_SUCCESS,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err);
       dispatch({
-        type: types.GET_PROCESS_FOR_REPAIR_FAILURE,
+        type: types.GET_PROCESS_FOR_WORKFLOW_DATA_FAILURE,
         payload: err,
       });
     });
@@ -5551,5 +5605,786 @@ export const updateClub = (data,clubId) => (dispatch) => {
         type: types.UPDATE_CLUB_FAILURE,
         payload: err,
       });
+    });
+};
+
+
+export const getFeedback = () => (dispatch) => {
+  dispatch({
+    type: types.GET_FEEBACK_REQUEST,
+  });
+  axios
+  .get(`${base_url}/feedback/All`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_FEEBACK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_FEEBACK_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+// /**
+//  * add a new sector 
+//  */
+export const addFeedBack = (sectors,orgId, cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_FEEBACK_REQUEST,
+  });
+  axios
+    .post(`${base_url}/feedback`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Feedback added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      dispatch(getFeedBackCount());
+      console.log(res);
+      dispatch({
+        type: types.ADD_FEEBACK_SUCCESS,
+        payload: { ...sectors, },
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_FEEBACK_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
+    });
+};
+
+/**
+* remove a new sector
+*/
+export const removeFeedBack = ( feedbackId,orgId) => (dispatch) => {
+  // console.log(typeId);
+  dispatch({
+    type: types.REMOVE_FEEBACK_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/feedback/${feedbackId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getFeedBackCount());
+      Swal.fire({
+        icon: 'success',
+        title: 'Feedback deleted Successfully!',
+      })
+      // message.success("QUALITY has been deleted successfully!");
+      console.log(res);
+      dispatch({
+        type: types.REMOVE_FEEBACK_SUCCESS,
+        payload:feedbackId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_FEEBACK_FAILURE,
+      });
+    });
+};
+
+/**
+*update label of sector
+*/
+export const updateFeedBack = ( data,feedbackId,cb) => (dispatch) => {
+  
+  dispatch({
+    type: types.UPDATE_FEEBACK_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/feedback/${feedbackId}`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Feedback updated Successfully!',
+      })
+    
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_FEEBACK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_FEEBACK_FAILURE,
+      });
+    });
+};
+
+
+
+
+export const getFeedBackCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_FEEBACK_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/feedback/count/All`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_FEEBACK_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_FEEBACK_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getCustomerConfigure = (orgId,formType,baseFormType) => (dispatch) => {
+  dispatch({
+    type: types.GET_CUSTOMER_CONFIGURE_REQUEST,
+  });
+  axios
+  .get(`${base_url}/baseForm/get/${orgId}/${formType}/${baseFormType}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CUSTOMER_CONFIGURE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CUSTOMER_CONFIGURE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getSupplierCategory = () => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIERCATEGORY_REQUEST,
+  });
+  axios
+  .get(`${base_url}/supplierCategory/All`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIERCATEGORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIERCATEGORY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addSupplierCategory = (sectors,cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_SUPPLIERCATEGORY_REQUEST,
+  });
+  axios
+    .post(`${base_url}/supplierCategory`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getSectorCount(orgId));
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'SUPPLIERCATEGORY added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      console.log(res);
+      dispatch({
+        type: types.ADD_SUPPLIERCATEGORY_SUCCESS,
+        payload: { ...sectors, },
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_SUPPLIERCATEGORY_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
+    });
+};
+
+export const ClearReducerDataOfSupplierCategory = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_DATA_SUPPLIERCATEGORY,
+  });
+};
+
+export const getShipperCategory = () => (dispatch) => {
+  dispatch({
+    type: types.GET_SHIPPERCATEGORY_REQUEST,
+  });
+  axios
+  .get(`${base_url}/shipperCategory/All`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SHIPPERCATEGORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SHIPPERCATEGORY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addShipperCategory = (sectors,cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_SHIPPERCATEGORY_REQUEST,
+  });
+  axios
+    .post(`${base_url}/shipperCategory`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getSectorCount(orgId));
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'SUPPLIERCATEGORY added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      console.log(res);
+      dispatch({
+        type: types.ADD_SHIPPERCATEGORY_SUCCESS,
+        payload: { ...sectors, },
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_SHIPPERCATEGORY_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
+    });
+};
+
+
+export const getWorkFlowCategory = () => (dispatch) => {
+  dispatch({
+    type: types.GET_WORKFLOWCATEGORY_REQUEST,
+  });
+  axios
+  .get(`${base_url}/workflowCategory/All`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_WORKFLOWCATEGORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_WORKFLOWCATEGORY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addWorkFlowCategory = (sectors,cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_WORKFLOWCATEGORY_REQUEST,
+  });
+  axios
+    .post(`${base_url}/workflowCategory`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getSectorCount(orgId));
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Workflow added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      console.log(res);
+      dispatch({
+        type: types.ADD_WORKFLOWCATEGORY_SUCCESS,
+        payload: { ...sectors, },
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_SWORKFLOWCATEGORY_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
+    });
+};
+
+
+
+
+
+export const LinkDealsProcessGlobal = (globalInd, workflowId,cb) => (dispatch) => {
+  dispatch({ type: types.LINK_DEALS_PROCESS_GLOBAL_REQUEST });
+
+  axios
+    .put(`${base_url}/workflow/stages/${globalInd}/${workflowId} `, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_DEALS_PROCESS_GLOBAL_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_DEALS_PROCESS_GLOBAL_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+
+
+
+
+export const addProcessTaskStage = (customer) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_PROCESS_TASK_STAGE_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/workflow/stage-task/save`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      // })
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      //   showConfirmButton: false,
+      //   // timer: 1500
+      // })
+      console.log(res);
+      // dispatch(
+      //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
+      // );
+      // message.success(res.data.message)
+     
+
+      dispatch({
+        type: types.ADD_PROCESS_TASK_STAGE_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PROCESS_TASK_STAGE_FAILURE,
+        payload: err,
+      });
+      message.error(err.data.message)
+      // cb && cb();
+    });
+};
+
+
+
+
+
+export const getProcessTaskStage = (orgId,stageId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROCESS_TASK_STAGE_REQUEST,
+  });
+  axios
+    .get(`${base_url}/workflow/stage-task/${orgId}/${stageId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROCESS_TASK_STAGE_SUCCESS,
+        payload: res.data,
+      });
+      // }
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PROCESS_TASK_STAGE_FAILURE,
+        payload: err,
+      });
+    });
+
+};
+
+
+
+
+
+export const deleteTaskStageData = (stagesTaskId,liveInd) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_TASK_STAGE_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/workflow/stage-task/delete/${stagesTaskId}/${liveInd}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     
+     
+      console.log(res);
+      dispatch({
+        type: types.DELETE_TASK_STAGE_DATA_SUCCESS,
+        payload: stagesTaskId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_TASK_STAGE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const updateGlobalWorkflow = (data, workflowCategoryId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_GLOBAL_WORKFLOW_REQUEST });
+  axios
+    .put(`${base_url}/workflowCategory/update/globalInd/${workflowCategoryId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_GLOBAL_WORKFLOW_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_GLOBAL_WORKFLOW_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+export const moveRejectToggleTask = (stageTaskId,mandatoryInd) => (dispatch) => {
+  dispatch({
+    type: types.MOVE_REJECT_TOGGLE_TASK_REQUEST,
+  });
+  axios
+    .put(`${base_url}/workflow/stage-task/${stageTaskId}/${mandatoryInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.MOVE_REJECT_TOGGLE_TASK_SUCCESS,
+        payload: res.data,
+      });
+      message.success("Item transfered for Quality Check");
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.MOVE_REJECT_TOGGLE_TASK_FAILURE,
+        payload: err,
+      });
+      // message.error("Something went wrong");
+    });
+};
+
+
+
+
+export const updateProcessTaskStage = (data, stagesTaskId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_PROCESS_TASK_STAGE_REQUEST });
+  axios
+    .put(`${base_url}/workflow/stage-task/${stagesTaskId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Prospect Info updated Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_PROCESS_TASK_STAGE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PROCESS_TASK_STAGE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+export const addGloalType = (sectors,cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_GLOBAL_TYPE_REQUEST,
+  });
+  axios
+    .post(`${base_url}/workflowCategory`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getSectorCount(orgId));
+     
+     if (res.data.message === "WorkflowCategory can not be created as same name already exists!!!") {
+      Swal.fire({
+        icon: 'error',
+        title: res.data.message,
+      });
+
+      dispatch({
+        type: types.ADD_GLOBAL_TYPE_DUPLICATE,
+      });
+    } else {
+      Swal.fire({
+        icon: 'success',
+        title: 'Type added Successfully!',
+      });
+
+      dispatch({
+        type: types.ADD_GLOBAL_TYPE_SUCCESS,
+        payload: res.data,
+      });
+    }
+     
+     
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_GLOBAL_TYPE_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
+    });
+};
+
+
+
+
+export const addConfigureGlobalType = (orgId,workflowId,workflowType,  cb) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.ADD_CONFIGURE_GLOBAL_TYPE_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/workflow/createNew/${orgId}/${workflowId}/${workflowType}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //dispatch(getProcessForDeals(orgId));
+      if (res.data.message === "200 OK") {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+        });
+  
+        dispatch({
+          type: types.ADD_CONFIGURE_GLOBAL_TYPE_DUPLICATE,
+        });
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: 'Type added Successfully!',
+        });
+  
+        dispatch({
+          type: types.ADD_CONFIGURE_GLOBAL_TYPE_SUCCESS,
+          payload: res.data,
+        });
+      }
+      cb && cb("success");
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_CONFIGURE_GLOBAL_TYPE_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
     });
 };

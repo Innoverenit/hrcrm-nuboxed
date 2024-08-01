@@ -2,14 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  withRouter } from "react-router-dom";
-import { AuthContainer, FormWrapper, Input } from "./styled";
-import { FlexContainer, MainWrapper } from "../../Components/UI/Layout";
-
-
-// import FWLogo from "../../Assets/Images/Axis_logo_Big.png";
+import { AuthContainer, FormWrapper } from "./styled";
+import { FlexContainer} from "../../Components/UI/Layout";
 import RandomImageScreen from "./RandomImageScreen";
-
-
 class AppLoginMessage extends Component {
 
     render() {
@@ -26,12 +21,7 @@ class AppLoginMessage extends Component {
 
                         }}
                     >
-                        {/* <img
-                            className="big-logo"
-                            src={FWLogo}
-                            style={{ width: 200 }}
-                            alt="Tekorero logo"
-                        /> */}
+                      
                         <br />
                         <FormWrapper width="55%">
 
@@ -41,7 +31,7 @@ class AppLoginMessage extends Component {
 
 
                         <div
-                            className="footer1 mt-3"
+                            className="text-xs text-center font-poppins  mt-3"  
                             style={{
                                 textAlign: "center",
                                 fontSize: "12x",

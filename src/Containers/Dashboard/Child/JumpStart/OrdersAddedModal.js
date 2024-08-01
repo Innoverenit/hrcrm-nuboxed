@@ -31,7 +31,11 @@ class OrdersAddedModal extends Component {
         
         >
           <Suspense fallback={<BundleLoader />}>
-<OrderAddedList/>
+<OrderAddedList
+   selectedLanguage={this.props.selectedLanguage}
+   translateText={this.props.translateText}
+
+/>
         </Suspense>
          
         </StyledDrawer>

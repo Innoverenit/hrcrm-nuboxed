@@ -44,9 +44,29 @@ function OpenReceivedOrderIdForm(props) {
   }, [])
 
   const [hasMore, setHasMore] = useState(true);
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  // const handleLoadMore = () => {
+  //   setPage(page + 1);
+  //   props.getPhonelistByOrderId(props.rowData.orderPhoneId, page)
+  // };
   const handleLoadMore = () => {
-    setPage(page + 1);
-    props.getPhonelistByOrderId(props.rowData.orderPhoneId, page)
+    const callPageMapd = props.phoneListById && props.phoneListById.length &&props.phoneListById[0].pageCount
+    setTimeout(() => {
+      const {
+        getPhonelistByOrderId,
+      } = props;
+      if  (props.phoneListById)
+      {
+        if (page < callPageMapd) {
+          setPage(page + 1);
+          getPhonelistByOrderId(props.rowData.orderPhoneId, page);
+      }
+      if (page === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
   };
 
   const [show, setShow] = useState(false);
@@ -70,6 +90,27 @@ function OpenReceivedOrderIdForm(props) {
     setphoneId(phoneId);
   }
   const onSearch = (value) => console.log(value);
+
+  const [receivePhoneInd, setReceivePhoneInd] = useState({});
+
+ useEffect(() => {
+    const initialReceivePhoneInd = {};
+    props.phoneListById.forEach(item => {
+      if (item.receivePhoneInd) {
+        initialReceivePhoneInd[item.phoneId] = true;
+      }
+    });
+    setReceivePhoneInd(initialReceivePhoneInd);
+  }, [props.phoneListById]);
+
+  
+  const handleReceiveToggleChange = (phoneId, value) => {
+    setReceivePhoneInd(prevState => ({
+      ...prevState,
+      [phoneId]: value
+    }));
+  };
+
   return (
     <>
       <div class=" flex justify-between">
@@ -91,7 +132,9 @@ function OpenReceivedOrderIdForm(props) {
                 onClick={handlePauseResume}>
                 {pause ? "Resume" : "Pause"}</Button>}
             {props.rowData.inspectionInd === 1 &&
-              <div style={{ marginLeft: '10px' }}>
+           
+              <div style={{ marginLeft: '10px' }}> 
+           {Object.values(receivePhoneInd).includes(true) && (
                 <Button
                   loading={props.updatingInspection}
                   onClick={() => props.updateInspection({
@@ -103,7 +146,9 @@ function OpenReceivedOrderIdForm(props) {
                     props.locationDetailsId)}
                   type="primary"
                 >Inspection Completed</Button>
-              </div>}
+              )}
+              </div>
+                }
           </div>
         </div>
       </div>
@@ -111,16 +156,13 @@ function OpenReceivedOrderIdForm(props) {
       <div className='flex justify-center sticky ticky z-10 '>
         <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" md:w-[2rem]"></div>
-            <div className=" md:w-[6.74rem]"><FormattedMessage
-              id="app.oem"
-              defaultMessage="OEM"
-            /></div>
+            <div className=" md:w-[2.01rem]"></div>
+            <div className=" md:w-[4.74rem]">Brand</div>
             <div className=" md:w-[6.73rem]"><FormattedMessage
               id="app.model"
               defaultMessage="model"
             /></div>
-            <div className=" md:w-[6.07rem] "><FormattedMessage
+            <div className=" md:w-[8.07rem] "><FormattedMessage
               id="app.imei"
               defaultMessage="imei"
             /></div>
@@ -131,32 +173,19 @@ function OpenReceivedOrderIdForm(props) {
               id="app.conditions"
               defaultMessage="conditions"
             /></div>
-            <div className="md:w-[15rem]"><FormattedMessage
+            <div className="md:w-[20rem]"><FormattedMessage
               id="app.issue"
               defaultMessage="Issue"
             /></div>
-            <div className="md:w-[5.1rem]">
-              {/* QR */}
-            </div>
-            <div className="md:w-[2rem]">
-              {/* task */}
-            </div>
-            <div className="md:w-[2rem]">
-              {/* notes */}
-            </div>
-            <div className="md:w-[4.1rem]">
+           
+            <div className="md:w-[9.1rem]">
               <FormattedMessage
                 id="app.Received"
                 defaultMessage="Received"
               />
             </div>
-            <div className="md:w-[5.4rem]">
-
-            </div>
-            <div className="md:w-[2rem]">
-            </div>
-            <div className="md:w-[7.02rem]">
-            </div>
+           
+           
             <div className="md:w-[7.3rem]">
               <FormattedMessage
                 id="app.Status"
@@ -171,11 +200,18 @@ function OpenReceivedOrderIdForm(props) {
               hasMore={hasMore}
               loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
               height={"70vh"}
+              endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
             >
               {props.phoneListById.map((item, index) => {
+                 const isSelected = selectedRow === item.phoneId;
+
                 return (
                   <div>
-                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
+                   <div
+      className={`flex rounded mt-1  h-8 items-center p-1 ${
+        isSelected ? "bg-[#3bf6eb]" : "bg-white"
+      }`}
+    >
                       <div class="flex">
                         <div className=" flex font-medium   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs  font-poppins">
@@ -196,7 +232,7 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
 
                         </div>
-                        <div className=" flex font-medium  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-sm  font-poppins">
 
                             {item.imei}
@@ -204,36 +240,39 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[12.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex font-medium  md:w-[13.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
 
                           {item.os} {item.gb}  {item.color}
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[6.63rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex font-medium  md:w-[5.63rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.conditions}
                         </div>
                       </div>
                       <div className=" flex font-medium  md:w-[12.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
-                          {item.issue}
+                        <span title={item.issue}>{item.issue.substring(0, 10)}{item.issue.length > 10 && '...'}</span>
                         </div>
                       </div>
 
                       <div className=" flex font-medium  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        {item.receivePhoneInd?(
                         <div class=" text-xs  font-poppins text-center">
                           <Tooltip title="Task">
                             <FileDoneOutlined   className="!text-icon  text-[black]" type="file-done"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 handleExpand(item.phoneId);
+                                setSelectedRow(item.phoneId);
                               }}
                             />
 
                           </Tooltip>
                         </div>
+                         ):null}
                       </div>
                       <div className=" flex font-medium  md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
@@ -259,7 +298,9 @@ function OpenReceivedOrderIdForm(props) {
                                 orderPhoneId={props.rowData.orderPhoneId}
                                 phoneId={item.phoneId}
                                 receivePhoneInd={item.receivePhoneInd}
-                                inspectionInd={item.inspectionInd} />
+                                inspectionInd={item.inspectionInd}
+                                onReceiveToggleChange={handleReceiveToggleChange}
+                                />
                             }
                           </Tooltip>
                         </div>
@@ -396,7 +437,8 @@ function OpenReceivedOrderIdForm(props) {
           {expand && (
             <AccountPhoneTaskTable
               phoneId={phoneId}
-              RowData={particularRowData} />
+              //RowData={particularRowData}
+              particularRowData={particularRowData} />
           )}
           <ReceivedOrderIdPhoneNoteModal
             particularRowData={particularRowData}

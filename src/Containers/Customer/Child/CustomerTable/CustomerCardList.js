@@ -40,6 +40,8 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { FormattedMessage } from "react-intl";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
+import CustomerSearchedData from "./CustomerSearchedData";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
 );
@@ -70,33 +72,63 @@ function CustomerCardList(props) {
 
 
   const [hasMore, setHasMore] = useState(true);
-
   const [page, setPage] = useState(0);
-  const [page1, setPage1] = useState(0);
-  const [page2, setPage2] = useState(0);
+  // const [page1, setPage1] = useState(0);
+  // const [page2, setPage2] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   console.log(props.viewType)
 
-  // useEffect(() => {
-    
-  //     props.emptyCustomer()
-  //     props.getCustomerListByUserId(props.viewType==="table"?props.userId:props.viewType, props.viewType==="table"?page:props.viewType==="teams"?page1:props.viewType==="all"?page2:null, "creationdate");
-   
-  // }, [props.viewType]);
   useEffect(() => {
-    if (props.viewType === "table") {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+    'Name', // 0
+'Work', // 1
+'Sector', // 2
+'Source', // 3
+'Quotation', // 4
+'PipeLine', // 5
+'Assigned', // 6
+'Owner', // 7
+'Customer', // 8
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+  useEffect(() => {
+    
       props.emptyCustomer()
       props.getCustomerListByUserId(props.userId, page, "creationdate");
-    } else if (props.viewType === "teams") { 
-      props.emptyCustomer()
-      props.getCustomerListByUserId(props.viewType, page1, "creationdate");
-    } else {     
-      props.emptyCustomer()
-      props.getCustomerListByUserId(props.viewType, page2, "creationdate");
-    }
-  }, [props.viewType,page,page1,page2]);
+   
+  }, [props.viewType]);
+  // useEffect(() => {
+  //   if (props.viewType === "table") {
+  //     props.emptyCustomer()
+  //     props.getCustomerListByUserId(props.userId, page, "creationdate");
+  //   } else if (props.viewType === "teams") { 
+  //     props.emptyCustomer()
+  //     props.getCustomerListByUserId(props.viewType, page1, "creationdate");
+  //   } else {     
+  //     props.emptyCustomer()
+  //     props.getCustomerListByUserId(props.viewType, page2, "creationdate");
+  //   }
+  // }, [props.viewType,page,page1,page2]);
 
 
   useEffect(() => {
@@ -168,7 +200,22 @@ function CustomerCardList(props) {
     // Call the function to change the status to "Lost" here
     props.customerToAccount(customerId);
   };
+  const handleLoadMore = () => {
+    const callPageMapd = props.customerByUserId && props.customerByUserId.length &&props.customerByUserId[0].pageCount
+    setTimeout(() => {
 
+      if  (props.customerByUserId)
+      {
+        if (page < callPageMapd) {
+          setPage(page + 1);
+          props.getCustomerListByUserId(props.userId, page, "creationdate");
+      }
+      if (page === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
   // const handleLoadMore = () => {
   
   //   if(props.viewType==="table"){
@@ -192,27 +239,27 @@ function CustomerCardList(props) {
   // };
 
 
-  const handleLoadMore = () => {
-    if (props.viewType === "table") {
-      setPage(prevPage => {
-        console.log("Previous page (table):", prevPage);
-        return prevPage + 1;
-      });
-      props.getCustomerListByUserId(props.userId, page + 1, "creationdate");
-    } else if (props.viewType === "teams") {
-      setPage1(prevPage => {
-        console.log("Previous page (teams):", prevPage);
-        return prevPage + 1;
-      });
-      props.getCustomerListByUserId(props.viewType, page1 + 1, "creationdate");
-    } else if (props.viewType === "all") {
-      setPage2(prevPage => {
-        console.log("Previous page (all):", prevPage);
-        return prevPage + 1;
-      });
-      props.getCustomerListByUserId(props.viewType, page2 + 1, "creationdate");
-    }
-  };
+  // const handleLoadMore = () => {
+  //   if (props.viewType === "table") {
+  //     setPage(prevPage => {
+  //       console.log("Previous page (table):", prevPage);
+  //       return prevPage + 1;
+  //     });
+  //     props.getCustomerListByUserId(props.userId, page + 1, "creationdate");
+  //   } else if (props.viewType === "teams") {
+  //     setPage1(prevPage => {
+  //       console.log("Previous page (teams):", prevPage);
+  //       return prevPage + 1;
+  //     });
+  //     props.getCustomerListByUserId(props.viewType, page1 + 1, "creationdate");
+  //   } else if (props.viewType === "all") {
+  //     setPage2(prevPage => {
+  //       console.log("Previous page (all):", prevPage);
+  //       return prevPage + 1;
+  //     });
+  //     props.getCustomerListByUserId(props.viewType, page2 + 1, "creationdate");
+  //   }
+  // };
   
   
 
@@ -242,57 +289,70 @@ function CustomerCardList(props) {
   // }
 console.log(page)
 console.log(props.userId)
+if (loading) {
+  return <div><BundleLoader/></div>;
+}
   return (
     <>
+     {props.customerSearch.length > 0 ? (
+    <CustomerSearchedData
+    customerSearch={props.customerSearch}
+    fetchingCustomerInputSearchData={props.fetchingCustomerInputSearchData}
+    />
+  ) : (
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky z-10">
-            <div className=" w-[17.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
-              <FormattedMessage
+            <div></div>
+            <div className=" w-[12.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            {translatedMenuItems[0]}
+              {/* <FormattedMessage
                 id="app.name"
                 defaultMessage="Name"
-              />
+              /> */}
             </div>
-            <div className=" w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-              <FormattedMessage
+            <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            {translatedMenuItems[1]}
+              {/* <FormattedMessage
                 id="app.work"
                 defaultMessage="Work"
-              />
+              /> */}
 
             </div>
-            <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-              <FormattedMessage
+            <div className=" w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            {translatedMenuItems[2]}
+              {/* <FormattedMessage
                 id="app.sector"
                 defaultMessage="Sector"
-              />
+              /> */}
 
             </div>
             <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-              <FormattedMessage
+            {translatedMenuItems[3]}
+              {/* <FormattedMessage
                 id="app.source"
                 defaultMessage="Source"
-              />
+              /> */}
 
             </div>
-            <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
-              <FormattedMessage
-                id="app.country"
-                defaultMessage="Country"
-              />
+            <div className=" w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
+              
 
             </div>
-            <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-              <FormattedMessage
+            <div className="w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            {translatedMenuItems[4]}
+              {/* <FormattedMessage
                 id="app.quotation"
                 defaultMessage="Quotation"
-              />
+              /> */}
 
             </div>
             <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-              <FormattedMessage
+            {translatedMenuItems[5]}
+              {/* <FormattedMessage
                 id="app.pipeline"
                 defaultMessage="Pipeline"
-              />
+              /> */}
 
             </div>
             {/* <div className="md:w-[3.9rem]">
@@ -302,24 +362,27 @@ console.log(props.userId)
                       />
           
           </div> */}
-            <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-              <FormattedMessage
+            <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            {translatedMenuItems[6]}
+              {/* <FormattedMessage
                 id="app.assigned"
                 defaultMessage="Assigned"
-              />
+              /> */}
 
             </div>
-            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
-              <FormattedMessage
+            <div className="w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
+            {translatedMenuItems[7]}
+              {/* <FormattedMessage
                 id="app.owner"
                 defaultMessage="Owner"
-              />
+              /> */}
             </div>
-            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-              <FormattedMessage
+            <div className="w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {translatedMenuItems[8]}
+              {/* <FormattedMessage
                 id="app.customer"
                 defaultMessage="Customer"
-              />
+              /> */}
             </div>
             <div className="w-[4.12rem]"></div>
 
@@ -330,6 +393,7 @@ console.log(props.userId)
             hasMore={hasMore}
             loader={fetchingCustomers || fetchingCustomerPagination ? <div class="flex justify-center">Loading...</div> : null}
             height={"80vh"}
+            style={{ scrollbarWidth:"thin"}}
           >
 
             {!fetchingCustomers && customerByUserId.length === 0 ? <NodataFoundPage /> : customerByUserId.map((item, index) => {
@@ -351,10 +415,10 @@ console.log(props.userId)
               return (
                 <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex font-medium  w-[15rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex  w-[13rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                           <div>
                             {/* <Tooltip title={item.name}> */}
@@ -372,9 +436,9 @@ console.log(props.userId)
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
                                   </Link>
 
@@ -405,7 +469,7 @@ console.log(props.userId)
                           </div>
                         </div>
                       </div>
-                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -429,7 +493,7 @@ console.log(props.userId)
                         </div>
 
                       </div>
-                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[5.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                         {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -439,7 +503,7 @@ console.log(props.userId)
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex font-medium max-sm:w-auto  items-center  w-[7.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto  items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -447,7 +511,7 @@ console.log(props.userId)
                         </div>
 
                       </div>
-                      <div className=" flex font-medium max-sm:w-auto  justify-center w-[7.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto  items-center  w-[5.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 
                         {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
@@ -459,7 +523,7 @@ console.log(props.userId)
                       </div>
 
 
-                      <div className=" flex font-medium items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -469,7 +533,7 @@ console.log(props.userId)
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium  max-sm:w-auto w-[3.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto w-[4.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         {/* {item.totalProposalValue > 0 && (
@@ -483,7 +547,7 @@ console.log(props.userId)
       </div>
     )}
                       </div>
-                      {/* <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
+                      {/* <div className=" flex font-medium flex-Nonew-96 max-sm:flex-row w-full max-sm:justify-between ">
                                 
 
                                     <div class=" text-xs  font-poppins text-center">
@@ -491,7 +555,7 @@ console.log(props.userId)
 
                                     </div>
                                 </div> */}
-                      <div className=" flex font-medium items-center max-sm:w-auto   w-[6rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -517,7 +581,7 @@ console.log(props.userId)
 
                         </div>
                       </div>
-                      <div className=" flex font-medium items-center max-sm:w-auto w-[2rem] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                      <div className=" flex f items-center max-sm:w-auto w-[2rem] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                         <Tooltip title={item.ownerName}>
                           <div class="max-sm:flex justify-end">
                             <Tooltip title={item.ownerName}>
@@ -534,9 +598,9 @@ console.log(props.userId)
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                      <div className=" flex font-medium justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      <div className=" flex  justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
-                        <div class=" text-sm  font-poppins"></div>
+                        <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
                           title="Change status to Customer?"
                           onConfirm={() => handleConfirm(item.customerId)}
@@ -545,12 +609,12 @@ console.log(props.userId)
                         >
                           {user.erpInd === true && (
                             <Button type="primary"
-                              style={{ width: "8rem" }}>
+                              style={{ width: "8rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}>
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
                                 {item.convertInd === 0 && "Convert"}
                                 {item.convertInd === 1 && "In progress"}
                                 {item.convertInd === 2 && "Converted"}
-                                <NextPlanIcon  />
+                                <NextPlanIcon  className="!text-icon "/>
                               </div>
                             </Button>
                           )}
@@ -711,11 +775,14 @@ console.log(props.userId)
           </InfiniteScroll>
         </div>
       </div>
-
+  )}
 
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
       <UpdateCustomerModal
@@ -723,18 +790,27 @@ console.log(props.userId)
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}
         handleSetCurrentCustomerId={handleSetCurrentCustomerId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <CustomerPulseDrawerModal
         customer={currentCustomer}
         addDrawerCustomerPulseModal={addDrawerCustomerPulseModal}
         handleCustomerPulseDrawerModal={handleCustomerPulseDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <CustomerContactDrawerModal
         customer={currentCustomer}
         addDrawerCustomerContactModal={addDrawerCustomerContactModal}
         handleCustomerContactDrawerModal={handleCustomerContactDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <CustomerOpportunityDrawerModal
         customer={currentCustomer}
@@ -746,6 +822,9 @@ console.log(props.userId)
         // contactById={props.contactById}
         addDrawerCustomerEmailModal={props.addDrawerCustomerEmailModal}
         handleCustomerEmailDrawerModal={props.handleCustomerEmailDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
 
@@ -754,6 +833,9 @@ console.log(props.userId)
         addDrawerCustomerNotesModal={addDrawerCustomerNotesModal}
         handleCustomerNotesDrawerModal={handleCustomerNotesDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );
@@ -786,6 +868,8 @@ const mapStateToProps = ({
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   // viewType: customer.viewType,
+  customerSearch: customer.customerSearch,
+  fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

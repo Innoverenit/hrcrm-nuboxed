@@ -6,6 +6,7 @@ import {  Button, Tooltip } from "antd";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { handleLeavesModal } from "../LeavesAction";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const AddLeavesModal = lazy(() => import("./Tab/AddLeavesModal"));
 
 const Option = StyledSelect.Option;
@@ -29,7 +30,7 @@ class LeaveActionRight extends React.Component {
         <Tooltip placement="right" title="Apply">
           <Button type="primary"
           onClick={() => handleLeavesModal(true)}>
-            Add
+           <DataSaverOnIcon className="!text-icons"/> Add
           </Button>
         </Tooltip>
         <AddLeavesModal
@@ -40,7 +41,6 @@ class LeaveActionRight extends React.Component {
     );
   }
 }
-
 const mapStateToProps = ({ leave }) => ({
   addLeaveModal: leave.addLeaveModal,
   //   userId: auth.userDetails.userId,

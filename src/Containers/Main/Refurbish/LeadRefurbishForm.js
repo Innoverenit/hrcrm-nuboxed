@@ -47,8 +47,8 @@ function LeadRefurbishForm(props) {
             {props.fetchingDepartments ? <BundleLoader /> :
                 <>
                     <div class=" flex justify-between">
-                        <div className=" w-[30%]">
-                            <label>Department</label>
+                        <div className=" w-[25%]">
+                          
                             <Select
                                 className="w-[250px]"
                                 value={department}
@@ -60,8 +60,9 @@ function LeadRefurbishForm(props) {
                             </Select>
                         </div>
 
-                        <div className=" w-[30%]">
-                            <label>Location</label>
+                        <div className=" w-[25%]">
+                            <div class=" text-xs font-bold font-poppins">Location</div>
+                            
                             <Select
                                 className="w-[250px]"
                                 value={location}
@@ -73,8 +74,8 @@ function LeadRefurbishForm(props) {
                             </Select>
                         </div>
 
-                        <div className=" w-[30%]">
-                            <label>Lead</label>
+                        <div className=" w-[25%]">
+                        <div class=" text-xs font-bold font-poppins">Lead</div>
                             <Select
                                 className="w-[250px]"
                                 value={technician}
@@ -85,14 +86,15 @@ function LeadRefurbishForm(props) {
                                 })}
                             </Select>
                         </div>
-                    </div>
-                    <div class=" flex justify-end">
+                        <div class=" flex justify-end  w-[25%]">
                         <Button
                             loading={props.addingLead}
                             disabled={!technician.length}
                             type="primary"
                             onClick={handleSubmit}>Submit</Button>
                     </div>
+                    </div>
+                  
                 </>}
         </>
     );

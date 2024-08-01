@@ -10,7 +10,7 @@ const Option = StyledSelect.Option;
 
 function SubscriptionActionRight (props) {
   
-    const { handleCreateSubscriptionDrawer, userId,user } = props;
+    const { handleSuscrptionModal, userId,user } = props;
     return (
       <>
         <div class=" flex items-center">
@@ -18,7 +18,7 @@ function SubscriptionActionRight (props) {
           <Button
             type="primary"
          
-            onClick={() => handleCreateSubscriptionDrawer(true)}
+            onClick={() => handleSuscrptionModal(true)}
           >
             Add
           </Button>

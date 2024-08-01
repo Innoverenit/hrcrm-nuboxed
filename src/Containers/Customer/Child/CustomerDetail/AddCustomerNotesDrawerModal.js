@@ -3,7 +3,8 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-const LinkedNotes =lazy(()=> import("./CustomerTab/Notes/LinkedNotes"));
+import MainNotes from "../../../CustomNote/MainNotes";
+
 
 
 
@@ -22,8 +23,10 @@ class AddCustomerNotesDrawerModal extends Component {
           onClose={() => this.props.handleCustomerNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <LinkedNotes 
-            rowdata={this.props.rowdata}
+           
+            <MainNotes
+             type="customer"
+             uniqueId={this.props.rowdata.customerId}
             />
           </Suspense>
         </StyledDrawer>

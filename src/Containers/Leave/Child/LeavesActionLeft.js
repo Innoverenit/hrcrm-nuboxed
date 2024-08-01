@@ -21,33 +21,18 @@ const LeavesActionLeft = (props) => {
       <Tooltip
         title={<FormattedMessage id="app.Myleaves" defaultMessage="My Leaves" />}
       >  <span
-        class=" mr-2 text-sm cursor-pointer"
+        class=" mr-1 text-sm cursor-pointer"
         onClick={() => props.setLeavesViewType("tile")}
         style={{
           color: props.viewType === "tile" && "#1890ff",
         }}
       >
           <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#4bc076" }}>
-            <GridViewIcon />
+            <GridViewIcon className='text-white !text-icon' />
           </Avatar>
         </span>
 
       </Tooltip>
-
-      {/* <Tooltip
-        title={<FormattedMessage id="app.tableView" defaultMessage="Table View" />}
-      >  <span
-            class=" mr-2 text-sm cursor-pointer"
-            onClick={() => props.setLeavesViewType("table")}
-            style={{
-              color: props.viewType === "table" && "#1890ff",
-            }}
-          >
-              <GroupsIcon />
-          </span>
-      
-      </Tooltip> */}
-      
 
       <Tooltip
         title="Category"
@@ -63,7 +48,7 @@ const LeavesActionLeft = (props) => {
           }}
         >
           <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
-            <CategoryIcon
+            <CategoryIcon className='text-white !text-icon'
             // icon={solid('users')}
             />
           </Avatar>
@@ -74,7 +59,6 @@ const LeavesActionLeft = (props) => {
       <Tooltip
         title="Gantt View"
       >
-
         <span
           onClick={() => props.setLeavesViewType("grant")}
           style={{
@@ -85,12 +69,11 @@ const LeavesActionLeft = (props) => {
           }}
         >
           <Avatar style={{ background: props.viewType === "grant" ? "#f279ab" : "#4bc076" }}>
-            <AreaChartOutlined
+            <AreaChartOutlined className='text-white !text-icon'
             // icon={solid('users')}
             />
           </Avatar>
         </span>
-
       </Tooltip>
 
       {props.user.leaveFullListInd === true && (
@@ -98,7 +81,7 @@ const LeavesActionLeft = (props) => {
           title="All"
         >
 
-          <span class=" mr-2 cursor-pointer text-[1rem]"
+          <span class=" mr-1 cursor-pointer !text-icon "
             onClick={() => props.setExpenseViewType("all")}
             style={{
               color: props.viewType === "all" && "#1890ff",
@@ -110,7 +93,6 @@ const LeavesActionLeft = (props) => {
 
             </Avatar>
           </span>
-
         </Tooltip>
       )}
     </div>

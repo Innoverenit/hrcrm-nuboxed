@@ -52,8 +52,7 @@ function MaterialFifoToggle(props) {
             className="toggle-clr"
             checked={props.fifoInd || toggle}
             // disabled={props.status}
-            isLoading={true}
-         
+            isLoading={true}       
             checkedChildren="LIFO"
             unCheckedChildren="FIFO"
           />

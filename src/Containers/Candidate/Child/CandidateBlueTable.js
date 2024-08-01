@@ -338,7 +338,7 @@ function CandidateBlueTable(props) {
         return (
           <>
             {item.skillList === [] ? (
-              "No Data"
+              "None"
             ) : (
               <span>
                 <SkillsLoadMore skillList={data} />
@@ -389,7 +389,7 @@ function CandidateBlueTable(props) {
         return (
           <>
             {item.availableDate === null ? (
-              "No Data"
+              "None"
             ) : (
               <span>{moment(item.availableDate).format("l")}</span>
             )}

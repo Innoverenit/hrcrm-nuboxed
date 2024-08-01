@@ -576,16 +576,42 @@ import EmployeePulseDrawerModal from "./EmployeePulseDrawerModal";
 import OpenNotifyDrawer from "../EmployeeCard/OpenNotifyDrawer";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import MultiOrgEmployee from "../MultiOrgEmployee";
+import EmployeeSearchedData from "./EmployeeSearchedData";
 
 function EmployeeTable(props) {
   const [page, setPage] = useState(0);
   const [rowData, setRowData] = useState("");
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   function handleRowData(item) {
     setRowData(item);
 
   }
+  
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+       
+          "Name",//0
+          "Department",//1
+          "Role",//2
+          "Mobile #",//3
+          "Email #",//4
+          "Stop Access",//5
+          "Multi Org"//6
+         
+        ];
 
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -753,221 +779,48 @@ function EmployeeTable(props) {
   } = props;
   const { imgRadius } = props;
  
-  if (isMobile){
-
-    return (
-      <>
-      
-          <div className=' flex justify-end sticky  z-auto'>
-          <div class="rounded  p-1 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                 
-                  {props.filteredData.map((item) => {
-                      const currentdate = dayjs().format("DD/MM/YYYY");
-                      const date = dayjs(item.createAt).format("DD/MM/YYYY");
-                      return (
-                          <div>
-                             <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem] items-center p-3"
-                >
-                                  <div class="flex justify-between w-wk items-center ">
-                                     <div>
-                                      <EmployeeDetailsView
-            employeeId={item.employeeId}
-            fullName={item.fullName}
-          />
-                                          &nbsp;&nbsp;
-                                          {date === currentdate ? (
-                                              <span
-                                                  class="text-[tomato] font-bold">
-                                                  New
-                                              </span>
-                                          ) : null}
-                                    </div>
   
-                                     
-                                          <div class=" text-xs  font-poppins">
-                                              {item.department}
-                                          </div>
-  
-                                     
-                                     
-                                  </div>
-                                  <div class="flex justify-between w-wk items-center ">
-
-  <div class=" text-sm  font-poppins">
-      
-     {item.roleTypeName}
-  </div>
-
-                                      <div class=" text-xs  font-poppins text-center">
-                                      {item.countryDialCode} {item.mobileNo}
-                                      </div>
-                                  
-                                  </div>
-                                  
-                                  <div class="flex justify-between w-wk items-center ">
-                                 
-                                      <div class=" text-xs  font-poppins text-center">
-                                         {item.emailId}
-                                      </div>
-                                 
-                                  
-                                      <div class=" text-xs  font-poppins text-center">
-                                      {props.user.userDeleteInd === true || user.role === "ADMIN" ? (
-              <SuspendEmployee
-                partnerId={item.partnerId}
-                suspendInd={item.suspendInd}
-                assignedIndicator={item.assignedInd}
-                employeeId={item.employeeId}
-              />
-              ):null}
-                                      </div>
-                                 
-                                  </div>
-                                  <div class="flex justify-between w-wk items-center ">
-                                  <div className=" flex font-medium  md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs cursor-pointer  font-poppins text-center">
-                                      {item.suspendInd !== true && ( 
-                <Tooltip  title={item.role}>
-                  {/* <Button
-                    size={"small"}
-                    type="ghost"
-                    style={{            
-                      borderColor: "transparent",
-                      alignSelf: "flex-end",
-                    }}
-                  
-                  > */}
-                  { item.role === "ADMIN" ?(
-  <CellTowerIcon 
-    // onClick={() => {
-    //   handleEmployeeDrawerForAdmin(true);
-    //   handleSetCurrentEmployeeId(item.employeeId)
-    // }}
-   style={{ 
-    // color: item.role === "ADMIN" ?"blue":  "",
-    fontSize: "123%"
-    }}
-  />
-                  ):null}
-  
-                  {/* </Button> */}
-                </Tooltip>
-                 )}
-                                      </div>
-                                  </div>
-                                  <div className=" flex font-medium  md:w-[10.12rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs  font-poppins text-center">
-                                      <span
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  // props.getCandidateById(item.candidateId);
-                   props.getEmployeeDocument(item.employeeId);
-                   props.getEmployeeTreeMap(item.employeeId);
-                  props.handleEmployeePulseDrawerModal(true);
-                  handleSetCurrentEmployeeId(item)
-                }}
-              >
-      
-                  <MonitorHeartIcon
-                    style={{ fontSize: "0.8rem", color: "#df9697" }}
-                  />
-           
-              </span>
-                                      </div>
-                                  </div>
-                                  <div className=" flex font-medium  md:w-[9.12rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs  font-poppins text-center">
-                                      <Tooltip title="Add as Admin">
-             <CircleNotificationsIcon
-             style={{ cursor: "pointer",fontSize: "1rem" }}
-             onClick={() => {
-              handleSetCurrentEmployeeId(item);
-              props.handleNotifyDrawer(true);
-             }}
-             />
-             </Tooltip>
-                                      </div>
-                                  </div>
-                                  <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-base  font-poppins text-center">
-                                      {item.suspendInd === true && (
-                   <StyledPopconfirm
-                   title="Do you want to delete?"
-                   onConfirm={() => props.deleteEmployeeData(item.userId)}>
-             <Tooltip title="Delete">
-          
-             <DeleteOutlined
-          style={{
-            cursor: "pointer",
-            color: "red",
-            fontSize: "1rem",
-          }}
-             />
-         
-             </Tooltip>
-             </StyledPopconfirm>
-       )}
-                                      </div>
-                                  </div>
-                                  </div>
-  
-                              </div>
-                          </div>
-                      )
-                  })}
-              </div>
-              <Suspense fallback={<BundleLoader/>}>
-              <EmployeeDrawerForAdmin
-        employeeId={currentEmployeeId}
-          handleEmployeeDrawerForAdmin={handleEmployeeDrawerForAdmin}
-          employeeDrawerVisibleForAdmin={employeeDrawerVisibleForAdmin}
-        />
-           <EmployeePulseDrawerModal
-           singleEmployee={props.singleEmployee}
-           employeeTreeMap={props.employeeTreeMap}
-          //  currentData={rowData}
-          employeeName={currentEmployeeId}
-          
-          documentsByEmployeeId={props.documentsByEmployeeId}
-          addDrawerEmployeePulseModal={props.addDrawerEmployeePulseModal}
-          handleEmployeePulseDrawerModal={props.handleEmployeePulseDrawerModal}
-          // candidateByUserId={this.props.candidateByUserId}
-        />
-              <OpenNotifyDrawer
-        currentEmployeeId={currentEmployeeId}
-         openNotifydrwr={props.openNotifydrwr} handleNotifyDrawer={props.handleNotifyDrawer}/>
-                   </Suspense>
-          </div>
-         
-      </>
-  )   
-  }
 
 
   return (
     <>
+  {props.employeeSerachedData.length > 0 ? (
+    <EmployeeSearchedData
+    employeeSerachedData={props.employeeSerachedData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
+  fetchingEmployeeInputSearchData={props.fetchingEmployeeInputSearchData}
+    />
+  ) : (
+    <div>
      <div class=" h-h86 overflow-auto overflow-x-auto">
-        <div className=' flex justify-end sticky z-auto'>
+        <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-                    <div className=" md:w-[15.5rem]">Name</div>
-                    <div className=" md:w-[9.1rem]">Department</div>
-                    <div className=" md:w-[6.8rem] ">Role</div>
-                    <div className="md:w-[8.7rem]">Mobile #</div>
-                    <div className="md:w-[8.9rem]">Email #</div>
-                    <div className="md:w-[9.2rem]">Stop Access</div>
-                    <div className="md:w-[10.2rem]">Multi Org</div>
+                    <div className="w-[10rem] md:w-[16.5rem]">{translatedMenuItems[0]}</div>
+                    {/* Name */}
+                    <div className=" md:w-[9.1rem]">{translatedMenuItems[1]}</div>
+                    {/* Department */}
+                    <div className=" md:w-[6.8rem] ">{translatedMenuItems[2]}</div>
+                    {/* Role */}
+                    <div className="md:w-[8.7rem]">{translatedMenuItems[3]}</div>
+                    {/* Mobile # */}
+                    <div className="md:w-[10.9rem]">{translatedMenuItems[4]}</div>
+                    {/* Email # */}
+                    <div className="md:w-[9.2rem]">{translatedMenuItems[5]}</div>
+                    {/* Stop Access */}
+                    <div className="md:w-[8.2rem]">{translatedMenuItems[6]}</div>
+                    {/* Multi Org */}
                     <div className="md:w-[11.2rem]"></div>
                 </div>
-                {props.filteredData.map((item) => {
+                {props.employees.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
-                    const date = dayjs(item.createAt).format("DD/MM/YYYY");
+                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     return (
                         <div>
-                            <div className="flex rounded  mt-4 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
+                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
                                 <div class="flex">
-                                    <div className=" flex font-medium  md:w-[15.6rem] max-sm:w-full ">
+                                    <div className=" flex md:w-[15.6rem] max-sm:w-full ">
                                     <EmployeeDetailsView
           employeeId={item.employeeId}
           fullName={item.fullName}
@@ -981,17 +834,17 @@ function EmployeeTable(props) {
                                         ) : null}
                                     </div>
 
-                                    <div className=" flex font-medium   md:w-[8.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                    <div className=" flex  md:w-[8.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                         <div class=" text-xs  font-poppins">
                                             {item.department}
                                         </div>
 
                                     </div>
-                                    <div className=" flex font-medium  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 
-                                        <div class=" text-sm  font-poppins">
+                                        <div class=" text-xs  font-poppins">
                                             
                                            {item.roleTypeName}
                                         </div>
@@ -999,17 +852,17 @@ function EmployeeTable(props) {
                                 </div>
 
                                
-                                <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     {item.countryDialCode} {item.mobileNo}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                        {item.emailId}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     {props.user.userDeleteInd === true || user.role === "ADMIN" ? (
             <SuspendEmployee
@@ -1022,7 +875,7 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
                                 {props.user.multyOrgLinkInd=== true && (
-                                <div className=" flex font-medium ml-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  ml-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                   
             <MultiOrgEmployee
@@ -1033,7 +886,7 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
                                 )}
-                                <div className=" flex font-medium  md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs cursor-pointer  font-poppins text-center">
                                     {item.suspendInd !== true && ( 
               <Tooltip  title={item.role}>
@@ -1064,7 +917,7 @@ function EmployeeTable(props) {
                )}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[10.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[12.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     <span
               style={{ cursor: "pointer" }}
@@ -1084,7 +937,7 @@ function EmployeeTable(props) {
             </span>
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[9.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[9.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title="Add as Admin">
            <CircleNotificationsIcon
@@ -1097,7 +950,7 @@ function EmployeeTable(props) {
            </Tooltip>
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-base  font-poppins text-center">
                                     {item.suspendInd === true && (
                  <StyledPopconfirm
@@ -1105,13 +958,8 @@ function EmployeeTable(props) {
                  onConfirm={() => props.deleteEmployeeData(item.userId)}>
            <Tooltip title="Delete">
         
-           <DeleteOutlined
-        style={{
-          cursor: "pointer",
-          color: "red",
-          fontSize: "1rem",
-        }}
-           />
+           <DeleteOutlined className=" cursor-pointer text-red-600 !text-icon"
+        />
        
            </Tooltip>
            </StyledPopconfirm>
@@ -1147,6 +995,8 @@ function EmployeeTable(props) {
                  </Suspense>
         </div>
         </div>
+        </div>
+        )} 
     </>
 )
 
@@ -1169,6 +1019,9 @@ const mapStateToProps = ({ auth,role, employee,designations,departments }) => ({
   fetchingEmployeeError: employee.fetchingEmployeeError,
   employeeDrawerVisibleForAdmin: employee.employeeDrawerVisibleForAdmin,
   openNotifydrwr:employee.openNotifydrwr,
+  employeeSerachedData: employee.employeeSerachedData,
+  fetchingEmployeeInputSearchData: employee.fetchingEmployeeInputSearchData
+
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

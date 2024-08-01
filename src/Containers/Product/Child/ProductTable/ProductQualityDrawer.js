@@ -14,7 +14,7 @@ class ProductQualityDrawer extends Component {
     return (
       <>
         <StyledDrawer
-          title="Quality"
+          title={this.props.particularDiscountData.productFullName}
           destroyOnClose
           closable
           width={drawerWidth}

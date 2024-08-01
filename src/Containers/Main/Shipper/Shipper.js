@@ -1,4 +1,4 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, { useState,useEffect, Suspense, lazy } from "react";
 import ShipperHeader from "./ShipperHeader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -16,55 +16,110 @@ const ShipperDeleteTable =lazy(()=>import("./ShipperDeleteTable"));
 const ShipperDashboard =lazy(()=>import("./ShipperDashboard"));
 const ShipperCardList =lazy(()=>import("./ShipperCardList"));
 
+function  Shipper (props) {
+  const [currentData, setCurrntData] = useState("");
 
-class Shipper extends Component {
-  state = { currentData: "" };
-  handleClear = () => {
-    this.setState({ currentData: "" });
-    if (this.props.viewType === "table") {
-      this.props.getShipperByUserId(this.props.userId);
-    } else if (this.props.viewType === "all") {
-      this.props.getAllShipperList();
+const handleClear = () => {
+  setCurrntData("");
+    if (props.viewType === "table") {
+      props.getShipperByUserId(props.userId);
+    } else if (props.viewType === "all") {
+      props.getAllShipperList();
     }
   };
-  setCurrentData = (value) => {
-    this.setState({ currentData: value });
+  const setCurrentData = (value) => {
+    setCurrntData(value);
   };
-  render() {
+
     const {
    addShipperModal,
       handleShipperModal,
       setShipperViewType,
       viewType,
-    } = this.props;
+    } =props;
+
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+           "Name",//0
+            "Phone",//1
+            "Email",//2
+            "Ship By",//3
+            'Address',//4
+            'City',//5
+            'Pin Code',//6
+           'Reinstate',//7
+            'Loading',//8
+            'Edit',//9
+         'Do you want to delete',//10
+         'Shipper',//11
+         'Dial Code',//12
+         'Integrated',//13
+         'Assigned',//14
+         'Create',//15
+         'Update',//16
+         'My Shippers',//17
+         'All',//18
+         'Deleted',//19
+         'Search by Name or Sector',//20
+         'Export Shipper',//21
+         'Add',//22
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
+
+
     return (
       <>
         <ShipperHeader
           viewType={viewType}
           setShipperViewType={setShipperViewType}
-          handleClear={this.handleClear}
-          currentData={this.state.currentData}
-          setCurrentData={this.setCurrentData}
+          handleClear={handleClear}
+          currentData={currentData}
+          setCurrentData={setCurrentData}
           handleShipperModal={handleShipperModal}
+          translateText={props.translateText}
+          translatedMenuItems={translatedMenuItems}
+          selectedLanguage={props.selectedLanguage}
         />
         <AddShipperModal
           handleShipperModal={handleShipperModal}
           addShipperModal={addShipperModal}
+          translateText={props.translateText}
+          translatedMenuItems={translatedMenuItems}
+          selectedLanguage={props.selectedLanguage}
         />
         <Suspense fallback={<BundleLoader />}>
-          {this.props.viewType === "table" ? (
-            <ShipperCardList />
-          ) : this.props.viewType === "all" ? (
-            <AllShipperList />
-          ) : this.props.viewType === "grid" ? (
-            <ShipperDeleteTable />
-          ) : this.props.viewType === "dashboard" ? (
-            <ShipperDashboard />
+          {props.viewType === "table" ? (
+            <ShipperCardList translateText={props.translateText}
+            translatedMenuItems={translatedMenuItems}
+            selectedLanguage={props.selectedLanguage} />
+          ) : props.viewType === "all" ? (
+            <AllShipperList translateText={props.translateText}
+            translatedMenuItems={translatedMenuItems}
+            selectedLanguage={props.selectedLanguage}/>
+          ) : props.viewType === "grid" ? (
+            <ShipperDeleteTable translateText={props.translateText}
+            translatedMenuItems={translatedMenuItems}
+            selectedLanguage={props.selectedLanguage}/>
+          ) : props.viewType === "dashboard" ? (
+            <ShipperDashboard translateText={props.translateText}
+            translatedMenuItems={translatedMenuItems}
+            selectedLanguage={props.selectedLanguage}/>
           ) : null}
         </Suspense>
       </>
     );
-  }
 }
 
 const mapStateToProps = ({ shipper, auth }) => ({

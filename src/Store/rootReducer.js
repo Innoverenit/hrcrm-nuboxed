@@ -79,6 +79,7 @@ import { teamsReducer } from "../Containers/Main/Teams/TeamsReducer";
 import { inventoryReducer } from "../Containers/Main/Inventory/InventoryReducer";
 import { orderReducer } from "../Containers/Main/Order/OrderReducer";
 import { tradeReducer } from "../Containers/Main/Trade/TradeReducer";
+import { qualitysReducer } from "../Containers/Quality/QulityReducer";
 import {clubReducer} from "../Containers/Main/Club/ClubReducer";
 import { shipByReducer } from "../Containers/Settings/Category/ShipBy/ShipByReducer";
 import { catgCustomerReducer } from "../Containers/Settings/Category/Customer/CustomerReducer";
@@ -104,10 +105,12 @@ import { equipmentReducer } from "../Containers/Settings/Category/Equipment/Equi
 import { industryReducer } from "../Containers/Settings/Category/Industry/IndustryReducer";
 import { categoryListReducer } from "../Containers/Settings/Category/CategoryList/CategoryListReducer";
 import { vendorReducer } from "../Containers/Main/Vendor/VendorReducer";
-
+import { mainNoteReducer } from "../Containers/CustomNote/MainNoteReducer";
+import { erpNoteReducer } from "../Containers/Main/ErpNote/ErpNoteReducer";
 import { procreReducer } from "../Containers/Main/Procre/ProcreReducer";
 import { machinaryReducer } from "../Containers/Settings/Category/Machinary/MachinaryReducer";
 import { brandCategoryReducer } from "../Containers/Settings/Category/BrandCategory/BrandCategoryReducer";
+import { promotionReducer } from "../Containers/Main/Promotion/PrmotionReducer";
 
 const appReducer = combineReducers({
   dashboard: dashboardReducer,
@@ -138,6 +141,7 @@ const appReducer = combineReducers({
   contact: contactReducer,
   customer: customerReducer,
   trade: tradeReducer,
+  qulity: qualitysReducer,
   club: clubReducer,
   opportunity: OpportunityReducer,
   candidate: candidateReducer,
@@ -150,6 +154,8 @@ const appReducer = combineReducers({
   permissions: PermissionsReducer,
   designations: designationsReducer,
   region: regionsReducer,
+  mainNotes: mainNoteReducer,
+  erpNotes :erpNoteReducer,
   certifications: certificationReducer,
   departments: departmentsReducer,
   events: eventsReducer,
@@ -164,6 +170,7 @@ const appReducer = combineReducers({
   assessment: accessmentReducer,
   leads: leadsReducer,
   level: levelsReducer,
+  promotion: promotionReducer,
   stream: streamsReducer,
   unit: unitsReducer,
   program: programsReducer,

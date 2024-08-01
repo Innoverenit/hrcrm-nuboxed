@@ -31,12 +31,7 @@ const StyledInput = styled.input.attrs({
     position: relative;
   }
 `;
-/**
- *   z-index: 666;
- position: absolute;
- top: 0;
- right: 0; 
- */
+
 const StyledDropDownContainer = styled.div`
   border-radius: 0.1875em;
   background-color: white;

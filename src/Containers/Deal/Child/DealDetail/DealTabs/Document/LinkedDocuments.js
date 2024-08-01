@@ -38,6 +38,7 @@ class LinkedDocuments extends Component {
                   <div className="md:w-[9.7rem]">Date</div>
                       <div className=" md:w-[11.12rem]">Name</div>
                       <div className=" md:w-[9.5rem]">Description</div>
+                      <div className=" md:w-[9.5rem]">Description</div>
                       <div className=" md:w-[9.8rem] ">Uploaded By</div>
                      
                   </div>

@@ -657,12 +657,12 @@ export const getOpportunityDocument = (opportunityId) => (dispatch) => {
 };
 
 //SEARCH
-export const inputOpportunityDataSearch = (opportunityName) => (dispatch) => {
+export const inputOpportunityDataSearch = (name,type) => (dispatch) => {
   dispatch({
     type: types.INPUT_OPPORTUNITY_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/opportunity/details/${opportunityName}`, {
+    .get(`${base_url}/opportunity/search/type/${name}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3405,4 +3405,10 @@ export const getAllCatalogueSearch=(name)=>(dispatch)=>{
         payload: err,
       });
     });
+};
+
+export const ClearSearchedDataOfOpportunity = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_DATA_OPPORTUNITY,
+  });
 };

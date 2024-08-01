@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
-import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { getCountries } from "../../../Auth/AuthAction";
@@ -38,9 +37,11 @@ import {
 } from "../../CustomerAction";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
+// import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
+import CustomerSearchedData from "./CustomerSearchedData";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
 const CustomerOpportunityDrawerModal =lazy(()=> import("./CustomerOpportunityDrawerModal"));
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
@@ -57,10 +58,43 @@ function onChange(pagination, filters, sorter) {
 
 function CustomerAllCardList(props) {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+    'Name', // 0
+'Work', // 1
+'Sector', // 2
+'Source', // 3
+'Quotation', // 4
+'PipeLine', // 5
+'Assigned', // 6
+'Owner', // 7
+'Customer', // 8
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -80,9 +114,9 @@ function CustomerAllCardList(props) {
     })
     setPage(page + 1);
     props.getAllCustomerlIST(page,props.filter?props.filter:"creationdate");
-      props.getSectors();
-    props.getCountries();
-    props.getAllCustomerEmployeelist();
+    //   props.getSectors();
+    // props.getCountries();
+    // props.getAllCustomerEmployeelist();
   }, []);
 
   useEffect(() => {
@@ -146,84 +180,96 @@ const [rowdata, setrowdata] = useState("");
   // if (fetchingAllCustomerList) {
   //   return <BundleLoader />;
   // }
-
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
 
   return (
     <>
     
- 
+    {props.customerSearch.length > 0 ? (
+    <CustomerSearchedData
+    customerSearch={props.customerSearch}
+    fetchingCustomerInputSearchData={props.fetchingCustomerInputSearchData}
+    />
+  ) : (
          <div className=' flex justify-end sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
        
             <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
-              <FormattedMessage
+            {translatedMenuItems[0]}
+              {/* <FormattedMessage
                 id="app.name"
                 defaultMessage="Name"
-              />
+              /> */}
             </div> 
             <div className=" w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-              <FormattedMessage
+            {translatedMenuItems[1]}
+              {/* <FormattedMessage
                 id="app.work"
                 defaultMessage="Work"
-              />
+              /> */}
 
             </div>
             <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
-              <FormattedMessage
+            {translatedMenuItems[2]}
+              {/* <FormattedMessage
                 id="app.sector"
                 defaultMessage="Sector"
-              />
+              /> */}
 
             </div>
             <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-              <FormattedMessage
+            {translatedMenuItems[3]}
+              {/* <FormattedMessage
                 id="app.source"
                 defaultMessage="Source"
-              />
+              /> */}
 
             </div>
             <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] max-lg:w-[3.35rem] ">
-              <FormattedMessage
-                id="app.country"
-                defaultMessage="Country"
-              />
-
+             
             </div>
             <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
-              <FormattedMessage
+            {translatedMenuItems[4]}
+              {/* <FormattedMessage
                 id="app.quotation"
                 defaultMessage="Quotation"
-              />
+              /> */}
 
             </div>
             <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.8rem]">
-              <FormattedMessage
+            {translatedMenuItems[5]}
+              {/* <FormattedMessage
                 id="app.pipeline"
                 defaultMessage="Pipeline"
-              />
+              /> */}
 
             </div>
            
             <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
-              <FormattedMessage
+            {translatedMenuItems[6]}
+              {/* <FormattedMessage
                 id="app.assignedTo"
                 defaultMessage="Assigned"
-              />
+              /> */}
 
             </div>
             <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.8rem] max-lg:w-[6.2rem]">
-              <FormattedMessage
+              {translatedMenuItems[7]}  
+             {/* <FormattedMessage
                 id="app.owner"
                 defaultMessage="Owner"
-              />
+              /> */}
 
             </div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              <FormattedMessage
+            {translatedMenuItems[8]}
+              {/* <FormattedMessage
                 id="app.customer"
                 defaultMessage="Customer"
-              />
+              /> */}
             </div>
             <div className="w-[3.8rem]"></div>
 
@@ -236,12 +282,13 @@ const [rowdata, setrowdata] = useState("");
         hasMore={hasMore}
         loader={fetchingAllCustomerList?<div class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
+        style={{ scrollbarWidth:"thin"}}
       >
       
       { !fetchingAllCustomerList && allCustomers.length === 0 ?<NodataFoundPage />:allCustomers.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-         const countryCode = item.address[0].countryAlpha2Code
+         //const countryCode = item.countryAlpha2Code
          const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -260,10 +307,10 @@ const [rowdata, setrowdata] = useState("");
            } `;
                     return (
                         <div>
-                            <div className="flex rounded max-sm:flex-col justify-between bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+                            <div className="flex rounded max-sm:flex-col justify-between bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
                                 >
                                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                   <div className=" flex font-medium flex-col w-[18rem] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
+                                   <div className=" flex  w-[18rem] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
                                    <div className="flex max-sm:w-full">
                       <div>
                         
@@ -281,15 +328,12 @@ const [rowdata, setrowdata] = useState("");
                       <div class="max-sm:w-full md:flex items-center">
                       <Tooltip>
                                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                            <div class=" text-sm flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                            <div class=" text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
       {item.name}
     </Link>                                   
-         {/* <Link
-          toUrl={`customer/${item.customerId}`}
-          title={`${item.name}`}
-        >{item.name}</Link> */}
-               &nbsp;&nbsp;
+       
+             
         {date === currentdate ? (
     <div class="text-xs text-[tomato] mt-[0.4rem] font-bold"
     >
@@ -303,7 +347,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                                     </div> 
-                                    <div className=" flex font-medium max-sm:w-auto  items-center  w-[5.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                    <div className=" flex  max-sm:w-auto  items-center  w-[5.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
                            
                                    
                                     <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
@@ -311,7 +355,7 @@ const [rowdata, setrowdata] = useState("");
                                     </div>
                                 
                                 </div> 
-                                <div className=" flex font-medium  max-sm:w-auto items-center  w-[7.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                                <div className=" flex  max-sm:w-auto items-center  w-[7.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                         {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -321,7 +365,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex font-medium  items-center  max-sm:w-auto w-[15.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex items-center  max-sm:w-auto w-[15.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
 <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -329,18 +373,18 @@ const [rowdata, setrowdata] = useState("");
 </div>
 
 </div>
-<div className=" flex font-medium flex-col justify-center w-[5.1rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex justify-center w-[5.1rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 
 {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
-<div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-  <CountryFlag1 countryCode={countryCode} />
+<div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+  <CountryFlag1 countryCode={item.countryAlpha2Code} />
   &nbsp;
-  {countryCode}
+  {item.countryAlpha2Code}
 </div>
 </div>
                                 
-                                <div className=" flex font-medium flex-col w-full max-xl:w-[2.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex w-full max-xl:w-[2.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    
 
                                 <div class=" text-xs  max-sm:text-sm font-poppins text-center">
@@ -350,7 +394,7 @@ const [rowdata, setrowdata] = useState("");
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[4.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
+                                <div className=" flex  w-[4.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
                                   
 
                                 <div class=" text-xs  max-sm:text-sm font-poppins text-center">
@@ -358,7 +402,7 @@ const [rowdata, setrowdata] = useState("");
 
                           </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex w-[1rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between ">
                                     
 
                                 <div class=" text-xs  max-sm:text-sm font-poppins text-center">
@@ -366,7 +410,7 @@ const [rowdata, setrowdata] = useState("");
 
                           </div>
                                 </div>
-                                <div className=" flex font-medium items-center  flex-col w-[3rem] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
+                                <div className=" flex items-center  flex-col w-[3rem] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
                                   
 
                                     <div class=" text-xs  font-poppins">
@@ -385,7 +429,7 @@ const [rowdata, setrowdata] = useState("");
              
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center flex-col w-[6rem] max-xl:w-[5rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between mb-2 ">
+                                <div className=" flex items-center flex-col w-[6rem] max-xl:w-[5rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between mb-2 ">
                        
                      
 
@@ -401,9 +445,9 @@ const [rowdata, setrowdata] = useState("");
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       
-                      <div className=" flex font-medium justify-center flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      <div className=" flex  justify-center w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
-                        <div class=" text-sm  font-poppins"></div>
+                        <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
                           title="Change status to Account?"
                           onConfirm={() => handleConfirm(item.customerId)}
@@ -417,14 +461,14 @@ const [rowdata, setrowdata] = useState("");
                                {item.convertInd===0 && "Convert"}
                                {item.convertInd===1 && "In progress"}
                                {item.convertInd===2 && "Converted"}
-                               <NextPlanIcon  />
+                               <NextPlanIcon className="!text-icon " />
                               </div>
                             </Button>
                           )}
                         </Popconfirm>
                       </div>
 
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
+                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
                         <div>
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
@@ -472,7 +516,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>
                       </div>
 
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                         <div>
                           <Tooltip title="Contact">
                             <ContactsIcon
@@ -500,7 +544,7 @@ const [rowdata, setrowdata] = useState("");
 
                         </div>
                       </div>
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                      <div class="flex w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                         <div>
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
@@ -529,7 +573,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>
                       </div>
 
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
+                      <div class="flex w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                         <div >
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
@@ -578,38 +622,56 @@ const [rowdata, setrowdata] = useState("");
                 </InfiniteScroll>
       </div>
       </div>
-      
+        )}
   
       <AddCustomerDrawerModal
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
+     translatedMenuItems={props.translatedMenuItems}
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
       />
 
       <UpdateCustomerModal
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
+     translatedMenuItems={props.translatedMenuItems}
         customerId={currentCustomerId}
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}
         handleSetCurrentCustomerId={handleSetCurrentCustomerId}
       />
       <CustomerContactDrawerModal
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
+     translatedMenuItems={props.translatedMenuItems}
         customer={currentCustomer}
         addDrawerCustomerContactModal={addDrawerCustomerContactModal}
         handleCustomerContactDrawerModal={handleCustomerContactDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
       />
       <CustomerOpportunityDrawerModal
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
+     translatedMenuItems={props.translatedMenuItems}
         customer={currentCustomer}
         addDrawerCustomerOpportunityModal={addDrawerCustomerOpportunityModal}
         handleCustomerOpportunityDrawerModal={handleCustomerOpportunityDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
       />
          <CustomerPulseDrawerModal
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
     customer={currentCustomer}
         addDrawerCustomerPulseModal={addDrawerCustomerPulseModal}
         handleCustomerPulseDrawerModal={handleCustomerPulseDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
       />
       <AddCustomerEmailDrawerModal
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
+     translatedMenuItems={props.translatedMenuItems}
         // contactById={props.contactById}
         addDrawerCustomerEmailModal={props.addDrawerCustomerEmailModal}
         handleCustomerEmailDrawerModal={props.handleCustomerEmailDrawerModal}
@@ -617,6 +679,9 @@ const [rowdata, setrowdata] = useState("");
 
       
 <AddCustomerNotesDrawerModal
+ translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}
+translatedMenuItems={props.translatedMenuItems}
         customer={currentCustomer}
         rowdata={rowdata}
         addDrawerCustomerNotesModal={addDrawerCustomerNotesModal}
@@ -652,6 +717,8 @@ const mapStateToProps = ({
   countries: auth.countries,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
+  customerSearch: customer.customerSearch,
+  fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -660,7 +727,7 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
       setEditCustomer,
-      getSectors,
+      // getSectors,
       customerToAccount,
       emptyCustomer,
       updateOwnercustomerById,
@@ -671,7 +738,7 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerNotesDrawerModal,
       getCustomerById,
       getCountries,
-      getAllCustomerEmployeelist,
+      // getAllCustomerEmployeelist,
       handleCustomerContactDrawerModal,
       handleCustomerOpportunityDrawerModal,
     },

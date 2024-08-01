@@ -56,9 +56,6 @@ const DealDeletedCard = (props) => {
   if (fetchingDeletedDeal) {
     return <BundleLoader />;
   }
-
-  
-
   return (
     <>
       <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -103,6 +100,7 @@ const DealDeletedCard = (props) => {
           hasMore={hasMore}
           loader={fetchingDeletedDeal ? <div class="flex justify-center">Loading...</div> : null}
           height={"80vh"}
+          style={{scrollbarWidth:"thin"}}
         >
           {!fetchingDeletedDeal && props.deletedDeal.length === 0 ? <NodataFoundPage /> : props.deletedDeal.map((item, index) => {
             var findProbability = item.probability;
@@ -130,7 +128,7 @@ const DealDeletedCard = (props) => {
               } `;
             return (
               <div>
-                <div className="flex justify-between rounded  mt-2 bg-white h-11 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                <div className="flex justify-between rounded  mt-2 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //     borderBottom: "3px dotted #515050"
                 // }}
@@ -149,52 +147,40 @@ const DealDeletedCard = (props) => {
                             />
                           </SubTitle>
                         </div>
-                        <div class="w-[4%]">
-
+                        <div>
                         </div>
-
                         <div class="max-sm:w-full" >
                           <Tooltip>
-                            <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
-                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">
-                                            Name
-                                            </div> */}
+                            <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">                           
+                                            {/* Name */}
+                                       
                               <div class=" text-[0.82rem] flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-
-                                {/* <Link
-                                                 toUrl={`customer/${item.customerId}`}
-                                                 title={`${item.name}`} 
-                                               > */}
+                                            {/* link */}                          
                                 {item.opportunityName}
                                 {/* </Link> */}
                                 &nbsp;&nbsp;
                                 {date === currentdate ? (
                                   <span class="text-[tomato] mt-[0.4rem] font-bold"
-
                                   >
                                     New
                                   </span>
                                 ) : null}
-
                               </div>
                             </div>
                           </Tooltip>
                         </div>
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col  md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
-
-                      <div class=" text-sm  font-poppins">
+                    <div className=" flex   md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class="text-xs  font-poppins">
                         <Link to="/investor">
                           {item.investor}
                         </Link>
                       </div>
                     </div>
 
-                    <div className=" flex font-medium flex-col md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
-
-
-                      <div class=" text-sm  font-poppins">
+                    <div className=" flex  md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class="text-xs  font-poppins">
                         <SubTitle>
                           {item.contactName === null ? "None" :
                             <MultiAvatar2
@@ -210,28 +196,21 @@ const DealDeletedCard = (props) => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-
-
-                      <div class=" text-sm justify-center  font-poppins">
+                    <div className=" flex  md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class="text-xs justify-center  font-poppins">
                         {dayjs(item.startDate).format("DD/MM/YYYY")}
                       </div>
                     </div>
 
-                    <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-
-
-                      <div class=" text-sm  font-poppins text-center">
+                    <div className=" flex md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class="text-xs  font-poppins text-center">
                         <CurrencySymbol currencyType={item.currency} />
                         &nbsp;
                         {item.proposalAmount}
-
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-
-
-                      <div class=" text-sm  font-poppins text-center">
+                    <div className=" flex  md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class="text-xs  font-poppins text-center">
                         <Dropdown
                           overlay={
                             <div>
@@ -243,7 +222,6 @@ const DealDeletedCard = (props) => {
                                     backgroundColor: "#F5F5F5",
                                   }}
                                 >
-
                                 </Menu.Item>
                               </Menu>
                             </div>
@@ -261,17 +239,13 @@ const DealDeletedCard = (props) => {
                             />
                           </Tooltip>
                         </Dropdown>
-
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-
-
-                      <div class=" text-sm  font-poppins">
-
-                        <span>
+                    <div className=" flex  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class="text-xs  font-poppins">
+                      <span>
                           {item.assignedTo === null ? (
-                            "No Data"
+                            "None"
                           ) : (
                             <>
                               {item.assignedTo === item.ownerName ? (
@@ -290,10 +264,7 @@ const DealDeletedCard = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
-
-
-
+                    <div className=" flex md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
                       <span>
                         <MultiAvatar2
                           primaryTitle={item.ownerName}
@@ -306,36 +277,10 @@ const DealDeletedCard = (props) => {
                   </div>
                 </div>
               </div>
-
-
-
             )
           })}
         </InfiniteScroll>
-      </div>
-      {/* <UpdateLPitchModal
-        item={currentLeadsId}
-        updatePitchModal={props.updatePitchModal}
-        // updateLeadsModal={updateLeadsModal}
-        handleUpdatePitchModal={props.handleUpdatePitchModal}
-        // handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-      /> */}
-      {/* <AddLeadsEmailDrawerModal
-        item={currentLeadsId}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        addDrawerLeadsEmailModal={props.addDrawerLeadsEmailModal}
-        handleLeadsEmailDrawerModal={props.handleLeadsEmailDrawerModal}
-      /> */}
-      {/* <OpenASSimodal 
-        rowdata={rowdata}
-        openASSImodal={props.openASSImodal}
-      handleAssimodal={props.handleAssimodal}
-      />
-         <AddPitchNotesDrawerModal 
-       item={currentLeadsId}
-        addDrawerPitchNotesModal={props.addDrawerPitchNotesModal}
-        handlePitchNotesDrawerModal={props.handlePitchNotesDrawerModal}
-      /> */}
+      </div>    
     </>
   );
 };
@@ -357,8 +302,6 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getDeletedDeal,
-
-
     },
     dispatch
   );

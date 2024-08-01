@@ -17,7 +17,9 @@ function InventoryRoomRackModal(props) {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <RoomAndRackForm rowData={props.rowData} />
+                    <RoomAndRackForm rowData={props.rowData} translateText={props.translateText}
+        translatedMenuItems={props.translatedMenuItems}
+        selectedLanguage={props.selectedLanguage}/>
                 </Suspense>
             </StyledDrawer>
         </>

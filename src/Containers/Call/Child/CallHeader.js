@@ -1,11 +1,11 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, {  Suspense, lazy } from "react";
 import { ActionHeader } from '../../../Components/Utils';
 const CallActionLeft = lazy(() => import("./CallActionLeft"));
 const CallActionRight = lazy(() => import("./CallActionRight"));
 
-class CallHeader extends Component {
-    render() {
-        const { viewType, setCallViewType } = this.props;
+ function CallHeader (props) {
+
+        const { viewType, setCallViewType } = props;
         return (
             <div style={{position: "sticky",
         top: "3.35rem",
@@ -13,11 +13,13 @@ class CallHeader extends Component {
                 <ActionHeader
                     leftComponent={null}
                     rightComponent={<CallActionRight
+                        translatedMenuItems={props.translatedMenuItems}
+                        selectedLanguage={props.selectedLanguage}
+                        translateText={props.translateText}
                     />}
                 />
             </div>
         )
-    }
 }
 
 export default CallHeader;

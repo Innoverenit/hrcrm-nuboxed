@@ -1,5 +1,6 @@
 import React, { useState ,useEffect} from "react";
 import { connect } from "react-redux";
+import { base_url } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { getAllSalesList } from "../../Opportunity/OpportunityAction"
 import { FormattedMessage } from "react-intl";
@@ -26,7 +27,6 @@ import {
 } from "../CallAction";
 import {getAllCustomerData} from "../../Customer/CustomerAction"
 import { handleChooserModal } from "../../Planner/PlannerAction";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getAssignedToList } from "../../Employees/EmployeeAction";
 import { setClearbitCandidateData } from "../../Candidate/CandidateAction";
@@ -35,13 +35,11 @@ import { AudioOutlined } from '@ant-design/icons';
 import { Listbox } from '@headlessui/react'
 const { Option } = Select;  
 const ButtonGroup = Button.Group;
+
 const suffix = (
-  <AudioOutlined
+  <AudioOutlined className=" !text-icon  text-[#1890ff]"
     onClick={SpeechRecognition.startListening}
-    style={{
-      fontSize: 16,
-      color: '#1890ff',
-    }}
+   
   />
 );
 const green = "#39D1B4";
@@ -70,7 +68,7 @@ const CallSchema = Yup.object().shape({
 function CallForm(props) {
 
 
-  
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const[category,setCategory] =useState(props.selectedCall ? props.selectedCall.callCategory : "New")
   const[reminder,setReminder] =useState(true);
   const [places, setPlaces] = useState(Array.from({ length: 1 }, (_, placeIndex) => ({
@@ -101,6 +99,7 @@ function CallForm(props) {
     handleCallModal(false);
     callback && callback();
     // resetForm();
+  
   };
   useEffect(() => {
     // props.getAssignedToList(props.orgId);
@@ -109,6 +108,36 @@ function CallForm(props) {
     // props.getFilteredEmailContact(userId);
     // props.getAllOpportunityData(userId)
   }, []);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Type",//0
+          "Category",//1
+          "Mode",//2
+          "Channel",//3
+          "Subject",//4
+          "Date",//5
+          "Start Time",//6
+          "End Time",//7
+          "Time Zone",//8
+          "Assigned",//9
+          "Include",//10
+          "Prospect",//11
+          "Contact",//12
+          "Opportunity",//13
+          "Notes"//14
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   
   const [defaultOption, setDefaultOption] = useState(props.fullName);
@@ -290,7 +319,7 @@ function CallForm(props) {
     setIsLoadingCustomer(true);
     try {
       const apiEndpoint = `
-      https://develop.tekorero.com/employeePortal/api/v1/customer/drop/customer-list/${props.userId}`;
+    ${base_url}/customer/drop/customer-list/${props.userId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -330,7 +359,7 @@ function CallForm(props) {
     setIsLoadingContact(true);
     try {
       const apiEndpoint = `
-      https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`;
+     ${base_url}/customer/contact/drop/${customerId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -370,7 +399,7 @@ function CallForm(props) {
     try {
       const apiEndpoint = `
       
-      https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityList/customer/${customerId}`;
+     ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -413,7 +442,7 @@ function CallForm(props) {
   const fetchInclude = async () => {
     setIsLoadingInclude(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -616,25 +645,23 @@ function CallForm(props) {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
+            <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]" style={{scrollbarWidth:"thin"}}>
             <Form className="form-background">
               <div class=" flex justify-around max-sm:flex-col">
               <div class=" h-full w-w47.5 max-sm:w-wk"   >
               <div class=" flex justify-between w-full max-sm:flex-col">
-                    <div class=" w-2/6 mt-3 max-sm:w-wk ">
+                    <div class=" w-2/6  max-sm:w-wk ">
                      
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
                         {/* Type */}
-                        <FormattedMessage id="app.type" defaultMessage="type" />
+                        {translatedMenuItems[0]} 
+                        {/* <FormattedMessage id="app.type" defaultMessage="type" /> */}
                       </div>
                       <div class=" flex justify-between">
                         {/* <Tooltip title="Inbound"> */}
                         <Tooltip
                           title={
-                            <FormattedMessage
-                              id="app.introductory"
-                              defaultMessage="introductory"
-                            />
+                            <FormattedMessage id="app.introductory" defaultMessage="introductory"/>
                           }
                         >
                           <div
@@ -698,11 +725,11 @@ function CallForm(props) {
                     </div>
                     <div class=" w-1/2 mt-3">
                       
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <FormattedMessage
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
+                    {translatedMenuItems[1]} {/* <FormattedMessage
                           id="app.category"
                           defaultMessage="category"
-                        />
+                        /> */}
                       </div>
                       
                       <ButtonGroup>
@@ -745,11 +772,11 @@ function CallForm(props) {
                   
                   <div class=" flex mt-3 justify-between items-end max-sm:flex-col " >
                     <div class=" self-start">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                      <FormattedMessage
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
+                    {translatedMenuItems[2]}   {/* <FormattedMessage
                             id="app.mode"
                             defaultMessage="mode"
-                          />
+                          /> */}
                       </div>
                       <Switch
                         // style={{
@@ -761,12 +788,14 @@ function CallForm(props) {
                       />
                     </div>
                     <div class=" w-1/3 self-baseline max-sm:w-wk">
+                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
                       <FastField
+
                         name="modeType"
-                        label={<FormattedMessage
-                            id="app.channel"
-                            defaultMessage="channel"
-                          /> }
+                     
+                      //   label={
+                      //   {translatedMenuItems[2]}
+                      //  }
                         isColumn
                         options={[
                           "Phone",
@@ -781,6 +810,7 @@ function CallForm(props) {
                       />
                     </div>
                     <div class=" w-2/5 mt-[0.9rem] max-sm:w-wk">
+        
                       <FastField
                         type="text"
                         name="modeLink"
@@ -794,28 +824,28 @@ function CallForm(props) {
                       />
                     </div>
                   </div>
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
                   <Field
                     // isRequired
                     name="callPurpose"
                     // label="Topic"
-                    label={
-                      <FormattedMessage
-                        id="app.subject"
-                        defaultMessage="subject"
-                      />
-                    }
+                    // label={
+                      
+                    //   <FormattedMessage id="app.subject"defaultMessage="subject"/>
+                    // }
                     component={InputComponent}
                     isColumn
                     width={"100%"}
                     inlineLabel
                   />
            <div class="mt-3">
+          <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                   <Field
                     name="startDate"
                     // label="Date"
-                    label={
-                      <FormattedMessage id="app.date" defaultMessage="date" />
-                    }
+                    // label={
+                    //   <FormattedMessage id="app.date" defaultMessage="date" />
+                    // }
                     component={DatePicker}
                     isColumn
                     width={"100%"}
@@ -824,7 +854,7 @@ function CallForm(props) {
                   />
                   </div>
                   <div class=" flex mt-3 justify-between max-sm:flex-col">
-                    <div class=" w-1/2 max-sm:w-wk">
+                    <div class=" w-5/12 max-sm:w-wk">
                     {/* <input
         type="time"
         id="startTime"
@@ -832,62 +862,60 @@ function CallForm(props) {
         // value={startTime}
         value={places.startTime}
         onChange={(e) => handleStartTimeChange(e,  'startTime')}
-      /> */}
+      /> */}        <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>   
                     <Field
                         name="startTime"
                         // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.starttime"
-                            defaultMessage="Start Time"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.starttime"
+                        //     defaultMessage="Start Time"
+                        //   />
+                        // }
                         component={TimePicker}
                         isRequired
                         isColumn
                         use12Hours
                         value={values.startTime}
                         inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
+                       
                       />
                     </div>
-                    <div class=" w-2/5 max-sm:w-wk">
+                    <div class=" w-5/12 max-sm:w-wk">
+                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                       <Field
                         name="endTime"
                         // label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.endtime"
+                        //     defaultMessage="End Time"
+                        //   />
+                        // }
                         component={TimePicker}
                         use12Hours
                         isRequired
                         isColumn
                         value={values.endTime}
                         // inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
+                       
                       />
                     </div>
                   </div>
                   <div class="mt-3">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
                     name="timeZone"
                     isColumnWithoutNoCreate
                     //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="time Zone"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.timeZone"
+                    //     defaultMessage="time Zone"
+                    //   />
+                    // }
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -926,17 +954,18 @@ function CallForm(props) {
                   )} */}
                 </div>
                 <div class=" mt-3 h-3/4 w-w47.5 max-sm:w-wk " 
-                >
+                >   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
                 <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-semibold text-[0.75rem]"><FormattedMessage
+                  
+          {/* <Listbox.Label className="block font-semibold text-[0.75rem]"><FormattedMessage
                         id="app.assignedto"
                         defaultMessage="assignedto"
                       />
-            </Listbox.Label>
+            </Listbox.Label> */}
           <div className="relative mt-1">
-              <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+              <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="  relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5  pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
               </Listbox.Button>
               {open && (
@@ -998,6 +1027,7 @@ function CallForm(props) {
       )}
     </Listbox>
     <div class="mt-3">
+    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                   {/* <Field
                     name="included"
                     // label="Include"
@@ -1017,10 +1047,10 @@ function CallForm(props) {
                       value: employeeId,
                     }}
                   /> */}
-                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
+                  {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label> */}
                    <Select
           showSearch
-          style={{ width: 415 }}
+          className=" mt-1"
           placeholder="Search or select include"
           optionFilterProp="children"
           loading={isLoadingInclude}
@@ -1036,15 +1066,15 @@ function CallForm(props) {
           ))}
         </Select>
                  </div>
-                 <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
+                 <div class="mt-3 flex flex-col"  >
+                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
                   {props.user.crmInd === true &&(
               
      <>        
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label>
+{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label> */}
 
 <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select prospect"
         optionFilterProp="children"
         loading={isLoadingCustomer}
@@ -1061,15 +1091,15 @@ function CallForm(props) {
                   )} 
                   </div>
                   
-                  <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
+                  <div class="mt-3" >
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                   {props.user.crmInd === true &&(
                   
                   <>
-                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
+                  {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label> */}
 
 <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select contact"
         optionFilterProp="children"
         loading={isLoadingContact}
@@ -1088,6 +1118,7 @@ function CallForm(props) {
                   </div>
               
                   <div class="mt-3">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</div>
                   {props.user.crmInd === true &&(
               //    <Field
               //    name="opportunityId"
@@ -1112,10 +1143,9 @@ function CallForm(props) {
               //    inlineLabel
               //  />
               <>
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
+{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label> */}
               <Select
         showSearch
-        style={{ width: 417 }}
         placeholder="Search or select opportunity"
         optionFilterProp="children"
         loading={isLoadingOpportunity}
@@ -1154,10 +1184,10 @@ function CallForm(props) {
                   />
                    </div>
                    */}
-                  <div class="mt-3">
-                    <div>Notes</div>
-                    <div>
-                  <div>
+                <div class="mt-2">
+              <div>
+            <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</span>
+            <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
                         <span  >
@@ -1170,32 +1200,25 @@ function CallForm(props) {
                       <Tooltip title="Stop">
                         <span
                           
-                            class="!text-icon ml-1 text-green-600">
-                          <StopCircleIcon />
+                           >
+                          <StopCircleIcon  className="!text-icon ml-1 text-green-600" />
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span  class="!text-icon ml-1">
-                          <RotateRightIcon />
+                        <span  >
+                          <RotateRightIcon className="!text-icon ml-1"/>
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea>
-                  </div>
+                  </span> 
+                  
+                 
+                  
                 </div>
                   </div>
-                 
               
                   {/* <div class=" flex justify-between" >
                     <div 
@@ -1241,7 +1264,7 @@ function CallForm(props) {
                 </div>
               </div>
              
-              <div class=" flex mt-3 justify-end">
+              <div class=" flex mt-1 justify-end">
                 {isEditing && (
                   <>
                     <StyledPopconfirm

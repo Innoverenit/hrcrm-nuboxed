@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
+import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -27,6 +28,12 @@ function AddShipperForm(props) {
   useEffect(() => {
     props.getEmployeelistAsErp();
     props.getShipByData(props.orgId);
+  }, []);
+  useEffect(() => {
+   
+    props.getCustomerConfigure(props.orgId,"add","shipper")
+    // setSource("")
+    // props.getCurrency();
   }, []);
 
   const [defaultOption, setDefaultOption] = useState(props.fullName);
@@ -107,18 +114,19 @@ function AddShipperForm(props) {
                     isRequired
                     name="name"
                     type="text"
-                    label={<FormattedMessage id="app.name" defaultMessage="Name" />}
+                    label={props.translatedMenuItems[0]}
                     width={"100%"}
                     component={InputComponent}
                     isColumn
                     inlineLabel
                   />
                   <div class=" flex justify-between">
+                  {props.customerConfigure.dailCodeInd===true&&
                     <div class="w-[30%] max-sm:w-[40%] ">
                       <FastField
                         name="dialCode2"
                         selectType="dialCode"
-                        label={<FormattedMessage id="app.dialcode" defaultMessage="Dial Code" />}
+                        label={props.translatedMenuItems[12]}
                         isColumn
                         component={SearchSelect}
                         defaultValue={{
@@ -130,23 +138,28 @@ function AddShipperForm(props) {
                       />
 
                     </div>
+}
+
                     <div class="w-[68%] max-sm:w-[50%]">
+                    {props.customerConfigure.phoneNoInd===true&&
                       <FastField
                         name="phoneNo"
-                        label={<FormattedMessage id="app.phone" defaultMessage="Phone #" />}
+                        label={`${props.translatedMenuItems[1]} #`}
                         placeholder="Phone #"
                         isColumn
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
                       />
+                    }
                     </div>
+
                   </div>
                   <div class="w-full">
                     <FastField
                       type="email"
                       name="emailId"
-                      label={<FormattedMessage id="app.email" defaultMessage="Email" />}
+                      label={props.translatedMenuItems[2]}
                       className="field"
                       isColumn
                       width={"100%"}
@@ -155,9 +168,10 @@ function AddShipperForm(props) {
                     />
                   </div>
                   <div class="w-full">
+                  {props.customerConfigure.shipByInd===true&&
                     <FastField
                       name="shipById"
-                      label={<FormattedMessage id="app.shipby" defaultMessage="Ship By" />}
+                      label={props.translatedMenuItems[3]}
                       component={SelectComponent}
                       isColumn
                       value={values.shipById}
@@ -166,10 +180,15 @@ function AddShipperForm(props) {
                       }
                       inlineLabel
                     />
+}
 
                   </div>
+                  {props.customerConfigure.apiInd===true&&
                   <div class=" mt-2">
-                    <b> API Integrated </b>
+                    <b> 
+                      {/* API Integrated  */}
+                      API {props.translatedMenuItems[13]}
+                    </b>
                     <Switch
                       checked={apiInd}
                       onChange={handleApiToggle}
@@ -177,16 +196,18 @@ function AddShipperForm(props) {
                       unCheckedChildren="No"
                     />
                   </div>
+}
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
                 >
+                   {props.customerConfigure.assignedToInd===true&&
                  <div class=" h-full w-full">
                     <Listbox value={selected} onChange={setSelected}>
                       {({ open }) => (
                         <>
                          <Listbox.Label className="block font-semibold text-[0.75rem] ">
-
-                         Assigned
+                         {props.translatedMenuItems[14]}
+                         {/* Assigned */}
                           </Listbox.Label>
                           <div className="relative ">
                             <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -248,7 +269,9 @@ function AddShipperForm(props) {
                       )}
                     </Listbox>
                   </div>
+}
                   <div>
+                  {props.customerConfigure.addressInd===true&&
                 <div class="mt-3">
                     <FieldArray
                       name="address"
@@ -261,6 +284,7 @@ function AddShipperForm(props) {
                       )}
                     />
                   </div>
+}
                   </div>
                 </div>
               </div>
@@ -271,7 +295,8 @@ function AddShipperForm(props) {
                   htmlType="submit"
                   loading={props.addingShipper}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                    {props.translatedMenuItems[15]}
+                  {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */}
                 </Button>
               </div>
             </Form>
@@ -283,7 +308,7 @@ function AddShipperForm(props) {
 
 }
 
-const mapStateToProps = ({ auth, shipper, employee, shipBy }) => ({
+const mapStateToProps = ({ auth, shipper,settings, employee, shipBy }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   addingShipper: shipper.addingShipper,
@@ -291,7 +316,8 @@ const mapStateToProps = ({ auth, shipper, employee, shipBy }) => ({
   fullName: auth.userDetails.fullName,
   orgId:auth.userDetails.organizationId,
   ShipByData: shipBy.ShipByData,
-  employeeAsErp: shipper.employeeAsErp
+  employeeAsErp: shipper.employeeAsErp,
+  customerConfigure:settings.customerConfigure,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -299,7 +325,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       addShipper,
       getEmployeelistAsErp,
-      getShipByData
+      getShipByData,
+      getCustomerConfigure
     },
     dispatch
   );

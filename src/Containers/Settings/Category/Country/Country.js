@@ -59,7 +59,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
     <>
    <div>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex w-[18vw] mt-3"  >
     <Input
             placeholder="Search by country"
             style={{ width: "100%", marginLeft: "0.5rem" }}
@@ -91,7 +91,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!fetchingCountry && country.length === 0 ? <NodataFoundPage /> : country.slice().sort((a, b) => a.country_name.localeCompare(b.country_name)).map((region, index) => (
-            <div className="card9" key={region.country_id}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.country_id}>
             {/* Region name display or input field */}
             
             
@@ -414,7 +414,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Country);
 //       />
 //     ))
 //     ) : (
-//       <p>No Data Available</p>
+//       <p>None Available</p>
 //     )}
 
 

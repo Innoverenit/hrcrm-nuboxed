@@ -32,7 +32,7 @@ class ActionTab extends Component {
       <>
         <div class=" flex flex-no-wrap" >
         <div class=" w-full" >
-        <TabsWrappers style={{ height:"100vh"}}>
+        <TabsWrappers style={{ height:"80vh"}}>
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}
@@ -48,7 +48,7 @@ class ActionTab extends Component {
                  <span class="font-poppins ml-[0.25em]" >
                <Badge count={this.props.oppIncludedCount.OpportunityCount} overflowCount={999}>
               
-               Opportunity
+               Quotation
                  </Badge>
    
                 </span>

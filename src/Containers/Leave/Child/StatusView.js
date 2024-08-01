@@ -26,14 +26,7 @@ class StatsView extends Component {
 
         return (
             <>
-                {/* <FlexContainer justifyContent="flex-end">
-                    <ActionIcon
-                        tooltipTitle="Edit"
-                        iconType="edit"
-                        handleIconClick={toggleViewType}
-                        size="1em"
-                    />
-                </FlexContainer> */}
+            
                 <ProfileItemRow label="Maximum Leaves" value={totalLeaves} />
                 <ProfileItemRow label="Total Leaves Applied" value={totalAppliedLeaves} />
 

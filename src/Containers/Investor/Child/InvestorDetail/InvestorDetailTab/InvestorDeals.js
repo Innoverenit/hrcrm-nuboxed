@@ -46,8 +46,8 @@ const InvestorDeals = (props) => {
 console.log("investorDetails",props.investorDetails)
   return (
     <>
-  <div class="rounded-lg m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className=" flex  w-[98%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
+  <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div className=" flex  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[15rem]"><FormattedMessage
                   id="app.name"
                   defaultMessage="name"
@@ -121,7 +121,7 @@ console.log("investorDetails",props.investorDetails)
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      
                                 <div className=" flex font-medium flex-col w-[12rem]   max-sm:w-full">
@@ -254,7 +254,7 @@ strokeColor={"#005075"}
 
 <span>
 {item.assignedTo === null ? (
-                "No Data"
+                "None"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (

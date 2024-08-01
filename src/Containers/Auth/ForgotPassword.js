@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { Spacer } from "../../Components/UI/Elements";
 import { Input } from "./styled";
 import { ValidationError, Title, SubTitle } from "../../Components/UI/Elements";
 import { FlexContainer } from "../../Components/UI/Layout";
@@ -14,18 +13,7 @@ import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import FWLogo from "../../Assets/Images/name.jpg";  // for CT
  import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";  // for NB
 import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
-/**
- * yup validation scheme for set Password
- */
-// const ChangePasswordSchema = Yup.object().shape({
-//   password: Yup.string()
-//     .required("Required")
-//     .min(8, "password should be min 8 character ")
-//     .max(50, "password should be max 50 character !"),
-//   confirmPassword: Yup.string()
-//     .required("Enter password")
-//     .oneOf([Yup.ref("password")], "Passwords do not match"),
-// });
+
 class ForgotPassword extends Component {
   state = {
     type: "password",
@@ -88,7 +76,7 @@ class ForgotPassword extends Component {
                 <FormWrapper>
                   <Title>Forgot Password</Title>
                   <SubTitle>Link will be sent to your registered email id</SubTitle>
-                  <Spacer />
+                  <div class="mt-3" />
                   <Formik
                     initialValues={{
                       emailId: "",
@@ -235,23 +223,10 @@ class ForgotPassword extends Component {
                                   marginLeft: "-1.25em",
                                   marginTop: "-0.25em",
                                 }}
-                              // style={{ size: 24 }}
+                            
                               />
                             )}
-                            {/* {values.password.length &&
-                        values.password === values.confirmPassword ? (
-                          <CheckCircleTwoTone
-                            type="check-circle"
-                            theme="twoTone"
-                            twoToneColor="#52c41a"
-                            size={80}
-                            style={{
-                              marginLeft: "1.25em",
-                              marginTop: "0.875em",
-                              fontSize: "1.5625em",
-                            }}
-                          />
-                        ) : null} */}
+                          
 
                           </div>
 
@@ -277,38 +252,28 @@ class ForgotPassword extends Component {
                               htmlType="submit"
                               loading={this.props.doResetpassword}
                               style={{ width: "15.875em", height: "2.5em" }}
-                            // onClick={() => this.props.login('prabeen.strange@gmail.com', 'chicharito14')}
+                          
                             >
                               Save Password
                             </Button>
                           </span>
                         </div>
-                        {/* <Spacer style={{ marginBottom: "1em" }} /> */}
+                     
 
                       </Form>
                     )}
                   </Formik>
-                  {/* <Spacer style={{ marginBottom: -40 }} />
-              <Link to='/login' style={{ textAlign: 'center', fontSize: 16, marginLeft: "0.625em" }}>Back to login</Link> */}
-
+                 
                 </FormWrapper>
-                <div className="footer1"
-                  style={{
-                    textAlign: 'center',
-                    fontSize: '12x', fontFamily: 'SFS, Arial, sans-serif', position: 'absolute', bottom: 0
-                  }}>
-                  © {new Date().getFullYear()},  {` `} teKorero.com, All rights reserved.
+                <div className="text-xs text-center font-poppins mt-auto text-black absolute bottom-0"
+                 >
+                  © {new Date().getFullYear()},  {` `} CloudHub, All rights reserved.
                 </div>
               </AuthContainer>
 
             </FlexContainer>
           </div>
-          {/* <div className="Image">
-        <RandomImageScreen />
-        </div> */}
         </div>
-
-
       </>
     );
   }

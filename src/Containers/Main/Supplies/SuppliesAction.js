@@ -651,17 +651,17 @@ export const setSuppliesSupplierType = (data) => (dispatch) => {
     });
 };
 
-export const linkMaterialToggle = ( id,uniqueId) => (dispatch, getState) => {
+export const linkMaterialToggle = ( data,suppliesId) => (dispatch, getState) => {
   //console.log(permissions, userId);
-  const orgId = getState().auth.userDetails.organizationId;
+  //const orgId = getState().auth.userDetails.organizationId;
   dispatch({
     type: types.LINK_MATERIAL_TOGGLE_REQUEST,
   });
   axios
-  .put(`${base_url2}/supplies/uniqueId/${id}/${uniqueId}`, {}, {
-    headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-    },
+  .put(`${base_url2}/supplies/update/publishInd/${suppliesId}`,data,  {
+    // headers: {
+    //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    // },
   })
 
     .then((res) => {
@@ -743,3 +743,315 @@ export const ClearReducerDataOfMaterial = () => (dispatch) => {
     type: types.HANDLE_CLAER_REDUCER_DATA_MATERIAL,
   });
 };
+
+export const handleMaterialInventory = (modalProps) => (dispatch)=> {
+  dispatch({
+    type:types.HANDLE_MATERIAL_INVENTORY,
+    payload: modalProps,
+  });
+};
+
+export const getMaterialInventory = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_INVENTORY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/getInventory/locations/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // message.success(res.data.message);
+
+      dispatch({
+        type: types.GET_MATERIAL_INVENTORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+
+      dispatch({
+        type: types.GET_MATERIAL_INVENTORY_FAILURE,
+        payload: err,
+      });
+    });
+}; 
+
+export const handlePriceModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRICE_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const createMaterialCurrency = (data,) => (dispatch) => {
+  dispatch({ type: types.CREATE_MATERIAL_CURRENCY_REQUEST });
+  axios
+    .post(`${base_url2}/supplies/suppliesPrice`, data, {
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.CREATE_MATERIAL_CURRENCY_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Created Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CREATE_MATERIAL_CURRENCY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getMaterialCurrency = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_CURRENCY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/suppliesPrice/${suppliesId}`, {
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MATERIAL_CURRENCY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_CURRENCY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const createMaterialDiscount = (data,) => (dispatch) => {
+  dispatch({ type: types.CREATE_MATERIAL_DISCOUNT_REQUEST });
+  axios
+    .post(`${base_url2}/Discount`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.CREATE_MATERIAL_DISCOUNT_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Created Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CREATE_MATERIAL_DISCOUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getMaterialDiscount = (suppliesId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_DISCOUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/Discount/discount/supplies/discount-history/${suppliesId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MATERIAL_DISCOUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_DISCOUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const createMaterialDiscountB2C = (data,) => (dispatch) => {
+  dispatch({ type: types.CREATE_MATERIAL_DISCOUNTB2C_REQUEST });
+  axios
+    .post(`${base_url2}/Discount`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.CREATE_MATERIAL_DISCOUNTB2C_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Created Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CREATE_MATERIAL_DISCOUNTB2C_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getMaterialDiscountB2C = (suppliesId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_DISCOUNTB2C_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/Discount/discount/supplies/discount-history/${suppliesId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MATERIAL_DISCOUNTB2C_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_DISCOUNTB2C_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const featureMaterialToggle = ( data,suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.FEATURED_MATERIAL_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/update/featuredInd/${suppliesId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.FEATURED_MATERIAL_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.FEATURED_MATERIAL_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+export const getMaterialCategory = () => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_CATEGORY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/allSuppliesCatagory`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MATERIAL_CATEGORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_MATERIAL_CATEGORY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addMaterialCategory = (product, cb) => (dispatch) => {
+  dispatch({ type: types.ADD_MATERIAL_CATEGORY_REQUEST });
+  axios
+    .post(`${base_url2}/supplies/suppliescategory`, product, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_MATERIAL_CATEGORY_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_MATERIAL_CATEGORY_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};
+
+export const materialCategorySearch = (categoryName) => (dispatch) => {
+  dispatch({
+    type: types.MATERIAL_CATEGORY_SEARCH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/category/${categoryName}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      message.success(res.data.message);
+
+      dispatch({
+        type: types.MATERIAL_CATEGORY_SEARCH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      message.error("Material list is empty");
+      dispatch({
+        type: types.MATERIAL_CATEGORY_SEARCH_FAILURE,
+        payload: err,
+      });
+    });
+}; 

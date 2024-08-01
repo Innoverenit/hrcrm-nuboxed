@@ -40,8 +40,8 @@ const BussinessCard = (props) => {
           <FlexContainer style={{ flexBasis: "20%", margin: "0.3rem" }}>
             <MultiAvatar
               primaryTitle={primaryTitle}
-              imgHeight={"1.56em"}
-              imgWidth={"1.56em"}
+              imgHeight={"1.8rem"}
+              imgWidth={"1.8rem"}
             />
           </FlexContainer>
           <FlexContainer

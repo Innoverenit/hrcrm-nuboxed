@@ -15,7 +15,7 @@ const AddAWBNo = (props) => {
     const initialValues = {
         awbNo: awbFieldValue, // Initialize AWB input field value from state
         pickUp: props.formValue.pickUp || "",
-        shipperId: props.formValue.shipperId || "",
+        shipperId: props.rowData.shipperId || "",
         packages: props.formValue.packages || "",
         weight: props.formValue.weight || "",
         api: props.formValue.api || "",
@@ -72,7 +72,7 @@ const AddAWBNo = (props) => {
         setShowModal(false); 
         props.handleAddAWB(false)
     };
-
+console.log(props.rowData.shipperId)
     return (
         <>
         <Formik

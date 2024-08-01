@@ -16,8 +16,8 @@ class SubscriptionHeader extends Component {
           }
           rightComponent={
             <SubscriptionActionRight
-            createSubscriptiondrawer={createSubscriptiondrawer}
-            handleCreateSubscriptionDrawer={handleCreateSubscriptionDrawer}
+            handleSuscrptionModal={this.props.handleSuscrptionModal}
+       addingSuscrpitionModal={this.props.addingSuscrpitionModal}
             />
           }
         />

@@ -1,5 +1,5 @@
 
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,useRef  } from "react";
 import { connect } from "react-redux";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
@@ -18,26 +18,10 @@ const PitchActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
   const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
-  const handleChange = (e) => {
-    setCurrentData(e.target.value);
-
-    if (searchOnEnter&&e.target.value.trim() === "") {
-      setPage(pageNo + 1);
-      props.getPitch(props.userId,pageNo,"creationdate");
-      props.ClearReducerDataOfPitch()
-      setSearchOnEnter(false);
-    }
-  };
-  const handleSearch = () => {
-    if (currentData.trim() !== "") {
-      // Perform the search
-      props.searchPitchName(currentData);
-      setSearchOnEnter(true);  //Code for Search
-    } else {
-      console.error("Input is empty. Please provide a value.");
-    }
-  };
-  const dummy = ["cloud", "azure", "fgfdg"];
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); //Code for Search
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
   const {
     transcript,
     listening,
@@ -51,6 +35,99 @@ const PitchActionLeft = (props) => {
       setCurrentData(transcript);
     }
     }, [ transcript]);
+  const handleChange = (e) => {
+    setCurrentData(e.target.value);
+
+    if (searchOnEnter&&e.target.value.trim() === "") {
+      setPage(pageNo + 1);
+      props.getPitch(props.userId,pageNo,"creationdate");
+      props.ClearReducerDataOfPitch()
+      setSearchOnEnter(false);
+    }
+  };
+  const handleSearch = () => {
+    if (currentData.trim() !== "") {
+      if (props.teamsAccessInd) {
+        props.searchPitchName(currentData, 'team');
+      } else {
+        if (props.viewType === "card") {
+          props.searchPitchName(currentData, 'user');
+        } else if (props.viewType === "teams") {
+          props.searchPitchName(currentData, 'team');
+        } else if (props.viewType === "all") {
+          props.searchPitchName(currentData, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
+     
+      setSearchOnEnter(true);  //Code for Search
+    } else {
+      console.error("Input is empty. Please provide a value.");
+    }
+  };
+  const handleStartListening = () => {
+    setStartTime(Date.now());
+    setIsRecording(true);
+    SpeechRecognition.startListening();
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(() => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+    }, minRecordingTime);
+  };
+  const suffix = (
+    <AudioOutlined
+      onClick={handleStartListening}
+      style={{
+        fontSize: 16,
+        color: '#1890ff',
+      }}
+
+    />
+  );
+  const handleStopListening = () => {
+    SpeechRecognition.stopListening();
+    setIsRecording(false);
+    if (transcript.trim() !== "") {
+      setCurrentData(transcript);
+      if (props.teamsAccessInd) {
+        props.searchPitchName(transcript, 'team');
+      } else {
+        if (props.viewType === "card") {
+          props.searchPitchName(transcript, 'user');
+        } else if (props.viewType === "teams") {
+          props.searchPitchName(transcript, 'team');
+        } else if (props.viewType === "all") {
+          props.searchPitchName(transcript, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
+     // props.inputLeadsDataSearch(transcript);
+      setSearchOnEnter(true);
+    }
+  };
+  useEffect(() => {
+    if (!listening && isRecording) {
+      handleStopListening();
+    }
+  }, [listening]);
+  useEffect(() => {
+    if (isRecording && !listening) {
+      // If recording was stopped but less than 5 seconds have passed, restart listening
+      const elapsedTime = Date.now() - startTime;
+      if (elapsedTime < minRecordingTime) {
+        SpeechRecognition.startListening();
+      } else {
+        setIsRecording(false);
+      }
+    }
+  }, [listening, isRecording, startTime]);
+  const dummy = ["cloud", "azure", "fgfdg"];
+
     useEffect(() => {
       if (props.teamsAccessInd) {
         props.getTeamsPitchCount(props.userId);
@@ -71,16 +148,7 @@ const PitchActionLeft = (props) => {
   //   }, [props.userId]);
  
   const { user } = props;
-  const suffix = (
-    <AudioOutlined
-      onClick={SpeechRecognition.startListening}
-      style={{
-        fontSize: 16,
-        color: '#1890ff',
-      }}
 
-    />
-  );
   console.log( props.pitchCount.InvestorLeadsDetails)
   const teamCount = props.teamsAccessInd && props.teamsPitchCount ? props.teamsPitchCount.pitchTeam : 0;
   return (
@@ -210,7 +278,7 @@ const PitchActionLeft = (props) => {
           <FormattedMessage id="app.clear" defaultMessage="Clear" />
       
         </Button> */}
-          <div class=" w-2/5 mt-2 ml-2">
+          <div class=" w-2/5  ml-2">
           <StyledSelect placeholder="Sort"  onChange={(e)  => props.handleFilterChange(e)}>
            <Option value="CreationDate">Creation Date</Option> 
             <Option value="ascending">A To Z</Option>

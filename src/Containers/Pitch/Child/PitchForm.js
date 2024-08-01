@@ -6,7 +6,10 @@ import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import { CheckOutlined } from "@ant-design/icons";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
+import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import {getSectors} from "../../Settings/Sectors/SectorsAction"
 import {getSources} from "../../Settings/Category/Source/SourceAction"
 import {getAllEmployeelist,getDialCode} from "../../Investor/InvestorAction"
@@ -43,6 +46,7 @@ props.getDialCode();
 props.getInvestorCurrency();
 // props.getSectors();
   },[]);
+
   const sourceOption = props.sources.map((item) => {
     return {
       label: item.name
@@ -79,6 +83,7 @@ props.getInvestorCurrency();
       setClearbitData,
     } = props;
 
+   
     const [defaultOption, setDefaultOption] = useState(props.fullName);
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.allEmployeeList.find((item) => item.empName === selected);
@@ -92,10 +97,49 @@ props.getInvestorCurrency();
     const [isLoadingSector, setIsLoadingSector] = useState(false);
     const [touchedSector, setTouchedSector] = useState(false);
     const [contract, setContract] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
     const [priority,setpriority]=useState(props.selectedTask
       ? props.selectedTask.priority
       : "hot");
+
+      useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+             "First Name",//0
+              "Middle Name",//1
+              "Last Name",//2
+              "Email",//3
+              "DialCode",//4
+              "PhoneNo",//5
+              "Company",//6
+              "Url",//7
+              "Share Quantity",//8
+              "Share Value",//9
+              "Category",//10
+              "Date",//11
+              "Currency",//12
+              "Assigned",//13
+              "Address",//14
+              // "Street",//15
+              // "Zip Code",//16
+              // "City",//17
+              // "State",//18
+              // "Country",//19
+              "Notes"//20
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
 
       const handleIconClick = (type) => {
         setpriority(type);
@@ -200,6 +244,21 @@ props.getInvestorCurrency();
       startDate,
       endDate,
     } = props;
+    const [text, setText] = useState("");
+  function handletext(e) {
+    setText(e.target.value);
+  }
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
+
     return (
       <>
         <Formik
@@ -344,17 +403,18 @@ props.getInvestorCurrency();
                             isColumn
                           />
                         </div> */}
-                        <div class=" w-full max-sm:w-full">
-                          <FastField
+                        <div class="text-xs  w-full max-sm:w-full">
+                    <label>{translatedMenuItems[0]} </label>
+                             <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstname"
-                                defaultMessage="firstname"
-                              />
-                            }
+                           
+                            // Label={
+                            //   // <FormattedMessage
+                            //   //   id="app.firstname"
+                            //   //   defaultMessage="firstname"
+                            //   // />
+                            // }
                             type="text"
                             width={"100%"}
                             isColumn
@@ -364,16 +424,17 @@ props.getInvestorCurrency();
                         </div>
                       </div>                  
                       <div class=" flex justify-between  max-sm:flex-col">
-                        <div class=" w-2/5 max-sm:w-full">
+                        <div class=" text-xs  w-2/5 max-sm:w-full"> 
+                        <label>{translatedMenuItems[1]} </label>           
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={
-                              <FormattedMessage
-                                id="app.middle"
-                                defaultMessage="middle"
-                              />
-                            }
+                         
+                            // Label={
+                            //   <FormattedMessage
+                            //     id="app.middle"
+                            //     defaultMessage="middle"
+                            //   />
+                            // }
                             type="text"
                             width={"100%"}
                             isColumn
@@ -381,16 +442,17 @@ props.getInvestorCurrency();
                             inlineLabel
                           />
                         </div>
-                        <div class=" w-1/2 max-sm:w-full">
+                        <div class=" text-xs w-1/2 max-sm:w-full"> 
+                        <label>  {translatedMenuItems[2]} </label>                     
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastname"
-                                defaultMessage="lastname"
-                              />
-                            }
+                            // label="Last Name"
+                            // Label={
+                            //   <FormattedMessage
+                            //     id="app.lastname"
+                            //     defaultMessage="lastname"
+                            //   />
+                            // }
                             type="text"
                             width={"100%"}
                             isColumn
@@ -400,33 +462,32 @@ props.getInvestorCurrency();
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <Field
+                  </div>  
+                  <label>  {translatedMenuItems[3]} </label>       
+              <Field
                   isRequired
                     name="email"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
+                    // label={
+                    //   <FormattedMessage id="app.email" defaultMessage="Email" />
+                    // }
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
-                  /> 
-                               
-                  <div class=" flex justify-between">
+                  />                             
+                <div class=" flex justify-between">
                     <div class=" w-3/12 max-sm:w-[32%]">
-                   
-                    <FastField
-                        name="countryDialCode"
+                    <label>  {translatedMenuItems[4]} </label>
+                      <FastField
+                      name="countryDialCode"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.dialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.dialCode"
+                        //     defaultMessage="Dial Code"
+                        //   />
+                        // }
                         defaultValue={{
                           label:`+${user.countryDialCode}`,
                         }}
@@ -439,16 +500,17 @@ props.getInvestorCurrency();
                   
                     </div>
                     <div class=" w-8/12">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">   
+                    <label>  {translatedMenuItems[5]} </label>               
                       <FastField
                         type="text"
                         name="phoneNumber"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneno#"
-                            defaultMessage="phoneno#"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.phoneno#"
+                        //     defaultMessage="phoneno#"
+                        //   />
+                        // }
                         
                         isColumn
                         component={InputComponent}
@@ -459,14 +521,15 @@ props.getInvestorCurrency();
                     </div>
                   </div>
                  
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
+                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">   
+                  <label>  {translatedMenuItems[6]} </label>          
                   <Field
-                
+
                     name="companyName"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.company" defaultMessage="company" />
-                    }
+                    // label={
+                    //   <FormattedMessage id="app.company" defaultMessage="company" />
+                    // }
                     isColumn
                     width={"100%"}
                     setClearbitData={props.setClearbitData}
@@ -475,11 +538,12 @@ props.getInvestorCurrency();
                     inlineLabel
                   />
                   </div>
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">  
+                 <label>  {translatedMenuItems[7]} </label>                 
                   <Field
                     name="url"
                     type="text"
-                    label={<FormattedMessage id="app.url" defaultMessage="url" />}
+                    // label={<FormattedMessage id="app.url" defaultMessage="url" />}
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -490,7 +554,7 @@ props.getInvestorCurrency();
                   {contract ?
                     <div class=" w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                      <Field
+                   <Field
                         name="vatNo"
                         type="text"
                         label={
@@ -510,11 +574,11 @@ props.getInvestorCurrency();
                      {contract ?
                     <div class="w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                      <Field
+                                     <Field
                         name="businessRegistration"
                         type="text"
-                        // label="URL"
-                        label={
+                        label="URL"
+                        Label={
                           <FormattedMessage
                             id="app.businessregistration"
                             defaultMessage=" businessregistration"
@@ -533,6 +597,7 @@ props.getInvestorCurrency();
                   <div class=" flex justify-between">
                     <div class=" w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    <label>  {translatedMenuItems[8]} </label>
                       <Field
                         name="unitOfShare"
                         type="text"
@@ -546,6 +611,7 @@ props.getInvestorCurrency();
                     </div>
                     <div class="w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    <label>  {translatedMenuItems[9]} </label>
                       <Field
                         name="valueOfShare"
                         type="text"
@@ -640,7 +706,9 @@ props.getInvestorCurrency();
                     </div>
                     <div class=" flex items-center justify-between">
                     <div class=" flex flex-col   mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Category</div>
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    <label>  {translatedMenuItems[10]} </label>  {/* Category */}
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       onChange={handleContract}
@@ -649,7 +717,7 @@ props.getInvestorCurrency();
                       unCheckedChildren="Private"
                     />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" flex justify-between  w-3/5 max-sm:w-wk">
                     {/* <div class="flex">
                        <Tooltip title="Hot">
                          <Button
@@ -701,14 +769,13 @@ props.getInvestorCurrency();
                            </Button>
                        </Tooltip>
                      </div> */}
-                      <div className="flex">
+       <div className="flex">
       <Tooltip title="Hot">
         <i
           className={`fas fa-mug-hot${priority === "hot" ? " selected" : ""}`}
           onClick={() => handleIconClick("hot")}
           style={{
-            color: priority === "hot" ? "white" : "red",
-            backgroundColor: priority === "hot" ? "red" : "transparent",
+            color: priority === "hot" ? "red" : "red",
             borderRadius: "50%",
             fontSize: "1rem",
             height:"1.5rem",
@@ -717,7 +784,7 @@ props.getInvestorCurrency();
           }}
         ></i>
       </Tooltip>
-      &nbsp;
+     
       <Tooltip title="Warm">
         <i
           className={`fas fa-burn${priority === "warm" ? " selected" : ""}`}
@@ -733,7 +800,7 @@ props.getInvestorCurrency();
           }}
         ></i>
       </Tooltip>
-      &nbsp;
+  
       <Tooltip title="Cold">
         <i
           className={`far fa-snowflake${priority === "cold" ? " selected" : ""}`}
@@ -747,13 +814,15 @@ props.getInvestorCurrency();
             padding: "5px",
             cursor: "pointer"
           }}
+         
         ></i>
       </Tooltip>
     </div>
                       </div>
 </div>
 <div class=" flex items-center justify-between">
-<div class=" w-w47.5 max-sm:w-wk">
+<div class=" text-xs w-w47.5 max-sm:w-wk">
+<label>  {translatedMenuItems[11]} </label>
                     <Field
                       name="firstMeetingDate"
                       label="Date"
@@ -764,19 +833,20 @@ props.getInvestorCurrency();
                     />
                   </div>
 
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class="text-xs  w-w47.5 max-sm:w-wk"> 
+                  <label>  {translatedMenuItems[12]} </label>              
                     <Field
                       name="shareCurrency"
                       isColumnWithoutNoCreate
                       defaultValue={{
                         value: props.currency_id
                       }}
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
+                      // // label={
+                      // //   <FormattedMessage
+                      // //     id="app.currency"
+                      // //     defaultMessage="Currency"
+                      // //   />
+                      // }
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -791,16 +861,16 @@ props.getInvestorCurrency();
                   </div>
   </div>
                 </div>
-                <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
-                >
+                <div class=" text-xs h-3/4 w-w47.5 max-sm:w-wk "  
+                >                <label>  {translatedMenuItems[13]} </label>
                    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-semibold text-[0.75rem]"><FormattedMessage
+          {/* <Listbox.Label className="block font-semibold text-[0.75rem]"><FormattedMessage
                                 id="app.assignedto"
                                 defaultMessage="assignedto"
                               />
-           </Listbox.Label>
+           </Listbox.Label> */}
           <div className="relative ">
               <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -863,9 +933,9 @@ props.getInvestorCurrency();
         </>
       )}
     </Listbox>
-             
 
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
+    
+                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">                 
                   <FieldArray
                     name="address"
                     label="Address"
@@ -878,16 +948,45 @@ props.getInvestorCurrency();
                   />
                   </div>
                   
-                <div class="mt-3">
-                  <Field
-                    name="notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="notes" />
-                    }
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                  />
+                <div class="mt-3">               
+                <label>  {translatedMenuItems[14]} </label>
+                {/* Notes */}
+                    <div>
+                  <div>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span>
+                          <StopCircleIcon className="!text-icon ml-1 text-green-600" />
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span >
+                          <RotateRightIcon  className="!text-icon ml-1"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </div>
+                  <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div>
+                </div>
                   </div>
                 </div>
               </div>

@@ -1,16 +1,22 @@
 import React, { useEffect, } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
+        import AddDashboardRepairOrdersCloseModal from "../../Child/JumpStart/AddDashboardRepairOrdersCloseModal"
+import AddDashboardRepairOrdersOpenModal from "../../Child/JumpStart/AddDashboardRepairOrdersOpenModal"
+import AddDashboardRepairOrdersAddedModal from "../../Child/JumpStart/AddDashboardRepairOrdersAddedModal"
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
-  getJumpOrderDetail
+  getFinaceOrderDetails,
+  handleDasboardRepairOrderDrawer,
+  handleDasboardRepairOrderOpenDrawer,
+  handleDasboardRepairOrderCloseDrawer,
 } from "../../DashboardAction";
 
 function DashboardFinanceJumpstart(props) {
 
   useEffect(() => {
-    // props.getJumpOrderDetail(props.timeRangeType, "Catalog")
+     props.getFinaceOrderDetails(props.userId,props.timeRangeType)
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
   return (
@@ -21,53 +27,43 @@ function DashboardFinanceJumpstart(props) {
             <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-              title={<FormattedMessage
-                id="app.ordersAdded"
-                defaultMessage="Refurbish Added"
-              />}
-              // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
+              title="Orders Added"
+              jumpstartClick={()=>props.handleDasboardRepairOrderDrawer(true)}
               cursorData={"pointer"}
-              value={props.orderinDashboard.totalOrder}
-            // isLoading={props.fetchingJumpOrderCount}
+              value={props.finaceOrderinDashboard.totalOrder}
+             isLoading={props.fetchingFinaceorderDetails}
             />
 
             <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-              title={<FormattedMessage
-                id="app.ordersopen"
-                defaultMessage="Refurbish Open"
-              />}
-              // jumpstartClick={()=>handlePitchAddedDrawer(true)}
+              title="Orders Open"
+          jumpstartClick={()=>props.handleDasboardRepairOrderOpenDrawer(true)}
               cursorData={"pointer"}
-            // value={ props.orderinDashboard.pendingOrder}
-            // isLoading={props.fetchingJumpOrderCount}
+            value={ props.finaceOrderinDashboard.pendingOrder}
+            isLoading={props.fetchingFinaceorderDetails}
             />
           </div>
           <div class="flex w-wk">
             <JumpStartBox
 bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
-              title={<FormattedMessage
-                id="app.ordersclosed"
-                defaultMessage="Refurbish Closed"
-              />}
-              // jumpstartClick={()=>handleDealAddedDrawer(true)}
+              title="Orders Closed"
+             
+              jumpstartClick={()=>props.handleDasboardRepairOrderCloseDrawer(true)}
               cursorData={"pointer"}
-            // value={props.orderinDashboard.completeOrder}
-            // isLoading={props.fetchingJumpOrderCount}
+              value={props.finaceOrderinDashboard.completeOrder}
+              isLoading={props.fetchingFinaceorderDetails}
             />
             <JumpStartBox
                         bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
-              title={<FormattedMessage
-                id="app.orderscancelled"
-                defaultMessage="Refurbish Cancelled"
-              />}
+              title="Orders  Cancelled"
+              
               // jumpstartClick={()=>handleDealClosedDrawer(true)}
               cursorData={"pointer"}
-              value={props.orderinDashboard.cancelOrder}
-            // isLoading={props.fetchingJumpOrderCount}
+              value={props.finaceOrderinDashboard.cancelOrder}
+              isLoading={props.fetchingFinaceorderDetails}
             />
 
 
@@ -89,6 +85,21 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                </div> */}
         </div>
       </div>
+
+      <AddDashboardRepairOrdersAddedModal
+      addDashboardRepairOrderModal={props.addDashboardRepairOrderModal}
+       handleDasboardRepairOrderDrawer={props.handleDasboardRepairOrderDrawer}
+      />
+        <AddDashboardRepairOrdersOpenModal
+        addDashboardRepairOrderOpenModal={props.addDashboardRepairOrderOpenModal}
+      // addDashboardRepairOrderModal={props.addDashboardRepairOrderModal}
+       handleDasboardRepairOrderOpenDrawer={props.handleDasboardRepairOrderOpenDrawer}
+      />
+       <AddDashboardRepairOrdersCloseModal
+        addDashboardRepairOrderCloseModal={props.addDashboardRepairOrderCloseModal}
+      // addDashboardRepairOrderModal={props.addDashboardRepairOrderModal}
+       handleDasboardRepairOrderCloseDrawer={props.handleDasboardRepairOrderCloseDrawer}
+      />
    
       {/* <PitchQualifiedDrawer
       openPitchQualified={openPitchQualified}
@@ -115,15 +126,23 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   orderinDashboard: dashboard.orderinDashboard,
   orgId: auth.userDetails.organizationId,
   fetchingJumpOrderCount: dashboard.fetchingJumpOrderCount,
-  userId: auth.userDetails.employeeId,
+  userId: auth.userDetails.userId,
+  addDashboardRepairOrderModal:dashboard.addDashboardRepairOrderModal,
+  finaceOrderinDashboard: dashboard.finaceOrderinDashboard,
+  fetchingFinaceorderDetails: dashboard.fetchingFinaceorderDetails,
   timeRangeType: dashboard.timeRangeType,
+  addDashboardRepairOrderCloseModal:dashboard.addDashboardRepairOrderCloseModal,
+  addDashboardRepairOrderOpenModal:dashboard.addDashboardRepairOrderOpenModal
 
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      // getJumpOrderDetail
+      getFinaceOrderDetails,
+      handleDasboardRepairOrderDrawer,
+      handleDasboardRepairOrderOpenDrawer,
+      handleDasboardRepairOrderCloseDrawer,
       //   getJumpInvestor2list,
       //   getJumpInvestor3list,
       //   getJumpInvestor4list,

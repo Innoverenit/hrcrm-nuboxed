@@ -155,13 +155,13 @@ if (props.fetchingRegions) {
           />
             </div>
             <div class="w-[18rem]">
-  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"region"}`}>
-    <div className="circle-icon !text-base cursor-pointer text-[green]">
-      <Tooltip placement="top" title="Download XL">
-        <DownloadIcon />
-      </Tooltip>
-    </div>
-  </a>
+          <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"region"}`}>
+            <div className="circle-icon !text-base cursor-pointer text-[green]">
+              <Tooltip placement="top" title="Download XL">
+                <DownloadIcon />
+              </Tooltip>
+            </div>
+          </a>
 </div>
                 {addingRegion ? (
                     <div>
@@ -184,7 +184,7 @@ if (props.fetchingRegions) {
          
          <MainWrapper className="!h-[69vh] !mt-2" >
             {regions.map(region => (
-              <div className="card9" key={region.regionsId}>
+              <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.regionsId}>
               {/* Region name display or input field */}
               {editingId === region.regionsId ? (
                   <input
@@ -194,7 +194,7 @@ if (props.fetchingRegions) {
                       onChange={(e) => setNewRegionName(e.target.value)}
                   />
               ) : (
-                  <div className="region">{region.regions}</div>
+                  <div >{region.regions}</div>
               )}
 
               {/* Action buttons */}
@@ -214,7 +214,7 @@ if (props.fetchingRegions) {
                           <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
-                      <EditOutlined style={{ cursor:"pointer"}} onClick={() => editRegion(region.regionsId, region.regions,region)} />
+                      <EditOutlined className=" cursor-pointer !text-icon text-red-600" onClick={() => editRegion(region.regionsId, region.regions,region)} />
                   )}
 
                   {/* Delete button */}
@@ -224,12 +224,9 @@ if (props.fetchingRegions) {
                           cancelText="No"
                           onConfirm={() =>  props.removeRegions(region.regionsId,props.orgId)}
                         >
-                  <DeleteOutlined 
-                   style={{
-                    
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                  <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
+                   
+                 
                 // onClick={() => 
                 //     props.removeRegions(region.regionsId)
                 // }

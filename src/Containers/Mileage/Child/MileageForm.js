@@ -244,12 +244,9 @@ function MileageForm(props) {
         <th>Cost Code</th>
         <th>From</th>
         <th>To</th>
-        <th>Distance</th>
-        {/* <th>Unit</th> */}
+        <th>Distance</th> 
         <th>Remarks</th>
-
-        {/* <th>Rate</th>
-        <th>Currency</th> */}
+   
         {row.map((item) => {
           return (
             <tr>
@@ -296,20 +293,7 @@ function MileageForm(props) {
                   style={{ width: "80%" }}
                   isRequired
                 />
-              </td>
-              {/* <td style={{ width: "11%" }}>
-                <Select
-                  style={{ width: "90%" }}
-          
-                  isRequired
-                   disabled
-                   value="km"
-                  
-                >
-                  
-                
-                </Select>
-              </td> */}
+              </td>       
               <td>
                 <TextInput
                   style={{ width: "100%" }}
@@ -317,38 +301,14 @@ function MileageForm(props) {
                   value={`${item.remark}`}
                   onChange={handleChangeremark}
                 />
-              </td>
-              {/* <td>
-                <TextInput
-                  name={`${item.id}mileageRate`}
-                  value={`${item.mileageRate}`}
-                  onChange={handleChangemileageRate}
-                  style={{ width: "50%" }}
-                />
-              </td> */}
-              {/* <td>
-                <Select
-                  style={{ width: 120 }}
-                  onSelect={(value) =>
-                    handleCurrencyChange(value, `${item.id}curr`)
-                  }
-                >
-                  {props.currencies.map((item) => {
-                    return (
-                      <Option value={item.currencyName}>
-                        {item.currencyName}
-                      </Option>
-                    );
-                  })}
-                </Select>
-              </td> */}
+              </td>        
 
               {row.length > 1 && (
                 <DeleteOutlined
                   style={{
                     color: "red",
                     fontSize: "1.125em",
-                    // marginLeft: "0.3125em",
+            
                   }}
                   type="delete"
                   onClick={() => handleDelete(item)}

@@ -76,8 +76,8 @@ function CustomerContactCardList(props) {
     <>
       
      
-      <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+      <div class="rounded  m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[13.5rem]">
         <FormattedMessage
                   id="app.name"
@@ -130,7 +130,7 @@ function CustomerContactCardList(props) {
         
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+                            <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1"
                                 >
                                      
                                 <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -141,8 +141,8 @@ function CustomerContactCardList(props) {
               primaryTitle={item.firstName}
               imageId={item.imageId}
               imageURL={item.imageURL}
-              imgWidth={"1.8em"}
-              imgHeight={"1.8em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
           </SubTitle></div>
           &nbsp;
@@ -157,11 +157,8 @@ function CustomerContactCardList(props) {
           title={`${item.fullName}`}
         >{item.fullName}</Link>&nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-xs mt-[0.4rem]"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
+          <span class="!text-icon mt-[0.4rem]  text-[tomato] font-bold"
+           
           >
             New
           </span>
@@ -182,7 +179,7 @@ function CustomerContactCardList(props) {
                                          {item.emailId}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[16.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex font-medium flex-col md:w-[13.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
                                   <div class="text-sm  font-poppins">
                                   {item.countryDialCode} {item.mobileNumber}
@@ -208,12 +205,10 @@ function CustomerContactCardList(props) {
 
                                     <div class=" text-sm  font-poppins text-center">
                                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-              <span
-                style={{
-                  cursor: "pointer",
-                }}
+              <span className=" cursor-pointer"
+               
               >
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <i class="fa fa-map-marker !text-icon" aria-hidden="true"></i>
               </span>
             </Tooltip>
 
@@ -231,7 +226,7 @@ function CustomerContactCardList(props) {
               >
                 {" "}
                 <a href={`https://www.linkedin.com`} target="_blank">
-                  <i class="fab fa-linkedin"></i>
+                  <i class="fab fa-linkedin !text-icon"></i>
                 </a>
               </span>
             </Tooltip>
@@ -251,14 +246,14 @@ function CustomerContactCardList(props) {
                    handleIconClick(item.contactId);
                 }}
               >
-                <BorderColorIcon style={{ fontSize: "0.8rem", }} />
+                <BorderColorIcon className=" !text-icon " />
               </span>
               {/* )} */}
             </Tooltip>
 
                                     </div>
                                     <div class=" text-sm  font-poppins text-center">
-                                    <StyledPopconfirm
+                                    <StyledPopconfirm 
               placement="bottom"
               //title="Do you wish to detach?"
               title={

@@ -20,6 +20,11 @@ const initialState = {
   fetchingDealError:false,
   dealsByuserId:[],
 
+  fetchingDealInputSearchData:false,
+  fetchingDealInputSearchDataError:false,
+  dealSerachedData:[],
+
+
   addOwnModal:false,
 
   fetchingTeamsDealsData: false,
@@ -874,6 +879,24 @@ export const dealReducer = (state = initialState, action) => {
 
                                 case types.HANDLE_OWN_MODAL:
               return { ...state, addOwnModal: action.payload };
+
+
+              case types.INPUT_DEAL_SEARCH_DATA_REQUEST:
+                return { ...state, fetchingDealInputSearchData: true };
+              case types.INPUT_DEAL_SEARCH_DATA_SUCCESS:
+                return {
+                  ...state,
+                  fetchingDealInputSearchData: false,
+                   dealSerachedData: action.payload,
+                };
+              case types.INPUT_DEAL_SEARCH_DATA_FAILURE:
+                return { ...state, fetchingDealInputSearchDataError: true };
+          
+                case types.HANDLE_CLAER_SEARCHED_DATA_DEAL:
+                  return { ...state, 
+                    dealSerachedData: [],            
+                  };
+
 
     default:
       return state;

@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense } from 'react';
+import React, {  Suspense } from 'react';
 import { BundleLoader } from "../../../Components/Placeholder";
 import ShipperJumpstart from './ShipperJumpstart';
 import {

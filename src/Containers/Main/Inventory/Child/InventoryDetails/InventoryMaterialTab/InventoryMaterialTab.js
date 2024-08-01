@@ -58,21 +58,25 @@ class InventoryMaterialTab extends PureComponent {
                         <TabPane
                             tab={
                                 <>
-                                    <i class="fas fa-satellite-dish"></i>&nbsp; Receive
+                                    <i class="fas fa-satellite-dish"></i>&nbsp; 
+                                    {/* Receive */} {this.props.translatedMenuItems[5]}
                                 </>
                             }
                             key="1"
                         >
                             {" "}
                             <Suspense fallback={"Loading..."}>
-                                <MaterialReceivedTable />
+                                <MaterialReceivedTable  
+                    translatedMenuItems={this.props.translatedMenuItems}
+             />
                             </Suspense>
                         </TabPane>
                         <TabPane
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick}>
-                                        <i class="far fa-share-square"></i>&nbsp;Stock
+                                        <i class="far fa-share-square"></i>&nbsp;
+                                        {/* Stock */} {this.props.translatedMenuItems[6]}
 
                                     </span>
                                     {activeKey === "2" && (
@@ -104,6 +108,7 @@ class InventoryMaterialTab extends PureComponent {
                                   <MaterialUnitsData 
                                    inventory={this.props.inventory}
                                 //    storedLoc={this.props.storedLoc} 
+                                translatedMenuItems={this.props.translatedMenuItems}
                                    />
                                
                             </Suspense>
@@ -112,18 +117,20 @@ class InventoryMaterialTab extends PureComponent {
                                   {" "}
                                   <MaterialStockTable 
                                 inventory={this.props.inventory}
+                                translatedMenuItems={this.props.translatedMenuItems}
                                 />
                                 </Suspense>
                                 
                               )}
                         </TabPane>
-
+{/* {this.props.productionInd===true&&this.props.erpInd===true&&( */}
                         <TabPane
                             tab={
                                 <>
                                     <span>
-                                        <i class="far fa-share-square"></i>&nbsp;Cell
-
+                                        <i class="far fa-share-square"></i>&nbsp;
+                                        {/* Cell */}
+                                        {this.props.translatedMenuItems[7]}
                                     </span>
 
                                 </>
@@ -134,9 +141,11 @@ class InventoryMaterialTab extends PureComponent {
                                 {/* <MaterialCellStock /> */}
                                 <MaterialCellCardView 
                                  inventory={this.props.inventory}
+                                 translatedMenuItems={this.props.translatedMenuItems}
                                 />
                             </Suspense>
                         </TabPane>
+    {/* )} */}
                     </StyledTabs>
                 </TabsWrapper>
 
@@ -145,7 +154,8 @@ class InventoryMaterialTab extends PureComponent {
     }
 }
 const mapStateToProps = ({ inventory, auth }) => ({
-
+    productionInd:auth.userDetails.userDetails,
+    erpInd:auth.userDetails.erpInd,
 });
 
 const mapDispatchToProps = (dispatch) =>

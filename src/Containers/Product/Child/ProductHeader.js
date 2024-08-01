@@ -11,6 +11,8 @@ class ProductHeader extends Component {
         <ActionHeader
           leftComponent={
             <ProductActionLeft
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
               viewType={viewType}
               setProductViewType={setProductViewType}
 
@@ -18,6 +20,8 @@ class ProductHeader extends Component {
           }
           rightComponent={
           <ProductActionRight 
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           handleConfigureModal={handleConfigureModal}
           />
         }

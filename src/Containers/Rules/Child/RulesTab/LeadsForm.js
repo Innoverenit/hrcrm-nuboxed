@@ -6,7 +6,7 @@ import { Button,  } from "antd";
 import { Formik, Form, Field,  } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { addLeaves, getLeavesDetails } from "../../../Settings/SettingsAction";
-import moment from "moment";
+import dayjs from "dayjs";
 
 
 function LeadsForm(props) {
@@ -166,7 +166,7 @@ country:props.countryId,
                   </Button>
                 </div>
                 
-                <div>Updated on {moment(props.leaveData.updationDate).format("ll")} by {props.leaveData.updatedBy}</div> 
+                <div>Updated on {dayjs(props.leaveData.updationDate).format("ll")} by {props.leaveData.updatedBy}</div> 
            
           </Form>
         )}

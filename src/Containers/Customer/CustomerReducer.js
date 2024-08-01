@@ -219,6 +219,8 @@ const initialState = {
    fetchingDocumentsByContactIdError: false,
    documentsByContactId:[],
 
+   fetchingCustomerInputSearchData:false,
+
   fetchingCustomerById: false,
   fetchingCustomerByIdError: false,
   customerById: [],
@@ -245,6 +247,9 @@ const initialState = {
 
   addingDocumentByCustomerId: false,
   addingDocumentByCustomerIdError: false,
+
+  addingDocumentByHospital: false,
+  addingDocumentByHospitalError: false,
 
   fetchingDocumentsByCustomerId: false,
   fetchingDocumentsByCustomerIdError: false,
@@ -359,7 +364,7 @@ const initialState = {
   //search
   fetchingCustomerInputSearchData: false,
   fetchingCustomerInputSearchDataError: false,
-  inputData: [],
+  customerSearch: [],
 
   addingNotesByCustomerId: false,
   addingNotesByCustomerIdError: false,
@@ -444,7 +449,7 @@ const initialState = {
 
   fetchingAttendanceList: false,
   fetchingAttendanceListError: false,
-  attendanceByList: [],
+  attendanceByList: {},
 
   addingRecruitmentProfile: false,
   addingRecruitmentProfileError: false,
@@ -724,6 +729,31 @@ export const customerReducer = (state = initialState, action) => {
         addingDocumentByCustomerIdError: true,
       };
 
+
+      case types.ADD_HOSPITAL_DOCUMENT_REQUEST:
+      return {
+        ...state,
+        addingDocumentByHospital: true,
+        addingDocumentByHospitalError: false,
+      };
+    case types.ADD_HOSPITAL_DOCUMENT_SUCCESS:
+      return {
+        ...state,
+        addingDocumentByHospital: false,
+        addingDocumentByHospitalError: false,
+       // documentUploadModal:false,
+        documentsByCustomerId: [action.payload, ...state.documentsByCustomerId],
+        documentsByContactId: [action.payload, ...state.documentsByContactId],
+        documentsByOpportunityId: [action.payload, ...state.documentsByOpportunityId],
+        documentsByInnOppId: [action.payload, ...state.documentsByInnOppId],
+        documentsByInvestorId: [action.payload, ...state.documentsByInvestorId]
+      };
+    case types.ADD_HOSPITAL_DOCUMENT_FAILURE:
+      return {
+        ...state,
+        addingDocumentByHospital: false,
+        addingDocumentByHospitalError: true,
+      };
     /*get list of documents of an Customer */
     case types.GET_CUSTOMER_DOCUMENTS_REQUEST:
       return {
@@ -846,10 +876,12 @@ export const customerReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingCustomerInputSearchData: false,
-        customerByUserId: action.payload,
-        latestCustomer: action.payload,
-        customerCloser: action.payload,
-        teamCustomer: action.payload,
+        // customerByUserId: action.payload,
+        // latestCustomer: action.payload,
+        // customerCloser: action.payload,
+        // teamCustomer: action.payload,
+        customerSearch: action.payload,
+
       };
     case types.INPUT_CUSTOMER_SEARCH_DATA_FAILURE:
       return { ...state, fetchingCustomerInputSearchDataError: true };
@@ -1081,8 +1113,8 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         puttingCustContcToggle: false,
         contactByCustomerId: state.contactByCustomerId.map((item) => {
-          if (item.customerId === action.payload.customerId) {
-            return { ...item, instockInd: action.payload.instockInd };
+          if (item.contactId === action.payload.contactId) {
+            return action.payload;
           } else {
             return item;
           }
@@ -1889,7 +1921,7 @@ export const customerReducer = (state = initialState, action) => {
     case types.HANDLE_CLAER_REDUCER_DATA_CUSTOMER:
       return {
         ...state,
-        customerByUserId: [],
+        customerSearch: [],
         // deletedTruck: []
       };
 

@@ -979,12 +979,12 @@ export const deleteDistributor = (data, distributorId, userId) => (
  * Input data search
  */
 
-export const inputDataSearch = (name) => (dispatch) => {
+export const inputDataSearch = (name,type) => (dispatch) => {
   dispatch({
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/distributor/distributorName/${name}`,  {
+    .get(`${base_url2}/distributor/api/v1/distributor/search/alltype/${name}/${type}`,  {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -4295,3 +4295,186 @@ export const quotationToOrder = ( quotationId,userId ) => (dispatch) => {
       // cb && cb("failure");
     });
 };
+
+
+
+
+export const addAccountImportForm =
+(customer, userId) => (dispatch, getState) => {
+  //const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_ACCOUNT_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/excel/import/distributor`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+    //dispatch(getLeads(userId));
+
+     window.location.reload()
+      // dispatch(getRecords(userId));
+      // dispatch(getLatestCustomers(userId, startDate, endDate));
+      // dispatch(getCustomerListByUserId(userId));
+
+      dispatch({
+        type: types.ADD_ACCOUNT_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_ACCOUNT_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
+};
+
+export const updateAccountPrice = (data, distributorId,  cb) => (dispatch) => {
+  // debugger;
+  dispatch({
+    type: types.UPDATE_ACCOUNT_PRICE_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/distributor/dispatchPayment/${distributorId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_ACCOUNT_PRICE_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb();
+      message.success("ACCOUNT price has been updated!")
+    })
+    .catch((err) => {
+      // debugger;
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ACCOUNT_PRICE_FAILURE,
+        payload: err,
+      });
+      // cb && cb("failuer", null, null);
+    });
+};
+
+export const handleStatuShowDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_STATUS_SHOW_DRAWER,
+    payload: modalProps
+  })
+};
+
+export const getProcureStatusItem = (orderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROCURE_STATUS_ITEM_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/orders/status/${orderId}`, 
+      {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_PROCURE_STATUS_ITEM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_PROCURE_STATUS_ITEM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateOrdrSuplrItems = (data,orderId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ORDR_SUPLR_ITEMS_REQUEST });
+
+  axios
+    .put(`${base_url2}/phoneOrder/order/customer/shipping`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      dispatch(getProcureStatusItem(orderId));
+      dispatch({
+        type: types.UPDATE_ORDR_SUPLR_ITEMS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+  
+      dispatch({
+        type: types.UPDATE_ORDR_SUPLR_ITEMS_FAILURE,
+      });
+    });
+};
+
+export const getLocationNamesByProductId = (productId) => (dispatch) => {
+  dispatch({
+    type: types.GET_LOCATION_NAMES_BY_PRODUCTID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getPoStock/locationList/${productId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_LOCATION_NAMES_BY_PRODUCTID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_LOCATION_NAMES_BY_PRODUCTID_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getAccountInvoiveList = (distributorId,pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_ACCOUNT_INVOICE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/inVoice/allOrders/${distributorId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ACCOUNT_INVOICE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ACCOUNT_INVOICE_FAILURE,
+        payload: err,
+      });
+    });
+}

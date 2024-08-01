@@ -42,13 +42,15 @@ const DispatchOrderAwb = (props) => {
 
     const validationSchema = Yup.object().shape({
         packages: Yup.number()
-            .typeError('Packages must be a number'),
-            
+            .typeError('Packages must be a number').required("Input needed!"),
+            shipperId:Yup.string().required("Input needed!"),
         weight: Yup.number()
             .typeError('Weight must be a number'),
        
     });
-
+//const dfrt=props.allShipperList.shipperId === props.addrecivedAwb.shipperId
+// console.log(props.allShipperList.shipperId)
+// console.log(props.addrecivedAwb.shipperId)
     return (
         <>
             <Formik
@@ -213,7 +215,8 @@ const DispatchOrderAwb = (props) => {
                             </div>
                             <div class="flex justify-between mt-4">
                                 <div class="flex justify-end w-[47%]" style={{ margin: "67px 39px 17px -33px" }}>
-                                    {values.api ?
+{/* due to modal not open thats why condition comment */}
+                                    {/* {values.api ? */}
                                         <Button
                                             style={{
                                                 backgroundColor: "#3695cd",
@@ -224,20 +227,25 @@ const DispatchOrderAwb = (props) => {
                                             loading={props.addingReceivedUser}
                                             htmlType="Submit"
                                         >Save</Button>
-                                        :
-                                        <Button
+                                        {/* : */}
+                                       
+
+                                        {/* <Button
                                             style={{
                                                 backgroundColor: "#3695cd",
                                                 color: "white",
                                                 fontSize: "15px",
                                                 padding: "0px 12px",
                                             }}
+                                             loading={props.addingReceivedUser}
+                                            htmlType="Submit"
                                             onClick={() => {
                                                 props.handleAddAWB(true);
                                                 handleFormValue(values)
                                             }}
-
-                                        >Save</Button>}
+                                       
+                                        >Save</Button> */}
+                                        {/* } */}
                                 </div>
                             </div>
                         </div>

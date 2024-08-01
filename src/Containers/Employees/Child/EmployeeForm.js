@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip, Switch, Select, message } from "antd";
-import { FormattedMessage } from "react-intl";
 import { getDepartmentwiserUser } from "../../Settings/SettingsAction"
 import { getCurrency } from "../../Auth/AuthAction"
 import { getlocation } from "../../Event/Child/Location/LocationAction";
@@ -23,6 +22,8 @@ import { getDesignations } from "../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../Settings/Department/DepartmentAction";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
+import { BundleLoader } from "../../../Components/Placeholder";
+
 const { Option } = Select;
 
 const EmployeeSchema = Yup.object().shape({
@@ -40,7 +41,8 @@ function EmployeeForm(props) {
   const [secondatDepartment, setSecondaryDepartment] = useState("");
   const [reportingManager, setreportingManager] = useState("")
   const [secondaryReportingManager, setSecondaryreportingManager] = useState("")
-  
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [bundleLoading, setLoading] = useState(true);
   const [checked, setChecked] = useState(true);
   const [typeInd, setTypeInd] = useState(false);
   const [selectedDept, setSelectedDept] = useState("");
@@ -186,17 +188,79 @@ function EmployeeForm(props) {
       value: item.currency_id,
     };
   });
+  const designationNameOption = props.designations.map((item) => {
+    return {
+      label: `${item.designationType}`,
+      value: item.designationTypeId,
+    };
+  });
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+          "Upload",//0
+          " First Name",//1
+          " Middle Name",//2
+          " Last Name",//3
+          "Email",//4
+          "Currency",//5
+          "Dial Code",//6
+          "Personal",//7
+          "Dial Code",//8
+          "Work #",//9
+          "Date Of Joining",//10
+          "Date Of Birth",//11
+          "Linkedln",//12
+          "Address",//13
+          "Street",//14
+          "Zip code",//15
+          "City",//16
+          "State/Provinence",//17
+          "Country",//18
+          "Time Zone",//19
+          "Department",//20
+          "Level",//21
+          "Role",//22
+          "Salary",//23
+          "Designation",//24
+          "Workplace",//25
+          "Location",//26
+          "Job Type",//27
+          "Category",//28
+          "Employee Type",//29
+          "Employee",//30
+          "Intern",//31
+          "Reports To Department",//32
+          "Reporting Manager",//33
+          "Secondary Department",//34
+          "Secondary Reporting Manager",//35
+          "Submit",//36
+          "Address for  Corresponedenc",//37
+          
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   useEffect(() => {
     const { getCountries, getDepartments,
       //  getTimeZone,
-        getCurrency, getAssignedToList, getRoles, getlocation, } = props;
+        getCurrency, getAssignedToList, getRoles, getlocation,getDesignations } = props;
     getRoles(props.organizationId);
     getCountries(getCountries);
     getlocation(props.orgId);
     getCurrency();
     getDepartments();
     getAssignedToList(props.orgId)
+    getDesignations()
     // getTimeZone();
   }, []);
 
@@ -263,10 +327,13 @@ function EmployeeForm(props) {
       value: item.country_name,
     };
   });
-
+  // if (bundleLoading) {
+  //   return <div><BundleLoader/></div>;
+  // }
  
   const { addEmployee, addingEmployee } = props;
   const selectedOption = props.assignedToList.find((item) => item.empName === selected);
+ 
   return (
     <>
       <Formik
@@ -291,6 +358,7 @@ function EmployeeForm(props) {
           linkedinPublicUrl: "",
           label: "",
           workplace: "",
+          designationTypeId:"",
           assignedTo: selectedOption ? selectedOption.employeeId : userId,
           job_type: active ? "Full Time" : "Part Time",
           type: typeInd ? "true" : "false",
@@ -369,17 +437,20 @@ function EmployeeForm(props) {
                         isColumn
                         />
                     </div> */}
+                       
                         <div class=" w-wk max-sm:w-full">
+                        <div class=" text-xs font-bold font-poppins">{translatedMenuItems[1]}</div>
                           <Field
                             isRequired
                             name="firstName"
                             type="text"
                             isColumn
                             width={"100%"}
-                            label={<FormattedMessage
-                              id="app.firstName"
-                              defaultMessage="First Name"
-                            />}
+                          //   // label={<FormattedMessage
+                          //   //   id="app.firstName"
+                          //   //   defaultMessage="First Name"
+                          //   // />
+                          // }
                             component={InputComponent}
                             inlineLabel
                           />
@@ -387,6 +458,7 @@ function EmployeeForm(props) {
                       </div>
                       <div class=" flex justify-between max-sm:flex-col" >
                         <div class=" w-2/5 max-sm:w-full">
+                        <div class=" text-xs font-bold font-poppins">{translatedMenuItems[2]}</div>
                           {" "}
                           <Field
 
@@ -394,25 +466,26 @@ function EmployeeForm(props) {
                             type="text"
                             isColumn
                             width={"100%"}
-                            label={<FormattedMessage
-                              id="app.middleName"
-                              defaultMessage="Middle Name"
-                            />}
+                            // label={<FormattedMessage
+                            //   id="app.middleName"
+                            //   defaultMessage="Middle Name"
+                            // />}
                             component={InputComponent}
                             inlineLabel
                           />
                         </div>
-                        <div class=" w-3/6 max-sm:w-full">
+                        <div class=" w-3/6 max-sm:w-full"> 
+                        <div class=" text-xs font-bold font-poppins">{translatedMenuItems[3]}</div>
                           {" "}
                           <Field
                             name="lastName"
                             type="text"
                             isColumn
                             width={"100%"}
-                            label={<FormattedMessage
-                              id="app.lastName"
-                              defaultMessage="Last Name"
-                            />}
+                            // label={<FormattedMessage
+                            //   id="app.lastName"
+                            //   defaultMessage="Last Name"
+                            // />}
                             component={InputComponent}
                             inlineLabel
                           />
@@ -423,28 +496,30 @@ function EmployeeForm(props) {
 
                   <div class=" flex justify-between" >
                     <div class=" w-[70%] flex flex-col max-sm:w-wk">
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[4]}</div>
                       <Field
                         isRequired
                         name="emailId"
                         type="text"
                         isColumn
                         width={"100%"}
-                        label={<FormattedMessage
-                          id="app.emailId"
-                          defaultMessage="Email" />}
+                        // label={<FormattedMessage
+                        //   id="app.emailId"
+                        //   defaultMessage="Email" />}
                         component={InputComponent}
                         inlineLabel
                       />
                     </div>
                     <div class=" max-sm:w-wk">
+                    <label>{translatedMenuItems[5]}</label>
                       <Field
                         name="currency"
                         isColumnWithoutNoCreate
                         placeholder="Currency"
-                        label={<FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />}
+                        // label={<FormattedMessage
+                        //   id="app.currency"
+                        //   defaultMessage="Currency"
+                        // />}
                         isColumn
                         // selectType="currencyName"
                         isRequired
@@ -461,15 +536,16 @@ function EmployeeForm(props) {
                   <div class="flex justify-between max-sm:flex-col">
                     <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk " >
                       <div class=" w-w47.5 max-sm:w-wk ">
+                      <div class=" text-xs font-bold font-poppins">{translatedMenuItems[6]}</div>
                         <FastField
                           name="countryDialCode"
                           isColumnWithoutNoCreate
-                          label={
-                            <FormattedMessage
-                              id="app.dialCode"
-                              defaultMessage="Dial Code"
-                            />
-                          }
+                          // label={
+                          //   <FormattedMessage
+                          //     id="app.dialCode"
+                          //     defaultMessage="Dial Code"
+                          //   />
+                          // }
                           isColumn
                           // width={"100%"}
                           selectType="dialCode"
@@ -478,10 +554,11 @@ function EmployeeForm(props) {
                         />
                       </div>
                       <div class=" w-w47.5 max-sm:w-wk">
+                       <div class=" text-xs font-bold font-poppins">{translatedMenuItems[7]}</div>
                         <Field
                           type="text"
                           name="mobileNo"
-                          label="Personal"
+                          // label="Personal"
                           placeholder="Input"
                           component={InputComponent}
                           inlineLabel
@@ -494,15 +571,16 @@ function EmployeeForm(props) {
                     </div>
                     <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
                       <div class="w-w47.5 max-sm:w-wk">
+                      <div class=" text-xs font-bold font-poppins">{translatedMenuItems[6]}</div>
                         <FastField
                           name="countryDialCode1"
                           isColumnWithoutNoCreate
-                          label={
-                            <FormattedMessage
-                              id="app.dialCode"
-                              defaultMessage="Dial Code"
-                            />
-                          }
+                          // label={
+                          //   <FormattedMessage
+                          //     id="app.dialCode"
+                          //     defaultMessage="Dial Code"
+                          //   />
+                          // }
                           isColumn
                           // width={"100%"}
                           selectType="dialCode"
@@ -511,10 +589,11 @@ function EmployeeForm(props) {
                         />
                       </div>
                       <div class="w-w47.5 max-sm:w-wk">
+                      <div class=" text-xs font-bold font-poppins">{translatedMenuItems[9]}</div>
                         <Field
                           type="text"
                           name="phoneNo"
-                          label="Work #"
+                          // label="Work #"
                           placeholder="Input"
                           component={InputComponent}
                           inlineLabel
@@ -531,13 +610,14 @@ function EmployeeForm(props) {
                       defaultMessage=" Date Of Joining"
                     />
                     </div> */}
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[10]}</div>
                       <Field
                         isRequired
                         name="dateOfJoining"
-                        label={<FormattedMessage
-                          id="app.dateOfJoining"
-                          defaultMessage="Date of Joining"
-                        />}
+                        // label={<FormattedMessage
+                        //   id="app.dateOfJoining"
+                        //   defaultMessage="Date of Joining"
+                        // />}
                         isColumn
                         component={DatePicker}
                         value={values.dateOfJoining}
@@ -548,6 +628,7 @@ function EmployeeForm(props) {
                       />
                     </div>
                     <div class=" w-w47.5 max-sm:w-wk">
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[11]}</div>
                       {/* <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
                       id="app.dateofbirth"
                       defaultMessage=" Date Of Birth"
@@ -556,10 +637,10 @@ function EmployeeForm(props) {
                       <Field
                         isRequired
                         name="dob"
-                        label={<FormattedMessage
-                          id="app.dateOfBirth"
-                          defaultMessage="Date of Birth"
-                        />}
+                        // label={<FormattedMessage
+                        //   id="app.dateOfBirth"
+                        //   defaultMessage="Date of Birth"
+                        // />}
                         isColumn
                         component={DatePicker}
                         value={values.dob}
@@ -573,15 +654,16 @@ function EmployeeForm(props) {
 
                   <div class=" flex justify-between" >
                     <div class=" w-full">
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[12]}</div>
                       <Field
                         name="linkedinPublicUrl"
                         type="text"
                         isColumn
                         width={"100%"}
-                        label={<FormattedMessage
-                          id="app.linkedIn"
-                          defaultMessage="LinkedIn"
-                        />}
+                        // label={<FormattedMessage
+                        //   id="app.linkedIn"
+                        //   defaultMessage="LinkedIn"
+                        // />}
                         component={InputComponent}
                         inlineLabel
                       />
@@ -591,15 +673,17 @@ function EmployeeForm(props) {
                   </div>
                   <div style={{ width: "100%", backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)", marginTop: "0.5rem" }}>
                     <div>
-                      <div class=" text-[white] text-xs" >
-                        Address for  Correspondence</div>
+                      <div class=" text-[white] text-xs font-bold font-poppins" >
+                      {translatedMenuItems[37]} {/* Address for  Corresponedenc */}
+                        </div>
                     </div>
                   </div>
 
-
+                  <div class=" text-xs font-bold font-poppins">{translatedMenuItems[13]}</div>
                   <FieldArray
                     name="address"
-                    label="Address"
+                    // label="Address"
+                   
                     render={(arrayHelpers) => (
                       <AddressFieldArray
                         arrayHelpers={arrayHelpers}
@@ -615,6 +699,7 @@ function EmployeeForm(props) {
 
 
                 <div class=" w-[47.5%] max-sm:w-wk ">
+                <div class=" text-xs font-bold font-poppins">{translatedMenuItems[19]}</div>
                   <div class=" w-full mt-2">
                     <Field
                     isRequired
@@ -622,12 +707,8 @@ function EmployeeForm(props) {
                     name="timeZone"
                     isColumnWithoutNoCreate
                     //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="time Zone"
-                      />
-                    }
+                    
+                    // label={translatedMenuItems[19]}
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -718,15 +799,17 @@ function EmployeeForm(props) {
             </option>
           ))}
         </select> */}
+        <div class=" text-xs font-bold font-poppins">{translatedMenuItems[20]}</div>
                       <Field
                         name="departmentId"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.Department"
-                            defaultMessage="Department"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.Department"
+                        //     defaultMessage="Department"
+                        //   />
+                        // }
+                        // label={translatedMenuItems[20]}
                         component={SelectComponent}
                         options={
                           Array.isArray(DepartmentOptions)
@@ -741,14 +824,16 @@ function EmployeeForm(props) {
 
                     </div>
                     <div class="w-w47.5 max-sm:w-wk">
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[21]}</div>
                       <FastField
                         name="label"
                         type="level"
                         placeholder="Select"
-                        label={<FormattedMessage
-                          id="app.level"
-                          defaultMessage="Level"
-                        />}
+                        // label={<FormattedMessage
+                        //   id="app.level"
+                        //   defaultMessage="Level"
+                        // />}
+                        // label={translatedMenuItems[21]}
                         options={["L1", "L2", "L3"]}
                         component={SelectComponent}
                         inlineLabel
@@ -759,12 +844,14 @@ function EmployeeForm(props) {
                   </div>
                   <div class=" flex justify-between max-sm:flex-col" >
                   <div class=" w-w48 max-sm:w-wk">
+                  <div class=" text-xs font-bold font-poppins">{translatedMenuItems[22]}</div>
                     <Field
                       name="roleType"
-                      label={<FormattedMessage
-                        id="app.role"
-                        defaultMessage="Role"
-                      />}
+                      // label={<FormattedMessage
+                      //   id="app.role"
+                      //   defaultMessage="Role"
+                      // />}
+                      // label={translatedMenuItems[22]} 
                       isColumnWithoutNoCreate
                       component={SelectComponent}
                       options={
@@ -797,15 +884,17 @@ function EmployeeForm(props) {
                     />
                   </div>
                     <div class=" w-w48 flex flex-col max-sm:w-wk">
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[23]}</div>
                     <Field
                     
                         name="salary"
                         type="text"
                         isColumn
                         width={"100%"}
-                        label={<FormattedMessage
-                          id="app.salary"
-                          defaultMessage="Salary" />}
+                        // label={translatedMenuItems[23]} 
+                        // label={<FormattedMessage
+                        //   id="app.salary"
+                        //   defaultMessage="Salary" />}
                         component={InputComponent}
                         inlineLabel
                       />
@@ -814,7 +903,26 @@ function EmployeeForm(props) {
 
                 
                   </div>
+                  <div class=" max-sm:w-wk">
+                  <div class=" text-xs font-bold font-poppins">{translatedMenuItems[24]}</div>
+                      <Field
+                        name="designationTypeId"
+                        isColumnWithoutNoCreate
+                        placeholder="Designation"
+                        // label={translatedMenuItems[24]} 
+                        // label="Designation"
+                        isColumn
+                        // selectType="currencyName"
+                        isRequired
+                        component={SelectComponent}
+                        options={
+                          Array.isArray(designationNameOption)
+                            ? designationNameOption
+                            : []
+                        }
 
+                      />
+                      </div>
                   <div class=" flex justify-between max-sm:flex-col" >
                     <div class=" w-w48 flex flex-col max-sm:w-wk">
                       {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>WorkPlace</label>
@@ -827,16 +935,17 @@ function EmployeeForm(props) {
               {item.country_name}
             </option>
           ))}
-        </select> */}
+        </select> */}<div class=" text-xs font-bold font-poppins">{translatedMenuItems[25]}</div>
                       <Field
                         name="workplace"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.Workplace"
-                            defaultMessage="Workplace"
-                          />
-                        }
+                        // label={translatedMenuItems[25]} 
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.Workplace"
+                        //     defaultMessage="Workplace"
+                        //   />
+                        // }
                         component={SelectComponent}
                         options={
                           Array.isArray(WorkplaceOptions)
@@ -865,13 +974,14 @@ function EmployeeForm(props) {
             </option>
           ))}
         </select> */}
-
+                      <div class=" text-xs font-bold font-poppins">{translatedMenuItems[26]}</div>
                       <Field
                         name="location"
-                        label={<FormattedMessage
-                          id="app.location"
-                          defaultMessage="Location"
-                        />}
+                        // label={translatedMenuItems[26]} 
+                        // label={<FormattedMessage
+                        //   id="app.location"
+                        //   defaultMessage="Location"
+                        // />}
                         isColumnWithoutNoCreate
                         component={SelectComponent}
                         options={
@@ -938,8 +1048,8 @@ function EmployeeForm(props) {
                      /> */}
                   <div class=" flex mt-2 " >
                     <div>
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        Job Type
+                      <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                     {translatedMenuItems[27]}  {/* Job Type */}
                       </div>
                       <Switch
                         checked={active}
@@ -968,11 +1078,12 @@ function EmployeeForm(props) {
                     </div>
 
                     <div class=" ml-4">
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <FormattedMessage
+                      <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                        {/* <FormattedMessage
                           id="app.category"
                           defaultMessage="Category"
-                        />
+                        /> */} 
+                        {translatedMenuItems[28]}
                       </div>
                       <Switch
                         checked={typeInd}
@@ -985,10 +1096,11 @@ function EmployeeForm(props) {
                   </div>
 
                   <div class=" mt-3">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
+                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                      {/* <FormattedMessage
                       id="app.employeetype"
                       defaultMessage="Employee Type"
-                    />
+                    /> */} {translatedMenuItems[29]}
                     </div>
 
                     <Radio.Group
@@ -1000,7 +1112,7 @@ function EmployeeForm(props) {
                         value={"Employee"}
                         onChange={() => radioClick("employee")}
                       >
-                        Employee
+                        {translatedMenuItems[30]} {/* Employee */}
                       </Radio>
                       {typeInd === true && (
                         <Radio
@@ -1022,13 +1134,17 @@ function EmployeeForm(props) {
                     </Radio.Group>
                   </div>
                   <div class="mt-2">
-                    <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reports To</label>
+                  <div class=" text-xs font-bold font-poppins">{translatedMenuItems[32]}</div>
+                 
+                      {/* Reports To */} 
                   </div>
 
 
                   <div class=" flex justify-between  max-sm:flex-col" >
                     <div class=" w-w48 max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Department</label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[20]}</div>
+                     {/* Department */}
+                        
                       <Select
                         className="w-[250px]"
                         value={department}
@@ -1041,7 +1157,9 @@ function EmployeeForm(props) {
                     </div>
 
                     <div class="w-w48  max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reporting Manager</label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[33]}</div>
+                      {/* Reporting Manager */}
+                       
                       <Select
                         className="w-[250px]"
                         value={reportingManager}
@@ -1056,7 +1174,9 @@ function EmployeeForm(props) {
                   </div>
                   <div class=" flex justify-between  max-sm:flex-col" >
                     <div class=" w-w48 max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Department</label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[34]}</div>
+                    {/* Secondary Department */}
+                      
                       <Select
                         className="w-[250px]"
                         value={secondatDepartment}
@@ -1069,7 +1189,9 @@ function EmployeeForm(props) {
                     </div>
 
                     <div class="w-w48  max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Reporting Manager</label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[35]}</div>
+                     {/* Secondary Reporting Manager */}
+                     
                       <Select
                         className="w-[250px]"
                         value={secondaryReportingManager}
@@ -1082,6 +1204,7 @@ function EmployeeForm(props) {
 
                     </div>
                   </div>
+                  
                 </div>
               </div>
 
@@ -1091,7 +1214,7 @@ function EmployeeForm(props) {
                   type="primary"
                   loading={addingEmployee}
                 >
-                  Submit
+                  {translatedMenuItems[36]} {/* Submit */}
                 </Button>
               </div>
             </Form>
@@ -1118,6 +1241,7 @@ const mapStateToProps = ({ auth, role, location, currency, settings, employee, d
   departmentId: departments.departmentId,
   designationTypeId: designations.designationTypeId,
   employees: employee.employees,
+  designations:designations.designations,
   departments: departments.departments,
   departmentwiseUser: settings.departmentwiseUser,
 });

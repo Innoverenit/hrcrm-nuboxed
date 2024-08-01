@@ -180,7 +180,7 @@ class LinkedDealContact extends Component {
                       <div className=" md:w-[12.12rem]">Name</div>
                       <div className=" md:w-[10.5rem]">Designation</div>
                       <div className=" md:w-[8.99rem] ">Function</div>
-                      <div className="md:w-[10.7rem]">Email #"</div>
+                      <div className="md:w-[10.7rem]">Email </div>
                       <div className="md:w-[6.8rem]">Mobile #"</div>
                      
                   </div>

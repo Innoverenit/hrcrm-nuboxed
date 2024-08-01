@@ -8,6 +8,8 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { FormattedMessage } from "react-intl";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import UploadIcon from '@mui/icons-material/Upload';
+
 const CustomerShareForm=lazy(()=> import("./CustomerShareForm"));
 
 const Option = StyledSelect.Option;
@@ -47,7 +49,7 @@ class CustomerActionRight extends React.Component {
             type="primary"
             onClick={() => handleCustomerModal(true)}
           >
-                          <DataSaverOnIcon/>   <FormattedMessage
+                          <DataSaverOnIcon className="!text-icon"/>   <FormattedMessage
                         id="app.add"
                         defaultMessage="Add"
                       />
@@ -59,7 +61,7 @@ class CustomerActionRight extends React.Component {
           <Button type="primary"  
         onClick={() => this.props.handleCustomerImportModal(true)}
         >
-            Import
+          <UploadIcon className=" !text-icon"/>  Import
           </Button>
           </div>
       </div>

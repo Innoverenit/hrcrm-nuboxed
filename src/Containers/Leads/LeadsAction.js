@@ -2,7 +2,6 @@ import * as types from "./LeadsActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
 import { base_url } from "../../Config/Auth";
-import { asses_url } from "../../Config/Auth";
 import Swal from 'sweetalert2'
 
 export const setLeadsViewType = (viewType) => (dispatch) => {
@@ -14,6 +13,15 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
   export const handleLeadsModal = (modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_LEADS_MODAL,
+      payload: modalProps,
+    });
+  };
+
+
+
+  export const handleLeadsSubscriptionModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_LEADS_SUBSCRIPTION_DRAWER_MODAL,
       payload: modalProps,
     });
   };
@@ -928,11 +936,11 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
   };
 
 
-  export const inputLeadsDataSearch =(name)=>(dispatch)=>{
+  export const inputLeadsDataSearch =(name,type)=>(dispatch)=>{
     dispatch({
       type: types.INPUT_LEADS_SEARCH_DATA_REQUEST,
     });
-    axios.get(`${base_url}/leads/search/${name}`,{
+    axios.get(`${base_url}/leads/search/alltype/${name}/${type}`,{
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

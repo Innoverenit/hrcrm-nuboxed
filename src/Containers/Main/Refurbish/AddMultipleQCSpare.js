@@ -167,6 +167,7 @@ const AddMultipleQCSpare = (props) => {
                 <Button className="bg-[#24a3fb] mr-4"
                     type="primary"
                     onClick={handleAddRowClick}
+                    disabled={ props.RowData.repairStatus === "To Start" || props.RowData.repairStatus === "Complete"}
                 >
                     <FormattedMessage
                         id="app.addmore"
@@ -178,6 +179,7 @@ const AddMultipleQCSpare = (props) => {
                     type='primary'
                     onClick={buttonOnClick}
                     loading={props.addingSpareList}
+                    disabled={props.RowData.qcInspectionInd === 0 || props.RowData.repairStatus === "To Start" || props.RowData.repairStatus === "Complete"}
                 >
                     <FormattedMessage
                         id="app.save"

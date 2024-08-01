@@ -3,7 +3,8 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-const LinkedDealNotes =lazy(()=>import("./DealDetail/LinkedDealNotes"));
+import MainNotes from "../../CustomNote/MainNotes";
+
 class AddDealsNotesDrawerModal extends Component {
   render() {
      
@@ -20,8 +21,10 @@ class AddDealsNotesDrawerModal extends Component {
           onClose={() => this.props.handleDealsNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <LinkedDealNotes currentItem={this.props.currentItem} 
-            invOpportunityId={this.props.currentItem.invOpportunityId} 
+          
+             <MainNotes
+             type="deals"
+             uniqueId={this.props.currentItem.invOpportunityId}
             />
           </Suspense>
         </StyledDrawer>

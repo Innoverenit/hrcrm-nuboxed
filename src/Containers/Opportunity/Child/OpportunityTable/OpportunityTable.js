@@ -1,7 +1,7 @@
 import React, { useEffect, useState ,useMemo} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import InfiniteScroll from "react-infinite-scroll-component"
 import { FormattedMessage } from "react-intl";
@@ -291,8 +291,8 @@ function handleSend (){
       defaultSortOrder: "ascend",
       width: "20%",
       render: (name, item, i) => {     
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         console.log(date, currentdate, currentdate === date);
         return (
           <>
@@ -343,8 +343,8 @@ function handleSend (){
                 primaryTitle={item.contactName}
                 imageId={item.imageId}
                  imageURL={item.imageURL}
-                imgWidth={"1.8em"}
-                imgHeight={"1.8em"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             }
             </SubTitle>
@@ -373,7 +373,7 @@ function handleSend (){
         return 0;
       },
       render: (text, item) => {
-        const startDate = moment(item.startDate).format("ll");
+        const startDate = dayjs(item.startDate).format("ll");
         return <span>{startDate}</span>;
       },
     },

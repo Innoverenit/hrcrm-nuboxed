@@ -10,23 +10,16 @@ import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { updateSupplierById } from "../SuppliersAction";
 import {getEmployeelistAsErp} from "../../Shipper/ShipperAction"
 import { Listbox } from '@headlessui/react';
-import { FormattedMessage } from "react-intl";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const CustomerSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
-  // emailId: Yup.string()
-  //   .email("Enter a valid Email")
-  //   .required("Input needed!"),
-  // phoneNo: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5, "Too Short").max(10, "Too Large")
 });
 
 function UpdateSupplierForm (props) {
   useEffect(() => {
     props.getEmployeelistAsErp();
-    // props.getShipByData(props.orgId);
-    // props.getAllSalesList();
   }, []);
 
   const [defaultOption, setDefaultOption] = useState(props.fullName);
@@ -94,25 +87,19 @@ function UpdateSupplierForm (props) {
                     isRequired
                     name="name"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.name" defaultMessage="Name" />
-                    }
+                    label={props.translatedMenuItems[0]} 
                     width={"100%"}
-                    component={InputComponent}
-                    // placeholder="Start typing..."
+                    component={InputComponent}             
                     isColumn
                     inlineLabel
                   />
                    <div class=" flex justify-between">
                     <div class="w-[30%] max-sm:w-[40%] ">
-                      {/* <label>Dial Code</label> */}
-                  
+                      {/* Dial Code               */}
                       <FastField
                         name="dialCode"
                         selectType="dialCode"
-                        label={
-                          <FormattedMessage id="app.dialcode" defaultMessage="Dial Code" />
-                        }
+                        label={props.translatedMenuItems[14]} 
                         isColumn
                         component={SearchSelect}
                         defaultValue={{
@@ -127,9 +114,7 @@ function UpdateSupplierForm (props) {
                     <div class="w-[68%] max-sm:w-[50%]">
                       <FastField
                         name="phoneNo"
-                        label={
-                          <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
-                        }
+                        label={`${props.translatedMenuItems[15]} #`} 
                         type="text"
                         placeholder="Phone #"
                         isColumn
@@ -137,15 +122,14 @@ function UpdateSupplierForm (props) {
                         inlineLabel
                         width={"100%"}
                       />
+
                     </div>
                   </div>
                   <div class="w-full">
                     <FastField
                       type="email"
                       name="emailId"
-                      label={
-                        <FormattedMessage id="app.email" defaultMessage="Email" />
-                      }
+                      label={props.translatedMenuItems[16]} 
                       className="field"
                       isColumn
                       width={"100%"}
@@ -160,10 +144,9 @@ function UpdateSupplierForm (props) {
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">
-            
-                        <FormattedMessage id="app.assignedto" defaultMessage="Assigned" />
-                  
+            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">         
+                        {/* Assigned */}
+                        {props.translatedMenuItems[24]}
          
             </Listbox.Label>
             <div className="relative ">
@@ -201,8 +184,7 @@ function UpdateSupplierForm (props) {
                               className={`absolute inset-y-0 right-0 flex items-center pr-4 ${
                                 active ? "text-white" : "text-indigo-600"
                               }`}
-                            >
-                              
+                            >                           
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -252,7 +234,8 @@ function UpdateSupplierForm (props) {
                   htmlType="submit"
                   loading={props.updateSuppliersById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                   {props.translatedMenuItems[25]}
+               {/* Update */}
                 </Button>
               </div>
             </Form>
@@ -261,7 +244,6 @@ function UpdateSupplierForm (props) {
         </Formik>
       </>
     );
-  
 }
 
 const mapStateToProps = ({ auth, shipper,employee,suppliers,shipBy }) => ({

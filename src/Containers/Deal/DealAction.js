@@ -1207,3 +1207,38 @@ export const handleOwnModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+
+export const inputDealDataSearch = (name,type) => (dispatch) => {
+  dispatch({
+    type: types.INPUT_DEAL_SEARCH_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investorOpportunity/search/alltype/${name}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      if (res.data.opportunityId) {
+        console.log(res.data);      
+      }
+
+      dispatch({
+        type: types.INPUT_DEAL_SEARCH_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.INPUT_DEAL_SEARCH_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const ClearSearchedDataOfDeal = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_DATA_DEAL,
+  });
+};

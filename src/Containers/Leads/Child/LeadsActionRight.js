@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { Button } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
+import UploadIcon from '@mui/icons-material/Upload';
 const Option = StyledSelect.Option;
 
 class LeadsActionRight extends React.Component {
@@ -33,7 +34,7 @@ class LeadsActionRight extends React.Component {
       <>
 
           <Button type="primary"  onClick={() => handleLeadsModal(true)}>
-          <DataSaverOnIcon/>Add
+          <DataSaverOnIcon className="!text-icon"/>Add
           </Button>
           
           </>
@@ -42,7 +43,7 @@ class LeadsActionRight extends React.Component {
           <Button type="primary"  
         onClick={() => this.props.handleLeadsImportModal(true)}
         >
-            Import
+            <UploadIcon className=" !text-icon"/>Import
           </Button>
           </div>
         </div>

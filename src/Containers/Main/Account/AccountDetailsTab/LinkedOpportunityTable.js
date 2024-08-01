@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip,Popconfirm } from "antd";
 import dayjs from "dayjs";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import {
   getQuotationRepairOrder,
   getQuotationProcureOrder,
@@ -14,6 +13,7 @@ import {
   quotationToOrder
 } from "../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
+import NextPlanIcon from '@mui/icons-material/NextPlan';
 import { FormattedMessage } from "react-intl";
 import AccountProcureDetailsModal from "../AccountDetailsTab/AccountProcureDetailsModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -58,9 +58,10 @@ const handleConfirm = (quotationId) => {
   // Call the function to change the status to "Lost" here
   props.quotationToOrder(quotationId,props.userId);
 };
-
+console.log(props.user.moduleMapper.ecomModInd)
   return (
     <>
+     { props.user.repairInd === true &&(
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
                         <div class=" w-[8.5rem]">Repair</div>
@@ -84,7 +85,8 @@ const handleConfirm = (quotationId) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingQuotationRepairOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"22vh"}
+                        height={"33vh"}
+                        style={{scrollbarWidth:"thin"}}
                     >
                         {props.quotationRepairOrder.length ?
                             <>
@@ -95,22 +97,22 @@ const handleConfirm = (quotationId) => {
                                       <div>
                                         <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
-                                          <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                                          <div className=" flex  flex-col w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
+                                            <div className=" flex  items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                                      <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                                      <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
                       
                                                                                           {item.priority === "High" && (
                                                                                               <div
-                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                                                  class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                                                           )}
                                                                                           {item.priority === "Medium" && (
                                                                                               <div
-                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                                                  class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
                                                                                           {item.priority === "Low" && (
-                                                                                              <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
+                                                                                              <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                                       </div>
                                                                                   </div>
                                                                               </Tooltip>
@@ -118,7 +120,7 @@ const handleConfirm = (quotationId) => {
                       
                                               <div class="max-sm:w-full items-center  md:w-[10.02rem]">
                                                 <Tooltip>
-                                                  <div class="max-sm:w-full  justify-between flex md:flex flex-row text-sm">
+                                                  <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                                                   <span
                                                                                           class="underline cursor-pointer text-[#1890ff]"
                                                                                           onClick={() => {
@@ -141,7 +143,7 @@ const handleConfirm = (quotationId) => {
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
-                                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                                            <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                                             {` ${dayjs(item.deliveryDate).format("ll")}`}
                                                   </div>
                       
@@ -149,8 +151,8 @@ const handleConfirm = (quotationId) => {
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" font-poppins text-sm">
+                                          <div className=" flex  flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
                                
@@ -159,38 +161,47 @@ const handleConfirm = (quotationId) => {
                                           </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
                                         </div>
                                      
                                         <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
                                                   
-                                                      imgWidth={"1.9rem"}
-                                                      imgHeight={"1.9rem"}
+                                                      imgWidth={"1.8rem"}
+                                                      imgHeight={"1.8rem"}
                                                     />
                                             </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
                                         
                   <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <div class=" font-poppins text-sm">
+                  <div class=" font-poppins text-xs">
                   <Popconfirm
-                          title="Change status to Order?"
-                          onConfirm={() => handleConfirm(item.quotationId,props.userId)}
+                          title="Change status to Customer?"
+                          onConfirm={() => handleConfirm(item.customerId)}
                           okText="Yes"
                           cancelText="No"
                         >
-                  <Button type="primary">Convert</Button>
-                  </Popconfirm>
+                          
+                            <Button type="primary"
+                              style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}
+                             
+                              >
+                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
+                              Convert<NextPlanIcon  className="!text-icon"/>
+                              </div>
+                            </Button>
+                          
+                        </Popconfirm>
                       </div>
                   </div>
                                      
@@ -203,6 +214,8 @@ const handleConfirm = (quotationId) => {
                             </> : !props.quotationRepairOrder.length && !props.fetchingQuotationRepairOrder ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
       </div>
+     )}
+     { props.user.moduleMapper.ecomModInd === true &&(
       <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
 <div class=" w-[8.5rem]">Procure</div>
@@ -225,7 +238,8 @@ const handleConfirm = (quotationId) => {
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
                         loader={props.fetchingQuotationProcureOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"22vh"}
+                        height={"33vh"}
+                        style={{scrollbarWidth:"thin"}}
                     >
                         {props.quotationProcureOrder.length ?
                             <>
@@ -234,24 +248,24 @@ const handleConfirm = (quotationId) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                      <div className="flex rounded  mt-3 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
-                                          <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                                          <div className=" flex flex-col w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
+                                            <div className=" flex items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                                      <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                                      <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
                       
                                                                                           {item.priority === "High" && (
                                                                                               <div
-                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                                                  class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                                                           )}
                                                                                           {item.priority === "Medium" && (
                                                                                               <div
-                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                                                  class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
                                                                                           {item.priority === "Low" && (
-                                                                                              <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
+                                                                                              <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                                       </div>
                                                                                   </div>
                                                                               </Tooltip>
@@ -259,7 +273,7 @@ const handleConfirm = (quotationId) => {
                       
                                               <div class="max-sm:w-full items-center  md:w-[10.02rem]">
                                                 <Tooltip>
-                                                  <div class="max-sm:w-full  justify-between flex md:flex flex-row text-sm">
+                                                  <div class="font-bold max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                                                   <span
                                                                                           class="underline cursor-pointer text-[#1890ff]"
                                                                                           onClick={() => {
@@ -282,7 +296,7 @@ const handleConfirm = (quotationId) => {
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
-                                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                                            <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                                             {` ${dayjs(item.deliveryDate).format("ll")}`}
                                                   </div>
                       
@@ -290,8 +304,8 @@ const handleConfirm = (quotationId) => {
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" font-poppins text-sm">
+                                          <div className=" flex  flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
                                
@@ -300,60 +314,55 @@ const handleConfirm = (quotationId) => {
                                           </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
                                         </div>
                                      
                                         <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
                                                   
-                                                      imgWidth={"1.9rem"}
-                                                      imgHeight={"1.9rem"}
+                                                      imgWidth={"1.8rem"}
+                                                      imgHeight={"1.8rem"}
                                                     />
                                             </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-sm">
+                                        <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <div class=" font-poppins text-sm">
+                  <div class=" font-poppins text-xs">
                   <Popconfirm
                           title="Change status to Order?"
                           onConfirm={() => handleConfirm(item.quotationId,props.userId)}
                           okText="Yes"
                           cancelText="No"
                         >
-                  <Button type="primary">Convert</Button>
+                  <Button type="primary"  style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}>
+                  <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
+                              Convert<NextPlanIcon  className="!text-icon"/>
+                              </div>
+                     </Button>
                   </Popconfirm>
                       </div>
                   </div>
-                                       
-                                      </div>
-                                    </div>
-
-
-                                    )
+                         </div>
+                          </div>  )
                                 })}
                             </> : !props.quotationProcureOrder.length && !props.fetchingQuotationProcureOrder ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
       </div>
-      
-
-                <AccountProcureDetailsModal
+)}  <AccountProcureDetailsModal
                 particularRowData={particularRowData}
                 handleProcureDetailsModal={props.handleProcureDetailsModal}
                 addProcureDetailsModal={props.addProcureDetailsModal} />
     </>
   );
-
-
-
 }
 
 const mapStateToProps = ({ distributor,auth }) => ({
@@ -363,6 +372,7 @@ const mapStateToProps = ({ distributor,auth }) => ({
   fetchingOrderProcurement: distributor.fetchingOrderProcurement,
   procureRecordData:distributor.procureRecordData,
   userId: auth.userDetails.userId,
+  user: auth.userDetails,
   quotationRepairOrder:distributor.quotationRepairOrder,
   fetchingQuotationRepairOrder:distributor.fetchingQuotationRepairOrder,
   quotationProcureOrder:distributor.quotationProcureOrder,

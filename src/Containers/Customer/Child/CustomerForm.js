@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button,Select } from "antd";
+import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import { getAllCustomerEmployeelist } from "../../Employees/EmployeeAction";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import {
   addCustomer,
@@ -18,7 +18,6 @@ import {getCustomer} from "../../Settings/Category/Customer/CustomerAction"
 import { getCrm } from "../../Leads/LeadsAction";
 import { Listbox } from '@headlessui/react';
 import {getCurrency} from "../../Auth/AuthAction";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
@@ -27,18 +26,20 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
+import { BundleLoader } from "../../../Components/Placeholder";
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
-  // email: Yup.string().required("Input needed!").email("Enter a valid Email"),
-  // phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
+  
 });
 
 const { Option } = Select;  
 
 function CustomerForm(props) {
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
    const[checked,setChecked]=useState(true);
   const[whiteblue,setWhiteblue]=useState(true);
 
@@ -54,14 +55,48 @@ function CustomerForm(props) {
       !checked
     );
   };
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          ' Name', // 0
+'Url ', // 1
+'Dial Code', // 2
+'Phone No', // 3
+'Sector', // 4
+'Source', // 5
+'Potential', // 6
+'Currrency', // 7
+'Type', // 8
+'Assigned', // 9
+'Address', // 10
+// 'Street',//11
+// 'Zip Code',//12
+// 'City',//13
+// 'State',//14
+// 'Country',//15
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     props.getCustomer(props.orgId); 
-    // props.getAllCustomerEmployeelist();
-    // props.getSectors();
     props.getCrm();
     props.emptyClearbit()
-    // setSource("")
-    // props.getCurrency();
+    props.getCustomerConfigure(props.orgId,"add","customer")
+    
   }, []);
 
     const {
@@ -80,24 +115,24 @@ function CustomerForm(props) {
     function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
     }
-    const sortedSector =props.sectors.sort((a, b) => {
-      const nameA = a.sectorName.toLowerCase();
-      const nameB = b.sectorName.toLowerCase();
-      // Compare department names
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    const sectorOption = sortedSector.map((item) => {
-      return {
-        label: item.sectorName || "",
-        value: item.sectorId,
-      };
-    });
+    // const sortedSector =props.sectors.sort((a, b) => {
+    //   const nameA = a.sectorName.toLowerCase();
+    //   const nameB = b.sectorName.toLowerCase();
+    //   // Compare department names
+    //   if (nameA < nameB) {
+    //     return -1;
+    //   }
+    //   if (nameA > nameB) {
+    //     return 1;
+    //   }
+    //   return 0;
+    // });
+    // const sectorOption = sortedSector.map((item) => {
+    //   return {
+    //     label: item.sectorName || "",
+    //     value: item.sectorId,
+    //   };
+    // });
     const sortedCurrency =props.currencies.sort((a, b) => {
       const nameA = a.currency_name.toLowerCase();
       const nameB = b.currency_name.toLowerCase();
@@ -360,6 +395,9 @@ console.log(selectedSource)
   }
 
   console.log(selectedSector)
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
       <Formik
@@ -458,14 +496,16 @@ console.log(selectedSource)
                     ) : null}
                   </div>
                   <div class=" mt-3">
+                  {props.customerConfigure.nameInd===true&&
                     <Field
                       isRequired
                       name="name"
                       type="text"
-                      //label="Name"
-                      label={
-                        <FormattedMessage id="app.name" defaultMessage="Name" />
-                      }
+                      // label="Names"
+                      label={translatedMenuItems[0]}
+                      // {
+                      //   <FormattedMessage id="app.name" defaultMessage="Name" />
+                      // }
                       isColumn
                       width={"100%"}
                       setClearbitData={props.setClearbitData}
@@ -473,12 +513,14 @@ console.log(selectedSource)
                       accounts={accounts}
                       inlineLabel
                     />
+}
                   </div>
                   <Field
                     name="url"
                     type="text"
                     // label="URL"
-                    label={<FormattedMessage id="app.url" defaultMessage="URL" />}
+                 label={translatedMenuItems[1]}
+                    // {<FormattedMessage id="app.url" defaultMessage="URL" />}
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -516,9 +558,14 @@ console.log(selectedSource)
                         }}
                         inlineLabel
                       /> */}
+{props.customerConfigure.dailCodeInd===true&&
+<div className="font-bold text-[0.75rem]">
+{translatedMenuItems[2]}
+  {/* Dial code */}
 
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Dial code</label>
-
+</div>
+}
+{props.customerConfigure.dailCodeInd===true&&
 <Select
         showSearch
         style={{ width: 120 }}
@@ -541,22 +588,19 @@ country_dial_code
           </Option>
         ))}
       </Select>
+}
                     </div>
                     <div class=" w-8/12">
+                    {props.customerConfigure.phoneNoInd===true&&
                       <FastField
                         name="phoneNumber"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneno"
-                            defaultMessage="Phone No"
-                          />
-                        }
-                        // label="Phone No"
+                        label={translatedMenuItems[3]}          
                         isColumn
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
                       />
+}
                     </div>
                   </div>
 
@@ -579,8 +623,13 @@ country_dial_code
                           Array.isArray(sectorOption) ? sectorOption : []
                         }
                       /> */}
-                      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Sector</label>
-
+                       {props.customerConfigure.sectorInd===true&&
+                   <div className="font-bold text-[0.75rem]">
+                        {translatedMenuItems[4]}
+                        {/* Sector */}
+                        </div>
+                       }
+                      {props.customerConfigure.sectorInd===true&&
 <Select
         showSearch
         style={{ width: 200 }}
@@ -596,6 +645,7 @@ country_dial_code
           </Option>
         ))}
       </Select>
+}
                     </div>
                     <div class="w-w47.5" style={{display:"flex",flexDirection:"column"}}>
                       {/* <FastField
@@ -615,9 +665,10 @@ country_dial_code
                         className="field"
                         isColumn
                       /> */}
-
+ {props.customerConfigure.sourceInd===true&&
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</label>
-
+}
+{props.customerConfigure.sourceInd===true&&
 <Select
         showSearch
         style={{ width: 200 }}
@@ -633,27 +684,31 @@ country_dial_code
           </Option>
         ))}
       </Select>
+}
                     </div>
                   </div>
                   <div class="flex justify-between mt-2">
   <div class="w-w47.5 flex">
     <div class="w-24">
+    {props.customerConfigure.potentialInd===true&&
       <Field
         name="potentialValue"
-        label={
-          <FormattedMessage
-            id="app.potential"
-            defaultMessage="Potential"
-          />
-        }
+        label= {translatedMenuItems[5]}     
         isColumn
         width={"100%"}
         component={InputComponent}
         inlineLabel
       />
+}
     </div>
     <div class="w-16 ml-2 max-sm:w-wk">
-      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
+    {props.customerConfigure.potentialCurrencyInd===true&&
+       <div className="font-bold text-[0.75rem]">
+       {translatedMenuItems[6]}
+        {/* Currency */}
+        </div>
+    }
+     {props.customerConfigure.potentialCurrencyInd===true&&
       <Select
         showSearch
         style={{ width: 100 }}
@@ -669,19 +724,16 @@ country_dial_code
           </Option>
         ))}
       </Select>
+}
     </div>
   </div>
 
 
   <div class="w-w47.5">
+  {props.customerConfigure.typeInd===true&&
     <Field
       name="type"
-      label={
-        <FormattedMessage
-          id="app.type"
-          defaultMessage="Type"
-        />
-      }
+      label=  {translatedMenuItems[7]}
       isColumn
       width={"100%"}
       component={SelectComponent}
@@ -692,10 +744,11 @@ country_dial_code
       }
       inlineLabel
     />
+}
   </div>
 </div>
 
-
+{props.customerConfigure.noteInd===true&&
 <div class="mt-3">
                     <div>Notes</div>
                     <div>
@@ -712,16 +765,16 @@ country_dial_code
                       <Tooltip title="Stop">
                         <span
                           
-                            class="!text-icon ml-1 text-green-600">
-                          <StopCircleIcon />
+                            >
+                          <StopCircleIcon className="!text-icon ml-1 text-green-600"/>
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span  class="!text-icon ml-1">
-                          <RotateRightIcon />
+                        <span  >
+                          <RotateRightIcon className="!text-icon ml-1" />
                         </span>
                       </Tooltip>
                     </span>
@@ -737,43 +790,20 @@ country_dial_code
                   </div>
                 </div>
                   </div>
+}
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 >
-
+{props.customerConfigure.assignedToInd===true&&
                   <div class=" flex justify-between mb-[0.35rem] mt-3">
-                    <div class=" h-full w-full" style={{display:"flex",flexDirection:"column"}}>
-
-                    {/* <label>Assigned</label>
-
-<Select
-        showSearch
-        style={{ width: 200 }}
-        placeholder="Search or select assign"
-        optionFilterProp="children"
-        loading={isLoadingAssign}
-        defaultValue={selectedAssign}
-        onFocus={handleSelectAssignFocus}
-        onChange={handleSelectAssign}
-      >
-        {assign.map(assigned => (
-          <Option key={assigned.employeeId} value={assigned.employeeId}>
-            {assigned.fullName}
-          </Option>
-        ))}
-      </Select> */}
+                    <div class=" flex flex-col">
                       <Listbox value={selected} onChange={setSelected}>
                         {({ open }) => (
                           <>
-                            <Listbox.Label className="block font-semibold text-[0.75rem]  leading-lh1.2  "
-                            // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
-                            >
-                              <FormattedMessage
-                                id="app.assignedTo"
-                                defaultMessage="Assigned"
-                              />
-
-                            </Listbox.Label>
+                            <div className="font-bold text-[0.75rem] ">                                               
+                               {translatedMenuItems[8]}                            
+                              {/* Assigned */}
+                            </div>
                             <div className="relative ">
                               <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                                 {selected}
@@ -858,9 +888,11 @@ country_dial_code
                   /> */}
                     </div>
                   </div>
+}
 
                   <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
                   <div class="w-w47.5">
+                  {props.customerConfigure.vatNoInd===true&&
                       <Field
                         name="vatNo"
                         type="text"
@@ -876,8 +908,10 @@ country_dial_code
                         component={InputComponent}
                         inlineLabel
                       />
+}
                     </div>
                     <div class="w-w47.5">
+                    {props.customerConfigure.businessRegInd===true&&
                       <Field
                         name="businessRegistration"
                         type="text"
@@ -893,10 +927,12 @@ country_dial_code
                         component={InputComponent}
                         inlineLabel
                       />
+}
                     </div>
                   </div>
 
-                 
+                  {props.customerConfigure.addressInd===true&&               
+<div>
 
                   <div class="mt-8 w-full" style={{ backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                     <div>
@@ -912,7 +948,8 @@ country_dial_code
                   <div class=" mt-3">
                     <FieldArray
                       name="address"
-                      label="Address"
+                      // label="Address"
+                      label=  {translatedMenuItems[9]}
                       render={(arrayHelpers) => (
                         <AddressFieldArray
                           arrayHelpers={arrayHelpers}
@@ -921,6 +958,9 @@ country_dial_code
                       )}
                     />
                   </div>
+
+                  </div>
+}
                   {/* <div class=" flex justify-between">
                    <div class=" w-1/2 max-sm:w-wk">
                      <Field
@@ -968,7 +1008,7 @@ country_dial_code
 }
 
 
-const mapStateToProps = ({ auth, customer,employee ,catgCustomer,sector,leads}) => ({
+const mapStateToProps = ({ auth, customer,settings,employee ,catgCustomer,sector,leads}) => ({
   addingCustomer: customer.addingCustomer,
   addingCustomerError: customer.addingCustomerError,
   saleCurrencies: auth.saleCurrencies,
@@ -982,6 +1022,7 @@ const mapStateToProps = ({ auth, customer,employee ,catgCustomer,sector,leads}) 
   orgId: auth.userDetails.organizationId,
   sectors: sector.sectors,
   fullName: auth.userDetails.fullName,
+  customerConfigure:settings.customerConfigure,
   crmAllData:leads.crmAllData,
   currencies: auth.currencies,
 });
@@ -996,6 +1037,7 @@ const mapDispatchToProps = (dispatch) =>
       getAllCustomerEmployeelist,
       getCrm,
       getCurrency,
+      getCustomerConfigure,
       getCustomer
     },
     dispatch

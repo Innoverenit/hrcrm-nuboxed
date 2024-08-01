@@ -20,18 +20,14 @@ const StyledDrawer = styled(Drawer)`
     }
     .ant-drawer-body {
        // background-color: ${props => props.theme.applicationBackground} !important;
-       background-color:whitesmoke; 
+       background-color: #eaefed; 
        color: ${props => props.theme.color};
         padding: 0.7rem;
         border: none !important;
     }
     .ant-drawer-header {
-        background-image: linear-gradient(-90deg,#001529,#94b3e4);
+        background-image: linear-gradient(-90deg,#0e4c7fe0,#94d0e4);
         maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-        /* color: ${props => props.theme.color}; */
-        /* color: #fff; */
-        
-        /* padding: 1.25em 1.25em 0em 1.25em; */
         box-shadow: 0 0.75em 0.375em -0.375em rgb(46,44,44);
         border-bottom:0.0625em solid  #aaa;
       
@@ -54,7 +50,7 @@ const StyledDrawer = styled(Drawer)`
         min-width: 0;
         min-height: 0;
         flex-direction: row-reverse;
-        
+        height: 8px;
     }
  
 

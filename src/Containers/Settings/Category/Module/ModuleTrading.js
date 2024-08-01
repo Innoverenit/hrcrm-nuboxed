@@ -35,14 +35,15 @@ class ModuleTrading extends Component {
                 <div class="w-full flex-row">
               <div class=" flex " >
              
-              <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+              <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+              <div className=" flex h-28 justify-center "> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={Trading}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
-            <div class="flex justify-center mt-1">
+            /></div>
+            <div class="flex   flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center"> 
               <div class=" text-sm font-semibold ">Trading</div>
                     <div   class="  ml-2">
                     <Popconfirm
@@ -62,17 +63,20 @@ class ModuleTrading extends Component {
                       </Popconfirm>
                     </div>
                     </div>
+                    <div class="text-xs text-center"> Match Order ~ Options.</div>
+                    </div>
                     </div>
       
             <> 
-            <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+            <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div className=" flex h-28 justify-center "> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo1}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
-            <div class="flex justify-center mt-1">
+            /></div>
+            <div class="flex  flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center"> 
               <div class=" text-sm  ml-2 font-semibold">Ecom</div>
                     <div   class=" ml-2">
                     <Popconfirm
@@ -86,17 +90,83 @@ class ModuleTrading extends Component {
                           className="w-[4rem]"
                           onChange={() => {}}
                        
-                          checked={this.props.ecomStatus || this.props.moduleList.ecomModInd}
+                          checked={this.props.ecomStatus || this.props.moduleList.catalogPublishInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
                       </Popconfirm>
                     </div>
+                    </div>
+                    <div class="text-xs text-center"> D2C / B2B / Customer portal / Supplier Portal.</div>
                     </div> 
                     </div>
    
+
+                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div className=" flex h-28 justify-center "> 
+              <img
+              className="big-logo w-36 h-24 m-2"
+              src={FWLogo1}
+              alt="Tekorero logo"
+            /></div>
+            <div class="flex  flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center"> 
+              <div class=" text-sm  ml-2 font-semibold">Catalouge</div>
+                    <div   class=" ml-2">
+                    <Popconfirm
+                        title="Do you wish to change Status ? "
+                         onConfirm={() => this.props.handleCatalougeClick(!this.props.catalogueStatus)}
+                       
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <Switch
+                          className="w-[4rem]"
+                          onChange={() => {}}
+                       
+                          checked={this.props.catalogueStatus || this.props.moduleList.catalogPublishInd}
+                          checkedChildren="Yes"
+                          unCheckedChildren="No"
+                        />
+                      </Popconfirm>
+                    </div>
+                    </div>
+                    <div class="text-xs text-center"> D2C / B2B / Customer portal / Supplier Portal.</div>
+                    </div> 
+                    </div>
           
-  
+                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div className=" flex h-28 justify-center "> 
+              <img
+              className="big-logo w-36 h-24 m-2"
+              src={FWLogo1}
+              alt="Tekorero logo"
+            /></div>
+            <div class="flex  flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center"> 
+              <div class=" text-sm  ml-2 font-semibold">Material</div>
+                    <div   class=" ml-2">
+                    <Popconfirm
+                        title="Do you wish to change Status ? "
+                         onConfirm={() => this.props.handleMaterialClick(!this.props.materialStatus)}
+                       
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <Switch
+                          className="w-[4rem]"
+                          onChange={() => {}}
+                       
+                          checked={this.props.materialStatus || this.props.moduleList.materialPublishInd}
+                          checkedChildren="Yes"
+                          unCheckedChildren="No"
+                        />
+                      </Popconfirm>
+                    </div>
+                    </div>
+                    <div class="text-xs text-center"> D2C / B2B / Customer portal / Supplier Portal.</div>
+                    </div> 
+                    </div>
 
                     </>   
               

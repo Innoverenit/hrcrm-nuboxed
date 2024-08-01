@@ -37,6 +37,8 @@ const ProductionDashCard = (props) => {
             <div className="leftContainer">
                 {/* Render ProductionTableView */}
                 <ProductionTableView
+                        translateText={props.translateText}
+                        selectedLanguage={props.selectedLanguage}
                     fetchingProductionTable={props.fetchingProductionTable}
                     productionTableData={props.productionTableData}
                 />
@@ -44,6 +46,8 @@ const ProductionDashCard = (props) => {
             <div className="rightContainer">
                 {/* Render ProductionTimeLine */}
                 <ProductionTimeLine 
+                        translateText={props.translateText}
+                        selectedLanguage={props.selectedLanguage}
                 productionProductId={props.productionTableData[0].productionProductId}
                     // productionTableData={props.productionTableData}
                 />

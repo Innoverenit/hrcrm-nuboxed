@@ -146,43 +146,15 @@ class UpdateLeaveForm extends Component {
             <Form className="form-background">
               <div class=" flex justify-between" >
                 <div class=" h-full w-full"
-                >
-                  {/* <Radio.Group name="radiogroup">
-                                            <Radio
-                                                value={this.state.Project}
-                                                checked={this.state.Project}
-                                                onChange={this.handleProject}
-                                            >
-                                                Project
-                        </Radio>
-                                            <Radio
-                                                value={this.state.Travel}
-                                                checked={this.state.Travel}
-                                                onChange={this.handleTravel}
-                                            >
-                                                Travel
-                        </Radio>
-                                            <Radio
-                                                value={this.state.Holiday}
-                                                checked={this.state.Holiday}
-                                                onChange={this.handleHoliday}
-                                            >
-                                                Holiday
-                        </Radio>
-                                            <Radio
-                                                value={this.state.Account}
-                                                checked={this.state.Account}
-                                                onChange={this.handleAccount}
-                                            >
-                                                Account
-                        </Radio>
-                                        </Radio.Group> */}
-
-                  
-                  <div class=" flex justify-between w-full mt-3"
-                 
+                >                  
+                                                {/* Project                  
+                                                Travel                 
+                                                Holiday                
+                                                Account */}
+                                     
+                  <div class=" flex justify-between w-full mt-3"           
                   >
-                    <div class=" w-[47%]" >
+                    <div >
                       <Field
                         isRequired
                         name="startDate"
@@ -203,9 +175,7 @@ class UpdateLeaveForm extends Component {
                           // marginTop: "0.25em",
                           width: "100%",
                         }}
-                      />
-
-                   
+                      />               
                     </div>
                     {this.state.isAccepted?(
                   <div class=" w-[47%]" >
@@ -244,10 +214,8 @@ class UpdateLeaveForm extends Component {
                       />
                     </div>
                      ):(
-                      <div class=" flex items-center h-16 flex-row-reverse w-[25%] font-bold"
-                       
-                      >
-                        
+                      <div class=" flex items-center h-16 flex-row-reverse w-[25%] font-bold"                      
+                      >                      
                         <Switch
                            onChange={this.handleSwitchChange}
                           checked={this.state.firstCase}

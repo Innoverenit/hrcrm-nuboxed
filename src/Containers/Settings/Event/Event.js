@@ -167,7 +167,7 @@ const {
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingEvents && events.length === 0 ? <NodataFoundPage /> : events.slice().sort((a, b) => a.eventType.localeCompare(b.eventType)).map((region, index) => (
-            <div className="card9" key={region.eventTypeId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.eventTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.eventTypeId ? (
@@ -179,7 +179,7 @@ const {
                     onChange={(e) => setEventName(e.target.value)}
                 />
             ) : (
-                <div className="region">{region.eventType}&nbsp;&nbsp;&nbsp;
+                <div >{region.eventType}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -187,7 +187,7 @@ const {
             )}
 
             {/* Action buttons */}
-            <div className="actions">
+            <div >
                 {/* Edit button */}
                 {editingId === region.eventTypeId ? (
                     <div>

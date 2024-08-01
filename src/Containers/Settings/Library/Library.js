@@ -8,7 +8,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { MainWrapper } from "../../../Components/UI/Layout";
 import { TextInput } from "../../../Components/UI/Elements";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   getLibrarys,
   getLibraryRecords,
@@ -187,7 +187,8 @@ const Library = ({
           )}
           </div>
           <div className="flex flex-col">
-            <MainWrapper style={{ height: "30em" }}>
+            <div>
+            {/* <MainWrapper style={{ height: "34rem" }}> */}
               {librarys.length ? (
                 librarys
                   .slice()
@@ -210,15 +211,15 @@ const Library = ({
                     />
                   ))
               ) : (
-                <p>No Data Available</p>
+                <p>None Available</p>
               )}
-            </MainWrapper>
+            {/* </MainWrapper> */}</div>
           </div>
         </MainWrapper>
       </div>
       <div>
         Updated on{" "}
-        {moment(
+        {dayjs(
           librarys && librarys.length && librarys[0].updationDate
         ).format("ll")}{" "}
         by {librarys && librarys.length && librarys[0].updatedName}
@@ -273,7 +274,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Library);
 // } from "react-speech-recognition";
 // import { MainWrapper } from "../../../Components/UI/Layout";
 // import { TextInput,  } from "../../../Components/UI/Elements";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // import {
 //   getLibrarys,
 //   addLibrarys,
@@ -519,7 +520,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Library);
 //                     />
 //                    ))
 //                    ) : (
-//                     <p>No Data Available</p>
+//                     <p>None Available</p>
 //                   )}
                    
 //               </MainWrapper>
@@ -547,7 +548,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Library);
 //             </FlexContainer>
 //           </MainWrapper> */}
 //         </div>
-//         <div>Updated on {moment(this.props.librarys && this.props.librarys.length && this.props.librarys[0].updationDate).format("ll")} by {this.props.librarys && this.props.librarys.length && this.props.librarys[0].updatedName}</div>
+//         <div>Updated on {dayjs(this.props.librarys && this.props.librarys.length && this.props.librarys[0].updationDate).format("ll")} by {this.props.librarys && this.props.librarys.length && this.props.librarys[0].updatedName}</div>
 //       </>
 //     );
 //   }

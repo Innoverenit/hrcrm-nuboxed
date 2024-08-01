@@ -5,6 +5,8 @@ import { withRouter } from "react-router-dom";
 import {  Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { handleExpenseModal } from "../ExpenseAction";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import UploadIcon from '@mui/icons-material/Upload';
 
 
 const Option = StyledSelect.Option;
@@ -46,22 +48,24 @@ class ExpenseActionRight extends React.Component {
           Import
         </Button>
         &nbsp; */}
-    
+    <div>
+        <Tooltip placement="left" title="Create">
+          <Button
+            type="primary"
+            onClick={() => this.props.handleExpenseModal(true)}
+          >
+            < DataSaverOnIcon/>Add           
+          </Button>
+        </Tooltip>
+        </div>
+        <div  class=" ml-2">
         <Button
           type={this.state.isClicked === "export" ? "primary" : ""}
           onClick={() => this.handleClicked("export")}
           // ghost
         >
-          Export
+         <UploadIcon className=" !text-icon"/> Export
         </Button>
-     <div class=" ml-2">
-        <Tooltip placement="left" title="Create">
-          <Button
-            type="primary"
-            onClick={() => this.props.handleExpenseModal(true)}
-          >Add           
-          </Button>
-        </Tooltip>
         </div>
       </div>
     );

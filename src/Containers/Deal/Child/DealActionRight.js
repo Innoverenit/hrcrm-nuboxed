@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 import { withRouter } from "react-router-dom";
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip, } from "antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import UploadIcon from '@mui/icons-material/Upload';
 
 class DealActionRight extends React.Component {
   render() {
@@ -16,23 +18,6 @@ class DealActionRight extends React.Component {
     } = this.props;
     return (
       <div class=" flex items-center">
-         {/* {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.opportunityFullListInd===true &&( */}
-  {/* <OpportunityShareForm/> */}
-         {/* )} */}
-         <div class="max-sm:hidden">
-        <Button
-        style={{lineHeight:"inherit"}}
-           type="primary"
-          // default
-        href={`${base_url}/excel/export/user/opportunity/${userId}`}
-        >
-          {/* Export */}
-          <FormattedMessage
-                id="app.export"
-                defaultMessage="Export"
-              />
-        </Button>
-        </div>
         <Tooltip placement={"left"} title={<FormattedMessage
                 id="app.create"
                 defaultMessage="Create"
@@ -44,13 +29,31 @@ class DealActionRight extends React.Component {
             // ghost
             onClick={() => handleDealModal(true)}
           >
-               <FormattedMessage
+              <DataSaverOnIcon/> <FormattedMessage
                         id="app.add"
                         defaultMessage="Add"
                       />
           </Button>
             )}  
         </Tooltip>
+         {/* {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.opportunityFullListInd===true &&( */}
+  {/* <OpportunityShareForm/> */}
+         {/* )} */}
+         <div class="max-sm:hidden">
+        <Button
+        style={{lineHeight:"inherit"}}
+           type="primary"
+          // default
+        href={`${base_url}/excel/export/user/opportunity/${userId}`}
+        >
+          {/* Export */}<UploadIcon className=" !text-icon"/>
+          <FormattedMessage
+                id="app.export"
+                defaultMessage="Export"
+              />
+        </Button>
+        </div>
+        
       </div>
     );
   }

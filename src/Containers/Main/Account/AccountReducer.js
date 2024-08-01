@@ -8,6 +8,18 @@ const initialState = {
 
   updateAccountModal: false,
 
+  showStatusDrwr: false,
+
+  fetchingAccountInvoice: false,
+  fetchingAccountInvoiceError: false,
+  accountInvoice:[],
+
+  updatingOrdrSuplrItems: false,
+  updatingOrdrSuplrItemsError: false,
+
+  addingAccountImportForm:false,
+  addingAccountImportFormError:false,
+
   updateOrderModal: false,
 
   addDistributorModal: false,
@@ -136,7 +148,7 @@ const initialState = {
 
   fetchingInputDistributorData: false,
   fetchingInputDistributorDataError: false,
-  serachedData: [],
+  distributorSearch: [],
 
   fetchingOrderDetailsById: false,
   fetchingOrderDetailsByIdError: false,
@@ -151,6 +163,9 @@ const initialState = {
   addDistributorActivityTableModal: false,
 
   setEditingOrder: {},
+
+  updatingAccountPrice: false,
+  updatingAccountPriceError: false,
 
 
   setEdittingProcure: {},
@@ -208,6 +223,10 @@ const initialState = {
   fetchingFeedbackByOrderId: false,
   fetchingFeedbackByOrderIdError: false,
   orderFeedbacks: [],
+
+  fetchingProcureStatusItem: false,
+  fetchingProcureStatusItemError: false,
+  statusItems: {},
 
   fetchingDistributorHistory: false,
   fetchingDistributorHistoryError: true,
@@ -575,6 +594,10 @@ const initialState = {
 
   updatingSpareListItem: false,
   updatingSpareListItemError: false,
+
+  fetchingLocationNamesByProductId: false,
+          fetchingLocationNamesByProductIdError:false,
+          locationNamesByProductId:[],
 };
 
 export const distributorReducer = (state = initialState, action) => {
@@ -972,6 +995,30 @@ export const distributorReducer = (state = initialState, action) => {
         linkingPauseByDistributorIdError: true,
         addOrderDetailsModal: false,
       };
+      case types.ADD_ACCOUNT_IMPORT_FORM_REQUEST:
+        return { ...state, addingAccountImportForm: true };
+      case types.ADD_ACCOUNT_IMPORT_FORM_SUCCESS:
+        return {
+          ...state,
+          addingAccountImportForm: false,
+          //addLeadsImportModal: false,
+          // organizationDocumentDrawer: false,
+          // repositoryData: [
+          //   action.payload,
+          //   ...state.repositoryData,
+          //  ],
+  
+        };
+      case types.ADD_ACCOUNT_IMPORT_FORM_FAILURE:
+        return {
+          ...state, addingAccountImportForm: false,
+          //addingLeadsImportFormError:true,
+          // addCustomerModal: false 
+        };
+
+
+
+
 
     /**
      * update event modal
@@ -1079,8 +1126,9 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingInputDistributorData: false,
         customerListByUser: action.payload,
-        allDistributors:action.payload,
-        deletedDistributors:action.payload,
+        // allDistributors:action.payload,
+        // deletedDistributors:action.payload,
+        distributorSearch: action.payload,
         // distributorsByUserId: state.viewType === "all" ? null : action.payload,
         // allDistributors: state.viewType === "all" ? action.payload : null,
         // serachedData: action.payload,
@@ -2296,6 +2344,27 @@ export const distributorReducer = (state = initialState, action) => {
         updatingOfferPriceOfOrderError: true,
       };
 
+      case types.UPDATE_ACCOUNT_PRICE_REQUEST:
+      return { ...state, updatingAccountPrice: true };
+    case types.UPDATE_ACCOUNT_PRICE_SUCCESS:
+      return {
+        ...state,
+        updatingAccountPrice: false,
+        customerListByUser: state.customerListByUser.map((item) => {
+          if (item.distributorId == action.payload.distributorId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_ACCOUNT_PRICE_FAILURE:
+      return {
+        ...state,
+        updatingAccountPrice: false,
+        updatingAccountPriceError: true,
+      };
+
     case types.CHECK_TASK_COMPLETION_REQUEST:
       return { ...state, checkingTaskCompletion: true };
     case types.CHECK_TASK_COMPLETION_SUCCESS:
@@ -3287,12 +3356,85 @@ export const distributorReducer = (state = initialState, action) => {
 
                           case types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT:
                             return { ...state, 
-                              customerListByUser: [], 
+                              distributorSearch: [], 
                               // deletedTruck: [] 
                             };
 
+                            case types.HANDLE_STATUS_SHOW_DRAWER:
+                              return { ...state, showStatusDrwr: action.payload };
+
+                              case types.GET_PROCURE_STATUS_ITEM_REQUEST:
+      return { ...state, fetchingProcureStatusItem: true };
+    case types.GET_PROCURE_STATUS_ITEM_SUCCESS:
+      return {
+        ...state,
+        fetchingProcureStatusItem: false,
+        statusItems: action.payload,
+      };
+    case types.GET_PROCURE_STATUS_ITEM_FAILURE:
+      return {
+        ...state,
+        fetchingProcureStatusItem: false,
+        fetchingProcureStatusItemError: true,
+      };
 
 
+      case types.UPDATE_ORDR_SUPLR_ITEMS_REQUEST:
+      return {
+        ...state,
+        updatingOrdrSuplrItems: true,
+      };
+
+    case types.UPDATE_ORDR_SUPLR_ITEMS_SUCCESS:
+      return {
+        ...state,
+        updatingOrdrSuplrItems: false,
+        // orderListData: state.orderListData.map((item) => {
+        //   if (item.orderId === action.payload.orderId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+    case types.UPDATE_ORDR_SUPLR_ITEMS_FAILURE:
+      return {
+        ...state,
+        updatingOrdrSuplrItems: false,
+        updatingOrdrSuplrItemsError: true,
+      };
+
+      case types.GET_LOCATION_NAMES_BY_PRODUCTID_REQUEST:
+        return { ...state, fetchingLocationNamesByProductId: true };
+      case types.GET_LOCATION_NAMES_BY_PRODUCTID_SUCCESS:
+        return {
+          ...state,
+          fetchingLocationNamesByProductId: false,
+          locationNamesByProductId: action.payload,
+        };
+      case types.GET_LOCATION_NAMES_BY_PRODUCTID_FAILURE:
+        return {
+          ...state,
+          fetchingLocationNamesByProductId: false,
+          fetchingLocationNamesByProductIdError: true,
+        };
+
+
+        case types.GET_ACCOUNT_INVOICE_REQUEST:
+          return { ...state, fetchingAccountInvoice: true };
+        case types.GET_ACCOUNT_INVOICE_SUCCESS:
+          return {
+            ...state,
+            fetchingAccountInvoice: false,
+            accountInvoice: [...state.accountInvoice, ...action.payload]
+          };
+        case types.GET_ACCOUNT_INVOICE_FAILURE:
+          return {
+            ...state,
+            fetchingAccountInvoice: false,
+            fetchingAccountInvoiceError: true,
+          };
+  
     default:
       return state;
   }

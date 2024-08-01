@@ -11,7 +11,11 @@ import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { CurrencySymbol } from "../../../Components/Common";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
+import * as Yup from "yup";
 
+const formSchema = Yup.object().shape({
+  categoryName: Yup.string().required("Input Required!"),
+});
 class CategoryProductForm extends Component {
   constructor(props) {
     super(props);
@@ -100,7 +104,7 @@ class CategoryProductForm extends Component {
             categoryName:"",
             imageId: "",
           }}
-          // validationSchema={ProductSchema}
+          validationSchema={formSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
             addCategory(

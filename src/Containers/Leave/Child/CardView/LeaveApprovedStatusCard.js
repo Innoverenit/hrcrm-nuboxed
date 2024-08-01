@@ -106,10 +106,7 @@ function LeaveApprovedStatusCard(props) {
                         <div class=" font-normal text-xs  font-poppins">
                           {item.coverDetails}
                         </div>
-                      </div>
-                    
-
-                     
+                      </div>                                    
                     </div>
                   </div>
                 </div>

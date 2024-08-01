@@ -7,11 +7,12 @@ import { BundleLoader } from "../../../Components/Placeholder";
 
 const SuppliesTable =lazy(()=>import("./SuppliesTable"));
 const SuppliesDeletedTable =lazy(()=>import("./SuppliesDeletedTable"));
-
+const SuppliesCategoryCard =lazy(()=>import("./SuppliesCategoryCard"));
 
 function Supplies(props) {
     const { setSuppliesViewType, viewType, handleSuppliesModal } = props;
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
+    
     useEffect(() => {
         const handleResize = () => {
             setIsLargeScreen(window.innerWidth > 768);
@@ -26,6 +27,8 @@ function Supplies(props) {
     return (
         <React.Fragment>
             <SuppliesHeader
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
                 setSuppliesViewType={setSuppliesViewType}
                 viewType={viewType}
                 handleSuppliesModal={handleSuppliesModal}
@@ -34,12 +37,22 @@ function Supplies(props) {
             <Suspense fallback={<BundleLoader />}>
                 {viewType === "all" ? (
               
-                   <SuppliesTable />
+                   <SuppliesTable
+                   translateText={props.translateText}
+                   selectedLanguage={props.selectedLanguage}
+                    />
                   
                 ) : viewType === "dashboard" ? (
                    
-                     <SuppliesDeletedTable /> 
-                ) : null}
+                     <SuppliesDeletedTable 
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage}
+                     /> 
+                ) : viewType === "category" ? (
+                <SuppliesCategoryCard translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}/>) :
+                
+                null}
             </Suspense>
         </React.Fragment>
     );

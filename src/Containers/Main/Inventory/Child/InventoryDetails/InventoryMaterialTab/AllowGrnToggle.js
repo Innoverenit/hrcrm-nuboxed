@@ -19,7 +19,8 @@ function AllowGrnToggle(props) {
         <>
             <div>
                 <Popconfirm
-                    title="Change Status?"
+                    // title="Change Status?"
+                    title={props.translatedMenuItems[28]}
                     onCancel={null}
                     onConfirm={onChange}
                     okText="Yes"

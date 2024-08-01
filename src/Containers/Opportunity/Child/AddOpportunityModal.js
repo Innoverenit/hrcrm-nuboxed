@@ -20,7 +20,11 @@ const AddOpportunityModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
           {/* <OpportunityForm {...formProps}/> */}
-          <OpportunityStepper/>
+          <OpportunityStepper
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
+          />
         </Suspense>
       </StyledDrawer>
     </>

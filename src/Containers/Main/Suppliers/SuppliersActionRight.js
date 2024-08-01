@@ -5,8 +5,8 @@ import { base_url } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { Tooltip } from "antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { handleSuppliersModal } from "../../Main/Suppliers/SuppliersAction";
-import { FormattedMessage } from "react-intl";
 
 const AddSuppliersModal =lazy(()=>import("./Child/AddSuppliersModal"));
 
@@ -20,7 +20,7 @@ class SuppliersActionRight extends React.Component {
         {user.functionName === "Production" && user.designation === "Manager" &&
           viewType === "grid" ?
           <Tooltip 
-          title={<FormattedMessage id="app.exportSupplier" defaultMessage="Export Supplier" />}>
+          title={this.props.translatedMenuItems[11]}>
             <Button
               //type="primary"
               className="export"
@@ -31,31 +31,22 @@ class SuppliersActionRight extends React.Component {
             </Button>
           </Tooltip>
           : null}
-        {/* {user.functionName === "Production" && user.designation === "Manager" && viewType === "all" ?
-          <Tooltip title="Download Suppliers Library">
-            <Button
-              type="primary"
-              href={`${base_url}/export/supplier`}
-            >
-              <i class="fas fa-download"></i>
-            </Button>
-          </Tooltip>
-          :null} */}
-        <Tooltip placement="left" title="Create">
+        <Tooltip placement="left" title={this.props.translatedMenuItems[12]}>
           <Button
             type="primary"
             // ghost
             onClick={() => handleSuppliersModal(true)}
-          >
-            <FormattedMessage id="app.add" defaultMessage="Add" />
-            
-            {/* <i class="fas fa-plus"></i> */}
+          ><DataSaverOnIcon/>
+           {/* Add */}
+            {this.props.translatedMenuItems[9]}
           </Button>
         </Tooltip>
+  {/* } */}
 <Suspense fallback={"Loading"}>
 <AddSuppliersModal
           handleSuppliersModal={handleSuppliersModal}
           addSuppliersModal={addSuppliersModal}
+          translatedMenuItems={this.props.translatedMenuItems}
         />
 </Suspense>
         

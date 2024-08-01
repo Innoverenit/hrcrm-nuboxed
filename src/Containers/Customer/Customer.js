@@ -117,7 +117,7 @@ class Customer extends Component {
         handleCustomerImportModal={this.props.handleCustomerImportModal}
             handleDropChange={this.handleDropChange}
             currentUser={this.state.currentUser}
-           viewType={this.props.viewType}
+           viewType={viewType}
            setCustomerViewType={this.setCustomerViewType}
            teamsAccessInd={teamsAccessInd}
           handleCustomerModal={handleCustomerModal}
@@ -131,28 +131,58 @@ class Customer extends Component {
         <AddCustomerModal
           addCustomerModal={addCustomerModal}
           handleCustomerModal={handleCustomerModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
         />
         <Suspense fallback={<BundleLoader />}>
 
         {teamsAccessInd ? (
-            <CustomerTeamCardList/>
+            <CustomerTeamCardList
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
+            
+            />
         ) : (
           <>
-            {viewType === 'card' &&   <CustomerCardView/>}
-            {viewType === 'list' &&   <CustomerWhiteTable /> }
-            {viewType === 'dashboard' &&    <CustomerBlueTable/> }
+            {viewType === 'card' &&   <CustomerCardView
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+            />}
+            {viewType === 'list' &&   <CustomerWhiteTable 
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+            /> }
+            {viewType === 'dashboard' &&    <CustomerBlueTable
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+            /> }
             {viewType === 'table' &&    <CustomerCardList
              filter={this.state.filter}
              currentUser={this.state.currentUser} 
              viewType={this.props.viewType}
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
              /> }
             {viewType === 'map' &&    <CustomerMap/> }
             {viewType === 'all' &&        <CustomerAllCardList
              filter={this.state.filter}
              currentUser={this.state.currentUser} 
              viewType={this.props.viewType}
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
              />  }
-            {viewType === 'teams' && <CustomerTeamCardList/> }
+            {viewType === 'teams' && <CustomerTeamCardList
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems}
+            /> }
           </>
         )}
         {/* { this.props.viewType==="card"?

@@ -92,13 +92,24 @@ const GrnListOfPO = (props) => {
                     <div className=" flex justify-between  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className="w-[2.5rem]"></div>
                         {/* <div className=" md:w-[4.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div> */}
-                        <div className=" md:w-[9.21rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" md:w-[3.82rem]"><FormattedMessage id="app.category" defaultMessage="Category" /></div>
+                        <div className=" md:w-[9.21rem]">
+                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
+                            {props.translatedMenuItems[15]}
+                            </div>
+                        <div className=" md:w-[3.82rem]">
+                            {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}   {props.translatedMenuItems[16]}
+                            </div>
                         {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
-                        <div className=" md:w-[4.25rem]"><FormattedMessage id="app.attribute" defaultMessage="Attribute" /></div>
-                        <div className=" md:w-[4.25rem]"><FormattedMessage id="app.cell" defaultMessage="Cell" /></div>
+                        <div className=" md:w-[4.25rem]">
+                            {/* <FormattedMessage id="app.attribute" defaultMessage="Attribute" /> */}   {props.translatedMenuItems[17]}
+                            </div>
+                        <div className=" md:w-[4.25rem]">
+                            {/* <FormattedMessage id="app.cell" defaultMessage="Cell" /> */}   {props.translatedMenuItems[7]}
+                        </div>
                         <div className=" md:w-[6.10rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
-                        <div className=" md:w-[6.10rem]"><FormattedMessage id="app.instock" defaultMessage="In Stock" /></div>
+                        <div className=" md:w-[6.10rem]">
+                            {/* <FormattedMessage id="app.instock" defaultMessage="In Stock" /> */}   {props.translatedMenuItems[29]}
+                        </div>
                        
                         <div className=""></div>
                     </div>
@@ -106,7 +117,7 @@ const GrnListOfPO = (props) => {
                         dataLength={props.materialUnitsData.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingMaterialUnitsData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                        loader={props.fetchingMaterialUnitsData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
                         height={"75vh"}
                     >
                         {props.materialUnitsData.map((item, index) => {

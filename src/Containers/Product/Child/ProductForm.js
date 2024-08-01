@@ -174,8 +174,12 @@ class Productform extends Component {
             orgId:this.props.orgId,
             brand:"",
             model:"",
-            workflowId:""
-,          }}
+            workflowId:"",
+            weight: "",
+            width: "",
+             length:"",
+              height: "",
+          }}
           validationSchema={ProductSchema}
           onSubmit={(values, { resetForm }) => {
             //debugger;
@@ -348,6 +352,57 @@ class Productform extends Component {
                     />
                   </div>
 </div> */}
+ <div class="flex justify-between">
+                    <div class="w-[47%]">
+                    <label>Weight</label>
+                      <Field
+                        name="weight"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <label>Length</label>
+                      <Field
+                        name="length"
+                        //label="UOM"
+                        isColumn
+                        inlineLabel
+                        component={InputComponent}
+                      
+                        style={{
+                          width: "100%",
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="w-[47%]">
+                    <label>Width</label>
+                      <Field
+                        name="width"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <label>Height</label>
+                      <Field
+                        name="height"
+                        isColumn
+                        inlineLabel
+                        component={InputComponent}
+                      
+                        style={{
+                          width: "100%",
+                        }}
+                      />
+                    </div>
+                  </div>
               
                 </div>
                 <div class="h-full w-[45%]">
@@ -395,18 +450,16 @@ class Productform extends Component {
 
                     <span onClick={SpeechRecognition.stopListening}>
                       <Tooltip title="Stop">
-                        <span
-                          
-                            class="!text-icon ml-1 text-green-600">
-                          <StopCircleIcon />
+                        <span>
+                          <StopCircleIcon className="!text-icon ml-1 text-green-600"/>
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span  class="!text-icon ml-1">
-                          <RotateRightIcon />
+                        <span  >
+                          <RotateRightIcon className="!text-icon ml-1" />
                         </span>
                       </Tooltip>
                     </span>

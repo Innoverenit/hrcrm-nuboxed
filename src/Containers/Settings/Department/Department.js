@@ -7,7 +7,6 @@ import { FormattedMessage } from "react-intl";
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { MainWrapper } from "../../../Components/UI/Layout";
 import { TextInput,  } from "../../../Components/UI/Elements";
 import {
   getDepartments,
@@ -164,15 +163,9 @@ class Department extends Component {
     return (
       <>
         <div flexWrap="nowrap">
-          <MainWrapper
-            style={{
-              flexBasis: "100%",
-              // height: "30.625em",
-              overflow: "auto",
-              color: "#FFFAFA",
-            }}
-          >
+          
               <div class=" flex flex-row justify-between">
+
                        <div class=" flex w-[18vw]" >
                        <Input
          placeholder="Search by Name"
@@ -253,9 +246,11 @@ class Department extends Component {
 
              </div>
              
-
+<div className=" overflow-y-auto"
+           style={{ scroll:"thin"}}>
             <div class=" flex flex-col" >
-            <MainWrapper className="!h-[69vh] !mt-2" >
+            <div className="!h-[69vh] !mt-2" >
+              <div>
               {departments.length ? (
   departments
     .slice() 
@@ -280,13 +275,13 @@ class Department extends Component {
                     />
                   ))
                   ) : (
-                    <p>No Data Available</p>
+                    <p>None Available</p>
                   )}
-
-              </MainWrapper>
+</div>
+              </div>
             </div>
            
-          </MainWrapper>
+          </div>
       
   
         </div>
@@ -324,3 +319,147 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(Department);
+
+
+
+
+// import React, {useEffect, useState } from 'react';
+// import { Switch, Popconfirm } from 'antd';
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
+
+// import {
+//   getDepartments,
+//   // getDepartmentCount,
+//   // addDepartments,
+//   // searchDepartmentName,
+//   // removeDepartments,
+//   // updateDepartments,
+//   // ClearReducerDataOfDepartment
+// } from "./DepartmentAction";
+
+// const initialDepartments = [
+//   {
+//     id: 1,
+//     departmentName: "TechFlow",
+//     erpInd: false,
+//     financeInd: false,
+//     fullName: null,
+//     hrInd: false,
+//     imInd: false,
+//     inventoryInd: false,
+//     logisticsInd: false,
+//     mandetoryInd: false,
+//     crmInd: false,
+//     repairInd: false,
+//   },
+//   {
+//     id: 2,
+//     departmentName: "External",
+//     erpInd: false,
+//     financeInd: false,
+//     fullName: null,
+//     hrInd: false,
+//     imInd: false,
+//     inventoryInd: false,
+//     logisticsInd: false,
+//     mandetoryInd: false,
+//     crmInd: false,
+//     repairInd: false,
+//   },
+// ];
+
+// const fieldLabels = {
+//   mandetoryInd: 'Mandatory',
+//   crmInd: 'CRM',
+//   imInd: 'im',
+//   hrInd: 'hr',
+//   repairInd: 'repair',
+//   erpInd: 'erp',
+//   logisticsInd: 'logistics',
+//   productionInd:"production",
+//   orderManagementInd:"orderManagement",
+//   procurementInd:"procurement",
+//   repairInd:"repair",
+
+// };
+
+// const DepartmentList = (props) => {
+//   const [departments, setDepartments] = useState(props.departments);
+
+
+//   useEffect(() => {
+//    props.getDepartments()
+//   }, []);
+
+//   const handleSwitchChange = (departmentId, field, value) => {
+//     console.log({
+//       id: departmentId.toString(),
+//       type: fieldLabels[field],
+//       value: value,
+//     });
+
+//     const updatedDepartments = departments.map(department => {
+//       if (department.departmentId === departmentId) {
+//         return { ...department, [field]: value };
+//       }
+//       return department;
+//     });
+//     setDepartments(updatedDepartments);
+//   };
+
+//   return (
+//     <div>
+//       <h1>Department Names</h1>
+//       {departments.map(department => (
+//         <div key={department.departmentId} style={{ marginBottom: '20px' }}>
+//           <h2>{department.departmentName}</h2>
+//           {Object.keys(fieldLabels).map((field) => (
+//             <div key={field}>
+//               <label>{fieldLabels[field]}: </label>
+//               <Popconfirm
+//                 title={`Are you sure to change ${fieldLabels[field]}?`}
+//                 onConfirm={() => handleSwitchChange(department.departmentId, field, !department[field])}
+//                 okText="Yes"
+//                 cancelText="No"
+//               >
+//                 <Switch
+//                   checked={department[field]}
+//                 />
+//               </Popconfirm>
+//             </div>
+//           ))}
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// const mapStateToProps = ({ departments, sector,auth }) => ({
+//   // addingDepartments: departments.addingDepartments,
+//   // addingDepartmentsError: departments.addingDepartmentsError,
+//   departments: departments.departments,
+//   orgId: auth.userDetails.organizationId,
+//   // removingDepartments: departments.removingDepartments,
+//   // removingDepartmentsError: departments.removingDepartmentsError,
+//   // updatinDepartments: departments.updatingDepartments,
+//   // updatingDepartmentsError: departments.updatingDepartmentsError,
+//   // fetchingDepartments: departments.fetchingDepartments,
+//   // fetchingDepartmentsError: departments.fetchingDepartmentsError,
+//   // sectors: sector.sectors,
+// });
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators(
+//     {
+//       getDepartments,
+//       // getDepartmentCount,
+//       // addDepartments,
+//       //  removeDepartments,
+//       // updateDepartments,
+//       // // getSectors,
+//       // ClearReducerDataOfDepartment,
+//       //searchDepartmentName
+//     },
+//     dispatch
+//   );
+// export default connect(mapStateToProps, mapDispatchToProps)(DepartmentList);

@@ -118,7 +118,7 @@ const YearHeaderInput = (props) => {
         props.setFulfillment({ amount: data.fulfilment !== null ? data.fulfilment : null,kpi: data.kpiFullfillmentName !== null ? data.kpiFullfillmentName : null });
         props.setInvestment({ amount: data.investment !== null ? data.investment : null, currency: data.investmentCurrency || null,kpi: data.kpiInvestmentName !== null ? data.kpiInvestmentName : null });
       } else {
-        // If there's no data for the selected year, reset all fields to null
+        // If there's None for the selected year, reset all fields to null
         props.setSales({ amount: null, currency: null,kpi:null });
         props.setFulfillment({ amount: null,kpi:null });
         props.setInvestment({ amount: null, currency: null,kpi:null });

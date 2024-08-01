@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Icon, Tooltip } from "antd";
+import { Tooltip } from "antd";
 import { EditOutlined, FileDoneOutlined, PhoneOutlined, ScheduleOutlined } from "@ant-design/icons";
 import {  StyledTable } from "../../../../../../../Components/UI/Antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import {getActivityListBySupplierId} from "../../../../SuppliersAction";
 
 class SuppliersActivityTable extends Component {
@@ -64,7 +64,7 @@ class SuppliersActivityTable extends Component {
                 title: "Start",
                 width: "20%",
                 render: (name, item, i) => {
-                    return <span>{` ${moment(item.startDate).format("lll")}`}</span>;
+                    return <span>{` ${dayjs(item.startDate).format("lll")}`}</span>;
                 },
             },
 
@@ -72,7 +72,7 @@ class SuppliersActivityTable extends Component {
                 title: "End",
                 width: "20%",
                 render: (name, item, i) => {
-                    return <span>{` ${moment(item.endDate).format("lll")}`}</span>;
+                    return <span>{` ${dayjs(item.endDate).format("lll")}`}</span>;
                 },
             },
 
@@ -85,9 +85,8 @@ class SuppliersActivityTable extends Component {
                     return (
                         <Tooltip title="Edit">
                             {item.activity === "Event" && (
-                                <EditOutlined
-                                    // type="edit"
-                                    style={{ cursor: "pointer", fontSize: "12px" }}
+                                <EditOutlined className="cursor-pointer text-12px"
+                                    // type="edit"                                
                                     onClick={() => {
                                         // this.props.setEditEvents(item);
                                         // handleUpdateEventModal(true);
@@ -95,9 +94,8 @@ class SuppliersActivityTable extends Component {
                                 />
                             )}
                             {item.activity === "Call" && (
-                                <EditOutlined
-                                    // type="edit"
-                                    style={{ cursor: "pointer", fontSize: "12px" }}
+                                <EditOutlined className="cursor-pointer text-12px"
+                                    // type="edit"                                
                                     onClick={() => {
                                         // this.props.setEditCall(item);
                                         // handleUpdateCallModal(true);
@@ -106,9 +104,8 @@ class SuppliersActivityTable extends Component {
                                 />
                             )}
                             {item.activity === "Task" && (
-                                <EditOutlined
-                                    // type="edit"
-                                    style={{ cursor: "pointer", fontSize: "12px" }}
+                                <EditOutlined className="cursor-pointer text-12px"
+                                    // type="edit"                               
                                     onClick={() => {
                                         // this.props.setEditTask(item);
                                         // handleUpdateTaskModal(true);
@@ -140,7 +137,6 @@ class SuppliersActivityTable extends Component {
                             return (
                                 <>
                                     <div>
-
                                         {record.description || ""}
                                     </div>
                                 </>

@@ -72,15 +72,38 @@ const LeadsActionLeft = (props) => {
       setSearchOnEnter(false);
     }
   };
+  // const handleSearch = () => {
+  //   if (currentData.trim() !== "") {
+  //     // Perform the search
+  //     props.inputLeadsDataSearch(currentData);
+  //     setSearchOnEnter(true);  //Code for Search
+  //   } else {
+  //     console.error("Input is empty. Please provide a value.");
+  //   }
+  // };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      // Perform the search
-      props.inputLeadsDataSearch(currentData);
-      setSearchOnEnter(true);  //Code for Search
+      if (props.teamsAccessInd) {
+        props.inputLeadsDataSearch(currentData, 'team');
+      } else {
+        if (props.viewType === "card") {
+          props.inputLeadsDataSearch(currentData, 'user');
+        } else if (props.viewType === "teams") {
+          props.inputLeadsDataSearch(currentData, 'team');
+        } else if (props.viewType === "all") {
+          props.inputLeadsDataSearch(currentData, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
+      setSearchOnEnter(true);  // Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
   };
+  
+  
+  
   const handleStartListening = () => {
     setStartTime(Date.now());
     setIsRecording(true);
@@ -108,7 +131,20 @@ const LeadsActionLeft = (props) => {
     setIsRecording(false);
     if (transcript.trim() !== "") {
       setCurrentData(transcript);
-      props.inputLeadsDataSearch(transcript);
+      if (props.teamsAccessInd) {
+        props.inputLeadsDataSearch(transcript, 'team');
+      } else {
+        if (props.viewType === "card") {
+          props.inputLeadsDataSearch(transcript, 'user');
+        } else if (props.viewType === "teams") {
+          props.inputLeadsDataSearch(transcript, 'team');
+        } else if (props.viewType === "all") {
+          props.inputLeadsDataSearch(transcript, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
+     // props.inputLeadsDataSearch(transcript);
       setSearchOnEnter(true);
     }
   };
@@ -132,7 +168,7 @@ const LeadsActionLeft = (props) => {
   console.log(currentData)
   const teamCount = props.teamsAccessInd && props.leadsTeamCountData ? props.leadsTeamCountData.leadsTeam : 0;
 
-  
+  console.log(props.viewType)
   return (
     <div class=" flex  items-center">
       <Tooltip
@@ -145,7 +181,7 @@ const LeadsActionLeft = (props) => {
         >
 
 
-          <span class=" md:mr-1 text-sm cursor-pointer"
+          <span class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setLeadsViewType("card")}
             style={{
               color: props.viewType === "card" && "#1890ff",
@@ -193,14 +229,14 @@ const LeadsActionLeft = (props) => {
                size="small"
                count={(props.viewType === "all" && props.leadsAllCountData.leadsDetails) || 0}
                overflowCount={999}>
-              <span class=" md:mr-1 text-sm cursor-pointer"
+              <span class="  !text-icon md:mr-1  cursor-pointer"
                 onClick={() => props.setLeadsViewType("all")}
                 style={{
                   color: props.viewType === "all" && "#1890ff",
                 }}
               >
                 <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                  <div class="text-white !text-icon">ALL</div></Avatar>
+                  <div class="text-white">ALL</div></Avatar>
 
               </span>
             </Badge>
@@ -252,7 +288,7 @@ const LeadsActionLeft = (props) => {
       </div>
 
 
-      <div class="w-[35%] mt-2 ml-2">
+      <div class="w-[35%]  ml-2">
         <StyledSelect placeholder="Sort" defaultValue="CreationDate" onChange={(e) => props.handleFilterChange(e)}>
         <Option value="" disabled hidden>
         Sort by :

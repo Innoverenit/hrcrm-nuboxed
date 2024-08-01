@@ -3,6 +3,8 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import EmployeeTab from "./EmployeeTab/EmployeeTab";
+import SuppliersTab from "./SuppliersTab";
+import ShipperTab from "./ShipperTab";
 const PerformanceManagementTab = lazy(() =>
   import("./PerformanceManagementTab/PerformanceManagementTab")
 );
@@ -67,28 +69,38 @@ function CategoryTab (props) {
               component:<CustomerSectorTab />,
             },
             {
-              rulesName: "Investor",
+              rulesName: "Suppliers",
               ruleId: "6",
+              component:<SuppliersTab />,
+            },
+            {
+              rulesName: "Shipper",
+              ruleId: "7",
+              component:<ShipperTab />,
+            },
+            {
+              rulesName: "Investor",
+              ruleId: "8",
               component:<InvestorTab />,
             },
             {
               rulesName: "Order",
-              ruleId: "7",
+              ruleId: "9",
               component:<OrderTab />,
             },
             {
               rulesName: "Performance Management",
-              ruleId: "8",
+              ruleId: "10",
               component:<PerformanceManagementTab />,
             },
             {
               rulesName: "Words",
-              ruleId: "9",
+              ruleId: "11",
               component:<Words/>,
             },
             {
               rulesName: "Employee",
-              ruleId: "10",
+              ruleId: "12",
               component:<EmployeeTab/>,
             },
 

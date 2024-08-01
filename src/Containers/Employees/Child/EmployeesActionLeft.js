@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledSelect } from "../../../Components/UI/Antd";
@@ -6,34 +6,109 @@ import { withRouter } from "react-router-dom";
 import { inputEmployeeDataSearch,getEmployeelist,ClearReducerDataOfEmployee, getRecords } from "../EmployeeAction";
 import {  Input, Tooltip, Badge,Avatar } from "antd";
 import { AudioOutlined } from '@ant-design/icons';
-import SpeechRecognition, {  } from 'react-speech-recognition';
 import { FormattedMessage } from "react-intl";
 import {getDepartments} from "../../Settings/Department/DepartmentAction"
 import { getlocation } from "../../Event/Child/Location/LocationAction";
 import GridViewIcon from '@mui/icons-material/GridView';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 const { Search } = Input;
 const Option = StyledSelect.Option;
 
 const EmployeesActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
   const [pageNo, setPage] = useState(0);
+  const [searchOnEnter, setSearchOnEnter] = useState(false); 
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false);
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+
+ 
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (e.target.value.trim() === "") {
-      setPage(pageNo + 1);
-      props.getEmployeelist("cretiondate","active");
+    if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+      //setPage(pageNo + 1);
+      if (props.viewType === "tile") {
+        props.getEmployeelist("cretiondate","active");
+      }else if (props.viewType === "table") {
+        props.getEmployeelist("cretiondate","all");
+      }
       props.ClearReducerDataOfEmployee()
+      setSearchOnEnter(false);
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
-      props.inputEmployeeDataSearch(currentData);
+     // props.inputEmployeeDataSearch(currentData);
+      if (props.viewType === "tile") {
+        props.inputEmployeeDataSearch(currentData,'user');
+      }else if (props.viewType === "table") {
+        props.inputEmployeeDataSearch(currentData,'All');
+      }
     } else {
       console.error("Input is empty. Please provide a value.");
     }
   };
+  const handleStartListening = () => {
+    setStartTime(Date.now());
+    setIsRecording(true);
+    SpeechRecognition.startListening();
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(() => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+    }, minRecordingTime);
+  };
+  const suffix = (
+    <AudioOutlined
+      onClick={handleStartListening}
+      style={{
+        fontSize: 16,
+        color: '#1890ff',
+      }}
+
+    />
+  );
+  const handleStopListening = () => {
+    SpeechRecognition.stopListening();
+    setIsRecording(false);
+    if (transcript.trim() !== "") {
+      setCurrentData(transcript);
+      if (props.viewType === "tile") {
+        props.inputEmployeeDataSearch(transcript,'user');
+      }else if (props.viewType === "table") {
+        props.inputEmployeeDataSearch(transcript,'All');
+      }
+     
+      setSearchOnEnter(true);
+    }
+  };
+  useEffect(() => {
+    if (!listening && isRecording) {
+      handleStopListening();
+    }
+  }, [listening]);
+  useEffect(() => {
+    if (isRecording && !listening) {
+      // If recording was stopped but less than 5 seconds have passed, restart listening
+      const elapsedTime = Date.now() - startTime;
+      if (elapsedTime < minRecordingTime) {
+        SpeechRecognition.startListening();
+      } else {
+        setIsRecording(false);
+      }
+    }
+  }, [listening, isRecording, startTime]);
   useEffect(() => {
     if (props.viewType === "tile") {
       props.getRecords(props.orgId,"active");
@@ -48,13 +123,7 @@ const EmployeesActionLeft = (props) => {
   // useEffect(()=>{
   //   props.getCountries();
   // })
-  const suffix = (
-    <AudioOutlined
-      onClick={SpeechRecognition.startListening}
-      class=" !text-icon text-[#1890ff]" 
 
-    />
-  );
   const {user}=props;
   return (
     <div class=" flex items-center">
@@ -95,14 +164,14 @@ const EmployeesActionLeft = (props) => {
           overflowCount={999}
         >
           <span
-            class=" mr-1 text-sm cursor-pointer !text-icon"
+            class=" mr-1 !text-icon cursor-pointer"
             onClick={() => props.setEmployeeViewType("table")}
             style={{
               color: props.viewType === "table" && "#1890ff",
             }}
           >
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-            <div class="text-white !text-icon">ALL</div>
+            <div class="text-white ">ALL</div>
             </Avatar>
           </span>
           </Badge>
@@ -115,12 +184,12 @@ const EmployeesActionLeft = (props) => {
             suffix={suffix}
             onPressEnter={handleSearch}  
             onChange={handleChange}
-            // value={currentData}
+             value={currentData}
           />
    
       </div>
    
-        <div  class=" w-[35%] mt-2 ml-2">
+        <div  class=" w-[35%]  ml-2">
           <StyledSelect placeholder="Sort"  defaultValue="cretiondate" onChange={(e)  => props.handleFilterChange(e)}>
           <Option value="cretiondate">Creation Date</Option>
           <Option value="AtoZ">A To Z</Option>

@@ -26,7 +26,9 @@ const RepairTaskTable = (props) => {
                                 {item.taskName}
                             </div>
                             <div class="w-[50%] flex justify-between">
-                                <QCPhoneTaskToggle item={item} />
+                                <QCPhoneTaskToggle item={item} 
+                                  RowData={props.RowData}
+                                />
                                 <MultiAvatar
                                     primaryTitle={`${item.completeTaskUserName}`}
                                     imgWidth={"2.1em"}

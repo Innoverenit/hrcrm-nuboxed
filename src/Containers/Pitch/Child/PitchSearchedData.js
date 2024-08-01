@@ -143,7 +143,7 @@ const PitchSearchedData = (props) => {
         hasMore={hasMore}
         loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
         height={"22vh"}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       > */}
     { !props.fetchingPitchHot && props.serachedPitchData.length === 0 ?<NodataFoundPage />:props.serachedPitchData.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
@@ -345,7 +345,7 @@ const countryCode = item.countryAlpha2Code
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                    
-                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "No Data"}
+                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

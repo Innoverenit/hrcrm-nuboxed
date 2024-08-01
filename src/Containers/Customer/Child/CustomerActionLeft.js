@@ -49,11 +49,31 @@ const CustomerActionLeft = (props) => {
       setSearchOnEnter(false);
     }
   };
+  // const handleSearch = () => {
+  //   if (currentData.trim() !== "") {
+  //     // Perform the search
+  //     props.inputCustomerDataSearch(currentData);
+  //     setSearchOnEnter(true);  //Code for Search
+  //   } else {
+  //     console.error("Input is empty. Please provide a value.");
+  //   }
+  // };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      // Perform the search
-      props.inputCustomerDataSearch(currentData);
-      setSearchOnEnter(true);  //Code for Search
+      if (props.teamsAccessInd) {
+        props.inputCustomerDataSearch(currentData, 'team');
+      } else {
+        if (props.viewType === "table") {
+          props.inputCustomerDataSearch(currentData, 'user');
+        } else if (props.viewType === "teams") {
+          props.inputCustomerDataSearch(currentData, 'team');
+        } else if (props.viewType === "all") {
+          props.inputCustomerDataSearch(currentData, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
+      setSearchOnEnter(true);  // Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -100,7 +120,19 @@ const CustomerActionLeft = (props) => {
     setIsRecording(false);
     if (transcript.trim() !== "") {
       setCurrentData(transcript);
-      props.inputCustomerDataSearch(transcript);
+      if (props.teamsAccessInd) {
+        props.inputCustomerDataSearch(transcript, 'team');
+      } else {
+        if (props.viewType === "table") {
+          props.inputCustomerDataSearch(transcript, 'user');
+        } else if (props.viewType === "teams") {
+          props.inputCustomerDataSearch(transcript, 'team');
+        } else if (props.viewType === "all") {
+          props.inputCustomerDataSearch(transcript, 'All');
+        } else {
+          console.error("Invalid viewType. Please provide a valid value.");
+        }
+      }
       setSearchOnEnter(true);
     }
   };
@@ -169,6 +201,7 @@ const CustomerActionLeft = (props) => {
   //   } 
 
   // }, [])
+
   const { user } = props;
   const teamCount = props.teamsAccessInd && props.customerTeamRecordData ? props.customerTeamRecordData.prospectTeam : 0;
   return (
@@ -222,9 +255,9 @@ const CustomerActionLeft = (props) => {
             <span
               class=" mr-1 text-sm cursor-pointer"
               onClick={() => props.setCustomerViewType("teams")}
-              // style={{
-              //   color: props.viewType === "teams" && "#1890ff",
-              // }}
+              style={{
+                color: props.viewType === "teams" && "#1890ff",
+              }}
             >
               <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
                 <PeopleIcon className="text-white !text-icon" />
@@ -309,7 +342,7 @@ const CustomerActionLeft = (props) => {
             value={currentData}
           />
         </div>
-        <div class="w-[40%] mt-2 ml-2 max-sm:w-[45%]">
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
           <StyledSelect placeholder={
             <span>
               Sort by Creation Date

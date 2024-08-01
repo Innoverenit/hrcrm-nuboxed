@@ -2,16 +2,14 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Switch } from "antd";
+import {Button,Switch } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import { handleChooserModal } from "../../../Planner/PlannerAction";
 import { addLeaves } from "../../LeavesAction";
-
 
 
 const EventSchema = Yup.object().shape({
@@ -96,9 +94,24 @@ class LeaveForm extends Component {
     handleEventModal(false);
     callback && callback();
   };
+  
   render() {
     const { prefillLeave, startDate, endDate, isEditing, addingLeaves } = this.props;
 console.log(this.state.firstCase)
+// const [text, setText] = useState("");
+//   function handletext(e) {
+//     setText(e.target.value);
+//   }
+//   const {
+//     transcript,
+//     listening,
+//     resetTranscript,
+//     browserSupportsSpeechRecognition,
+//   } = useSpeechRecognition();
+
+//   if (!browserSupportsSpeechRecognition) {
+//     return <span>Browser doesn't support speech recognition.</span>;
+//   }
     return (
       <>
         <Formik 
@@ -312,18 +325,43 @@ console.log(this.state.firstCase)
   <div class="mt-3">
 
  
-    <Field
-      isRequired
-      name="reason"
-      //  / label="Reason"
-      label={<FormattedMessage
-        id="app.reason"
-        defaultMessage="Reason"
-      />}
-      width={"100%"}
-      component={TextareaComponent}
-      inlineLabel
-    />
+  <div>Reason</div>
+                    <div>
+                  {/* <div>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span>
+                          <StopCircleIcon className="!text-icon ml-1 text-green-600" />
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span  >
+                          <RotateRightIcon className="!text-icon ml-1"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </div> */}
+                  <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      // value={transcript ? transcript : text}
+                      // onChange={handletext}
+                    ></textarea>
+                  </div>
+                </div>
 </div>
 
               

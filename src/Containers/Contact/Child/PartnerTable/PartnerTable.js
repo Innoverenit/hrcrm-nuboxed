@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState, useMemo, lazy } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import moment from "moment";
@@ -7,7 +7,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
-import { SearchOutlined, MailOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import { getAllSalesList } from "../../../Opportunity/OpportunityAction";

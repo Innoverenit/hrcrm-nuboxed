@@ -21,9 +21,7 @@ function MileageStatusCard(props) {
         <div className="w-[26rem] max-sm:w-wk">
           <MileageRejectedStatusCard/>
         </div>
-       </div>
-
-       
+       </div>    
       </>
     );
   }

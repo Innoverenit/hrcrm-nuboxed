@@ -370,7 +370,7 @@ function RecruiterTable(props) {
         )
          return <>
   
-           {/* {item.skillList===[] ? "No Data" : */}
+           {/* {item.skillList===[] ? "None" : */}
            <span>
              <RecruiterSkillLoadMore
              matchSkill={data}
@@ -465,7 +465,7 @@ function RecruiterTable(props) {
       render: (text, item) => {
         const availableDate = moment(item.availableDate).format("ll");
         return <>
-          {item.availableDate === null ? "No Data" :
+          {item.availableDate === null ? "None" :
             <span>
               {moment(item.availableDate).format("l")} &nbsp;&nbsp;
             </span>
@@ -1018,7 +1018,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(RecruiterTable);
 //     render: (text, item) => {
 //       const availableDate = moment(item.availableDate).format("ll");
 //       return <>
-//       {item.availableDate === null ? "No Data" :
+//       {item.availableDate === null ? "None" :
 //         <span>
 //           {moment(item.availableDate).format("l")} &nbsp;&nbsp;
 //         </span>

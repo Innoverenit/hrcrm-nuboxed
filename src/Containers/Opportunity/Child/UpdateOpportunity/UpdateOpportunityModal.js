@@ -18,6 +18,9 @@ const UpdateOpportunityModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
           <OpportunityUpdateStepper 
           opportunityId={props.opportunityData.opportunityId}
+          translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+         translatedMenuItems={props.translatedMenuItems}
           />{" "}
         </Suspense>
       </StyledDrawer>

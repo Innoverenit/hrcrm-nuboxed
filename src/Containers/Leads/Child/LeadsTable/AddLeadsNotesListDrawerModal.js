@@ -1,4 +1,4 @@
-import React, { Component,Suspense,lazy } from "react";
+import React, { Component,Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -23,7 +23,6 @@ class AddLeadsNotesListDrawerModal extends Component {
         onClose={() =>
           this.props.handleLeadsNoteDrawerModal( false)
         }
-        
         >
           <Suspense fallback={<BundleLoader />}>
 

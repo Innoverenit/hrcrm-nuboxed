@@ -1,21 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useRef,useState } from "react";
 import { FormattedMessage } from "react-intl";
-import { Tooltip, Badge,Avatar } from "antd";
+import { Tooltip, Badge,Avatar,Input } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { DeleteOutlined } from "@ant-design/icons";
-import LockOpenIcon from "@mui/icons-material/LockOpen";
 import PeopleIcon from '@mui/icons-material/People';
 import { CheckCircleTwoTone } from "@ant-design/icons";
+import { AudioOutlined } from '@ant-design/icons';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import {getdealsRecord,getdealsAllRecord,
   getdealsTeamRecord,getlostRecords,
-  getDeleteRecords
+  getDeleteRecords,inputDealDataSearch,ClearSearchedDataOfDeal,
+  getDealListbyUserId,getTeamsDeals,getAllDeals
+
 } from "../DealAction";
 import { StopTwoTone, TableOutlined } from "@ant-design/icons";
+const { Search } = Input;
 
 const DealActionLeft = (props) => {
+  const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false); 
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); //Code for Search
+  const [pageNo, setPage] = useState(0);
+  const [page, setpage] = useState(0);
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+
   useEffect(() => {
     if (props.teamsAccessInd) {
       props.getdealsTeamRecord(props.userId);
@@ -37,6 +56,114 @@ const DealActionLeft = (props) => {
       props.getdealsTeamRecord(props.userId);
     } 
   }, [props.viewType, props.userId,props.orgId]);
+
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
+
+    const handleChange = (e) => {
+      setCurrentData(e.target.value);
+  
+      if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+        if (props.viewType === "table") {
+          props.getDealListbyUserId(props.userId, page);
+        } else if (props.viewType === "teams") {
+          props.getTeamsDeals(props.userId,page);
+        } else if (props.viewType === "all") {
+          props.getAllDeals("all", page);
+        }
+        props.ClearSearchedDataOfDeal()
+        setSearchOnEnter(false);
+      }
+    };
+
+    const handleSearch = () => {
+      if (currentData.trim() !== "") {
+        if (props.teamsAccessInd) {
+          props.inputDealDataSearch(currentData, 'team');
+        } else {
+          if (props.viewType === "table") {
+            props.inputDealDataSearch(currentData, 'user');
+          } else if (props.viewType === "teams") {
+            props.inputDealDataSearch(currentData, 'team');
+          } else if (props.viewType === "all") {
+            props.inputDealDataSearch(currentData, 'All');
+          } else {
+            console.error("Invalid viewType. Please provide a valid value.");
+          }
+        }
+        setSearchOnEnter(true);  // Code for Search
+      } else {
+        console.error("Input is empty. Please provide a value.");
+      }
+    };
+
+    const handleStartListening = () => {
+      setStartTime(Date.now());
+      setIsRecording(true);
+      SpeechRecognition.startListening();
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+      timerRef.current = setTimeout(() => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+      }, minRecordingTime);
+    };
+
+    const suffix = (
+      <AudioOutlined
+        onClick={handleStartListening}
+        style={{
+          fontSize: 16,
+          color: '#1890ff',
+        }}
+  
+      />
+    );
+    const handleStopListening = () => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+      if (transcript.trim() !== "") {
+        setCurrentData(transcript);
+        if (props.teamsAccessInd) {
+          props.inputDealDataSearch(transcript, 'team');
+        } else {
+          if (props.viewType === "table") {
+            props.inputDealDataSearch(transcript, 'user');
+          } else if (props.viewType === "teams") {
+            props.inputDealDataSearch(transcript, 'team');
+          } else if (props.viewType === "all") {
+            props.inputDealDataSearch(transcript, 'All');
+          } else {
+            console.error("Invalid viewType. Please provide a valid value.");
+          }
+        }
+       // props.inputDealDataSearch(transcript);
+        setSearchOnEnter(true);
+      }
+    };
+    useEffect(() => {
+      if (!listening && isRecording) {
+        handleStopListening();
+      }
+    }, [listening]);
+    useEffect(() => {
+      if (isRecording && !listening) {
+        // If recording was stopped but less than 5 seconds have passed, restart listening
+        const elapsedTime = Date.now() - startTime;
+        if (elapsedTime < minRecordingTime) {
+          SpeechRecognition.startListening();
+        } else {
+          setIsRecording(false);
+        }
+      }
+    }, [listening, isRecording, startTime]);
+
   
   const {
     viewType,
@@ -50,7 +177,7 @@ const DealActionLeft = (props) => {
   const teamCount = props.teamsAccessInd && props.dealsTeamRecord ? props.dealsTeamRecord.investorOpportunityTeam : 0;
 
   return (
-    <div class=" flex items-center">
+    <div class=" flex items-center cursor-pointer">
       <Badge
         size="small"
          count={(viewType === "table" &&   props.dealsRecord.opportunityDetails) || 0}
@@ -70,8 +197,7 @@ const DealActionLeft = (props) => {
             style={{
               color: viewType === "table" && "#1890ff",
             }}
-          >
-            {" "}
+          >          
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
             <CurrencyExchangeIcon  className="text-white !text-icon"/>
             </Avatar>
@@ -97,7 +223,7 @@ const DealActionLeft = (props) => {
             onClick={() => props.setDealViewType("stage")}
           >
              <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
-           <TableOutlined  className="text-white !text-icon"/>
+           <TableOutlined  className="text-white !text-icon cursor:pointer"/>
            </Avatar>
           </span>
           </Badge>
@@ -109,60 +235,25 @@ const DealActionLeft = (props) => {
         />}
    >
       <Badge
-          size="small"
-          // count={
-          //   (viewType === "won" &&
-          //   wonOpportunityData.OpportunityDetailsbyWonInd) ||
-          //   0
-          // }
+          size="small"     
           overflowCount={999}
         >
           <span
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setDealViewType("won")}
-            style={{
-           
+            style={{        
               color: props.viewType === "won" && "#1890ff",
               // cursor:"pointer"
             }}
           >
             {" "}
             <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#4bc076" }}>
-            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7"  className=" !text-icon" />
+            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7"  className=" !text-icon cursor:pointer" />
             </Avatar>
           </span>
           </Badge>
       </Tooltip>
-        <Tooltip
-          title={   <FormattedMessage
-            id="app.close"
-            defaultMessage="My Deals-Close"
-          />}>
-        {" "}
-        <Badge
-          size="small"
-        //   count={
-        //     (viewType === "close" &&
-        //       closeOpportunityData.OpportunityDetailsByCloseInd) ||
-        //     0
-        //   }
-          overflowCount={999}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            // onClick={() => props.setOpportunityViewType("close")}
-            style={{
-              color: props.viewType === "close" && "#1890ff",
-           
-            }}
-          >
-            {" "}
-            <Avatar style={{ background: props.viewType === "close" ? "#f279ab" : "#4bc076" }}>
-            <LockOpenIcon  className="text-white !text-icon"/>
-            </Avatar>
-          </span>
-        </Badge>
-      </Tooltip>
+       
       <Tooltip 
         title={   <FormattedMessage
           id="app.lost"
@@ -188,7 +279,7 @@ const DealActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#4bc076" }}>
-            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red"  className=" !text-icon" />
+            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red"  className=" !text-icon cursor:pointer" />
             </Avatar>
           </span>
         </Badge>
@@ -220,7 +311,7 @@ const DealActionLeft = (props) => {
             onClick={() => props.setDealViewType("teams")}
           >
             <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-         <PeopleIcon  className="text-white !text-icon"/>
+         <PeopleIcon  className="text-white !text-icon cursor:pointer"/>
          </Avatar>
           </span>
           </Badge>
@@ -251,7 +342,7 @@ const DealActionLeft = (props) => {
              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
             <FormattedMessage
                         id="app.all"
-                        defaultMessage="ALL" className="text-white !text-icon"
+                        defaultMessage="ALL" className="text-white !text-icon cursor:pointer"
                       />
                       </Avatar>
           </span>
@@ -291,27 +382,18 @@ const DealActionLeft = (props) => {
           </span>
         </Badge>
       </Tooltip>
-
+      <div class=" w-64 max-sm:w-24">
+        <Input
+          placeholder="Search by Name "
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+        </div>
     
-      {/* <Tooltip
-        title={
-          <FormattedMessage
-            id="app.deletedOpportunity"
-            defaultMessage="Deleted Opportunity"
-          />
-        }
-      >
-        <span
-          class=" mr-1 text-sm cursor-pointer"
-          onClick={() => props.setOpportunityViewType("Map")}
-          style={{
-            color: props.viewType === "Map" && "#1890ff",
-          }}
-        >
-          <DeleteIcon />
-        </span>
-       
-      </Tooltip> */}
+    
     </div>
   );
 };
@@ -337,7 +419,12 @@ const mapDispatchToProps = (dispatch) =>
       getlostRecords,
       getdealsTeamRecord,
       getdealsAllRecord,
-      getDeleteRecords
+      getDeleteRecords,
+      inputDealDataSearch,
+      ClearSearchedDataOfDeal,
+      getDealListbyUserId,
+      getTeamsDeals,
+      getAllDeals
     },
     dispatch
   );

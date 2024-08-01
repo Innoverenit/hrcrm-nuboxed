@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Tooltip, Badge, Avatar } from "antd";
 import { FormattedMessage } from "react-intl";
+import {getReaasignProduct} from "../ProductionAction"
 import ArchiveIcon from '@mui/icons-material/Archive';
 import TokenIcon from '@mui/icons-material/Token';
 import { TableOutlined } from "@ant-design/icons";
@@ -17,6 +18,11 @@ const ProductionActionLeft = (props) => {
       props.getProductRecords(props.locationId);
     }
   }, [props.viewType, props.locationId]);
+  useEffect(() => {
+    props.getReaasignProduct(props.userId);
+    // setPage(page + 1);
+    // props.getRoomRackByLocId(props.locationId, props.orgId);
+}, []);
   return (
     <div class="flex items-center">
        <Tooltip title="My Workspace ">
@@ -24,7 +30,7 @@ const ProductionActionLeft = (props) => {
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         //overflowCount={999}
                     >
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class=" mr-1  cursor-pointer"
                             onClick={() => setProductionViewType("table")}
                             style={{
 
@@ -33,13 +39,13 @@ const ProductionActionLeft = (props) => {
                         >
                             <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
                                 {/* <div className="text-white">All</div> */}
-                                <TableBarOutlined/>
+                                <TableBarOutlined className=" text-white !text-icon"/>
                                 </Avatar>
 
                         </span>
                     </Badge>
                 </Tooltip>
-    
+  
       <Tooltip
           title={
             <FormattedMessage id="app.stageview" defaultMessage="Stage View" />
@@ -50,30 +56,28 @@ const ProductionActionLeft = (props) => {
         // count={(viewType === "stage" && recordData.opportunityDetails) || 0}
         overflowCount={999}
       >
-          <span
+          <span class=" mr-1 "
             style={{
-              fontSize: "1.56em",
-              marginRight: "0.3rem",
-              cursor:"pointer",
+              
               color: props.viewType === "stage" && "#1890ff",
             }}
             onClick={() => props.setProductionViewType("stage")}
           >
              <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
-           <TableOutlined/>
+           <TableOutlined className=" text-white !text-icon  cursor-pointer"/>
            </Avatar>
           </span>
           </Badge>
         </Tooltip>
       <Tooltip title="Archive">
-        <span class=" md:mr-2 text-sm cursor-pointer"
+        <span class=" mr-1 "
           onClick={() => setProductionViewType("arch")}
           style={{
             color: viewType === "arch" && "#1890ff",
           }}
         >
           <Avatar style={{ background: viewType === "arch" ? "#f279ab" : "#4bc076" }}>
-            <ArchiveIcon />
+            <ArchiveIcon className=" text-white !text-icon cursor-pointer " />
           </Avatar>
 
         </span>
@@ -83,7 +87,7 @@ const ProductionActionLeft = (props) => {
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
                     >
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class=" mr-1 text-sm "
                             onClick={() => setProductionViewType("all")}
                             style={{
 
@@ -91,7 +95,7 @@ const ProductionActionLeft = (props) => {
                             }}
                         >
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white">ALL</div></Avatar>
+                                <div className=" text-white  cursor-pointer ">ALL</div></Avatar>
 
                         </span>
                     </Badge>
@@ -103,7 +107,7 @@ const ProductionActionLeft = (props) => {
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
                     > */}
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class=" mr-1  "
                             onClick={() => setProductionViewType("cell")}
                             style={{
 
@@ -112,7 +116,7 @@ const ProductionActionLeft = (props) => {
                         >
                            
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white"> <TokenIcon  /></div></Avatar>
+                       <TokenIcon className="text-white !text-icon cursor-pointer" /></Avatar>
 
 
                         </span>
@@ -121,7 +125,7 @@ const ProductionActionLeft = (props) => {
 
 
 
-               
+             <div style={{fontWeight:"bold"}}> Items Reassigned:{props.reassignProduct.rejectProduct}</div>  
                
     </div>
   );
@@ -131,12 +135,14 @@ const mapStateToProps = ({ auth,production }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
   locationId: auth.userDetails.locationId,
-  productrecordData:production.productrecordData
+  productrecordData:production.productrecordData,
+  reassignProduct:production.reassignProduct
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getProductRecords
+      getProductRecords,
+      getReaasignProduct
     },
     dispatch
   );

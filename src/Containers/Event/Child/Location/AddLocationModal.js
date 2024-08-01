@@ -21,7 +21,9 @@ const AddMileageModal = (props) => {
         onClose={() => handleLocationModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <LocationForm />
+          <LocationForm 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

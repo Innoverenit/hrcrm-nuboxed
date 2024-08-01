@@ -35,19 +35,50 @@ import {
 } from "../../../Opportunity/OpportunityAction";
 import {getWonDeals,handleUpdateDealModal,handleDealsNotesDrawerModal} from "../../DealAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 
 
 function DealWonCard(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+         " Name",//0
+          "Investor",//1
+          "Sponsor",//2
+          "Start Date",//3
+          "Values",//4
+          "Stages",//5
+          "Sales Rep",//6
+          "Owner",//7
+          "Action",//8
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     if(props.role==="USER"&&user.department==="Recruiter"){
       props.getRecruiterList(props.recruiterId);     
-    }else{
-     
+    }else{   
     } 
     props. getWonDeals(props.userId,page);
     setPage(page + 1);
@@ -81,49 +112,52 @@ function DealWonCard(props) {
      
       } = props;
 
+      if (loading) {
+        return <div><BundleLoader/></div>;
+      }
       return (    
-  <>
-
-     
+  <>    
 <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[13.82rem] max-xl:w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.name"
-                  defaultMessage="name"
-                /></div>
-        <div className=" w-[8.21rem] max-xl:w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.investor"
-                  defaultMessage="investor"
-                /></div>
-        <div className=" w-[7.21rem] max-xl:w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
-                  id="app.sponsor"
-                  defaultMessage="sponsor"
-                /></div>
-        <div className="w-[6.11rem] max-xl:w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.startdate"
-                  defaultMessage="startdate"
-                /></div>
-        <div className="w-[8.16rem] max-xl:w-[9.16rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className=" w-[13.82rem] max-xl:w-[11.12rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        {translatedMenuItems[0]}
+       {/* "name" */}
+                </div>
+        <div className=" w-[8.21rem] max-xl:w-[7.21rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        {translatedMenuItems[1]}
+         {/* investor"              */}
+                </div>
+        <div className=" w-[7.21rem] max-xl:w-[6.21rem] max-xl:text-xs] max-lg:text-[0.45rem] ">
+        {translatedMenuItems[2]}
+        {/* "sponsor"          */}
+                </div>
+        <div className="w-[6.11rem] max-xl:w-[7.11rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        {translatedMenuItems[3]}
+       {/* startdate" */}       
+                </div>
+        <div className="w-[8.16rem] max-xl:w-[9.16rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+          <FormattedMessage
                   id="app.proposalamt"
                   defaultMessage="proposalamt"
-                /></div>
-        <div className="w-[8.14rem] max-xl:w-[6.14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.stages"
-                  defaultMessage="stages"
-                /></div> 
-        <div className="w-[8.1rem] max-xl:w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.salesRep"
-                  defaultMessage="salesRep"
-                /></div>
-        <div className="w-[5.22rem] max-xl:w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.owner"
-                  defaultMessage="owner"
-                /></div>
-        <div className="w-[2.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="w-[3.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.action"
-                  defaultMessage="action"
-                /></div>
+                />
+                </div>
+        <div className="w-[8.14rem] max-xl:w-[6.14rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        {translatedMenuItems[5]}
+         {/* "stages" */}             
+                </div> 
+        <div className="w-[8.1rem] max-xl:w-[7.1rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        {translatedMenuItems[6]}
+        {/* salesRep" */}      
+                </div>
+        <div className="w-[5.22rem] max-xl:w-[5.21rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        {translatedMenuItems[7]} 
+        {/* owner" */}
+                </div>
+        <div className="w-[2.71rem] max-xl:text-xs] max-lg:text-[0.45rem]"></div>
+        <div className="w-[3.01rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        {translatedMenuItems[8]}
+        {/* action" */}             
+                </div>
       </div>
       <InfiniteScroll
          dataLength={wonDeals.length}
@@ -131,6 +165,7 @@ function DealWonCard(props) {
         hasMore={hasMore}
         loader={fetchingWonDeals ?<div class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
          {wonDeals.map((item) => {
                  
@@ -156,62 +191,37 @@ function DealWonCard(props) {
               imgHeight={"1.8rem"}
             />
 </div>
-                                   <div class="w-[4%]">
+                                   <div>
 
                                    </div>
                                    
                                         <Tooltip>
-                                        <div class=" flex max-sm:w-full  flex-row md:flex-col">
-                                            {/* <div class=" text-xs  font-poppins max-sm:hidden">
-                                            Name
-                                            </div> */}
-                                            <div class=" text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
+                                        <div class=" flex max-sm:w-full  flex-row md:flex-col">                                   
+                                           {/* Name */}
+                                        
+                                         <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
+                                        <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-sm cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
-    </Link> 
-                                            {/* <Link
-                        toUrl={`dealDetails/${item.invOpportunityId}`}
-                        title={`${item.opportunityName}`}
-                      >
-                        {item.opportunityName}
-                      </Link> */}
-                      &nbsp;&nbsp;
-        {/* {date === currentdate ? (
-          <span
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
-            New
-          </span>
-        ) : null} */}
-       
+    </Link>                          
+                      &nbsp;&nbsp;       
                                             </div>
 </div>
-                                        </Tooltip>
-                              
+                                        </Tooltip>                         
                                 </div>
-
-                                <div className=" flex font-medium   w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                           
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                                <div className=" flex   w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                       {/* sector */}
+                                   
+                                    <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <Link to ="/investor">
                         {item.investor}
                         </Link>
                                     </div>
                                 </div>
-                                </div>
-                               
-                               
+                                </div>       
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium  w-[7.4rem] max-xl:w-[4.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                  
-
-                                  {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
-                                  <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                 
+                                <div className=" flex   w-[7.4rem] max-xl:w-[4.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                              {/* Country */}
+                                  <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">                            
           {item.contactName === null ? "None" :
             <MultiAvatar2
               primaryTitle={item.contactName}
@@ -221,33 +231,30 @@ function DealWonCard(props) {
               imgHeight={"1.8em"}
             />
           }
-        
                                   </div>
                               </div>
-                                <div className=" flex font-medium  w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                                <div className=" flex  w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                  {/* Deals */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                                     </div>
                                 </div>
                              
-                                <div className=" flex font-medium  w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex  w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                  Value
 
-                                    <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    <CurrencySymbol currencyType={item.currency} />
+                                    <div class=" text-xs  font-poppins text-center max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">              
             &nbsp;
             {item.proposalAmount}
-
                                     </div>
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium  w-[9.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex  w-[9.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                               Value
 
-                                    <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-xs  font-poppins text-center max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-xs">
                                     <Dropdown
               overlay={
                 <div>
@@ -258,8 +265,7 @@ function DealWonCard(props) {
                         paddingRight: 5,
                         backgroundColor: "#F5F5F5",
                       }}
-                    >
-                      
+                    >           
                     </Menu.Item>
                   </Menu>
                 </div>
@@ -277,28 +283,23 @@ function DealWonCard(props) {
                 />
               </Tooltip>
             </Dropdown>
-
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
+                                <div className=" flex  w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                  {/* Assigned */}
 
-                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    
+                                    <div class=" text-xs  font-poppins max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-xs">                                   
                                     <span>
                                     <MultiAvatar2
               primaryTitle={item.assignedTo}
-              imgWidth={"1.8em"}
-              imgHeight={"1.8em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
-            </span>
-             
+            </span>     
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  w-[6.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
-                       
-                       {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
-
+                                <div className=" flex  w-[6.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                {/* Owner */}
               <Tooltip title={item.ownerName}>
           <span>
             <MultiAvatar2
@@ -321,11 +322,9 @@ function DealWonCard(props) {
              item.opportunityId,
              {
                closeInd:false,
-             }
-                  
+             }         
            );         
-         }}         
-       
+         }}                
          >
           <LockIcon className="!text-icon"
                 style={{
@@ -356,10 +355,7 @@ function DealWonCard(props) {
                           />
                         </span>
                       </Tooltip>
-                    </div>
-                 
-                 
-                   
+                    </div>                                          
                       <div>
                          <Tooltip
                         placement="right"
@@ -383,9 +379,7 @@ function DealWonCard(props) {
                           </span>
                         )}
                       </Tooltip>
-                      </div>
-                    
-                    
+                      </div>                                  
                       <div>
                       <StyledPopconfirm
                         title="Do you want to delete?"
@@ -401,14 +395,9 @@ function DealWonCard(props) {
                           />
                           )}
                           </StyledPopconfirm>
-                      </div>
-             
-                  
-                 
-                                
+                      </div>                                                                
                    <div>
-                   <span
-         
+                   <span       
          style={{ cursor: "pointer" }}
          onClick={() => {
             //  props.getAllRecruitmentByOppId(item.opportunityId);
@@ -429,14 +418,11 @@ function DealWonCard(props) {
              />
            )}
          </span>
+                 </div>
+                      </div>    
                         </div>
-          
-                  </div>    
-                            </div>
                         </div>
-
-
-                    )
+                   )
                 })}
       </InfiniteScroll>
 
@@ -456,8 +442,6 @@ function DealWonCard(props) {
     </>
   );
 }
-
-
 const mapStateToProps = ({ auth, deal, opportunity }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,

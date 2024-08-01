@@ -9,6 +9,55 @@ const initialState = {
   addProcessTaskModal: false,
   candidateSequenceModal: false,
 
+
+  movingRejectToggleTask:false,
+  movingRejectToggleTaskError:false,
+
+  fetchingProcessTaskedStage:false,
+  fetchingProcessTaskedStageError:false,
+  processTaskedStage:[],
+
+  fetchingFeedback: false,
+      fetchingFeedbackError: false,
+      feedBackList:[],
+
+      addingFeedBack: false,
+      addingFeedBackError: false,
+
+      fetchingSupplyCategory: false,
+      fetchingSupplyCategoryError: false,
+      supplyCategory:[],
+
+      addingShipperCategory: false,
+      addingShipperCategoryError: false,
+
+      addingSupplyCategory: false,
+      addingSupplyCategoryError: false,
+
+      fetchingWorkflowCategory: false,
+      fetchingWorkflowCategoryError: false,
+      workFlowCategory:[],
+
+      addingWorkflowCategory: false,
+addingWorkflowCategoryError: false,
+
+      fetchingShipperCategory: false,
+      fetchingShipperCategoryError: false,
+      shipperCategory:[],
+
+      addingShipperCategory: false,
+addingShipperCategoryError: false,
+
+      removingFeedBack: false,
+      removingFeedBackError: false,
+
+      updatingFeedBack: false,
+      updatingFeedBackError: false,
+
+      fetchingFeedBackCount: false,
+                fetchingFeedBackCountError: false,
+                feedBackCount:{},
+
   deleteSupplierProcessData: false, 
   deleteSupplierProcessDataError: false,
 
@@ -453,6 +502,11 @@ const initialState = {
   fetchingProcessStagesForSupplierError: false,
   supplierProcessStages: [],
 
+  addingGlobalType:false,
+  addingGlobalTypeError:false,
+
+  duplicateGlobalTypeError:false,
+
   addingWeekendAccess: false,
   addingWeekendAccessError: false,
 
@@ -479,6 +533,10 @@ const initialState = {
   fetchingScheduler: false,
   fetchingSchedulerError: false,
   scheduler: [],
+
+
+  updateGlobalWorkflow:false,
+  updateGlobalWorkflowError:false,
 
 
   fetchingOrgType:false,
@@ -546,6 +604,10 @@ const initialState = {
   deletingSequenceData: false,
   deletingSequenceDataError: false,
 
+
+  addingProcessTaskStage:false,
+  addingProcessTaskStageError:false,
+
   deletingHiringStagesData: false,
   deletingHiringStagesDataError: false,
 
@@ -558,6 +620,10 @@ const initialState = {
 
   deleteWorkflowData: false,
   deleteWorkflowDataError: false,
+
+
+  addingCustomerConfig:false,
+  addingCustomerConfigError:false,
 
   deleteOpportunityProcessData: false,
   deleteOpportunityProcessDataError: false,
@@ -576,6 +642,11 @@ const initialState = {
   linkingProductionProcessPublishError: false,
   productionProcessPublish:[],
 
+
+  addingConfigureGlobalType:false,
+  addingConfigureGlobalTypeError:false,
+  duplicateConfigureGlobalTypeError:false,
+
   addingNotificationAccess: false,
   addingNotificationAccessError: false,
 
@@ -584,6 +655,10 @@ const initialState = {
 
   addingPermissionAccess: false,
   addingPermissionAccessError: false,
+
+
+
+  addDrawerDealsStagesModal:false,
 
   fetchingCommunicationAccess: false,
   fetchingCommunicationAccessError: false,
@@ -628,16 +703,27 @@ const initialState = {
   addingLeadAging: false,
   addingLeadAgingError: false,
 
+
+  linkingDealsProcessGlobal:false,
+  linkingDealsProcessGlobalError:false,
+
   addingNotificationConfig: false,
   addingNotificationConfigError:false,
 
   gettingNotificationConfig: false,
   gettingNotificationConfigError:false,
-  notificationConfig:{},
+  notificationConfig:[],
 
-  fetchingProcessForRepair: false,
-  fetchingProcessForRepairError: false,
-  repairProcess: [],
+  deleteTaskStageData:false,
+  deleteTaskStageDataError:false,
+
+  // fetchingProcessForRepair: false,
+  // fetchingProcessForRepairError: false,
+  // repairProcess: [],
+  fetchingProcessForWorkFlowData:false,
+  fetchingProcessForWorkFlowDataError:false,
+
+  processForWorkflowData:[],
 
   creatingCurrencyConversion: false,
   creatingCurrencyConversionError: false,
@@ -652,6 +738,11 @@ const initialState = {
 
   addingLangWords: false,
   addingLangWordsError:false,
+
+  fetchingCustomerConfigure:false,
+  fetchingCustomerConfigureError:false,
+
+  customerConfigure:{},
 
 };
 export const settingsReducer = (state = initialState, action) => {
@@ -1678,6 +1769,32 @@ export const settingsReducer = (state = initialState, action) => {
         addingVendorError: false,
       };
 
+
+
+
+
+      case types.ADD_PROCESS_TASK_STAGE_REQUEST:
+        return { ...state, addingProcessTaskStage: true };
+      case types.ADD_PROCESS_TASK_STAGE_SUCCESS:
+        return {
+          ...state,
+          addingProcessTaskStage: false,
+
+          processTaskedStage: [action.payload, ...state.processTaskedStage],
+         
+          // customerByUserId: state.customerByUserId.map((item) => {
+          //   if (item.customerId === action.payload.customerId) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }),
+        };
+      case types.ADD_PROCESS_TASK_STAGE_FAILURE:
+        return { ...state, addingProcessTaskStage: false, 
+          // addCustomerModal: false 
+        };
+
     case types.ADDING_THIRD_PARTY_ACCESS_REQUEST:
       return { ...state, addingThirdPartyAccess: true };
     case types.ADDING_THIRD_PARTY_ACCESS_SUCCESS:
@@ -1744,6 +1861,42 @@ export const settingsReducer = (state = initialState, action) => {
       };
 
     //post
+
+
+    case types.GET_CUSTOMER_CONFIGURE_REQUEST:
+      return { ...state, fetchingCustomerConfigure: true };
+    case types.GET_CUSTOMER_CONFIGURE_SUCCESS:
+      return {
+        ...state,
+        fetchingCustomerConfigure: false,
+        customerConfigure: action.payload,
+      };
+    case types.GET_CUSTOMER_CONFIGURE_FAILURE:
+      return {
+        ...state,
+        fetchingCustomerConfigure: false,
+        fetchingCustomerConfigureError: true,
+      };
+
+
+    case types.ADD_CUSTOMER_CONFIGURE_REQUEST:
+      return { ...state, addingCustomerConfig: true };
+    case types.ADD_CUSTOMER_CONFIGURE_SUCCESS:
+      return {
+        ...state,
+        addingCustomerConfig: false,
+        //addOpportunityModal: false,
+       // addedOpportunity:action.payload,
+       // opportunityByUserId: [action.payload, ...state.opportunityByUserId],
+        // clearbit: null,
+      };
+    case types.ADD_CUSTOMER_CONFIGURE_FAILURE:
+      return {
+        ...state,
+        addingCustomerConfig: false,
+        addingCustomerConfigError: true,
+        //addOpportunityModal: false,
+      };
 
     case types.ADDING_DEPARTMENT_ACCESS_REQUEST:
       return { ...state, addingDepartmentAccess: true };
@@ -2453,6 +2606,26 @@ export const settingsReducer = (state = initialState, action) => {
         fetchingRemoteAccessError: false,
       };
 
+
+
+      case types.GET_PROCESS_TASK_STAGE_REQUEST:
+        return { ...state, fetchingProcessTaskedStage: true };
+      case types.GET_PROCESS_TASK_STAGE_SUCCESS:
+        return {
+          ...state,
+          fetchingProcessTaskedStage: false,
+          processTaskedStage: action.payload,
+          //   tableRequirement: [
+          //     ...state.tableRequirement,
+          //     ...action.payload],
+        };
+      case types.GET_PROCESS_TASK_STAGE_FAILURE:
+        return {
+          ...state,
+          fetchingProcessTaskedStage: false,
+          fetchingProcessTaskedStageError: true,
+        };
+
     case types.UPDATE_STAGE_FOR_OPPORTUNITY_REQUEST:
       return { ...state, updatingStagesForOpportunity: true };
     case types.UPDATE_STAGE_FOR_OPPORTUNITY_SUCCESS:
@@ -2501,6 +2674,11 @@ export const settingsReducer = (state = initialState, action) => {
 
     case types.HANDLE_RECRUITMENT_DRAWER_MODAL:
       return { ...state, addDrawerRecruitmentModal: action.payload };
+
+
+
+      case types.HANDLE_DEALS_STAGES_DRAWER_MODAL:
+        return { ...state, addDrawerDealsStagesModal: action.payload };
 
 
 
@@ -2888,6 +3066,7 @@ export const settingsReducer = (state = initialState, action) => {
         ...state,
         addingProcessForDeals: false,
         addingProcessForDealsError: false,
+        processForWorkflowData: [action.payload, ...state.processForWorkflowData],
         // addProcessHiringModal: false,
       };
     case types.ADD_PROCESS_FOR_DEALS_FAILURE:
@@ -2964,9 +3143,9 @@ export const settingsReducer = (state = initialState, action) => {
       return {
         ...state,
         linkingDealsProcessPublish: false,
-        dealsProcessPublish: state.dealsProcessPublish.map((item) => {
+        processForWorkflowData: state.processForWorkflowData.map((item) => {
           if (
-            item.investorOppWorkflowId === action.payload.investorOppWorkflowId
+            item.workflowDetailsId === action.payload.workflowDetailsId
           ) {
             return action.payload;
           } else {
@@ -2991,8 +3170,8 @@ export const settingsReducer = (state = initialState, action) => {
       return {
         ...state,
         linkingDealsStagesPublish: false,
-        dealsStagesPublish: state.dealsStagesPublish.map((item) => {
-          if (item.investorOppStagesId === action.payload.investorOppStagesId) {
+        dealsProcessStages: state.dealsProcessStages.map((item) => {
+          if (item.stagesId === action.payload.stagesId) {
             return action.payload;
           } else {
             return item;
@@ -3013,13 +3192,30 @@ export const settingsReducer = (state = initialState, action) => {
       return {
         ...state,
         deleteDealsProcessData: false,
-        dealsProcess: state.dealsProcess.filter(
-          (item) => item.investorOppWorkflowId !== action.payload
+        processForWorkflowData: state.processForWorkflowData.filter(
+          (item) => item.workflowDetailsId !== action.payload
         ),
       };
     case types.DELETE_DEALS_PROCESS_DATA_FAILURE:
       return { ...state, deleteDealsProcessData: false, deleteDealsProcessDataError: false };
 
+
+      case types.DELETE_TASK_STAGE_DATA_REQUEST:
+        return { ...state, deleteTaskStageData: true };
+      case types.DELETE_TASK_STAGE_DATA_SUCCESS:
+        return {
+          ...state,
+          deleteTaskStageData: false,
+          processTaskedStage: state.processTaskedStage.filter(
+            (item) => item.stagesTaskId !== action.payload
+          ),
+        };
+      case types.DELETE_TASK_STAGE_DATA_FAILURE:
+        return {
+          ...state,
+          deleteTaskStageData: false,
+          deleteTaskStageDataError: false,
+        };
 
     case types.DELETE_DEALS_STAGES_DATA_REQUEST:
       return { ...state, deletingDealsStagesData: true };
@@ -3028,7 +3224,7 @@ export const settingsReducer = (state = initialState, action) => {
         ...state,
         deletingDealsStagesData: false,
         dealsProcessStages: state.dealsProcessStages.filter(
-          (item) => item.investorOppStagesId !== action.payload
+          (item) => item.stagesId !== action.payload
         ),
       };
     case types.DELETE_DEALS_STAGES_DATA_FAILURE:
@@ -3043,8 +3239,8 @@ export const settingsReducer = (state = initialState, action) => {
         ...state,
         updateProcessNameForDeals: false,
 
-        dealsProcess: state.dealsProcess.map((state) =>
-          state.investorOppWorkflowId === action.payload.investorOppWorkflowId
+        processForWorkflowData: state.processForWorkflowData.map((state) =>
+          state.workflowDetailsId === action.payload.workflowDetailsId
             ? action.payload
             : state
         ),
@@ -3064,7 +3260,7 @@ export const settingsReducer = (state = initialState, action) => {
         ...state,
         updatingStagesForDeals: false,
         dealsProcessStages: state.dealsProcessStages.map((state) =>
-          state.investorOppStagesId === action.payload.investorOppStagesId ? action.payload : state
+          state.stagesId === action.payload.stagesId ? action.payload : state
         ),
       };
     case types.UPDATE_STAGE_FOR_DEALS_FAILURE:
@@ -3072,6 +3268,34 @@ export const settingsReducer = (state = initialState, action) => {
         ...state,
         updatingStagesForDeals: false,
         updatingStagesForDealsError: true,
+      };
+
+
+
+
+
+      case types.LINK_DEALS_PROCESS_GLOBAL_REQUEST:
+      return {
+        ...state,
+        linkingDealsProcessGlobal: true,
+      };
+    case types.LINK_DEALS_PROCESS_GLOBAL_SUCCESS:
+      return {
+        ...state,
+        linkingDealsProcessGlobal: false,
+        processForWorkflowData: state.processForWorkflowData.map((item) => {
+          if (item.workflowDetailsId === action.payload.workflowDetailsId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.LINK_DEALS_PROCESS_GLOBAL_FAILURE:
+      return {
+        ...state,
+        linkingDealsProcessGlobal: false,
+        linkingDealsProcessGlobalError: true,
       };
 
     case types.GET_ALL_VAT_REQUEST:
@@ -3135,6 +3359,31 @@ export const settingsReducer = (state = initialState, action) => {
         return { ...state, fetchingDepartmentWiseUser: false, departmentwiseUser: action.payload };
       case types.GET_DEPARTMENTWISE_USER_FAILURE:
         return { ...state, fetchingDepartmentWiseUser: false, fetchingDepartmentWiseUserError: true };
+
+
+
+        case types.UPDATE_GLOBAL_WORKFLOW_REQUEST:
+          return { ...state, updateGlobalWorkflow: true };
+        case types.UPDATE_GLOBAL_WORKFLOW_SUCCESS:
+          return {
+            ...state,
+            updateGlobalWorkflow: false,
+            // updatePartnerModal: false,
+            workFlowCategory: state.workFlowCategory.map((item) => {
+              if (item.workflowCategoryId === action.payload.workflowCategoryId) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
+          };
+        case types.UPDATE_GLOBAL_WORKFLOW_FAILURE:
+          return {
+            ...state,
+            updateGlobalWorkflow: false,
+            updateGlobalWorkflowError: true,
+          };
+    
 
         case types.ADD_NOTIFICATION_CONFIG_REQUEST:
           return { ...state, addingNotificationConfig: true };
@@ -3810,24 +4059,24 @@ export const settingsReducer = (state = initialState, action) => {
                                 // addProcessHiringModal: false,
                               };
 
-                              case types.GET_PROCESS_FOR_REPAIR_REQUEST:
+                              case types.GET_PROCESS_FOR_WORKFLOW_DATA_REQUEST:
                                 return {
                                   ...state,
-                                  fetchingProcessForRepair: true,
-                                  fetchingProcessForRepairError: false,
+                                  fetchingProcessForWorkFlowData: true,
+                                  fetchingProcessForWorkFlowDataError: false,
                                 };
-                              case types.GET_PROCESS_FOR_REPAIR_SUCCESS:
+                              case types.GET_PROCESS_FOR_WORKFLOW_DATA_SUCCESS:
                                 return {
                                   ...state,
-                                  fetchingProcessForRepair: false,
-                                  fetchingProcessForRepairError: false,
-                                  repairProcess: action.payload,
+                                  fetchingProcessForWorkFlowData: false,
+                                  fetchingProcessForWorkFlowData: false,
+                                  processForWorkflowData: action.payload,
                                 };
-                              case types.GET_PROCESS_FOR_REPAIR_FAILURE:
+                              case types.GET_PROCESS_FOR_WORKFLOW_DATA_FAILURE:
                                 return {
                                   ...state,
-                                  fetchingProcessForRepair: false,
-                                  fetchingProcessForRepairError: true,
+                                  fetchingProcessForWorkFlowData: false,
+                                  fetchingProcessForWorkFlowDataError: true,
                                 };
 
                                 case types.UPDATE_PROCESS_NAME_FOR_REPAIR_REQUEST:
@@ -4133,7 +4382,322 @@ export const settingsReducer = (state = initialState, action) => {
         updatingClub: false,
         updatingClubError: true,
       };
-                                                            
+             
+      case types.GET_FEEBACK_REQUEST:
+    return { ...state,  fetchingFeedback: true };
+  case types.GET_FEEBACK_SUCCESS:
+    return {
+      ...state,
+      fetchingFeedback: false,
+       feedBackList: action.payload,
+    };
+  case types.GET_FEEBACK_FAILURE:
+    return {
+      ...state,
+      fetchingFeedback: false,
+      fetchingFeedbackError: true,
+    };
+
+ // add sector
+
+ case types.ADD_FEEBACK_REQUEST:
+    return { ...state,  addingFeedBack: true };
+  case types.ADD_FEEBACK_SUCCESS:
+    return {
+      ...state,
+      addingFeedBack: false,
+      feedBackList:[action.payload,...state.feedBackList],
+      // qualityCount:[action.payload,...state.qualityCount],
+      
+      // qualityList: [...state.qualityList, action.payload],
+      
+    };
+  case types.ADD_FEEBACK_FAILURE:
+    return {
+      ...state,
+      addingFeedBack: false,
+      addingFeedBackError: true,
+    };
+
+
+
+
+    case types.MOVE_REJECT_TOGGLE_TASK_REQUEST:
+      return { ...state, movingRejectToggleTask: true };
+    case types.MOVE_REJECT_TOGGLE_TASK_SUCCESS:
+      return {
+        ...state,
+        movingRejectToggleTask: false,
+
+        
+processTaskedStage: state.
+processTaskedStage.map((item) => {
+          if (item.stagesTaskId === action.payload.stagesTaskId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        // productionQualityData: state.productionQualityData.filter(
+        //   (item) => item.cellChamberLinkId !== action.payload
+        // ),
+        
+       
+        // productionTableData: state.productionTableData.filter(
+        //   (item) => item.productionProductId !== action.payload.productionProductId
+        // ),
+      };
+    case types.MOVE_REJECT_TOGGLE_TASK_FAILURE:
+      return {
+        ...state,
+        movingRejectToggleTask: false,
+        movingRejectToggleTaskError: true,
+      };
+
+
+     // remove sector
+
+     case types.REMOVE_FEEBACK_REQUEST:
+        return { ...state,  removingFeedBack: true };
+      case types.REMOVE_FEEBACK_SUCCESS:
+        return {
+          ...state,
+          removingFeedBack: false,
+          feedBackList: state.feedBackList.filter(
+            (item) => item.feedbackId !== action.payload
+        ), 
+        };
+      case types.REMOVE_FEEBACK_FAILURE:
+        return {
+          ...state,
+          removingFeedBack: false,
+          removingFeedBackError: true,
+        };
+
+      //   update an existing SECTOR 
+
+      case types.UPDATE_FEEBACK_REQUEST:
+        return { ...state,   updatingFeedBack: true };
+      case types.UPDATE_FEEBACK_SUCCESS:
+        // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
+        return {
+          ...state,
+          updatingFeedBack: false,
+          feedBackList: state.feedBackList.map((sector) =>
+            sector.feedbackId === action.payload.feedbackId
+              ? action.payload
+              : sector
+          ),
+        };
+      case types.UPDATE_FEEBACK_FAILURE:
+        return {
+          ...state,
+          updatingFeedBack: false,
+          updatingFeedBackError: true,
+        };
+
+     
+            case types.GET_FEEBACK_COUNT_REQUEST:
+              return { ...state, fetchingFeedBackCount: true };
+            case types.GET_FEEBACK_COUNT_SUCCESS:
+              return { ...state, fetchingFeedBackCount: false, 
+                feedBackCount: action.payload };
+            case types.GET_FEEBACK_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingFeedBackCount: false,
+                fetchingFeedBackCountError: true,
+              };
+
+              case types.GET_SUPPLIERCATEGORY_REQUEST:
+                return { ...state, fetchingSupplyCategory: true };
+              case types.GET_SUPPLIERCATEGORY_SUCCESS:
+                return {
+                  ...state,
+                  fetchingSupplyCategory: false,
+                  supplyCategory: action.payload,
+                };
+              case types.GET_SUPPLIERCATEGORY_FAILURE:
+                return {
+                  ...state,
+                  fetchingSupplyCategory: false,
+                  fetchingSupplyCategoryError: true,
+                };
+
+                case types.ADD_SUPPLIERCATEGORY_REQUEST:
+    return { ...state, addingSupplyCategory: true };
+  case types.ADD_SUPPLIERCATEGORY_SUCCESS:
+    return {
+      ...state,
+      addingSupplyCategory: false,
+      supplyCategory:[action.payload,...state.supplyCategory]
+      // sectors: [...state.sectors, action.payload],
+      
+    };
+  case types.ADD_SUPPLIERCATEGORY_FAILURE:
+    return {
+      ...state,
+      addingSupplyCategory: false,
+      addingSupplyCategoryError: true,
+    };
+
+
+
+
+    case types.ADD_GLOBAL_TYPE_REQUEST:
+return { ...state, addingGlobalType: true };
+case types.ADD_GLOBAL_TYPE_SUCCESS:
+return {
+...state,
+addingGlobalType: false,
+workFlowCategory:[action.payload,...state.workFlowCategory]
+
+
+};
+
+
+
+case types.ADD_GLOBAL_TYPE_FAILURE:
+return {
+...state,
+addingGlobalType: false,
+addingGlobalTypeError: true,
+};
+
+
+case types.ADD_GLOBAL_TYPE_DUPLICATE:
+  return {
+    ...state,
+    addingGlobalType: false,
+    duplicateGlobalTypeError: true,
+  };
+
+    case types.HANDLE_CLAER_REDUCER_DATA_SUPPLIERCATEGORY:
+      return { ...state, 
+        supplyCategory: [], 
+      
+      };        
+
+
+      case types.GET_SHIPPERCATEGORY_REQUEST:
+        return { ...state, fetchingShipperCategory: true };
+      case types.GET_SHIPPERCATEGORY_SUCCESS:
+        return {
+          ...state,
+          fetchingShipperCategory: false,
+          shipperCategory: action.payload,
+        };
+      case types.GET_SHIPPERCATEGORY_FAILURE:
+        return {
+          ...state,
+          fetchingShipperCategory: false,
+          fetchingShipperCategoryError: true,
+        };
+
+
+        case types.UPDATE_PROCESS_TASK_STAGE_REQUEST:
+      return { ...state, updateProcessTaskStage: true };
+    case types.UPDATE_PROCESS_TASK_STAGE_SUCCESS:
+      return {
+        ...state,
+        updateProcessTaskStage: false,
+        // updateCustomerModal: false,
+        processTaskedStage: state.processTaskedStage.map((item) => {
+          if (item.stagesTaskId === action.payload.stagesTaskId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_PROCESS_TASK_STAGE_FAILURE:
+      return {
+        ...state,
+        updateProcessTaskStage: false,
+        updateProcessTaskStageError: true,
+      };
+
+        case types.ADD_SHIPPERCATEGORY_REQUEST:
+return { ...state, addingShipperCategory: true };
+case types.ADD_SHIPPERCATEGORY_SUCCESS:
+return {
+...state,
+addingShipperCategory: false,
+shipperCategory:[action.payload,...state.shipperCategory]
+
+
+};
+case types.ADD_SHIPPERCATEGORY_FAILURE:
+return {
+...state,
+addingShipperCategory: false,
+addingShipperCategoryError: true,
+};
+
+case types.GET_WORKFLOWCATEGORY_REQUEST:
+  return { ...state, fetchingWorkflowCategory: true };
+case types.GET_WORKFLOWCATEGORY_SUCCESS:
+  return {
+    ...state,
+    fetchingWorkflowCategory: false,
+    workFlowCategory: action.payload,
+  };
+case types.GET_WORKFLOWCATEGORY_FAILURE:
+  return {
+    ...state,
+    fetchingWorkflowCategory: false,
+    fetchingWorkflowCategoryError: true,
+  };
+
+  case types.ADD_WORKFLOWCATEGORY_REQUEST:
+return { ...state, addingWorkflowCategory: true };
+case types.ADD_WORKFLOWCATEGORY_SUCCESS:
+return {
+...state,
+addingWorkflowCategory: false,
+workFlowCategory:[action.payload,...state.workFlowCategory]
+
+
+};
+case types.ADD_SWORKFLOWCATEGORY_FAILURE:
+return {
+...state,
+addingWorkflowCategory: false,
+addingWorkflowCategoryError: true,
+};
+
+
+
+
+case types.ADD_CONFIGURE_GLOBAL_TYPE_REQUEST:
+  return {
+    ...state,
+    addingConfigureGlobalType: true,
+    addingConfigureGlobalTypeError: false,
+  };
+case types.ADD_CONFIGURE_GLOBAL_TYPE_SUCCESS:
+  return {
+    ...state,
+    addingConfigureGlobalType: false,
+    addingConfigureGlobalTypeError: false,
+  processForWorkflowData: [action.payload, ...state.processForWorkflowData],
+    // addProcessHiringModal: false,
+  };
+case types.ADD_CONFIGURE_GLOBAL_TYPE_FAILURE:
+  return {
+    ...state,
+    addingConfigureGlobalType: false,
+    addingConfigureGlobalTypeError: true,
+    // addProcessHiringModal: false,
+  };
+  case types.ADD_CONFIGURE_GLOBAL_TYPE_DUPLICATE:
+  return {
+    ...state,
+    addingConfigureGlobalType: false,
+    duplicateConfigureGlobalTypeError: true,
+    // addProcessHiringModal: false,
+  };
+
 
 
     default:

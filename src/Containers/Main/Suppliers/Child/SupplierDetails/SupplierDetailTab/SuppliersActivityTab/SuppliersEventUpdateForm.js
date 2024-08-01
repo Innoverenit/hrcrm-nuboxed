@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button, Icon } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Spacer } from "../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
@@ -97,9 +97,9 @@ class SuppliersEventUpdateForm extends Component {
           initialValues={{
             type: this.props.setEditingEvents.type || "",
             topic: this.props.setEditingEvents.topic || "",
-            startDate: moment(this.props.setEditingEvents.startDate),
+            startDate: dayjs(this.props.setEditingEvents.startDate),
             startTime: null,
-            endDate: moment(this.props.setEditingEvents.endDate),
+            endDate: dayjs(this.props.setEditingEvents.endDate),
             endTime: null,
             notes: this.props.setEditingEvents.notes || "",
             location: this.props.setEditingEvents.location || "",
@@ -121,10 +121,10 @@ class SuppliersEventUpdateForm extends Component {
             if (!values.endDate) {
               values.endDate = values.startDate;
             }
-            let newStartDate = moment(values.startDate).format("YYYY-MM-DD");
+            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
             console.log(newStartDate);
             //Time calculation
-            let firstStartTime = moment(values.startTime).format(
+            let firstStartTime = dayjs(values.startTime).format(
               "HH:mm:ss.SSS[Z]"
             ); // getting start time from form input
             console.log(firstStartTime);
@@ -155,8 +155,8 @@ class SuppliersEventUpdateForm extends Component {
             let newStartTime = `${finalStartTime}${timeEndPart}`;
             console.log(newStartTime);
 
-            let newEndDate = moment(values.endDate).format("YYYY-MM-DD");
-            let firstEndTime = moment(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
+            let newEndDate = dayjs(values.endDate).format("YYYY-MM-DD");
+            let firstEndTime = dayjs(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
             console.log(firstEndTime);
             let firstEndHours = firstEndTime.substring(0, 5); // getting only hours and minutes
             console.log(firstEndHours);
@@ -286,7 +286,7 @@ class SuppliersEventUpdateForm extends Component {
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
-                        defaultValue={moment("2015-01-01")}
+                        defaultValue={dayjs("2015-01-01")}
                         inlineLabel
                         style={{
                           flexBasis: "80%",
@@ -297,8 +297,8 @@ class SuppliersEventUpdateForm extends Component {
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (
-                              moment(currentDate).isBefore(
-                                moment(values.startDate)
+                              dayjs(currentDate).isBefore(
+                                dayjs(values.startDate)
                               )
                             ) {
                               return true;
@@ -326,22 +326,11 @@ class SuppliersEventUpdateForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
-
-                  {/* <FieldArray
-                    name="address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                        singleAddress
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  /> */}
+                  </FlexContainer>               
                   <Spacer />
                   {startDate ? (
                     <span>
-                      {moment(startDate).isBefore(moment()) && (
+                      {dayjs(startDate).isBefore(dayjs()) && (
                         <span style={{ marginLeft: 10 }}>
                           <b>This Event occurs in the past !</b>
                         </span>
@@ -349,7 +338,7 @@ class SuppliersEventUpdateForm extends Component {
                     </span>
                   ) : (
                     <span>
-                      {moment(values.startDate).isBefore(moment()) && (
+                      {dayjs(values.startDate).isBefore(dayjs()) && (
                         <span style={{ marginLeft: 10 }}>
                           <b>This Event occurs in the past !</b>
                         </span>

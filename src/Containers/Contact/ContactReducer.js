@@ -16,6 +16,9 @@ const initialState = {
   fetchingContactRecordsError: true,
   contactRecord:[],
 
+  addingContactAddress:false,
+  addingContactAddressError:false,
+
   fetchingContactData:false,
   fetchingContactDataError:false,
   contactData:[],
@@ -60,6 +63,8 @@ const initialState = {
   contact: {},
 
   documentUploadModal: false,
+
+  hospitalUploadModal:false,
 
   addDrawerContactEmailModal:false,
 
@@ -220,6 +225,14 @@ addingNotesByContactId:false,
 
   addContactImportModal:false,
 
+
+  fetchingContactAddress:false,
+  fetchingContactAddressError:false,
+  contactAddress:[],
+
+  uploadingContactList: false,
+  uploadingContactListError: false,
+
   addingContactLinkByOpportunityId: false,
 
   //SHARE Contact Permission of partner
@@ -227,6 +240,8 @@ addingNotesByContactId:false,
   addSharingContactPartnerError: false,
 
   addContactSpeechModal:false,
+
+  addDrawerContactAddressModal:false,
 
   //SHARE Contact Permission of customer
   addSharingContactCustomer: false,
@@ -257,6 +272,11 @@ addingNotesByContactId:false,
 
    contactCETdrawer:false,
    clickCETcontactActivity:false,
+
+
+
+   addingContactMand:false,
+   addingContactMandError:false,
 
    addingContactActivityCall: false,
    addingContactActivityEvent: false,
@@ -290,6 +310,10 @@ export const contactReducer = (state = initialState, action) => {
        };
     case types.ADD_CONTACT_FAILURE:
       return { ...state, addingContact: false, addContactModal: false };
+
+
+      case types.HANDLE_CONTACT_ADDRESS_DRAWER_MODAL:
+        return { ...state, addDrawerContactAddressModal: action.payload };
 
 
       case types.EMPTY_CONTACT_TABLE:
@@ -342,6 +366,9 @@ export const contactReducer = (state = initialState, action) => {
 
     case types.HANDLE_DOCUMENT_UPLOAD_MODAL:
       return { ...state, documentUploadModal: action.payload };
+
+      case types.HANDLE_HOSPITAL_UPLOAD_MODAL:
+        return { ...state, hospitalUploadModal: action.payload };
 
       case types.HANDLE_CONTACT_REACT_SPEECH_MODAL:
         return { ...state, addContactSpeechModal: action.payload };
@@ -643,6 +670,26 @@ export const contactReducer = (state = initialState, action) => {
           fetchingAllContactsError: true,
         };
 
+
+
+
+        case types.ADD_CONTACT_ADDRESS_REQUEST:
+    return { ...state, addingContactAddress: true };
+  case types.ADD_CONTACT_ADDRESS_SUCCESS:
+    return {
+      ...state,
+      addingContactAddress: false,
+      //sectors:[action.payload,...state.sectors]
+      // sectors: [...state.sectors, action.payload],
+      
+    };
+  case types.ADD_CONTACT_ADDRESS_FAILURE:
+    return {
+      ...state,
+      addingContactAddress: false,
+      addingContactAddressError: true,
+    };
+
         case types.GET_RECORDS_REQUEST:
           return { ...state, fetchingRecordsByUserId: true };
         case types.GET_RECORDS_SUCCESS:
@@ -890,6 +937,42 @@ export const contactReducer = (state = initialState, action) => {
 
 
 
+
+                        case types.ADD_CONTACT_MAND_REQUEST:
+                          return { ...state, addingContactMand: true };
+                        case types.ADD_CONTACT_MAND_SUCCESS:
+                          return {
+                            ...state,
+                            addingContactMand: false,
+                            //sectors:[action.payload,...state.sectors]
+                            // sectors: [...state.sectors, action.payload],
+                            
+                          };
+                        case types.ADD_CONTACT_MAND_FAILURE:
+                          return {
+                            ...state,
+                            addingContactMand: false,
+                            addingContactMandError: true,
+                          };
+                      
+                        case types.GET_CONTACT_ADDRESS_DATA_REQUEST:
+                          return { ...state, fetchingContactAddress: true };
+                        case types.GET_CONTACT_ADDRESS_DATA_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingContactAddress: false,
+                            contactAddress: action.payload,
+                          };
+                        case types.GET_CONTACT_ADDRESS_DATA_FAILURE:
+                          return {
+                            ...state,
+                            fetchingContactAddress: false,
+                            fetchingContactAddressError: true,
+                          };
+                      
+
+
+
                         case types.GET_TEAM_CONTACT_REQUEST:
                           return { ...state, fetchingTeamContact: true };
                         case types.GET_TEAM_CONTACT_SUCCESS:
@@ -1032,6 +1115,24 @@ export const contactReducer = (state = initialState, action) => {
           fetchingContactAllRecords: false,
           fetchingContactAllRecordsError: true,
         };
+
+        case types.UPLOAD_CONTACT_LIST_REQUEST:
+          return { ...state, uploadingContactList: true };
+        case types.UPLOAD_CONTACT_LIST_SUCCESS:
+          return {
+            ...state,
+            uploadingContactList: false,
+            addContactImportModal: false
+          };
+        case types.UPLOAD_CONTACT_LIST_FAILURE:
+          return {
+            ...state,
+            uploadingContactList: false,
+            uploadingContactListError: true,
+          };
+
+
+
 
                   default:
       return state;

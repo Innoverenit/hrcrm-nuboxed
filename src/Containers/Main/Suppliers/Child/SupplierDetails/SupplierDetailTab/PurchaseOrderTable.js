@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { DatePicker } from "antd";
-
 import {
     getPurchaseSuppliersList,
     handlePoLocationModal,
@@ -50,7 +49,6 @@ function PurchaseOrderTable(props) {
 
     }
 
-    
     const handleUpdate = (poSupplierDetailsId) => {
         const formattedDate = selectedDate ? dayjs(selectedDate).format('YYYY-MM-DD') + 'T00:00:00Z' : null;
         const data = {
@@ -59,7 +57,6 @@ function PurchaseOrderTable(props) {
           poCurrency: currency
           
         };
-    
         props.updatePOContact(data, poSupplierDetailsId);
     
         setEditedFields((prevFields) => ({ ...prevFields, [poSupplierDetailsId]: undefined }));
@@ -100,34 +97,34 @@ function PurchaseOrderTable(props) {
             <div className=' flex  sticky z-auto'>
                 <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
-                        <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
+                        <div className=" w-[15.1rem]  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             <FormattedMessage
                                 id="app.po"
                                 defaultMessage="PO ID"
                             /></div>
-                        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                        <div className=" w-[14.1rem]   old max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
                             <FormattedMessage
                                 id="app.created"
                                 defaultMessage="Created" />
                         </div>
-                        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                        <div className=" w-[14.1rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
                             <FormattedMessage
                                 id="app.location"
                                 defaultMessage="Location" />
                         </div>
-                        <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                        <div className=" w-[14.12rem]   max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                             Delivery
                         </div>
-                        <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                        <div className=" w-[14.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                             Contact
                         </div>
                        
-                        <div className=" w-[14.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
+                        <div className=" w-[14.13rem]    max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
                             <FormattedMessage
                                 id="app.currency"
                                 defaultMessage="Currency" />
                         </div>
-                        <div className=" w-[14.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                        <div className=" w-[14.11rem]   max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
                             <FormattedMessage
                                 id="app.value"
                                 defaultMessage="Value" />
@@ -147,6 +144,7 @@ function PurchaseOrderTable(props) {
                             hasMore={hasMore}
                             loader={props.fetchingPurchaseSupplierList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
                             height={"72vh"}
+                            style={{scrollbarWidth:"thin"}}
                         >
                             {props.purchaseList.length ? <>
                                 {props.purchaseList.map((item) => {
@@ -157,7 +155,7 @@ function PurchaseOrderTable(props) {
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 p-1" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
+                                                        <div class=" underline font-bold max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                             <span
                                                                 class=" text-sky-700 cursor-pointer"
                                                                 onClick={() => {
@@ -167,15 +165,15 @@ function PurchaseOrderTable(props) {
                                                                 {item.newPoNumber}
                                                             </span>
                                                             {date === currentdate ? (
-                                                                <div class="text-xs font-bold text-[tomato]">
+                                                                <div class="text-[0.65rem] font-bold text-[tomato]">
                                                                     New
                                                                 </div>
                                                             ) : null}
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[5.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
+                                                    <div className=" flex  w-[5.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins">
                                                             <MultiAvatar
                                                                 primaryTitle={item.userName}
                                                                 imgWidth={"1.8rem"}
@@ -183,14 +181,14 @@ function PurchaseOrderTable(props) {
                                                             />
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[16.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
+                                                    <div className=" flex  w-[16.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" max-xl:text-[0.65rem] text-xs  font-poppins">
 
                                                             {item.locationName}
                                                         </div>
                                                     </div>
-                                                    <div className="flex font-medium flex-col md:w-[16rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+                                                    <div className="flex md:w-[16rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                                          <DatePicker
                                          style={{marginLeft:"0.5rem"}}
@@ -200,7 +198,7 @@ function PurchaseOrderTable(props) {
                picker="date" 
              />
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">
+                    <div className="font-normal text-xs  font-poppins">
  
                         {item.expectDeliveryDate ? dayjs(item.expectDeliveryDate).format("ll") : ""}
                         </div>
@@ -208,8 +206,8 @@ function PurchaseOrderTable(props) {
                 </div>
               </div>
 
-                                                    <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+                                                    <div className="flex  md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                <select
                className="customize-select"
@@ -225,12 +223,12 @@ function PurchaseOrderTable(props) {
                ))}
              </select>
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.poContactPersonName}</div>
+                    <div className=" text-xs font-poppins">{item.poContactPersonName}</div>
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+              <div className="flex  md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                <select
                className="customize-select"
@@ -248,20 +246,20 @@ function PurchaseOrderTable(props) {
                ))}
              </select>
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.poCurrency}</div>
+                    <div className=" text-xs  font-poppins">{item.poCurrency}</div>
                   )}
                 </div>
               </div>
            
-                                                    <div className=" flex font-medium  w-[12.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
+                                                    <div className=" flex   w-[12.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins">
 
                                                             {item.poValue}
                                                         </div>
                                                     </div>
  
                                                     {/* <div className=" flex font-medium  w-[7.32rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins w-20">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins w-20">
                                                             {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
                                                                 <Select
                                                                     value={currency}
@@ -279,7 +277,7 @@ function PurchaseOrderTable(props) {
                                                     </div> */}
         
                                                     {/* <div className=" flex font-medium  w-[2.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins">
                                                             <Tooltip title="Update Currency">
                                                                 {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
                                                                     <div>
@@ -290,7 +288,7 @@ function PurchaseOrderTable(props) {
                                                                         }}>Save</Button>
                                                                         <Button onClick={handleCurrencyField}>Cancel</Button>
                                                                     </div> :
-                                                                   <div class=" font-normal text-[0.85rem]  font-poppins">
+                                                                   <div class=" font-normal text-xs  font-poppins">
                                                                  
                                                                    <BorderColorIcon
                                                                        className=" !text-xl cursor-pointer text-[tomato]"
@@ -305,7 +303,7 @@ function PurchaseOrderTable(props) {
                                                             </Tooltip>
                                                         </div>
                                                     </div> */}
-                                                    <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
+                                                    <div className="flex w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
                 <div className="flex">
                   {editContactId === item.poSupplierDetailsId ? (
                     <>
@@ -317,7 +315,7 @@ function PurchaseOrderTable(props) {
                       </Button>
                     </>
                   ) : (
-                    <Tooltip title="Update Contact">
+                    <Tooltip title="Update Info">
                     <BorderColorIcon
                       tooltipTitle="Edit"
                     
@@ -329,8 +327,8 @@ function PurchaseOrderTable(props) {
                 </div>
                
               </div>
-                                                    <div className=" flex font-medium  w-[11.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins">
+                                                    <div className=" flex  w-[11.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins">
                                                             {item.locationName === null ? <Button
                                                                 type="primary"
                                                                 onClick={() => {
@@ -345,8 +343,8 @@ function PurchaseOrderTable(props) {
                                                             </Button> : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-[0.85rem]  font-poppins">
+                                                    <div className=" flex   w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs  font-poppins">
                                                             <Tooltip title="Terms and condition">
                                                                 <TerminalSharp
                                                                     onClick={() => {

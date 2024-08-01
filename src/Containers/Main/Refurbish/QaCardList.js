@@ -1,11 +1,12 @@
 import React, { useState, lazy, Suspense, useEffect,useRef } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getQAorderlist,updateQAinspection
+import { getQAorderlist,updateQAinspection, ClearSearchedDataOfQa,
+  updateDispatchInspectionButton
      } from "./RefurbishAction"
 import { Button, Badge ,Input} from "antd";
 import dayjs from "dayjs";
-import {handlePickupDateModal,updateDispatchInspectionButton} from "../../../Containers/Main/Inventory/InventoryAction"
+import {handlePickupDateModal} from "../../../Containers/Main/Inventory/InventoryAction"
 import { FormattedMessage } from "react-intl";
 import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
@@ -27,6 +28,7 @@ function QaCardList(props) {
     useEffect(() => {
         // setPageNo(pageNo + 1);
         props.getQAorderlist(props.locationId,pageNo)
+        props.ClearSearchedDataOfQa()
     }, [])
     const [hasMore, setHasMore] = useState(true);
 
@@ -52,7 +54,7 @@ function QaCardList(props) {
           //setPage(pageNo + 1);
           props.getQAorderlist(props.locationId,pageNo)
           //props.ClearReducerDataOfLead()
-          props.ClearSearchedDataOfQc()
+          props.ClearSearchedDataOfQa()
           setSearchOnEnter(false);
         }
       };
@@ -184,7 +186,8 @@ function QaCardList(props) {
                             hasMore={hasMore}
                             loader={props.fetchingQAorderlist ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                             height={"75vh"}
-                            endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+                            style={{ scrollbarWidth:"thin"}}
+                            endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                         >
                             {props.QAorderList.map((item) => {
                                 const currentdate = dayjs().format("DD/MM/YYYY");
@@ -193,7 +196,7 @@ function QaCardList(props) {
                                     <div >
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                            <div className=" flex w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     {item.priority === "High" && (
                                                         <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[red]"></div>
                                                     )}
@@ -206,7 +209,7 @@ function QaCardList(props) {
                                                 </div>
                                                 <div className=" flex font-medium w-[12.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.dispatchPhoneCount} / ${item.phoneReceiveCount}`} overflowCount={5000}>
-                                                        <span class="underline text-sm text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        <span class="underline text-xs text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
 
                                                             onClick={() => {
                                                                 handleRowData(item);
@@ -218,15 +221,15 @@ function QaCardList(props) {
                                                     &nbsp;&nbsp;
                                                     {date === currentdate ? (
                                                         <span
-                                                            class="text-[tomato] font-bold ml-4 text-sm"
+                                                            class="text-[tomato] font-bold ml-4 text-xs"
                                                         >
                                                             New
                                                         </span>
                                                     ) : null}
                                                 </div>
                                                 
-<div className=" flex font-medium flex-col w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div className=" flex w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.dispatchInspectionInd === 0 ?
                                 <Button
                                   loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingDispatchInspectionButton}
@@ -249,29 +252,29 @@ function QaCardList(props) {
                                     null}
                             </div>
                           </div>
-                                                <div className=" flex font-medium   w-[34rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div className=" flex  w-[34rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>
 
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium   w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div className=" flex w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.lead}
                                                     </div>
 
                                                 </div>
 
                                                 {/* <div className=" flex font-medium   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInProgressPhoneCount} In Progress
                                                     </div>
 
                                                 </div> */}
                                                 {/* <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInspectionInd === 0 ?
                                                             <Button
                                                                 className="w-32"
@@ -293,11 +296,13 @@ function QaCardList(props) {
 
                                                     </div>
                                                 </div> */}
-                                                 <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                                                 <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                               
                                 <RefurbishToggle        
                                   orderPhoneId={item.orderPhoneId}
                                   newDispatchInd={item.newDispatchInd}
+                                  item={item}
                                 />
                               </div>
                             </div>
@@ -344,10 +349,10 @@ const mapDispatchToProps = (dispatch) =>
             getQAorderlist,
             updateQAinspection,
             handlePickupDateModal,
-            updateDispatchInspectionButton
+            updateDispatchInspectionButton,
             // qcInspectionButton,
             // inputQcDataSearch,
-            // ClearSearchedDataOfQc
+            ClearSearchedDataOfQa
         },
         dispatch
     );

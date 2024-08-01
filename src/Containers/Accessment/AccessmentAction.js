@@ -1,6 +1,6 @@
 import * as types from "./AccessmentActionTypes";
 import axios from "axios";
-import { asses_url } from "../../Config/Auth";
+import { asses_url,base_url } from "../../Config/Auth";
 
 
 export const handleQuestionrModal = (modalProps) => (dispatch) => {
@@ -52,6 +52,35 @@ export const addAssessment = (data, userId, orgId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.ADD_ASSESSMENT_DETAILS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const createAccessMentQues = (data) => (dispatch) => {
+  // const { locationId,organizationId } = getState().auth.userDetails;
+  
+  dispatch({ type: types.CREATE_ACCESSMENT_QUES_REQUEST });
+  axios
+    .post(`${base_url}/assessmentQuestion`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getRoomRackByLocId(locationId,organizationId))
+      dispatch({
+        type: types.CREATE_ACCESSMENT_QUES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CREATE_ACCESSMENT_QUES_FAILURE,
         payload: err,
       });
     });
@@ -384,6 +413,32 @@ export const getFinalQuestions = (assessmentId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_FINAL_QUESTIONS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getAccessmentQues = (departmentId,roleTypeId) => (dispath) => {
+  dispath({ type: types.GET_ACCESSMENT_QUES_REQUEST });
+  axios
+    .get(`${base_url}/assessmentQuestion/${departmentId}/${roleTypeId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispath({
+        type: types.GET_ACCESSMENT_QUES_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      dispath({
+        type: types.GET_ACCESSMENT_QUES_FAILURE,
         payload: err,
       });
     });

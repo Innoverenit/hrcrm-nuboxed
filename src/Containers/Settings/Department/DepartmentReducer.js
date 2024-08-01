@@ -317,16 +317,16 @@ export const departmentsReducer = (state = initialState, action) => {
           return {
             ...state,
             addingModules: false,
-            departments:[action.payload,...state.departments]
-            // departments: state.departments.map((item) => {
-            //   if (item.departmentId
-            //     === action.payload.departmentId
-            //   ) {
-            //     return action.payload;
-            //   } else {
-            //     return item;
-            //   }
-            // }),
+            //departments:[action.payload,...state.departments]
+            departments: state.departments.map((item) => {
+              if (item.departmentId
+                === action.payload.departmentId
+              ) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
           };
         case types.ADDING_MODULE_FAILURE:
           return {

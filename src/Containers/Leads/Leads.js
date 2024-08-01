@@ -79,10 +79,11 @@ class Leads extends Component {
         <LeadsHeader
           handleFilterChange={this.handleFilterChange}
           filter={this.state.filter}
-        handleDropChange={this.handleDropChange}
-        currentUser={this.state.currentUser}
+          handleDropChange={this.handleDropChange}
+          currentUser={this.state.currentUser}
             handleLeadsModal={handleLeadsModal}
         setLeadsViewType={this.setLeadsViewType}
+        
           viewType={viewType}
           teamsAccessInd={teamsAccessInd}
           handleChange={this.handleChange}
@@ -94,8 +95,13 @@ class Leads extends Component {
          <AddLeadsModal
           addLeadsModal={addLeadsModal}
           handleLeadsModal={handleLeadsModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
         />
         <AddLeadsImportModal
+         selectedLanguage={this.props.selectedLanguage}
+         translatedMenuItems={this.props.translatedMenuItems}
         handleLeadsImportModal={this.props.handleLeadsImportModal}
         addLeadsImportModal={this.props.addLeadsImportModal}
         />
@@ -110,12 +116,28 @@ class Leads extends Component {
         
         :null} */}
          {teamsAccessInd ? (
-          <LeadsTeamCardList />
+          <LeadsTeamCardList 
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+          
+          />
         ) : (
           <>
-            {viewType === 'card' && <LeadsCardList  filter={this.state.filter}/>}
-            {viewType === 'all' && <LeadsAllCardList />}
-            {viewType === 'teams' && <LeadsTeamCardList />}
+            {viewType === 'card' && <LeadsCardList  filter={this.state.filter}  
+            translateText={this.props.translateText}
+               selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems}/>}
+            {viewType === 'all' && <LeadsAllCardList 
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
+            {viewType === 'teams' && <LeadsTeamCardList 
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
           </>
         )}
        

@@ -1,6 +1,7 @@
 import * as types from "./ProductionActionType";
 import axios from "axios";
 import Swal from 'sweetalert2'
+import { message } from "antd";
 import { base_url, base_url2 } from "../../Config/Auth";
 
 export const handleCreateProduction = (modalProps) => (dispatch) => {
@@ -10,6 +11,14 @@ export const handleCreateProduction = (modalProps) => (dispatch) => {
   });
 };
 
+
+
+export const handleProductionQuality = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRODUCTION_QUALITY_MODAL,
+    payload: modalProps,
+  });
+};
 
 
 // export const emptyManufactureLink = () => (dispatch) => {
@@ -58,7 +67,7 @@ export const createProductionLink = (data,) => (dispatch) => {
       });
       Swal.fire({
         icon: 'success',
-        title: 'Manufacturing Items Added Successfully',
+        title: 'Process Started Successfully',
         showConfirmButton: true,
       })
     })
@@ -166,7 +175,7 @@ export const moveProduction = (data) => (dispatch) => {
         type: types.REMOVE_PRODUCTION_SUCCESS,
         payload: res.data,
       });
-      // message.success("Confirmation Successfull");
+      message.success("Item transfered for Quality Check");
     })
     .catch((err) => {
       dispatch({
@@ -584,6 +593,7 @@ export const updateProductionstage = (
       //   message.error("Loss");
       // }
 dispatch(getProductionStage(userId));
+dispatch(getProductionTable(userId));
       dispatch({
         type: types.UPDATE_PRODUCTION_STAGE_SUCCESS,
         payload: res.data,
@@ -747,6 +757,35 @@ export const getManufactureLinkData  = (productionProductId,pageNo) => (dispatch
       console.log(err.response);
       dispatch({
         type: types.GET_MANUFACTURE_LINK_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getReaasignProduct = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_REASSIGN_PRODUCT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/product/reject/count/${userId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REASSIGN_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_REASSIGN_PRODUCT_FAILURE,
         payload: err,
       });
     });

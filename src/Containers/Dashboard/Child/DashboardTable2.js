@@ -241,7 +241,7 @@ const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
       render: (text, item) => {
        const creationDate = dayjs(item.creationDate).format("DD/MM/YYYY");
        return <>
-       {item.creationDate === null ? "No Data" :
+       {item.creationDate === null ? "None" :
          <span>
            {dayjs(item.creationDate).format("DD/MM/YYYY")}
          </span>

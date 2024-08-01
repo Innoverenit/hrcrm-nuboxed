@@ -556,7 +556,7 @@ function CandidateGridTable(props) {
         return (
           <>
             {data1.skillList === [] ? (
-              "No Data"
+              "None"
             ) : (
               <span>
                 <SkillsLoadMore skillList={data} />
@@ -655,7 +655,7 @@ function CandidateGridTable(props) {
         return (
           <>
             {data.availableDate === null ? (
-              "No Data"
+              "None"
             ) : (
               <span>{moment(data.availableDate).format("l")}</span>
             )}

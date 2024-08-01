@@ -112,7 +112,7 @@ class AccountContactTable extends Component {
 
         return (
             <>
-                <div className=' flex  sticky  z-auto'>
+                <div className=' flex  sticky h-70 z-auto'>
                     <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                         <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                             <div className=" md:w-[5.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
@@ -134,12 +134,12 @@ class AccountContactTable extends Component {
                         {this.props.contactDistributor.map((item) => {
                             const data = {}
                             return (
-                                <div>
-                                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                                <div >
+                                    <div className="flex  rounded justify-between mt-1 bg-white h-8 items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                                     >
                                         <div class="flex">
 
-                                            <div className=" flex font-medium flex-col  md:w-[6.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex font-bold flex-col  md:w-[6.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                 <div class=" text-xs  font-poppins">
                                                     {`${item.salutation || ""} ${item.firstName || ""} ${item.middleName || ""
@@ -149,7 +149,7 @@ class AccountContactTable extends Component {
                                             </div>
 
 
-                                            <div className=" flex font-medium flex-col  md:w-[7.23rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex  flex-col  md:w-[7.23rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
 
                                                 <div class=" text-xs  font-poppins">
@@ -160,14 +160,14 @@ class AccountContactTable extends Component {
 
                                         </div>
 
-                                        <div className=" flex font-medium flex-col md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex flex-col md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                                             <div class=" text-xs  font-poppins text-center">
                                                 {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
 
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex flex-col md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                                             <div class=" text-xs  font-poppins text-center">
@@ -176,7 +176,7 @@ class AccountContactTable extends Component {
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium flex-col md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex flex-col md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                                             <div class=" text-xs  font-poppins text-center">
@@ -189,11 +189,12 @@ class AccountContactTable extends Component {
 
 
                                        
-                                        <div className=" flex font-medium  md:w-[7.27rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex md:w-[7.27rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs  font-poppins text-center">
                                                 <div class=" flex justify-evenly" >
                                                     <ButtonGroup>
                                                         <RoleButton
+                                                            className=" !text-icon text-green-600"
                                                             type="DecisionMaker"
                                                             iconType="fa-vote-yea"
                                                             tooltip="C-Level"
@@ -207,6 +208,7 @@ class AccountContactTable extends Component {
                                                             }
                                                         />
                                                         <RoleButton
+                                                          className=" !text-icon text-blue-600"
                                                             type="Evaluator"
                                                             iconType="fa-address-card"
                                                             tooltip="Strategic"
@@ -220,6 +222,7 @@ class AccountContactTable extends Component {
                                                             }
                                                         />
                                                         <RoleButton
+                                                          className=" !text-icon text-blue-600"
                                                             type="Influencer"
                                                             iconType="fa-hands-helping"
                                                             tooltip="Mid-Level"
@@ -239,13 +242,13 @@ class AccountContactTable extends Component {
 
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col w-[1.01rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex flex-col w-[1.01rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-<div class=" text-xs  font-poppins">
+<div class=" !text-icon  font-poppins">
     <Tooltip title="Edit">
         <BorderColorIcon
-            className="!text-icon cursor-pointer text-[grey]"
+            className="!text-icon cursor-pointer text-red-600"
             onClick={() => {
                 this.props.setEditDistributorContact(item);
                 this.props.handleUpdateDistributorContactModal(true);
@@ -255,7 +258,7 @@ class AccountContactTable extends Component {
 </div>
 
 </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins text-center">
                                                 <Select
                                                     style={{ width: "8rem" }}
@@ -271,14 +274,14 @@ class AccountContactTable extends Component {
                                                 //onChange={this.handleChange}
                                                 >
                                                     {this.props.lobList.map((sd) => (
-                                                        <Option key={sd.lobId} value={sd.lobId}  >
+                                                        <Option key={sd.lobDetsilsId} value={sd.lobDetsilsId}  >
                                                             {sd.name}
                                                         </Option>
                                                     ))}
                                                 </Select>
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium   md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins text-center">
                                                 <Input
@@ -287,7 +290,7 @@ class AccountContactTable extends Component {
                                                 />
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium   md:w-[8.41rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex   md:w-[8.41rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins text-center">
                                                 <Select
@@ -299,7 +302,7 @@ class AccountContactTable extends Component {
                                                     }
                                                 >
                                                     {this.props.saleCurrencies.map((sd) => (
-                                                        <Option key={sd.roomRackId} value={sd.roomRackId}>
+                                                        <Option key={sd.currency_id} value={sd.currency_id}>
                                                             {sd.currency_name}
                                                         </Option>
                                                     ))}
@@ -307,7 +310,7 @@ class AccountContactTable extends Component {
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium flex-col  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex flex-col  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
 
                                             {item.accessInd === 0 ? <div class=" text-xs  font-poppins">

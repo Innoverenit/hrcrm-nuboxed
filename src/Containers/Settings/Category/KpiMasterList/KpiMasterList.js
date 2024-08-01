@@ -118,7 +118,7 @@ return <div><BundleLoader/></div>;
   return (
       <div>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex w-[18vw] mt-3" >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -162,9 +162,9 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingMasterKpi && masterKpiList.length === 0 ? <NodataFoundPage /> : masterKpiList.slice().sort((a, b) => a.kpi.localeCompare(b.kpi)).map((region, index) => (
-            <div className="card9" key={region.performanceManagementId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-12 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.performanceManagementId}>
             {/* Region name display or input field */}
-            
+            <div className=" flex flex-row">
             {editingId === region.performanceManagementId ? (
                 <input
                 placeholder="Update KPI"
@@ -174,7 +174,7 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setMasterKpiName(e.target.value)}
                 />
             ) : (
-                <div className="region">{region.kpi}&nbsp;&nbsp;&nbsp;
+                <div className=" w-[10rem]" >{region.kpi}
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -192,8 +192,9 @@ Currency
                       performanceManagementId={region.performanceManagementId}
                     />
                   </div>
+                  </div>
             {/* Action buttons */}
-            <div className="actions">
+            <div >
                 {/* Edit button */}
                 {editingId === region.performanceManagementId ? (
                     <div>
@@ -201,7 +202,7 @@ Currency
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.performanceManagementId, region.kpi)} />
+                    <BorderColorIcon  className=" cursor-pointer !text-icon text-red-600"  onClick={() => editRegion(region.performanceManagementId, region.kpi)} />
                 )}
 
                 {/* Delete button */}
@@ -211,12 +212,7 @@ Currency
                         cancelText="No"
                         onConfirm={() =>  props.removeMasterKpi(region.performanceManagementId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
               // onClick={() => 
               //     props.removeServiceLine(item.performanceManagementId)
               //  }

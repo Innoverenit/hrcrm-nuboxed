@@ -6,10 +6,10 @@ import StoreIcon from '@mui/icons-material/Store';
 import {Popconfirm,Tooltip } from "antd";
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateSupplierModal from "./UpdateSupplierModal";
 import { DeleteOutlined } from "@ant-design/icons";
+import SupplierSearchedData from "./SupplierSearchedData";
 
 function AllSuppliersCardList(props) {
 
@@ -22,7 +22,6 @@ function AllSuppliersCardList(props) {
     setPage(page + 1);
     props.getAllSuppliersList(props.orgId,page);
   }, []);
-
 
   const handleRowData = (data) => {
     setrowData(data);
@@ -51,27 +50,29 @@ function AllSuppliersCardList(props) {
     }, 100);
   };
 
-  
 return(
 <>
+{props.searchSupplierList.length > 0 ? (
+    <SupplierSearchedData
+    searchSupplierList={props.searchSupplierList}
+    />
+  ) : (
 <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[18.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  <FormattedMessage
-              id="app.name"
-              defaultMessage="Name"
-            /></div>
+            <div className=" w-[18.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  {props.translatedMenuItems[0]}</div>
             <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
-              <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
+            {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[15.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  <FormattedMessage id="app.email" defaultMessage="Email" /></div>
+            <div className=" w-[15.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[2]}</div>
             <div className="w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[15.9rem]">
-              <FormattedMessage id="app.address" defaultMessage="Address" />
+             {/* Address */}
+               {props.translatedMenuItems[34]}
 
             </div>
             <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
-              <FormattedMessage id="app.city" defaultMessage="City" />
-
+            {/* City */}
+              {props.translatedMenuItems[35]}
             </div>
           
             <div class=" w-[3rem]"></div>
@@ -80,8 +81,9 @@ return(
         dataLength={props.allSupplierList.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingSupplierList?<div class="text-center font-semibold text-xs">Loading...</div>:null}
+        loader={props.fetchingSupplierList?<div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
 {props.allSupplierList.map((item) => {
     const currentdate = dayjs().format("DD/MM/YYYY");
@@ -93,66 +95,54 @@ return(
                           <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="font-medium  flex items-center w-[18.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
-                              <div class=" font-semibold text-[0.85rem]  font-poppins">
-                              <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
+                              <div >
+                              <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] text-xs  underline font-bold font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
                             href={`supplier/${item.supplierId}`}>{item.name}</a>
-
                               </div>
                           
                                   {date === currentdate ? (
-                                    <div class="text-xs  text-[tomato] font-bold"
+                                    <div class="text-[0.65rem]  text-[tomato] font-bold"
                                     >
-                                      New
+                                      {/* New */}               {props.translatedMenuItems[23]}
                                     </div>
                                   ) : null}
-                            </div>
-
-                            
-                            <div className=" flex font-medium flex-col w-[7.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
-
-
-
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            </div>                          
+                            <div className=" flex  w-[7.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
+                              <div class="  text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                 {item.dialCode} {item.phoneNo}
                               </div>
 
                             </div>
                             </div>
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex font-medium flex-col w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
-
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                {item.emailId}
+                            <div className=" flex  w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
+                                <div class="  text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                 {item.emailId}
                               </div>
-
                             </div>
 
-
-                            <div className=" flex font-medium flex-col w-[16.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.04rem] max-lg:w-[10.03rem] ">
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div className=" flex  w-[16.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.04rem] max-lg:w-[10.03rem] ">
+                              <div class="  text-xs  font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
           ${(item.address && item.address.length && item.address[0].street) || ""}  ${(item.address && item.address.length && item.address[0].postalCode) || ""}`}
                               </div>
-
                             </div>
                             </div>
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex font-medium flex-col w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
+                            <div className=" flex w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
 
-                              <div class=" font-normal text-[0.85rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class="  text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].city) ||
                                   ""}
                               </div>
-
-                            </div>
-                           
+                            </div>                       
                             </div>
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
                             <div>
-<Tooltip title="Purchase Order">
+<Tooltip title={props.translatedMenuItems[18]}>
 <StoreIcon
                             className="!text-icon cursor-pointer text-[red]"
                             // onClick={() => {
@@ -164,25 +154,23 @@ return(
           </Tooltip>
           </div>            
  <div>
-<Tooltip title="Edit">
+<Tooltip title={props.translatedMenuItems[19]}>
             <BorderColorIcon
              className="!text-icon cursor-pointer text-[tomato]"
               onClick={() => {
                  props.setEditSuppliers(item);
                 handleRowData(item);
-                props.handleUpdateSupplierModal(true);
-             
+                props.handleUpdateSupplierModal(true);            
               }}
             />
           </Tooltip>
           </div>
           <div>
           <Popconfirm
-              title="Do you want to delete?"
+              title={`${props.translatedMenuItems[22]} ?`}
              onConfirm={() => props.deleteSupplierData(item.supplierId)}
             >
               <DeleteOutlined
-
 className=" !text-icon cursor-pointer text-[red]"
               />
             </Popconfirm>
@@ -196,13 +184,13 @@ className=" !text-icon cursor-pointer text-[red]"
 </InfiniteScroll>
   </div>
   </div>
-
+ )}
   <UpdateSupplierModal
         rowdata={rowdata}
-     
         updateSupplierModal={props.updateSupplierModal}
         handleRowData={handleRowData}
         handleUpdateSupplierModal={props.handleUpdateSupplierModal}
+        translatedMenuItems={props.translatedMenuItems}
       />
 </>
 )
@@ -217,6 +205,7 @@ const mapStateToProps = ({ shipper, suppliers,auth }) => ({
   addShipperOrderModal: shipper.addShipperOrderModal,
   orgId:auth.userDetails.organizationId,
   updateSupplierModal:suppliers.updateSupplierModal,
+  searchSupplierList:suppliers.searchSupplierList
 });
 
 const mapDispatchToProps = (dispatch) =>

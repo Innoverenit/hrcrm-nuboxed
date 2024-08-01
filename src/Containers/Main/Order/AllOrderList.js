@@ -91,25 +91,25 @@ const handleLoadMoreLow = () => {
         <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-      <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">Urgent </div>
-          <div className=" md:w-[9.3rem] ml-2">Order ID</div>
-          <div className=" md:w-[11.6rem]">Customer</div>
-          <div className=" md:w-[5.051rem] ">Contact</div>
-          <div className="md:w-[7.01rem]">Units</div>
+      <div className=" md:w-[3.25rem] text-[white] flex justify-center bg-[red]">Urgent </div>
+          <div className=" md:w-[10.31rem] ml-2">Order ID</div>
+          <div className=" md:w-[8.6rem]">Customer</div>
+          <div className=" md:w-[4.051rem] ">Contact</div>
+          <div className="md:w-[5.01rem]">Units</div>
           <div className="md:w-[5.031rem]">Owner</div>
           <div className="md:w-[5.2rem]">Supervisor</div>
           <div className="md:w-[5.06rem]">Lead</div>
-          <div className="md:w-[5.06rem]">Type</div>
           <div className="md:w-[9.73rem]">Created</div>
-          <div className="md:w-[9rem]"></div>
+          <div className="md:w-24"></div>
         </div>
         <InfiniteScroll
           dataLength={props.allHighCompleteOrder.length}
           next={handleLoadMore}
           hasMore={hasMore}
-          loader={props.fetchingAllHighOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-          height={"22vh"}
-          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+          loader={props.fetchingAllHighOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+          height={"23vh"}
+          style={{ scrollbarWidth:"thin"}}
+          endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
           {props.allHighCompleteOrder.length ?
             <>
@@ -139,30 +139,30 @@ const handleLoadMoreLow = () => {
                   <div>
               <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                   <div class="flex">
-                  <div className=" flex font-medium items-center md:w-[3.96rem] max-sm:w-full  ">
+                  <div className=" flex items-center md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full ">
-                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                            class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                                     )}
                                                                     {item.priority === "Medium" && (
                                                                         <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                            class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
                                                                     {item.priority === "Low" && (
-                                                                        <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
+                                                                        <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                 </div>
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex font-medium items-center    max-sm:w-full">
+                    <div className=" flex  w-wk     max-sm:w-full">
                       <div className="flex max-sm:w-full">
-                        <div class="w-[9.53rem]">
+                        <div class="w-[9.43rem]">
                         <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-sm"
+                              class="underline cursor-pointer text-[#1890ff] text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -175,21 +175,16 @@ const handleLoadMoreLow = () => {
                           </Badge>
                           &nbsp;&nbsp;
                               {date === currentdate ? (
-                                <span
-                                  style={{
-                                    color: "tomato",
-                                    fontWeight: "bold",
-                                  }}
-                                >
+                                <span className=" text-[0.65rem] text-[tomato] font-bold" >
                                   New
                                 </span>
                               ) : null}
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[12.02rem]">
+                        <div class="max-sm:w-full md:w-[9.02rem]">
                           <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                            <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
 
                             </div>
@@ -198,7 +193,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[5.823rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -214,10 +209,10 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class=" font-poppins text-sm">
+                    <div className=" flex  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class=" font-poppins text-xs">
                         {item.noOfPhones}
-                      </h4>
+                      </div>
                     </div>
 
 
@@ -237,7 +232,7 @@ const handleLoadMoreLow = () => {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -251,7 +246,7 @@ const handleLoadMoreLow = () => {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[5.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -285,33 +280,27 @@ const handleLoadMoreLow = () => {
                         }
                       </div>
                     </div>
-                       <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                      {item.orderType}
-                      </div>
-                    </div>
-
-                  </div>
-                  <div className=" flex text-sm font-medium flex-col md:w-[10.012rem] max-sm:flex-row w-full max-sm:justify-between ">
+                     </div>
+                  <div className=" flex text-xs md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <h4 class=" text-sm  font-semibold  font-poppins">
+                      <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
-                      </h4>
+                      </div>
                     </div>
-                    <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
+                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                      <h4 class=" text-xs  font-poppins">
+                      {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                            className=" !text-xl cursor-pointer text-green-800"
+                            className=" !text-icon cursor-pointer text-green-800"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -319,43 +308,43 @@ const handleLoadMoreLow = () => {
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
 
                     </div>
 
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
-                            className="!text-xl cursor-pointer"
+                            className="!text-icon cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                             onClick={() => {
                               handleShow()
                               handleSetParticularOrderData(item)
                             }} />
                         </Tooltip>
-                      </h4>
+                      </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                    <div className=" flex max-sm:flex-row  max-sm:justify-between  ">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                          className=" !text-xl cursor-pointer "
+                          className=" !text-icon cursor-pointer "
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
                     </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                    <div className=" flex max-sm:flex-row  max-sm:justify-between  ">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                           className=" !text-xl cursor-pointer"
+                           className=" !text-icon cursor-pointer"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -364,7 +353,7 @@ const handleLoadMoreLow = () => {
                           />
                         </Tooltip>
 
-                      </h4>
+                      </div>
                     </div>
 
                    
@@ -381,28 +370,28 @@ const handleLoadMoreLow = () => {
         </InfiniteScroll>
       </div>
       </div>
-      <div className=' flex justify-end sticky  z-auto'>
+      <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-      <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
-          <div className=" md:w-[9.3rem] ml-2">Order ID</div>
-          <div className=" md:w-[11.6rem]">Customer</div>
-          <div className=" md:w-[5.051rem] ">Contact</div>
-          <div className="md:w-[7.01rem]">Units</div>
+      <div className=" md:w-[3.25rem] text-[white] flex justify-center bg-[orange] ">High </div>
+          <div className=" md:w-[10.31rem] ml-2">Order ID</div>
+          <div className=" md:w-[8.6rem]">Customer</div>
+          <div className=" md:w-[4.051rem] ">Contact</div>
+          <div className="md:w-[5.01rem]">Units</div>
           <div className="md:w-[5.031rem]">Owner</div>
           <div className="md:w-[5.2rem]">Supervisor</div>
           <div className="md:w-[5.06rem]">Lead</div>
-          <div className="md:w-[5.06rem]">Type</div>
           <div className="md:w-[9.73rem]">Created</div>
-          <div className="md:w-[9rem]"></div>
+          <div className="md:w-24"></div>
         </div>
         <InfiniteScroll
           dataLength={props.allMediumCompleteOrder.length}
           next={handleLoadMoreMedium}
           hasMore={hasMore}
-          loader={props.fetchingAllMediumOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-          height={"22vh"}
-          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+          loader={props.fetchingAllMediumOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+          height={"23vh"}
+          style={{ scrollbarWidth:"thin"}}
+          endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
           {props.allMediumCompleteOrder.length ?
             <>
@@ -432,30 +421,30 @@ const handleLoadMoreLow = () => {
                   <div>
                  <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                   <div class="flex">
-                  <div className=" flex font-medium items-center md:w-[3.96rem] max-sm:w-full  ">
+                  <div className=" flex items-center md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                            class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                                     )}
                                                                     {item.priority === "Medium" && (
                                                                         <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                            class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
                                                                     {item.priority === "Low" && (
-                                                                        <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
+                                                                        <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                 </div>
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex font-medium items-center    max-sm:w-full">
+                    <div className=" flex w-wk   max-sm:w-full">
                       <div className="flex max-sm:w-full">
-                        <div class="w-[9.53rem]">
+                        <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-sm"
+                              class="underline cursor-pointer text-[#1890ff] text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -466,23 +455,18 @@ const handleLoadMoreLow = () => {
                              
                             </span>
                           </Badge>
-                          &nbsp;&nbsp;
+                       
                               {date === currentdate ? (
-                                <span
-                                  style={{
-                                    color: "tomato",
-                                    fontWeight: "bold",
-                                  }}
-                                >
+                                <span className=" text-[0.65rem] text-[tomato] font-bold" >
                                   New
                                 </span>
                               ) : null}
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[12.02rem]">
+                        <div class="max-sm:w-full md:w-[9.02rem]">
                           <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                            <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
 
                             </div>
@@ -491,7 +475,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[5.823rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -507,10 +491,10 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <h4 class=" font-poppins text-sm">
+                    <div className=" flex  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class=" font-poppins text-xs">
                         {item.noOfPhones}
-                      </h4>
+                      </div>
                     </div>
 
 
@@ -530,7 +514,7 @@ const handleLoadMoreLow = () => {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -544,7 +528,7 @@ const handleLoadMoreLow = () => {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[5.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -578,32 +562,28 @@ const handleLoadMoreLow = () => {
                         }
                       </div>
                     </div>
-                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                      {item.orderType}
-                      </div>
-                    </div>
+                    
                   </div>
-                  <div className=" flex text-sm font-medium flex-col md:w-[10.012rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex text-xs md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <h4 class=" text-sm  font-semibold  font-poppins">
+                      <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
-                      </h4>
+                      </div>
                     </div>
-                    <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
+                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
 
-                      {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                      <h4 class=" text-xs  font-poppins">
+                      {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                             className=" !text-xl cursor-pointer text-green-800"
+                             className=" !text-icon cursor-pointer text-green-800"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -611,43 +591,43 @@ const handleLoadMoreLow = () => {
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
 
                     </div>
 
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
-                            className="!text-xl cursor-pointer"
+                            className="!text-icon cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                             onClick={() => {
                               handleShow()
                               handleSetParticularOrderData(item)
                             }} />
                         </Tooltip>
-                      </h4>
+                      </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                              className=" !text-xl cursor-pointer "
+                              className=" !text-icon cursor-pointer "
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
                             }}
                           />
                         </Tooltip>
-                      </h4>
+                      </div>
 
                     </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs  font-poppins">
+                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
+                      <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                          className=" !text-xl cursor-pointer "
+                          className=" !text-icon cursor-pointer "
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -656,7 +636,7 @@ const handleLoadMoreLow = () => {
                           />
                         </Tooltip>
 
-                      </h4>
+                      </div>
                     </div>
 
                   
@@ -677,24 +657,24 @@ const handleLoadMoreLow = () => {
        <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
        <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
-           <div className=" md:w-[9.3rem] ml-2">Order ID</div>
-           <div className=" md:w-[11.6rem]">Customer</div>
-           <div className=" md:w-[5.051rem] ">Contact</div>
-           <div className="md:w-[7.01rem]">Units</div>
+           <div className=" md:w-[10.3rem] ml-2">Order ID</div>
+           <div className=" md:w-[8.6rem]">Customer</div>
+           <div className=" md:w-[4.051rem] ">Contact</div>
+           <div className="md:w-[5.014rem]">Units</div>
            <div className="md:w-[5.031rem]">Owner</div>
            <div className="md:w-[5.2rem]">Supervisor</div>
            <div className="md:w-[5.06rem]">Lead</div>
-           <div className="md:w-[5.06rem]">Type</div>
            <div className="md:w-[9.73rem]">Created</div>
-           <div className="md:w-[9rem]"></div>
+           <div className="md:w-24"></div>
          </div>
          <InfiniteScroll
            dataLength={props.allLowCompleteOrder.length}
            next={handleLoadMoreLow}
            hasMore={hasMore}
-           loader={props.fetchingAllLowOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-           height={"22vh"}
-           endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+           loader={props.fetchingAllLowOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+           height={"23vh"}
+           style={{ scrollbarWidth:"thin"}}
+           endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
          >
            {props.allLowCompleteOrder.length ?
              <>
@@ -724,30 +704,30 @@ const handleLoadMoreLow = () => {
                    <div>
                 <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                    <div class="flex">
-                   <div className=" flex font-medium items-center md:w-[3.96rem] max-sm:w-full  ">
+                   <div className=" flex items-center md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                            class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                                     )}
                                                                     {item.priority === "Medium" && (
                                                                         <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                            class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
                                                                     {item.priority === "Low" && (
-                                                                        <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
+                                                                        <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                 </div>
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                     <div className=" flex font-medium items-center    max-sm:w-full">
+                     <div className=" flex items-center    max-sm:w-full">
                        <div className="flex max-sm:w-full">
-                         <div class="w-[9.53rem]">
+                         <div class="w-[9.43rem]">
                            <Badge size="small" count={item.productNum}>
                              <span
-                               class="underline cursor-pointer text-[#1890ff] text-sm"
+                               class="underline cursor-pointer text-[#1890ff] text-xs"
                                onClick={() => {
                                  handleSetParticularOrderData(item);
                                  props.handleOrderDetailsModal(true);
@@ -760,21 +740,16 @@ const handleLoadMoreLow = () => {
                            </Badge>
                            &nbsp;&nbsp;
                                {date === currentdate ? (
-                                 <span
-                                   style={{
-                                     color: "tomato",
-                                     fontWeight: "bold",
-                                   }}
-                                 >
+                                 <span className=" text-[0.65rem] text-[tomato] font-bold" >
                                    New
                                  </span>
                                ) : null}
                          </div>
                        
  
-                         <div class="max-sm:w-full md:w-[12.02rem]">
+                         <div class="max-sm:w-full md:w-[9.02rem]">
                            <Tooltip>
-                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                             <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                                {item.distributorName}
  
                              </div>
@@ -783,7 +758,7 @@ const handleLoadMoreLow = () => {
                        </div>
                      </div>
  
-                     <div class="flex flex-row items-center md:w-[5.823rem] max-sm:flex-row w-full max-sm:justify-between">
+                     <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
                        <div>
                          <MultiAvatar2
                            primaryTitle={item.contactPersonName}
@@ -799,10 +774,10 @@ const handleLoadMoreLow = () => {
                      </div>
                    </div>
                    <div class="flex">
-                     <div className=" flex font-medium flex-col  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                       <h4 class=" font-poppins text-sm">
+                     <div className=" flex  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                       <div class=" font-poppins text-xs">
                          {item.noOfPhones}
-                       </h4>
+                       </div>
                      </div>
  
  
@@ -822,7 +797,7 @@ const handleLoadMoreLow = () => {
  
                    </div>
                    <div class=" flex">
-                     <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                     <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
                        <div>
                          <MultiAvatar2
                            primaryTitle={item.supervisorUserName}
@@ -836,7 +811,7 @@ const handleLoadMoreLow = () => {
  
  
                      </div>
-                     <div class="flex flex-row items-center md:w-[5.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                     <div class="flex flex-row items-center md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between">
                        <div>
                          {show && (particularRowData.orderId === item.orderId) ?
                            <div class=" flex justify-between">
@@ -870,32 +845,28 @@ const handleLoadMoreLow = () => {
                          }
                        </div>
                      </div>
-                     <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                      {item.orderType}
-                      </div>
-                    </div>
+                     
                    </div>
-                   <div className=" flex text-sm font-medium flex-col md:w-[10.012rem] max-sm:flex-row w-full max-sm:justify-between ">
+                   <div className=" flex text-xs  md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between ">
                      <span>{date}</span>
                    </div>
                    <div class="flex">
-                     <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                     <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
  
-                       <h4 class=" text-sm  font-semibold  font-poppins">
+                       <div class=" text-xs  font-semibold  font-poppins">
                          {item.noOfownerPhones}
-                       </h4>
+                       </div>
                      </div>
-                     <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
+                     <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
                        {item.orderStatus}
                      </div>
-                     <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
+                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
  
-                       {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                       <h4 class=" text-xs  font-poppins">
+                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
+                       <div class=" text-xs  font-poppins">
                          <Tooltip title="Notes">
                            <NoteAltIcon
-                                className=" !text-xl cursor-pointer text-green-800"
+                                className=" !text-icon cursor-pointer text-green-800"
                              onClick={() => {
  
                                props.handleNotesModalInOrder(true);
@@ -903,43 +874,43 @@ const handleLoadMoreLow = () => {
                              }}
                            />
                          </Tooltip>
-                       </h4>
+                       </div>
  
  
                      </div>
  
-                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                       <h4 class=" text-xs  font-poppins">
+                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
+                       <div class=" text-xs  font-poppins">
                          <Tooltip title="Add Supervisor">
                            <PersonAddAlt1
-                             className="!text-xl cursor-pointer"
+                             className="!text-icon cursor-pointer"
                              style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                              onClick={() => {
                                handleShow()
                                handleSetParticularOrderData(item)
                              }} />
                          </Tooltip>
-                       </h4>
+                       </div>
                      </div>
-                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                       <h4 class=" text-xs  font-poppins">
+                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
+                       <div class=" text-xs  font-poppins">
                          <Tooltip title="Status">
                            <EventRepeatIcon
-                              className=" !text-xl cursor-pointer "
+                              className=" !text-icon cursor-pointer "
                              onClick={() => {
                                props.handleStatusOfOrder(true);
                                handleSetParticularOrderData(item);
                              }}
                            />
                          </Tooltip>
-                       </h4>
+                       </div>
  
                      </div>
-                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                       <h4 class=" text-xs  font-poppins">
+                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
+                       <div class=" text-xs  font-poppins">
                          <Tooltip title="Collection">
                            <PaidIcon
-                             className=" !text-xl cursor-pointer"
+                             className=" !text-icon cursor-pointer"
                              onClick={() => {
                                props.handlePaidModal(true);
                                handleSetParticularOrderData(item);
@@ -948,7 +919,7 @@ const handleLoadMoreLow = () => {
                            />
                          </Tooltip>
  
-                       </h4>
+                       </div>
                      </div>
  
                   

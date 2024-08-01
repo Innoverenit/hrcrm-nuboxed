@@ -4,6 +4,8 @@ import { bindActionCreators } from "redux";
 import { Tooltip, Button  } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
+import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
+ import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import ButtonGroup from "antd/lib/button/button-group";
 import { getAllProductionsbyOrgId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -14,12 +16,46 @@ const ProductionIDrawer = lazy(() => import("./ProductionIDrawer"));
 function ProductionAllCardView(props) {
 
     const [page, setPage] = useState(0);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
         props.getAllProductionsbyOrgId(props.organizationId);
         setPage(page + 1);
     }, []);
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+             "MFG ID",//0
+              "Location",//1
+              "Cell",//1
+              "Created",//1
+              "Item",//1
+              "Category",//1
+              "Attribute",//1
+              "Start",//1
+              "End",//1
+              "Workflow",//1
+              "Status",//1
+              "Inspected",//1
+              "Dispatch",//1
+          
+          
+           
+              
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
 
     const [particularDiscountData, setParticularDiscountData] = useState({});
 
@@ -78,25 +114,65 @@ function ProductionAllCardView(props) {
     } = props;
     return (
         <>
-            <div className=' flex justify-end sticky  z-auto'>
+            <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky h-8 z-10">
+                    <div className=" flex  justify-between w-[99%] p-1 bg-transparent font-bold sticky h-8 z-10">
                         <div className=""></div>
-                        <div className=" md:w-[8.1rem]">MFG ID</div>
-                        <div className=" md:w-[7rem]">Location</div>
-                        <div className=" md:w-[7rem]">Cell</div>
-                        <div className=" md:w-[7rem]">Created</div>
-                        <div className=" md:w-[9rem]">Item</div>
-                        <div className="md:w-[8rem]">Category</div>
-                        <div className="md:w-[9rem]">Attribute</div>
-                        <div className=" md:w-[5rem]">Start</div>
-                        <div className=" md:w-[5rem]">End</div>
-                        <div className="md:w-[5.2rem]">Workflow</div>
+                        <div className=" md:w-[8.1rem]">
+                            {/* MFG ID */}
+                            {translatedMenuItems[0]}
+                            </div>
+                        <div className=" md:w-[7rem]">
+                            {/* Location */}
+                            {translatedMenuItems[1]}
+                            </div>
+                        <div className=" md:w-[7rem]">
+                            {/* Cell */}
+                            {translatedMenuItems[2]}
+                            </div>
+                        <div className=" md:w-[7rem]">
+                            {/* Created */}
+                            {translatedMenuItems[3]}
+                            </div>
+                        <div className=" md:w-[9rem]">
+                            {/* Item */}
+                            {translatedMenuItems[4]}
+                            
+                                </div>
+                        <div className="md:w-[8rem]">
+                            {/* Category */}
+                            {translatedMenuItems[5]}
+                            </div>
+                        <div className="md:w-[9rem]">
+                            {/* Attribute */}
+                            {translatedMenuItems[6]}
+                            </div>
+                        <div className=" md:w-[5rem]">
+                            {/* Start */}
+                            {translatedMenuItems[7]}
+                            </div>
+                        <div className=" md:w-[5rem]">
+                            {/* End */}
+                            {translatedMenuItems[8]}
+                            </div>
+                        <div className="md:w-[5.2rem]">
+                            {/* Workflow */}
+                            {translatedMenuItems[9]}
+                            </div>
                         <div className="md:w-[5.2rem]"></div>
-                        <div className=" md:w-[5rem] ">Status</div>
+                        <div className=" md:w-[5rem] ">
+                            {/* Status */}
+                            {translatedMenuItems[10]}
+                            </div>
                         <div className="md:w-[5rem]"></div>
-                        <div className="md:w-[5rem]">Inspected</div>
-                        <div className="md:w-[5rem]"> Dispatch </div>
+                        <div className="md:w-[5rem]">
+                            {/* Inspected */}
+                            {translatedMenuItems[11]}
+                            </div>
+                        <div className="md:w-[5rem]"> 
+                            {/* Dispatch  */}
+                            {translatedMenuItems[12]}
+                            </div>
                         <div className="md:w-[3rem]"></div>
                         <div className="md:w-[2rem]"></div>
                     </div>
@@ -115,8 +191,8 @@ function ProductionAllCardView(props) {
                                      const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div>
-                                            <div className="flex rounded justify-between mt-2 bg-white h-8  p-1 ">
-                                                <div class="flex">
+                                            <div className="flex rounded justify-between mt-1 bg-white h-8  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                                <div class="flex items-center">
                                                     <div className=" flex font-medium   md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-[#1890ff] cursor-pointer  flex text-xs  font-poppins"
@@ -153,8 +229,8 @@ function ProductionAllCardView(props) {
                   primaryTitle={item.createdBy}
                   // imageId={item.ownerImageId}
                   // imageURL={item.imageURL}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
                 />
                                                         </div>
                                                         <div class=" text-xs  font-poppins">
@@ -206,7 +282,8 @@ function ProductionAllCardView(props) {
                                                         {item.type===null && item.type==="In Progress" && (
                                                             <StatusIcon
                                                                 type="In Progress"
-                                                                iconType="fa-hourglass-half"
+                                                                // iconType="fa-hourglass-half"
+                                                                iconType={<HourglassTopIcon className="!text-icon text-orange-600 cursor-pointer"/>}
                                                                 tooltip="In Progress"
                                                                 role={item.type}
                                                                 onClick={() => {
@@ -219,7 +296,8 @@ function ProductionAllCardView(props) {
                                                             {item.type==="In Progress" ? 
                                                             <StatusIcon
                                                                 type="Complete"
-                                                                iconType="fa-hourglass"
+                                                                // iconType="fa-hourglass"
+                                                                iconType={<HourglassBottomIcon className="!text-icon text-orange-600 cursor-pointer"/>}
                                                                 tooltip="Complete"
                                                                 role={item.type}
                                                                 onClick={() => {

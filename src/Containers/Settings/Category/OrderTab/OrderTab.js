@@ -4,12 +4,17 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import {  Badge } from "antd";
-import RecommendIcon from '@mui/icons-material/Recommend';
+import HandymanIcon from '@mui/icons-material/Handyman';
 import SourceIcon from '@mui/icons-material/Source';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import Quality from "../Quality/Quality"
-import Model from "../Model/Model";
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import BrandCategory from "../BrandCategory/BrandCategory";
+import QuizIcon from '@mui/icons-material/Quiz';
+import FeedBack from "./FeedBack";
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import FeedbackIcon from '@mui/icons-material/Feedback';
+
 const ItemTask = lazy(() =>
   import("../ItemTask/ItemTask")
 );
@@ -48,6 +53,8 @@ class OrderTab extends Component {
               return     <BrandCategory/>;
             case "4":
               return     <Quality/>;
+              case "5":
+                return     <FeedBack/>;
 
       default:
         return null;
@@ -58,7 +65,7 @@ class OrderTab extends Component {
     return (
       <>
            <div class="flex flex-nowrap" >
-          <div class ="w-[70%]" >
+          <div class ="w-[100%]" >
             <TabsWrapper>
             <StyledTabs
                 defaultActiveKey={activeKey}
@@ -68,7 +75,7 @@ class OrderTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <MonetizationOnIcon />
+                      < HandymanIcon  className=" !text-icon" />
                       <Badge
                 count={this.props.itemTaskCount.ItemTaskCount}
                 overflowCount={999}
@@ -87,12 +94,12 @@ class OrderTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <SourceIcon />
+                     
                       <Badge
                 count={this.props.shipByCount.shipByCount}
                 overflowCount={999}
               >
-                      <span class=" ml-1">
+                     <LocalShippingIcon className=" !text-icon"/> <span class=" ml-1">
                         Ship By
                       </span>
                       </Badge>
@@ -107,8 +114,8 @@ class OrderTab extends Component {
                     <TabPane
                   tab={
                     <>
-                      <SourceIcon />
-                      <span class=" ml-1">
+                     
+                      <QuizIcon className=" !text-icon"/> <span class=" ml-1">
                         Brand Model
                       </span>
                     </>
@@ -122,7 +129,7 @@ class OrderTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <SourceIcon />
+                      <SourceIcon  className=" !text-icon"/>
                       <span class=" ml-1">
                      Category
                       </span>
@@ -148,7 +155,7 @@ class OrderTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <RecommendIcon />
+                      <VerifiedUserIcon className=" !text-icon"/>
                       <Badge
                 count={this.props.qualityCount.QualityCount}
                 overflowCount={999}
@@ -163,6 +170,24 @@ class OrderTab extends Component {
                 >
 
                 </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      < FeedbackIcon className=" !text-icon"/>
+                      <Badge
+                count={this.props.feedBackCount.FeedbackCount}
+                overflowCount={999}
+              >
+                      <span class=" ml-1">
+                       FeedBack
+                      </span>
+                      </Badge>
+                    </>
+                  }
+                  key="5"
+                >
+
+                </TabPane>
               </StyledTabs>
               <Suspense fallback={<div>Loading...</div>}>
                 {this.renderTabContent(activeKey)}
@@ -174,11 +199,12 @@ class OrderTab extends Component {
     );
   }
 }
-const mapStateToProps = ({auth ,itemTask,shipBy,quality}) => ({
+const mapStateToProps = ({auth ,itemTask,shipBy,quality,settings}) => ({
   user: auth.userDetails,
   itemTaskCount:itemTask.itemTaskCount,
   shipByCount:shipBy.shipByCount,
   qualityCount:quality.qualityCount,
+  feedBackCount:settings.feedBackCount,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 

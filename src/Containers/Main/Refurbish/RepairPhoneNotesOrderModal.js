@@ -3,11 +3,12 @@ import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ErpNote from "../ErpNote/ErpNote";
 const RepairPhoneNotesOrderForm = lazy(() => import("./RepairPhoneNotesOrderForm"));
 
 const RepairPhoneNotesOrderModal = (props) => {
     const { RowData, ...formProps } = props;
-    return (
+    return ( 
         <>
             <StyledDrawer
                 title={`Notes`}
@@ -21,7 +22,11 @@ const RepairPhoneNotesOrderModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <RepairPhoneNotesOrderForm RowData={props.RowData} />
+                <ErpNote
+                         type="phone"
+                         id={props.RowData.phoneId}
+                        />
+                    
                 </Suspense>
             </StyledDrawer>
         </>

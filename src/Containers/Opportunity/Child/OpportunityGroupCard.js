@@ -3,7 +3,7 @@ import {  Popconfirm,Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import { StopTwoTone, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { CheckCircleTwoTone } from "@ant-design/icons";
-import { FlexContainer, MainWrapper } from "../../../Components/UI/Layout";
+import { FlexContainer } from "../../../Components/UI/Layout";
 import {
   MultiAvatar,
   Title,
@@ -30,7 +30,8 @@ const BussinessCard = (props) => {
   
   return (
     <div class="flex-col rounded-[3px]">
-      <MainWrapper style={{height:"6rem"}}>
+      <div className="h-24 m-1 p- shadow-[0 0.5em 0.375em -0.375em rgb(46, 44, 44)] border-2 border-gray-400 bg-white ">
+      
       {/* <div class="rounded bg-white m-1 p-1 overflow-auto h-24 border-[0.0625rem] border-[#eee]-600 w-full"> */}
         <FlexContainer
           alignItems="center"
@@ -88,9 +89,7 @@ const BussinessCard = (props) => {
       theme="twoTone"
       twoToneColor="#24D8A7"
       size={140}
-      style={{ fontSize:"1rem" 
-     
-     }}
+      className=" !text-icon"
    
     />
   </Tooltip>
@@ -114,9 +113,7 @@ const BussinessCard = (props) => {
           theme="twoTone"
           twoToneColor="red"
           size={140}
-          style={{
-            fontSize: "1rem"
-          }}
+          className=" !text-icon"
         />
         </Tooltip>
     </Popconfirm>
@@ -127,7 +124,7 @@ const BussinessCard = (props) => {
            
              {user.opportunityDeleteInd ===true && user.crmInd === true && (
             <DeleteOutlined
-            type="delete" style={{ cursor: "pointer", color: "red",fontSize:"1rem"  }} />
+            type="delete" className=" !text-icon cursor-pointer text-red-600 "  />
              )}
           </StyledPopconfirm>
             </SubTitle>      
@@ -135,19 +132,19 @@ const BussinessCard = (props) => {
           <FlexContainer
             style={{ flexBasis: "10%", alignSelf: "flex-start" }}
           ></FlexContainer>
-          <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
-          <EditOutlined
+          <SubTitle >
+          <EditOutlined  className=" !text-icon text-[#337df4bf]"
           onClick={props.handleEdit}
           />
         </SubTitle>
         </FlexContainer>
 
        
-
+        </div>
         
       {/* </div> */}
-      </MainWrapper>
-    </div>
+      </div>
+    
   );
 };
 export default BussinessCard;

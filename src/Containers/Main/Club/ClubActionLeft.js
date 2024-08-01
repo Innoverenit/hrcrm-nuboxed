@@ -1,17 +1,18 @@
-import React,{useEffect,useState,useRef} from "react";
+import React,{useEffect,useState,useRef,Suspense} from "react";
 import TocIcon from '@mui/icons-material/Toc';
-import { StyledSelect } from "../../../Components/UI/Antd";
+import { StyledSelect, StyledTabs } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
-// import {
-//     inputTradeSearch,ClearReducerDataOfTrade,getInventoryAlllist
-// } from "./TradeAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
+import PeopleIcon from '@mui/icons-material/People';
 import { Avatar, Input, Tooltip,Badge } from "antd";
 import { FormattedMessage } from "react-intl";
 import { AudioOutlined } from "@ant-design/icons"
+import ClubTableAll from "./ClubTableAll";
+import { TabsWrapper } from "../../../Components/UI/Layout";
 
 const Option = StyledSelect.Option;
+const TabPane = StyledTabs.TabPane;
 
 function ClubActionLeft (props) {
     const [currentData, setCurrentData] = useState("");
@@ -21,6 +22,14 @@ function ClubActionLeft (props) {
   const [isRecording, setIsRecording] = useState(false); //Code for Search
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
+  const [departmentData, setDepartmentData] = useState({});
+
+  const handleOnClick = (data) => {
+    console.log(data);
+    debugger;
+    setDepartmentData(data);
+  };
+
 
     // useEffect(() => {
     //     if (props.viewType === "card") {
@@ -116,17 +125,29 @@ function ClubActionLeft (props) {
 //               }
 //             }
 //           }, [listening, isRecording, startTime]);
-
+console.log(departmentData.clubName)
         return (
             <div class="flex items-center">
-
+  {/* <StyledTabs type="card">
+        {props.clubShareData.map((member, i) => (
+          <TabPane key={i} tab={
+            <span onClick={() => handleOnClick(member)}>
+              {member.clubName}
+            </span>
+          }>
+            {departmentData.clubId && (
+              <Suspense fallback={"Loading..."}>
+                <div>
+                <ClubTableAll clubId={departmentData.clubId} />
+                </div>
+              </Suspense>
+            )}
+          </TabPane>
+        ))}
+      </StyledTabs> */}
                 <Tooltip
                     title={<FormattedMessage id="app.all" defaultMessage="ALL" />}>
-{/* <Badge
-          size="small"
-          count={(props.viewType === "table" && props.countSupplier.supplierCount) || 0}
-          overflowCount={999}
-        > */}
+
                     <span class=" mr-2 text-sm cursor-pointer"
                         onClick={() => setClubViewType("table")}
                         style={{
@@ -135,17 +156,55 @@ function ClubActionLeft (props) {
                     >
 
                         <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
-                        {/*   <TocIcon className="text-white" />*/}
-                        <div className="text-white">ALL</div>
+                       
+                        <TocIcon  className="text-white !text-icon" />
                             </Avatar>
 
                     </span>
-                    {/* </Badge> */}
+                  
                 </Tooltip>
+                <Tooltip
+          title={<FormattedMessage id="app.teamView" defaultMessage="Team View" />}
+        >
+          {/* <Badge
+            size="small"
+            count={(teamCount || props.viewType === "teams" && props.investorTeamRecord.investorTeam) || 0}
+            overflowCount={999}
+          > */}
+            <span
+              class=" mr-1 text-sm cursor-pointer"
+              onClick={() => setClubViewType("teams")}
+              style={{
+                color: viewType === "teams" && "#1890ff",
+              }}
+            >
+              <Avatar style={{ background: viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+                <PeopleIcon  className="text-white !text-icon" />
+              </Avatar>
+            </span>
+          {/* </Badge> */}
+        </Tooltip>
+        <Tooltip title={<FormattedMessage id="app.all" defaultMessage="All" />}>
+          {/* <Badge
+            size="small"
+            count={(props.viewType === "all" && props.allinvestorRecord.investor) || 0}
+            overflowCount={999}
+          > */}
+            <span
+              class=" mr-1 text-sm cursor-pointer"
+              onClick={() => setClubViewType("all")}
+              style={{
+                color: viewType === "all" && "#1890ff",
+              }}
+            >
+              <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                <FormattedMessage id="app.all" defaultMessage="ALL" class=" text-white !text-icon"/>
+              </Avatar>
+            </span>
+          {/* </Badge> */}
+        </Tooltip>     
 
-               
-
-                &nbsp;&nbsp;
+             
                 <div class=" ml-6 h-6 w-60 max-sm:w-[11rem]">
                 <Input
           placeholder="Search by Brand or Model"
@@ -155,10 +214,12 @@ function ClubActionLeft (props) {
           //onChange={handleChange}
         value={currentData}
         />
-                  
+             
+      
+     
 
                 </div>
-
+              
             </div>
         );
 }

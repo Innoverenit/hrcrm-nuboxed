@@ -4,8 +4,8 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import { withRouter } from "react-router";
-import ProductionArchieveCard from "./ProductionArchieveCard";
-const CreateProductionCard = lazy(() => import("../../../../../Production/Child/CreateProductionCard"));
+const ProductionArchieveCard = lazy(() => import("./ProductionArchieveCard"));
+const CreateProductionCard = lazy(() => import("./ProductionCreateCard"));
 const ProductionDispatchCard = lazy(() => import("./ProductionDispatchCard"));
 
 const TabPane = StyledTabs.TabPane;
@@ -23,13 +23,13 @@ class InventoryProductionTab extends PureComponent {
         switch (key) {
           case "1":
             return   <CreateProductionCard 
-                                
+            translatedMenuItems={this.props.translatedMenuItems}
             inventory={this.props.inventory}
             />;
           case "2":
-            return  <ProductionDispatchCard />;
+            return  <ProductionDispatchCard  translatedMenuItems={this.props.translatedMenuItems}/>;
           case "3":
-            return  <ProductionArchieveCard />;
+            return  <ProductionArchieveCard  translatedMenuItems={this.props.translatedMenuItems}/>;
          
             
           default:
@@ -65,7 +65,8 @@ class InventoryProductionTab extends PureComponent {
                         <TabPane
                             tab={
                                 <>
-                                    <i class="fab fa-linode"></i>  &nbsp; Dispatch
+                                    <i class="fab fa-linode"></i>  &nbsp; 
+                                    {/* Dispatch */}         {this.props.translatedMenuItems[8]}
                                 </>
                             }
                             key="2"
@@ -78,7 +79,8 @@ class InventoryProductionTab extends PureComponent {
                         <TabPane
                             tab={
                                 <>
-                                    <i class="fab fa-linode"></i>  &nbsp; Archive
+                                    <i class="fab fa-linode"></i>  &nbsp; 
+                                    {/* Archive   */}         {this.props.translatedMenuItems[9]}
                                 </>
                             }
                             key="3"
@@ -89,7 +91,10 @@ class InventoryProductionTab extends PureComponent {
                             </Suspense> */}
                         </TabPane>
                     </StyledTabs>
-                    <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                    <Suspense fallback={<div class="flex justify-center">
+                        {/* Loading... */}
+                        {this.props.translatedMenuItems[10]}...
+                    </div>}>
                 {this.renderTabContent(activeKey)}
               </Suspense>
                 </TabsWrapper>

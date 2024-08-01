@@ -1,20 +1,14 @@
 import React, { Suspense,lazy } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
 const AddSuppliersForm =lazy(()=>import("./AddSuppliersForm"));
-
 
 const AddSuppliersModal = (props) => {
     const { addSuppliersModal, handleSuppliersModal, ...formProps } = props;
     return (
         <>
             <StyledDrawer
-              title={<FormattedMessage
-                id="app.suppliers"
-                defaultMessage="Suppliers"
-              />}
-               
+              title={props.translatedMenuItems[13]} 
                 width="60%"
                 visible={addSuppliersModal}
                 closable
@@ -23,7 +17,7 @@ const AddSuppliersModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <AddSuppliersForm {...formProps} />
+                    <AddSuppliersForm   translatedMenuItems={props.translatedMenuItems} {...formProps} />
                 </Suspense>
             </StyledDrawer>
         </>

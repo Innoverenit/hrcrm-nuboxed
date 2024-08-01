@@ -1,21 +1,25 @@
-import React, { Component } from "react";
+import React, {useEffect, useState,Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch } from "antd";
+import { Button, Switch,Select } from "antd";
 import { FormattedMessage } from "react-intl";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { Formik, Form, Field, FieldArray } from "formik";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
- import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
+import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import { addLocation, } from "../../../Event/Child/Location/LocationAction";
 import { getTimeZone } from "../../../Auth/AuthAction";
+import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
+import { getRoles } from "../../../Settings/Category/Role/RoleAction"
+import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 // const FormSchema = Yup.object().shape({
 //   name: Yup.string().required("Input required!"),
 //   management: Yup.string().required("Input required!"),
 //   locationtypeId: Yup.string().required("Input required!"),
 // });
+const { Option } = Select;
 
 class LocationForm extends Component {
   constructor(props) {
@@ -28,7 +32,13 @@ class LocationForm extends Component {
       project: false,
       prodmanuf:false,
       retail: false,
+      contract: false,
+      department: "",
+      reportingManager: "",
+      translatedMenuItems: []
     };
+    this.handleDepartment = this.handleDepartment.bind(this);
+    this.handlereportingManager = this.handlereportingManager.bind(this);
   }
 
   handleProduction = (checked) => {
@@ -52,13 +62,56 @@ class LocationForm extends Component {
   handleRetail = (checked) => {
     this.setState({ retail: checked });
   };
+  handleContract = (checked) => {
+    this.setState({ contract: checked });
+  };
+  handleDepartment(val) {
+    this.setState({ department: val });
+    this.props.getDepartmentwiserUser(val);
+  }
+  handlereportingManager(val) {
+    this.setState({ reportingManager: val });
+  }
   componentDidMount() {
     // this.props.getSalesManagerUser();
     // this.props.getProductionManager();
     // this.props.getLocationsType();
+    this.props.getRoles(this.props.organizationId);
+    this.props.getDepartments(); 
     this.props.getTimeZone();
+    this.fetchMenuTranslations();
+  }
+ 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
   }
 
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+          "Name",
+          "Region",
+          "inventory",
+         "Production",
+        "Corporate",
+        "Retail",
+        "Billing",
+        " 3rd Party Location",
+        "Department",
+        "User",
+        "Address",
+        "Create",
+        "Time Zone"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const { locationsTypeName } = this.props;
     // const currencyType = props.currencies.map((item) => {
@@ -67,7 +120,7 @@ class LocationForm extends Component {
     //     value: item.currencyName,
     //   };
     // })
-
+   
     const timeZoneOption = this.props.timeZone.map((item) => {
       return {
         label: item.zoneName
@@ -76,6 +129,7 @@ class LocationForm extends Component {
         ,
       };
     });
+
     // const managementOption = this.props.salesManagementUsers.map((item) => {
     //   return {
     //     label: `${item.salutation || ""} ${item.firstName ||
@@ -99,7 +153,9 @@ class LocationForm extends Component {
     //   };
     // });
 
+    console.log("3rDep-",this.state.department,"3rDUs-",this.state.reportingManager);
     return (
+  
       <>
         <Formik
           initialValues={{
@@ -118,6 +174,9 @@ class LocationForm extends Component {
             // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
             corporateInd: this.state.corporate ? "true" : "false",
             retailInd: this.state.retail ? "true" : "false",
+            thirdPartyInd: this.state.contract ? "true":"false",
+            thirdPartyContactDpt:this.state.department ? this.state.department : "",
+            thirdPartyContact:this.state.reportingManager ? this.state.reportingManager : "",
             timeZone: "",
             timeZone: undefined,
             address: [
@@ -150,6 +209,9 @@ class LocationForm extends Component {
                 // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
                 corporateInd: this.state.corporate ? "true" : "false",
                 retailInd: this.state.retail ? "true" : "false",
+                thirdPartyInd: this.state.contract ? "true":"false",
+                thirdPartyContactDpt :this.state.department ?this.state.department:"",
+                thirdPartyContact:this.state.reportingManager ? this.state.reportingManager : "",
                 orgId: this.props.orgId,
                 userId: this.props.userId,
                 
@@ -171,10 +233,13 @@ class LocationForm extends Component {
             <Form class="form-background">
               <div class="flex justify-between max-sm:flex-col">
                 <div class="h-full w-[45%] max-sm:w-wk">
+              
                   <div>
+                  <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[0]}</div>
                     <Field
                       name="locationName"
-                      label="Name"
+                      // label="Name"
+                      // label={this.state.translatedMenuItems[0]}
                       type="text"
                       width={"100%"}
                       component={InputComponent}
@@ -184,18 +249,20 @@ class LocationForm extends Component {
                     />
                   </div>
                   <div class=" w-[45%] mt-3 max-sm:w-[30%]">
+                  <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[1]}</div>
                       <Field
                         name="regionsId"
                         selectType="DRegion"
                         isColumnWithoutNoCreate
                         component={SearchSelect}
                         // value={values.countryDialCode}
-                        label={
-                          <FormattedMessage
-                            id="app.region"
-                            defaultMessage="Region"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.region"
+                        //     defaultMessage="Region"
+                        //   />
+                        // }
+                        // label={this.state.translatedMenuItems[1]}
                         isColumn
                         // defaultValue={{
                         //   label:`+${props.user.countryDialCode}`,
@@ -290,7 +357,9 @@ class LocationForm extends Component {
                       </div>
                     </div> */}
                     <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">Inventory &nbsp;<i class="fas fa-warehouse text-base"></i></div>
+                    <div class=" text-xs font-bold font-poppins">
+                      {this.state.translatedMenuItems[2]}  {/* Inventory */}
+                         &nbsp;<i class="fas fa-warehouse text-base"></i></div>
                       {/* inventory auto on when production on. if user wants to close inventory then ask what is inventory location */}
                       <div>
                         <Switch
@@ -305,7 +374,9 @@ class LocationForm extends Component {
                   </div>
                   <div class=" flex">
                   <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">Production &nbsp;<PrecisionManufacturingIcon/></div>
+                      <div class="font-bold text-xs font-poppins">
+                      {this.state.translatedMenuItems[3]}{/* Production */}
+                         &nbsp;<PrecisionManufacturingIcon/></div>
                       <div>
                       <Switch
                           style={{ width: "6.25em" }}
@@ -317,7 +388,9 @@ class LocationForm extends Component {
                       </div>
                     </div>
                     <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">Corporate &nbsp;<i class="fas fa-building text-base"></i></div>
+                      <div class="font-bold text-xs font-poppins">
+                       {this.state.translatedMenuItems[4]} {/* Corporate */}
+                         &nbsp;<i class="fas fa-building text-base"></i></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
@@ -331,7 +404,9 @@ class LocationForm extends Component {
                   </div>
                   <div class=" flex">
                   <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">Retail &nbsp;<i class="fas fa-money-check text-base"></i></div>
+                      <div class="font-bold text-xs font-poppins">
+                      {this.state.translatedMenuItems[5]}{/* Retail */}
+                        <i class="fas fa-money-check text-base"></i></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
@@ -342,7 +417,7 @@ class LocationForm extends Component {
                         />
                       </div>
                     </div>
-                    <div class=" w-[47%] mt-2" >
+                    {/* <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">Project &nbsp;<i class="fas fa-project-diagram text-base"></i></div>
                       <div>
                         <Switch
@@ -353,12 +428,14 @@ class LocationForm extends Component {
                           unCheckedChildren="No"
                         />
                       </div>
-                    </div>
+                    </div> */}
                   
                   </div>
                   <div class=" flex">
                   <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">Billing &nbsp;<i class="far fa-money-bill-alt text-base"></i></div>
+                      <div class="font-bold text-xs font-poppins">
+                      {this.state.translatedMenuItems[6]} {/* Billing  */}
+                       <i class="far fa-money-bill-alt text-base"></i></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
@@ -384,10 +461,62 @@ class LocationForm extends Component {
                     </div> */}
                   
                   </div>
+                  <div className="flex  items-center mt-4">
+        <div className="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col font-poppins">
+        {this.state.translatedMenuItems[7]}{/* 3rd Party Location */}
+        </div>
+        <Switch
+          style={{ width: '6.25em', marginLeft: '0.625em' }}
+          onChange={this.handleContract}
+          checked={this.state.contract}
+          checkedChildren="Yes"
+          unCheckedChildren="No"
+        />
+      </div>
+      {this.state.contract?
+      <div className="flex justify-between max-sm:flex-col">
+        <div className="w-w48 max-sm:w-wk">
+        <div class=" text-xs font-bold font-poppins">   {this.state.translatedMenuItems[8]} </div>
+       {/* Department */}
+          
+          <Select
+  className="w-[250px]"
+  value={this.state.department}
+  onChange={(value) => this.handleDepartment(value)}
+  showSearch
+  optionFilterProp="children"
+  filterOption={(input, option) =>
+    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+  }
+>
+  {this.props.departments.map((a) => (
+    <Select.Option key={a.departmentId} value={a.departmentId}>
+      {a.departmentName}
+    </Select.Option>
+  ))}
+</Select>
+        </div>
+
+        <div className="w-w48 max-sm:w-wk">
+        <div class=" text-xs font-bold font-poppins">   {this.state.translatedMenuItems[9]} </div>{/* User */}
+          <Select
+            className="w-[250px]"
+            value={this.state.reportingManager}
+            onChange={(value) => this.handlereportingManager(value)}
+          >
+            {this.props.departmentwiseUser.map((a) => (
+              <Option key={a.employeeId} value={a.employeeId}>
+                {a.empName}
+              </Option>
+            ))}
+          </Select>
+        </div>
+      </div>
+      : ( null)}  
                 </div>
                 <div class="h-full w-[45%] max-sm:w-wk mt-2">
                   <div class=" w-full" >
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Time Zone</div>
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col font-poppins">{this.state.translatedMenuItems[12]} </div>
                     <Field
                       name="timeZone"
                       type="text"
@@ -402,6 +531,7 @@ class LocationForm extends Component {
                     />
                   </div>
                 <div class=" mt-3">
+                <div class=" text-xs font-bold font-poppins">   {this.state.translatedMenuItems[10]} </div>
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (
@@ -419,9 +549,8 @@ class LocationForm extends Component {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={this.props.addingLocation}
-                >
-                  Create
+                  loading={this.props.addingLocation} >
+                  {this.state.translatedMenuItems[11]}{/* Create */}
                 </Button>
               </div>
             </Form>
@@ -432,12 +561,15 @@ class LocationForm extends Component {
     );
   }
 }
-const mapStateToProps = ({ location, auth, region, plant }) => ({
+const mapStateToProps = ({ location, auth, region, plant,departments,settings,role }) => ({
   addingLocation: location.addingLocation,
   timeZone: auth.timeZone,
   userId:auth.userDetails.userId,
   orgId:auth.userDetails.organizationId,
-  
+  departments: departments.departments,
+  departmentwiseUser: settings.departmentwiseUser,
+  roles: role.roles,
+  organizationId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -445,7 +577,9 @@ const mapDispatchToProps = (dispatch) =>
     {
       addLocation,
       getTimeZone,
- 
+      getDepartmentwiserUser,
+      getRoles,
+      getDepartments,
     },
     dispatch
   );

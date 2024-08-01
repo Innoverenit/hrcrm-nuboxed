@@ -9,9 +9,31 @@ import { message } from "antd";
 export const setInventoryViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_INVENTORY_VIEW_TYPE, payload: viewType });
 
+
+export const handleQualityManufactureModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_QUALITY_MANUFACTURE_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+
+export const emptyQualityManufactureData = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_QUALITY_MANUFACTURE_DATA, 
+  });
+};
+
 export const handleInventoryModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_INVENTORY_MODAL,
+    payload: modalProps,
+  });
+};
+export const handleInventoryDispatchModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVENTORY_DISPATCH_MODAL,
     payload: modalProps,
   });
 };
@@ -832,7 +854,7 @@ export const addPickupDate = (data, id) => (dispatch) => {
     )
     .then((res) => {
       console.log(res);
-      dispatch(getDispatchList(id))
+      dispatch(getDispatchList(id,0))
       dispatch({
         type: types.ADD_PICKUP_DATE_SUCCESS,
         payload: res.data,
@@ -1330,6 +1352,34 @@ export const handlePickupModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_PICKUP_MODAL,
     payload: modalProps,
   });
+};
+
+
+export const getQualityManufactureData = (productId, manufactureId) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUALITY_MANUFACTURE_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/qualityCheckBuilder/qualityCheck/get/${productId}/${manufactureId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUALITY_MANUFACTURE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_QUALITY_MANUFACTURE_DATA_FAILURE,
+        payload: err,
+      });
+    });
 };
 
 
@@ -2038,12 +2088,12 @@ export const handleCustomModal = (modalProps) => (dispatch) => {
 
 
 
-export const moveProductionQuality = (productionProductId,userId) => (dispatch) => {
+export const moveProductionQuality = (data,productionProductId,userId) => (dispatch) => {
   dispatch({
     type: types.REMOVE_PRODUCTION_QUALITY_REQUEST,
   });
   axios
-    .put(`${base_url2}/production/update/dispatch/${productionProductId}/${userId}`, {}, {
+    .put(`${base_url2}/production/update/dispatch/${productionProductId}/${userId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2058,6 +2108,164 @@ export const moveProductionQuality = (productionProductId,userId) => (dispatch) 
     .catch((err) => {
       dispatch({
         type: types.REMOVE_PRODUCTION_QUALITY_FAILURE,
+        payload: err,
+      });
+      // message.error("Something went wrong");
+    });
+};
+
+
+
+
+export const updateQualityStatus = (productionProductId,status) => (dispatch) => {
+  dispatch({ type: types.UPDATE_QUALITY_STATUS_REQUEST });
+  axios
+    .put(
+      `${base_url2}/production/quality/updateStatus/${productionProductId}/${status}`, {},
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_QUALITY_STATUS_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_QUALITY_STATUS_FAILURE,
+        payload: err
+      });
+    });
+};
+
+
+
+
+
+
+
+
+export const linkManufactureToggle = (data) => (
+  dispatch) => {
+  // debugger;
+  dispatch({
+    type: types.LINK_MANUFACTURE_STATUS_REQUEST,
+  });
+  axios
+  .put(
+    `${base_url2}/qualityCheckBuilder/qualityCheck/update`,data, 
+    {
+    
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.LINK_MANUFACTURE_STATUS_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_MANUFACTURE_STATUS_FAILURE,
+        payload: err,
+      });
+      // cb && cb("failuer");
+    });
+};
+
+
+
+
+
+export const getQualityManufactureUserData = (cellChamberLinkId) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUALITY_MANUFACTURE_USER_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/cell/chamber/link/get-all/user/${cellChamberLinkId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUALITY_MANUFACTURE_USER_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_QUALITY_MANUFACTURE_USER_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getRejectManufactureData = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_REJECT_MANUFACTURE_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/quality/cell-chamber/${locationId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REJECT_MANUFACTURE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_REJECT_MANUFACTURE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const moveRejectToggle = (productionProductId,cellChamberLinkId) => (dispatch) => {
+  dispatch({
+    type: types.MOVE_REJECT_TOGGLE_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/production/quality/reject/${productionProductId}/${cellChamberLinkId}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.MOVE_REJECT_TOGGLE_SUCCESS,
+        payload: cellChamberLinkId,
+      });
+      message.success("Item transfered for Quality Check");
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.MOVE_REJECT_TOGGLE_FAILURE,
         payload: err,
       });
       // message.error("Something went wrong");

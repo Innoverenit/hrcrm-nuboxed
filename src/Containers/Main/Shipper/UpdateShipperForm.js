@@ -9,7 +9,6 @@ import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArra
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { updateShipper,getEmployeelistAsErp } from "./ShipperAction";
 import {getShipByData} from "../../Settings/Category/ShipBy/ShipByAction";
-import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { Listbox } from '@headlessui/react';
 
@@ -97,7 +96,7 @@ function UpdateShipperForm(props) {
                   isRequired
                   name="name"
                   type="text"
-                  label={<FormattedMessage id="app.name" defaultMessage="Name"/>}
+                  label={props.translatedMenuItems[0]}
                   width={"100%"}
                   component={InputComponent}
                   isColumn
@@ -108,7 +107,7 @@ function UpdateShipperForm(props) {
                 <div class="w-[30%] max-sm:w-[40%] ">
                     <FastField
                       name="dialCode"
-                      label={<FormattedMessage id="app.dialcode" defaultMessage="Dial Code"/>}
+                      label={props.translatedMenuItems[12]}
                       isColumn
                       // margintop={"0.25em"}
                       width={"100%"}
@@ -124,8 +123,8 @@ function UpdateShipperForm(props) {
                     <FastField
                       type="text"
                       name="phoneNo"
-                      label={<FormattedMessage id="app.phone" defaultMessage="Phone #"/>}
-                      placeholder={<FormattedMessage id="app.phone" defaultMessage="Phone #"/>}
+                      label={`${props.translatedMenuItems[1]} #`}
+                      placeholder={`${props.translatedMenuItems[1]} #`}
                       component={InputComponent}
                       inlineLabel
                       width={"100%"}
@@ -140,7 +139,7 @@ function UpdateShipperForm(props) {
                   <FastField
                     type="email"
                     name="emailId"
-                    label={<FormattedMessage id="app.email" defaultMessage="Email"/>}
+                    label={props.translatedMenuItems[2]}
                     className="field"
                     isColumn
                     width={"100%"}
@@ -154,7 +153,7 @@ function UpdateShipperForm(props) {
                 <Field
                   name="shipById"
                   selectType="shipperName"
-                  label={<FormattedMessage id="app.shipby" defaultMessage="Ship By"/>}
+                  label={props.translatedMenuItems[3]}
                   component={SelectComponent}
                   options={
                     Array.isArray(shipByOptions) ? shipByOptions : []
@@ -170,10 +169,10 @@ function UpdateShipperForm(props) {
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2  "
-            // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
-            >
-                 {<FormattedMessage id="app.assignedto" defaultMessage="Assigned"/>}
+            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2  ">
+            // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}          
+                 {/* Assigned */}
+                 {props.translatedMenuItems[14]}
             </Listbox.Label>
             <div className="relative ">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -210,8 +209,7 @@ function UpdateShipperForm(props) {
                               className={`absolute inset-y-0 right-0 flex items-center pr-4 ${
                                 active ? "text-white" : "text-indigo-600"
                               }`}
-                            >
-                              
+                            >                           
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -260,7 +258,8 @@ function UpdateShipperForm(props) {
                 htmlType="submit"
                 loading={props.updateShipperById}
               >
- <FormattedMessage id="app.update" defaultMessage="Update"/>
+{/* Update */}
+ {props.translatedMenuItems[16]}
               </Button>
             </div>
           </Form>
@@ -280,7 +279,6 @@ const mapStateToProps = ({ auth, shipper,shipBy,employee }) => ({
   fullName: auth.userDetails.fullName,
   orgId:auth.userDetails.organizationId,
   fullName: auth.userDetails.fullName,
-
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -361,6 +361,9 @@ function CustomerBlueTable(props) {
       />
 
       <UpdateCustomerModal
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         customerId={currentCustomerId}
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}

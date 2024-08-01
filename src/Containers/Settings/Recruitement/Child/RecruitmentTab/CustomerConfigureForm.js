@@ -1,7 +1,7 @@
 import React, { useState ,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Switch,  } from "antd";
+import { Switch,Button,Select  } from "antd";
 import { getSectors } from "../../../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -22,31 +22,42 @@ import { InputComponent } from "../../../../../Components/Forms/Formik/InputComp
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import ProgressiveImage from "../../../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../../../Components/Forms/Autocomplete/ClearbitImage";
+import {addCustomerConfigure,getCustomerConfigure} from "../../../SettingsAction"
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-const CustomerSchema = Yup.object().shape({
-  name: Yup.string().required("Input needed!"),
-  // email: Yup.string().required("Input needed!").email("Enter a valid Email"),
-  // phoneNumber: Yup.string().required("Input needed!").matches(phoneRegExp, 'Phone number is not valid').min(8,"Minimum 8 digits").max(10,"Number is too long")
-});
-
+// const CustomerSchema = Yup.object().shape({
+//   name: Yup.string().required("Input needed!"),
+//   // email: Yup.string().required("Input needed!").email("Enter a valid Email"),
+//   // phoneNumber: Yup.string().required("Input needed!").matches(phoneRegExp, 'Phone number is not valid').min(8,"Minimum 8 digits").max(10,"Number is too long")
+// });
+const { Option } = Select;  
 function CustomerForm(props) {
+  const hardcodedCurrencies = [
+    { currency_name: 'USD' },
+    { currency_name: 'EUR' },
+    { currency_name: 'JPY' },
+    // add more currencies as needed
+  ];
 
    const[checked,setChecked]=useState(true);
   const[whiteblue,setWhiteblue]=useState(true);
 
-  const [isFirstNameVisible, setIsFirstNameVisible] = useState(true);
-  const [isLastNameVisible, setIsLastNameVisible] = useState(true);
-  const [isEmailVisible, setIsEmailVisible] = useState(true);
-  const [isMobileNumberVisible, setIsMobileNumberVisible] = useState(true);
-  const [isSourceVisible, setIsSourceVisible] = useState(true);
-  const [isVatVisible, setIsVatVisible] = useState(true);
-  const [isAssignedVisible, setIsAssignedVisible] = useState(true);
-  const [isNotesVisible, setIsNotesVisible] = useState(true);
+  const [isFirstNameVisible, setIsFirstNameVisible] = useState(false);
+  const [isLastNameVisible, setIsLastNameVisible] = useState(false);
+  const [isEmailVisible, setIsEmailVisible] = useState(false);
+  const [isMobileNumberVisible, setIsMobileNumberVisible] = useState(false);
+  const [isSourceVisible, setIsSourceVisible] = useState(false);
+  const [isVatVisible, setIsVatVisible] = useState(false);
+  const [isAssignedVisible, setIsAssignedVisible] = useState(false);
+  const [isNotesVisible, setIsNotesVisible] = useState(false);
 
-  const [isRegistrationVisible, setIsRegistrationVisible] = useState(true);
-  const [isAddressVisible, setIsAddressVisible] = useState(true);
-
+  const [isRegistrationVisible, setIsRegistrationVisible] = useState(false);
+  const [isAddressVisible, setIsAddressVisible] = useState(false);
+  const [isPotentialVisible, setIsPotentialVisible] = useState(false);
+  const [isCurrencyVisible, setIsCurrencyVisible] = useState(false);
+  const [isTypeVisible, setIsTypeVisible] = useState(false);
+console.log(isFirstNameVisible)
+console.log(isLastNameVisible)
   function handleWhiteBlue (checked) {
     setWhiteblue( checked );
   };
@@ -64,7 +75,44 @@ function CustomerForm(props) {
     props.getSectors();
     props.getAllSalesList();
     props. getCrm();
+    props.getCustomerConfigure(props.orgId,"add","customer")
   }, []);
+
+
+
+  useEffect(() => {
+    if (
+      props.customerConfigure.addressInd !== undefined &&
+      props.customerConfigure.businessRegInd !== undefined &&
+      props.customerConfigure.vatNoInd !== undefined &&
+      props.customerConfigure.assignedToInd !== undefined &&
+      props.customerConfigure.noteInd !== undefined &&
+      props.customerConfigure.sourceInd !== undefined &&
+      props.customerConfigure.sectorInd !== undefined &&
+      props.customerConfigure.phoneNoInd !== undefined &&
+      props.customerConfigure.dailCodeInd !== undefined &&
+      props.customerConfigure.nameInd !== undefined &&
+      props.customerConfigure.potentialInd !== undefined &&
+      props.customerConfigure.potentialCurrencyInd !== undefined &&
+      props.customerConfigure.typeInd !== undefined
+      
+      
+    ) {
+      //setIsFirstNameVisible(props.customerConfigure.startInd);
+      setIsLastNameVisible(props.customerConfigure.dailCodeInd);
+      setIsEmailVisible(props.customerConfigure.phoneNoInd);
+      setIsMobileNumberVisible(props.customerConfigure.sectorInd);
+      setIsSourceVisible(props.customerConfigure.sourceInd)
+      setIsVatVisible(props.customerConfigure.vatNoInd)
+      setIsAssignedVisible(props.customerConfigure.assignedToInd)
+      setIsNotesVisible(props.customerConfigure.noteInd)
+      setIsAddressVisible(props.customerConfigure.addressInd)
+      setIsFirstNameVisible(props.customerConfigure.nameInd)
+      setIsPotentialVisible(props.customerConfigure.potentialInd )
+      setIsCurrencyVisible(props.customerConfigure.potentialCurrencyInd)
+      setIsTypeVisible(props.customerConfigure.typeInd)
+    }
+  }, [props.customerConfigure]);
 
     const {
       accounts,
@@ -95,7 +143,7 @@ function CustomerForm(props) {
 
     const toggleFieldVisibility = (fieldName) => {
         switch (fieldName) {
-          case 'url':
+          case 'name':
             setIsFirstNameVisible(!isFirstNameVisible);
             break;
           case 'countryDialCode':
@@ -125,6 +173,15 @@ function CustomerForm(props) {
                                 case 'address':
                                     setIsAddressVisible(!isAddressVisible);
                                     break;
+                                    case 'potential':
+                                      setIsPotentialVisible(!isPotentialVisible);
+                                      break;
+                                      case 'currency':
+                                        setIsCurrencyVisible(!isCurrencyVisible);
+                                        break;
+                                        case 'type':
+                                          setIsTypeVisible(!isTypeVisible);
+                                          break;
           default:
             break;
         }
@@ -134,27 +191,14 @@ function CustomerForm(props) {
         <Formik
           // enableReinitialize
           initialValues={{
-            // sectorId:"",
-            // sectorName:"",
-            partnerName: "",
-            // sectorDescription:"",
-            name: "",
-            url: "",
-            gst:"",
-            source: "",
-            sectorId: "",
-            country: props.user.country,
-            email: "",
-            // sector: props.user.sectorName,
-            countryDialCode: props.user.countryDialCode,
-            phoneNumber: "",
-            fullName:"",
-            category: checked ? "Both" : whiteblue ? "White" : "Blue",
-            userId: props.userId,
-            notes: "",
-            businessRegistration: "",
-            assignedTo: selectedOption ? selectedOption.employeeId:userId,
-            department: "",
+           nameInd:"",
+           
+           potentialInd:"",
+           potentialCurrencyInd:'',
+           typeInd:"",
+           formType:"add",
+           baseFormType:"customer",
+
             address: [
               {
                 address1: "",
@@ -166,16 +210,30 @@ function CustomerForm(props) {
                 country: props.user.countryName,
               },
             ],
-            category: whiteblue ? "White" : "Blue" || "Both",
+            //category: whiteblue ? "White" : "Blue" || "Both",
           }}
-          validationSchema={CustomerSchema}
+          // validationSchema={CustomerSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
-            addCustomer(
+            props.addCustomerConfigure(
               {
                 ...values,
-                category: checked ? "Both" : whiteblue ? "White" : "Blue",
-                assignedTo: selectedOption ? selectedOption.employeeId:userId,
+                dailCodeInd:isLastNameVisible,
+           phoneNoInd:isEmailVisible,
+           sectorInd:isMobileNumberVisible,
+           sourceInd:isSourceVisible,
+           noteInd:isNotesVisible,
+           assignedToInd:isAssignedVisible,
+           vatNoInd:isVatVisible,
+           businessRegInd:isRegistrationVisible,
+           addressInd:isAddressVisible,
+           nameInd:isFirstNameVisible,
+           typeInd:isTypeVisible,
+           potentialInd:isPotentialVisible,
+           potentialCurrencyInd:isCurrencyVisible,
+
+                // category: checked ? "Both" : whiteblue ? "White" : "Blue",
+                // assignedTo: selectedOption ? selectedOption.employeeId:userId,
               },
               props.userId,
               () => handleReset(resetForm)
@@ -220,6 +278,7 @@ function CustomerForm(props) {
                     ) : null}
                   </div>
              <div class=" mt-4"></div>
+             {/* {!isFirstNameVisible && ( */}
                   <Field
                     isRequired
                     name="name"
@@ -235,7 +294,15 @@ function CustomerForm(props) {
                     accounts={accounts}
                     inlineLabel
                   />
-                  {isFirstNameVisible?
+             {/* )} */}
+             <Switch
+            checked={isFirstNameVisible}
+            onChange={() => toggleFieldVisibility('name')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
+                  
+               
                   <Field
                     name="url"
                     type="text"
@@ -245,14 +312,10 @@ function CustomerForm(props) {
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
-                  />:null}
+                  />
+                
 
-<Switch
-            checked={isFirstNameVisible}
-            onChange={() => toggleFieldVisibility('url')}
-            checkedChildren="Visible"
-            unCheckedChildren="Hidden"
-          />
+
               
                   {/* <Field
                     name="email"
@@ -268,7 +331,7 @@ function CustomerForm(props) {
                   />                   */}
                    <div class=" flex justify-between mt-4">
                     <div class=" w-3/12 max-sm:w-[30%]">
-                         {isLastNameVisible?
+                         {/* {!isLastNameVisible&&( */}
                       <FastField
                         name="countryDialCode"
                         selectType="dialCode"
@@ -284,17 +347,18 @@ function CustomerForm(props) {
                         component={SearchSelect}
                         value={values.countryDialCode1}
                         inlineLabel
-                      />:null}
+                      />
+                         {/* )} */}
 
 <Switch
             checked={isLastNameVisible}
             onChange={() => toggleFieldVisibility('countryDialCode')}
-            checkedChildren="Visible"
+         checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
                     </div>
                     <div class=" w-8/12">
-                        {isEmailVisible?
+                        {/* {!isEmailVisible&&( */}
                       <FastField
                         name="phoneNumber"
                         label="Phone No"
@@ -302,12 +366,13 @@ function CustomerForm(props) {
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
-                      />:null}
+                      />
+                        {/* )} */}
 
 <Switch
             checked={isEmailVisible}
             onChange={() => toggleFieldVisibility('phoneNumber')}
-            checkedChildren="Visible"
+          checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
                     </div>
@@ -316,7 +381,7 @@ function CustomerForm(props) {
               
                   <div class=" flex justify-between mt-4">
                   <div class="w-w47.5 max-sm:w-w47.5">
-                    {isMobileNumberVisible?
+                    {/* {!isMobileNumberVisible&&( */}
                   <Field             
                   placeholder="Sector"        
                             name="sectorId"
@@ -332,17 +397,18 @@ function CustomerForm(props) {
                             options={
                               Array.isArray(sectorOption) ? sectorOption : []
                             }
-                          />:null}
+                          />
+                    {/* )} */}
 
 <Switch
             checked={isMobileNumberVisible}
             onChange={() => toggleFieldVisibility('sectorId')}
-            checkedChildren="Visible"
+       checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
                     </div>
                     <div class="w-w47.5">
-                        {isSourceVisible?
+                        {/* {!isSourceVisible&&( */}
                     <FastField
                             name="source"
                             type="text"
@@ -359,20 +425,106 @@ function CustomerForm(props) {
                             inlineLabel
                             className="field"
                             isColumn
-                          />:null}
+                          />
+                        {/* )} */}
 
 <Switch
             checked={isSourceVisible}
             onChange={() => toggleFieldVisibility('source')}
-            checkedChildren="Visible"
+        checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
                         </div>
                   </div>
+                  <div class="flex justify-between mt-2">
+  <div class="w-w47.5 flex">
+    <div class="w-24">
+      <Field
+        name="potentialValue"
+        label={
+          <FormattedMessage
+            id="app.potential"
+            defaultMessage="Potential"
+          />
+        }
+        isColumn
+        width={"100%"}
+        component={InputComponent}
+        inlineLabel
+      />
+      <Switch
+            checked={isPotentialVisible}
+            onChange={() => toggleFieldVisibility('potential')}
+         checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
+    </div>
+    <div class="w-16 ml-2 max-sm:w-wk">
+      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
+      <Select
+        showSearch
+        style={{ width: 100 }}
+        placeholder="Search or select currency"
+        optionFilterProp="children"
+        // loading={isLoadingCurrency}
+        // onFocus={handleSelectCurrencyFocus}
+        // onChange={handleSelectCurrency}
+      >
+          {hardcodedCurrencies.map(currency => (
+    <Option key={currency.currency_name} value={currency.currency_name}>
+      {currency.currency_name}
+    </Option>
+  ))}
+      </Select>
+      <Switch
+            checked={isCurrencyVisible}
+            onChange={() => toggleFieldVisibility('currency')}
+         checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
+    </div>
+   
+  </div>
+
+
+  <div class="w-w47.5">
+    <Field
+      name="type"
+      label={
+        <FormattedMessage
+          id="app.type"
+          defaultMessage="Type"
+        />
+      }
+      isColumn
+      width={"100%"}
+      component={SelectComponent}
+      options={[
+        { value: "1", label: "Option 1" },
+        { value: "2", label: "Option 2" },
+        { value: "3", label: "Option 3" }
+      ]}
+      // options={
+      //   Array.isArray(typeOption)
+      //     ? typeOption
+      //     : []
+      // }
+     
+      inlineLabel
+    />
+     <Switch
+            checked={isTypeVisible}
+            onChange={() => toggleFieldVisibility('type')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
+  </div>
+ 
+</div>
 
                  
                
-                  {isNotesVisible?
+                  {/* {!isNotesVisible&&( */}
                   <Field
                     name="notes"
                     // label="Notes"
@@ -382,11 +534,12 @@ function CustomerForm(props) {
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
-                  />:null}
+                  />
+                  {/* )} */}
                   <Switch
             checked={isNotesVisible}
             onChange={() => toggleFieldVisibility('notes')}
-            checkedChildren="Visible"
+         checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
                 </div>
@@ -395,7 +548,7 @@ function CustomerForm(props) {
        
                  <div class=" flex justify-between mb-[0.35rem] mt-4">
                     <div class=" h-full w-full">
-                        {isAssignedVisible?
+                        {/* {!isAssignedVisible&&( */}
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -465,12 +618,13 @@ function CustomerForm(props) {
             </div>
           </>
         )}
-      </Listbox>:null}
+      </Listbox>
+                        {/* )} */}
 
       <Switch
             checked={isAssignedVisible}
             onChange={() => toggleFieldVisibility('assignedTo')}
-            checkedChildren="Visible"
+           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
 
@@ -503,7 +657,7 @@ function CustomerForm(props) {
                    
                     <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
                     <div class=" w-2/5 max-sm:w-wk">
-                        {isVatVisible?
+                        {/* {!isVatVisible&&( */}
                       <Field
                         name="vatNo"
                         type="text"
@@ -518,18 +672,19 @@ function CustomerForm(props) {
                         width={"100%"}
                         component={InputComponent}
                         inlineLabel
-                      />:null}
+                      />
+                        {/* )} */}
 
 <Switch
             checked={isVatVisible}
             onChange={() => toggleFieldVisibility('vatNo')}
-            checkedChildren="Visible"
+         checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
                       
                     </div>
                     <div class=" w-[10rem] max-sm:w-wk">
-                        {isRegistrationVisible?
+                        {/* {!isRegistrationVisible&&( */}
                       <Field
                         name="businessRegistration"
                         type="text"
@@ -544,12 +699,13 @@ function CustomerForm(props) {
                         width={"100%"}
                         component={InputComponent}
                         inlineLabel
-                      />:null}
+                      />
+                        {/* )} */}
 
 <Switch
             checked={isRegistrationVisible}
             onChange={() => toggleFieldVisibility('businessRegistration')}
-            checkedChildren="Visible"
+         checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
                     </div>
@@ -561,7 +717,7 @@ function CustomerForm(props) {
                   </div>
                     </div>
            
-                  {isAddressVisible?
+                  {/* {!isAddressVisible&&( */}
                   <FieldArray
                     name="address"
                     label="Address"
@@ -571,11 +727,12 @@ function CustomerForm(props) {
                         values={values}
                       />
                     )}
-                  />:null}
+                  />
+                  {/* )} */}
                   <Switch
             checked={isAddressVisible}
             onChange={() => toggleFieldVisibility('address')}
-            checkedChildren="Visible"
+          checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
                    {/* <div class=" flex justify-between">
@@ -604,7 +761,16 @@ function CustomerForm(props) {
                
                 </div>
               </div>
-     
+              <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={props.addingCustomerConfig}
+              >
+                
+Update
+              </Button>
+            </div>
           
             </Form>
             </div>
@@ -615,11 +781,14 @@ function CustomerForm(props) {
   }
 
 
-const mapStateToProps = ({ auth, customer,employee ,opportunity,sector,leads}) => ({
+const mapStateToProps = ({ auth, customer,settings,employee ,opportunity,sector,leads}) => ({
   addingCustomer: customer.addingCustomer,
   addingCustomerError: customer.addingCustomerError,
   clearbit: customer.clearbit,
+  orgId: auth.userDetails.organizationId,
+  addingCustomerConfig:settings.addingCustomerConfig,
   user: auth.userDetails,
+  customerConfigure:settings.customerConfigure,
   sales: opportunity.sales,
   allCustomerEmployeeList:employee.allCustomerEmployeeList,
   userId: auth.userDetails.userId,
@@ -633,6 +802,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       addCustomer,
       setClearbitData,
+      addCustomerConfigure,
+      getCustomerConfigure,
       getSectors,
       getAllSalesList,
       getAllCustomerEmployeelist,
@@ -642,3 +813,25 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerForm);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

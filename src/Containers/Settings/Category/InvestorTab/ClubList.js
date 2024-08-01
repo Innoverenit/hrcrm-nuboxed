@@ -160,7 +160,7 @@ console.log(props.clubShareData)
       </Button>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center">
-            <div class="flex justify-around w-[30rem]">
+            <div class="flex justify-around w-[30rem]  ">
               
 
               <div>
@@ -209,9 +209,9 @@ console.log(props.clubShareData)
           </div>
         ))}
 
-      <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">         
+      <div className=' flex sticky z-auto'>
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">         
             <div className=" md:w-[10rem]">Name</div>
             <div className=" md:w-[10.1rem]"># Shares</div>
             <div className=" md:w-[11.2rem] ">Discount %</div>
@@ -221,7 +221,7 @@ console.log(props.clubShareData)
           {data.length ? data.map((item) => {
             return (
               <div key={item.clubId}>
-                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
+                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 >
 
 <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -294,7 +294,7 @@ console.log(props.clubShareData)
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className=" !text-icon text-red-600 cursor-pointer flex justify-center "
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.clubId)}
@@ -308,8 +308,8 @@ console.log(props.clubShareData)
                           >
                      <Tooltip title="Delete">
                      <DeleteOutlined
-                      style={{ color: 'red' }}
-                          className="!text-xl cursor-pointer  flex justify-center items-center mt-1 ml-1"
+                      
+                         className=" !text-icon text-red-600 cursor-pointer flex justify-center "
                           />
                        </Tooltip>
                        </StyledPopconfirm>

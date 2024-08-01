@@ -1,7 +1,7 @@
-import React,{useEffect,useState} from "react";
+import React,{useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Avatar, Tooltip,Badge } from "antd";
+import { Avatar, Tooltip } from "antd";
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import { FlexContainer } from "../../Components/UI/Layout";
 
@@ -24,15 +24,9 @@ function RefurbishActionLeft (props) {
           viewType,
           setDataRoomViewType,
       } = props;
-
-
         return (
           <>
-            <FlexContainer alignItems="center">
-    
-             
-    
-    
+            <FlexContainer alignItems="center">                  
               <Tooltip title="List">
                 <span class=" text-sm cursor-pointer"
                   onClick={() => setDataRoomViewType("list")}
@@ -41,13 +35,10 @@ function RefurbishActionLeft (props) {
                   }}
                 >
                   <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#4bc076" }}>
-                    <HomeRepairServiceIcon className="text-white cursor-pointer" /></Avatar>
-    
+                    <HomeRepairServiceIcon className="!text-icon cursor-pointer" /></Avatar>  
                 </span>
-              </Tooltip>
-              
-            </FlexContainer>
-    
+              </Tooltip>             
+            </FlexContainer>   
           </>
         );
 }

@@ -4,8 +4,8 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field, FastField } from "formik";
 import { FormWrapper, Input } from "./styled";
-import { ValidationError, Spacer } from "../../Components/UI/Elements";
-import { EyeInvisibleOutlined,CheckCircleOutlined, EyeOutlined,
+import { ValidationError} from "../../Components/UI/Elements";
+import { EyeInvisibleOutlined,EyeOutlined,
 } from "@ant-design/icons";
 import Button from "antd/lib/button";
 import { addOnboard, generateOtpByEmail, validateOtp } from "./AuthAction";
@@ -131,7 +131,7 @@ class OnBoardOrganizationPage extends Component {
                     
                       component={this.InputComponent}
                     />
-                    <Spacer />
+                    < div class="mt-3" />
                       <FastField
                       label="Industry"
     name="industry"
@@ -148,7 +148,7 @@ class OnBoardOrganizationPage extends Component {
     inlineLabel
 />
                 
-                    <Spacer />
+                    < div class="mt-3" />
                     <FastField
                             name="preferedLanguage"
                             placeholder={
@@ -163,9 +163,9 @@ class OnBoardOrganizationPage extends Component {
                             component={SelectComponent}
                             inlineLabel
                           />
-                          <Spacer />
+                          < div class="mt-3" />
                     <h2>Fiscal</h2>
-                    <Spacer />
+                    < div class="mt-3" />
                     <div class=" flex flex-row justify-between">
                     <FastField
                             name="fiscalStartDate"
@@ -181,7 +181,7 @@ class OnBoardOrganizationPage extends Component {
                             component={SelectComponent}
                             inlineLabel
                           />
-                            <Spacer />
+                            < div class="mt-3" />
                             <FastField
     name="fiscalStartMonth"
     placeholder="Select Month"  
@@ -191,9 +191,9 @@ class OnBoardOrganizationPage extends Component {
     inlineLabel
 />
 </div>
-                    <Spacer />
+                    < div class="mt-3" />
                     <h2>Admin Details</h2>
-                    <Spacer />
+                    < div class="mt-3" />
                      <Field
                       className="gvbmIs"
                       name="firstName"
@@ -201,7 +201,7 @@ class OnBoardOrganizationPage extends Component {
                       placeholder="First Name"
                       component={this.InputComponent}
                     />
-                          <Spacer />
+                          < div class="mt-3" />
                        
                      <Field
                       className="gvbmIs"
@@ -210,7 +210,7 @@ class OnBoardOrganizationPage extends Component {
                       placeholder="Middle Name"
                       component={this.InputComponent}
                     />
-                      <Spacer />
+                      < div class="mt-3" />
                      <Field
                       className="gvbmIs"
                       name="lastName"
@@ -218,7 +218,7 @@ class OnBoardOrganizationPage extends Component {
                       placeholder="Last Name"
                       component={this.InputComponent}
                     />
-                    <Spacer />
+                    < div class="mt-3" />
                     <Field
                       className="gvbmIs"
                       name="emailId"
@@ -226,8 +226,8 @@ class OnBoardOrganizationPage extends Component {
                       placeholder="Email Id"
                       component={this.InputComponent}
                     />
-                     <Spacer />
-                     <div className="set_password">
+                     < div class="mt-3" />
+                     <div className="flex flex-row">
                       <div style={{ width: "100%" }}>
                         <Field
                           name="password"
@@ -253,8 +253,8 @@ class OnBoardOrganizationPage extends Component {
                         />
                       )}
                     </div>
-                        <Spacer />
-                        <div className="set_password">
+                        < div class="mt-3" />
+                        <div className="flex flex-row">
                       <FlexContainer justifyContent="space-between">
                         <div style={{ width: "100%" }}>
                           <Field
@@ -318,7 +318,7 @@ class OnBoardOrganizationPage extends Component {
                         />
                       ) : null}  */}
                     </div>
-                  <Spacer />
+                  < div class="mt-3" />
                     <Button
                       type="primary"
                       htmlType="submit"
@@ -332,7 +332,7 @@ class OnBoardOrganizationPage extends Component {
               </Formik>
            
             </FormWrapper>
-            <Spacer />
+            < div class="mt-3" />
 
            
           </div>

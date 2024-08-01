@@ -39,8 +39,6 @@ export const addLeaves = (data) => (dispatch, getState) => {
         });
 };
 
-
-
 export const getLeaveListRangeByUserId = (employeeId, startDate, endDate) => (
     dispatch
 ) => {
@@ -146,8 +144,6 @@ export const handleUpdateLeaveModal = (modalProps) => (dispatch) => {
         });
       });
   };
-  
-
   
   export const DeleteLeaves = (expensdeId) => (dispatch, getState) => {
 

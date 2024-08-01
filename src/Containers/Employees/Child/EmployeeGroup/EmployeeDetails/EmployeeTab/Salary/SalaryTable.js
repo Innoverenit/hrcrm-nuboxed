@@ -71,7 +71,7 @@ class SalaryTable extends Component {
       </div>
    
         
-      {salaryDetails =="" ? "No data":salaryDetails.map((item) => { 
+      {salaryDetails =="" ? "None":salaryDetails.map((item) => { 
         
         
                     return (

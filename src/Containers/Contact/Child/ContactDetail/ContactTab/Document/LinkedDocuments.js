@@ -51,37 +51,27 @@ class LinkedDocuments extends Component {
                 /></div>
  
         <div className="md:w-[11.1rem]">  <FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                 <div className="md:w-[18.12rem]">
-                 <FormattedMessage
-          id="app.description"
-          defaultMessage="Description"
-        /></div>
-                       <div className=" md:w-[7.1rem]">
-                       <FormattedMessage id="app.uploadedBy" defaultMessage="Uploaded By" /></div>
-
-                      
-       
-        
+        <div className="md:w-[11.1rem]">  <FormattedMessage id="app.type" defaultMessage="Type" /></div>
+        <div className="md:w-[11.1rem]">  <FormattedMessage id="app.share" defaultMessage="Share" /></div>
+        <div className="md:w-[18.12rem]"> <FormattedMessage id="app.description"defaultMessage="Description"/></div>
+        <div className=" md:w-[7.1rem]"> <FormattedMessage id="app.uploadedBy" defaultMessage="Uploaded By" /></div>
         <div className="w-[4.2rem]"></div>
 
       </div>
-   
-        
       { !fetchingDocumentsByContactId && documentsByContactId.length === 0 ?<NodataFoundPage />:documentsByContactId.map((item,index) =>  {
-        
-        
+             
                     return (
                         <div>
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                      
-                             <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                             <div className=" flex  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div className="flex max-sm:w-full items-center"> 
 
                                       <div class="max-sm:w-full">
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm   font-poppins  font-medium cursor-pointer">
+                                            <div class="text-xs  font-poppins  font-medium cursor-pointer">
                                                 
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
      
@@ -96,24 +86,24 @@ class LinkedDocuments extends Component {
 
                              
                               
-                                <div className=" flex font-medium flex-col md:w-[13.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex md:w-[13.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                  <div class="text-sm  font-poppins">
+                                  <div class="text-xs  font-poppins">
                                   {item.documentTitle}
                                   </div>
                               </div>
 
-                              <div className=" flex font-medium flex-col md:w-[20.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                              <div className=" flex  md:w-[20.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                <div class="text-sm  font-poppins">
+                                <div class="text-xs  font-poppins">
                                 <span>{elipsize(item.documentDescription || "", 15)}</span>
                                 </div>
                             </div>
-                            <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                            <div className=" flex  md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
-                                   <div class="text-sm  font-poppins">
+                                   <div class="text-xs  font-poppins">
                  
-                     <div className="font-normal text-sm  font-poppins">
+                     <div className="font-normal text-xs  font-poppins">
                        <span>{item.uploadedBy}</span>
                      </div>
                  
@@ -135,18 +125,18 @@ class LinkedDocuments extends Component {
           </>
                  
                   </div>
-                                <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  ml-2 md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class=" text-xs  font-poppins text-center">
                                     <a href={`${base_url}/download/${item.documentTypeId}`}></a>
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex ml-2  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class=" text-xs  font-poppins text-center">
                                     <StyledPopconfirm
                                       title="Do you want to delete?"
                                         onConfirm={() => deleteDocument(item.documentId)}

@@ -39,9 +39,9 @@ class AllDistributorList extends Component {
 
     return (
       <>
-        <div className='flex justify-end sticky z-auto'>
+        <div className='flex  sticky z-auto'>
           <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
-            <div className=" flex justify-between w-[97.5%] px-1 bg-transparent font-bold sticky top-0 z-10">
+            <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
               <div className=" md:w-[8.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
               <div className=" md:w-[5.1rem]"><FormattedMessage id="app.mobile" defaultMessage="Mobile" /></div>
               <div className=" md:w-[6.8rem] "><FormattedMessage id="app.website" defaultMessage="Website" /></div>
@@ -79,7 +79,7 @@ class AllDistributorList extends Component {
                   } `;
                 return (
                   <div>
-                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
+                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
                     // style={{
                     //     borderBottom: "3px dotted #515050"
                     // }}

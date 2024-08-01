@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Timeline } from "antd";
 import { getNotesListByLeadsId } from "../LeadsAction";
-import { BundleLoader } from "../../../Components/Placeholder";
-import SingleNote from "./SingleNote";
 import UpdateNoteFile from "./UpdateNoteFile";
-import UpdateSingleNote from "./UpdateSingleNote";
+
 
 const UpdateNotesLeadsForm = (props) => {
   const { fetchingNotesListByLeadsId, notesListByLeadsId } = props;
@@ -22,9 +19,6 @@ const UpdateNotesLeadsForm = (props) => {
     }
   }, [leadsId]);
 
-//   useEffect(() => {
-//     setLeadsId(props.rowdata.leadsId);
-//   }, [props.rowdata.leadsId]);
 
   return (
     <>
@@ -33,9 +27,7 @@ const UpdateNotesLeadsForm = (props) => {
           type={"lead"}
           notesId={props.notesId}
           notes={props.notes}
-        //   leadsId={props.rowdata.leadsId}
-        //   rowdata={props.rowdata}
-        //   callback={() => props.getNotesListByLeadsId(props.rowdata.leadsId)}
+      
         />
       </div>
 

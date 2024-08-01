@@ -10,7 +10,6 @@ import {
   updatePriceSuppliers,
   handleSuppliersPriceDrawer
 } from "../SuppliersAction";
-import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import { Tooltip, Button, Input } from "antd";
 import { BorderColor as BorderColorIcon } from "@mui/icons-material";
@@ -81,58 +80,64 @@ function SuppliersPriceCardList(props) {
       {props.fetchingSupplierPriceList ? (
         <BundleLoader />
       ) : (
-        <div className="flex justify-end sticky z-auto">
-          <div className="rounded-lg m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className="flex max-sm:hidden justify-between w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className="flex  sticky z-auto">
+          <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div className="flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
               <div className="w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">
-                <FormattedMessage id="app.name" defaultMessage="Name" />
+               {/* "Name" */}
+               {props.translatedMenuItems[0]}
               </div>
               <div className="w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
-                <FormattedMessage id="app.category" defaultMessage="Category" />
+               {/* Category  */}
+               {props.translatedMenuItems[26]}
               </div>
               <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[15.9rem]">
-                <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
+               {/* Attribute  */}
+               {props.translatedMenuItems[27]}
               </div>
-              <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                <FormattedMessage id="app.quality" defaultMessage="Quality" />
+              <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">             
+                {/* Quality    */}
+                 {props.translatedMenuItems[28]}
               </div>
               <div className="w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                <FormattedMessage id="app.unitprice" defaultMessage="Price (Last PO)" />
+              {/* Price (Last PO) */}
+              {`${props.translatedMenuItems[19]} (${props.translatedMenuItems[29]} PO)`}
               </div>
               <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                <FormattedMessage id="app.priceDate" defaultMessage="Price (Date)" />
+              {/* Price (Date) */}
+               {`${props.translatedMenuItems[19]} (${props.translatedMenuItems[30]})`}
               </div>
               <div className="w-[5rem]"></div>
             </div>
-            <div className="overflow-x-auto h-[89vh]">
+            <div className="overflow-x-auto h-[75vh]">
               {props.supplierPriceList.length ? (
                 props.supplierPriceList.map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                   return (
-                    <div  className="flex flex-col rounded justify-between bg-white mt-1 p-1 h-8 items-center max-sm:h-[6rem] max-sm:flex-col">
+                    <div  className="flex flex-col rounded justify-between bg-white mt-1 p-1 h-8 items-center max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                       <div className="flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                         <div className="font-medium ml-2 flex items-center w-[15.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem]">
-                          <div className="font-semibold text-[0.85rem]  font-poppins">{item.suppliesFullName}</div>
-                          &nbsp;{date === currentdate && <div className="text-xs text-[tomato] font-bold">New</div>}
+                          <div className="font-semibold text-xs  font-poppins">{item.suppliesFullName}</div>
+                          &nbsp;{date === currentdate && <div className="text-xs text-[tomato] font-bold">{props.translatedMenuItems[23]}</div>}
                         </div>
-                        <div className="flex font-medium flex-col w-[13.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem]">
-                          <div className="font-normal text-[0.85rem]  font-poppins">{item.categoryName}</div>
+                        <div className="flex  w-[13.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem]">
+                          <div className=" text-xs  font-poppins">{item.categoryName}</div>
                         </div>
-                        <div className="flex font-medium flex-col w-[12.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
-                          <div className="font-normal text-[0.85rem]  font-poppins">{item.attributeName}</div>
+                        <div className="flex  w-[12.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
+                          <div className=" text-xs  font-poppins">{item.attributeName}</div>
                         </div>
                        <div className="flex font-medium flex-col w-[13.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
-                          <div className="font-normal text-[0.85rem]  font-poppins">{item.quality}</div>
+                          <div className=" text-xs  font-poppins">{item.quality}</div>
                         </div>
-                        <div className="flex font-medium flex-col w-[10rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
-                          <div className="font-normal text-[0.85rem]  font-poppins">{item.price}</div>
+                        <div className="flex  w-[10rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
+                          <div className=" text-xs  font-poppins">{item.price}</div>
                         </div>
                         {/* <div className="flex font-medium flex-col w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem]">
-                          <div className="font-normal text-[0.85rem]  font-poppins">{item.updatePrice}</div>
+                          <div className="font-normal text-xs  font-poppins">{item.updatePrice}</div>
                         </div> */}
-                        <div className="flex font-medium flex-col md:w-[13rem] max-sm:justify-between w-full max-sm:flex-row">
-                          <div className="font-normal text-[0.85rem]  font-poppins">
+                        <div className="flex  md:w-[13rem] max-sm:justify-between w-full max-sm:flex-row">
+                          <div className=" text-xs  font-poppins">
                           {editRowId === item.suppliesId ? (
                             <>
                               <Input
@@ -146,18 +151,20 @@ function SuppliersPriceCardList(props) {
                                 type="primary"
                                 onClick={() => handleUpdatePrice(item)}
                               >
-                                Add
+                                {/* Add */} {props.translatedMenuItems[9]}
                               </Button>
-                              <Button onClick={handleCancelEdit}>Cancel</Button>
+                              <Button onClick={handleCancelEdit}>
+                              {props.translatedMenuItems[31]}
+                                </Button>
                             </>
                           ) : (
                             <span>{item.updatePrice} &nbsp; {dayjs(item.updateDate).format('DD/MM/YYYY')}</span>
                           )}
                           </div>
                         </div>
-                        <div className="flex font-medium flex-col md:w-[5rem] max-sm:justify-between w-full max-sm:flex-row">
-                          <div className="font-normal text-[0.85rem]  font-poppins">
-                          <Tooltip title="Edit">
+                        <div className="flex  md:w-[5rem] max-sm:justify-between w-full max-sm:flex-row">
+                          <div className=" text-xs  font-poppins">
+                          <Tooltip title={props.translatedMenuItems[20]}>
                           <BorderColorIcon
                               className="!text-icon cursor-pointer text-[tomato]"
                               onClick={() => handleEditRow(item.suppliesId)}

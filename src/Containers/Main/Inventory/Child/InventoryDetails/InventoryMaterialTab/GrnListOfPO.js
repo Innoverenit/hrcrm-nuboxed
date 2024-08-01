@@ -56,67 +56,83 @@ const GrnListOfPO = (props) => {
                 <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky z-10">
                         <div className=""></div>
-                        <div className=" w-[15rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" w-[7.12rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div>
-                        <div className=" w-[8.1rem]"><FormattedMessage id="app.unit" defaultMessage="Unit" /></div>
-                        <div className=" w-[8.2rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
-                        <div className=" w-[8.3rem]"><FormattedMessage id="app.damage" defaultMessage="Damage" /></div>
-                        <div className=" w-[8.01rem]"><FormattedMessage id="app.final" defaultMessage="Final" /></div>
+                        <div className=" w-[15rem]">
+                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */} {props.translatedMenuItems[15]}
+                            </div>
+                        <div className=" w-[7.12rem]">
+                            {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}{props.translatedMenuItems[44]}
+                            </div>
+                        <div className=" w-[8.1rem]">
+                            {/* <FormattedMessage id="app.unit" defaultMessage="Unit" /> */}{props.translatedMenuItems[18]}
+                            </div>
+                        <div className=" w-[8.2rem]">
+                            {/* <FormattedMessage id="app.received" defaultMessage="Receive" /> */} {props.translatedMenuItems[5]}
+                            </div>
+                        <div className=" w-[8.3rem]">
+                            {/* <FormattedMessage id="app.damage" defaultMessage="Damage" /> */} {props.translatedMenuItems[45]}
+                            </div>
+                        <div className=" w-[8.01rem]">
+                            {/* <FormattedMessage id="app.final" defaultMessage="Final" /> */}{props.translatedMenuItems[46]}
+                            </div>
                         <div className=" w-[5.01rem]"></div>
-                        <div className=" w-[10rem]"><FormattedMessage id="app.remark" defaultMessage="Remark" /></div>
+                        <div className=" w-[10rem]">
+                            {/* <FormattedMessage id="app.remark" defaultMessage="Remark" /> */}{props.translatedMenuItems[21]}
+                            </div>
                         <div className=" w-[10.04rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
                         <div className=" w-[15rem]"></div>
-                        <div className=" w-[5rem]"><FormattedMessage id="app.stock" defaultMessage="To Stock" /></div>
+                        <div className=" w-[5rem]">
+                            {/* <FormattedMessage id="app.stock" defaultMessage="To Stock" /> */}{props.translatedMenuItems[14]}
+                            </div>
                         <div className=""></div>
                     </div>
                     <InfiniteScroll
                         dataLength={props.receivedDetailData.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                        height={"73vh"}
+                        loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
+                        height={"76vh"}
                     >
                         {props.receivedDetailData.map((item) => {
 
                             return (
                                 <div>
-                                    <div className="flex rounded-xl justify-between  mt-2 bg-white h-8 items-center p-1 ">
+                                    <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 ">
                                         <div class="flex w-[22rem]">
-                                            <div className=" flex font-medium  w-[12.5rem] max-sm:w-full  ">
+                                            <div className=" flex w-[12.5rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm  font-semibold  font-poppins ">
                                                     {item.suppliesFullName.substring(0, 20)}
                                                 </div>
                                             </div>
                                        
-                                        <div className=" flex font-medium   w-[6.123rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[6.123rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.price}
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium   w-[6.023rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex   w-[6.023rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unit}
                                             </div>
                                         </div>
                                         </div>
                                         <div class="flex w-[20rem]">
-                                        <div className=" flex font-medium   w-[7.033rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex    w-[7.033rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unitReceived}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium   w-[5.043rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex   w-[5.043rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unitDamaged}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium   w-[3.053rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[3.053rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {`${item.unitReceived - item.unitDamaged}`}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium   w-[3.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[3.2rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" !text-icon  font-poppins cursor-pointer">
                                                 <ListAltRounded
                                                     onClick={() => {
@@ -177,7 +193,9 @@ const GrnListOfPO = (props) => {
                                                                 handleSelectZone()
                                                                 handleRow(item)
                                                             }}
-                                                        >Select Zone</Button> :
+                                                        >
+                                                            {/* Select Zone */} {props.translatedMenuItems[47]}
+                                                        </Button> :
                                                             <div>
                                                                 {item.zone}{item.chamber}
                                                             </div>
@@ -214,6 +232,7 @@ const GrnListOfPO = (props) => {
                 row={row}
                 handleReceivedUnit={props.handleReceivedUnit}
                 addReceiveUnit={props.addReceiveUnit}
+             translatedMenuItems={props.translatedMenuItems}
             />
         </>
     );

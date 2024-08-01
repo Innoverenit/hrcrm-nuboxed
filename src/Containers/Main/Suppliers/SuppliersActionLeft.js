@@ -13,8 +13,8 @@ import {
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
 import { Avatar, Input, Tooltip,Badge } from "antd";
-import { FormattedMessage } from "react-intl";
 import { AudioOutlined } from "@ant-design/icons"
+import ChecklistIcon from '@mui/icons-material/Checklist';
 
 const Option = StyledSelect.Option;
 
@@ -70,7 +70,12 @@ const {
       const handleSearch = () => {
         if (currentData.trim() !== "") {
           // Perform the search
-          props.inputDataSearch(currentData);
+          //props.inputDataSearch(currentData);
+          if (props.viewType === "card") {
+            props.inputDataSearch(currentData,'card');
+          } else if (props.viewType === "all") {
+            props.inputDataSearch(currentData,'all');
+          } 
           setSearchOnEnter(true);  //Code for Search
         } else {
           console.error("Input is empty. Please provide a value.");
@@ -103,7 +108,11 @@ const {
         setIsRecording(false);
         if (transcript.trim() !== "") {
           setCurrentData(transcript);
-          props.inputDataSearch(transcript);
+          if (props.viewType === "card") {
+            props.inputDataSearch(transcript,'card');
+          } else if (props.viewType === "all") {
+            props.inputDataSearch(transcript,'all');
+          } 
           setSearchOnEnter(true);
         }
       };
@@ -123,56 +132,73 @@ const {
           }
         }
       }, [listening, isRecording, startTime]);
-
-
         return (
             <div class="flex items-center">
 
                 <Tooltip
-                    title={<FormattedMessage id="app.mysuppliers" defaultMessage="My Suppliers" />}>
+                    title={props.translatedMenuItems[4]}>
 <Badge
           size="small"
           count={(props.viewType === "card" && props.countSupplier.supplierCount) || 0}
           overflowCount={999}
         >
-                    <span class=" mr-2 text-sm cursor-pointer"
+                    <span class=" mr-1 text-sm cursor-pointer"
                         onClick={() => setSuppliersViewType("card")}
                         style={{
                             color: viewType === "card" && "#1890ff",
                         }}
                     >
-
                         <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#4bc076" }}>
-                            <TocIcon className="text-white" /></Avatar>
+                            < ChecklistIcon className="text-white !text-icon" /></Avatar>
 
                     </span></Badge>
                 </Tooltip>
 
-                <Tooltip title="ALL">
+                <Tooltip title={`${props.translatedMenuItems[4]}-${props.translatedMenuItems[5]}`}>
+                <Badge
+          size="small"
+          //count={(props.viewType === "not approved" && props.allCountSupplier.AllSupplierCount) || 0}
+          overflowCount={999}
+        >
+                    <span class=" mr-1 text-sm cursor-pointer"
+                        onClick={() => setSuppliersViewType("not approved")}
+                        style={{
+                            color: viewType === "not approved" && "#1890ff",
+                        }}
+                    >
+                       <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                       <TocIcon className="text-white !text-icon" />
+                            </Avatar> 
+                    </span>
+                    </Badge>
+                </Tooltip>
+
+                <Tooltip title={props.translatedMenuItems[6]}>
                 <Badge
           size="small"
           count={(props.viewType === "all" && props.allCountSupplier.AllSupplierCount) || 0}
           overflowCount={999}
         >
-                    <span class=" mr-2 text-sm cursor-pointer"
+                    <span class=" mr-1 text-sm cursor-pointer"
                         onClick={() => setSuppliersViewType("all")}
                         style={{
                             color: viewType === "all" && "#1890ff",
                         }}
                     >
                         <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                            <div className="text-white">ALL</div></Avatar>
-
+                            <div className="text-white">
+                              {/* ALL */}{props.translatedMenuItems[6]}
+                              </div></Avatar>
                     </span>
                     </Badge>
                 </Tooltip>
-                <Tooltip title="My Suppliers-Deleted">
+                <Tooltip title={`${props.translatedMenuItems[4]}-${props.translatedMenuItems[7]}`}>
                 <Badge
           size="small"
           count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
           overflowCount={999}
         >
-                    <span class=" mr-2 text-sm cursor-pointer"
+                    <span class=" mr-1 !text-icon cursor-pointer"
                         onClick={() => setSuppliersViewType("delete")}
                         style={{
                             color: viewType === "delete" && "#1890ff",
@@ -180,7 +206,6 @@ const {
                     >
                         <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#4bc076" }}>
                         <DeleteOutlined className="text-white" /></Avatar>
-
                     </span>
                     </Badge>
                 </Tooltip>
@@ -188,21 +213,18 @@ const {
                 &nbsp;&nbsp;
                 <div class=" ml-6 h-6 w-60 max-sm:w-[11rem]">
                 <Input
-          placeholder="Search by Name or Sector"
+          placeholder={props.translatedMenuItems[8]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
           onChange={handleChange}
         value={currentData}
-        />
-                  
-
+        />              
                 </div>
 
             </div>
         );
 }
-
 const mapStateToProps = ({ auth, suppliers }) => ({
     user: auth.userDetails,
     dateRangeList: suppliers.dateRangeList,

@@ -32,7 +32,7 @@ function AccountDeleteTable(props) {
          <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
          <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
         
-        <div class=" text-sm  font-medium font-poppins">
+        <div class=" text-xs  font-poppins">
         
         Name
         
@@ -44,9 +44,9 @@ function AccountDeleteTable(props) {
         </div>
         
         </div>
-        <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+        <div className=" flex flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
         
-        <div class=" text-sm  font-medium font-poppins">
+        <div class=" text-xs  font-poppins">
         
         Mobile
         
@@ -58,9 +58,9 @@ function AccountDeleteTable(props) {
         </div>
         
         </div>
-        <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+        <div className=" flex  flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
         
-        <div class=" text-sm  font-medium font-poppins">
+        <div class=" text-xs  font-poppins">
         
         Website
         
@@ -73,9 +73,9 @@ function AccountDeleteTable(props) {
         
         </div>
         
-        <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+        <div className=" flex  flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
         
-        <div class=" text-sm  font-medium font-poppins">
+        <div class=" text-xs   font-poppins">
         
         Address
         
@@ -89,9 +89,9 @@ function AccountDeleteTable(props) {
         </div>
         
         </div>
-        <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+        <div className=" flex flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
         
-        <div class=" text-sm  font-medium font-poppins">
+        <div class=" text-xs   font-poppins">
         
         City
         
@@ -105,9 +105,9 @@ function AccountDeleteTable(props) {
         </div>
         
         </div>
-        <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+        <div className=" flex  flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
         
-        <div class=" text-sm  font-medium font-poppins">
+        <div class=" text-xs   font-poppins">
         
         Pin Code
         

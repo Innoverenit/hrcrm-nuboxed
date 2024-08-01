@@ -9,7 +9,6 @@ import { DeleteOutlined, } from "@ant-design/icons";
 import { FormattedMessage } from "react-intl";
 const MileageVoucherIdDrawer = lazy(() => import("./MileageVoucherIdDrawer"))
 
-
 class MileagePendingStatusCard extends React.Component {
   state = {
     expand: false,
@@ -35,15 +34,13 @@ class MileagePendingStatusCard extends React.Component {
     } = this.props;
 
     return (
-      <>
-        
+      <>        
         <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className="p-0.5 inline-flex items-center rounded-md w-max ml-1">
             <span className="pl-2 pr-4 relative">
               <span
-                className="absolute left-0 top-0 bottom-0 w-3  rounded-l-md -mt-1 -mb-1 -ml-2 "
-
-              ></span>
+                className="absolute left-0 top-0 bottom-0 w-3  rounded-l-md -mt-1 -mb-1 -ml-2 ">
+             </span>
               <span class="font-semibold text-sm -heading font-poppins"> Pending </span>
             </span>
           </div>   
@@ -53,13 +50,11 @@ class MileagePendingStatusCard extends React.Component {
                             <div className="flex justify-between mt-4"
                                 style={{
                                     borderBottom: "3px dotted #515050"
-                                }}>
-                                     
-                                <div className=" flex font-medium flex-col w-72 mb-1 ">
-
-                                   
+                                }}>                                    
+                                <div className=" flex w-72 mb-1 ">
+                                
                                         <Tooltip >
-                                            <div class=" text-sm  font-poppins">
+                                            <div class=" text-xs  font-poppins">
                                             Voucher ID
                                             </div>
                                             <div class=" text-xs text-blue-500  font-poppins cursor-pointer">
@@ -69,16 +64,11 @@ class MileagePendingStatusCard extends React.Component {
          {item.voucherId}
          </div>
                                             </div>
-
                                         </Tooltip>
-                                        <div className=" flex font-medium flex-col w-max ">
+                                        <div className=" flex  w-max ">
                                     <div class=" text-xs  font-poppins"></div>
-
-                                    <div class=" text-xs  font-poppins">
-         
-            
-              
-                                    <div
+                                    <div class=" text-xs  font-poppins">                          
+                            <div
                   style={{
                     border: "2px solid #e1d16c",
                     padding: "0px 0.62em",
@@ -94,30 +84,20 @@ class MileagePendingStatusCard extends React.Component {
                                     </div>
                                 </div>
 
-                                <div className=" flex font-medium flex-col  w-52 ">
-                           
-                                    <div class=" text-sm  font-poppins"> Voucher Date </div>
-                                    <div class=" text-xs  font-poppins">
-                                        
-                                    
+                                <div className=" flex  w-52 ">                         
+                                    <div class=" text-xs  font-poppins"> Voucher Date </div>
+                                    <div class=" text-xs  font-poppins">                                                                    
                                     {dayjs(item.voucherDate).format("MMM Do YY")}
-
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-36 ">
-                                  
 
-                                    <div class=" text-sm  font-poppins">Amount</div>
+                                <div className=" flex  w-36 ">                                 
+                                    <div class=" text-xs  font-poppins">Amount</div>
                                     <div class="  text-xs  font-poppins">
                                         € {item.amount}
                                     </div>
-                                </div>
-                     
-                              
-
-
-                                <div class="flex flex-col w-[4%]">
-                
+                                </div>                                       
+                                <div>
                         <div >
                         <div >
                            {item.status === "Pending" ? (
@@ -135,36 +115,19 @@ class MileagePendingStatusCard extends React.Component {
                 type="delete"
                 style={{ cursor: "pointer" }}
                 // onClick={() => {
-                // this.props.deleteMileageVoucher(item.voucherId);
-                  
+                // this.props.deleteMileageVoucher(item.voucherId);              
                 // }}
               />
            </StyledPopconfirm>
             ):null}
-             {/* {item.status==="Rejected" && (
-            <Button type="primary"
-            onClick={()=>{
-              // this.props.reapply();
-            }}>
-            Reapply
-            </Button>
-          )} */}
               </div>
-
                     </div>
-                    </div>
-                              
+                    </div>                        
                             </div>
                         </div>
-
-
                     )
                 })}
       </div>
-
-
-
-
         <MileageVoucherIdDrawer 
         voucherId={this.state.voucherId}
         mileageVoucherIdDrawer={this.props.mileageVoucherIdDrawer}

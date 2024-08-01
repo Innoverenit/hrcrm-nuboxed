@@ -428,13 +428,16 @@ const RoomAndRackForm = (props) => {
     <>
       <div>
         <Button type="primary" onClick={handleAddRow} style={{ marginBottom: '10px' }}>
-          Add Zone
+          {/* Add Zone  */} {props.translatedMenuItems[6]}
         </Button>
         {rows.map((row, index) => (
           <div key={index} className="flex items-center">
             <div className="flex justify-around w-[30rem]">
               <div>
-                <label>Zone Code</label>
+                <label>
+                  {/* Zone Code */}
+                  {props.translatedMenuItems[7]}
+                </label>
                 <div className="w-24">
                   <Input
                     value={row.zone}
@@ -448,7 +451,9 @@ const RoomAndRackForm = (props) => {
               </div>
 
               <div>
-                <label>#Rack</label>
+                <label>
+                  {/* #Rack */} #{props.translatedMenuItems[8]}
+                  </label>
                 <div className="w-24">
                   <Input
                     value={row.rack}
@@ -465,7 +470,9 @@ const RoomAndRackForm = (props) => {
               </div>
 
               <div>
-                <label>Zone Type</label>
+                <label>
+                  {/* Zone Type */} {props.translatedMenuItems[9]}
+                  </label>
                 <div className="w-24">
                   <Select
                     value={row.zoneType}
@@ -483,7 +490,9 @@ const RoomAndRackForm = (props) => {
               </div>
 
               <div>
-                <label>Description</label>
+                <label>
+                  {/* Description */} {props.translatedMenuItems[10]}
+                  </label>
                 <div className="w-24">
                   <Input
                     value={row.description}
@@ -495,27 +504,27 @@ const RoomAndRackForm = (props) => {
             </div>
             <div className="mt-4">
               <Button type="primary" onClick={() => handleSubmit(index)}>
-                Submit
+                {/* Submit */} {props.translatedMenuItems[11]}
               </Button>
             </div>
             <CloseOutlined onClick={() => handleRemoveRow(index)} />
           </div>
         ))}
 
-        <div className="flex justify-end sticky z-auto">
-          <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className="flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
-              <div className="md:w-[6rem]">Zone Code</div>
-              <div className="md:w-[4.2rem]">#Rack</div>
-              <div className="md:w-[5.2rem]">Zone Type</div>
-              <div className="md:w-[9.1rem]">Description</div>
+        <div className="flex sticky z-auto h-[75vh]" >
+          <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div className="flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+              <div className="md:w-[6rem]">{props.translatedMenuItems[12]} </div>
+              <div className="md:w-[4.2rem]">#{props.translatedMenuItems[13]}</div>
+              <div className="md:w-[5.2rem]">{props.translatedMenuItems[14]}</div>
+              <div className="md:w-[9.1rem]">{props.translatedMenuItems[15]}</div>
               <div className="w-12"></div>
             </div>
 
             {props.roomRackbyLoc.map((item) => {
               return (
                 <div key={item.roomRackId}>
-                  <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
+                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1">
                     <div className="flex font-medium flex-col md:w-[9.1rem] max-sm:w-full">
                       <div className="text-sm  font-semibold font-poppins cursor-pointer">
                         {editroomRackId === item.roomRackId ? (
@@ -581,21 +590,21 @@ const RoomAndRackForm = (props) => {
                       )}
                     </div>
 
-                    <div className="flex md:items-center">
-                      <div className="flex w-28 max-sm:flex-row max-sm:w-[10%]">
+                    <div className="flex   md:items-center">
+                      <div className="flex w-28 justify-end max-sm:flex-row max-sm:w-[10%]">
                         <div>
                           {editroomRackId === item.roomRackId ? (
                             <>
                               <Button type="primary" onClick={() => handleUpdate(item.roomRackId, item.zone, item.rack, item.zoneType, item.description)}>
-                                Save
+                                {/* Save */} {props.translatedMenuItems[17]}
                               </Button>
                               <Button type="primary" onClick={() => handleCancelClick(item.roomRackId)} className="ml-[0.5rem]">
-                                Cancel
+                                {/* Cancel */} {props.translatedMenuItems[18]}
                               </Button>
                             </>
                           ) : (
                             <BorderColorIcon
-                              className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                              className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                               tooltipTitle="Edit"
                               iconType="edit"
                               onClick={() => handleEditClick(item.roomRackId)}
@@ -615,7 +624,7 @@ const RoomAndRackForm = (props) => {
   );
 };
 
-const mapStateToProps = ({ inventory, auth, locations }) => ({
+const mapStateToProps = ({ inventory, auth }) => ({
   addingRoomAndRackInInventory: inventory.addingRoomAndRackInInventory,
   userId: auth.userDetails.userId,
   roomRackbyLoc: inventory.roomRackbyLoc,

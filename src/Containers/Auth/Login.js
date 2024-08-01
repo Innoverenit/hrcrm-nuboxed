@@ -3,9 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
 import { FormWrapper, Input } from "./styled";
-import { ValidationError, Spacer } from "../../Components/UI/Elements";
+import { ValidationError} from "../../Components/UI/Elements";
 import { FlexContainer } from "../../Components/UI/Layout";
 import Button from "antd/lib/button";
 import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
@@ -15,18 +14,11 @@ import {
 import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
 import FWLogo from "../../Assets/Images/name.jpg";//ct
 // import FWLogo1 from "../../Assets/Images/dsdde.jpg"; //ct
-import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";
+import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nubox
+import DevelopTk from "../../Assets/Images/logo_22.png";// testhr
 
 
-/**
- * yup validation scheme for set Password
- */
-// const LoginSchema = Yup.object().shape({
-//   userName: Yup.string()
-//     .email("Enter a valid email")
-//     .required("Input needed !"),
-//   password: Yup.string().required("Enter password"),
-// });
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -97,7 +89,7 @@ class Login extends Component {
           >
             <img
               className="big-logo"
-              src={FWLogo}
+              src={ DevelopTk }
               style={{ width: 200 }}
               alt="Tekorero logo"
             />
@@ -125,10 +117,10 @@ class Login extends Component {
                       placeholder="Email"
                       component={this.InputComponent}
                     />
-                    <Spacer />
+                    <div class="mt-3" />
                     <FlexContainer justifyContent="space-between" style={{ alignItems: "center" }} >
-                      <div className="login_password">
-                        <div style={{ width: "100%" }}>
+                      <div className=" flex flex-row w-full">
+                        <div class=" w-full">
                           <Field
                             name="password"
                             placeholder="Password"
@@ -167,7 +159,7 @@ class Login extends Component {
                       </div> */}
 
                     </FlexContainer>
-                    <Spacer />
+                    <div class="mt-3" />
                     {/* <FlexContainer justifyContent="space-around" style={{alignItems:"center"}}>                      
                       <div >
                         <Field
@@ -193,7 +185,7 @@ class Login extends Component {
                       </div>
                       )} 
                     </FlexContainer>
-                    <Spacer /> */}
+                    <div class="mt-3" /> */}
                     <Button
                       type="primary"
                       htmlType="submit"
@@ -214,7 +206,7 @@ class Login extends Component {
                 Forgot password?
               </Link>
             </FormWrapper>
-            <Spacer />
+            <div class="mt-3" />
 
 
           </div>
@@ -229,13 +221,8 @@ class Login extends Component {
 
         </div>
         <div
-          className="footer1 w-wk items-center"
-          style={{
-            textAlign: "center",
-            position: "absolute",
-            bottom: 0,
-            color: "white"
-          }}
+          className="text-xs text-center font-poppins mt-auto text-white absolute bottom-0 w-wk items-center"
+      
         >
           {/* © {new Date().getFullYear()}, {` `} tekorero.com, All rights
               reserved. */}

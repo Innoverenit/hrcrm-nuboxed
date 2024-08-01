@@ -19,7 +19,6 @@ import {
   ClearReducerDataOfDocument
 } from "./DocumentsAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { MainWrapper } from "../../../Components/UI/Layout";
 const DocumentStatusToggle = lazy(() =>
   import("../Documents/Child/DocumentStatusToggle")
 );
@@ -130,7 +129,7 @@ return <div><BundleLoader/></div>;
   return (
       <div>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex w-[18vw] mt-3"  >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -172,9 +171,9 @@ return <div><BundleLoader/></div>;
           </div>
           <div class=" flex flex-col" >
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
+         <div className="!h-[69vh] !mt-2" >
           {!props.fetchingDocuments && documents.length === 0 ? <NodataFoundPage /> : documents.slice().sort((a, b) => a.documentTypeName.localeCompare(b.documentTypeName)).map((region, index) => (
-            <div className="card9"  key={region.documentTypeId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"  key={region.documentTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.documentTypeId ? (
@@ -186,7 +185,7 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setDocumentName(e.target.value)}
                 />
             ) : (
-                <div className="region" style={{width:"40%"}}>{region.documentTypeName}&nbsp;&nbsp;&nbsp;
+                <div  style={{width:"40%"}}>{region.documentTypeName}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -218,18 +217,18 @@ return <div><BundleLoader/></div>;
                  
                 {/* </div> */}
             {/* Action buttons */}
-            <div className="actions" style={{width:"11%"}}>
+            <div className="actions w-12" >
   {/* Edit button */}
   {editingId === region.documentTypeId ? (
     <div>
       <button onClick={() => handleUpdateDocument(region)}>Save</button>
-      <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
+      <button   onClick={cancelEdit}>Cancel</button>
     </div>
   ) : (
     <>
       {region.editInd && !region.mandatoryInd && (
-        <BorderColorIcon
-          style={{ fontSize: "1rem", cursor:"pointer" }}
+        <BorderColorIcon  className=" !text-icon cursor-pointer text-red-500"
+          
           onClick={() => editRegion(region.documentTypeId, region.documentTypeName)}
         />
       )}
@@ -241,14 +240,8 @@ return <div><BundleLoader/></div>;
             cancelText="No"
             onConfirm={() => props.removeDocuments(region.documentTypeId,props.orgId)}
           >
-            <DeleteOutlined
-              style={{
-                cursor:"pointer",
-                verticalAlign: "center",
-                marginLeft: "1rem",
-                fontSize: "1rem",
-                color: "red",
-              }}
+            <DeleteOutlined className=" cursor-pointer !text-icon text-red-600 "
+              
             />
           </Popconfirm>
         </Tooltip>
@@ -259,7 +252,7 @@ return <div><BundleLoader/></div>;
 
         </div>
         ))}
-        </MainWrapper>
+        </div>
             </div>
       
   <div class=" font-bold">Updated on {dayjs(props.documents && props.documents.length && props.documents[0].updationDate).format('YYYY-MM-DD')} by {props.documents && props.documents.length && props.documents[0].name}</div>

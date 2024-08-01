@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select, Tooltip } from "antd";
@@ -6,7 +6,7 @@ import { FormattedMessage } from "react-intl";
 import { CheckOutlined } from "@ant-design/icons";
 import { base_url } from "../../../Config/Auth";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { Formik, Form, Field, FieldArray, FastField,setFieldValue  } from "formik";
+import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
@@ -16,16 +16,16 @@ import {
   emptyClearbit,
   getCrm
 } from "../../Leads/LeadsAction";
+import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import { Listbox, } from '@headlessui/react';
+import { BundleLoader } from "../../../Components/Placeholder";
 const { Option } = Select; 
 
 // yup validation scheme for creating a account
@@ -67,18 +67,59 @@ props.emptyClearbit();
     const selectedOption = props.crmAllData.find((item) => item.empName === selected);
     const [isLoadingLob, setIsLoadingLob] = useState(false);
     const [source, setSource] = useState([]);
+    
     const [sector, setSector] = useState([]);
     const [touched, setTouched] = useState(false);
+    const [transcript, setTranscript] = useState('');
+    const [isListening, setIsListening] = useState(false);
+    const recognitionRef = useRef(null);
   const [touchedSector, setTouchedSector] = useState(false);
     const [selectedSector, setSelectedSector] = useState(null);
     const [selectedSource, setSelectedSource] = useState(null);
     const [isLoadingSector, setIsLoadingSector] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
     const [priority,setpriority]=useState(props.selectedTask
       ? props.selectedTask.priority
       : "hot");
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          'First Name', // 0
+'Middle ', // 1
+'Last Name', // 2
+'Email', // 3
+'Mobile', // 4
+'Phone No', // 5
+'Company', // 6
+'URL', // 7
+'Sector', // 8
+'Source', // 9
+'LOB', // 10
+'VAT Number', // 11
+'Registration', // 12
+'Assigned', // 13
+'Notes', // 14
 
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  
     const fetchSource = async () => {
       setIsLoading(true);
       try {
@@ -114,6 +155,13 @@ props.emptyClearbit();
     }
   };
 
+  useEffect(() => {
+   
+    props.getCustomerConfigure(props.orgId,"add","leads")
+    // setSource("")
+    // props.getCurrency();
+  }, []);
+
   const fetchSector = async () => {
     setIsLoadingSector(true);
     try {
@@ -143,6 +191,7 @@ props.emptyClearbit();
     setSelectedSector(value)
     console.log('Selected user:', value);
   };
+  
   const handleSelectSectorFocus = () => {
     if (!touchedSector) {
      
@@ -184,18 +233,118 @@ props.emptyClearbit();
     console.log('Selected user:', value);
   };
   const [text, setText] = useState("");
+  console.log(text)
   function handletext(e) {
     setText(e.target.value);
   }
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
+
+
+  useEffect(() => {
+    if (!('webkitSpeechRecognition' in window)) {
+      console.log('Browser does not support speech recognition.');
+      return;
+    }
+
+  //   const recognition = new window.webkitSpeechRecognition();
+  //   recognition.continuous = true;
+  //   recognition.interimResults = true;
+  //   recognition.lang = 'en-US';
+
+  //   recognition.onresult = (event) => {
+  //     let finalTranscript = '';
+  //     for (let i = event.resultIndex; i < event.results.length; ++i) {
+  //       if (event.results[i].isFinal) {
+  //         finalTranscript += event.results[i][0].transcript;
+  //       }
+  //     }
+  //     setTranscript(finalTranscript);
+  //   };
+
+  //   recognition.onend = () => {
+  //     setIsListening(false);
+  //   };
+
+  //   recognitionRef.current = recognition;
+
+  //   return () => {
+  //     recognition.stop();
+  //   };
+  // }, []);
+
+  const recognition = new window.webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.lang = 'en-US';
+
+  recognition.onresult = (event) => {
+    let finalTranscript = '';
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        finalTranscript += event.results[i][0].transcript;
+      }
+    }
+    finalTranscript = finalTranscript.trim(); // Trim spaces around the transcript
+
+    // Ensure the final transcript is appended only once
+    setTranscript((prevTranscript) => {
+      setText((prevText) => (prevText + ' ' + finalTranscript).trim());
+      return prevTranscript + ' ' + finalTranscript;
+    });
+  };
+
+  recognition.onend = () => {
+    setIsListening(false);
+  };
+
+  recognitionRef.current = recognition;
+
+  return () => {
+    recognition.stop();
+  };
+}, []);
+
+  const startListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.start();
+      setIsListening(true);
+    }
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    }
+  };
+
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+    setTranscript('');
+  };
+
+  const resetTranscript = () => {
+    setTranscript('');
+    setText('');
+  };
+
+  
+
+  // const {
+  //   transcript,
+  //   listening,
+  //   resetTranscript,
+  //   browserSupportsSpeechRecognition,
+  // } = useSpeechRecognition();
+
+  // if (!browserSupportsSpeechRecognition) {
+  //   return <span>Browser doesn't support speech recognition.</span>;
+  // }
+
+ 
+  
+  if (loading) {
+    return <div><BundleLoader/></div>;
   }
     return (
       <>
@@ -244,6 +393,7 @@ props.emptyClearbit();
               {
                 ...values,
                 companyName: "",
+                notes: text,
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 source: selectedSource,
                 lobId:selectedLob,
@@ -308,6 +458,7 @@ props.emptyClearbit();
              <div class="flex justify-between  pr-2 max-sm:flex-col" >
                    
                 <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                {props.customerConfigure.imageUploadInd===true&&
                   <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
                    
@@ -333,12 +484,7 @@ props.emptyClearbit();
                             isRequired
                             name="firstName"
                             // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            label={translatedMenuItems[0]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -348,16 +494,12 @@ props.emptyClearbit();
                         </div>
                       </div>                  
                       <div class=" flex justify-between max-sm:flex-col">
+                      {props.customerConfigure.middleNameInd===true&&
                         <div class=" w-2/5 max-sm:w-full">
                           <FastField
                             name="middleName"
                             //label="Middle Name"
-                            label={
-                              <FormattedMessage
-                                id="app.middleName"
-                                defaultMessage="Middle"
-                              />
-                            }
+                            label={translatedMenuItems[1]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -365,16 +507,13 @@ props.emptyClearbit();
                             inlineLabel
                           />
                         </div>
+}
+{props.customerConfigure.lastNameInd===true&&
                         <div class=" w-1/2 max-sm:w-full">
                           <FastField
                             name="lastName"
                             //label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />
-                            }
+                            label={translatedMenuItems[2]}
                             type="text"
                             width={"100%"}
                             isColumn
@@ -382,17 +521,17 @@ props.emptyClearbit();
                             inlineLabel
                           />
                         </div>
+}
                       </div>
                     </div>
                   </div>
+}
 
                   <Field
                     isRequired
                     name="email"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
+                    label={translatedMenuItems[3]}
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -400,6 +539,7 @@ props.emptyClearbit();
                   /> 
                                
                   <div class=" flex justify-between">
+                  {props.customerConfigure.dailCodeInd===true&&
                     <div class=" w-3/12 max-sm:w-[35%]">
                    
                       <FastField
@@ -410,29 +550,27 @@ props.emptyClearbit();
                           label:`${props.user.countryDialCode}`,
                         }}
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.phone"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label={translatedMenuItems[4]}
                         isColumn
                         inlineLabel
                       />
                   
                     </div>
+}
                     <div class=" w-8/12">
+                    {props.customerConfigure.phoneNoInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <FastField
                         type="text"
                         name="phoneNumber"
-                        label="Phone No"
+                        label={translatedMenuItems[5]}
                         isColumn
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
                       />
                       </div>
+}
                     </div>
                   </div>
               
@@ -441,9 +579,7 @@ props.emptyClearbit();
                   
                     name="companyName"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.company" defaultMessage="Company" />
-                    }
+                    label={translatedMenuItems[6]}
                     isColumn
                     width={"100%"}
                     setClearbitData={props.setClearbitData}
@@ -453,23 +589,26 @@ props.emptyClearbit();
                   />
                   </div>
                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                  {props.customerConfigure.urlInd===true&&
                   <Field
                     name="url"
                     type="text"
-                    label={<FormattedMessage id="app." defaultMessage="URL" />}
+                    label={translatedMenuItems[7]}
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
                   />
+}
                   </div>
                          
                  
                   <div class=" flex  justify-between mt-3">
                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
-
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Sector</label>
-
+                   {props.customerConfigure.sectorInd===true&&
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[8]}</label>
+}
+{props.customerConfigure.sectorInd===true&&
 <Select
         showSearch
         //style={{ width: 200 }}
@@ -485,12 +624,14 @@ props.emptyClearbit();
           </Option>
         ))}
       </Select>
+}
                     
                     </div>
                     <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
-                          
-                          <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</label>
-
+                    {props.customerConfigure.sourceInd===true&&
+                          <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[9]}</label>
+                    }
+                          {props.customerConfigure.sourceInd===true&&
 <Select
         showSearch
        // style={{ width: 200 }}
@@ -506,13 +647,16 @@ props.emptyClearbit();
           </Option>
         ))}
       </Select>
+}
                         </div>
                     </div>
                   
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">
-                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>LOB</label>
-
+                    {props.customerConfigure.lobInd===true&&
+                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}</label>
+}
+{props.customerConfigure.lobInd===true&&
 <Select
         showSearch
        
@@ -528,8 +672,10 @@ props.emptyClearbit();
           </Option>
         ))}
       </Select>
+}
                     </div>
                     <div class=" w-w47.5 max-sm:w-wk">
+                    {props.customerConfigure.typeInd===true&&
                     <div class="flex">
                        <Tooltip title="Hot">
                          <Button
@@ -579,6 +725,7 @@ props.emptyClearbit();
                            </Button>
                        </Tooltip>
                      </div>
+}
                       </div>
 
 
@@ -587,41 +734,35 @@ props.emptyClearbit();
                  
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">
+                    {props.customerConfigure.vatNoInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <Field
                         name="vatNo"
                         type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="VAT Number"
-                          />
-                        }
+                        label={translatedMenuItems[11]}
                         isColumn
                         width={"100%"}
                         component={InputComponent}
                         inlineLabel
                       />
                       </div>
+}
                     </div>
                     <div class="w-w47.5">
+                    {props.customerConfigure.businessRegInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <Field
                         name="businessRegistration"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.registration"
-                            defaultMessage="Registration"
-                          />
-                        }
+                        label={translatedMenuItems[12]}
                         isColumn
                         width={"100%"}
                         component={InputComponent}
                         inlineLabel
                       />
                       </div>
+}
                     </div>
                   </div>
              
@@ -665,10 +806,11 @@ props.emptyClearbit();
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
                 >
+                    {props.customerConfigure.assignedToInd===true&&
                    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-semibold text-[0.75rem]">Assigned</Listbox.Label>
+          <Listbox.Label className="block font-semibold text-[0.75rem]">{translatedMenuItems[13]}</Listbox.Label>
           <div className="relative">
               <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -731,19 +873,25 @@ props.emptyClearbit();
         </>
       )}
     </Listbox>
+}
              
                 
                   <div class=" mt-3">
+                  {props.customerConfigure.addressInd===true&&
                   <FieldArray
                     name="address"
                     label="Address"
                     render={(arrayHelpers) => (
                       <AddressFieldArray
+                      translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}
+translatedMenuItems={props.translatedMenuItems}
                         arrayHelpers={arrayHelpers}
                         values={values}
                       />
                     )}
                   />
+}
                   </div>
                   {props.orgType==="Real Estate"&&(
                   <div class=" h-3/4  max-sm:w-wk "
@@ -896,11 +1044,12 @@ props.emptyClearbit();
                   </FlexContainer> */}
                 </div>
                 )}
+                 {props.customerConfigure.noteInd===true&&
                 <div class="mt-3">
-                    <div>Notes</div>
+                    <div>{translatedMenuItems[14]}</div>
                     <div>
                   <div>
-                    <span onClick={SpeechRecognition.startListening}>
+                    <span onClick={startListening}>
                       <Tooltip title="Start">
                         <span  >
                           <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
@@ -908,35 +1057,43 @@ props.emptyClearbit();
                       </Tooltip>
                     </span>
 
-                    <span onClick={SpeechRecognition.stopListening}>
+                    <span onClick={stopListening}>
                       <Tooltip title="Stop">
-                        <span
-                          
-                            class="!text-icon ml-1 text-green-600">
-                          <StopCircleIcon />
+                        <span >
+                          <StopCircleIcon  className="!text-icon ml-1 text-green-600"/>
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span  class="!text-icon ml-1">
-                          <RotateRightIcon />
+                        <span>
+                          <RotateRightIcon   className="!text-icon ml-1" />
                         </span>
                       </Tooltip>
                     </span>
                   </div>
                   <div>
-                    <textarea
+                    {/* <textarea
                       name="description"
                       className="textarea"
                       type="text"
                       value={transcript ? transcript : text}
                       onChange={handletext}
-                    ></textarea>
+                    ></textarea> */}
+
+<textarea
+        name="description"
+        className="textarea"
+        type="text"
+        value={text}
+        onChange={handleTextChange}
+      ></textarea>
+
                   </div>
                 </div>
                   </div>
+}
                 </div>
               </div>
             
@@ -959,7 +1116,7 @@ props.emptyClearbit();
     );
 }
 
-const mapStateToProps = ({ auth, leads,lob }) => ({
+const mapStateToProps = ({ auth, leads,settings,lob }) => ({
   addingLeads: leads.addingLeads,
   crmAllData:leads.crmAllData,
   addingLeadsError: leads.addingLeadsError,
@@ -972,6 +1129,7 @@ const mapStateToProps = ({ auth, leads,lob }) => ({
   userId: auth.userDetails.userId,
   fullName: auth.userDetails.fullName,
   token: auth.token,
+  customerConfigure:settings.customerConfigure,
 
 });
 
@@ -981,7 +1139,8 @@ const mapDispatchToProps = (dispatch) =>
        addLeads,
        getCrm,
       setClearbitData,
-      emptyClearbit
+      emptyClearbit,
+      getCustomerConfigure,
 
     },
     dispatch

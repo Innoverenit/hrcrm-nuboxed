@@ -2,7 +2,6 @@ import React, {useState,Suspense,lazy } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {handlePitchModal,getPitch,
-  // setPitchViewType
  } from "../Pitch/PitchAction";
 import { BundleLoader, } from "../../Components/Placeholder";
 const PitchHeader =lazy(()=>import("./Child/PitchHeader"));
@@ -47,6 +46,8 @@ function Pitch (props) {
         return (
             <React.Fragment>
             <PitchHeader
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText}
             setPitchViewType={setPitchViewType}
             viewType={viewType}
             teamsAccessInd={teamsAccessInd}
@@ -64,6 +65,8 @@ function Pitch (props) {
             />
              <AddPitchModal
              
+             selectedLanguage={props.selectedLanguage}
+             translateText={props.translateText}
               addPitchModal={props.addPitchModal}
              
               handlePitchModal={props.handlePitchModal}
@@ -75,33 +78,35 @@ function Pitch (props) {
 
               
       {teamsAccessInd ? (
-      <PitchTeamCardlist/>
+      <PitchTeamCardlist
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
+      />
+      
         ) : (
           <>
-            {viewType === 'card' &&     <PitchCardList       filter={filter}/>}
-            {viewType === 'all' &&  <PitchAllCardList       filter={filter}/> }
-            {viewType === 'teams' &&  <PitchTeamCardlist/>}
+            {viewType === 'card' &&     <PitchCardList       filter={filter}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+             translatedMenuItems={props.translatedMenuItems}
+            />}
+            {viewType === 'all' &&  <PitchAllCardList       filter={filter}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+             translatedMenuItems={props.translatedMenuItems}
+            /> }
+            {viewType === 'teams' &&  <PitchTeamCardlist
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+             translatedMenuItems={props.translatedMenuItems}
+            />}
           </>
         )}
-              {/* {viewType==="card" ? (
-     <LeadsCardList/>
-              ):viewType==="list" ? (<LeadsJunkList/>)
-            :null} */}
-            
-            {/* {  viewType === "card" ?
-          <PitchCardList       filter={filter}/> 
- 
-  :viewType==="all" ?
- <PitchAllCardList       filter={filter}/> 
- :viewType==="teams" ? (<PitchTeamCardlist/>)
-// <CustomerCardView/>  
-          :null} */}
-            </Suspense>
-     
+            </Suspense> 
           </React.Fragment>
         )
 }
-
 const mapStateToProps = ({ pitch,auth }) => ({
     addPitchModal:pitch.addPitchModal,
     // viewType:pitch.viewType,

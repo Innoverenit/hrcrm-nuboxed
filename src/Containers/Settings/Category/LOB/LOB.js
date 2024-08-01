@@ -161,7 +161,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingLob && lobListData.length === 0 ? <NodataFoundPage /> : lobListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="card9" key={region.lobDetsilsId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.lobDetsilsId}>
             {/* Region name display or input field */}
             
             {editingId === region.lobDetsilsId ? (
@@ -173,7 +173,7 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setLobName(e.target.value)}
                 />
             ) : (
-                <div className="region">{region.name}&nbsp;&nbsp;&nbsp;
+                <div >{region.name}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -181,7 +181,7 @@ return <div><BundleLoader/></div>;
             )}
 
             {/* Action buttons */}
-            <div className="actions">
+            <div >
                 {/* Edit button */}
                 {editingId === region.lobDetsilsId ? (
                     <div>
@@ -189,7 +189,7 @@ return <div><BundleLoader/></div>;
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.lobDetsilsId, region.name)} />
+                    <BorderColorIcon   className=" !text-icon text-red-600 cursor-pointer" onClick={() => editRegion(region.lobDetsilsId, region.name)} />
                 )}
 
                 {/* Delete button */}
@@ -200,11 +200,7 @@ return <div><BundleLoader/></div>;
                         onConfirm={() =>  props.removeLob(region.lobDetsilsId,props.orgId)}
                       >
                 <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                  className=" !text-icon text-red-600 cursor-pointer"
               // onClick={() => 
               //     props.removeServiceLine(item.lobDetsilsId)
               //  }

@@ -46,7 +46,10 @@ function Recruitment(props) {
     {
       rulesName: "Form",
       ruleId: "4",
-      component: <Form/>,
+      component: <Form
+      translateText={props.translateText}
+                           selectedLanguage={props.selectedLanguage}
+      />,
     },
     
     {
@@ -194,7 +197,7 @@ function Recruitment(props) {
             <Suspense 
             // fallback={"Loading..."}
             >
-            <div class=" w-[74%]" >
+            <div class=" w-[76%]" >
             
               <RecruitmentActionRight current={currentRulesOpen} />
             </div>

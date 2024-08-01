@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useRef,useState } from "react";
 import { FormattedMessage } from "react-intl";
-import { Tooltip, Badge ,Avatar } from "antd";
+import { Tooltip, Badge ,Avatar,Input } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import { DeleteOutlined } from "@ant-design/icons";
 import { CheckCircleTwoTone } from "@ant-design/icons";
+import { AudioOutlined } from '@ant-design/icons';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import {
   inputOpportunityDataSearch,
@@ -16,14 +18,34 @@ import {
   getcloseRecords,
   getlostRecords,
   getWonRecords,
-  getAllRecords
+  getAllRecords,
+  ClearSearchedDataOfOpportunity,
+  getOpportunityListByUserId,
+  getTeamOpportunity,
+  getFullOpportunity
+
 } from "../OpportunityAction";
 import PeopleIcon from '@mui/icons-material/People';
 import { StopTwoTone, TableOutlined } from "@ant-design/icons";
-
+const { Search } = Input;
 
 const OpportunityActionLeft = (props) => {
+  const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false); 
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); //Code for Search
+  const [pageNo, setPage] = useState(0);
+  const [page, setpage] = useState(0);
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
   const dummy = ["cloud", "azure", "fgfdg"];
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+
   useEffect(() => {
     if (props.teamsAccessInd) {
       props.getOpportunityTeamRecords(props.userId);
@@ -52,6 +74,114 @@ const OpportunityActionLeft = (props) => {
       props.getAllRecords(props.orgId);
     }
   }, [props.viewType, props.userId]);
+
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
+
+    const handleChange = (e) => {
+      setCurrentData(e.target.value);
+  
+      if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+        if (props.viewType === "table") {
+          getOpportunityListByUserId(props.userId,page); 
+        } else if (props.viewType === "teams") {
+          props. getTeamOpportunity(props.userId,pageNo);
+        } else if (props.viewType === "all") {
+          props. getFullOpportunity(page);
+        }
+        props.ClearSearchedDataOfOpportunity()
+        setSearchOnEnter(false);
+      }
+    };
+
+    const handleSearch = () => {
+      if (currentData.trim() !== "") {
+        if (props.teamsAccessInd) {
+          props.inputOpportunityDataSearch(currentData, 'team');
+        } else {
+          if (props.viewType === "table") {
+            props.inputOpportunityDataSearch(currentData, 'user');
+          } else if (props.viewType === "teams") {
+            props.inputOpportunityDataSearch(currentData, 'team');
+          } else if (props.viewType === "all") {
+            props.inputOpportunityDataSearch(currentData, 'All');
+          } else {
+            console.error("Invalid viewType. Please provide a valid value.");
+          }
+        }
+        setSearchOnEnter(true);  // Code for Search
+      } else {
+        console.error("Input is empty. Please provide a value.");
+      }
+    };
+
+    const handleStartListening = () => {
+      setStartTime(Date.now());
+      setIsRecording(true);
+      SpeechRecognition.startListening();
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+      timerRef.current = setTimeout(() => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+      }, minRecordingTime);
+    };
+
+    const suffix = (
+      <AudioOutlined
+        onClick={handleStartListening}
+        style={{
+          fontSize: 16,
+          color: '#1890ff',
+        }}
+  
+      />
+    );
+
+    const handleStopListening = () => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+      if (transcript.trim() !== "") {
+        setCurrentData(transcript);
+        if (props.teamsAccessInd) {
+          props.inputOpportunityDataSearch(transcript, 'team');
+        } else {
+          if (props.viewType === "table") {
+            props.inputOpportunityDataSearch(transcript, 'user');
+          } else if (props.viewType === "teams") {
+            props.inputOpportunityDataSearch(transcript, 'team');
+          } else if (props.viewType === "all") {
+            props.inputOpportunityDataSearch(transcript, 'All');
+          } else {
+            console.error("Invalid viewType. Please provide a valid value.");
+          }
+        }
+       // props.inputOpportunityDataSearch(transcript);
+        setSearchOnEnter(true);
+      }
+    };
+    useEffect(() => {
+      if (!listening && isRecording) {
+        handleStopListening();
+      }
+    }, [listening]);
+    useEffect(() => {
+      if (isRecording && !listening) {
+        // If recording was stopped but less than 5 seconds have passed, restart listening
+        const elapsedTime = Date.now() - startTime;
+        if (elapsedTime < minRecordingTime) {
+          SpeechRecognition.startListening();
+        } else {
+          setIsRecording(false);
+        }
+      }
+    }, [listening, isRecording, startTime]);
 
   const {
     viewType,
@@ -82,13 +212,13 @@ const OpportunityActionLeft = (props) => {
           }
         >
           <span
-            class=" mr-1 text-sm "
+            class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setOpportunityViewType("table")}
             style={{
-              color: props.viewType === "table" && "#1890ff",cursor:"pointer"
+              color: props.viewType === "table" && "#1890ff"
             }}
           >
-            {" "}
+            
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
             <LightbulbIcon className="text-white !text-icon"/>
             </Avatar>
@@ -162,9 +292,9 @@ const OpportunityActionLeft = (props) => {
         >
           <span
             class=" mr-1 text-sm cursor-pointer"
-            onClick={() => props.setOpportunityViewType("close")}
+            onClick={() => props.setOpportunityViewType("all")}
             style={{
-              color: props.viewType === "close" && "#1890ff",
+             color: props.viewType === "all" && "#1890ff",
             }}
           >
             {" "}
@@ -226,8 +356,8 @@ const OpportunityActionLeft = (props) => {
           </Badge>
         </Tooltip>
           )}
-  {/* </div> */}
-  {/* <div class="ml-2"> */}
+ 
+ 
     {user.crmInd=== true && user.opportunityFullListInd===true && ( 
   <Tooltip
           title="All"
@@ -268,11 +398,7 @@ const OpportunityActionLeft = (props) => {
           size="small"
           count={
             (viewType === "dashboard" &&
-              recorddeleteOpportunityData.opportunityDetails) ||
-            0
-          }
-          overflowCount={999}
-        >
+              recorddeleteOpportunityData.opportunityDetails) ||0}overflowCount={999}>
           <span
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setOpportunityViewType("dashboard")}
@@ -287,7 +413,16 @@ const OpportunityActionLeft = (props) => {
           </span>
         </Badge>
       </Tooltip>
-
+      <div class=" w-64 max-sm:w-24">
+        <Input
+          placeholder="Search by Name "
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+        </div>
     </div>
   );
 };
@@ -314,6 +449,10 @@ const mapDispatchToProps = (dispatch) =>
       getAllRecords,
       getRecords,
       getOpportunityTeamRecords,
+      ClearSearchedDataOfOpportunity,
+      getOpportunityListByUserId,
+      getTeamOpportunity,
+      getFullOpportunity
     },
     dispatch
   );

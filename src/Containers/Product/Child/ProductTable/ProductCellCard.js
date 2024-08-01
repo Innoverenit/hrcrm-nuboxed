@@ -2,8 +2,14 @@ import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Tabs,Spin,Input } from "antd";
-import { Select } from "../../../../Components/UI/Elements";
-import{getAlLoCell,getCatalogueCell,getcellCardList,addLocationCell} from "../../../Event/Child/Location/LocationAction";
+import dayjs from "dayjs";
+import { MultiAvatar, Select } from "../../../../Components/UI/Elements";
+import{
+  // getAlLoCell,
+  getCatalogueCell,
+  getcellCardList,
+  addLocationCell
+} from "../../../Event/Child/Location/LocationAction";
 import ProductCellToggle from "./ProductCellToggle";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
@@ -23,7 +29,7 @@ const ProductCellCard = (props) => {
   ];
   console.log(activeTab)
     useEffect(()=>{
-        props.getAlLoCell();
+        // props.getAlLoCell();
        // props.getcellCardList(activeTab,props.particularDiscountData.productId);
         props.getCatalogueCell(props.orgId)
     },[]);
@@ -157,6 +163,9 @@ if(props.fetchingCatalogueCell){
                       </div>
 
 
+                     
+
+
 
                       <div className="flex font-medium flex-col md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between">
               <div className="text-xs  font-poppins">
@@ -183,6 +192,26 @@ if(props.fetchingCatalogueCell){
                 </div>
               </div>
             </div>
+
+
+
+            <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                    <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
+                                      {item.updatedBy!=null&&
+                                    <MultiAvatar
+                                                                    primaryTitle={item.updatedBy}
+                                                                    imgWidth={"1.8rem"}
+                                                                    imgHeight={"1.8rem"}
+                                                                />
+
+                                      }
+                                        {item.updatedBy!=null&&
+                                        <>
+                                      {`  ${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
+                                      </>
+                                        }
+                                    </div>
+                                </div>
                      
                      
     
@@ -222,7 +251,7 @@ const mapStateToProps = ({ auth,location,distributor, departments, }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getAlLoCell,
+            // getAlLoCell,
             getCatalogueCell,
             getcellCardList,
             addLocationCell

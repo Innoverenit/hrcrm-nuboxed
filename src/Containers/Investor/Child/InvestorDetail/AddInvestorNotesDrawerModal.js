@@ -5,9 +5,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-const InvestorLinkedNotes = lazy(() =>
-  import("./InvestorDetailTab/InvestorNote/InvestorLinkedNotes")
-);
+import MainNotes from "../../../CustomNote/MainNotes";
+
 
 
 class AddInvestorNotesDrawerModal extends Component {
@@ -27,8 +26,10 @@ class AddInvestorNotesDrawerModal extends Component {
           onClose={() => this.props.handleInvestorNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <InvestorLinkedNotes RowData={this.props.RowData} 
-            investorId={this.props.RowData.investorId} 
+            
+            <MainNotes
+             type="customer"
+             uniqueId={this.props.RowData.investorId}
             />
           </Suspense>
         </StyledDrawer>

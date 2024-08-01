@@ -1,7 +1,7 @@
 import * as types from "./SuppliersActionType";
 import { base_url, base_url2 } from "../../../Config/Auth";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 import Swal from "sweetalert2";
 
@@ -663,12 +663,21 @@ export const getAllSuppliersList = (orgId, pageNo) => (dispatch) => {
     });
 };
 
-export const inputDataSearch = (name) => (dispatch) => {
+
+
+export const handleSupplierInventoryImportModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIER_INVENTORY_IMPORT_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const inputDataSearch = (name,type) => (dispatch) => {
   dispatch({
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/search/supplier/${name}`,{
+    .get(`${base_url2}/supplier/api/v1/Supplier/search/alltype/${name}/${type}`,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -756,6 +765,50 @@ export const handleSupplierExcleUploadModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_SUPPLIER_EXCLE_UPLOAD_MODAL,
     payload: modalProps,
   });
+};
+
+
+
+
+export const addSupplierInventoryImportForm =
+(customer, userId) => (dispatch, getState) => {
+  //const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/excel/supplier-inventory`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+    //dispatch(getLeads(userId));
+
+  window.location.reload()
+      // dispatch(getRecords(userId));
+      // dispatch(getLatestCustomers(userId, startDate, endDate));
+      // dispatch(getCustomerListByUserId(userId));
+
+      dispatch({
+        type: types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
 };
 
 //add supplier document
@@ -885,7 +938,6 @@ export const deletePurchaseData = (data, purchaseId) => (dispatch) => {
       });
     });
 };
-
 /**
  * get deleted supplies list
  */
@@ -1212,8 +1264,8 @@ export const setTimeRange = (startDate, endDate) => (dispatch) => {
   dispatch({
     type: types.SET_TIME_INTERVAL,
     payload: {
-      startDate: moment(startDate).toISOString(),
-      endDate: moment(endDate).toISOString(),
+      startDate: dayjs(startDate).toISOString(),
+      endDate: dayjs(endDate).toISOString(),
     },
   });
 };
@@ -1240,11 +1292,9 @@ export const getSupplierHistory = (supplierId) => (dispatch) => {
       });
     });
 };
-
 /**
  * get activity list by SuppliersId
  */
-
 export const getActivityListBySupplierId = (supplierId) => (dispatch) => {
   dispatch({
     type: types.GET_ACTIVITY_LIST_BY_SUPPLIERID_REQUEST,
@@ -2083,9 +2133,9 @@ export const linkSuplierToggle = ( data,id) => (dispatch, getState) => {
   });
   axios
   .put(`${base_url2}/supplier/update/inventory/supplier/publishInd/${id}`, data, {
-    headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-    },
+    // headers: {
+    //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    // },
   })
 
     .then((res) => {
@@ -2104,8 +2154,95 @@ export const linkSuplierToggle = ( data,id) => (dispatch, getState) => {
     })
 };
 
+export const linkSuplierInventoryToggle = ( data,id) => (dispatch, getState) => {
+  //console.log(permissions, userId);
+  //const orgId = getState().auth.userDetails.organizationId;
+  dispatch({
+    type: types.LINK_SUPPLIERS_INVENTORY_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplier/update/inventory/supplier/publishInventoryInd/${id}`, data, {
+    // headers: {
+    //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    // },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_SUPPLIERS_INVENTORY_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_SUPPLIERS_INVENTORY_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+
 export const ClearSearchedDataOfSupplier = () => (dispatch) => {
   dispatch({
     type: types.HANDLE_CLAER_SEARCHED_DATA_SUPPLIER,
   });
+};
+
+
+
+export const getSuppliersNotApprovalList = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIERS_NOT_APPROVAL_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/user/NotApproved/${userId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIERS_NOT_APPROVAL_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIERS_NOT_APPROVAL_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+export const linkSupplierNotApproval = (supplierId,approveInd) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_SUPPLIER_NOT_APPROVAL_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplier/user/updateApprovedInd/${supplierId}/${approveInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.REMOVE_SUPPLIER_NOT_APPROVAL_SUCCESS,
+        payload: supplierId,
+      });
+      message.success(res.data);
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.REMOVE_SUPPLIER_NOT_APPROVAL_FAILURE,
+        payload: err,
+      });
+      // message.error("Something went wrong");
+    });
 };

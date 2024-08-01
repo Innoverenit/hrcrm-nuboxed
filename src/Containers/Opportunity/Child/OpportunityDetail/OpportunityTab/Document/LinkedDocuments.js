@@ -55,7 +55,9 @@ class LinkedDocuments extends Component {
                       defaultMessage="Date"
                     /></div>
      
+          
             <div className="md:w-[10.1rem]">  <FormattedMessage id="app.name" defaultMessage="Name" /></div>
+            <div className="md:w-[10.1rem]">  <FormattedMessage id="app.type" defaultMessage="Type" /></div>
                      <div className="md:w-[11.12rem]">
                      <FormattedMessage
               id="app.description"
@@ -83,14 +85,14 @@ class LinkedDocuments extends Component {
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                          
-                                         <div className=" flex font-medium  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                         <div className=" flex   md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
     <div className="flex max-sm:w-full items-center"> 
     
               <div class="max-sm:w-full">
                                             <Tooltip>
                                               <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                               
-                                                <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                <div class="text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                     
                                                 <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
          
@@ -105,24 +107,24 @@ class LinkedDocuments extends Component {
     
                                  
                                   
-                                    <div className=" flex font-medium  md:w-[15.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                    <div className=" flex  md:w-[15.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                     
-                                      <div class="text-sm  font-poppins">
+                                      <div class="text-xs  font-poppins">
                                       {item.documentTitle}
                                       </div>
                                   </div>
     
-                                  <div className=" flex font-medium  md:w-[14.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                  <div className=" flex  md:w-[14.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                     
-                                    <div class="text-sm  font-poppins">
+                                    <div class="text-xs  font-poppins">
                                     <span>{elipsize(item.documentDescription || "", 15)}</span>
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                        
-                                       <div class="text-sm  font-poppins">
+                                       <div class="text-xs  font-poppins">
                      
-                         <div className="font-normal text-sm  font-poppins">
+                         <div className="font-normal text-xs  font-poppins">
                            <span>{item.uploadedBy}</span>
                          </div>
                      
@@ -130,15 +132,15 @@ class LinkedDocuments extends Component {
                                    </div>
                                    <div className=" flex font-medium  md:w-[20.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                        
-                                       <div class="text-sm  font-poppins">
+                                       <div class="text-xs  font-poppins">
                      
-                         <div className="font-normal text-sm  font-poppins">
+                         <div className="font-normal text-xs  font-poppins">
                            <span>{item.fileName}</span>
                          </div>
                      
                                        </div>
 
-                                       <div class="text-sm  font-poppins">
+                                       <div class="text-xs  font-poppins">
                      
                                  
           <ContractToggle
@@ -162,24 +164,24 @@ class LinkedDocuments extends Component {
           >
             <DownloadIcon
               type="download"
-              style={{ cursor: "pointer",fontSize:"1.25rem" }}
+               className=" cursor-pointer !text-icon text-red "
             />
           </a>
               </>
                      
                       </div>
                                  
-                                    <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex  ml-2  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         
     
-                                        <div class=" text-sm  font-poppins text-center">
+                                        <div class=" text-xs  font-poppins text-center">
                                         <StyledPopconfirm
             title="Do you want to delete?"
           onConfirm={() => deleteDocument(item.documentId)}
          >
             <DeleteIcon type="delete" 
-            class=" cursor-pointer !text-icon text-red "
-            style={{ cursor: "pointer",fontSize:"1.25rem" , color: "red" }} />
+            className=" cursor-pointer !text-icon text-red "
+         />
           </StyledPopconfirm>
     
                                         </div>

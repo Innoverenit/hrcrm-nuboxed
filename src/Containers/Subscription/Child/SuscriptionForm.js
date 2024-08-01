@@ -268,7 +268,7 @@ console.log(props.rowData.subscriptionType)
                          <FaRocket />
             </div>
                         <div className="text-xl font-semibold text-center text-gray-900">Starter</div>
-                        <div className="text-lg font-bold text-center mt-2">€ 9.99</div>
+                        <div className="text-lg font-bold text-center mt-2">€ </div>
                         <div className="text-lg font-bold text-center mt-2">Starter features</div>
                         <div className="text-sm text-gray-600 mt-4">Ideal for individuals and small teams</div>
                       </div>
@@ -284,7 +284,7 @@ console.log(props.rowData.subscriptionType)
                          <FaBriefcase /> 
             </div>
                         <div className="text-xl font-semibold text-center text-gray-900">Professional</div>
-                        <div className="text-lg font-bold text-center mt-2">€ 29.99</div>
+                        <div className="text-lg font-bold text-center mt-2">€ </div>
                         <div className="text-lg font-bold text-center mt-2">Professional features</div>
                         <div className="text-sm text-gray-600 mt-4">Advanced features for professionals and businesse</div>
                       </div>
@@ -303,7 +303,7 @@ console.log(props.rowData.subscriptionType)
                          <FaBuilding /> 
             </div>
                         <div className="text-xl font-semibold text-center text-gray-900">Enterprise</div>
-                        <div className="text-lg font-bold text-center mt-2">€ 50.49</div>
+                        <div className="text-lg font-bold text-center mt-2">€ </div>
                         <div className="text-lg font-bold text-center mt-2">All features</div>
                         <div className="text-sm text-gray-600 mt-4">Tailored solutions for large enterprises</div>
                       </div>

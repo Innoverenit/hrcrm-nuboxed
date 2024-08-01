@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader} from "../../Components/Placeholder";
 import DealLostCard from './Child/DealTable/DealLostCard';
-import {
-  // setDealViewType,
-  handleDealModal}from "./DealAction";
+import {handleDealModal}from "./DealAction";
 import DealDeletedCard from './DealDeletedCard';
 const DealsTeamCardList=lazy(()=>import ("./DealsTeamCardList"));
 const DealsBoard=lazy(()=>import ("./Child/DealsBoard"));
@@ -32,6 +30,8 @@ function Deal (props) {
      
             <React.Fragment>
                        <DealHeader 
+                        selectedLanguage={props.selectedLanguage}
+                        translateText={props.translateText}
                        viewType={viewType}
                        teamsAccessInd={teamsAccessInd}
                        setDealViewType={setDealViewType}
@@ -39,22 +39,54 @@ function Deal (props) {
                        handleDealModal={handleDealModal}
                        />
                        <CreateDealModal 
+                        selectedLanguage={props.selectedLanguage}
+                        translateText={props.translateText}
                        opencreateDealModal={opencreateDealModal}
                        handleDealModal={handleDealModal}/>
-
                        <Suspense fallback={<BundleLoader />}>
-
                        {teamsAccessInd ? (
-        <DealsTeamCardList/>
+        <DealsTeamCardList
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+        />
         ) : (
           <>
-            {viewType === 'table' &&  <DealCardList/>}
-            {viewType === 'stage' &&   <DealsBoard/>}
-            {viewType === 'all' && <DealsAllCardList/>}
-            {viewType === 'teams' &&   <DealsTeamCardList/>}
-            {viewType === 'won' &&    <DealWonCard/>}
-            {viewType === 'lost' &&  <DealLostCard/>}
-            {viewType === 'delete' &&  <DealDeletedCard/>}
+            {viewType === 'table' &&  <DealCardList
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+              translatedMenuItems={props.translatedMenuItems}
+            />}
+            {viewType === 'stage' &&   <DealsBoard
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+              translatedMenuItems={props.translatedMenuItems}
+            />}
+            {viewType === 'all' && <DealsAllCardList
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+              translatedMenuItems={props.translatedMenuItems}
+            />}
+            {viewType === 'teams' &&   <DealsTeamCardList
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+              translatedMenuItems={props.translatedMenuItems}
+            />}
+            {viewType === 'won' &&    <DealWonCard
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+              translatedMenuItems={props.translatedMenuItems}
+            />}
+            {viewType === 'lost' &&  <DealLostCard
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+              translatedMenuItems={props.translatedMenuItems}
+            />}
+            {viewType === 'delete' &&  <DealDeletedCard
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+              translatedMenuItems={props.translatedMenuItems}
+            />}
           </>
         )}
           {/* {viewType === "table" ?

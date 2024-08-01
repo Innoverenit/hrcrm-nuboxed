@@ -289,7 +289,7 @@ function handleSetCurrentCandidateId(candidateId) {
           </Tooltip>
          
                         <span 
-                      className="hover_button"
+                      className="hover:bg-black"
                         onClick={() => {
                         
                           props.getCandidateById(item.candidateId );
@@ -309,7 +309,7 @@ function handleSetCurrentCandidateId(candidateId) {
                         </span>
 
                         <span 
-                      className="hover_button"
+                       className="hover:bg-black"
                         onClick={() => {
                         
                       props.getCandidateTasksInfo(item.candidateId);

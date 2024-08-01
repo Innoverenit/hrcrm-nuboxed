@@ -18,7 +18,11 @@ const UpdateDealModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <UpdateDealForm currentItem={props.currentItem} />{" "}
+          <UpdateDealForm currentItem={props.currentItem} 
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>

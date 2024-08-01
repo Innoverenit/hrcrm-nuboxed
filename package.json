@@ -79,6 +79,7 @@
     "react-dom": "^16.8.6",
     "react-draft-wysiwyg": "^1.13.2",
     "react-draggable-tabs": "^1.0.8",
+    "react-elastic-carousel": "^0.11.5",
     "react-fontawesome": "^1.7.1",
     "react-funnel-chart": "^0.1.8",
     "react-highlight-words": "^0.17.0",

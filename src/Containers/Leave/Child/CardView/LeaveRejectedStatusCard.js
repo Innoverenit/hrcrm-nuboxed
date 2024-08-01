@@ -52,7 +52,6 @@ function LeaveRejectedStatusCard(props) {
           .map((item) => {
             const currentdate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-
             return (
               <>
                 <div>
@@ -135,11 +134,7 @@ function LeaveRejectedStatusCard(props) {
                           </div>
                         </div>
                       </div>
-                      </div>
-                     
-
-                     
-                     
+                      </div>               
                     </div>
                   </div>
                 </div>

@@ -35,7 +35,10 @@ class AddPitchModal extends Component {
           footer={null}
         >
         <Suspense fallback={<BundleLoader />}>
-          <PitchForm />{" "}
+          <PitchForm
+          selectedLanguage={this.props.selectedLanguage}
+          translateText={this.props.translateText}
+          />{" "}
        
         </Suspense>
 

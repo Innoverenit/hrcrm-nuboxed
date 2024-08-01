@@ -217,7 +217,7 @@ saveChanges = () => {
 //                     {item.includeds &&
 //                   item.includeds.map((candidate, i) => {
                     
-//                     const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "No data"
+//                     const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "None"
 //                     return (
 //                       <Tooltip title={candidate.empName} key={i}>
 //                       <Avatar style={{ backgroundColor: "#f56a00" }}>
@@ -315,8 +315,8 @@ return (
   <>
    
    <div className=' flex justify-center sticky  z-auto'>
-      <div class="rounded-lg m-2 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
           <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">
           Name
           </div>
@@ -346,13 +346,13 @@ return (
              // console.log(countryCode)
               return (
                 <div>
-                  <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col">
+                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium  w-[8.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">                                  
                             <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                             {item.name}
                               {date === currentdate ? (
-                                <span class="text-xs font-bold text-[tomato]">
+                                <span class="!text-icon font-bold text-[tomato]">
                                   New
                                 </span>
                               ) : null}
@@ -400,7 +400,7 @@ return (
                     {item.includeds &&
                   item.includeds.map((candidate, i) => {
                     
-                    const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "No data"
+                    const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "None"
                     return (
                       <Tooltip title={candidate.empName} key={i}>
                       <Avatar style={{ backgroundColor: "#f56a00" }}>

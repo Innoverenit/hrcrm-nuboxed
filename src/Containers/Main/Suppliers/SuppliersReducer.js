@@ -113,6 +113,8 @@ const initialState = {
   fetchingGeneratorSupplierListError: false,
   generatorSuppliers: [],
 
+  addSupplierInventoryImportModal:false,
+
   moveToInventory: false,
   moveToInventoryError: false,
 
@@ -165,6 +167,9 @@ const initialState = {
 
   addingSuppliersToggle: false,
   addingSuppliersToggleError: false,
+
+  addingSuppliersInvetoryToggle: false,
+  addingSuppliersInvetoryToggleError: false,
 
   addingManual: false,
   addingManualError:false,
@@ -229,6 +234,7 @@ const initialState = {
 
   fetchingInputSupplierData: false,
   fetchingInputSupplierDataError: false,
+  searchSupplierList:[],
 
   updateSupplierById: false,
   updateSupplierByIdError: false,
@@ -277,12 +283,20 @@ const initialState = {
 
   addSupplierContactModal: false,
 
+
+  removingSupplierNotApproval:false,
+  removingSupplierNotApprovalError:false,
+
   addingContactSupplier: false,
   addingContactSupplierError: false,
 
   fetchingSupplierContactListById: false,
   fetchingSupplierContactListByIdError: false,
   contactSupplier: [],
+
+
+  addingSupplierInventoryImportForm:false,
+  addingSupplierInventoryImportFormError:false,
 
   fetchingInventoryAlllist: false,
   fetchingInventoryAlllistError: false,
@@ -301,6 +315,11 @@ const initialState = {
   fetchingContactDistributorsById: false,
   fetchingContactDistributorsByIdError: false,
   contactDistributor: [],
+
+
+  fetchingNotApprovalSupplierList:false,
+  fetchingNotApprovalSupplierListError:false,
+  notApprovalSupplierList:[],
 
   fetchingContactSupplierById: false,
   fetchingContactSupplierByIdError: false,
@@ -439,12 +458,17 @@ export const suppliersReducer = (state = initialState, action) => {
     case types.HANDLE_SUPPLIERS_MODAL:
       return { ...state, addSuppliersModal: action.payload };
 
+
+      case types.HANDLE_SUPPLIER_INVENTORY_IMPORT_MODAL:
+        return { ...state, addSupplierInventoryImportModal: action.payload };
+
     case types.ADD_SUPPLIERS_REQUEST:
       return { ...state, addingSuppliers: true };
     case types.ADD_SUPPLIERS_SUCCESS:
       return {
         ...state, addingSuppliers: false, addSuppliersModal: false,
-        supplierList: [action.payload, ...state.supplierList]
+        supplierList: [action.payload, ...state.supplierList].filter(supplier => supplier.approvedInd !== false)
+        //supplierList: [action.payload, ...state.supplierList]
       };
     case types.ADD_SUPPLIERS_FAILURE:
       return {
@@ -452,6 +476,30 @@ export const suppliersReducer = (state = initialState, action) => {
         addingSuppliers: false,
         addingSuppliersError: true,
         addSuppliersModal: false,
+      };
+
+
+
+
+      case types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_REQUEST:
+      return { ...state, addingSupplierInventoryImportForm: true };
+    case types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_SUCCESS:
+      return {
+        ...state,
+        addingSupplierInventoryImportForm: false,
+        addSupplierInventoryImportModal: false,
+        // organizationDocumentDrawer: false,
+        // repositoryData: [
+        //   action.payload,
+        //   ...state.repositoryData,
+        //  ],
+
+      };
+    case types.ADD_SUPPLIER_INVENTORY_IMPORT_FORM_FAILURE:
+      return {
+        ...state, addingSupplierInventoryImportForm: false,
+        addingSupplierInventoryImportFormError:true,
+        // addCustomerModal: false 
       };
 
       case types.UPDATE_QUALITY_SUPPLIERS_REQUEST:
@@ -809,8 +857,9 @@ export const suppliersReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingInputSupplierData: false,
-        supplierList: state.viewType === "dashboard" ? null : action.payload,
-        allSupplierList: state.viewType === "dashboard" ? action.payload : null,
+        // supplierList: state.viewType === "dashboard" ? null : action.payload,
+        // allSupplierList: state.viewType === "dashboard" ? action.payload : null,
+        searchSupplierList: action.payload,
       };
     case types.INPUT_SEARCH_DATA_FAILURE:
       return {
@@ -863,6 +912,42 @@ export const suppliersReducer = (state = initialState, action) => {
     /**
      * generate order with subscription
      */
+
+
+
+    case types.REMOVE_SUPPLIER_NOT_APPROVAL_REQUEST:
+      return { ...state, removingSupplierNotApproval: true };
+    case types.REMOVE_SUPPLIER_NOT_APPROVAL_SUCCESS:
+      return {
+        ...state,
+        removingSupplierNotApproval: false,
+       
+        notApprovalSupplierList: state.notApprovalSupplierList.filter(
+          (item) => item.supplierId !== action.payload
+        ),
+      };
+    case types.REMOVE_SUPPLIER_NOT_APPROVAL_FAILURE:
+      return {
+        ...state,
+        removingSupplierNotApproval: false,
+        removingSupplierNotApprovalError: true,
+      };
+
+
+    case types.GET_SUPPLIERS_NOT_APPROVAL_LIST_REQUEST:
+      return { ...state, fetchingNotApprovalSupplierList: true };
+    case types.GET_SUPPLIERS_NOT_APPROVAL_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingNotApprovalSupplierList: false,
+        notApprovalSupplierList: [...state.notApprovalSupplierList, ...action.payload]
+      };
+    case types.GET_SUPPLIERS_NOT_APPROVAL_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingNotApprovalSupplierList: false,
+        fetchingNotApprovalSupplierListError: true,
+      };
 
     case types.GENERATE_ORDER_BY_SUPPLIER_ID_REQUEST:
       return {
@@ -1078,6 +1163,13 @@ export const suppliersReducer = (state = initialState, action) => {
       return {
         ...state,
         applyingForLoginInContact: false,
+        contactSupplier: state.contactSupplier.map((item) => {
+          if (item.contactPersonId === action.payload.contactPersonId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.APPLY_FOR_LOGIN_IN_CONTACT_FAILURE:
       return {
@@ -1761,9 +1853,30 @@ export const suppliersReducer = (state = initialState, action) => {
                                         addingSuppliersToggleError: true,
                                       };
 
+                                      case types.LINK_SUPPLIERS_INVENTORY_TOGGLE_REQUEST:
+                                        return { ...state, addingSuppliersInvetoryToggle: true };
+                                      case types.LINK_SUPPLIERS_INVENTORY_TOGGLE_SUCCESS:
+                                        return {
+                                          ...state,
+                                          addingSuppliersInvetoryToggle: false,
+                                          inventoryList: state.inventoryList.map((item) => {
+                                            if (item.inventorySupplieId === action.payload.inventorySupplieId) {
+                                              return action.payload;
+                                            } else {
+                                              return item;
+                                            }
+                                          }),
+                                        };
+                                      case types.LINK_SUPPLIERS_INVENTORY_TOGGLE_FAILURE:
+                                        return {
+                                          ...state,
+                                          addingSuppliersInvetoryToggle: false,
+                                          addingSuppliersInvetoryToggleError: true,
+                                        };
+
                                       case types.HANDLE_CLAER_SEARCHED_DATA_SUPPLIER:
                                         return { ...state, 
-                                          supplierList: [], 
+                                          searchSupplierList: [], 
                                         };  
 
 

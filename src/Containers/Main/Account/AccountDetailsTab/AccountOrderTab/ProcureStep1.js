@@ -76,28 +76,28 @@ function ProcureStep1(props) {
             orderId: props.setEdittingProcure.orderId || "",
             priority: props.setEdittingProcure.priority || "",
             lobDetsilsId: props.setEdittingProcure.lobDetsilsId || "",
-            loadingAddress: [
-                {
-                    addressId: props.setEdittingProcure.loadingAddress.length ?
-                        props.setEdittingProcure.loadingAddress[0].addressId : "",
-                    address1: props.setEdittingProcure.loadingAddress.length ?
-                        props.setEdittingProcure.loadingAddress[0].address1 : "",
-                    state: props.setEdittingProcure.loadingAddress.length ?
-                        props.setEdittingProcure.loadingAddress[0].state : "",
-                    city: props.setEdittingProcure.loadingAddress.length ?
-                        props.setEdittingProcure.loadingAddress[0].city : "",
-                    pinCode: props.setEdittingProcure.loadingAddress.length ?
-                        props.setEdittingProcure.loadingAddress[0].pinCode : "",
-                    countryId: props.setEdittingProcure.loadingAddress.length ?
-                        props.setEdittingProcure.loadingAddress[0].countryId : "",
-                    latitude: props.setEdittingProcure.loadingAddress.length ?
-                        props.setEdittingProcure.loadingAddress[0].latitude : "",
-                    longitude: props.setEdittingProcure.loadingAddress.length ?
-                        props.setEdittingProcure.loadingAddress[0].longitude : "",
-                    country: props.setEdittingProcure.loadingAddress.length ?
-                        props.setEdittingProcure.loadingAddress[0].country : "",
-                },
-            ],
+            // loadingAddress: [
+            //     {
+            //         addressId: props.setEdittingProcure.loadingAddress.length ?
+            //             props.setEdittingProcure.loadingAddress[0].addressId : "",
+            //         address1: props.setEdittingProcure.loadingAddress.length ?
+            //             props.setEdittingProcure.loadingAddress[0].address1 : "",
+            //         state: props.setEdittingProcure.loadingAddress.length ?
+            //             props.setEdittingProcure.loadingAddress[0].state : "",
+            //         city: props.setEdittingProcure.loadingAddress.length ?
+            //             props.setEdittingProcure.loadingAddress[0].city : "",
+            //         pinCode: props.setEdittingProcure.loadingAddress.length ?
+            //             props.setEdittingProcure.loadingAddress[0].pinCode : "",
+            //         countryId: props.setEdittingProcure.loadingAddress.length ?
+            //             props.setEdittingProcure.loadingAddress[0].countryId : "",
+            //         latitude: props.setEdittingProcure.loadingAddress.length ?
+            //             props.setEdittingProcure.loadingAddress[0].latitude : "",
+            //         longitude: props.setEdittingProcure.loadingAddress.length ?
+            //             props.setEdittingProcure.loadingAddress[0].longitude : "",
+            //         country: props.setEdittingProcure.loadingAddress.length ?
+            //             props.setEdittingProcure.loadingAddress[0].country : "",
+            //     },
+            // ],
 
         }}
 
@@ -124,7 +124,7 @@ function ProcureStep1(props) {
                 <div class="overflow-y-auto h-[28rem] overflow-x-hidden max-sm:h-[30rem]">
                     <Form>
                         <div class=" flex justify-between">
-                            <div class=" w-[47%] flex-col flex">
+                            {/* <div class=" w-[47%] flex-col flex">
                                 <div class="mt-3">
                                     <StyledLabel><h3> <FormattedMessage
                                         id="app.deliveryaddress"
@@ -152,7 +152,7 @@ function ProcureStep1(props) {
                                     />
                                 </div>
 
-                            </div>
+                            </div> */}
                             <div class=" w-[47%]">
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">

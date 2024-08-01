@@ -6,6 +6,10 @@ import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip,} from "antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { FormattedMessage } from "react-intl";
+import {handleUploadContactInvestModal} from "../ContactInvestAction";
+import UploadContactInvest from "./UploadContactInvest";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import UploadIcon from '@mui/icons-material/Upload';
 
 class ContactInvestActionRight extends React.Component {
 
@@ -18,6 +22,8 @@ class ContactInvestActionRight extends React.Component {
         handleContactInvestModal
     } = this.props;
     return (
+      <>
+       {this.props.viewType === "card"  && (
       <div class=" flex  items-center">
         
         {/* {this.props.viewType === "table" && user.contactFullListInd===true && user.employee_type !=="external" ? (
@@ -43,47 +49,63 @@ class ContactInvestActionRight extends React.Component {
             style={{fontSize: "x-large"}}/>
          </a>
          </Tooltip>
-       )}
-        {user.userType !== "USER" && user.department !== "Partner" && ( 
-        <Button
-          type="primary"
-          default
-          onClick={() => this.props.history.push("/import/account")}
-        >
-           <FormattedMessage
-                        id="app.import"
-                        defaultMessage="Import"
-                      />
-          
-        </Button>
-        )}
-        {user.imInd === true  && user.investorContactCreateInd === true &&  (
+       )} {user.imInd === true  && user.investorContactCreateInd === true &&  (
         <Tooltip placement="left" title="Create">
           <Button 
            type="primary"
          onClick={() => handleContactInvestModal(true)}
         >
-         <FormattedMessage
+        <DataSaverOnIcon/> <FormattedMessage
                         id="app.add"
                         defaultMessage="Add"
                       />
           </Button>
         </Tooltip>
         )}
+        {user.userType !== "USER" && user.department !== "Partner" && ( 
+        <Button
+          type="primary"
+          default
+          onClick={() => this.props.history.push("/import/account")}
+        >
+         <UploadIcon className=" !text-icon"/>  <FormattedMessage
+                        id="app.import"
+                        defaultMessage="Import"
+                      />
+          
+        </Button>
+        )}
+       
+        <Tooltip placement="left" title="Create">
+        <Button
+          type="primary"
+          ghost
+          onClick={() => this.props.handleUploadContactInvestModal(true)}
+        >
+         <UploadIcon className=" !text-icon"/> Upload
+        </Button>
+      </Tooltip>
       </div>
+      )}
+       <UploadContactInvest
+          handleUploadContactInvestModal={this.props.handleUploadContactInvestModal}
+          uploadContactInvestList={this.props.uploadContactInvestList}
+        />
+      </>
     );
   }
 }
 
-const mapStateToProps = ({ auth, }) => ({
+const mapStateToProps = ({ auth,contactinvest }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   role: auth.userDetails.role,
+  uploadContactInvestList:contactinvest.uploadContactInvestList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-     
+     handleUploadContactInvestModal
     },
     dispatch
   );

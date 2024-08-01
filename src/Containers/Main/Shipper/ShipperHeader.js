@@ -24,17 +24,23 @@ class ShipperHeader extends Component {
                             setCurrentData={setCurrentData}
                             currentData={currentData}
                             handleClear={handleClear}
+                            translateText={this.props.translateText}
+          translatedMenuItems={this.props.translatedMenuItems}
+          selectedLanguage={this.props.selectedLanguage}
                         />
                     }
                     rightComponent={
                         <ShipperActionRight
                              viewType={viewType}
-                            handleShipperModal={handleShipperModal} />
+                            handleShipperModal={handleShipperModal} 
+                            translateText={this.props.translateText}
+          translatedMenuItems={this.props.translatedMenuItems}
+          selectedLanguage={this.props.selectedLanguage}
+                            />
                     }
                 />
             </>
         )
     }
 }
-
 export default ShipperHeader;

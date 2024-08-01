@@ -15,6 +15,8 @@ class EmployeesHeader extends Component {
           <ActionHeader
             leftComponent={
               <EmployeesActionLeft
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
                 viewType={viewType}
                 setEmployeeViewType={setEmployeeViewType}
                 currentData={currentData}
@@ -31,7 +33,10 @@ class EmployeesHeader extends Component {
               />
             }
             rightComponent={
-              <EmployeesActionRight handleEmployeeModal={handleEmployeeModal} />
+              <EmployeesActionRight 
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+              handleEmployeeModal={handleEmployeeModal} />
             }
           />
         </div>

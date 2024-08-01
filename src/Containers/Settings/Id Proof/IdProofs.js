@@ -18,7 +18,6 @@ import {
   ClearReducerDataOfIdproof
 } from "./IdProofAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { MainWrapper } from "../../../Components/UI/Layout";
 const SingleIdProof = lazy(() =>
   import("./SingleIdProof")
 );
@@ -122,7 +121,7 @@ return <div><BundleLoader/></div>;
   return (
       <div>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex w-[18vw] mt-3"  >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -164,9 +163,9 @@ return <div><BundleLoader/></div>;
           </div>
           <div class=" flex flex-col" >
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
+         <div className="!h-[69vh] !mt-2" >
           {!props.fetchingIdProofs && idProofs.length === 0 ? <NodataFoundPage /> : idProofs.slice().sort((a, b) => a.idProofType.localeCompare(b.idProofType)).map((region, index) => (
-            <div className="card9" key={region.idProofTypeId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.idProofTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.idProofTypeId ? (
@@ -178,7 +177,7 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setIdProofName(e.target.value)}
                 />
             ) : (
-                <div className="region">{region.idProofType}&nbsp;&nbsp;&nbsp;
+                <div >{region.idProofType}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -186,7 +185,7 @@ return <div><BundleLoader/></div>;
             )}
 
             {/* Action buttons */}
-            <div className="actions">
+            <div>
                 {/* Edit button */}
                 {editingId === region.idProofTypeId ? (
                     <div>
@@ -196,7 +195,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {region.editInd ? (
-                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.idProofTypeId, region.idProofType)} />
+                    <BorderColorIcon  className="!text-icon cursor-pointer text-red-600" onClick={() => editRegion(region.idProofTypeId, region.idProofType)} />
                     ) : null}
                     </>
                 )}
@@ -208,12 +207,8 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeIdProof(region.idProofTypeId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                <DeleteOutlined className=" !text-icon text-red-600 cursor-pointer"
+                 
               // onClick={() => 
               //     props.removeServiceLine(item.idProofTypeId)
               //  }
@@ -222,7 +217,7 @@ return <div><BundleLoader/></div>;
             </div>
         </div>
         ))}
-        </MainWrapper>
+        </div>
             </div>
       
   <div class=" font-bold">Updated on {dayjs(props.idProofs && props.idProofs.length && props.idProofs[0].updationDate).format('YYYY-MM-DD')} by {props.idProofs && props.idProofs.length && props.idProofs[0].name}</div>

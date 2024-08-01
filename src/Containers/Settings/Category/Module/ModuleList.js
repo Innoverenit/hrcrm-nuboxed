@@ -165,6 +165,42 @@ const handleFinanceClick = (checked) => {
     props.addingModules(data, props.orgId);
   };
 
+  const { catalogPublishInd } = props.moduleList;
+  console.log(catalogPublishInd);
+  const [catalogueStatus, setCatalogueStatus] = useState(catalogPublishInd);
+  useEffect(() => {
+    setCatalogueStatus(catalogPublishInd);
+  }, [catalogPublishInd]);
+  
+  const handleCatalougeClick = (checked) => {
+    setCatalogueStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "erp",
+    };
+    props.addingModules(data, props.orgId);
+  };
+
+  const { materialPublishInd } = props.moduleList;
+  console.log(materialPublishInd);
+  const [materialStatus, setMaterialStatus] = useState(materialPublishInd);
+  useEffect(() => {
+    setMaterialStatus(materialPublishInd);
+  }, [materialPublishInd]);
+  
+  const handleMaterialClick = (checked) => {
+    setMaterialStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "erp",
+    };
+    props.addingModules(data, props.orgId);
+  };
+
+
+
   const { imInd } = props.moduleList;
   console.log(imInd);
   const [imStatus, setImStatus] = useState(imInd);
@@ -350,32 +386,34 @@ const handleFinanceClick = (checked) => {
     return (
       <>
         <div flexWrap="nowrap">
-          <MainWrapper
+          {/* <MainWrapper
             style={{
               flexBasis: "100%",
               overflow: "auto",
               color: "#FFFAFA",
+              
             }}
-          >
+          > */}
             <div class=" flex flex-col" >
               {/* <Title style={{ padding: 8 }}>Designation</Title> */}
-              <MainWrapper style={{ height: "29rem", marginTop: "0.625em" }}>
-              <div class=" w-full cursor-pointer">
+              <MainWrapper style={{  marginTop: "0.625em", cursor:"pointer",height: "79vh", }}>
+              {/* <div class=" w-full cursor-pointer"> */}
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
               <div class="flex" >
                 <div class="w-full flex-row">
               <div class=" flex " >
-             <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+             <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+             <div className=" flex h-28 justify-center "> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
-            <div class="flex justify-center mt-1">
-                    <div class=" text-sm font-semibold">CRM</div>
+            /></div>
+            <div class="flex  flex-col justify-center mt-1">
+                <div class="flex flex-row  justify-center"> 
+                  <div class=" text-sm font-semibold">CRM</div>
                     <div   class=" ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -393,26 +431,33 @@ const handleFinanceClick = (checked) => {
                           unCheckedChildren="No"
                         />
                       </Popconfirm>
+                      
                     </div>
                     </div>
+                   
+                    <div class="text-xs text-center"> Manage interactions and relationships, streamline processes.</div>
                     </div>
-                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+                    
+                    </div>
+                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+           <div className=" flex h-28 justify-center"> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo5}
-              style={{ height:"7rem" }}
+            
               alt="Tekorero logo"
-            />
-            <div class="flex justify-center mt-1">
+            /></div>
+            <div class="flex flex-col justify-center mt-1">
+              <div class="flex flex-row  justify-center">
               <div class=" text-sm font-semibold ">Finance</div>
                     <div   class="  ml-2">
                     <Popconfirm
-        title="Do you wish to change Status?"
-        onConfirm={() => handleFinanceClick(!financeStatus)}
-        okText="Yes"
-        cancelText="No"
-      >
-                        <Switch
+                              title="Do you wish to change Status?"
+                              onConfirm={() => handleFinanceClick(!financeStatus)}
+                              okText="Yes"
+                              cancelText="No"
+                            >
+                                              <Switch
                               onChange={() => {}}
                         //  onChange={this.props.handleErpClick}
                           style={{ width: "4em" }}
@@ -423,15 +468,18 @@ const handleFinanceClick = (checked) => {
                       </Popconfirm>
                     </div>
                     </div>
+                    <div class="text-xs text-center">Handle transactions and invoicing, track budgets.</div>
                     </div>
-                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-                    <img
-              className="big-logo"
+                    </div>
+                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                     <div className=" flex h-28 justify-center"> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo1}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
-             <div class="flex justify-center mt-1">
+            /></div>
+             <div class="flex flex-col justify-center mt-1">
+             <div class="flex flex-row  justify-center">
                     <div class=" text-sm font-semibold  ml-2">IM</div>
                     <div   class="  ml-2">
                     <Popconfirm
@@ -451,6 +499,8 @@ const handleFinanceClick = (checked) => {
                         />
                       </Popconfirm>
                     </div>
+                    </div>
+                    <div class="text-xs text-center"> Investor outreach and fund management.</div>
                     </div>
                     </div>
                     {/* <div>Account</div>
@@ -488,14 +538,16 @@ const handleFinanceClick = (checked) => {
                       </Popconfirm>
                     </div>
 */}
- <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+ <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+ <div className=" flex h-28 justify-center"> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo2}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
-            <div class="flex justify-center mt-1">
+            /></div>
+            <div class="flex flex-col justify-center mt-1">
+              
+             <div class="flex flex-row  justify-center">
                       <div class=" text-sm  ml-2 font-semibold">HR</div>
                     <div   class="  ml-2">
                     <Popconfirm
@@ -519,20 +571,23 @@ const handleFinanceClick = (checked) => {
                     
                     </div> 
                     </div>
+                    <div class="text-xs text-center"> Manage employee goals and performance.</div>
+                    </div>
                     </div>
 
                    
 
-                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div className=" flex h-28 justify-center"> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo3}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
-            <div class="flex justify-center mt-1">
+            /></div>
+            <div class="flex flex-col justify-center mt-1">
            
-                    <div class=" text-sm  ml-2 font-semibold">Rcruitpro</div>
+            <div class="flex flex-row  justify-center">
+                    <div class=" text-sm  ml-2 font-semibold">RecruitPro</div>
                     <div   class=" ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -552,15 +607,18 @@ const handleFinanceClick = (checked) => {
                       </Popconfirm>
                     </div>
                     </div>
+                    <div class="text-xs text-center"> Hire @ Scale.</div>
                     </div>
-                    <div class="w-[13rem] h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
-             <img
-              className="big-logo"
+                    </div>
+                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div className=" flex h-28 justify-center"> 
+              <img
+              className="big-logo w-36 h-24 m-2"
               src={FWLogo4}
-              style={{ height:"7rem" }}
               alt="Tekorero logo"
-            />
-            <div class="flex justify-center mt-1">
+            /></div>
+            <div class="flex flex-col justify-center mt-1">
+            <div class="flex flex-row  justify-center">
                     <div class=" text-sm  ml-2 font-semibold">Elearning</div>
                     <div   class="  ml-2">
                     <Popconfirm
@@ -580,6 +638,8 @@ const handleFinanceClick = (checked) => {
                         />
                       </Popconfirm>
                     </div>
+                    </div>
+                    <div class="text-xs text-center"> Interactive lessons, assessment tools.</div>
                     </div> 
                     </div>
                    
@@ -621,7 +681,7 @@ const handleFinanceClick = (checked) => {
               )
           }
         </ViewEditCard>
-      </div>
+      {/* </div> */}
                 {/* {departments.length ? (
                   departments.map((department, i) => ( */}
                     <SingleModuleList
@@ -667,16 +727,20 @@ logisticsStatus={logisticsStatus}
                     handleTradingClick={handleTradingClick}
                     ecomStatus={ecomStatus}
                     handleEcomClick={handleEcomClick}
+                    handleCatalougeClick={handleCatalougeClick}
+                    catalogueStatus={catalogueStatus}
+                    handleMaterialClick={handleMaterialClick}
+                    materialStatus={materialStatus}
                     />
                   {/* )) */}
                   {/* ) : (
-                    <p>No Data Available</p>
+                    <p>None Available</p>
                   )} */}
 
               </MainWrapper>
             </div>
            
-          </MainWrapper>
+          {/* </MainWrapper> */}
           <div class=" font-bold">Updated on {dayjs(props.moduleList.updationDate).format('YYYY-MM-DD')} by {props.moduleList.updatedBy}</div>
         </div>
      <StripePaymentModal

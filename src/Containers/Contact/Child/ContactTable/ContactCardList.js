@@ -5,7 +5,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip, Select } from "antd";
 import DoNotDisturbOnTotalSilenceIcon from '@mui/icons-material/DoNotDisturbOnTotalSilence';
@@ -20,6 +19,7 @@ import {
   getContactById,
   handleDonotCallModal,
   handleContactDrawerModal,
+  handleContactAddressDrawerModal,
   handleContactEmailDrawerModal,
   handleContactNotesDrawerModal,
   emptyContact,
@@ -31,7 +31,7 @@ import { FormattedMessage } from "react-intl";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
-import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import ReactContactSpeechModal from "../ContactDetail/ReactContactSpeechModal";
 import AddContactDrawerModal from "../UpdateContact/AddContactDrawerModal";
 import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerModal";
@@ -39,6 +39,8 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
+import AddContactAddressDrawerModal from "../ContactTable/AddContactAddressDrawerModal"
 const ContactCETdrawer =lazy(()=>import("./ContactCETdrawer"));
  
 const Option = Select;
@@ -49,6 +51,8 @@ const UpdateContactModal = lazy(() =>
 function ContactCardList(props) {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
     window.addEventListener('error', e => {
@@ -118,7 +122,33 @@ function ContactCardList(props) {
   function handleSetCurrentContactId(item) {
     setCurrentContactId(item);
   }
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          'Name', // 0
+'Company', // 1
+'Designation', // 2
+'Department', // 3
+'Quotation', // 4
+'Pipeline', // 5
+'Portal Access', // 6
+'Owner' // 7
 
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
  
 
   const {
@@ -137,6 +167,10 @@ function ContactCardList(props) {
     updateContactModal,
     contactCETdrawer
   } = props;
+  
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
 
   return (
     <>
@@ -145,38 +179,21 @@ function ContactCardList(props) {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[99%] max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
-        <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
-        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]"><FormattedMessage
-                  id="app.company"
-                  defaultMessage="Company"
-                /></div>
-        <div className=" md:w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]"><FormattedMessage
-                  id="app.designation"
-                  defaultMessage="Designation"
-                /></div>
-        <div className="md:w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]"><FormattedMessage
-                  id="app.department"
-                  defaultMessage="Department"
-                /></div>
-        <div className="md:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]"><FormattedMessage
-                  id="app.quotation"
-                  defaultMessage="Quotation"
-                /></div>
-        <div className="md:w-[3.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]"><FormattedMessage
-                  id="app.pipeline"
-                  defaultMessage="Pipeline"
-                /></div>
-        <div className="w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]"><FormattedMessage
-                  id="app.portalacess"
-                  defaultMessage="Portal Acess"
-                /></div>
-        <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]"><FormattedMessage
-                  id="app.owner"
-                  defaultMessage="Owner"
-                /></div>
+        {translatedMenuItems[0]}</div>
+        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        {translatedMenuItems[1]}</div>
+        <div className=" md:w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
+        {translatedMenuItems[2]}</div>
+        <div className="md:w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        {translatedMenuItems[3]}</div>
+        <div className="md:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        {translatedMenuItems[4]}</div>
+        <div className="md:w-[3.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
+        {translatedMenuItems[5]}</div>
+        <div className="w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
+        {translatedMenuItems[6]}</div>
+        <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
+        {translatedMenuItems[7]}</div>
         <div className="w-[4.2rem]"></div>
 
       </div>
@@ -186,7 +203,8 @@ function ContactCardList(props) {
         hasMore={hasMore}
         loader={fetchingContacts?<div class="flex justify-center">Loading ...</div>:null}
         height={"80vh"}
-        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
+        style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         
         { !fetchingContacts && filterData.length === 0 ?<NodataFoundPage />:filterData.map((item,index) =>  {
@@ -214,7 +232,7 @@ function ContactCardList(props) {
                     return (
                       <div>
                       <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
                           <div className=" flex font-medium  w-[14rem] max-sm:flex-row  max-sm:justify-between max-sm:w-wk  ">
@@ -225,21 +243,21 @@ function ContactCardList(props) {
         primaryTitle={item.firstName}
         imageId={item.imageId}
         imageURL={item.imageURL}
-        imgWidth={"1.8em"}
-        imgHeight={"1.8em"}
+        imgWidth={"1.8rem"}
+        imgHeight={"1.8rem"}
       />
     </div>
-    &nbsp;
+  
     <div class="max-sm:w-full">
                                   <Tooltip>
                                     <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
                                     
-                                      <div class="text-sm flex text-blue-500  font-poppins  font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
+                                      <div class="text-xs flex text-blue-500  font-poppins  font-semibold  cursor-pointer">
+                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   
-  &nbsp;&nbsp;
+
   {date === currentdate ? (
  <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
                             
@@ -256,43 +274,43 @@ function ContactCardList(props) {
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk">
 
-                          <div className=" flex font-medium  max-sm:w-auto  w-[14.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
+                          <div className=" flex  max-sm:w-auto  w-[14.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
                              
-                              <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
+                              <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex font-medium  max-sm:w-auto w-[10.2rem] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  max-sm:w-auto w-[10.2rem] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
                              
-                              <div class="text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="text-xs font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                    {item.designation}
                               </div>
                           </div>
-                          <div className=" flex font-medium  max-sm:w-auto w-[8.3rem] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
+                          <div className=" flex   max-sm:w-auto w-[8.3rem] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
                           
-                            <div class="text-sm  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div class="text-xs max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                  {item.department}
                             </div>
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk">
-                        <div className="flex font-medium  w-[6.01rem] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className="flex  w-[6.01rem] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
-<div className="text-sm  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div className="text-xs font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.oppNo}
 </div>
 </div>
-<div className=" flex font-medium  w-[5.01rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex  w-[5.01rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
                               
 
-                              <div class=" text-sm  max-sm:text-sm font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class=" text-xs  max-sm:text-sm font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.totalProposalValue}
 
                               </div>
                           </div>
-                          <div className="flex font-medium  w-[5.1rem]  max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                          <div className="flex  w-[5.1rem]  max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                           
-                              <div class="text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="text-xs font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                               {item.thirdPartyAccessInd === true
 ?<Tooltip title="Provided"><AlarmOnIcon   className=" !text-xl text-[green]"/></Tooltip> 
@@ -302,21 +320,33 @@ function ContactCardList(props) {
                           </div>
                           </div>
                           <div class="flex items-center max-sm:justify-between max-sm:w-wk">
-                          <div className="flex font-medium  w-[3.01rem] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
+                          <div className="flex   w-[3.01rem] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
         <Tooltip title={item.ownerName}>
           <div class="max-sm:flex justify-end">
           <Tooltip title={item.ownerName}>
         <MultiAvatar
           primaryTitle={item.ownerName}
           imageId={item.ownerImageId}
-          imgWidth={"1.9rem"}
-          imgHeight={"1.9rem"}
+          imgWidth={"1.8rem"}
+          imgHeight={"1.8rem"}
         />
       </Tooltip>
       </div>
     </Tooltip>
 
              </div>
+             <div>
+              <Tooltip title="Address">
+ <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleContactAddressDrawerModal(true);
+            handleSetCurrentContact(item);
+          }}
+          
+        />
+     </Tooltip>
+     </div>
            
               <div>
               <Tooltip title="Notes">
@@ -363,10 +393,10 @@ function ContactCardList(props) {
               </div>
      
                         
-              <div class="rounded-full  cursor-pointer ">
+              <div >
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
-        <span class=" mr-2 text-xs cursor-pointer"
+        <span 
           onClick={() => {
             props.handleDonotCallModal(true);
             handleSetCurrentContactId(item);
@@ -376,13 +406,13 @@ function ContactCardList(props) {
         </span>
       )}
       {item.doNotCallInd === true && (
-        <span class=" mr-2 text-xs cursor-pointer"
+        <span
           onClick={() => {
             props.handleDonotCallModal(true);
             handleSetCurrentContactId(item);
           }}
         >
-          <PhoneDisabledIcon/>
+          <PhoneDisabledIcon  className=" !text-icon cursor-pointer text-[blue]"/>
         </span>
       )}
     </Tooltip>
@@ -401,22 +431,11 @@ function ContactCardList(props) {
      </Tooltip>
                   </div>
 
-                  <div>
-                  <span
-        style={{ cursor: "pointer" }}
-        onClick={() => {
-          handleSetCurrentContactId(item);
-          props.handleContactPulseDrawerModal(true);
-        }}
-      >{user.pulseAccessInd === true && (
-        <MonitorHeartIcon  className=" !text-icon cursor-pointer text-[#df9697]"/>
-      )}
-      </span>
-                  </div>
+                 
                   
              
               
-                <div>
+                {/* <div>
               <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
       <span
         style={{
@@ -427,7 +446,7 @@ function ContactCardList(props) {
       className=" !text-icon cursor-pointer text-[#960A0A]"/>
       </span>
     </Tooltip>
-    </div>
+    </div> */}
     {/* <div><Tooltip title={item.email}>
         <MailOutlineIcon
           type="mail"
@@ -471,6 +490,9 @@ function ContactCardList(props) {
       <UpdateContactModal
         contactData={currentContactId}
         // fullName={currentContactId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
         updateContactModal={updateContactModal}
         handleUpdateContactModal={handleUpdateContactModal}
         handleSetCurrentContactId={handleSetCurrentContactId}
@@ -512,6 +534,11 @@ function ContactCardList(props) {
         addDrawerContactModal={props.addDrawerContactModal}
         handleContactDrawerModal={props.handleContactDrawerModal}
       />
+       <AddContactAddressDrawerModal
+        item={currentContact}
+        addDrawerContactAddressModal={props.addDrawerContactAddressModal}
+        handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
+      />
     </>
   );
 }
@@ -527,6 +554,7 @@ const mapStateToProps = ({
   contactByUserId: contact.contactByUserId,
   sales: opportunity.sales,
   user: auth.userDetails,
+  addDrawerContactAddressModal:contact.addDrawerContactAddressModal,
   addDrawerContactPulseModal:contact.addDrawerContactPulseModal,
   fetchingContacts: contact.fetchingContacts,
   fetchingContactsError: contact.fetchingContactsError,
@@ -555,7 +583,8 @@ const mapDispatchToProps = (dispatch) =>
       handleContactPulseDrawerModal,
       handleContactEmailDrawerModal,
       emptyContact,
-      handleContactCETdrawer
+      handleContactCETdrawer,
+      handleContactAddressDrawerModal
     },
     dispatch
   );

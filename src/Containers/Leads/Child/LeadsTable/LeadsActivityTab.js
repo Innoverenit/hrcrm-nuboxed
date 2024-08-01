@@ -1,18 +1,7 @@
 import React, { lazy, Suspense } from "react";
-import AddCallTaskModal from "./AddCallTaskModal";
-import { StyledDrawer } from "../../../../Components/UI/Antd";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { handleLeadCallModal } from "../../LeadsAction";
-import { PlusOutlined } from "@ant-design/icons";
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import LeadsOpportunity from "../LeadsDetailTab/OpportunityTab/LeadsOpportunity";
-import { FormattedMessage } from "react-intl";
-import { Tooltip } from "antd";
-import CallLeadsTable from "./CallLeadsTable";
+
 const CallForm = lazy(() =>
   import("../../../Call/Child/CallForm")
 );
@@ -79,11 +68,6 @@ function LeadsActivityTab (props) {
               </TabPane>
             </StyledTabs>
           </TabsWrapper>
-          {/* <AddCallTaskModal
-          rowdata={props.rowdata}
-            addCallTaskModal={addCallTaskModal}
-            handleLeadCallModal={handleLeadCallModal}
-          /> */}
         </>
       );
   }

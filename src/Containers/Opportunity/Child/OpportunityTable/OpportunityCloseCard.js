@@ -295,9 +295,15 @@ function OpportunityCloseCard(props) {
       updateOpportunityModal={updateOpportunityModal}
       handleUpdateOpportunityModal={handleUpdateOpportunityModal}
       handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+    translatedMenuItems={props.translatedMenuItems}
     />
 
     <AddOpportunityDrawerModal
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+    translatedMenuItems={props.translatedMenuItems}
       handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
       opportunityName={currentOpportunityId}
       opportunitySkills={props.opportunitySkills}

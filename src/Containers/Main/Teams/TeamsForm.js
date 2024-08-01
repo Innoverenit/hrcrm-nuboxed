@@ -1,19 +1,17 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch } from "antd";
+import { Button } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
 import {getTeamMemberlist,addTeams} from "../Teams/TeamsAction"
-import { FormattedMessage } from "react-intl";
 import Upload from "../../../Components/Forms/Formik/Upload";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { FlexContainer } from "../../../Components/UI/Layout";
-
 /**
  * yup validation scheme for creating a Team
  */
+
 const TeamsSchema = Yup.object().shape({
   name: Yup.string().required("Please provide Team name"),
 
@@ -27,7 +25,24 @@ props.getTeamMemberlist();
   function handleReset(resetForm) {
     resetForm();
   }
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+          const itemsToTranslate = [
+            'Name',//0
+            'Team Lead',//1
+            'Create',//2
+           ];
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
 
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const employeesData = props.teamEmployeeList.map((item) => {
     return {
       label: `${item.empName}`,
@@ -68,9 +83,11 @@ props.getTeamMemberlist();
                         
                  <div class="flex justify-between mt-4">
                   <div class="w-full">
+                  <div class=" text-xs font-bold font-poppins">{translatedMenuItems[0]}</div>
                   <Field
                   name="teamName"
-                  label="Name"
+                  // label="Name"
+                  // label={props.translatedMenuItems[0]}
                   type="text"
                   width={"100%"}
                   component={InputComponent}
@@ -78,16 +95,18 @@ props.getTeamMemberlist();
                   inlineLabel
                   isRequired
                   
-                />          
+                />      
+                <div class=" text-xs font-bold font-poppins">{translatedMenuItems[1]}</div>    
                  <Field
                     name="teamMember"
                     // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.teamMember"
-                        defaultMessage="Team Member"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.teamMember"
+                    //     defaultMessage="Team Member"
+                    //   />
+                    // }
+                    // label={props.translatedMenuItems[1]}
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -138,7 +157,8 @@ props.getTeamMemberlist();
                 htmlType="submit"
                 loading={props.addingTeam}
               >
-                Create
+                 {props.translatedMenuItems[2]} 
+                 {/* Create */}
               </Button>
             </div>
           </Form>

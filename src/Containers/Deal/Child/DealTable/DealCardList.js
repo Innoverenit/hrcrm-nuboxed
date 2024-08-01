@@ -48,13 +48,18 @@ import {
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddDealsContactDrawerModal from "../UpdateDeal/AddDealsContactDrawerModal";
 import AddDealsOwnDrawerModal from "./AddDealsOwnDrawerModal";
+import SearchedDataDeal from "../../SearchedDataDeal";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const DealSelectStages =lazy(()=>import("./DealSelectStages"));
 
 function DealCardList(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+
   useEffect(() => {
     if (props.role === "USER" && user.department === "Recruiter") {
       props.getRecruiterList(props.recruiterId);
@@ -69,6 +74,34 @@ function DealCardList(props) {
     props.getDealListbyUserId(props.userId, page);
   };
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+         " Name",//0
+          "Investor",//1
+          "Sponsor",//2
+          "Start Date",//3
+          "Values",//4
+          "Stages",//5
+          "Sales Rep",//6
+          "Owner",//7
+          "Action",//8
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  
   useEffect(() => {
     return () => props.emptyDeals();
   }, []);
@@ -89,8 +122,16 @@ function DealCardList(props) {
     fetchingDeal,
   } = props;
 
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
+     {props.dealSerachedData.length > 0 ? (
+    <SearchedDataDeal
+    dealSerachedData={props.dealSerachedData}
+    />
+  ) : (
       <InfiniteScroll
         dataLength={dealsByuserId.length}
         next={handleLoadMore}
@@ -101,9 +142,10 @@ function DealCardList(props) {
           ) : null
         }
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
     <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center ">
-
+    
         { !fetchingDeal && dealsByuserId.length === 0 ?<NodataFoundPage />:dealsByuserId.map((item,index) =>  {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
@@ -128,19 +170,14 @@ function DealCardList(props) {
                     />
                   </div>
                   &nbsp;
-                  <div class=" flex flex-col basis-[100%] overflow-hidden"
+                  <div class=" flex  basis-[100%] overflow-hidden"
                   >
                     <div 
                       class="font-semibold text-[#337df4] cursor-pointer text-sm ">
          <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
-                      {/* <Link
-                        toUrl={`dealDetails/${item.invOpportunityId}`}
-                        title={`${item.opportunityName}`}
-                      >
-                        {item.opportunityName}
-                      </Link> */}
+                  
                     </div>
                   </div>
                 </div>
@@ -153,20 +190,17 @@ function DealCardList(props) {
                     )}
                   </div>
                   <div>
-                    <div class="font-medium text-xs ml-1 "
-                     
-                    >
-                     
+                    <div class="font-medium text-xs ml-1 ">
+                                                  
                       {<CurrencySymbol currencyType={item.currency} />}
                       &nbsp;{item.proposalAmount || ""}
                     </div>
                   </div>
                 </div>
 
-                <div className="flex ">
-        
+                <div className="flex ">    
         <div>
-        <div class="font-medium text-xs ">
+        <div class=" text-xs ">
         </div>
         </div>
         </div>
@@ -194,7 +228,6 @@ function DealCardList(props) {
                                   stageClick={(investorOppStagesId) => {
                                     props.LinkStageDeal({
                                       invOpportunityId: item.invOpportunityId,
-
                                       invOpportunityStagesId:
                                         investorOppStagesId,
                                     });
@@ -294,16 +327,7 @@ function DealCardList(props) {
                                className="!text-icon text-[#24D8A7] cursor-pointer"
                               type="check-circle"
                               theme="twoTone"
-                              twoToneColor="#24D8A7"
-                              // onClick={() =>
-                              //   props.sendToWonCard(
-                              //     item.invOpportunityId,
-
-                              //     {
-                              //       wonInd: true,
-                              //     }
-                              //   )
-                              // }
+                              twoToneColor="#24D8A7"                           
                               onClick={() => {
                                 props.handleOwnModal(true);
                                 handleSetCurrentItem(item);
@@ -341,7 +365,7 @@ function DealCardList(props) {
                         title={
                           <FormattedMessage
                             id="app.contact"
-                            defaultMessage="Contact"
+                            defaultMessage="Tag Investor"
                           />
                         }
                       >
@@ -421,8 +445,11 @@ function DealCardList(props) {
           })}
         </div>
       </InfiniteScroll>
-
+   )} 
       <UpdateDealModal
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
         currentItem={currentItem}
         openupdateDealModal={openupdateDealModal}
         handleUpdateDealModal={handleUpdateDealModal}
@@ -481,7 +508,8 @@ const mapStateToProps = ({ auth, deal, opportunity }) => ({
   allRecruitmentByOppId: opportunity.allRecruitmentByOppId,
   allRecruitmentDetailsByOppId: opportunity.allRecruitmentDetailsByOppId,
   fetchingOpportunitySkills: opportunity.fetchingOpportunitySkills,
-  addOwnModal: deal.addOwnModal
+  addOwnModal: deal.addOwnModal,
+  dealSerachedData: deal.dealSerachedData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

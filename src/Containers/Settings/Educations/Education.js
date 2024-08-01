@@ -122,7 +122,7 @@ return <div><BundleLoader/></div>;
   return (
       <div>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex w-[18vw] mt-3"  >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -166,7 +166,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingEducations && educations.length === 0 ? <NodataFoundPage /> : educations.slice().sort((a, b) => a.educationType.localeCompare(b.educationType)).map((region, index) => (
-            <div className="card9" key={region.educationTypeId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.educationTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.educationTypeId ? (
@@ -178,7 +178,7 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setEducationName(e.target.value)}
                 />
             ) : (
-                <div className="region">{region.educationType}&nbsp;&nbsp;&nbsp;
+                <div >{region.educationType}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -186,7 +186,7 @@ return <div><BundleLoader/></div>;
             )}
 
             {/* Action buttons */}
-            <div className="actions">
+            <div >
                 {/* Edit button */}
                 {editingId === region.educationTypeId ? (
                     <div>
@@ -196,7 +196,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {region.editInd ? (
-                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.educationTypeId, region.educationType)} />
+                    <BorderColorIcon className=" cursor-pointer !text-icon text-red-600"   onClick={() => editRegion(region.educationTypeId, region.educationType)} />
                     ) : null}
                     </>
                 )}
@@ -208,12 +208,8 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeEducation(region.educationTypeId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  style={{
+                <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
                   
-                    color: "red",
-                    cursor:"pointer"
-                  }}
               // onClick={() => 
               //     props.removeServiceLine(item.educationTypeId)
               //  }

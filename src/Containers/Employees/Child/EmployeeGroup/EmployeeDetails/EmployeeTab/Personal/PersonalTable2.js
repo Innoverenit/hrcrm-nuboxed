@@ -99,8 +99,8 @@ class PersonalTable2 extends Component {
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
       <>
-        <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
           <div className=" md:w-[6.5rem]">
         <FormattedMessage
                   id="app.name"
@@ -120,7 +120,7 @@ class PersonalTable2 extends Component {
       </div>
    
         
-      {personal =="" ? "No data":personal.map((item) => { 
+      {personal =="" ? "None":personal.map((item) => { 
           const dataLoc=` Address : ${item.address &&
             item.address.length &&
             item.address[0].address1} 
@@ -139,17 +139,17 @@ class PersonalTable2 extends Component {
         
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+                            <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1"
                                 >
                                      
-                                     <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                     <div className=" flex  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 
           <div class="max-sm:w-full">
                                         <Tooltip>
-                                          <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
+                                          <div class=" flex max-sm:w-full justify-between flex-row md:  w-[8rem]">
                                           
-                                            <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                            <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
                                             <span>{` ${item.contactSalutation} 
               ${item.contactFirstName}
@@ -167,16 +167,16 @@ class PersonalTable2 extends Component {
 
                              
                               
-                                <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex  md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                  <div class="text-sm  font-poppins">
+                                  <div class="   font-poppins">
                                   {item.mobileNo}
                                   </div>
                               </div>
 
-                              <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                              <div className=" flex  md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                <div class="text-sm  font-poppins">
+                                <div class="   font-poppins">
                                 {item.phoneNo}
                                 </div>
                             </div>
@@ -203,12 +203,12 @@ class PersonalTable2 extends Component {
           </>
                  
                   </div>
-                                <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex ml-2 md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="    font-poppins text-center">
                                     <BorderColorIcon 
-            style={{ cursor: "pointer", fontSize: "1rem" }}
+            className=" !text-icon cursor-pointer"
             onClick={() => {
               //debugger
               setEditPersonal(item);
@@ -218,17 +218,17 @@ class PersonalTable2 extends Component {
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex ml-2 md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="    font-poppins text-center">
                                     <StyledPopconfirm
             title="Do you want to delete?"
             onConfirm={() => deleteEmergencyTable(item.id)}
           >
             <DeleteIcon
-              type="delete"
-              style={{ cursor: "pointer", fontSize: "1rem", color: "red" }}
+              type="delete"   className=" !text-icon cursor-pointer text-red-600"
+       
             />
           </StyledPopconfirm>
 

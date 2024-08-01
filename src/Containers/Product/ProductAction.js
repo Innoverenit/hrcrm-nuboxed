@@ -1,7 +1,7 @@
 import * as types from "./ProductActionTypes";
 import { base_url, base_url2 } from "../../Config/Auth";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 import Swal from 'sweetalert2'
 
@@ -15,7 +15,7 @@ export const getProducts = (pageNo) => (dispatch) => {
   });
   axios
     // .get(`${base_url2}/product`,
-    .get(`${base_url2}/product/productList/pagewise/${pageNo}`,
+    .get(`${base_url2}/product/allProductList/pagination/${pageNo}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -35,6 +35,13 @@ export const getProducts = (pageNo) => (dispatch) => {
         payload: err,
       });
     });
+};
+
+
+export const emptyProductList = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_PRODUCT_LIST, 
+  });
 };
 export const handleProductQuality =(modalProps)=>(dispatch) => {
   dispatch({
@@ -306,8 +313,8 @@ export const setTimeRangeCatalogue = (startDate, endDate) => (dispatch) => {
   dispatch({
     type: types.SET_TIME_INTERVAL_CATALOGUE,
     payload: {
-      startDate: moment(startDate).toISOString(),
-      endDate: moment(endDate).toISOString(),
+      startDate: dayjs(startDate).toISOString(),
+      endDate: dayjs(endDate).toISOString(),
     },
   });
 };
@@ -1015,6 +1022,34 @@ export const getCategoryImage = () => (dispatch) => {
 
 
 
+export const moveProductQuality = (data,qualityCheckBuilderId) => (dispatch) => {
+  dispatch({
+    type: types.MOVE_PRODUCT_QUALITY_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/qualityCheckBuilder/qualityCheck/update/mandatory/${qualityCheckBuilderId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.MOVE_PRODUCT_QUALITY_SUCCESS,
+        payload: res.data,
+      });
+      message.success(res.data);
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.MOVE_PRODUCT_QUALITY_FAILURE,
+        payload: err,
+      });
+      // message.error("Something went wrong");
+    });
+};
+
+
+
 export const getProductDesc = (productionBuilderId) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCT_DESC_REQUEST,
@@ -1050,10 +1085,10 @@ export const productPublishToggle = (data, productId, groupId) => (
     type: types.PRODUCT_PUBLISH_TOGGLE_REQUEST,
   });
   axios
-    .put(`${base_url}/product/publish/${productId}`, data)
+    .put(`${base_url}/product/publish/Dummy/${productId}`, data)
     .then((res) => {
-      dispatch(getProducts())
-      dispatch(getProductByGroup(groupId));
+      // dispatch(getProducts())
+      // dispatch(getProductByGroup(groupId));
       dispatch({
         type: types.PRODUCT_PUBLISH_TOGGLE_SUCCESS,
         payload: res.data,
@@ -1900,7 +1935,164 @@ export const getQualityProducts = (productId) => (dispatch) => {
 
 
 
+export const addDragQuality = (data) => (dispatch) => {
+  // const { locationId,organizationId } = getState().auth.userDetails;
+  
+  dispatch({ type: types.ADD_DRAG_QUALITY_REQUEST });
+  axios
+    .put(`${base_url2}/qualityCheckBuilder/qualityCheck/update/drag-drop`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getRoomRackByLocId(locationId,organizationId))
+      dispatch({
+        type: types.ADD_DRAG_QUALITY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_DRAG_QUALITY_FAILURE,
+        payload: err,
+      });
+    });
+};
 
+
+export const deleteQualityProductData = (qualityCheckBuilderId,productId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_QUALITY_PRODUCT_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/qualityCheckBuilder/delete/${qualityCheckBuilderId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: res.data,
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch(getQualityProducts(productId));
+      dispatch({
+        type: types.DELETE_QUALITY_PRODUCT_DATA_SUCCESS,
+        payload:qualityCheckBuilderId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_QUALITY_PRODUCT_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const updateQualityProduct = (data,qualityCheckBuilderId) => (dispatch) => {
+  // const { locationId,organizationId } = getState().auth.userDetails;
+  
+  dispatch({ type: types.UPDATE_QUALITY_PRODUCT_REQUEST });
+  axios
+    .put(`${base_url2}/qualityCheckBuilder/update/${qualityCheckBuilderId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getRoomRackByLocId(locationId,organizationId))
+      dispatch({
+        type: types.UPDATE_QUALITY_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_QUALITY_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const featureProductToggle = ( data,productId) => (dispatch) => {
+  dispatch({
+    type: types.FEATURED_PRODUCT_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/product/feature/${productId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.FEATURED_PRODUCT_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.FEATURED_PRODUCT_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+export const catalogueCategorySearch = (categoryName) => (dispatch) => {
+  dispatch({
+    type: types.CATALOGUE_CATEGORY_SEARCH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/category/${categoryName}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      message.success(res.data.message);
+
+      dispatch({
+        type: types.CATALOGUE_CATEGORY_SEARCH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      message.error("Material list is empty");
+      dispatch({
+        type: types.CATALOGUE_CATEGORY_SEARCH_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 
 

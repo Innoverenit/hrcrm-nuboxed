@@ -1,11 +1,9 @@
 import React from 'react'
 import GridViewIcon from '@mui/icons-material/GridView';
-import TocIcon from '@mui/icons-material/Toc';
 import { FormattedMessage } from "react-intl";
 import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 import { Tooltip, Avatar, Badge } from "antd";
 import { connect } from "react-redux";
-import ListAltIcon from '@mui/icons-material/ListAlt';
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 
@@ -20,34 +18,33 @@ const MileageActionLeft = (props) => {
           // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
           overflowCount={999}
         >
-          <span class=" mr-2 text-sm cursor-pointer"
+          <span class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setMileageViewType("card")}
             style={{
               color: props.viewType === "card" && "#1890ff",
             }}
           >
             <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
-              <GridViewIcon className="text-white" />
+              <GridViewIcon className="text-white !text-icon" />
             </Avatar>
           </span>
         </Badge>
       </Tooltip>
-
-      
+  
       <Tooltip title="Category">
         <Badge
           size="small"
           // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
           overflowCount={999}
         >
-          <span class=" mr-2 cursor-pointer text-4"
+          <span class=" mr-1 cursor-pointer !text-icon"
             onClick={() => props.setMileageViewType("list")}
             style={{
               color: props.viewType === "list" && "#1890ff",
             }}
           >
             <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
-              <ViewWeekIcon />
+              <ViewWeekIcon className="text-white !text-icon" />
             </Avatar>
           </span>
         </Badge>
@@ -61,7 +58,7 @@ const MileageActionLeft = (props) => {
             // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
             overflowCount={999}
           >
-            <span class=" mr-2 cursor-pointer text-[1rem]"
+            <span class=" mr-1 cursor-pointer !text-icon]"
               onClick={() => props.setExpenseViewType("all")}
               style={{
                 color: props.viewType === "all" && "#1890ff",
@@ -69,7 +66,6 @@ const MileageActionLeft = (props) => {
             >
               <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
                 <FormattedMessage id="app.all" defaultMessage="ALL" />
-
               </Avatar>
             </span>
           </Badge>

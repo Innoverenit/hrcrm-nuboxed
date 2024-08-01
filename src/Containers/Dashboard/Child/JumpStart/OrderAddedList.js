@@ -7,9 +7,7 @@ import { EditOutlined, SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import OnlyWrapCard from "../../../../Components/UI/Layout/OnlyWrapCard"
 import moment from "moment";
-
 import InfiniteScroll from "react-infinite-scroll-component";
-
 import PaidIcon from '@mui/icons-material/Paid';
 import {getOrderAddedList} from "../../DashboardAction"
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -33,12 +31,8 @@ useEffect(()=>{
       }
    }, [props.orgId,props.startDate,props.endDate]);
 
-
-
-
   return (
     <>
-   
    <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[12rem]">Order ID</div>

@@ -23,7 +23,11 @@ function AddContactInvestModal (props) {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <ContactInvestForm {...formProps} />
+          <ContactInvestForm {...formProps} 
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+             translatedMenuItems={props.translatedMenuItems}
+          />
         </Suspense>
       </StyledDrawer>
     </>

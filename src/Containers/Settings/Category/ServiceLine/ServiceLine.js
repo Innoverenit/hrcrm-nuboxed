@@ -210,7 +210,7 @@ if (props.fetchingServiceLine) {
          
          <MainWrapper className="!h-[69vh] !mt-2" >
             {serviceLine.map(region => (
-              <div className="card9" key={region.serviceLineId}>
+              <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.serviceLineId}>
               {/* Region name display or input field */}
               {editingId === region.serviceLineId ? (
                   <input
@@ -220,11 +220,11 @@ if (props.fetchingServiceLine) {
                       onChange={(e) => setNewServiceLineName(e.target.value)}
                   />
               ) : (
-                  <div className="region">{region.serviceLineName}</div>
+                  <div >{region.serviceLineName}</div>
               )}
 
               {/* Action buttons */}
-              <div className="actions">
+              <div>
                   {/* Edit button */}
                   {editingId === region.serviceLineId ? (
                       <div>
@@ -232,11 +232,8 @@ if (props.fetchingServiceLine) {
                           <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
-                      <EditOutlined onClick={() => editRegion(region.serviceLineId, region.serviceLineName)} 
-                      style={{
-                    
-                        cursor:"pointer"
-                      }}
+                      <EditOutlined  className=" cursor-pointer !text-icon text-red-600" onClick={() => editRegion(region.serviceLineId, region.serviceLineName)} 
+                      
                       />
                   )}
 
@@ -247,12 +244,8 @@ if (props.fetchingServiceLine) {
                           cancelText="No"
                           onConfirm={() =>  props.removeServiceLine(region.serviceLineId,props.orgId)}
                         >
-                  <DeleteOutlined 
-                    style={{
+                  <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
                     
-                      color: "red",
-                      cursor:"pointer"
-                    }}
                 // onClick={() => 
                 //     props.removeServiceLine(region.serviceLineId)
                 //  }

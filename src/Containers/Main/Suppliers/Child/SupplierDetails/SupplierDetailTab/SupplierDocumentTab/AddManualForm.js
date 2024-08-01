@@ -166,7 +166,9 @@ function AddManualForm(props) {
       currencyId:row.currencyId,
       category:row.category,
       attribute:row.attribute,
-      location:row.locationId
+      location:row.locationId,
+      supplierId: props.supplierId,
+      source:"erp"
                       
     }));
 
@@ -373,7 +375,8 @@ const mapStateToProps = ({ distributor, brandmodel, auth,suppliers }) => ({
   categoryList:suppliers.categoryList,
   allProduct:distributor.allProduct,
   locationlist:distributor.locationlist,
-  addingManual:suppliers.addingManual
+  addingManual:suppliers.addingManual,
+  supplierId: suppliers.supplierDetailById.supplierId,
 });
 
 const mapDispatchToProps = (dispatch) =>

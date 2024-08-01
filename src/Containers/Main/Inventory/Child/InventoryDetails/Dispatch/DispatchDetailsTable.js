@@ -245,26 +245,85 @@ function OpenReceivedOrderIdForm(props) {
   //     />
   //   </>
   // );
+  console.log(props.updateDispatchList?.[0]?.showQualityInspectionInd);
+const brick= props.updateDispatchList?.[0]?.showQualityInspectionInd
+{props.updateDispatchList.map((item) => { 
+  console.log(item.showQualityInspectionInd)
+  const tense = item.showQualityInspectionInd
+})}
+let buttonRendered = false;
   return (
     <>
         <div className=' flex sticky  z-auto'>
             <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-           
+            <div class=" flex justify-end" >  
+{props.updateDispatchList.map((item) => {
+  console.log(item.showQualityInspectionInd)
+  const tense = item.showQualityInspectionInd
+  if (!buttonRendered && props.rowData.dispatchInspectionInd === 1 && itemValue === true && tense) {
+    buttonRendered = true;
+    return (
+      <div className=' flex sticky z-auto'>
+        <div class=" flex justify-end" >
+          <div class=" ml-2" >
+            <Button
+              loading={props.updatingDispatchInspectionButton}
+              onClick={() => props.updateDispatchInspectionButton({
+                dispatchInspectionInd: 2,
+                stopDispatchInspectionUser: props.userId,
+                stopDispatchInspectionDate: moment()
+              }, props.rowData.orderPhoneId, props.locationDetailsId)}
+              type="primary"
+              disabled={!tense}
+            >
+              Inspection Completed
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  } else {
+    return null;
+  }
+})}
+</div>
 
                 <div className=" flex max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-                    <div className='w-[17.2rem]'>Brand</div>
-                    <div className=" w-[23.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Model</div>
-                    <div className="w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">IMEI</div>
-                    <div className=" w-[36.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">OS</div>
-                    <div className=" w-[34.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">GB</div>
+                    <div className='w-[5.2rem]'>Brand</div>
+                    <div className=" w-[4.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Model</div>
+                    <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">IMEI</div>
+                    <div className=" w-[4.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">OS</div>
+                    <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">GB</div>
 
-                    <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Color</div>
-                    <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Condition</div>
-                    <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Technician</div>
-                    <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-                    <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+                    <div className="w-[2.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Color</div>
+                    <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Condition</div>
+                    <div className=" w-[18.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Technician</div>                 
                     <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Inspected</div>
+                    
                 </div>
+                {/* <div class=" flex justify-end" >   
+               
+        { 
+props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
+          <div class=" ml-2" >
+            <Button
+              loading={props.updatingDispatchInspectionButton}
+              onClick={() => props.updateDispatchInspectionButton({
+                dispatchInspectionInd: 2,
+                stopDispatchInspectionUser: props.userId,
+                stopDispatchInspectionDate: moment()
+              },
+                props.rowData.orderPhoneId,
+                props.locationDetailsId)}
+              type="primary"       
+              disabled={!props.tense}             
+            >Inspection Completed</Button>
+          </div>}
+         
+      </div> */}
+
+
+
                 <div class="">
                    
                         {props.updateDispatchList.map((item) => {
@@ -272,22 +331,23 @@ function OpenReceivedOrderIdForm(props) {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div >
+           
                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium w-[8.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                        <div className=" flex font-medium w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                {item.company}
                                             </div>
-                                            <div className=" flex font-medium w-[15.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                            <div className=" flex font-medium w-[3.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                
                                             {item.model} 
                                             </div>
                                             
-<div className=" flex font-medium flex-col w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+<div className=" flex font-medium flex-col w-[7.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                         {item.imei}
                         </div>
                       </div>
-                                            <div className=" flex font-medium   w-[14rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex font-medium   w-[5rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.os}
                                                 </div>
@@ -295,26 +355,26 @@ function OpenReceivedOrderIdForm(props) {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium   w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex font-medium   w-[3.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.gb}
                                                 </div>
 
                                             </div>
 
-                                            <div className=" flex font-medium   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex font-medium   w-[4.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.color}
                                                 </div>
 
                                             </div>
-                                            <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.conditions}
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[8.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.repairTechnicianName}
 
@@ -347,13 +407,13 @@ function OpenReceivedOrderIdForm(props) {
               orderPhoneId={props.rowData.orderPhoneId}
             />}
           </Tooltip>
-          <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+          <div className=" flex font-medium  w-[7.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.dispatchPhoneUserName}
 
                                                 </div>
                                             </div>
-                                            <Tooltip>
+                                            {/* <Tooltip>
             {!item.rejectInd && item.dispatchPhoneInd ? <Button
               onClick={() => {
                 handleRowData(item)
@@ -369,31 +429,14 @@ function OpenReceivedOrderIdForm(props) {
                 // }}
                 >Rejected</Button> : null
             }
-          </Tooltip>
-          <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+          </Tooltip> */}
+          <div className=" flex font-medium  w-[8.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.reason}
 
                                                 </div>
                                             </div>
-                                            <div class=" flex justify-end" >
-        {/* {props.rowData.dispatchInspectionInd === 1 && <Button type="primary">Pause</Button>} */}
-        {props.rowData.dispatchInspectionInd === 1 && <div>In Progress</div>}
-        {props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
-          <div class=" ml-2" >
-            <Button
-              loading={props.updatingDispatchInspectionButton}
-              onClick={() => props.updateDispatchInspectionButton({
-                dispatchInspectionInd: 2,
-                stopDispatchInspectionUser: props.userId,
-                stopDispatchInspectionDate: moment()
-              },
-                props.rowData.orderPhoneId,
-                props.locationDetailsId)}
-              type="primary"
-            >Inspection Completed</Button>
-          </div>}
-      </div>
+                                         
                                         </div>
 
                                     </div>
@@ -402,6 +445,7 @@ function OpenReceivedOrderIdForm(props) {
                         })}
                     
                 </div>
+              
             </div>
             <Suspense fallback={<BundleLoader />}>
                 

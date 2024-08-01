@@ -216,6 +216,7 @@ console.log("publishIndTrueItem",publishIndTrueItem)
                                       droppableProps={{ hello: "world" }}
                                       className="scrollbar"
                                       id="style-3"
+                                      style={{scrollbarWidth:"thin"}}
                                     >
                                       {props.opportunityByUserId
                                         .filter(

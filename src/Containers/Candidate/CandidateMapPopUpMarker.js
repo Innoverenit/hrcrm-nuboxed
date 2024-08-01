@@ -107,7 +107,7 @@ export default function CandidateMapPopUpMarker({ mark }) {
     position={[mark.lat, mark.lng]}
       icon={image}
      >
-      <Popup className="popup-wrapper">
+      <Popup className="!w-[18rem]">
         {/* <div justifyContent="center" flexDirection="column">
           <div flexWrap="nowrap" alignItems="center">
             <div className="avatar-bg" style={{ borderRadius: "50%" }}>
