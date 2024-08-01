@@ -1165,11 +1165,11 @@ export const addAttendence = (attendance,userId) => (dispatch) => {
     });
 };
 
-export const putCustomerContactToggle = (data, contactId) => (dispatch) => {
+export const putCustomerContactToggle = (contactId,userId,type) => (dispatch) => {
   dispatch({ type: types.PUT_CUSTO_CONTACT_TOGGLE_REQUEST });
 
   axios
-    .post(`${base_url}/task/convert/contact/${contactId}`, data, {
+    .put(`${base_url2}/distributor/convert/contactToUser/${contactId}/${userId}/${type}`, {}, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

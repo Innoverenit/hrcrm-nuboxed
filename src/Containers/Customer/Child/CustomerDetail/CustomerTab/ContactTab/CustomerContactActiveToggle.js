@@ -9,31 +9,24 @@ function CustomerContactActiveToggle(props) {
     const [toggle, setToggle] = React.useState(props.accessInd)
 
     function handleToggleCollection(item) {
+         let type="Prospect Contact To User"
         console.log("toggle",props.thirdPartyAccessInd)
         // setPaymentCollection(!paymentCollection);
-        if (props.accessInd) {
+       
+           
             props.putCustomerContactToggle(
-                {
-                //   productId: props.item.productId,
-                   
-                accessInd: props.accessInd ? false : true,
-                },
+               
                 props.contactId,
+                props.userId,
+                type
+               
                 // props.mrchantDetailsId,
             );
-        } else {
-            props.putCustomerContactToggle(
+       
               
-                {
-                //   productId: props.item.productId,
-                    
-                 
-                accessInd: props.accessInd ? false : true,
-                },
-                props.contactId,
-                // props.mrchantDetailsId,
-            );
-        }
+              
+             
+        
     }
 
     function handleCancel() {
@@ -69,6 +62,7 @@ function CustomerContactActiveToggle(props) {
 }
 
 const mapStateToProps = ({ auth,customer }) => ({
+    userId: auth.userDetails.userId,
   puttingCustContcToggle: customer.puttingCustContcToggle,
   puttingCustContcToggleError:customer.puttingCustContcToggleError,
 

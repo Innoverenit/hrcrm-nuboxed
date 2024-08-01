@@ -7,12 +7,13 @@ import { ActionIcon } from "../../../../../../Components/Utils";
 import {
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
-import {  Tooltip, Select } from "antd";
+import {  Tooltip, Select,Button } from "antd";
 import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
 import {
   getContactListByCustomerId,
   setEditCustomerContact,
   handleUpdateCustomerContactModal,
+  putCustomerContactToggle
 } from "../../../../CustomerAction";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -294,20 +295,32 @@ function LinkedContact(props) {
                                     </div>
                                    
                                 </div>
-                                <div class=" text-xs  font-poppins text-center">
-                            
-                                    <span>
-              {item.thirdPartyAccessInd === true && (
-                <CustomerContactActiveToggle
-                  accessInd={item.accessInd}
-                  contactId={item.contactId}
-                  emailId={item.emailId}
-                  thirdPartyAccessInd={item.thirdPartyAccessInd}
-                />
-              )}
-            </span>
+                                <div className=" flex   md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                    </div>
+
+{item.accessInd === 0 ? <div class=" text-xs  font-poppins">
+    <Button
+        type="primary"
+        //loading={currentSupplierId.contactPersonId === item.contactPersonId && props.applyingForLoginInContact}
+        onClick={() => {
+          //  handleChangeRow(item)
+          //   props.setEditSupplierContact(item);
+            props.putCustomerContactToggle(
+                
+                item.contactId,
+                props.userId,
+                "Prospect Contact To User",
+                // props.supplier.supplierId,
+                // props.distributorId,
+              
+            )
+        }}
+    ><FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /></Button>
+</div> : item.accessInd === 2 ? <b>Login Applied</b> : <b style={{ color: "#32CD32" }}>Login Approved</b>
+
+}
+
+</div>
                             </div>
                         </div>
 
@@ -332,12 +345,13 @@ function LinkedContact(props) {
     </>
   );
 }
-const mapStateToProps = ({
+const mapStateToProps = ({auth,
   customer, designations, departments, contact
 }) => ({
   fetchingCustomerContact: customer.fetchingCustomerContact,
   fetchingCustomerContactError: customer.fetchingCustomerContactError,
   customerId: customer.customer.customerId,
+  userId:auth.userDetails.userId,
   designations: designations.designations,
   contactByCustomerId: customer.contactByCustomerId,
   departments: departments.departments,
@@ -349,6 +363,7 @@ const mapDispatchToProps = (dispatch) =>
       getContactListByCustomerId,
       setEditCustomerContact,
       handleUpdateCustomerContactModal,
+      putCustomerContactToggle
     },
     dispatch
   );
