@@ -5,7 +5,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import { Tooltip, Menu, Dropdown, Progress } from "antd";
+import { Tooltip} from "antd";
 import { CurrencySymbol } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
 import moment from "moment";
@@ -80,10 +80,6 @@ function OpportunityWonCard(props) {
 'Stages', // 5
 'Sales Rep', // 6
 'Owner' // 7
-
-
-
-
 
         ];
 
@@ -459,15 +455,24 @@ function OpportunityWonCard(props) {
         updateOpportunityModal={updateOpportunityModal}
         handleUpdateOpportunityModal={handleUpdateOpportunityModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
          <AddOpportunityNotesDrawerModal
         addDrawerOpportunityNotesModal={addDrawerOpportunityNotesModal}
         opportunityData={currentOpportunityId}
         handleOpportunityNotesDrawerModal={handleOpportunityNotesDrawerModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
 <AddOpportunityDrawerModal
+translateText={props.translateText}
+selectedLanguage={props.selectedLanguage}
+translatedMenuItems={props.translatedMenuItems}
  handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
  opportunityName={currentOpportunityId}
  opportunitySkills={props.opportunitySkills}

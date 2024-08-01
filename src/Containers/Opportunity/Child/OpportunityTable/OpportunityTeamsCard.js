@@ -476,6 +476,9 @@ handleSetCurrentOpportunityId(item.opportunityName);
         updateOpportunityModal={updateOpportunityModal}
         handleUpdateOpportunityModal={handleUpdateOpportunityModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
 <AddOpportunityDrawerModal
@@ -489,6 +492,9 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
              allRecruitmentPositionByOppId={props.allRecruitmentPositionByOppId}
                handleOpportunityDrawerModal={props.handleOpportunityDrawerModal}
                addDrawerOpportunityModal={props.addDrawerOpportunityModal}
+               translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
              // candidateByUserId={this.props.candidateByUserId}
       />
     </>

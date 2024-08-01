@@ -44,6 +44,7 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import CustomerContactDrawerModal from "./CustomerContactDrawerModal";
 import CustomerOpportunityDrawerModal from "./CustomerOpportunityDrawerModal";
 import CustomerSearchedData from "./CustomerSearchedData";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
@@ -58,7 +59,8 @@ function onChange(pagination, filters, sorter) {
 
 function CustomerTeamCardList(props) {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
  
   const [pageNo, setPageNo] = useState(0);
@@ -87,6 +89,37 @@ function CustomerTeamCardList(props) {
     // props.getCountries();
     // props.getAllCustomerEmployeelist();
   }, []);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+    'Name', // 0
+'Work', // 1
+'Sector', // 2
+'Source', // 3
+'Quotation', // 4
+'PipeLine', // 5
+'Assigned', // 6
+'Owner', // 7
+'Customer', // 8
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
 
   useEffect(() => {
     return () => props.emptyCustomer();
@@ -153,7 +186,9 @@ const [rowdata, setrowdata] = useState("");
   //   return <BundleLoader />;
   // }
  
-
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
 
   return (
     <>
@@ -168,47 +203,54 @@ const [rowdata, setrowdata] = useState("");
          <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[17.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
-              <FormattedMessage
+            {translatedMenuItems[0]}
+              {/* <FormattedMessage
                 id="app.name"
                 defaultMessage="Name"
-              />
+              /> */}
             </div>
             <div className=" w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-              <FormattedMessage
+            {translatedMenuItems[1]}
+              {/* <FormattedMessage
                 id="app.work"
                 defaultMessage="Work"
-              />
+              /> */}
 
             </div>
             <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-              <FormattedMessage
+            {translatedMenuItems[2]}
+              {/* <FormattedMessage
                 id="app.sector"
                 defaultMessage="Sector"
-              />
+              /> */}
 
             </div>
             <div className=" w-[8.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-              <FormattedMessage
+            {translatedMenuItems[3]}
+              {/* <FormattedMessage
                 id="app.source"
                 defaultMessage="Source"
-              />
+              /> */}
 
             </div>
             <div className=" w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
              
             </div>
+
             <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-              <FormattedMessage
+            {translatedMenuItems[4]}
+              {/* <FormattedMessage
                 id="app.quotation"
                 defaultMessage="Quotation"
-              />
+              /> */}
 
             </div>
             <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-              <FormattedMessage
+            {translatedMenuItems[5]}
+              {/* <FormattedMessage
                 id="app.pipeline"
                 defaultMessage="Pipeline"
-              />
+              /> */}
 
             </div>
             {/* <div className="md:w-[3.9rem]">
@@ -219,23 +261,26 @@ const [rowdata, setrowdata] = useState("");
           
           </div> */}
             <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-              <FormattedMessage
+            {translatedMenuItems[6]}
+              {/* <FormattedMessage
                 id="app.assigned"
                 defaultMessage="Assigned"
-              />
+              /> */}
 
             </div>
             <div className="w-[4.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
-              <FormattedMessage
+            {translatedMenuItems[7]}
+              {/* <FormattedMessage
                 id="app.owner"
                 defaultMessage="Owner"
-              />
+              /> */}
             </div>
             <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-              <FormattedMessage
+            {translatedMenuItems[8]}
+              {/* <FormattedMessage
                 id="app.customer"
                 defaultMessage="Customer"
-              />
+              /> */}
             </div>
             <div className="w-[4.12rem]"></div>
 
@@ -640,6 +685,9 @@ const [rowdata, setrowdata] = useState("");
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
       <UpdateCustomerModal
@@ -647,12 +695,18 @@ const [rowdata, setrowdata] = useState("");
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}
         handleSetCurrentCustomerId={handleSetCurrentCustomerId}
-      />
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+       />
          <CustomerPulseDrawerModal
-    customer={currentCustomer}
+        customer={currentCustomer}
         addDrawerCustomerPulseModal={addDrawerCustomerPulseModal}
         handleCustomerPulseDrawerModal={handleCustomerPulseDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
       />
       <AddCustomerEmailDrawerModal
         // contactById={props.contactById}

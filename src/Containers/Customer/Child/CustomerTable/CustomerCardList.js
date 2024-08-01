@@ -41,6 +41,7 @@ import { FormattedMessage } from "react-intl";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import CustomerSearchedData from "./CustomerSearchedData";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
 );
@@ -71,14 +72,44 @@ function CustomerCardList(props) {
 
 
   const [hasMore, setHasMore] = useState(true);
-
   const [page, setPage] = useState(0);
   // const [page1, setPage1] = useState(0);
   // const [page2, setPage2] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   console.log(props.viewType)
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+    'Name', // 0
+'Work', // 1
+'Sector', // 2
+'Source', // 3
+'Quotation', // 4
+'PipeLine', // 5
+'Assigned', // 6
+'Owner', // 7
+'Customer', // 8
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   useEffect(() => {
     
@@ -258,6 +289,9 @@ function CustomerCardList(props) {
   // }
 console.log(page)
 console.log(props.userId)
+if (loading) {
+  return <div><BundleLoader/></div>;
+}
   return (
     <>
      {props.customerSearch.length > 0 ? (
@@ -271,30 +305,34 @@ console.log(props.userId)
           <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky z-10">
             <div></div>
             <div className=" w-[12.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
-              <FormattedMessage
+            {translatedMenuItems[0]}
+              {/* <FormattedMessage
                 id="app.name"
                 defaultMessage="Name"
-              />
+              /> */}
             </div>
             <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-              <FormattedMessage
+            {translatedMenuItems[1]}
+              {/* <FormattedMessage
                 id="app.work"
                 defaultMessage="Work"
-              />
+              /> */}
 
             </div>
             <div className=" w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-              <FormattedMessage
+            {translatedMenuItems[2]}
+              {/* <FormattedMessage
                 id="app.sector"
                 defaultMessage="Sector"
-              />
+              /> */}
 
             </div>
             <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-              <FormattedMessage
+            {translatedMenuItems[3]}
+              {/* <FormattedMessage
                 id="app.source"
                 defaultMessage="Source"
-              />
+              /> */}
 
             </div>
             <div className=" w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
@@ -302,17 +340,19 @@ console.log(props.userId)
 
             </div>
             <div className="w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-              <FormattedMessage
+            {translatedMenuItems[4]}
+              {/* <FormattedMessage
                 id="app.quotation"
                 defaultMessage="Quotation"
-              />
+              /> */}
 
             </div>
             <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-              <FormattedMessage
+            {translatedMenuItems[5]}
+              {/* <FormattedMessage
                 id="app.pipeline"
                 defaultMessage="Pipeline"
-              />
+              /> */}
 
             </div>
             {/* <div className="md:w-[3.9rem]">
@@ -323,23 +363,26 @@ console.log(props.userId)
           
           </div> */}
             <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-              <FormattedMessage
+            {translatedMenuItems[6]}
+              {/* <FormattedMessage
                 id="app.assigned"
                 defaultMessage="Assigned"
-              />
+              /> */}
 
             </div>
             <div className="w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
-              <FormattedMessage
+            {translatedMenuItems[7]}
+              {/* <FormattedMessage
                 id="app.owner"
                 defaultMessage="Owner"
-              />
+              /> */}
             </div>
             <div className="w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-              <FormattedMessage
+            {translatedMenuItems[8]}
+              {/* <FormattedMessage
                 id="app.customer"
                 defaultMessage="Customer"
-              />
+              /> */}
             </div>
             <div className="w-[4.12rem]"></div>
 
@@ -737,6 +780,9 @@ console.log(props.userId)
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
       <UpdateCustomerModal
@@ -744,18 +790,27 @@ console.log(props.userId)
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}
         handleSetCurrentCustomerId={handleSetCurrentCustomerId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <CustomerPulseDrawerModal
         customer={currentCustomer}
         addDrawerCustomerPulseModal={addDrawerCustomerPulseModal}
         handleCustomerPulseDrawerModal={handleCustomerPulseDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <CustomerContactDrawerModal
         customer={currentCustomer}
         addDrawerCustomerContactModal={addDrawerCustomerContactModal}
         handleCustomerContactDrawerModal={handleCustomerContactDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <CustomerOpportunityDrawerModal
         customer={currentCustomer}
@@ -767,6 +822,9 @@ console.log(props.userId)
         // contactById={props.contactById}
         addDrawerCustomerEmailModal={props.addDrawerCustomerEmailModal}
         handleCustomerEmailDrawerModal={props.handleCustomerEmailDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
 
@@ -775,6 +833,9 @@ console.log(props.userId)
         addDrawerCustomerNotesModal={addDrawerCustomerNotesModal}
         handleCustomerNotesDrawerModal={handleCustomerNotesDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );

@@ -24,8 +24,9 @@ function AddContactInvestModal (props) {
       >
         <Suspense fallback={<BundleLoader />}>
           <ContactInvestForm {...formProps} 
-            selectedLanguage={props.selectedLanguage}
-            translateText={props.translateText}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+             translatedMenuItems={props.translatedMenuItems}
           />
         </Suspense>
       </StyledDrawer>

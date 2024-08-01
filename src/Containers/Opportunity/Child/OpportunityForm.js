@@ -30,6 +30,7 @@ import { getAllEmployeelist } from "../../Investor/InvestorAction";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 /**
  * yup validation scheme for creating a opportunity
@@ -62,7 +63,8 @@ function OpportunityForm(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [touched, setTouched] = useState(false);
   const [selectedValues, setSelectedValues] = useState([]);
-
+  const [loading, setLoading] = useState(true);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   const [customers, setCustomers] = useState([]);
   const [contacts, setContacts] = useState([]);
@@ -76,7 +78,38 @@ function OpportunityForm(props) {
   //   fetchCustomers();
   // }, []);
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          ' Name', // 0
+          'Start Date', // 1
+          'End Date', // 2
+          'Value', // 3
+          'Currency', // 4
+          "Description",//5
+          'Assigned', // 6
+          'Include', // 7
+          'Customer', // 8
+          'Contact', // 9
+          'Workflow', // 10
+          'Stages', // 11
 
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const fetchCustomers = async () => {
     setIsLoadingCustomers(true);
     try {
@@ -315,6 +348,9 @@ const filteredEmployeesData = AllEmplo.filter(
   } = props;
   const selectedOption = props.crmAllData.find((item) => item.empName === selected);
   console.log(selectedValues)
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
       <Formik
@@ -450,9 +486,10 @@ const filteredEmployeesData = AllEmplo.filter(
                   type="text"
                   //label="Name"
 
-                  label={
-                    <FormattedMessage id="app.name" defaultMessage="Name" />
-                  }
+                  label={translatedMenuItems[0]}
+                  // {
+                  //   <FormattedMessage id="app.name" defaultMessage="Name" />
+                  // }
                   isColumn
                   width={"100%"}
                   component={InputComponent}
@@ -465,12 +502,13 @@ const filteredEmployeesData = AllEmplo.filter(
                     <Field
                       name="startDate"
                       //label="Start "
-                      label={
-                        <FormattedMessage
-                          id="app.startDate"
-                          defaultMessage="Start Date"
-                        />
-                      }
+                    label={translatedMenuItems[1]}
+                      // {
+                      //   <FormattedMessage
+                      //     id="app.startDate"
+                      //     defaultMessage="Start Date"
+                      //   />
+                      // }
                       component={DatePicker}
                       value={values.startDate}
                       isColumn
@@ -482,12 +520,13 @@ const filteredEmployeesData = AllEmplo.filter(
                       // isRequired
                       name="endDate"
                       // label="End Date"
-                      label={
-                        <FormattedMessage
-                          id="app.endDate"
-                          defaultMessage="End Date"
-                        />
-                      }
+                      label={translatedMenuItems[2]}
+                      // {
+                      //   <FormattedMessage
+                      //     id="app.endDate"
+                      //     defaultMessage="End Date"
+                      //   />
+                      // }
                       isColumn
                       component={DatePicker}
                       value={values.endDate || values.startDate}
@@ -513,12 +552,13 @@ const filteredEmployeesData = AllEmplo.filter(
                       name="proposalAmount"
                       //label="Value"
 
-                      label={
-                        <FormattedMessage
-                          id="app.proposalamount"
-                          defaultMessage="Value"
-                        />
-                      }
+                label={translatedMenuItems[3]}
+                      // {
+                      //   <FormattedMessage
+                      //     id="app.proposalamount"
+                      //     defaultMessage="Value"
+                      //   />
+                      // }
                       isColumn
                       width={"100%"}
                       component={InputComponent}
@@ -531,12 +571,13 @@ const filteredEmployeesData = AllEmplo.filter(
                       defaultValue={{
                         value: props.user.currency,
                       }}
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
+                    label={translatedMenuItems[4]}
+                      // {
+                      //   <FormattedMessage
+                      //     id="app.currency"
+                      //     defaultMessage="Currency"
+                      //   />
+                      // }
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -551,7 +592,10 @@ const filteredEmployeesData = AllEmplo.filter(
                   </div>
                 </div>
               
-                <div className="mt-3">Description</div>
+                <div className="mt-3">
+            {translatedMenuItems[5]}
+                  {/* Description */}
+                  </div>
                 <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>
@@ -594,9 +638,10 @@ const filteredEmployeesData = AllEmplo.filter(
               <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mt-[0.6rem]">
-              Assigned
-            </Listbox.Label>
+            <div className="block font-bold text-[0.75rem] mt-[0.6rem]">
+          {translatedMenuItems[6]}
+              {/* Assigned */}
+            </div>
             <div className="relative">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -680,7 +725,10 @@ const filteredEmployeesData = AllEmplo.filter(
                       value: employeeId,
                     }}
                   /> */}
-                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
+                  <div className="font-bold text-[0.75rem]">
+                {translatedMenuItems[7]}
+                    {/* Include */}
+                    </div>
                    <Select
           showSearch
 
@@ -724,7 +772,10 @@ const filteredEmployeesData = AllEmplo.filter(
                     inlineLabel
                   /> */}
 
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Customer</label>
+<div className="font-bold text-[0.75rem]">
+{translatedMenuItems[8]}
+  {/* Customer */}
+  </div>
       <Select
        
         placeholder="Select Customer"
@@ -771,9 +822,11 @@ const filteredEmployeesData = AllEmplo.filter(
                     inlineLabel
                   /> */}
 
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
+<div className= "font-bold text-[0.75rem]">
+{translatedMenuItems[9]}
+  {/* Contact */}
+  </div>
       <Select
-       
         placeholder="Select Contact"
         loading={isLoadingContacts}
         onChange={handleContactChange}
@@ -829,12 +882,13 @@ const filteredEmployeesData = AllEmplo.filter(
                         isColumnWithoutNoCreate
                         isRequired
                         placeolder="Select type"
-                        label={
-                          <FormattedMessage
-                            id="app.workflow"
-                            defaultMessage="Workflow"
-                          />
-                        }
+                        label={translatedMenuItems[10]}
+                        // {
+                        //   <FormattedMessage
+                        //     id="app.workflow"
+                        //     defaultMessage="Workflow"
+                        //   />
+                        // }
                         // component={SearchSelect}
                         component={SelectComponent}
                         options={
@@ -853,12 +907,13 @@ const filteredEmployeesData = AllEmplo.filter(
                         name="oppStage"
                         isRequired
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.stages"
-                            defaultMessage="Stages"
-                          />
-                        }
+                        label={translatedMenuItems[11]}
+                        // {
+                        //   <FormattedMessage
+                        //     id="app.stages"
+                        //     defaultMessage="Stages"
+                        //   />
+                        // }
                         component={SelectComponent}
                         options={
                           Array.isArray(

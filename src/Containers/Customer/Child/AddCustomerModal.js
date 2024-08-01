@@ -29,7 +29,11 @@ const AddCustomerModal = (props) => {
         }}
       >
         <Suspense fallback={<BundleLoader />}>
-          <CustomerForm />{" "}
+          <CustomerForm
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+         translatedMenuItems={props.translatedMenuItems}
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>

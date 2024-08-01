@@ -1,5 +1,4 @@
 import * as types from "./LeadsActionTypes";
-import dayjs from "dayjs"; 
 const initialState = {
   viewType: "card",
 

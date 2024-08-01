@@ -70,6 +70,9 @@ class Opportunity extends Component {
           setCurrentData={this.setCurrentData}
         />
         <AddOpportunityModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
           addOpportunityModal={addOpportunityModal}
           handleOpportunityModal={handleOpportunityModal}
         />

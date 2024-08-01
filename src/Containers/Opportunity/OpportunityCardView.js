@@ -30,6 +30,9 @@ class OpportunityCardView extends Component {
                 <CardDescription>
                   <Header>{item.opportunityName}</Header>
                   <Price>100</Price>
+                  translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+                translatedMenuItems={this.props.translatedMenuItems}
                 </CardDescription>
               </CardElement>
             );

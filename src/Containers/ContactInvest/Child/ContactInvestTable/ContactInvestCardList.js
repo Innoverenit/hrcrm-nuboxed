@@ -295,7 +295,7 @@ function ContactInvestCardList(props) {
                                      {item.totalProposalValue}
                                     </div>
                                 </div>
-                                <div className="flex font-medium max-sm:justify-between  md:w-[6.81rem] max-sm:flex-row w-full ">
+                                <div className="flex max-sm:justify-between  md:w-[6.81rem] max-sm:flex-row w-full ">
                                      {/* Source */}
 
                                     <div class="text-xs  font-poppins">
@@ -304,7 +304,7 @@ function ContactInvestCardList(props) {
                                 </div>
                                 </div>
                                 <div class="flex">
-                                <div className="flex font-medium   md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex   md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">
                                          {/* Owner */}               
               <Tooltip title={item.ownerName}>
                 <div class="max-sm:flex justify-end mt-1">           
@@ -422,18 +422,27 @@ function ContactInvestCardList(props) {
        </InfiniteScroll>
       </div>
       <UpdateContactInvestModal
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
+         translatedMenuItems={props.translatedMenuItems}
         contactiData={contactiData}
         updateContactInvestModal={updateContactInvestModal}
         handleUpdateContactInvestModal={handleUpdateContactInvestModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
       />
 <AddContactInvestPulseModal
+ translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}
+ translatedMenuItems={props.translatedMenuItems}
         contactiData={contactiData}
         addDrawerContactInvestPulseModal={addDrawerContactInvestPulseModal}
         handleContactInvestPulseDrawerModal={handleContactInvestPulseDrawerModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
       />  
       <AddContactInvestNotesDrawerModal
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
+       translatedMenuItems={props.translatedMenuItems}
         contactiData={contactiData}
         addDrawerContactInvestNotesModal={addDrawerContactInvestNotesModal}
         handleContactInvestPulseDrawerModal={handleContactInvestPulseDrawerModal}

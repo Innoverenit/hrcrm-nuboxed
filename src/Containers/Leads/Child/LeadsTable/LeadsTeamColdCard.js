@@ -540,12 +540,18 @@ const LeadsTeamColdCard = (props) => {
         updateLeadsModal={updateLeadsModal}
         handleUpdateLeadsModal={handleUpdateLeadsModal}
         handleSetCurrentLeadsId={handleSetCurrentLeadsId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <AddLeadsEmailDrawerModal
         item={currentLeadsId}
         handleSetCurrentLeadsId={handleSetCurrentLeadsId}
         addDrawerLeadsEmailModal={props.addDrawerLeadsEmailModal}
         handleLeadsEmailDrawerModal={props.handleLeadsEmailDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <OpenCETmodal
         rowdata={rowdata}
