@@ -95,6 +95,18 @@ function DistributorPaidForm(props) {
                   </div>
                   <div class="w-[31%]">
                     <Field
+                      name="paymentAmount"
+                      label="Invoice Id"
+                      isRequired
+                      isColumn
+                      inlineLabel
+                      width={"100%"}
+                      component={InputComponent}
+                      value={values.paymentAmount}
+                    />
+                  </div>
+                  <div class="w-[31%]">
+                    <Field
                       disabled
                       name="orderCurrencyId"
                       label={

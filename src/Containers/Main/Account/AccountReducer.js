@@ -10,6 +10,10 @@ const initialState = {
 
   showStatusDrwr: false,
 
+  fetchingAccountInvoice: false,
+  fetchingAccountInvoiceError: false,
+  accountInvoice:[],
+
   updatingOrdrSuplrItems: false,
   updatingOrdrSuplrItemsError: false,
 
@@ -3414,6 +3418,22 @@ export const distributorReducer = (state = initialState, action) => {
           fetchingLocationNamesByProductId: false,
           fetchingLocationNamesByProductIdError: true,
         };
+
+
+        case types.GET_ACCOUNT_INVOICE_REQUEST:
+          return { ...state, fetchingAccountInvoice: true };
+        case types.GET_ACCOUNT_INVOICE_SUCCESS:
+          return {
+            ...state,
+            fetchingAccountInvoice: false,
+            accountInvoice: [...state.accountInvoice, ...action.payload]
+          };
+        case types.GET_ACCOUNT_INVOICE_FAILURE:
+          return {
+            ...state,
+            fetchingAccountInvoice: false,
+            fetchingAccountInvoiceError: true,
+          };
   
     default:
       return state;

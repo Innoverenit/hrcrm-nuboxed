@@ -5,6 +5,7 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { PlusOutlined } from "@ant-design/icons";
+import ReceiptIcon from '@mui/icons-material/Receipt';
 import { FormattedMessage } from "react-intl";
 import {
     handleLinkDistributorOrderConfigureModal,
@@ -36,6 +37,7 @@ import ShopIcon from '@mui/icons-material/Shop'
 import AddAccountOpportunityModal from "./AddAccountOpportunityModal";
 import MainNotes from "../../../CustomNote/MainNotes";
 import ErpNote from "../../ErpNote/ErpNote";
+import AccountInvoiceTable from "./AccountInvoiceTable";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -433,7 +435,36 @@ function AccountDetailsTab(props) {
                             <AccountContactTable distributorId={props.distributorData.distributorId} />
                         </Suspense>
                     </TabPane>
-
+                    <TabPane
+                        tab={
+                            <>
+                                <span>
+                                   <ReceiptIcon/>
+                                    &nbsp; Invoice
+                                </span>
+                                {activeKey === "11" && (
+                                    <>
+                                        {/* <Tooltip title="Add Contact">
+                                            <AddIcon
+                                                type="plus"
+                                                tooltipTitle="Create"
+                                                onClick={() => {
+                                                    //  props.handleDistributorContactModal(true);
+                                                    props.handleSupplierContactModal(true)
+                                                }}
+                                                className="!text-icon  cursor-pointer ml-1"
+                                            />
+                                        </Tooltip> */}
+                                    </>
+                                )}
+                            </>
+                        }
+                        key="11"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+                            <AccountInvoiceTable    distributorId={props.distributorData.distributorId} />
+                        </Suspense>
+                    </TabPane>
                 </StyledTabs>
             </TabsWrapper>
             {/* <AddDistributorDocumentModal
