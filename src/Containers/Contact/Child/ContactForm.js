@@ -14,7 +14,6 @@ import { addContact, addLinkContactByOpportunityId } from "../ContactAction";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { getCustomerData } from "../../Customer/CustomerAction";
 import { BundleLoader } from "../../../Components/Placeholder";
-
 const { Option } = Select;
 /**
  * yup validation scheme for creating a contact
@@ -87,8 +86,6 @@ class ContactForm extends Component {
       console.error('Error translating menu items:', error);
     }
   }
-
-
 
   handleCandidate = (checked) => {
     this.setState({ candidate: checked });

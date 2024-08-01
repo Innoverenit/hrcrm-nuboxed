@@ -382,6 +382,9 @@ function CustomerWhiteTable(props) {
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}
         handleSetCurrentCustomerId={handleSetCurrentCustomerId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );

@@ -6,9 +6,6 @@ import styled from 'styled-components'
 import LeadsImportForm from "../Leads/Child/LeadsImportForm"
 import { StyledDrawer } from "../../Components/UI/Antd";
 
-
-
-
 class AddLeadsImportModal extends Component {
   render() {
   
@@ -19,17 +16,15 @@ class AddLeadsImportModal extends Component {
           width={"60%"}
           visible={this.props.addLeadsImportModal}
       
-        onClose={() => this.props.handleLeadsImportModal(false)}
-      
-        
+        onClose={() => this.props.handleLeadsImportModal(false)}       
         >
           <Suspense fallback={<BundleLoader />}>
       
-        <LeadsImportForm
-
-        />
-         
-          
+        <LeadsImportForm 
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+        />         
         </Suspense>
          
         </StyledDrawer>
@@ -38,8 +33,6 @@ class AddLeadsImportModal extends Component {
   }
 }
 const mapStateToProps = ({ profile, auth,employee,candidate }) => ({
-    
- 
 });
 
 const mapDispatchToProps = (dispatch) =>

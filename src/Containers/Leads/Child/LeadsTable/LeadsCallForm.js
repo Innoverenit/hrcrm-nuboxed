@@ -60,14 +60,9 @@ const CallSchema = Yup.object().shape({
     .nullable()
     .required("Input required !"),
 
-  // reminder:Yup.string()
-  // .nullable()
-  // .required("Input required !"),
 });
 function LeadsCallForm(props) {
-
-
-  
+ 
   const[category,setCategory] =useState(props.selectedCall ? props.selectedCall.callCategory : "New")
   const[reminder,setReminder] =useState(true)
 
@@ -489,8 +484,7 @@ function LeadsCallForm(props) {
                   <div class=" flex justify-between max-sm:flex-col mt-4">
                     <div class=" w-1/2 max-sm:w-wk">
                       <Field
-                        name="startTime"
-                        // label="Start Time"
+                        name="startTime"                   
                         label={
                           <FormattedMessage
                             id="app.starttime"
@@ -507,8 +501,7 @@ function LeadsCallForm(props) {
                     </div>
                     <div class=" w-2/5 max-sm:w-wk">
                       <Field
-                        name="endTime"
-                        // label="End Time"
+                        name="endTime"                   
                         label={
                           <FormattedMessage
                             id="app.endtime"
@@ -529,8 +522,7 @@ function LeadsCallForm(props) {
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
                     name="timeZone"
-                    isColumnWithoutNoCreate
-                    //label="TimeZone "
+                    isColumnWithoutNoCreate           
                     label={
                       <FormattedMessage
                         id="app.timeZone"
@@ -615,7 +607,6 @@ function LeadsCallForm(props) {
                     <div class="mt-4">
                   <Field
                     name="included"
-                    // label="Include"
                     label={
                       <FormattedMessage
                         id="app.include"
@@ -634,28 +625,6 @@ function LeadsCallForm(props) {
                   />
                   </div>  
                
-            
-                  {/* <div >
-                  <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    //label="Talent"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={props.setClearbitCandidateData}
-                    component={CandidateClearbit}
-                    inlineLabel
-                  />
-                   </div>
-                */}
                   <div>
                     <div class=" w-full mt-4"><Field
                       name="callDescription"

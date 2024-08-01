@@ -40,7 +40,6 @@ import {
 import AddOpportunityDrawerModal from "./AddOpportunityDrawerModal";
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
 import ReinstateToggleForLost from "../../Child/OpportunityTable/ReinstateToggleForLost"
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
@@ -82,10 +81,6 @@ function OpportunityLostCard(props) {
 'Stages', // 5
 'Sales Rep', // 6
 'Owner' // 7
-
-
-
-
 
         ];
 
@@ -472,15 +467,24 @@ handleSetCurrentOpportunityId(item.opportunityName);
         updateOpportunityModal={updateOpportunityModal}
         handleUpdateOpportunityModal={handleUpdateOpportunityModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
             <AddOpportunityNotesDrawerModal
         addDrawerOpportunityNotesModal={addDrawerOpportunityNotesModal}
         opportunityData={currentOpportunityId}
         handleOpportunityNotesDrawerModal={handleOpportunityNotesDrawerModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
 <AddOpportunityDrawerModal
+translateText={props.translateText}
+selectedLanguage={props.selectedLanguage}
+translatedMenuItems={props.translatedMenuItems}
  handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
  opportunityName={currentOpportunityId}
  opportunitySkills={props.opportunitySkills}
