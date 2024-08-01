@@ -46,8 +46,8 @@ class EducationTable extends Component {
     return (
       <>
 
-<div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+<div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
           <div className=" md:w-[6.5rem]">
         <FormattedMessage
                   id="app.name"
@@ -77,17 +77,17 @@ class EducationTable extends Component {
         
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+                            <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1"
                                 >
                                      
-                                     <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                     <div className=" flex md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 
           <div class="max-sm:w-full">
                                         <Tooltip>
                                           <div class=" flex w-[8rem] max-sm:w-full justify-between flex-row md:flex-col ">
                                           
-                                            <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
       {item.documentName}
      
@@ -102,24 +102,24 @@ class EducationTable extends Component {
 
                              
                               
-                                <div className=" flex font-medium flex-col md:w-[15.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex  md:w-[15.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                  <div class="text-sm  font-poppins">
+                                  <div class="text-xs  font-poppins">
                                   {item.idType}
                                   </div>
                               </div>
 
-                              <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                              <div className=" flex  md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                <div class="text-sm  font-poppins">
+                                <div class="text-xs  font-poppins">
                                 {item.idNo}
                                 </div>
                             </div>
-                            <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                            <div className=" flex  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
-                                   <div class="text-sm  font-poppins">
+                                   <div class="text-xs  font-poppins">
                  
-                     <div className="font-normal text-sm  font-poppins">
+                     <div className="text-xs  font-poppins">
                        <span>{item.description}</span>
                      </div>
                  
@@ -136,7 +136,7 @@ class EducationTable extends Component {
                 href={`${base_url}/document/${item.documentId}`}
                 target="_blank"
               >
-                <DownloadIcon
+                <DownloadIcon 
                   type="download"
                   // onClick={() => startDownload()}
                   style={{ cursor: "pointer" }}
@@ -146,12 +146,12 @@ class EducationTable extends Component {
           </>
                  
                   </div>
-                                <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex ml-2 md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm  font-poppins text-center">
-                                    <BorderColorIcon 
-            style={{ cursor: "pointer", fontSize: "1rem" }}
+                                    <div class=" text-xs  font-poppins text-center">
+                                    <BorderColorIcon className=" cursor-pointer !text-icon"
+           
             onClick={() => {
               setEditDocument(item);
               handleUpdatePersonalDetailsModal(true);
@@ -160,17 +160,17 @@ class EducationTable extends Component {
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  ml-2 md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class=" text-xs  font-poppins text-center">
                                     <StyledPopconfirm
             title="Do you want to delete?"
             onConfirm={() => deletePersonalTable(item.id)}
           >
-            <DeleteIcon
+            <DeleteIcon className=" cursor-pointer !text-icon text-red-600"
               type="delete"
-              style={{ cursor: "pointer", fontSize: "1rem", color: "red" }}
+      
             />
           </StyledPopconfirm>
 
