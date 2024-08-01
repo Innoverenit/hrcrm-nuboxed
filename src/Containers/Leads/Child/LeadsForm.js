@@ -20,9 +20,7 @@ import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
