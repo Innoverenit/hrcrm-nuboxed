@@ -112,7 +112,7 @@ componentDidMount(){
           <TabPane
               tab={
                 <>
-                 <DirectionsRunIcon style={{fontSize:"1.1rem"}}/>
+                 <DirectionsRunIcon className=" !text-icon"/>
                 <span class="  ml-1">
                     
                     Performance
@@ -164,7 +164,7 @@ componentDidMount(){
                   
                   {/* <HeadphonesIcon   style={{fontSize:"1.1rem"}}
                   /> */}
-                  < ModelTrainingIcon />
+                  < ModelTrainingIcon className=" !text-icon" />
                    <span class=" font-poppins ml-1" >Training
                     
                   </span>
@@ -193,7 +193,7 @@ componentDidMount(){
               tab={
                 <>
                   {/* <AccountBalanceIcon   style={{fontSize:"1.1rem"}} /> */}
-                  <AccountBalanceIcon/>
+                  <AccountBalanceIcon className=" !text-icon"/>
                   <span class=" font-poppins ml-1" >
                     
                     <FormattedMessage
@@ -227,7 +227,7 @@ componentDidMount(){
                 <>
                 
                 <PhoneIcon 
-                 style={{fontSize:"1.1rem"}}
+                 className=" !text-icon"
                  />
                   <span class=" font-poppins ml-1">
                     
@@ -262,7 +262,7 @@ componentDidMount(){
             <TabPane
               tab={
                 <>
-                <AccountBalanceIcon   style={{fontSize:"1.1rem"}}/>
+                <AccountBalanceIcon  className=" !text-icon"/>
                   <span class=" font-poppins ml-1">Bank Details
                   </span>
                   {activeKey === "6" && user.userCreateInd === true && (
@@ -290,7 +290,7 @@ componentDidMount(){
             <TabPane
               tab={
                 <>
-                <RecentActorsIcon  style={{fontSize:"1.1rem"}}/>
+                <RecentActorsIcon className=" !text-icon"/>
                   <span class=" font-poppins ml-1">Personal Details
                   </span>
                   {activeKey === "7" && user.userCreateInd === true && (
@@ -317,7 +317,7 @@ componentDidMount(){
             <TabPane
               tab={
                 <>
-                <NoteAltIcon  style={{fontSize:"1.1rem"}}/>
+                <NoteAltIcon  className=" !text-icon"/>
                   <span class="ml-1">  
                     <FormattedMessage id="app.notes" defaultMessage="Notes" />
                   </span>
@@ -340,7 +340,7 @@ componentDidMount(){
             <TabPane
               tab={
                 <>
-                 <PaymentIcon  style={{fontSize:"1.1rem"}}/>
+                 <PaymentIcon  className=" !text-icon"/>
                   <span class=" font-poppins ml-1">Salary
                   </span>
                   {activeKey === "9" && user.userCreateInd === true && (
@@ -367,7 +367,7 @@ componentDidMount(){
             <TabPane
               tab={
                 <>
-                <FileCopyIcon   style={{fontSize:"1.1rem"}} />
+                <FileCopyIcon   className=" !text-icon" />
                   <span class=" font-poppins ml-1">
                     
                     <FormattedMessage
@@ -402,7 +402,7 @@ componentDidMount(){
             <TabPane
               tab={
                 <>
-                <ContrastIcon  style={{fontSize:"1.1rem"}}/>
+                <ContrastIcon className=" !text-icon"/>
                   <span class=" font-poppins ml-1">
                     
                    
@@ -527,7 +527,7 @@ componentDidMount(){
             <TabPane
               tab={
                 <>
-                <ContactsIcon/>
+                <ContactsIcon className=" !text-icon"/>
                   <span class=" font-poppins ml-1">
                   <FormattedMessage
                   id="app.requirement"
@@ -584,7 +584,7 @@ componentDidMount(){
               tab={
                 <>
                 
-               <WorkspacePremiumIcon style={{fontSize:"1.1rem"}}/>
+               <WorkspacePremiumIcon className=" !text-icon"/>
                   <span class=" font-poppins ml-1">                  
                 Experience
                   </span>                 
@@ -603,7 +603,7 @@ componentDidMount(){
             <TabPane
               tab={
                 <>
-                <SchoolIcon   style={{fontSize:"1.1rem"}}/>
+                <SchoolIcon  className=" !text-icon"/>
                   <span class=" font-poppins ml-1">
                     
                  Visa

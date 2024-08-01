@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from 'react'
+import React, { lazy, Suspense } from 'react'
 import RefurbishHeader from './RefurbishHeader'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";

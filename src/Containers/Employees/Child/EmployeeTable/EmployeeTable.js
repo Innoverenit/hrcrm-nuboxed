@@ -820,7 +820,7 @@ function EmployeeTable(props) {
                         <div>
                             <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
                                 <div class="flex">
-                                    <div className=" flex font-medium  md:w-[15.6rem] max-sm:w-full ">
+                                    <div className=" flex md:w-[15.6rem] max-sm:w-full ">
                                     <EmployeeDetailsView
           employeeId={item.employeeId}
           fullName={item.fullName}
@@ -834,17 +834,17 @@ function EmployeeTable(props) {
                                         ) : null}
                                     </div>
 
-                                    <div className=" flex font-medium   md:w-[8.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                    <div className=" flex  md:w-[8.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                         <div class=" text-xs  font-poppins">
                                             {item.department}
                                         </div>
 
                                     </div>
-                                    <div className=" flex font-medium  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 
-                                        <div class=" text-sm  font-poppins">
+                                        <div class=" text-xs  font-poppins">
                                             
                                            {item.roleTypeName}
                                         </div>
@@ -852,17 +852,17 @@ function EmployeeTable(props) {
                                 </div>
 
                                
-                                <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     {item.countryDialCode} {item.mobileNo}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                        {item.emailId}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     {props.user.userDeleteInd === true || user.role === "ADMIN" ? (
             <SuspendEmployee
@@ -875,7 +875,7 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
                                 {props.user.multyOrgLinkInd=== true && (
-                                <div className=" flex font-medium ml-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  ml-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                   
             <MultiOrgEmployee
@@ -886,7 +886,7 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
                                 )}
-                                <div className=" flex font-medium  md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs cursor-pointer  font-poppins text-center">
                                     {item.suspendInd !== true && ( 
               <Tooltip  title={item.role}>
@@ -917,7 +917,7 @@ function EmployeeTable(props) {
                )}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[12.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[12.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     <span
               style={{ cursor: "pointer" }}
@@ -937,7 +937,7 @@ function EmployeeTable(props) {
             </span>
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[9.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[9.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title="Add as Admin">
            <CircleNotificationsIcon
@@ -950,7 +950,7 @@ function EmployeeTable(props) {
            </Tooltip>
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-base  font-poppins text-center">
                                     {item.suspendInd === true && (
                  <StyledPopconfirm
@@ -958,13 +958,8 @@ function EmployeeTable(props) {
                  onConfirm={() => props.deleteEmployeeData(item.userId)}>
            <Tooltip title="Delete">
         
-           <DeleteOutlined
-        style={{
-          cursor: "pointer",
-          color: "red",
-          fontSize: "1rem",
-        }}
-           />
+           <DeleteOutlined className=" cursor-pointer text-red-600 !text-icon"
+        />
        
            </Tooltip>
            </StyledPopconfirm>

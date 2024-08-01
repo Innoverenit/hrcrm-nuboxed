@@ -11,28 +11,28 @@ const TaskActionLeft = props => {
       <Tooltip
         title={<FormattedMessage id="app.myTasks" defaultMessage="My Tasks" />}
       >
-        <span class=" mr-1 cursor-pointer text-xs"
+        <span class=" mr-1 text-xs"
           onClick={() => props.setTaskViewType("table")}
           style={{
             color: props.viewType === "table" && "#1890ff",
             
           }}
         > <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-           <TocIcon className="text-white !text-icon"  />
+           <TocIcon className="text-white !text-icon cursor-pointer "  />
            </Avatar>
         </span>
       </Tooltip>
       <Tooltip
         title={<FormattedMessage id="app.mytaskView" defaultMessage="My Tasks- Gantt View" />}
       >
-        <span class=" mr-1 cursor-pointer text-xs"
+        <span class=" mr-1 text-xs"
           onClick={() => props.setTaskViewType("gantt")}
           style={{
             color: props.viewType === "gantt" && "#1890ff",
            
           }}
         > 
-        <Avatar style={{ background: props.viewType === "gantt" ? "#f279ab" : "#4bc076" }}><LeaderboardIcon className="text-white !text-icon"   /></Avatar>
+        <Avatar style={{ background: props.viewType === "gantt" ? "#f279ab" : "#4bc076" }}><LeaderboardIcon className="text-white !text-icon cursor-pointer "   /></Avatar>
         
         
         </span>
@@ -41,14 +41,14 @@ const TaskActionLeft = props => {
         title={<FormattedMessage id="app.approvals" defaultMessage="Approvals" />}
       >  
         
-        <span class=" mr-1 cursor-pointer text-xs"
+        <span class=" mr-1 text-xs"
           onClick={() => props.setTaskViewType("approve")}
           style={{
             color: props.viewType === "approve" && "#1890ff",
             
           }}
         >
-         <Avatar style={{ background: props.viewType === "approve" ? "#f279ab" : "#4bc076" }}><FactCheckIcon className="text-white !text-icon" /></Avatar> 
+         <Avatar style={{ background: props.viewType === "approve" ? "#f279ab" : "#4bc076" }}><FactCheckIcon className="text-white !text-icon  cursor-pointer  " /></Avatar> 
         </span>
        
       </Tooltip>

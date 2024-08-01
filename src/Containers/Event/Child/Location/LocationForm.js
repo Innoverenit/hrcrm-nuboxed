@@ -102,7 +102,8 @@ class LocationForm extends Component {
         "Department",
         "User",
         "Address",
-        "Create"
+        "Create",
+        "Time Zone"
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -232,11 +233,13 @@ class LocationForm extends Component {
             <Form class="form-background">
               <div class="flex justify-between max-sm:flex-col">
                 <div class="h-full w-[45%] max-sm:w-wk">
+              
                   <div>
+                  <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[0]}</div>
                     <Field
                       name="locationName"
                       // label="Name"
-                      label={this.state.translatedMenuItems[0]}
+                      // label={this.state.translatedMenuItems[0]}
                       type="text"
                       width={"100%"}
                       component={InputComponent}
@@ -246,6 +249,7 @@ class LocationForm extends Component {
                     />
                   </div>
                   <div class=" w-[45%] mt-3 max-sm:w-[30%]">
+                  <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[1]}</div>
                       <Field
                         name="regionsId"
                         selectType="DRegion"
@@ -258,7 +262,7 @@ class LocationForm extends Component {
                         //     defaultMessage="Region"
                         //   />
                         // }
-                        label={this.state.translatedMenuItems[1]}
+                        // label={this.state.translatedMenuItems[1]}
                         isColumn
                         // defaultValue={{
                         //   label:`+${props.user.countryDialCode}`,
@@ -353,7 +357,7 @@ class LocationForm extends Component {
                       </div>
                     </div> */}
                     <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">
+                    <div class=" text-xs font-bold font-poppins">
                       {this.state.translatedMenuItems[2]}  {/* Inventory */}
                          &nbsp;<i class="fas fa-warehouse text-base"></i></div>
                       {/* inventory auto on when production on. if user wants to close inventory then ask what is inventory location */}
@@ -370,7 +374,7 @@ class LocationForm extends Component {
                   </div>
                   <div class=" flex">
                   <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">
+                      <div class="font-bold text-xs font-poppins">
                       {this.state.translatedMenuItems[3]}{/* Production */}
                          &nbsp;<PrecisionManufacturingIcon/></div>
                       <div>
@@ -384,7 +388,7 @@ class LocationForm extends Component {
                       </div>
                     </div>
                     <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">
+                      <div class="font-bold text-xs font-poppins">
                        {this.state.translatedMenuItems[4]} {/* Corporate */}
                          &nbsp;<i class="fas fa-building text-base"></i></div>
                       <div>
@@ -400,7 +404,7 @@ class LocationForm extends Component {
                   </div>
                   <div class=" flex">
                   <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">
+                      <div class="font-bold text-xs font-poppins">
                       {this.state.translatedMenuItems[5]}{/* Retail */}
                         <i class="fas fa-money-check text-base"></i></div>
                       <div>
@@ -429,7 +433,7 @@ class LocationForm extends Component {
                   </div>
                   <div class=" flex">
                   <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">
+                      <div class="font-bold text-xs font-poppins">
                       {this.state.translatedMenuItems[6]} {/* Billing  */}
                        <i class="far fa-money-bill-alt text-base"></i></div>
                       <div>
@@ -458,7 +462,7 @@ class LocationForm extends Component {
                   
                   </div>
                   <div className="flex  items-center mt-4">
-        <div className="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+        <div className="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col font-poppins">
         {this.state.translatedMenuItems[7]}{/* 3rd Party Location */}
         </div>
         <Switch
@@ -472,9 +476,9 @@ class LocationForm extends Component {
       {this.state.contract?
       <div className="flex justify-between max-sm:flex-col">
         <div className="w-w48 max-sm:w-wk">
-          <label style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
-          {this.state.translatedMenuItems[8]} {/* Department */}
-          </label>
+        <div class=" text-xs font-bold font-poppins">   {this.state.translatedMenuItems[8]} </div>
+       {/* Department */}
+          
           <Select
   className="w-[250px]"
   value={this.state.department}
@@ -494,9 +498,7 @@ class LocationForm extends Component {
         </div>
 
         <div className="w-w48 max-sm:w-wk">
-          <label style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
-          {this.state.translatedMenuItems[9]}{/* User */}
-          </label>
+        <div class=" text-xs font-bold font-poppins">   {this.state.translatedMenuItems[9]} </div>{/* User */}
           <Select
             className="w-[250px]"
             value={this.state.reportingManager}
@@ -514,7 +516,7 @@ class LocationForm extends Component {
                 </div>
                 <div class="h-full w-[45%] max-sm:w-wk mt-2">
                   <div class=" w-full" >
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Time Zone</div>
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col font-poppins">{this.state.translatedMenuItems[12]} </div>
                     <Field
                       name="timeZone"
                       type="text"
@@ -529,7 +531,7 @@ class LocationForm extends Component {
                     />
                   </div>
                 <div class=" mt-3">
-                  <lable>{this.state.translatedMenuItems[10]}</lable> 
+                <div class=" text-xs font-bold font-poppins">   {this.state.translatedMenuItems[10]} </div>
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (
@@ -547,8 +549,7 @@ class LocationForm extends Component {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={this.props.addingLocation}
-                >
+                  loading={this.props.addingLocation} >
                   {this.state.translatedMenuItems[11]}{/* Create */}
                 </Button>
               </div>

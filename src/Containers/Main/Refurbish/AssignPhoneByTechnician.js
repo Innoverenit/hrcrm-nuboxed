@@ -137,7 +137,7 @@ const AssignPhoneByTechnician = (props) => {
         <div>
             <div class="mt-[10px] flex justify-between">
                 <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Department</label>
+                    <div class="text-[15px] font-semibold m-[10px]">Department</div>
                     <Select
                         className="w-[350px]"
                         value={department}
@@ -149,7 +149,7 @@ const AssignPhoneByTechnician = (props) => {
                     </Select>
                 </div>
                 <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Technician</label>
+                    <div class="text-[15px] font-semibold m-[10px]">Technician</div>
                     <Select
                         className="w-[350px]"
                         value={technician}
@@ -160,8 +160,8 @@ const AssignPhoneByTechnician = (props) => {
                         })}
                     </Select>
                 </div>
-                <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
+                <div className='flex flex-col'>
+                    <div class="text-[15px] font-semibold m-[10px]">Due Date</div>
                     <DatePicker
                         className="w-[300]"
                         value={dueDate}
