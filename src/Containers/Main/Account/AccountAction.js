@@ -4452,3 +4452,29 @@ export const getLocationNamesByProductId = (productId) => (dispatch) => {
       });
     });
 }
+
+export const getAccountInvoiveList = (distributorId,pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_ACCOUNT_INVOICE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/inVoice/allOrders/${distributorId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ACCOUNT_INVOICE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ACCOUNT_INVOICE_FAILURE,
+        payload: err,
+      });
+    });
+}

@@ -14,11 +14,17 @@ import {
   updateRequirement,
   getRequirementsDuration,
 } from "../../../../Settings/SettingsAction";
+import * as Yup from "yup";
 import dayjs from "dayjs";
+import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 const Notifications = lazy(() => import("../General/Notifications"));
 
 
 const { Option } = Select;
+const GeneralSchema = Yup.object().shape({
+  criticlDateRange: Yup.number()
+    .typeError("Input must be a number!")
+});
 function General(props) {
   const [anniversary, setAnniversary] = useState(props.requirementDuration.jobAniEmailInd);
   const [birthday, setBirthday] = useState(props.requirementDuration.birthdayEmailInd);
@@ -60,10 +66,12 @@ function General(props) {
           proInd: props.requirementDuration.proInd,
           
           repairProcessInd: props.requirementDuration.repairProcessInd,
+          criticlDateRange:props.requirementDuration.criticlDateRange,
           processInd: props.requirementDuration.processInd,
           // fifoInd: props.requirementDuration.fifoInd,
 
         }}
+        validationSchema={GeneralSchema}
         onSubmit={(values) => {
           console.log(values)
         
@@ -316,6 +324,20 @@ function General(props) {
                               unCheckedChildren={"No"}
                               width={"7em"}
                             />
+                              </div>
+                          </div>
+                          <div class=" flex flex-row justify-between mt-2">
+                          <div class=" text-sm  ml-2 ">Critical Date Range</div>
+                          <div>
+                          <Field
+                            isRequired
+                            name="criticlDateRange"                          
+                            type="Numeric"
+                            width={"100%"}
+                            isColumn
+                            component={InputComponent}
+                            inlineLabel
+                          />
                               </div>
                           </div>
                       <div class=" flex flex-row justify-between mt-3">
