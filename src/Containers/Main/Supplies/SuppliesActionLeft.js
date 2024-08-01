@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Badge, Avatar,Input } from "antd";
 import { AudioOutlined } from '@ant-design/icons';
-import { getSuppliesCount,getSuppliesDeletedCount,getSuppliesList,ClearReducerDataOfMaterial,inputSuppliesDataSearch } from "./SuppliesAction";
+import {materialCategorySearch,getMaterialCategory, getSuppliesCount,getSuppliesDeletedCount,getSuppliesList,ClearReducerDataOfMaterial,inputSuppliesDataSearch } from "./SuppliesAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import CategoryIcon from '@mui/icons-material/Category';
 
@@ -27,6 +27,9 @@ function SuppliesActionLeft (props) {
     const minRecordingTime = 3000; // 3 seconds
     const timerRef = useRef(null);
     const dummy = ["cloud", "azure", "fgfdg"];
+
+    const [currentCatData, setCurrentCatData] = useState("");
+
     const {
       transcript,
       listening,
@@ -39,6 +42,7 @@ function SuppliesActionLeft (props) {
         if (transcript) {
           console.log(">>>>>>>", transcript);
           setCurrentData(transcript);
+          setCurrentCatData(transcript);
         }
         }, [ transcript]);
 
@@ -52,7 +56,7 @@ function SuppliesActionLeft (props) {
         const handleChange = (e) => {
             setCurrentData(e.target.value);
         
-            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+            if (searchOnEnter&& e.target.value.trim() === "") {  //Code for Search
               setPage(pageNo + 1);
                props.getSuppliesList(pageNo);
               props.ClearReducerDataOfMaterial()
@@ -68,6 +72,26 @@ function SuppliesActionLeft (props) {
               console.error("Input is empty. Please provide a value.");
             }
           };
+
+          const handleCatChange = (e) => {
+            setCurrentCatData(e.target.value);
+        
+            if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
+               
+              props.getMaterialCategory();
+              setSearchOnEnter(false);
+            }
+          };
+          const handleCatSearch = () => {
+            if (currentCatData.trim() !== "") {
+              // Perform the search
+              props.materialCategorySearch(currentCatData);
+              setSearchOnEnter(true);  //Code for Search
+            } else {
+              console.error("Input is empty. Please provide a value.");
+            }
+          };
+
           const handleStartListening = () => {
             setStartTime(Date.now());
             setIsRecording(true);
@@ -96,6 +120,8 @@ function SuppliesActionLeft (props) {
             if (transcript.trim() !== "") {
               setCurrentData(transcript);
               props.inputSuppliesDataSearch(transcript);
+              setCurrentCatData(transcript);
+              props.materialCategorySearch(transcript);
               setSearchOnEnter(true);
             }
           };
@@ -174,6 +200,7 @@ function SuppliesActionLeft (props) {
                 </Tooltip>
 
                 <div class=" w-64 max-sm:w-24">
+                {viewType === "all" &&         
         <Input
           placeholder="Search by Name "
           width={"100%"}
@@ -181,7 +208,16 @@ function SuppliesActionLeft (props) {
           onPressEnter={handleSearch}
           onChange={handleChange}
         value={currentData}
-        />
+        />}
+{viewType === "category" &&
+<Input
+          placeholder="Search by Category Name "
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleCatSearch}
+          onChange={handleCatChange}
+        value={currentCatData}
+        />}
             </div>
             </div> 
 </>
@@ -198,7 +234,9 @@ const mapDispatchToProps = (dispatch) =>
             getSuppliesDeletedCount,
             inputSuppliesDataSearch,
             ClearReducerDataOfMaterial,
-            getSuppliesList
+            getSuppliesList,
+            getMaterialCategory,
+            materialCategorySearch
         },
         dispatch
     );

@@ -2,13 +2,14 @@ import React, { useState, useEffect, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MultiAvatar, SubTitle } from "../../../Components/UI/Elements";
-import { Button, Tooltip,Input } from "antd";
+import { Button, Tooltip,Input,Popconfirm } from "antd";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { getSuppliesCategory } from "./SuppliesAction";
+import { getMaterialCategory } from "./SuppliesAction";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
+import { DeleteOutlined } from "@ant-design/icons";
 
 const SuppliesCategoryModal = lazy(() => import("./SuppliesCategoryModal"));
 
@@ -64,29 +65,37 @@ function SuppliesCategoryCard(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-        setLoading(true); 
-        try {
-            const response = await axios.get(`${base_url2}/supplies/allSuppliesCatagory`,{
-                headers: {
-                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-                },
-              }); 
-            if (response.drb.length === 0) {
-                setHasMore(false); 
-            }
-            setDrb(prevData => [...prevData, ...response.drb]); 
-        } catch (error) {
-            setError(error); 
-            console.error('Error fetching data:', error);
-        } finally {
-            setLoading(false); 
-        }
-    };
+//   useEffect(() => {
+//     const fetchData = async () => {
+//         setLoading(true); 
+//         try {
+//             const response = await axios.get(`${base_url2}/supplies/allSuppliesCatagory`,{
+//                 headers: {
+//                   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+//                 },
+//               }); 
+//               console.log('API Response:', response.data);
+//               const data = response.data;
+//               if (data.length === 0) {
+//                 setHasMore(false);
+//               }
+//               setDrb(prevData => [...prevData, ...data]);
+//             } catch (error) {
+//               setError(error);
+//               console.error('Error fetching data:', error);
+//             } finally {
+//               setLoading(false);
+//             }
+//           };
 
-    fetchData();
-}, []);
+//     fetchData();
+// }, []);
+
+useEffect(()=>{props.getMaterialCategory()},[]);
+useEffect(() => {
+  setData(props.materialCategorys);
+}, [props.materialCategorys]);
+
 
 
   const [particularDiscountData, setParticularDiscountData] = useState({});
@@ -99,10 +108,7 @@ function SuppliesCategoryCard(props) {
     const [editsuppliesId, setEditsuppliesId] = useState(null);
     const [data, setData] = useState([]);
 
-    useEffect(() => {
-        setData(drb);
-    }, [drb]);
-
+  
     const handleInputChange = (value, key, dataIndex) => {
         const updatedData = data.map((item) =>
             item.categoryId === key ? { ...item, [dataIndex]: value } : item
@@ -122,10 +128,11 @@ function SuppliesCategoryCard(props) {
         setEditsuppliesId(null);
       };
 
+  
+
       const handleSave = async (item) => {
         console.log(item)
         const updatedItem = {
-            categoryId:item.categoryId,
             // orderId:props.particularRowData.orderId,
             categoryName: item.categoryName, 
             imageId: newimageId
@@ -133,11 +140,7 @@ function SuppliesCategoryCard(props) {
      console.log("resd",updatedItem);  
      try {
 
-      const response = await axios.put(`${base_url2}/supplies/suppliescatagory/${item.categoryId}`, updatedItem, {
-        headers: {
-          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-        },
-      });
+      const response = await axios.put(`${base_url2}/supplies/suppliescatagory/${item.categoryId}`, updatedItem);
       console.log("API Response:", response.data);
       setDrb(prevData => 
         prevData.map(cat =>
@@ -153,7 +156,7 @@ function SuppliesCategoryCard(props) {
       setEditsuppliesId(null);
     }
   };
-
+console.log("drb2",data)
   return (
     <>
 
@@ -285,6 +288,16 @@ function SuppliesCategoryCard(props) {
                       />
                     )}
     </div>
+    {item.categoryCount===1 &&
+    <div>
+                              <Popconfirm
+                                title="Do you want to delete?"
+                                // onConfirm={() => DeleteOnClick(item)}
+                              >
+
+                                <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
+                              </Popconfirm>
+                            </div>}
                     </div>
                    
                   </div>
@@ -306,18 +319,17 @@ function SuppliesCategoryCard(props) {
 }
 
 
-const mapStateToProps = ({ product, auth, supplies }) => ({
+const mapStateToProps = ({ supplies, auth }) => ({
   role: auth.userDetails.role,
   department: auth.userDetails.department,
   user: auth.userDetails,
-  categoryProducts:product.categoryProducts
+  materialCategorys:supplies.materialCategorys
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        // handleCategoryModal,
-        // getCategory
+      getMaterialCategory
     },
     dispatch
   );

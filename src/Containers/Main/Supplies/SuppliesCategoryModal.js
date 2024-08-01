@@ -20,7 +20,7 @@ const SuppliesCategoryModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <SuppliesCategoryForm/> 
+          <SuppliesCategoryForm closeModal={props.closeModal} onSuccess={props.handleNewCategory} /> 
         </Suspense>
       </StyledDrawer>
     </>

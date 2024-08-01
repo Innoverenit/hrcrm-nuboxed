@@ -2045,7 +2045,7 @@ export const featureProductToggle = ( data,productId) => (dispatch) => {
     type: types.FEATURED_PRODUCT_TOGGLE_REQUEST,
   });
   axios
-  .put(`${base_url2}/PRODUCT/update/featDummy/${productId}`,data,  {
+  .put(`${base_url2}/product/feature/${productId}`,data,  {
     headers: {
       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     },
@@ -2067,7 +2067,32 @@ export const featureProductToggle = ( data,productId) => (dispatch) => {
     })
 };
 
+export const catalogueCategorySearch = (categoryName) => (dispatch) => {
+  dispatch({
+    type: types.CATALOGUE_CATEGORY_SEARCH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/category/${categoryName}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      message.success(res.data.message);
 
+      dispatch({
+        type: types.CATALOGUE_CATEGORY_SEARCH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      message.error("Material list is empty");
+      dispatch({
+        type: types.CATALOGUE_CATEGORY_SEARCH_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 
 

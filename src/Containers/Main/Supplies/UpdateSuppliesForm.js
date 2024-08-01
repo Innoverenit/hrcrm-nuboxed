@@ -34,8 +34,6 @@ function UpdateSuppliesForm (props) {
       try {
         const itemsToTranslate = [
          "Category",//0
-          
-         
           "Sub Category",//1
           "Attribute",//1
           "Sub Attribute",//1
@@ -46,9 +44,11 @@ function UpdateSuppliesForm (props) {
           "UOM",//1
           "Gross Weight",
           "Description",
-          "Update"
-          
-      
+          "Update",
+          "Weight",//12
+          "Length",//13
+          "Width",//14
+          "Height",//15
       
        
           
@@ -77,7 +77,17 @@ function UpdateSuppliesForm (props) {
         value: item.currency_name,
       };
     })
-console.log("f",newimageId)
+    const formatDateForInput = (dateString) => {
+      const date = new Date(dateString);
+      return date.toISOString().substring(0, 16); // Format: YYYY-MM-DDTHH:MM
+    };
+  
+    // Helper function to get full date-time for storage
+    const formatDateForPayload = (dateTime) => {
+      const date = new Date(dateTime);
+      return date.toISOString(); // Format: YYYY-MM-DDTHH:MM:SS.sssZ
+    };
+
     return (
       <>
         <Formik
@@ -106,6 +116,12 @@ console.log("f",newimageId)
             netUnit:props.particularDiscountData.netUnit || "",
             netWeight:props.particularDiscountData.netWeight || "",
             reorder:props.particularDiscountData.reorder || "",
+            availabilityDate: formatDateForPayload(props.particularDiscountData.availabilityDate || new Date()),
+            weight: "",
+            width: "",
+             length:"",
+              height: "",
+         
           }}
           validationSchema={SuppliesSchema}
           onSubmit={(values, { resetForm }) => {
@@ -114,6 +130,7 @@ console.log("f",newimageId)
               {
                 ...values,
                 fifoInd: values.fifoInd ? true : false,
+                availabilityDate: formatDateForPayload(props.particularDiscountData.availabilityDate || new Date())
                 // imageId: newimageId !== "" ? newimageId.imageId : props.particularDiscountData.imageId,
                 // imageId: props.particularDiscountData.imageId,
               },
@@ -209,6 +226,57 @@ console.log("f",newimageId)
                         isColumn
                         inlineLabel
                         style={{ flexBasis: "80%" }}
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="w-[47%]">
+                    <label>{translatedMenuItems[12]}</label>
+                      <Field
+                        name="weight"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <label>{translatedMenuItems[13]}</label>
+                      <Field
+                        name="length"
+                        //label="UOM"
+                        isColumn
+                        inlineLabel
+                        component={InputComponent}
+                      
+                        style={{
+                          width: "100%",
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="w-[47%]">
+                    <label>{translatedMenuItems[14]}</label>
+                      <Field
+                        name="width"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <label>{translatedMenuItems[15]}</label>
+                      <Field
+                        name="height"
+                        isColumn
+                        inlineLabel
+                        component={InputComponent}
+                      
+                        style={{
+                          width: "100%",
+                        }}
                       />
                     </div>
                   </div>
@@ -345,11 +413,29 @@ console.log("f",newimageId)
                         inlineLabel
                       />
                     </div>
+        
                     {/* <div class="mt-3">
                       <MaterialImagesView />
                     </div> */}
                   </div>
-
+                  <div className="flex justify-between mt-4">
+                  <label>Availability Date</label>
+                  <div className="w-full">
+                    <Field name="availabilityDate">
+                      {({ field, form }) => (
+                        <input
+                          type="date"
+                          {...field}
+                          value={field.value || formatDateForInput(new Date())}
+                          onChange={e => {
+                            const { value } = e.target;
+                            setFieldValue('availabilityDate', value);
+                          }}
+                        />
+                      )}
+                    </Field>
+                  </div>
+                </div>
                 </div>
               </div>
               <div class="flex justify-end mt-3">

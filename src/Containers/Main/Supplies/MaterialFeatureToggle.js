@@ -10,28 +10,28 @@ function MaterialFeatureToggle(props) {
   useEffect(()=>{
     setData(props.purchaseList)
   },[props.purchaseList])
-  const [toggle, setToggle] = useState(props.publishInd);
+  const [toggle, setToggle] = useState(props.featureInd);
 
   function handleToggleClick(item) {
-    if (props.publishInd) {
+    if (props.featureInd) {
       props.featureMaterialToggle({
         suppliesId: props.suppliesId,
-        publishInd: props.publishInd ? false : true,
+        featureInd: props.featureInd ? false : true,
          
       },props.suppliesId);
-      setToggle( props.publishInd ? false : true);
+      setToggle( props.featureInd ? false : true);
  
     } else {
       props.featureMaterialToggle({
         suppliesId: props.suppliesId,
-        publishInd: props.publishInd ? false : true,
+        featureInd: props.featureInd ? false : true,
       },props.suppliesId);
-      setToggle( props.publishInd ? false : true);
+      setToggle( props.featureInd ? false : true);
     }
   }
 
   function handleCancel() {
-    if (props.publishInd) {
+    if (props.featureInd) {
       setToggle(true);
     } else {
       setToggle(false);
@@ -49,7 +49,7 @@ function MaterialFeatureToggle(props) {
       >
         <Switch
          className="toggle-clr"
-         checked={props.publishInd || toggle}
+         checked={props.featureInd || toggle}
          isLoading={true}
           checkedChildren="Yes"
           unCheckedChildren="No"
