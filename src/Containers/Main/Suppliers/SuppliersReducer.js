@@ -1163,6 +1163,13 @@ export const suppliersReducer = (state = initialState, action) => {
       return {
         ...state,
         applyingForLoginInContact: false,
+        contactSupplier: state.contactSupplier.map((item) => {
+          if (item.contactPersonId === action.payload.contactPersonId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.APPLY_FOR_LOGIN_IN_CONTACT_FAILURE:
       return {
