@@ -590,6 +590,10 @@ const initialState = {
 
   updatingSpareListItem: false,
   updatingSpareListItemError: false,
+
+  fetchingLocationNamesByProductId: false,
+          fetchingLocationNamesByProductIdError:false,
+          locationNamesByProductId:[],
 };
 
 export const distributorReducer = (state = initialState, action) => {
@@ -3396,6 +3400,21 @@ export const distributorReducer = (state = initialState, action) => {
         updatingOrdrSuplrItemsError: true,
       };
 
+      case types.GET_LOCATION_NAMES_BY_PRODUCTID_REQUEST:
+        return { ...state, fetchingLocationNamesByProductId: true };
+      case types.GET_LOCATION_NAMES_BY_PRODUCTID_SUCCESS:
+        return {
+          ...state,
+          fetchingLocationNamesByProductId: false,
+          locationNamesByProductId: action.payload,
+        };
+      case types.GET_LOCATION_NAMES_BY_PRODUCTID_FAILURE:
+        return {
+          ...state,
+          fetchingLocationNamesByProductId: false,
+          fetchingLocationNamesByProductIdError: true,
+        };
+  
     default:
       return state;
   }

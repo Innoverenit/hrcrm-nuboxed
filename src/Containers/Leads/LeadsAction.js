@@ -18,6 +18,15 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
   };
 
 
+
+  export const handleLeadsSubscriptionModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_LEADS_SUBSCRIPTION_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+
+
   export const handleLeadsImportModal = (modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_LEADS_IMPORT_MODAL,

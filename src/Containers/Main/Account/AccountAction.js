@@ -4426,3 +4426,29 @@ export const updateOrdrSuplrItems = (data,orderId) => (dispatch) => {
       });
     });
 };
+
+export const getLocationNamesByProductId = (productId) => (dispatch) => {
+  dispatch({
+    type: types.GET_LOCATION_NAMES_BY_PRODUCTID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getPoStock/locationList/${productId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_LOCATION_NAMES_BY_PRODUCTID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_LOCATION_NAMES_BY_PRODUCTID_FAILURE,
+        payload: err,
+      });
+    });
+}

@@ -1596,7 +1596,28 @@ export const productReducer = (state = initialState, action) => {
                                         fetchingProductHsnError: true,
                                       };
 
+                                      case types.FEATURED_PRODUCT_TOGGLE_REQUEST:
+                                        return { ...state, featuredProductToggle: true };
+                                      case types.FEATURED_PRODUCT_TOGGLE_SUCCESS:
+                                        return {
+                                          ...state,
+                                          featuredProductToggle: false,
+                                          products: state.products.map((item) => {
+                                            if (item.productId === action.payload.productId) {
+                                              return action.payload;
+                                            } else {
+                                              return item;
+                                            }
+                                          }),
+                                        };
+                                      case types.FEATURED_PRODUCT_TOGGLE_FAILURE:
+                                        return {
+                                          ...state,
+                                          featuredProductToggle: false,
+                                          featuredProductToggleError: true,
+                                        };
 
+                                        
     default:
       return state;
   }

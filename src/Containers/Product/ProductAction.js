@@ -1085,10 +1085,10 @@ export const productPublishToggle = (data, productId, groupId) => (
     type: types.PRODUCT_PUBLISH_TOGGLE_REQUEST,
   });
   axios
-    .put(`${base_url}/product/publish/${productId}`, data)
+    .put(`${base_url}/product/publish/Dummy/${productId}`, data)
     .then((res) => {
-      dispatch(getProducts())
-      dispatch(getProductByGroup(groupId));
+      // dispatch(getProducts())
+      // dispatch(getProductByGroup(groupId));
       dispatch({
         type: types.PRODUCT_PUBLISH_TOGGLE_SUCCESS,
         payload: res.data,
@@ -2040,10 +2040,32 @@ export const updateQualityProduct = (data,qualityCheckBuilderId) => (dispatch) =
       });
     });
 };
+export const featureProductToggle = ( data,productId) => (dispatch) => {
+  dispatch({
+    type: types.FEATURED_PRODUCT_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/PRODUCT/update/featDummy/${productId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
 
-
-
-
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.FEATURED_PRODUCT_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.FEATURED_PRODUCT_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
 
 
 

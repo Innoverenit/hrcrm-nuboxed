@@ -1,10 +1,16 @@
 import React, { useEffect, } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
+        import AddDashboardRepairOrdersCloseModal from "../../Child/JumpStart/AddDashboardRepairOrdersCloseModal"
+import AddDashboardRepairOrdersOpenModal from "../../Child/JumpStart/AddDashboardRepairOrdersOpenModal"
+import AddDashboardRepairOrdersAddedModal from "../../Child/JumpStart/AddDashboardRepairOrdersAddedModal"
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
-  getFinaceOrderDetails
+  getFinaceOrderDetails,
+  handleDasboardRepairOrderDrawer,
+  handleDasboardRepairOrderOpenDrawer,
+  handleDasboardRepairOrderCloseDrawer,
 } from "../../DashboardAction";
 
 function DashboardFinanceJumpstart(props) {
@@ -22,7 +28,7 @@ function DashboardFinanceJumpstart(props) {
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title="Orders Added"
-              // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
+              jumpstartClick={()=>props.handleDasboardRepairOrderDrawer(true)}
               cursorData={"pointer"}
               value={props.finaceOrderinDashboard.totalOrder}
              isLoading={props.fetchingFinaceorderDetails}
@@ -32,7 +38,7 @@ function DashboardFinanceJumpstart(props) {
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
               title="Orders Open"
-              // jumpstartClick={()=>handlePitchAddedDrawer(true)}
+          jumpstartClick={()=>props.handleDasboardRepairOrderOpenDrawer(true)}
               cursorData={"pointer"}
             value={ props.finaceOrderinDashboard.pendingOrder}
             isLoading={props.fetchingFinaceorderDetails}
@@ -44,7 +50,7 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
               title="Orders Closed"
              
-              // jumpstartClick={()=>handleDealAddedDrawer(true)}
+              jumpstartClick={()=>props.handleDasboardRepairOrderCloseDrawer(true)}
               cursorData={"pointer"}
               value={props.finaceOrderinDashboard.completeOrder}
               isLoading={props.fetchingFinaceorderDetails}
@@ -79,6 +85,21 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                </div> */}
         </div>
       </div>
+
+      <AddDashboardRepairOrdersAddedModal
+      addDashboardRepairOrderModal={props.addDashboardRepairOrderModal}
+       handleDasboardRepairOrderDrawer={props.handleDasboardRepairOrderDrawer}
+      />
+        <AddDashboardRepairOrdersOpenModal
+        addDashboardRepairOrderOpenModal={props.addDashboardRepairOrderOpenModal}
+      // addDashboardRepairOrderModal={props.addDashboardRepairOrderModal}
+       handleDasboardRepairOrderOpenDrawer={props.handleDasboardRepairOrderOpenDrawer}
+      />
+       <AddDashboardRepairOrdersCloseModal
+        addDashboardRepairOrderCloseModal={props.addDashboardRepairOrderCloseModal}
+      // addDashboardRepairOrderModal={props.addDashboardRepairOrderModal}
+       handleDasboardRepairOrderCloseDrawer={props.handleDasboardRepairOrderCloseDrawer}
+      />
    
       {/* <PitchQualifiedDrawer
       openPitchQualified={openPitchQualified}
@@ -106,16 +127,22 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   orgId: auth.userDetails.organizationId,
   fetchingJumpOrderCount: dashboard.fetchingJumpOrderCount,
   userId: auth.userDetails.userId,
+  addDashboardRepairOrderModal:dashboard.addDashboardRepairOrderModal,
   finaceOrderinDashboard: dashboard.finaceOrderinDashboard,
   fetchingFinaceorderDetails: dashboard.fetchingFinaceorderDetails,
   timeRangeType: dashboard.timeRangeType,
+  addDashboardRepairOrderCloseModal:dashboard.addDashboardRepairOrderCloseModal,
+  addDashboardRepairOrderOpenModal:dashboard.addDashboardRepairOrderOpenModal
 
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getFinaceOrderDetails
+      getFinaceOrderDetails,
+      handleDasboardRepairOrderDrawer,
+      handleDasboardRepairOrderOpenDrawer,
+      handleDasboardRepairOrderCloseDrawer,
       //   getJumpInvestor2list,
       //   getJumpInvestor3list,
       //   getJumpInvestor4list,

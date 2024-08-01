@@ -2,6 +2,7 @@ import React, { useEffect, useState,lazy } from "react";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddSubscriptionModal from "../../Child/LeadsTable/AddSubscriptionModal"
 import dayjs from "dayjs";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -10,13 +11,14 @@ import { MultiAvatar } from "../../../../Components/UI/Elements";
 import "jspdf-autotable";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, Html5Outlined } from "@ant-design/icons";
 import {
   getLeadsCold,
   getLeadsWarm,
   getLeadsHot,
   deleteLeadsData,
   setEditLeads,
+  handleLeadsSubscriptionModal,
   handleLeadsNotesDrawerModal,
   handleUpdateLeadsModal,
   handleLeadsEmailDrawerModal,
@@ -544,7 +546,20 @@ const LeadsCardList = (props) => {
                   </div>
                   </div>
                   <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
-                  
+                  <div >
+                      <Tooltip title="Subscription">
+                      
+                        <Html5Outlined
+                         className=" !text-icon cursor-pointer text-green-800"
+                          onClick={() => {
+                            // handleRowData(item);
+                            props.handleLeadsSubscriptionModal(true);
+                         
+                          }}
+                         
+                        />
+                      </Tooltip>
+                    </div>
                     <div >
                       <Tooltip title="Notes">
                         <NoteAltIcon
@@ -960,7 +975,20 @@ const LeadsCardList = (props) => {
                 </div>
                 </div>
                 <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
-                
+                <div >
+                      <Tooltip title="Subscription">
+                      
+                        <Html5Outlined
+                         className=" !text-icon cursor-pointer text-green-800"
+                          onClick={() => {
+                            //handleRowData(item);
+                            props.handleLeadsSubscriptionModal(true);
+                         
+                          }}
+                         
+                        />
+                      </Tooltip>
+                    </div>
                   <div >
                     <Tooltip title="Notes">
                       <NoteAltIcon
@@ -1384,7 +1412,20 @@ const LeadsCardList = (props) => {
                 </div>
                 </div>
                 <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
-                
+                <div >
+                      <Tooltip title="Subscription">
+                      
+                        <Html5Outlined
+                         className=" !text-icon cursor-pointer text-green-800"
+                          onClick={() => {
+                            //handleRowData(item);
+                            props.handleLeadsSubscriptionModal(true);
+                         
+                          }}
+                         
+                        />
+                      </Tooltip>
+                    </div>
                   <div >
                     <Tooltip title="Notes">
                       <NoteAltIcon
@@ -1524,6 +1565,12 @@ translatedMenuItems={props.translatedMenuItems}
            addLeadsConfirmationModal={props.addLeadsConfirmationModal}
            handleLeadsConfirmationModal={props.handleLeadsConfirmationModal}
            />
+           <AddSubscriptionModal
+          //  rowdata={rowdata}
+          //  handleRowData={handleRowData}
+          addDrawerLeadsSubscriptionModal={props.addDrawerLeadsSubscriptionModal}
+           handleLeadsSubscriptionModal={props.handleLeadsSubscriptionModal}
+           />
     </div>
   );
 
@@ -1546,6 +1593,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   addDrawerLeadsEmailModal: leads.addDrawerLeadsEmailModal,
   fetchingLeads: leads.fetchingLeads,
   openCETmodal: leads.openCETmodal,
+  addDrawerLeadsSubscriptionModal:leads.addDrawerLeadsSubscriptionModal,
   addLeadsConfirmationModal:leads.addLeadsConfirmationModal,
   addDrawerLeadsNotesModal: leads.addDrawerLeadsNotesModal,
   fetchingLeadsInputSearchData: leads.fetchingLeadsInputSearchData
@@ -1556,6 +1604,7 @@ const mapDispatchToProps = (dispatch) =>
       //getLeads,
       emptyLeads,
       handleLeadsConfirmationModal,
+      handleLeadsSubscriptionModal,
       deleteLeadsData,
       setEditLeads,
       handleUpdateLeadsModal,

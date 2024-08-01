@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from "react-infinite-scroll-component";
-import {updateOrdrSuplrItems} from "../../AccountAction";
+import {updateOrdrSuplrItems,getLocationNamesByProductId} from "../../AccountAction";
 import { Tooltip,Button,Input,Select } from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import moment from "moment";
+import { base_url2 } from "../../../../../Config/Auth";
+import axios from 'axios';
 
 const { Option } = Select;
 
@@ -53,8 +55,9 @@ const handleSelectChange = (value, key, dataIndex) => {
     setData(updatedData);
 };
 
-  const handleEditClick = (itemId) => {
+  const handleEditClick = (item,itemId) => {
     setEditsuppliesId(itemId);
+    props.getLocationNamesByProductId(item.productId);
   };
   const handleCancelClick = (itemId) => {
     setEditedFields((prevFields) => ({ ...prevFields, [itemId]: undefined }));
@@ -66,14 +69,44 @@ const handleSelectChange = (value, key, dataIndex) => {
     const updatedItem = {
         productId:item.productId,
         orderId:props.particularRowData.orderId,
-        shipBy: item.shipBy, 
-        shippingDate: new Date(date).toISOString()
+        shipBy: item.locationId, 
+        shippingDate: new Date(date).toISOString(),
+        locationId:item.locationId,
+        shippingNo:item.shippingNo
     };
       
  console.log("resd",updatedItem);  
  props.updateOrdrSuplrItems(updatedItem,props.particularRowData.orderId);  
             setEditsuppliesId(null);
   };
+
+  const [drb, setDrb] = useState([]);
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(null); 
+
+//   useEffect(() => {
+//       const fetchData = async () => {
+//           setLoading(true); 
+//           try {
+//               const response = await axios.get(`${base_url2}/po/getPoStock/locationList/PD10985606347262024`,{
+//                   headers: {
+//                     Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+//                   },
+//                 }); 
+//               if (response.drb.length === 0) {
+                 
+//               }
+//               setDrb(prevData => [...prevData, ...response.drb]); 
+//           } catch (error) {
+//               setError(error); 
+//               console.error('Error fetching data:', error);
+//           } finally {
+//               setLoading(false); 
+//           }
+//       };
+  
+//       fetchData();
+//   }, []);
 
   const stss = [{
     stsid:"3434",
@@ -84,7 +117,7 @@ const handleSelectChange = (value, key, dataIndex) => {
     stsnm:"Ddsgfh"
   }
 ]
-    return (
+   return (
         <>
              <div> 
                       
@@ -117,24 +150,24 @@ const handleSelectChange = (value, key, dataIndex) => {
                                     /></div>
                                     <div className="md:w-[6.2rem]"><FormattedMessage
                                         id="app.shippingno"
-                                        defaultMessage="Shipping "
+                                        defaultMessage="Ship By "
                                     /></div>
                                     <div className=" md:w-[5rem]"><FormattedMessage
                                         id="app.awb"
                                         defaultMessage="AWB"
                                     /></div>
                                    
-                                   <div className=" md:w-[5rem]"><FormattedMessage
+                                   {/* <div className=" md:w-[5rem]"><FormattedMessage
                                         id="app."
-                                        defaultMessage="Ship By"
-                                    /></div>
+                                        defaultMessage=""
+                                    /></div> */}
                                     <div className=" md:w-[6.5rem]"><FormattedMessage
-                                        id="app.status"
-                                        defaultMessage="status"
+                                        id="app."
+                                        defaultMessage="Pick up"
                                     /></div>
                         
                                    
-                                    <div className=" md:w-[2rem]"></div>
+                                    <div className="md:w-[2rem]"></div>
                  
                                 </div>
                                <div class="overflow-y-auto h-[65vh]">
@@ -197,10 +230,21 @@ const handleSelectChange = (value, key, dataIndex) => {
                                                             </div>
                                                             <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                    {item.shippingNo} 
+                                                                {editsuppliesId === item.itemId ? (
+                       <Input
+                       style={{ width: "3rem" }}
+                       value={item.shippingNo}
+                       onChange={(e) => handleInputChange(e.target.value, item.itemId, 'shippingNo')}
+                     />
+                       
+                    ) : (
+                      <div className="font-normal text-sm  font-poppins">
+                        <div> {item.shippingNo}</div>
+                      </div>
+                    )}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            {/* <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                 {editsuppliesId === item.itemId ? (
                        <Input
@@ -216,17 +260,20 @@ const handleSelectChange = (value, key, dataIndex) => {
                     )}
                                                                      
                                                                 </div>
-                                                            </div>
+                                                            </div> */}
                                                             <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                 {editsuppliesId === item.itemId ? (
                        <Select
-                       style={{ width: "3rem" }}
-                       value={item.shipBy}
-                       onChange={(e) => handleSelectChange(e.target.value, item.itemId, 'shipBy')}
+                       style={{ width: '100%' }}
+                          placeholder="Select Location"
+                       value={item.locationId}
+                       onChange={(value) => handleSelectChange(value, item.itemId, 'locationId')}
                      >
-                       {stss.map((a) => (
-                      <Option key={a.stsid} value={a.stsid}>{a.stsnm}</Option>
+                       {props.locationNamesByProductId.map(location => (
+                                                    <Option key={location.locationId} value={location.locationId}>
+                                                        {location.locationName} {location.balanced}
+                                                    </Option>
                     ))}
                        </Select>
                     ) : (
@@ -259,7 +306,7 @@ const handleSelectChange = (value, key, dataIndex) => {
                       className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
-                        onClick={() => handleEditClick(item.itemId)}
+                        onClick={() => handleEditClick(item,item.itemId)}
                       />
                     )}
     </div>
@@ -283,7 +330,7 @@ const handleSelectChange = (value, key, dataIndex) => {
     );
 }
 const mapStateToProps = ({ distributor}) => ({
-    // phonListNoteModal: myorder.phonListNoteModal,
+    locationNamesByProductId: distributor.locationNamesByProductId,
     // orderProcureDetails:myorder.orderProcureDetails,
     // openFeedbackpHnOrDrawer:myorder.openFeedbackpHnOrDrawer,
     updatingOrdrSuplrItems:distributor.updatingOrdrSuplrItems
@@ -293,7 +340,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             updateOrdrSuplrItems,
-            // handlePhoneListOrderNoteModal,
+            getLocationNamesByProductId,
             // handleFeedbackPhoneOrderDrawer,
 
         },

@@ -43,6 +43,14 @@ export const handleOrderAddedModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+export const handleDasboardRepairOrderDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_DASHBOARD_REPAIR_ORDER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const setDashboardViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_DASHBOARD_VIEW_TYPE, payload: viewType });
 
@@ -84,6 +92,21 @@ export const handleOrderClosedModal = (modalProps) => (dispatch) => {
 export const handleOrderCancelModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_ORDER_CANCEL_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const handleDasboardRepairOrderOpenDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_DASHBOARD_REPAIR_ORDER_OPEN_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handleDasboardRepairOrderCloseDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_DASHBOARD_REPAIR_ORDER_CLOSE_MODAL,
     payload: modalProps,
   });
 };
@@ -2832,6 +2855,93 @@ export const getContactAddedList = (orgId,startDate,endDate) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.GET_CONTACT_ADDED_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+export const getRepairDashboardOrderClose = (userId, startDate, endDate,page) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_DASHBOARD_ORDER_CLOSE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/dashboard/inCompleteOrderList/${userId}/${endDate}/${startDate}/${page}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REPAIR_DASHBOARD_ORDER_CLOSE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_REPAIR_DASHBOARD_ORDER_CLOSE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getRepairDashboardOrderAdded = (userId, startDate, endDate,page) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_DASHBOARD_ORDER_ADDED_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/dashboard/allOrderList/${userId}/${endDate}/${startDate}/${page}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REPAIR_DASHBOARD_ORDER_ADDED_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_REPAIR_DASHBOARD_ORDER_ADDED_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getRepairDashboardOrderOpen = (userId, startDate, endDate,page) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_DASHBOARD_ORDER_OPEN_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/dashboard/completeOrderList/${userId}/${endDate}/${startDate}/${page}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REPAIR_DASHBOARD_ORDER_OPEN_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_REPAIR_DASHBOARD_ORDER_OPEN_FAILURE,
         payload: err,
       });
     });
