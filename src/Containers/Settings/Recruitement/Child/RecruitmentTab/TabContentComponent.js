@@ -540,7 +540,7 @@ fetchType = async () => {
                         </span>
                         {/* Hello */}
                     
-                        {/* {item.globalInd && <GlobalOutlined style={{ marginLeft: 8 }} />} */}
+                        {item.globalInd && <GlobalOutlined style={{ marginLeft: 8 }} />}
                         </>
                       }
                       

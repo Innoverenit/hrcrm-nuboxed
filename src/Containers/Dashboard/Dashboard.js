@@ -60,11 +60,21 @@ class Dashboard extends Component {
       activeButton: "test",
       selectedCountry: "",
       setInfoWindowPosition:null,
+      showShareForm: false,
     };
+    this.toggleShareForm = this.toggleShareForm.bind(this);
   }
    handleButtonClick=(buttonName)=>{
     this.setState({activeButton:buttonName});
+    
   }
+
+  toggleShareForm() {
+    this.setState(prevState => ({
+      showShareForm: !prevState.showShareForm
+    }));
+  }
+
 
   handleTabClick = async (key) => {
     this.setState({ activeTab: key, loading: true });
@@ -149,6 +159,7 @@ class Dashboard extends Component {
       dept,
       country,
     } = this.props;
+    console.log(this.state.showShareForm)
 
     return (
       <React.Fragment>
@@ -156,6 +167,8 @@ class Dashboard extends Component {
 
         <Dashboardheader 
         activeTab={activeTab}
+        toggleShareForm={this.toggleShareForm}
+        showShareForm={this.state.showShareForm}
         tab={tab}
         handleTabClick={this.handleTabClick}
         viewType={viewType}
