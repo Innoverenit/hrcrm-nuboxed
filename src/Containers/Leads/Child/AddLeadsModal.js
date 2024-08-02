@@ -31,9 +31,9 @@ class AddLeadsModal extends Component {
         >
         <Suspense fallback={<BundleLoader />}>
           <LeadsForm 
- translateText={this.props.translateText}
- selectedLanguage={this.props.selectedLanguage}
-translatedMenuItems={this.props.translatedMenuItems}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
           />{" "}
         </Suspense>
         </StyledDrawer>

@@ -77,7 +77,7 @@ class SetPassword extends Component {
           <AuthContainer
             style={{ backgroundColor: "#F5F5F5", flexDirection: "column" }}
           >
-            <img className="big-logo" src={FWLogo} style={{ width: 200 }} />
+            {/* <img className="big-logo" src={FWLogo} style={{ width: 200 }} /> */}
             <br />
             <FormWrapper>
               <HeaderText>Set your password</HeaderText>
@@ -193,14 +193,7 @@ class SetPassword extends Component {
         
          
           </AuthContainer>
-          <div class="w-1/2 flex justify-center items-center">
-          <img
-              className="big-logo"
-              src={FWLogo1}
-              style={{ }}
-              alt="Tekorero logo"
-            />
-          </div>
+       
         </div>
         <div
               className="text-xs text-center font-poppins mt-auto text-black  w-wk items-center"
@@ -210,7 +203,7 @@ class SetPassword extends Component {
                 bottom: 0,
               }}
             >
-              © {new Date().getFullYear()}, {` `} tekorero.com, All rights
+              © {new Date().getFullYear()}, {` `}  All rights
               reserved.
             </div>
       </>

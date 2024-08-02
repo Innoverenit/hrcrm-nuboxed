@@ -402,7 +402,7 @@ function CustomerForm(props) {
                       <div class=" flex justify-between max-sm:flex-col">
                        
                         <div class="font-bold text-xs w-wk max-sm:w-full ">
-                        <label>{translatedMenuItems[0]}</label>
+                        <div>{translatedMenuItems[0]} </div>  
                           <FastField
                             isRequired
                             name="name"
@@ -418,21 +418,8 @@ function CustomerForm(props) {
                       <div class=" flex justify-between max-sm:flex-col">
                         
                         <div class=" w-wk max-sm:w-full">
-                         
-                          {/* <Field
-      name="included"
-      label="Include User"
-      isColumn
-      width={"100%"}
-     component={SelectComponent}
-      options={
-        Array.isArray(typeOption)
-          ? typeOption
-          : []
-      }
-      inlineLabel
-    /> */}
-     <label className="font-bold text-xs">{translatedMenuItems[1]}</label>
+                                          
+     <div className="font-bold text-xs">{translatedMenuItems[1]}</div>
         <Select
           showSearch
           style={{ width: "-webkit-fill-available" }}
@@ -453,14 +440,9 @@ function CustomerForm(props) {
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                 
-            
-                </div>
-              
-              </div>
-            
+                  </div>                      
+                </div>            
+              </div>           
               <div class="flex justify-end mt-3 w-wk bottom-2 mr-2 md:absolute ">
                 <Button
                type="primary"

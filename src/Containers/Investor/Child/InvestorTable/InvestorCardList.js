@@ -575,6 +575,8 @@ function InvestorCardList(props) {
         updateInvestorModal={updateInvestorModal}
         handleUpdateInvestorModal={handleUpdateInvestorModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
 
 <ContactsInvestorModal
@@ -582,6 +584,8 @@ function InvestorCardList(props) {
         addDrawerInvestorContactModal={addDrawerInvestorContactModal}
         handleInvestorContModal={handleInvestorContModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
 
 <InvestorPulseDrawerModal
@@ -589,6 +593,8 @@ function InvestorCardList(props) {
         addDrawerInvestorPulseModal={addDrawerInvestorPulseModal}
         handleInvestorPulseDrawerModal={handleInvestorPulseDrawerModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
 
 <InvestorDocumentDrawerModal
@@ -596,6 +602,8 @@ function InvestorCardList(props) {
         addDrawerInvestorDocumentModal={addDrawerInvestorDocumentModal}
         handleInvestorDocumentModal={handleInvestorDocumentModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
            <AddInvestorNotesDrawerModal
         RowData={RowData}

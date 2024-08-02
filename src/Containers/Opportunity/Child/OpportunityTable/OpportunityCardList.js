@@ -570,6 +570,9 @@ imgHeight={"1.8rem"}
         opportunityData={currentOpportunityId}
         handleUpdateOpportunityModal={handleUpdateOpportunityModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
 <OpportunityRowEmailModal
@@ -577,6 +580,9 @@ imgHeight={"1.8rem"}
         addOpportunityRowEmailModal={addOpportunityRowEmailModal}
         handleOpportunityRowEmailModal={handleOpportunityRowEmailModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
        <AddOpportunityNotesDrawerModal
@@ -584,6 +590,9 @@ imgHeight={"1.8rem"}
         opportunityData={currentOpportunityId}
         handleOpportunityNotesDrawerModal={handleOpportunityNotesDrawerModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
       />
 
 <AddOpportunityDrawerModal

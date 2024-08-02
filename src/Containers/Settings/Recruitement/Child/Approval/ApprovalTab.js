@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ProspectCustomerForm from "./ProspectCustomerForm";
 import SupplierContactuserForm from "./SupplierContactuserForm";
+import ProspectContactToUserForm from "./ProspectContactToUserForm"
 const ApproveForm = lazy(() => import("./ApproveForm"));
 const MileageApproveForm = lazy(() => import("./MileageApproveForm"));
 const ExpenseApproveForm = lazy(() => import("./ExpenseApproveForm"));
@@ -56,6 +57,11 @@ function ApprovalTab(props) {
                       <TabPane tab={`Prospect to Customer`} key="7">
                         <div style={{ marginTop: 10 }}>
                         <ProspectCustomerForm/>
+                        </div>
+                    </TabPane>
+                    <TabPane tab={`Prospect Contact to User`} key="8">
+                        <div style={{ marginTop: 10 }}>
+                        <ProspectContactToUserForm/>
                         </div>
                     </TabPane>
                     {/* <TabPane tab={`ApproveList`} key="4">

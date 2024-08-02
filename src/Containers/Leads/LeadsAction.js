@@ -2,7 +2,6 @@ import * as types from "./LeadsActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
 import { base_url } from "../../Config/Auth";
-import { asses_url } from "../../Config/Auth";
 import Swal from 'sweetalert2'
 
 export const setLeadsViewType = (viewType) => (dispatch) => {

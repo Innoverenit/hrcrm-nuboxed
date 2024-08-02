@@ -26,18 +26,20 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
+import { BundleLoader } from "../../../Components/Placeholder";
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
-  // email: Yup.string().required("Input needed!").email("Enter a valid Email"),
-  // phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
+  
 });
 
 const { Option } = Select;  
 
 function CustomerForm(props) {
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
    const[checked,setChecked]=useState(true);
   const[whiteblue,setWhiteblue]=useState(true);
 
@@ -53,15 +55,48 @@ function CustomerForm(props) {
       !checked
     );
   };
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          ' Name', // 0
+'Url ', // 1
+'Dial Code', // 2
+'Phone No', // 3
+'Sector', // 4
+'Source', // 5
+'Potential', // 6
+'Currrency', // 7
+'Type', // 8
+'Assigned', // 9
+'Address', // 10
+// 'Street',//11
+// 'Zip Code',//12
+// 'City',//13
+// 'State',//14
+// 'Country',//15
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     props.getCustomer(props.orgId); 
-    // props.getAllCustomerEmployeelist();
-    // props.getSectors();
     props.getCrm();
     props.emptyClearbit()
     props.getCustomerConfigure(props.orgId,"add","customer")
-    // setSource("")
-    // props.getCurrency();
+    
   }, []);
 
     const {
@@ -159,15 +194,12 @@ function CustomerForm(props) {
       setIsLoading(false);
     }
   };
-
   const handleSelectChange = (value) => {
     setSelectedSource(value)
+
     console.log('Selected user:', value);
   };
 console.log(selectedSource)
- 
-
-
 
   const fetchSector = async () => {
     setIsLoadingSector(true);
@@ -190,8 +222,6 @@ console.log(selectedSource)
     }
   };
 
-
-
   const fetchAssign = async () => {
     setIsLoadingAssign(true);
     try {
@@ -213,7 +243,6 @@ console.log(selectedSource)
     }
   };
 
-
   const fetchCurrency = async () => {
     setIsLoadingCurrency(true);
     try {
@@ -234,7 +263,6 @@ console.log(selectedSource)
       setIsLoadingCurrency(false);
     }
   };
-
 
   const fetchCode = async () => {
     setIsLoadingCode(true);
@@ -261,7 +289,6 @@ console.log(selectedSource)
     console.log('Selected user:', value);
   };
 
-
   const handleSelectAssign = (value) => {
     setSelectedAssign(value)
     console.log('Selected user:', value);
@@ -277,8 +304,6 @@ console.log(selectedSource)
     setSelectedCode(value)
     console.log('Selected user:', value);
   };
-
-
 
   const handleSelectFocus = () => {
     if (!touched) {
@@ -360,6 +385,9 @@ console.log(selectedSource)
   }
 
   console.log(selectedSector)
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
       <Formik
@@ -458,15 +486,13 @@ console.log(selectedSource)
                     ) : null}
                   </div>
                   <div class=" mt-3">
+                    <div class="font-bold text-xs"> {translatedMenuItems[0]}  </div>
                   {props.customerConfigure.nameInd===true&&
                     <Field
                       isRequired
                       name="name"
                       type="text"
-                      // label="Names"
-                      label={
-                        <FormattedMessage id="app.name" defaultMessage="Name" />
-                      }
+                      // label="Names"                            
                       isColumn
                       width={"100%"}
                       setClearbitData={props.setClearbitData}
@@ -476,50 +502,25 @@ console.log(selectedSource)
                     />
 }
                   </div>
+                  <div class="font-bold text-xs"> {translatedMenuItems[1]}  </div>
                   <Field
                     name="url"
                     type="text"
-                    // label="URL"
-                    label={<FormattedMessage id="app.url" defaultMessage="URL" />}
+                    // label="URL"                       
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
-                  />
-                  {/* <Field
-                    name="email"
-                    type="text"
-                    // label="Email"
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
-                    isColumn
-                    width={"100%"}
-                    component={InputComponent}
-                    inlineLabel
-                  />                   */}
+                  />           
                   <div class=" flex justify-between mt-2">
                     <div class=" w-3/12 max-sm:w-[30%]">
-                      {/* <FastField
-                        name="countryDialCode"
-                        selectType="dialCode"
-                        isColumnWithoutNoCreate
-                        component={SearchSelect}
-                        value={values.countryDialCode}
-                        label={
-                          <FormattedMessage
-                            id="app.dialcode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
-                        isColumn
-                        defaultValue={{
-                          label:`+${props.user.countryDialCode}`,
-                        }}
-                        inlineLabel
-                      /> */}
+               
 {props.customerConfigure.dailCodeInd===true&&
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Dial code</label>
+<div className="font-bold text-[0.75rem]">
+{translatedMenuItems[2]}
+  {/* Dial code */}
+
+</div>
 }
 {props.customerConfigure.dailCodeInd===true&&
 <Select
@@ -547,16 +548,10 @@ country_dial_code
 }
                     </div>
                     <div class=" w-8/12">
+                    <div class="font-bold text-xs"> {translatedMenuItems[3]}  </div>
                     {props.customerConfigure.phoneNoInd===true&&
                       <FastField
-                        name="phoneNumber"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneno"
-                            defaultMessage="Phone No"
-                          />
-                        }
-                        // label="Phone No"
+                        name="phoneNumber"                           
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -566,27 +561,13 @@ country_dial_code
                     </div>
                   </div>
 
-
                   <div class=" flex justify-between mt-3">
-                    <div class="w-w47.5 max-sm:w-w47.5" style={{display:"flex",flexDirection:"column"}}>
-                      {/* <Field
-                        placeholder="Sector"
-                        name="sectorId"
-                        label={
-                          <FormattedMessage
-                            id="app.sector"
-                            defaultMessage="Sector"
-                          />
-                        }
-                        isColumn
-                        component={SelectComponent}
-                        value={values.sectorId}
-                        options={
-                          Array.isArray(sectorOption) ? sectorOption : []
-                        }
-                      /> */}
+                    <div class="w-w47.5 max-sm:w-w47.5" style={{display:"flex",flexDirection:"column"}}>                  
                        {props.customerConfigure.sectorInd===true&&
-                      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Sector</label>
+                   <div className="font-bold text-[0.75rem]">
+                        {translatedMenuItems[4]}
+                        {/* Sector */}
+                        </div>
                        }
                       {props.customerConfigure.sectorInd===true&&
 <Select
@@ -606,24 +587,8 @@ country_dial_code
       </Select>
 }
                     </div>
-                    <div class="w-w47.5" style={{display:"flex",flexDirection:"column"}}>
-                      {/* <FastField
-                        name="source"
-                        type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.source"
-                            defaultMessage="Source"
-                          />
-                        }
-                        isColumnWithoutNoCreate
-                        selectType="sourceName"
-                        component={SearchSelect}
-                        value={values.source}
-                        inlineLabel
-                        className="field"
-                        isColumn
-                      /> */}
+                    <div class="w-w47.5" style={{display:"flex",flexDirection:"column"}}>                
+                
  {props.customerConfigure.sourceInd===true&&
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</label>
 }
@@ -649,15 +614,10 @@ country_dial_code
                   <div class="flex justify-between mt-2">
   <div class="w-w47.5 flex">
     <div class="w-24">
+    <div class="font-bold text-xs"> {translatedMenuItems[5]}  </div>
     {props.customerConfigure.potentialInd===true&&
       <Field
-        name="potentialValue"
-        label={
-          <FormattedMessage
-            id="app.potential"
-            defaultMessage="Potential"
-          />
-        }
+        name="potentialValue"     
         isColumn
         width={"100%"}
         component={InputComponent}
@@ -667,7 +627,10 @@ country_dial_code
     </div>
     <div class="w-16 ml-2 max-sm:w-wk">
     {props.customerConfigure.potentialCurrencyInd===true&&
-      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
+       <div className="font-bold text-[0.75rem]">
+       {translatedMenuItems[6]}
+        {/* Currency */}
+        </div>
     }
      {props.customerConfigure.potentialCurrencyInd===true&&
       <Select
@@ -689,17 +652,11 @@ country_dial_code
     </div>
   </div>
 
-
   <div class="w-w47.5">
+  <div class="font-bold text-xs"> {translatedMenuItems[7]}  </div>
   {props.customerConfigure.typeInd===true&&
     <Field
-      name="type"
-      label={
-        <FormattedMessage
-          id="app.type"
-          defaultMessage="Type"
-        />
-      }
+      name="type" 
       isColumn
       width={"100%"}
       component={SelectComponent}
@@ -762,21 +719,14 @@ country_dial_code
                 >
 {props.customerConfigure.assignedToInd===true&&
                   <div class=" flex justify-between mb-[0.35rem] mt-3">
-                    <div class=" h-full w-full" style={{display:"flex",flexDirection:"column"}}>
-
- 
+                    <div class=" flex flex-col">
                       <Listbox value={selected} onChange={setSelected}>
                         {({ open }) => (
                           <>
-                            <Listbox.Label className="block font-semibold text-[0.75rem]  leading-lh1.2  "
-                            // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
-                            >
-                              <FormattedMessage
-                                id="app.assignedTo"
-                                defaultMessage="Assigned"
-                              />
-
-                            </Listbox.Label>
+                            <div className="font-bold text-xs ">                                               
+                               {translatedMenuItems[8]}                            
+                              {/* Assigned */}
+                            </div>
                             <div className="relative ">
                               <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                                 {selected}
@@ -836,29 +786,7 @@ country_dial_code
                           </>
                         )}
                       </Listbox>
-                      {/* <Field
-                    name="assignedTo"
-                    selectType="employee"
-                    isColumnWithoutNoCreate
-                    // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
-                    // component={SearchSelect}
-                    isColumn
-                    // value={values.employeeId}
-                    // defaultValue={{
-                    //   label: `${firstName || ""} ${middleName ||
-                    //     ""} ${lastName || ""}`,
-                    //   value: employeeId,
-                    // }}
-                    component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
-                    inlineLabel
-                  /> */}
+                    
                     </div>
                   </div>
 }
@@ -919,9 +847,10 @@ country_dial_code
                     </div>
                   </div>
                   <div class=" mt-3">
+                  <div class="font-bold text-xs"> {translatedMenuItems[9]}  </div>
                     <FieldArray
                       name="address"
-                      label="Address"
+                      // label="Address"                 
                       render={(arrayHelpers) => (
                         <AddressFieldArray
                           arrayHelpers={arrayHelpers}
@@ -930,33 +859,8 @@ country_dial_code
                       )}
                     />
                   </div>
-
                   </div>
-}
-                  {/* <div class=" flex justify-between">
-                   <div class=" w-1/2 max-sm:w-wk">
-                     <Field
-                       name="country"
-                       isColumnWithoutNoCreate
-                       label={
-                         <FormattedMessage
-                           id="app.country"
-                           defaultMessage="Country"
-                         />
-                       }
-                       component={SearchSelect}
-                       defaultValue={{
-                         value: props.user.countryName,
-                       }}
-                       value={values.countryName}
-                       selectType="country"
-                       inlineLabel
-                       isColumn
-                       width="100%"
-                     />
-                   </div>
-                 </div> */}
-
+}              
                 </div>
               </div>
 

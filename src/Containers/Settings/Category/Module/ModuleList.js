@@ -165,6 +165,42 @@ const handleFinanceClick = (checked) => {
     props.addingModules(data, props.orgId);
   };
 
+  const { catalogPublishInd } = props.moduleList;
+  console.log(catalogPublishInd);
+  const [catalogueStatus, setCatalogueStatus] = useState(catalogPublishInd);
+  useEffect(() => {
+    setCatalogueStatus(catalogPublishInd);
+  }, [catalogPublishInd]);
+  
+  const handleCatalougeClick = (checked) => {
+    setCatalogueStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "erp",
+    };
+    props.addingModules(data, props.orgId);
+  };
+
+  const { materialPublishInd } = props.moduleList;
+  console.log(materialPublishInd);
+  const [materialStatus, setMaterialStatus] = useState(materialPublishInd);
+  useEffect(() => {
+    setMaterialStatus(materialPublishInd);
+  }, [materialPublishInd]);
+  
+  const handleMaterialClick = (checked) => {
+    setMaterialStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "erp",
+    };
+    props.addingModules(data, props.orgId);
+  };
+
+
+
   const { imInd } = props.moduleList;
   console.log(imInd);
   const [imStatus, setImStatus] = useState(imInd);
@@ -691,6 +727,10 @@ logisticsStatus={logisticsStatus}
                     handleTradingClick={handleTradingClick}
                     ecomStatus={ecomStatus}
                     handleEcomClick={handleEcomClick}
+                    handleCatalougeClick={handleCatalougeClick}
+                    catalogueStatus={catalogueStatus}
+                    handleMaterialClick={handleMaterialClick}
+                    materialStatus={materialStatus}
                     />
                   {/* )) */}
                   {/* ) : (

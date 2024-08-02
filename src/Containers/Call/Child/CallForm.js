@@ -1216,15 +1216,7 @@ function CallForm(props) {
                   </span> 
                   
                  
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea h-26"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea>
-                  </div>
+                  
                 </div>
                   </div>
               

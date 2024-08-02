@@ -354,14 +354,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(CandidateEmploymentTable);
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
 
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`;

@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Timeline, Button, Popconfirm } from 'antd';
-import moment from "moment";
+import dayjs from "dayjs";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { updateLeadsNoteDrawer } from "../LeadsAction";
-import { DeleteOutlined } from "@ant-design/icons";
 import { Spacer, SubTitle } from "../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import Item from "antd/es/list/Item";
 import UpdateLeadsNote from "./UpdateLeadsNote";
 
 const NotesWrapper = styled.div``;
@@ -35,7 +32,7 @@ const SingleNote = (props) => {
         style={{ color: "rgb(53, 57, 61)", marginTop: "-0.75em" }}
       >
         <Spacer />
-        {`${moment.utc(creationDate).fromNow()}`} {ownerName} &nbsp;&nbsp;
+        {`${dayjs.utc(creationDate).fromNow()}`} {ownerName} &nbsp;&nbsp;
      
            &nbsp;&nbsp;
             <BorderColorIcon

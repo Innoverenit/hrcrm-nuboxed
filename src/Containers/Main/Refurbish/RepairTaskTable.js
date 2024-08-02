@@ -1,34 +1,60 @@
-import React, { useEffect } from 'react'
-import { getTaskByPhoneId, deleteTaskList } from "./RefurbishAction"
+import React, { useEffect,useState } from 'react'
+import { getTaskByPhoneId, deleteTaskList,handleSpareProcess } from "./RefurbishAction"
 import { MainWrapper, MultiAvatar } from '../../../Components/UI/Elements'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import QCPhoneTaskToggle from './QCPhoneTaskToggle'
-import { Popconfirm } from "antd";
+import { Popconfirm,Tooltip } from "antd";
 import dayjs from "dayjs";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Clock from 'react-clock';
 import 'react-clock/dist/Clock.css';
+import AddIcon from '@mui/icons-material/Add';
+import QcTaskNwToggle from './QcTaskNwToggle'
+import ProcessSpareDrawer from './ProcessSpareDrawer'
 
 const RepairTaskTable = (props) => {
+    const [newData, setnewData] = useState("");
     useEffect(() => {
         props.getTaskByPhoneId(props.phoneId)
     }, [])
+   
+    function handleSetNewData(item) {
+        setnewData(item);
+    }
 
+    console.log(props.taskByPhone)
     return (
         <div>
             <MainWrapper>
 
                 {props.taskByPhone.map((item) => {
+                 
                     return (
                         <div class="cursor-pointer w-[100%] flex justify-center max-sm:w-auto mt-2 ">
-                            <div class="w-[50%]">
+                            <div class="w-[30%]">
                                 {item.taskName}
                             </div>
-                            <div class="w-[50%] flex justify-between">
-                                <QCPhoneTaskToggle item={item} 
+                            <div class="w-[70%] flex justify-between">
+                                <QCPhoneTaskToggle item={item}  
                                   RowData={props.RowData}
+                                  
                                 />
+                                <QcTaskNwToggle 
+                                item={item} 
+                                RowData={props.RowData}
+                               
+                                />
+                                <Tooltip title="Spare">
+                                <AddIcon
+                                  onClick={() => {
+                                    props.handleSpareProcess(true);
+                                    handleSetNewData(item);
+                                   // hanldeSpare();
+                                   
+                                }}
+                                />
+                                </Tooltip>
                                 <MultiAvatar
                                     primaryTitle={`${item.completeTaskUserName}`}
                                     imgWidth={"2.1em"}
@@ -39,7 +65,7 @@ const RepairTaskTable = (props) => {
                                 </span>
                                 <span>
                                     <Clock
-                                        style={{ width: "41px", height: "40px" }}
+                                        style={{ width: "5rem", height: "5rem" }}
                                         value={dayjs(item.creationDate).format("HH:mm")} />
 
                                 </span>
@@ -54,24 +80,34 @@ const RepairTaskTable = (props) => {
                                     />
                                 </Popconfirm>}
                             </div>
-
+                          
                         </div>
                     )
                 })}
             </MainWrapper>
+            <ProcessSpareDrawer
+         newData={newData}
+                  RowData={props.RowData}   
+                  rowData={props.rowData}           
+                  processSpareModal={props.processSpareModal}
+                    handleSpareProcess={props.handleSpareProcess}
+                />
+
         </div>
     )
 }
 const mapStateToProps = ({ auth, refurbish }) => ({
     taskByPhone: refurbish.taskByPhone,
     userId: auth.userDetails.userId,
+    processSpareModal: refurbish.processSpareModal
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getTaskByPhoneId,
-            deleteTaskList
+            deleteTaskList,
+            handleSpareProcess
         },
         dispatch
     );

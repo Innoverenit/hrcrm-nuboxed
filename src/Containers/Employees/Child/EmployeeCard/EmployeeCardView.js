@@ -93,7 +93,7 @@ function handleSetCurrentUser(item) {
                 const tooltipContent = `${item.workplace}, ${item.locationName}`;
                 const showTooltip = tooltipContent.trim() !== ''; 
                  return (
-                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9rem] 
+                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[9rem] 
                   text-[#444444] my-3 p-1 ml-3 w-[15vw] flex flex-col  max-sm:w-wk max-sm:ml-0 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                       <div class="flex">
                    <Tooltip 
@@ -114,11 +114,11 @@ function handleSetCurrentUser(item) {
                          </div>
               
                       <div>
-                            {/* <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[blue] cursor-pointer" 
+                            {/* <a class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[blue] cursor-pointer" 
                             href={`employee/${item.employeeId}`}>{item.fullName}</a> */}
                       
 
-                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  
+                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  
                       to={`/employee/${item.employeeId}`} title={item.fullName}>
       {item.fullName}
     </Link>
@@ -131,21 +131,21 @@ function handleSetCurrentUser(item) {
                         
                         <div class=" flex flex-row justify-evenly  w-full items-end">
                        
-                        {/* <div class=" text-sm  font-medium font-poppins">Department   </div> */}
-                      <div class=" font-normal text-xs  font-poppins">{item.department === null ? "Not Available" :item.department}</div>
-                      <div class=" font-normal text-xs  font-poppins">{item.roleTypeName  === null ? "Not Available" :item.roleTypeName}</div>
+                        {/* <div class=" text-xs  font-medium font-poppins">Department   </div> */}
+                      <div class="  text-xs  font-poppins">{item.department === null ? "Not Available" :item.department}</div>
+                      <div class="  text-xs  font-poppins">{item.roleTypeName  === null ? "Not Available" :item.roleTypeName}</div>
           
                    
                       
                         <div >
-                        {/* <div class=" text-sm  font-medium font-poppins">Role   </div> */}
+                        {/* <div class=" text-xs  font-medium font-poppins">Role   </div> */}
                       
           </div>
           
                       </div> 
                    
-                       <div class=" font-normal text-xs  font-poppins mt-1 "><PhoneIcon  className="!text-base cursor-pointer text-[grey]"/> {`${item.countryDialCode} ${item.mobileNo}`}</div>
-          <div class=" font-normal text-xs  mt-1  font-poppins flex justify-between ">
+                       <div class="  text-xs  font-poppins mt-1 "><PhoneIcon  className="!text-icon cursor-pointer text-[grey]"/> {`${item.countryDialCode} ${item.mobileNo}`}</div>
+          <div class="  text-xs  mt-1  font-poppins flex justify-between ">
             <div>
             <DraftsIcon  className="!text-base cursor-pointer text-green-400 mr-1" /> 
           <Tooltip title={item.emailId}>
@@ -159,14 +159,14 @@ function handleSetCurrentUser(item) {
       />
       </div>
           </div>
-          <div class=" font-normal text-xs mt-1  font-poppins ">Reports To:    <span>
+          <div class="  text-xs mt-1  font-poppins ">Reports To:    <span>
           {item.reportingManagerName 
                         ? `${item.reportingManagerName}`
                         : <label class="text-[red]" >Not Assigned</label>}
                       </span>
          </div>
           <div class=" flex flex-row justify-between mt-[0.5rem] w-full items-end">
-          <div class=" font-normal text-xs  font-poppins ">
+          <div class="  text-xs  font-poppins ">
        
           <span class=" cursor-pointer"
             
@@ -178,7 +178,7 @@ function handleSetCurrentUser(item) {
    
            </div>
            <div class="flex">
-          <div class=" font-normal text-xs  font-poppins ">
+          <div class="  text-xs  font-poppins ">
           <span class=" cursor-pointer"
          
               onClick={() => {
@@ -194,7 +194,7 @@ function handleSetCurrentUser(item) {
               </Tooltip>
      </span>
            </div>
-           <div class=" font-normal text-xs  font-poppins ml-[0.15rem]">
+           <div class="  text-xs  font-poppins ml-[0.15rem]">
             {/* {user.userAccessPlusInd === true ?( */}
           <span
               className=" cursor-pointer"
@@ -216,7 +216,7 @@ function handleSetCurrentUser(item) {
      </span>
             {/* ):null} */}
            </div>
-           <div class=" font-normal text-xs  font-poppins ml-[0.15rem]">
+           <div class="  text-xs  font-poppins ml-[0.15rem]">
            <Tooltip title={showTooltip ? tooltipContent : 'Not available'}>
                    {/* title={`${item.workplace} , ${item.location}`}
                    > */}
@@ -227,7 +227,7 @@ function handleSetCurrentUser(item) {
      </span>
      </Tooltip>
            </div>
-           <div class=" font-normal text-xs  font-poppins ml-[0.15rem]">
+           <div class="  text-xs  font-poppins ml-[0.15rem]">
            <Tooltip title="Assign as Admin">
            <CircleNotificationsIcon
           className=" !text-base cursor-pointer text-[gold]"
@@ -239,7 +239,7 @@ function handleSetCurrentUser(item) {
            </Tooltip>
             </div>
           
-           <div class=" font-normal text-xs  font-poppins ml-[0.15rem]">
+           <div class="  text-xs  font-poppins ml-[0.15rem]">
             <Tooltip title="Onboarding">
               <BadgeIcon   className=" !text-base cursor-pointer text-[#709ab3]"
                 onClick={() => {
@@ -250,7 +250,7 @@ function handleSetCurrentUser(item) {
               />
             </Tooltip>
            </div>
-           <div class=" font-normal text-xs  font-poppins ml-[0.15rem]">
+           <div class="  text-xs  font-poppins ml-[0.15rem]">
            {user.userUpdateInd === true || user.role === "ADMIN"  ? (
             <Tooltip title="Edit">
               <BorderColorIcon

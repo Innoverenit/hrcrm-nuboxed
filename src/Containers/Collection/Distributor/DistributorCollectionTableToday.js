@@ -115,6 +115,7 @@ function DistributorColletcionArchive(props) {
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
             <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
+            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Invoice</div>
             <div className=" w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /></div>
             <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.type" defaultMessage="Type" /></div>
             <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>

@@ -1,10 +1,10 @@
 
-import React, { useEffect, useState, lazy, Suspense,useRef } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
-import { Tooltip, Button, Badge,Input } from "antd";
+import { Tooltip, Button, Badge } from "antd";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {
     getProductionOrderId,
@@ -27,8 +27,6 @@ import {
 } from "./RefurbishAction";
 import { withRouter } from "react-router";
 import dayjs from "dayjs";
-import { AudioOutlined } from '@ant-design/icons';
-import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -133,10 +131,7 @@ const ProductionOrderList = (props) => {
     useEffect(() => {
         setData(props.productionOrder)
     }, [props.productionOrder])
-
-
-
-    return (
+ return (
         <div>
              {props.searchRefurbish.length > 0 ? (
     <SearchedDataRefurbish
@@ -191,7 +186,7 @@ const ProductionOrderList = (props) => {
                         loader={props.fetchingProductionUrgent ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"22vh"}
                         style={{ overflowX: "hidden",scrollbarWidth:"thin" }}
-                        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+                        endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                     >
                         {props.productionUrgent.map((item,index) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
@@ -221,7 +216,7 @@ const ProductionOrderList = (props) => {
                                             <div className=" flex w-[9.7rem] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
-                                                        class="underline text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        class=" underline font-bold  text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                         onClick={() => {
                                                             handleRowData(item);
                                                             props.handleProductBuilder(true)
@@ -229,10 +224,10 @@ const ProductionOrderList = (props) => {
                                                         {item.newOrderNo}
                                                     </span>
                                                 </Badge>
-                                                &nbsp;&nbsp;
+                                            
                                                 {date === currentdate ? (
                                                     <span
-                                                        class="text-[tomato] font-bold">
+                                                        class="text-[tomato] font-bold text-[0.65rem]">
                                                         New
                                                     </span>
                                                 ) : null}
@@ -317,7 +312,7 @@ const ProductionOrderList = (props) => {
 
                                             <div className=" flex w-[10.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.qcStartInd === 0 ? <b>Waiting for QC approval</b>
+                                                    {item.qcStartInd === 0 ?<div class=" font-bold text-[#1890ff] ">Waiting for QC approval</div>
                                                         : item.qcStartInd === 1 ?
                                                             // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
                                                             <Tooltip title="Assign For QC">
@@ -330,10 +325,10 @@ const ProductionOrderList = (props) => {
                                                                 >Assign For QC </Button>
                                                             </Tooltip>
                                                             // </Badge>
-                                                            : item.qcStartInd === 2 ? <b style={{ color: "#ff6347" }}>QC Assigned</b>
-                                                                : item.qcStartInd === 3 ? <b style={{ color: "#32CD32" }}>
+                                                            : item.qcStartInd === 2 ? <div style={{ color: "#ff6347" }}>QC Assigned</div>
+                                                                : item.qcStartInd === 3 ? <div class=" text-[#32CD32]">
                                                                     QC <CheckCircleIcon className="!text-[#03c04a]" />
-                                                                    {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
+                                                                    {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</div> : null}
                                                 </div>
                                             </div>
                                             <div className=" flex w-[10.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -348,9 +343,9 @@ const ProductionOrderList = (props) => {
                                                                 }}
                                                             >Assign For Repair</Button>
                                                         </Tooltip>
-                                                        : item.qcRepairInd === 2 ? <b style={{ color: "#ff6347" }}>Repair Assigned</b>
-                                                            : item.qcRepairInd === 3 ? <b style={{ color: "#32CD32" }}>Repair
-                                                                <CheckCircleIcon className="!text-[#03c04a]" /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
+                                                        : item.qcRepairInd === 2 ? <div style={{ color: "#ff6347" }}>Repair Assigned</div>
+                                                            : item.qcRepairInd === 3 ? <div class=" text-[#32CD32]">Repair
+                                                                <CheckCircleIcon className="!text-[#03c04a]" /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</div> : null}
                                                 </div>
                                             </div>
                                             <div className=" flex  w-[4.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -469,7 +464,7 @@ const ProductionOrderList = (props) => {
                         loader={props.fetchingProductionHigh ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"22vh"}
                         style={{ overflowX: "hidden",scrollbarWidth:"thin" }}
-                        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+                        endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                     >
                         {props.productionHigh.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
@@ -499,7 +494,7 @@ const ProductionOrderList = (props) => {
                                             <div className=" flex  w-[9.7rem] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
-                                                        class="underline text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        class=" underline font-bold  text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                         onClick={() => {
                                                             handleRowData(item);
                                                             props.handleProductBuilder(true)
@@ -510,7 +505,7 @@ const ProductionOrderList = (props) => {
                                                 &nbsp;&nbsp;
                                                 {date === currentdate ? (
                                                     <span
-                                                        class="text-[tomato] font-bold">
+                                                        class="text-[tomato] font-bold text-[0.65rem]">
                                                         New
                                                     </span>
                                                 ) : null}
@@ -595,7 +590,7 @@ const ProductionOrderList = (props) => {
 
                                             <div className=" flex  w-[10.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.qcStartInd === 0 ? <b>Waiting for QC approval</b>
+                                                    {item.qcStartInd === 0 ? <div class=" font-bold text-[#1890ff] ">Waiting for QC approval</div>
                                                         : item.qcStartInd === 1 ?
                                                             // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
                                                             <Tooltip title="Assign For QC">
@@ -607,11 +602,11 @@ const ProductionOrderList = (props) => {
                                                                     }}
                                                                 >Assign For QC </Button>
                                                             </Tooltip>
-                                                            // </Badge>
-                                                            : item.qcStartInd === 2 ? <b style={{ color: "#ff6347" }}>QC Assigned</b>
-                                                                : item.qcStartInd === 3 ? <b style={{ color: "#32CD32" }}>
+                                                            // </Badge><div class=" font-bold text-[#1890ff] ">Waiting for QC approval</div>
+                                                            : item.qcStartInd === 2 ? <div style={{ color: "#ff6347" }}>QC Assigned</div>
+                                                                : item.qcStartInd === 3 ? <div class=" text-[#32CD32]" >
                                                                     QC <CheckCircleIcon className="!text-[#03c04a]" />
-                                                                    {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
+                                                                    {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</div> : null}
                                                 </div>
                                             </div>
                                             <div className=" flex  w-[10.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -626,9 +621,9 @@ const ProductionOrderList = (props) => {
                                                                 }}
                                                             >Assign For Repair</Button>
                                                         </Tooltip>
-                                                        : item.qcRepairInd === 2 ? <b style={{ color: "#ff6347" }}>Repair Assigned</b>
-                                                            : item.qcRepairInd === 3 ? <b style={{ color: "#32CD32" }}>Repair
-                                                                <CheckCircleIcon className="!text-[#03c04a]" /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
+                                                        : item.qcRepairInd === 2 ? <div style={{ color: "#ff6347" }}>Repair Assigned</div>
+                                                            : item.qcRepairInd === 3 ? <div  class=" text-[#32CD32]">Repair
+                                                                <CheckCircleIcon className="!text-[#03c04a]" /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</div> : null}
                                                 </div>
                                             </div>
                                             <div className=" flex  w-[4.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -747,7 +742,7 @@ const ProductionOrderList = (props) => {
                         loader={props.fetchingProductionNormal ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"22vh"}
                         style={{ overflowX: "hidden",scrollbarWidth:"thin" }}
-                        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+                        endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                     >
                         {props.productionNormal.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
@@ -777,7 +772,7 @@ const ProductionOrderList = (props) => {
                                             <div className=" flex  w-[9.7rem] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
-                                                        class="underline text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        class=" underline font-bold  text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                         onClick={() => {
                                                             handleRowData(item);
                                                             props.handleProductBuilder(true)
@@ -785,10 +780,10 @@ const ProductionOrderList = (props) => {
                                                         {item.newOrderNo}
                                                     </span>
                                                 </Badge>
-                                                &nbsp;&nbsp;
+                                               
                                                 {date === currentdate ? (
                                                     <span
-                                                        class="text-[tomato] font-bold">
+                                                        class="text-[tomato] font-bold text-[0.65rem]">
                                                         New
                                                     </span>
                                                 ) : null}
@@ -872,8 +867,8 @@ const ProductionOrderList = (props) => {
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                                             <div className=" flex  w-[10.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.qcStartInd === 0 ? <b>Waiting for QC approval</b>
+                                                <div class=" text-xs  font-poppins text-center text- max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    {item.qcStartInd === 0 ? <div class=" font-bold text-[#1890ff] ">Waiting for QC approval</div>
                                                         : item.qcStartInd === 1 ?
                                                             // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
                                                             <Tooltip title="Assign For QC">
@@ -886,10 +881,10 @@ const ProductionOrderList = (props) => {
                                                                 >Assign For QC </Button>
                                                             </Tooltip>
                                                             // </Badge>
-                                                            : item.qcStartInd === 2 ? <b style={{ color: "#ff6347" }}>QC Assigned</b>
-                                                                : item.qcStartInd === 3 ? <b style={{ color: "#32CD32" }}>
+                                                            : item.qcStartInd === 2 ? <div style={{ color: "#ff6347" }}>QC Assigned</div>
+                                                                : item.qcStartInd === 3 ? <div class=" text-[#32CD32]">
                                                                     QC <CheckCircleIcon className="!text-[#03c04a]" />
-                                                                    {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
+                                                                    {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</div> : null}
                                                 </div>
                                             </div>
                                             <div className=" flex  w-[10.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -904,9 +899,9 @@ const ProductionOrderList = (props) => {
                                                                 }}
                                                             >Assign For Repair</Button>
                                                         </Tooltip>
-                                                        : item.qcRepairInd === 2 ? <b style={{ color: "#ff6347" }}>Repair Assigned</b>
-                                                            : item.qcRepairInd === 3 ? <b style={{ color: "#32CD32" }}>Repair
-                                                                <CheckCircleIcon className="!text-[#03c04a]" /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
+                                                        : item.qcRepairInd === 2 ? <div style={{ color: "#ff6347" }}>Repair Assigned</div>
+                                                            : item.qcRepairInd === 3 ? <div class=" text-[#32CD32]">Repair
+                                                                <CheckCircleIcon className="!text-[#03c04a]" /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</div> : null}
                                                 </div>
                                             </div>
                                             <div className=" flex  w-[4.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

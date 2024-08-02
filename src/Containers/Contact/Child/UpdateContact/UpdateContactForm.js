@@ -3,10 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select, } from "antd";
 import { FormattedMessage } from "react-intl";
-import { Formik, Form, FastField, Field, FieldArray } from "formik";
+import { Formik, Form, FastField, Field } from "formik";
 import * as Yup from "yup";
-import { HeaderLabel } from "../../../../Components/UI/Elements";
-import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
@@ -16,7 +14,6 @@ import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaC
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getCustomerData } from "../../../Customer/CustomerAction";
-import { property } from "lodash";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 
@@ -253,24 +250,9 @@ class UpdateContactForm extends Component {
                     <FastField name="imageId" component={PostImageUpld} />
                     <div>
                     <div class=" flex justify-between max-sm:flex-col">
-                        {/* <div class=" w-w47.5 max-sm:w-full">
-                          <FastField
-                            name="salutation"
-                            type="text"
-                            // label="Salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
-                            options={["Mr.", "Ms.", "None"]}
-                            component={SelectComponent}
-                            inlineLabel
-                            className="field"
-                            isColumn
-                          />
-                        </div> */}
+                     
+                            {/* // label="Salutation" */}
+                           
                         <div class=" w-wk max-sm:w-full">
                           <FastField
                             isRequired
@@ -373,50 +355,7 @@ class UpdateContactForm extends Component {
                         isColumn
                       />
                     </div>
-                  </div>
-                  {/* <div class=" flex justify-between">
-                    <div class=" w-2/4">
-                      <FastField
-                        name="countryDialCode1"
-                        isColumnWithoutNoCreate
-                        selectType="dialCode"
-                        //label="Phone No #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode1"
-                            defaultMessage="Dial Code"
-                          />
-                        }
-                        isColumn
-                        component={SearchSelect}
-                        defaultValue={{
-                          value: this.props.user.countryDialCode,
-                        }}
-                        value={values.countryDialCode1}
-                        inlineLabel
-                      />
-                    </div>
-                    <div class=" w-2/4">
-                      <FastField
-                        type="text"
-                        name="phoneNumber"
-                        //placeholder="Phone #"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneNumber"
-                            defaultMessage="Phone #"
-                          />
-                        }
-                        isColumn
-                        component={InputComponent}
-                        inlineLabel
-                        width={"100%"}
-                      />
-                    </div>
-                  </div> */}
-
-                 
-                  
+                  </div>                                     
                   < div class=" flex justify-between mt-3">
                     <div class=" w-full">
                       <FastField
@@ -454,6 +393,7 @@ class UpdateContactForm extends Component {
                         // selectType="customerList"
                         isColumnWithoutNoCreate
                         label={translatedMenuItems[9]}
+                        //Tag Company
                         component={SelectComponent}
                         isColumn
                         value={values.customerId}

@@ -1113,8 +1113,8 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         puttingCustContcToggle: false,
         contactByCustomerId: state.contactByCustomerId.map((item) => {
-          if (item.customerId === action.payload.customerId) {
-            return { ...item, instockInd: action.payload.instockInd };
+          if (item.contactPersonId === action.payload.contactPersonId) {
+            return action.payload;
           } else {
             return item;
           }

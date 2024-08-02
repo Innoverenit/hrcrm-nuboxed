@@ -16,7 +16,7 @@ const materialOptions = ['Access', 'Create', 'Update', 'Delete',];
 const userOptions = ['Access', 'Create', 'Update', 'Delete','Access Plus'];
  const defaultCheckedList=['Full List'];
  const melCheckedList=['Full List','Access'];
- const dashboardCheckedList=['Access','Full List','Regional'];
+ const dashboardCheckedList=['Access','Full List','Regional','Location'];
  const refurbishCheckedList=['Workshop','Adminview','Adminassign'];
  const settingsCheckedList=['Access'];
  const accountingCheckedList=['Access'];
@@ -92,6 +92,7 @@ const AccessForm = (props) => {
     setCheckedScannerList(props.departmentAcces.scanner)
     setCheckedMaterialList (props.departmentAcces.material)
     setCheckedCatalougeList (props.departmentAcces.catalouge)
+    setCheckedCatalougeList (props.departmentAcces.promotions)
     
   }, [props.departmentAcces.vendor,
   props.departmentAcces.customer,
@@ -149,7 +150,7 @@ const AccessForm = (props) => {
   props.departmentAcces.scanner,
   props.departmentAcces.material,
   props.departmentAcces.catalouge,
- 
+  props.departmentAcces.promotions,
   
   
 ])
@@ -890,6 +891,25 @@ const AccessForm = (props) => {
       setCheckAllDataRoom(e.target.checked);
     };
 
+
+     // Promotions
+
+     const [checkedPromotionsList, setCheckedPromotionsList] = useState(props.departmentAcces.promotions              );
+     const [indeterminatePromotions, setIndeterminatePromotions] = useState(true);
+     const [checkAllPromotions, setCheckAllPromotions] = useState(false);
+   
+     const onPromotionsChange = (list) => {
+      setCheckedPromotionsList(list);
+      setIndeterminatePromotions(!!list.length && list.length < materialOptions.length);
+      setCheckAllPromotions(list.length === materialOptions.length);
+     };
+   
+     const onCheckAllPromotionsChange = (e) => {
+      setCheckedPromotionsList(e.target.checked ? materialOptions : []);
+      setIndeterminatePromotions(false);
+      setCheckAllPromotions(e.target.checked);
+     };
+
   //Pitch
   const [checkedPitchList, setCheckedPitchList] = useState(props.departmentAcces.pitch);
   const [indeterminatePitch, setIndeterminatePitch] = useState(true);
@@ -1229,7 +1249,7 @@ const onCheckAllTeamsChange = (e) => {
       scanner:checkedScannerList || [],
       catalouge:checkedCatalougeList || [],
       material: checkedMaterialList || [],
-      
+      promotions: checkedPromotionsList || [],
       departmentId: props.departmentId,
       roleTypeId:props.roleTypeId,
 
@@ -1785,7 +1805,7 @@ const onCheckAllTeamsChange = (e) => {
         
             <div class="flex  ">
     {/* Left Box */}
-    <div class="flex border border-gray-300  w-1/2 p-1">
+    {/* <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
         <div class="flex justify-between mt-4">
         <div >
@@ -1804,10 +1824,30 @@ const onCheckAllTeamsChange = (e) => {
      
       
       </div>
+    </div> */}
+    <div class="flex border border-gray-300  w-1/2 p-1">
+      <div class="flex flex-col">
+        <div class="flex justify-between mt-4">
+        <div >
+          <div class="text-sm font-semibold">Promotions</div>
+          <Checkbox indeterminate={indeterminatePromotions} onChange={onCheckAllPromotionsChange} checked={checkAllPromotions}>
+          <div class="text-xs"> Check all</div>
+          </Checkbox>
+          <Divider />
+          <CheckboxGroup options={materialOptions } value={checkedPromotionsList} onChange={onPromotionsChange} />
+
+        </div>
+               
+
+        
+        </div>
+     
+      
+      </div>
     </div>
 
     {/* Right Box */}
-    <div class="flex border border-gray-300  w-1/2 p-1">
+    {/* <div class="flex border border-gray-300  w-1/2 p-1">
       <div class="flex flex-col">
         <div class="flex justify-between mt-4">
         <div >
@@ -1822,7 +1862,7 @@ const onCheckAllTeamsChange = (e) => {
                
         </div>
       </div>
-    </div>
+    </div> */}
   </div>
             
            

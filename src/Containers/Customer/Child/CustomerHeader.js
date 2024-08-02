@@ -36,6 +36,9 @@ class CustomerHeader extends Component {
             viewType={viewType}
             currentUser={this.props.currentUser} 
             handleDropChange={this.props.handleDropChange}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
 
             handleCustomerModal={handleCustomerModal} />
           }

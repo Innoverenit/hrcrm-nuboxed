@@ -254,15 +254,13 @@ return <div><BundleLoader/></div>;
             )}
 
            
-            <div >
+            <div>
             {props.primaryOrgType === 'Parent' && (
                 <SwitchWithConfirm
           checked={region.globalInd}
           onChange={checked => handleSwitchChange(region.workflowCategoryId, checked)}
         />
-            )}
-
-               
+            )}             
             </div>
         </div>
         ))}

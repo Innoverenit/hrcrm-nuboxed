@@ -15,24 +15,18 @@ import WalletIcon from '@mui/icons-material/Wallet';
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import Box from "@mui/material/Box";
-import { DataGrid, GridColDef,GridRenderCellParams, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid,GridToolbar } from "@mui/x-data-grid";
 import CandidateRowEmailModal from "./Child/CandidateRowEmailModal";
 import SkillsLoadMore from "../Candidate/Child/CandidateTable/SkillsLoadMore";
 import AddChoiceCandidateModal from "./Child/CandidateTable/AddChoiceCandidateModal";
-import { FormattedMessage } from "react-intl";
-import { StyledTable, StyledPopconfirm } from "../../Components/UI/Antd";
+import {  StyledPopconfirm } from "../../Components/UI/Antd";
 import { Button,Select, Tooltip, Input } from "antd";
 import {
-  MultiAvatar,
-  Spacer,
-  SubTitle,
-  StyledLabel,
-  MultiAvatar2,
+  MultiAvatar,SubTitle, MultiAvatar2,
 } from "../../Components/UI/Elements";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import AddCandidateDrawerModal from "./AddCandidateDrawerModal";
-import { CurrencySymbol } from "../../Components/Common";
 import {
   getCandidateListByUserId,
   getCandidateById,
@@ -58,7 +52,6 @@ import { getRoles } from "../Settings/Category/Role/RoleAction";
 import { getCountries } from "../Auth/AuthAction";
 import UpdateCandidateResumeModal from "./Child/CandidateTable/UpdateCandidateResumeModal";
 import { BundleLoader } from "../../Components/Placeholder";
-import { FlexContainer } from "../../Components/UI/Layout";
 import StatusToggle from "./Child/CandidateTable/StatusToggle";
 import styled from "styled-components";
 import Highlighter from "react-highlight-words";
@@ -362,8 +355,8 @@ function CandidateGridTable(props) {
               primaryTitle={data.firstName}
               imageId={data.imageId}
               imageURL={data.imageURL}
-              imgWidth={"2.1em"}
-              imgHeight={"2.1em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
           </SubTitle>
         );
@@ -685,8 +678,8 @@ function CandidateGridTable(props) {
                   primaryTitle={data.ownerName}
                   imageId={data.ownerImageId}
                   imageURL={data.imageURL}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
                 />
               </span>
             </Tooltip>

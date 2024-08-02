@@ -131,6 +131,9 @@ class Customer extends Component {
         <AddCustomerModal
           addCustomerModal={addCustomerModal}
           handleCustomerModal={handleCustomerModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
         />
         <Suspense fallback={<BundleLoader />}>
 
@@ -143,9 +146,21 @@ class Customer extends Component {
             />
         ) : (
           <>
-            {viewType === 'card' &&   <CustomerCardView/>}
-            {viewType === 'list' &&   <CustomerWhiteTable /> }
-            {viewType === 'dashboard' &&    <CustomerBlueTable/> }
+            {viewType === 'card' &&   <CustomerCardView
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+            />}
+            {viewType === 'list' &&   <CustomerWhiteTable 
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+            /> }
+            {viewType === 'dashboard' &&    <CustomerBlueTable
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+            /> }
             {viewType === 'table' &&    <CustomerCardList
              filter={this.state.filter}
              currentUser={this.state.currentUser} 
@@ -161,12 +176,12 @@ class Customer extends Component {
              viewType={this.props.viewType}
              translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
-           translatedMenuItems={this.props.translatedMenuItems}
+            translatedMenuItems={this.props.translatedMenuItems}
              />  }
             {viewType === 'teams' && <CustomerTeamCardList
               translateText={this.props.translateText}
               selectedLanguage={this.props.selectedLanguage}
-            translatedMenuItems={this.props.translatedMenuItems}
+             translatedMenuItems={this.props.translatedMenuItems}
             /> }
           </>
         )}
@@ -217,6 +232,9 @@ class Customer extends Component {
      <AddCustomerImportModal
         handleCustomerImportModal={this.props.handleCustomerImportModal}
         addCustomerImportModal={this.props.addCustomerImportModal}
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
+       translatedMenuItems={this.props.translatedMenuItems}
         />
          
       </React.Fragment>

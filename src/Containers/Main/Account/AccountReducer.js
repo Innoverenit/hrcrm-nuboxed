@@ -10,6 +10,14 @@ const initialState = {
 
   showStatusDrwr: false,
 
+  fetchingAccountInvoice: false,
+  fetchingAccountInvoiceError: false,
+  accountInvoice:[],
+
+  fetchingSpareListByPhoneTaskId: false,
+  fetchingSpareListByPhoneTaskIdError: false,
+  phoneTaskIdSpareList:[],
+
   updatingOrdrSuplrItems: false,
   updatingOrdrSuplrItemsError: false,
 
@@ -2260,6 +2268,21 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingSpareListByPhoneIdError: true,
       };
 
+      case types.GET_SPARE_LIST_BY_PHONETASKID_REQUEST:
+      return { ...state, fetchingSpareListByPhoneTaskId: true };
+    case types.GET_SPARE_LIST_BY_PHONETASKID_SUCCESS:
+      return {
+        ...state,
+        fetchingSpareListByPhoneTaskId: false,
+        phoneTaskIdSpareList: action.payload,
+      };
+    case types.GET_SPARE_LIST_BY_PHONETASKID_FAILURE:
+      return {
+        ...state,
+        fetchingSpareListByPhoneTaskId: false,
+        fetchingSpareListByPhoneTaskIdError: true,
+      };
+
     case types.GET_SUBORDER_DATA_REQUEST:
       return { ...state, fetchingSuborderData: true };
     case types.GET_SUBORDER_DATA_SUCCESS:
@@ -3414,6 +3437,22 @@ export const distributorReducer = (state = initialState, action) => {
           fetchingLocationNamesByProductId: false,
           fetchingLocationNamesByProductIdError: true,
         };
+
+
+        case types.GET_ACCOUNT_INVOICE_REQUEST:
+          return { ...state, fetchingAccountInvoice: true };
+        case types.GET_ACCOUNT_INVOICE_SUCCESS:
+          return {
+            ...state,
+            fetchingAccountInvoice: false,
+            accountInvoice: [...state.accountInvoice, ...action.payload]
+          };
+        case types.GET_ACCOUNT_INVOICE_FAILURE:
+          return {
+            ...state,
+            fetchingAccountInvoice: false,
+            fetchingAccountInvoiceError: true,
+          };
   
     default:
       return state;

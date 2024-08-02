@@ -25,8 +25,9 @@ const AddMultipleQCSpare = (props) => {
             spareList: rows,
             phoneId: props.RowData.phoneId,
             orderPhoneId: props.RowData.orderPhoneId,
+            phoneTaskId:props.phoneTaskId
         }
-        props.addSpareList(data, props.RowData.phoneId, props.RowData.orderPhoneId, handleCallBack);
+        props.addSpareList(data, props.RowData.phoneId,props.phoneTaskId, props.RowData.orderPhoneId, handleCallBack);
     };
 
     function handleCallBack() {

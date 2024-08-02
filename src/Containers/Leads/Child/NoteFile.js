@@ -10,8 +10,6 @@ import { EditorState, convertToRaw, } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { addLeadsNote } from "../LeadsAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
-
 /**
  * yup validation scheme for creating a note
  */
@@ -128,13 +126,8 @@ class NoteFile extends Component {
 
             return (
               <Form className="form-background">
-                {/* <Field
-                                name='description'
-                                placeholder='Leave notes here ...'
-                                component={TextareaComponent}
-                            /> */}
-               {/* <ReactSpeeech/>  */}
-             
+                        {/* name='description' */}
+                                       
                 <Editor
                   editorState={editorState}
                   wrapperClassName="demo-wrapper"

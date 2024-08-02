@@ -4,9 +4,7 @@ import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
-//import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
-//import { getCountries } from "../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select,Button ,Popconfirm} from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
@@ -35,15 +33,14 @@ import {
   handleCustomerOpportunityDrawerModal
 } from "../../CustomerAction";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-//import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import { FormattedMessage } from "react-intl";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import CustomerContactDrawerModal from "./CustomerContactDrawerModal";
 import CustomerOpportunityDrawerModal from "./CustomerOpportunityDrawerModal";
 import CustomerSearchedData from "./CustomerSearchedData";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
@@ -58,7 +55,8 @@ function onChange(pagination, filters, sorter) {
 
 function CustomerTeamCardList(props) {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
  
   const [pageNo, setPageNo] = useState(0);
@@ -87,6 +85,37 @@ function CustomerTeamCardList(props) {
     // props.getCountries();
     // props.getAllCustomerEmployeelist();
   }, []);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+    'Name', // 0
+'Work', // 1
+'Sector', // 2
+'Source', // 3
+'Quotation', // 4
+'PipeLine', // 5
+'Assigned', // 6
+'Owner', // 7
+'Customer', // 8
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
 
   useEffect(() => {
     return () => props.emptyCustomer();
@@ -153,7 +182,9 @@ const [rowdata, setrowdata] = useState("");
   //   return <BundleLoader />;
   // }
  
-
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
 
   return (
     <>
@@ -168,74 +199,50 @@ const [rowdata, setrowdata] = useState("");
          <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[17.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
-              <FormattedMessage
-                id="app.name"
-                defaultMessage="Name"
-              />
+            {translatedMenuItems[0]}
+           {/* name */}
             </div>
             <div className=" w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-              <FormattedMessage
-                id="app.work"
-                defaultMessage="Work"
-              />
+            {translatedMenuItems[1]}
+             {/* work */}
 
             </div>
             <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-              <FormattedMessage
-                id="app.sector"
-                defaultMessage="Sector"
-              />
+            {translatedMenuItems[2]}
+             {/* sector */}
 
             </div>
             <div className=" w-[8.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-              <FormattedMessage
-                id="app.source"
-                defaultMessage="Source"
-              />
+            {translatedMenuItems[3]}
+           {/* source */}
 
             </div>
-            <div className=" w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
-             
+            <div className=" w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">           
             </div>
             <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-              <FormattedMessage
-                id="app.quotation"
-                defaultMessage="Quotation"
-              />
+            {translatedMenuItems[4]}
+             {/* quotation */}
 
             </div>
             <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-              <FormattedMessage
-                id="app.pipeline"
-                defaultMessage="Pipeline"
-              />
-
-            </div>
-            {/* <div className="md:w-[3.9rem]">
-        <FormattedMessage
-                        id="app.weighted"
-                        defaultMessage="Weighted"
-                      />
-          
-          </div> */}
+            {translatedMenuItems[5]}
+             {/* Pipeline" */}
+         
+            </div>           
             <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-              <FormattedMessage
-                id="app.assigned"
-                defaultMessage="Assigned"
-              />
-
+            {translatedMenuItems[6]}
+            {/* Assigned" */}
+          
             </div>
             <div className="w-[4.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
-              <FormattedMessage
-                id="app.owner"
-                defaultMessage="Owner"
-              />
+            {translatedMenuItems[7]}
+             {/* Owner" */}
+         
             </div>
             <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-              <FormattedMessage
-                id="app.customer"
-                defaultMessage="Customer"
-              />
+            {translatedMenuItems[8]}
+             {/* Customer" */}
+          
             </div>
             <div className="w-[4.12rem]"></div>
 
@@ -352,7 +359,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                       <div className=" flex  items-center max-sm:w-auto  w-[5.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                       {/* Sector  */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.sector}
                         </div>
@@ -369,9 +376,7 @@ const [rowdata, setrowdata] = useState("");
 
                       </div>
                       <div className=" flex max-sm:w-auto  justify-center w-[7.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
-
-
-                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                       {/* Country */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
                           {/* &nbsp;
@@ -381,7 +386,7 @@ const [rowdata, setrowdata] = useState("");
 
 
                       <div className=" flex items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                        {/* >Pipeline Value */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.oppNo}
@@ -391,7 +396,7 @@ const [rowdata, setrowdata] = useState("");
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex  max-sm:w-auto w-[5.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                       {/* Pipeline Value */}
 
                         {/* {item.totalProposalValue > 0 && (
       <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -404,17 +409,9 @@ const [rowdata, setrowdata] = useState("");
         {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
       </div>
     )}
-                      </div>
-                      {/* <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
-                                
-
-                                    <div class=" text-xs  font-poppins text-center">
-                                    {item.weight}
-
-                                    </div>
-                                </div> */}
+                      </div>                    
                       <div className=" flex items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
+                    {/* Assigned */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
@@ -551,13 +548,9 @@ const [rowdata, setrowdata] = useState("");
                                 handleSetCurrentCustomer(item);
                                 handleRowData(item);
                               }}
-
                             />
                           </Tooltip>
-
-                        </div>
-                     
-                     
+                        </div>                                      
                         <div class="w-4">
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
@@ -566,7 +559,6 @@ const [rowdata, setrowdata] = useState("");
                                 handleCustomerPulseDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                               }}
-
                             />
                           </Tooltip>
                         </div>
@@ -582,17 +574,12 @@ const [rowdata, setrowdata] = useState("");
 
                             />
                           </Tooltip>
-
-                        </div>
-                     
-
-                      
+                        </div>                               
                         <div class="w-4">
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
                             <LocationOnIcon
                               className=" !text-icon cursor-pointer text-[#960A0A]"
-
                             />
 
                           </Tooltip>
@@ -607,7 +594,6 @@ const [rowdata, setrowdata] = useState("");
                                   props.setEditCustomer(item);
                                   handleUpdateCustomerModal(true);
                                   handleSetCurrentCustomerId(item.customerId);
-
                                 }}
                               />
                             </Tooltip>
@@ -622,14 +608,10 @@ const [rowdata, setrowdata] = useState("");
                 }}
               />
             </Tooltip> */}
-                        </div>
-                      
-
+                        </div>                   
                     </div>
                   </div>
                 </div>
-
-
                     )
                 })}
                 </InfiniteScroll>
@@ -640,6 +622,9 @@ const [rowdata, setrowdata] = useState("");
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
       <UpdateCustomerModal
@@ -647,15 +632,20 @@ const [rowdata, setrowdata] = useState("");
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}
         handleSetCurrentCustomerId={handleSetCurrentCustomerId}
-      />
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+       />
          <CustomerPulseDrawerModal
-    customer={currentCustomer}
+        customer={currentCustomer}
         addDrawerCustomerPulseModal={addDrawerCustomerPulseModal}
         handleCustomerPulseDrawerModal={handleCustomerPulseDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
       />
       <AddCustomerEmailDrawerModal
-        // contactById={props.contactById}
         addDrawerCustomerEmailModal={props.addDrawerCustomerEmailModal}
         handleCustomerEmailDrawerModal={props.handleCustomerEmailDrawerModal}
       />
@@ -719,7 +709,6 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
       setEditCustomer,
-      // getSectors,
       customerToAccount,
       emptyCustomer,
       updateOwnercustomerById,
@@ -729,8 +718,6 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerEmailDrawerModal,
       handleCustomerNotesDrawerModal,
       getCustomerById,
-      // getCountries,
-      // getAllCustomerEmployeelist,
       handleCustomerContactDrawerModal,
       handleCustomerOpportunityDrawerModal
     },

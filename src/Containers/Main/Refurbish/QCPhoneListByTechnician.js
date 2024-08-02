@@ -35,9 +35,9 @@ const QCPhoneListByTechnician = (props) => {
       };
     return (
         <>
-            <div className=' flex justify-end sticky z-10 h-60'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=' flex sticky z-10 h-60'>
+                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className=" md:w-[8.1rem]"><FormattedMessage
                             id="app.oem"
                             defaultMessage="OEM"
@@ -69,29 +69,29 @@ const QCPhoneListByTechnician = (props) => {
                         <div className="md:w-[7.2rem]"></div>
                     </div>
                     <InfiniteScroll
-                            dataLength={props.orderPhoneList.length}
+                            dataLength={props.phoneByTechId.length}
                              next={handleLoadMore}
                              hasMore={hasMore}
-                            loader={props.fetchingNoOfPhoneInQcById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                            loader={props.fetchingNoOfPhoneInQcById ? <div style={{ textAlign: 'center',scrollbarWidth:"thin" }}>Loading...</div> : null}
                             height={"65vh"}
                             endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                         >
                     {props.phoneByTechId.map((item) => {
                         return (
                             <div>
-                                <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
+                                <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                                     <div class="flex">
-                                        <div className=" flex font-medium  md:w-[7.6rem] max-sm:w-full  ">
+                                        <div className=" flex md:w-[7.6rem] max-sm:w-full  ">
                                             {item.company}
                                         </div>
 
-                                        <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.model}
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 
@@ -102,7 +102,7 @@ const QCPhoneListByTechnician = (props) => {
                                         </div>
                                     </div>
 
-                                    <div className=" flex font-medium  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         <div class=" text-xs  font-poppins text-center">
 
                                             {item.os}
@@ -111,29 +111,29 @@ const QCPhoneListByTechnician = (props) => {
                                         </div>
                                     </div>
 
-                                    <div className=" flex font-medium  md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         <div class=" text-xs  font-poppins text-center">
                                             {item.gb}
                                         </div>
                                     </div>
-                                    <div className=" flex font-medium  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         <div class=" text-xs  font-poppins text-center">
                                             {item.color}
                                         </div>
                                     </div>
-                                    <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         <div class=" text-xs  font-poppins text-center">
                                             {item.conditions}
                                         </div>
                                     </div>
-                                    <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         <div class=" text-xs  font-poppins text-center">
                                             <SubTitle>
                                                 {item.qrCodeId ? (
                                                     <QRCodeModal
                                                         qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                                        imgHeight={"2.8rem"}
-                                                        imgWidth={"2.8rem"}
+                                                        imgHeight={"1.8rem"}
+                                                        imgWidth={"1.8rem"}
                                                         imgRadius={20}
                                                     />
                                                 ) : (

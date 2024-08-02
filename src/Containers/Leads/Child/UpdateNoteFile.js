@@ -10,8 +10,6 @@ import { EditorState, convertToRaw, } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { updateLeadsNote } from "../LeadsAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
-
 /**
  * yup validation scheme for creating a note
  */
@@ -75,16 +73,10 @@ class UpdateNoteFile extends Component {
       callback,
       teamId,
       callId,
-      // leadsAccountId,
-      // contactLeadsId,
-  
       eventId,
       taskId,
       type,
       vendorId,
-
-      // partnerId,
-      // userIdFromPartner,
       fetchingNotesListByLeadsId,
     } = this.props;
     const { editorState, placeholder } = this.state;
@@ -92,9 +84,7 @@ class UpdateNoteFile extends Component {
       <>
         <Formik
           enableReinitialize
-          initialValues={{
-            // comment: ""
-            // leadsId: leadsId ? leadsId : "",
+          initialValues={{      
             notes: notes || "",
              notesId:this.props.notesId,
           }}
@@ -125,13 +115,7 @@ class UpdateNoteFile extends Component {
 
             return (
               <Form className="form-background">
-                {/* <Field
-                                name='description'
-                                placeholder='Leave notes here ...'
-                                component={TextareaComponent}
-                            /> */}
-               {/* <ReactSpeeech/>  */}
-             
+                     {/* name='description' */}                                    
                 <Editor
                 // defaultValue={notes}
                   editorState={editorState}
@@ -145,8 +129,7 @@ class UpdateNoteFile extends Component {
                   onEditorStateChange={this.onEditorStateChange}
                   placeholder={placeholder || "Type here"}
                   toolbar={toolbarOption}
-                />
-             
+                />            
                 <div class=" flex justify-end">
                   <Button
                     type="primary"

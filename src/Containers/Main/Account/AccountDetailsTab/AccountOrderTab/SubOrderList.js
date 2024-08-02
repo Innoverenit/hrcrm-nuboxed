@@ -35,9 +35,9 @@ function SubOrderList(props) {
 
     return (
         <>
-            <div className='flex justify-end sticky top-0 z-auto'>
-                <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className='flex  sticky z-auto'>
+                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className=" md:w-[12rem]"><FormattedMessage
                             id="app.order"
                             defaultMessage="Order#"
@@ -64,7 +64,7 @@ function SubOrderList(props) {
                                     <div>
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                                             <div class="flex">
-                                                <div className=" flex font-medium  md:w-[12rem] max-sm:w-full  ">
+                                                <div className=" flex   md:w-[12rem] max-sm:w-full  ">
                                                     <Badge
                                                         class=" ml-2"
                                                         size="small"
@@ -76,27 +76,27 @@ function SubOrderList(props) {
                                                                 handleSubOrderData(item)
                                                                 props.handleSuborderPhone(true);
                                                             }}
-                                                            class="underline cursor-pointer text-[#1890ff] mr-4"
+                                                            class="underline cursor-pointer font-bold text-[#1890ff] mr-4"
                                                         >{item.orderNo}</span>
                                                     </Badge>
                                                 </div>
 
-                                                <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <h4 class=" text-xs  font-poppins">
+                                                <div className=" flex   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins">
                                                         <MultiAvatar2
                                                             primaryTitle={item.awbUserName}
                                                             imageURL={item.imageURL}
                                                             imgWidth={"1.8rem"}
                                                             imgHeight={"1.8rem"}
                                                         /> &nbsp;&nbsp; {` ${dayjs(item.awbCreationDate).format("DD-MM-YY")}`}
-                                                    </h4>
+                                                    </div>
 
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <h4 class=" text-sm  font-poppins">
+                                                <div className=" flex   justify-center items-center md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs   font-poppins">
                                                         {awbUpdate && (item.orderPhoneAwbId === subRow.orderPhoneAwbId) ?
                                                             <>
-                                                                <div class=" flex justify-around">
+                                                                <div class=" flex  justify-around">
                                                                     <Input
                                                                         value={awbNo}
                                                                         type='text'
@@ -117,18 +117,18 @@ function SubOrderList(props) {
                                                                 </div>
                                                             </>
                                                             : item.awbNo}
-                                                    </h4>
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     <BorderColorIcon
                                                         onClick={() => {
                                                             handleAwbNoField();
                                                             handleSubOrderData(item)
                                                         }}
-                                                        className=" !text-base cursor-pointer text-[tomato]"
+                                                        className=" !text-icon cursor-pointer text-[tomato]"
                                                     />
                                                 </div>
                                             </div>

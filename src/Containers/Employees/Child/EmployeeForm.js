@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip, Switch, Select, message } from "antd";
-import { FormattedMessage } from "react-intl";
 import { getDepartmentwiserUser } from "../../Settings/SettingsAction"
 import { getCurrency } from "../../Auth/AuthAction"
 import { getlocation } from "../../Event/Child/Location/LocationAction";
@@ -438,8 +437,9 @@ function EmployeeForm(props) {
                         isColumn
                         />
                     </div> */}
+                       
                         <div class=" w-wk max-sm:w-full">
-                        <label>{translatedMenuItems[1]}</label>
+                        <div class=" text-xs font-bold font-poppins">{translatedMenuItems[1]}</div>
                           <Field
                             isRequired
                             name="firstName"
@@ -458,7 +458,7 @@ function EmployeeForm(props) {
                       </div>
                       <div class=" flex justify-between max-sm:flex-col" >
                         <div class=" w-2/5 max-sm:w-full">
-                        <label>{translatedMenuItems[2]}</label>
+                        <div class=" text-xs font-bold font-poppins">{translatedMenuItems[2]}</div>
                           {" "}
                           <Field
 
@@ -475,7 +475,7 @@ function EmployeeForm(props) {
                           />
                         </div>
                         <div class=" w-3/6 max-sm:w-full"> 
-                        <label>{translatedMenuItems[3]}</label>
+                        <div class=" text-xs font-bold font-poppins">{translatedMenuItems[3]}</div>
                           {" "}
                           <Field
                             name="lastName"
@@ -496,7 +496,7 @@ function EmployeeForm(props) {
 
                   <div class=" flex justify-between" >
                     <div class=" w-[70%] flex flex-col max-sm:w-wk">
-                    <label>{translatedMenuItems[4]}</label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[4]}</div>
                       <Field
                         isRequired
                         name="emailId"
@@ -536,7 +536,7 @@ function EmployeeForm(props) {
                   <div class="flex justify-between max-sm:flex-col">
                     <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk " >
                       <div class=" w-w47.5 max-sm:w-wk ">
-                      <label>{translatedMenuItems[6]}</label>
+                      <div class=" text-xs font-bold font-poppins">{translatedMenuItems[6]}</div>
                         <FastField
                           name="countryDialCode"
                           isColumnWithoutNoCreate
@@ -554,7 +554,7 @@ function EmployeeForm(props) {
                         />
                       </div>
                       <div class=" w-w47.5 max-sm:w-wk">
-                      <label>{translatedMenuItems[7]}</label>
+                       <div class=" text-xs font-bold font-poppins">{translatedMenuItems[7]}</div>
                         <Field
                           type="text"
                           name="mobileNo"
@@ -571,7 +571,7 @@ function EmployeeForm(props) {
                     </div>
                     <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
                       <div class="w-w47.5 max-sm:w-wk">
-                      <label>{translatedMenuItems[6]}</label>
+                      <div class=" text-xs font-bold font-poppins">{translatedMenuItems[6]}</div>
                         <FastField
                           name="countryDialCode1"
                           isColumnWithoutNoCreate
@@ -589,7 +589,7 @@ function EmployeeForm(props) {
                         />
                       </div>
                       <div class="w-w47.5 max-sm:w-wk">
-                      <label>{translatedMenuItems[9]}</label>
+                      <div class=" text-xs font-bold font-poppins">{translatedMenuItems[9]}</div>
                         <Field
                           type="text"
                           name="phoneNo"
@@ -610,7 +610,7 @@ function EmployeeForm(props) {
                       defaultMessage=" Date Of Joining"
                     />
                     </div> */}
-                     <label>{translatedMenuItems[10]}</label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[10]}</div>
                       <Field
                         isRequired
                         name="dateOfJoining"
@@ -628,7 +628,7 @@ function EmployeeForm(props) {
                       />
                     </div>
                     <div class=" w-w47.5 max-sm:w-wk">
-                    <label>{translatedMenuItems[11]}</label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[11]}</div>
                       {/* <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
                       id="app.dateofbirth"
                       defaultMessage=" Date Of Birth"
@@ -654,7 +654,7 @@ function EmployeeForm(props) {
 
                   <div class=" flex justify-between" >
                     <div class=" w-full">
-                    <label>{translatedMenuItems[12]}</label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[12]}</div>
                       <Field
                         name="linkedinPublicUrl"
                         type="text"
@@ -673,17 +673,17 @@ function EmployeeForm(props) {
                   </div>
                   <div style={{ width: "100%", backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)", marginTop: "0.5rem" }}>
                     <div>
-                      <div class=" text-[white] text-xs" >
+                      <div class=" text-[white] text-xs font-bold font-poppins" >
                       {translatedMenuItems[37]} {/* Address for  Corresponedenc */}
                         </div>
                     </div>
                   </div>
 
-
+                  <div class=" text-xs font-bold font-poppins">{translatedMenuItems[13]}</div>
                   <FieldArray
                     name="address"
                     // label="Address"
-                    label={translatedMenuItems[13]}
+                   
                     render={(arrayHelpers) => (
                       <AddressFieldArray
                         arrayHelpers={arrayHelpers}
@@ -699,6 +699,7 @@ function EmployeeForm(props) {
 
 
                 <div class=" w-[47.5%] max-sm:w-wk ">
+                <div class=" text-xs font-bold font-poppins">{translatedMenuItems[19]}</div>
                   <div class=" w-full mt-2">
                     <Field
                     isRequired
@@ -707,7 +708,7 @@ function EmployeeForm(props) {
                     isColumnWithoutNoCreate
                     //label="TimeZone "
                     
-                    label={translatedMenuItems[19]}
+                    // label={translatedMenuItems[19]}
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -798,6 +799,7 @@ function EmployeeForm(props) {
             </option>
           ))}
         </select> */}
+        <div class=" text-xs font-bold font-poppins">{translatedMenuItems[20]}</div>
                       <Field
                         name="departmentId"
                         isColumnWithoutNoCreate
@@ -807,7 +809,7 @@ function EmployeeForm(props) {
                         //     defaultMessage="Department"
                         //   />
                         // }
-                        label={translatedMenuItems[20]}
+                        // label={translatedMenuItems[20]}
                         component={SelectComponent}
                         options={
                           Array.isArray(DepartmentOptions)
@@ -822,6 +824,7 @@ function EmployeeForm(props) {
 
                     </div>
                     <div class="w-w47.5 max-sm:w-wk">
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[21]}</div>
                       <FastField
                         name="label"
                         type="level"
@@ -830,7 +833,7 @@ function EmployeeForm(props) {
                         //   id="app.level"
                         //   defaultMessage="Level"
                         // />}
-                        label={translatedMenuItems[21]}
+                        // label={translatedMenuItems[21]}
                         options={["L1", "L2", "L3"]}
                         component={SelectComponent}
                         inlineLabel
@@ -841,13 +844,14 @@ function EmployeeForm(props) {
                   </div>
                   <div class=" flex justify-between max-sm:flex-col" >
                   <div class=" w-w48 max-sm:w-wk">
+                  <div class=" text-xs font-bold font-poppins">{translatedMenuItems[22]}</div>
                     <Field
                       name="roleType"
                       // label={<FormattedMessage
                       //   id="app.role"
                       //   defaultMessage="Role"
                       // />}
-                      label={translatedMenuItems[22]} 
+                      // label={translatedMenuItems[22]} 
                       isColumnWithoutNoCreate
                       component={SelectComponent}
                       options={
@@ -880,13 +884,14 @@ function EmployeeForm(props) {
                     />
                   </div>
                     <div class=" w-w48 flex flex-col max-sm:w-wk">
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[23]}</div>
                     <Field
                     
                         name="salary"
                         type="text"
                         isColumn
                         width={"100%"}
-                        label={translatedMenuItems[23]} 
+                        // label={translatedMenuItems[23]} 
                         // label={<FormattedMessage
                         //   id="app.salary"
                         //   defaultMessage="Salary" />}
@@ -899,11 +904,12 @@ function EmployeeForm(props) {
                 
                   </div>
                   <div class=" max-sm:w-wk">
+                  <div class=" text-xs font-bold font-poppins">{translatedMenuItems[24]}</div>
                       <Field
                         name="designationTypeId"
                         isColumnWithoutNoCreate
                         placeholder="Designation"
-                        label={translatedMenuItems[24]} 
+                        // label={translatedMenuItems[24]} 
                         // label="Designation"
                         isColumn
                         // selectType="currencyName"
@@ -929,11 +935,11 @@ function EmployeeForm(props) {
               {item.country_name}
             </option>
           ))}
-        </select> */}
+        </select> */}<div class=" text-xs font-bold font-poppins">{translatedMenuItems[25]}</div>
                       <Field
                         name="workplace"
                         isColumnWithoutNoCreate
-                        label={translatedMenuItems[25]} 
+                        // label={translatedMenuItems[25]} 
                         // label={
                         //   <FormattedMessage
                         //     id="app.Workplace"
@@ -968,10 +974,10 @@ function EmployeeForm(props) {
             </option>
           ))}
         </select> */}
-
+                      <div class=" text-xs font-bold font-poppins">{translatedMenuItems[26]}</div>
                       <Field
                         name="location"
-                        label={translatedMenuItems[26]} 
+                        // label={translatedMenuItems[26]} 
                         // label={<FormattedMessage
                         //   id="app.location"
                         //   defaultMessage="Location"
@@ -1042,7 +1048,7 @@ function EmployeeForm(props) {
                      /> */}
                   <div class=" flex mt-2 " >
                     <div>
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                      <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                      {translatedMenuItems[27]}  {/* Job Type */}
                       </div>
                       <Switch
@@ -1072,7 +1078,7 @@ function EmployeeForm(props) {
                     </div>
 
                     <div class=" ml-4">
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                      <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                         {/* <FormattedMessage
                           id="app.category"
                           defaultMessage="Category"
@@ -1090,7 +1096,7 @@ function EmployeeForm(props) {
                   </div>
 
                   <div class=" mt-3">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                       {/* <FormattedMessage
                       id="app.employeetype"
                       defaultMessage="Employee Type"
@@ -1128,17 +1134,17 @@ function EmployeeForm(props) {
                     </Radio.Group>
                   </div>
                   <div class="mt-2">
-                    <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>
-                      {/* Reports To */} {translatedMenuItems[32]}
-                      </label>
+                  <div class=" text-xs font-bold font-poppins">{translatedMenuItems[32]}</div>
+                 
+                      {/* Reports To */} 
                   </div>
 
 
                   <div class=" flex justify-between  max-sm:flex-col" >
                     <div class=" w-w48 max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>
-                     { translatedMenuItems[20]}{/* Department */}
-                        </label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[20]}</div>
+                     {/* Department */}
+                        
                       <Select
                         className="w-[250px]"
                         value={department}
@@ -1151,9 +1157,9 @@ function EmployeeForm(props) {
                     </div>
 
                     <div class="w-w48  max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>
-                      {translatedMenuItems[33]}{/* Reporting Manager */}
-                        </label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[33]}</div>
+                      {/* Reporting Manager */}
+                       
                       <Select
                         className="w-[250px]"
                         value={reportingManager}
@@ -1168,9 +1174,9 @@ function EmployeeForm(props) {
                   </div>
                   <div class=" flex justify-between  max-sm:flex-col" >
                     <div class=" w-w48 max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>
-                      {translatedMenuItems[34]} {/* Secondary Department */}
-                        </label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[34]}</div>
+                    {/* Secondary Department */}
+                      
                       <Select
                         className="w-[250px]"
                         value={secondatDepartment}
@@ -1183,9 +1189,9 @@ function EmployeeForm(props) {
                     </div>
 
                     <div class="w-w48  max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>
-                      {translatedMenuItems[35]} {/* Secondary Reporting Manager */}
-                        </label>
+                    <div class=" text-xs font-bold font-poppins">{translatedMenuItems[35]}</div>
+                     {/* Secondary Reporting Manager */}
+                     
                       <Select
                         className="w-[250px]"
                         value={secondaryReportingManager}

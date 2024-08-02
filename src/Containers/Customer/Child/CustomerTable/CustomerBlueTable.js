@@ -308,8 +308,8 @@ function CustomerBlueTable(props) {
                   primaryTitle={item.ownerName}
                   imageId={item.ownerImageId}
                   imageURL={item.imageURL}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
+                  imgWidth={"2.1rem"}
+                  imgHeight={"2.1rem"}
                 />
               </span>
             </Tooltip>
@@ -361,6 +361,9 @@ function CustomerBlueTable(props) {
       />
 
       <UpdateCustomerModal
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         customerId={currentCustomerId}
         updateCustomerModal={updateCustomerModal}
         handleUpdateCustomerModal={handleUpdateCustomerModal}

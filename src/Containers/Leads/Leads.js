@@ -100,6 +100,8 @@ class Leads extends Component {
         translatedMenuItems={this.props.translatedMenuItems}
         />
         <AddLeadsImportModal
+         selectedLanguage={this.props.selectedLanguage}
+         translatedMenuItems={this.props.translatedMenuItems}
         handleLeadsImportModal={this.props.handleLeadsImportModal}
         addLeadsImportModal={this.props.addLeadsImportModal}
         />
