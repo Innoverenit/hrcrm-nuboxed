@@ -26,7 +26,7 @@ const DashboardActionLeft = (props) => {
   // ]
   // const [activeTab, setActiveTab] = useState("");
   const [dashboardRegionalVisible, setDashboardRegionalVisible] = useState(false);
-  const [showShareForm, setShowShareForm] = useState(false);
+  //const [showShareForm, setShowShareForm] = useState(false);
   const {
     setSelectedTimeIntervalReport,
     dateRangeList,
@@ -35,10 +35,14 @@ const DashboardActionLeft = (props) => {
     handleButtonClick,
     activeButton,
     user,
+    toggleShareForm,
+    showShareForm
+   
   } = props;
-  const toggleShareForm = () => {
-    setShowShareForm(!showShareForm);
-  };
+   console.log(showShareForm)
+  // const toggleShareForm = () => {
+  //   setShowShareForm(!showShareForm);
+  // };
   const handleRegionalButtonClick = () => {
     setDashboardRegionalVisible(true);
     // Navigate to the dashboardRegional page here (you can use React Router or any other navigation library)
@@ -202,7 +206,7 @@ const DashboardActionLeft = (props) => {
                       color: activeButton === "Order" && "tomato",
 
                     }}
-                  >  <Tooltip title="Orders">
+                  >  <Tooltip title="Production">
                       <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#4bc076" }}>
                         <DynamicFeedIcon className="text-white !text-icon"
 
@@ -226,7 +230,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="Refurbish">
+                    <Tooltip title="Repair">
                       <Avatar style={{ background: activeButton === "Finance" ? "#f279ab" : "#4bc076" }}>
                         <OnDeviceTrainingIcon className="text-white !text-icon" />
                       </Avatar>
