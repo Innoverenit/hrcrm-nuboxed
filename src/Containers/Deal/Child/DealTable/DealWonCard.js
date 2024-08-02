@@ -5,7 +5,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
-import { CurrencySymbol } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -34,7 +33,6 @@ import {
          deleteLostOpportunity,
 } from "../../../Opportunity/OpportunityAction";
 import {getWonDeals,handleUpdateDealModal,handleDealsNotesDrawerModal} from "../../DealAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));

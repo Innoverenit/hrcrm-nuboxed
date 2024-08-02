@@ -85,7 +85,6 @@ props.getInvestorCurrency();
     const [defaultOption, setDefaultOption] = useState(props.fullName);
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.allEmployeeList.find((item) => item.empName === selected);
-
     const [sector, setSector] = useState([]);
     const [source, setSource] = useState([]);
     const [isLoading, setIsLoading] = useState(false);

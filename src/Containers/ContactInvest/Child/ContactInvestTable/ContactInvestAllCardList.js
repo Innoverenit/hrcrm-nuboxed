@@ -146,52 +146,36 @@ if (loading) {
       <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky z-10">
         <div className=" md:w-[15.32rem]">
-        {translatedMenuItems[0]}  {/* <FormattedMessage
-                  id="app.name"
-                  defaultMessage="name"
-                /> */}
+        {translatedMenuItems[0]} 
+        {/* name */}
                 </div>
         <div className=" md:w-[12.72rem]">
-        {translatedMenuItems[1]}{/* <FormattedMessage
-                  id="app.company"
-                  defaultMessage="company"
-                /> */}
+        {translatedMenuItems[1]}
+        {/* company */}
                 </div>
         <div className=" md:w-[9.6rem] ">
-        {translatedMenuItems[2]} {/* <FormattedMessage
-                  id="app.designation"
-                  defaultMessage="designation"
-                /> */}
+        {translatedMenuItems[2]} 
+        {/* designation */}
                 </div>
         <div className="md:w-[11.3rem]">
-        {translatedMenuItems[3]} {/* <FormattedMessage
-                  id="app.department"
-                  defaultMessage="department"
-                /> */}
+        {translatedMenuItems[3]} 
+        {/* department */}
                 </div>
         <div className="md:w-[6.1rem]"># 
-        {translatedMenuItems[4]} {/* <FormattedMessage
-                  id="app.deals"
-                  defaultMessage="deals"
-                /> */}
+        {translatedMenuItems[4]} 
+        {/* deals */}
                 </div>
         <div className="md:w-[7.21rem]"> 
-        {translatedMenuItems[5]} {/* <FormattedMessage
-                  id="app.dealValue"
-                  defaultMessage="dealValue"
-                /> */}
+        {translatedMenuItems[5]} 
+        {/* dealValue */}
                 </div>
         <div className="md:w-[5.2rem]">
-        {translatedMenuItems[6]} {/* <FormattedMessage
-                  id="app.source"
-                  defaultMessage="source"
-                /> */}
+        {translatedMenuItems[6]}
+        {/* source */}
                 </div>
         <div className="md:w-[6.8rem]">
-        {translatedMenuItems[7]} {/* <FormattedMessage
-                  id="app.owner"
-                  defaultMessage="owner"
-                /> */}
+        {translatedMenuItems[7]} 
+        {/* owner */}
                 </div>
         {/* <div className="w-12">Action</div> */}
 
@@ -202,6 +186,7 @@ if (loading) {
         hasMore={hasMore}
         loader={fetchingAllContactInvest?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >       
        { !fetchingAllContactInvest && props.allContactInvestData.length === 0 ?<NodataFoundPage />:props.allContactInvestData.map((item,index) =>  {
         
@@ -250,10 +235,6 @@ if (loading) {
                                       <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
-     {/* <Link
-    toUrl={`contactinvest/${item.contactId}`}
-    title={`${item.fullName}`}
-  >{item.fullName}</Link> */}
   &nbsp;&nbsp;
   {date === currentdate ? (
     <span class="text-[tomato] mt-[0.4rem] font-bold"

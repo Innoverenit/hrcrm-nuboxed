@@ -248,7 +248,7 @@ function ContactInvestCardList(props) {
       
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-[tomato] mt-[0.4rem] font-bold"        
+          <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold"        
           >
             New
           </span>

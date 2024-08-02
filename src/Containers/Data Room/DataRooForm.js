@@ -240,14 +240,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select } from "antd";
 import { FormattedMessage } from "react-intl";
-import { Formik, Form, Field,  FastField  } from "formik";
+import { Formik, Form,  FastField  } from "formik";
 import * as Yup from "yup";
 import  {addDataroom,getuserList} from  "./DataRoomAction";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
-import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 import { BundleLoader } from "../../Components/Placeholder";
 
-// yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
@@ -267,8 +265,6 @@ function CustomerForm(props) {
   const [touchedInclude, setTouchedInclude] = useState(false);
   const [loading, setLoading] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-
-  
 
   function handleWhiteBlue(checked) {
     setWhiteblue(checked);
@@ -311,8 +307,6 @@ function CustomerForm(props) {
         const itemsToTranslate = [
           ' Name', // 0
           'Include User '// 1
-
-
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -340,7 +334,6 @@ function CustomerForm(props) {
       setTouchedInclude(true);
     }
   };
-
     const {
      
       addingDataroom,

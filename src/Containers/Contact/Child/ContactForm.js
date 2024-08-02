@@ -292,7 +292,7 @@ class ContactForm extends Component {
                            */}
                         <div class=" w-wk max-sm:w-full">
                         <div class=" text-xs font-bold font-poppins"> 
-                          {translatedMenuItems[0]}                      
+                         {translatedMenuItems[0]}             
                           </div>
                           <FastField
                             isRequired
@@ -477,9 +477,7 @@ class ContactForm extends Component {
                     {this.props.customerConfigure.linkedinInd===true&&
                       <FastField
                         type="text"
-                        name="linkedinPublicUrl"
-                        //label="Linkedin "
-                        // label={translatedMenuItems[8]}
+                        name="linkedinPublicUrl"            
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -498,10 +496,8 @@ class ContactForm extends Component {
                     <div class="  w-w47.5">
                     {this.props.customerConfigure.tagCompanyInd===true&&
                       <Field
-                        name="customerId"
-                        // selectType="customerList"
-                        isColumnWithoutNoCreate
-                        // label={translatedMenuItems[9]}
+                        name="customerId"            
+                        isColumnWithoutNoCreate           
                         component={SelectComponent}
                         isColumn
                         value={values.customerId}
@@ -518,8 +514,7 @@ class ContactForm extends Component {
   }
                     {this.props.customerConfigure.sourceInd===true&&
                     <FastField
-                            name="source"
-                            //  label={translatedMenuItems[10]}
+                            name="source"              
                             isColumnWithoutNoCreate
                             selectType="sourceName"
                             component={SearchSelect}
@@ -539,8 +534,7 @@ class ContactForm extends Component {
                   <div class="  w-w47.5">
                   {this.props.customerConfigure.departmentInd===true&&
                     <Field
-                      name="departmentId"
-                     //  label={translatedMenuItems[11]}
+                      name="departmentId"     
                       width="100%"
                       isColumn
                       isColumnWithoutNoCreate
@@ -557,8 +551,7 @@ class ContactForm extends Component {
   }
                   {this.props.customerConfigure.designationInd===true&&
                   <FastField
-                        name="designationTypeId"
-                        //label="Designation"                
+                        name="designationTypeId"                     
                         selectType="designationType"
                         isColumn
                         component={SearchSelect}
@@ -611,13 +604,9 @@ class ContactForm extends Component {
                     <div class=" w-w47.5" >
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[15]}</div>
                     <FastField
-                            name="price"
-                            // label="Price"
-                            //isColumnWithoutNoCreate
-                            //selectType="sourceName"
+                            name="price"                        
                             options={["0-100000", "100001-300000", "300001-500000","500000+"]}
-                            component={SelectComponent}
-                           
+                            component={SelectComponent}                           
                             // value={values.source}
                             isColumn
                           />
@@ -647,42 +636,7 @@ class ContactForm extends Component {
                                                                             
                   <div class=" flex  justify-between mt-3">
                   {/* city */}
-                  </div>
-                
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
+                  </div>             
                 </div>
                 )}
                   {/* Address     */}
@@ -700,8 +654,7 @@ class ContactForm extends Component {
                   htmlType="submit"
                   loading={addingContact}
                 >
-                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[17]}</div>
-                  {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */}
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[17]}</div>        
                   {/*                     
                     Create */}
                 </Button>

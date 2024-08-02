@@ -335,19 +335,15 @@ function UpdateDealForm (props) {
               <div class=" flex justify-around max-sm:flex-col">
                 <div class=" h-full w-w47.5 max-sm:w-wk">
                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
-                <label>{translatedMenuItems[0]}</label>
+                <div>{translatedMenuItems[0]} </div>
                     <Field
                       isRequired
                       name="opportunityName"
                       type="text"
-                      //label="Name"
-                      // label={
-                      //   <FormattedMessage id="app.name" defaultMessage="name" />
-                      // }
+                      //label="Name"                  
                       isColumn
                       width={"100%"}
-                      component={InputComponent}
-                      // accounts={accounts}
+                      component={InputComponent}         
                       inlineLabel
                     />
                   </div>
@@ -355,17 +351,11 @@ function UpdateDealForm (props) {
                   <div class="flex justify-between max-sm:flex-col mt-3">
                     <div class=" w-w47.5 max-sm:w-wk">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
-                    <label>{translatedMenuItems[1]}</label>
+                    <div>{translatedMenuItems[1]} </div>
                         <Field
                           isRequired
                           name="startDate"
-                          //label="Start Date"
-                        //   label={
-                        //     <FormattedMessage
-                        //   id="app.startdate"
-                        //   defaultMessage="startdate"
-                        // />
-                        //   }
+                          //label="Start Date"                     
                           component={DatePicker}
                           value={values.startDate}
                           isColumn
@@ -375,17 +365,11 @@ function UpdateDealForm (props) {
                     </div>
                     <div class="w-w47.5 max-sm:w-wk">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
-                    <label>{translatedMenuItems[2]}</label>
+                    <div>{translatedMenuItems[2]} </div>
                         <Field
                           isRequired
                           name="endDate"
-                          // label="End Date"
-                          // label={
-                          //   <FormattedMessage
-                          //   id="app.enddate"
-                          //   defaultMessage="enddate"
-                          // />
-                          // }
+                          // label="End Date"                     
                           isColumn
                           component={DatePicker}
                           value={values.endDate || values.startDate}
@@ -411,16 +395,10 @@ function UpdateDealForm (props) {
                   <div class="flex justify-between max-sm:flex-col mt-3">
                     <div class=" w-w47.5 max-sm:w-wk">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
-                    <label>{translatedMenuItems[3]}</label>
+                    <div>{translatedMenuItems[3]} </div>
                         <Field
                           name="proposalAmount"
-                          // label="Value"
-                        //   label={
-                        //     <FormattedMessage
-                        //   id="app.fundValue"
-                        //   defaultMessage="fundValue"
-                        // />
-                        //   }
+                          // label="Value"                   
                           isColumn
                           isRequired
                           width={"100%"}
@@ -429,19 +407,10 @@ function UpdateDealForm (props) {
                       </div>
                     </div>
                     <div class=" w-w47.5 max-sm:w-wk">
-                    <label>{translatedMenuItems[4]}</label>
+                    <div>{translatedMenuItems[4]} </div>
                     <Field
                       name="currency"
-                      isColumnWithoutNoCreate
-                      // defaultValue={{
-                      //   value: props.user.currency,
-                      // }}
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.currency"
-                      //     defaultMessage="Currency"
-                      //   />
-                      // }
+                      isColumnWithoutNoCreate                    
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -452,22 +421,15 @@ function UpdateDealForm (props) {
                           ? currencyNameOption
                           : []
                       }
-                    />
-
-                      
+                    />                  
                     </div>
                   </div>
                 </div>
                 <div class=" h-full w-w47.5 max-sm:w-wk">
-                <label>{translatedMenuItems[5]}</label>
+                <div>{translatedMenuItems[5]} </div>
                 <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
-        <>
-          {/* <Listbox.Label className="block font-semibold text-[0.75rem]">
-            <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="assignedto"
-                        /></Listbox.Label> */}
+        <>   
           <div className="relative ">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -531,10 +493,10 @@ function UpdateDealForm (props) {
       )}
     </Listbox>
     <div class=" mt-1">
-    <label class=" text-[#444] font-bold text-[0.75rem]" >
+    <div class=" text-black font-bold text-xs" >
     {translatedMenuItems[6]}
     {/* include */}
-      </label>
+      </div>
  
     <Select
   name="included"
@@ -578,7 +540,7 @@ function UpdateDealForm (props) {
                     inlineLabel
                   /> */}
   </div>
-                 <label>{translatedMenuItems[7]}</label>
+  <div>{translatedMenuItems[7]} </div>
                   <Field
                     name="investorId"
                     isColumnWithoutNoCreate
@@ -602,7 +564,7 @@ function UpdateDealForm (props) {
 
                  
 <div class="mt-3">
-<label>{translatedMenuItems[8]}</label>
+<div>{translatedMenuItems[8]} </div>
                   <Field
                     name="contactId"
                     isColumnWithoutNoCreate
@@ -634,16 +596,11 @@ function UpdateDealForm (props) {
                   <div class="flex justify-between max-sm:flex-col mt-3">
                     <div class=" w-w47.5 max-sm:w-wk">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    <label>{translatedMenuItems[9]}</label>
+                    <div>{translatedMenuItems[9]} </div>
                         <Field
                           name="oppWorkflow"
                           isColumnWithoutNoCreate
-                          // label={
-                          //   <FormattedMessage
-                          //   id="app.workflow"
-                          //   defaultMessage="workflow"
-                          // />
-                          // }
+                          // workflow
                           component={SelectComponent}
                           options={
                             Array.isArray(WorkflowOptions)
@@ -664,12 +621,7 @@ function UpdateDealForm (props) {
                         <Field
                           name="oppStage"
                           isColumnWithoutNoCreate
-                          // label={
-                          //   <FormattedMessage
-                          //   id="app.stages"
-                          //   defaultMessage="stages"
-                          // />
-                          // }
+                        // stages
                           component={SelectComponent}
                           options={
                             Array.isArray(
