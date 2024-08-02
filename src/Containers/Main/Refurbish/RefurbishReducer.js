@@ -12,6 +12,9 @@ const initialState = {
   fetchingNoOfRepairTechnicianByIdError: false,
   repairByTechnician: [],
 
+  updatingProcessNwTask: false,
+  updatingProcessNwTaskError: false,
+
   fetchingProductionUrgent: false,
   fetchingProductionUrgentError: false,
   productionUrgent:[],
@@ -1468,6 +1471,27 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         updatingProcessTask: false,
         updatingProcessTaskError: true,
+      };
+
+      case types.UPDATE_PROCESS_NWTASK_REQUEST:
+      return { ...state, updatingProcessNwTask: true };
+    case types.UPDATE_PROCESS_NWTASK_SUCCESS:
+      return {
+        ...state,
+        updatingProcessNwTask: false,
+        taskByPhone: state.taskByPhone.map((item) => {
+          if (item.phoneTaskId == action.payload.phoneTaskId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_PROCESS_NWTASK_FAILURE:
+      return {
+        ...state,
+        updatingProcessNwTask: false,
+        updatingProcessNwTaskError: true,
       };
 
     case types.GET_TASK_ITEM_COUNT_REQUEST:
