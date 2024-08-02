@@ -43,7 +43,7 @@ class CandidateDocumentView extends Component {
       
             <>
             
-              <CardWrapper>
+              <div class="flex">
                {this.props.documentsByCandidateId.map((item) => { 
                   return ( 
              
@@ -60,10 +60,7 @@ class CandidateDocumentView extends Component {
                   // icon={solid("file")} 
                   />
                    </a>
-                       
-                      
-
-
+                                      
                       {/* <CardDescription> */}
                         {/* <Header>
                              {item.documentName} 
@@ -75,19 +72,15 @@ class CandidateDocumentView extends Component {
                           {item.price} {item.currencyName}
                         </Price> */}
                         {/* <Price>Color: {item.productColour}</Price> */}
-                          
-                      
-                        {/* <Desc dangerouslySetInnerHTML={{ __html: item.description }}></Desc> */}
-
-
-
-                      
+                                            
+                       {/* <Desc dangerouslySetInnerHTML={{ __html: item.description }}></Desc> */}
+                     
                       {/* </CardDescription> */}
 
                     </CardElement>
                   )   
                       })} 
-              </CardWrapper>
+              </div>
               
 
             </>
@@ -133,18 +126,6 @@ margin: 0.2rem;
 padding: 0.3rem;
 //width: 8rem;
 }
-  
-
-`
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-    flex-direction: column;
-  }
 `
 const CardElement = styled.div`
  

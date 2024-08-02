@@ -56,7 +56,7 @@ const BussinessCard = (props) => {
   return (
     <>
       <ResponsiveCard flexDirection="column" style={{ borderRadius: 3 }}>
-        <CardWrapper>
+        <div class="flex">
           <CardElement>
             <div class=" flex items-center flex-nowrap h-9">
               <div class=" basis-1/4">
@@ -140,7 +140,7 @@ const BussinessCard = (props) => {
                 </Button>
               </div>
           </CardElement>
-        </CardWrapper>
+        </div>
       </ResponsiveCard>
     </>
   );
@@ -195,17 +195,7 @@ const PulseIcon1 = styled(AppIcon1)`
     color: blue;
   }
 `;
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
 
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`;
 const CardElement = styled.div`
   border-radius: 0.35rem;
   border: 3px solid #eeeeee;

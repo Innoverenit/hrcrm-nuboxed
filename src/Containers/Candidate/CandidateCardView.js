@@ -140,7 +140,7 @@ function handleSetCurrentCandidateId(candidateId) {
 </Select> 
             </div> */}
               <div class=" h-h72 overflow-auto overflow-x-auto">
-              <CardWrapper>      
+              <div class="flex">      
               {props.candidateByUserId.map((item) => {
                 console.log("found",item.skillList);
                 const data =
@@ -349,14 +349,13 @@ function handleSetCurrentCandidateId(candidateId) {
                </Tooltip>
                         </div>
                         {/* <Desc dangerouslySetInnerHTML={{ __html: item.description }}></Desc> */}
-
-                      
+                     
                       {/* </CardDescription> */}
 
                     </CardElement>
                  )  
             })}
-              </CardWrapper>
+              </div>
               </div>
               
               <AddCandidateDrawerModal
@@ -381,7 +380,6 @@ function handleSetCurrentCandidateId(candidateId) {
  <AddPlayerModal
         addPlayerModal={props.addPlayerModal}
         handlePlayerModal={props.handlePlayerModal}
-      
       />
        
        <UpdateCandidateModal
@@ -399,8 +397,6 @@ function handleSetCurrentCandidateId(candidateId) {
         handleupdateCandidateResumeModal={handleupdateCandidateResumeModal}
       />
             </>
-      
-    
     )
               
 }
@@ -468,17 +464,6 @@ const MainWrapper = styled.div`
   /* */
   margin: 0px 20px;
   @media only screen and (max-width: 600px) {
-  }
-`
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
   }
 `
 const CardElement = styled.div`

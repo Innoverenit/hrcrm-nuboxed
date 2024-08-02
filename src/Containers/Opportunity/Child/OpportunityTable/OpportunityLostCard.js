@@ -9,7 +9,7 @@ import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
-import moment from "moment";
+import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LockIcon from "@mui/icons-material/Lock";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -17,7 +17,6 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   MultiAvatar,
   MultiAvatar2,
-  SubTitle,
 } from "../../../../Components/UI/Elements";
 import {
   getRecruiterList,
@@ -133,9 +132,7 @@ function OpportunityLostCard(props) {
         <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[4]}</div>
         <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
         <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>
-        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> {translatedMenuItems[7]}</div>
-        <div className="w-[4.1rem] "></div>
-        <div className="w-12"></div>
+        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> {translatedMenuItems[7]}</div>  
       </div>
 
       <InfiniteScroll
@@ -144,9 +141,9 @@ function OpportunityLostCard(props) {
         hasMore={hasMore}
         loader={fetchinglostOpportunity?<div class="flex justify-center">Loading...</div> :null}
         height={"80vh"}
-        style={{overflowX:"hidden"}}
+        style={{overflowX:"hidden",scroll:"thin"}}
       >
- <CardWrapper>      
+ <div class="flex">      
               {lostOpportunity.map((item) => {
                  
                  var findProbability = item.probability;
@@ -164,7 +161,7 @@ function OpportunityLostCard(props) {
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium w-[14.5rem] max-xl:w-[9.5rem] max-lg:w-[6.5rem] max-sm:flex-row  ">
                               <div>
-<SubTitle>
+<div>
           <MultiAvatar
             primaryTitle={item.opportunityName}
             imageId={item.imageId}
@@ -172,7 +169,7 @@ function OpportunityLostCard(props) {
             imgWidth={"1.8rem"}
             imgHeight={"1.8rem"}
           />
-        </SubTitle>
+        </div>
 </div>
                                  <div class="w-[4%]">
 
@@ -230,7 +227,7 @@ function OpportunityLostCard(props) {
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
                                   <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                  {moment(item.startDate).format("ll")}
+                                  {dayjs(item.startDate).format("ll")}
                                   </div>
                               </div>
                            
@@ -455,7 +452,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
 
                  )  
             })}
-              </CardWrapper>
+              </div>
   
 
       </InfiniteScroll>
@@ -558,17 +555,6 @@ mapStateToProps,
 mapDispatchToProps
 )(OpportunityLostCard);
 
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`
 const CardElement = styled.div`
  
 border-radius: 0.75rem;

@@ -14,7 +14,7 @@ class OpportunityCardView extends Component {
   render() {
     return (
       <>
-        <CardWrapper>
+     <div class="flex"> 
         { !this.props.fetchingOpportunity && this.props.opportunityByUserId.length === 0 ?<NodataFoundPage />:this.props.opportunityByUserId.map((item,index) =>  {
             return (
               <CardElement>
@@ -37,7 +37,7 @@ class OpportunityCardView extends Component {
               </CardElement>
             );
           })}
-        </CardWrapper>
+        </div>
       </>
     );
   }
@@ -68,16 +68,7 @@ const MainWrapper = styled.div`
   @media only screen and (max-width: 600px) {
   }
 `;
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
 
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-    flex-direction: column;
-  }
-`;
 const CardElement = styled.div`
   //   width: 20%;
   border-radius: 0.2rem;

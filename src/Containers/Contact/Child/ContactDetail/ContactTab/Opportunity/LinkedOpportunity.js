@@ -63,7 +63,7 @@ function OpportunityTable(props) {
         height={"65vh"}
         style={{ scrollbarWidth:"thin"}}
       >
- <CardWrapper>      
+ <div class="flex">      
  { !props.fetchingContactOpportunity && props.opportunityByContactId.length === 0 ?<NodataFoundPage />: props.opportunityByContactId.map((item,index) =>  {
                  
                  var findProbability = item.probability;
@@ -298,7 +298,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
 
                  )  
             })}
-              </CardWrapper>
+              </div>
   
 
       </InfiniteScroll>
@@ -326,14 +326,4 @@ const mapDispatchToProps = (dispatch) =>
   );
 export default connect(mapStateToProps, mapDispatchToProps)(OpportunityTable);
 
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`
+

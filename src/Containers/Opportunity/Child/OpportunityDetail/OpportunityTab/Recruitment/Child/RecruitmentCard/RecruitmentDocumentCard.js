@@ -47,7 +47,7 @@ class RecruitmentDocumentCard extends Component {
       
         <MainWrapper>
             <h1 style={{fontSize:"0.875em"}}>Document</h1>
-              <CardWrapper>
+            <div class="flex"> 
                {this.props.documentsByCandidateId.map((item) => { 
                   return ( 
              
@@ -63,10 +63,7 @@ class RecruitmentDocumentCard extends Component {
                 
                   />
                    </a>
-                       
-                      
-
-
+                                
                       {/* <CardDescription> */}
                         {/* <Header>
                              {item.documentName} 
@@ -78,21 +75,15 @@ class RecruitmentDocumentCard extends Component {
                         {/* <Price>Color: {item.productColour}</Price> */}
                          <Price>{item.documentContentType} </Price> 
                       
-                        {/* <Desc dangerouslySetInnerHTML={{ __html: item.description }}></Desc> */}
-
-
-
-                      
+                        {/* <Desc dangerouslySetInnerHTML={{ __html: item.description }}></Desc> */}                     
                       {/* </CardDescription> */}
 
                     </CardElement>
                   )   
                       })} 
-              </CardWrapper>
-        
+              </div>     
 
-            </MainWrapper>
-      
+            </MainWrapper>   
     
     )
               }
@@ -101,13 +92,7 @@ class RecruitmentDocumentCard extends Component {
 const mapStateToProps = ({ candidate, auth }) => ({
     // userId: auth.userDetails.userId,
     documentsByCandidateId:candidate.documentsByCandidateId
-     //candidateId: candidate.candidate.candidateId,
-    // candidateByUserId: candidate.candidateByUserId,
-    // addDrawerCandidateModal:candidate.addDrawerCandidateModal
-    //opportunityByUserId: opportunity.opportunityByUserId,
-//   customerSrchdata: customer.customerSrchdata,
-//   mrchantDetailsId: auth.userDetails.mrchantDetailsId,
-//   linkingProductInfo: customer.linkingProductInfo,
+    
 })
 
 const mapDispatchToProps = (dispatch) =>
@@ -124,22 +109,6 @@ const mapDispatchToProps = (dispatch) =>
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecruitmentDocumentCard)
 
-// const MainWrapper = styled.div`
-//   /* */
-//   margin: 0px 20px;
-//   @media only screen and (max-width: 600px) {
-//   }
-// `
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-    flex-direction: column;
-  }
-`
 const CardElement = styled.div`
  
 //   width: 20%;

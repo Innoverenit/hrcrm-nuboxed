@@ -245,10 +245,7 @@ function ContactInvestCardList(props) {
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
   </Link>                                               
-           {/* <Link
-          toUrl={`contactinvest/${item.contactId}`}
-          title={`${item.fullName}`}
-        >{item.fullName}</Link> */}
+      
         &nbsp;&nbsp;
         {date === currentdate ? (
           <span class="text-[tomato] mt-[0.4rem] font-bold"        
@@ -382,17 +379,7 @@ function ContactInvestCardList(props) {
             <LocationOnIcon  className="!text-icon cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
-          
-          {/* <div><Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                style={{ cursor: "pointer",fontSize: "1rem" }}
-                onClick={() => {
-                  props.getCustomerById(item.customerId);
-                  props.handleCustomerEmailDrawerModal(true);
-                }}
-              />
-            </Tooltip> </div> */}           
+                        
             <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
@@ -431,9 +418,9 @@ function ContactInvestCardList(props) {
         handleCurrentContactIdata={handleCurrentContactIdata}
       />
 <AddContactInvestPulseModal
- translateText={props.translateText}
- selectedLanguage={props.selectedLanguage}
- translatedMenuItems={props.translatedMenuItems}
+        translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
+         translatedMenuItems={props.translatedMenuItems}
         contactiData={contactiData}
         addDrawerContactInvestPulseModal={addDrawerContactInvestPulseModal}
         handleContactInvestPulseDrawerModal={handleContactInvestPulseDrawerModal}
