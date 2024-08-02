@@ -27,7 +27,6 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {getTeamsContactInvest,
   handleContactInvestNotesDrawerModal,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
-import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -234,10 +233,7 @@ if (loading) {
                                       <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
-     {/* <Link
-    toUrl={`contactinvest/${item.contactId}`}
-    title={`${item.fullName}`}
-  >{item.fullName}</Link> */}
+   
   &nbsp;&nbsp;
   {date === currentdate ? (
     <span class="text-[tomato] mt-[0.4rem] font-bold">  New </span>

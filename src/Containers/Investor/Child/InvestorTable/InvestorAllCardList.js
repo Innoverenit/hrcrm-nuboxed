@@ -334,7 +334,7 @@ function InvestorAllCardList(props) {
             </span>          
                                </div>
                                 </div>
-                                <div className=" flex flex-col w-[4.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex  w-[4.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                                           {/* Owner */}
                        <span>
                        <Tooltip title={item.ownerName}>
