@@ -33,7 +33,7 @@ class ContactInvestHeader extends Component {
             handleClear={handleClear}
      
             handleChange={handleChange}
-            handleCurrentData={handleCurrentData}
+            handleCurrentData={handleCurrentData}        
            
             />
           }
@@ -42,6 +42,7 @@ class ContactInvestHeader extends Component {
             viewType={viewType}
             addContactInvestModal={addContactInvestModal}
             handleContactInvestModal={handleContactInvestModal}
+    
             />
           }
         />

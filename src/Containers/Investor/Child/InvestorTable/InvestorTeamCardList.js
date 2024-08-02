@@ -478,24 +478,32 @@ function InvestorTeamCardList(props) {
         updateInvestorModal={updateInvestorModal}
         handleUpdateInvestorModal={handleUpdateInvestorModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
            <AddInvestorNotesDrawerModal
         RowData={RowData}
         addDrawerInvestorNotesModal={props.addDrawerInvestorNotesModal}
         handleInvestorNotesDrawerModal={props.handleInvestorNotesDrawerModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
       <InvestorPulseDrawerModal
         RowData={RowData}
         addDrawerInvestorPulseModal={addDrawerInvestorPulseModal}
         handleInvestorPulseDrawerModal={handleInvestorPulseDrawerModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
       <ContactsInvestorModal
         RowData={RowData}
         addDrawerInvestorContactModal={addDrawerInvestorContactModal}
         handleInvestorContModal={handleInvestorContModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
       {/* <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}

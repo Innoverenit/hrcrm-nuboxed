@@ -7,7 +7,7 @@ class EmployeeDocumentView extends Component {
   render() {
     return (
       <>
-        <CardWrapper>
+      <div class="flex"> 
           {this.props.documentsByEmployeeId.length === 0?<div class=" flex items-center mt-8">Data Not Available</div>:this.props.documentsByEmployeeId.map((item) => {
             return (
               <CardElement key={item.documentId}>
@@ -25,7 +25,7 @@ class EmployeeDocumentView extends Component {
               </CardElement>
             )
           })}
-        </CardWrapper>
+        </div>
       </>
     )
   }
@@ -41,16 +41,7 @@ const MainWrapper = styled.div`
   padding: 0.3rem;
 `
 
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-    flex-direction: column;
-  }
-`
+
 
 const CardElement = styled.div`
   border-radius: 0.2rem;

@@ -19,7 +19,7 @@ function QuestionsGroup(props) {
     <>
       <FlexContainer>
         <div>
-          <CardWrapper>
+          <div class="flex">
             <div>
               <CardElement>
                 <QuestionForm assessmentId={assessmentId} />
@@ -75,7 +75,7 @@ function QuestionsGroup(props) {
                 </CardElement>
               );
             })}
-          </CardWrapper>
+          </div>
         </div>
       </FlexContainer>
     </>
@@ -96,22 +96,6 @@ const mapDispatchToProps = (dispatch) =>
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionsGroup);
 
-const MainWrapper = styled.div`
-  /* */
-  margin: 0px 20px;
-  @media only screen and (max-width: 600px) {
-  }
-`;
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-    flex-direction: column;
-  }
-`;
 const CardElement = styled.div`
   //   width: 20%;
   border-radius: 0.2rem;

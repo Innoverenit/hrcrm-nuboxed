@@ -10,7 +10,7 @@ class PartnerCardView extends Component {
     const{user}=this.props;
     return (
       <>
-        <CardWrapper>
+      <div class="flex"> 
           {this.props.partnerByUserId.map((item) => {
             return (
               <CardElement>
@@ -43,7 +43,7 @@ class PartnerCardView extends Component {
               </CardElement>
             );
           })}
-        </CardWrapper>
+        </div>
        
       </>
     )
@@ -75,16 +75,6 @@ const MainWrapper = styled.div`
   /* */
   margin: 0px 20px;
   @media only screen and (max-width: 600px) {
-  }
-`;
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-    flex-direction: column;
   }
 `;
 const CardElement = styled.div`

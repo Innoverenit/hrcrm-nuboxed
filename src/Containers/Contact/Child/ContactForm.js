@@ -347,8 +347,7 @@ class ContactForm extends Component {
                         {this.props.customerConfigure.lastNameInd===true&&
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            // label={translatedMenuItems[2]}
+                            //label="Last Name"                   
                             type="text"
                             width={"100%"}
                             isColumn
@@ -366,8 +365,7 @@ class ContactForm extends Component {
                       <FastField
                         type="email"
                         name="emailId"
-                        //label="Email"
-                        // label={translatedMenuItems[3]}
+                        //label="Email"                
                         className="field"
                         isColumn
                         width={"100%"}
@@ -387,8 +385,7 @@ class ContactForm extends Component {
                       <FastField
                         type="email"
                         name="alternateEmail"
-                        //label="Email"
-                        // label={translatedMenuItems[4]}
+                        //label="Email"              
                         className="field"
                         isColumn
                         width={"100%"}
@@ -408,8 +405,7 @@ class ContactForm extends Component {
                     <div class=" w-2/6 max-sm:w-2/5">
                       <FastField
                         name="countryDialCode"
-                        isColumnWithoutNoCreate
-                        // label={translatedMenuItems[5]}
+                        isColumnWithoutNoCreate                 
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -427,8 +423,7 @@ class ContactForm extends Component {
                     {this.props.customerConfigure.phoneNoInd===true&&
                       <FastField
                         type="number"
-                        name="mobileNumber"
-                        // label={translatedMenuItems[6]}
+                        name="mobileNumber"                   
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
@@ -453,7 +448,7 @@ class ContactForm extends Component {
                  
                   <div class=" flex justify-between">
                     <div class=" w-2/4">
-                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
+                    <div class=" text-xs font-bold font-poppins"> </div>
                       {" "}
                       {this.state.whatsapp && (
                         <FastField
@@ -461,8 +456,7 @@ class ContactForm extends Component {
                           selectType="dialCode"
                           isColumnWithoutNoCreate
                           //label="Phone No #"
-                          placeholder='+31'
-                          // label={translatedMenuItems[5]}
+                          placeholder='+31'                      
                           isColumn
                           component={SearchSelect}
                           defaultValue={{
@@ -509,49 +503,7 @@ class ContactForm extends Component {
                       />
                     }
                     </div>
-                  </div>
-                
-                  {/* <div class="mt-3">
-                    <div>Notes</div>
-                    <div>
-                  <div>
-                    <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span
-                          
-                            >
-                          <StopCircleIcon className="!text-icon ml-1 text-green-600" />
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
-                        <span >
-                          <RotateRightIcon  className="!text-icon ml-1" />
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </div>
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea>
-                  </div>
-                </div>
-                  </div> */}
+                  </div>                              
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 >
@@ -575,9 +527,7 @@ class ContactForm extends Component {
                         inlineLabel
                       />
                     }
-                    </div>
-
-                   
+                    </div>              
                     <div class=" w-w47.5">
                     {this.props.customerConfigure.sourceInd===true&&
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>

@@ -695,7 +695,7 @@ function SubscriptionNewCard (props) {
 
     <div class="h-[24rem] overflow-auto">
 
-    <CardWrapper>
+    <div class="flex"> 
     <Carousel
     // ref={carouselRef}
     pagination={false}
@@ -826,7 +826,7 @@ function SubscriptionNewCard (props) {
                   })}
                  </Carousel> 
                   {/* {!hasMore && <p className="text-center text-red-500">End of the list.</p>} */}
-            </CardWrapper>    
+            </div>    
   
    </div>
    
@@ -857,15 +857,6 @@ const mapDispatchToProps = (dispatch) =>
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubscriptionNewCard);
 
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-    flex-direction: column;
-  }
-`;
 const CardElement = styled.div`
 
   /* border:2px solid red */
