@@ -13,6 +13,8 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
 import QrCodeIcon from '@mui/icons-material/QrCode';
+import NodataFoundPageRefubish from "../../../Refurbish/NodataFoundPageRefubish";
+import NodataFoundPageAccount from "./NodataFoundPageAccount";
 const PhoneNotesOrderModal = lazy(() => import("./PhoneNotesOrderModal"));
 const AccountPhoneTaskTable = lazy(() => import("./AccountPhoneTaskTable"));
 const AddingSpareList = lazy(() => import("./AddingSpareList"));
@@ -162,7 +164,7 @@ function DistributorPauseForm(props) {
                                         height={"64vh"}
                                         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                                     >
-                                        {props.phoneListById.map((item, index) => { 
+                                          {props.phoneListById.length === 0 ? <NodataFoundPageAccount /> :props.phoneListById.map((item, index) => { 
                                             return (
                                                 <div>
                                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >

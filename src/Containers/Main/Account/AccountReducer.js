@@ -14,6 +14,10 @@ const initialState = {
   fetchingAccountInvoiceError: false,
   accountInvoice:[],
 
+  fetchingSpareListByPhoneTaskId: false,
+  fetchingSpareListByPhoneTaskIdError: false,
+  phoneTaskIdSpareList:[],
+
   updatingOrdrSuplrItems: false,
   updatingOrdrSuplrItemsError: false,
 
@@ -2262,6 +2266,21 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingSpareListByPhoneId: false,
         fetchingSpareListByPhoneIdError: true,
+      };
+
+      case types.GET_SPARE_LIST_BY_PHONETASKID_REQUEST:
+      return { ...state, fetchingSpareListByPhoneTaskId: true };
+    case types.GET_SPARE_LIST_BY_PHONETASKID_SUCCESS:
+      return {
+        ...state,
+        fetchingSpareListByPhoneTaskId: false,
+        phoneTaskIdSpareList: action.payload,
+      };
+    case types.GET_SPARE_LIST_BY_PHONETASKID_FAILURE:
+      return {
+        ...state,
+        fetchingSpareListByPhoneTaskId: false,
+        fetchingSpareListByPhoneTaskIdError: true,
       };
 
     case types.GET_SUBORDER_DATA_REQUEST:
