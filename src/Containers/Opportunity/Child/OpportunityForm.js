@@ -7,7 +7,7 @@ import { FormattedMessage } from "react-intl";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { Button, Tooltip,Select } from "antd";
+import { Button, Tooltip,Select,Switch } from "antd";
 import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
 import DraggableUpload1 from "../../../Components/Forms/Formik/DraggableUpload1";
@@ -71,11 +71,14 @@ function OpportunityForm(props) {
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [selectedContact, setSelectedContact] = useState(null);
   const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [emailInd, setEmailInd] = useState(false);
 
   // useEffect(() => {
   //   fetchCustomers();
   // }, []);
-
+const  handleEmailInd = (checked) => {
+    setEmailInd(checked)
+  };
 
   const fetchCustomers = async () => {
     setIsLoadingCustomers(true);
@@ -337,6 +340,7 @@ const filteredEmployeesData = AllEmplo.filter(
           oppStage: "",
           salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
           // included: selectedValues,
+          emialInd:emailInd ? "true" : "false",
         }}
         validationSchema={OpportunitySchema}
         onSubmit={(values, { resetForm }) => {
@@ -423,6 +427,7 @@ const filteredEmployeesData = AllEmplo.filter(
               included: selectedValues,
               description: transcript ? transcript : text,
               salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
+              emialInd:emailInd ? "true" : "false",
             },
             props.userId,
             props.customerId,
@@ -890,7 +895,22 @@ const filteredEmployeesData = AllEmplo.filter(
                                         />
                                     </div>
               </div> 
-  
+   <div class=" flex">
+                  <div class=" w-[47%] mt-2" >
+                      <div class="font-bold text-xs">
+                       Email Ind 
+                    </div>
+                      <div>
+                      <Switch
+                          style={{ width: "6.25em" }}
+                          checked={emailInd}
+                          onChange={handleEmailInd}
+                          checkedChildren="Yes"
+                          unCheckedChildren="No"
+                        />
+                      </div>
+                    </div>
+                    </div>
             </div>
           
             <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">
