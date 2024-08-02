@@ -7,6 +7,7 @@ import {
     getLobList,
     setContactRoleForAccount
 } from "../../AccountAction";
+import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { getContactDistributorList, applyForLoginInContact } from "../../../Suppliers/SuppliersAction"
 import { Tooltip, Button, Input, Select } from "antd";
 import UpdateAccountContactModal from "./UpdateAccountContactModal";
@@ -14,9 +15,13 @@ import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { FormattedMessage } from "react-intl";
+import AccountContactJumpstartBoxDrawer from "./AccountContactJumpstartBoxDrawer";
 const ButtonGroup = Button.Group;
 const { Option } = Select;
 class AccountContactTable extends Component {
+    state = {
+        visible: false,
+      };
 
     componentDidMount() {
         this.props.getContactDistributorList(this.props.distributorId);
@@ -100,6 +105,18 @@ class AccountContactTable extends Component {
             }
         }
     }
+
+    showModal = () => {
+        this.setState({ visible: true });
+      };
+    
+      handleOk = () => {
+        this.setState({ visible: false });
+      };
+    
+      handleCancel = () => {
+        this.setState({ visible: false });
+      };
 
     render() {
         const {
@@ -335,7 +352,16 @@ class AccountContactTable extends Component {
                                             }
 
                                         </div>
+<div><Tooltip title="Pulse">
+                            <MonitorHeartIcon
+                              className=" !text-icon cursor-pointer text-[#df9697]"
+                              onClick={() => {
+                                this.showModal();
+                                // handleSetCurrentCustomer(item);
+                              }}
 
+                            />
+                          </Tooltip></div>
                                     </div>
                                 </div>
 
@@ -349,6 +375,11 @@ class AccountContactTable extends Component {
                 <UpdateAccountContactModal
                     handleUpdateDistributorContactModal={this.props.handleUpdateDistributorContactModal}
                     updateDistributorContactModal={this.props.updateDistributorContactModal}
+                />
+                <AccountContactJumpstartBoxDrawer
+                showModal={this.showModal}
+                handleCancel={this.handleCancel}
+                visible={this.state.visible}
                 />
             </>
         );
