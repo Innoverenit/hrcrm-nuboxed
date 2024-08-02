@@ -40,6 +40,7 @@ const DashboardActionLeft = (props) => {
    
   } = props;
    console.log(showShareForm)
+   console.log(props.buttonName)
   // const toggleShareForm = () => {
   //   setShowShareForm(!showShareForm);
   // };
