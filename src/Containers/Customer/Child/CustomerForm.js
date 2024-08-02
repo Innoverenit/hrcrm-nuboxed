@@ -486,13 +486,13 @@ console.log(selectedSource)
                     ) : null}
                   </div>
                   <div class=" mt-3">
+                    <div class="font-bold text-xs"> {translatedMenuItems[0]}  </div>
                   {props.customerConfigure.nameInd===true&&
                     <Field
                       isRequired
                       name="name"
                       type="text"
-                      // label="Names"
-                      label={translatedMenuItems[0]}                   
+                      // label="Names"                            
                       isColumn
                       width={"100%"}
                       setClearbitData={props.setClearbitData}
@@ -502,11 +502,11 @@ console.log(selectedSource)
                     />
 }
                   </div>
+                  <div class="font-bold text-xs"> {translatedMenuItems[1]}  </div>
                   <Field
                     name="url"
                     type="text"
-                    // label="URL"
-                 label={translatedMenuItems[1]}                 
+                    // label="URL"                       
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -548,10 +548,10 @@ country_dial_code
 }
                     </div>
                     <div class=" w-8/12">
+                    <div class="font-bold text-xs"> {translatedMenuItems[3]}  </div>
                     {props.customerConfigure.phoneNoInd===true&&
                       <FastField
-                        name="phoneNumber"
-                        label={translatedMenuItems[3]}          
+                        name="phoneNumber"                           
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -614,10 +614,10 @@ country_dial_code
                   <div class="flex justify-between mt-2">
   <div class="w-w47.5 flex">
     <div class="w-24">
+    <div class="font-bold text-xs"> {translatedMenuItems[5]}  </div>
     {props.customerConfigure.potentialInd===true&&
       <Field
-        name="potentialValue"
-        label= {translatedMenuItems[5]}     
+        name="potentialValue"     
         isColumn
         width={"100%"}
         component={InputComponent}
@@ -653,10 +653,10 @@ country_dial_code
   </div>
 
   <div class="w-w47.5">
+  <div class="font-bold text-xs"> {translatedMenuItems[7]}  </div>
   {props.customerConfigure.typeInd===true&&
     <Field
-      name="type"
-      label=  {translatedMenuItems[7]}
+      name="type" 
       isColumn
       width={"100%"}
       component={SelectComponent}
@@ -723,7 +723,7 @@ country_dial_code
                       <Listbox value={selected} onChange={setSelected}>
                         {({ open }) => (
                           <>
-                            <div className="font-bold text-[0.75rem] ">                                               
+                            <div className="font-bold text-xs ">                                               
                                {translatedMenuItems[8]}                            
                               {/* Assigned */}
                             </div>
@@ -847,10 +847,10 @@ country_dial_code
                     </div>
                   </div>
                   <div class=" mt-3">
+                  <div class="font-bold text-xs"> {translatedMenuItems[9]}  </div>
                     <FieldArray
                       name="address"
-                      // label="Address"
-                      label=  {translatedMenuItems[9]}
+                      // label="Address"                 
                       render={(arrayHelpers) => (
                         <AddressFieldArray
                           arrayHelpers={arrayHelpers}
@@ -859,7 +859,6 @@ country_dial_code
                       )}
                     />
                   </div>
-
                   </div>
 }              
                 </div>
