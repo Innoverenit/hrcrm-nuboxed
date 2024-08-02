@@ -342,8 +342,8 @@ function handleSetCurrentCandidateId(candidateId) {
                   primaryTitle={item.ownerName}
                   imageId={item.ownerImageId}
                   imageURL={item.imageURL}
-                  imgWidth={"1.3rem"}
-                  imgHeight={"1.3rem"}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
                  />
                 </span>
                </Tooltip>
