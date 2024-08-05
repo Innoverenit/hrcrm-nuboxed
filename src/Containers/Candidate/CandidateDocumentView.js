@@ -13,7 +13,7 @@ class CandidateDocumentView extends Component {
               <div class="flex">
                {this.props.documentsByCandidateId.map((item) => { 
                   return (                        
-                    <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
+                    <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt- bg-white border-[2px] border-[#eeeeee] text-black">
                       <MainWrapper>
                       <div class="w-7 h-7" >
                       <a
