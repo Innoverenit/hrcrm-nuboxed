@@ -75,8 +75,8 @@ function Teams (props) {
        translatedMenuItems={translatedMenuItems}
        selectedLanguage={props.selectedLanguage}/> 
 
-:viewType==="client" ?
-<PerformanceManagement/> 
+           :viewType==="client" ?
+         <PerformanceManagement/> 
 
         :null}
     
