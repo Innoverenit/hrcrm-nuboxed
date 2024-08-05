@@ -5,7 +5,6 @@ import dayjs from "dayjs";
 import { OnlyWrapCard } from '../../../../Components/UI/Layout'
 import CellTowerIcon from '@mui/icons-material/CellTower';
 import { Select } from "antd";
-import styled from 'styled-components'
 import { BundleLoader } from "../../../../Components/Placeholder";
 import {
     getEmployeelist,
@@ -35,23 +34,18 @@ function handleChange(data) {
 }
 const [currentEmployeeId, setCurrentEmployeeId] = useState("");
 
-
 function handleSetCurrentEmployeeId(employeeId,) {
   setCurrentEmployeeId(employeeId,);
  
 }
-
-
 const [currentCandidateId, setCurrentCandidateId] = useState("");
 function handleSetCurrentCandidateId(candidateId) {
-    setCurrentCandidateId(candidateId);
-    
+    setCurrentCandidateId(candidateId); 
     console.log(candidateId);
   } 
   if (props.fetchingCandidates) {
     return <BundleLoader/>
   
-    
 ;
   }
   const {
@@ -64,10 +58,8 @@ function handleSetCurrentCandidateId(candidateId) {
     employeeDrawerVisibleForAdmin,
   } = props;
 
-    return (
-      
-            <>
-            
+    return (    
+            <>          
       <OnlyWrapCard style={{height:"81vh"}}>
         {/* <InfiniteScroll
                     dataLength={props.tableRequirement.length}
@@ -76,17 +68,12 @@ function handleSetCurrentCandidateId(candidateId) {
                 height={"20vh"}
             > */}
        
- 
         {props.filteredData.map((item) => {
             const currentdate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
        
           return (
             <>
-
-
-
-
               <div>
                 <div className="flex justify-between mt-2 "
                   // style={hrStyle}
@@ -97,16 +84,10 @@ function handleSetCurrentCandidateId(candidateId) {
                   <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
                     <div class="flex">
                     <div className=" flex font-medium flex-col md:w-44 max-sm:flex-row justify-between w-full">
-
-                    <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
-         
-                    Name
-         
-            </div> 
+                    <div class=" text-sm  font-semibold font-poppins max-sm:hidden"> Name     
+          </div> 
             <div class="  text-[0.82rem] font-semibold  font-poppins">
-            {/* <Link to={`/provider/${item.serviceId}`} style={{cursor:"pointer"}}>
-            {item.name}
-            </Link> */}
+          {/* Link */}
            <EmployeeDetailsView
           employeeId={item.employeeId}
           fullName={item.fullName}
@@ -127,9 +108,7 @@ function handleSetCurrentCandidateId(candidateId) {
                       </div>
                       {/* </Tooltip>   */}
                     </div>
-                    <div className=" flex font-medium flex-col md:w-40 max-sm:flex-row justify-between w-full mt-1">
-             
-
+                    <div className=" flex font-medium flex-col md:w-40 max-sm:flex-row justify-between w-full mt-1">       
                         <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                         Role
                         </div>
@@ -162,15 +141,12 @@ function handleSetCurrentCandidateId(candidateId) {
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
                       {item.emailId}
-                      </div>
-                    
+                      </div>                  
                     </div>
                     </div>
                     <div class="flex justify-between items-center">
-                   <div class="flex">
-                
-                    <div className=" flex font-medium flex-col md:w-40 max-sm:flex-row justify-between w-full mt-1">
-                  
+                   <div class="flex">              
+                    <div className=" flex font-medium flex-col md:w-40 max-sm:flex-row justify-between w-full mt-1">                 
                       <div class="text-[0.82rem]   font-semibold font-poppins max-sm:hidden">
                      
                       Type
@@ -179,42 +155,27 @@ function handleSetCurrentCandidateId(candidateId) {
                       <EmployeeType
             type={item.type}
               employeeId={item.employeeId}
-            />
-                  
-                    </div>
-                
-                    
+            />                 
+                    </div>                   
                     </div>
                     <div class="flex ">
                 
-                <div className=" flex font-medium flex-col md:w-48 max-sm:flex-row justify-between w-full  mt-1">
-              
-                  <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
-                 
+                <div className=" flex font-medium flex-col md:w-48 max-sm:flex-row justify-between w-full  mt-1">           
+                  <div class=" text-sm  font-semibold font-poppins max-sm:hidden">                
                   Suspend
-                  </div>
-                
+                  </div>                
                   <SuspendEmployee
               partnerId={item.partnerId}
               suspendInd={item.suspendInd}
               assignedIndicator={item.assignedInd}
               employeeId={item.employeeId}
-            />
-              
-                </div>
-            
-                
+            />           
+                </div>                   
                 </div>
                 <div className=" font-medium flex-col w-8 h-12 flex justify-center">
                 {item.suspendInd !== true && ( 
                     
-       <CellTowerIcon
-            // size={"small"}
-            // type="ghost"
-            // style={{            
-            //   borderColor: "transparent",
-            //   alignSelf: "flex-end",
-            // }}
+       <CellTowerIcon        
             style={{ 
                 color: item.role === "ADMIN" ?"blue":  "green",
                 fontSize: "123%"
@@ -222,16 +183,9 @@ function handleSetCurrentCandidateId(candidateId) {
             onClick={() => {
                 handleEmployeeDrawerForAdmin(true);
                 handleSetCurrentEmployeeId(item.employeeId)
-              }}
-           
-        
+              }}                  
           />
-          )}  
-         
-         
-
-          
-     
+          )}              
      </div>
      <div class=" font-normal text-xs  font-poppins ">
           <span
@@ -248,9 +202,7 @@ function handleSetCurrentCandidateId(candidateId) {
      </span>
            </div>   
            </div>   
-                  </div>
-                 
-                 
+                  </div>              
                 </div>
  
               </div>
@@ -271,16 +223,13 @@ function handleSetCurrentCandidateId(candidateId) {
                  <EmployeePulseDrawerModal
          singleEmployee={props.singleEmployee}
          employeeTreeMap={props.employeeTreeMap}
-        //  currentData={rowData}
         employeeName={currentEmployeeId}
         documentsByEmployeeId={props.documentsByEmployeeId}
         addDrawerEmployeePulseModal={props.addDrawerEmployeePulseModal}
         handleEmployeePulseDrawerModal={props.handleEmployeePulseDrawerModal}
-        // candidateByUserId={this.props.candidateByUserId}
-      />
-            </>
-      
     
+      />
+            </>        
     )
               
 }
@@ -315,98 +264,3 @@ const mapDispatchToProps = (dispatch) =>
   )
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeCardList);
-
-const CardElement = styled.div`
- 
-border-radius: 0.75rem;
-    border: 3px solid #EEEEEE;
-    background-color: rgb(255,255,255);
-    box-shadow: 0 0.25em 0.62em #aaa;
-    height: 7rem;
-    color: rgb(68,68,68);
-    margin: 1em;
-    padding: 0.2rem;
-    width: 15vw;
-    display: flex;
-    flex-direction: column;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    
-  }
-`
-const CardDescription = styled.div`
-  
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-const CardImage = styled.div`
-  
-  width:200;
-  display:flex;
-  height:200
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-const WithOutImage = styled.div`
-  
-  width:200px;
-  height:200px;
-  display:flex;
-    align-items: center;
-    flex-direction:column
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-
-
-const Desc = styled.p`
-  height: 0px;
-`
-const Price = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  white-space: nowrap;
-`
-
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const AppIcon1 = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "145%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-const PulseIcon1 = styled(AppIcon1)`
-  color: green;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

@@ -6,7 +6,6 @@ import {
   Select,
 } from "../../../../../Components/UI/Elements";
 import { SwitchComponent } from "../../../../../Components/Forms/Formik/SwitchComponent";
-import { MainWrapper, } from "../../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Button, } from "antd";
@@ -18,8 +17,6 @@ import * as Yup from "yup";
 import dayjs from "dayjs";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 const Notifications = lazy(() => import("../General/Notifications"));
-
-
 const { Option } = Select;
 const GeneralSchema = Yup.object().shape({
   criticlDateRange: Yup.number()
@@ -68,7 +65,6 @@ function General(props) {
           repairProcessInd: props.requirementDuration.repairProcessInd,
           criticlDateRange:props.requirementDuration.criticlDateRange,
           processInd: props.requirementDuration.processInd,
-          // fifoInd: props.requirementDuration.fifoInd,
 
         }}
         validationSchema={GeneralSchema}
@@ -87,60 +83,38 @@ function General(props) {
         }}
       >
         {({ values }) => (
-          <MainWrapper style={{  width: "",overflow:"auto"  }}>
-            <div class=" flex flex-row   ">
+           <div class="mr-5 ml-5 overflow-auto" style={{ scrollbarWidth:"thin"  }}>
+            <div class=" flex    ">
             <div class=" h-h86 overflow-auto overflow-x-hidden">
-
               <Form className="form-background">
-
-                <div class=" flex justify-between w-[31rem] "
-
-                >
-                  <div class=" mt-[0.625em] ml-[1em]"
-                  >
-
-                    <div class=" flex justify-between w-[74%] "
-
-                    >
-                     <div class=" text-sm  ml-2 ">Drop Open Orders (in months)</div>
-  
+                <div class=" flex justify-between w-full p-3 ">             
+                  <div>              
+                    <div class=" flex justify-between ">                    
+                     <div class=" text-xs  ">Drop Open Orders (in months)</div>
                       <div>
-                        <Field
-                          style={{ width: "10rem" }}
+                        <Field                     
                           name="timePeriod"
-
                           component={SelectComponent}
-                          options={["1", "2", "3", "4", "5", "Not Applicable"]}
-                          isColumn
-                        //  inlineLabel
+                          options={["1", "2", "3", "4", "5", "Not Applicable"]}                          
                         />
                       </div>
                     </div>
 
-                    <div class=" flex justify-between w-[74%] mt-4"
-
-                    >
-                        <div class=" text-sm  ml-2 ">Drop Open Opportunities (in months)</div>
-      
+                    <div class=" flex justify-between ] mt-2">           
+                        <div class=" text-xs  ">Drop Open Opportunities (in months)</div>    
                       <div>
                         <Field
-                          name="oppTimePeriod"
-                          style={{ width: "10rem" }}
+                          name="oppTimePeriod"                   
                           component={SelectComponent}
-                          options={["1", "2", "3", "4", "5", "Not Applicable"]}
-                          isColumn
-                        // inlineLabel
+                          options={["1", "2", "3", "4", "5", "Not Applicable"]}                   
                         />
                       </div>
                     </div>
-                    <div class=" flex justify-between w-[74%] mt-4"
-
-                    >
-                       <div class=" text-sm  ml-2 ">Send Job Anniversary Email</div>
+                    <div class=" flex justify-between   mt-2">                
+                       <div class=" text-xs  ">Send Job Anniversary Email</div>
                       <div>
-  
     <div>
-                        <Field
+                       <Field
                           name="jobAniEmailInd"
                           component={SwitchComponent}
                           data={values.jobAniEmailInd}
@@ -148,16 +122,13 @@ function General(props) {
                           unCheckedChildren={"No"}
                           width={"7em"}
                         />
-                        </div>
-                    
+                        </div>                   
                       </div>
                     </div>
-                    <div class=" flex justify-between w-[74%] mt-4"
 
-                    >
-                       <div class=" text-sm  ml-2 ">Send BirthDay Email</div>
+                    <div class=" flex justify-between   mt-2">                 
+                       <div class=" text-xs  ">Send BirthDay Email</div>
                       <div>
-
                         <Field
                           name="birthdayEmailInd"
                           component={SwitchComponent}
@@ -166,24 +137,16 @@ function General(props) {
                           unCheckedChildren={"No"}
                           width={"7em"}
                         />
-
-
                       </div>
-                    </div>
-                  
-                    <div class=" flex flex-col justify-between w-[74%] mt-4"
-
-                    >
-
-                      <div class=" flex flex-row mt-2">
-                      <div class=" text-sm  ml-2 font-bold">Production</div>
-                       
+                    </div>               
+                    <div class=" flex flex-col justify-between   mt-2">                
+                      <div class=" flex  mt-2">
+                      <div class=" text-xs  font-bold">Production</div>                      
                       </div>
-
                       {props.user.productionInd === true ? (
    <>
-   <div class=" flex flex-row justify-between mt-2 ml-4">
-   <div class=" text-sm  ml-2 ">Process</div>
+   <div class=" flex  justify-between mt-2 ml-4">
+   <div class=" text-xs  ">Process</div>
    <div>
    <Field
      name="processInd"
@@ -195,8 +158,8 @@ function General(props) {
    />
    </div>
  </div>
- <div class=" flex flex-row justify-between mt-2 ml-4">
- <div class=" text-sm  ml-2 ">Make To</div>
+ <div class=" flex  justify-between mt-2 ml-4">
+ <div class=" text-xs  ">Make To</div>
  <div>
    <Field
      name="typeInd"
@@ -209,8 +172,8 @@ function General(props) {
      </div>
  </div>
 
- <div class=" flex flex-row justify-between mt-2 ml-4">
- <div class=" text-sm  ml-2 ">Show Orders To Investor</div>
+ <div class=" flex  justify-between mt-2 ml-4">
+ <div class=" text-xs  ">Show Orders To Investor</div>
  <div>
    <Field
       name="proInd"
@@ -222,21 +185,17 @@ function General(props) {
    />
      </div>
  </div>
-
 </>
 ) : (
   <div className="mt-4 ml-4 text-red-500">
     Production module is Switched off. Switch it on to Access Features.
   </div>
-)}
-
-                  
-
-<div class=" flex flex-row mt-2">
-                      <div class=" text-sm  ml-2 font-bold">Inventory</div>
+)}                 
+<div class=" flex  mt-2">
+                      <div class=" text-xs  font-bold">Inventory</div>
                       </div>
-                      <div class=" flex flex-row justify-between mt-2">
-                      <div class=" text-sm  ml-2 ">Inception</div>
+                      <div class=" flex  justify-between mt-2">
+                      <div class=" text-xs  ">Inception</div>
                       <div>
                         <Field
                           name="inniInspectInd"
@@ -247,35 +206,14 @@ function General(props) {
                           width={"7em"}
                         />
                         </div>
-                      </div>
-                     
+                      </div>                
 
-                      {/* {props.user.orderManagementInd === true &&
-                        <>
-                            <div class=" flex flex-row justify-between mt-2 ml-4">
-                            <div class=" text-sm  ml-2 ">Consumption</div>
-                            <div>
-                            <Field
-                              name="fifoInd"
-                              component={SwitchComponent}
-                              data={values.fifoInd}
-                              checkedChildren={"LIFO"}
-                              unCheckedChildren={"FIFO"}
-                              width={"7em"}
-                            />
-                            </div>
-                          </div>
-                       
-                      
-                        </>
-                      }  */}
-
-                      <div class=" flex flex-row justify-between mt-3">
-                      <div class=" text-sm  ml-2 font-bold ">Repair</div>
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  font-bold ">Repair</div>
                       </div>
 
-                      <div class=" flex flex-row justify-between mt-2">
-                      <div class=" text-sm  ml-2 ">Generate Part Number</div>
+                      <div class=" flex  justify-between mt-2">
+                      <div class=" text-xs  ">Generate Part Number</div>
                       <div>
                         <Field
                           name="partNoInd"
@@ -287,8 +225,8 @@ function General(props) {
                         />
                         </div>
                       </div>
-                      <div class=" flex flex-row justify-between mt-2">
-                          <div class=" text-sm  ml-2 ">Show Orders To Investor</div>
+                      <div class=" flex  justify-between mt-2">
+                          <div class=" text-xs  ">Show Orders To Investor</div>
                           <div>
                             <Field
                                name="repairOrdInd"
@@ -300,8 +238,8 @@ function General(props) {
                             />
                               </div>
                           </div>
-                          <div class=" flex flex-row justify-between mt-2">
-                          <div class=" text-sm  ml-2 ">QC</div>
+                          <div class=" flex  justify-between mt-2">
+                          <div class=" text-xs  ">QC</div>
                           <div>
                             <Field
                                name="qcInd"
@@ -313,8 +251,8 @@ function General(props) {
                             />
                               </div>
                           </div>
-                          <div class=" flex flex-row justify-between mt-2">
-                          <div class=" text-sm  ml-2 ">Process</div>
+                          <div class=" flex  justify-between mt-2">
+                          <div class=" text-xs  ">Process</div>
                           <div>
                             <Field
                                name="repairProcessInd"
@@ -326,8 +264,8 @@ function General(props) {
                             />
                               </div>
                           </div>
-                          <div class=" flex flex-row justify-between mt-2">
-                          <div class=" text-sm  ml-2 ">Critical Date Range</div>
+                          <div class=" flex  justify-between mt-2">
+                          <div class=" text-xs  ">Critical Date Range</div>
                           <div>
                           <Field
                             isRequired
@@ -340,11 +278,11 @@ function General(props) {
                           />
                               </div>
                           </div>
-                      <div class=" flex flex-row justify-between mt-3">
-                      <div class=" text-sm  ml-2 font-bold ">CRM</div>
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  font-bold ">CRM</div>
                       </div>
-                      <div class=" flex flex-row justify-between mt-3">
-                      <div class=" text-sm  ml-2 ">Transfer Prospect to ERP On Quotation win 
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">Transfer Prospect to ERP On Quotation win 
 </div>
                       <div>
                         <Field
@@ -357,8 +295,8 @@ function General(props) {
                         />
                         </div>
                       </div>
-                      <div class=" flex flex-row justify-between mt-3">
-                      <div class=" text-sm  ml-2 ">Transfer All Prospect Info to Erp</div>
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">Transfer All Prospect Info to Erp</div>
                       <div>
                         <Field
                           name="trnsfrEvthngToErpInd"
@@ -371,9 +309,9 @@ function General(props) {
                         </div>
                       </div>
 
-                      <div class=" text-sm  ml-2 font-bold ">INVOICE</div>
-                      <div class=" flex flex-row justify-between mt-3">
-                      <div class=" text-sm  ml-2 ">Proforma Invoice (PI) needed 
+                      <div class=" text-xs mt-3 font-bold ">Invoice</div>
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">Proforma Invoice (PI) needed 
 </div>
                       <div>
                         <Field
@@ -386,8 +324,8 @@ function General(props) {
                         />
                         </div>
                       </div>
-                      <div class=" flex flex-row justify-between mt-3">
-                      <div class=" text-sm  ml-2 ">Invoice can be cancelled 
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">Invoice can be cancelled 
 </div>
                       <div>
                         <Field
@@ -400,8 +338,8 @@ function General(props) {
                         />
                         </div>
                       </div>
-                      <div class=" flex flex-row justify-between mt-3">
-                      <div class=" text-sm  ml-2 ">Auto generate Commercial Invoice 
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">Auto generate Commercial Invoice 
 </div>
                       <div>
                         <Field
@@ -435,19 +373,16 @@ function General(props) {
                     {/* Update */}
                   </Button>
                 </div>
-
-
               </Form>
               </div>
               <Notifications />
             </div>
-          </MainWrapper>
+          </div>
         )}
       </Formik>
     </>
   );
 }
-
 const mapStateToProps = ({ settings, auth }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,

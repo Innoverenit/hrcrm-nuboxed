@@ -13,7 +13,6 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-import { MainWrapper } from "../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 
  function ContactsAddChart (props) {
@@ -31,9 +30,7 @@ import { FormattedMessage } from "react-intl";
 
   return (
     <>
-    <MainWrapper
-    style={{height:"16em",width:"-webkit-fill-available"}}
-    >
+   <div class="mr-5 ml-5  h-[16rem] w-wk ">
     
     <div class=" flex justify-between" >
 
@@ -67,7 +64,7 @@ import { FormattedMessage } from "react-intl";
       <Bar dataKey="Number" stackId="a" fill="rgb(0, 192, 239, 0.4)" />
       
     </BarChart>
-    </MainWrapper>
+    </div>
     </>
   );
 }

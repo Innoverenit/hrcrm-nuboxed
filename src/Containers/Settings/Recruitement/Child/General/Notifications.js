@@ -4,17 +4,14 @@ import { bindActionCreators } from "redux";
 import { Formik, Form,  } from "formik";
 import {
   Select,
-  StyledLabel,
 } from "../../../../../Components/UI/Elements";
-import { MainWrapper, } from "../../../../../Components/UI/Elements";
 import {  Popconfirm, Switch } from "antd";
 import { addingNotifications, getNotifications } from "../../../SettingsAction";
-import moment from "moment";
+import dayjs from "dayjs";
 const { Option } = Select;
 function Notifications(props) {
   useEffect(() => {
     props.getNotifications(props.orgId);
-    // props.getRequirementsDuration(props.orgId);
   }, []);
 
   const { inappInd } = props.notifications;
@@ -56,7 +53,7 @@ function Notifications(props) {
   function handleSmsClick(checked) {
     console.log(smsInd);
     if (smsInd) {
-      //disable url
+  
       props.addingNotifications({
         ...props.notifications,
         orgId: props.orgId,
@@ -148,7 +145,6 @@ function Notifications(props) {
       setwhatsappInd(false);
     }
   }
-
   return (
     <>
       <Formik
@@ -161,26 +157,18 @@ function Notifications(props) {
         onSubmit={(values, { resetForm }) => {}}
       >
         {({ values }) => (
-          <MainWrapper >
+          <div >
             <Form className="form-background">
-              <div class=" flex justify-between w-[30rem]"
-             
-              >
-               <div class=" w-[44%] mt-[0.625em] ml-[1em]"
-                >
+              <div class=" flex justify-between w-[100%] p-3">                       
+               <div class=" w-[100%]">             
                   <div>
-                    <div class="flex font-bold mt-4  text-base"
-
-                    >
-                      Notifications
+                    <div class="flex font-bold text-base">
+                                 Notifications
                     </div>
-                  </div>
-
-              
-                  <div class=" flex justify-between mt-4"
-               
-                  >
-                    <p>In app</p>
+                  </div>           
+                  <div class=" flex  text-xs justify-between mt-2"  >          
+                  
+                    <div>In app</div>
                     <div>
                       <Popconfirm
                         title="Do you wish to change Status ? "
@@ -189,8 +177,7 @@ function Notifications(props) {
                         okText="Yes"
                         cancelText="No"
                       >
-                        <Switch
-                          style={{ width: "5em" }}
+                        <Switch                       
                           checked={toggle || inappInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
@@ -198,10 +185,8 @@ function Notifications(props) {
                       </Popconfirm>
                     </div>
                   </div>
-                  <div class=" flex justify-between mt-4"
-                
-                  >
-                    <p>In SMS</p>
+                  <div class=" flex  text-xs justify-between mt-2">                              
+                    <div>In SMS</div>
                     <div>
                       <Popconfirm
                         title="Do you wish to change Status ? "
@@ -211,7 +196,7 @@ function Notifications(props) {
                         cancelText="No"
                       >
                         <Switch
-                          style={{ width: "5em" }}
+                        
                           checked={inSmsInd || smsInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
@@ -219,10 +204,10 @@ function Notifications(props) {
                       </Popconfirm>
                     </div>
                   </div>
-                  <div class=" flex justify-between mt-4"
+                  <div class=" text-xs flex justify-between mt-2"
                 
                 >
-                    <p>In Email</p>
+                    <div>In Email</div>
                     <div>
                       <Popconfirm
                         title="Do you wish to change Status ? "
@@ -232,7 +217,7 @@ function Notifications(props) {
                         cancelText="No"
                       >
                         <Switch
-                          style={{ width: "5em" }}
+                        
                           checked={inEmailInd || emailInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
@@ -241,7 +226,7 @@ function Notifications(props) {
                     </div>
                   </div>
               
-                  {/* <div class=" flex justify-between mt-4"
+                  {/* <div class=" flex justify-between mt-2"
                 
                   >
                     <p>In Whatsapp</p>
@@ -254,7 +239,7 @@ function Notifications(props) {
                         cancelText="No"
                       >
                         <Switch
-                          style={{ width: "5em" }}
+                        
                           checked={inWhatsappInd || whatsappInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
@@ -279,7 +264,7 @@ function Notifications(props) {
                         cancelText="No"
                       >
                         <Switch
-                          style={{ width: "5em" }}
+                        
                           // checked={inSmsInd || smsInd}
                           checkedChildren="Basic"
                           unCheckedChildren="Advanced"
@@ -289,9 +274,9 @@ function Notifications(props) {
                   </div> */}
                 </div>
               </div>
-              <div class=" mt-4">Updated on {moment(props.notifications.updatedDate).format("ll")} by {props.notifications.ownerName}</div>
+              <div class=" text-xs mt-2">Updated on {dayjs(props.notifications.updatedDate).format("ll")} by {props.notifications.ownerName}</div>
             </Form>
-          </MainWrapper>
+          </div>
         )}
       </Formik>
     </>

@@ -2,7 +2,6 @@ import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import styled from "styled-components";
 import TaskStatusToggle from "../Child/TaskStatusToggle";
 import {
   CheckCircleOutlined,
@@ -10,13 +9,10 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal";
 import { Tooltip, Input, Button, Avatar,FloatButton } from "antd";
 import moment from "moment";
-import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledPopconfirm, StyledTable } from "../../../Components/UI/Antd";
-import { withRouter } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   getTaskListRangeByUserId,
@@ -30,8 +26,6 @@ import {
   handleTaskopenModal
 } from "../TaskAction";
 import Highlighter from "react-highlight-words";
-import Box from "@mui/material/Box";
-import { DataGrid } from "@mui/x-data-grid";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 const AddTaskNotesDrawerModal = lazy(() => import("./AddTaskNotesDrawerModal"));
@@ -822,19 +816,6 @@ handleSetTaskNameId={handleSetTaskNameId}
         }
       }
       
-      const AppIcon = (props) => (
-        <i
-          className={`fas fa-heartbeat ${props.className}`}
-          style={{ fontSize: "123%" }}
-        ></i>
-      );
-      const PulseIcon = styled(AppIcon)`
-        color: #df9697;
-        &:hover {
-          // background: yellow;
-          color: blue;
-        }
-      `;
 
 
 

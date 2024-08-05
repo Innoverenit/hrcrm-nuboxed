@@ -12,7 +12,6 @@ import {getNewSubscription} from "../SubscriptionAction";
 import { InfoCircleTwoTone,  DeleteOutlined,
   MinusOutlined,
   PlusOutlined } from "@ant-design/icons";
-import moment from "moment";
 import Carousel from "react-elastic-carousel";
 import { base_url } from "../../../Config/Auth";
 
@@ -712,7 +711,7 @@ function SubscriptionNewCard (props) {
                     //  const date = moment(item.creationDate).format("YYYY/MM/DD");
                     //  const isLastElement = index === props.products.length - 1;
                      return (
-                      <CardElement >
+                      <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
                         <div  className="card-element">
     <div class=" h-[18rem] flex-col flex bg-stone-100 items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[18rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
     <div class="mt-1"> 
@@ -735,9 +734,7 @@ function SubscriptionNewCard (props) {
                                                           <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">
                                                           <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
                                                           <div className="add-minus-quantity">
-          <span
-
-          >
+          <span>          
                  {/* <MinusOutlined 
                   onClick={() => handleDecrement(item.productId)}
                  />
@@ -758,10 +755,7 @@ function SubscriptionNewCard (props) {
           /> */}
           </span>
 
-        </div>
-           
-                          
-                                                     
+        </div>                                                                               
                                                                 </div>
                                                                
                                                           <h3 class=" mt-2 h-4 font-bold text-xs ">
@@ -775,20 +769,20 @@ function SubscriptionNewCard (props) {
                                                         </div>
                                                         
                                                         <div class="flex justify-between m-2 w-wk max-sm:w-40 items-baseline md: " >
-                                                            <Desc
+                                                        <div class="h-6 overflow-hidden p-2 text-center"
                                                               dangerouslySetInnerHTML={{
                                                                 __html: item.description,
                                                               }}
-                                                            ></Desc>
+                                                            ></div>
                                                             {item.description === "<h3></h3>\n" ? null : (
                                                               <Tooltip
                                                                 style={{ backgroundColor: "red" }}
                                                                 title={
-                                                                  <Desc2
+                                                                  <div class="h-4 overflow-auto p-2 text-center text-white"
                                                                     dangerouslySetInnerHTML={{
                                                                       __html: item.description,
                                                                     }}
-                                                                  ></Desc2>
+                                                                  ></div>
                                                                 }
                                                                 placement="top"
                                                                 arrow
@@ -797,40 +791,30 @@ function SubscriptionNewCard (props) {
                                                                   style={{
                                                                     cursor: "pointer",
                                                                   }}
-                                                                >
-                                                                  
+                                                                >                                                       
                                                                   <InfoCircleTwoTone class=" flex items-center"/>
                                                                 </span>
                                                               </Tooltip>
                                                             )}
                                                           </div>
                                                           <div class="mt-px flex  justify-end w-wk m-1">
-                       <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue cursor-pointer"
-                                                                
-                                          
-                                                                // onClick={() =>
-                                                                //   handleAddToCart(
-                                                                //     item.productId
-                                                                //   )
-                                                                // }
+                       <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue cursor-pointer"                                                                                                      
+                                                              
                                                               >
-                                                                  <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white cursor-pointer">
+                                                                  <div class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white cursor-pointer">
                                                              Update
-                                                              </label>
+                                                              </div>
                                                               </div>
 </div>
                        </div>
                        </div>
-                     </CardElement>
+                     </div>
                     );
                   })}
                  </Carousel> 
                   {/* {!hasMore && <p className="text-center text-red-500">End of the list.</p>} */}
-            </div>    
-  
+            </div>     
    </div>
-   
-   
    </>
   );
 }
@@ -847,64 +831,11 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getNewSubscription,
-    //   getAllProductCatagory,
-    //   LinkInventoryItem,
-    //   updateCartPlus
-
     },
     dispatch
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubscriptionNewCard);
-
-const CardElement = styled.div`
-
-  /* border:2px solid red */
-   padding: 0 10px;
-   margin-top: 2.5em;
-  display: flex;
-    justify-content: center;
-  /* margin:0px 20px; */
-  @media only screen and (max-width: 600px) {
-    display: flex;
-    padding:0;
-    margin-top: 1rem;
-    justify-content: center;
-    width: 100%;
-  }
-`;
-const CardDescription = styled.div`
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const CardImage = styled.div`
-  margin: auto;
-  width: 8rem;
-  height: 8rem;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const WithOutImage = styled.div`
-  margin: auto;
-  width: 10em;
-  height: 10em;
-  display: flex;
-  align-items: center;
-  flex-direction:column @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
 
 const Header = styled.div`
   text-overflow: ellipsis;
@@ -928,19 +859,7 @@ width:100%
 text-align:center
   }
 `;
-const Desc = styled.p`
-  height: 1.5em;
-  overflow: hidden;
-  padding: 1%;
-  text-align: center;
-`;
-const Desc2 = styled.p`
-  height: 60px;
-  overflow: auto;
-  color: white;
-  padding: 3%;
-  text-align: center;
-`;
+
 
 const Price = styled.div`
   height: 1.5em;

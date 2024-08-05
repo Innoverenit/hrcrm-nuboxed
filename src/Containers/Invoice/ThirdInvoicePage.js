@@ -1,7 +1,6 @@
 import { Field, Form, Formik } from 'formik'
 import React from 'react'
 import { FormattedMessage } from "react-intl";
-import { MainWrapper } from "../../Components/UI/Elements";
 import { Spacer } from "../../Components/UI/Elements";
 import { TimePicker } from "../../Components/Forms/Formik/TimePicker";
 import { InputComponent } from '../../Components/Forms/Formik/InputComponent'
@@ -9,7 +8,7 @@ import { InputComponent } from '../../Components/Forms/Formik/InputComponent'
 function ThirdInvoicePage() {
     return (
         <>
-        <MainWrapper style={{width:"50%"}}>
+      <div class="mr-5 ml-5 w-1/2">
             <Formik>
                 <Form>
                 <div class=" flex justify-between ">
@@ -53,13 +52,11 @@ function ThirdInvoicePage() {
                         />
                   </div>
                 </div>
-              </div>
-         
-           
+              </div>         
            </div>
                 </Form>
             </Formik>
-            </MainWrapper>
+            </div>
         </>
     )
 }

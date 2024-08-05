@@ -2,7 +2,6 @@ import React, { useState, useEffect, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPhoneTasklist, receiveTaskByDispatch } from "../../../../Account/AccountAction";
-import { MainWrapper } from "../../../../../../Components/UI/Elements";
 import { Checkbox, Switch } from "antd";
 
 function DispatchTaskTable(props) {
@@ -46,7 +45,7 @@ function DispatchTaskTable(props) {
     }
     return (
         <>
-            <MainWrapper>
+         <div class="mr-5 ml-5">
                 <>
                     <h4>Task Type</h4>
                     {props.phoTasklist.task1 ?
@@ -104,7 +103,7 @@ function DispatchTaskTable(props) {
                         </div>
                         : null}
                 </>
-            </MainWrapper>
+            </div>
         </>
     );
 }

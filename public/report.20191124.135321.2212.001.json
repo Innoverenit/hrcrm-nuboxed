@@ -3324,13 +3324,7 @@
       "address": "1665751236864",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\CodeSkeleton.js"
     },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751296016",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\ContactBusinessCard.js"
-    },
+  
     {
       "type": "fs_event",
       "is_active": "1",

@@ -1,4 +1,4 @@
-export { default as MainWrapper } from "./MainWrapper";
+
 export { default as StyledSkeleton } from "./StyledSkeleton";
 export { default as CodeSkeleton } from "./CodeSkeleton";
 export { default as GroupSkeleton } from "./GroupSkeleton";
@@ -10,7 +10,6 @@ export { default as DrawerHeaderText } from "./DrawerHeaderText";
 export { default as StyledLabel } from "./StyledLabel";
 export { default as HeaderLabel } from "./HeaderLabel";
 export { default as BussinessCard } from "./BussinessCard";
-export { default as ContactBussinessCard } from "./ContactBusinessCard";
 export { default as ViewEditCard } from "./ViewEditCard";
 export { default as MultiAvatar } from "./MultiAvatar";
 export { default as MultiAvatar1 } from "./MultiAvatar1";
@@ -27,7 +26,6 @@ export { default as StyledAsync } from "./StyledAsync";
 export { default as NoData } from "./NoData";
 export { default as JumpStartBox } from "./JumpStartBox";
 export { default as JumpStartColor } from "./JumpStartColor";
-
 export { default as Select } from "./SelectInput";
 export { default as StyledCalendar } from "./StyledCalendar";
 export { default as Spacer } from "./Spacer";

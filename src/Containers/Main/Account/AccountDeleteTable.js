@@ -7,10 +7,40 @@ import {
     getDeletedDistributors,
     handleDistributorActivityTableModal,
 } from "./AccountAction";
-import { OnlyWrapCard } from "../../../Components/UI/Layout";
-import moment from "moment";
+import dayjs from "dayjs";
 
 function AccountDeleteTable(props) {
+
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+    'Name', // 0
+    'Mobile', // 1
+    'Website', // 2
+    'Address', // 3
+    'City', // 4
+    'Pin Code', // 5
+  
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+    
+
     useEffect(() => {
         props.getDeletedDistributors();
     }, []);
@@ -24,44 +54,52 @@ function AccountDeleteTable(props) {
     }
 
 
-
     return (
         <>
             <div className=' flex  sticky  z-auto'>
             <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
          <div className=""></div>
-         <div className=" md:w-[7%]">Name</div>
-        <div className=" md:w-[6.1rem]">Mobile</div>
-        <div className=" md:w-[4.2rem] ">Website</div>
-        <div className="md:w-[5.8rem]">Address</div>
-        <div className="md:w-[8.5rem]">City</div>
-                <div className="md:w-[5.2rem]">Pin Code</div>
+         <div className=" md:w-[7%]"> {translatedMenuItems[0]}
+            {/* Name */}
+            </div>
+        <div className=" md:w-[6.1rem]"> {translatedMenuItems[1]}
+            {/* Mobile */}
+            </div>
+        <div className=" md:w-[4.2rem] "> {translatedMenuItems[2]}
+            {/* Website */}
+            </div>
+        <div className="md:w-[5.8rem]"> {translatedMenuItems[3]}
+            {/* Address */}
+            </div>
+        <div className="md:w-[8.5rem]"> {translatedMenuItems[4]}
+            {/* City */}
+            </div>
+                <div className="md:w-[5.2rem]"> {translatedMenuItems[5]}
+                  {/* Pin Code */}
+                    </div>
                 <div className="md:w-[2.2rem]"></div>
                 <div className="md:w-[2.2rem]"></div>
         <div className="w-12"></div>
             </div>
   
              {deletedDistributors.map((item) => {
-               const currentdate = moment().format("DD/MM/YYYY");
-                       const date = moment(item.creationDate).format("DD/MM/YYYY");
+               const currentdate = dayjs().format("DD/MM/YYYY");
+                       const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           return (
 <div>
 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
-    // style={{
-    //     borderBottom: "3px dotted #515050"
-    // }}
     >
        <div class="flex">
    
-    <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
+    <div className=" flex  md:w-[6.1rem] max-sm:w-full  ">
     <h4 class="text-sm  font-semibold  font-poppins cursor-pointer">
 
         {item.name}
                             </h4>
     </div>
 
-    <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+    <div className=" flex   md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
     <h4 class=" text-xs  font-poppins">
     {item.dialCode} {item.phoneNo} 
@@ -71,13 +109,13 @@ function AccountDeleteTable(props) {
  
     </div>
     
-    <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <h4 class=" text-xs  font-poppins">
                       
                       {item.url}
                     </h4>
     </div>
-    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
         
 
         <h4 class=" text-xs  font-semibold  font-poppins">
@@ -87,14 +125,14 @@ function AccountDeleteTable(props) {
                     </h4>
     </div>
     
-    <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
         <h4 class=" text-xs  font-semibold  font-poppins">
         {item.address[0].city || ""}
              </h4>
     </div>
-    <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
         <h4 class=" text-xs  font-semibold  font-poppins">
         {item.address[0].pinCode || ""}
              </h4>
@@ -104,7 +142,7 @@ function AccountDeleteTable(props) {
     <div class="flex md:items-center"> 
 
 </div>
-<div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[6%]">
+<div class="flex  w-[2%] max-sm:flex-row max-sm:w-[6%]">
                    <div>
                    <Tooltip title="Activity">
                         <span>
@@ -119,16 +157,8 @@ function AccountDeleteTable(props) {
                         </span>
                     </Tooltip>
                    </div>
-                   
-                   {/* <div>
-                   <Tooltip title={item.salesExecutiveEmail}>
-               <span>
-                 <i class="far fa-envelope"></i>
-               </span>
-             </Tooltip>
-                        </div> */}
+                                   
             </div>
-
 </div>
 </div>
           );

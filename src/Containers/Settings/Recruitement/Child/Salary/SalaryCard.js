@@ -5,10 +5,7 @@ import { Formik, Form, Field } from "formik";
 import {
   Select,
 } from "../../../../../Components/UI/Elements";
-import { SwitchComponent } from "../../../../../Components/Forms/Formik/SwitchComponent";
-import { MainWrapper, } from "../../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
-import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Button, } from "antd";
 import {
   addSalary,
@@ -52,9 +49,7 @@ function SalaryCard(props) {
           props.addSalary(
             {
               ...values,
-              departmentId:props.departmentId,
-              // timePeriod: values.timePeriod === "Not Applicable" ? "0" : values.timePeriod,
-              // oppTimePeriod: values.oppTimePeriod === "Not Applicable" ? "0" : values.oppTimePeriod,
+              departmentId:props.departmentId,     
             },
             props.orgId
           );
@@ -62,9 +57,9 @@ function SalaryCard(props) {
       
       >
         {({ values,
-        // setFieldValue
+    
          }) => (
-          <MainWrapper style={{  width: "",  }}>
+          <div class="mr-5 ml-5  ">
             <div class=" flex flex-row ">
               <Form className="form-background">
 
@@ -83,10 +78,6 @@ function SalaryCard(props) {
     <Field
       style={{ width: "7rem" }}
       name="basic"
-  //  onChange={(e) => {
-  //                     setFieldValue("basic", e.target.value);
-  //                     calculateTotal({ ...values, basic: e.target.value });
-  //                   }}
       component={InputComponent}
       // options={["1", "2", "3", "4", "5", "Not Applicable"]}
       isColumn
@@ -94,7 +85,6 @@ function SalaryCard(props) {
     />
   </div>
 </div>
-
                     <div class=" flex justify-between w-[74%] "
 
                     >
@@ -177,7 +167,7 @@ function SalaryCard(props) {
               </Form>
            
             </div>
-          </MainWrapper>
+          </div>
         )}
       </Formik>
     </>

@@ -50,8 +50,6 @@ const SkillsLoadMore = lazy(() =>
 const UpdateCandidateResumeModal = lazy(() =>
   import("./Child/CandidateTable/UpdateCandidateResumeModal")
 );
-
-
 const UpdateCandidateModal = lazy(() =>
   import("./Child/UpdateCandidate/UpdateCandidateModal")
 );
@@ -63,22 +61,6 @@ const { Option } = Select;
 function CandidateCardView (props) {
   const [page, setPage] = useState(0);
  
-//   handleAddPlusClick = (productId, merchantDetailsId) => {
-//     const cartId = sessionStorage.getItem('cartId')
-
-//     let data = {
-//       itemId: productId,
-//       cartId: cartId,
-//       identifierType: '',
-//       quantity: 1,
-//       storeTerminal: {
-//         storeId: merchantDetailsId,
-//       },
-//     }
-
-//     props.LinkProductInfo(data)
-//   }
-
 useEffect(() => {
   props.getCandidateListByUserId(props.userId,page);
   setPage(page + 1);
@@ -88,19 +70,14 @@ useEffect(() => {
 }, []);
 function handleChange(data) {
   props.Candidatesorttype(props.userId,data);
-  
 }
-
 const [currentCandidateId, setCurrentCandidateId] = useState("");
 function handleSetCurrentCandidateId(candidateId) {
     setCurrentCandidateId(candidateId);
-    
     console.log(candidateId);
   } 
   if (props.fetchingCandidates) {
-    return <BundleLoader/>
-  
-    
+    return <BundleLoader/>  
 ;
   }
   const{address,
@@ -120,25 +97,9 @@ function handleSetCurrentCandidateId(candidateId) {
   updateCandidateModal,
 
 }=props;
-    return (
-      
+    return (   
             <>
-               {/* <div  style={{width:"10%" }}>
-               <Select
-  
-  style={{ width: '100%' }}
-  placeholder="Select"
- //  defaultValue={partners}
- onChange={(e) => handleChange(e)}
->
-
-  
-<Option value="aToz">A To Z</Option>
-   <Option value="zToa">Z To A</Option>
-   
-  
-</Select> 
-            </div> */}
+         
               <div class=" h-h72 overflow-auto overflow-x-auto">
               <div class="flex">      
               {props.candidateByUserId.map((item) => {
@@ -165,8 +126,8 @@ function handleSetCurrentCandidateId(candidateId) {
                        item.address[0].postalCode} `;
       
                  return (
-                    <CardElement>
-                      <CardImage>
+                  <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
+                     <div class="w-7 h-7" >
                    <Tooltip 
                    title={item.country}
                    >
@@ -183,19 +144,13 @@ function handleSetCurrentCandidateId(candidateId) {
                             imgRadius={20}
                           />
                          </div>
-                      {/* <CardDescription> */}
+                  
                       <div>
-                        <Header>
+                      <div class="h-8 overflow-hidden whitespace-nowrap text-lg font-poppins font-bold overflow-ellipsis text-center">
                         <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`candidate/${item.candidateId}`} title={item.fullName}>
       {item.fullName}
-    </Link>
-                        {/* <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[blue] cursor-pointer" 
-                            href={`candidate/${item.candidateId}`}>{item.fullName}</a> */}
-                        {/* <CandidateDetailsView
-            candidateId={item.candidateId}
-            candidateName={item.fullName}
-          />        */}
-                        </Header> 
+    </Link>                     
+                        </div> 
                         </div>
                         {/* {item.Video !== null?( */}
                         <FlexContainer justifyContent ="flex-end">
@@ -208,11 +163,9 @@ function handleSetCurrentCandidateId(candidateId) {
                 
                 style={{ color: "grey",fontSize:"0.8rem",cursor: "pointer"}}
                 onClick={() => {
-                  props.handlePlayerModal(true);
-                  // this.handleYoutubeIconClick(item.youtubeLink);
+                  props.handlePlayerModal(true);             
                 }}
-                 />
-             
+                 />            
             </Tooltip>
                            )}
             </div>
@@ -233,10 +186,8 @@ function handleSetCurrentCandidateId(candidateId) {
             
               </FlexContainer>
           </FlexContainer>                  
-                        </CardImage>
-                     
-                        <FlexContainer alignItems="baseline">  
-                      
+                        </div>                    
+                        <FlexContainer alignItems="baseline">                       
                         <StyledLabel> <SkillsLoadMore 
                         skillList={data} 
                         viewType={props.viewType}
@@ -244,13 +195,8 @@ function handleSetCurrentCandidateId(candidateId) {
                         
                         <Tooltip  title={item.skillList}>
                         <BuildCircleIcon   style={{fontSize:"1.1rem",color:"#24d8a7",padding:"2px"}}  /> 
-                        </Tooltip>  
-            
-                        </FlexContainer> 
-                        {/* <Price>{item.mobileNumber}</Price> */}
-                        {/* <StyledLabel>{item.roleType}</StyledLabel> */}
-                        {/* <Price>100</Price> */}
-                      
+                        </Tooltip>            
+                        </FlexContainer>                             
                         <div class=" flex flex-row justify-around w-full items-end">
                         <div style={{alignItems:"center"}}>
               <Tooltip title={item.category}>
@@ -278,16 +224,14 @@ function handleSetCurrentCandidateId(candidateId) {
           >
             <span
               style={{
-                cursor: "pointer",
-                
+                cursor: "pointer",                
               }}
             >
-               <LocationOnIcon  style={{fontSize:"0.8rem",color:"grey"}} 
+              <LocationOnIcon  style={{fontSize:"0.8rem",color:"grey"}} 
               //  icon={solid("location-dot")}
                 />
             </span>
-          </Tooltip>
-         
+          </Tooltip>         
                         <span 
                       className="hover:bg-black"
                         onClick={() => {
@@ -304,20 +248,16 @@ function handleSetCurrentCandidateId(candidateId) {
                           <MonitorHeartIcon 
                           // icon={solid('heart-pulse')} 
                           style={{color:"#993333",fontSize:"0.8rem",cursor: "pointer"}} />
-                           )}
-                        
+                           )}                       
                         </span>
-
                         <span 
                        className="hover:bg-black"
                         onClick={() => {
                         
                       props.getCandidateTasksInfo(item.candidateId);
                           props.handleCandidatesTasksDrawerModal(true);
-                        }}
-                   
-                        >
-                          
+                        }}                  
+                        >                      
                           <FactCheckIcon
                style={{ fontSize: "large" }}
               />
@@ -347,12 +287,8 @@ function handleSetCurrentCandidateId(candidateId) {
                  />
                 </span>
                </Tooltip>
-                        </div>
-                        {/* <Desc dangerouslySetInnerHTML={{ __html: item.description }}></Desc> */}
-                     
-                      {/* </CardDescription> */}
-
-                    </CardElement>
+                        </div>                      
+                    </div>
                  )  
             })}
               </div>
@@ -366,7 +302,7 @@ function handleSetCurrentCandidateId(candidateId) {
               handleCandidateDrawerModal={props.handleCandidateDrawerModal}
               countries={props.countries}
               topicsByCandidateId={props.topicsByCandidateId}
-             // candidateByUserId={props.candidateByUserId}
+           
       />
            
            <AddCandidatesTasksDrawerModal
@@ -375,7 +311,7 @@ function handleSetCurrentCandidateId(candidateId) {
               addDrawerCandidatesTasksModal={props.addDrawerCandidatesTasksModal}
               candidateTasksInfoDetails={props.candidateTasksInfoDetails}
               
-             // candidateByUserId={props.candidateByUserId}
+        
       />
  <AddPlayerModal
         addPlayerModal={props.addPlayerModal}
@@ -426,10 +362,7 @@ const mapStateToProps = ({ candidate, auth,dashboard}) => ({
   dashboardFunnel:dashboard.dashboardFunnel,
   candidateTasksInfoDetails:candidate.candidateTasksInfoDetails,
   addDrawerCandidatesTasksModal:candidate.addDrawerCandidatesTasksModal
-    //opportunityByUserId: opportunity.opportunityByUserId,
-//   customerSrchdata: customer.customerSrchdata,
-//   mrchantDetailsId: auth.userDetails.mrchantDetailsId,
-//   linkingProductInfo: customer.linkingProductInfo,
+
 })
 
 const mapDispatchToProps = (dispatch) =>
@@ -459,129 +392,3 @@ const mapDispatchToProps = (dispatch) =>
   )
 
 export default connect(mapStateToProps, mapDispatchToProps)(CandidateCardView)
-
-const MainWrapper = styled.div`
-  /* */
-  margin: 0px 20px;
-  @media only screen and (max-width: 600px) {
-  }
-`
-const CardElement = styled.div`
- 
-border-radius: 0.75rem;
-    border: 3px solid #EEEEEE;
-    background-color: rgb(255,255,255);
-    box-shadow: 0 0.25em 0.62em #aaa;
-    height: 8rem;
-    color: rgb(68,68,68);
-    margin: 1em;
-    padding: 0.2rem;
-    width: 15vw;
-    display: flex;
-    flex-direction: column;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    
-  }
-`
-const CardDescription = styled.div`
-  
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-const CardImage = styled.div`
-  
-  width:200;
-  display:flex;
-  height:200
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-const WithOutImage = styled.div`
-  
-  width:200px;
-  height:200px;
-  display:flex;
-    align-items: center;
-    flex-direction:column
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-
-const Header = styled.div`
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1em;
-padding:4px;
-  color:blue;
-  cursor:pointer;
-  // font-family: Poppins;
-  //font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-
-text-align:center
-  }
-`
-const Desc = styled.p`
-  height: 0px;
-`
-const Price = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  white-space: nowrap;
-`
-
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const AppIcon1 = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "145%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-const PulseIcon1 = styled(AppIcon1)`
-  color: green;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

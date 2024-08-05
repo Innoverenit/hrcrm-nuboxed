@@ -584,19 +584,19 @@ class SubTableClickCandidate extends Component {
           : item.documentSetList.filter((document) => {
               return document !== null && document !== "";
             });
-
+  const data1=item.documentSetList;
       return (
-        <>
-          {item.documentSetList === [] ? (
+       
+          data1.length === 0 ? (
             "None"
           ) : (
             <span>
               <DocumentsLoadMore documentSetList={data} />
             </span>
-          )}
-        </>
+          )
       );
     },
+    
   },
 
 

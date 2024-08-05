@@ -2,9 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getTaskByPhoneId, } from "../../../Refurbish/RefurbishAction"
-import { MainWrapper } from "../../../../../Components/UI/Elements";
-// import QCPhoneTaskToggle from "./QCPhoneTaskToggle";
-
 
 function AccountPhoneTaskList(props) {
     useEffect(() => {
@@ -13,7 +10,7 @@ function AccountPhoneTaskList(props) {
 console.log(props.particularRowData)
     return (
         <>
-            <MainWrapper>
+          <div class="mr-5 ml-5">
 <div class="font-semibold text-sm underline">{props.particularRowData.imei}</div>
                 {props.taskByPhone.map((item) => {
                     return (
@@ -27,9 +24,7 @@ console.log(props.particularRowData)
                         </div>
                     )
                 })}
-            </MainWrapper>
-
-
+            </div>
         </>
     );
 }
