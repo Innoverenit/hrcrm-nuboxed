@@ -15,6 +15,12 @@ const initialState = {
     fetchingSuscrptionError: false,
     suscrptionData:{},
 
+
+    fetchingSubscriptions:false,
+    fetchingSubscriptionsError:false,
+    subscriptionsFormData:[],
+   
+
     addingNewSubscription: false,
     addingNewSubscriptionError:false,
     fetchingSuscrption: false,
@@ -62,6 +68,24 @@ export const subscriptionReducer = (state = initialState, action) => {
               fetchingSuscrption: false,
               fetchingSuscrptionError: true,
             };
+
+
+
+            case types.GET_SUBSCRIPTIONS_REQUEST:
+              return { ...state, fetchingSubscriptions: true };
+            case types.GET_SUBSCRIPTIONS_SUCCESS:
+              return {
+                ...state,
+                fetchingSubscriptions: false,
+                //customerByUserId: [...state.customerByUserId, ...action.payload],
+             subscriptionsFormData:action.payload
+              };
+            case types.GET_SUBSCRIPTIONS_FAILURE:
+              return {
+                ...state,
+                fetchingSubscriptions: false,
+                fetchingSubscriptionsError: true,
+              };
 
             case types.UPDATE_SUSCRIPTION_FAILURE:
               return {
@@ -124,8 +148,15 @@ export const subscriptionReducer = (state = initialState, action) => {
                     case types.ADD_SUSCRIPTIONS_SUCCESS:
                       return { ...state, 
                         addingSuscrptions: false, 
-                        addingSuscrpitionModal: false ,
-                        newSubscriptionList:[action.payload,...state.newSubscriptionList]
+                        subscriptionsFormData: state.subscriptionsFormData.map((item) => {
+                          if (item.subscriptionId === action.payload.subscriptionId) {
+                            return action.payload;
+                          } else {
+                            return item;
+                          }
+                        }),
+                        //addingSuscrpitionModal: false ,
+                        //newSubscriptionList:[action.payload,...state.newSubscriptionList]
                       };
                     case types.ADD_SUSCRIPTIONS_FAILURE:
                       return { ...state, 
