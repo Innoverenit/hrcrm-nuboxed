@@ -15,6 +15,7 @@ import Highlighter from "react-highlight-words";
 import {SearchOutlined}  from '@ant-design/icons';
 import {getDealContactList,setContactRoleForDeals} from "../../../../DealAction";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
 class LinkedDealContact extends Component {
@@ -23,11 +24,41 @@ class LinkedDealContact extends Component {
     this.state = {
       searchText: "",
     searchedColumn: "",
+     translatedMenuItems: [],
+      loading: true
     };
   }
 
   componentDidMount() {
     this.props.getDealContactList(this.props.dealDetailsbyID.invOpportunityId);
+  }
+
+  componentDidMount() {
+    this.props.getCustomerData(this.props.userId);
+    this.props.getDepartments();
+    
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+    this.props.getCustomerConfigure(this.props.orgId,"add","contact")
+  }
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       'Name', // 0
+'Designation', // 1
+'Function', // 2
+'Email', // 3
+'Mobile'//4
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
   }
   handleAddPlusClick = (contactId) => {
    
@@ -164,18 +195,39 @@ class LinkedDealContact extends Component {
 
 
   render() {
+    const { loading, translatedMenuItems } = this.state;
     console.log(this.props.dealDetailsbyID.invOpportunityId)
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
+  
+
     return (
       <>
           <div className=' flex  sticky  z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                   <div className=" flex  w-[99%] p-1 bg-trandivrent font-bold sticky  z-10">
                   <div className=" md:w-[2.82rem]"></div>
-                      <div className=" md:w-[12.12rem]">Name</div>
-                      <div className=" md:w-[10.5rem]">Designation</div>
-                      <div className=" md:w-[8.99rem] ">Function</div>
-                      <div className="md:w-[10.7rem]">Email </div>
-                      <div className="md:w-[6.8rem]">Mobile #"</div>
+                      <div className=" md:w-[12.12rem]">
+                      {translatedMenuItems[0]}       
+                        {/* Name */}
+                        </div>
+                      <div className=" md:w-[10.5rem]">
+                      {translatedMenuItems[1]}      
+                        {/* Designation */}
+                        </div>
+                      <div className=" md:w-[8.99rem] ">
+                      {translatedMenuItems[2]}      
+                        {/* Function */}
+                        </div>
+                      <div className="md:w-[10.7rem]">
+                      {translatedMenuItems[3]}      
+                        {/* Email  */}
+                        </div>
+                      <div className="md:w-[6.8rem]">
+                      {translatedMenuItems[4]}      
+                        {/* Mobile #" */}
+                        </div>
                      
                   </div>
                   <div class="overflow-y-auto h-[67vh]">
@@ -290,15 +342,11 @@ class LinkedDealContact extends Component {
                                   <div className=" flex  md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <StyledPopconfirm
-              placement="bottom"
-              //title="Do you wish to detach?"
+              placement="bottom"          
               title={<FormattedMessage
                 id="app.doyouwishtodetach"
                 defaultMessage="Do you wish to detach?"
-              />}
-            //   onConfirm={() =>
-            //     unlinkContactFromOpportunity(opportunityId, name)
-            //   }
+              />}      
             >
               <ActionIcon
                 tooltipTitle="Detach Contact"

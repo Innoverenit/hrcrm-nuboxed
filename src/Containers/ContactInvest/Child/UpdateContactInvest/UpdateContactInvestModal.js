@@ -19,7 +19,11 @@ const UpdateContactInvestModal = props => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <UpdateContactInvestForm contactiData={contactiData} />
+          <UpdateContactInvestForm contactiData={contactiData} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
+          />
         </Suspense>
       </StyledDrawer>
     </>

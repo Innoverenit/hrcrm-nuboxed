@@ -450,7 +450,7 @@ class UpdateContactInvestForm extends Component {
                  
                   <div class="mt-6 w-full" style={{backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                      <div class="text-white font-medium m-[0.2rem_0_0.4rem_0.2rem] text-xs flex" ><FormattedMessage
+                      <div class="text-white um m-[0.2rem_0_0.4rem_0.2rem] text-xs flex" ><FormattedMessage
                 id="app.address"
                 defaultMessage="Address"
               /> </div>

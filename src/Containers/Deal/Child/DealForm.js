@@ -32,9 +32,7 @@ import {createDeals,  getAllDealStages,
   getActiveAssignedToList
 } from "../DealAction";
 import Swal from 'sweetalert2'
-/**
- * yup validation scheme for creating a opportunity
- */
+
 
 const OpportunitySchema = Yup.object().shape({
   opportunityName: Yup.string().required("Input needed!"),
@@ -178,21 +176,8 @@ function DealForm(props) {
     };
   });
 
-
   const customerNameOption = props.investorData
-    // .sort((a, b) => {
-    //   const libraryNameA = a.name && a.name.toLowerCase();
-    //   const libraryNameB = b.name && b.name.toLowerCase();
-    //   if (libraryNameA < libraryNameB) {
-    //     return -1;
-    //   }
-    //   if (libraryNameA > libraryNameB) {
-    //     return 1;
-    //   }
-
-    //   // names must be equal
-    //   return 0;
-    // })
+  
     .map((item) => {
       return {
         label: `${item.name || ""}`,
@@ -228,11 +213,7 @@ function DealForm(props) {
   });
   const [text, setText] = useState("");
   function handletext(e) {
-  //   if (e.target.value.length === 10) {
-  //     window.alert(
-  //         "Description shouldn't exceed 10 characters"
-  //     );
-  // }
+ 
     setText(e.target.value);
 
   }
