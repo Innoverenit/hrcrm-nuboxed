@@ -29,13 +29,11 @@ class LinkedDealContact extends Component {
   componentDidMount() {
     this.props.getDealContactList(this.props.dealDetailsbyID.invOpportunityId);
   }
-
   handleAddPlusClick = (contactId) => {
    
     let data = {
       
-      contactRole: "DecisionMaker",
-     
+      contactRole: "DecisionMaker",  
     };
 
     this.props.setContactRoleForDeals(data,contactId);
@@ -44,8 +42,7 @@ class LinkedDealContact extends Component {
    
     let data = {
       
-      contactRole: "Evaluator",
-     
+      contactRole: "Evaluator",  
     };
 
     this.props.setContactRoleForDeals(data,contactId);
@@ -54,8 +51,7 @@ class LinkedDealContact extends Component {
    
     let data = {
       
-      contactRole: "Influencer",
-     
+      contactRole: "Influencer",   
     };
 
     this.props.setContactRoleForDeals(data,contactId);
@@ -92,8 +88,7 @@ class LinkedDealContact extends Component {
             this.handleSearch(selectedKeys, confirm, dataIndex)
           }
           style={{ marginBottom: 8, display: "block" }}
-        />
-        
+        />      
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
@@ -123,8 +118,7 @@ class LinkedDealContact extends Component {
             }}
           >
             Filter
-          </Button>
-        
+          </Button>       
       </div>
     ),
     filterIcon: (filtered) => (
@@ -196,24 +190,24 @@ class LinkedDealContact extends Component {
                 primaryTitle={item.firstName}
                 // imageId={item.imageId}
                 // imageURL={item.imageURL}
-                imgWidth={"2.5em"}
-                imgHeight={"2.5em"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
                                       </div>
 
-                                      <div className=" flex font-medium   md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
+                                      <div className=" flex   md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
                                           <div class=" text-xs  font-poppins">
                                              {item.fullName}
                                           </div>
 
                                       </div>
-                                      <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
+                                      <div className=" flex  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
                                           <div class=" text-xs  font-poppins">
                                               {item.designation}
                                           </div>
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                                       <div class=" text-xs  font-poppins text-center">
@@ -221,19 +215,19 @@ class LinkedDealContact extends Component {
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                         {item.emailId}
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex   md:w-[10.22rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       {item.countryDialCode} {item.mobileNumber}
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[10.23rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <div class=" flex justify-evenly" >
               <ButtonGroup>
@@ -289,13 +283,11 @@ class LinkedDealContact extends Component {
                       )
                     }
                 />
-              </ButtonGroup>
-            
+              </ButtonGroup>       
             </div>
-
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <StyledPopconfirm
               placement="bottom"
@@ -325,18 +317,10 @@ class LinkedDealContact extends Component {
                       )
                   })}
                   </div>
-              </div>
-             
-              
+              </div>                        
           </div>
       </>
-  )
-    
-
-   
-    
-   
-    
+  )  
   }
 }
 

@@ -1,7 +1,7 @@
 import * as types from "./SubscriptionActionTypes";
 import axios from "axios";
 import Swal from 'sweetalert2'
-import { base_url,base_url2, login_url } from "../../Config/Auth";
+import { base_url,base_url2, login_url,sub_url } from "../../Config/Auth";
 
 export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
     dispatch({
@@ -133,11 +133,11 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
       type: types.ADD_SUSCRIPTIONS_REQUEST,
     });
     axios
-      .post(`${base_url2}/subscription`, data,
+      .put(`${sub_url}/subscription/create`, data,
         {
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
+          // headers: {
+          //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          // },
         }
       )
       .then((res) => {
@@ -151,6 +151,39 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
       .catch((err) => {
         dispatch({
           type: types.ADD_SUSCRIPTIONS_FAILURE,
+        });
+      });
+  };
+
+
+  export const getSubscrptions = (orgId) => (dispatch) => {
+    // let api_url = "";
+    // if (userId) {
+    //   api_url = `/sort/all/Customers/user/${userId}`;
+    // } else {
+    //   api_url = `/Customers`;
+    // }
+    dispatch({
+      type: types.GET_SUBSCRIPTIONS_REQUEST,
+    });
+    axios
+      .get(`${sub_url}/subscription/getByOrg/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_SUBSCRIPTIONS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_SUBSCRIPTIONS_FAILURE,
+          payload: err,
         });
       });
   };
