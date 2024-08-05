@@ -300,7 +300,7 @@ function SuppliesTable(props) {
                             <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" font-normal text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialFeatureToggle
-                                  fifoInd={item.fifoInd}
+                                  featureInd={item.featureInd}
                                   suppliesId={item.suppliesId}
                                 />
                               </div>

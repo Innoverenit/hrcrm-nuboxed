@@ -160,12 +160,14 @@ class Dashboard extends Component {
       country,
     } = this.props;
     console.log(this.state.showShareForm)
+    const buttonName = this.state.showShareForm ? 'Enterprise' : 'My View';
 
     return (
       <React.Fragment>
    
 
-        <Dashboardheader 
+        <Dashboardheader
+        buttonName={buttonName} 
         activeTab={activeTab}
         toggleShareForm={this.toggleShareForm}
         showShareForm={this.state.showShareForm}
@@ -216,7 +218,9 @@ class Dashboard extends Component {
              />)
            
              : this.state.activeButton==="Finance" ?
-             (<DashboardFinanceJumpstart/>)
+             (<DashboardFinanceJumpstart
+              buttonName={buttonName} 
+             />)
              : this.state.activeButton==="Accounts" ?
              (<CustomerDashboardJumpStart/>)
 
@@ -286,7 +290,8 @@ class Dashboard extends Component {
       />
           // <CustomerLeadsTab/>
           )
-       :<TaskDashboardTab viewType={viewType}
+       :
+       <TaskDashboardTab viewType={viewType}
        selectedLanguage={this.props.selectedLanguage}
        translateText={this.props.translateText}
        />
@@ -339,9 +344,9 @@ class Dashboard extends Component {
      <div class="w-[47%] max-sm:w-wk">
      <div class=" flex flex-col" >
      <div className="flex justify-between">
-    {this.state.activeButton === "test" && viewType !== "ALL" && (
+    {/* {this.state.activeButton === "test" && viewType !== "ALL" && (
         <TodoDashboardTab viewType={viewType} />
-    )}
+    )} */}
 
     {this.state.activeButton === "Order" && (
         <DashOrderJumpstart
@@ -448,8 +453,8 @@ class Dashboard extends Component {
                           <CustomerGoogleMap />)
                           : this.state.activeButton === "Customer" ? (
                             <CustomerViewGoogleMap />)
-                          : this.state.activeButton === "test" ? (
-                            <StackedClosureChart />)
+                          // : this.state.activeButton === "test" ? (
+                          //   <StackedClosureChart />)
                             : this.state.activeButton === "Tasks" ? (
                               <StackedClosureChart />)
                               : this.state.activeButton === "Order" ? (

@@ -433,7 +433,7 @@ const AWBtst=[
         <div className=' flex justify-end sticky  z-auto'>
           <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-              <div className=" w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
+              <div className=" w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]"><FormattedMessage id="app.order" defaultMessage="Order ID" /></div>
               <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]"><FormattedMessage id="app.units" defaultMessage="Units" /></div>
               <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
 
@@ -452,9 +452,9 @@ const AWBtst=[
                next={handleLoadMore}
                hasMore={hasMore}
                loader={props.fetchingDispatchList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"69vh"}
-              style={{ overflowX: "hidden" }}
-              endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+              height={"67vh"}
+              style={{ overflowX: "hidden", scrollbarWidth:"thin" }}
+              endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
             >
               {
               props.allDispatchList.length 
@@ -471,8 +471,8 @@ const AWBtst=[
                       <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                          <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                            <div class="text-sm flex  font-semibold  font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
+                          <div className=" flex  w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                            <div class="text-sm flex  font-bold underline font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
                               <div
                                 onClick={() => {
                                   handleRowData(item);
@@ -480,7 +480,7 @@ const AWBtst=[
                                 }}
                               >{item.newOrderNo}</div>&nbsp;&nbsp;
                               {date === currentdate ? (
-                                <div class="text-xs font-bold text-[tomato]">
+                                <div class="text-[0.65rem] font-bold text-[tomato]">
                                   New
                                 </div>
                               ) : null}
@@ -512,13 +512,13 @@ const AWBtst=[
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
 
 
-                          <div className=" flex font-medium flex-col w-[5.4rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[5.4rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchPhoneCount}/{item.phoneReceiveCount}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 ?
                                 <Button
                                   loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingDispatchInspectionButton}
@@ -540,8 +540,8 @@ const AWBtst=[
                                     null}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[4.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[4.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 || item.dispatchInspectionInd === 1 ?
                                 null : <DispatchPackedToggle
                                   locationDetailsId={props.locationDetailsId}
@@ -552,27 +552,27 @@ const AWBtst=[
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                          <div className=" flex font-medium flex-col w-[7.76rem] max-xl:w-[4.26rem] max-lg:w-[3.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[7.76rem] max-xl:w-[4.26rem] max-lg:w-[3.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.unloadingAddresses && item.unloadingAddresses[0].city || ""}
                             </div>
                           </div>
 
-                          <div className=" flex font-medium flex-col w-[6.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[6.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.shipperName === "null" ? "" : item.shipperName}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[5.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[5.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
                             </div>
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                        
-                          <div className=" flex font-medium flex-col w-[7.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[7.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.unloadingAddresses && item.unloadingAddresses[0].city && item.newAwbNo==="null" ? <Button type="primary"
                                 onClick={() => {
                                   handleRowData(item);
@@ -582,13 +582,13 @@ const AWBtst=[
                             </div>
                           </div>
                     
-                          <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[5.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.status === "null" ? "" : item.status}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 4 && item.newAwbNo &&
                                 <DispatchValidationToggle
                                   locationDetailsId={props.locationDetailsId}

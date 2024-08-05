@@ -686,6 +686,7 @@ function PhoneListForRepair(props) {
                 <ProcessExpandDrawer
                    phoneId={phoneId}
                    RowData={RowData}
+                   rowData={props.rowData}
                     processExpandModal={props.processExpandModal}
                     handleProcessExpand={props.handleProcessExpand}
                 />

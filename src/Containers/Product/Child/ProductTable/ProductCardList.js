@@ -262,7 +262,7 @@ function ProductCardList(props) {
                       </div>
                       <div className=" flex font-medium flex-col  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-<FeatureProductToggle item={item}    publishInd={item.publishInd}  suppliesId={item.productId}/>
+<FeatureProductToggle item={item}    featureInd={item.featureInd}  productId={item.productId}/>
 
 </div>
                       {/* <div className=" flex font-medium flex-col  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">

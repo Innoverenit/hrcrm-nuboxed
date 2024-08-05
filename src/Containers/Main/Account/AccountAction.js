@@ -2717,7 +2717,7 @@ export const checkTaskComplition = (data, phoneId) => (dispatch) => {
       });
     });
 };
-export const addSpareList = (data, phoneId, orderId, cb) => (dispatch) => {
+export const addSpareList = (data, phoneTaskId, orderId, cb) => (dispatch) => {
   // debugger;
   dispatch({ type: types.ADD_SPARE_LIST_REQUEST });
   axios
@@ -2728,7 +2728,7 @@ export const addSpareList = (data, phoneId, orderId, cb) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getSpareListByPhoneId(phoneId))
+      dispatch(getSpareListByPhoneTaskId(phoneTaskId))
       dispatch(getPhonelistById(orderId))
       dispatch({
         type: types.ADD_SPARE_LIST_SUCCESS,
@@ -2799,6 +2799,34 @@ export const getSpareListByPhoneId = (phoneId) => (
       console.log(err);
       dispatch({
         type: types.GET_SPARE_LIST_BY_PHONEID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSpareListByPhoneTaskId = (phoneTaskId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_SPARE_LIST_BY_PHONETASKID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneSpare/task/spareList/${phoneTaskId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_PHONETASKID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_PHONETASKID_FAILURE,
         payload: err,
       });
     });
