@@ -143,11 +143,11 @@ function DeletedOrderList(props) {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex  w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex  justify-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -419,11 +419,11 @@ function DeletedOrderList(props) {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex  w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -696,11 +696,11 @@ function DeletedOrderList(props) {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex  w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex  items-centermax-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);

@@ -22,7 +22,8 @@ const AddAccountModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <AddAccountForm {...formProps} />
+                    <AddAccountForm {...formProps}
+                 />
                 </Suspense>
             </StyledDrawer>
         </>

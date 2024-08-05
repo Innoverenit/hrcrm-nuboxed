@@ -183,7 +183,7 @@ const {handleProcureNotesDrawerModal,
   <div className=" flex   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs  font-semibold  font-poppins">
-                      <div className="font-normal text-xs  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.unit}</div>
                       </div>
                     </div>
@@ -192,7 +192,7 @@ const {handleProcureNotesDrawerModal,
                           <Tooltip>
                           <div class="max-sm:w-full  justify-between md: flex flex-row text-xs">                      
                                 <span
-                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    class="underline cursor-pointer text-[#1890ff] font-bold"
                                                                     onClick={() => {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleProcureOrderModal(true);
@@ -221,7 +221,7 @@ const {handleProcureNotesDrawerModal,
                         </div>
                          </div>
                   </div>
-                  <div class="flex">
+                  <div class="flex items-center">
                     <div className=" flex   md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
 

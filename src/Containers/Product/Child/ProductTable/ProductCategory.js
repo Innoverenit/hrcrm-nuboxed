@@ -5,16 +5,11 @@ import {
     handleCategoryModal,
     getCategory
 } from "../../ProductAction";
-import ProductPublishToggle from "./ProductPublishToggle";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
+import { MultiAvatar} from "../../../../Components/UI/Elements";
 import { Button, Tooltip,Input,Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import InfiniteScroll from "react-infinite-scroll-component";
-import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
-import EuroIcon from '@mui/icons-material/Euro';
-import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import EditUpload from "../../../../Components/Forms/Edit/EditUpload";
@@ -168,13 +163,13 @@ const DeleteOnClick = async (item) => {
     <>
 
       <div className=' flex  sticky  z-auto'>
-        <div class="rounded m-1 h-[85vh] max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 h-[85vh] max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">          
             <div className=" w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
             {translatedMenuItems[0]}   {/* Category */}
               </div>
             <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]"></div>
-            <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+            <div className=" flex  w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Add">
                           <AddCircleIcon
@@ -198,7 +193,7 @@ const DeleteOnClick = async (item) => {
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     
 
-                      <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   w-[7.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {editsuppliesId === item.categoryId ? (
@@ -210,7 +205,7 @@ const DeleteOnClick = async (item) => {
                       
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div>  {item.categoryName}</div>
                       </div>
                     )}
@@ -219,7 +214,7 @@ const DeleteOnClick = async (item) => {
                       </div>
       
                     </div>
-                    <div className=" flex font-medium flex-col  w-[7.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex   w-[7.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
@@ -233,14 +228,13 @@ const DeleteOnClick = async (item) => {
   />
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> 
                             {item.imageId ? (
                             <MultiAvatar
                               imageId={item.imageId ? item.imageId : ''}
-                              imgHeight={"1.8em"}
-                              imgWidth={"1.8em"}
-                              imgRadius={20}
+                              imgHeight={"1.8rem"}
+                              imgWidth={"1.8rem"}
                             />
                           ) : (
                             <div class="font-bold text-xs" >
@@ -259,7 +253,7 @@ const DeleteOnClick = async (item) => {
                      
                      
                     
-                   <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                   <div className=" flex  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.categoryId ? (
                         <>
                       <Button 
@@ -279,7 +273,7 @@ const DeleteOnClick = async (item) => {
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.categoryId)}

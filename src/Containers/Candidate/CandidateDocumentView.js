@@ -10,13 +10,13 @@ class CandidateDocumentView extends Component {
   render() {
     return (  
           <>         
-              <div class="flex">
+              <div class="flex"> 
                {this.props.documentsByCandidateId.map((item) => { 
                   return (                        
-                    <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt- bg-white border-[2px] border-[#eeeeee] text-black">
+                    <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-1 bg-white border-[2px] border-[#eeeeee] text-black">
                       <MainWrapper>
                       <div class="w-7 h-7" >
-                      <a
+                      <a 
               href={`${base_url}/document/${item.documentId}`}
             // target="_blank"
             >

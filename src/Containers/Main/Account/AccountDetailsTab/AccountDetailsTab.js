@@ -35,7 +35,6 @@ import CustomerProcurementTable from "./AccountOrderTab/CustomerProcurementTable
 import LinkedOpportunityTable from "./LinkedOpportunityTable";
 import ShopIcon from '@mui/icons-material/Shop'
 import AddAccountOpportunityModal from "./AddAccountOpportunityModal";
-import MainNotes from "../../../CustomNote/MainNotes";
 import ErpNote from "../../ErpNote/ErpNote";
 import AccountInvoiceTable from "./AccountInvoiceTable";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
@@ -432,7 +431,9 @@ function AccountDetailsTab(props) {
                         key="10"
                     >
                         <Suspense fallback={"Loading ..."}>
-                            <AccountContactTable distributorId={props.distributorData.distributorId} />
+                            <AccountContactTable distributorId={props.distributorData.distributorId} 
+                              selectedLanguage={props.selectedLanguage}
+                              translateText={props.translateText}/>
                         </Suspense>
                     </TabPane>
                     <TabPane
@@ -476,16 +477,22 @@ function AccountDetailsTab(props) {
                 }
             /> */}
             <AddSupplierDocumentModal
+             selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText}
                 distributorId={props.distributorData.distributorId}
                 supplierDocumentUploadModal={props.supplierDocumentUploadModal}
                 handleSupplierDocumentUploadModal={props.handleSupplierDocumentUploadModal}
             />
             <AddAccountModal
+              selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText}
                 handleLinkDistributorOrderConfigureModal={props.handleLinkDistributorOrderConfigureModal}
                 addLinkDistributorOrderConfigureModal={props.addLinkDistributorOrderConfigureModal}
                 distributorId={props.distributorData.distributorId}
             />
                <AddAccountOpportunityModal
+                 selectedLanguage={props.selectedLanguage}
+                 translateText={props.translateText}
                 distributorId={props.distributorData.distributorId}
             addAccountOpportunityModal={props.addAccountOpportunityModal}
             handleAccountOpportunityModal={props.handleAccountOpportunityModal}
@@ -494,22 +501,30 @@ function AccountDetailsTab(props) {
             // callback={() => getOpportunityListByCustomerId(customerId)}
           />
 
-<AddCustomerProcurementModal
+             <AddCustomerProcurementModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText}
                 handleLinkCustomerProcurementModal={props.handleLinkCustomerProcurementModal}
                 addLinkCustomerProcurementModal={props.addLinkCustomerProcurementModal}
                 distributorId={props.distributorData.distributorId}
             />
 
             <AddSupplierContactModal
+              selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText}
                 addSupplierContactModal={props.addSupplierContactModal}
                 handleSupplierContactModal={props.handleSupplierContactModal}
                 type="distributor"
                 id={props.distributorData.distributorId}
             />
             <AccountActivityModal
+              selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText}
                 addDistributorActivityModal={props.addDistributorActivityModal}
                 handleDistributorActivityModal={props.handleDistributorActivityModal} />
             <CatalogueOrderModal
+              selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText}
                 distributorId={props.distributorData.distributorId}
                 handleAddOrderModal={props.handleAddOrderModal}
                 addCatalogueOrderModal={props.addCatalogueOrderModal}

@@ -58,6 +58,8 @@ const Account = ({
   return (
     <>
       <AccountHeader
+        selectedLanguage={selectedLanguage}
+        translateText={translateText}
         viewType={viewType}
         setDistributorViewType={setDistributorViewType}
         handleClear={handleClear}
@@ -84,10 +86,17 @@ const Account = ({
           </div>
         )
           : viewType === "card" ? (
-            <AccountCard />
+            <AccountCard 
+            selectedLanguage={selectedLanguage}
+            translateText={translateText} />
           ) : viewType === "dashboard" ? (
             <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>
-              {isLargeScreen ? <AccountDeleteTable /> : <AccountDeleteCard />}
+              {isLargeScreen ? <AccountDeleteTable
+                selectedLanguage={selectedLanguage}
+                translateText={translateText}/> : 
+                <AccountDeleteCard 
+                selectedLanguage={selectedLanguage}
+                translateText={translateText}/>}
             </div>
           ) : viewType === "all" ? (
             <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>
@@ -98,6 +107,8 @@ const Account = ({
             </div>
           ) : null}
             <AddAccountImportModal
+              selectedLanguage={selectedLanguage}
+              translateText={translateText}
             addAccountImportModal={addAccountImportModal}
             handleAccountImportModal={handleAccountImportModal}
         // addLeadsImportModal={this.props.addLeadsImportModal}
