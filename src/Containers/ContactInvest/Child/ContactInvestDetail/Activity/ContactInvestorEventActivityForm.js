@@ -7,7 +7,6 @@ import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import {getAllCustomerData} from "../../../../Customer/CustomerAction"
 import dayjs from "dayjs";
-import { Spacer} from "../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFieldArray";
@@ -26,14 +25,10 @@ import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
 import { setClearbitCandidateData } from "../../../../Candidate/CandidateAction";
 import { Listbox} from '@headlessui/react'
 
-// yup validation scheme for creating a opportunity
 const EventSchema = Yup.object().shape({
   eventTypeId: Yup.string().required("Select event type"),
   eventSubject: Yup.string().required("This field is required !"),
   timeZone: Yup.string().required("Input required !"),
-  // endDate: Yup.string()
-  //   .nullable()
-  //   .required("Input required !"),
   startTime: Yup.string().nullable().required("Input required !"),
   endTime: Yup.string().nullable().required("Input required !"),
   startDate: Yup.string().nullable().required("Input required !"),
@@ -405,30 +400,7 @@ const {
                     component={SearchSelect}
                     inlineLabel
                   />
-
-                  
-                    {/* <Field
-                      name="employeesId"
-                      isColumnWithoutNoCreate
-                      selectType="employee"
-                      // label="Assigned"
-                      label={
-                        <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="Assigned"
-                        />
-                      }
-                      component={SearchSelect}
-                      isColumn
-                      value={values.employeeId}
-                      defaultValue={{
-                        label: `${firstName || ""} ${middleName || ""} ${
-                          lastName || ""
-                        }`,
-                        value: employeeId,
-                      }}
-                      inlineLabel
-                    /> */}
+                               
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -517,40 +489,7 @@ const {
                       value: employeeId,
                     }}
                   />
-                  </div>
-                
-                
-                  {/* <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    label="Team"
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={
-                      props.setClearbitCandidateData
-                    }
-                    component={CandidateClearbit}
-                    inlineLabel
-                  /> */}
-                  {/* {startDate ? (
-                    <span>
-                      {dayjs(startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  ) : (
-                    <span>
-                      {dayjs(values.startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  )} */}
+                  </div>              
                 </div>
                 <div class=" h-full w-w47.5 max-sm:w-wk ">
           
@@ -576,47 +515,7 @@ const {
                     component={TextareaComponent}
                     inlineLabel
                   />
-           
-                  {/* <div class=" flex justify-between">
-                    <div class=" w-1/2 font-bold">
-                      <div class=" flex justify-between">
-                        <div>
-                          <StyledLabel>Set Reminder </StyledLabel>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
+                      
                 </div>
               </div>
       

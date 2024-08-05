@@ -21,9 +21,6 @@ import {
 } from "../../DealAction";
 import { Listbox } from "@headlessui/react";
 const { Option } = Select;
-/**
- * yup validation scheme for creating a opportunity
- */
 
 const UpdateOpportunitySchema = Yup.object().shape({
   opportunityName: Yup.string().required("Please provide Opportunity name"),
@@ -31,7 +28,6 @@ const UpdateOpportunitySchema = Yup.object().shape({
   currency: Yup.string().required("Currency needed!"),
   startDate: Yup.string().required("Input needed!"),
   endDate: Yup.string().required("Input needed!"),
-  // salesUserIds: Yup.string().required("Input needed!"),
   oppWorkflow: Yup.string().required("Input needed!"),
 });
 function UpdateDealForm (props) {
@@ -115,8 +111,6 @@ function UpdateDealForm (props) {
     const includeOption = props.currentItem.include===null?[]: props.currentItem.include.map((item) => {
       return item.empName
     })
-
-    
    
     setInclude(includeOption)
     console.log("test", includeOption)
@@ -124,8 +118,6 @@ function UpdateDealForm (props) {
   }, [props.currentItem]);
   console.log(includeNames)
 
- 
- 
   function handleChangeInclude(value) {
     setInclude(value)
   }
@@ -137,20 +129,7 @@ function UpdateDealForm (props) {
       };
     });
 
-    const customerNameOption = props.investorData
-      // .sort((a, b) => {
-      //   const libraryNameA = a.name && a.name.toLowerCase();
-      //   const libraryNameB = b.name && b.name.toLowerCase();
-      //   if (libraryNameA < libraryNameB) {
-      //     return -1;
-      //   }
-      //   if (libraryNameA > libraryNameB) {
-      //     return 1;
-      //   }
-
-      //   // names must be equal
-      //   return 0;
-      // })
+    const customerNameOption = props.investorData   
       .map((item) => {
         return {
           label: `${item.name || ""}`,
@@ -180,7 +159,6 @@ function UpdateDealForm (props) {
     const sortedCurrency =props.investorCurrencies.sort((a, b) => {
       const nameA = a.currency_name.toLowerCase();
       const nameB = b.currency_name.toLowerCase();
-      // Compare department names
       if (nameA < nameB) {
         return -1;
       }
@@ -218,8 +196,7 @@ function UpdateDealForm (props) {
               oppStage: props.currentItem.oppStage || "",
             startDate:
               dayjs(props.currentItem.startDate) || dayjs(),
-            endDate: dayjs(props.currentItem.endDate) || dayjs(),
-            // endDate: endDate || null,
+            endDate: dayjs(props.currentItem.endDate) || dayjs(),      
 
             proposalAmount:
               props.currentItem.proposalAmount || "",
@@ -334,7 +311,7 @@ function UpdateDealForm (props) {
             <Form className="form-background">
               <div class=" flex justify-around max-sm:flex-col">
                 <div class=" h-full w-w47.5 max-sm:w-wk">
-                <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
+                <div class="font-bold text-black font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
                 <div>{translatedMenuItems[0]} </div>
                     <Field
                       isRequired
@@ -342,7 +319,7 @@ function UpdateDealForm (props) {
                       type="text"
                       //label="Name"                  
                       isColumn
-                      width={"100%"}
+                      // width={"100%"}
                       component={InputComponent}         
                       inlineLabel
                     />
@@ -350,7 +327,7 @@ function UpdateDealForm (props) {
                 
                   <div class="flex justify-between max-sm:flex-col mt-3">
                     <div class=" w-w47.5 max-sm:w-wk">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
+                    <div class="font-bold text-black font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
                     <div>{translatedMenuItems[1]} </div>
                         <Field
                           isRequired
@@ -364,7 +341,7 @@ function UpdateDealForm (props) {
                       </div>
                     </div>
                     <div class="w-w47.5 max-sm:w-wk">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
+                    <div class="font-bold text-black m-[0.1rem-0-0.02rem-0.2rem] font-poppins text-xs flex flex-col ">
                     <div>{translatedMenuItems[2]} </div>
                         <Field
                           isRequired
@@ -394,7 +371,7 @@ function UpdateDealForm (props) {
                 
                   <div class="flex justify-between max-sm:flex-col mt-3">
                     <div class=" w-w47.5 max-sm:w-wk">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
+                    <div class="font-bold font-poppins text-black m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
                     <div>{translatedMenuItems[3]} </div>
                         <Field
                           name="proposalAmount"
@@ -406,7 +383,7 @@ function UpdateDealForm (props) {
                         />
                       </div>
                     </div>
-                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class="font-bold font-poppins text-black text-xs w-w47.5 max-sm:w-wk">
                     <div>{translatedMenuItems[4]} </div>
                     <Field
                       name="currency"
@@ -425,7 +402,7 @@ function UpdateDealForm (props) {
                     </div>
                   </div>
                 </div>
-                <div class=" h-full w-w47.5 max-sm:w-wk">
+                <div class="font-bold font-poppins text-black text-xs h-full w-w47.5 max-sm:w-wk">
                 <div>{translatedMenuItems[5]} </div>
                 <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
@@ -493,7 +470,7 @@ function UpdateDealForm (props) {
       )}
     </Listbox>
     <div class=" mt-1">
-    <div class=" text-black font-bold text-xs" >
+    <div class="font-poppins  text-black font-bold text-xs" >
     {translatedMenuItems[6]}
     {/* include */}
       </div>
@@ -520,37 +497,14 @@ function UpdateDealForm (props) {
     return null; // Skip rendering for the current user
   })}
 </Select>
-{/* <Field
-                    name="include"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="Include"
-                      />
-                    }
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(allEmplo)
-                        ? allEmplo
-                        : []
-                    }
-                    isColumn
-                    value={values.employeeId}
-                    inlineLabel
-                  /> */}
   </div>
-  <div>{translatedMenuItems[7]} </div>
+  <div class=" h-full w-w47.5 max-sm:w-wk mt-2">
+  <div class="font-bold font-poppins text-black text-xs">{translatedMenuItems[7]} </div>
+  </div>
                   <Field
                     name="investorId"
                     isColumnWithoutNoCreate
-                    // label={
-                    // //   <FormattedMessage
-                    // //   id="app.investor"
-                    // //   defaultMessage="investor"
-                    // // />
-                    // }
-                    // isRequired
+                    // investor
                     component={SelectComponent}
                     isColumn
                     options={
@@ -563,17 +517,12 @@ function UpdateDealForm (props) {
                   />
 
                  
-<div class="mt-3">
-<div>{translatedMenuItems[8]} </div>
+<div class="mt-3 ">
+<div class="font-bold font-poppins text-black text-xs">{translatedMenuItems[8]} </div>
                   <Field
                     name="contactId"
                     isColumnWithoutNoCreate
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.contact"
-                    //     defaultMessage="contact"
-                    //   />
-                    // }
+                //  contact                   
                     component={SelectComponent}
                     isColumn
                     options={
@@ -594,8 +543,8 @@ function UpdateDealForm (props) {
 </div>
               
                   <div class="flex justify-between max-sm:flex-col mt-3">
-                    <div class=" w-w47.5 max-sm:w-wk">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    <div class=" w-w47.5 max-sm:w-wk flex flex-col">
+                    <div class="font-bold font-poppins text-black m-[0.1rem-0-0.02rem-0.2rem] text-xs">
                     <div>{translatedMenuItems[9]} </div>
                         <Field
                           name="oppWorkflow"
@@ -608,15 +557,14 @@ function UpdateDealForm (props) {
                               : []
                           }
                           value={values.oppWorkflow}
-                          isColumn
-                          margintop={"0"}
+                          isColumn                    
                           inlineLabel
                         />
                       </div>
                     </div>
     
-                    <div class="w-w47.5 max-sm:w-wk ">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
+                    <div class="w-w47.5 max-sm:w-wk flex flex-col">
+                    <div class="font-bold font-poppins text-black m-[0.1rem-0-0.02rem-0.2rem] text-xs  ">
                     <label>{translatedMenuItems[10]}</label>
                         <Field
                           name="oppStage"
@@ -642,8 +590,7 @@ function UpdateDealForm (props) {
                             filterValue: values.oppWorkflow,
                           }}
                           disabled={!values.oppWorkflow}
-                          isColumn
-                          margintop={"0"}
+                          isColumn                       
                           inlineLabel
                         />
                       </div>
