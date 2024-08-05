@@ -173,7 +173,7 @@ const handleLoadMoreLow = () => {
                   <div className=" flex items-center  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                <div class="  text-blue-500  font-poppins font-bold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -189,11 +189,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex  font-bold  w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -211,7 +211,7 @@ const handleLoadMoreLow = () => {
                               ) : null}
                         </div>
 
-                        <div class="max-sm:w-full md:w-[9.02rem]">
+                        <div class="max-sm:w-full md:w-[9.02rem] font-bold">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:text-xs">
                               {item.distributorName}
@@ -436,11 +436,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex font-bold w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -685,11 +685,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex   w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -710,7 +710,7 @@ const handleLoadMoreLow = () => {
 
                         <div class="max-sm:w-full md:w-[9.02rem]">
                           <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:text-xs">
+                            <div class="max-sm:w-full justify-between flex md:text-xs font-bold">
                               {item.distributorName}
                             </div>
                           </Tooltip>

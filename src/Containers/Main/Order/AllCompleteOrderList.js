@@ -126,7 +126,7 @@ function AllCompleteOrderList(props) {
                 // }}
                 >
                   <div class="flex">
-                  <div className=" flex font-medium items-center md:w-[4.26rem] max-sm:w-full  ">
+                  <div className=" flex items-center md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -144,12 +144,12 @@ function AllCompleteOrderList(props) {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                    <div className=" flex  items-center w-wk   max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -329,7 +329,7 @@ function AllCompleteOrderList(props) {
                       </div>
 
                     </div>
-                    <div className=" flex font-medium flex-col  max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
@@ -401,7 +401,7 @@ function AllCompleteOrderList(props) {
                 // }}
                 >
                   <div class="flex">
-                  <div className=" flex font-medium items-center  md:w-[4.26rem] max-sm:w-full  ">
+                  <div className=" flex items-center  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -419,12 +419,12 @@ function AllCompleteOrderList(props) {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex  w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                    <div className=" flex items-center w-wk   max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -676,7 +676,7 @@ function AllCompleteOrderList(props) {
                 // }}
                 >
                   <div class="flex">
-                  <div className=" flex font-medium items-center  md:w-[4.26rem] max-sm:w-full  ">
+                  <div className=" flex items-center  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -694,12 +694,12 @@ function AllCompleteOrderList(props) {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex  w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                    <div className=" flex items-center w-wk   max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);

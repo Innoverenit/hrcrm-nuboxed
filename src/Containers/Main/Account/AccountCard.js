@@ -51,6 +51,7 @@ function AccountTable(props) {
         hasMore={hasMore}
         loader={props.fetchingDistributorsByUserId?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"80vh"}
+        style={{ scrollbarWidth:"thin"}}
       >
         {props.distributorsByUserId.map((item) => {
           return (
@@ -62,16 +63,16 @@ function AccountTable(props) {
                 }}
               >
                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs   font-poppins">
 
                       Name
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class="  text-[0.82rem]  font-poppins">
                       <AccountDetailsView
                         distributorId={item.distributorId}
                         name={item.name}
@@ -79,108 +80,108 @@ function AccountTable(props) {
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs   font-poppins">
 
                       Work
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class="  text-[0.82rem]  font-poppins">
                       {item.dialCode} {item.phoneNo}
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs   font-poppins">
 
                       Website
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class="  text-[0.82rem]  font-poppins">
                       {item.url}
                     </div>
 
                   </div>
 
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs   font-poppins">
 
                       Type
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class="  text-[0.82rem]  font-poppins">
                       {item.clientName}
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs   font-poppins">
 
                       Payment
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class="  text-[0.82rem]  font-poppins">
                       {item.payment}
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs   font-poppins">
 
                       VAT
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class="  text-[0.82rem]  font-poppins">
                       {item.countryName}
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs   font-poppins">
 
                       Invoice Address
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class="  text-[0.82rem]  font-poppins">
                       {/* {item.addresses[0].address1 || ""} ${item.addresses[0]
                         .address2 || ""} ${item.addresses[0].street || ""} ${item.addresses[0].city || ""}`; */}
 
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs   font-poppins">
 
                       Pin Code
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class="  text-[0.82rem]  font-poppins">
                       {/* {item.addresses[0].pinCode || ""} */}
                     </div>
 
                   </div>
-                  {/* <div class="flex flex-col">
+                  {/* <div class="flex">
                     <Tooltip title="Contacts">
                       <div
                         onClick={() => {
@@ -200,7 +201,7 @@ function AccountTable(props) {
                     </Tooltip>
 
                   </div>
-                  <div class="flex flex-col">
+                  <div class="flex">
                     <Tooltip title="Activity">
                       <span>
                         <i
@@ -248,6 +249,8 @@ function AccountTable(props) {
    </InfiniteScroll>
       </OnlyWrapCard>
       <UpdateAccountModal
+       selectedLanguage={props.selectedLanguage}
+       translateText={props.translateText}
         distributorId={currentDistributorId}
         updateDistributorModal={updateDistributorModal}
         handleSetCurrentDistributorId={handleSetCurrentDistributorId}
@@ -255,6 +258,8 @@ function AccountTable(props) {
       />
 
       <AddAccountActivityModal
+      selectedLanguage={props.selectedLanguage}
+      translateText={props.translateText}
         addDistributorActivityTableModal={
           props.addDistributorActivityTableModal
         }

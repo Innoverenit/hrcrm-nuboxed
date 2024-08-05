@@ -1,8 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
-import QrGenerate from "../ProductTable/QrGenerate"
 import {
     getdeleteProducts,
   getProductByGroup,
@@ -17,15 +15,11 @@ import {
   handlePriceDrawer,
 } from "../../ProductAction";
 import ProductPublishToggle from "./ProductPublishToggle";
-import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
-import { Button, Tooltip } from "antd";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { Tooltip } from "antd";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
-import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import ReInstateProductToggle from "./ReInstateProductToggle";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
@@ -169,14 +163,14 @@ function ProductDeleteList(props) {
                 <div>
                   <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium flex-col w-[6.5rem] max-sm:w-auto   ">
+                      <div className=" flexw-[6.5rem] max-sm:w-auto   ">
                         <SubTitle>
                           {item.imageId ? (
                             <MultiAvatar
                               imageId={item.imageId ? item.imageId : ''}
                               imgHeight={"1.8rem"}
                               imgWidth={"1.8rem"}
-                              imgRadius={20}
+                            
                             />
                           ) : (
                             <div class="font-bold text-xs" >
@@ -185,13 +179,13 @@ function ProductDeleteList(props) {
                           )}
                         </SubTitle>
                       </div>
-                      <div className=" flex font-medium flex-col w-[5.6rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                        <div class="text-sm  font-semibold max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div className=" flexw-[5.6rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                        <div class="text-xs  font-semibold max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.articleNo}
                         </div>
                       </div>
 
-                      <div className=" flex font-medium flex-col  w-[10.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex w-[10.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.name}
@@ -201,7 +195,7 @@ function ProductDeleteList(props) {
 
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium flex-col w-[9.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flexw-[9.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.categoryName} {item.subCategoryName}
@@ -209,7 +203,7 @@ function ProductDeleteList(props) {
                     </div>
                    
 
-                    <div className=" flex font-medium flex-col w-[8.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flexw-[8.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                       <div class=" text-xs  max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -218,13 +212,13 @@ function ProductDeleteList(props) {
                     </div>
 </div>
 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-<div className=" flex font-medium flex-col w-[8.51rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+<div className=" flexw-[8.51rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.brand}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[12.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flexw-[12.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.model}
@@ -233,18 +227,18 @@ function ProductDeleteList(props) {
 </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                      {/* <div className=" flex font-medium flex-col  w-[7.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      {/* <div className=" flex w-[7.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                       
                         <Button type="primary" >
                                 <div class="max-sm:text-sm"> Print QR Code</div>
                                 </Button>
                       </div> */}
-                      <div className=" flex font-medium flex-col  w-[9.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex w-[9.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <ProductPublishToggle item={item} />
 
                       </div>
-                      <div className=" flex font-medium flex-col  w-[5.5rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex w-[5.5rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <ReInstateProductToggle item={item} />
 
@@ -253,7 +247,7 @@ function ProductDeleteList(props) {
                       <div>
                         <Tooltip title="Add Price">
                           <EuroIcon
-                            className="!text-xl cursor-pointer text-[blue]"
+                            className="!text-icon cursor-pointer text-[blue]"
                             onClick={() => {
                               props.handlePriceDrawer(true);
                               handleParticularRowData(item);
@@ -265,7 +259,7 @@ function ProductDeleteList(props) {
                       <div>
                         <Tooltip title="Product Builder">
                           <ViewQuiltIcon
-                            className="!text-xl cursor-pointer text-[#4bc076]"
+                            className="!text-icon cursor-pointer text-[#4bc076]"
                             onClick={() => {
                               props.handleProductBuilderDrawer(true);
                               handleParticularRowData(item);
@@ -274,7 +268,7 @@ function ProductDeleteList(props) {
                         </Tooltip>
                       </div>
                     {/* </div> */}
-                    {/* <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                    {/* <div className=" flexw-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Edit">
                           <BorderColorIcon
@@ -289,11 +283,11 @@ function ProductDeleteList(props) {
 
 
                     </div> */}
-                    <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                    <div className=" flexw-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         <Tooltip title={item.description}>
                         <ContactSupportIcon
-                         className="!text-xl cursor-pointer "
+                         className="!text-icon cursor-pointer "
                         />
                         </Tooltip>
                       </div>
