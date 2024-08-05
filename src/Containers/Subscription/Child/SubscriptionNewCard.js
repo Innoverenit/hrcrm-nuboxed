@@ -959,7 +959,7 @@ useEffect(() => {
       userId: props.userId,
       publishInd: updatedSubscription.publishInd
     };
-    props.addSuscrptions(data);
+    props.addSuscrptions(data,updatedSubscription.subscriptionId);
   };
 
 
@@ -1004,7 +1004,7 @@ useEffect(() => {
       userId: props.userId,
       publishInd: updatedSubscription.publishInd
     }
-    props.addSuscrptions(data)
+    props.addSuscrptions(data,updatedSubscription.subscriptionId)
   };
 
   return (

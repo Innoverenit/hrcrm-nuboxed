@@ -128,7 +128,7 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
     dispatch({ type: types.HANDLE_SUSCRIPTION_MODAL, payload: modalProps });
   };
 
-  export const addSuscrptions = (data) => (dispatch) => {
+  export const addSuscrptions = (data,subscriptionId) => (dispatch) => {
     dispatch({
       type: types.ADD_SUSCRIPTIONS_REQUEST,
     });
@@ -145,7 +145,7 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
        // dispatch(getDispatchList(id,0))
         dispatch({
           type: types.ADD_SUSCRIPTIONS_SUCCESS,
-          payload: res.data,
+          payload: subscriptionId,
         });
       })
       .catch((err) => {

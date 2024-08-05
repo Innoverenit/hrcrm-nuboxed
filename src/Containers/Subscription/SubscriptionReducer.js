@@ -146,15 +146,31 @@ export const subscriptionReducer = (state = initialState, action) => {
                     case types.ADD_SUSCRIPTIONS_REQUEST:
                       return { ...state, addingSuscrptions: true };
                     case types.ADD_SUSCRIPTIONS_SUCCESS:
+                      const existingSubscriptionIndex = state.subscriptionsFormData.findIndex(item => item.subscriptionId === action.payload);
+
+                      let updatedSubscriptionsFormData;
+                      if (existingSubscriptionIndex !== -1) {
+                        // Update the existing subscription
+                        updatedSubscriptionsFormData = state.subscriptionsFormData.map((item, index) => {
+                          if (index === existingSubscriptionIndex) {
+                            return action.payload;
+                          }
+                          return item;
+                        });
+                      } else {
+                        // Add the new subscription
+                        updatedSubscriptionsFormData = [...state.subscriptionsFormData, action.payload];
+                      }
                       return { ...state, 
                         addingSuscrptions: false, 
-                        subscriptionsFormData: state.subscriptionsFormData.map((item) => {
-                          if (item.subscriptionId === action.payload.subscriptionId) {
-                            return action.payload;
-                          } else {
-                            return item;
-                          }
-                        }),
+                        subscriptionsFormData: updatedSubscriptionsFormData,
+                        // subscriptionsFormData: state.subscriptionsFormData.map((item) => {
+                        //   if (item.subscriptionId === action.payload.subscriptionId) {
+                        //     return action.payload;
+                        //   } else {
+                        //     return item;
+                        //   }
+                        // }),
                         //addingSuscrpitionModal: false ,
                         //newSubscriptionList:[action.payload,...state.newSubscriptionList]
                       };
