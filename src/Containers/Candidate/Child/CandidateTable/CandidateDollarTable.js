@@ -443,26 +443,22 @@ width:"1%"
       width: "17%",
       ...getColumnSearchProps("skillList"),
       render: (name, item, i) => {
-        const data =
-          item.skillList === null
-            ? []
-            : item.skillList.filter((skill) => {
-                return skill !== null && skill !== "";
-              });
-
-        return (
-          <>
-            {item.skillList === [] ? (
-              "None"
-            ) : (
-              <span>
-                <SkillsLoadMore skillList={data} />
-              </span>
-            )}
-          </>
-        );
+          const data =
+              item.skillList === null
+                  ? []
+                  : item.skillList.filter((skill) => skill !== null && skill !== "");
+  
+          return (
+              data.length === 0 ? (
+                  "None"
+              ) : (
+                  <span>
+                      <SkillsLoadMore skillList={data} />
+                  </span>
+              )
+          );
       },
-    },
+  },
 
     {
       title:"Experience",

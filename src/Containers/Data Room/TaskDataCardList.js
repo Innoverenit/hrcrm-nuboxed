@@ -1,9 +1,8 @@
-import React, { useState,lazy,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
-import styled from "styled-components";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
@@ -840,17 +839,3 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
           );
         }
       }
-      
-      const AppIcon = (props) => (
-        <i
-          className={`fas fa-heartbeat ${props.className}`}
-          style={{ fontSize: "123%" }}
-        ></i>
-      );
-      const PulseIcon = styled(AppIcon)`
-        color: #df9697;
-        &:hover {
-          // background: yellow;
-          color: blue;
-        }
-      `;

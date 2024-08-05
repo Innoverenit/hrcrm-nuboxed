@@ -166,22 +166,8 @@ const AppIcon = (props) => (
     style={{ fontSize: "123%" }}
   ></i>
 );
-
-const AppIcon1 = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "145%" }}
-  ></i>
-);
-
 const PulseIcon = styled(AppIcon)`
   color: #df9697;
-  &:hover {
-    color: blue;
-  }
-`;
-const PulseIcon1 = styled(AppIcon1)`
-  color: green;
   &:hover {
     color: blue;
   }

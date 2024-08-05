@@ -3,12 +3,11 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import styled from "styled-components";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { getCountries } from "../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { StyledTable } from "../../../../Components/UI/Antd";
@@ -334,8 +333,8 @@ function CustomerTable(props) {
           item.middleName || ""
         } ${item.lastName || ""}`;
 
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         console.log(date, currentdate, currentdate === date);
         return (
           <>
@@ -529,9 +528,9 @@ function CustomerTable(props) {
       dataIndex: "lastRequirementOn",
       width: "9%",
       render: (text, item) => {
-        // const lastRequirementOn = moment(item.lastRequirementOn ).format("ll");
+        // const lastRequirementOn = dayjs(item.lastRequirementOn ).format("ll");
         const diff = Math.abs(
-          moment().diff(moment(item.lastRequirementOn), "days")
+          dayjs().diff(dayjs(item.lastRequirementOn), "days")
         );
         // const date=diff+1
         return (
@@ -657,9 +656,7 @@ function CustomerTable(props) {
         return (
           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span
-              style={{
-                // color:
-                //   showRes && item.orderId === orderId ? "orange" : "#1890ff",
+              style={{              
                 cursor: "pointer",
               }}
             >
@@ -850,32 +847,3 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerTable);
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-
-const AppIcon1 = (props) => (
-  <BorderColorIcon
-  // className={`pen-to-square ${props.className}`}
-  />
-);
-
-const EditIcon1 = styled(AppIcon1)`
-  color: black;
-  fontsize: 1rem;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

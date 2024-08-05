@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Icon } from "antd";
-import { ApplicationWrapper, FlexContainer, MainWrapper } from "../Layout";
+import { ApplicationWrapper, FlexContainer } from "../Layout";
 import {
   BellOutlined, PlusOutlined,FileFilled
   
@@ -26,16 +25,7 @@ class NoData extends Component {
               alignItems="center"
               alignSelf="center"
             >
-              <FileFilled  type="file"  style={{ fontSize: "3.125em" }} />
-              {/* <FlexContainer
-                flexWrap="nowrap"
-                alignItems="center"
-                justifyContent="content"
-                display="content"
-                alignSelf="center"
-              >
-                
-              </FlexContainer> */}
+              <FileFilled  type="file"  style={{ fontSize: "3.125em" }} />           
               <Title style={{ textAlign: "center" }}>
                 Welcome to the {this.props.content || "Data"} tab.
               </Title>

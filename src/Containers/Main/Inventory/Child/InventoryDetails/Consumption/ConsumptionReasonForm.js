@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { MainWrapper } from "../../../../../../Components/UI/Elements";
 import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import moment from "moment";
@@ -13,12 +12,7 @@ import {
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 function ConsumptionReasonForm(props) {
-  //   const reasonList = props.consumptionReasonList.map((item) => {
-  //     return {
-  //       label: item.name || null,
-  //       value: item.id,
-  //     };
-  //   });
+
   return (
     <>
       <Formik
@@ -48,13 +42,10 @@ function ConsumptionReasonForm(props) {
           ...rest
         }) => (
           <Form class="form-background">
-            <MainWrapper>
-            {/* <FlexContainer justifyContent="space-between"> */}
-              <div class=" flex justify-evenly h-full w-full items-end"
-
-              >
-                <div class=" w-[35%]"
-                >
+           <div class="mr-5 ml-5">       
+              <div class=" flex justify-evenly h-full w-full items-end">           
+                <div class=" w-[35%]">
+                
                   <Field
                     name="reasonId"
                     selectType="reasonType"
@@ -105,26 +96,7 @@ function ConsumptionReasonForm(props) {
                     width={"100%"}
                     isRequired
                     value={values.date}
-                    inlineLabel
-                    // style={{
-                    //   flexBasis: "80%",
-                    //   height: "29px",
-                    //   width: "100%",
-                    //   marginTop: "0px",
-                    // }}
-                    // disabledDate={(currentDate) => {
-                    //   if (values.manufactureDate) {
-                    //     if (
-                    //       moment(values.manufactureDate).isBefore(
-                    //         moment(currentDate)
-                    //       )
-                    //     ) {
-                    //       return true;
-                    //     } else {
-                    //       return false;
-                    //     }
-                    //   }
-                    // }}
+                    inlineLabel                
                   />
                 </div>
                 <div class=" w-[8%]"
@@ -138,7 +110,7 @@ function ConsumptionReasonForm(props) {
                   </Button>
                 </div>
               </div>
-            </MainWrapper>
+            </div>
           </Form>
         )}
       </Formik>

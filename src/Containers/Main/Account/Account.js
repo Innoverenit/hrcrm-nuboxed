@@ -63,13 +63,20 @@ const Account = ({
         handleDistributorModal={handleDistributorModal}
       />
       <AddAccountModal
+       selectedLanguage={props.selectedLanguage}
+       translateText={props.translateText}
+        addPitchModal={props.addPitchModal}
         handleDistributorModal={handleDistributorModal}
         addDistributorModal={addDistributorModal}
       />
       <Suspense fallback={<BundleLoader />}>
         {viewType === "list" ? (
           <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>
-            <AccountTable />
+            <AccountTable
+             selectedLanguage={props.selectedLanguage}
+             translateText={props.translateText}
+              addPitchModal={props.addPitchModal}
+            />
           </div>
         )
           : viewType === "card" ? (
@@ -80,7 +87,10 @@ const Account = ({
             </div>
           ) : viewType === "all" ? (
             <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>
-              <AllAccountList />
+              <AllAccountList
+               selectedLanguage={props.selectedLanguage}
+               translateText={props.translateText}
+                addPitchModal={props.addPitchModal} />
             </div>
           ) : null}
             <AddAccountImportModal

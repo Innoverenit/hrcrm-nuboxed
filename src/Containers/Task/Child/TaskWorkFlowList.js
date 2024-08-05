@@ -1,15 +1,9 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import styled from "styled-components";
-import {
-  MainWrapper,
-  Spacer,
-  TextInput,
-} from "../../../Components/UI/Elements";
 import {
   getTaskWorkflowStagesForRecruit,
 } from "../../Settings/SettingsAction";
@@ -87,20 +81,6 @@ class TaskWorkflowList extends Component {
     });
     this.props.getTaskStagesForRecruit(item.taskChecklistId);
   };
-
-  //   handleModalClick = () => {
-  //     const { currentProcess, publish } = this.state;
-  //     console.log(currentProcess);
-
-  //     const Id = currentProcess.recruitmentProcessId;
-  // let data = {
-  //   recruitmentProcessId: Id,
-  //   publishInd: currentProcess.publishInd ? false : true,
-  // };
-
-  //     this.props.getAllDocumentsType(Id, );
-  //   };
-
   handleApproveIconClick = (item) => {
     this.setState({
       currentStageId: item,
@@ -172,9 +152,7 @@ class TaskWorkflowList extends Component {
     return (
       <>
         <StageWrapper>
-          <MainWrapper>
-           
-
+        <div class="mr-5 ml-5">           
             <FlexContainer>
               <StyledTabs
                 style={{ width: "80%" }}
@@ -196,9 +174,7 @@ class TaskWorkflowList extends Component {
                     ></TabPane>
                   );
                 {/* })} */}
-              </StyledTabs>
-
-            
+              </StyledTabs>           
             </FlexContainer>
 
             {this.props.recruitTaskWorkflowStages.map((recruitTaskWorkflowStage, i) => (
@@ -224,7 +200,7 @@ class TaskWorkflowList extends Component {
             ))}
 
           
-          </MainWrapper>
+          </div>
           
         </StageWrapper>
 

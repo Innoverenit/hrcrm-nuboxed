@@ -4,22 +4,14 @@ import { bindActionCreators } from "redux";
 import styled from 'styled-components';
 
 const EmployeesPendingDocument = (props) => {
-//   useEffect(() => {
-//     props.getEmployeelist();
-//     }, [])
-//     useEffect(() => {
-     
-//         }, [props.employees])
-// if(props.fetchingEmployee){
-//     return <BundleLoader/>;
-// }
+
 console.log("employeeName",props.employeeName)
   return (
     <div class="overflow-y-auto h-[40rem]">
     <div class="flex">  
    {props.employeeName.listOfDocPending.map((item) => {
      return (
-  <CardElement >
+      <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
     
      <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
       <div class="flex">
@@ -35,7 +27,7 @@ console.log("employeeName",props.employeeName)
 
  </div>
 
-  </CardElement>
+  </div>
      )
     })}
   </div>
@@ -63,23 +55,4 @@ const ScrollableContainer = styled.div`
 `;
 
 
-const CardElement = styled.div`
- 
-border-radius: 0.75rem;
-    border: 3px solid #EEEEEE;
-    background-color: rgb(255,255,255);
-    box-shadow: 0 0.25em 0.62em #aaa;
-    height: 2.5rem;
-    color: rgb(68,68,68);
-    margin: 1em;
-    padding: 0.2rem;
-    width: -webkit-fill-available;
-    display: flex;
-    flex-direction: column;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    margin: 0.25em;
-     height: 7rem;
-    
-  }
-`
+

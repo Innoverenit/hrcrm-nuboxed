@@ -85,11 +85,11 @@ function OpportunityCloseCard(props) {
 
                       <div class="flex items-center justify-between ">
                       <div>Name</div>
-                        <Header>
+                      <div class="h-8 overflow-hidden whitespace-nowrap text-lg font-poppins font-bold overflow-ellipsis text-center">
                         <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
-                        </Header> 
+                        </div> 
                        
                
             
@@ -374,32 +374,4 @@ export default connect(
 mapStateToProps,
 mapDispatchToProps
 )(OpportunityCloseCard);
-
-const Header = styled.div`
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1em;
-padding:4px;
-  color:blue;
-  cursor:pointer;
-  // font-family: Poppins;
-  //font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-display: flex;
-    justify-content: flex-end;
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-
-text-align:center
-  }
-`
 

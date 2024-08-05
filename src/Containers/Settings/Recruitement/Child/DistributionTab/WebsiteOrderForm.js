@@ -6,7 +6,6 @@ import {
 
   Select,
 } from "../../../../../Components/UI/Elements";
-import { MainWrapper,  } from "../../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Button, Switch } from "antd";
@@ -84,35 +83,22 @@ const handleDeptChange = (event) => {
         }}
       >
         {({ values }) => (
-        <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
+       <div class="mr-5 ml-5  h-[28rem] overflow-auto">
         <Form className="form-background">
-          <div class =" flex justify-between w-full"
-       
-          >
-            <div class=" w-[44%] flex flex-row mt-[0.625em] ml-[1em]"
-            >
-            
-        
-             
-            <div class=" flex  flex-col w-[44%]"
-              >
-                   <p class=" w-[6rem]">Assigned</p>
-                <div>
-                      {/* <Popconfirm
-                        title="Do you wish to change Status ? "
-                        // onConfirm={handleAppClick}
-                        // onCancel={handleCancel}
-                        okText="Yes"
-                        cancelText="No"
-                      > */}
+          <div class =" flex justify-between w-full">
+                
+            <div class=" w-[44%] flex flex-row mt-[0.625em] ml-[1em]">                                 
+            <div class=" flex  flex-col w-[44%]">
+              
+                   <div class=" w-24">Assigned</div>
+                <div>                     
                         <Switch
                           style={{ width: "5em" }}
                           onChange={handleSingleMultiple}
                           checked={single}
                           checkedChildren="Multiple"
                           unCheckedChildren="Single"
-                        />
-                      {/* </Popconfirm> */}
+                        />             
                     </div>
               </div>
       
@@ -155,17 +141,11 @@ const handleDeptChange = (event) => {
 
 ):(   
   <div class=" w-[35%] ml-8" >
-  <label class=" text-[#444] font-bold text-[0.75rem]" >User</label>
+  <div class=" text-[#444] font-bold text-xs" >User</div>
    <Field
                name="multyAsignedTOId"
                // label="Include"
-               style={{width:"10rem"}}
-              //  label={
-              //    <FormattedMessage
-              //      id="app.multyAsignedTOId"
-              //      defaultMessage="User"
-              //    />
-              //  }
+               style={{width:"10rem"}}         
                mode
                placeholder="Select"
                component={SelectComponent}
@@ -199,7 +179,7 @@ const handleDeptChange = (event) => {
                 {props.distributionAutomation.updatedBy}
               </div>
         </Form>
-      </MainWrapper>
+      </div>
         )}
       </Formik>
     </>

@@ -5,7 +5,6 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CardTravelIcon from "@mui/icons-material/CardTravel";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Button, Badge } from "antd";
-import styled from "styled-components";
 import { ResponsiveCard } from "../Layout";
 import { handleUpdateCustomerModal } from "../../../Containers/Customer/CustomerAction";
 import { MultiAvatar1 } from "../Elements";
@@ -57,7 +56,7 @@ const BussinessCard = (props) => {
     <>
       <ResponsiveCard flexDirection="column" style={{ borderRadius: 3 }}>
         <div class="flex">
-          <CardElement>
+        <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
             <div class=" flex items-center flex-nowrap h-9">
               <div class=" basis-1/4">
                 <MultiAvatar1
@@ -139,7 +138,7 @@ const BussinessCard = (props) => {
                   Convert to Account
                 </Button>
               </div>
-          </CardElement>
+          </div>
         </div>
       </ResponsiveCard>
     </>
@@ -165,49 +164,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(BussinessCard);
-const AppIcon2 = (props) => <BorderColorIcon />;
 
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "145%" }}
-  ></i>
-);
-
-const AppIcon1 = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "145%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    background: yellow;
-    color: blue;
-  }
-`;
-const PulseIcon1 = styled(AppIcon1)`
-  color: green;
-  &:hover {
-    background: yellow;
-    color: blue;
-  }
-`;
-
-const CardElement = styled.div`
-  border-radius: 0.35rem;
-  border: 3px solid #eeeeee;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0.25em 0.62em #aaa;
-  height: 7rem;
-  color: rgb(68, 68, 68);
-  margin: 1em;
-  padding: 0.2rem;
-  width: 16vw;
-  margin-top: 1.5em;
-  @media only screen and (max-width: 600px) {
-    width: -webkit-fill-available;
-  }
-`;

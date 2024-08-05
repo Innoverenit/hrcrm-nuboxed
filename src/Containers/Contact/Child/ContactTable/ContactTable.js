@@ -725,36 +725,3 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(ContactTable);
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-
-const AppIcon1 = (props) => (
-
-  <EditIcon
-    className={`pen-to-square ${props.className}`}
-
-  />
-
-
-
-);
-
-const EditIcon1 = styled(AppIcon1)`
-  color: black;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

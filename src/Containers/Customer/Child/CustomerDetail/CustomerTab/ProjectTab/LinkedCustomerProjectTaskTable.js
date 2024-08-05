@@ -1,40 +1,16 @@
-import React, { lazy, Suspense } from "react";
+import React, {  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import styled from 'styled-components';
-import {
-  CalendarOutlined,
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  DatabaseOutlined,
-  EyeInvisibleOutlined, HeartOutlined, SearchOutlined,  
+import { SearchOutlined,  
 } from '@ant-design/icons';
-import EditIcon from '@mui/icons-material/Edit';
-import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
-// import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal"
-import { Icon, Tooltip,Input, Button, message, Avatar } from "antd";
+import {  Tooltip,Input, Button, message, Avatar } from "antd";
 import moment from "moment";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import { StyledTable, StyledPopconfirm } from "../../../../../../Components/UI/Antd";
-import { FlexContainer} from "../../../../../../Components/UI/Layout";
 import { withRouter } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';
-// import {
-//   getTaskListRangeByUserId,
-//   deleteTask,
-//   approveTaskByTaskId,
-//   rejectTaskByTaskId,
-//   handleUpdateTaskModal,
-//   setEditTask,
-//   handleTaskProjectDrawerModal
-// } from "../TaskAction";
 import Highlighter from "react-highlight-words";
 import Box from "@mui/material/Box";
-import { DataGrid, GridColDef,GridRenderCellParams, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid} from "@mui/x-data-grid";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-// const UpdateTaskModal=lazy(()=>import("./UpdateTaskModal"));
 const ButtonGroup = Button.Group;
 class LinkedCustomerProjectTaskTable extends React.Component {
   constructor(props){
@@ -43,13 +19,7 @@ class LinkedCustomerProjectTaskTable extends React.Component {
    data:"",
     };
   }
-//   componentDidMount() {
-//     const {
-//       getTaskListRangeByUserId,
-//       userDetails: { employeeId },
-//     } = this.props;
-//     getTaskListRangeByUserId(employeeId);
-//   }
+
   state = {
     searchText: "",
     searchedColumn: "",
@@ -678,18 +648,3 @@ function overdue(pendingDays) {
     );
   }
 }
-
-
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

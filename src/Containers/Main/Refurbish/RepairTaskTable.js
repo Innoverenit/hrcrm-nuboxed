@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { getTaskByPhoneId, deleteTaskList } from "./RefurbishAction"
-import { MainWrapper, MultiAvatar } from '../../../Components/UI/Elements'
+import { MultiAvatar } from '../../../Components/UI/Elements'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import QCPhoneTaskToggle from './QCPhoneTaskToggle'
@@ -17,7 +17,7 @@ const RepairTaskTable = (props) => {
 
     return (
         <div>
-            <MainWrapper>
+          <div class="mr-5 ml-5">
 
                 {props.taskByPhone.map((item) => {
                     return (
@@ -31,8 +31,8 @@ const RepairTaskTable = (props) => {
                                 />
                                 <MultiAvatar
                                     primaryTitle={`${item.completeTaskUserName}`}
-                                    imgWidth={"2.1em"}
-                                    imgHeight={"2.1em"}
+                                    imgWidth={"1.8rem"}
+                                    imgHeight={"1.8rem"}
                                 />
                                 <span>
                                     {dayjs(item.creationDate).format("DD-MM-YY")}
@@ -58,7 +58,7 @@ const RepairTaskTable = (props) => {
                         </div>
                     )
                 })}
-            </MainWrapper>
+            </div>
         </div>
     )
 }
