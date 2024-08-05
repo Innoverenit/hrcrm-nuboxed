@@ -1,8 +1,5 @@
 import React from "react";
 import error from "../../Assets/Images/i.png";
-import { Button } from "antd";
-import { Spacer } from "../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
 
 class NodataFoundPage extends React.Component {
   constructor(props) {

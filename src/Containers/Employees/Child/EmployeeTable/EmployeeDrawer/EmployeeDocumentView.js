@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { base_url } from '../../../../../Config/Auth';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
-import styled from 'styled-components';
 
 class EmployeeDocumentView extends Component {
   render() {

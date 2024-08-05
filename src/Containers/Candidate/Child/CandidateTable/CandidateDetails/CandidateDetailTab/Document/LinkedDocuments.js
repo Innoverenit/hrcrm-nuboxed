@@ -31,14 +31,10 @@ class LinkedDocuments extends Component {
         deleteDocument,
     } = this.props;
 
-
-    // if (fetchingDocumentsByCandidateIdError) {
-    //   return <APIFailed />;
-    // }
     return (
       <>
            <div className=' flex justify-end sticky top-28 z-auto'>
-           <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+           <div class="rounded m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-[97.5%] px-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[2.5rem]">Date</div>
        <div className=" md:w-[1.1rem]">Name</div>
@@ -55,57 +51,43 @@ class LinkedDocuments extends Component {
                       <div class="w-wk">
                       <div class=" flex rounded-xl justify-between bg-white mt-[0.5rem]  h-[2.75rem] items-center p-3">
                         <div class="flex">
-                          <div className=" flex font-medium flex-row md:w-[20.12rem] max-sm:flex-row w-full max-sm:justify-between ">
-                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
-                              Name
-                            </div> */}
-       
-                            <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+                          <div className=" flex  flex-row md:w-[20.12rem] max-sm:flex-row w-full max-sm:justify-between ">                      
+                              {/* Name */}
+                               
+                            <div class="  text-[0.82rem] font-poppins md:w-[10.1rem]">
                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
                             </div>
-                         
-       
-                          <div className=" flex font-medium flex-col md:w-[2.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
-                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
-                              Country
-                            </div> */}
-       
-                            <div class=" font-normal text-[0.82rem]  font-poppins">
+                               
+                          <div className=" flex  md:w-[2.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">                         
+                              {/* Country */}
+                              
+                            <div class="  text-[0.82rem]  font-poppins">
        {item.documentTitle}
                             </div>
-                          </div>
-                      
+                          </div>                     
                         </div>
                       
-                          <div className=" flex font-medium flex-row md:w-[9.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
-                              Refurbish
-                            </div> */}
-       
-                            <div class=" font-normal text-[0.82rem]  font-poppins">
+                          <div className=" flex  flex-row md:w-[9.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                                                      {/* Refurbish */}
+                               
+                            <div class="  text-[0.82rem]  font-poppins">
                             <span>{elipsize(item.documentContentType || "", 15)}</span>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-row md:w-[9.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
-                              Refurbish
-                            </div> */}
+                          <div className=" flex  flex-row md:w-[9.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">                       
+                              {/* Refurbish */}
+                         
        
-                            <div class=" font-normal text-[0.82rem]  font-poppins">
+                            <div class="  text-[0.82rem]  font-poppins">
                             <span>{item.contract}</span>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-row md:w-[9.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-                            {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
-                              Inventory
-                            </div> */}
-       
-                            <div class=" font-normal text-[0.82rem]  font-poppins">
+                          <div className=" flex flex-row md:w-[9.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                                                   {/* Inventory */}                             
+                            <div class="  text-[0.82rem]  font-poppins">
 {item.uploadedBy}
                             </div>
-                          </div>
-                        
-                    
+                          </div>                                        
                           <div class="flex flex-row w-[5%] max-sm:flex-row max-sm:w-[10%]">
                             <div>
                             <a
@@ -117,54 +99,28 @@ class LinkedDocuments extends Component {
               style={{ cursor: "pointer",fontSize:"0.8rem" }}
             />
           </a>
-                            </div>
-            
+                            </div>         
                             <div></div>
-                          </div>
-                     
+                          </div>                   
                       
                           <div class="flex flex-row w-[5%] max-sm:flex-row max-sm:w-[10%]">
                           <div>
                         <StyledPopconfirm
             title="Do you want to delete?"
             onConfirm={() => deleteDocument(item.documentId)}
-          >
-            
+          >          
       <DeleteIcon type="delete" style={{ cursor: "pointer",fontSize:"1rem", color: "red" }} />
-
           </StyledPopconfirm>
-                        </div>
-                       
+                        </div>                     
                             <div></div>
                           </div>
                           </div>
                       </div>
                     </div>
-
-
                     )
                 })}
       </div>
-      </div>
-        {/* {true && (
-          <StyledTable
-            // rowSelection={rowSelection}
-            pagination={false}
-            scroll={{ y: 280 }}
-            expandedRowRender={(record) => {
-              //debugger;
-              return <p style={{ margin: 0 }}>{record.documentDescription}</p>;
-            }}
-            rowKey="candidateId"
-            columns={columns}
-            dataSource={documentsByCandidateId}
-            Loading={
-              fetchingDocumentsByCandidateId ||
-              fetchingDocumentsByCandidateIdError
-            }
-            onChange={console.log("task onChangeHere...")}
-          />
-        )} */}
+      </div>     
       </>
     );
   }
@@ -188,9 +144,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(LinkedDocuments);
-
-// function startDownload() {
-//   var url =
-//     "http://korero-env1.eba-sywkcsdt.eu-west-3.elasticbeanstalk.com/api/v2.0/Korero_logo1.png";
-//   window.open(url, "Download");
-// }
