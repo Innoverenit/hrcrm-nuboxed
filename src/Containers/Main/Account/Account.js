@@ -27,7 +27,11 @@ const Account = ({
   getDistributorsByUserId,
   getAllDistributorsList,
   addAccountImportModal,
-  handleAccountImportModal
+  handleAccountImportModal,
+  selectedLanguage,
+  translateText,
+  addPitchModal
+
 }) => {
   const [currentData, setCurrentData] = useState("");
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
@@ -63,9 +67,9 @@ const Account = ({
         handleDistributorModal={handleDistributorModal}
       />
       <AddAccountModal
-       selectedLanguage={props.selectedLanguage}
-       translateText={props.translateText}
-        addPitchModal={props.addPitchModal}
+       selectedLanguage={selectedLanguage}
+       translateText={translateText}
+        addPitchModal={addPitchModal}
         handleDistributorModal={handleDistributorModal}
         addDistributorModal={addDistributorModal}
       />
@@ -73,9 +77,9 @@ const Account = ({
         {viewType === "list" ? (
           <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>
             <AccountTable
-             selectedLanguage={props.selectedLanguage}
-             translateText={props.translateText}
-              addPitchModal={props.addPitchModal}
+             selectedLanguage={selectedLanguage}
+             translateText={translateText}
+              addPitchModal={addPitchModal}
             />
           </div>
         )
@@ -88,9 +92,9 @@ const Account = ({
           ) : viewType === "all" ? (
             <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>
               <AllAccountList
-               selectedLanguage={props.selectedLanguage}
-               translateText={props.translateText}
-                addPitchModal={props.addPitchModal} />
+               selectedLanguage={selectedLanguage}
+               translateText={translateText}
+                addPitchModal={addPitchModal} />
             </div>
           ) : null}
             <AddAccountImportModal

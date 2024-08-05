@@ -152,14 +152,16 @@ class OrganizationHeaderTab extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getOrganizationList();
+    }
+
 
   handleRecruitClick = () => {
     this.setState({ file: true });
   };
 
-  componentDidMount() {
-  this.props.getOrganizationList();
-  }
+ 
 
   componentWillUnmount() {
     this.setState({ breadCumb: false });
