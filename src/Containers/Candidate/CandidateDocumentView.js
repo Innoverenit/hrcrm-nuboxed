@@ -12,7 +12,7 @@ class CandidateDocumentView extends Component {
                {this.props.documentsByCandidateId.map((item) => { 
                   return (                        
                     <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
-                      <MainWrapper>
+                      <div class="mr-5 ml-5">
                       <div class="w-7 h-7" >
                       <a
               href={`${base_url}/document/${item.documentId}`}
@@ -24,7 +24,7 @@ class CandidateDocumentView extends Component {
                    </a>                                                  
                         </div>
                         <div class="h-8 font-bold font-poppins text-xs overflow-hidden whitespace-nowrap overflow-ellipsis">{item.documentContentType} </div>
-                        </MainWrapper>             
+                        </div>             
 
                     </div>
                   )   
