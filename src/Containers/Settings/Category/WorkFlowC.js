@@ -211,7 +211,7 @@ return <div><BundleLoader/></div>;
                    style={{backgroundColor:"tomato",color:"white"}}
                   onClick={handleAddSector}> Add More</button>
               )}
-  {props.primaryOrgType === 'Parent' && (
+  {props.primaryOrgType === 'Child' && (
 <Select
         showSearch
         style={{ width: 200,marginLeft:'20px' }}

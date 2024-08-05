@@ -4,6 +4,7 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
+import { MainWrapper } from '../../Components/UI/Layout';
 
 class CandidateDocumentView extends Component {
   render() {
