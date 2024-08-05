@@ -47,15 +47,15 @@ function AccountTable(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-'Name', // 0
-'Work', // 1
-'Category', // 2
-'Type', // 3
-'Payment(Days)', // 4
-'Payment', // 5
-'Tax', // 6
-'Assigned', // 7
-'Owner', // 8
+            'Name', // 0
+            'Work', // 1
+            'Category', // 2
+            'Type', // 3
+            'Payment(Days)', // 4
+            'Payment', // 5
+            'Tax', // 6
+            'Assigned', // 7
+            'Owner', // 8
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -181,7 +181,7 @@ function AccountTable(props) {
             hasMore={hasMore}
             loader={props.fetchingCustomerByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
             height={"80vh"}
-          
+            style={{ scrollbarWidth:"thin"}}
           >
             {props.customerListByUser.length ?
               <>
@@ -219,10 +219,10 @@ function AccountTable(props) {
                               <div class="max-sm:w-auto flex items-center">
                                 <Tooltip>
                                   <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                    <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center">
+                                    <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center">
 
                                       <Link
-                                        class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 max-sm:text-sm text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
+                                        class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-xs text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
                                         to={`distributor/${item.distributorId}`}
                                         title={`${item.name}`}>
                                         {item.name.substring(0, 25)}
@@ -241,7 +241,7 @@ function AccountTable(props) {
                           </div>
                           <div className=" flex  items-center  w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
 
-                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-sm ">
+                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-xs ">
                               {item.dialCode} {item.phoneNo}
                             </div>
 
@@ -250,26 +250,26 @@ function AccountTable(props) {
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex max-sm:w-auto w-[5.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
-                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {/* {item.url} */}
                               {item.dcategoryName}
                             </div>
                           </div>
                           <div className=" flex  max-sm:w-auto w-[8.2rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
-                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.clientName}
 
                             </div>
                           </div>
 
                           <div className=" flex  max-sm:w-auto w-[11rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.payment}
 
                             </div>
                           </div>
                           <div className=" flex  max-sm:w-auto w-[11rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">       
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">       
                               {visible && (item.distributorId === particularRowData.distributorId) ?
                                                                 <Input
                                                                     type='text'
@@ -308,7 +308,7 @@ function AccountTable(props) {
                                                                     handleUpdateRevisePrice()
                                                                     handleSetParticularOrderData(item)
                                                                 }}
-                                                                className="!text-xl cursor-pointer text-[tomato]"
+                                                                className="!text-icon cursor-pointer text-[tomato]"
                                                             />
                                                         </Tooltip> }
 
@@ -319,15 +319,15 @@ function AccountTable(props) {
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                           <div className=" flex  max-sm:w-auto  w-[3.5rem] max-xl:w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.countryValue}
                             </div>
 
                           </div>                       
                           <div className=" flex  items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
+                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                           <div>
                             {item.assignedTo === null ? (
@@ -469,20 +469,26 @@ function AccountTable(props) {
         RowData={RowData}
         updateAccountModal={props.updateAccountModal}
         handleUpdateAccountModal={handleUpdateAccountModal}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
+
       />
       <AccountPulseModal
         RowData={RowData}
         handleAccountPulse={props.handleAccountPulse}
         showPulseModal={props.showPulseModal}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
+
       />
         <AccountModal
         RowData={RowData}
         accountModal={props.accountModal}
         handleAccountModal={handleAccountModal}
-      />
+         selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}/>
 
-    </>
-  );
+    </>  );
 }
 const mapStateToProps = ({ distributor, auth }) => ({
   customerListByUser: distributor.customerListByUser,

@@ -150,7 +150,7 @@ const handleLoadMoreLow = () => {
                                                                     )}
                                                                     {item.priority === "Medium" && (
                                                                         <div
-                                                                            class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
+                                                                            class="border rounded-[50%] h-6 w-6 bg-[#0f0e0d]"></div>)}
                                                                     {item.priority === "Low" && (
                                                                         <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                 </div>
@@ -158,11 +158,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex  w-wk     max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                         <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -440,11 +440,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -723,11 +723,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                      <div className=" flex items-center    max-sm:w-full">
-                       <div className="flex max-sm:w-full">
+                       <div className="flex  items-center max-sm:w-full">
                          <div class="w-[9.43rem]">
                            <Badge size="small" count={item.productNum}>
                              <span
-                               class="underline cursor-pointer text-[#1890ff] text-xs"
+                               class="underline font-bold cursor-pointer text-[#1890ff] text-xs"
                                onClick={() => {
                                  handleSetParticularOrderData(item);
                                  props.handleOrderDetailsModal(true);

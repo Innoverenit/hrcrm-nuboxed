@@ -25,7 +25,9 @@ class AddAccountImportModal extends Component {
         
         >
           <Suspense fallback={<BundleLoader />}>
-        <AccountImportForm/>
+        <AccountImportForm
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}/>
 
          
           

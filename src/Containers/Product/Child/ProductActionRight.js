@@ -15,6 +15,41 @@ import UploadCatalogue from "./UploadCatalogue";
 import UploadIcon from '@mui/icons-material/Upload';
 
 class ProductActionRight extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+          
+         
+        "Add",
+        "Upload",
+        
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const {
       handleConfigureModal,
@@ -29,8 +64,9 @@ class ProductActionRight extends React.Component {
             <Button
               type="primary"
               onClick={() => handleConfigureModal(true)}
-            ><DataSaverOnIcon className="!text-icon"/>Add
-
+            ><DataSaverOnIcon className="!text-icon"/>
+            {/* Add */}
+            {this.state.translatedMenuItems[0]}
             </Button>
           </Tooltip>
  &nbsp;
@@ -39,10 +75,10 @@ class ProductActionRight extends React.Component {
               className="export"
               default
               href={`${base_url}/export/product?orgId=${organizationId}`}
-            ><FileExcelOutlined />
+            ><FileExcelOutlined className="!text-icon" />
             </Button>
           </Tooltip>
-          &nbsp;
+          
 
          
           <Tooltip placement="left" title="Create">
@@ -51,13 +87,17 @@ class ProductActionRight extends React.Component {
               ghost
               onClick={() => this.props.handleUploadProductModal(true)}
             >
-             <UploadIcon className=" !text-icon"/> Upload
+             <UploadIcon className=" !text-icon"/>
+              {/* Upload */}
+              {this.state.translatedMenuItems[1]}
             </Button>
           </Tooltip>
          
         </div>
         
         <UploadCatalogue
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           handleUploadProductModal={this.props.handleUploadProductModal}
           uploadProductList={this.props.uploadProductList}
         />

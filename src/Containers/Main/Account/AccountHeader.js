@@ -20,6 +20,8 @@ class AccountHeader extends Component {
                 <ActionHeader
                     leftComponent={
                         <AccountActionLeft
+                        selectedLanguage={this.props.selectedLanguage}
+                        translateText={this.props.translateText}
                             viewType={viewType}
                             setDistributorViewType={setDistributorViewType}
                             setCurrentData={setCurrentData}
@@ -29,6 +31,8 @@ class AccountHeader extends Component {
                     }
                     rightComponent={
                         <AccountActionRight
+                            selectedLanguage={this.props.selectedLanguage}
+                            translateText={this.props.translateText}
                             viewType={viewType}
                             handleAccountImportModal={handleAccountImportModal}
                             handleDistributorModal={handleDistributorModal}
