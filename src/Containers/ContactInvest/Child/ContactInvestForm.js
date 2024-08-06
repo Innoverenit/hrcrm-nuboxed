@@ -132,18 +132,7 @@ class ContactInvestForm extends Component {
   };
 
   render() {
-    // const sortedCountry =this.props.dialCodeList.sort((a, b) => {
-    //   const nameA = a.country_dial_code.toLowerCase();
-    //   const nameB = b.country_dial_code.toLowerCase();
-    //   // Compare department names
-    //   if (nameA < nameB) {
-    //     return -1;
-    //   }
-    //   if (nameA > nameB) {
-    //     return 1;
-    //   }
-    //   return 0;
-    // });
+
     const countryNameOption = this.props.dialCodeList.map((item) => {
       return {
         label: `+${item.country_dial_code}`,
@@ -201,20 +190,7 @@ class ContactInvestForm extends Component {
         value: item.investorId,
       };
     });
-    // const [text, setText] = useState("");
-    // function handletext(e) {
-    //   setText(e.target.value);
-    // }
-    // const {
-    //   transcript,
-    //   listening,
-    //   resetTranscript,
-    //   browserSupportsSpeechRecognition,
-    // } = useSpeechRecognition();
   
-    // if (!browserSupportsSpeechRecognition) {
-    //   return <span>Browser doesn't support speech recognition.</span>;
-    // }
     const {loading,translatedMenuItems } = this.state;
     if (loading) {
       return <div><BundleLoader/></div>;
@@ -294,12 +270,11 @@ class ContactInvestForm extends Component {
                       <div class=" flex justify-between max-sm:flex-col">                     
                             {/* name="salutation"                                        */}
                         <div class=" w-full max-sm:w-wk">
+                          <div>{translatedMenuItems[0]}</div>
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label= {translatedMenuItems[0]}
-                          
+                            // label="First Name"                                                    
                             type="text"
                             width={"100%"}
                             isColumn
@@ -310,10 +285,10 @@ class ContactInvestForm extends Component {
                       </div>                  
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-wk">
+                        <div>{translatedMenuItems[1]}</div>
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={translatedMenuItems[1]}                       
+                            //label="Middle Name"                                               
                             type="text"
                             width={"100%"}
                             isColumn
@@ -322,10 +297,10 @@ class ContactInvestForm extends Component {
                           />
                         </div>
                         <div class=" w-1/2 max-sm:w-wk">
+                        <div>{translatedMenuItems[2]}</div>
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                      label={translatedMenuItems[2]}                         
+                            //label="Last Name"                                           
                             type="text"
                             width={"100%"}
                             isColumn
@@ -338,11 +313,11 @@ class ContactInvestForm extends Component {
                   </div>
                   <div class=" flex justify-between">
                     <div class=" w-full">
+                    <div>{translatedMenuItems[3]}</div>
                       <FastField
                         type="email"
                         name="emailId"
-                        //label="Email"
-                        label={translatedMenuItems[3]}                   
+                        //label="Email"                            
                         className="field"
                         isColumn
                         width={"100%"}
@@ -354,11 +329,11 @@ class ContactInvestForm extends Component {
                   </div>  
                   <div class=" flex justify-between">
                     <div class=" w-full">
+                    <div>{translatedMenuItems[4]}</div>
                       <FastField
                         type="email"
                         name="alternateEmail"
-                        //label="Email"
-                        label={translatedMenuItems[4]}                     
+                        //label="Email"                                
                         className="field"
                         isColumn
                         width={"100%"}
@@ -371,10 +346,10 @@ class ContactInvestForm extends Component {
                   </div>                            
                   <div class=" flex justify-between">
                     <div class=" w-2/6">
+                    <div>{translatedMenuItems[5]}</div>
                     <FastField
                         name="countryDialCode"
-                        isColumnWithoutNoCreate
-                        label={translatedMenuItems[5]}                     
+                        isColumnWithoutNoCreate                                
                         defaultValue={{
                           label:`+${user.countryDialCode}`,
                         }}
@@ -386,11 +361,10 @@ class ContactInvestForm extends Component {
                       />
                     </div>
                     <div class=" w-[60%]">
+                    <div>{translatedMenuItems[6]}</div>
                       <FastField
                         type="number"
-                        name="mobileNumber"
-                        label={translatedMenuItems[6]}
-                   
+                        name="mobileNumber"                                      
                         //placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
@@ -429,13 +403,14 @@ class ContactInvestForm extends Component {
                        />
                       )}
                     </div>
-                    <div class=" w-2/4">
+                    <div class=" w-2/4"> 
+                       <div>{translatedMenuItems[7]}</div>
                       {this.state.whatsapp && (
                         <FastField
                           type="text"
                           name="phoneNumber"
                           placeholder="Phone #"
-                          label={translatedMenuItems[7]}
+                        
                         //phone no
                           isColumn
                           component={InputComponent}
@@ -448,11 +423,11 @@ class ContactInvestForm extends Component {
                  
                   < div class=" flex justify-between mt-3">
                     <div class=" w-full">
+                    <div>{translatedMenuItems[8]}</div>
                       <FastField
                         type="text"
                         name="linkedinPublicUrl"
-                        //label="Linkedin "
-                        label={translatedMenuItems[8]}                   
+                        //label="Linkedin "                                     
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -480,11 +455,11 @@ class ContactInvestForm extends Component {
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " >
                   <div class=" flex  justify-between">
                     <div class=" w-w47.5">
+                    <div>{translatedMenuItems[10]}</div>
                       <Field
                         name="investorId"
                         // selectType="customerList"
-                        isColumnWithoutNoCreate
-                        label={translatedMenuItems[10]}
+                        isColumnWithoutNoCreate                 
                          //Tag Company
                          component={SelectComponent}
                         isColumn
@@ -496,10 +471,10 @@ class ContactInvestForm extends Component {
                     </div>
 
                     <div class=" w-w47.5">
+                    <div>{translatedMenuItems[11]}</div>
                       <FastField
                         name="designationTypeId"
-                        //label="Designation"
-                        label={translatedMenuItems[11]}                    
+                        //label="Designation"                                         
                         selectType="designationType"
                         isColumn
                         component={SearchSelect}
@@ -512,10 +487,10 @@ class ContactInvestForm extends Component {
                 
                   <div class=" flex justify-between mt-3">         
                   <div class="w-w47.5">
+                  <div>{translatedMenuItems[12]}</div>
                     <FastField
                       name="departmentId"
-                      //label="Department"
-                      label={translatedMenuItems[12]}              
+                      //label="Department"                                
                       isColumn
                       isColumnWithoutNoCreate
                       component={SearchSelect}
@@ -525,10 +500,10 @@ class ContactInvestForm extends Component {
                     />
                   </div>
                   <div class=" w-w47.5">
+                  <div>{translatedMenuItems[13]}</div>
                   <Field
                             name="sourceId"
-                            //source
-                            label={translatedMenuItems[13]}                      
+                            //source                                
                             isColumnWithoutNoCreate
                             component={SelectComponent}
                             options={
@@ -555,89 +530,10 @@ class ContactInvestForm extends Component {
                       />
                     )}
                   />
-
-                  
-                  {/* <Field
-                    name="address[0].address1"
-                    // label="Address"
-                    label={
-                      <FormattedMessage
-                        id="app.address[0].address1"
-                        defaultMessage="Address"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  />
-                   */}
-                  {/* <Field
-                    name="address[0].street"
-                    //label="Street"
-
-                    label={
-                      <FormattedMessage
-                        id="app.street"
-                        defaultMessage="Street"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  /> */}
-                  
+                                           
                   <div class=" flex  justify-between mt-6">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div> */}
-                  </div>
-                 
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
+                  {/* City */}
+                  </div>                               
                 </div>
               </div>
              

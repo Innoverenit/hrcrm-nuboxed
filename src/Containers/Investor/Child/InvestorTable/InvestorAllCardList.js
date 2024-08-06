@@ -205,6 +205,7 @@ function InvestorAllCardList(props) {
         hasMore={hasMore}
         loader={fetchingAllInvestors?<div class="flex items-center">Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
         
         { !fetchingAllInvestors && allInvestorsbyId.length === 0 ?<NodataFoundPage />:allInvestorsbyId.map((item,index) =>  {

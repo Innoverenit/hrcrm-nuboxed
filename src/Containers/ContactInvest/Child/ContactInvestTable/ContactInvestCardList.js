@@ -28,7 +28,6 @@ import {
   handleContactInvestNotesDrawerModal,
   getContactInvestByUserId,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
-import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -409,7 +408,7 @@ function ContactInvestCardList(props) {
        </InfiniteScroll>
       </div>
       <UpdateContactInvestModal
-         translateText={props.translateText}
+        translateText={props.translateText}
          selectedLanguage={props.selectedLanguage}
          translatedMenuItems={props.translatedMenuItems}
         contactiData={contactiData}
@@ -418,8 +417,8 @@ function ContactInvestCardList(props) {
         handleCurrentContactIdata={handleCurrentContactIdata}
       />
 <AddContactInvestPulseModal
-        translateText={props.translateText}
-       selectedLanguage={props.selectedLanguage}
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
          translatedMenuItems={props.translatedMenuItems}
         contactiData={contactiData}
         addDrawerContactInvestPulseModal={addDrawerContactInvestPulseModal}
@@ -427,9 +426,9 @@ function ContactInvestCardList(props) {
         handleCurrentContactIdata={handleCurrentContactIdata}
       />  
       <AddContactInvestNotesDrawerModal
-       translateText={props.translateText}
-       selectedLanguage={props.selectedLanguage}
-       translatedMenuItems={props.translatedMenuItems}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         contactiData={contactiData}
         addDrawerContactInvestNotesModal={addDrawerContactInvestNotesModal}
         handleContactInvestPulseDrawerModal={handleContactInvestPulseDrawerModal}

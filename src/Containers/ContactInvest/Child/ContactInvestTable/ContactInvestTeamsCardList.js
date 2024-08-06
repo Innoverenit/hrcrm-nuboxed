@@ -132,9 +132,6 @@ function ContactInvestTeamsCardList(props) {
     addDrawerContactInvestPulseModal
   } = props;
 
-//  if(fetchingContactsInvest){
-//   return <BundleLoader/>
-//  }
 if (loading) {
   return <div><BundleLoader/></div>;
 }
@@ -185,6 +182,8 @@ if (loading) {
         hasMore={hasMore}
         loader={props.fetchingTeamsContactInvest?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
+
       >     
        { !props.fetchingTeamsContactInvest && props.teamsContactInvestData.length === 0 ?<NodataFoundPage />:props.teamsContactInvestData.map((item,index) =>  {
         
@@ -233,7 +232,6 @@ if (loading) {
                                       <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
-   
   &nbsp;&nbsp;
   {date === currentdate ? (
     <span class="text-[tomato] mt-[0.4rem] font-bold">  New </span>
@@ -267,7 +265,7 @@ if (loading) {
                           <div className=" flex  md:w-[5.22rem] max-sm:flex-row w-full  ">
                               {/* # Deals */}
 
-                              <div class=" text-xs  font-poppins">
+                              <div class=" text-xs font-poppins">
                                {item.oppNo}
                               </div>
                           </div>
@@ -280,14 +278,13 @@ if (loading) {
                           </div>
                           <div className="flex  max-sm:justify-between  md:w-[6.81rem] max-sm:flex-row w-full ">
                           {/* Source */}
-
                               <div class="text-xs  font-poppins">
 
                               </div>
                           </div>
                           </div>
                           <div class="flex">
-                          <div className="flex    md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">             
+                          <div className="flex  md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">             
                {/* Owner */}
              
         <Tooltip title={item.ownerName}>
@@ -371,17 +368,7 @@ if (loading) {
       <LocationOnIcon  className="!text-icon cursor-pointer text-[#960a0a]"/>
       </span>
     </Tooltip>
-    </div>
-    {/* <div><Tooltip title={item.email}>
-        <MailOutlineIcon
-          type="mail"
-          style={{ cursor: "pointer",fontSize: "1rem" }}
-          onClick={() => {
-            props.getCustomerById(item.customerId);
-            props.handleCustomerEmailDrawerModal(true);
-          }}
-        />
-      </Tooltip> </div> */}         
+    </div>       
                 <div>
               <Tooltip title="Notes">
  <NoteAltIcon

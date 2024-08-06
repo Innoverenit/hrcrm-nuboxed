@@ -24,7 +24,9 @@ class AddInvestorActivityJumpstartModal extends Component {
           <Suspense fallback={<BundleLoader />}>
             <InvestorActivityJumpstartCardList 
           RowData={this.props.RowData} 
-           
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
             />
           </Suspense>
         </StyledDrawer>

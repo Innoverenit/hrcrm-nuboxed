@@ -199,6 +199,7 @@ function InvestorTeamCardList(props) {
         hasMore={hasMore}
         loader={fetchingTeamInvestor?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
         
         { !fetchingTeamInvestor && teamInvestor.length === 0 ?<NodataFoundPage />:teamInvestor.map((item,index) =>  {

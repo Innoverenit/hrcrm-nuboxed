@@ -124,7 +124,6 @@ class LinkedContactInvestDocuments extends Component {
                 style={{ cursor: "pointer" ,fontSize:"1.25rem"}}
               />
             </a>
-
                                       </div>
                                   </div>
                                   <div className=" flex  md:w-[2.22rem] max-sm:flex-row w-full max-sm:justify-between ">

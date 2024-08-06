@@ -22,7 +22,7 @@ class ContactInvestHeader extends Component {
       <div>
         <ActionHeader
           leftComponent={
-            <ContactInvestActionLeft
+            <ContactInvestActionLeft         
             teamsAccessInd={teamsAccessInd}
             handleFilterChange={this.props.handleFilterChange}
             filter={this.props.filter}
@@ -30,11 +30,12 @@ class ContactInvestHeader extends Component {
               setContactInvetViewType={setContactInvetViewType}
               currentUser={currentUser}
             currentData={currentData}
-            handleClear={handleClear}
-     
+            handleClear={handleClear}     
             handleChange={handleChange}
             handleCurrentData={handleCurrentData}        
-           
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
             />
           }
           rightComponent={
@@ -42,7 +43,9 @@ class ContactInvestHeader extends Component {
             viewType={viewType}
             addContactInvestModal={addContactInvestModal}
             handleContactInvestModal={handleContactInvestModal}
-    
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
             />
           }
         />
