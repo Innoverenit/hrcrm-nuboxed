@@ -70,3 +70,59 @@ export const handlePromotionsDrawer = (modalProps) => (dispatch) => {
         });
       });
   };
+
+  export const addingProductToggle = (data,promocodeId,productInd) => (dispatch) => {
+    dispatch({
+      type: types.ADDING_PRODUCT_TOGGLE_REQUEST,
+    });
+    axios
+      .put(`${login_url}/promocode/updateProductInd/${promocodeId}/${productInd}`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+  
+      .then((res) => {
+        console.log(res);
+      // dispatch(getPrmotionData)
+        dispatch({
+          type: types.ADDING_PRODUCT_TOGGLE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADDING_PRODUCT_TOGGLE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const addingMaterialToggle = (data,promocodeId,materialInd) => (dispatch) => {
+    dispatch({
+      type: types.ADDING_MATERIAL_TOGGLE_REQUEST,
+    });
+    axios
+      .put(`${login_url}/promocode/updateMaterialInd/${promocodeId}/${materialInd}`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+  
+      .then((res) => {
+        console.log(res);
+      // dispatch(getPrmotionData)
+        dispatch({
+          type: types.ADDING_MATERIAL_TOGGLE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADDING_MATERIAL_TOGGLE_FAILURE,
+          payload: err,
+        });
+      });
+  };

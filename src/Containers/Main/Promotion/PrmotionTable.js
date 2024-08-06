@@ -15,6 +15,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import FilterTiltShiftIcon from "@mui/icons-material/FilterTiltShift";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { Switch, Popconfirm } from "antd";
+import PrmotionProductionToggle from "./PrmotionProductionToggle";
+import PrmotionMaterialToggle from "./PrmotionMaterialToggle";
 
 
 
@@ -96,7 +98,7 @@ console.log(props.promotionsData)
             <div className=" md:w-[7.9rem] ">
            Catalogue
             </div>
-            <div className="md:w-[7.5rem]">
+            <div className="md:w-[7.51rem]">
            Material
               </div>
             <div className=" md:w-[5.9rem] ">
@@ -154,28 +156,28 @@ console.log(props.promotionsData)
                     <div className=" flex  flex-row md:w-[11.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
-                        <Switch
+                      <PrmotionProductionToggle
+                          promoCodeId={item.promoCodeId}
+                          productInd={item.productInd}
+                        />
+                        {/* <Switch
                           className="toggle-clr"
                           checked={item.productInd }
                          isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                           //disabled={!props.orderManagementInd}
-                        />
+                        /> */}
                       </div>
                     </div>
                     <div className=" flex  flex-row md:w-[7.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
 <div class=" font-normal text-[0.82rem]  font-poppins">
-<Switch
-    className="toggle-clr"
-    checked={item.materialInd}
-    isLoading={true}
-    checkedChildren="Yes"
-    unCheckedChildren="No"
-    //disabled={!props.orderManagementInd}
-  />
+   <PrmotionMaterialToggle
+                          promoCodeId={item.promoCodeId}
+                          materialInd={item.materialInd}
+                        />
 </div>
 </div>
                     <div className=" flex  flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">

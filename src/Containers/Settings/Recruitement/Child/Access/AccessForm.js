@@ -90,7 +90,7 @@ const AccessForm = (props) => {
     setCheckedScannerList(props.departmentAcces.scanner)
     setCheckedMaterialList (props.departmentAcces.material)
     setCheckedCatalougeList (props.departmentAcces.catalouge)
-    setCheckedCatalougeList (props.departmentAcces.promotions)
+    setCheckedCatalougeList (props.departmentAcces.promotion)
     
   }, [props.departmentAcces.vendor,
   props.departmentAcces.customer,
@@ -148,7 +148,7 @@ const AccessForm = (props) => {
   props.departmentAcces.scanner,
   props.departmentAcces.material,
   props.departmentAcces.catalouge,
-  props.departmentAcces.promotions,
+  props.departmentAcces.promotion,
   
   
 ])
@@ -813,7 +813,7 @@ const AccessForm = (props) => {
     };
      // Promotions
 
-     const [checkedPromotionsList, setCheckedPromotionsList] = useState(props.departmentAcces.promotions              );
+     const [checkedPromotionsList, setCheckedPromotionsList] = useState(props.departmentAcces.promotion              );
      const [indeterminatePromotions, setIndeterminatePromotions] = useState(true);
      const [checkAllPromotions, setCheckAllPromotions] = useState(false);
    
@@ -1128,7 +1128,7 @@ const onCheckAllTeamsChange = (e) => {
       scanner:checkedScannerList || [],
       catalouge:checkedCatalougeList || [],
       material: checkedMaterialList || [],
-      promotions: checkedPromotionsList || [],
+      promotion: checkedPromotionsList || [],
       departmentId: props.departmentId,
       roleTypeId:props.roleTypeId,
 
