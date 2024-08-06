@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import AsyncSelect from "react-select/lib/Async";
 import axios from "axios";
 import { get } from "lodash";
 import { ValidationError, StyledLabel, StyledAsync } from "../../UI/Elements";
-
-import { FlexContainer } from "../../UI/Layout";
 import { message } from "antd";
 const CustomOption = (data) => (
   <div>
@@ -31,7 +28,7 @@ class Clearbit extends Component {
       })
       .catch((err) => console.log(err));
   };
-  // renderOptions = ({ data }) => (<div><p>----{data.website}</p></div>);
+
   handleInputChange = (e) => e;
 
   handleOnChange = (option) => {
@@ -162,8 +159,8 @@ class Clearbit extends Component {
     }
     return (
       <>
-        <FlexContainer>
-          <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
+      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+      <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
             <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
             <StyledAsync
               isRequired={isRequired}
@@ -179,8 +176,8 @@ class Clearbit extends Component {
 
               // components={this.renderOptions}
             />
-          </FlexContainer>
-        </FlexContainer>
+          </div>
+        </div>
         {get(touched, field.name) && get(errors, field.name) && (
           <ValidationError>{get(errors, field.name)}</ValidationError>
         )}

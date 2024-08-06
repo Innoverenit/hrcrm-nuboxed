@@ -1,22 +1,12 @@
-import React, { lazy, Suspense, Component, Profiler } from "react";
+import React, {  Component, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import { Button, Switch, Tooltip, Icon } from "antd";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import {
-  Spacer,
-  StyledLabel,
-} from "../../../../../../../Components/UI/Elements";
+import { Button} from "antd";
+import { Formik, Form,  FastField } from "formik";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
-// import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import * as Yup from "yup";
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
-// import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
-// import Upload from "../../../../../../Components/Forms/Formik/Upload";
-// import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
-// import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-// import { addBankDetails } from "../../../../ProfileAction";
 import { updateBankDetails } from "../../../../../../Profile/ProfileAction";
 const documentSchema = Yup.object().shape({
   documentId: Yup.string().required("Input needed !"),
@@ -79,8 +69,8 @@ class UpdateBankForm extends Component {
                       style={{ flexBasis: "80%", width: "100%" }}
                     />
                   </div>
-                  <Spacer />
-                  <FlexContainer>
+                  <mt-3 />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <FastField
                         name="ifscCode"
@@ -113,8 +103,8 @@ class UpdateBankForm extends Component {
                         inlineLabel
                         />
                     </div>
-                  </FlexContainer>
-                  <Spacer />
+                  </div>
+                  <mt-3 />
                   <div style={{ width: "100%" }}>
                     <FastField
                       isRequired
@@ -133,7 +123,7 @@ class UpdateBankForm extends Component {
                   </div>
                 </div>
 
-                <Spacer style={{ marginTop: "1.25em" }} />
+                <mt-3 style={{ marginTop: "1.25em" }} />
                 <FlexContainer justifyContent="flex-end">
                   <Button
                     htmlType="submit"

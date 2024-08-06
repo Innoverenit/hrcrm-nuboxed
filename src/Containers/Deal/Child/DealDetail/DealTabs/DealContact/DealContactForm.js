@@ -20,9 +20,7 @@ import { getCustomerData } from "../../../../../Customer/CustomerAction";
 import {addDealContact} from "../../../../DealAction";
 
 const { Option } = Select;
-/**
- * yup validation scheme for creating a contact
- */
+
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const ContactSchema = Yup.object().shape({
   firstName: Yup.string().required("Input needed!"),
@@ -222,24 +220,7 @@ class DealContactForm extends Component {
                   <div class=" flex  flex-nowrap justify-between">
                     <FastField name="imageId" component={PostImageUpld} />
                     <div>
-                      <div class=" flex justify-between max-sm:flex-col">
-                        {/* <div class=" w-2/5">
-                          <FastField
-                            name="salutation"
-                            type="text"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
-                            options={["Mr.", "Ms.", "None"]}
-                            component={SelectComponent}
-                            inlineLabel
-                            className="field"
-                            isColumn
-                          />
-                        </div> */}
+                      <div class=" flex justify-between max-sm:flex-col">                  
                         <div class=" w-full max-sm:w-2/5">
                           <FastField
                             isRequired
@@ -571,58 +552,8 @@ class DealContactForm extends Component {
                     width="100%"
                   /> */}
        
-                  <div class="mt-3 flex  justify-between">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div> */}
-                  </div>
-     
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
+                  <div class="mt-3 flex  justify-between">                  
+                  </div>                 
                 </div>
               </div>
               <div class="mt-3 flex justify-end">
