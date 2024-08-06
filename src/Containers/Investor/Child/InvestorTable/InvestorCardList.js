@@ -36,7 +36,6 @@ import {getInvestorsbyId,
   deleteInvestorData,
   handleInvestorPriceDrawer
 } from "../../InvestorAction";
-import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
 import InventoryPriceDrawer from "./InventoryPriceDrawer";
@@ -65,9 +64,7 @@ function InvestorCardList(props) {
     const fetchMenuTranslations = async () => {
       try {
         setLoading(true); 
-        const itemsToTranslate = [
-   
-         
+        const itemsToTranslate = [         
             "Name",//0
             "Sector",//1
             "Deals",//2
@@ -81,7 +78,6 @@ function InvestorCardList(props) {
             "Assigned",//10
             "Owner",//11
             "Source"//12
-
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -284,7 +280,7 @@ function InvestorCardList(props) {
                                                     />
                                                   
                                         </div>
-                                   <div class="w-[4%]">
+                                   <div >
 
                                    </div>                 
                                         <Tooltip>
@@ -295,13 +291,11 @@ function InvestorCardList(props) {
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
                                             {item.name}
                                         </Link>                                
-                                              {/* <Link
-                                                toUrl={`investor/${item.investorId}`}
-                                                title={`${item.name}`}
-                                              >{item.name}</Link> */}
+                                              {/* {/* <Link */}
+                                             
                                               &nbsp;&nbsp;
                                               {date === currentdate ? (
-                                                <span class="text-[tomato] mt-[0.4rem] font-bold">
+                                                <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold">
                                                   New
                                                 </span>
                                               ) : null}
@@ -320,10 +314,8 @@ function InvestorCardList(props) {
                                 </div>
                                 </div>                                                                                      
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center w-12 max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                  
-
-                                  {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                                <div className=" flex  items-center w-12 max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                              
+                               {/* Country */}
                                   <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                               <ReactCountryFlag
                                     countryCode={item.countryAlpha2Code}
@@ -337,14 +329,14 @@ function InvestorCardList(props) {
                                 {item.countryAlpha2Code}
                                               </div>
                                           </div>
-                                <div className=" flex font-medium items-center w-[3.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-[3.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Deals */}
 
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.oppNo}
                                     </div>
                                 </div>                           
-                                <div className=" flex font-medium items-center w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Pipeline Value */}
 
                                     {item.totalProposalValue && (
@@ -419,7 +411,7 @@ function InvestorCardList(props) {
             </span>          
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[2.32rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex  w-[2.32rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                                 {/* Owner */}                    
                        <span>
                        <Tooltip title={item.ownerName}>
@@ -498,14 +490,7 @@ function InvestorCardList(props) {
                         </div>                                    
                     <div >
                         <span 
-              className=" !text-icon cursor-pointer"
-            //   onClick={() => {
-            //     props.getCustomerDetailsById(item.customerId);
-            //     props.getCustomerKeySkill(item.customerId);
-            //     //   this.props.getCustomerDocument(item.customerId );
-
-            //     props.handleCustomerDrawerModal(item, true);
-            //   }}
+              className=" !text-icon cursor-pointer"    
             >
               {" "}
               {user.pulseAccessInd === true && <MonitorHeartIcon  className=" !text-icon cursor-pointer text-[#df9697]" />}

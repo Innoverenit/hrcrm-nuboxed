@@ -27,7 +27,6 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {getAllContactInvest,
   handleContactInvestNotesDrawerModal,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
-import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";

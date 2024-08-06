@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import {
     getDocumentAlllist
    
 } from "../../InvestorAction";
 import {  Select } from 'antd';
 import dayjs from "dayjs";
-import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { MultiAvatar } from "../../../../Components/UI/Elements";
 import InvestorDocumentToggle from "./InvestorDocumentToggle";
 const { Option } = Select;
 
@@ -42,25 +39,6 @@ function InvestorDocumentTable(props) {
 
     const [hasMore, setHasMore] = useState(true);
     
-    // const handleLoadMore = () => {
-    //     const callPageMapd = props.documentAllList && props.documentAllList.length &&props.documentAllList[0].pageCount
-    //     setTimeout(() => {
-    //       const {
-    //         getDocumentAlllist,
-    //        // userDetails: { employeeId },
-    //       } = props;
-    //       if  (props.documentAllList)
-    //       {
-    //         if (pageNo < callPageMapd) {
-    //             setPageNo(pageNo + 1);
-    //             getDocumentAlllist(props.orgId,pageNo); 
-    //       }
-    //       if (pageNo === callPageMapd){
-    //         setHasMore(false)
-    //       }
-    //     }
-    //     }, 100);
-    //   };
     return (
         <>
             <div className=' flex justify-end sticky  z-auto'>
@@ -93,20 +71,20 @@ function InvestorDocumentTable(props) {
                                             <div className="flex rounded  mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-between  items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                            {item.documentTypeName}
                                                            
 
                                                         </div>
                                                         {date === currentdate ? (
-                                                                <div class="text-xs font-bold text-[tomato] mr-4">
+                                                                <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
                                                                     New
                                                                 </div>
                                                             ) : null}
                                                     </div>
                                                    
-                                                    <div className=" flex font-medium justify-between  w-[8.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
+                                                    <div className=" flex  justify-between  w-[8.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                          
                                                            
 
@@ -114,8 +92,8 @@ function InvestorDocumentTable(props) {
                                                         
                                                     </div>
                                                    
-                                                    <div className=" flex font-medium justify-between  w-[7.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
+                                                    <div className=" flex  justify-between  w-[7.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                          
                                                            
 
@@ -126,8 +104,8 @@ function InvestorDocumentTable(props) {
                                                     
                                                    
                                                    
-                                                    <div className=" flex font-medium  w-[4.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem]  font-poppins">
+                                                    <div className=" flex f w-[4.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-xs  font-poppins">
                                                         <InvestorDocumentToggle
                                                         documentTypeId={item.documentTypeId}
                                                         RowData={props.RowData}
