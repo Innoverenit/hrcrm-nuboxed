@@ -244,6 +244,9 @@ const { Option } = Select;
 
 const MyForm = (props) => {
   const [name, setName] = useState('');
+  const [role, setRole] = useState([]);
+  const [selectedRole, setSelectedRole] = useState(null);
+  const [isLoadingRole, setIsLoadingRole] = useState(false);
   const [department, setDepartment] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [touchedDepartment, setTouchedDepartment] = useState(false);
@@ -294,10 +297,15 @@ const MyForm = (props) => {
     }
   };
 
-  const handleSelectDepartment = (value) => {
-    setSelectedDepartment(value);
-    console.log('Selected department:', value);
+  const handleSelectDepartment = (departmentId) => {
+    setSelectedDepartment(departmentId);
+    fetchRole(departmentId);
+    //console.log('Selected department:', value);
   };
+
+  const handleRoleChange=(value)=>{
+    setSelectedRole(value);
+  }
 
   const startEditing = (item) => {
     setEditingRow(item.stagesTaskId);
@@ -321,6 +329,30 @@ const MyForm = (props) => {
 
   const cancelEditing = () => {
     setEditingRow(null);
+  };
+
+
+  const fetchRole = async (departmentId) => {
+    setIsLoadingRole(true);
+    try {
+      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+      // setContacts(response.data);
+      const apiEndpoint = `${base_url}/roleType/department/${departmentId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setRole(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingRole(false);
+    }
   };
 
   return (
@@ -352,6 +384,19 @@ const MyForm = (props) => {
               </Option>
             ))}
           </Select>
+          <label style={{ display: 'block', marginBottom: '8px' }}>Role</label>
+          <Select
+        placeholder="Select Role"
+        loading={isLoadingRole}
+        onChange={handleRoleChange}
+        disabled={!selectedDepartment} // Disable Contact dropdown if no customer is selected
+      >
+        {role.map(contact => (
+          <Option key={contact.roleTypeId} value={contact.roleTypeId}>
+            {contact.roleType}
+          </Option>
+        ))}
+      </Select> 
         </div>
         <Button type="primary" onClick={handleSubmit}>
           Submit

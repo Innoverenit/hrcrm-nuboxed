@@ -145,7 +145,7 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
        // dispatch(getDispatchList(id,0))
         dispatch({
           type: types.ADD_SUSCRIPTIONS_SUCCESS,
-          payload: subscriptionId,
+          payload: res.data,
         });
       })
       .catch((err) => {

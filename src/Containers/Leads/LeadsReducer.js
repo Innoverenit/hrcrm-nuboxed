@@ -254,6 +254,11 @@ const initialState = {
 
   openCETmodal:false,
 
+
+  fetchingLeadsSubscriptionData:false,
+  fetchingLeadsSubscriptionDataError:false,
+  subscriptionLeadsData:[],
+
   
   fetchingAllLeads:false,
   fetchingAllLeadsError:false,
@@ -599,6 +604,24 @@ case types.HANDLE_LEADS_MODAL:
               addingDocumentByLeadsId: false,
               addingDocumentByLeadsIdError: true,
             };
+
+
+
+            case types.GET_LEADS_SUBSCRIPTION_DATA_REQUEST:
+              return { ...state, fetchingLeadsSubscriptionData: true };
+            case types.GET_LEADS_SUBSCRIPTION_DATA_SUCCESS:
+              return {
+                ...state,
+                fetchingLeadsSubscriptionData: false,
+                subscriptionLeadsData: action.payload
+                // clearbit:null
+              };
+            case types.GET_LEADS_SUBSCRIPTION_DATA_FAILURE:
+              return {
+                ...state,
+                fetchingLeadsSubscriptionData: false,
+                fetchingLeadsSubscriptionDataError: true,
+              };
 
 
             case types.GET_LEADS_DOCUMENTS_REQUEST:
