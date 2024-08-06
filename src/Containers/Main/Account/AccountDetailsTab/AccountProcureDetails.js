@@ -37,6 +37,36 @@ function AccountProcureDetails(props) {
   const [newPrice, setPrice] = useState('');
   // const [particularRowData, setParticularRowData] = useState({});
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+  'Category', // 0
+  'Brand', // 1
+  'Model', // 2
+  'Attribute', // 3
+  'Quality', // 4
+  'Location', // 5
+  'Specs',
+  'Units',
+  'Price',
+        ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
+
   useEffect(() => {
     props.getBrand();
     props.getCategorylist();
@@ -146,31 +176,31 @@ function AccountProcureDetails(props) {
       <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className="flex justify-between  w-[99%] p-1 bg-transparent font-bold sticky z-10">
         <div className="md:w-[7.4rem]">
-            <FormattedMessage id="app.category" defaultMessage="Category" />
+        {translatedMenuItems[0]} {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
           </div>
           <div className="md:w-[7.4rem]">
-            <FormattedMessage id="app.brand" defaultMessage="Brand" />
+          {translatedMenuItems[1]}{/* <FormattedMessage id="app.brand" defaultMessage="Brand" /> */}
           </div>
           <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.model" defaultMessage="Model" />
+          {translatedMenuItems[2]} {/* <FormattedMessage id="app.model" defaultMessage="Model" /> */}
           </div>
           <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
+          {translatedMenuItems[3]} {/* <FormattedMessage id="app.attribute" defaultMessage="Attribute" /> */}
           </div>
           <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.quality" defaultMessage="Quality" />
+          {translatedMenuItems[4]} {/* <FormattedMessage id="app.quality" defaultMessage="Quality" /> */}
           </div>
           <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.location" defaultMessage="Location" />
+          {translatedMenuItems[5]}{/* <FormattedMessage id="app.location" defaultMessage="Location" /> */}
           </div>
           <div className="md:w-[8.8rem]">
-            <FormattedMessage id="app.specs" defaultMessage="Specs" />
+          {translatedMenuItems[6]}{/* <FormattedMessage id="app.specs" defaultMessage="Specs" /> */}
           </div>
           <div className="md:w-[2.8rem]">
-            <FormattedMessage id="app.units" defaultMessage="Units" />
+          {translatedMenuItems[7]} {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
           </div>
           <div className="md:w-[4.8rem]">
-            <FormattedMessage id="app.price" defaultMessage="Price" />
+          {translatedMenuItems[8]} {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}
           </div>
         
         
@@ -182,14 +212,15 @@ function AccountProcureDetails(props) {
       // hasMore={hasMore}
         loader={props.fetchingProcureDetails?<div class="flex justify-center">Loading...</div>:null}
         height={"71vh"}
+        style={{scrollbarWidth:"thin"}}
         // endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
         {props.procureDetails.map((item, index) => {
           return (
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
 
-<div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+<div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                 {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -204,12 +235,12 @@ function AccountProcureDetails(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.category}</div>
+                    <div className="font-normal text-xs  font-poppins">{item.category}</div>
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -224,12 +255,12 @@ function AccountProcureDetails(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.brand}</div>
+                    <div className="font-normal text-xs  font-poppins">{item.brand}</div>
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[30rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+              <div className="flex  md:w-[30rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <Select
                       className="w-32"
@@ -243,12 +274,12 @@ function AccountProcureDetails(props) {
                       ))}
                     </Select>
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.model}</div>
+                    <div className="font-normal text-xs  font-poppins">{item.model}</div>
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -263,12 +294,12 @@ function AccountProcureDetails(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.attribute}</div>
+                    <div className="font-normal text-xs  font-poppins">{item.attribute}</div>
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -283,12 +314,12 @@ function AccountProcureDetails(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.quality}</div>
+                    <div className="font-normal text-xs  font-poppins">{item.quality}</div>
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -303,12 +334,12 @@ function AccountProcureDetails(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.location}</div>
+                    <div className="font-normal text-xs  font-poppins">{item.location}</div>
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[6rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+              <div className="flex  md:w-[6rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <Select
                       style={{ width: 100 }}
@@ -321,13 +352,13 @@ function AccountProcureDetails(props) {
                       <Option value="HK">HK</Option>
                     </Select>
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.specs}</div>
+                    <div className="font-normal text-xs  font-poppins">{item.specs}</div>
                   )}
                 </div>
               </div>
 
-              <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+              <div className="flex  ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <input
                       placeholder="Update Unit"
@@ -337,13 +368,13 @@ function AccountProcureDetails(props) {
                       onChange={(e) => setUnitName(e.target.value)}
                     />
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.unit}</div>
+                    <div className="font-normal text-xs  font-poppins">{item.unit}</div>
                   )}
                 </div>
               </div>
 
-              <div className="flex font-medium flex-col ml-2 md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+              <div className="flex  ml-2 md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <input
                       placeholder="Update Price"
@@ -353,12 +384,12 @@ function AccountProcureDetails(props) {
                       onChange={(e) => setPrice(e.target.value)}
                     />
                   ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.price}{item.currency} </div>
+                    <div className="font-normal text-xs  font-poppins">{item.price}{item.currency} </div>
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
+              <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -374,7 +405,7 @@ function AccountProcureDetails(props) {
                     </select>
                   ) : (
                   
-                    <div className="font-normal text-sm  font-poppins"></div>
+                    <div className="font-normal text-xs  font-poppins"></div>
                   )}
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import moment from "moment";
+import dayjs from "dayjs";
 const NotesWrapper = styled.div``;
 export default function ErpSingleNote(props) {
   console.log(props);
@@ -23,7 +23,7 @@ export default function ErpSingleNote(props) {
        
         
         <div class="mt-3">
-        {`${moment(creationDate).fromNow()}`}  {props.ownerName}
+        {`${dayjs(creationDate).fromNow()}`}  {props.ownerName}
         </div>
         {/* <b>
           {userId !== creatorId

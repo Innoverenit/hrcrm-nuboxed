@@ -271,11 +271,15 @@ ${(item.address && item.address.length && item.address[0].country) || ""
       </div>
           )}
       <UpdateAccountModal
+       selectedLanguage={props.selectedLanguage}
+       translateText={props.translateText}
         RowData={RowData}
         updateAccountModal={props.updateAccountModal}
         handleUpdateAccountModal={handleUpdateAccountModal}
       />
       <AccountPulseModal
+       selectedLanguage={props.selectedLanguage}
+       translateText={props.translateText}
         RowData={RowData}
         handleAccountPulse={props.handleAccountPulse}
         showPulseModal={props.showPulseModal}
