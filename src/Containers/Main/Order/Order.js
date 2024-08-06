@@ -33,6 +33,8 @@ class Order extends Component {
     return (
       <React.Fragment>
         <OrderHeader
+         selectedLanguage={this.props.selectedLanguage}
+         translateText={this.props.translateText}
           setOrderViewType={setOrderViewType}
           viewType={viewType}
           activeKey={activeKey}
@@ -43,23 +45,38 @@ class Order extends Component {
           
           {this.props.viewType === "list" ? (
             <OrderTableByUserID
-            />
+            selectedLanguage={this.props.selectedLanguage}
+                translateText={this.props.translateText}/>
             ) : this.props.viewType === "production" ? (
-              <ProductionOrderCardList />
+              <ProductionOrderCardList
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText} />
               ) : this.props.viewType === "complete" ? (
                 <ProductionHistoryCardList />
                 ) : this.props.viewType === "productionAll" ? (
-                  <ProductionAllCardList />
+                  <ProductionAllCardList 
+                  selectedLanguage={this.props.selectedLanguage}
+                  translateText={this.props.translateText}/>
           ) : this.props.viewType === "all" ? (
-            <AllOrderList />
+            <AllOrderList
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText} />
           ) : this.props.viewType === "complete" ? (
-            <CompleteOrder />
+            <CompleteOrder  
+              selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText} />
            ) : this.props.viewType === "delete" ? (
-              <DeletedOrderList />
+              <DeletedOrderList 
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}/>
           ) : this.props.viewType === "allcomplete" ? (
-            <AllCompleteOrderList />
+            <AllCompleteOrderList 
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}/>
           ) : this.props.viewType === "procure" ? (
-            <ProcreCardList />
+            <ProcreCardList 
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}/>
           ) : null}
         </Suspense>
       </React.Fragment>

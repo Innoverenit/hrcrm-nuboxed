@@ -37,6 +37,38 @@ function CustomerProcurementTable(props) {
   }, []);
 
   const [particularRowData, setParticularRowData] = useState({});
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+                "Urgent",
+                "Order",
+                "Delivery",
+                "Location",
+               "Budget",
+                "Contact",
+               "Payment",
+                "Status",
+                "High",
+                "Normal"
+
+
+          ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
 
   // useEffect(() => {
   //   return () => props.emptyOrders();
@@ -76,14 +108,30 @@ const handleLoadMoreLow = () => {
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">Urgent </div>
-                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.orderid" defaultMessage="Order ID"/></div>
-                        <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
-                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.contact" defaultMessage="Contact"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.Status" defaultMessage="Status"/></div>
+        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+        {translatedMenuItems[0]} {/* Urgent */}
+           </div>
+                        <div className=" md:w-[7.4rem] ml-2">
+                        {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
+                          </div>
+                        <div className=" md:w-[7.1rem]">
+                        {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
+                          </div>
+                        <div className=" md:w-[8.8rem] ">
+                        {translatedMenuItems[3]} {/* <FormattedMessage id="app.location" defaultMessage="Location"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[4]} {/* <FormattedMessage id="app.budget" defaultMessage="Budget"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[5]} {/* <FormattedMessage id="app.contact" defaultMessage="Contact"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[6]}{/* <FormattedMessage id="app.payment" defaultMessage="Payment"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
+                          </div>
 
                         <div className="md:w-[6.12rem]"></div>
                      
@@ -108,7 +156,7 @@ const handleLoadMoreLow = () => {
                                       <div>
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
-                                          <div className=" flex  flex-col w-wk items-center   max-sm:w-full">
+                                          <div className=" flex  w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
                                             <div className=" flex  items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
@@ -133,14 +181,14 @@ const handleLoadMoreLow = () => {
                                                 <Tooltip>
                                                   <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                                                   <span
-                                                                                          class="underline cursor-pointer text-[#1890ff]"
+                                                                                          class="underline font-bold cursor-pointer text-[#1890ff]"
                                                                                           onClick={() => {
                                                                                               handleSetParticularOrderData(item);
                                                                                               props.handleProcureDetailsModal(true);
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
-                                          <span className="text-xs text-[tomato] font-bold">
+                                          <span className="text-[0.65rem] text-[tomato] font-bold">
                                             New
                                           </span>
                                         ) : null} </span>
@@ -154,7 +202,7 @@ const handleLoadMoreLow = () => {
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
-                                            <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
+                                            <div class="max-sm:w-full justify-between flex md:text-xs">
                                             {` ${dayjs(item.deliveryDate).format("ll")}`}
                                                   </div>
                       
@@ -162,7 +210,7 @@ const handleLoadMoreLow = () => {
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex  flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -219,15 +267,31 @@ const handleLoadMoreLow = () => {
                     </InfiniteScroll>
       </div>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky z-10">
-        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
-                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.orderid" defaultMessage="Order ID"/></div>
-                        <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
-                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.contact" defaultMessage="Contact"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.Status" defaultMessage="Status"/></div>
+      <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+        {translatedMenuItems[8]} {/* High */}
+           </div>
+                        <div className=" md:w-[7.4rem] ml-2">
+                        {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
+                          </div>
+                        <div className=" md:w-[7.1rem]">
+                        {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
+                          </div>
+                        <div className=" md:w-[8.8rem] ">
+                        {translatedMenuItems[3]} {/* <FormattedMessage id="app.location" defaultMessage="Location"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[4]} {/* <FormattedMessage id="app.budget" defaultMessage="Budget"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[5]} {/* <FormattedMessage id="app.contact" defaultMessage="Contact"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[6]}{/* <FormattedMessage id="app.payment" defaultMessage="Payment"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
+                          </div>
 
                         <div className="md:w-[6.12rem]"></div>
                      
@@ -252,7 +316,7 @@ const handleLoadMoreLow = () => {
                                       <div>
                                       <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
-                                          <div className=" flex flex-col w-wk items-center   max-sm:w-full">
+                                          <div className=" flex w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
                                             <div className=" flex  items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
@@ -277,14 +341,14 @@ const handleLoadMoreLow = () => {
                                                 <Tooltip>
                                                   <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                                                   <span
-                                                                                          class="underline cursor-pointer text-[#1890ff]"
+                                                                                          class="underline font-bold cursor-pointer text-[#1890ff]"
                                                                                           onClick={() => {
                                                                                               handleSetParticularOrderData(item);
                                                                                               props.handleProcureDetailsModal(true);
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
-                                          <span className="text-xs text-[tomato] font-bold">
+                                          <span className="text-[0.65rem] text-[tomato] font-bold">
                                             New
                                           </span>
                                         ) : null} </span>
@@ -298,7 +362,7 @@ const handleLoadMoreLow = () => {
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
-                                            <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
+                                            <div class="max-sm:w-full justify-between flex md:text-xs">
                                             {` ${dayjs(item.deliveryDate).format("ll")}`}
                                                   </div>
                       
@@ -306,7 +370,7 @@ const handleLoadMoreLow = () => {
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex  flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -363,15 +427,31 @@ const handleLoadMoreLow = () => {
                     </InfiniteScroll>
       </div>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky z-10">
-        <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
-                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.orderid" defaultMessage="Order ID"/></div>
-                        <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
-                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.contact" defaultMessage="Contact"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.Status" defaultMessage="Status"/></div>
+      <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+        {translatedMenuItems[9]} {/* Normal */}
+           </div>
+                        <div className=" md:w-[7.4rem] ml-2">
+                        {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
+                          </div>
+                        <div className=" md:w-[7.1rem]">
+                        {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
+                          </div>
+                        <div className=" md:w-[8.8rem] ">
+                        {translatedMenuItems[3]} {/* <FormattedMessage id="app.location" defaultMessage="Location"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[4]} {/* <FormattedMessage id="app.budget" defaultMessage="Budget"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[5]} {/* <FormattedMessage id="app.contact" defaultMessage="Contact"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[6]}{/* <FormattedMessage id="app.payment" defaultMessage="Payment"/> */}
+                          </div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
+                          </div>
 
                         <div className="md:w-[6.12rem]"></div>
                      
@@ -396,7 +476,7 @@ const handleLoadMoreLow = () => {
                                       <div>
                <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                   <div class="flex">
-                    <div className=" flex flex-col w-wk items-center   max-sm:w-full">
+                    <div className=" flex w-wk items-center   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
                       <div className=" flex  items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                         <Tooltip>
@@ -421,14 +501,14 @@ const handleLoadMoreLow = () => {
                           <Tooltip>
                             <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                             <span
-                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    class="underline cursor-pointer font-bold text-[#1890ff]"
                                                                     onClick={() => {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleProcureDetailsModal(true);
                                                                     }}
                                                                 >{item.newOrderNo}</span>
                                                                  <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
-                    <span className="text-xs text-[tomato] font-bold">
+                    <span className="text-[0.65rem] text-[tomato] font-bold">
                       New
                     </span>
                   ) : null} </span>
@@ -442,7 +522,7 @@ const handleLoadMoreLow = () => {
                     <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                   
                       
-                      <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
+                      <div class="max-sm:w-full justify-between flex md:text-xs">
                       {` ${dayjs(item.deliveryDate).format("ll")}`}
                             </div>
 
@@ -450,7 +530,7 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -482,7 +562,7 @@ const handleLoadMoreLow = () => {
                       </div>
                   </div>
                
-                  <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                  <div class="flex w-6 max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
                                                         {/* <Tooltip title={<FormattedMessage
                                                                 id="app.edit"
@@ -526,6 +606,8 @@ const handleLoadMoreLow = () => {
                     </InfiniteScroll>
       </div>
       <UpdateProcureModal
+      selectedLanguage={props.selectedLanguage}
+      translateText={props.translateText} 
                     particularRowData={particularRowData}
                     distributorId={props.distributorId}
                     handleUpdateProcureDetailModal={props.handleUpdateProcureDetailModal}
@@ -533,11 +615,15 @@ const handleLoadMoreLow = () => {
                 />
 
                 <AccountProcureDetailsModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
                 particularRowData={particularRowData}
                 handleProcureDetailsModal={props.handleProcureDetailsModal}
                 addProcureDetailsModal={props.addProcureDetailsModal} />
 
 <ProcureStatusShowDrawer
+selectedLanguage={props.selectedLanguage}
+translateText={props.translateText} 
            particularRowData={particularRowData}
            showStatusDrwr={props.showStatusDrwr}
            handleStatuShowDrawer={props.handleStatuShowDrawer}

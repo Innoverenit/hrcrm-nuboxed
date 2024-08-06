@@ -12,6 +12,35 @@ const { Option } = Select;
 
 function AccountInvoiceTable(props) {
     const [pageNo, setPageNo] = useState(0);
+    
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+    'Invoice ', // 0
+    'Order', // 1
+    'Value', // 2
+    'Type', // 3
+    ' Status', // 4
+   
+
+
+          ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         setPageNo(pageNo + 1);
         props.getAccountInvoiveList(props.distributorId,pageNo)
@@ -57,14 +86,14 @@ function AccountInvoiceTable(props) {
       };
     return (
         <>
-            <div className=' flex justify-end sticky  z-auto'>
+            <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                    <div class=" w-[8.5rem]">Invoice ID</div>
-                        <div className=" md:w-[7.4rem]">Order ID</div>
-                        <div className=" md:w-[7.1rem]">Value</div>
-                        <div className="md:w-[3.8rem]">Type</div>
-                        <div className=" md:w-[8.8rem] ">Status</div>
+                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">
+                    <div class=" w-[8.5rem]">{this.props.translatedMenuItems[0]} ID</div>
+                        <div className=" md:w-[7.4rem]">{this.props.translatedMenuItems[1]} ID</div>
+                        <div className=" md:w-[7.1rem]">{this.props.translatedMenuItems[2]}</div>
+                        <div className="md:w-[3.8rem]">{this.props.translatedMenuItems[3]}</div>
+                        <div className=" md:w-[8.8rem] ">{this.props.translatedMenuItems[4]}</div>
                       
                     </div>
                     <div class="">
@@ -91,7 +120,7 @@ function AccountInvoiceTable(props) {
 
                                                         </div>
                                                         {date === currentdate ? (
-                                                                <div class="text-xs font-bold text-[tomato] mr-4">
+                                                                <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
                                                                     New
                                                                 </div>
                                                             ) : null}

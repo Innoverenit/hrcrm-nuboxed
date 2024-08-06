@@ -18,7 +18,9 @@ function AccountDetails(props) {
     return (
         <>
             <>
-                <AccountDetailsHeader distributorData={props.distributorData} />
+                <AccountDetailsHeader distributorData={props.distributorData}
+                 selectedLanguage={props.selectedLanguage}
+                 translateText={props.translateText} />
                 {fetchingDistributorDetailsByDistributorId ? (
                     <MainWrapper>
                         <BundleLoader />
@@ -28,10 +30,14 @@ function AccountDetails(props) {
                         <Suspense fallback={"Loading..."}>
                             <FlexContainer flexWrap="no-wrap" style={{ width: "100%" }}>
                                 {/* <div style={{ width: "22%" }}>
-                                    <AccountDetailsLeft distributorData={distributorData} />
+                                    <AccountDetailsLeft distributorData={distributorData}
+                                     selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText} />
                                 </div> */}
                                 <div style={{ width: "100%" }}>
-                                    <AccountDetailsRight distributorData={distributorData} />
+                                    <AccountDetailsRight distributorData={distributorData} 
+                                      selectedLanguage={props.selectedLanguage}
+                                      translateText={props.translateText}/>
                                 </div>
                             </FlexContainer>
                         </Suspense>
