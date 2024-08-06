@@ -159,7 +159,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form } from "formik";
-//import { updateSuscription } from "../SubscriptionAction";
+import { getLeadSubscriptionData } from "../../LeadsAction";
 import dayjs from "dayjs";
 import { FaFreeCodeCamp, FaRocket, FaBriefcase, FaBuilding } from 'react-icons/fa';
 
@@ -209,7 +209,7 @@ function LeadsSubscriptionForm(props) {
   //   setSelectedType(selectedType === type ? null : type);
   // };
   useEffect(() => {
-    const {} = props;
+   props.getLeadSubscriptionData(props.orgId)
   }, []);
 
   const { updateSuscription, updatingSuscrption } = props;
@@ -377,9 +377,10 @@ function LeadsSubscriptionForm(props) {
   );
 }
 
-const mapStateToProps = ({ auth, subscription }) => ({
+const mapStateToProps = ({ auth,leads, subscription }) => ({
   userDetails: auth.userDetails,
   user: auth.userDetails,
+  subscriptionLeadsData:leads.subscriptionLeadsData,
   organizationId: auth.userDetails.organizationId,
   orgId: auth.userDetails.organizationId,
   updatingSuscrption: subscription.updatingSuscrption,
@@ -389,6 +390,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
     //   updateSuscription,
+    getLeadSubscriptionData,
     },
     dispatch
   );

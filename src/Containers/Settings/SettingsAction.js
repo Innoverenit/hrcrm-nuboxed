@@ -6388,3 +6388,64 @@ export const addConfigureGlobalType = (orgId,workflowId,workflowType,  cb) => (
       cb && cb("failure");
     });
 };
+
+
+
+export const getPaymentFinance = () => (dispatch) => {
+  dispatch({
+    type: types.GET_PAYMENT_FINANCE_REQUEST,
+  });
+  axios
+    .get(`${base_url}/paymentMode/getPaymentModesByOrgId`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PAYMENT_FINANCE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PAYMENT_FINANCE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const addPaymentData = (data,paymentModeId,liveInd,cb) => (dispatch) => {
+    
+  dispatch({
+    type: types.ADD_PAYMENT_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url}/paymentMode/active_deActive/${paymentModeId}/${liveInd}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //dispatch(getCurrencyConversion(orgId))
+      dispatch({
+        type: types.ADD_PAYMENT_DATA_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PAYMENT_DATA_FAILURE,
+        payload: err,
+      });
+      cb && cb("Failure");
+    });
+};

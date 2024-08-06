@@ -1,7 +1,7 @@
 import * as types from "./LeadsActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
-import { base_url } from "../../Config/Auth";
+import { base_url,sub_url } from "../../Config/Auth";
 import Swal from 'sweetalert2'
 
 export const setLeadsViewType = (viewType) => (dispatch) => {
@@ -1906,6 +1906,35 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CLAER_SEARCHED_DATA_LEAD,
     });
+  };
+
+
+
+  export const getLeadSubscriptionData = (orgId) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_LEADS_SUBSCRIPTION_DATA_REQUEST,
+    });
+    axios
+      .get(`${sub_url}/subscription/getAll/publish/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LEADS_SUBSCRIPTION_DATA_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LEADS_SUBSCRIPTION_DATA_FAILURE,
+          payload: err,
+        });
+      });
   };
   
 
