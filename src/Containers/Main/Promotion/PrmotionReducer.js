@@ -6,6 +6,12 @@ const initialState = {
     addingPrmotions: false,
     addingPrmotionsError:false,
 
+    addingProuctToggle: false,
+    addingProuctToggleError: false,
+
+    addingMaterialToggle: false,
+    addingMaterialToggleError: false,
+
     fetchingPromotionsData: false,
     fetchingPromotionsDataError: false,
     promotionsData:[]
@@ -48,6 +54,50 @@ const initialState = {
                         fetchingPromotionsData: false,
                         fetchingPromotionsDataError: true,
                       };
+
+                      case types.ADDING_PRODUCT_TOGGLE_REQUEST:
+                        return { ...state, addingProuctToggle: true };
+                      case types.ADDING_PRODUCT_TOGGLE_SUCCESS:
+                        return {
+                          ...state,
+                          addingProuctToggle: false,
+                          promotionsData: state.promotionsData.map((item) => {
+                            if (item.promoCodeId === action.payload.promoCodeId) {
+                              return action.payload;
+                            } else {
+                              return item;
+                            }
+                          }),
+                        }
+                      case types.ADDING_PRODUCT_TOGGLE_FAILURE:
+                        return {
+                          ...state,
+                          addingProuctToggle: false,
+                          addingProuctToggleError: true,
+                        };
+
+                        case types.ADDING_MATERIAL_TOGGLE_REQUEST:
+                          return { ...state, addingMaterialToggle: true };
+                        case types.ADDING_MATERIAL_TOGGLE_SUCCESS:
+                          return {
+                            ...state,
+                            addingMaterialToggle: false,
+                            promotionsData: state.promotionsData.map((item) => {
+                              if (item.promoCodeId === action.payload.promoCodeId) {
+                                return action.payload;
+                              } else {
+                                return item;
+                              }
+                            }),
+                          }
+                        case types.ADDING_MATERIAL_TOGGLE_FAILURE:
+                          return {
+                            ...state,
+                            addingMaterialToggle: false,
+                            addingMaterialToggleError: true,
+                          };
+
+
 
 
 

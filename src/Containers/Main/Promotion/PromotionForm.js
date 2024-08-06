@@ -26,10 +26,14 @@ class PromotionForm extends Component {
 catlogue: false,
 inventory:false,
 material:false,
+discount:false,
       translatedMenuItems: []
     };
   
   }
+   handleReset(resetForm) {
+    resetForm();
+  };
   handleCatalogue = (checked) => {
     this.setState({ catlogue: checked });
   };
@@ -38,6 +42,9 @@ material:false,
   };
   handleMaterial = (checked) => {
     this.setState({ material: checked });
+  };
+  handlediscountType = (checked) => {
+    this.setState({ discount: checked });
   };
   render() {
   
@@ -57,6 +64,7 @@ material:false,
             discountValue:"",
             startDate:startDate || null,
             endDate:endDate || null,
+            discountType:this.state.discount?"Percent":"Amount",
             productInd: this.state.catlogue?"true":"false",
             supplierInventoryInd: this.state.inventory?"true":"false",
             materialInd: this.state.material?"true":"false",
@@ -95,12 +103,15 @@ material:false,
                 ...values,
                 startDate: `${newStartDate}T20:00:00Z`,
                 endDate: `${newEndDate}T20:00:00Z`,
+                discountType:this.state.discount?"Percent":"Amount",
                    productInd: this.state.catlogue?"true":"false" ,
                    supplierInventoryInd: this.state.inventory?"true":"false",
             materialInd: this.state.material?"true":"false",
                 
               },
+              resetForm()
             );
+           
           }}
         >
           {({
@@ -175,9 +186,7 @@ material:false,
                         />
                       </div>
                     </div>
-                  </div>
-                  <div class=" flex">
-                  <div class=" w-[47%] mt-2" >
+                    <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">
                       {this.state.translatedMenuItems[3]}Supplier Inventory
                          &nbsp;<PrecisionManufacturingIcon/></div>
@@ -191,6 +200,9 @@ material:false,
                         />
                       </div>
                     </div>
+                  </div>
+                  <div class=" flex">
+                  
                     <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">
                        {this.state.translatedMenuItems[4]} Material
@@ -202,6 +214,20 @@ material:false,
                           onChange={this.handleMaterial}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
+                        />
+                      </div>
+                    </div>
+                    <div class=" w-[47%] mt-2" >
+                      <div class="font-bold text-xs">
+                       {/* {this.state.translatedMenuItems[4]}  */}Discount type
+                         &nbsp;<i class="fas fa-building text-base"></i></div>
+                      <div>
+                        <Switch
+                          style={{ width: "6.25em" }}
+                          checked={this.state.discount}
+                          onChange={this.handlediscountType}
+                          checkedChildren="Percent"
+                          unCheckedChildren="Amount"
                         />
                       </div>
                     </div>
