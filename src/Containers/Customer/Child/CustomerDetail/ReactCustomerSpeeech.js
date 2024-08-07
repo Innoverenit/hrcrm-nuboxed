@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import styled from 'styled-components';
 import { bindActionCreators } from "redux";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { FlexContainer } from '../../../../Components/UI/Layout';
 import RotateRightIcon from '@mui/icons-material/RotateRight';
 import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 import StopIcon from '@mui/icons-material/Stop';
@@ -53,9 +52,7 @@ const Dictaphone = (props) => {
       </span>
      
       <span
-      // onClick={()=>{
-      // SpeechRecognition.stopListening
-      // }}
+    
       onClick={SpeechRecognition.stopListening}
       >
          <Tooltip title="Stop">
@@ -68,8 +65,7 @@ const Dictaphone = (props) => {
         </span>
         </Tooltip>
       </span>
-    
-      {/* <button onClick={SpeechRecognition.stopListening}>Stop</button> */}
+  
       <span
       onClick={resetTranscript}
       >
@@ -92,7 +88,7 @@ const Dictaphone = (props) => {
         </textarea>
       {/* <p>{transcript}</p> */}
       </div>
-      <FlexContainer justifyContent="flex-end">
+      <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
       <Button 
       type='primary'
       htmlType='submit'
@@ -100,7 +96,7 @@ const Dictaphone = (props) => {
       >
         Submit
       </Button>
-      </FlexContainer>
+      </div>
     </div>
   );
 };

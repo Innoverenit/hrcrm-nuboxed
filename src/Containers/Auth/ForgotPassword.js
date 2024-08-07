@@ -5,13 +5,10 @@ import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Input } from "./styled";
 import { ValidationError, Title, SubTitle } from "../../Components/UI/Elements";
-import { FlexContainer } from "../../Components/UI/Layout";
 import Button from "antd/lib/button";
 import styled from "styled-components";
-import inno from "../../Assets/Images/logo_22.png"; //inn
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import FWLogo from "../../Assets/Images/name.jpg";  // for CT
- import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";  // for NB
 import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
 
 class ForgotPassword extends Component {
@@ -59,7 +56,7 @@ class ForgotPassword extends Component {
 
           <div className="forgot_password">
 
-            <FlexContainer>
+          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
               <AuthContainer
                 style={{
                   backgroundColor: "white",
@@ -271,7 +268,7 @@ class ForgotPassword extends Component {
                 </div>
               </AuthContainer>
 
-            </FlexContainer>
+            </div>
           </div>
         </div>
       </>

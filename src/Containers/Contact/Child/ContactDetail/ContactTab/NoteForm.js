@@ -10,11 +10,7 @@ import { EditorState, convertToRaw, } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { addNote } from "../../../ContactAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 
-/**
- * yup validation scheme for creating a note
- */
 const NoteSchema = Yup.object().shape({
   notes: Yup.string().required(""),
 });
@@ -142,7 +138,7 @@ class NoteForm extends Component {
                  
                   toolbar={toolbarOption}
                 />
-                <FlexContainer justifyContent="flex-end">
+         <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -158,7 +154,7 @@ class NoteForm extends Component {
                     <FormattedMessage id="app.post" defaultMessage="Post" />
                     {/* Post */}
                   </Button>
-                </FlexContainer>
+                </div>
               </Form>
             );
           }}

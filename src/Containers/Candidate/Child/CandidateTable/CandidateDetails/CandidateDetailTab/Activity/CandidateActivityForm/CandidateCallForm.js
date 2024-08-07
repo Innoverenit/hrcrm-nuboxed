@@ -5,7 +5,6 @@ import { Button, Tooltip } from "antd";
 import { Formik, Form, Field } from "formik";
 import dayjs from "dayjs";
 import {
-  Spacer,
   StyledLabel,
 } from "../../../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../../../Components/Forms/Formik/InputComponent";
@@ -20,38 +19,6 @@ const ButtonGroup = Button.Group;
 
 const green = "#39D1B4";
 const yellow = "#FFD712";
-/**
- *
- * yup validation scheme for creating a call
- */
-// const CallSchema = Yup.object().shape(
-//   {
-//     startDate: Yup.string()
-//       .nullable()
-//       .required("Input required !"),
-
-//     startTime: Yup.string()
-//       .nullable()
-//       .required("Input required !"),
-//     endTime: Yup.string()
-//       .nullable()
-//       .required("Input required !"),
-//     contactId: Yup.string().when("accountId", {
-//       is: (accountId) => !accountId,
-//       then: Yup.string().required("Input required !"),
-//     }),
-//     accountId: Yup.string().when("contactId", {
-//       is: (contactId) => !contactId,
-//       then: Yup.string().required("Input required !"),
-//     }),
-//   },
-//   ["contactId", "accountId"]
-// );
-
-// await schema.validate({
-//   contactIds: "",
-//   accountIds: "accountIds"
-// });
 
 class CandidateCallForm extends Component {
   constructor(props) {
@@ -110,10 +77,7 @@ class CandidateCallForm extends Component {
       updatingCall,
       defaultOpportunities,
     } = this.props;
-    // console.log(defaultAccounts);
-    // console.log(defaultContacts);
-    // console.log(prefillCall);
-    // console.log(callDate);
+   
     if (this.props.selectedCall) {
       var data = this.props.selectedCall.category === "New" ? false : true;
     }
@@ -286,7 +250,7 @@ class CandidateCallForm extends Component {
                     </div>
                     <div class=" w-[55%]" >
                       <StyledLabel>Category</StyledLabel>
-                      <Spacer />
+                      <mt-3 />
                       <ButtonGroup>
                         <Button
                           onClick={() => this.handleCategoryChange("Follow up")}
@@ -321,7 +285,7 @@ class CandidateCallForm extends Component {
                     </div>
                   </div>
 
-                  <Spacer />
+                  <mt-3 />
                   <Field
                     name="callPurpose"
                     label="Topic"
@@ -330,7 +294,7 @@ class CandidateCallForm extends Component {
                     width={"100%"}
                     inlineLabel
                     />
-                  <Spacer />
+                  <mt-3 />
                   <Field
                     name="callDate"
                     label="Date"
@@ -375,9 +339,9 @@ class CandidateCallForm extends Component {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <mt-3 />
 
-                  <Spacer />
+                  <mt-3 />
                   {startDate ? (
                     <span>
                       {dayjs(startDate).isBefore(dayjs()) && (
@@ -407,26 +371,8 @@ class CandidateCallForm extends Component {
                     inlineLabel
                     />
                 </div>
-              </div>
-              {/* <Spacer />
-              <FlexContainer justifyContent="flex-end">
-                {isEditing && (
-                  <>
-                    <StyledPopconfirm
-                      title="Do you want to delete?"
-                      onConfirm={() => deleteCall(prefillCall.callId)}
-                    >
-                      <Button
-                        type="danger"
-                        htmlType="submit"
-                        loading={deletingCall}
-                      >
-                        Delete
-                      </Button>
-                    </StyledPopconfirm>
-                  </>
-                )} */}
-                <Spacer />
+              </div>      
+                <mt-3 />
                 <div class=" flex justify-end" >
                 <Button
                   type="primary"
@@ -460,13 +406,6 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addCall,
-      // handleChooserModal,
-      // updateCall,
-      // handleCallModal,
-      // deleteCall,
-      // handleAccountTimelineModal,
-      // handleContactActivityModal,
-      // handleOpportunityActivityModal,
       getActivityListByCandidateId,
     },
     dispatch

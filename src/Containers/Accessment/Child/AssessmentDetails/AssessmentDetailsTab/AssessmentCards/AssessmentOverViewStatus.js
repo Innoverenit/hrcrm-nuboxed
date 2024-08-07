@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React, {  } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
-import { Title, MultiAvatar, ViewEditCard } from "../../../../../../Components/UI/Elements";
+import { ViewEditCard } from "../../../../../../Components/UI/Elements";
 import StatusToggleID from "./StatusToggleID";
 
 function AssessmentOverViewStatus(props) {

@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import AsyncSelect from "react-select/lib/Async";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { get } from "lodash";
-import { FlexContainer } from "../../UI/Layout";
-import { ValidationError, StyledLabel, StyledAsync } from "../../UI/Elements";
+import { StyledAsync } from "../../UI/Elements";
 
 class EditLazySelect extends Component {
   constructor(props) {
@@ -52,16 +49,13 @@ class EditLazySelect extends Component {
     ////debugger;
     return (
       <>
-        {/* <FlexContainer>
-          <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
-            <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel> */}
+       
         <StyledAsync
           isRequired={isRequired}
           classNamePrefix="sales"
           placeholder={placeholder}
           cacheOptions
-          loadOptions={this.loadOptions}
-          placeholder={placeholder}
+          loadOptions={this.loadOptions}      
           defaultValue={defaultValue}
           // defaultOptions
           // onInputChange={this.handleInputChange}
@@ -70,8 +64,7 @@ class EditLazySelect extends Component {
 
           // components={this.renderOptions}
         />
-        {/* </FlexContainer>
-        </FlexContainer> */}
+     
       </>
     );
   }

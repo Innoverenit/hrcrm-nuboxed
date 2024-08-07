@@ -1419,8 +1419,7 @@ const [priority,setpriority]=useState(props.selectedTask
                           <div>
                           <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Set Reminder </div>
                           </div>
-                          <div>
-                            {/* <FlexContainer justifyContent="space-between"> */}
+                          <div>                       
                             <Switch
                               onChange={handleReminderChange}
                               checked={reminder}

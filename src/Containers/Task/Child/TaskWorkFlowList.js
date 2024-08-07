@@ -7,7 +7,6 @@ import styled from "styled-components";
 import {
   getTaskWorkflowStagesForRecruit,
 } from "../../Settings/SettingsAction";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { Select } from "../../../Components/UI/Elements";
 import { elipsize } from "../../../Helpers/Function/Functions";
@@ -153,7 +152,7 @@ class TaskWorkflowList extends Component {
       <>
         <StageWrapper>
         <div class="mr-5 ml-5">           
-            <FlexContainer>
+        <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
               <StyledTabs
                 style={{ width: "80%" }}
                 defaultActiveKey={this.state.activeKey}
@@ -175,7 +174,7 @@ class TaskWorkflowList extends Component {
                   );
                 {/* })} */}
               </StyledTabs>           
-            </FlexContainer>
+            </div>
 
             {this.props.recruitTaskWorkflowStages.map((recruitTaskWorkflowStage, i) => (
               <SingleTaskWorkflowList

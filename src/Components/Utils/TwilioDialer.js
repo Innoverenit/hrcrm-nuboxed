@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { Modal, Button, Icon } from 'antd'
+import { Modal } from 'antd'
 import {
     EyeInvisibleOutlined, PhoneOutlined,
-   
-    
   } from '@ant-design/icons';
 import { MultiAvatar } from "../../Components/UI/Elements";
-import { FlexContainer } from "../../Components/UI/Layout";
 
 class TwillioDialer extends Component {
     constructor(props) {
@@ -47,13 +44,13 @@ class TwillioDialer extends Component {
                     bodyStyle={{ color: '#0f0f0f', backgroundColor: '#333' }}
                 >
 
-                    <FlexContainer justifyContent='center' alignItems='center'>
-                        <FlexContainer justifyContent='center' flexDirection='column' >
+<div class=" flex flex-row flex-wrap items-center self-start justify-center grow shrink h-auto mr-auto ">
+<div class=" flex flex-col flex-wrap items-start self-start justify-center grow shrink h-auto mr-auto ">
                             <MultiAvatar primaryTitle="A" large />
                             <br />
                             <PhoneOutlined type='phone' style={{ color: 'red', fontSize: 30 }} />
-                        </FlexContainer>
-                    </FlexContainer>
+                        </div>
+                    </div>
                 </Modal>
             </div>
 

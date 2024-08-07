@@ -1,28 +1,9 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, {  Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import {addTaskImportForm} from "../TaskAction"
-
-import { Button, Switch, Tooltip, Icon,Select } from "antd";
-
-// import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
-import { Formik, Form, Field, FieldArray,FastField } from "formik";
-import { StyledDrawer, StyledModal } from "../../../Components/UI/Antd";
-import { Spacer, StyledLabel } from "../../../Components/UI/Elements";
-
-
-
-
-import * as Yup from "yup";
-
-// import { getOppoStages, getLevels } from "../../Settings/SettingsAction";
-import { FlexContainer } from "../../../Components/UI/Layout";
-import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
-import LazySelect from "../../../Components/Forms/Formik/LazySelect";
-
-import { FormattedMessage } from "react-intl";
-import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
+import { Button, Select } from "antd";
+import { Formik, Form, Field } from "formik";
 import ImportTaskUpload from "../../../Components/Forms/Formik/ImportTaskUpload";
 const ButtonGroup = Button.Group;
 
@@ -41,24 +22,15 @@ class TaskImportForm extends Component {
     };
   }
 
-
-  render() {
-   
-    
-
-  
-
- 
-
+render() {
+      
     return (
       <>
-       
-         
+             
             <Formik
               // enableReinitialize
               initialValues={{
-              
-              
+                          
                 excelId:"",
                 type:"investorCategory"
                
@@ -101,17 +73,16 @@ class TaskImportForm extends Component {
                       <Field
                         name="excelId"
                         isRequired
-                        component={ImportTaskUpload}
-                        // component={DocumentUpload}
+                        component={ImportTaskUpload}                    
                       />
                       {errors.documentId && (
                         <p style={{ color: "tomato", fontWeight: 600 }}>
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
+                      <mt-3 />
                  
-                  <Spacer />
+                  <mt-3 />
                 
                     </div>
                     <div
@@ -119,23 +90,14 @@ class TaskImportForm extends Component {
                         height: "100%",
                         width: "45%",
                       }}
-                    >
-                  
-                      <Spacer />
-                   
-
-
-                      <Spacer style={{ marginBottom: "0.9375em" }} />
-
-                
-      
-
-                     
+                    >                 
+                      <mt-3 />                  
+                      <mt-3 style={{ marginBottom: "0.9375em" }} />                                 
                     </div>
                   </div>
 
-                  <Spacer />
-                  <FlexContainer justifyContent="flex-end">
+                  <mt-3 />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     <Button
                       htmlType="submit"
                       type="primary"
@@ -143,20 +105,14 @@ class TaskImportForm extends Component {
                     >
                       Submit
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </Form>
               )}
-            </Formik>
-        
-       
+            </Formik>          
       </>
     );
   }
 }
-// const DocumentUploadModal = (props) => {
-//     console.log(props)
-
-// }
 
 const mapStateToProps = ({ document, settings,employee, task,departments,auth }) => ({
   addingTaskImportForm:task.addingTaskImportForm,

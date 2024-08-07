@@ -12,7 +12,6 @@ import {
  
   HeaderText,
 } from "../../Components/UI/Elements";
-import { FlexContainer } from "../../Components/UI/Layout";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
@@ -141,7 +140,7 @@ class Register extends Component {
     ...props
   }) => {
     return (
-      <FlexContainer flexDirection="column">
+      <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
         <Datepicker
           allowClear={false}
           {...field}
@@ -155,7 +154,7 @@ class Register extends Component {
         {get(touched, field.name) && get(errors, field.name) && (
           <ValidationError>{get(errors, field.name)}</ValidationError>
         )}
-      </FlexContainer>
+      </div>
     );
   };
   componentDidMount() {
@@ -210,23 +209,15 @@ class Register extends Component {
     console.log(currency);
     return (
       <>
-        <FlexContainer>
+      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           <AuthContainer
             style={{ backgroundColor: "#F5F5F5", flexDirection: "column" }}
           >
-            {/* <img
-              className="big-logo"
-              src={FWLogo}
-              style={{ marginTop: 15, width: "12.5em" }}
-            /> */}
+            
             <br />
             <FormWrapper style={{ height: "auto" }}>
               {registeringSuccess ? (
-                <FlexContainer
-                  justifyContent="center"
-                  alignItems="center"
-                  style={{ height: 300 }}
-                >
+               <div class=" flex flex-row flex-wrap h-[300px] items-center self-start justify-center grow shrink h-auto mr-auto ">
                   <div
                     style={{
                       display: "flex",
@@ -246,7 +237,7 @@ class Register extends Component {
                       id.
                     </div>
                   </div>
-                </FlexContainer>
+                </div>
               ) : (
                   <Formik
                     // enableReinitialize
@@ -285,7 +276,7 @@ class Register extends Component {
                     }) => {
                       return (
                         <Form className="form-background">
-                          <FlexContainer flexDirection="column">
+                       <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                             <div style={{ width: 400 }}>
                               <div style={{ width: 400 }}>
                                 <Carousel
@@ -316,37 +307,10 @@ class Register extends Component {
                                       />
                                       <div class="mt-3" />
                                     </div>
-
-                                    {/* <div className="register">
-                                    <Field
-                                      name="organization.industryType"
-                                      type="text"
-                                      noLabel
-                                      isShadow
-                                      placeholder="industryType"
-                                      width={"99%"}
-                                      component={InputComponent}
-                                      style={{
-                                        width: "99%",
-                                        height: "2.0625em",
-                                        boxShadow: "0em 0em 0em 0em",
-                                      }}
-                                    />
-                                    <div class="mt-3" />
-                                  </div> */}
-
                                     <div class="mt-3" />
 
-                                    <FlexContainer
-                                      style={{
-                                        width: "100%",
-                                      }}
-                                    >
-                                      <FlexContainer
-                                        style={{
-                                          width: "100%",
-                                        }}
-                                      >
+                                    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[100%] ">
+                                    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[100%] ">
                                         <div style={{ width: "49%" }}>
                                           <Field
                                             name="organization.baseCountry"
@@ -385,15 +349,10 @@ class Register extends Component {
                                             }}
                                           />
                                         </div>
-                                      </FlexContainer>
-                                    </FlexContainer>
+                                      </div>
+                                    </div>
                                     <div class="mt-3" />
-
-                                    <FlexContainer
-                                      style={{
-                                        width: "100%",
-                                      }}
-                                    >
+                                    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto  w-[100%]">
                                       <div style={{ width: "49%" }}>
                                         <Field
                                           name="organization.fiscalStartMonth"
@@ -425,7 +384,7 @@ class Register extends Component {
                                           }}
                                         />
                                       </div>
-                                    </FlexContainer>
+                                    </div>
                                     <div class="mt-3" />
                                     <Button
                                       type="primary"
@@ -444,12 +403,7 @@ class Register extends Component {
                                       About You
                                   </HeaderText>
                                     <div className="register">
-                                      <FlexContainer
-                                        justifyContent="space-between"
-                                        style={{
-                                          width: "99%",
-                                        }}
-                                      >
+                                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[99%]">
                                         <div
                                           style={{
                                             width: "49%",
@@ -489,7 +443,7 @@ class Register extends Component {
                                             }}
                                           />
                                         </div>
-                                      </FlexContainer>
+                                      </div>
                                       <div class="mt-3" />
                                       <Field
                                         isShadow
@@ -503,28 +457,6 @@ class Register extends Component {
                                         style={{ width: "99%", height: "2.0625em" }}
                                       />
 
-                                      {/* <StyledLabel>Gender</StyledLabel> */}
-
-                                      {/* <Radio.Group gender="employee.radiogroup" defaultValue={1}>
-                                        <Radio value={1}
-                              
-                                          onChange={() => this.handleClick(1)}>Male</Radio>
-
-
-                                        <Radio value={2}
-                                          onChange={() => this.handleClick(2)}>Female</Radio>
-
-                                        <Radio value={3}
-                                          onChange={() => this.handleClick(3)}>Others</Radio>
-
-                                      </Radio.Group> */}
-
-                                      {/* //   noLabel
-                                      //   isRequired
-                                      //   component={SearchSelect}
-                                      //   option={["Male", "female"]}
-                                      //   style={{ width: "99%", height: "2.0625em" }}
-                                      // /> */}
                                       <div class="mt-3" />
 
                                       <div
@@ -562,60 +494,14 @@ class Register extends Component {
                                         />
                                       </div>
                                       <div>
-                                        <FlexContainer
-                                          justifyContent="space-between"
-                                          style={{ marginTop: 20, width: "100%" }}
-                                        >
-                                          {/* <Field
-                                            type="text"
-                                            name="employee.address[0].address1"
-                                            placeholder="address1"
-                                            noLabel
-                                            isRequired
-                                            // width="100%"
-                                            isShadow
-                                            component={InputComponent}
-                                            style={{
-                                              width: "100%",
-                                            }}
-                                          /> */}
-                                        &nbsp;
-                                        {/* <Field
-                                          type="text"
-                                          name="employee.address[0].town"
-                                          placeholder="town"
-                                          noLabel
-                                          isRequired
-                                          // width="100%"
-                                          isShadow
-                                          component={InputComponent}
-                                          style={{
-                                            width: "50%",
-                                          }}
-                                        /> */}
-                                        </FlexContainer>
-
-                                        {/* <Field
-                                        type="text"
-                                        name="employee.address[0].postalCode"
-                                        placeholder="postalCode"
-                                        noLabel
-                                        isRequired
-                                        // width="100%"
-                                        isShadow
-                                        component={InputComponent}
-                                        style={{
-                                          width: "50%",
-                                        }}
-                                      /> */}
+                                      <div class=" flex flex-row flex-wrap items-start mt-20 self-start justify-between grow shrink h-auto mr-auto w-[100%] ">                                           
+                                        &nbsp;                                   
+                                        </div>                                   
                                       </div>
                                     </div>
 
                                     <div className="register">
-                                      <FlexContainer
-                                        justifyContent="space-between"
-                                        style={{ marginTop: 20 }}
-                                      >
+                                    <div class=" flex flex-row flex-wrap mt-20 items-start self-start justify-between grow shrink h-auto mr-auto ">
                                         <Button
                                           type="default"
                                           style={{
@@ -639,13 +525,13 @@ class Register extends Component {
                                       </Button>
 
                                         {/* <Checkbox >Agree Terms of Services</Checkbox> */}
-                                      </FlexContainer>
+                                      </div>
                                     </div>
                                   </div>
                                 </Carousel>
                               </div>
                             </div>
-                          </FlexContainer>
+                          </div>
                         </Form>
                       );
                     }}
@@ -664,7 +550,7 @@ class Register extends Component {
             </div>
           </AuthContainer>
           <RandomImageScreen />
-        </FlexContainer>
+        </div>
       </>
     );
   }
