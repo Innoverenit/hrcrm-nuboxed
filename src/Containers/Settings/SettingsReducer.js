@@ -3692,6 +3692,13 @@ export const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 addingPaymentData: false,
+                // paymentFinance: state.paymentFinance.map((item) => {
+                //   if (item.paymentTypeId === action.payload.paymentTypeId) {
+                //     return action.payload;
+                //   } else {
+                //     return item;
+                //   }
+                // }),
     
             };
         case types.ADD_PAYMENT_DATA_FAILURE:

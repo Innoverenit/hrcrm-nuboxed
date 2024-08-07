@@ -6396,7 +6396,7 @@ export const getPaymentFinance = () => (dispatch) => {
     type: types.GET_PAYMENT_FINANCE_REQUEST,
   });
   axios
-    .get(`${base_url}/paymentMode/getPaymentModesByOrgId`, {
+    .get(`${base_url}/paymentMode`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -6420,20 +6420,20 @@ export const getPaymentFinance = () => (dispatch) => {
 
 
 
-export const addPaymentData = (data,paymentModeId,liveInd,cb) => (dispatch) => {
+export const addPaymentData = (paymentModeId,liveInd,cb) => (dispatch) => {
     
   dispatch({
     type: types.ADD_PAYMENT_DATA_REQUEST,
   });
   axios
-    .put(`${base_url}/paymentMode/active_deActive/${paymentModeId}/${liveInd}`, data, {
+    .put(`${base_url}/paymentMode/active_deActive/${paymentModeId}/${liveInd}`, {}, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
       console.log(res);
-      //dispatch(getCurrencyConversion(orgId))
+      dispatch(getPaymentFinance())
       dispatch({
         type: types.ADD_PAYMENT_DATA_SUCCESS,
         payload: res.data,

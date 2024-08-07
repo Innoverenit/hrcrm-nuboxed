@@ -4,6 +4,8 @@ const initialState = {
     viewType: "all",
 
     addSuppliesModal: false,
+    uploadingMaterialList:false,
+    uploadingMaterialListError:false,
 
     addBrandModel: false,
 
@@ -148,6 +150,8 @@ const initialState = {
     fetchingMaterialCategory: false, materialCategorys:[],fetchingMaterialCategoryError: false,
 
     fetchingMaterialCatSrchError:true,
+
+    uploadMaterialModal:false,
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -242,6 +246,10 @@ export const suppliesReducer = (state = initialState, action) => {
                 fetchingSuppliesHistory: false,
                 fetchingSuppliesHistoryError: true,
             };
+
+
+            case types.HANDLE_UPLOAD_MATERIAL_MODAL:
+      return { ...state, uploadMaterialModal: action.payload };
 
         case types.HANDLE_DELETE_FEEDBACK_MODAL:
             return { ...state, addDeleteFeedbackModal: action.payload };
@@ -342,6 +350,23 @@ export const suppliesReducer = (state = initialState, action) => {
                 addingPriceRateError: true,
 
             };
+
+
+
+            case types.UPLOAD_MATERIAL_LIST_REQUEST:
+                return { ...state, uploadingMaterialList: true };
+              case types.UPLOAD_MATERIAL_LIST_SUCCESS:
+                return {
+                  ...state,
+                  uploadingMaterialList: false,
+                //   uploadProductList: false
+                };
+              case types.UPLOAD_MATERIAL_LIST_FAILURE:
+                return {
+                  ...state,
+                  uploadingMaterialList: false,
+                  uploadingMaterialListError: true,
+                };
 
         case types.GET_SUPPLIES_BY_GROUP_ID_REQUEST:
             return { ...state, fetchingPurchaseByGroupId: true };
