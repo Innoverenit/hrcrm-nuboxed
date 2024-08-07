@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 import { base_url } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
+import UploadMaterialModal from "./UploadMaterialModal"
+import UploadIcon from '@mui/icons-material/Upload';
 import { Tooltip } from "antd";
-import { handleSuppliesModal } from "./SuppliesAction";
+import { handleSuppliesModal,handleUploadMaterialModal } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
@@ -75,12 +77,28 @@ class SuppliesActionRight extends React.Component {
             </Button>
           </Tooltip>
         )}
+         <Tooltip placement="left" title="Create">
+            <Button
+              type="primary"
+              ghost
+              onClick={() => this.props.handleUploadMaterialModal(true)}
+            >
+             <UploadIcon className=" !text-icon"/>
+              Upload
+             
+            </Button>
+          </Tooltip>
 <Suspense fallback={<BundleLoader/>}>
         <SuppliesAddModal
          translateText={this.props.translateText}
          selectedLanguage={this.props.selectedLanguage}
           handleSuppliesModal={handleSuppliesModal}
           addSuppliesModal={addSuppliesModal}
+        />
+          <UploadMaterialModal
+         
+          handleUploadMaterialModal={this.props.handleUploadMaterialModal}
+          uploadMaterialModal={this.props.uploadMaterialModal}
         />
         </Suspense>
       </>
@@ -91,12 +109,14 @@ class SuppliesActionRight extends React.Component {
 const mapStateToProps = ({ supplies, auth }) => ({
   addSuppliesModal: supplies.addSuppliesModal,
   user: auth.userDetails,
+  uploadMaterialModal:supplies.uploadMaterialModal,
 
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       handleSuppliesModal,
+      handleUploadMaterialModal,
     },
     dispatch
   );

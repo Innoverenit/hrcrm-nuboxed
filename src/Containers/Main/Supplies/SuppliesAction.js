@@ -15,6 +15,13 @@ export const handleSuppliesModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleUploadMaterialModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPLOAD_MATERIAL_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleBrandModel = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_BRAND_MODEL,
@@ -1055,3 +1062,36 @@ export const materialCategorySearch = (categoryName) => (dispatch) => {
       });
     });
 }; 
+
+
+
+
+export const uploadMaterialList = (data) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_MATERIAL_LIST_REQUEST });
+  axios
+    .post(`${base_url2}/import/supplies-details`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getProducts(0))
+      dispatch({
+        type: types.UPLOAD_MATERIAL_LIST_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Uploaded Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPLOAD_MATERIAL_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
