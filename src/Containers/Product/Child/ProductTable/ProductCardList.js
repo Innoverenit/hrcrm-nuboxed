@@ -37,6 +37,7 @@ const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
 const ProductCellDrawer=lazy(()=>import("./ProductCellDrawer"));
+const ProductDetailsDrawer=lazy(()=>import("./ProductDetailsDrawer"));
 
 function ProductCardList(props) {
 
@@ -45,6 +46,16 @@ function ProductCardList(props) {
 
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const componentRefs = useRef([]);
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -333,7 +344,12 @@ function ProductCardList(props) {
                    
                       <div class=" text-xs  font-poppins">
                         <Tooltip title={item.description}>
-                        <ContactSupportIcon className="!text-icon"/>
+                        <ContactSupportIcon className="!text-icon"
+                        onClick={() => {
+                          openModal();
+                          handleParticularRowData(item);
+                        }}
+                        />
                         </Tooltip>
                       </div>
 <div>
@@ -414,6 +430,11 @@ function ProductCardList(props) {
          particularDiscountData={particularDiscountData}
          productQualityDrawer={props.productQualityDrawer}
          handleProductQuality={props.handleProductQuality}
+        />
+        <ProductDetailsDrawer
+        particularDiscountData={particularDiscountData}
+        modalVisible={modalVisible}
+        closeModal={closeModal}
         />
       </Suspense>
     </>

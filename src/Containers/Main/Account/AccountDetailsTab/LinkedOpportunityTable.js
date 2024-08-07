@@ -98,6 +98,9 @@ console.log(props.user.moduleMapper.ecomModInd)
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
                         <div class=" w-[8.5rem]"> {translatedMenuItems[0]}</div>
                         <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>
+                        <div className=" md:w-[6rem]">
+                          Created Date  
+                          </div>
                         <div className=" md:w-[7.1rem]"> {translatedMenuItems[2]}</div>
                         <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[4]}</div>
@@ -169,7 +172,11 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                   </div>
                                                 </Tooltip>
                                               </div>
+                                              <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
+                                                    </div>
                                             </div>
+                                            
                                           </div>
                       
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
@@ -200,7 +207,6 @@ console.log(props.user.moduleMapper.ecomModInd)
                                      
                                         <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
-                                              {/* {item.contactPersonName} */}
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
                                                   
@@ -252,6 +258,9 @@ console.log(props.user.moduleMapper.ecomModInd)
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
 <div class=" w-[8.5rem]"> {translatedMenuItems[9]}</div>
 <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>
+<div className=" md:w-[6rem]">
+                        Created Date  
+                        </div>
                         <div className=" md:w-[7.1rem]"> {translatedMenuItems[2]}</div>
                         <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[4]}</div>
@@ -323,7 +332,10 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                   </div>
                                                 </Tooltip>
                                               </div>
-                                            </div>
+                                              <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
+                                                    </div>
+                                            </div> 
                                           </div>
                       
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">

@@ -12,8 +12,10 @@ import ProductionAllCardList from "./ProductionAllCardList";
 import DeletedOrderList from "./DeletedOrderList";
 import ProcreCardList from "../Procre/ProcreCardList";
 
+const EcomCardList=lazy(()=>import("./EcomCardList"));
 const AllOrderList = lazy(() => import("./AllOrderList"));
 const OrderTableByUserID = lazy(() => import("./OrderTableByUserID"));
+
 class Order extends Component {
   constructor(props) {
     super(props);
@@ -77,7 +79,12 @@ class Order extends Component {
             <ProcreCardList 
             selectedLanguage={this.props.selectedLanguage}
             translateText={this.props.translateText}/>
-          ) : null}
+          ) : this.props.viewType === "ecom" ? (
+            <EcomCardList 
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}/>
+          ) :
+          null}
         </Suspense>
       </React.Fragment>
     );

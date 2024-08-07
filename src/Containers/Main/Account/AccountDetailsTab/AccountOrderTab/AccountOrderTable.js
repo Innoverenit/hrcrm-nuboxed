@@ -175,6 +175,9 @@ const AccountOrderTable = (props) => {
                              {translatedMenuItems[1]} ID
                         </div>
                         <div className=" md:w-[5.012rem]">
+                        Created Date  
+                        </div>
+                        <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
                         </div>
                         <div className=" md:w-[5.08rem]">
@@ -231,12 +234,9 @@ const AccountOrderTable = (props) => {
                             /> */}
                         </div>
 
-                        <div className=" md:w-[8.02rem]">
-                        {translatedMenuItems[11]}   {/* <FormattedMessage
-                                id="app.repair"
-                                defaultMessage="Repair"
-                            /> */}
-                        </div>
+                        {/* <div className=" md:w-[8.02rem]">
+                        {translatedMenuItems[11]}   
+                        </div> */}
                     </div>
 
                     {/* <div class="overflow-x-auto h-[64vh]"> */}
@@ -306,8 +306,11 @@ const AccountOrderTable = (props) => {
                                                         </div>
                                                     </div>
                                                     <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
                                                     </div>
-
+                                                    <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    
+                                                    </div>
                                                     <div className=" flex   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div >
                                                             <MultiAvatar2
@@ -618,6 +621,9 @@ const AccountOrderTable = (props) => {
                              {translatedMenuItems[1]}ID
                         </div>
                         <div className=" md:w-[5.012rem]">
+                        Created Date  
+                        </div>
+                        <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
                         </div>
                         <div className=" md:w-[5.08rem]">
@@ -671,13 +677,6 @@ const AccountOrderTable = (props) => {
                         {translatedMenuItems[10]}  {/* <FormattedMessage
                                 id="app.lead"
                                 defaultMessage="Lead"
-                            /> */}
-                        </div>
-
-                        <div className=" md:w-[8.02rem]">
-                        {translatedMenuItems[11]}   {/* <FormattedMessage
-                                id="app.repair"
-                                defaultMessage="Repair"
                             /> */}
                         </div>
                     </div>
@@ -747,6 +746,9 @@ const AccountOrderTable = (props) => {
                                                                 </span>
                                                             ) : null}
                                                         </div>
+                                                    </div>
+                                                    <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
                                                     </div>
                                                     <div className=" flex  md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     </div>
@@ -1060,6 +1062,9 @@ const AccountOrderTable = (props) => {
                              {translatedMenuItems[1]}ID
                         </div>
                         <div className=" md:w-[5.012rem]">
+                        Created Date  
+                        </div>
+                        <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
                         </div>
                         <div className=" md:w-[5.08rem]">
@@ -1116,12 +1121,7 @@ const AccountOrderTable = (props) => {
                             /> */}
                         </div>
 
-                        <div className=" md:w-[8.02rem]">
-                        {translatedMenuItems[11]}   {/* <FormattedMessage
-                                id="app.repair"
-                                defaultMessage="Repair"
-                            /> */}
-                        </div>
+                        
                     </div>
 
                     {/* <div class="overflow-x-auto h-[64vh]"> */}
@@ -1189,6 +1189,9 @@ const AccountOrderTable = (props) => {
                                                                 </span>
                                                             ) : null}
                                                         </div>
+                                                    </div>
+                                                    <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
                                                     </div>
                                                     <div className=" flex   md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     </div>

@@ -114,6 +114,9 @@ const handleLoadMoreLow = () => {
                         <div className=" md:w-[7.4rem] ml-2">
                         {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
+                          <div className=" md:w-[6rem]">
+                          Created Date  
+                          </div>
                         <div className=" md:w-[7.1rem]">
                         {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
                           </div>
@@ -197,8 +200,11 @@ const handleLoadMoreLow = () => {
                                                 </Tooltip>
                                               </div>
                                             </div>
+                                            <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
+                                                    </div>
                                           </div>
-                      
+                                        
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
@@ -273,6 +279,9 @@ const handleLoadMoreLow = () => {
            </div>
                         <div className=" md:w-[7.4rem] ml-2">
                         {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
+                          </div>
+                          <div className=" md:w-[6rem]">
+                          Created Date
                           </div>
                         <div className=" md:w-[7.1rem]">
                         {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
@@ -357,8 +366,11 @@ const handleLoadMoreLow = () => {
                                                 </Tooltip>
                                               </div>
                                             </div>
+                                            <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
+                                                    </div>
                                           </div>
-                      
+
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
@@ -433,6 +445,9 @@ const handleLoadMoreLow = () => {
            </div>
                         <div className=" md:w-[7.4rem] ml-2">
                         {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
+                          </div>
+                          <div className=" md:w-[6rem]">
+                                Created Date
                           </div>
                         <div className=" md:w-[7.1rem]">
                         {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
@@ -517,6 +532,9 @@ const handleLoadMoreLow = () => {
                           </Tooltip>
                         </div>
                       </div>
+                      <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
+                                                    </div>
                     </div>
 
                     <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">

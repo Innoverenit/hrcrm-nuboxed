@@ -1095,3 +1095,29 @@ export const uploadMaterialList = (data) => (dispatch) => {
       });
     });
 };
+
+export const getMaterialsBySuppliesId = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIALS_BY_SUPPLIES_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/bothSuppliesAndProduct/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MATERIALS_BY_SUPPLIES_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_MATERIALS_BY_SUPPLIES_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
