@@ -143,10 +143,31 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
       .then((res) => {
         console.log(res);
        // dispatch(getDispatchList(id,0))
+       console.log(res.data)
+       if (res.data.subscriptionInd===true) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+        });
+
+        dispatch({
+          type: types.ADD_SUSCRIPTIONS_DUPLICATE,
+        });
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: "Subscription added Successfully"
+          ,
+          showConfirmButton: false,
+          timer: 1500
+        })
         dispatch({
           type: types.ADD_SUSCRIPTIONS_SUCCESS,
           payload: res.data,
         });
+        
+       
+      }
       })
       .catch((err) => {
         dispatch({

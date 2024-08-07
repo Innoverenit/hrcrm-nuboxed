@@ -7,6 +7,7 @@ const initialState = {
 
     addingSuscrptions: false,
     addingSuscrptionsError:false,
+    duplicateSuscriptionsError:false,
 
     updatingSuscrption: false,
     updatingSuscrptionError: false,
@@ -146,7 +147,8 @@ export const subscriptionReducer = (state = initialState, action) => {
                     case types.ADD_SUSCRIPTIONS_REQUEST:
                       return { ...state, addingSuscrptions: true };
                     case types.ADD_SUSCRIPTIONS_SUCCESS:
-                      const existingSubscriptionIndex = state.subscriptionsFormData.findIndex(item => item.subscriptionId === action.payload);
+                      const existingSubscriptionIndex = state.subscriptionsFormData.findIndex(item => item.subscriptionId === action.payload.subscriptionId);
+                      console.log(existingSubscriptionIndex)
 
                       let updatedSubscriptionsFormData;
                       if (existingSubscriptionIndex !== -1) {
@@ -178,7 +180,14 @@ export const subscriptionReducer = (state = initialState, action) => {
                       return { ...state, 
                         addingSuscrptions: false,
                         addingSuscrptionsError:true,
-                        addingSuscrpitionModal: false };    
+                        addingSuscrpitionModal: false };  
+                        
+                        case types.ADD_SUSCRIPTIONS_DUPLICATE:
+  return {
+    ...state,
+    addingSuscrptions: false,
+    duplicateSuscriptionsError: true,
+  };
 
 
     default:

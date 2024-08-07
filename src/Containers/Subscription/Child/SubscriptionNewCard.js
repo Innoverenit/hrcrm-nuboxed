@@ -1022,7 +1022,8 @@ useEffect(() => {
 
         {subscriptions.map((sub, index) => (
           <Card
-            key={index}
+            // key={index}
+            key={sub.subscriptionId || index}
             style={{ width: 300, margin: '10px' }}
             // actions={[
             //    <Button type="primary" htmlType="submit">Submit</Button>,
