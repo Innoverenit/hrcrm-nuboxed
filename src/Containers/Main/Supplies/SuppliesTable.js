@@ -36,12 +36,14 @@ import MaterialFifoToggle from "./MaterialFifoToggle";
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import { FormattedMessage } from "react-intl";
 import PriceModal from "./PriceModal";
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const UpdateSuppliesFormDrawer = lazy(() => import("./UpdateSuppliesFormDrawer"));
 const TagBrandModel = lazy(() => import("./TagBrandModel"));
 const SuppliersListDrawer = lazy(() => import("./SuppliesSupplierList/SuppliersListDrawer"));
+const MaterialDetailsDrawer=lazy(() => import("./MaterialById/MaterialDetailsDrawer"));
 
 function SuppliesTable(props) {
 
@@ -50,6 +52,17 @@ function SuppliesTable(props) {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   const componentRefs = useRef([]);
   const handlePrint = () => {
     window.print();
@@ -368,6 +381,7 @@ function SuppliesTable(props) {
                                 />
                               </Tooltip>
                             </div>
+
                             <div>
                               <Tooltip title="Inventory">
                                 <InventoryIcon className=" !text-icon cursor-pointer"  onClick={() => {
@@ -376,7 +390,16 @@ function SuppliesTable(props) {
                                   }}/>
                               </Tooltip>
                             </div>
-
+<div class=" text-xs  font-poppins">
+                        <Tooltip>
+                        <ContactSupportIcon className="!text-icon cursor-pointer"
+                        onClick={() => {
+                          openModal();
+                          handleParticularRowData(item);
+                        }}
+                        />
+                        </Tooltip>
+                      </div>
                             {/* <div className=" flex font-medium ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                    
                                                 </div> */}
@@ -475,6 +498,12 @@ function SuppliesTable(props) {
           handlePriceModal={handlePriceModal}
           priceOpenModal={props.priceOpenModal}
         />
+         <MaterialDetailsDrawer
+        particularDiscountData={particularDiscountData}
+         modalVisible={modalVisible}
+       closeModal={closeModal}
+        />
+
       </Suspense>
 
     </>

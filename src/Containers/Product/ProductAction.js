@@ -2094,5 +2094,29 @@ export const catalogueCategorySearch = (categoryName) => (dispatch) => {
     });
 };
 
-
+export const getProductsByProductId = (productId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTS_BY_PRODUCTID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/${productId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTS_BY_PRODUCTID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCTS_BY_PRODUCTID_FAILURE,
+        payload: err,
+      });
+    });
+};
 

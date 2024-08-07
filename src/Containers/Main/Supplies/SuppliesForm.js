@@ -263,6 +263,7 @@ class Suppliesform extends Component {
                         width={"100%"}
                         inlineLabel
                         component={InputComponent}
+                        isRequired
                       />
                     </div>
                    

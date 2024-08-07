@@ -152,6 +152,10 @@ const initialState = {
     fetchingMaterialCatSrchError:true,
 
     uploadMaterialModal:false,
+
+    fetchingMaterialsBySuppliesId: false,
+                                  fetchingMaterialsBySuppliesIdError:false,
+                                  materialsBySuppliesId:{}        
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -837,7 +841,29 @@ export const suppliesReducer = (state = initialState, action) => {
                            
                             };
                           case types.MATERIAL_CATEGORY_SEARCH_FAILURE:
-                            return { ...state, fetchingMaterialCatSrchError: true };                     
+                            return { ...state, fetchingMaterialCatSrchError: true };   
+                            
+                            
+                            case types.GET_MATERIALS_BY_SUPPLIES_ID_REQUEST:
+                                return {
+                                  ...state,
+                                  fetchingMaterialsBySuppliesId: true,
+                                  fetchingMaterialsBySuppliesIdError: false,
+                                };
+                              case types.GET_MATERIALS_BY_SUPPLIES_ID_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingMaterialsBySuppliesId: false,
+                                  materialsBySuppliesId: action.payload,
+                                };
+                              case types.GET_MATERIALS_BY_SUPPLIES_ID_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingMaterialsBySuppliesId: false,
+                                  fetchingMaterialsBySuppliesIdError: true,
+                                };                                      
+
+
 
         default:
             return state;

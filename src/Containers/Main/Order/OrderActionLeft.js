@@ -258,7 +258,21 @@ function OrderActionLeft (props) {
             </span>
           {/* </Badge> */}
         </Tooltip>
+        <Tooltip title="Ecom">
 
+<span class=" mr-1 text-sm cursor-pointer"
+  onClick={() => props.setOrderViewType("ecom")}
+  style={{
+    color: props.viewType === "ecom" && "#1890ff",
+  }}
+>         
+<Button type={props.viewType === "ecom" ? "primary" : ""} style={{ backgroundColor: props.viewType === "ecom" ? "" : "tomato" }}>
+    
+    <div class="text-white">Ecom</div></Button>
+    
+</span>
+
+</Tooltip>
         <Tooltip title="Completed Orders">
           {/* <Badge
             size="small"

@@ -375,6 +375,11 @@ const initialState = {
 
   fetchingCatalogueCatSrch: false,
   fetchingCatalogueCatSrchError: false,
+
+  fetchingProductsByProductId: false,
+  fetchingProductsByProductIdError: false,
+  productsByproductId: {},
+  
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -1631,7 +1636,26 @@ export const productReducer = (state = initialState, action) => {
                                         case types.CATALOGUE_CATEGORY_SEARCH_FAILURE:
                                           return { ...state, fetchingCatalogueCatSrchError: true };                     
 
-                                          
+      
+                                          case types.GET_PRODUCTS_BY_PRODUCTID_REQUEST:
+                                            return {
+                                              ...state,
+                                              fetchingProductsByProductId: true,
+                                              fetchingProductsByProductIdError: false,
+                                            };
+                                          case types.GET_PRODUCTS_BY_PRODUCTID_SUCCESS:
+                                            return {
+                                              ...state,
+                                              fetchingProductsByProductId: false,
+                                              productsByproductId: action.payload,
+                                            };
+                                          case types.GET_PRODUCTS_BY_PRODUCTID_FAILURE:
+                                            return {
+                                              ...state,
+                                              fetchingProductsByProductId: false,
+                                              fetchingProductsByProductIdError: true,
+                                            };                                      
+
     default:
       return state;
   }
