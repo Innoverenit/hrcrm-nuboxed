@@ -11,7 +11,6 @@ import Button from "antd/lib/button";
 import { addOnboard, generateOtpByEmail, validateOtp } from "./AuthAction";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
    import FWLogo from "../../Assets/Images/logo_22 copy.png";
-import { FlexContainer } from "../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
 
 
@@ -121,14 +120,7 @@ class OnBoardOrganizationPage extends Component {
                       className="gvbmIs"
                       name="organizationName"
                       type="text"
-                    placeholder="Organization Name"
-                      // placeholder={
-                      //   <FormattedMessage
-                      //   id="app.organizationName"
-                      //   defaultMessage="Organization Name"
-                      // />
-                      // }
-                    
+                    placeholder="Organization Name"                                       
                       component={this.InputComponent}
                     />
                     < div class="mt-3" />
@@ -255,7 +247,7 @@ class OnBoardOrganizationPage extends Component {
                     </div>
                         < div class="mt-3" />
                         <div className="flex flex-row">
-                      <FlexContainer justifyContent="space-between">
+                        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                         <div style={{ width: "100%" }}>
                           <Field
                             name="confirmPassword"
@@ -286,37 +278,9 @@ class OnBoardOrganizationPage extends Component {
                             }}
                           // style={{ size: 24 }}
                           />
-                        )}
-                        {/* <div >
-                          <Button
-                            type="primary"
-                            onClick={() => {
-                              this.props.generateOtpByEmail({
-                                emailId: this.props.emailId
-                              })
-                              // this.handleOtpField()
-                            }}
-                            style={{ marginLeft: "-6.25em", marginTop: "0.4em" }}
-
-                          >
-                            <ArrowRightOutlined />
-                          </Button>
-                        </div> */}
-                      </FlexContainer>
-                      {/* {values.password.length &&
-                        values.password === values.confirmPassword ? (
-                        <CheckCircleOutlined
-                          type="check-circle"
-                          theme="twoTone"
-                          twoToneColor="#52c41a"
-                          size={80}
-                          style={{
-                            marginLeft: "1.25em",
-                            marginTop: "0.875em",
-                            fontSize: "1.5625em",
-                          }}
-                        />
-                      ) : null}  */}
+                        )}                      
+                      </div>
+                     
                     </div>
                   < div class="mt-3" />
                     <Button

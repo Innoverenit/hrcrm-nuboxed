@@ -1,8 +1,8 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { SubTitle } from "../../../../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../../../../Components/UI/Layout";
+
 
 class ContactAvailibityView extends Component {
   render() {
@@ -18,7 +18,7 @@ class ContactAvailibityView extends Component {
             id="app.availability"
             defaultMessage="Availability"
           />}
-          value={moment(availableDate).format("ll")}
+          value={dayjs(availableDate).format("ll")}
         />
         <ContactItemRow
           // label="Billing / hr"
@@ -37,11 +37,7 @@ export default ContactAvailibityView;
 
 const ContactItemRow = ({ label, value }) => {
   return (
-    <FlexContainer
-      alignItems="center"
-      flexWrap="nowrap"
-      style={{ margin: "0.4rem" }}
-    >
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto m-[0.4rem]">
       <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
       <SubTitle
         overflow="hidden"
@@ -50,6 +46,6 @@ const ContactItemRow = ({ label, value }) => {
       >
         {value}
       </SubTitle>
-    </FlexContainer>
+    </div>
   );
 };

@@ -33,11 +33,9 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Select } from "antd";
-import styled from 'styled-components'
 import { StyledPopconfirm  } from '../../Components/UI/Antd';
 import { UpCircleOutlined } from '@ant-design/icons';
 import { BundleLoader } from "../../Components/Placeholder";
-import { FlexContainer } from '../../Components/UI/Layout'
 const AddCandidatesTasksDrawerModal = lazy(() =>
   import("./AddCandidatesTasksDrawerModal")
 );
@@ -130,10 +128,9 @@ function handleSetCurrentCandidateId(candidateId) {
                      <div class="w-7 h-7" >
                    <Tooltip 
                    title={item.country}
-                   >
-                 
-                   </Tooltip>
-                   <FlexContainer justifyContent ="space-around">               
+                   >               
+                   </Tooltip>              
+                   <div class=" flex flex-row flex-wrap items-start self-start  justify-around grow shrink h-auto mr-auto ">              
                    <div >
                           <MultiAvatar2
 
@@ -153,7 +150,7 @@ function handleSetCurrentCandidateId(candidateId) {
                         </div> 
                         </div>
                         {/* {item.Video !== null?( */}
-                        <FlexContainer justifyContent ="flex-end">
+                        <div class=" flex flex-row flex-wrap items-start self-start  justify-end grow shrink h-auto mr-auto ">  
                            <div >
                            {item.videoClipsId!==null&&( 
                         <Tooltip title="Video">
@@ -184,10 +181,10 @@ function handleSetCurrentCandidateId(candidateId) {
               style={{ color: "grey",fontSize:"1.2rem",padding:"2px" }}/>
               </div>
             
-              </FlexContainer>
-          </FlexContainer>                  
+              </div>
+          </div>                  
                         </div>                    
-                        <FlexContainer alignItems="baseline">                       
+                        <div class=" flex flex-row flex-wrap items-baseline self-start  justify-around grow shrink h-auto mr-auto ">                        
                         <StyledLabel> <SkillsLoadMore 
                         skillList={data} 
                         viewType={props.viewType}
@@ -196,7 +193,7 @@ function handleSetCurrentCandidateId(candidateId) {
                         <Tooltip  title={item.skillList}>
                         <BuildCircleIcon   style={{fontSize:"1.1rem",color:"#24d8a7",padding:"2px"}}  /> 
                         </Tooltip>            
-                        </FlexContainer>                             
+                        </div>                             
                         <div class=" flex flex-row justify-around w-full items-end">
                         <div style={{alignItems:"center"}}>
               <Tooltip title={item.category}>

@@ -61,21 +61,6 @@ class CandidateForm extends Component {
     // this.onNumber = this.onNumber.bind(this)
   }
 
-//   onNumber(e){
-//     const re = /^[0-9\b]+$/;
-//     if (e.target.value === '' || re.test(e.target.value)) {
-//        this.setState({value: e.target.value})
-//     }
-//  }
-
-  // NumericOnly = (e) => {
-  //   //angka only
-  //   const reg = /^[0-9\b]+$/;
-  //   let preval = e.target.value;
-  //   if (e.target.value === "" || reg.test(e.target.value)) return true;
-  //   else e.target.value = preval.substring(0, preval.length - 1);
-  // };
-
   handleCandidate = (checked) => {
     this.setState({ candidate: checked });
   };
@@ -925,25 +910,7 @@ class CandidateForm extends Component {
                       />
                     </>
                   )}
-                  <>
-                    {/* <FlexContainer justifyContent="space-between">
-                      <FlexContainer justifyContent="space-between">
-                        <Field
-                          name="skills"
-                          //  selectType="contactList"
-                          // isColumnWithoutNoCreate
-                          label="Skills"
-                          mode
-                          placeholder="Select"
-                          width={"100%"}
-                          component={SelectComponent}
-                          options={
-                            Array.isArray(libraryOption) ? libraryOption : []
-                          }
-                        />
-                      </FlexContainer>
-                    </FlexContainer> */}
-                  
+                  <>                 
                   <div class=" flex justify-between" >
                   <div class=" w-[47.5%]">
                       <div class=" flex justify-between" >
@@ -1046,30 +1013,7 @@ onChange={this.NumericOnly}
                         />
                       </div>
                     </div>
-
-                    {/* <FlexContainer justifyContent="space-between">
-                      <div style={{ width: "47%" }}>
-                        <FastField
-                          name="designationTypeId"
-                          //label="Designation"
-                          label={
-                            <FormattedMessage
-                              id="app.designation"
-                              defaultMessage="Designation"
-                            />
-                          }
-                          isColumnWithoutNoCreate
-                          selectType="designationType"
-                          isColumn
-                          // component={SelectComponent}
-                          component={SearchSelect}
-                          value={values.designationTypeId}
-                          inlineLabel
-                        />
-                      </div>
-                    </FlexContainer> */}
-
-                   
+                                 
                     <div class=" flex justify-between mt-3" >
                     <div class=" w-[47.5%]">
                     <div class=" flex justify-between" >

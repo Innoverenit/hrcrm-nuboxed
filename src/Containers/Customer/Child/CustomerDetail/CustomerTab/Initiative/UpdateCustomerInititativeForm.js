@@ -2,15 +2,13 @@ import React, { useState, Component, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { getLibrarys } from "../../../../../Settings/Library/LibraryAction";
 import { Button } from "antd";
 import { Select } from "antd";
 import { updateCustomerInitiative } from "../../../../CustomerAction";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import { Spacer, StyledLabel } from "../../../../../../Components/UI/Elements";
+import { Formik, Form, Field } from "formik";
+import {  StyledLabel } from "../../../../../../Components/UI/Elements";
 import { setEditCustomerInitiative } from "../../../../CustomerAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 
@@ -112,22 +110,7 @@ function UpdateCustomerInititativeForm(props) {
                     )
                   })}
                 </Select>
-
-
-                {/* <Field
-                      name="skillList"
-                      label="Skills"
-                      mode="multiple"
-                      // isColumn
-                      allowClear
-                      placeholder="Select"
-                      width={"100%"}
-                      component={SelectComponent}
-                      options={
-                        Array.isArray(libraryOption) ? libraryOption : []
-                      }
-                    /> */}
-                <Spacer />
+                <mt-3 />
               </div>
               <div
                 style={{
@@ -146,8 +129,8 @@ function UpdateCustomerInititativeForm(props) {
                 />
               </div>
             </div>
-            <Spacer />
-            <FlexContainer justifyContent="flex-end">
+            <mt-3 />
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
               <Button
                 type="primary"
                 htmlType="submit"
@@ -156,7 +139,7 @@ function UpdateCustomerInititativeForm(props) {
                 <FormattedMessage id="app.update" defaultMessage="Update" />
                 {/* Create */}
               </Button>
-            </FlexContainer>
+            </div>
           </Form>
         )}
       </Formik>

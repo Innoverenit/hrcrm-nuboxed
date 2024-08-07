@@ -107,22 +107,6 @@ function DonotCallForm (props){
     
     
  </Select> 
- {/* <FlexContainer justifyContent="space-between">
-  <div style={{ width: "47%",flexBasis:"44%"}}>
-  {selectType==="donotcall" &&(  
-  <Field
-                          name="callType"
-                          //label="Billing"
-
-
-                          width={"100%"}
-                          isColumn
-                          component={SelectComponent}  
-                          options={[ "donotcall"]}                        
-                        />
-                         )} 
-  </div>
- </FlexContainer> */}
  <div class=" flex justify-between" >
                      
                      <div class=" w-[47%]" style={{ flexBasis:"44%" }}>

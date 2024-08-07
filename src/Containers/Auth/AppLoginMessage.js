@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  withRouter } from "react-router-dom";
 import { AuthContainer, FormWrapper } from "./styled";
-import { FlexContainer} from "../../Components/UI/Layout";
 import RandomImageScreen from "./RandomImageScreen";
 class AppLoginMessage extends Component {
 
@@ -11,7 +10,7 @@ class AppLoginMessage extends Component {
 
         return (
             <>
-                <FlexContainer>
+            <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                     <AuthContainer
                         style={{
                             backgroundColor: "#F5F5F5",
@@ -45,7 +44,7 @@ class AppLoginMessage extends Component {
             </div>
                     </AuthContainer>
                     <RandomImageScreen />
-                </FlexContainer>
+                </div>
             </>
         );
     }

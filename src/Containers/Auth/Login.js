@@ -5,7 +5,6 @@ import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { FormWrapper, Input } from "./styled";
 import { ValidationError} from "../../Components/UI/Elements";
-import { FlexContainer } from "../../Components/UI/Layout";
 import Button from "antd/lib/button";
 import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
 import {
@@ -16,7 +15,6 @@ import FWLogo from "../../Assets/Images/name.jpg";//ct
 // import FWLogo1 from "../../Assets/Images/dsdde.jpg"; //ct
 import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nubox
 import DevelopTk from "../../Assets/Images/logo_22.png";// testhr
-
 
 
 class Login extends Component {
@@ -36,11 +34,6 @@ class Login extends Component {
       type: type === "text" ? "password" : "text",
       show: !this.state.show,
     }));
-  // enterLoading = () => {
-  //   this.setState({ Loading: true });
-  //   setTimeout(() => this.setState({ Loading: false }), 3500);
-  // };
-
   submit = (values) => {
     // this.enterLoading();
     this.props.login(values, this.props.history);
@@ -118,7 +111,7 @@ class Login extends Component {
                       component={this.InputComponent}
                     />
                     <div class="mt-3" />
-                    <FlexContainer justifyContent="space-between" style={{ alignItems: "center" }} >
+                    <div class=" flex flex-row flex-wrap items-center self-start justify-between grow shrink h-auto mr-auto ">
                       <div className=" flex flex-row w-full">
                         <div class=" w-full">
                           <Field
@@ -143,49 +136,9 @@ class Login extends Component {
                             style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
                           />
                         )}
-                      </div>
-                      {/* <div >
-                        <Button
-                          type="primary"
-                          onClick={() => {
-                            this.props.generateOtpByEmail({
-                              userName: values.userName
-                            })
-                          }}
-
-                        >
-                          <ArrowRightOutlined />
-                        </Button>
-                      </div> */}
-
-                    </FlexContainer>
-                    <div class="mt-3" />
-                    {/* <FlexContainer justifyContent="space-around" style={{alignItems:"center"}}>                      
-                      <div >
-                        <Field
-                          name="otp"
-                          placeholder="Enter OTP"
-                          component={InputComponent}
-                        />
-                      </div>
-                    {values.otp  && (
-                      <div >
-                        <Button
-                          type="primary"
-                      //disabled={!values.otp}
-                          onClick={() => {
-                            this.props.validateOtp({
-                              otp: values.otp,
-                              userName: values.userName
-                            })
-                          }}
-                        >
-                          Validate
-                        </Button>                      
-                      </div>
-                      )} 
-                    </FlexContainer>
-                    <div class="mt-3" /> */}
+                      </div>           
+                    </div>
+                    <div class="mt-3" />                
                     <Button
                       type="primary"
                       htmlType="submit"

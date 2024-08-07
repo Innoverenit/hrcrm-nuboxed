@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { SearchOutlined,  
 } from '@ant-design/icons';
-import {  Tooltip,Input, Button, message, Avatar } from "antd";
-import moment from "moment";
+import {  Tooltip,Input, Button, Avatar } from "antd";
+import dayjs from "dayjs";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { withRouter } from "react-router-dom";
 import Highlighter from "react-highlight-words";
@@ -193,12 +193,7 @@ class LinkedCustomerProjectTaskTable extends React.Component {
             </div>
           );
         },
-        // sorter: (a, b) =>
-        //   a.priority &&
-        //     a.priority.toLowerCase() > b.pritority &&
-        //     b.priority.toLowerCase()
-        //     ? 1
-        //     : -1,
+      
       },
       {
         //title: "Expense Type",
@@ -216,30 +211,21 @@ class LinkedCustomerProjectTaskTable extends React.Component {
         
         field: "taskName",
         width:110,
-        //...this.getColumnSearchProps('taskName'),
-        // render: (name, item, i) => {
-        //   return <span>{` ${item.taskName}`}</span>;
-        // },
+     
       },
       {
         headerName: "Customer",
         
          field: "customerName",
         width:100,
-        //...this.getColumnSearchProps('taskName'),
-        // render: (name, item, i) => {
-        //   return <span>{` ${item.taskName}`}</span>;
-        // },
+       
       },
       {
         headerName: "Project",
         
         field: "projectName",
         width:110,
-        //...this.getColumnSearchProps('taskName'),
-        // render: (name, item, i) => {
-        //   return <span>{` ${item.taskName}`}</span>;
-        // },
+       
       },
       {
         headerName: "Submitted by",
@@ -259,10 +245,7 @@ class LinkedCustomerProjectTaskTable extends React.Component {
                   />
             </span>;
         },
-        //...this.getColumnSearchProps('submittedBy'),
-        // render: (name, item, i) => {
-        //   return <span>{` ${item.submittedBy}`}</span>;
-        // },
+      
       },
       {
         headerName: "Assigned on",
@@ -271,7 +254,7 @@ class LinkedCustomerProjectTaskTable extends React.Component {
         width:100,
         renderCell: (cellValues,row) => {
           const data=cellValues.row
-          return <span>{` ${moment(data.assignedOn).format("ll")}`}</span>;
+          return <span>{` ${dayjs(data.assignedOn).format("ll")}`}</span>;
         },
       },
       {
@@ -285,8 +268,7 @@ class LinkedCustomerProjectTaskTable extends React.Component {
             {/* {` ${data.taskType}`} */}
             <MultiAvatar
                     primaryTitle={data.assignedToName}
-                    // imageId={item.ownerImageId}
-                    // imageURL={item.imageURL}
+                   
                     imgWidth={"1.8em"}
                     imgHeight={"1.8em"}
                   />
@@ -302,25 +284,7 @@ class LinkedCustomerProjectTaskTable extends React.Component {
         renderCell: (cellValues) => {
           const data=cellValues.row
           return <span>
-            {/* {` ${data.taskType}`} */}
-            {/* {data.candidates &&
-                    data.candidates.map((candidate, i) => {
-                      const data1 = candidate.candidateName
-                        .split("")[0]
-                        .toUpperCase();
-                      console.log("datas", data1);
-                      return (
-                        <Tooltip title={data1}>
-            <MultiAvatar
-                    primaryTitle={candidate.candidateName}
-                    // imageId={item.ownerImageId}
-                    // imageURL={item.imageURL}
-                    imgWidth={"1.8em"}
-                    imgHeight={"1.8em"}
-                  />
-                  </Tooltip>
-                      );
-                    })} */}
+          
                       <Avatar.Group
                     maxCount={2}
                     maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -357,17 +321,13 @@ class LinkedCustomerProjectTaskTable extends React.Component {
        renderCell: (cellValues,row) => {
         console.log("cell",cellValues)
          const data=cellValues.row
-         const date= ` ${moment(data.startDate).format("ll")}`
+         const date= ` ${dayjs(data.startDate).format("ll")}`
           return <span>
 
          {date}
             </span>;
         },
-        // sorter: (a, b) => {
-        //   var startDateA = a.startDate;
-        //   var startDateB = b.startDate;
-        //   return moment.utc(startDateA).diff(moment.utc(startDateB));
-        // },
+   
       },
       {
         headerName: "End",
@@ -377,17 +337,12 @@ class LinkedCustomerProjectTaskTable extends React.Component {
         renderCell: (cellValues,row) => {
           console.log("cell",cellValues)
            const data=cellValues.row
-           const data2= ` ${moment(data.endDate).format("ll")}`
+           const data2= ` ${dayjs(data.endDate).format("ll")}`
           return <span>
           {data2}
             </span>;
         },
-        // onFilter: (value, record) => record.endDate.indexOf(value) === 0,
-        // sorter: (a, b) => {
-        //   var endDateA = a.endDate;
-        //   var endDateB = b.endDate;
-        //   return moment.utc(endDateA).diff(moment.utc(endDateB));
-        // },
+     
       },
       {
         headerName: "Status",
@@ -425,85 +380,6 @@ class LinkedCustomerProjectTaskTable extends React.Component {
           // return <span>{` ${item.taskStatus}`}</span>;
         },
       },
-    //   {
-    //     headerName: "",
-    //     field: "Completed",
-    //     width:20,
-    //     renderCell: (cellValues,row) => {
-    //       console.log("cell",cellValues)
-    //        const data=cellValues.row
-    //       return (
-    //         <span>
-    //           {data.taskStatus === "Completed" && !data.approvedInd ? (
-    //             <>
-    //               <FlexContainer>
-    //                 <Button
-    //                   onClick={() => approveTaskByTaskId(data.taskId)}
-    //                   style={{ backgroundColor: "teal", color: "white" }}
-    //                 >
-    //                   {/* Approve */}
-    //                   <FormattedMessage id="app.approve" defaultMessage="Approve" />
-    //                 </Button>
-    //                 <Button
-    //                   style={{
-    //                     backgroundColor: "rgb(233, 79, 79)",
-    //                     color: "white",
-    //                   }}
-    //                   onClick={() => rejectTaskByTaskId(data.taskId)}
-    //                 >
-    //                   {/* Reject */}
-    //                   <FormattedMessage id="app.reject" defaultMessage="Reject" />
-    //                 </Button>
-    //               </FlexContainer>
-    //             </>
-    //           ) : (
-    //               <>
-    //                 {data.approvedInd === "Approved" ? (
-    //                   <CheckCircleOutlined
-    //                     type="check-circle"
-    //                     theme="twoTone"
-    //                     twoToneColor="#52c41a"
-    //                     size={140}
-    //                     style={{ fontSize: "1.5625em" }}
-    //                   />
-    //                 ) : data.approvedInd === "Rejected" ? (
-    //                   <CloseCircleOutlined
-    //                     type="close-circle"
-    //                     theme="twoTone"
-    //                     twoToneColor="red"
-    //                     size={140}
-    //                     style={{ fontSize: "1.5625em" }}
-    //                   />
-    //                 ) : (
-    //                       <></>
-    //                     )}
-    //               </>
-    //             )}
-    //         </span>
-    //       );
-    //     },
-    //   },
-    //   {
-    //     headerName: "",
-    //     field: "documentId",
-    //     width: 2,
-    //     renderCell: (cellValues,row) => {
-    //       console.log("cell",cellValues)
-    //        const data=cellValues.row
-    //       return (
-    //             <Tooltip title="Edit">
-    //             <BorderColorIcon 
-    //                 type="edit"
-    //                 style={{ cursor: "pointer", fontSize: "1rem" }}
-    //                 onClick={() => {
-    //                   this.props.setEditTask(data);
-    //                   handleUpdateTaskModal(true);
-    //                 }}
-    //               />
-    //             </Tooltip>
-    //       );
-    //     },
-    //   },
     ,
     
     ];
@@ -524,43 +400,10 @@ class LinkedCustomerProjectTaskTable extends React.Component {
         // pageSize={5}
          rowsPerPageOptions={[5]}
         scrollbarSize={false}
-       /// disableSelectionOnClick
-        //experimentalFeatures={{ newEditingApi: true }}
-        // components={{Toolbar:GridToolbar}}
+      
       />
       </Box>
-          {/* <StyledTable
-            columns={columns}
-            dataSource={taskListRangeByUserId}
-            pagination={false}
-            scroll={{ y: tableHeight }}
-            // pagination={{
-            //   defaultPageSize: 5,
-            //   // showSizeChanger: true,
-            //   // pageSizeOptions: ["5", "10"]
-            // }}
-            expandedRowRender={(record) => {
-              return (
-                <>
-                  <p>{record.taskDescription || ""}</p>
-                </>
-              );
-            }} 
-          /> */}
-           {/* <UpdateTaskModal
-          updateTaskModal={updateTaskModal}
-          handleUpdateTaskModal={handleUpdateTaskModal}
-        />
-
-
-<AddTaskProjectDrawerModal
-handleTaskProjectDrawerModal={this.props.handleTaskProjectDrawerModal}
-addDrawerTaskProjectModal={this.props.addDrawerTaskProjectModal}
-data={this.state.data}
-
-      /> */}
-          
-         
+                
       </>
     );
   }
@@ -577,13 +420,7 @@ const mapStateToProps = ({ auth, task, opportunity }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   getTaskListRangeByUserId,
-    //   handleTaskProjectDrawerModal,
-    //   deleteTask,
-    //   approveTaskByTaskId,
-    //   rejectTaskByTaskId,
-    //   setEditTask,
-    //   handleUpdateTaskModal,
+  
     },
     dispatch
   );

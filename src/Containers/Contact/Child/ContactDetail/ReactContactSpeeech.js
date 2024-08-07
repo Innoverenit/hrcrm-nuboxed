@@ -6,7 +6,6 @@ import RotateRightIcon from '@mui/icons-material/RotateRight';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import { bindActionCreators } from "redux";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { FlexContainer } from '../../../../Components/UI/Layout';
 import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 import { addNote,getNotesListByContactId } from "../../ContactAction";
 
@@ -86,7 +85,7 @@ const Dictaphone = (props) => {
         </textarea>
       {/* <p>{transcript}</p> */}
       </div>
-      <FlexContainer justifyContent="flex-end">
+      <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
       <Button 
       type='primary'
       htmlType='submit'
@@ -94,7 +93,7 @@ const Dictaphone = (props) => {
       >
         Submit
       </Button>
-      </FlexContainer>
+      </div>
     </div>
   );
 };

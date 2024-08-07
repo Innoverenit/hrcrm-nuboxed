@@ -1,8 +1,6 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
-import { FlexContainer } from "../../../../../Components/UI/Layout/";
-import { Button } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RollbackOutlined } from "@ant-design/icons";

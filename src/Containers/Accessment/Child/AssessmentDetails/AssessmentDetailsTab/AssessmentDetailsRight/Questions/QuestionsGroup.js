@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import styled from "styled-components";
 import QuestionForm from "../QuestionForm";
 import { getQuestionsListByAssId,deleteQuestionsById } from "../../../../../AccessmentAction";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -15,7 +13,7 @@ function QuestionsGroup(props) {
 
   return (
     <>
-      <FlexContainer>
+     <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
         <div>
           <div class="flex">
             <div>
@@ -40,7 +38,7 @@ function QuestionsGroup(props) {
                     <div class="h-8 font-bold font-poppins text-xs overflow-hidden whitespace-nowrap">{item.option3}</div>
                     <div class="h-8 font-bold font-poppins text-xs overflow-hidden whitespace-nowrap">{item.option4}</div>
                     <div style={{justifyContent:"space-between"}}>
-                      <FlexContainer justifyContent="flex-end" >
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                       <EditOutlined 
                       onClick={()=>{
                        // props.deleteQuestionsById(item.id,props.assessmentId)
@@ -51,20 +49,15 @@ function QuestionsGroup(props) {
                         props.deleteQuestionsById(item.id,props.assessmentId)
                       }}
                       />
-                      </FlexContainer>
-                      
-                    </div>
-                    {/* <div>{` ${dayjs(item.creationDate).format("ll")}`}</div> */}
-                    {/* <div style={{ display: "flex" }}>
-                      Cancel:<RequirementCancelToggle />
-                    </div> */}
+                      </div>                    
+                    </div>          
                   </div>
                 </div>
               );
             })}
           </div>
         </div>
-      </FlexContainer>
+      </div>
     </>
   );
 }

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
+import { div } from "../../../../../../Components/UI/Layout";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
-import dayjs from "dayjs";
 
 function AssessmentExtraDetailView(props) {
     const {
@@ -65,15 +64,11 @@ export default AssessmentExtraDetailView
 
 const AssessmentItemRow = ({ label, value }) => {
     return (
-      <FlexContainer
-        alignItems="center"
-        flexWrap="nowrap"
-        style={{ margin: "0.4rem" }}
-      >
+      <div class=" flex flex-row  m-2 flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
         <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
         <SubTitle style={{
            //marginLeft: "-1.875em" 
            }}>{value}</SubTitle>
-      </FlexContainer>
+      </div>
     );
   };
