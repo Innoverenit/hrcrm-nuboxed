@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Button, Tooltip, DatePicker, Switch } from "antd";
-import { FlexContainer } from "../../../Components/UI/Layout";
-import { TextInput, Spacer } from "../../../Components/UI/Elements";
-import { ActionIcon } from "../../../Components/Utils";
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
 import { elipsize } from "../../../Helpers/Function/Functions";
 import dayjs from "dayjs";
-import { date } from "yup";
+
 
 class SingleHoliday2 extends Component {
   constructor(props) {
@@ -36,15 +32,7 @@ class SingleHoliday2 extends Component {
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
-              <FlexContainer
-                justifyContent="center"
-                alignItems="center"
-              // onClick={() => handleStageClick(stageId, stageName)}
-              // style={{
-              //   backgroundColor:
-              // stageId === currentStage && "rgb(161, 185, 185)",
-              // }}
-              >
+              <div class=" flex flex-row flex-wrap items-center self-start justify-center grow shrink h-auto mr-auto ">
                 <StageName
                   style={{
                     flexBasis: "41%",
@@ -80,21 +68,16 @@ class SingleHoliday2 extends Component {
                 <div style={{}}>
 
                 </div>
-              </FlexContainer>
+              </div>
             ) : (
-                <FlexContainer>
+              <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
 
+                  <mt-3 />
+                  <mt-3 style={{ marginBottom: "0.625em" }} />             
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-[5px] mt-[10px] ">
 
-                  <Spacer />
-                  <Spacer style={{ marginBottom: "0.625em" }} />
-                  <FlexContainer
-                    justifyContent="flex-end"
-                    marginRight="0.3125em"
-                    marginTop="0.625em"
-                  >
-
-                  </FlexContainer>
-                </FlexContainer>
+                  </div>
+                </div>
               )
           }
         </ViewEditCard>

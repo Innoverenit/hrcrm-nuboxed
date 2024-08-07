@@ -3,16 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
 import { Formik, Form, Field } from "formik";
-import moment from "moment";
-import { Spacer, StyledLabel } from "../../../../../../../Components/UI/Elements";
+import dayjs from "dayjs";
+import {  StyledLabel } from "../../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePicker";
 import { TimePicker } from "../../../../../../../Components/Forms/Formik/TimePicker";
 import {
   addSuppliersActivityCall,
 } from "../../../../SuppliersAction";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
-// import SearchSelect from "../../../../../../../../Components/Forms/Formik/SearchSelect";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import { StyledPopconfirm } from "../../../../../../../Components/UI/Antd";
 import * as Yup from "yup";
@@ -54,9 +52,7 @@ class SuppliersActivityCallForm extends Component {
 
   handleCallback = (resetForm) => {
     const { callback } = this.props;
-    // this.props.getActivityListBySuppliersId(
-    //     this.props.suppliersSuppliersId
-    // );
+    
     callback && callback();
     resetForm();
   };
@@ -93,7 +89,7 @@ class SuppliersActivityCallForm extends Component {
             type: this.state.Type,
             category: this.state.category,
             topic: "",
-            startDate: startDate || moment(),
+            startDate: startDate || dayjs(),
             startTime: startDate || null,
             endDate: endDate || null,
             endTime: endDate || null,
@@ -118,10 +114,10 @@ class SuppliersActivityCallForm extends Component {
             if (!values.endDate) {
               values.endDate = values.startDate;
             }
-            let newStartDate = moment(values.startDate).format("YYYY-MM-DD");
+            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
             console.log(newStartDate);
             //Time calculation
-            let firstStartTime = moment(values.startTime).format(
+            let firstStartTime = dayjs(values.startTime).format(
               "HH:mm:ss.SSS[Z]"
             ); // getting start time from form input
             console.log(firstStartTime);
@@ -152,8 +148,8 @@ class SuppliersActivityCallForm extends Component {
             let newStartTime = `${finalStartTime}${timeEndPart}`;
             console.log(newStartTime);
 
-            let newEndDate = moment(values.endDate).format("YYYY-MM-DD");
-            let firstEndTime = moment(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
+            let newEndDate = dayjs(values.endDate).format("YYYY-MM-DD");
+            let firstEndTime = dayjs(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
             console.log(firstEndTime);
             let firstEndHours = firstEndTime.substring(0, 5); // getting only hours and minutes
             console.log(firstEndHours);
@@ -209,17 +205,11 @@ class SuppliersActivityCallForm extends Component {
                     width: "45%",
                   }}
                 >
-                  <FlexContainer
-                    justifyContent="space-between"
-                    style={{ width: "100%" }}
-                  >
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between w-full grow shrink h-auto mr-auto ">
                     <div style={{ width: "30%" }}>
                       <StyledLabel>Type</StyledLabel>
-                      <Spacer />
-                      <FlexContainer
-                        justifyContent="space-between"
-                        style={{ width: "100%" }}
-                      >
+                      <mt-3 />
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between w-full grow shrink h-auto mr-auto ">
                         <Tooltip title="Outbound">
                           <div
                             onClick={() => this.handleTypeChange("Outbound")}
@@ -266,11 +256,11 @@ class SuppliersActivityCallForm extends Component {
                             <i className="fas fa-network-wired"></i>
                           </div>
                         </Tooltip>
-                      </FlexContainer>
+                      </div>
                     </div>
                     <div style={{ width: "55%" }}>
                       <StyledLabel>Category</StyledLabel>
-                      <Spacer />
+                      <mt-3 />
                       <ButtonGroup>
                         <Button
                           onClick={() => this.handleCategoryChange("Follow up")}
@@ -303,9 +293,9 @@ class SuppliersActivityCallForm extends Component {
                         </Button>
                       </ButtonGroup>
                     </div>
-                  </FlexContainer>
+                  </div>
 
-                  <Spacer />
+                  <mt-3 />
                   <Field
                     name="topic"
                     label="Topic"
@@ -319,7 +309,7 @@ class SuppliersActivityCallForm extends Component {
                       marginTop: "0px",
                     }}
                   />
-                  <Spacer />
+                  <mt-3 />
                   <Field
                     name="startDate"
                     label="Date"
@@ -336,9 +326,9 @@ class SuppliersActivityCallForm extends Component {
                       marginTop: "0px",
                     }}
                   />
-                  <Spacer />
+                  <mt-3 />
 
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between  grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         name="startTime"
@@ -373,13 +363,13 @@ class SuppliersActivityCallForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer />
+                  </div>
+                  <mt-3 />
 
-                  <Spacer />
+                  <mt-3 />
                   {startDate ? (
                     <span>
-                      {moment(startDate).isBefore(moment()) && (
+                      {dayjs(startDate).isBefore(dayjs()) && (
                         <span style={{ marginLeft: 10 }}>
                           <b>This Call occurs in the past !</b>
                         </span>
@@ -387,7 +377,7 @@ class SuppliersActivityCallForm extends Component {
                     </span>
                   ) : (
                     <span>
-                      {moment(values.startDate).isBefore(moment()) && (
+                      {dayjs(values.startDate).isBefore(dayjs()) && (
                         <span style={{ marginLeft: 10 }}>
                           <b>This Call occurs in the past !</b>
                         </span>
@@ -416,8 +406,8 @@ class SuppliersActivityCallForm extends Component {
                   />
                 </div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <mt-3 />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 {isEditing && (
                   <>
                     <StyledPopconfirm
@@ -442,7 +432,7 @@ class SuppliersActivityCallForm extends Component {
                 >
                   Create
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

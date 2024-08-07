@@ -4,14 +4,6 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { Button, Switch } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import * as Yup from "yup";
-// import { base_url } from "../../../../../../Config/Auth";
-import { Spacer } from "../../../../../Components/UI/Elements";
-
-// import {
-//     addCandidateDate
-// }
-//   from "../../../../OpportunityAction";
 import {addUserAdmin} from "../../../EmployeeAction"
 import { FlexContainer } from "../../../../../Components/UI/Layout";
 
@@ -148,7 +140,7 @@ class UserAdminForm extends Component {
                 </FlexContainer>
               
                 
-              <Spacer />
+              <mt-3 />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   type="primary"

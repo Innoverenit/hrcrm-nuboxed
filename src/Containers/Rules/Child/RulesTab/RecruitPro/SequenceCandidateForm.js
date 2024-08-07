@@ -1,11 +1,9 @@
-import React, { Component, useState, useMemo, useEffect } from "react";
+import React, { useState,  useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import { Button, Tooltip } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import { Spacer, StyledLabel } from "../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
+import {  StyledLabel } from "../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Select } from "antd";
 import { getSequence } from "../../../../Settings/SettingsAction";
@@ -42,20 +40,7 @@ function SequenceCandidateForm(props) {
     };
   });
 
-  // const {
-  //   user: { userId },
-  //   addingOpportunity,
-  //   employeeId,
-  //   salesUserIds,
-  //   fullName,
-  //   contactId,
-  //   customerId,
-  //   startDate,
-  //   endDate,
-  //   defaultCustomers,
-  //   defaultContacts,
-  //   name,
-  // } = props;
+
    console.log(props.sequenceId);
   return (
     <>
@@ -105,7 +90,7 @@ function SequenceCandidateForm(props) {
                   width: "98%",
                 }}
               >
-                <FlexContainer justifyContent="space-between">
+               <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" }}>
                     <StyledLabel>True</StyledLabel>
                     <Select

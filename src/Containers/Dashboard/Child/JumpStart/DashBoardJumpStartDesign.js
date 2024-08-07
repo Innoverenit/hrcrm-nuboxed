@@ -2,37 +2,11 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import { JumpStartBox, Spacer } from "../../../../Components/UI/Elements";
+import { JumpStartBox } from "../../../../Components/UI/Elements";
 import { FlexContainer } from "../../../../Components/UI/Layout";
 
 function DashBoardJumpStartDesign(props) {
 
-//   const Actual = props.billingByDesignation.reduce((acc, item) => {
-//     acc = acc + item.finalBillableAmount;
-//     return acc;
-//   }, 0);
-//   var actualAmount = `${Number(Actual).toFixed(2)}`;
-//  console.log("test",actualAmount)
-
-//   const Projected = props.billingByDesignation.reduce((acc, item) => {
-//     acc = acc + item.actualBillableAmount;
-//     return acc;
-//   }, 0);
-
-//   var projectedAmount = `${Number(Projected).toFixed(2)}`;
-
-
-
-//   const Deviation = props.billingByDesignation.reduce((acc, item) => {
-//     acc = acc + item.deviationBillableAmount;
-//     return acc;
-//   }, 0);
-//   console.log("deviations",Deviation)
-//   var deviationAmount = `${Number(Deviation).toFixed(2)}`;
-
-//   const billableCurr =
-//     props.billingByDesignation.length &&
-//     props.billingByDesignation[0].billableCurency;
   return (
     <FlexContainer flexDirection="row" style={{ width: "100%" }}>
       <FlexContainer style={{ width: "100%" }}>
@@ -66,7 +40,7 @@ function DashBoardJumpStartDesign(props) {
         //   currencyType={billableCurr}
         />
       </FlexContainer>
-      <Spacer />
+      <mt-3 />
     </FlexContainer>
   );
 }

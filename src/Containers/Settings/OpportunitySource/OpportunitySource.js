@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Divider } from "antd";
-import { MainWrapper, FlexContainer } from "../../../Components/UI/Layout";
+import { Button } from "antd";
+import { MainWrapper} from "../../../Components/UI/Layout";
 import { TextInput, Title } from "../../../Components/UI/Elements";
 import SingleOpportunitySource from './SingleOpportunitySource';
 import { getSources, addSource, removeSource, updateSource } from "../../Opportunity/OpportunityAction";
@@ -64,9 +64,9 @@ class OpportunitySource extends Component {
         if (fetchingSourcesError) return <p>Error ...</p>
         return (
             <>
-                <FlexContainer flexWrap='nowrap'>
+             <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                     <MainWrapper style={{ flexBasis: '50%', height: 540, overflow: 'auto', color: '#FFFAFA' }} >
-                        <FlexContainer flexDirection='column'>
+                    <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                             <Title style={{ padding: 8 }}>
                                 <FormattedMessage
                                     id="app.listofsources"
@@ -90,11 +90,11 @@ class OpportunitySource extends Component {
                                     handleUpdateSource={this.handleUpdateSource}
                                     handleDeleteSource={this.handleDeleteSource} />)
                             }
-                        </FlexContainer>
+                        </div>
                         {
                             isTextInputOpen
                                 ? (
-                                    <FlexContainer alignItems='center'>
+                                    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
                                         <br />
                                         <TextInput
                                             placeholder='Add source'
@@ -131,7 +131,7 @@ class OpportunitySource extends Component {
                                             {/* Cancel */}
 
                                         </Button>
-                                    </FlexContainer>
+                                    </div>
                                 )
 
                                 : <>
@@ -154,7 +154,7 @@ class OpportunitySource extends Component {
                     </MainWrapper>
                     <MainWrapper>
 
-                        <FlexContainer style={{ border: '0.0625em solid #eee', width: '100%', padding: '1.6rem', marginRight: 70 }}>
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto  border border-gray-200 w-full p-4 mr-[70px]">
                             <p style={{ color: '#035b9b', fontSize: '1rem' }}>
                                 Here is a list of sample sources, it will help attribute opportunities to their
                                 sources thereby identifying the effective channels and further allocating
@@ -168,10 +168,10 @@ class OpportunitySource extends Component {
                                 The only exception is if an opportunity is associated with a
                                 source then it cannot be deleted from the list till no opportunity exists in that source.
                       </p>
-                        </FlexContainer>
+                        </div>
 
                     </MainWrapper >
-                </FlexContainer>
+                </div>
             </>
         )
     }

@@ -1,5 +1,4 @@
-import React, { useState ,useEffect, Component } from "react";
-
+import React, { useState ,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Button, Select, Switch } from "antd";
@@ -7,36 +6,26 @@ import {
     addCustomerConfigure,
     getCustomerConfigure
 } from "../../../SettingsAction"
-import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import {getDepartments} from "../../../../Settings/Department/DepartmentAction"
-import { HeaderLabel,  } from "../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFieldArray";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { addContact, addLinkContactByOpportunityId } from "../../../../Contact/ContactAction";
 import PostImageUpld from "../../../../../Components/Forms/Formik/PostImageUpld";
-import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import { getCustomerData } from "../../../../Customer/CustomerAction";
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import { BundleLoader } from "../../../../../Components/Placeholder";
 
 const { Option } = Select;
-/**
- * yup validation scheme for creating a contact
- */
+
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const ContactSchema = Yup.object().shape({
   firstName: Yup.string().required("Input needed!"),
   emailId: Yup.string()
     .required("Input needed!")
     .email("Enter a valid Email"),
-  // mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5, "Number is too short").max(10, "Number is too long")
 });
 
 function ContactForm (props) {
@@ -58,11 +47,7 @@ function ContactForm (props) {
     const [isLastNameVisible, setIsLastNameVisible] = useState(false);
     const [isMiddleVisible, setIsMiddleVisible] = useState(false);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-//   componentDidMount() {
-//     props.getCustomerData(props.userId);
-//     props.getDepartments();
-//   }
-  
+
 useEffect(() => {
 props.getCustomerData(props.userId);
 props.getDepartments();
@@ -114,28 +99,7 @@ useEffect(() => {
 
 
   useEffect(() => {
-    // if (
-    //   props.customerConfigure.addressInd !== undefined &&
-    //   props.customerConfigure.businessRegInd !== undefined &&
-    //   props.customerConfigure.vatNoInd !== undefined &&
-    //   props.customerConfigure.assignedToInd !== undefined &&
-    //   props.customerConfigure.noteInd !== undefined &&
-    //   props.customerConfigure.sourceInd !== undefined &&
-    //   props.customerConfigure.sectorInd !== undefined &&
-    //   props.customerConfigure.phoneNoInd !== undefined &&
-    //   props.customerConfigure.dailCodeInd !== undefined &&
-    //   props.customerConfigure.lobInd !== undefined &&
-    //   props.customerConfigure.middleNameInd !== undefined &&
-    //   props.customerConfigure.imageUploadInd !== undefined &&
-    //   props.customerConfigure.nameInd !== undefined &&
-    //   props.customerConfigure.lastNameInd !== undefined &&
-    //   props.customerConfigure.urlInd !== undefined &&
-      
-    //   props.customerConfigure.typeInd !== undefined
-      
-      
-    // ) {
-      //setIsFirstNameVisible(props.customerConfigure.startInd);
+ 
       setIsLastNameVisible(props.customerConfigure.lastNameInd);
       
       setIsMobileNumberVisible(props.customerConfigure.dailCodeInd);
@@ -155,16 +119,9 @@ useEffect(() => {
     // }
   }, [props.customerConfigure]);
 
-
-
-
-
-
   const toggleFieldVisibility = (fieldName) => {
     switch (fieldName) {
-     
-    
-        
+           
             case 'middle':
             setIsMiddleVisible(!isMiddleVisible);
             break;
@@ -174,9 +131,7 @@ useEffect(() => {
              case 'lastName':
             setIsLastNameVisible(!isLastNameVisible);
             break;
-           
-                
-                
+                                        
                     case 'dialcode':
                         setIsMobileNumberVisible(!isMobileNumberVisible);
                         break;
@@ -226,8 +181,6 @@ useEffect(() => {
     }
   };
 
-
- 
     const {
       user: { userId, firstName, lastName },
       addContact,
@@ -238,10 +191,6 @@ useEffect(() => {
       addLinkContactByOpportunityId,
       defaultCustomers,
     } = props;
-  
-   
-    
-  
     
     if (loading) {
       return <div><BundleLoader/></div>;
@@ -325,23 +274,7 @@ useEffect(() => {
           />
                     <div>
                       <div class=" flex justify-between max-sm:flex-col">
-                        {/* <div class=" w-2/5 max-sm:w-full">
-                          <FastField
-                            name="salutation"
-                            type="text"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
-                            options={["Mr.", "Ms.", "None"]}
-                            component={SelectComponent}
-                            inlineLabel
-                            className="field"
-                            isColumn
-                          />
-                        </div> */}
+                      
                         <div class=" w-wk max-sm:w-full">
                         <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                           <FastField
@@ -501,27 +434,7 @@ useEffect(() => {
                   </div>
                  
                   <div class=" flex justify-between">
-                    {/* <div class=" w-2/4">
-                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
-                      {" "}
-                      {whatsapp && (
-                        <FastField
-                          name="countryDialCode1"
-                          selectType="dialCode"
-                          isColumnWithoutNoCreate
-                        
-                          placeholder='+31'
-                         
-                          isColumn
-                          component={SearchSelect}
-                          defaultValue={{
-                            value: props.user.countryDialCode,
-                          }}
-                          value={values.countryDialCode1}
-                          inlineLabel
-                        />
-                      )}
-                    </div> */}
+                   
                     <div class=" w-2/4">
                     
                     </div>
@@ -551,47 +464,7 @@ useEffect(() => {
                     </div>
                   </div>
                 
-                  {/* <div class="mt-3">
-                    <div>Notes</div>
-                    <div>
-                  <div>
-                    <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span
-                          
-                            >
-                          <StopCircleIcon className="!text-icon ml-1 text-green-600" />
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
-                        <span >
-                          <RotateRightIcon  className="!text-icon ml-1" />
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </div>
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea>
-                  </div>
-                </div>
-                  </div> */}
+                 
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 >
@@ -611,9 +484,7 @@ useEffect(() => {
                             { value: "2", label: "Option 2" },
                             { value: "3", label: "Option 3" }
                           ]}
-                        isDisabled={defaultCustomers}
-                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                        // defaultValue={defaultCustomers ? defaultCustomers : null}
+                        isDisabled={defaultCustomers}                 
                         inlineLabel
                       />
                             <Switch
@@ -656,9 +527,7 @@ useEffect(() => {
                       width="100%"
                       isColumn
                       isColumnWithoutNoCreate
-                      component={InputComponent}
-                      // value={values.departmentId}
-                      // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
+                      component={InputComponent}                   
                       inlineLabel
                     />
                        <Switch
@@ -723,21 +592,10 @@ useEffect(() => {
                         name="bedrooms"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
-                        // label="Bedrooms"
-                      
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.tagCompany"
-                        //     defaultMessage="Tag Company"
-                        //   />
-                        // }
+                        // label="Bedrooms"                                          
                         options={["1", "2", "3","4","5","6"]}
                         component={SelectComponent}
-                        isColumn
-                        //value={values.customerId}
-                        //isDisabled={defaultCustomers}
-                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                        // defaultValue={defaultCustomers ? defaultCustomers : null}
+                        isColumn                      
                         inlineLabel
                       />
                     </div>
@@ -779,175 +637,17 @@ useEffect(() => {
                     />
                   </div>
                 
-                  </div>
-                 
-                 
-
-                 
-                  {/* <Field
-                    name="address[0].address1"
-                    // label="Address"
-                    label={
-                      <FormattedMessage
-                        id="app.address[0].address1"
-                        defaultMessage="Address"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  />
-                 */}
-                  {/* <Field
-                    name="address[0].street"
-                    //label="Street"
-
-                    label={
-                      <FormattedMessage
-                        id="app.street"
-                        defaultMessage="Street"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  /> */}
+                  </div>                                                 
                  
                   <div class=" flex  justify-between mt-3">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div> */}
-                  </div>
                 
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
+                  </div>               
+                
                 </div>
-                )}
-                  {/* <Field
-                    name="address[0].address1"
-                    // label="Address"
-                    label={
-                      <FormattedMessage
-                        id="app.address[0].address1"
-                        defaultMessage="Address"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  />
-                   */}
-                  {/* <Field
-                    name="address[0].street"
-                    //label="Street"
-
-                    label={
-                      <FormattedMessage
-                        id="app.street"
-                        defaultMessage="Street"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  /> */}
-                 
-                  <div class=" flex  justify-between mt-3">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div> */}
-                  </div>
-                 
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
+                )}                                
+                <div class=" flex  justify-between mt-3">
+             
+                  </div>                             
                 </div>
               </div>
              

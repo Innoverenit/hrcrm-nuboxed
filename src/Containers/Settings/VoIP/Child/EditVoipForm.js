@@ -8,11 +8,8 @@ import * as Yup from "yup";
 import { Spacer } from "../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { updateTwilioCredentials } from "../VoIPAction";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 
-/**
- * yup validation scheme for creating a VoIP
- */
+
 const VoIPSchema = Yup.object().shape({
   sid: Yup.string().required("Account SID is needed!"),
 });
@@ -140,7 +137,7 @@ class EditVoipForm extends Component {
                   <Spacer />
                 </div>
               </div>
-              <FlexContainer justifyContent="flex-end">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -149,7 +146,7 @@ class EditVoipForm extends Component {
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Update */}
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>
