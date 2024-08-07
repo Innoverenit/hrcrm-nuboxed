@@ -1,13 +1,10 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, { Suspense, Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { Button, } from "antd";
 import { Formik, Form, Field } from "formik";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
-import {
-  Spacer,
-} from "../../../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
@@ -165,8 +162,8 @@ class AddDocumentModal extends Component {
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
-                      <Spacer />
+                      <mt-3 />
+                      <mt-3 />
                       <Field
                         name="documentTypeId"
                         selectType="documentTypeName"
@@ -207,7 +204,7 @@ class AddDocumentModal extends Component {
                         component={InputComponent}
                         style={{ height: "2em"}}
                       />
-                      <Spacer />
+                      <mt-3 />
                       <Field
                         name="documentDescription"
                         //label="Description"
@@ -223,7 +220,7 @@ class AddDocumentModal extends Component {
                         component={TextareaComponent}
                         style={{ height: "5em"}}
                       />
-                      <Spacer style={{ marginBottom: "0.9375em" }} />
+                      <mt-3 style={{ marginBottom: "0.9375em" }} />
 
                       {/* <FlexContainer>
                         <StyledLabel>Share</StyledLabel>
@@ -235,11 +232,11 @@ class AddDocumentModal extends Component {
                           unCheckedChildren="Private"
                         />
                       </FlexContainer> */}
-                      {/* <Spacer /> */}
+                      {/* <mt-3 /> */}
                       {/* {!this.state.documentshare && this.props.testShow && (
                         <p>Will be shared with Opportunity Owner</p>
                       )}
-                      <Spacer />
+                      <mt-3 />
                       {this.state.documentshare && (
                         <FlexContainer
                           justifyContent="space-between"
@@ -361,7 +358,7 @@ class AddDocumentModal extends Component {
                     </div>
                   </div>
 
-                  <Spacer />
+                  <mt-3 />
                   <FlexContainer justifyContent="flex-end">
                     <Button
                       htmlType="submit"

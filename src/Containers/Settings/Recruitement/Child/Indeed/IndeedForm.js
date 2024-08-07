@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Switch, Checkbox, Button, Popconfirm, message } from "antd";
+import {  Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { StyledLabel } from "../../../../../Components/UI/Elements";
-import { Spacer } from "../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { Input } from "antd";
 const { Search } = Input;
@@ -32,11 +28,7 @@ function IndeedForm(props) {
                     <Search style={{width:"50%"}}
                     
           placeholder="Search ..."
-        //   onSearch={(value) => {
-        //     props.inputCandidateDataSearch(value);
-        //     props.setCurrentData(value);
-        //   }}
-        //   defaultValue={props.currentData}
+      
           allowClear={false}
           enterButton
         />
@@ -44,64 +36,20 @@ function IndeedForm(props) {
                   label="User Name"
                   name="userName"
                   type="email"
-                  //   placeholder="Email"
-                  // value={values.userName}
+                  
                   component={InputComponent}
                 />
                 <Field
                   label="Password"
                   name="password"
                   type="password"
-                  //   placeholder="Email"
-                  // value={values.userName}
+                 
                   component={InputComponent}
-                />
-
-                {/* <Field
-                  label="Email"
-                  name="email"
-                  type="email"
-                  //   placeholder="Email"
-                  // value={values.userName}
-                  component={InputComponent}
-                />
-
-                <Field
-                  label="Verify Email"
-                  name="verifyemail"
-                  type="email"
-                  //   placeholder="Email"
-                  // value={values.userName}
-                  component={InputComponent}
-                /> */}
-                 {/* <Field
-                  label="Application Name"
-                  name="applicationName"
-                  type="email"
-                  //   placeholder="Email"
-                  // value={values.userName}
-                  component={InputComponent}
-                />
-                 <Field
-                  label="Client ID"
-                  name="clientId"
-                  type="email"
-                  //   placeholder="Email"
-                  // value={values.userName}
-                  component={InputComponent}
-                />
-                 <Field
-                  label="Client Secret"
-                  name="clientSecret"
-                  type="email"
-                  //   placeholder="Email"
-                  // value={values.userName}
-                  component={InputComponent}
-                /> */}
+                />                        
               </div>
             
             </div>
-            <FlexContainer justifyContent="flex-end">
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
             <Button 
                       type="primary"
                       htmlType="submit"
@@ -112,7 +60,7 @@ function IndeedForm(props) {
                     >
                       Sign In
                     </Button>
-                    </FlexContainer>
+                    </div>
           </Form>
         )}
       </Formik>

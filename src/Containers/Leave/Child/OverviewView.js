@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Formik, Form, Field } from "formik";
 import { Button } from "antd";
-// import { handleMapModal } from "../../ProfileAction";
-
 import axios from "axios";
 import { base_url } from "../../../Config/Auth";
 import { FormattedMessage } from "react-intl";
@@ -13,13 +11,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
     Title,
-    SubTitle,
     MultiAvatar,
 } from "../../../Components/UI/Elements";
-import { FlexContainer } from "../../../Components/UI/Layout";
-// import { ActionIcon, Leaflet } from "../../../../Components/Utils";
 import { AddressComponent } from "../../../Components/Common";
-// import MapPopupMarker from "./MapPopupMarker";
 import L from "leaflet";
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -167,33 +161,10 @@ class OverviewView extends Component {
                                                 />
                                             ))}
                                     </div>
-                                    {/* <OpenTripPlanner
-                    address={address && address.length && address[0]}
-                    userAddress={userAddress[0]}
-                  /> */}
+                        
                                 </div>
                                 <div class="vl"></div>
-                                {/* <div style={{ alignSelf: "flex-end" }}>
-                                    {markers && (
-                                        <Leaflet
-                                            height={400}
-                                            width={500}
-                                            margin={5}
-                                            zoom={9}
-                                            MyPopupMarker={MapPopupMarker}
-                                            centerPosition={
-                                                centerPosition && centerPosition.length
-                                                    ? centerPosition
-                                                    : [
-                                                        Number(51.92301029999999),
-                                                        Number(4.470038700000032),
-                                                    ]
-                                            }
-                                            // centerPosition={[Number(51.92301029999999), Number(4.470038700000032)]}
-                                            markers={markers}
-                                        />
-                                    )}
-                                </div> */}
+                             
                             </FlexContainer>
                         </FlexContainer>
                     </>

@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Button, Tooltip, Input } from "antd";
-import EditableInput from "../../../../Components/Forms/Edit/EditableInput";
-import { FlexContainer } from "../../../../Components/UI/Layout";
+import { Button, Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { TextInput } from "../../../../Components/UI/Elements";
 
-// import ViewEditCard from "../../../../Components/UI/Elements/ViewEditCard";
 
 class SingleLevel extends Component {
   constructor(props) {
@@ -32,13 +29,12 @@ class SingleLevel extends Component {
     } = this.props;
     console.log(linkedSectors);
     console.log("name", name);
-    // const disableDelete = linkedCustomers && linkedCustomers.includes(typeId)
     return (
       <LevelWrapper>
         {/* <ViewEditCard> */}
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
-              <FlexContainer justifyContent="space-between">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                 <LevelName style={{ flexBasis: "85%" }}>
                   {LevelName}
                 </LevelName>
@@ -64,22 +60,14 @@ class SingleLevel extends Component {
                       }}
                     />
                   </Tooltip>
-                  {/* <ActionIcon
-                                  tooltipTitle="Delete"
-                                 iconType="delete"
-                                  handleIconClick={() => handleDeleteSector(typeId)}
-                                  size="0.75em"
-                                theme="filled"
-                               style={{ color: "#666" }}
-                                 /> */}
+                
                 </div>
-              </FlexContainer>
+              </div>
             ) : (
-              <FlexContainer>
+              <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                 <TextInput
                   name={name}
-                  // value={value || LevelName}
-                //   defaultValue={LevelName}
+               
                   onChange={handleChange}
                   style={{ width: "60%" }}
                 />
@@ -104,7 +92,7 @@ class SingleLevel extends Component {
                     <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
                   </Button>
                 </div>
-              </FlexContainer>
+              </div>
             )
           }
         {/* </ViewEditCard> */}

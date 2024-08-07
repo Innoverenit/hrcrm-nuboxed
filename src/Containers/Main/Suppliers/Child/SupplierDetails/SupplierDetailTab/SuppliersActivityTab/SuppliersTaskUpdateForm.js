@@ -2,19 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Icon, Tooltip } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
+import { Formik, Form, Field } from "formik";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import { Spacer } from "../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { handleTaskModal } from "../../../../../Task/TaskAction";
-import { addSuppliers, updateSuppliersTask } from "../../../SuppliersAction";
+import {  updateSuppliersTask } from "../../../SuppliersAction";
 import { handleChooserModal } from "../../../../../Planner/PlannerAction";
 import { StyledLabel } from "../../../../../../Components/UI/Elements";
 import { getOppoStages } from "../../../../../Settings/SettingsAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import ButtonGroup from "antd/lib/button/button-group";
 
@@ -86,11 +84,7 @@ class SuppliersTaskUpdateForm extends Component {
       defaultOpportunities,
       oppoStages,
     } = this.props;
-    // console.log(isEditing);
-    // console.log(prefillTask);
-    // console.log(addTask);
-    // console.log(defaultContacts);
-
+  
     console.log(oppoStages);
 
     function getStagesOptions(filterOptionKey, filterOptionValue) {
@@ -99,10 +93,7 @@ class SuppliersTaskUpdateForm extends Component {
         oppoStages.length &&
         oppoStages
           .filter((option) => {
-            //////debugger
-            // console.log(option);
-            // console.log(option.processId);
-            // console.log(filterOptionValue[0]);
+         
             if (option.opportunityId === filterOptionValue[0]) {
               return option;
             }
@@ -216,29 +207,20 @@ class SuppliersTaskUpdateForm extends Component {
                             tooltip="Completed"
                             status={this.state.active}
                             onClick={() => this.glassButtoClick("Completed")}
-                            //  status={item.taskStatus}
-                            //  onClick={() =>
-                            //    patchTask(item.taskId, { ...item, taskStatus: "Completed" })
-                            //  }
+                          
                           />
                         </ButtonGroup>
                       </div>
                     </div>
                   </div>
-                  <Spacer />
-                  <FlexContainer
-                    justifyContent="spcae-between"
-                    style={{ width: "100%" }}
-                  >
+                  <mt-3 />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between w-[100%] grow shrink h-auto mr-auto ">
                     <div style={{ width: "45%" }}>
-                      <FlexContainer
-                        justifyContent="spcae-between"
-                        style={{ width: "100%" }}
-                      >
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between w-[100%] grow shrink h-auto mr-auto ">
                         <div style={{ width: "100%" }}>
                           <StyledLabel>Priority</StyledLabel>
 
-                          <FlexContainer>
+                          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                             <Tooltip title="High">
                               <Button
                                 type="primary"
@@ -295,23 +277,17 @@ class SuppliersTaskUpdateForm extends Component {
                                 }}
                               ></Button>
                             </Tooltip>
-                          </FlexContainer>
+                          </div>
                         </div>
-                      </FlexContainer>
+                      </div>
                     </div>
 
                     <div style={{ width: "55%" }}>
-                      <FlexContainer
-                        justifyContent="space-between"
-                        style={{ width: "100%" }}
-                      >
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between w-[100%] grow shrink h-auto mr-auto ">
                         <div style={{ width: "100%" }}>
                           <StyledLabel>Type</StyledLabel>
 
-                          <FlexContainer
-                            justifyContent="space-between"
-                            style={{ width: "100%" }}
-                          >
+                          <div class=" flex flex-row flex-wrap items-start self-start justify-between w-[100%] grow shrink h-auto mr-auto ">
                             <Tooltip title="Email">
                               <div
                                 onClick={() => this.handleTypeChange("Email")}
@@ -431,35 +407,14 @@ class SuppliersTaskUpdateForm extends Component {
                                 <Icon type="more"></Icon>
                               </div>
                             </Tooltip>
-                          </FlexContainer>
+                          </div>
                         </div>
-                      </FlexContainer>
+                      </div>
                     </div>
-                  </FlexContainer>
-
-                  {/* <div style={{ width: "50%" }}>
-                      <Field
-                        name="taskType"
-                        label="Type"
-                        isColumn
-                        component={SelectComponent}
-                        options={[
-                          "Email",
-                          "LinkedIn post",
-                          "Documentation",
-                          "Research",
-                          "Collaborate",
-                          "Others",
-                        ]}
-                        inlineLabel
-                        style={{ flexBasis: "80%", marginTop: "4px" }}
-                        // defaultValue='low'
-                      />
-                    </div>
-                  </FlexContainer> */}
-
-                  <Spacer />
-                  <FlexContainer
+                  </div>
+           
+                  <mt-3 />
+                  <div
                     justifyContent="space-between"
                     style={{ width: "100%" }}
                   >
@@ -481,7 +436,7 @@ class SuppliersTaskUpdateForm extends Component {
                         }}
                       />
 
-                      <Spacer />
+                      <mt-3 />
                     </div>
 
                     <div style={{ width: "47%" }}>
@@ -514,23 +469,9 @@ class SuppliersTaskUpdateForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
+                  </div>
                   <div>
-                    <Spacer style={{ marginBottom: "18px" }} />
-                    {/* <Field
-                      isRequired
-                      defaultValue={{ label: timeZone, value: userId }}
-                      name="timeZone"
-                      label="TimeZone "
-                      isColumn
-                      margintop={"4px"}
-                      selectType="timeZone"
-                      value={values.timeZone}
-                      component={SearchSelect}
-                      inlineLabel
-                      style={{ flexBasis: "80%" }}
-                    /> */}
-
+                    <mt-3 style={{ marginBottom: "18px" }} />
                     {values.startDate && (
                       <>
                         {dayjs(todayDate).isSameOrBefore(
@@ -569,41 +510,12 @@ class SuppliersTaskUpdateForm extends Component {
                       marginTop: "0px",
                     }}
                   />
-                  {/* <Field
-                    name="association.ownerIds"
-                    selectType="user"
-                    label="Assigned"
-                    component={SearchSelect}
-                    isColumn
-                    margintop={"4px"}
-                    value={values.association.ownerIds}
-                    defaultValue={{
-                      label: `${firstName || ""} ${middleName ||
-                        ""} ${lastName || ""}`,
-                      value: userId,
-                    }}
-                    inlineLabel
-                    style={{ flexBasis: "80%" }}
-                  /> */}
-
-                  {/* <Field
-                    isRequired
-                    name="callwith"
-                    type="text"
-                    label="Call with"
-                    width={"100%"}
-                    component={SelectComponent}
-                    options={["Distributor", "Distributor"]}
-                    isColumn
-                    inlineLabel
-                    style={{ flexBasis: "60%" }}
-                  /> */}
-
-                  <Spacer />
+                
+                  <mt-3 />
                 </div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <mt-3 />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -611,7 +523,7 @@ class SuppliersTaskUpdateForm extends Component {
                 >
                   Update
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

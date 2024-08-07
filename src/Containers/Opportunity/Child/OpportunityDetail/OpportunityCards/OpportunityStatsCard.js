@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { ReadOutlined, 
 } from '@ant-design/icons';
 import { message, Tooltip, Popover, } from "antd";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import StagesSwitch from "./StagesSwitch";
 
 class OpportunityStatsCard extends Component {
@@ -30,10 +29,7 @@ class OpportunityStatsCard extends Component {
   onChange = (checked) => {
     this.setState(
       { qualify: true },
-      // this.props.getLeadsAccounts(this.props.userId, 0),
-      // this.props.getFilterJunkContact(),
-      // this.props.convertLeadsContactToActualContact(
-      // this.props.leadsId,
+    
       this.handleCallback2
       // )
     );
@@ -45,55 +41,40 @@ class OpportunityStatsCard extends Component {
 
     return (
       <>
-        <FlexContainer
-          style={{}}
-          justifyContent="space-between"
-          alignSelf="center"
-          alignItems="center"
-        >
+      <div class=" flex flex-row flex-wrap items-center self-center justify-between grow shrink h-auto mr-auto ">
+       
           <StageStatus
             stages={opportunity.stageMapper}
             key={opportunity.opportunityId}
-            // user={user}
+     
             opportunity={opportunity}
             currentStageId={this.state.currentStageId}
-            // updateOpportunityStageByParticularOpportunity={
-            //   this.props.updateOpportunityStageByParticularOpportunity
-            // }
+           
             addPlaybookModal={this.props.addPlaybookModal}
-            // handlePlaybookModal={this.props.handlePlaybookModal}
+
             handleCallback={this.handleCallback}
             handleSetCurrentStage={this.handleSetCurrentStage}
-          // subscriptionType={this.props.subscriptionType}
+
           />
-          {/* <span>&#10230;</span> */}
-        </FlexContainer>
-        {/* <OpportunityPlaybookModal
-          currentStageId={this.state.currentStageId}
-          addPlaybookModal={this.props.addPlaybookModal}
-          handlePlaybookModal={this.props.handlePlaybookModal}
-        /> */}
+       
+        </div>
+       
       </>
-      // </div>
+     
     );
   }
 }
 
 const mapStateToProps = ({ auth, opportunity, account }) => ({
-  // addPlaybookModal: opportunity.addPlaybookModal,
-  // subscriptionType: auth.userDetails.metaData.organization.subscriptionType,
+
   user: auth.userDetails,
-  // fetchingStages: opportunity.fetchingStages,
-  // stages: opportunity.stages,
+  
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      // getStages,
-      // handlePlaybookModal,
-      // updateOpportunityStageByParticularOpportunity,
-      // getOpportunityById,
+     
     },
     dispatch
   );
@@ -149,9 +130,6 @@ function StageStatus({
                 ? `0.625em -0.625em 0 0 rgba(204, 39, 24, 0.${i + 2})`
                 : "#db584c";
 
-            // if (stage.stageName === 'Lost') {
-            //     backgroundColor = 'red'
-            // }
             if (opportunity.probability === 0) {
               if (stage.probability === 100) {
                 return;
@@ -162,13 +140,8 @@ function StageStatus({
                   // onClick={() => alert(stage.stageId)}
                   >
                     <Tooltip title={"Lost"} key={stage.stageId}>
-                      {/* <Arrow
-                      style={{
-                        backgroundColor: "#db584c",
-                        boxShadow
-                      }}
-                    /> */}
-                      <FlexContainer>
+                      
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                         <svg
                           width="82"
                           height="37"
@@ -220,17 +193,8 @@ function StageStatus({
                             />
                           </g>
                         </svg>
-                      </FlexContainer>
-                      {/* <p
-                      style={{
-                        backgroundColor: "#db584c",
-                        margin: "0.625em",
-                        cursor: "pointer",
-                        width: "3.125em",
-                        height: "0.5625em",
-                        borderRadius: "20%",
-                      }}
-                    ></p> */}
+                      </div>
+                    
                     </Tooltip>
                   </div>
                 );
@@ -298,23 +262,8 @@ function StageStatus({
                           )
                       }
                     >
-                      {/* <Arrow
-                      style={{
-                        backgroundColor,
-                        boxShadow
-                      }}
-                    /> */}
-                      {/* <p
-                      style={{
-                        backgroundColor,
-                        margin: "0.625em",
-                        cursor: "pointer",
-                        width: "3.125em",
-                        height: "0.5625em",
-                        borderRadius: "20%",
-                      }}
-                    ></p> */}
-                      <FlexContainer>
+                     
+                     <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                         <svg
                           width="82"
                           height="37"
@@ -366,7 +315,7 @@ function StageStatus({
                             />
                           </g>
                         </svg>
-                      </FlexContainer>
+                      </div>
                     </div>
                   </Popover>
                 );
@@ -376,25 +325,4 @@ function StageStatus({
     </>
   );
 }
-const p = styled.div`
-  /* border-left: 1.25em solid transparent;
-  margin-top: -1.375em;
-  margin-left: 3.75em;
-  border-top: 1.125em solid transparent;
-  border-bottom: 1.125em solid transparent;
-  width: 0;
-  height: 0;
-  margin: 3.125em auto; */
-  position: relative;
-  display: inline-block;
-  margin: 0.625em;
 
-  //set size
-  padding: 0.625em;
-
-  //set tickness
-  /* box-shadow: 0.625em -0.625em 0 0 backgroundColor; */
-  transform: rotate(405deg);
-  /* margin-top: -0.9375em; */
-  margin-left: -0.625em;
-`;

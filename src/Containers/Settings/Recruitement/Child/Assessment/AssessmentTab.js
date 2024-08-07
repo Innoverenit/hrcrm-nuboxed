@@ -1,17 +1,15 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Icon, Switch, Button, Popconfirm } from "antd";
+import {  Switch, Popconfirm } from "antd";
 import {
-  FlexContainer,
   MainWrapper,
 } from "../../../../../Components/UI/Layout";
-import { StyledLabel, Spacer } from "../../../../../Components/UI/Elements";
 import {
   addingAssessmentAccess,
   getAssessmentAccess,
 } from "../../../SettingsAction";
-import moment from "moment";
+import dayjs from "dayjs";
 
 function AssessmentTab(props) {
   useEffect(() => {
@@ -51,14 +49,11 @@ function AssessmentTab(props) {
   return (
     <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
       <div>
-        {/* <StyledLabel> 
-           Click To Share                   
-      </StyledLabel> */}
-        {/* <PermissionForm /> */}
+    
       </div>
 
-      <Spacer />
-      <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
+      <mt-3 />
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[52%]">
         <p>Enable Assessment </p>
         <div>
           <Popconfirm
@@ -75,9 +70,9 @@ function AssessmentTab(props) {
             />
           </Popconfirm>
         </div>
-      </FlexContainer>
+      </div>
       <div>
-        Updated on {moment(props.assessmentAccess.lastUpdatedOn).format("ll")}{" "}
+        Updated on {dayjs(props.assessmentAccess.lastUpdatedOn).format("ll")}{" "}
         by {props.assessmentAccess.name}
       </div>
     </MainWrapper>

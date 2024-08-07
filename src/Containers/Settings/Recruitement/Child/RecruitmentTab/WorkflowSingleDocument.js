@@ -1,9 +1,7 @@
-import React, { Component, useMemo } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
-import { Button, Popconfirm,Tooltip, Switch, Checkbox } from "antd";
-
-import { FlexContainer } from "../../../../../Components/UI/Layout";
+import { Button,Tooltip } from "antd";
 import { TextInput } from "../../../../../Components/UI/Elements";
 import ViewEditCard from "../../../../../Components/UI/Elements/ViewEditCard";
 import WorkflowDocumentToggle from "./WorkflowDocumentToggle";
@@ -34,7 +32,7 @@ class WorkflowSingleDocument extends Component {
             viewType === "view" ? (
               <div>
               
-                <FlexContainer justifyContent="space-evenly">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-evenly grow shrink h-auto mr-auto ">
                
                   <div style={{width:"55%"}}>
                   {/* <Checkbox> */}
@@ -44,7 +42,6 @@ class WorkflowSingleDocument extends Component {
                   {/* </Checkbox> */}
                   </div>
                  
-                  {/* <FlexContainer style={{justifyContent:"flex-end",marginTop:"-31px"}} > */}
                   <div style={{width:"35%"}}>
                     <WorkflowDocumentToggle
                       mandatoryInd={mandatoryInd}
@@ -54,35 +51,18 @@ class WorkflowSingleDocument extends Component {
                     />  
                     </div>
                     <div style={{width:"5%"}}>               
-                    {/* {this.props.document.editInd ? (
-                      <FontAwesomeIcon
-                        icon={solid("pen-to-square")}
-                        tooltipTitle="Edit"
-                        iconType="edit"
-                        onClick={toggleViewType}
-                        size="0.75em"
-                      />
-                    ) : null}   */}
+                 
                     </div>
                     <div style={{width:"5%"}}> 
                      <Tooltip title="Delete">
-                    {/* <FontAwesomeIcon
-                      icon={solid("trash")}
-                      onClick={() => handleDeleteDocument(documentTypeId)}
-                      size="14px"
-                      style={{
-                        verticalAlign: "center",
-                        marginLeft: "5px",
-                        color: "red",
-                      }}
-                    /> */}
+              
                   </Tooltip>                
                   </div>
-                </FlexContainer>
-                {/* </FlexContainer> */}
+                </div>
+         
               </div>
             ) : (
-              <FlexContainer>
+              <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                 <TextInput
                   name={name}
                   // value={value || documentTypeName}
@@ -92,7 +72,7 @@ class WorkflowSingleDocument extends Component {
                 />
                 <br />
                 <br />
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -115,8 +95,8 @@ class WorkflowSingleDocument extends Component {
                   
                     <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
                   </Button>
-                </FlexContainer>
-              </FlexContainer>
+                </div>
+              </div>
             )
           }
         </ViewEditCard>

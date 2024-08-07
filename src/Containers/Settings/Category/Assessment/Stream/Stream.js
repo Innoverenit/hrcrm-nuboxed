@@ -6,7 +6,6 @@ import { Button, Divider, message, Input } from "antd";
 import { MainWrapper, FlexContainer } from "../../../../../Components/UI/Layout";
 import { TextInput, Title } from "../../../../../Components/UI/Elements";
 import dayjs from "dayjs";
-import moment from "moment";
 import {
     getStreams,
     addStreams,
@@ -14,8 +13,7 @@ import {
 //   updateSectors,
 //   searchSectorName,
 } from "./StreamAction";
-import axios from "axios";
-import { base_url } from "../../../../../Config/Auth";
+
 import SingleStream from "./SingleStream";
 
 class Stream extends Component {

@@ -1,32 +1,17 @@
-import React, { Component, useMemo } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import {addProjectTask}from "../TaskAction"
 import { Button } from "antd";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import { Spacer } from "../../../Components/UI/Elements";
-import { FlexContainer } from "../../../Components/UI/Layout";
+import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import dayjs from "dayjs";
-
-/**
- * yup validation scheme for creating a opportunity
- */
-
 
 class ProjectTaskForm extends Component {
   handleReset = (resetForm) => {
     resetForm();
   };
 
-//   componentDidMount() {
-//     this.props.getRecruiterName();
-//     this.props.getAllSalesList();
-//   }
-
   render() {
-
  
 console.log("Item2",this.props.item.hourId)
 
@@ -47,38 +32,19 @@ console.log("Item2",this.props.item.hourId)
             approveInd:true,
             approveUnit:"",
             hourId:this.props.item.hourId
-           
-                     
-
-           
-           
-
-
+                                                  
           }}
           
           onSubmit={(values, { resetForm }) => {
             console.log(values);
             console.log(values);
-            
-
-           
-
-            //let newStartDate = dayjs(values.date).format("YYYY-MM-DD");
 
             this.props.addProjectTask(
               {
                 ...values,
-                // onboardDate: dayjs(values.onboardDate).toISOString(),
-                // actualEndDate:dayjs(values.actualEndDate),
-                // actualEndDate:dayjs(values.actualEndDate),
-                // finalBilling:parseFloat(values.finalBilling),
-                // billableHour:parseFloat(values.billableHour) 
-                 
-                
-             
+                                       
               },
-            //   this.props.userId,
-              // this.props.customerId,
+       
               resetForm()
             );
           }}
@@ -93,8 +59,8 @@ console.log("Item2",this.props.item.hourId)
             ...rest
           }) => (
             <Form className="form-background">
-            <Spacer/>
-            <FlexContainer justifyContent="space-between">
+            <mt-3/>
+         <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{width:"47%"}}>              
                     <Field
                       isRequired
@@ -108,16 +74,10 @@ console.log("Item2",this.props.item.hourId)
                         width: "100%",
                       }}
                     />
-                  </div>
-                
-               
-                
-              
-                  </FlexContainer>
-              
-               
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+                  </div>                                                        
+                 </div>                         
+              <mt-3 />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -125,7 +85,7 @@ console.log("Item2",this.props.item.hourId)
                 >
                 Update
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

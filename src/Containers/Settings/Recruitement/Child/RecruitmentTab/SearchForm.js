@@ -1,12 +1,9 @@
-import { Checkbox } from 'antd';
 import React ,{useEffect,useState}from 'react';
-import { Formik, Form, Field } from "formik";
-import { Icon, Switch, Button, Popconfirm } from "antd";
+import { Switch, Popconfirm } from "antd";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { connect } from "react-redux";
-import { SwitchComponent } from "../../../../../Components/Forms/Formik/SwitchComponent";
-import { FlexContainer, MainWrapper } from "../../../../../Components/UI/Layout";
+import { MainWrapper } from "../../../../../Components/UI/Layout";
 import {StyledLabel,Spacer} from "../../../../../Components/UI/Elements";
 import {addingPermissionAccess,getPermissionAccess} from "../../../SettingsAction";
 function SearchForm(props) {
@@ -147,14 +144,11 @@ function SearchForm(props) {
     setSearchInd(false);
    }
  }
-
-
    return (
     
-
     <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
     <Spacer />
-    <FlexContainer justifyContent="space-between" style={{ width: "100%" }}>
+    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[100%] ">
       <div
         style={{
           width: "44%",
@@ -176,7 +170,7 @@ function SearchForm(props) {
           </StyledLabel>
         </div>
         <Spacer />
-        <FlexContainer justifyContent="space-between">
+        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  ">
               <div><StyledLabel>Access talent of all users</StyledLabel></div>
                
               <div>
@@ -195,10 +189,10 @@ function SearchForm(props) {
             />
           </Popconfirm>
                     </div>
-                </FlexContainer>
+                </div>
                 <Spacer />
                 <Spacer style={{ marginTop: "1.25em" }} />
-              <FlexContainer justifyContent="space-between">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto">
               <div><StyledLabel>Talent visible to user on search</StyledLabel></div>
                 
               <div>
@@ -217,13 +211,8 @@ function SearchForm(props) {
             />
           </Popconfirm>
                     </div>
-                 </FlexContainer>
-        
-     
-
-       
-       
-      
+                 </div>
+              
       </div>
 
       <div
@@ -247,7 +236,7 @@ function SearchForm(props) {
           </StyledLabel>
         </div>
         <Spacer />
-        <FlexContainer justifyContent="space-between">
+        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  ">
             <div><StyledLabel>Access talent of all users</StyledLabel></div>
                    <div>
                    <Popconfirm
@@ -265,9 +254,9 @@ function SearchForm(props) {
             />
           </Popconfirm>
                     </div>
-              </FlexContainer>
+              </div>
               <Spacer />
-              <FlexContainer justifyContent="space-between">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  ">
               <div>
                 <StyledLabel>Talent visible to user on search</StyledLabel></div>
                 
@@ -289,11 +278,11 @@ function SearchForm(props) {
           </Popconfirm>
  
                     </div>
-                </FlexContainer>  
+                </div>  
                 <Spacer />
                
       </div>
-    </FlexContainer>
+    </div>
     <div>Updated on {dayjs(props.permissionAccess.lastUpdatedOn).format("ll")} by {props.permissionAccess.name}</div> 
  
   </MainWrapper>

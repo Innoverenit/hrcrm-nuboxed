@@ -4,9 +4,8 @@ import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import { bindActionCreators } from "redux";
-import { Icon, Switch, Button, Popconfirm } from "antd";
-import { FlexContainer, MainWrapper } from "../../../../../Components/UI/Layout";
-import { StyledLabel,Spacer } from "../../../../../Components/UI/Elements";
+import {  Switch, Popconfirm } from "antd";
+import {  MainWrapper } from "../../../../../Components/UI/Layout";
 import { getThirdPartyAccess,addingThirdPartyAccess } from "../../../SettingsAction";
 
 function ThirdPartyVendorForm(props) {
@@ -118,8 +117,8 @@ function handleCancel() {
     <MainWrapper style={{ height: "446px", width:"", overflow: "auto" }}>
       
           
-      <Spacer />
-       <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
+      <mt-3 />
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[52%] ">
         <p>Allow Access to Vendor Portal</p>
         <div>
           <Popconfirm
@@ -137,9 +136,9 @@ function handleCancel() {
             />
           </Popconfirm>
         </div>
-      </FlexContainer> 
-      <Spacer />
-      <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
+      </div> 
+      <mt-3 />
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[52%] ">
         <p>Enable AI Assist</p>
         <div>
           <Popconfirm
@@ -156,9 +155,9 @@ function handleCancel() {
             />
           </Popconfirm>
         </div>
-      </FlexContainer>
-      <Spacer />
-      <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
+      </div>
+      <mt-3 />
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[52%] ">
         <p>Share profile with Vendors</p>
         <div>
           <Popconfirm
@@ -176,7 +175,7 @@ function handleCancel() {
             />
           </Popconfirm>
         </div>
-      </FlexContainer>
+      </div>
       <div>Updated on {dayjs(props.thirdPartyAccess.lastUpdatedOn).format("ll")} by {props.thirdPartyAccess.name}</div>
     </MainWrapper>
   );

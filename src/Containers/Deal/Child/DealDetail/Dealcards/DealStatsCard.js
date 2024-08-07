@@ -4,9 +4,7 @@ import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import {ReadOutlined } from '@ant-design/icons';
 import { message, Tooltip, Popover} from "antd";
-import dayjs from "dayjs";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { BussinessCard, Spacer } from "../../../../../Components/UI/Elements";
 import StagesSwitch from "./StagesSwitch";
 
 class DealStatsCard extends Component {

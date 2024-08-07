@@ -9,13 +9,10 @@ import * as Yup from "yup";
 import { getCustomerDetailsById } from "../../CustomerAction";
 import { updateCustomer,setEditCustomer } from "../../CustomerAction";
 import { HeaderLabel, StyledLabel } from "../../../../Components/UI/Elements";
-import { Spacer } from "../../../../Components/UI/Elements";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-//yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const UpdateCustomerSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
@@ -128,7 +125,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                     width: "47%",
                   }}
                 >
-                    <Spacer/>
+                    <mt-3/>
                    <StyledLabel><FormattedMessage id="app.name" defaultMessage="Name" /></StyledLabel>
                   <Field
                     isRequired
@@ -153,8 +150,8 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                     component={InputComponent}
                     inlineLabel
                     />
-                  <Spacer />
-                  <Spacer />
+                  <mt-3 />
+                  <mt-3 />
                   <Field
                     name="email"
                     type="text"                   
@@ -166,7 +163,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                     component={InputComponent}
                     inlineLabel
                     />
-                  <FlexContainer justifyContent="space-between">
+               <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "27%" }}>
                       <FastField
                         name="countryDialCode"
@@ -196,9 +193,9 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                         width={"100%"}
                         />                   
                          </div>
-                  </FlexContainer>
-                  <Spacer/>
-                     <FlexContainer justifyContent="space-between">
+                  </div>
+                  <mt-3/>
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "46.5%" }}>
                       <FastField                      
                         name="sectorId"
@@ -235,9 +232,9 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                Both
                </Checkbox>
                </div>
-                 </FlexContainer>
+                 </div>
                 
-                 <Spacer/>
+                 <mt-3/>
                   <Field
                     name="notes"
                     // label="Notes"
@@ -255,8 +252,8 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                     width: "47%",
                     }}
                 >
-                   <Spacer/>
-                  <FlexContainer justifyContent="space-between">
+                   <mt-3/>
+                   <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                     <Field
                     name="assignedTo"
@@ -269,22 +266,17 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                         defaultMessage="Assigned"
                       />
                     }
-                    // component={SearchSelect}
+               
                     isColumn
-                    // value={values.employeeId}
-                    // defaultValue={{
-                    //   label: `${firstName || ""} ${middleName ||
-                    //     ""} ${lastName || ""}`,
-                    //   value: employeeId,
-                    // }}
+                  
                     component={SelectComponent}
                     options={Array.isArray(employeesData) ? employeesData : []}
                     inlineLabel
                   />
                   </div>
-                    </FlexContainer>
-                    <Spacer/>
-                  <FlexContainer justifyContent="space-between">
+                    </div>
+                    <mt-3/>
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         name="vatNo"
@@ -319,14 +311,14 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                         inlineLabel
                       />
                     </div>                    
-                    </FlexContainer>
-                   <Spacer/>
+                    </div>
+                   <mt-3/>
                   <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
                   <HeaderLabel style={{color:"white"}} >Corporate Address</HeaderLabel>
                   </div>
                     </div>
-                  <Spacer /><Spacer />
+                  <mt-3 /><mt-3 />
                   <FieldArray
                     name="address"
                     label="Address"
@@ -337,40 +329,13 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                       />
                     )}
                   />
-                  {/* <FlexContainer justifyContent="space-between">
-                   
-                   <div style={{ width: "47%" }}>
-                     <Field
-                       // name="address[0].country"
-                       name="country"
-                       isColumnWithoutNoCreate
-                       // label="Country"
-
-                       label={
-                         <FormattedMessage
-                           id="app.country"
-                           defaultMessage="Country"
-                         />
-                       }
-                       component={SearchSelect}
-                       defaultValue={{
-                         value: this.props.user.countryName,
-                       }}
-                       value={values.countryName}
-                       selectType="country"
-                       inlineLabel
-                       // style={{ flexBasis: "80%" }}
-                       isColumn
-                       width="100%"
-                     />
-                   </div>
-                 </FlexContainer> */}
+               
                
                                      
                 </div>
               </div>
-              <Spacer/>
-              <FlexContainer justifyContent="flex-end">
+              <mt-3/>
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -379,7 +344,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Update */}
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

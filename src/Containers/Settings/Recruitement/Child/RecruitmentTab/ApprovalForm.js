@@ -1,28 +1,18 @@
-import React, { useState, useEffect, useMemo, Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import {
-//     getFunctions,
-
-//   } from "../../../Function/FunctionAction";
-import * as Yup from "yup";
-import { Button, Switch, Icon, Tooltip, Popconfirm, Popover } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
-import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
+import { Button } from "antd";
+import { Formik, Form, Field } from "formik";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { SwitchComponent } from "../../../../../Components/Forms/Formik/SwitchComponent";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { StyledLabel } from "../../../../../Components/UI/Elements";
-import { Spacer } from "../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import {
   addApproval,
   // linkExceptionTypePayment,
   getApprovalData,
 } from "../../../../Settings/SettingsAction";
-import { functions } from "lodash";
 import StandardApprovalForm from "./StandardApprovalForm";
-// import { getFunctionNameByUserId, getDesignationByUserId } from "../../../Users/UsersAction";
 
 class ApprovalForm extends Component {
   constructor(props) {
@@ -47,41 +37,13 @@ class ApprovalForm extends Component {
   };
 
    componentDidMount=() => {
-  //  this.props.getFunctions();
 
-      // this.props.getFunctionNameByUserId();
-  //     this.props.getDesignationByUserId();
        this.props.getApprovalData(this.props.stageId);
    }
 
   render() {
     console.log("approved",this.props.aaprovalprocessData)
-    // const functionNameOption = this.props.functionTypeId.map((item) => {
-    //     return {
-    //         label: `${item.functionType || ""}`,
-    //         value: item.functionTypeId,
-    //     };
-    // });
-
-    // const getDesignationOption = (filterOptionKey, filterOptionValue) => {
-    // const designationOptions =
-    //     this.props.designationById.length &&
-    //     this.props.designationById
-    //         .filter((option) => {
-    //             if (
-    //                 option.functionId === filterOptionValue &&
-    //                 option.probability !== 0
-    //             ) {
-    //                 return option;
-    //             }
-    //         })
-    //         .map((option) => ({
-    //             label: option.designationName || "",
-    //             value: option.designationId,
-    //         }));
-
-    // return designationOptions;
-    // }
+   
     return (
       <>
         <Formik
@@ -107,13 +69,7 @@ class ApprovalForm extends Component {
               recruitmentProcessId: this.props.recruitmentProcessId,
               stageId: this.props.stageId,
             });
-            // } else {
-            //     this.props.linkExceptionTypePayment(
-            //         {
-            //             ...values,
-            //         }
-            //     )
-            // }
+         
           }}
         >
           {({
@@ -133,7 +89,7 @@ class ApprovalForm extends Component {
                 }}
               >
                 <div>
-                  <FlexContainer justifyContent="space-between">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div
                       style={{
                         // marginTop: "35px",
@@ -145,10 +101,7 @@ class ApprovalForm extends Component {
                     
                     </div>
 
-                    <FlexContainer
-                      justifyContent="space-between"
-                      style={{ width: "30%" }}
-                    >
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between w-[30%] grow shrink h-auto mr-auto ">
                       <div style={{ width: "30%" }}>
                         <Field
                           name="approvalIndicator"
@@ -158,23 +111,17 @@ class ApprovalForm extends Component {
                           unCheckedChildren={"No"}
                           width={"5em"}
                         />
-                        {/* <Switch
-                                        style={{ width: "80px", marginLeft: "10px" }}
-                                        onChange={this.handleApproveToggle}
-                                        checked={this.state.approve}
-                                        checkedChildren="Yes"
-                                        unCheckedChildren="No"
-                                    /> */}
+                       
                       </div>
-                    </FlexContainer>
-                  </FlexContainer>
+                    </div>
+                  </div>
                 </div>
                 {values.approvalIndicator ? (
                   <div>
-                    <Spacer style={{ marginTop: "1%" }} />
+                    <mt-3 style={{ marginTop: "1%" }} />
 
                     <div>
-                      <FlexContainer justifyContent="space-between">
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                         <div
                           style={{
                             // marginTop: "35px",
@@ -185,10 +132,7 @@ class ApprovalForm extends Component {
                           <StyledLabel>Type</StyledLabel>
                         </div>
 
-                        <FlexContainer
-                          justifyContent="space-between"
-                          style={{ width: "30%" }}
-                        >
+                        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[30%] ">
                           <div style={{ width: "30%" }}>
                             <Field
                               name="approvalType"
@@ -198,18 +142,12 @@ class ApprovalForm extends Component {
                               unCheckedChildren={"Exception"}
                               width={"6em"}
                             />
-                            {/* <Switch
-                                                style={{ width: "80px", marginLeft: "10px" }}
-                                                onChange={this.handleApproveType}
-                                                checked={this.state.type}
-                                                checkedChildren="Standard"
-                                                unCheckedChildren="Exception"
-                                            /> */}
+                      
                           </div>
-                        </FlexContainer>
-                      </FlexContainer>
+                        </div>
+                      </div>
                     </div>
-                    <Spacer />
+                    <mt-3 />
                    
                     <div style={{ marginTop: "2%" }}>
                       {values.approvalType ? (
@@ -219,66 +157,10 @@ class ApprovalForm extends Component {
                             approvalType={values.approvalType ? "Standard" : "Exception"}
                             stageId= {this.props.stageId}
                           />
-                          {/* <FlexContainer justifyContent="space-between">
-                            <div style={{ width: "47%" }}>
-                              <Field
-                                name="reportingTo"
-                                label="Level 1"
-                                isRequired
-                                isColumn
-                                component={SelectComponent}
-                                options={[
-                                  "Reporting Manager",
-                                  "Reporting Manager +1",
-                                  "Management",
-                                  " Sales Owner" ,
-                                  "Opportunity Creator",
-                                ]}
-                               
-                              />
-                            </div>
-                            <div style={{width: "47%"}}>
-                              <Field
-                                name="threshold"
-                                label="Threshold"
-                                isColumn
-                                component={InputComponent}                                
-                              />
-                            </div>
-                          </FlexContainer>
-                          <FlexContainer justifyContent="space-between">
-                            <div style={{width: "47%" }}>
-                            <Field
-                                name="reportingTo2"
-                                label="Level 2"
-                                isRequired
-                                isColumn
-                                component={SelectComponent}
-                                options={[
-                                  "Reporting Manager",
-                                  "Management",
-                                  "Admin",
-                                 " Sales Owner" ,
-                                  "Opportunity Creator"
-                                ]}
-                               
-                              />
-                      
-                            </div>
-                            <div style={{ width: "47%" }}>
-                              <Field
-                                name="threshold2"
-                                label="Threshold"
-                                isColumn
-                                component={InputComponent}
-                               
-                              />
-                            </div>
-                          </FlexContainer> */}
-    
+                           
                         </div>
                       ) : (
-                        <FlexContainer justifyContent="space-between">
+                        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                           <div style={{ width: "32%" }}>
                             <Field
                                name="departmentId"
@@ -301,13 +183,7 @@ class ApprovalForm extends Component {
                               label="Designation"
                               isColumnWithoutNoCreate
                               selectType="designationType"
-                              // options={
-                              //     Array.isArray(
-                              //         getDesignationOption("functionId", values.functionId)
-                              //     )
-                              //         ? getDesignationOption("functionId", values.functionId)
-                              //         : []
-                              // }
+                            
                               component={SearchSelect}
                               value={values.designationTypeId}
                               // placeholder
@@ -342,14 +218,14 @@ class ApprovalForm extends Component {
                               width={"100%"}
                             />
                           </div>
-                        </FlexContainer>
+                        </div>
                       )}
                     </div>
 
                     
-                    <Spacer style={{marginTop:"1.25em"}} />
+                    <mt-3 style={{marginTop:"1.25em"}} />
                     {!values.approvalType ?
-                    <FlexContainer justifyContent="flex-end">
+               <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                       <Button
                         type="primary"
                         htmlType="submit"
@@ -358,7 +234,7 @@ class ApprovalForm extends Component {
                       >
                         Submit
                       </Button>
-                    </FlexContainer>
+                    </div>
                      : null}
                   </div>
                 ) : null}
@@ -373,10 +249,9 @@ class ApprovalForm extends Component {
 
 const mapStateToProps = ({ settings, user, functions }) => ({
   addingApproval: settings.addingApproval,
-  // functionById: user.functionById,
-  // fetchingFunctions:functions.fetchingFunctions,
+ 
   functions: functions.functions,
-  // designationById: user.designationById,
+
   aaprovalprocessData: settings.aaprovalprocessData,
 });
 
@@ -384,10 +259,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addApproval,
-      // getFunctions
-      // getFunctionNameByUserId,
-      // getDesignationByUserId,
-      // linkExceptionTypePayment,
+      
       getApprovalData,
     },
     dispatch

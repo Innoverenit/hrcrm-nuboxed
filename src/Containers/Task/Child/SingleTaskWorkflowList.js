@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { Button, Tooltip, Popconfirm, DatePicker, Avatar, } from "antd";
-import { FlexContainer } from "../../../Components/UI/Layout";
+import { Button, Tooltip,  DatePicker, Avatar, } from "antd";
 import {
   TextInput,
   Select,
@@ -14,9 +11,6 @@ import { elipsize } from "../../../Helpers/Function/Functions";
 import { ViewEditCard } from "../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { StyledPopconfirm } from "../../../Components/UI/Antd";
-import moment from "moment";
 import dayjs from "dayjs";
 const { Option } = Select;
 
@@ -29,8 +23,6 @@ class SingleTaskWorkflowList extends Component {
       // currentStage: [],
       fields: {},
       responsible: "",
-    //   startDate: Array(props.recruitTaskWorkflowStage.length).fill(moment(props.creationDate)),
-    // endDate: Array(props.recruitTaskWorkflowStage.length).fill(moment()),
       endDate:"",
       startDate:"",
       candidate:[],
@@ -73,8 +65,6 @@ class SingleTaskWorkflowList extends Component {
     this.props.getAssignedToList(this.props.orgId);
   }
   render() {
-    // const startDate= 
-    // const endDate= dayjs(this.state.endDate).toISOString()
 console.log("candidate",this.state.candidate)
 console.log("startDate",this.state.startDate)
     const { recruitTaskWorkflowStage } = this.props;
@@ -219,11 +209,10 @@ console.log("startDate",this.state.startDate)
            
               </div>
             ) : (
-              <FlexContainer justifyContent="center">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-center grow shrink h-auto mr-auto ">
                 <TextInput
                   name={newStageName}
-                  // value={stageValue1 || taskChecklistStageName}
-                  // defaultValue={taskChecklistStageName}
+             
                   onChange={this.handleChange}
                   // disabled={disabled}
                   width={"25%"}
@@ -252,7 +241,7 @@ console.log("startDate",this.state.startDate)
                   <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
                 </Button>
                 </div>
-              </FlexContainer>
+              </div>
             )
           }
         </ViewEditCard>
