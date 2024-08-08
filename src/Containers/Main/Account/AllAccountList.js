@@ -1,5 +1,4 @@
 import React, { useEffect, useState, lazy } from 'react'
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -41,6 +40,7 @@ const AllAccountList = (props) => {
 'Type', // 3
 'Payment(Days)', // 4
 'Tax', // 5
+'Owner'
       ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -93,6 +93,10 @@ const AllAccountList = (props) => {
             <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]">
             {translatedMenuItems[5]}
               {/* Tax*/}</div>
+                <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
+            {translatedMenuItems[6]}
+           {/* Owner */}        
+            </div>
           
               {/* defaultMessage="billingaddress" */}
      
@@ -201,6 +205,19 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                         </div>                                         
                       </div>
+                       <div className=" flex  items-center max-sm:w-auto flex-col w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                          <div class="max-sm:flex justify-end">
+                            <Tooltip title={item.salesExecutive}>
+                              <MultiAvatar
+                                primaryTitle={item.salesExecutive}
+                                imageId={item.ownerImageId}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
+                              />
+                            </Tooltip>
+                          </div>                      
+                      </div>                
+
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
 

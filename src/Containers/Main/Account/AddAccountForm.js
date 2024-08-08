@@ -60,6 +60,46 @@ const AddAccountForm = ({
   category
 }) => {
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+            "Name",
+            "Dial Code",
+            "Phone",
+            "Website",
+            "Country",
+            "Tax Registration",
+            "Insurancegrade",
+            "Type",
+            "Creditlimit",
+            "Currency",
+            "Payment Term Days",
+            "Category",
+            "Custom Payment",
+            "Assigned",
+            "Description",
+            "Create"
+
+
+      ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     getCountry();
     getAllCustomerEmployeelist();
@@ -223,14 +263,15 @@ const AddAccountForm = ({
                   ) : null}
                 </div>
                 <div class="mt-4">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                   <Field
                     isRequired
                     name="name"
                     type="text"
-                    label={<FormattedMessage
-                      id="app.name"
-                      defaultMessage="name"
-                    />}
+                    // label={<FormattedMessage
+                    //   id="app.name"
+                    //   defaultMessage="name"
+                    // />}
                     width={"100%"}
                     // isColumnWithoutNoCreate
                     setClearbitData={setClearbitData}
@@ -243,15 +284,17 @@ const AddAccountForm = ({
                 </div>
                 <div class=" flex justify-between mt-4">
                   <div class=" w-2/6">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[1]}</div>
+                  
                     <FastField
                       name="dialCode"
                       isColumnWithoutNoCreate
-                      label={
-                        <FormattedMessage
-                          id="app.dialCode"
-                          defaultMessage="Dial Code"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.dialCode"
+                      //     defaultMessage="Dial Code"
+                      //   />
+                      // }
                       isColumn
                       value={countryDialCode1}
                       selectType="dialCode"
@@ -261,14 +304,16 @@ const AddAccountForm = ({
                   </div>
 
                   <div class=" w-[60%]">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
+                
                     <FastField
                       name="phoneNo"
-                      label={
-                        <FormattedMessage
-                          id="app.phone"
-                          defaultMessage="phone"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.phone"
+                      //     defaultMessage="phone"
+                      //   />
+                      // }
                       placeholder="Mobile #"
                       component={InputComponent}
                       inlineLabel
@@ -277,16 +322,17 @@ const AddAccountForm = ({
                     />
                   </div>
                 </div>
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
                 <Field
                   // isRequired
                   name="url"
                   type="text"
-                  label={
-                    <FormattedMessage
-                      id="app.website"
-                      defaultMessage="website"
-                    />
-                  }
+                  // label={
+                  //   <FormattedMessage
+                  //     id="app.website"
+                  //     defaultMessage="website"
+                  //   />
+                  // }
                   width={"100%"}
                   component={InputComponent}
                   isColumn
@@ -313,15 +359,16 @@ const AddAccountForm = ({
 
 
                 <div class="flex justify-between mt-4" >
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
                   <div class="w-w47.5">
                     <FastField
                       name="country"
-                      label={
-                        <FormattedMessage
-                          id="app.country"
-                          defaultMessage="country"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.country"
+                      //     defaultMessage="country"
+                      //   />
+                      // }
                       isColumn
                       placeholder="Select"
                       inlineLabel
@@ -334,8 +381,9 @@ const AddAccountForm = ({
                     />
                   </div>
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                     <FastField
-                      label="Tax Registration"
+                      // label="Tax Registration"
                       name="countryValue"
                       placeholder="Value"
                       component={InputComponent}
@@ -346,16 +394,17 @@ const AddAccountForm = ({
                   </div>
                 </div>
                 <div class="flex justify-between mt-4" >
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
                   <div class="w-w47.5">
                     <Field
                       name="insuranceGrade"
                       type="text"
-                      label={
-                        <FormattedMessage
-                          id="app.insurancegrade"
-                          defaultMessage="insurancegrade"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.insurancegrade"
+                      //     defaultMessage="insurancegrade"
+                      //   />
+                      // }
                       width={"100%"}
                       component={InputComponent}
                       isColumn
@@ -363,14 +412,15 @@ const AddAccountForm = ({
                     />
                   </div>
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                     <Field
                       name="clientId"
-                      label={
-                        <FormattedMessage
-                          id="app.type"
-                          defaultMessage="Type"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.type"
+                      //     defaultMessage="Type"
+                      //   />
+                      // }
                       isColumn
                       // style={{ borderRight: "3px red solid" }}
                       placeholder="Type"
@@ -385,14 +435,15 @@ const AddAccountForm = ({
                   </div>
                 </div>
                 <div class="flex justify-between mt-4" >
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                   <div class="w-w47.5">
                     <FastField
-                      label={
-                        <FormattedMessage
-                          id="app.creditlimit"
-                          defaultMessage="creditlimit"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.creditlimit"
+                      //     defaultMessage="creditlimit"
+                      //   />
+                      // }
                       name="currencyPrice"
                       placeholder="Price"
                       component={InputComponent}
@@ -402,14 +453,15 @@ const AddAccountForm = ({
                     />
                   </div>
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
                     <Field
                       name="currency"
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.currency"
+                      //     defaultMessage="Currency"
+                      //   />
+                      // }
                       isColumn
                       placeholder="Currency"
                       component={SelectComponent}
@@ -424,14 +476,15 @@ const AddAccountForm = ({
                   </div>
                 </div>
                 <div class="flex justify-between mt-4" >
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                   <div class="w-w47.5">
                     <FastField
-                      label={
-                        <FormattedMessage
-                          id="app.Paymenttermdays"
-                          defaultMessage="Paymenttermdays"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.Paymenttermdays"
+                      //     defaultMessage="Paymenttermdays"
+                      //   />
+                      // }
                       name="payment"
                       placeholder="Select"
                       component={SelectComponent}
@@ -442,9 +495,10 @@ const AddAccountForm = ({
                     />
                   </div>
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
                     <Field
                       name="dcategory"
-                      label="Category"
+                      // label="Category"
                       isColumn
                       placeholder="Select"
                       style={{ borderRight: "3px red solid" }}
@@ -458,13 +512,14 @@ const AddAccountForm = ({
                     />
                   </div>
                   {values.payment === "Custom" && <div class="w-w47.5">
+                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                     <FastField
-                      label={
-                        <FormattedMessage
-                          id="app.Custom Payment"
-                          defaultMessage="Custom Payment"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.Custom Payment"
+                      //     defaultMessage="Custom Payment"
+                      //   />
+                      // }
                       name="customPayment"
                       component={InputComponent}
                       inlineLabel
@@ -477,10 +532,11 @@ const AddAccountForm = ({
               </div>
               <div class=" h-full w-w47.5 max-sm:w-wk">
                 <div class=" h-full w-full mt-3">
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</div>
                 <Listbox value={selected} onChange={setSelected}>
                         {({ open }) => (
                           <>
-                            <Listbox.Label className="block font-semibold text-[0.75rem]  leading-lh1.2  "
+                            {/* <Listbox.Label className="block font-semibold text-[0.75rem]  leading-lh1.2  "
                             // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
                             >
                               <FormattedMessage
@@ -488,7 +544,7 @@ const AddAccountForm = ({
                                 defaultMessage="Assigned"
                               />
 
-                            </Listbox.Label>
+                            </Listbox.Label> */}
                             <div className="relative ">
                               <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                                 {selected}
@@ -550,7 +606,7 @@ const AddAccountForm = ({
                       </Listbox>
                 </div>
                 <div class="mt-4">
-                  <StyledLabel >Billing Address</StyledLabel>
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</div>
                 </div>
                 <div>
                   <FieldArray
@@ -592,7 +648,7 @@ const AddAccountForm = ({
                 </div>
                 )} */}
                 <div class="mt-4">
-                <div>Description</div>
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[15]}</div>
                     <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>
@@ -643,10 +699,7 @@ const AddAccountForm = ({
                 className=" w-16 absolute top-3/4 right-0"
                 loading={addingDistributor}
               >
-                <FormattedMessage
-                  id="app.create"
-                  defaultMessage="create"
-                />
+              {translatedMenuItems[16]}
               </Button>
             </div>
           </Form>
