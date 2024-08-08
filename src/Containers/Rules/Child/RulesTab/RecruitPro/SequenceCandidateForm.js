@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import {  StyledLabel } from "../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Select } from "antd";
 import { getSequence } from "../../../../Settings/SettingsAction";

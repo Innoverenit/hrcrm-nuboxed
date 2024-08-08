@@ -3395,13 +3395,7 @@
       "address": "1665751315888",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\StyledCreatable.js"
     },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751308896",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\StyledLabel.js"
-    },
+    
     {
       "type": "fs_event",
       "is_active": "1",
