@@ -45,7 +45,7 @@ class NodataFoundPage extends React.Component {
                 
                 </div>
               </div>
-              {/* <Spacer />
+              {/* <div class=" mt-3" />
               <Button
                 type="primary"
               

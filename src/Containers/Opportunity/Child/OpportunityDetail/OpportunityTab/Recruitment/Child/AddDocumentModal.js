@@ -5,10 +5,6 @@ import { Button, Switch, Tooltip, Icon } from "antd";
 // import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
 import { Formik, Form, Field, FieldArray } from "formik";
 import { StyledModal } from "../../../../../../../Components/UI/Antd";
-import {
-  Spacer,
-  StyledLabel,
-} from "../../../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSelect";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import DocumentUpload from "../../../../../../../Components/Forms/Formik/DocumentUpload";
@@ -205,7 +201,7 @@ class AddDocumentModal extends Component {
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                       <Field
                         name="documentTypeId"
                         selectType="documentTypeName"
@@ -247,7 +243,7 @@ class AddDocumentModal extends Component {
                         component={InputComponent}
                         style={{ height: "2em", marginTop: "0.25em" }}
                       />
-                      <Spacer />
+                      <div class=" mt-3" />
                       <Field
                         name="documentDescription"
                         // label="Description"
@@ -263,10 +259,10 @@ class AddDocumentModal extends Component {
                         component={TextareaComponent}
                         style={{ height: "5em", marginTop: "0.25em" }}
                       />
-                      <Spacer style={{ marginBottom: "0.9375em" }} />
+                      <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
 
                       <FlexContainer>
-                        {/* <StyledLabel>Share</StyledLabel> */}
+                        {/* <div class=" text-xs font-bold font-poppins text-black">Share</div> */}
                         {/* <Switch
                           style={{ width: "6.25em", marginLeft: "0.625em" }}
                           onChange={this.handleChange}
@@ -275,11 +271,11 @@ class AddDocumentModal extends Component {
                           unCheckedChildren="Private"
                         /> */}
                       </FlexContainer>
-                      <Spacer />
+                      <div class=" mt-3" />
                       {!this.state.documentshare && this.props.testShow && (
                         <p>Will be shared with Opportunity Owner</p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                       {this.state.documentshare && (
                         <FlexContainer
                           justifyContent="space-between"
@@ -337,13 +333,13 @@ class AddDocumentModal extends Component {
                                   />
                                 </div>
                                 <div>
-                                  <StyledLabel>
+                                  <div class=" text-xs font-bold font-poppins text-black">
                                     <FormattedMessage
                                       id="app.level"
                                       defaultMessage="Level"
                                     />
                                     ,{/* Level */}
-                                  </StyledLabel>
+                                  </div>
                                   <FlexContainer
                                     justifyContent="space-between"
                                     style={{ marginTop: "0.25em" }}
@@ -424,7 +420,7 @@ class AddDocumentModal extends Component {
                     </div>
                   </div>
 
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="flex-end">
                     <Button
                       htmlType="submit"

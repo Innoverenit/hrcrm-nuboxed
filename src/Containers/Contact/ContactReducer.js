@@ -1,5 +1,5 @@
 import * as types from "./ContactActionTypes";
-import moment from "moment";
+import dayjs from "dayjs";
 
 
 const initialState = {
@@ -134,8 +134,8 @@ const initialState = {
   fetchingAllContactsPartner: false,
   fetchingAllContactsPartnerError: false,
   allcontactPartnerByUserId: [],
-  startDate: moment().toISOString(),
-  endDate: moment().startOf("month"). add(1, "days").toISOString(),
+  startDate: dayjs().toISOString(),
+  endDate: dayjs().startOf("month"). add(1, "days").toISOString(),
   dateStackedRangeList: [
     // {
     //   id: 1,
@@ -143,10 +143,10 @@ const initialState = {
     //   value: "FY",
     //   starter: true,
     //   isSelected: true,
-    //   startDate: moment()
+    //   startDate: dayjs()
     //     .startOf("year")
     //     .toISOString(),
-    //   endDate: moment()
+    //   endDate: dayjs()
     //     .endOf("year")
     //     .toISOString(),
     // },
@@ -156,10 +156,10 @@ const initialState = {
     //     value: "Today",
     //     starter: false,
     //     isSelected: true,
-    //     startDate: moment()
+    //     startDate: dayjs()
     //         // .subtract(1, "days")
     //         .toISOString(),
-    //     endDate: moment().toISOString(),
+    //     endDate: dayjs().toISOString(),
     // },
     // {
     //     id: 2,
@@ -167,11 +167,11 @@ const initialState = {
     //     value: "Yesterday",
     //     starter: false,
     //     isSelected: false,
-    //     startDate: moment()
+    //     startDate: dayjs()
     //         .subtract(1, "days")
 
     //         .toISOString(),
-    //     endDate: moment().toISOString(),
+    //     endDate: dayjs().toISOString(),
     // },
     // {
     //     id: 3,
@@ -179,11 +179,11 @@ const initialState = {
     //     value: "Last 7 days",
     //     starter: false,
     //     isSelected: false,
-    //     startDate: moment()
+    //     startDate: dayjs()
     //         .subtract(7, "days")
 
     //         .toISOString(),
-    //     endDate: moment().toISOString(),
+    //     endDate: dayjs().toISOString(),
     // },
 
     // {
@@ -192,11 +192,11 @@ const initialState = {
     //     value: "Last 30 days",
     //     starter: false,
     //     isSelected: false,
-    //     startDate: moment()
+    //     startDate: dayjs()
     //         .subtract(30, "days")
 
     //         .toISOString(),
-    //     endDate: moment().toISOString(),
+    //     endDate: dayjs().toISOString(),
     // },
     {
         id: 5,
@@ -204,8 +204,8 @@ const initialState = {
         value: "This month",
         starter: true,
         isSelected: true,
-        endDate: moment().startOf("month"). add(1, "days").toISOString(),
-        startDate: moment().toISOString(),
+        endDate: dayjs().startOf("month"). add(1, "days").toISOString(),
+        startDate: dayjs().toISOString(),
         
     },
     {
@@ -214,8 +214,8 @@ const initialState = {
         value: "Last month",
         starter: false,
         isSelected: false,
-        endDate: moment().startOf("month") .subtract(30, "days").toISOString(),
-        startDate: moment().toISOString(),
+        endDate: dayjs().startOf("month") .subtract(30, "days").toISOString(),
+        startDate: dayjs().toISOString(),
         
     },
 ],

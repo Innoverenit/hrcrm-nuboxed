@@ -162,7 +162,7 @@ class UpdateBankForm extends Component {
               
               <div class=" w-[47%] mt-[1.5em]" style={{margin:"6% 0% 0% 0%"}}>
               <div class=" flex justify-between" >
-              <StyledLabel>Default Bank?</StyledLabel>
+              <div class=" text-xs font-bold font-poppins text-black">Default Bank?</div>
               <Switch
                
                 checked={this.state.defaultBank}

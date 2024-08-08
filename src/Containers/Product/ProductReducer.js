@@ -1,5 +1,5 @@
 import * as types from "./ProductActionTypes";
-import moment from "moment";
+import dayjs from "dayjs";
 const initialState = {
   addWeightedModal: false,
   addAbsoluteModal: false,
@@ -19,10 +19,10 @@ const initialState = {
       value: "FY",
       starter: true,
       isSelected: true,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("year")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("year")
         .toISOString(),
     },
@@ -32,10 +32,10 @@ const initialState = {
       value: "QTD",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("quarter")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("quarter")
         .toISOString(),
     },
@@ -45,10 +45,10 @@ const initialState = {
       value: "MTD",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("month")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("month")
         .toISOString(),
     },
@@ -58,10 +58,10 @@ const initialState = {
       value: "1W",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("week")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("week")
         .toISOString(),
     },

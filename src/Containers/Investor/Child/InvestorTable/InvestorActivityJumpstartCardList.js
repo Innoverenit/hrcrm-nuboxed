@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import moment from "moment";
+
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -221,7 +221,7 @@ function InvestorActivityJumpstartCardList(props) {
 
                         {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {moment.utc(item.endDate).format('DD/MM/YYYY')}
+                        {dayjs(item.endDate).format('DD/MM/YYYY')}
                         </div>
 
                       </div>
@@ -232,7 +232,7 @@ function InvestorActivityJumpstartCardList(props) {
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                        
-                          {moment.utc(item.creationDate).format('DD/MM/YYYY')}
+                          {dayjs(item.creationDate).format('DD/MM/YYYY')}
                         </div>
 
                       </div>

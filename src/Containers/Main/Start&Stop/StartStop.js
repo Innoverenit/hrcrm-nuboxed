@@ -5,7 +5,7 @@
 // import React, { useEffect, useState } from "react";
 // import { connect } from "react-redux";
 // import dayjs from "dayjs";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // import { bindActionCreators } from "redux";
 // import {getCountries} from "../../Auth/AuthAction"
 // import {getCountry } from "../../../Containers/Settings/Category/Country/CountryAction"

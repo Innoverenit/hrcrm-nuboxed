@@ -221,7 +221,7 @@ class Stream extends Component {
             )}
           </MainWrapper>       
         </div>
-        <div>Updated on {moment(this.props.streams && this.props.streams.length && this.props.streams[0].updationDate).format("ll")} by {this.props.streams && this.props.streams.length && this.props.streams[0].name}</div>
+        <div>Updated on {dayjs(this.props.streams && this.props.streams.length && this.props.streams[0].updationDate).format("ll")} by {this.props.streams && this.props.streams.length && this.props.streams[0].name}</div>
       </>
     );
   }

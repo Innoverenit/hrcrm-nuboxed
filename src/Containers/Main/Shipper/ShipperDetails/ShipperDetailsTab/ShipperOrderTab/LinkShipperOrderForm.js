@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button, message } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import OrderClearbit from "../../../../../../Components/Forms/Autocomplete/OrderClearbit";
@@ -139,7 +139,7 @@ class LinkShipperOrderForm extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     disabled="true"
                     name="categoryName"
@@ -155,7 +155,7 @@ class LinkShipperOrderForm extends Component {
                       marginTop: "0px",
                     }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     disabled="true"
                     name="subCategoryName"
@@ -170,7 +170,7 @@ class LinkShipperOrderForm extends Component {
                       marginTop: "0px",
                     }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     disabled="true"
                     name="name"
@@ -226,7 +226,7 @@ class LinkShipperOrderForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <Field
@@ -262,7 +262,7 @@ class LinkShipperOrderForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer style={{ marginTop: "25px" }} />
+                  <div class=" mt-3" style={{ marginTop: "25px" }} />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ fontWeight: "bold" }}>
                       {/* <div
@@ -337,7 +337,7 @@ class LinkShipperOrderForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div style={{ fontWeight: "bold" }}>Margin</div>
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "35%", fontWeight: "bold" }}>
@@ -389,7 +389,7 @@ class LinkShipperOrderForm extends Component {
                   </FlexContainer>
                 </div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   type="primary"

@@ -117,7 +117,7 @@ const DispatchOrderAwb = (props) => {
                         <div>
                             <div class="flex justify-between">
                                 <div class="w-[47%]">
-                                    <StyledLabel><h3> Pickup Address</h3></StyledLabel>
+                                    <div class=" text-xs font-bold font-poppins text-black"><h3> Pickup Address</h3></div>
                                     <FieldArray
                                         disabled
                                         name="pickUpAddress"
@@ -131,7 +131,7 @@ const DispatchOrderAwb = (props) => {
                                     />
                                 </div>
                                 <div class="w-[47%]">
-                                    <StyledLabel><h3> Delivery Address</h3></StyledLabel>
+                                    <div class=" text-xs font-bold font-poppins text-black"><h3> Delivery Address</h3></div>
                                     <FieldArray
                                         name="loadingAddress"
                                         disabled

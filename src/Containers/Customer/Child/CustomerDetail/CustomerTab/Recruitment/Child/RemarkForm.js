@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { Spacer } from "../../../../../../../Components/UI/Elements";
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
@@ -85,7 +84,7 @@ function RemarkForm(props) {
                   component={SelectComponent}
                   options={Array.isArray(stageList) ? stageList : []}
                 />{" "}
-                <Spacer />
+                <div class=" mt-3" />
                 <Field
                   name="reviewer"
                   //label="Reviewer"
@@ -104,7 +103,7 @@ function RemarkForm(props) {
                     marginTop: "0.25em",
                   }}
                 />
-                <Spacer />
+                <div class=" mt-3" />
                 <Field
                   name="note"
                   isRequired
@@ -127,7 +126,7 @@ function RemarkForm(props) {
                 }}
               ></div>
             </div>
-            <Spacer />
+            <div class=" mt-3" />
             <FlexContainer justifyContent="flex-end">
               <Button
                 type="primary"

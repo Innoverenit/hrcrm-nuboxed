@@ -92,7 +92,7 @@ const { Option } = Select;
                 <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                       <div style={{ width: "44%" }}>
                       <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">               
-                      <StyledLabel >Talent From This Channel Will be Assigned</StyledLabel> 
+                      <div class=" text-xs font-bold font-poppins">Talent From This Channel Will be Assigned</div> 
                               
                       {/* <Switch                                              
              

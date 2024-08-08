@@ -116,9 +116,9 @@ class UpdatePersonalForm extends Component {
                                                     }}
                                                 />
                                             </div>
-                                            <Spacer />
+                                            <div class=" mt-3" />
                                             <div style={{ width: "47%" }}>
-                                                <StyledLabel>Date of Birth</StyledLabel>
+                                                <div class=" text-xs font-bold font-poppins text-black">Date of Birth</div>
                                                 <DatePicker onChange={onChange} />
                                             </div>
                                         </FlexContainer> */}
@@ -330,7 +330,7 @@ class UpdatePersonalForm extends Component {
                     )}
                   />
 
-                  <Spacer style={{ marginBottom: "0.9375em" }} />
+                  <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
                 </div> */}
            
               </div>

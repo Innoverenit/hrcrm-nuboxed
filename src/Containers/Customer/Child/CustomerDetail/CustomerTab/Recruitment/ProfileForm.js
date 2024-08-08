@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Button, } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import {
   getProcessForRecruit,
@@ -143,7 +142,7 @@ function ProfileForm(props) {
                     }
                   />
 
-                  <Spacer />
+                  <div class=" mt-3" />
 
                   <Field
                     name="recruitmentProcessId"
@@ -168,7 +167,7 @@ function ProfileForm(props) {
                     }
                   />
 
-                  <Spacer />
+                  <div class=" mt-3" />
 
                   <Field
                     name="stageId"
@@ -190,12 +189,12 @@ function ProfileForm(props) {
                     }
                   />
 
-                  <Spacer />
+                  <div class=" mt-3" />
                 </div>
               <div class=" h-full"
                 ></div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <div class=" flex justify-end">
                 <Button
                   type="primary"

@@ -3,7 +3,7 @@ import { Switch, Checkbox, Popconfirm, message, Select } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateReceivedDamagedUnit } from "../../../InventoryAction"
-import moment from "moment";
+import dayjs from "dayjs";
 
 function ReceiveValidationToggle(props) {
 

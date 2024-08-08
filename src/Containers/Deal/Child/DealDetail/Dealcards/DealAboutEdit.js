@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import dayjs from "dayjs";
-import { Spacer } from "../../../../../Components/UI/Elements";
 import EditSearchSelect from "../../../../../Components/Forms/Edit/EditSearchSelect";
 import EditableInput from "../../../../../Components/Forms/Edit/EditableInput";
 import EditableTextArea from "../../../../../Components/Forms/Edit/EditableTextArea";
@@ -95,7 +94,7 @@ class DealAboutEdit extends Component {
             </div>
           </div>
 
-          <Spacer style={{ margin: "0.125em" }} />
+          <div class=" mt-3" style={{ margin: "0.125em" }} />
           <div class=" flex justify-between w-full"
           >
             <div class=" w-[50%]" >
@@ -127,7 +126,7 @@ class DealAboutEdit extends Component {
             </div>
           </div>
 
-          <Spacer style={{ margin: "0.125em" }} />
+          <div class=" mt-3" style={{ margin: "0.125em" }} />
           <div class=" w-full" >
             <EditSearchSelect
               defaultValue={{
@@ -152,7 +151,7 @@ class DealAboutEdit extends Component {
             width={"100%"}
             height={"2.375em"}
           />
-          {/* <Spacer style={{ margin: "0.125em" }} />
+          {/* <div class=" mt-3" style={{ margin: "0.125em" }} />
          
           </div> */}
           {/* <EditableInput

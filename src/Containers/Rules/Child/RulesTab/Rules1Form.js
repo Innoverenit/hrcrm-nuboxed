@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
-import { Spacer } from "../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
@@ -51,7 +51,7 @@ class Rules1Form extends Component {
                                 >
                                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                         <div style={{ width: "50%", marginTop: "0.625em" }}>
-                                            <StyledLabel>Stage Progress</StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">Stage Progress</div>
                                             <Switch
                                                 style={{ width: "5em", marginLeft: "0.625em" }}
                                                 onChange={this.handleChange}
@@ -83,7 +83,7 @@ class Rules1Form extends Component {
 
 
                                     </div>
-                                    <Spacer />
+                                    <div class=" mt-3" />
                                     {
                                         values.type && (
                                             <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
@@ -136,7 +136,7 @@ class Rules1Form extends Component {
 
 
                             </div>
-                            <Spacer />
+                            <div class=" mt-3" />
                             <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                                 <Button
                                     type="primary"

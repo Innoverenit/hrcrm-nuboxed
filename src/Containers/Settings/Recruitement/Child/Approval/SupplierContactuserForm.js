@@ -133,7 +133,7 @@ class SupplierContactuserForm extends Component {
                                         <div class=" flex w-[20%]"
                                      
                                         >
-                                            <StyledLabel>Approval Needed</StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">Approval Needed</div>
                                             &nbsp;&nbsp;
                                         </div>
 

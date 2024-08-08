@@ -4,12 +4,9 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
-import { Spacer, StyledLabel } from "../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
-import { addDelivery } from "../../../OpportunityAction";
 
 /**
  * yup validation scheme for creating a product
@@ -78,7 +75,7 @@ class LinkDeliveryForm extends Component {
                     inlineLabel
                     style={{ flexBasis: "50%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="billingRate"
                     isDisabled
@@ -92,7 +89,7 @@ class LinkDeliveryForm extends Component {
                     component={InputComponent}
                     style={{ flexBasis: "80%", height: "2.375em" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="deliveryStartDate"
                     // label="Start Date"
@@ -105,7 +102,7 @@ class LinkDeliveryForm extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%", height: "2.375em" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="deliveryEndDate"
                     // label="End Date"
@@ -118,7 +115,7 @@ class LinkDeliveryForm extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%", height: "2.375em" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="designation"
                     isDisabled
@@ -132,7 +129,7 @@ class LinkDeliveryForm extends Component {
                     component={InputComponent}
                     style={{ flexBasis: "80%", height: "2.375em" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Button
                     type="primary"
                     style={{ marginLeft: "26.5625em" }}

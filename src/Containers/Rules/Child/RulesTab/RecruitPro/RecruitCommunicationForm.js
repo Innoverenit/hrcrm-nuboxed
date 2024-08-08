@@ -190,7 +190,7 @@ function RecruitCommunicationForm(props) {
                   }}
                 >
                   <div>
-                    <StyledLabel
+                    <div class=" text-xs font-bold font-poppins
                       style={{
                         flexBasis: "13%",
                         marginTop: "0.625em",
@@ -199,7 +199,7 @@ function RecruitCommunicationForm(props) {
                       }}
                     >
                       Candidate
-                    </StyledLabel>
+                    </div>
                   </div>
                   <mt-3 />
                   <div
@@ -209,14 +209,14 @@ function RecruitCommunicationForm(props) {
                     }}
                   >
                     <div style={{ width: "100%", marginTop: "0.625em" }}>
-                      <StyledLabel
+                      <div class=" text-xs font-bold font-poppins
                         style={{
                           flexBasis: "13%",
                           marginTop: "0.625em",
                         }}
                       >
                         Update at each stage?
-                      </StyledLabel>
+                      </div>
                     </div>
 
                     <div style={{ marginTop: "0.625em" }}>
@@ -247,14 +247,14 @@ function RecruitCommunicationForm(props) {
                     }}
                   >
                     <div style={{ width: "100%", marginTop: "0.625em" }}>
-                      <StyledLabel
+                      <div class=" text-xs font-bold font-poppins
                         style={{
                           flexBasis: "13%",
                           marginTop: "0.625em",
                         }}
                       >
                         Email Offer?
-                      </StyledLabel>
+                      </div>
                     </div>
                     <div style={{ marginTop: "0.625em" }}>
                     <Popconfirm
@@ -278,7 +278,7 @@ function RecruitCommunicationForm(props) {
                   <mt-3 />
                   {values.candidateToggleInd && (
                     <>
-                      <StyledLabel>To </StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">To </div>
                       <div style={{ borderBottom: "0.0625em solid #E9E9E9" }}>
                         <Checkbox
                           indeterminate={indeterminateForInternal}
@@ -334,14 +334,14 @@ function RecruitCommunicationForm(props) {
                         }}
                       >
                         <div style={{ width: "100%", marginTop: "0.625em" }}>
-                          <StyledLabel
+                          <div class=" text-xs font-bold font-poppins
                             style={{
                               flexBasis: "13%",
                               marginTop: "0.625em",
                             }}
                           >
                             Include offer acceptance link?
-                          </StyledLabel>
+                          </div>
                         </div>
                         <div style={{ marginTop: "0.625em" }}>
                         <Popconfirm
@@ -370,14 +370,14 @@ function RecruitCommunicationForm(props) {
                         }}
                       >
                         <div style={{ width: "100%", marginTop: "0.625em" }}>
-                          <StyledLabel
+                          <div class=" text-xs font-bold font-poppins
                             style={{
                               flexBasis: "13%",
                               marginTop: "0.625em",
                             }}
                           >
                             Also include PDF attachment
-                          </StyledLabel>
+                          </div>
                         </div>
                         <div style={{ marginTop: "0.625em" }}>
                         <Popconfirm
@@ -459,7 +459,7 @@ function RecruitCommunicationForm(props) {
                   }}
                 >
                   <div>
-                    <StyledLabel
+                    <div class=" text-xs font-bold font-poppins
                       style={{
                         flexBasis: "13%",
                         marginTop: "0.625em",
@@ -468,7 +468,7 @@ function RecruitCommunicationForm(props) {
                       }}
                     >
                       Sponsor
-                    </StyledLabel>
+                    </div>
                   </div>
                   <mt-3 />
                   <div
@@ -479,14 +479,14 @@ function RecruitCommunicationForm(props) {
                   >
                     {" "}
                     <div style={{ width: "100%", marginTop: "0.625em" }}>
-                      <StyledLabel
+                      <div class=" text-xs font-bold font-poppins
                         style={{
                           flexBasis: "13%",
                           marginTop: "0.625em",
                         }}
                       >
                         Email for approval on candidate's acceptance?
-                      </StyledLabel>
+                      </div>
                     </div>
                     <div style={{ width: "20%", marginTop: "0.625em" }}>
                     <Popconfirm
@@ -510,9 +510,9 @@ function RecruitCommunicationForm(props) {
                   <mt-3 />
                   {values.sponsorToggleInd && (
                     <>
-                      <StyledLabel>Send</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Send</div>
 
-                      <StyledLabel>to </StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">to </div>
                       <mt-3 />
                       <div style={{ borderBottom: "0.0625em solid #E9E9E9" }}>
                         <Checkbox
@@ -571,14 +571,14 @@ function RecruitCommunicationForm(props) {
                         }}
                       >
                         <div style={{ width: "100%", marginTop: "0.625em" }}>
-                          <StyledLabel
+                          <div class=" text-xs font-bold font-poppins
                             style={{
                               flexBasis: "13%",
                               marginTop: "0.625em",
                             }}
                           >
                             Include approval link?
-                          </StyledLabel>
+                          </div>
                         </div>
                         <div style={{ width: "20%", marginTop: "0.625em" }}>
                         <Popconfirm

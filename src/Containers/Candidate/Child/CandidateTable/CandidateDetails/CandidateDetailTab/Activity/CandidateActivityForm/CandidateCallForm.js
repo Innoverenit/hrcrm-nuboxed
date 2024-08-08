@@ -5,7 +5,7 @@ import { Button, Tooltip } from "antd";
 import { Formik, Form, Field } from "formik";
 import dayjs from "dayjs";
 import {
-  StyledLabel,
+  
 } from "../../../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../../../../../Components/Forms/Formik/DatePicker";
@@ -197,7 +197,7 @@ class CandidateCallForm extends Component {
                 >
                <div class=" flex justify-between " >
                     <div class=" w-[30%] mb-[1.25em]" >
-                      <StyledLabel>Type</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Type</div>
                  
                       <div class=" flex justify-between mt-4 " >
                         <Tooltip title="Outbound">
@@ -249,7 +249,7 @@ class CandidateCallForm extends Component {
                       </div>
                     </div>
                     <div class=" w-[55%]" >
-                      <StyledLabel>Category</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Category</div>
                       <mt-3 />
                       <ButtonGroup>
                         <Button

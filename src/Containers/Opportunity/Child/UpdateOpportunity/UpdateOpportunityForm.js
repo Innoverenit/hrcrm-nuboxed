@@ -526,7 +526,7 @@ function UpdateOpportunityForm (props) {
                     </div>
                   </div>
                   {/* 
-                <StyledLabel>Description</StyledLabel>
+                <div class=" text-xs font-bold font-poppins text-black">Description</div>
                 <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>

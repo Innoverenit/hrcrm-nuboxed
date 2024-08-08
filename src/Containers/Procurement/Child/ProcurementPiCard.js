@@ -1,7 +1,7 @@
 import React, { useEffect, useState,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Tooltip, Avatar } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -99,7 +99,7 @@ function ProcurementPiCard(props) {
    
               </div>
               <div class="flex  flex-col md:w-[14.35rem] max-sm:flex-row max-sm:justify-between w-full">
-              <p> {moment(item.startDate).format("llll")}</p>
+              <p> {dayjs(item.startDate).format("llll")}</p>
               </div>
         
               </div>

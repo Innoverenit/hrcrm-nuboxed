@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Timeline, Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import {getInvestorTimeline,getInvestorActivityRecords} from "../../../InvestorAction";
 import { BundleLoader } from '../../../../../Components/Placeholder';
@@ -24,7 +24,7 @@ const InvestorTimeline = (props) => {
             InvestorStatus.map((status, i) => (
               <Timeline.Item key={i}>
               <div>
-              <div>{status.category} {status.activityType} {moment.utc(status.endDate).format('ll')}</div>
+              <div>{status.category} {status.activityType} {dayjs(status.endDate).format('ll')}</div>
               <span class=" ml-2">
              
              <>

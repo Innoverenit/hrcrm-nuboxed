@@ -1,5 +1,5 @@
 import { Popconfirm, Switch } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -32,7 +32,7 @@ class OrderPaymentTable extends Component {
         width: "18%",
         dataIndex: "paymentDate",
         render: (name, item, i) => {
-          return <span>{` ${moment(item.paymentDate).format("ll")}`}</span>;
+          return <span>{` ${dayjs(item.paymentDate).format("ll")}`}</span>;
         },
       },
       {
@@ -87,7 +87,7 @@ class OrderPaymentTable extends Component {
             <>
               {item.approveByFinanceInd === true ? (
                 <>
-                  {item.approveBy} {moment(item.approveDate).format("ll")}
+                  {item.approveBy} {dayjs(item.approveDate).format("ll")}
                 </>
               ) : null}
             </>

@@ -10,7 +10,7 @@ import {getCandidatesTotalBillingsForInvoice} from "../../../Invoice/InvoiceActi
 import {getProjectsData} from "../../ProjectsAction"
 import {getCustomerTask} from "../../../Task/TaskAction"
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-import { Spacer } from "../../../../Components/UI/Elements";
+
 import { InputComponent } from '../../../../Components/Forms/Formik/InputComponent'
  import InvoiceListProjectTable from './InvoiceListProjectTable';
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -144,7 +144,7 @@ onSubmit={(values, { resetForm }) => {
                           }}
                         />
              </div>
-             <Spacer />
+             <div class=" mt-3" />
                     <div class=" w-2/5">
                     <Field
                         isRequired
@@ -200,7 +200,7 @@ onSubmit={(values, { resetForm }) => {
                         }}
                       />
                     </div>
-                    <Spacer />
+                    <div class=" mt-3" />
                     <div class=" w-2/5">
                     <Field
                         isRequired

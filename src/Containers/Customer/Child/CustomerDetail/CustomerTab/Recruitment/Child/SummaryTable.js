@@ -6,13 +6,13 @@ import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button, Progress, Tooltip } from "antd";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import { MultiAvatar,SubTitle, Spacer } from "../../../../../../../Components/UI/Elements";
+import { MultiAvatar,SubTitle } from "../../../../../../../Components/UI/Elements";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 import styled from "styled-components";
 import { base_url } from "../../../../../../../Config/Auth";
-import moment from "moment";
+import dayjs from "dayjs";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 function onChange(pagination, filters, sorter) {
   console.log("Clicked", pagination, filters, sorter);
@@ -126,7 +126,7 @@ class SummaryTable extends Component {
           data.settings.margin.left + 70,
           20
         );
-        var before = `Published on ${moment().format("Do MMM YYYY")}`;
+        var before = `Published on ${dayjs().format("Do MMM YYYY")}`;
         doc.text(before, 75, 30);
 
         // Footer
@@ -150,7 +150,7 @@ class SummaryTable extends Component {
       doc.putTotalPages(totalPagesExp);
     }
     doc.save(
-      `${opportunityName && opportunityName} Requirement ${moment().format(
+      `${opportunityName && opportunityName} Requirement ${dayjs().format(
         "L"
       )}`
     );
@@ -274,7 +274,7 @@ class SummaryTable extends Component {
               scroll={{ y: tableHeight }}
           pagination={false}
             />
-            <Spacer />
+            <div class=" mt-3" />
             <div class=" justify-end"
               style={{ padding: "0em 1.25em" }}
             >

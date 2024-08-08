@@ -6,7 +6,7 @@ import { Formik, Form, Field, } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { setClearbitProductData } from "../../../Product/ProductAction";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
-import moment from "moment";
+import dayjs from "dayjs";
 import { addCustomerOffer } from "../../ProductAction";
 
 class CustomerProductOfferForm extends Component {
@@ -25,9 +25,9 @@ class CustomerProductOfferForm extends Component {
                         productQty: 0,
                         offerProductId: "",
                         productId: this.props.particularDiscountData.productId,
-                        startDate: startDate || moment(),
+                        startDate: startDate || dayjs(),
                         endDate: endDate || null,
-                        endDate: moment(),
+                        endDate: dayjs(),
                     }}
                     onSubmit={(values, { resetForm }) => {
                         console.log(values);
@@ -44,10 +44,10 @@ class CustomerProductOfferForm extends Component {
                         if (!values.endDate) {
                             values.endDate = values.startDate;
                         }
-                        let newStartDate = moment(values.startDate).format("YYYY-MM-DD");
+                        let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
                         console.log(newStartDate);
                         //Time calculation
-                        let firstStartTime = moment(values.startTime).format(
+                        let firstStartTime = dayjs(values.startTime).format(
                             "HH:mm:ss.SSS[Z]"
                         ); // getting start time from form input
                         console.log(firstStartTime);
@@ -78,8 +78,8 @@ class CustomerProductOfferForm extends Component {
                         let newStartTime = `${finalStartTime}${timeEndPart}`;
                         console.log(newStartTime);
 
-                        let newEndDate = moment(values.endDate).format("YYYY-MM-DD");
-                        let firstEndTime = moment(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
+                        let newEndDate = dayjs(values.endDate).format("YYYY-MM-DD");
+                        let firstEndTime = dayjs(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
                         console.log(firstEndTime);
                         let firstEndHours = firstEndTime.substring(0, 5); // getting only hours and minutes
                         console.log(firstEndHours);
@@ -219,13 +219,13 @@ class CustomerProductOfferForm extends Component {
                                                 component={DatePicker}
                                                 isColumn
                                                 value={values.endDate || values.startDate}
-                                                defaultValue={moment("2015-01-01")}
+                                                defaultValue={dayjs("2015-01-01")}
                                                 inlineLabel
                                                 disabledDate={(currentDate) => {
                                                     if (values.startDate) {
                                                         if (
-                                                            moment(currentDate).isBefore(
-                                                                moment(values.startDate)
+                                                            dayjs(currentDate).isBefore(
+                                                                dayjs(values.startDate)
                                                             )
                                                         ) {
                                                             return true;

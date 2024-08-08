@@ -124,7 +124,7 @@ class UpdateTrainingForm extends Component {
                 <div class=" flex justify-between mt-3" >
                 <div class=" w-[60%]"
               >
-                    {/* <StyledLabel>Organization/Institution</StyledLabel> */}
+                    {/* <div class=" text-xs font-bold font-poppins text-black">Organization/Institution</div> */}
                     <FastField
                       type="Organization"
                       name="organization"
@@ -149,7 +149,7 @@ class UpdateTrainingForm extends Component {
                   </div>
                   <div class=" w-[30%]"
               >
-                    {/* <StyledLabel>Grade</StyledLabel> */}
+                    {/* <div class=" text-xs font-bold font-poppins text-black">Grade</div> */}
                     <FastField
                       name="grade"
                       label={
@@ -270,7 +270,7 @@ class UpdateTrainingForm extends Component {
                                                 component={InputComponent}
                                                 style={{ height: "2.0625em", marginTop: "0.25em" }}
                                             />
-                                            <Spacer />
+                                            <div class=" mt-3" />
                                             <Field
                                                 name="documentDescription"
                                                 label="Description"
@@ -280,10 +280,10 @@ class UpdateTrainingForm extends Component {
                                                 component={TextareaComponent}
                                                 style={{ height: "5em", marginTop: "0.25em" }}
                                             />
-                                            <Spacer style={{ marginBottom: "0.9375em" }} />
+                                            <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
                                         </div>
 
-                                        <Spacer />
+                                        <div class=" mt-3" />
 
                                         {/* <FieldArray
                                     name="address"

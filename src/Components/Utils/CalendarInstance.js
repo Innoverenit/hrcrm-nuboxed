@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
-
+import dayjs from "dayjs";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-const localizer = momentLocalizer(moment);
+const localizer = momentLocalizer(dayjs);
 // import { StyledCalendar } from '../UI/Elements';
 
 const StyledCalendar = styled(Calendar)`

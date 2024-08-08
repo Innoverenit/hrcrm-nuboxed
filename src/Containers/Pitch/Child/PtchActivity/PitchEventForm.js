@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import {getAllCustomerData} from "../../../Customer/CustomerAction"
 import { getFilteredEmailContact } from "../../../Candidate/CandidateAction";
 import dayjs from "dayjs";
-import { Spacer } from "../../../../Components/UI/Elements";
+
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
@@ -291,7 +291,7 @@ const {
             <Form className="form-background">
               <div class=" flex justify-around max-sm:flex-col">
                 <div class=" h-full w-w47.5 max-sm:w-wk">
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     isRequired
                     name="eventTypeId"
@@ -321,7 +321,7 @@ const {
                     component={InputComponent}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div>
                     <div class=" flex justify-between">
                       <div class=" w-1/2">
@@ -442,8 +442,8 @@ const {
                     component={SearchSelect}
                     inlineLabel
                   />
-                  <Spacer />
-                  <Spacer />
+                  <div class=" mt-3" />
+                  <div class=" mt-3" />
                   
                     {/* <Field
                       name="employeesId"
@@ -538,7 +538,7 @@ const {
           </>
         )}
       </Listbox>
-                       <Spacer />
+                       <div class=" mt-3" />
                   <Field
                     name="included"
                     // label="Include"
@@ -560,7 +560,7 @@ const {
                   />
                   
                 
-                  <Spacer />
+                  <div class=" mt-3" />
                   {/* <Field
                     disabled="true"
                     isRequired
@@ -594,7 +594,7 @@ const {
                   )} */}
                 </div>
                 <div class=" h-full w-w47.5 max-sm:w-wk ">
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (
@@ -605,7 +605,7 @@ const {
                       />
                     )}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="eventDescription"
                     //label="Notes"
@@ -617,12 +617,12 @@ const {
                     component={TextareaComponent}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   {/* <div class=" flex justify-between">
                     <div class=" w-1/2 font-bold">
                       <div class=" flex justify-between">
                         <div>
-                          <StyledLabel>Set Reminder </StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Set Reminder </div>
                         </div>
                         <div>
                           <Switch
@@ -660,7 +660,7 @@ const {
                   </div> */}
                 </div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <div class=" flex justify-end">
                 {isEditing && (
                   <>

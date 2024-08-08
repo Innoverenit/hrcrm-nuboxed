@@ -34,7 +34,7 @@ function Rules3Form() {
               >
                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "50%", marginTop: "0.625em" }}>
-                    <StyledLabel>Auto Approval</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Auto Approval</div>
                     <Switch
                       style={{ width: "5em", marginLeft: "0.625em" }}
                       onChange={handleChange}

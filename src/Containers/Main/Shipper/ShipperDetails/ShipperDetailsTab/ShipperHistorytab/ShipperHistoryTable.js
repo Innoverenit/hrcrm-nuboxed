@@ -1,4 +1,4 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -21,7 +21,7 @@ class ShipperHistoryTable extends Component {
         title: "Date",
         dataIndex: "date",
         render: (name, item, i) => {
-          return <span>{` ${moment(item.date).format("ll")}`}</span>;
+          return <span>{` ${dayjs(item.date).format("ll")}`}</span>;
         },
         width: "20%",
       },

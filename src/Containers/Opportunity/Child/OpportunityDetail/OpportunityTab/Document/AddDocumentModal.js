@@ -189,7 +189,7 @@ class AddDocumentModal extends Component {
                         style={{ flexBasis: "80%" }}
                       />
                            <div class=" flex  mt-4">
-                        <StyledLabel>Contract</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Contract</div>
                         <Switch
                           style={{ width: "6.25em", marginLeft: "0.625em" }}
                           onChange={this.handleContract}
@@ -273,7 +273,7 @@ class AddDocumentModal extends Component {
                                   />
                                 </div>
                                 <div>
-                                  <StyledLabel>Level</StyledLabel>
+                                  <div class=" text-xs font-bold font-poppins text-black">Level</div>
                                   <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto mt-[0.25rem] ">                               
                                     <ButtonGroup>
                                       <Tooltip title="Specific">

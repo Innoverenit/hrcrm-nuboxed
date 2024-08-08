@@ -207,7 +207,7 @@ class SuppliersActivityCallForm extends Component {
                 >
                 <div class=" flex flex-row flex-wrap items-start self-start justify-between w-full grow shrink h-auto mr-auto ">
                     <div style={{ width: "30%" }}>
-                      <StyledLabel>Type</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Type</div>
                       <mt-3 />
                       <div class=" flex flex-row flex-wrap items-start self-start justify-between w-full grow shrink h-auto mr-auto ">
                         <Tooltip title="Outbound">
@@ -259,7 +259,7 @@ class SuppliersActivityCallForm extends Component {
                       </div>
                     </div>
                     <div style={{ width: "55%" }}>
-                      <StyledLabel>Category</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Category</div>
                       <mt-3 />
                       <ButtonGroup>
                         <Button

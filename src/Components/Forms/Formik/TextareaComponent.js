@@ -15,9 +15,9 @@ export const TextareaComponent = ({
   return (
     <div>
       {!noLabel && (
-        <StyledLabel style={{ flexBasis: labelWidth || "20%" }}>
+        <div class=" text-xs font-bold font-poppins" style={{ flexBasis: labelWidth || "20%" }}>
           {label}
-        </StyledLabel>
+        </div>
       )}
       <StyledTextarea {...field} {...props} validateOnChange={false} />
       {get(touched, field.name) && get(errors, field.name) && (

@@ -5,7 +5,6 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { base_url2 } from "../../../Config/Auth";
 import * as Yup from "yup";
-import { Spacer} from "../../../Components/UI/Elements";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import MultiImageUpload from "../../../Components/MultiImageUpload";
 import { updateProduct } from "../ProductAction";
@@ -239,7 +238,7 @@ imageIds:[],
                         style={{ flexBasis: "80%" }}
                       />
                     </div>
-                    <Spacer />
+                    <div class=" mt-3" />
                     <div class="w-[47%]">
                       <Field
                         defaultValue={{
@@ -298,7 +297,7 @@ imageIds:[],
                         style={{ flexBasis: "30%" }}
                       />
                     </div>
-                    <Spacer />
+                    <div class=" mt-3" />
                  <div class="w-[30%]">
                     <Field
                         name="bestBefore"

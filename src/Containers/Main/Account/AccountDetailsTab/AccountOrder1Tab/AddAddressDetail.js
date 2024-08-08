@@ -115,10 +115,10 @@ function AddAddressDetail(props) {
                     <Form>
                         <div class="w-wk flex justify-between">
                             <div class="w-[47.5%]">
-                                <StyledLabel><h3> <FormattedMessage
+                                <div class=" text-xs font-bold font-poppins text-black"><h3> <FormattedMessage
                                     id="app.pickupaddress"
                                     defaultMessage="Pickup Address"
-                                /></h3></StyledLabel>
+                                /></h3></div>
 
                                 <FieldArray
                                     name="loadingAddress"
@@ -141,7 +141,7 @@ function AddAddressDetail(props) {
                                     disabledDate={(currentDate) => {
                                         const date = new Date()
                                         if (
-                                            moment(currentDate).isBefore(moment(date).subtract(1, 'days'))
+                                            dayjs(currentDate).isBefore(dayjs(date).subtract(1, 'days'))
                                         ) {
                                             return true;
                                         } else {
@@ -166,8 +166,8 @@ function AddAddressDetail(props) {
                                     disabledDate={(currentDate) => {
                                         if (values.availabilityDate) {
                                             if (
-                                                moment(currentDate).isBefore(
-                                                    moment(values.availabilityDate)
+                                                dayjs(currentDate).isBefore(
+                                                    dayjs(values.availabilityDate)
                                                 )
                                             ) {
                                                 return true;
@@ -280,10 +280,10 @@ function AddAddressDetail(props) {
                                 </div>
                                 <div class="justify-between flex mt-2 items-center">
                                     <div class="w-[47.5%]  ">
-                                        <StyledLabel><FormattedMessage
+                                        <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
                                             id="app.priority"
                                             defaultMessage="Priority"
-                                        /></StyledLabel>
+                                        /></div>
                                         <div class="justify-between flex">
                                             <div>
                                                 <Tooltip title={<FormattedMessage

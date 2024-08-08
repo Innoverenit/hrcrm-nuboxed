@@ -707,8 +707,8 @@
 //                   {
 //                 //   props.newSubscriptionList
 //                 props.newSubscriptionList.map((item,index) => {
-//                     //  const currentdate = moment().format("YYYY/MM/DD");
-//                     //  const date = moment(item.creationDate).format("YYYY/MM/DD");
+//                     //  const currentdate = dayjs().format("YYYY/MM/DD");
+//                     //  const date = dayjs(item.creationDate).format("YYYY/MM/DD");
 //                     //  const isLastElement = index === props.products.length - 1;
 //                      return (
 //                       <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">

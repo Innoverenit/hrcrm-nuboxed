@@ -1,7 +1,7 @@
 import * as types from "./SuppliesActionType";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 import Swal from 'sweetalert2'
 

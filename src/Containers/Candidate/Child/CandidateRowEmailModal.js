@@ -146,7 +146,7 @@ class CandidateRowEmailModal extends Component {
                   <div class=" flex items-center" >
                     {/* <Title type='user' style={{ fontSize: 18, display: 'inline'}} >To</Title> */}
                     <div class="w-[12%]" >
-               <StyledLabel>To</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">To</div>
                     </div>
                     <div class="w-[88%]" >
                       
@@ -159,7 +159,7 @@ class CandidateRowEmailModal extends Component {
                   </div>
                   <div class=" flex items-center" >
                   <div class=" w-[12%]" >
-               <StyledLabel>CC</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">CC</div>
                     </div>
                     <div class="w-[88%]" >
                       
@@ -173,7 +173,7 @@ class CandidateRowEmailModal extends Component {
                  
                   <div class=" flex items-center" >
                   <div class=" w-[12%]" >
-               <StyledLabel>BCC</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">BCC</div>
                     </div>
                     <div class="w-[88%]" >
                       
@@ -186,7 +186,7 @@ class CandidateRowEmailModal extends Component {
                   </div>
                   <div class=" flex items-center" >
                   <div class=" w-[12%]" >
-               <StyledLabel>Subject</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">Subject</div>
                     </div>
                     <div class="w-[88%]" >
                       

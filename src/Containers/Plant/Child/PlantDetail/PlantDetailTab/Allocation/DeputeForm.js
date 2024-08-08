@@ -6,7 +6,7 @@ import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { MainWrapper } from "../../../../../Components/UI/Layout";
 import { StyledLabel } from "../../../../../Components/UI/Elements";
-import moment from "moment";
+import dayjs from "dayjs";
 import { addExecutive } from "../../../PlantAction";
 import { getShiftDropdown } from "../../../../Shift/ShiftAction";
 
@@ -45,10 +45,10 @@ function ShiftForm(props) {
           if (!values.endDate) {
             values.endDate = values.startDate;
           }
-          let newStartDate = moment(values.startDate).format("YYYY-MM-DD");
+          let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
           console.log(newStartDate);
           //Time calculation
-          let firstStartTime = moment(values.startTime).format(
+          let firstStartTime = dayjs(values.startTime).format(
             "HH:mm:ss.SSS[Z]"
           ); // getting start time from form input
           console.log(firstStartTime);
@@ -78,8 +78,8 @@ function ShiftForm(props) {
           let newStartTime = `${finalStartTime}${timeEndPart}`;
           console.log(newStartTime);
 
-          let newEndDate = moment(values.endDate).format("YYYY-MM-DD");
-          let firstEndTime = moment(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
+          let newEndDate = dayjs(values.endDate).format("YYYY-MM-DD");
+          let firstEndTime = dayjs(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
           console.log(firstEndTime);
           let firstEndHours = firstEndTime.substring(0, 5); // getting only hours and minutes
           console.log(firstEndHours);
@@ -135,7 +135,7 @@ function ShiftForm(props) {
                   }}
                 >
                   <div style={{ width: "100%" }}>
-                    <StyledLabel>Shift</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Shift</div>
                     <Field
                       name="shiftName"
                       placeholder="Shift"
@@ -177,7 +177,7 @@ function ShiftForm(props) {
                     }}
                   />
                 </div>
-                <Spacer />
+                <div class=" mt-3" />
                 <div
                   style={{
                     height: "100%",
@@ -201,7 +201,7 @@ function ShiftForm(props) {
                     }}
                   />
                 </div>
-                <Spacer /> */}
+                <div class=" mt-3" /> */}
 
                 <div
                   style={{

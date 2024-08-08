@@ -7,7 +7,6 @@ import {
   updateNotifcation
 } from "../NotificationAction";
 import { List, Button, Spin } from "antd";
-import moment from "moment/moment";
 
 class PresentNotification extends Component {
   constructor(props) {
@@ -109,7 +108,7 @@ class PresentNotification extends Component {
                             item.notificationReadInd === true ? "grey" : "white"
                         }}
                       >
-                        {moment(item.notificationDate).format("LLL")}
+                        {dayjs(item.notificationDate).format("LLL")}
                       </h4>
                     }
                     onClick={

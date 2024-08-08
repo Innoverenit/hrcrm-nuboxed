@@ -78,7 +78,7 @@ function ShipperPaidForm(props) {
               />
             </div>
 
-            <Spacer />
+            <div class=" mt-3" />
             <div>
               <Field
                 name="paymentMode"

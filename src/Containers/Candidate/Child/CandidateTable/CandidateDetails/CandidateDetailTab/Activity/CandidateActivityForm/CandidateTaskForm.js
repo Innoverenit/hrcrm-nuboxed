@@ -264,7 +264,7 @@ class CandidateTaskForm extends Component {
                     </div>
 
                     <div class=" w-[30%] " >
-                      <StyledLabel>Status</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Status</div>
 
                       <div class=" w-full " >
                         <ButtonGroup>
@@ -305,7 +305,7 @@ class CandidateTaskForm extends Component {
                 >
                    <div class=" flex justify-between w-full" >
                         <div class=" w-full" style={{ width: "100%" }}>
-                          <StyledLabel>Priority</StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Priority</div>
 
                           <div class=" flex">
                           <Tooltip
@@ -390,10 +390,10 @@ class CandidateTaskForm extends Component {
                     <div class=" flex justify-between w-full " >
 
                         <div class=" w-full" >
-                          <StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">
                             Type
                             {/* <FormattedMessage id="app.type" defaultMessage="Type" /> */}
-                          </StyledLabel>
+                          </div>
                           <Field
                             isRequired
                             name="taskTypeId"

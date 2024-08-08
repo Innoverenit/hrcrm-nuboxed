@@ -315,10 +315,10 @@ function CallForm(props) {
               <div class=" flex justify-between w-full max-sm:flex-col">
                     <div class=" w-2/6 max-sm:w-wk">
                       <div class="mt-3" />
-                      <StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">
                         {/* Type */}
                         <FormattedMessage id="app.type" defaultMessage="Type" />
-                      </StyledLabel>
+                      </div>
                       <div class=" flex justify-between">
                         {/* <Tooltip title="Inbound"> */}
                         <Tooltip
@@ -393,12 +393,12 @@ function CallForm(props) {
                     </div>
                     <div class=" w-1/2">
                       <mt-3 />
-                      <StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">
                         <FormattedMessage
                           id="app.category"
                           defaultMessage="Category"
                         />
-                      </StyledLabel>
+                      </div>
                       
                       <ButtonGroup>
                         <Button
@@ -440,9 +440,9 @@ function CallForm(props) {
                   <div class="mt-3" />
                   <div class=" flex justify-between items-end max-sm:flex-col " >
                     <div class=" self-start">
-                      <StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">
                       Mode
-                      </StyledLabel>
+                      </div>
                       <Switch
                         // style={{
                         //   marginLeft: "0.3125em"
@@ -759,7 +759,7 @@ function CallForm(props) {
                     class=" w-1/2 font-bold">
                     <div class=" flex justify-between" >
                         <div>
-                          <StyledLabel>Set Reminder</StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Set Reminder</div>
                         </div>
                         <div>
                           <Switch

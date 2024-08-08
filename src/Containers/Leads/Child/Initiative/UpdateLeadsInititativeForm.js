@@ -91,7 +91,7 @@ function UpdateLeadsInititativeForm (props) {
                     inlineLabel
                   />
 
-<StyledLabel>Skills</StyledLabel> 
+<div class=" text-xs font-bold font-poppins text-black">Skills</div> 
   
   <Select
     name="skillList"

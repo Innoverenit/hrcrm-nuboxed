@@ -9,7 +9,7 @@
 // import { SwitchComponent } from "../../../../../Components/Forms/Formik/SwitchComponent";
 // import { div } from "../../../../../Components/UI/Layout";
 // import { StyledLabel } from "../../../../../Components/UI/Elements";
-// import { Spacer } from "../../../../../Components/UI/Elements";
+// 
 // import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 // import {
 //   addApproval,
@@ -139,7 +139,7 @@
 //                             </div>
 //                             </div> */}
                             
-//                     <Spacer />
+//                     <div class=" mt-3" />
 //                     <div justifyContent="flex-end">
 //                         <div className="button">
 //                             <Button type="primary" onClick={handleAddRowClick}>
@@ -147,7 +147,7 @@
 //                             </Button>
 //                         </div>
 //                     </div>
-//                     <Spacer style={{marginTop:"1.25em"}} />
+//                     <div class=" mt-3" style={{marginTop:"1.25em"}} />
 //                     <div justifyContent="flex-end"
 //                         style={{ marginLeft: "104%", marginTop: "52px" }}>
 //                         <Button

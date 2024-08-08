@@ -90,7 +90,7 @@ const { Option } = Select;
                 <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                       <div style={{ width: "44%" }}>
                       <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">          
-                      <StyledLabel >Vendor From This Channel Will be Assigned</StyledLabel>                  
+                      <div class=" text-xs font-bold font-poppins">Vendor From This Channel Will be Assigned</div>                  
                       {/* <Switch                                              
                         // checked={this.state.availability}
                         // onChange={this.handleAvailability}

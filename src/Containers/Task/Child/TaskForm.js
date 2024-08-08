@@ -32,7 +32,7 @@
 // import Upload from "../../../Components/Forms/Formik/Upload";
 // import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
 
-// import moment from "moment";
+// import dayjs from "dayjs";
 // import { Listbox } from '@headlessui/react';
 // import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 
@@ -763,7 +763,7 @@
 //             </option>
 //           ))}
 //         </select>
-//                       {/* <StyledLabel>Type</StyledLabel>
+//                       {/* <div class=" text-xs font-bold font-poppins text-black">Type</div>
 //                       <Field
 //                     name="taskTypeId"
 //                     // selectType="customerList"
@@ -812,7 +812,7 @@
 //             </option>
 //           ))}
 //         </select>
-//                       {/* <StyledLabel> Workflow</StyledLabel>
+//                       {/* <div class=" text-xs font-bold font-poppins text-black"> Workflow</div>
 
 //                       <Field
 //                     name="taskType"
@@ -863,7 +863,7 @@
 //                     {/* )} */}
 //                       {/* <div class=" w-1/2">
              
-//                       <StyledLabel>Task Stages</StyledLabel>
+//                       <div class=" text-xs font-bold font-poppins text-black">Task Stages</div>
 //                       <Field
 //                     name="taskChecklistId"
                  
@@ -1051,8 +1051,8 @@
 //                         disabledDate={(currentDate) => {
 //                           if (values.startDate) {
 //                             if (
-//                               moment(currentDate).isBefore(
-//                                 moment(values.startDate)
+//                               dayjs(currentDate).isBefore(
+//                                 dayjs(values.startDate)
 //                               )
 //                             ) {
 //                               return true;
@@ -1871,8 +1871,6 @@ import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getAssignedToList } from "../../Employees/EmployeeAction";
 import Upload from "../../../Components/Forms/Formik/Upload";
 import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
-
-import moment from "moment";
 import { Listbox } from '@headlessui/react';
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 
@@ -2599,8 +2597,8 @@ const [priority,setpriority]=useState(props.selectedTask
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (
-                              moment(currentDate).isBefore(
-                                moment(values.startDate)
+                              dayjs(currentDate).isBefore(
+                                dayjs(values.startDate)
                               )
                             ) {
                               return true;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
-import { Spacer } from "../../../Components/UI/Elements";
+
 import {
     getDeletedDistributors,
     handleDistributorActivityTableModal,
@@ -173,7 +173,7 @@ function AccountDeleteTable(props) {
                 distributorId={currentDistributorId}
                 handleSetCurrentDistributorId={handleSetCurrentDistributorId}
             /> */}
-            <Spacer />
+            <div class=" mt-3" />
         </>
     );
 }
@@ -202,7 +202,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AccountDeleteTable);
 // import { bindActionCreators } from "redux";
 // import { StyledTable } from "../../../Components/UI/Antd";
 // import { Tooltip } from "antd";
-// import { Spacer } from "../../../Components/UI/Elements";
+// 
 // import {
 //     getDeletedDistributors,
 //     handleDistributorActivityTableModal,
@@ -327,7 +327,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AccountDeleteTable);
 //                 distributorId={currentDistributorId}
 //                 handleSetCurrentDistributorId={handleSetCurrentDistributorId}
 //             /> */}
-//             <Spacer />
+//             <div class=" mt-3" />
 //         </>
 //     );
 // }

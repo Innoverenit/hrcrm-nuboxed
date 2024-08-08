@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import { Spacer, StyledLabel } from "../../../Components/UI/Elements";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
@@ -104,10 +103,10 @@ function AddPlantForm(props) {
                     // marginTop: "0px",
                   }}
                 />
-                <Spacer />
+                <div class=" mt-3" />
 
                 <div style={{ width: "100%" }}>
-                  <StyledLabel>Management</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Management</div>
                 </div>
                 <div style={{ width: "100%" }}>
                   <Field
@@ -124,10 +123,10 @@ function AddPlantForm(props) {
                   />
                 </div>
 
-                <Spacer />
+                <div class=" mt-3" />
 
                 <div style={{ width: "100%" }}>
-                  <StyledLabel>Production Manager</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Production Manager</div>
                   <Field
                     name="productionManager"
                     placeholder="Production Manager"
@@ -142,9 +141,9 @@ function AddPlantForm(props) {
                     }}
                   />
                 </div>
-                <Spacer />
+                <div class=" mt-3" />
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <div
                 style={{
                   height: "100%",
@@ -164,7 +163,7 @@ function AddPlantForm(props) {
                 {/* </div> */}
               </div>
             </div>
-            <Spacer />
+            <div class=" mt-3" />
             <FlexContainer justifyContent="flex-end">
               <Button
                 type="primary"

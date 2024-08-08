@@ -5,7 +5,6 @@ import { Button, Select, Switch } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import { Spacer,StyledLabel } from "../../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
@@ -172,7 +171,7 @@ class ContactForm extends Component {
                 <div class=" h-full w-2/4"
                 >
                   {" "}
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex flex-nowrap">
                     <FastField name="imageId" component={Upload} />
                     <div>
@@ -288,7 +287,7 @@ class ContactForm extends Component {
                     </div>
                     <div class=" w-1/4 font-bold"
                   >
-                    <StyledLabel>WhatsApp</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">WhatsApp</div>
                     <Switch
                       onChange={this.handleWhatsApp}
                       checked={this.state.whatsapp}
@@ -354,7 +353,7 @@ class ContactForm extends Component {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between">
                     <div class="w-full">
                       <FastField
@@ -414,11 +413,11 @@ class ContactForm extends Component {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                 </div>
                 <div class=" h-4/6 w-2/5"
                 >
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FieldArray
                     name="address"
                     label="searxh"
@@ -429,7 +428,7 @@ class ContactForm extends Component {
                       />
                     )}
                   />
-                  <Spacer  />
+                  <div class=" mt-3"  />
                   <Field
                     name="notes"
                     label={
@@ -441,7 +440,7 @@ class ContactForm extends Component {
                   />
                 </div>
               </div>
-              <Spacer/>
+              <div class=" mt-3"/>
               <div class=" flex justify-end">
                 <Button
                   type="primary"

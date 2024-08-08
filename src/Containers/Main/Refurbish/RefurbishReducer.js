@@ -1,6 +1,5 @@
 import * as types from "./RefurbishActionTypes";
 import dayjs from "dayjs";
-import moment from "moment";
 
 const initialState = {
   viewType: "list",

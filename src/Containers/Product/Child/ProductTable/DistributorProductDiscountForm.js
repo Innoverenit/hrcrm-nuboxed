@@ -6,7 +6,7 @@ import { Formik, Form, Field} from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { setClearbitOrderData } from "../../../Main/Account/AccountAction";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
-import moment from "moment";
+import dayjs from "dayjs";
 import OrderClearbit from "../../../../Components/Forms/Autocomplete/OrderClearbit";
 import { addDiscountDistributor } from "../../ProductAction";
 
@@ -44,8 +44,8 @@ class DistributorProductDiscountForm extends Component {
                         distributorAllowedDiscount: "",
                         distributorDiscountSubType: this.state.amount ? "Amount" : "Percentage",
                         distributorDiscountType: this.state.cash ? "Cash" : "Cash",
-                        distributorStartDate: distributorStartDate || moment(),
-                        distributorEndDate: moment(),
+                        distributorStartDate: distributorStartDate || dayjs(),
+                        distributorEndDate: dayjs(),
                         distributorEndDate: distributorEndDate || null,
                         distributorDiscountName: "",
                         // productId: this.props.particularDiscountData.productId,
@@ -66,10 +66,10 @@ class DistributorProductDiscountForm extends Component {
                         if (!values.distributorEndDate) {
                             values.distributorEndDate = values.distributorStartDate;
                         }
-                        let newStartDate = moment(values.distributorStartDate).format("YYYY-MM-DD");
+                        let newStartDate = dayjs(values.distributorStartDate).format("YYYY-MM-DD");
                         console.log(newStartDate);
                         //Time calculation
-                        let firstStartTime = moment(values.startTime).format(
+                        let firstStartTime = dayjs(values.startTime).format(
                             "HH:mm:ss.SSS[Z]"
                         ); // getting start time from form input
                         console.log(firstStartTime);
@@ -100,8 +100,8 @@ class DistributorProductDiscountForm extends Component {
                         let newStartTime = `${finalStartTime}${timeEndPart}`;
                         console.log(newStartTime);
 
-                        let newEndDate = moment(values.distributorEndDate).format("YYYY-MM-DD");
-                        let firstEndTime = moment(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
+                        let newEndDate = dayjs(values.distributorEndDate).format("YYYY-MM-DD");
+                        let firstEndTime = dayjs(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
                         console.log(firstEndTime);
                         let firstEndHours = firstEndTime.substring(0, 5); // getting only hours and minutes
                         console.log(firstEndHours);
@@ -293,7 +293,7 @@ class DistributorProductDiscountForm extends Component {
                                                 component={DatePicker}
                                                 isColumn
                                                 value={values.distributorEndDate || values.distributorStartDate}
-                                                defaultValue={moment("2015-01-01")}
+                                                defaultValue={dayjs("2015-01-01")}
                                                 inlineLabel
                                                 style={{
                                                     flexBasis: "80%",
@@ -304,8 +304,8 @@ class DistributorProductDiscountForm extends Component {
                                                 disabledDate={(currentDate) => {
                                                     if (values.distributorStartDate) {
                                                         if (
-                                                            moment(currentDate).isBefore(
-                                                                moment(values.distributorStartDate)
+                                                            dayjs(currentDate).isBefore(
+                                                                dayjs(values.distributorStartDate)
                                                             )
                                                         ) {
                                                             return true;

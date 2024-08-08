@@ -12,7 +12,7 @@ import {addUnits,getUnits,
   updateUnits,
   searchUnitName
 } from "../Unit/UnitAction"
-import moment from "moment";
+import dayjs from "dayjs";
  import SingleUnit from "./SingleUnit";
 
 
@@ -217,7 +217,7 @@ class Unit extends Component {
           </MainWrapper>
          
         </div>
-        <h4>Updated on {moment(this.props.units && this.props.units.length && this.props.units[0].updationDate).format("ll")} by {this.props.units && this.props.units.length && this.props.units[0].name}</h4>
+        <h4>Updated on {dayjs(this.props.units && this.props.units.length && this.props.units[0].updationDate).format("ll")} by {this.props.units && this.props.units.length && this.props.units[0].name}</h4>
       </>
     );
   }

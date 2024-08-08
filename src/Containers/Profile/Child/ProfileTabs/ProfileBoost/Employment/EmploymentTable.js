@@ -12,7 +12,7 @@ import {
   setEditEmployment,
 } from "../../../../ProfileAction";
 import DownloadIcon from '@mui/icons-material/Download';
-import moment from "moment";
+import dayjs from "dayjs";
 import { base_url } from "../../../../../../Config/Auth";
 import { deleteEmploymentTable } from "../../../../ProfileAction";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
@@ -73,7 +73,7 @@ class EmploymentTable extends Component {
         ),
         dataIndex: "startDate",
         render: (name, item, i) => {
-          return <span>{moment(item.startDate).format("LL")}</span>;
+          return <span>{dayjs(item.startDate).format("LL")}</span>;
         },
       },
       {
@@ -81,7 +81,7 @@ class EmploymentTable extends Component {
         title: <FormattedMessage id="app.endDate" defaultMessage="End Date" />,
         dataIndex: "endDate",
         render: (name, item, i) => {
-          return <span>{moment(item.endDate).format("LL")}</span>;
+          return <span>{dayjs(item.endDate).format("LL")}</span>;
         },
       },
       //combine and show salary +curr+type

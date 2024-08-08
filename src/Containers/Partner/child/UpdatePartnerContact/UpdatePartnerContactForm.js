@@ -5,7 +5,7 @@ import { Button, Select, Icon, Tag, Switch } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../Components/UI/Elements";
+
 import { ShowOrCollapse } from "../../../../Components/Common";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
@@ -184,7 +184,7 @@ class UpdatePartnerContactForm extends Component {
                   <FlexContainer flexWrap="no-wrap">
                     <FastField name="imageId" component={Upload} />
                     <div>
-                    <Spacer/>
+                    <div class=" mt-3"/>
                       <FlexContainer justifyContent="space-between">
                         <div style={{ width: "30%" }}>
                           <FastField
@@ -224,7 +224,7 @@ class UpdatePartnerContactForm extends Component {
                           />
                         </div>
                       </FlexContainer>
-                      <Spacer />
+                      <div class=" mt-3" />
                       <FlexContainer justifyContent="space-between">
                         <div style={{ width: "40%" }}>
                           <FastField
@@ -263,8 +263,8 @@ class UpdatePartnerContactForm extends Component {
                       </FlexContainer>
                     </div>
                   </FlexContainer>
-                  <Spacer />
-                  <Spacer />
+                  <div class=" mt-3" />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <FastField
@@ -307,7 +307,7 @@ class UpdatePartnerContactForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <FastField
@@ -350,7 +350,7 @@ class UpdatePartnerContactForm extends Component {
                     </div>
                   </FlexContainer>
 
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "100%" }}>
                       <FastField
@@ -371,7 +371,7 @@ class UpdatePartnerContactForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "100%" }}>
                       <FastField
@@ -391,7 +391,7 @@ class UpdatePartnerContactForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
 
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
@@ -430,7 +430,7 @@ class UpdatePartnerContactForm extends Component {
                   </div> */}
                   </FlexContainer>
                   
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between"></FlexContainer>
                 </div>
                 &nbsp;
@@ -442,7 +442,7 @@ class UpdatePartnerContactForm extends Component {
                 >
                   
                   
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FieldArray
                     name="address"
                     label="searxh"
@@ -453,7 +453,7 @@ class UpdatePartnerContactForm extends Component {
                       />
                     )}
                   />
-                  <Spacer  style={{ marginTop: "1.25em" }}/>
+                  <div class=" mt-3"  style={{ marginTop: "1.25em" }}/>
                   <Field
                     name="notes"
                     // label="Notes"

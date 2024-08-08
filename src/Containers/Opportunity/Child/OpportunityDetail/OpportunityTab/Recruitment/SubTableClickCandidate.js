@@ -16,7 +16,6 @@ import RecruitmentDetails from "./Child/RecruitmentDetails";
 import RecruitmentStages from "./RecruitmentStages";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import moment from "moment"
 import {
   Tooltip,
   Dropdown,
@@ -266,7 +265,7 @@ class SubTableClickCandidate extends Component {
       return (
         <>
           {/* {item.candidateBilling} {item.currency}  */}
-          {moment(item.avilableDate).format("L")}
+          {dayjs(item.avilableDate).format("L")}
          
         </>
       );
@@ -623,7 +622,7 @@ class SubTableClickCandidate extends Component {
         return <>
         {item.onboardDate === null ? "None" :
           <span>
-            {moment(item.onboardDate).format("L")}
+            {dayjs(item.onboardDate).format("L")}
           </span>
         }
       </>

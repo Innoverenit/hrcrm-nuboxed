@@ -97,7 +97,7 @@ class ApprovalForm extends Component {
                         display: "flex",
                       }}
                     >
-                      <StyledLabel>Needed</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Needed</div>
                     
                     </div>
 
@@ -129,7 +129,7 @@ class ApprovalForm extends Component {
                             display: "flex",
                           }}
                         >
-                          <StyledLabel>Type</StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Type</div>
                         </div>
 
                         <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[30%] ">

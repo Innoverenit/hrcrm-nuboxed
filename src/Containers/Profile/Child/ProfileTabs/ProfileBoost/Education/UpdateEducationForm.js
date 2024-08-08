@@ -136,7 +136,7 @@ class UpdateEducationForm extends Component {
                 </div>
                
                 <div class=" mt-3">
-                  <StyledLabel>Course Type</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Course Type</div>
                   <div class=" mt-3">
                   <ButtonGroup>
                     <StatusIcon
@@ -303,7 +303,7 @@ class UpdateEducationForm extends Component {
                     isRequired
                     component={DragableUpload}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
 
                   <Field
                     name="documentTitle"
@@ -313,7 +313,7 @@ class UpdateEducationForm extends Component {
                     component={InputComponent}
                     style={{ height: "2.0625em", marginTop: "0.25em" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="documentDescription"
                     label="Description"
@@ -323,7 +323,7 @@ class UpdateEducationForm extends Component {
                     component={TextareaComponent}
                     style={{ height: "5em", marginTop: "0.25em" }}
                   />
-                  <Spacer style={{ marginBottom: "0.9375em" }} />
+                  <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
                 </div> */}
               {/* </div> */}
             

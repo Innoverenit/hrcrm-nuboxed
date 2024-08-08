@@ -20,7 +20,7 @@ export const TimePicker = ({
     return (
       <>
         {!noLabel && (
-          <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+          <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
         )}
         <StyledTimePicker
           allowClear={false}
@@ -45,7 +45,7 @@ export const TimePicker = ({
       <FlexContainer>
         <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
           {!noLabel && (
-            <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+            <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
           )}
           <StyledTimePicker
             allowClear={false}

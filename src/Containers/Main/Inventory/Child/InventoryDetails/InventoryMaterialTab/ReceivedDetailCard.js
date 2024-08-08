@@ -322,10 +322,10 @@ const ReceivedDetailCard = (props) => {
                     onOk={handleOk}
                     onCancel={handleCancelmodal}
                 >
-                    <StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">
                         {/* Select from existing GRN */} {props.translatedMenuItems[27]}
 
-                    </StyledLabel>
+                    </div>
                     <div class=" flex justify-evenly">
                         <Switch
                             checked={existGrn}

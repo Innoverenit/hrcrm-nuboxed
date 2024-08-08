@@ -92,7 +92,7 @@ function SequenceCandidateForm(props) {
               >
                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" }}>
-                    <StyledLabel>True</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">True</div>
                     <Select
                       style={{ width: "100%" }}
                      // name="trueSequenceRule"
@@ -125,7 +125,7 @@ function SequenceCandidateForm(props) {
                 <mt-3  />
                 <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" }}>
-                    <StyledLabel>False</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">False</div>
                     <Select
                       style={{ width: "100%" }}
                       placeholder="Select"
@@ -158,7 +158,7 @@ function SequenceCandidateForm(props) {
                 <mt-3 />
                 <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" }}>
-                    <StyledLabel>No Response</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">No Response</div>
                     <Select
                       style={{ width: "100%" }}
                       name="noInputSequenceRule"

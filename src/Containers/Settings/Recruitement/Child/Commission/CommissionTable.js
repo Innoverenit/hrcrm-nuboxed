@@ -12,7 +12,7 @@ import { FormattedMessage } from "react-intl";
 import { StyledModal, StyledTable } from "../../../../../Components/UI/Antd";
 import { getCommissionTable,setEditCommission, handleCommission} from "../../../../Settings/SettingsAction";
 // import CommissionUpdateModal from "./CommissionUpdateModal";
-import moment from "moment";
+import dayjs from "dayjs";
 
  function CommissionTable (props) {
     useEffect(()=> {

@@ -5,7 +5,7 @@ import { Button, Switch } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../Components/UI/Elements";
+
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
@@ -149,7 +149,7 @@ class PartnerForm extends Component {
                       </a>
                     ) : null}
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     isRequired
                     name="name"
@@ -164,7 +164,7 @@ class PartnerForm extends Component {
                     accounts={accounts}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="url"
                     type="text"
@@ -176,7 +176,7 @@ class PartnerForm extends Component {
                     component={InputComponent}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="email"
                     type="text"
@@ -188,7 +188,7 @@ class PartnerForm extends Component {
                     component={InputComponent}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
 
                   <div class=" flex justify-between">
                     <div class=" w-3/12">
@@ -241,7 +241,7 @@ class PartnerForm extends Component {
                     </div>
                     <div class=" w-2/5">
                       <div>
-                        <StyledLabel>Status</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Status</div>
                       </div>
                       <div>
                         <Switch
@@ -253,7 +253,7 @@ class PartnerForm extends Component {
                       </div>
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between">
                     <div class=" w-2/4">
                       <Field
@@ -328,7 +328,7 @@ class PartnerForm extends Component {
                   </div>
                 </div>
                 <div class=" h-full w-2/5">
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="assignedTo"
                     isColumnWithoutNoCreate
@@ -378,7 +378,7 @@ class PartnerForm extends Component {
                       width="100%"
                     />
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="notes"
                     label={

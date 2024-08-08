@@ -15,7 +15,7 @@ import {
 } from "../../../ShipperAction";
 import { setEditEvents } from "../../../../../Event/EventAction";
 import { setEditTask } from "../../../../../Task/TaskAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -74,7 +74,7 @@ class ShipperAwbTable extends Component {
 
                                             <div class=" text-xs  font-poppins text-center">
                                                    
-                                                    {` ${moment(item.createAt).format("lll")}`}
+                                                    {` ${dayjs(item.createAt).format("lll")}`}
                                                 </div>
                                             </div>
 
@@ -87,14 +87,14 @@ class ShipperAwbTable extends Component {
                                             </div>
                                             <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
-                                                {` ${moment(item.pickUp).format("lll")}`}
+                                                {` ${dayjs(item.pickUp).format("lll")}`}
                                                 </div>
                                             </div>
 
                                             <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                
                                                 <div class=" text-xs  font-poppins text-center">
-                                                {/* {` ${moment(item.endDate).format("lll")}`} */}
+                                                {/* {` ${dayjs(item.endDate).format("lll")}`} */}
 
                                                 </div>
                                             </div>

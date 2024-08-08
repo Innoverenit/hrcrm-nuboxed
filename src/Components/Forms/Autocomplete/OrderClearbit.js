@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { get } from "lodash";
 import { base_url } from "../../../Config/Auth";
-import { ValidationError, StyledLabel, StyledAsync } from "../../UI/Elements";
+import { ValidationError,  StyledAsync } from "../../UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setClearbitOrderData } from "../../../Containers/Main/Shipper/ShipperAction";
@@ -125,7 +125,7 @@ class OrderClearbit extends Component {
     if (isColumnWithoutNoCreate) {
       return (
         <>
-          <StyledLabel
+          <div class=" text-xs font-bold font-poppins
             style={{
               flexBasis: "20%",
               marginTop: "-49px",
@@ -133,7 +133,7 @@ class OrderClearbit extends Component {
             }}
           >
             {label}
-          </StyledLabel>
+          </div>
           <StyledAsync
             isRequired={isRequired}
             backspaceRemoveValue
@@ -162,7 +162,7 @@ class OrderClearbit extends Component {
     if (isColumn) {
       return (
         <>
-          <StyledLabel
+          <div class=" text-xs font-bold font-poppins
             style={{
               flexBasis: "20%",
               marginTop: "-49px",
@@ -170,7 +170,7 @@ class OrderClearbit extends Component {
             }}
           >
             {label}
-          </StyledLabel>
+          </div>
           <StyledAsync
             isRequired={isRequired}
             classNamePrefix="sales"
@@ -199,7 +199,7 @@ class OrderClearbit extends Component {
       <>
       <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
       <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
-            <StyledLabel
+            <div class=" text-xs font-bold font-poppins
               style={{
                 flexBasis: "20%",
                 marginTop: "-49px",
@@ -207,7 +207,7 @@ class OrderClearbit extends Component {
               }}
             >
               {label}
-            </StyledLabel>
+            </div>
             <StyledAsync
               isRequired={isRequired}
               classNamePrefix="sales"

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
 import { Formik, Form, Field } from "formik";
-import { Spacer, StyledLabel } from "../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import { updateShipperOrder } from "../../../../ShipperAction";
@@ -96,7 +95,7 @@ class UpdateOrderDetailForm extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="categoryName"
                     type="text"
@@ -112,7 +111,7 @@ class UpdateOrderDetailForm extends Component {
                       marginTop: "0px",
                     }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     disabled="true"
                     name="subCategoryName"
@@ -127,7 +126,7 @@ class UpdateOrderDetailForm extends Component {
                       marginTop: "0px",
                     }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     disabled="true"
                     name="productFullName"
@@ -183,7 +182,7 @@ class UpdateOrderDetailForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <Field
@@ -234,7 +233,7 @@ class UpdateOrderDetailForm extends Component {
                                             />
                                         </div> */}
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <div
@@ -305,7 +304,7 @@ class UpdateOrderDetailForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "30%" }}>
                       <Switch
@@ -356,7 +355,7 @@ class UpdateOrderDetailForm extends Component {
                 </div>
               </div>
 
-              <Spacer />
+              <div class=" mt-3" />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   type="primary"

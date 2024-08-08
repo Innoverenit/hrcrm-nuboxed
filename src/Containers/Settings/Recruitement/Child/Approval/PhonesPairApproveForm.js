@@ -133,7 +133,7 @@ class PhonesPairApproveForm extends Component {
                                         <div class=" flex w-[20%]"
                                      
                                         >
-                                            <StyledLabel>Approval Needed</StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">Approval Needed</div>
                                             &nbsp;&nbsp;
                                         </div>
 
@@ -164,7 +164,7 @@ class PhonesPairApproveForm extends Component {
                                                 <div class=" flex w-[20%] mb-[2%]"
                                               
                                                 >
-                                                    <StyledLabel>Type</StyledLabel>
+                                                    <div class=" text-xs font-bold font-poppins text-black">Type</div>
 
                                                 </div>
 

@@ -126,10 +126,10 @@ function ProcureStep1(props) {
                         <div class=" flex justify-between">
                             {/* <div class=" w-[47%] flex-col flex">
                                 <div class="mt-3">
-                                    <StyledLabel><h3> <FormattedMessage
+                                    <div class=" text-xs font-bold font-poppins text-black"><h3> <FormattedMessage
                                         id="app.deliveryaddress"
                                         defaultMessage="Delivery Address"
-                                    /></h3></StyledLabel>
+                                    /></h3></div>
 
                                     <FieldArray
                                         name="loadingAddress"
@@ -280,10 +280,10 @@ function ProcureStep1(props) {
                                 <div class="justify-between flex mt-3">
 
                                     <div class="w-[46%]  ml-8 mt-2">
-                                        <StyledLabel><FormattedMessage
+                                        <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
                                             id="app.priority"
                                             defaultMessage="Priority"
-                                        /></StyledLabel>
+                                        /></div>
                                         <div class="justify-between flex">
                                             <div>
                                                 <Tooltip title={<FormattedMessage

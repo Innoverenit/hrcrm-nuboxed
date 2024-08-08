@@ -126,7 +126,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                   }}
                 >
                     <div class="mt-3" />
-                   <StyledLabel><FormattedMessage id="app.name" defaultMessage="Name" /></StyledLabel>
+                   <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
                   <Field
                     isRequired
                     name="name"
@@ -214,7 +214,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                      
                     <div style={{ width: "32%" }}>
                      <div>             
-                 <StyledLabel>Requirement Type</StyledLabel>
+                 <div class=" text-xs font-bold font-poppins text-black">Requirement Type</div>
                  </div>
                  <Switch                   
                    checked={this.state.whiteblue}
