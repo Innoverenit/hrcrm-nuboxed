@@ -15,7 +15,7 @@ const AddMultipleQCSpare = (props) => {
         props.getTaggedSuppliesByBrand(props.RowData.company, props.RowData.model)
     }, [])
 
-    const [rows, setRows] = useState([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }]);
+    const [rows, setRows] = useState([{  phoneTaskId:props.phoneTaskId,suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }]);
     const [id, setId] = useState(1);
     const [level, setLevel] = useState(1);
 
@@ -25,13 +25,13 @@ const AddMultipleQCSpare = (props) => {
             spareList: rows,
             phoneId: props.RowData.phoneId,
             orderPhoneId: props.RowData.orderPhoneId,
-            phoneTaskId:props.phoneTaskId
+           // phoneTaskId:props.phoneTaskId
         }
-        props.addSpareList(data, props.RowData.phoneId,props.phoneTaskId, props.RowData.orderPhoneId, handleCallBack);
+        props.addSpareList(data,props.phoneTaskId, props.RowData.phoneId, props.RowData.orderPhoneId, handleCallBack);
     };
 
     function handleCallBack() {
-        setRows([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }])
+        setRows([{  phoneTaskId:props.phoneTaskId,suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }])
     }
 
     function handleChangeValues1(value, a) {

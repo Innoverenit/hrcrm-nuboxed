@@ -2911,7 +2911,7 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         deletingSpareList: false,
         spareList: state.spareList.filter(
-          (item) => item.phoneSpareId !== action.payload.phoneSpareId
+          (item) => item.phoneTaskId !== action.payload.phoneTaskId
         ),
         // orderPhoneList: state.orderPhoneList.map((item) => {
         //   if (item.phoneId == action.payload.phoneId) {

@@ -2727,9 +2727,15 @@ export const addSpareList = (data, phoneTaskId, orderId, cb) => (dispatch) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Spares Added SucessFully',
+        showConfirmButton: false,
+        timer: 1500,
+      })
       console.log(res);
       dispatch(getSpareListByPhoneTaskId(phoneTaskId))
-      dispatch(getPhonelistById(orderId))
+     // dispatch(getPhonelistById(orderId))
       dispatch({
         type: types.ADD_SPARE_LIST_SUCCESS,
         payload: res.data,
@@ -2755,6 +2761,7 @@ export const deleteSpareList = (data, phoneSpareId, orderPhoneId, userId) => (di
       },
     })
     .then((res) => {
+      dispatch(getSpareListByPhoneTaskId(phoneTaskId))
       dispatch({
         type: types.DELETE_SPARE_LIST_SUCCESS,
         payload: res.data,
