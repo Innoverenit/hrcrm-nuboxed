@@ -145,7 +145,7 @@ const handleInputChange = (value, key, dataIndex) => {
                                                             </div>
                                                             <div className=" flex font-medium   md:w-[rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                    {item.itemId}
+                                                                    {item.newProductId}
                                                                 </div>
                                                             </div>
                                                             </div>
