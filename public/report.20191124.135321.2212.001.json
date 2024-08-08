@@ -3265,22 +3265,8 @@
       "type": "fs_event",
       "is_active": "1",
       "is_referenced": "1",
-      "address": "1665751242384",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Layout\\ResponsiveBox.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
       "address": "1665751242016",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Layout\\NavbarWrapper.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751244224",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Layout\\ResponsiveCard.js"
     },
     {
       "type": "fs_event",

@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import { StyledLabel } from "../../../Components/UI/Elements";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import * as Yup from "yup";
 import { getCrm } from "../../Leads/LeadsAction";
 import { getAllCustomerEmployeelist } from "../../Employees/EmployeeAction";
@@ -19,7 +17,6 @@ import { addDistributor, setClearbitData ,emptyClearbit} from "./AccountAction";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import { ProgressiveImage } from "../../../Components/Utils";
-import { FormattedMessage } from "react-intl";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
@@ -63,42 +60,42 @@ const AddAccountForm = ({
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-            "Name",
-            "Dial Code",
-            "Phone",
-            "Website",
-            "Country",
-            "Tax Registration",
-            "Insurancegrade",
-            "Type",
-            "Creditlimit",
-            "Currency",
-            "Payment Term Days",
-            "Category",
-            "Custom Payment",
-            "Assigned",
-            "Description",
-            "Create"
+  // useEffect(() => {
+  //   const fetchMenuTranslations = async () => {
+  //     try {
+  //       setLoading(true); 
+  //       const itemsToTranslate = [
+  //           "Name",
+  //           "Dial Code",
+  //           "Phone",
+  //           "Website",
+  //           "Country",
+  //           "Tax Registration",
+  //           "Insurancegrade",
+  //           "Type",
+  //           "Creditlimit",
+  //           "Currency",
+  //           "Payment Term Days",
+  //           "Category",
+  //           "Custom Payment",
+  //           "Assigned",
+  //           "Description",
+  //           "Create"
 
 
-      ];
+  //     ];
 
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
+  //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+  //       setTranslatedMenuItems(translations);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.error('Error translating menu items:', error);
+  //     }
+  //   };
 
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
+  //   fetchMenuTranslations();
+  // }, [props.selectedLanguage]);
 
   useEffect(() => {
     getCountry();

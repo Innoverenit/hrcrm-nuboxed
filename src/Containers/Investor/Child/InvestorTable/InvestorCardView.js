@@ -13,7 +13,6 @@ import {
     handleCustomerEmailDrawerModal,
     getCustomerById,
   } from "../../../Customer/CustomerAction";
-import { ResponsiveCard } from "../../../../Components/UI/Layout";
 import { Title,MultiAvatar1 } from "../../../../Components/UI/Elements";
 import {getInvestorsbyId,emptyInvestor,handleUpdateInvestorModal} from "../../InvestorAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -55,7 +54,7 @@ function InvestorCardView (props)  {
   return (
     <>
     <div>   
-      <ResponsiveCard flexDirection="column" style={{ borderRadius: 3 }}>
+    <div class="w-[20%] block box-border flex-col rounded">
       {investorsbyId.map((item) => { 
         
         return (
@@ -146,7 +145,7 @@ function InvestorCardView (props)  {
         </div>
               )
             })}
-      </ResponsiveCard>
+      </div>
       </div>
       <UpdateInvestorModal
         RowData={RowData}
