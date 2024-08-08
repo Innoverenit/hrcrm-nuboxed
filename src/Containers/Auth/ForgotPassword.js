@@ -6,7 +6,6 @@ import { Formik, Form, Field } from "formik";
 import { Input } from "./styled";
 import { ValidationError, Title, SubTitle } from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
-import styled from "styled-components";
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import FWLogo from "../../Assets/Images/name.jpg";  // for CT
 import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
@@ -57,20 +56,15 @@ class ForgotPassword extends Component {
           <div className="forgot_password">
 
           <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
-              <AuthContainer
-                style={{
-                  backgroundColor: "white",
-                  flexDirection: "column",
-                  width: "100%",
-                }}
-              >
+          <div class="  w-full  min-h-[100vh] overflow-auto flex flex-col justify-center items-center bg-white  ">
+           
                 <img
                   className="big-logo"
                   src={FWLogo}
                   style={{ width: 200 }}
                   alt="Tekorero logo"
                 />
-                <FormWrapper>
+           <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
                   <Title>Forgot Password</Title>
                   <SubTitle>Link will be sent to your registered email id</SubTitle>
                   <div class="mt-3" />
@@ -261,12 +255,12 @@ class ForgotPassword extends Component {
                     )}
                   </Formik>
                  
-                </FormWrapper>
+                </div>
                 <div className="text-xs text-center font-poppins mt-auto text-black absolute bottom-0"
                  >
                   © {new Date().getFullYear()},  {` `} CloudHub, All rights reserved.
                 </div>
-              </AuthContainer>
+              </div>
 
             </div>
           </div>
@@ -294,32 +288,3 @@ export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(ForgotPassword)
 );
 
-const AuthContainer = styled.div`
-  // width: 50%;
-  width:${(props) => props.width || "50%"}
-  min-height: 100vh;
-  overflow: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(${(props) => props.backgroundImage});
-  background-size: cover;
-  @media only screen and (max-width: 37.5em) { 
-   width:100%
-  }
-`;
-const FormWrapper = styled.div`    
-padding: 1rem;
-width: ${(props) => props.width}
-     border-radius: 0.3rem;
-    box-shadow: 0em 0.25em 0.625em -0.125em #444;
-    border: 0.0625em solid #ddd;
-    background: #fff;
-    @media only screen and (max-width: 37.5em) {
-       width:89%
-         }
- @media only screen 
-and (min-device-width : 48em) 
-and (max-device-width : 64em)
-and (-webkit-min-device-pixel-ratio: 2){
-}`;

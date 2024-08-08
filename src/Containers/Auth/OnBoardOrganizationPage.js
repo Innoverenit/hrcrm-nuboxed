@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field, FastField } from "formik";
-import { FormWrapper, Input } from "./styled";
+import { Input } from "./styled";
 import { ValidationError} from "../../Components/UI/Elements";
 import { EyeInvisibleOutlined,EyeOutlined,
 } from "@ant-design/icons";
@@ -99,7 +99,7 @@ class OnBoardOrganizationPage extends Component {
             />
             <br />
      
-            <FormWrapper width="25em">
+            <div class=" w-[25rem] p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
               <Formik
                 enableReinitialize
                 initialValues={{
@@ -295,7 +295,7 @@ class OnBoardOrganizationPage extends Component {
                 )}
               </Formik>
            
-            </FormWrapper>
+            </div>
             < div class="mt-3" />
 
            

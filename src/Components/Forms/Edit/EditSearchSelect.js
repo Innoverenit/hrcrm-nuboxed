@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { StyledReactSelect, StyledLabel } from "../../UI/Elements";
+import { StyledReactSelect } from "../../UI/Elements";
 
 import { get, uniqBy } from "lodash";
 
@@ -35,17 +35,11 @@ class EditSearchSelect extends Component {
       handleSelectChange(name, arr);
     } else {
       handleSelectChange(name, option.value);
-      // if (fillAnother) {
-      //     setFieldValue(fillAnother, option.countryCurrencyCode)
-      // }
+     
     }
   };
 
-  // handleBlur = (option, name) => {
-  //     // this is going to call setFieldTouched and manually update touched.topcis
-  //     console.log(option)
-  //     this.props.handleSelectBlur(name, option.value);
-  // };
+ 
 
   render() {
     // console.log(this.props)
@@ -147,23 +141,7 @@ class EditSearchSelect extends Component {
         value: item.currency_name,
         label: item.currency_name,
       }));
-      // options.filter((item, i) => options.indexOf())
-      // options = uniqBy(options, "value").filter((opt) => {
-      //   console.log(opt);
-      //   if (
-      //     opt.value === "EUR" ||
-      //     opt.value === "INR" ||
-      //     opt.value === "USD" ||
-      //     opt.value === "AUD" ||
-      //     opt.value === "CAD" ||
-      //     opt.value === "SGD" ||
-      //     opt.value === "BDT" ||
-      //     opt.value === "GBP"
-      //   ) {
-      //     return opt;
-      //   }
-      // });
-      // const customOption = ({ label, value }) => <h3>{`${label}-----${value}`}</h3>
+     
     }
     if (selectType === "timeZone") {
       options = timeZone.map((item, i) => ({
@@ -184,9 +162,7 @@ class EditSearchSelect extends Component {
       // const customOption = ({ label, value }) => <h3>{`${label}-----${value}`}</h3>
     }
     return (
-      // <FlexContainer>
-      //   <FlexContainer alignItems="center">
-      //     <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+     
       <StyledReactSelect
         classNamePrefix="sales"
         width={width}
@@ -206,8 +182,7 @@ class EditSearchSelect extends Component {
         value={options ? options.find((option) => option.value === value) : ""}
       // onBlur={(option) => this.handleBlur(option, name)}
       />
-      //   </FlexContainer>
-      // </FlexContainer>
+      
     );
   }
 }

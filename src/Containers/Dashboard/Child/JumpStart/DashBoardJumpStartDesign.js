@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
+import React, { } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { JumpStartBox } from "../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 
 function DashBoardJumpStartDesign(props) {
 
   return (
-    <FlexContainer flexDirection="row" style={{ width: "100%" }}>
-      <FlexContainer style={{ width: "100%" }}>
+    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full">
+    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
         <JumpStartBox
           noProgress
           title="Actual Amount"
@@ -39,9 +38,9 @@ function DashBoardJumpStartDesign(props) {
           bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
         //   currencyType={billableCurr}
         />
-      </FlexContainer>
+      </div>
       <mt-3 />
-    </FlexContainer>
+    </div>
   );
 }
 const mapStateToProps = ({ billings, auth }) => ({

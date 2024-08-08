@@ -12,7 +12,6 @@ import * as Yup from "yup";
 import {
   handleDocumentUploadModal,
 } from "../../../../../EmployeeAction";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import DragableUpload from "../../../../../../../Components/Forms/Formik/DragableUpload";
 import {addOpportunityDocument} from "../../../../../../Opportunity/OpportunityAction"
 const ButtonGroup = Button.Group;
@@ -220,157 +219,23 @@ class AddDocumentModal extends Component {
                         component={TextareaComponent}
                         style={{ height: "5em"}}
                       />
-                      <mt-3 style={{ marginBottom: "0.9375em" }} />
-
-                      {/* <FlexContainer>
-                        <StyledLabel>Share</StyledLabel>
-                        <Switch
-                          style={{ width: "6.25em", marginLeft: "0.625em" }}
-                          onChange={this.handleChange}
-                          checked={this.state.documentshare}
-                          checkedChildren="Public"
-                          unCheckedChildren="Private"
-                        />
-                      </FlexContainer> */}
-                      {/* <mt-3 /> */}
-                      {/* {!this.state.documentshare && this.props.testShow && (
-                        <p>Will be shared with Opportunity Owner</p>
-                      )}
-                      <mt-3 />
-                      {this.state.documentshare && (
-                        <FlexContainer
-                          justifyContent="space-between"
-                          style={{ width: "100%", marginBottom: "8%" }}
-                        >
-                          {organization &&
-                            organization.subscriptionType ===
-                            "FREE" && (
-                              <div style={{ marginTop: "6%" }}>
-                              </div>
-                            )}
-                          {organization &&
-                            organization.subscriptionType !==
-                            "FREE" && (
-                              <Tooltip
-                                title={
-                                  organization.subscriptionType !==
-                                    "FREE"
-                                    ? "Upgrade to Professional+ for multiple sharing "
-                                    : ""
-                                }
-                              >
-                                <div style={{ marginTop: "6%" }}>
-                                </div>
-                              </Tooltip>
-                            )}
-                          {this.state.data.map(() => {
-                            return (
-                              <>
-                                <div
-                                  style={{ width: "46%", marginRight: "0.625em" }}
-                                >
-                                  <Field
-                                    inlineLabel
-                                    name="department"
-                                    label="Function"
-                                    isRequired
-                                    isColumn
-                                    margintop={"0.25em"}
-                                    style={{ flexBasis: "80%" }}
-                                    // selectType="department"
-                                    // component={SearchSelect}
-                                  />
-                                </div>
-                                <div>
-                                  <StyledLabel>Level</StyledLabel>
-                                  <FlexContainer
-                                    justifyContent="space-between"
-                                    style={{ marginTop: "0.25em" }}
-                                  >
-                                    <ButtonGroup>
-                                      <Tooltip title="Specific">
-                                        <Button
-                                          onClick={() =>
-                                            this.handleAboveChange("Specific")
-                                          }
-                                          style={{
-                                            fontSize: "1.125em",
-                                            cursor: "pointer",
-                                            padding: "0em 0.4375em",
-                                            backgroundColor:
-                                              this.state.selectedownerAbove ===
-                                                "Specific"
-                                                ? "Orange"
-                                                : null,
-                                            color:
-                                              this.state.selectedownerAbove ===
-                                                "Specific"
-                                                ? "white"
-                                                : "rgba(0, 0, 0, 0.65)",
-                                          }}
-                                        >
-                                          <Icon type="right-square" />
-                                        </Button>
-                                      </Tooltip>
-                                      <Tooltip title="Above">
-                                        <Button
-                                          onClick={() =>
-                                            this.handleAboveChange("Above")
-                                          }
-                                          style={{
-                                            fontSize: "1.125em",
-                                            padding: "0em 0.4375em",
-                                            cursor: "pointer",
-                                            backgroundColor:
-                                              this.state.selectedownerAbove ===
-                                                "Above"
-                                                ? "Orange"
-                                                : null,
-                                            color:
-                                              this.state.selectedownerAbove ===
-                                                "Above"
-                                                ? "white"
-                                                : "rgba(0, 0, 0, 0.65)",
-                                          }}
-                                        >
-                                         <Icon type="ToTopOutlined" />
-                                        </Button>
-                                      </Tooltip>{" "}
-                                    </ButtonGroup>
-                                  </FlexContainer>
-                                </div>
-                                <div style={{ width: "22%", marginTop: "0.1875em" }}>
-                                  <Field
-                                    isRequired
-                                    name="level"
-                                    isColumn
-                                    selectType="level"
-                                    // component={SearchSelect}
-                                    inlineLabel
-                                    marginTop={"0.25em"}
-                                  />
-                                </div>
-                              </>
-                            );
-                          })}
-                        </FlexContainer>
-                      )} */}
+                      <mt-3 style={{ marginBottom: "0.9375em" }} />                  
                     </div>
                   </div>
 
                   <mt-3 />
-                  <FlexContainer justifyContent="flex-end">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     <Button
                       htmlType="submit"
                       type="primary"
-                    //   Loading={addingDocumentByOpportunityId}
+              
                     >
                       <FormattedMessage
                         id="app.submit"
                         defaultMessage="Submit"
                       />
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </Form>
               )}
             </Formik>
@@ -380,17 +245,10 @@ class AddDocumentModal extends Component {
     );
   }
 }
-// const DocumentUploadModal = (props) => {
-//     console.log(props)
 
-// }
 
 const mapStateToProps = ({ opportunity, settings, auth, employee }) => ({
-  //   opportunity: opportunity.opportunity,
-  //   oppoStages: settings.oppoStages,
-  //   documentUploadModal: opportunity.documentUploadModal,
-  //   adddingDocumentByOpportunityId: opportunity.adddingDocumentByOpportunityId,
-  //   department: auth.userDetails.department,
+
   organization:
     auth.userDetails &&
     auth.userDetails.metaData &&
@@ -406,9 +264,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       handleDocumentUploadModal,
         addOpportunityDocument,
-      //   getOpportunityDocument,
-      //   getOppoStages,
-      //   getLevels,
+     
     },
     dispatch
   );

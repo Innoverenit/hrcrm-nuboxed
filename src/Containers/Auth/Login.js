@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { FormWrapper, Input } from "./styled";
+import { Input } from "./styled";
 import { ValidationError} from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
 import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
@@ -88,7 +88,7 @@ class Login extends Component {
             />
             <br />
 
-            <FormWrapper width="25em">
+            <div class="w-[25rem] p-4  shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
               <Formik
                 enableReinitialize
                 initialValues={{
@@ -158,7 +158,7 @@ class Login extends Component {
               >
                 Forgot password?
               </Link>
-            </FormWrapper>
+            </div>
             <div class="mt-3" />
 
 

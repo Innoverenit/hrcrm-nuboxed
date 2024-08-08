@@ -4,10 +4,10 @@ import { bindActionCreators } from "redux";
 import {  withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Input } from "../../../../Auth/styled";
-import { ValidationError, Title, SubTitle } from "../../../../../Components/UI/Elements";
+import { ValidationError } from "../../../../../Components/UI/Elements";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
 import Button from "antd/lib/button";
-import styled from "styled-components";
+
  import { verifyUserEmailurL ,
   validateEmailOtpurL,
   addEmailLinkSave
@@ -65,15 +65,9 @@ class LinkAccountForm extends Component {
           <div className="forgot_password">
 
             <FlexContainer>
-              <AuthContainer
-                style={{
-                  backgroundColor: "white",
-                  flexDirection: "column",
-                  width: "100%",
-                }}
-              >
-            
-                <FormWrapper>
+            <div class="   min-h- [100vh] overflow-auto flex  flex-col justify-center w-full bg-white items-center ">
+                    
+            <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
                   <Formik
                     initialValues={{
                       emailId: this.props.user.emailId,
@@ -272,9 +266,9 @@ class LinkAccountForm extends Component {
                     )}
                   </Formik>
              
-                </FormWrapper>
+                </div>
              
-              </AuthContainer>
+              </div>
 
             </FlexContainer>
           </div>
@@ -307,34 +301,4 @@ const mapDispatchToProps = (dispatch) =>
   );
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(LinkAccountForm)
-);
-
-const AuthContainer = styled.div`
-  // width: 50%;
-  width:${(props) => props.width || "50%"}
-  min-height: 100vh;
-  overflow: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(${(props) => props.backgroundImage});
-  background-size: cover;
-  @media only screen and (max-width: 37.5em) { 
-   width:100%
-  }
-`;
-const FormWrapper = styled.div`    
-padding: 1rem;
-width: ${(props) => props.width}
-     border-radius: 0.3rem;
-    box-shadow: 0em 0.25em 0.625em -0.125em #444;
-    border: 0.0625em solid #ddd;
-    background: #fff;
-    @media only screen and (max-width: 37.5em) {
-       width:89%
-         }
- @media only screen 
-and (min-device-width : 48em) 
-and (max-device-width : 64em)
-and (-webkit-min-device-pixel-ratio: 2){
-}`;
+);   

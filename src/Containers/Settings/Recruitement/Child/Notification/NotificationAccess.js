@@ -838,7 +838,7 @@ const NotificationAccess = (props) => {
                   />
                 </div>
               </div>
-              <mt-3/>
+              <div class="mt-3" />
               <div class=" flex flex-row flex-wrap items-start self-start justify-around grow shrink h-auto mr-auto ">
                 <div>
                   <h1> Publish Job on Website</h1>

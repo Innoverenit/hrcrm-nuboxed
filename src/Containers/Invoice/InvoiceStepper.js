@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { Button, message } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../Components/UI/Antd";
-import { FlexContainer } from "../../Components/UI/Layout";
 import FirstInvoicePage from "./FirstInvoicePage";
-import ThirdInvoicePage from "./ThirdInvoicePage";
 import SecondInvoicePage from "./SecondInvoicePage";
 
 

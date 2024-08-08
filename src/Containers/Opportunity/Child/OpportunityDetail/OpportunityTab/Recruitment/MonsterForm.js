@@ -6,8 +6,6 @@ import { SelectComponent } from "../../../../../../Components/Forms/Formik/Selec
 import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { StyledLabel } from "../../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
-import { Spacer } from "../../../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import {getJobCategory,getJobBoardName,getJobBoardOccupation,getJobBoardIndustry,addMonster} from "../../../../OpportunityAction";
 
@@ -65,13 +63,9 @@ function MonsterForm(props) {
          onSubmit={(values, { resetForm }) => {
           props.addMonster(
             {
-              ...values,
-              
-
-              // startDate: `${newStartDate}T${newStartTime}`,
+              ...values,             
             },
-            // props.locationDetailsId
-            // props.shiftId,//from headerPart
+     
           );
         }}
       >
@@ -96,7 +90,7 @@ function MonsterForm(props) {
               >
                      
                      <div >
-                <FlexContainer justifyContent="space-between">
+                     <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <StyledLabel>Industry</StyledLabel>
                   <Field
                     name="industry"
@@ -109,11 +103,11 @@ function MonsterForm(props) {
                  options={Array.isArray(jobIndustryOption) ? jobIndustryOption : []}                      
                     inlineLabel
                   />
-                  </FlexContainer>
+                  </div>
                 </div>
 
                      <div >
-                <FlexContainer justifyContent="space-between">
+                     <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <StyledLabel>Job Category</StyledLabel>
                   <Field
                     name="jobCategory"
@@ -126,11 +120,11 @@ function MonsterForm(props) {
                  options={Array.isArray(categoryOption) ? categoryOption : []}                      
                     inlineLabel
                   />
-                  </FlexContainer>
+                  </div>
                 </div>
-                <Spacer />
+                <div class="mt-3" />
                 <div >
-                <FlexContainer justifyContent="space-between">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <StyledLabel>Job Occupation</StyledLabel>
                   <Field
                     name="jobOccupation"
@@ -143,11 +137,11 @@ function MonsterForm(props) {
                     options={Array.isArray(occupationOption) ? occupationOption : []}                      
                     inlineLabel
                   />
-                  </FlexContainer>
+                  </div>
                 </div>
-                <Spacer />
+                <div class="mt-3" />
                       <div >
-                <FlexContainer justifyContent="space-between">
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <StyledLabel>Template</StyledLabel>
                   <Field
                     name="displayTemplate"
@@ -158,12 +152,12 @@ function MonsterForm(props) {
                     component={InputComponent}
                     inlineLabel
                   />
-                  </FlexContainer>
+                  </div>
                 </div>
-                <Spacer />
+                <div class="mt-3" />
              
                 <div >
-                <FlexContainer justifyContent="space-between">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <StyledLabel>Job Duration</StyledLabel>
                   <Field
                     name="jobDuration"
@@ -174,54 +168,15 @@ function MonsterForm(props) {
                     component={InputComponent}
                     inlineLabel
                   />
-                  </FlexContainer>
+                  </div>
                 </div>
-                <Spacer />
-                <div >
-                {/* <Spacer style={{marginTop:"1.25em"}}/>   
-                  <FieldArray
-                    name="address"
-                    label="Address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  /> */}
-                   {/* <FlexContainer justifyContent="space-between">
-                       <div style={{ width: "47%" }}>
-                      <Field
-                        // name="address[0].country"
-                        // The searchselect without create component will work on calling ( isColumnWithoutNoCreate)
-                        name="country"
-                        isColumnWithoutNoCreate
-                        // label="Country"
-
-                        label={
-                          <FormattedMessage
-                            id="app.country"
-                            defaultMessage="Country"
-                          />
-                        }
-                        component={SearchSelect}
-                        defaultValue={{
-                        //   value: this.props.user.country,
-                        }}
-                        value={values.country}
-                        selectType="country"
-                        inlineLabel
-                        isColumn
-                        width="100%"
-                      />
+                <div class="mt-3" />
+                <div >      
                     </div>
-                  </FlexContainer>
-                  <Spacer />   */}
-                      </div>
-                      <Spacer />
+                      <div class="mt-3" />
 
                 <div >
-                <FlexContainer justifyContent="space-between">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <StyledLabel>Job Board Name</StyledLabel>
                   <Field
                     name="jobBoardName"
@@ -234,14 +189,14 @@ function MonsterForm(props) {
                     options={Array.isArray(boardNameOption) ? boardNameOption : []}                      
                     inlineLabel
                   />
-                  </FlexContainer>
+                  </div>
                 </div>
-                <Spacer />
+                <div class="mt-3" />
                
 
                 
-                <Spacer style={{marginTop:"1.25em"}}/>              
-              <FlexContainer justifyContent="flex-end">
+                <div class="mt-3" style={{marginTop:"1.25em"}}/>              
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -251,21 +206,8 @@ function MonsterForm(props) {
                   {/*                     
                     Create */}
                 </Button>
-              </FlexContainer>
-                
-               
-               
-                {/* <div
-                  style={{                   
-                    width: "8%",
-                  }}
-                >
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                   loading={props.addingExperienceForm}
-                  >Add
-                </Button>*/}
+              </div>
+                                           
                 </div>
                 
               </div>

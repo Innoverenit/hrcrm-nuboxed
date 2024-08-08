@@ -2,20 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import { message, } from "antd";
+import { message, Input} from "antd";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { CheckCircleOutlined, EyeInvisibleOutlined, EyeOutlined,
 } from "@ant-design/icons";
-import { AuthContainer, FormWrapper, Input } from "./styled";
 import { ValidationError, Title, SubTitle } from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
 import { changePassword, generateOtpByEmail, validateOtp } from "./AuthAction";
 
-/**
- * yup validation scheme for set Password
- */
 const ChangePasswordSchema = Yup.object().shape({
   password: Yup.string()
     .required("Required")
@@ -62,14 +58,9 @@ class ChangePassword extends Component {
     return (
       <>
         <div class=" flex">
-          <AuthContainer
-            style={{
-              backgroundColor: "#eaedf1",
-              flexDirection: "column",
-              width: "100%",
-            }}
-          >
-            <FormWrapper>
+        <div class="  w-full min-h-[100vh] overflow-auto flex flex-col justify-center items-center bg-[#eaedf1] "> 
+       
+     <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
               <Title>Change Password</Title>
               <SubTitle>Its a good idea to use a strong password.</SubTitle>
            <div class=" mt-4"></div>
@@ -167,10 +158,7 @@ class ChangePassword extends Component {
                         />
                       ) : null}
                     
-
-                    
-
-                 
+                             
                     <div class="mt-2">
                     <Button
                       type="primary"
@@ -191,8 +179,8 @@ class ChangePassword extends Component {
               </Formik>
               <br />
         
-            </FormWrapper>
-          </AuthContainer>
+            </div>
+          </div>
         </div>
       </>
     );

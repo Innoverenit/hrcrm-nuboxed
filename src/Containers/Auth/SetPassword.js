@@ -6,7 +6,7 @@ import { Formik, Form, Field } from "formik";
 import { Button } from "antd";
 import { EyeOutlined, EyeInvisibleOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import * as Yup from "yup";
-import { AuthContainer, FormWrapper, Input } from "./styled";
+import { Input } from "./styled";
 import {
   SubTitle,
   ValidationError,
@@ -74,12 +74,10 @@ class SetPassword extends Component {
     return (
       <>
         <div class="flex justify-between ">
-          <AuthContainer
-            style={{ backgroundColor: "#F5F5F5", flexDirection: "column" }}
-          >
+        <div class="  w-1/2  min-h- [100vh] overflow-auto flex flex-col justify-center items-center bg-[#F5F5F5] ">      
             {/* <img className="big-logo" src={FWLogo} style={{ width: 200 }} /> */}
             <br />
-            <FormWrapper>
+            <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
               <HeaderText>Set your password</HeaderText>
               <SubTitle>You've successfully verified your account. </SubTitle>
               &nbsp;
@@ -189,10 +187,10 @@ class SetPassword extends Component {
                   </Form>
                 )}
               </Formik>
-            </FormWrapper>
+            </div>
         
          
-          </AuthContainer>
+          </div>
        
         </div>
         <div

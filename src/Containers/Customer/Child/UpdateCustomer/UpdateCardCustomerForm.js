@@ -125,7 +125,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                     width: "47%",
                   }}
                 >
-                    <mt-3/>
+                    <div class="mt-3" />
                    <StyledLabel><FormattedMessage id="app.name" defaultMessage="Name" /></StyledLabel>
                   <Field
                     isRequired
@@ -194,7 +194,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                         />                   
                          </div>
                   </div>
-                  <mt-3/>
+                  <div class="mt-3" />
                   <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "46.5%" }}>
                       <FastField                      
@@ -234,7 +234,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                </div>
                  </div>
                 
-                 <mt-3/>
+                 <div class="mt-3" />
                   <Field
                     name="notes"
                     // label="Notes"
@@ -252,7 +252,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                     width: "47%",
                     }}
                 >
-                   <mt-3/>
+                   <div class="mt-3" />
                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                     <Field
@@ -275,7 +275,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                   />
                   </div>
                     </div>
-                    <mt-3/>
+                    <div class="mt-3" />
                     <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
@@ -312,7 +312,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                       />
                     </div>                    
                     </div>
-                   <mt-3/>
+                   <div class="mt-3" />
                   <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
                   <HeaderLabel style={{color:"white"}} >Corporate Address</HeaderLabel>
@@ -334,7 +334,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                                      
                 </div>
               </div>
-              <mt-3/>
+              <div class="mt-3" />
               <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"

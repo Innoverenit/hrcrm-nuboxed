@@ -3,18 +3,12 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as Yup from "yup";
-import { Button, Switch, Icon, Tooltip } from "antd";
+import { Button, Switch } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
-import dayjs from "dayjs";
 import { Spacer } from "../../../Components/UI/Elements";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { DatePicker1 } from "../../../Components/Forms/Formik/DatePicker1";
-import { FlexContainer } from "../../../Components/UI/Layout";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { StyledLabel } from "../../../Components/UI/Elements";
 
 class Rules1Form extends Component {
@@ -55,7 +49,7 @@ class Rules1Form extends Component {
 
                                     }}
                                 >
-                                    <FlexContainer justifyContent="space-between" >
+                                 <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                         <div style={{ width: "50%", marginTop: "0.625em" }}>
                                             <StyledLabel>Stage Progress</StyledLabel>
                                             <Switch
@@ -88,11 +82,11 @@ class Rules1Form extends Component {
                                         )}
 
 
-                                    </FlexContainer>
+                                    </div>
                                     <Spacer />
                                     {
                                         values.type && (
-                                            <FlexContainer justifyContent="space-between">
+                                            <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                                 <div style={{ width: "65%" }}>
                                                     <Field
                                                         name="unit"
@@ -134,7 +128,7 @@ class Rules1Form extends Component {
                                                     />
 
                                                 </div>
-                                            </FlexContainer>
+                                            </div>
                                         )
                                     }
 
@@ -143,7 +137,7 @@ class Rules1Form extends Component {
 
                             </div>
                             <Spacer />
-                            <FlexContainer justifyContent="flex-end">
+                            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                                 <Button
                                     type="primary"
                                     htmlType="submit"
@@ -151,7 +145,7 @@ class Rules1Form extends Component {
                                 >
                                     Add Rule
                                 </Button>
-                            </FlexContainer>
+                            </div>
                         </Form>
                     )}
                 </Formik>

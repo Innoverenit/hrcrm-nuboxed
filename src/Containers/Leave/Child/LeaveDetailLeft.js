@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import StatusCard from "./StatusCard";
 
 class LeaveDetailLeft extends Component {
   render() {
     const { leaveFetching } = this.props;
     return (
-      <FlexContainer
-        flexDirection="column"
-        style={{ display: "block", height: "100%" }}
-      >
+      <div class=" block flex-col flex-wrap items-start self-start justify-start grow shrink h-[100%] mr-auto ">
         <StatusCard leaveFetching={leaveFetching} />
-      </FlexContainer>
+      </div>
     );
   }
 }

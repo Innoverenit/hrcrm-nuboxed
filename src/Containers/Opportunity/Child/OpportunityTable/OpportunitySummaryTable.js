@@ -18,9 +18,7 @@ import { Button, Progress, Tooltip, Avatar, Input, Badge } from "antd";
 import {
   SearchOutlined,
 } from "@ant-design/icons";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import {
-  Spacer,
   MultiAvatar,
   SubTitle,
 } from "../../../../Components/UI/Elements";
@@ -355,14 +353,7 @@ class OpportunitySummaryTable extends Component {
           );
         },
       },
-
-      // {
-      //   //title: "Submitted",
-      //   title: <FormattedMessage id="app.offered" defaultMessage="Submitted" />,
-      //   dataIndex: "offered",
-      //   width: "11%",
-      // },
-
+  
       {
         title: <FormattedMessage id="app.selected" defaultMessage="Selected" />,
         dataIndex: "closedPosition",
@@ -469,7 +460,7 @@ class OpportunitySummaryTable extends Component {
             padding: "0.625em 0em 0.625em 0em",
           }}
         ></div>
-        <FlexContainer>
+ <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           <PDFPreviewTable>
             <StyledTable
               columns={columns}
@@ -492,11 +483,9 @@ class OpportunitySummaryTable extends Component {
                 handleMonsterModal={this.props.handleMonsterModal}
               />
             </Suspense>
-            <Spacer />
-            <FlexContainer
-              justifyContent="flex-end"
-              style={{ padding: "0em 1.25em" }}
-            >
+            <div class="mt-3" />
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto p-[ 0rem 1.25] ">
+           
               <Tooltip // title={"Generate PDF"}
                 title={
                   <FormattedMessage
@@ -541,9 +530,9 @@ class OpportunitySummaryTable extends Component {
                   <PictureAsPdfIcon />
                 </Button>
               </Tooltip>
-            </FlexContainer>
+            </div>
           </PDFPreviewTable>
-        </FlexContainer>
+        </div>
       </>
     );
   }

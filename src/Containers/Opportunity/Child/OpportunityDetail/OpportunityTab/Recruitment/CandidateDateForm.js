@@ -1,29 +1,17 @@
-import React, { Component, useMemo } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { Button } from "antd";
 import {getProjectsData} from "../../../../../Settings/Category/Project/ProjectAction"
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import * as Yup from "yup";
-import { base_url } from "../../../../../../Config/Auth";
-import { Spacer } from "../../../../../../Components/UI/Elements";
-import Clearbit from "../../../../../../Components/Forms/Autocomplete/Clearbit";
-import LazySelect from "../../../../../../Components/Forms/Formik/LazySelect";
+import { Formik, Form, Field } from "formik";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
-import ProgessiveImage from "../../../../../../Components/Utils/ProgressiveImage";
 import { addCandidateDate } from "../../../../OpportunityAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
-import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
 
-/**
- * yup validation scheme for creating a opportunity
- */
 
 class CandidateDateForm extends Component {
   handleReset = (resetForm) => {
@@ -84,18 +72,8 @@ class CandidateDateForm extends Component {
                 finalBilling: parseFloat(values.finalBilling),
                 billableHour: parseFloat(values.billableHour),
 
-                // profileId:this.props.profileId,
-                // onboardInd:true
-                // startDate: dayjs(values.startDate).toISOString(),
-                // endDate: dayjs(values.endDate).toISOString(),
-                // startDate: `${newStartDate}T00:00:00Z`,
-                // endDate: `${newEndDate}T00:00:00Z`,
-
-                // orgId: this.props.organizationId,
-                // userId: this.props.userId,
               },
-              //   this.props.userId,
-              // this.props.customerId,
+           
               resetForm()
             );
           }}
@@ -110,8 +88,8 @@ class CandidateDateForm extends Component {
             ...rest
           }) => (
             <Form className="form-background">
-              <Spacer />
-              <FlexContainer justifyContent="space-between">
+              <div class="mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                 <div style={{ width: "47%" }}>
                   <Field
                     name="projectName"
@@ -159,8 +137,8 @@ class CandidateDateForm extends Component {
                     // options={Array.isArray(currency) ? currency : []}
                   />
                 </div>
-              </FlexContainer>
-              <FlexContainer justifyContent="space-between">
+              </div>
+              <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                 <div style={{ width: "47%" }}>
                   <Field
                     isRequired
@@ -189,8 +167,8 @@ class CandidateDateForm extends Component {
                     }}
                   />
                 </div>
-              </FlexContainer>
-              <FlexContainer justifyContent="space-between">
+              </div>
+              <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                 <div>
                   <Field
                     isRequired
@@ -203,9 +181,9 @@ class CandidateDateForm extends Component {
                     width="100%"
                   />
                 </div>
-              </FlexContainer>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              </div>
+              <div class="mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -214,7 +192,7 @@ class CandidateDateForm extends Component {
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Create */}
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>
