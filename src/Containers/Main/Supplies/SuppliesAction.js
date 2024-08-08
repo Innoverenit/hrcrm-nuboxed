@@ -1076,6 +1076,7 @@ export const uploadMaterialList = (data) => (dispatch) => {
     })
     .then((res) => {
       // dispatch(getProducts(0))
+      window.location.reload()
       dispatch({
         type: types.UPLOAD_MATERIAL_LIST_SUCCESS,
         payload: res.data,

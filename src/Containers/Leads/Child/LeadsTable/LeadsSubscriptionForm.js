@@ -154,130 +154,257 @@
 //   }, dispatch);
 // export default connect(mapStateToProps, mapDispatchToProps)(SuscriptionForm);
 
+// import React, { useEffect, useState } from "react";
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
+// import { Button } from "antd";
+// import { Formik, Form } from "formik";
+// import { Card, Col, Row, Layout } from 'antd';
+// import { getLeadSubscriptionData,addSubscriptionData ,getSubscriptionCompare} from "../../LeadsAction";
+// import dayjs from "dayjs";
+// import { FaFreeCodeCamp, FaRocket, FaBriefcase, FaBuilding } from 'react-icons/fa';
+// const { Header, Content, Footer } = Layout;
+// function LeadsSubscriptionForm(props) {
+//   const data = [
+//     {
+//       callInd: true,
+//       noOfcalls: 5,
+//       perMonthValue: 300,
+//       publishInd: false,
+//       subscriptionName: 'Silver'
+//     },
+//     {
+//       callInd: true,
+//       noOfcalls: 6,
+//       perMonthValue: 700,
+//       publishInd: false,
+//       subscriptionName: 'Diamond'
+//     }
+//   ];
+//    const [workType, setWorkType] = useState("1");
+//    const [highlightedIndex, setHighlightedIndex] = useState(null);
+//    const [clickedIndex, setClickedIndex] = useState(null);
+  
+  
+//   useEffect(() => {
+//    props.getLeadSubscriptionData(props.orgId)
+//    props.getSubscriptionCompare(props.item.leadsId)
+//   }, []);
+
+//   useEffect(() => {
+//     const index = props.subscriptionLeadsData.findIndex(sub => sub.subscriptionId === props.compareSubscription.subscriptionId);
+//     if (index !== -1) {
+//       setHighlightedIndex(index);
+//     }
+//   }, []);
+//   const handleClick = (subscription, index) => {
+//     console.log(subscription);
+//     setClickedIndex(index);
+//     let data={
+//       leadsId: props.item.leadsId,
+//       paymentId: "",
+//       paymentInd: true,
+//       subscriptionId: subscription.subscriptionId,
+//       validationFrom: "",
+//       validationTo: ""
+//     }
+//     props.addSubscriptionData(data)
+//   };
+
+//   const { updateSuscription, updatingSuscrption } = props;
+// // console.log(props.rowData.subscriptionType)
+//   return (
+//     <>
+//       <Layout className="layout">
+   
+//     <Content style={{ padding: '0 50px' }}>
+//       <div className="site-layout-content">
+//         <Row gutter={16}>
+//           {props.subscriptionLeadsData.map((subscription, index) => (
+//             <Col span={8} key={index}>
+//               <Card
+//                 title={subscription.subscriptionName}
+//                 bordered={false}
+//                 style={{
+//                   margin: '10px',
+//                   border: clickedIndex === index 
+//                           ? '2px solid #1890ff' 
+//                           : highlightedIndex === index 
+//                           ? '2px solid #52c41a' // Initial highlight color
+//                           : '1px solid #f0f0f0'
+//                 }}
+//                 hoverable
+               
+//                 onClick={() => handleClick(subscription, index)}
+//               >
+//                 <p>Per Month Value: ${subscription.perMonthValue}</p>
+//                 {subscription.callInd && (
+//                   <p>Calls: {subscription.noOfcalls}</p>
+//                 )}
+//               </Card>
+//             </Col>
+//           ))}
+//         </Row>
+//       </div>
+//     </Content>
+  
+//   </Layout>
+//     </>
+//   );
+// }
+
+// const mapStateToProps = ({ auth,leads, subscription }) => ({
+//   userDetails: auth.userDetails,
+//   user: auth.userDetails,
+//   subscriptionLeadsData:leads.subscriptionLeadsData,
+//   organizationId: auth.userDetails.organizationId,
+//   orgId: auth.userDetails.organizationId,
+//   compareSubscription:subscription.compareSubscription,
+//   updatingSuscrption: subscription.updatingSuscrption,
+// });
+
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators(
+//     {
+//     //   updateSuscription,
+//     getLeadSubscriptionData,
+//     addSubscriptionData,
+//     getSubscriptionCompare
+//     },
+//     dispatch
+//   );
+
+// export default connect(mapStateToProps, mapDispatchToProps)(LeadsSubscriptionForm);
+
+
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
-import { Formik, Form } from "formik";
 import { Card, Col, Row, Layout } from 'antd';
-import { getLeadSubscriptionData } from "../../LeadsAction";
-import dayjs from "dayjs";
-import { FaFreeCodeCamp, FaRocket, FaBriefcase, FaBuilding } from 'react-icons/fa';
-const { Header, Content, Footer } = Layout;
-function LeadsSubscriptionForm(props) {
-  const data = [
-    {
-      callInd: true,
-      noOfcalls: 5,
-      perMonthValue: 300,
-      publishInd: false,
-      subscriptionName: 'Silver'
-    },
-    {
-      callInd: true,
-      noOfcalls: 6,
-      perMonthValue: 700,
-      publishInd: false,
-      subscriptionName: 'Diamond'
-    }
-  ];
-   const [workType, setWorkType] = useState("1");
-  // const [selectedType, setSelectedType] = useState("1");
-  //const [selectedType, setSelectedType] = useState(props.rowData.subscriptionType);
-  const subscriptionPlans = [
-    
-    { 
-      type: "1", 
-      title: "Starter", 
-      price: "9.99", 
-      features: ["Starter features"], 
-      description: "Ideal for individuals and small teams", 
-      icon: <FaRocket /> 
-    },
-    { 
-      type: "2", 
-      title: "Professional", 
-      price: "29.99", 
-      features: ["Professional features"], 
-      description: "Advanced features for professionals and businesses", 
-      icon: <FaBriefcase /> 
-    },
-    { 
-      type: "3", 
-      title: "Enterprise", 
-      price: "50.49", 
-      features: ["All features"], 
-      description: "Tailored solutions for large enterprises", 
-      icon: <FaBuilding /> 
-    },
-    { 
-      type: "4", 
-      title: "Custom", 
-      price: "Contact us", 
-      features: ["All features","Custom solutions"], 
-      description: "Get started with All features Customised", 
-      icon: <FaFreeCodeCamp /> 
-    },
-  ];
-  const handleCardClick = (type) => {
-    setWorkType(type);
-  };
-  // const handleCardClick = (type) => {
-  //   setSelectedType(selectedType === type ? null : type);
-  // };
-  useEffect(() => {
-   props.getLeadSubscriptionData(props.orgId)
-  }, []);
+import { getLeadSubscriptionData, addSubscriptionData, getSubscriptionCompare } from "../../LeadsAction";
 
-  const { updateSuscription, updatingSuscrption } = props;
-// console.log(props.rowData.subscriptionType)
+const { Header, Content, Footer } = Layout;
+
+function LeadsSubscriptionForm(props) {
+  const [highlightedIndex, setHighlightedIndex] = useState(null);
+  const [clickedIndex, setClickedIndex] = useState(null);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+
+  console.log("Component Rendered");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log("Fetching data...");
+        await props.getLeadSubscriptionData(props.orgId);
+        await props.getSubscriptionCompare(props.item.leadsId);
+        console.log("Data fetched successfully");
+        setIsDataLoaded(true);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [props.orgId, props.item.leadsId]);
+
+  useEffect(() => {
+    console.log("Checking if data is loaded", { isDataLoaded, subscriptionLeadsData: props.subscriptionLeadsData, compareSubscription: props.compareSubscription });
+
+    if (isDataLoaded && props.subscriptionLeadsData && props.compareSubscription) {
+      const index = props.subscriptionLeadsData.findIndex(
+        (sub) => sub.subscriptionId === props.compareSubscription.subscriptionId
+      );
+
+      console.log("Highlighted Index:", index);
+
+      if (index !== -1) {
+        setHighlightedIndex(index);
+      } else {
+        console.log("No matching subscriptionId found");
+      }
+    } else {
+      console.log("Data not loaded yet or missing data");
+    }
+  }, [isDataLoaded, props.subscriptionLeadsData, props.compareSubscription]);
+
+  const handleClick = (subscription, index) => {
+    if (highlightedIndex !== index) { // Disable click if highlighted
+      console.log("Card Clicked:", subscription);
+      setClickedIndex(index);
+      let data = {
+        leadsId: props.item.leadsId,
+        paymentId: "",
+        paymentInd: true,
+        subscriptionId: subscription.subscriptionId,
+        validationFrom: "",
+        validationTo: ""
+      };
+      props.addSubscriptionData(data);
+    }
+  };
+console.log(props.compareSubscription)
   return (
-    <>
-      <Layout className="layout">
-   
-    <Content style={{ padding: '0 50px' }}>
-      <div className="site-layout-content">
-        <Row gutter={16}>
-          {props.subscriptionLeadsData.map((subscription, index) => (
-            <Col span={8} key={index}>
-              <Card
-                title={subscription.subscriptionName}
-                bordered={false}
-                style={{ margin: '10px' }}
-                hoverable
-              >
-                <p>Per Month Value: ${subscription.perMonthValue}</p>
-                {subscription.callInd && (
-                  <p>Calls: {subscription.noOfcalls}</p>
-                )}
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </div>
-    </Content>
-  
-  </Layout>
-    </>
+    <Layout className="layout">
+      <Content style={{ padding: '0 50px' }}>
+        <div className="site-layout-content">
+          <Row gutter={16}>
+            {props.subscriptionLeadsData.map((subscription, index) => (
+              <Col span={8} key={index}>
+                <Card
+                  title={subscription.subscriptionName}
+                  bordered={false}
+                  style={{
+                    margin: '10px',
+                    border: clickedIndex === index 
+                      ? '2px solid #1890ff' 
+                      : highlightedIndex === index 
+                      ? '2px solid #52c41a' // Initial highlight color
+                      : '1px solid #f0f0f0',
+                    transition: 'border 0.3s ease', // Smooth transition
+                    //opacity: highlightedIndex === index ? 0.5 : 1
+                  }}
+                  hoverable
+                  onClick={() => handleClick(subscription, index)}
+                >
+                  <p>Per Month Value: ${subscription.perMonthValue}</p>
+                  {subscription.callInd && (
+                    <p>Calls: {subscription.noOfcalls}</p>
+                  )}
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </Content>
+     
+    </Layout>
   );
 }
 
-const mapStateToProps = ({ auth,leads, subscription }) => ({
+const mapStateToProps = ({ auth, leads, subscription }) => ({
   userDetails: auth.userDetails,
   user: auth.userDetails,
-  subscriptionLeadsData:leads.subscriptionLeadsData,
+  subscriptionLeadsData: leads.subscriptionLeadsData,
   organizationId: auth.userDetails.organizationId,
   orgId: auth.userDetails.organizationId,
+  compareSubscription: leads.compareSubscription,
   updatingSuscrption: subscription.updatingSuscrption,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   updateSuscription,
-    getLeadSubscriptionData,
+      getLeadSubscriptionData,
+      addSubscriptionData,
+      getSubscriptionCompare
     },
     dispatch
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeadsSubscriptionForm);
+
+
+
+
+
+
