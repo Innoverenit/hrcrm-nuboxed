@@ -76,6 +76,10 @@ const UpdateAccountForm = ({
     label: `${item.country_name || ""}`,
     value: item.country_id,
   }));
+  const dialCodeOptions = countries.map((item) => ({
+    label: `${item.country_dial_code || ""}`,
+    value: item.country_dial_code,
+  }));
   const customerTypeOptions = customerListData.map((item) => {
     return {
       label: `${item.name}`,
@@ -261,8 +265,10 @@ const UpdateAccountForm = ({
                       }
                       isColumn
                       // width={"100%"}
-                      selectType="dialCode"
-                      component={SearchSelect}
+                      // selectType="dialCode"
+                      // component={SearchSelect}
+                      component={SelectComponent}
+                      options={Array.isArray(dialCodeOptions) ? dialCodeOptions : []}
                       inlineLabel
                     />
                   </div>
