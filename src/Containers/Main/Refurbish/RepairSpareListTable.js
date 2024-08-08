@@ -108,7 +108,7 @@ function RepairSpareListTable(props) {
                                 title="Do you want to delete?"
                                 onConfirm={() => props.deleteSpareList({
                                     userId: props.userId
-                                }, item.phoneSpareId)}
+                                }, item.phoneTaskId)}
                             >
 
                                 <DeleteIcon
@@ -124,6 +124,8 @@ function RepairSpareListTable(props) {
         },
 
     ];
+    console.log(props.phoneTaskId)
+    console.log(props.phoneTaskIdSpareList)
     return (
         <>
             <StyledTable
@@ -158,8 +160,8 @@ const mapStateToProps = ({ distributor, refurbish, auth }) => ({
     updatingSparePacket: refurbish.updatingSparePacket,
     spareList: distributor.spareList,
     userId: auth.userDetails.userId,
-    phoneTaskIdSpareList:refurbish.phoneTaskIdSpareList,
-    fetchingSpareListByPhoneTaskId: refurbish.fetchingSpareListByPhoneTaskId
+    phoneTaskIdSpareList:distributor.phoneTaskIdSpareList,
+    fetchingSpareListByPhoneTaskId: distributor.fetchingSpareListByPhoneTaskId
 });
 
 const mapDispatchToProps = (dispatch) =>
