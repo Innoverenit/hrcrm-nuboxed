@@ -2119,4 +2119,29 @@ export const getProductsByProductId = (productId) => (dispatch) => {
       });
     });
 };
+export const productPUnpblishToggle = ( data,categoryId) => (dispatch) => {
+  dispatch({
+    type: types.PRODUCT_PUNBLISH_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/product/publish/productCategory/${categoryId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
 
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.PRODUCT_PUNBLISH_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.PRODUCT_PUNBLISH_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};

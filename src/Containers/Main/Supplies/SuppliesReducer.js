@@ -155,7 +155,11 @@ const initialState = {
 
     fetchingMaterialsBySuppliesId: false,
                                   fetchingMaterialsBySuppliesIdError:false,
-                                  materialsBySuppliesId:{}        
+                                  materialsBySuppliesId:{},
+                                  
+                                  suppliesPUblishToggle: false,
+                                      suppliesPUblishToggleError: false,
+                                      
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -864,7 +868,26 @@ export const suppliesReducer = (state = initialState, action) => {
                                 };                                      
 
 
-
+                                case types.SUPPLIES_PUNBLISH_TOGGLE_REQUEST:
+                                    return { ...state, suppliesPUblishToggle: true };
+                                  case types.SUPPLIES_PUNBLISH_TOGGLE_SUCCESS:
+                                    return {
+                                      ...state,
+                                      suppliesPUblishToggle: false,
+                                      materialCategorys: state.materialCategorys.map((item) => {
+                                        if (item.categoryId === action.payload.categoryId) {
+                                          return action.payload;
+                                        } else {
+                                          return item;
+                                        }
+                                      }),
+                                    };
+                                  case types.SUPPLIES_PUNBLISH_TOGGLE_FAILURE:
+                                    return {
+                                      ...state,
+                                      suppliesPUblishToggle: false,
+                                      suppliesPUblishToggleError: true,
+                                    };
         default:
             return state;
     }

@@ -1122,3 +1122,29 @@ export const getMaterialsBySuppliesId = (suppliesId) => (dispatch) => {
       });
     });
 };
+export const suppliesPUnpblishToggle = ( data,categoryId) => (dispatch) => {
+  dispatch({
+    type: types.SUPPLIES_PUNBLISH_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/updateCategory/publishInd/${categoryId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.SUPPLIES_PUNBLISH_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SUPPLIES_PUNBLISH_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};

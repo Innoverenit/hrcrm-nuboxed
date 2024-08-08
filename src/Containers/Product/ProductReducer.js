@@ -379,6 +379,9 @@ const initialState = {
   fetchingProductsByProductId: false,
   fetchingProductsByProductIdError: false,
   productsByproductId: {},
+
+  productPUblishToggle: false,
+  productPUblishToggleError:false,
   
 };
 const newDateRange = (dateRange, newDate) =>
@@ -1654,8 +1657,28 @@ export const productReducer = (state = initialState, action) => {
                                               ...state,
                                               fetchingProductsByProductId: false,
                                               fetchingProductsByProductIdError: true,
-                                            };                                      
+                                            };   
 
+                                            case types.PRODUCT_PUNBLISH_TOGGLE_REQUEST:
+                                              return { ...state, productPUblishToggle: true };
+                                            case types.PRODUCT_PUNBLISH_TOGGLE_SUCCESS:
+                                              return {
+                                                ...state,
+                                                productPUblishToggle: false,
+                                                categoryProducts: state.categoryProducts.map((item) => {
+                                                  if (item.categoryId === action.payload.categoryId) {
+                                                    return action.payload;
+                                                  } else {
+                                                    return item;
+                                                  }
+                                                }),
+                                              };
+                                            case types.PRODUCT_PUNBLISH_TOGGLE_FAILURE:
+                                              return {
+                                                ...state,
+                                                productPUblishToggle: false,
+                                                productPUblishToggleError: true,
+                                              };
     default:
       return state;
   }

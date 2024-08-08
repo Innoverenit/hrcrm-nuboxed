@@ -56,7 +56,7 @@ const CompleteOrderTable = (props) => {
     useEffect(() => {
         setPage(page + 1);
         props.getOrderRecords(props.distributorId,"repair");
-        props.getLocationList(props.orgId);
+        // props.getLocationList(props.orgId);
         props.getHighCompleteOrders(props.distributorId,"repair", page, "High");
         props.getMediumCompleteOrders(props.distributorId,"repair", page, "Medium");
         props.getLowCompleteOrders(props.distributorId,"repair", page, "Low")
@@ -1501,7 +1501,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     handleOrderPickupModal,
     removeOrderAcc,
     deleteDistributorData,
-    getLocationList,
+    // getLocationList,
     updateSubOrderAwb,
     getOrderRecords
 }, dispatch);

@@ -45,8 +45,8 @@ useEffect(() => {
         setLoading(true); 
         const itemsToTranslate = [
         'Order',
-         'Item', 
-        'Created Date',
+         'Created Date ', 
+        'Item',
         'Status',
       ];
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -107,7 +107,7 @@ const {handleProcureNotesDrawerModal,
                         <div className=" md:w-[11rem]">{translatedMenuItems[0]} ID</div>
                         <div className=" md:w-[5.4rem]">{translatedMenuItems[1]}</div>
                         <div className=" md:w-[5.4rem]">{translatedMenuItems[2]}</div>
-                        <div className=" md:w-[12rem]">{translatedMenuItems[3]}</div>
+                        <div className=" md:w-[12rem]"></div>
                        
                         <div className="md:w-[1rem]"></div>
         </div>
@@ -140,12 +140,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-
                                 </span>
                               ) : null}
                         </div>
-                       
-                        <div className=" flex   md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs  font-poppins">
-                                {item.category}  {item.attribute}
-                            </div>
-
+                      
                         </div>
                         <div className=" flex   md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
@@ -153,7 +148,11 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-
                             </div>
                     
                         </div>
-                       
+                        <div className=" flex   md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs  font-poppins">
+                                {item.category}  {item.attribute}
+                            </div>
+
                         </div>
                        
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">                                                 

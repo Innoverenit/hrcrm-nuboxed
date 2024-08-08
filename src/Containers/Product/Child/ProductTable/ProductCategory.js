@@ -13,6 +13,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import EditUpload from "../../../../Components/Forms/Edit/EditUpload";
+import ProductCategoryPUnblishToggle from "./ProductCategoryPUnblishToggle";
 
 const CategoryProductModal = lazy(() => import("../CategoryProductModal"));
 
@@ -248,6 +249,12 @@ const DeleteOnClick = async (item) => {
 </div>
 
 </div>
+<div className=" flex  w-[7.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+<ProductCategoryPUnblishToggle item={item}    publishInd={item.publishInd}  categoryId={item.categoryId}/>
+
+
+                    </div>
+
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                      
