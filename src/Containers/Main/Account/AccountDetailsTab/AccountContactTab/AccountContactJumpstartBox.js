@@ -31,7 +31,7 @@ function AccountContactJumpstartBox (props) {
   const [loading2, setLoading2] = useState(false);
     const fetchData2 = async () => {
       try {
-        const response = await axios.get(`${base_url2}/FD2`,{
+        const response = await axios.get(`${base_url2}/payment/clicks`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -48,7 +48,7 @@ function AccountContactJumpstartBox (props) {
     const [loading3, setLoading3] = useState(false);
       const fetchData3 = async () => {
         try {
-          const response = await axios.get(`${base_url2}/FD3`,{
+          const response = await axios.get(`${base_url2}/quotation/cart/clicks`,{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
