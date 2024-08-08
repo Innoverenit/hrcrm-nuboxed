@@ -1,29 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { base_url } from "../../Config/Auth";
-import LazySelect from "../../Components/Forms/Formik/LazySelect";
 import { bindActionCreators } from "redux";
-import { Button, Icon, Switch } from "antd";
-import { Formik, Form, Field, FastField, FieldArray } from "formik";
-import * as Yup from "yup";
-import dayjs from "dayjs";
-import { Spacer, StyledLabel } from "../../Components/UI/Elements";
-
-import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
+import { Button} from "antd";
+import { Formik, Form, FastField } from "formik";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
-import AddressFieldArray from "../../Components/Forms/Formik/AddressFieldArray";
-import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
-import { DatePicker } from "../../Components/Forms/Formik/DatePicker";
-import { TimePicker } from "../../Components/Forms/Formik/TimePicker";
 import //   addEvent,
 //   deleteEvent,
 //   updateEvent,
 //   handleEventModal,
 "./PermissionsAction";
 import { FlexContainer } from "../../Components/UI/Layout";
-import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
-import { StyledPopconfirm } from "../../Components/UI/Antd";
 
 /**
  * yup validation scheme for creating a opportunity

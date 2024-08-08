@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getTaskByPhoneId, deleteTaskList } from "./RefurbishAction"
-import { MainWrapper } from "../../../Components/UI/Elements";
 import { Popconfirm, Tooltip } from "antd";
 import DeleteIcon from '@mui/icons-material/Delete';
-
 
 function QCPhoneTaskList(props) {
     useEffect(() => {
@@ -14,8 +12,7 @@ function QCPhoneTaskList(props) {
 
     return (
         <>
-            <MainWrapper>
-
+<div class="mr-5 ml-5">
                 {props.taskByPhone.map((item) => {
                     return (
                         <div class="cursor-pointer w-[25%] flex justify-center ">
@@ -36,7 +33,7 @@ function QCPhoneTaskList(props) {
                         </div>
                     )
                 })}
-            </MainWrapper>
+            </div>
 
 
         </>

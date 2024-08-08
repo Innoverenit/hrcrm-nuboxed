@@ -1,5 +1,5 @@
 import * as types from "./SuppliersActionType";
-import moment from "moment";
+import dayjs from "dayjs";
 const initialState = {
   dateRangeList: [
     {
@@ -8,10 +8,10 @@ const initialState = {
       value: "FY",
       starter: true,
       isSelected: true,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("year")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("year")
         .toISOString(),
     },
@@ -21,10 +21,10 @@ const initialState = {
       value: "QTD",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("quarter")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("quarter")
         .toISOString(),
     },
@@ -34,10 +34,10 @@ const initialState = {
       value: "MTD",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("month")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("month")
         .toISOString(),
     },
@@ -47,10 +47,10 @@ const initialState = {
       value: "1W",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("week")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("week")
         .toISOString(),
     },
@@ -58,10 +58,10 @@ const initialState = {
   todoDrawerVisible: false,
   timeRangeType: "year",
   isCustomSelected: false,
-  startDate: moment()
+  startDate: dayjs()
     .startOf("year")
     .toISOString(),
-  endDate: moment()
+  endDate: dayjs()
     .endOf("year")
     .toISOString(),
 
@@ -422,16 +422,16 @@ const mergeFiscalAndQuarter = (dateRange, newDate) => {
           newDate.metaData.fiscalMapper.metaData.currentQuarterEndDate +
           "T00:00:00Z",
       };
-      // if (moment().isBetween(moment(q1s), moment(q1e))) {
+      // if (dayjs().isBetween(dayjs(q1s), dayjs(q1e))) {
       //   return { ...date, startDate: q1s, endDate: q1e };
       // }
-      // if (moment().isBetween(moment(q2s), moment(q2e))) {
+      // if (dayjs().isBetween(dayjs(q2s), dayjs(q2e))) {
       //   return { ...date, startDate: q2s, endDate: q2e };
       // }
-      // if (moment().isBetween(moment(q3s), moment(q3e))) {
+      // if (dayjs().isBetween(dayjs(q3s), dayjs(q3e))) {
       //   return { ...date, startDate: q3s, endDate: q3e };
       // }
-      // if (moment().isBetween(moment(q4s), moment(q4e))) {
+      // if (dayjs().isBetween(dayjs(q4s), dayjs(q4e))) {
       //   return { ...date, startDate: q4s, endDate: q4e };
       // }
     } else if (date.value === "FY") {

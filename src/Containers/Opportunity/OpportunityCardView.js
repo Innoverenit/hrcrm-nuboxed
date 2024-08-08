@@ -14,30 +14,28 @@ class OpportunityCardView extends Component {
   render() {
     return (
       <>
-        <CardWrapper>
+     <div class="flex"> 
         { !this.props.fetchingOpportunity && this.props.opportunityByUserId.length === 0 ?<NodataFoundPage />:this.props.opportunityByUserId.map((item,index) =>  {
             return (
-              <CardElement>
-                <CardImage>
-                  <MultiAvatar
-                    // imageId={item.imageId ? item.imageId : ''}
-                    imgHeight={200}
-                    imgWidth={200}
-                    imgRadius={20}
+              <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
+          <div class="w-7 h-7" >
+                  <MultiAvatar             
+                    imgHeight={"1.8rem"}
+                    imgWidth={"1.8rem"}              
                   />
-                </CardImage>
+                </div>
 
-                <CardDescription>
-                  <Header>{item.opportunityName}</Header>
-                  <Price>100</Price>
+                <div>
+                <div class="h-8 overflow-hidden whitespace-nowrap text-lg font-poppins font-bold overflow-ellipsis text-center">{item.opportunityName}</div>
+                  <div class="h-8 font-bold font-poppins text-xs overflow-hidden whitespace-nowrap">100</div>
                   translateText={this.props.translateText}
                 selectedLanguage={this.props.selectedLanguage}
                 translatedMenuItems={this.props.translatedMenuItems}
-                </CardDescription>
-              </CardElement>
+                </div>
+              </div>
             );
           })}
-        </CardWrapper>
+        </div>
       </>
     );
   }
@@ -62,97 +60,4 @@ export default connect(
   mapDispatchToProps
 )(OpportunityCardView);
 
-const MainWrapper = styled.div`
-  /* */
-  margin: 0px 20px;
-  @media only screen and (max-width: 600px) {
-  }
-`;
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
 
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-    flex-direction: column;
-  }
-`;
-const CardElement = styled.div`
-  //   width: 20%;
-  border-radius: 0.2rem;
-  border: 2px solid #eeeeee;
-  background-color: rgb(255, 255, 255);
-  height: 9em;
-  color: rgb(68, 68, 68);
-  margin: 0.3rem;
-  padding: 0.3rem;
-  width: 21vw;
-  //   padding: 0 20px;
-  margin-top: 1.5em;
-  /* margin:0px 20px; */
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-  }
-`;
-const CardDescription = styled.div`
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const CardImage = styled.div`
-  width: 200;
-  height: 200 @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const WithOutImage = styled.div`
-  width: 200px;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  flex-direction:column @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-
-const Header = styled.div`
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1.3em;
-  font-family: Poppins;
-  font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-text-align:center
-  }
-`;
-const Desc = styled.p`
-  height: 0px;
-`;
-const Price = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-`;

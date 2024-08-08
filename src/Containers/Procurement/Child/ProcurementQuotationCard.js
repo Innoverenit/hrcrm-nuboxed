@@ -89,7 +89,7 @@ function ProcurementQuotationCard(props) {
    
               </div>
               <div class="flex  flex-col md:w-[14.35rem] max-sm:flex-row max-sm:justify-between w-full">
-              <p> {moment(item.startDate).format("llll")}</p>
+              <p> {dayjs(item.startDate).format("llll")}</p>
               </div>
         
               </div>

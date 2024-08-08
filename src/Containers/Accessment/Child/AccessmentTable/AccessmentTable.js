@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { getAssessment,handleQuestionrModal } from '../../AccessmentAction';
 import { OnlyWrapCard } from "../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
@@ -41,8 +41,8 @@ setRowData(item)
         <div className="w-12"></div>
             </div>
              {props.assessment.map((item) => {
-               const currentdate = moment().format("DD/MM/YYYY");
-               const date = moment(item.creationDate).format("DD/MM/YYYY");
+               const currentdate = dayjs().format("DD/MM/YYYY");
+               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           return (
 <div>
 <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 ">
@@ -177,7 +177,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AccessmentTable);
 // import { StyledTable } from '../../../../Components/UI/Antd';
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // import "jspdf-autotable";
 // import EditIcon from '@mui/icons-material/Edit';
 // import Highlighter from 'react-highlight-words';
@@ -315,8 +315,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(AccessmentTable);
 //             ...getColumnSearchProps('assessmentName'),
 //             render: (name, item, i) => {
 //               const assessmentNameS = `${item.assessmentName}`;
-//               const currentdate = moment().format("DD/MM/YYYY");
-//         const date = moment(item.creationDate).format("DD/MM/YYYY");
+//               const currentdate = dayjs().format("DD/MM/YYYY");
+//         const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 //               return (
 //                 <>
 //                 <AssessmentDetailsView assessmentId={item.assessmentId} assessmentName={item.assessmentName}/>
@@ -369,7 +369,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AccessmentTable);
 //               return 0;
 //             },
 //             // render: (text, item) => {
-//             //   const time = moment(item.time).format("ll");
+//             //   const time = dayjs(item.time).format("ll");
 //             //   return <span>{time}</span>;
 //             // },
 //         },

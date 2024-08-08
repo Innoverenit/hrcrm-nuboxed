@@ -401,7 +401,6 @@ import {
 } from "../../../../CustomerAction";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
-// import LinkedDocuments from "../../../../../Contact/Child/ContactDetail/ContactTab/Document/LinkedDocuments";
 const { Option } = Select;
 const ButtonGroup = Button.Group;
 const documentSchema = Yup.object().shape({
@@ -583,27 +582,7 @@ function AddDocumentModal (props){
                       width={"100%"}
                       component={TextareaComponent}
                     />
-                  </div>
-                  {/* <div class="mt-1 flex flex-col" >
-<label className=" font-bold text-xs" >Include</label>
-                   <Select
-          showSearch
-          style={{ width: "-webkit-fill-available" }}
-          placeholder="Search or select include"
-          optionFilterProp="children"
-          loading={isLoadingInclude}
-          onFocus={handleSelectIncludeFocus}
-          onChange={handleSelectChangeInclude}
-          defaultValue={selectedIncludeValues} 
-          mode="multiple" 
-        >
-          {include.map(includes => (
-            <Option key={includes.employeeId} value={includes.employeeId}>
-              {includes.empName}
-            </Option>
-          ))}
-        </Select>
-                 </div> */}
+                  </div>           
        <div className="mt-1 flex flex-col">
       
       <div className="flex items-center">
@@ -616,7 +595,7 @@ function AddDocumentModal (props){
       unCheckedChildren="No"
         />
       </div>
-      {showInclude && ( // Conditionally render based on showInclude state
+      {showInclude && (
       <div className="mt-1 flex flex-col">
       <label className="font-bold text-xs">Include</label>
         <Select

@@ -47,7 +47,40 @@ function OrderTableByUserID(props) {
   }, []);
 
   const [particularRowData, setParticularRowData] = useState({});
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+    'Urgent', // 0
+    'Order', // 1
+    ' Customer', // 2
+    'Contact', // 3
+    ' Units', // 4
+    'Owner', // 5
+    ' Supervisor',
+    'Lead',
+   
+    'Created',
+    "High",
+    "Normal"
 
+
+          ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
   useEffect(() => {
     return () => props.emptyOrders();
   }, []);
@@ -135,15 +168,15 @@ const handleLoadMoreLow = () => {
       <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[99%]  bg-transparent font-bold sticky  z-10">
-                        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">Urgent </div>
-                        <div className=" md:w-[10.31rem] ml-2">Order ID</div>
-          <div className=" md:w-[8.6rem]">Customer</div>
-          <div className=" md:w-[4.051rem] ">Contact</div>
-          <div className="md:w-[5.018rem]">Units</div>
-          <div className="md:w-[5.031rem]">Owner</div>
-          <div className="md:w-[5.2rem]">Supervisor</div>
-          <div className="md:w-[5.06rem]">Lead</div>
-          <div className="md:w-[9.73rem]">Created</div>
+                        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
+                        <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
+          <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
+          <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
+          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
           <div className="md:w-24"></div>
                     </div>
 
@@ -173,7 +206,7 @@ const handleLoadMoreLow = () => {
                   <div className=" flex items-center  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                <div class="  text-blue-500  font-poppins font-bold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -189,11 +222,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex  font-bold  w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -211,7 +244,7 @@ const handleLoadMoreLow = () => {
                               ) : null}
                         </div>
 
-                        <div class="max-sm:w-full md:w-[9.02rem]">
+                        <div class="max-sm:w-full md:w-[9.02rem] font-bold">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:text-xs">
                               {item.distributorName}
@@ -384,15 +417,15 @@ const handleLoadMoreLow = () => {
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[99%]  bg-transparent font-bold sticky  z-10">
-                        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
-                        <div className=" md:w-[10.31rem] ml-2">Order ID</div>
-          <div className=" md:w-[8.6rem]">Customer</div>
-          <div className=" md:w-[4.051rem] ">Contact</div>
-          <div className="md:w-[5.012rem]">Units</div>
-          <div className="md:w-[5.031rem]">Owner</div>
-          <div className="md:w-[5.2rem]">Supervisor</div>
-          <div className="md:w-[5.06rem]">Lead</div>
-          <div className="md:w-[9.73rem]">Created</div>
+                        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">{translatedMenuItems[9]} </div>
+                        <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
+          <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
+          <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
+          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
           <div className="md:w-24"></div>
                     </div>
 
@@ -436,11 +469,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex font-bold w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -633,15 +666,15 @@ const handleLoadMoreLow = () => {
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[99%]  bg-transparent font-bold sticky  z-10">
-           <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
-           <div className=" md:w-[10.31rem] ml-2">Order ID</div>
-          <div className=" md:w-[8.6rem]">Customer</div>
-          <div className=" md:w-[4.051rem] ">Contact</div>
-          <div className="md:w-[5.014rem]">Units</div>
-          <div className="md:w-[5.031rem]">Owner</div>
-          <div className="md:w-[5.2rem]">Supervisor</div>
-          <div className="md:w-[5.06rem]">Lead</div>
-          <div className="md:w-[9.73rem]">Created</div>
+           <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">{translatedMenuItems[10]} </div>
+           <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
+          <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
+          <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
+          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
           <div className="md:w-24"></div>
                     </div>
 
@@ -685,11 +718,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex   w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -710,7 +743,7 @@ const handleLoadMoreLow = () => {
 
                         <div class="max-sm:w-full md:w-[9.02rem]">
                           <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:text-xs">
+                            <div class="max-sm:w-full justify-between flex md:text-xs font-bold">
                               {item.distributorName}
                             </div>
                           </Tooltip>
@@ -879,27 +912,37 @@ const handleLoadMoreLow = () => {
                 </div>
             </div >
       <AddNotesOrderDrawer
+       selectedLanguage={props.selectedLanguage}
+       translateText={props.translateText}
         particularRowData={particularRowData}
         addNotesInOrder={props.addNotesInOrder}
         handleNotesModalInOrder={props.handleNotesModalInOrder}
       />
       <AddLeadModal
+       selectedLanguage={props.selectedLanguage}
+       translateText={props.translateText}
         particularRowData={particularRowData}
         addLeadInOrder={props.addLeadInOrder}
         handleLeadModal={props.handleLeadModal}
       />
       <StatusOfOrderModal
+       selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText}
         handleStatusOfOrder={props.handleStatusOfOrder}
         addStatusOfOrder={props.addStatusOfOrder}
         particularRowData={particularRowData}
       />
       <PaidButtonModal
+       selectedLanguage={props.selectedLanguage}
+       translateText={props.translateText}
         type={props.type}
         addPaidButtonModal={props.addPaidButtonModal}
         handlePaidModal={props.handlePaidModal}
         particularRowData={particularRowData}
       />
       <AccountOrderDetailsModal
+       selectedLanguage={props.selectedLanguage}
+       translateText={props.translateText}
         particularRowData={particularRowData}
         handleOrderDetailsModal={props.handleOrderDetailsModal}
         addOrderDetailsModal={props.addOrderDetailsModal} />

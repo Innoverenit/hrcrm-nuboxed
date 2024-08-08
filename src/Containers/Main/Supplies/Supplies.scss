@@ -1,0 +1,33 @@
+.cardDs {
+    display: flex;
+    // flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    width:-webkit-fill-available;  
+  }
+  
+  .cardDs-left {
+    flex: 1;
+    padding: 16px;
+  }
+  
+  .cardDs-left .main-image {
+    width: 18rem;
+    height: 18rem;
+    border-radius: 8px;
+  }
+  
+  .cardDs-right {
+    flex: 2;
+    padding: 16px;
+  }
+  
+  .cardDs-right h2 {
+    margin-top: 0;
+  }
+  
+  .cardDs-bottom {
+    padding: 16px;
+  }
+  

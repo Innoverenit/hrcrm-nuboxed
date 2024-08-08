@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
-import { Spacer } from "../../../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import DragableUpload from "../../../../../../../Components/Forms/Formik/DragableUpload";
 import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSelect";
@@ -153,7 +153,7 @@ class AddSupplierExcleForm extends Component {
                 
               </div>
 
-              <Spacer />
+              <div class=" mt-3" />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   htmlType="submit"

@@ -5,9 +5,8 @@ import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import moment from "moment";
-import { Tooltip, Button,Popconfirm  } from "antd";
 import dayjs from "dayjs";
+import { Tooltip, Button,Popconfirm  } from "antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import {
     getStepperTaskList,
@@ -147,7 +146,7 @@ const cancelEdit = () => {
                     onChange={(e) => setStepName(e.target.value)}
                 />
             ) : (
-                <div className="region">  {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}
+                <div className="region">  {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}
                </div>
             )}
                               
@@ -291,17 +290,3 @@ const cancelEdit = () => {
           );
         }
       }
-      
-      const AppIcon = (props) => (
-        <i
-          className={`fas fa-heartbeat ${props.className}`}
-          style={{ fontSize: "123%" }}
-        ></i>
-      );
-      const PulseIcon = styled(AppIcon)`
-        color: #df9697;
-        &:hover {
-          // background: yellow;
-          color: blue;
-        }
-      `;

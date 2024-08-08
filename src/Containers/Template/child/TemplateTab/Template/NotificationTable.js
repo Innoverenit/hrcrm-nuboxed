@@ -14,7 +14,7 @@ import {
 import { withRouter } from "react-router-dom";
 import NotificationView from "./NotificationView";
 import { getNotificationTemplate,setCurrentNotification } from "../../../../Rules/RulesAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 
 // const data = [{ templateName: "Birthday", date: "29-10-20" }];
@@ -53,7 +53,7 @@ class NotificationTable extends React.Component {
         />,
         width: "15%",
         render: (name, item, i) => {
-          return <span>{moment(item.creationDate).format("YYYY-MM-DD")}</span>;
+          return <span>{dayjs(item.creationDate).format("YYYY-MM-DD")}</span>;
         },
       },
 

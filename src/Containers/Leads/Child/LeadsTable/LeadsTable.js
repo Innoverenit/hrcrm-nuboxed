@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { StyledPopconfirm, StyledTable } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
@@ -11,7 +11,6 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Highlighter from "react-highlight-words";
 import DeleteIcon from "@mui/icons-material/Delete";
-// import { getCountries } from "../../../Auth/AuthAction";
 import {
   getLeads,
   deleteLeadsData,
@@ -20,11 +19,10 @@ import {
   handleLeadsEmailDrawerModal,
   getLeadDetailsById,
 } from "../../../Leads/LeadsAction";
-import { MailOutlined, SearchOutlined } from "@ant-design/icons";
+import {  SearchOutlined } from "@ant-design/icons";
 import { Button, Tooltip, Input } from "antd";
 import StatusCustomerToggle from "./StatusCustomerToggle";
 import { FormattedMessage } from "react-intl";
-import styled from "styled-components";
 import LeadsDetailView from "./LeadsDetailView";
 import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
 import AddLeadsEmailDrawerModal from "../UpdateLeads/AddLeadsEmailDrawerModal";
@@ -55,13 +53,6 @@ const LeadsTable = (props) => {
       value: item.sectorName,
     };
   });
-
-  // const CountryTypeOption = props.countries.map((item) => {
-  //   return {
-  //     text: item.countryAlpha3Code || "",
-  //     value: item.countryAlpha3Code,
-  //   };
-  // });
 
   const ownerlistType = useMemo(() => {
     if (!props.sales) return [];
@@ -202,8 +193,8 @@ const LeadsTable = (props) => {
       ...getColumnSearchProps("name"),
       width: "19%",
       render: (name, item, id) => {
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         return (
           <>
             <LeadsDetailView leadsId={item.leadsId} name={item.name} />
@@ -510,30 +501,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeadsTable);
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-
-const AppIcon1 = (props) => (
-  <BorderColorIcon 
- />
-);
-
-const EditIcon1 = styled(AppIcon1)`
-  color: black;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

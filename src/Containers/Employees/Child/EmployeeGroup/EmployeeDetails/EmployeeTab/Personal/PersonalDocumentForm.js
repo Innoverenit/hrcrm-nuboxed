@@ -85,11 +85,7 @@ class PersonalDocumentForm extends Component {
               <div class=" flex w-full h-full justify-between"
               >
                 <div class=" w-[45%]"
-                >
-                  {/* <FlexContainer flexWrap="no-wrap"> */}
-
-                
-
+                >                         
                   <div class=" flex justify-between mt-3">
                   <div class=" w-[25%]"
                 >
@@ -168,8 +164,7 @@ class PersonalDocumentForm extends Component {
                        />
                     </div>
                   </div>
-                  {/* </FlexContainer> */}
-                
+
                   <div class=" flex justify-between mt-3" >
                   <div class=" w-[47%]" >
                       <Field
@@ -243,11 +238,7 @@ class PersonalDocumentForm extends Component {
                         isColumn
                          />
                     </div>
-                  </div>
-                  {/* <FlexContainer justifyContent="space-between"> */}
-
-                  {/* </FlexContainer> */}
-                 
+                  </div>                           
                 </div>
 
                 <div class=" w-[45%]"

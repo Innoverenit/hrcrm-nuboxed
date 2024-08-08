@@ -14,7 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import { trnasferGrnItemToStock } from "../../../InventoryAction"
 import AllowGrnToggle from './AllowGrnToggle';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { MultiAvatar, StyledLabel } from '../../../../../../Components/UI/Elements';
+import { MultiAvatar } from '../../../../../../Components/UI/Elements';
 
 const { Option } = Select;
 
@@ -322,10 +322,10 @@ const ReceivedDetailCard = (props) => {
                     onOk={handleOk}
                     onCancel={handleCancelmodal}
                 >
-                    <StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">
                         {/* Select from existing GRN */} {props.translatedMenuItems[27]}
 
-                    </StyledLabel>
+                    </div>
                     <div class=" flex justify-evenly">
                         <Switch
                             checked={existGrn}

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { FormattedMessage } from 'react-intl';
 import {getPrograms} from "../../ProgramAction"
 import { Link } from "../../../../Components/Common";
@@ -26,8 +26,8 @@ function ProgramTable (props)  {
         <div className="w-12"></div>
             </div>
              {props.programs.map((item) => {
-               const currentdate = moment().format("DD/MM/YYYY");
-               const date = moment(item.creationDate).format("DD/MM/YYYY");
+               const currentdate = dayjs().format("DD/MM/YYYY");
+               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                const content = item.description;
           return (
 <div>
@@ -69,7 +69,7 @@ function ProgramTable (props)  {
        
 
         <div class=" text-xs  font-semibold  font-poppins">
-        {` ${moment.utc(item.creationDate).format("ll")}`}
+        {` ${dayjs(item.creationDate).format("ll")}`}
                     </div>
     </div>
 
@@ -114,7 +114,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(ProgramTable);
 // import { StyledTable } from '../../../../Components/UI/Antd';
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // import { FormattedMessage } from 'react-intl';
 // import {Button,Input } from "antd";
 // import SearchIcon from '@mui/icons-material/Search';
@@ -253,8 +253,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(ProgramTable);
       
 //           width: "15%",
 //           render: (name, item, id) => {
-//             const currentdate = moment().format("DD/MM/YYYY");
-//             const date = moment(item.creationDate).format("DD/MM/YYYY");
+//             const currentdate = dayjs().format("DD/MM/YYYY");
+//             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 //             return (
 //               <>
 //                 <ProgramDetailsView  programDetailsId={item.programDetailsId} 
@@ -297,8 +297,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(ProgramTable);
 //       dataIndex: "creationDate",
 //       width:"10%",
 //       render: (text, item) => {
-//         // const creationDate = moment(item.creationDate).format("ll");
-//         return <span>{` ${moment.utc(item.creationDate).format("ll")}`}</span>;
+//         // const creationDate = dayjs(item.creationDate).format("ll");
+//         return <span>{` ${dayjs(item.creationDate).format("ll")}`}</span>;
 //     },
 //   },
 //     // {

@@ -13,7 +13,7 @@ import {
 } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { FlexContainer } from "../../../Components/UI/Layout";
-import { Spacer } from "../../../Components/UI/Elements";
+
 
 // import { sharePartner, getsharePartnerUsers } from "../PartnerAction";
 // import { getUsers } from "../../Team/TeamAction";
@@ -116,7 +116,7 @@ function PlannerShareForm(props) {
               </Popconfirm> */}
             </div>
 
-            <Spacer />
+            <div class=" mt-3" />
           </Form>
         )}
       </Formik>

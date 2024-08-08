@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Tooltip } from "antd";
 
 class CandidateDetailView extends Component {
@@ -22,7 +22,7 @@ class CandidateDetailView extends Component {
           value={this.props.candidate.availableDate === null ? "None" :
           <>
           
-          {moment(availableDate).format("ll")}
+          {dayjs(availableDate).format("ll")}
           </>
           }
            />

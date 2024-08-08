@@ -5,7 +5,7 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { FormattedMessage } from "react-intl";
 import { FlexContainer } from "../../../../../../Components/UI/Layout";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
@@ -133,7 +133,7 @@ class ShipperDocumentForm extends Component {
                     height: "100%",
                     width: "45%",
                   }}
-                ><Spacer/>
+                ><div class=" mt-3"/>
                   <Field
                     name="documentId"
                     isRequired
@@ -179,7 +179,7 @@ class ShipperDocumentForm extends Component {
                   />                 
                 </div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   htmlType="submit"

@@ -2717,7 +2717,7 @@ export const checkTaskComplition = (data, phoneId) => (dispatch) => {
       });
     });
 };
-export const addSpareList = (data, phoneId, orderId, cb) => (dispatch) => {
+export const addSpareList = (data, phoneTaskId, orderId, cb) => (dispatch) => {
   // debugger;
   dispatch({ type: types.ADD_SPARE_LIST_REQUEST });
   axios
@@ -2727,9 +2727,15 @@ export const addSpareList = (data, phoneId, orderId, cb) => (dispatch) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Spares Added SucessFully',
+        showConfirmButton: false,
+        timer: 1500,
+      })
       console.log(res);
-      dispatch(getSpareListByPhoneId(phoneId))
-      dispatch(getPhonelistById(orderId))
+      dispatch(getSpareListByPhoneTaskId(phoneTaskId))
+     // dispatch(getPhonelistById(orderId))
       dispatch({
         type: types.ADD_SPARE_LIST_SUCCESS,
         payload: res.data,
@@ -2755,6 +2761,7 @@ export const deleteSpareList = (data, phoneSpareId, orderPhoneId, userId) => (di
       },
     })
     .then((res) => {
+      dispatch(getSpareListByPhoneTaskId(phoneTaskId))
       dispatch({
         type: types.DELETE_SPARE_LIST_SUCCESS,
         payload: res.data,
@@ -2799,6 +2806,34 @@ export const getSpareListByPhoneId = (phoneId) => (
       console.log(err);
       dispatch({
         type: types.GET_SPARE_LIST_BY_PHONEID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSpareListByPhoneTaskId = (phoneTaskId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_SPARE_LIST_BY_PHONETASKID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneSpare/task/spareList/${phoneTaskId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_PHONETASKID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_PHONETASKID_FAILURE,
         payload: err,
       });
     });

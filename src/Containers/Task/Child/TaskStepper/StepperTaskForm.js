@@ -17,7 +17,6 @@ import {
     addStepperTask,
 } from "../../TaskAction";
 import ButtonGroup from "antd/lib/button/button-group";
-import moment from "moment";
 import StepperTaskList from "./StepperTaskList";
 
 const { Option } = Select;
@@ -287,8 +286,8 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (
-                              moment(currentDate).isBefore(
-                                moment(values.startDate)
+                              dayjs(currentDate).isBefore(
+                                dayjs(values.startDate)
                               )
                             ) {
                               return true;

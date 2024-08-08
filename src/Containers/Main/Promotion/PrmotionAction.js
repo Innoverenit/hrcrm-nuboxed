@@ -70,3 +70,151 @@ export const handlePromotionsDrawer = (modalProps) => (dispatch) => {
         });
       });
   };
+
+  export const addingProductToggle = (data,promocodeId,productInd) => (dispatch) => {
+    dispatch({
+      type: types.ADDING_PRODUCT_TOGGLE_REQUEST,
+    });
+    axios
+      .put(`${login_url}/promocode/updateProductInd/${promocodeId}/${productInd}`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+  
+      .then((res) => {
+        console.log(res);
+      // dispatch(getPrmotionData)
+        dispatch({
+          type: types.ADDING_PRODUCT_TOGGLE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADDING_PRODUCT_TOGGLE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const addingMaterialToggle = (data,promocodeId,materialInd) => (dispatch) => {
+    dispatch({
+      type: types.ADDING_MATERIAL_TOGGLE_REQUEST,
+    });
+    axios
+      .put(`${login_url}/promocode/updateMaterialInd/${promocodeId}/${materialInd}`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+  
+      .then((res) => {
+        console.log(res);
+      // dispatch(getPrmotionData)
+        dispatch({
+          type: types.ADDING_MATERIAL_TOGGLE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADDING_MATERIAL_TOGGLE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const addingSuppliesToggle = (data,promocodeId,supplyInventoryInd) => (dispatch) => {
+    dispatch({
+      type: types.ADDING_SUPPLIES_TOGGLE_REQUEST,
+    });
+    axios
+      .put(`${login_url}/promocode/updateSupplierInventoryInd/${promocodeId}/${supplyInventoryInd}`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+  
+      .then((res) => {
+        console.log(res);
+      // dispatch(getPrmotionData)
+        dispatch({
+          type: types.ADDING_SUPPLIES_TOGGLE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADDING_SUPPLIES_TOGGLE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const addingDiscountToggle = (data,promocodeId,discountType) => (dispatch) => {
+    dispatch({
+      type: types.ADDING_DISCOUNT_TOGGLE_REQUEST,
+    });
+    axios
+      .put(`${login_url}/promocode/updateDiscountType/${promocodeId}/${discountType}`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+  
+      .then((res) => {
+        console.log(res);
+      // dispatch(getPrmotionData)
+        dispatch({
+          type: types.ADDING_DISCOUNT_TOGGLE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADDING_DISCOUNT_TOGGLE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const handleUpdatePromotionDrawer = (modalProps) => (dispatch) => {
+    dispatch({ type: types.HANDLE_UPDATE_PROMOTION_DRAWER, payload: modalProps });
+  };
+
+  export const updatePromotions = (data,promocodeId, cb) => (dispatch) => {
+    dispatch({ type: types.UPDATE_PRMOTIONS_REQUEST });
+    axios
+      .put(
+        `${login_url}/promocode/updatePromoCode/${promocodeId}`,data,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.UPDATE_PRMOTIONS_SUCCESS,
+          payload: res.data,
+        });
+        Swal.fire({
+          icon: 'success',
+          title: 'Info Updated Succefully',
+        })
+        cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_PRMOTIONS_FAILURE,
+          payload: err,
+        });
+      });
+  };

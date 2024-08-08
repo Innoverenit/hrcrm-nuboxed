@@ -2,7 +2,6 @@ import React,{ } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { MainWrapper } from "../../../../../Components/UI/Elements";
 import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import {addScheduler,
@@ -43,17 +42,9 @@ function AllCustomerForm(props) {
           ...rest
         }) => (
           <Form className="form-background">
-            <MainWrapper>
-              <div class=" flex justify-evenly h-full w-full items-end"
-                // style={{
-                //   display: "flex",
-                //   justifyContent: "space-evenly",
-                //   height: "100%",
-                //   width: "100%",
-                //   alignItems: "end",
-                // }}
-              >
-                
+         <div class="mr-5 ml-5">  
+              <div class=" flex justify-evenly h-full w-full items-end"             
+              >               
                 <div class=" w-[20%]"  >           
                  
                   <Field
@@ -91,7 +82,7 @@ function AllCustomerForm(props) {
                
               </div>
               <div>Updated on {dayjs(props.scheduler && props.scheduler.length && props.scheduler[0].updationDate).format("ll")} by {props.scheduler && props.scheduler.length && props.scheduler[0].name}</div>             
-            </MainWrapper>
+            </div>
           </Form>
         )}
       </Formik>

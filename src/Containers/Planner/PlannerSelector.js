@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import moment from "moment";
+import dayjs from "dayjs";
 
 const callList = (auth) => auth.callsListByUserId;
 const eventList = (auth) => auth.eventsListByUserId;
@@ -14,12 +14,12 @@ export const holidaySelector = createSelector([holidayList], (plannerHolidays) =
   return plannerHolidays.map((holiday) => {
     var d = new Date();
     console.log(`local sysytem date ${d}`);
-    var holidaysDate = moment(holiday.date);
-    var holidaysendDate = moment(holiday.date);
+    var holidaysDate = dayjs(holiday.date);
+    var holidaysendDate = dayjs(holiday.date);
     console.log(`leave start date ${holidaysDate}`);
     console.log(`leave end date ${holidaysendDate}`);
 
-    if (moment().isBetween(holidaysDate, holidaysendDate)) {
+    if (dayjs().isBetween(holidaysDate, holidaysendDate)) {
       var value = "orange";
     } else {
       var value = "white";
@@ -44,12 +44,12 @@ export const leaveSelector = createSelector([leaveList], (leaves) => {
   return leaves.map((leaves) => {
     var d = new Date();
     console.log(`local sysytem date ${d}`);
-    var leaveDate = moment(leaves.startDate);
-    var leaveendDate = moment(leaves.endDate);
+    var leaveDate = dayjs(leaves.startDate);
+    var leaveendDate = dayjs(leaves.endDate);
     console.log(`leave start date ${leaveDate}`);
     console.log(`leave end date ${leaveendDate}`);
 
-    if (moment().isBetween(leaveDate, leaveendDate)) {
+    if (dayjs().isBetween(leaveDate, leaveendDate)) {
       var value = "orange";
     } else {
       var value = "white";
@@ -74,12 +74,12 @@ export const eventSelector = createSelector([eventList], (events) => {
   return events.map((event) => {
     var d = new Date();
     console.log(`local sysytem date ${d}`);
-    var eventDate = moment(event.startDate);
-    var eventendDate = moment(event.endDate);
+    var eventDate = dayjs(event.startDate);
+    var eventendDate = dayjs(event.endDate);
     console.log(`event start date ${eventDate}`);
     console.log(`event end date ${eventendDate}`);
 
-    if (moment().isBetween(eventDate, eventendDate)) {
+    if (dayjs().isBetween(eventDate, eventendDate)) {
       var value = "orange";
     } else {
       var value = "white";
@@ -104,11 +104,11 @@ export const callSelector = createSelector([callList], (calls) => {
     return calls.map((call) => {
       var d = new Date();
       console.log(`local sysytem date ${d}`);
-      var callDate = moment(call.startDate);
-      var callendDate = moment(call.endDate);
+      var callDate = dayjs(call.startDate);
+      var callendDate = dayjs(call.endDate);
       console.log(`event start date ${callDate}`);
       console.log(`event end date ${callendDate}`);
-      if (moment().isBetween(callDate, callendDate)) {
+      if (dayjs().isBetween(callDate, callendDate)) {
         var value = "orange";
       } else {
         var value = "white";
@@ -132,11 +132,11 @@ export const taskSelector = createSelector([taskList], (tasks) => {
   return tasks.map((task) => {
     var d = new Date();
     console.log(`local sysytem date ${d}`);
-    var taskDate = moment(task.startDate);
-    var taskendDate = moment(task.endDate);
+    var taskDate = dayjs(task.startDate);
+    var taskendDate = dayjs(task.endDate);
     console.log(`event start date ${taskDate}`);
     console.log(`event end date ${taskendDate}`);
-    if (moment().isBetween(taskDate, taskendDate)) {
+    if (dayjs().isBetween(taskDate, taskendDate)) {
       var value = "orange";
     } else {
       var value = "white";
@@ -158,12 +158,12 @@ export const projectSelector = createSelector([projectList], (projects) => {
   return projects.map((project) => {
     var d = new Date();
     console.log(`local sysytem date ${d}`);
-    var projectDate = moment(project.startDate);
-    var projectendDate = moment(project.endDate);
+    var projectDate = dayjs(project.startDate);
+    var projectendDate = dayjs(project.endDate);
     console.log(`project start date ${projectDate}`);
     console.log(`project end date ${projectendDate}`);
 
-    if (moment().isBetween(projectDate, projectendDate)) {
+    if (dayjs().isBetween(projectDate, projectendDate)) {
       var value = "orange";
     } else {
       var value = "white";

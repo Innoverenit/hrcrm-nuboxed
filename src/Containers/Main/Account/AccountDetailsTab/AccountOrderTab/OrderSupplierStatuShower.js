@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button, Rate, Steps } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import {getProcureStatusItem} from "../../AccountAction";
-import moment from 'moment';
+import dayjs from 'dayjs';
 import OrdrSuplrStatusItemCard from "./OrdrSuplrStatusItemCard";
 
 function OrderSupplierStatuShower (props) {
@@ -33,7 +33,7 @@ function OrderSupplierStatuShower (props) {
                         defaultMessage="progress"
                     />,
                     description: <>
-                 <b> {moment(props.statusItems.creationDate).format("DD-MM-YYYY")} </b>
+                 <b> {dayjs(props.statusItems.creationDate).format("DD-MM-YYYY")} </b>
                     </>
                 },
                 {
@@ -44,7 +44,7 @@ function OrderSupplierStatuShower (props) {
                     description:
                         <>
 
-{props.statusItems.paymentType} | {moment(props.statusItems.paymentDate).format("DD-MM-YYYY")}
+{props.statusItems.paymentType} | {dayjs(props.statusItems.paymentDate).format("DD-MM-YYYY")}
 
                         </>
                 },

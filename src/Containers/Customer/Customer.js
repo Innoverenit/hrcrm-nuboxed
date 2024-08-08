@@ -232,6 +232,9 @@ class Customer extends Component {
      <AddCustomerImportModal
         handleCustomerImportModal={this.props.handleCustomerImportModal}
         addCustomerImportModal={this.props.addCustomerImportModal}
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
+       translatedMenuItems={this.props.translatedMenuItems}
         />
          
       </React.Fragment>

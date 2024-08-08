@@ -46,11 +46,11 @@ function LeadRefurbishForm(props) {
         <>
             {props.fetchingDepartments ? <BundleLoader /> :
                 <>
-                    <div class=" flex justify-between">
-                        <div className=" w-[25%]">
-                          
+                    <div class=" flex  justify-evenly">
+                        <div className=" w-[18%]">
+                        <div class=" text-xs font-bold font-poppins">Department</div>
                             <Select
-                                className="w-[250px]"
+                                className="w-[12rem]"
                                 value={department}
                                 onChange={(value) => handleDepartment(value)}
                             >
@@ -60,11 +60,11 @@ function LeadRefurbishForm(props) {
                             </Select>
                         </div>
 
-                        <div className=" w-[25%]">
+                        <div className=" w-[18%]">
                             <div class=" text-xs font-bold font-poppins">Location</div>
                             
                             <Select
-                                className="w-[250px]"
+                                className="w-[12rem]"
                                 value={location}
                                 onChange={(value) => handleLocation(value)}
                             >
@@ -74,10 +74,10 @@ function LeadRefurbishForm(props) {
                             </Select>
                         </div>
 
-                        <div className=" w-[25%]">
+                        <div className=" w-[18%]">
                         <div class=" text-xs font-bold font-poppins">Lead</div>
                             <Select
-                                className="w-[250px]"
+                                className="w-[12rem]"
                                 value={technician}
                                 onChange={(value) => handleTechnician(value)}
                             >
@@ -86,13 +86,13 @@ function LeadRefurbishForm(props) {
                                 })}
                             </Select>
                         </div>
-                        <div class=" flex justify-end  w-[25%]">
+                        <div class=" flex justify-end  w-[18%]">
                         <Button
                             loading={props.addingLead}
                             disabled={!technician.length}
                             type="primary"
                             onClick={handleSubmit}>Submit</Button>
-                    </div>
+                       </div>
                     </div>
                   
                 </>}

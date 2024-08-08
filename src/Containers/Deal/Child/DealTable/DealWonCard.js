@@ -5,7 +5,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
-import { CurrencySymbol } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -34,7 +33,6 @@ import {
          deleteLostOpportunity,
 } from "../../../Opportunity/OpportunityAction";
 import {getWonDeals,handleUpdateDealModal,handleDealsNotesDrawerModal} from "../../DealAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
@@ -56,11 +54,10 @@ function DealWonCard(props) {
           "Investor",//1
           "Sponsor",//2
           "Start Date",//3
-          "Values",//4
+          "Value",//4
           "Stages",//5
           "Sales Rep",//6
-          "Owner",//7
-          "Action",//8
+          "Owner",//7    
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -155,7 +152,6 @@ function DealWonCard(props) {
                 </div>
         <div className="w-[2.71rem] max-xl:text-xs] max-lg:text-[0.45rem]"></div>
         <div className="w-[3.01rem] max-xl:text-xs] max-lg:text-[0.45rem]">
-        {translatedMenuItems[8]}
         {/* action" */}             
                 </div>
       </div>
@@ -192,13 +188,10 @@ function DealWonCard(props) {
             />
 </div>
                                    <div>
-
-                                   </div>
-                                   
+                                   </div>                              
                                         <Tooltip>
                                         <div class=" flex max-sm:w-full  flex-row md:flex-col">                                   
-                                           {/* Name */}
-                                        
+                                           {/* Name */}                                   
                                          <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
                                         <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-sm cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
@@ -239,11 +232,9 @@ function DealWonCard(props) {
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                                     </div>
-                                </div>
-                             
+                                </div>                           
                                 <div className=" flex  w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                  Value
-
+                                  {/* Value */}
                                     <div class=" text-xs  font-poppins text-center max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">              
             &nbsp;
             {item.proposalAmount}
@@ -252,7 +243,7 @@ function DealWonCard(props) {
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex  w-[9.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                               Value
+                               {/* Value */}
 
                                     <div class=" text-xs  font-poppins text-center max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-xs">
                                     <Dropdown
@@ -274,9 +265,8 @@ function DealWonCard(props) {
             >
               <Tooltip title={item.stageName}>
                 {" "}
-                <Progress
-                  type="circle"
-                  style={{ cursor: "pointer", color: "red",fontSize:"1.25" }}
+                <Progress class="cursor-pointer text-red text-lg"
+                  type="circle"              
                   percent={findProbability}
                   width={30}
                   strokeColor={"#005075"}

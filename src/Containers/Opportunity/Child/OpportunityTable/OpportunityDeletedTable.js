@@ -7,7 +7,7 @@ import { SearchOutlined,} from '@ant-design/icons';
 import { CurrencySymbol } from "../../../../Components/Common";
 import { Tooltip, Menu,Input,Button,Progress,Dropdown } from "antd";
 import Highlighter from 'react-highlight-words';
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledTable } from "../../../../Components/UI/Antd";
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -251,7 +251,7 @@ function OpportunityDeletedTable(props) {
         return 0;
       },
       render: (text, item) => {
-        const startDate = moment(item.startDate).format("ll");
+        const startDate = dayjs(item.startDate).format("ll");
         return <span>{startDate}</span>;
       },
     },

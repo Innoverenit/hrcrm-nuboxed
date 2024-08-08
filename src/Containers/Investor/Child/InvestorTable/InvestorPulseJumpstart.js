@@ -171,25 +171,9 @@ render() {
             }
             isLoading={this.props.fetchingInvContactValue} 
             // //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          
-            
-          />
-
-
-       
+          />      
 
         </div>
-
-        {/* <FlexContainer>
-          <JumpStartBox noProgress title="All Products" bgColor="#8791a1" />
-          <JumpStartBox noProgress title="Quantity On Hand" bgColor="#8791a1" />
-          <JumpStartBox
-            noProgress
-            title="Out of Stock Products"
-            bgColor="#8791a1"
-          />
-          <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
-        </FlexContainer> */}
       </div>
       <div class=" text-base justify-center flex font-bold  text-[blue]">Past</div>
         <div class=" flex flex-row w-full mt-4" >
@@ -249,25 +233,8 @@ render() {
                 }
                 isLoading={this.props.fetchingWonINVWeightedValue} 
                 //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-              
-                
               />
-      
-         
-               
-    
             </div>
-    
-            {/* <FlexContainer>
-              <JumpStartBox noProgress title="All Products" bgColor="#8791a1" />
-              <JumpStartBox noProgress title="Quantity On Hand" bgColor="#8791a1" />
-              <JumpStartBox
-                noProgress
-                title="Out of Stock Products"
-                bgColor="#8791a1"
-              />
-              <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
-            </FlexContainer> */}
           </div>
 
           <AddInvestorActivityJumpstartModal

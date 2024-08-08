@@ -6,14 +6,8 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import axios from "axios";
 import { base_url } from "../../../Config/Auth";
-import { FlexContainer } from "../../UI/Layout";
-import { ActionIcon } from "../../Utils";
-import { Spacer } from "../../UI/Elements";
 import { InputComponent } from "../Formik/InputComponent";
-// import { SelectComponent } from "../Formik/SelectComponent";
 import FormikPlacesAutoComplete from "../Formik/FormikPlacesAutoComplete";
-// import { updateAccountAddress } from "../../../Containers/Account/AccountAction";
-// import { updateContactAddress } from "../../../Containers/Contact/ContactAction";
 import { updateUserAddress } from "../../../Containers/Auth/AuthAction";
 import { updateEmployeeAddress } from "../../../Containers/Employees/EmployeeAction";
 import { updateEmergencyAddress } from "../../../Containers/Profile/ProfileAction";
@@ -36,8 +30,6 @@ class EditAddressField extends Component {
       partnerId,
       employeeId,
       emergencyId,
-      // updateContactAddress,
-      // updateAccountAddress,
       updateUserAddress,
       updateEmployeeAddress,
       updatePartnerAddress,
@@ -130,14 +122,7 @@ class EditAddressField extends Component {
                   component={FormikPlacesAutoComplete}
                   options={{}}
                 />
-                <Spacer />
-                {/* <Field
-                name={`address.addressType`}
-                noLabel
-                placeholder='Address type'
-                component={SelectComponent}
-                options={['Office', 'Communication', 'Headquarters', 'Registered']}
-              /> */}
+                <mt-3 />           
                 <Field
                   noLabel
                   placeholder="Address 1"
@@ -194,8 +179,8 @@ class EditAddressField extends Component {
                   component={InputComponent}
                 // defaultValue='low'
                 />
-                <Spacer />
-                <FlexContainer justifyContent="flex-end">
+                <mt-3 />
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button type="primary" htmlType="submit" Loading={isSubmitting}>
                    {/* Save  */}
                    <FormattedMessage
@@ -211,7 +196,7 @@ class EditAddressField extends Component {
                  defaultMessage="Cancel"
                 />
                 </Button>
-                </FlexContainer>
+                </div>
               </Form>
             )}
         </Formik>

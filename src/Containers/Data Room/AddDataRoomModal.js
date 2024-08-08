@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, {  Suspense, Component } from "react";
 import { BundleLoader } from "../../Components/Placeholder";
 import { StyledDrawer, StyledTabs } from "../../Components/UI/Antd";
 import DataRooForm from "./DataRooForm";

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../../../Components/UI/Antd";
 import { Tooltip } from "antd";
 import { getDeletedOrderTableData } from "../../../ShipperAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import OrderDetailsTable from "./OrderDetailsTable";
 import ShipperOrderHistory from "./ShipperOrderHistory";
@@ -114,7 +114,7 @@ function ShipperDeletedOrderTable(props) {
               fontWeight: item.orderStatus === "Completed" ? "bold" : null,
             },
           },
-          children: ` ${moment(item.orderDate).format("ll")}`,
+          children: ` ${dayjs(item.orderDate).format("ll")}`,
         };
       },
     },
@@ -194,7 +194,7 @@ function ShipperDeletedOrderTable(props) {
               fontWeight: item.orderStatus === "Completed" ? "bold" : null,
             },
           },
-          children: ` ${moment(item.subscriptionEndDate).format("ll")}`,
+          children: ` ${dayjs(item.subscriptionEndDate).format("ll")}`,
         };
       },
     },

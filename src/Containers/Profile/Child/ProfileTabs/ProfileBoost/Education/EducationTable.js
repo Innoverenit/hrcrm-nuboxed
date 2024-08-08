@@ -72,7 +72,7 @@ class EducationTable extends Component {
         ),
         dataIndex: "yearOfPassing",
         // render: (name, item, i) => {
-        //   return <span>{moment(item.yearOfPassing).format("LL")}</span>;
+        //   return <span>{dayjs(item.yearOfPassing).format("LL")}</span>;
         // },
       },
       {

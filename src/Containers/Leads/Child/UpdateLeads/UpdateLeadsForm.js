@@ -254,19 +254,7 @@ function UpdateLeadsForm (props) {
             bedrooms:props.setEditingLeads.bedrooms || "",
         
             propertyType:props.setEditingLeads.propertyType || "",
-            assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingLeads.employeeId,
-            // address: [
-            //   {
-            //     addressId: props.setEditingLeads.address.length ? props.setEditingLeads.address[0].addressId : "",
-            //     address1: props.setEditingLeads.address.length ? props.setEditingLeads.address[0].address1 : "",
-            //     address2:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].address2 : "",
-            //     street:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].street : "",
-            //     city:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].city : "",
-            //     state:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].state : "",
-            //     postalCode:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].postalCode : "",  
-            //     country:  props.setEditingLeads.address.length ? props.setEditingLeads.address[0].country : "",            
-            //   },
-            // ],
+            assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingLeads.employeeId,           
                 addressId: props.setEditingLeads.addressId || "",
                 address1: props.setEditingLeads.address1 || "",
                 address2:  props.setEditingLeads.address2 || "",
@@ -316,17 +304,11 @@ function UpdateLeadsForm (props) {
                       <div class=" flex justify-between max-sm:flex-col">
                    {/* saluatation */}
                         <div class=" w-wk max-sm:w-full">
+                          <div class="font-bold text-xs">{translatedMenuItems[0]}</div>
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label= {translatedMenuItems[0]}
-                            // {
-                            //   <FormattedMessage
-                            //     id="app.firstName"
-                            //     defaultMessage="First Name"
-                            //   />
-                            // }
+                            // label="First Name"                    
                             type="text"
                             width={"100%"}
                             isColumn
@@ -337,16 +319,9 @@ function UpdateLeadsForm (props) {
                       </div>                  
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-full">
+                        <div class="font-bold text-xs">{translatedMenuItems[1]}</div>
                           <FastField
-                            name="middleName"
-                            //label="Middle Name"
-                            label={translatedMenuItems[1]}
-                            // {
-                            //   <FormattedMessage
-                            //     id="app.middleName"
-                            //     defaultMessage="Middle"
-                            //   />
-                            // }
+                            name="middleName"                       
                             type="text"
                             width={"100%"}
                             isColumn
@@ -355,16 +330,10 @@ function UpdateLeadsForm (props) {
                           />
                         </div>
                         <div class=" w-1/2 max-sm:w-full">
+                        <div class="font-bold text-xs">{translatedMenuItems[2]}</div>
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            label={translatedMenuItems[2]}
-                            // {
-                            //   <FormattedMessage
-                            //     id="app.lastName"
-                            //     defaultMessage="Last Name"
-                            //   />
-                            // }
+                            //label="Last Name"                                                 
                             type="text"
                             width={"100%"}
                             isColumn
@@ -376,13 +345,11 @@ function UpdateLeadsForm (props) {
                     </div>
                   </div>
                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                  <div class="font-bold text-xs">{translatedMenuItems[3]}</div>
                   <Field
                     name="email"
-                    type="text"                   
-                    label={translatedMenuItems[3]}
-                    // {
-                    //   <FormattedMessage id="app.email" defaultMessage="Email" />
-                    // }
+                    type="text"  
+                       //label="Email"                                        
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -391,7 +358,7 @@ function UpdateLeadsForm (props) {
                     </div>
                     <div class=" flex justify-between">
                     <div class=" w-3/12 max-sm:w-[35%]">
-                  
+                    <div class="font-bold text-xs">{translatedMenuItems[4]}</div>
                       <FastField
                         name="countryDialCode"
                         selectType="dialCode"
@@ -399,14 +366,7 @@ function UpdateLeadsForm (props) {
                         defaultValue={{
                           label:`+${props.user.countryDialCode}`,
                         }}
-                        isColumnWithoutNoCreate
-                        label={translatedMenuItems[4]}
-                        // {
-                        //   <FormattedMessage
-                        //     id="app.countryDialCode"
-                        //     defaultMessage="Dial Code "
-                        //   />
-                        // }
+                        isColumnWithoutNoCreate                    
                         isColumn
                         inlineLabel
                        />
@@ -414,9 +374,8 @@ function UpdateLeadsForm (props) {
                     </div>
                     <div class=" w-8/12">
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
-                      <div> {translatedMenuItems[5]}</div>
-                      <FastField
-                        //isRequired
+                    <div class="font-bold text-xs">{translatedMenuItems[5]}</div>
+                      <FastField               
                         type="text"
                         name="phoneNumber"
                         isColumn
@@ -453,18 +412,14 @@ function UpdateLeadsForm (props) {
                     ) : null}
                   </div>
                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
+                  <div class="font-bold text-xs">{translatedMenuItems[6]}</div>
                   <Field
                     defaultValue={{
                       label: props.setEditingLeads.companyName,
                       value: props.setEditingLeads.companyName,
                     }}
                     name="companyName"
-                    type="text"
-                    //label="Name"
-                    label={translatedMenuItems[6]}
-                    // label={
-                    //   <FormattedMessage id="app.company" defaultMessage="Company" />
-                    // }
+                    type="text"              
                     isColumn
                     width={"100%"}
                     // component={InputComponent}
@@ -475,26 +430,21 @@ function UpdateLeadsForm (props) {
                     />
                     </div>
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                    <div class="font-bold text-xs">{translatedMenuItems[7]}</div>
                   <Field
                     name="url"
                     type="text"
                     // label="URL"
-                    label={translatedMenuItems[7]}
-                    // label={
-                    //   <FormattedMessage id="app.url" defaultMessage="URL" />
-                    // }
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
                     />
                     </div>
-                  
-                  
+                                   
                   <div class=" flex justify-between mt-3">
                   <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
-                   <div  className="font-bold text-xs">
-                   {translatedMenuItems[8]}
+                  <div class="font-bold text-xs">{translatedMenuItems[8]}
                     {/* Sector */}
                     </div>
 
@@ -516,8 +466,7 @@ function UpdateLeadsForm (props) {
       </Select>
                     </div>
                     <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
-                    <div  className="font-bold text-xs">
-                    {translatedMenuItems[9]}
+                    <div class="font-bold text-xs">{translatedMenuItems[9]}
                       {/* Source */}
                       </div>
 
@@ -543,8 +492,7 @@ function UpdateLeadsForm (props) {
               
                 <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">                
-                    <div  className="font-bold text-xs">
-                    {translatedMenuItems[10]}
+                    <div class="font-bold text-xs">{translatedMenuItems[10]}
                       {/* LOB */}
                       </div>
 
@@ -571,17 +519,10 @@ function UpdateLeadsForm (props) {
                 <div class=" flex justify-between max-sm:flex-col mt-3">
                 <div class=" w-w47.5 max-sm:w-wk">
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                    <div class="font-bold text-xs">{translatedMenuItems[11]}</div>
                       <Field
                         name="vatNo"
-                        type="text" 
-                        label=   {translatedMenuItems[11]}
-                        // {
-                        //   <FormattedMessage
-                        //     id="app.vatNumber"
-                        //     defaultMessage="VAT Number"
-                        //   />
-                        // }
-                        //isRequired
+                        type="text"                  
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -591,17 +532,11 @@ function UpdateLeadsForm (props) {
                     </div>
                     <div class="w-w47.5">
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                    <div class="font-bold text-xs">{translatedMenuItems[12]}</div>
                       <Field
                         name="businessRegistration"
                         type="text"
-                        // label="URL"
-                        label=   {translatedMenuItems[12]}
-                        // {
-                        //   <FormattedMessage
-                        //     id="app.registration"
-                        //     defaultMessage="Registration"
-                        //   />
-                        // }
+                        // label="URL"                  
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -617,10 +552,9 @@ function UpdateLeadsForm (props) {
                     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-bold text-xs mt-[0.6rem]" >
-               {translatedMenuItems[13]}
+            <div class="font-bold text-xs">{translatedMenuItems[13]}
           {/*   Assigned */}
-            </Listbox.Label>
+            </div>
           <div className="relative ">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -684,23 +618,7 @@ function UpdateLeadsForm (props) {
       )}
     </Listbox>
                     </div>
-                 
-                  {/* <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
-                  <FieldArray
-                    name="address"
-                    label="Address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                      translateText={props.translateText}
- selectedLanguage={props.selectedLanguage}
-translatedMenuItems={props.translatedMenuItems}
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  />
-                  </div> */}
-                 
+                              
                   {props.orgType==="Real Estate"&&(
                   <div class=" h-3/4  max-sm:w-wk "
                 >
@@ -710,21 +628,10 @@ translatedMenuItems={props.translatedMenuItems}
                         name="bedrooms"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
-                        label="Bedrooms"
-                       
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.tagCompany"
-                        //     defaultMessage="Tag Company"
-                        //   />
-                        // }
+                        label="Bedrooms"                                      
                         options={["1", "2", "3","4","5","6"]}
                         component={SelectComponent}
-                        isColumn
-                        //value={values.customerId}
-                        //isDisabled={defaultCustomers}
-                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                        // defaultValue={defaultCustomers ? defaultCustomers : null}
+                        isColumn                    
                         inlineLabel
                       />
                     </div>
@@ -742,9 +649,7 @@ translatedMenuItems={props.translatedMenuItems}
                             // value={values.source}
                             isColumn
                           />
-                        </div>
-                     
-                    
+                        </div>                                      
                   </div>
                  
                   <div class=" flex justify-between mt-3">         
@@ -762,104 +667,19 @@ translatedMenuItems={props.translatedMenuItems}
                       // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
                       inlineLabel
                     />
-                  </div>
-                
-                  </div>
-                 
-                 
-
-                 
-                  {/* <Field
-                    name="address[0].address1"
-                    // label="Address"
-                    label={
-                      <FormattedMessage
-                        id="app.address[0].address1"
-                        defaultMessage="Address"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  />
-                  */}
-                  {/* <Field
-                    name="address[0].street"
-                    //label="Street"
-
-                    label={
-                      <FormattedMessage
-                        id="app.street"
-                        defaultMessage="Street"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  /> */}
-                 
+                  </div>              
+                  </div>                                                                                
                   <div class=" flex  justify-between mt-3">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div> */}
+                   {/* city */}
                   </div>
-                 
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
+                                  
                 </div>
                 )}
                  <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
+                 <div class="font-bold text-xs">{translatedMenuItems[14]}</div>
                   <Field
                     name="notes"
-                    // label="Notes"
-                    label=     {translatedMenuItems[14]}
-                    // {
-                    //   <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    // }
+                    // label="Notes"                 
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -883,8 +703,7 @@ translatedMenuItems={props.translatedMenuItems}
           )}
         </Formik>
       </>
-    );
-  
+    );  
 }
 
 const mapStateToProps = ({ auth, leads,employee,source, }) => ({

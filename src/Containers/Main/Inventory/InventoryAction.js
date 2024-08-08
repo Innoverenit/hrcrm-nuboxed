@@ -3,7 +3,7 @@ import { base_url } from "../../../Config/Auth";
 import { base_url2 } from "../../../Config/Auth";
 import Swal from "sweetalert2";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 
 export const setInventoryViewType = (viewType) => (dispatch) =>

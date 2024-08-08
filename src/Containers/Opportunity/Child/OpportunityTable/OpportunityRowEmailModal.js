@@ -8,7 +8,7 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, } from "draft-js";
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -271,7 +271,7 @@ formData.append('file', file); // 'file' is the key for the file content
                   <div class=" flex items-center" >
                     {/* <Title type='user' style={{ fontSize: 18, display: 'inline'}} >To</Title> */}
                     <div class="w-[12%]" >
-               <StyledLabel>To</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">To</div>
                     </div>
                     <div class="w-[88%]" >
                       
@@ -284,7 +284,7 @@ formData.append('file', file); // 'file' is the key for the file content
                   </div>
                   <div class=" flex items-center" >
                   <div class=" w-[12%]" >
-               <StyledLabel>CC</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">CC</div>
                     </div>
                     <div class="w-[88%]" >
                       
@@ -298,7 +298,7 @@ formData.append('file', file); // 'file' is the key for the file content
                  
                   {/* <div class=" flex items-center" >
                   <div class=" w-[12%]" >
-               <StyledLabel>BCC</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">BCC</div>
                     </div>
                     <div class="w-[88%]" >
                       
@@ -311,7 +311,7 @@ formData.append('file', file); // 'file' is the key for the file content
                   </div> */}
                   <div class=" flex items-center" >
                   <div class=" w-[12%]" >
-               <StyledLabel>Subject</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">Subject</div>
                     </div>
                     <div class="w-[88%]" >
                       

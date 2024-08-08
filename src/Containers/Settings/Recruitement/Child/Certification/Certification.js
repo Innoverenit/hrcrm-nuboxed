@@ -18,7 +18,7 @@ import {
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import moment from "moment";
+import dayjs from "dayjs";
 const SingleCertification = lazy(() => import("./SingleCertification"));
 
 const Certification = ({
@@ -215,7 +215,7 @@ const Certification = ({
       </div>
       <div>
         Updated on{" "}
-        {moment(
+        {dayjs(
           certifications &&
             certifications.length &&
             certifications[0].updationDate
@@ -278,7 +278,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Certification);
 //   searchCertificationName,
 //   ClearReducerDataOfCertification
 // } from "../Certification/CertificationAction";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // const SingleCertification = lazy(() => import("./SingleCertification"));
 
 // class Certification extends Component {
@@ -526,7 +526,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Certification);
 //             </div>
 //           </MainWrapper>
 //         </div>
-//         <div>Updated on {moment(this.props.certifications && this.props.certifications.length && this.props.certifications[0].updationDate).format("ll")} by {this.props.certifications && this.props.certifications.length && this.props.certifications[0].updatedname}</div>
+//         <div>Updated on {dayjs(this.props.certifications && this.props.certifications.length && this.props.certifications[0].updationDate).format("ll")} by {this.props.certifications && this.props.certifications.length && this.props.certifications[0].updatedname}</div>
 //       </>
 //     );
 //   }

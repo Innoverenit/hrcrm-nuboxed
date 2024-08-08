@@ -92,7 +92,7 @@ const MaterialReceivedTable = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]} ...</div> : null}
-                        height={"71vh"}
+                        height={"67vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
                         {props.materialReceiveData.map((item) => {
@@ -104,7 +104,7 @@ const MaterialReceivedTable = (props) => {
                                         <div class="flex">
 
                                             <div className=" flex  w-[16.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs font-semibold  font-poppins cursor-pointer underline text-blue-600">
+                                                <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         onClick={() => {
                                                             handleRow(item);
@@ -112,7 +112,7 @@ const MaterialReceivedTable = (props) => {
                                                         }}
                                                     >{item.newPoNumber}</div>
                                                     {date === currentdate ? (
-                                                        <div class="text-xs font-bold text-[tomato]">
+                                                        <div class="text-xs font-poppins font-bold text-[tomato]">
                                                           {props.translatedMenuItems[13]}  
                                                           {/* New */}
                                                         </div>
@@ -142,65 +142,9 @@ const MaterialReceivedTable = (props) => {
                                                 {item.supplierName}
                                             </div>
                                         </div>
-                                        {/* <div className=" flex font-medium  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
-         
-                                       
-                                       <Select
-                                                                classNames="w-32"
-                                                                value={selectedRoomId}
-                                                                onChange={(value) => { handleChangeRoomRack(value) }}
-                                                            >
-                                                                {props.roomRackbyLoc.map((s) => (
-                                                                    <Option value={s.roomRackId}>
-                                                                        {s.zone}
-                                                                    </Option>
-                                                                ))}
-                                                            </Select>
-                                                            <Select
-                                                                classNames="w-32"
-                                                                value={selectedChamberId}
-                                                                onChange={(val) => handleChangeChamber(val)}
-                                                            >
-                                                                {props.rackList.map((chamber) => (
-                                                                    <Option value={chamber.roomRackChamberLinkId}>
-                                                                        {chamber.chamber}
-                                                                    </Option>
-                                                                ))}
-                                                            </Select>
-                                                            <Button
-                                                                type="primary"
-                                                                onClick={() => {
-                                                                    handleSubmitRoomRack(item.poSupplierDetailsId)
-                                                                }} >
-                                                                <FormattedMessage
-                                                                    id="app.save"
-                                                                    defaultMessage="Save"
-                                                                />
-                                                            </Button>
-                                                            <Button onClick={() => handleCancelStore()}><FormattedMessage
-                                                                id="app.cancel"
-                                                                defaultMessage="Cancel"
-                                                            /></Button>
-                                                        
-                                                        <>
-                                                           
-                                                        </>
-                    
-</div> */}
+                                      
                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            {/* <div class=" text-xs  font-semibold  font-poppins">
-                                                    {item.zone ? <BorderColorOutlined
-                                                        onClick={() => {
-                                                            handleStore()
-                                                            handleRow(item)
-                                                        }}
-                                                    /> : <Button
-                                                        type="primary"
-                                                        onClick={() => {
-                                                            handleStore()
-                                                            handleRow(item)
-                                                        }}>Send To Store</Button>}
-                                                </div> */}
+                                          
                                         </div>
                                         <div className=" flex  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins cursor-pointer">

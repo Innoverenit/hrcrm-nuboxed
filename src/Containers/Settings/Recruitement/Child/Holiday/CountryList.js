@@ -41,7 +41,7 @@ class CountryList extends PureComponent {
             <>
                 <TabsWrapper>
                 {/* <div class=" flex ">
-<StyledLabel>Optional Allowed</StyledLabel>
+<div class=" text-xs font-bold font-poppins text-black">Optional Allowed</div>
               
                   <Input
                   type="text"

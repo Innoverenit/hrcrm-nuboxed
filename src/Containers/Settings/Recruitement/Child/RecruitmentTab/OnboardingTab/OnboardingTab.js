@@ -8,7 +8,7 @@ import { Button, message, Popconfirm } from "antd";
 import styled from "styled-components";
 import {
   MainWrapper,
-  Spacer,
+  
   TextInput,
 } from "../../../../../../Components/UI/Elements";
 import {
@@ -475,7 +475,7 @@ class OnboardingTab extends Component {
               />
             ))} 
 
-            <Spacer />
+            <div class=" mt-3" />
             {this.state.isTextInputOpen ? (
               <div
                 style={{

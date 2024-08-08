@@ -114,22 +114,22 @@ console.log(page)
                 } `;
               return (
                 <div>
-                  <div className="flex rounded-xl justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  <div className="flex rounded justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
 
                   >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex font-medium flex-col w-[16rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
-                        <div className="flex max-sm:w-auto">
+                      <div className=" flex w-[16rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                        <div className="flex  items-center max-sm:w-auto">
                     
                           <div class="w-[4%]"></div>
 
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                <div class="flex text-xs text-blue-500  font-poppins  cursor-pointer">
 
                                 <span
-                              class="underline cursor-pointer text-[#1890ff]"
+                              class="underline cursor-pointer text-[#1890ff] font-bold"
                               onClick={() => {
                                 handleOrder(item.orderId);
                                 handleSetParticularOrderData(item);
@@ -140,7 +140,7 @@ console.log(page)
 
                               &nbsp;&nbsp;
                               {date === currentdate ? (
-                                <span
+                                <span class=" text-[0.65rem] text-[tomato] font-bold "
                                   style={{
                                     color: "tomato",
                                     fontWeight: "bold",
@@ -153,7 +153,7 @@ console.log(page)
 
                                   &nbsp;&nbsp;
                                   {date === currentdate ? (
-                                    <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
+                                    <div class="text-[0.65rem] mt-[0.4rem] text-[tomato] font-bold"
                                     >
                                       New
                                     </div>
@@ -164,15 +164,15 @@ console.log(page)
                           </div>
                         </div>
                       </div>
-                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[18.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center max-sm:w-auto  w-[18.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs   font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {` ${item.userName} ${dayjs(item.creationDate).format('DD/MM/YYYY')}`}
                         </div>
 
                       </div>
-                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[6.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center max-sm:w-auto  w-[6.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                         {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -182,13 +182,12 @@ console.log(page)
                       </div>
                     </div>
                   <div class=" flex">
-                    <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 
                           {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
                           <div class=" text-xs  font-poppins">
                             <Tooltip title="Notes">
-                              <NoteAltIcon
-                                style={{ cursor: "pointer", color: "green", fontSize: "1rem" }}
+                              <NoteAltIcon className=" cursor-pointer text-green-600 !text-icon"
                                 onClick={() => {
 
                                   props.handleNotesModalInOrder(true);
@@ -203,7 +202,7 @@ console.log(page)
                         </div>
 
 
-                        {/* <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                        {/* <div className=" flex w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title="Status">
                               <EventRepeatIcon
@@ -219,11 +218,11 @@ console.log(page)
 
 
                         </div> */}
-                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title="Collection">
                               <PaidIcon
-                                style={{ cursor: "pointer", fontSize: "1rem", }}
+                               className=" cursor-pointer !text-icon"
                                 onClick={() => {
                                   props.handlePaidModal(true);
                                   handleSetParticularOrderData(item);

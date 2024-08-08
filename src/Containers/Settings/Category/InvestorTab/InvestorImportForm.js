@@ -3,10 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {addInvestorImportForm} from "../InvestorTab/InvestorListAction"
 import { Button,Select } from "antd";
-import { Formik, Form, Field, FieldArray,FastField } from "formik";
-import { Spacer,  } from "../../../../Components/UI/Elements";
+import { Formik, Form } from "formik";
 import { FlexContainer } from "../../../../Components/UI/Layout";
-import ImportTaskUpload from "../../../../Components/Forms/Formik/ImportTaskUpload";
 import CategoryImportUpload from "../../../../Components/Forms/Formik/CategoryImportUpload";
 const ButtonGroup = Button.Group;
 
@@ -94,9 +92,9 @@ class InvestorImportForm extends Component {
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                  
-                  <Spacer />
+                  <div class=" mt-3" />
                 
                     </div>
                     <div
@@ -106,11 +104,11 @@ class InvestorImportForm extends Component {
                       }}
                     >
                   
-                      <Spacer />
+                      <div class=" mt-3" />
                    
 
 
-                      <Spacer style={{ marginBottom: "0.9375em" }} />
+                      <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
 
                 
       
@@ -119,7 +117,7 @@ class InvestorImportForm extends Component {
                     </div>
                   </div>
 
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="flex-end">
                     {/* <Button
                       htmlType="submit"

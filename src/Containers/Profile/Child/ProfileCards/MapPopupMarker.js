@@ -7,7 +7,7 @@ import {
   Title,
   SubTitle,
   JumpStartBox,
-  Spacer,
+  
 } from "../../../../Components/UI/Elements";
 import { AddressComponent } from "../../../../Components/Common";
 import L from "leaflet";
@@ -89,7 +89,7 @@ export default function MapPopupMarker({ mark }) {
               })}
           </div>
         </div>
-        <Spacer />
+        <div class=" mt-3" />
         {/* <FlexContainer style={{ width: "100%" }} justifyContent="space-between">
           <div
             style={{

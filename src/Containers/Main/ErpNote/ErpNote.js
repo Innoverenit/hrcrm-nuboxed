@@ -42,8 +42,8 @@ class ErpNote extends Component {
               )}
           </div>
         </BorderBox>
-        <br />
-        <div style={{ backgroundColor: "#dcdcdc" }}>
+       
+        <div class="  bg-gray-100">
           <ErpNoteForm
            type={this.props.type}
            id={this.props.id}

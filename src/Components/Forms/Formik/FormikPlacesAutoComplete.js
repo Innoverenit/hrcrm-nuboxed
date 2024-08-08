@@ -5,7 +5,6 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import _ from "lodash";
 import styled from "styled-components";
-import { FlexContainer } from "../../UI/Layout";
 
 const StyledInput = styled.input.attrs({
   type: "text",
@@ -170,7 +169,7 @@ class FormikPlacesAutoComplete extends Component {
     if (isColumn) {
       return (
         <>
-          {/* <StyledLabel style={{ marginTop: "0.75em" }}>{label}</StyledLabel> */}
+          {/* <div class=" text-xs font-bold font-poppins style={{ marginTop: "0.75em" }}>{label}</div> */}
           <PlacesAutocomplete
             name={name}
             id={name}
@@ -225,9 +224,8 @@ class FormikPlacesAutoComplete extends Component {
       );
     }
     return (
-      <FlexContainer>
-        {/* <FlexContainer alignItems="center">
-          <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel> */}
+      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+       
         <PlacesAutocomplete
           name={name}
           id={name}
@@ -278,10 +276,7 @@ class FormikPlacesAutoComplete extends Component {
               </AutoCompleteWrapper>
             )}
         </PlacesAutocomplete>
-        {/* </FlexContainer> */}
-        {/* {_.get(touched, field.name) &&
-          _.get(errors, field.name) && <ValidationError>{_.get(errors, field.name)}</ValidationError>} */}
-      </FlexContainer>
+      </div>
     );
   }
 }

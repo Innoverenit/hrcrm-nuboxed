@@ -11,7 +11,7 @@ import { addFeedbackNote } from "./NoteAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { FlexContainer } from "../../Components/UI/Layout";
 import CustomOption from "./CustomOption";
-import { Spacer } from "../../Components/UI/Elements";
+
 import { BorderBox } from "../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
 
@@ -164,9 +164,9 @@ class NoteFormForFeedBack extends Component {
                   <Option value="3">3</Option>
                   <Option value="4">4</Option>
                 </Select> */}
-                <Spacer />
-                <Spacer />
-                <Spacer />
+                <div class=" mt-3" />
+                <div class=" mt-3" />
+                <div class=" mt-3" />
                 <BorderBox style={{ border: "1px solid #aaa" }}>
                   <p>{text}</p>
                   <Rate
@@ -178,7 +178,7 @@ class NoteFormForFeedBack extends Component {
                     title={text}
                   />
                 </BorderBox>
-                <Spacer />
+                <div class=" mt-3" />
                 <FlexContainer justifyContent="flex-end">
                   <Button
                     type="primary"

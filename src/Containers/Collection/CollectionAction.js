@@ -2,7 +2,7 @@ import * as types from "./CollectionActionTypes";
 import { base_url, base_url2 } from "../../Config/Auth";
 import { message } from "antd";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 
 export const setCollectionViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_VENDOR_VIEW_TYPE, payload: viewType });

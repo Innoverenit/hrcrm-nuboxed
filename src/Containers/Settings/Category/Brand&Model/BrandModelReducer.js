@@ -1,5 +1,5 @@
 import * as types from "./BrandModelType";
-import moment from "moment";
+import dayjs from "dayjs";
 
 const initialState = {
     fetchingBrandModel: false,

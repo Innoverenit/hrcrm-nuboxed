@@ -15,6 +15,7 @@ import Highlighter from "react-highlight-words";
 import {SearchOutlined}  from '@ant-design/icons';
 import {getDealContactList,setContactRoleForDeals} from "../../../../DealAction";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
 class LinkedDealContact extends Component {
@@ -23,6 +24,8 @@ class LinkedDealContact extends Component {
     this.state = {
       searchText: "",
     searchedColumn: "",
+     translatedMenuItems: [],
+      loading: true
     };
   }
 
@@ -30,12 +33,38 @@ class LinkedDealContact extends Component {
     this.props.getDealContactList(this.props.dealDetailsbyID.invOpportunityId);
   }
 
+  componentDidMount() {
+    this.props.getCustomerData(this.props.userId);
+    this.props.getDepartments();
+    
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+    // this.props.getCustomerConfigure(this.props.orgId,"add","contact")
+  }
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       'Name', // 0
+'Designation', // 1
+'Function', // 2
+'Email', // 3
+'Mobile'//4
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
   handleAddPlusClick = (contactId) => {
    
     let data = {
       
-      contactRole: "DecisionMaker",
-     
+      contactRole: "DecisionMaker",  
     };
 
     this.props.setContactRoleForDeals(data,contactId);
@@ -44,8 +73,7 @@ class LinkedDealContact extends Component {
    
     let data = {
       
-      contactRole: "Evaluator",
-     
+      contactRole: "Evaluator",  
     };
 
     this.props.setContactRoleForDeals(data,contactId);
@@ -54,8 +82,7 @@ class LinkedDealContact extends Component {
    
     let data = {
       
-      contactRole: "Influencer",
-     
+      contactRole: "Influencer",   
     };
 
     this.props.setContactRoleForDeals(data,contactId);
@@ -92,8 +119,7 @@ class LinkedDealContact extends Component {
             this.handleSearch(selectedKeys, confirm, dataIndex)
           }
           style={{ marginBottom: 8, display: "block" }}
-        />
-        
+        />      
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
@@ -123,8 +149,7 @@ class LinkedDealContact extends Component {
             }}
           >
             Filter
-          </Button>
-        
+          </Button>       
       </div>
     ),
     filterIcon: (filtered) => (
@@ -170,18 +195,39 @@ class LinkedDealContact extends Component {
 
 
   render() {
+    const { loading, translatedMenuItems } = this.state;
     console.log(this.props.dealDetailsbyID.invOpportunityId)
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
+  
+
     return (
       <>
           <div className=' flex  sticky  z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                   <div className=" flex  w-[99%] p-1 bg-trandivrent font-bold sticky  z-10">
                   <div className=" md:w-[2.82rem]"></div>
-                      <div className=" md:w-[12.12rem]">Name</div>
-                      <div className=" md:w-[10.5rem]">Designation</div>
-                      <div className=" md:w-[8.99rem] ">Function</div>
-                      <div className="md:w-[10.7rem]">Email </div>
-                      <div className="md:w-[6.8rem]">Mobile #"</div>
+                      <div className=" md:w-[12.12rem]">
+                      {translatedMenuItems[0]}       
+                        {/* Name */}
+                        </div>
+                      <div className=" md:w-[10.5rem]">
+                      {translatedMenuItems[1]}      
+                        {/* Designation */}
+                        </div>
+                      <div className=" md:w-[8.99rem] ">
+                      {translatedMenuItems[2]}      
+                        {/* Function */}
+                        </div>
+                      <div className="md:w-[10.7rem]">
+                      {translatedMenuItems[3]}      
+                        {/* Email  */}
+                        </div>
+                      <div className="md:w-[6.8rem]">
+                      {translatedMenuItems[4]}      
+                        {/* Mobile #" */}
+                        </div>
                      
                   </div>
                   <div class="overflow-y-auto h-[67vh]">
@@ -196,24 +242,24 @@ class LinkedDealContact extends Component {
                 primaryTitle={item.firstName}
                 // imageId={item.imageId}
                 // imageURL={item.imageURL}
-                imgWidth={"2.5em"}
-                imgHeight={"2.5em"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
                                       </div>
 
-                                      <div className=" flex font-medium   md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
+                                      <div className=" flex   md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
                                           <div class=" text-xs  font-poppins">
                                              {item.fullName}
                                           </div>
 
                                       </div>
-                                      <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
+                                      <div className=" flex  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
                                           <div class=" text-xs  font-poppins">
                                               {item.designation}
                                           </div>
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                                       <div class=" text-xs  font-poppins text-center">
@@ -221,19 +267,19 @@ class LinkedDealContact extends Component {
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                         {item.emailId}
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex   md:w-[10.22rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       {item.countryDialCode} {item.mobileNumber}
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[10.23rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <div class=" flex justify-evenly" >
               <ButtonGroup>
@@ -289,24 +335,18 @@ class LinkedDealContact extends Component {
                       )
                     }
                 />
-              </ButtonGroup>
-            
+              </ButtonGroup>       
             </div>
-
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <StyledPopconfirm
-              placement="bottom"
-              //title="Do you wish to detach?"
+              placement="bottom"          
               title={<FormattedMessage
                 id="app.doyouwishtodetach"
                 defaultMessage="Do you wish to detach?"
-              />}
-            //   onConfirm={() =>
-            //     unlinkContactFromOpportunity(opportunityId, name)
-            //   }
+              />}      
             >
               <ActionIcon
                 tooltipTitle="Detach Contact"
@@ -325,18 +365,10 @@ class LinkedDealContact extends Component {
                       )
                   })}
                   </div>
-              </div>
-             
-              
+              </div>                        
           </div>
       </>
-  )
-    
-
-   
-    
-   
-    
+  )  
   }
 }
 

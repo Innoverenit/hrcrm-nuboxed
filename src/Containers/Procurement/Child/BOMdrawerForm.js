@@ -4,9 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { Button} from "antd";
-import {
-    MainWrapper,
-} from "../../../Components/UI/Elements";
 import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import {AddBOM} from "../ProcurementAction";
@@ -29,9 +26,7 @@ const BOMDrawerForm = (props) => {
           <BOMform/>
           
         </Suspense>
-      </StyledDrawer>
-
-      
+      </StyledDrawer>  
     </>
  );
 
@@ -69,7 +64,7 @@ function BOMform(){
                     values,
                     ...rest
                 }) => (
-                    <MainWrapper style={{ minHeight: "50%" }}>
+                    <div class="mr-5 ml-5 min-h-[50%] ">
                         <Form>
                             <div class="flex justify-between" >
                                 <div class=" h-full w-[45%]">
@@ -142,10 +137,8 @@ function BOMform(){
                                             />
                                             </div>
                                     </div>
-                                </div>
-
-                                    
-                                </div>
+                                </div>                                
+                             </div>
                      
                                 <div class="flex justify-end">
                                         <Button
@@ -157,7 +150,7 @@ function BOMform(){
                                         </Button>
                                     </div>
                         </Form>
-                    </MainWrapper>
+                    </div>
                 )}
             </Formik>
         </>

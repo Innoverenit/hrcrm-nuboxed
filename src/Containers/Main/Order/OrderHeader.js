@@ -15,6 +15,8 @@ class OrderHeader extends Component {
                 <ActionHeader
                     leftComponent={
                         <OrderActionLeft
+                        selectedLanguage={this.props.selectedLanguage}
+                        translateText={this.props.translateText}
                             viewType={viewType}
                             setOrderViewType={setOrderViewType}
                             activeKey={activeKey}

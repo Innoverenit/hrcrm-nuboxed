@@ -13,7 +13,6 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Listbox } from '@headlessui/react'
 import dayjs from "dayjs";
-
 import {UpdateInvestor} from "../../InvestorAction";
 import {getInvestorList} from "../../../Settings/Category/InvestorTab/InvestorListAction";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";

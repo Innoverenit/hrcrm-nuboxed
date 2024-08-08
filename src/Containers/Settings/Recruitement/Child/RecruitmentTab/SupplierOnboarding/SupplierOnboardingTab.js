@@ -8,7 +8,7 @@ import { Button,  message, Popconfirm } from "antd";
 import styled from "styled-components";
 import {
   MainWrapper,
-  Spacer,
+  
   TextInput,
 } from "../../../../../../Components/UI/Elements";
 import {addProcessForSuppOnboarding,
@@ -475,7 +475,7 @@ handleStagePublishClick = (supplierUnboardingStagesId, publishInd) => {
               />
             ))}  
 
-            <Spacer />
+            <div class=" mt-3" />
             {this.state.isTextInputOpen ? (
               <div class=" flex justify-center"
               >

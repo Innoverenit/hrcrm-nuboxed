@@ -27,10 +27,10 @@ const [viewType, setViewType] = useState(null);
     setTeamsAccessInd(false);
   };
 // function handleClear () {
-//   const startDate = moment()
+//   const startDate = dayjs()
 //     .startOf("month")
 //     .toISOString();
-//   const endDate = moment()
+//   const endDate = dayjs()
 //     .endOf("month")
 //     .toISOString();
 //     setcurrentData(currentData);

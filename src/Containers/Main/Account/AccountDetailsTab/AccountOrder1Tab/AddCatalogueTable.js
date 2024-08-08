@@ -3,7 +3,7 @@ import { getProductListByDistributor, addAllProductInOrder } from "../../Account
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Button } from 'antd'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { FormattedMessage } from 'react-intl'
 
 const AddCatalogueTable = (props) => {
@@ -23,9 +23,9 @@ const AddCatalogueTable = (props) => {
             deliveryUnit: "Instance",
             noOfDays: 1,
             orgId: props.orgId,
-            deliveryStartDate: moment(),
-            deliveryEndDate: moment(),
-            subscriptionStartDate: moment()
+            deliveryStartDate: dayjs(),
+            deliveryEndDate: dayjs(),
+            subscriptionStartDate: dayjs()
         }, props.distributorId, props.orderId)
     }
     return (

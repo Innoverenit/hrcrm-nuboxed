@@ -6,7 +6,7 @@ import { Button } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 // import { base_url } from "../../../Config/Auth";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import Clearbit from "../../../../../../Components/Forms/Autocomplete/Clearbit";
 import LazySelect from "../../../../../../Components/Forms/Formik/LazySelect";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
@@ -109,7 +109,7 @@ class OpportunityForm extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <Field
@@ -171,7 +171,7 @@ class OpportunityForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <Field
@@ -242,7 +242,7 @@ class OpportunityForm extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="contactId"
                     selectType="contactOpportunityList"
@@ -264,10 +264,10 @@ class OpportunityForm extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                 </div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   type="primary"

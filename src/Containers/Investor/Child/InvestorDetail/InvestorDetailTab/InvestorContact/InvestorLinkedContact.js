@@ -27,12 +27,39 @@ const InvestorUpdateContactModal = lazy(() =>
 const ButtonGroup = Button.Group;
 
 class InvestorLinkedContact extends Component {
+
   componentDidMount() {
     this.props.getContactListByInvestorId(this.props.investorDetails.investorId);
     this.props.getDesignations();
     this.props.getDepartments();
   }
 
+  componentDidMount() {
+    this.fetchMenuTranslations();
+    this.props.getCustomerConfigure(this.props.orgId,"add","contact")
+  }
+
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       'Name', // 0
+'Sponsor', // 1
+'Start Date', // 2
+'Value', // 3
+'Stages', // 4
+'Status', // 5
+'Assign To', // 6
+'Owner'//7
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
   state = {
     searchText: "",
     searchedColumn: "",
@@ -173,37 +200,37 @@ class InvestorLinkedContact extends Component {
     // }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
     return (
       <>
         <div class="rounded m-1 p-1 w-[99%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
           <div className=" md:w-[16.1rem]">
-        <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
-        <div className=" md:w-[15.1rem]"><FormattedMessage
-                  id="app.Email"
-                  defaultMessage="Email"
-                /></div>
-        <div className="md:w-[8.1rem]"><FormattedMessage
-                  id="app.mobile"
-                  defaultMessage="Mobile #"
-                /></div>
-        <div className="md:w-[8.2rem]"><FormattedMessage
-                  id="app.Department"
-                  defaultMessage="Department"
-                /></div>
-                     <div className="md:w-[9.2rem]"><FormattedMessage
-                  id="app.Designation"
-                  defaultMessage="Designation"
-                /></div>
-        
+          {translatedMenuItems[0]}     
+          {/* Name      */}
+                </div>
+        <div className=" md:w-[15.1rem]">
+       {translatedMenuItems[1]}  
+         {/* Email */}
+                
+                </div>
+        <div className="md:w-[8.1rem]">
+        {translatedMenuItems[2]}  
+          {/* Mobile #" */}
+             </div>
+        <div className="md:w-[8.2rem]">
+        {translatedMenuItems[3]}  
+          {/* Department" */}
+                </div>
+                     <div className="md:w-[9.2rem]">
+                     {translatedMenuItems[4]}  
+                                   {/* Designation" */}            
+                </div>      
         <div className="w-[5.2rem]"></div>
-
-      </div>
-   
-        
+      </div>         
       { !fetchingsInvestorContact && contactsbyInvestorId.length === 0 ?<NodataFoundPage />:contactsbyInvestorId.map((item,index) =>  {
         const dataLoc = ` Address : ${
             item.address && item.address.length && item.address[0].address1
@@ -225,15 +252,13 @@ class InvestorLinkedContact extends Component {
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
-          );
-        
+          );   
                     return (
                         <div class="">
                              <div
               className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
-                                     
-                                     <div className=" flex font-medium  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+               <div className=" flex font-medium  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 <div>
                                 <SubTitle>
@@ -248,10 +273,9 @@ class InvestorLinkedContact extends Component {
           &nbsp;
           <div class="max-sm:w-full">
                                         <Tooltip>
-                                          <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[12rem]">
-                                          
-                                            <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/contact/${item.contactId}`} title={item.fullName}>
+                                          <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[12rem]">                                    
+                                            <div class="text-xs text-blue-500  font-poppins cursor-pointer">
+                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/contact/${item.contactId}`} title={item.fullName}>
       {item.fullName}
   </Link>                                               
          {/* <Link
@@ -260,56 +284,46 @@ class InvestorLinkedContact extends Component {
         >{item.fullName}</Link> */}
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-xs"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
+          <span class="text-[0.65rem] font-bold text-[tomato]"        
           >
             New
           </span>
-        ) : null}
-       
+        ) : null}    
                                             </div>
                                             </div>
                                         </Tooltip>
                                         </div>
                                         </div>
                                 </div>
-                                <div class="flex">
-
-                             
-                                <div className=" flex font-medium  md:w-[13.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div class="flex">                         
+                                <div className=" flex  md:w-[13.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
-                                    <div class="text-sm  font-poppins">
+                                    <div class="text-xs  font-poppins">
                                          {item.emailId}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[7.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                                
-                                  <div class="text-sm  font-poppins">
+                                <div className=" flex  md:w-[7.3rem]  max-sm:flex-row w-full max-sm:justify-between">                                
+                                  <div class="text-xs  font-poppins">
                                   {item.countryDialCode} {item.mobileNumber}
                                   </div>
                               </div>
                               </div>
-                              <div className="flex font-medium  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className="flex md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-  <div className="text-sm  font-poppins text-center">
+  <div className="text-xs font-poppins text-center">
     {item.department}
   </div>
 </div>
-<div className=" flex font-medium  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    
-
-                                    <div class=" text-sm  font-poppins text-center">
+<div className=" flex   md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">                                
+                                    <div class=" text-xs  font-poppins text-center">
                                     {item.designation}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class=" text-xs  font-poppins text-center">
                                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
               <span
                 className="!text-icon cursor-pointer text-[#960a0a]"
@@ -320,10 +334,8 @@ class InvestorLinkedContact extends Component {
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    
-
-                                    <div class=" text-sm  font-poppins text-center">
+                                <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">                                 
+                                    <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title="LinkedIn">
               <span
                 //type="edit"
@@ -336,10 +348,9 @@ class InvestorLinkedContact extends Component {
                 </a>
               </span>
             </Tooltip>
-
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
                                     <div class=" !text-icon  font-poppins text-center">
@@ -356,7 +367,7 @@ class InvestorLinkedContact extends Component {
             </Tooltip>
 
                                     </div>
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class=" text-xs  font-poppins text-center">
                                     <StyledPopconfirm
               placement="bottom"
               //title="Do you wish to detach?"
@@ -365,10 +376,7 @@ class InvestorLinkedContact extends Component {
                   id="app.doyouwishtodetach?"
                   defaultMessage="Do you wish to detach?"
                 />
-              }
-              //   onConfirm={() =>
-              //     unlinkContactFromOpportunity(opportunityId, name)
-              //   }
+              }         
             >
               <ActionIcon
                 //tooltipTitle="Detach Contact"
@@ -384,23 +392,19 @@ class InvestorLinkedContact extends Component {
                 style={{ color: "#fb8500",cursor:"pointer",fontSize:"1.25rem" }}
               />
             </StyledPopconfirm>
-
-                                    </div>
-                                   
-                                </div>
-                             
+                                    </div>                                  
+                                </div>                            
                             </div>
                         </div>
-
-
                     )
-                })}
-                    
+                })}                    
       </div>
         <InvestorUpdateContactModal
            currentRowData={this.state.currentRowData}
           invstrContactUpdateModal={invstrContactUpdateModal}
           handleUpdateInvestorContactModal={handleUpdateInvestorContactModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
       </>
     );

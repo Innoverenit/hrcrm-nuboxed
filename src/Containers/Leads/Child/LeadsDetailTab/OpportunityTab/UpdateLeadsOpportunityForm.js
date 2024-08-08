@@ -8,7 +8,6 @@ import * as Yup from "yup";
 import { getAllSalesList,
   getWorkflow,getStages,
  } from "../../../../Opportunity/OpportunityAction";
-import { Spacer, StyledLabel } from "../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
  import { updateLeadsOpportunity } from "../../../LeadsAction";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
@@ -204,7 +203,7 @@ class UpdateLeadsOpportunityForm extends Component {
           
           <div class=" h-full w-2/4"
           >
-                  <Spacer/>
+                  <div class=" mt-3"/>
                   <Field
                     isRequired
                     name="opportunityName"
@@ -225,7 +224,7 @@ class UpdateLeadsOpportunityForm extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between">
                   <div class=" w-2/4">
                       <Field
@@ -275,7 +274,7 @@ class UpdateLeadsOpportunityForm extends Component {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between">
                   <div class=" w-2/4">
                       <Field
@@ -313,7 +312,7 @@ class UpdateLeadsOpportunityForm extends Component {
                 </div>
                 <div class=" h-full w-2/5"
                 >
-                       <StyledLabel>
+                       <div class=" text-xs font-bold font-poppins text-black">
                     <Field
                     isRequired
                     name="salesUserIds"
@@ -330,7 +329,7 @@ class UpdateLeadsOpportunityForm extends Component {
                     inlineLabel
                    
                   />
-                  </StyledLabel>
+                  </div>
                   <Field
                     name="customerId"
                     isColumnWithoutNoCreate
@@ -346,7 +345,7 @@ class UpdateLeadsOpportunityForm extends Component {
                     value={values.customerId}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="contactId"
                     isColumnWithoutNoCreate
@@ -413,10 +412,10 @@ class UpdateLeadsOpportunityForm extends Component {
                   />
                   </div>
                   </div> 
-                  <Spacer />
+                  <div class=" mt-3" />
                 </div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <div class=" flex justify-end">
                 <Button
                   type="primary"

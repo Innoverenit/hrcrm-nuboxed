@@ -93,10 +93,14 @@ const CustomerGoogleMap = (props) => {
     ]
   };
   console.log(props.selectedCountry)
-const{latitude,longitude}=props.address[0]
+// const{latitude,longitude}=props.address[0]
+  // const center = {
+  //   lat: parseFloat(latitude),
+  //   lng: parseFloat(longitude)
+  // };
   const center = {
-    lat: parseFloat(latitude),
-    lng: parseFloat(longitude)
+    lat: parseFloat(47.3467),
+    lng: parseFloat(43.789)
   };
 
   // const handleMapClick = (event) => {

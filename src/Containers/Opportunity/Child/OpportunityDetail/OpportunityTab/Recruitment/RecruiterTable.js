@@ -2,7 +2,7 @@ import React, { useEffect, useState,useMemo } from "react";
 import { connect } from "react-redux";
 import SkillsLoadMore from "../../../../../Candidate/Child/CandidateTable/SkillsLoadMore";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { getCountries } from "../../../../../Auth/AuthAction";
 import { LinkCandidateRecruit,LinkRecruitCandidate,getSkillsCount,getRecruiter } from "../../../../OpportunityAction";
 import { StyledTable } from "../../../../../../Components/UI/Antd";
@@ -463,11 +463,11 @@ function RecruiterTable(props) {
         return 0;
       },
       render: (text, item) => {
-        const availableDate = moment(item.availableDate).format("ll");
+        const availableDate = dayjs(item.availableDate).format("ll");
         return <>
           {item.availableDate === null ? "None" :
             <span>
-              {moment(item.availableDate).format("l")} &nbsp;&nbsp;
+              {dayjs(item.availableDate).format("l")} &nbsp;&nbsp;
             </span>
           }
         </>
@@ -714,9 +714,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(RecruiterTable);
 // import SkillsLoadMore from "../../../../../Candidate/Child/CandidateTable/SkillsLoadMore";
 // import { FormattedMessage } from "react-intl";
 // import { bindActionCreators } from "redux";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // // import StatusToggle from "./StatusToggle";
-// // import moment from "moment";
+// // import dayjs from "dayjs";
 // // import Highlighter from 'react-highlight-words';
 // // import { EditOutlined, SearchOutlined } from "@ant-design/icons";
 // import { StyledTable } from "../../../../../../Components/UI/Antd";
@@ -1016,11 +1016,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(RecruiterTable);
      
 //     width: "10%",
 //     render: (text, item) => {
-//       const availableDate = moment(item.availableDate).format("ll");
+//       const availableDate = dayjs(item.availableDate).format("ll");
 //       return <>
 //       {item.availableDate === null ? "None" :
 //         <span>
-//           {moment(item.availableDate).format("l")} &nbsp;&nbsp;
+//           {dayjs(item.availableDate).format("l")} &nbsp;&nbsp;
 //         </span>
 //       }
 //     </>

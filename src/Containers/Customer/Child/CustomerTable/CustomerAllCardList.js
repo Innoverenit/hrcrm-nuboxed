@@ -15,7 +15,6 @@ import {
   MultiAvatar2,
  
 } from "../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import { Link } from 'react-router-dom';
 import {
@@ -199,82 +198,50 @@ const [rowdata, setrowdata] = useState("");
        
             <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
             {translatedMenuItems[0]}
-              {/* <FormattedMessage
-                id="app.name"
-                defaultMessage="Name"
-              /> */}
+              {/* name */}
             </div> 
             <div className=" w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-            {translatedMenuItems[1]}
-              {/* <FormattedMessage
-                id="app.work"
-                defaultMessage="Work"
-              /> */}
-
+            {translatedMenuItems[1]}          
+                {/* defaultMessage="Work" */}
+            
             </div>
             <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
-            {translatedMenuItems[2]}
-              {/* <FormattedMessage
-                id="app.sector"
-                defaultMessage="Sector"
-              /> */}
-
+            {translatedMenuItems[2]}     
+                {/* defaultMessage="Sector" */}
             </div>
             <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-            {translatedMenuItems[3]}
-              {/* <FormattedMessage
-                id="app.source"
-                defaultMessage="Source"
-              /> */}
-
+            {translatedMenuItems[3]}      
+                {/* defaultMessage="Source" */}
+           
             </div>
             <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] max-lg:w-[3.35rem] ">
              
             </div>
             <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
-            {translatedMenuItems[4]}
-              {/* <FormattedMessage
-                id="app.quotation"
-                defaultMessage="Quotation"
-              /> */}
-
+            {translatedMenuItems[4]}            
+                {/* defaultMessage="Quotation" */}
+      
             </div>
             <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.8rem]">
-            {translatedMenuItems[5]}
-              {/* <FormattedMessage
-                id="app.pipeline"
-                defaultMessage="Pipeline"
-              /> */}
-
-            </div>
-           
+            {translatedMenuItems[5]}            
+                {/* defaultMessage="Pipeline" */}
+       
+            </div>      
             <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
-            {translatedMenuItems[6]}
-              {/* <FormattedMessage
-                id="app.assignedTo"
-                defaultMessage="Assigned"
-              /> */}
-
+            {translatedMenuItems[6]}            
+           {/* ="Assigned" */}
+             
             </div>
             <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.8rem] max-lg:w-[6.2rem]">
               {translatedMenuItems[7]}  
-             {/* <FormattedMessage
-                id="app.owner"
-                defaultMessage="Owner"
-              /> */}
+           {/* owner */}
 
             </div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {translatedMenuItems[8]}
-              {/* <FormattedMessage
-                id="app.customer"
-                defaultMessage="Customer"
-              /> */}
+             {/* customer */}
             </div>
             <div className="w-[3.8rem]"></div>
-
-         
-
       </div>
         <InfiniteScroll
         dataLength={allCustomers.length}
@@ -339,8 +306,7 @@ const [rowdata, setrowdata] = useState("");
     >
             New
           </div>
-        ) : null}
-       
+        ) : null}   
                                             </div>
                                             </div>
                                         </Tooltip>
@@ -356,8 +322,7 @@ const [rowdata, setrowdata] = useState("");
                                 
                                 </div> 
                                 <div className=" flex  max-sm:w-auto items-center  w-[7.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
-
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+            {/* sector */}
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.sector}
                         </div>
@@ -429,7 +394,7 @@ const [rowdata, setrowdata] = useState("");
              
                                     </div>
                                 </div>
-                                <div className=" flex items-center flex-col w-[6rem] max-xl:w-[5rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between mb-2 ">
+                                <div className=" flex items-center  w-[6rem] max-xl:w-[5rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between mb-2 ">
                        
                      
 
@@ -511,8 +476,6 @@ const [rowdata, setrowdata] = useState("");
                           </div>
                         </div>
                         <div>
-
-
                         </div>
                       </div>
 
@@ -541,7 +504,6 @@ const [rowdata, setrowdata] = useState("");
 
                             />
                           </Tooltip>
-
                         </div>
                       </div>
                       <div class="flex w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
@@ -615,8 +577,6 @@ const [rowdata, setrowdata] = useState("");
                     </div>
                             </div>
                         </div>
-
-
                     )
                 })}
                 </InfiniteScroll>

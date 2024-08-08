@@ -58,22 +58,7 @@ class ContactInvestDetailTab extends Component {
                   </span>
                   {activeKey === "1" && (
                     <>
-                    {/* <PlusOutlined
-                        type="plus"
-                        // tooltipTitle="Upload Document"
-                        tooltiptitle={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
-                        onClick={() => handleDocumentUploadModal(true)}
-                        size="14px"
-                        style={{
-                          marginLeft: "0.25em",
-                          verticalAlign: "center",
-                        }}
-                      /> */}
+                  
                     </>
                   )}
                 </>
@@ -84,37 +69,7 @@ class ContactInvestDetailTab extends Component {
                 {" "}
                 <LinkedDealTable contactInVestDetail={this.props.contactInVestDetail}/>
               </Suspense>
-            </TabPane>
-
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <NoteAltIcon style={{ fontSize: "1.1rem" }} />
-                    &nbsp;
-                    <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    &nbsp;
-                    {activeKey === "2" && (
-                      <>
-                        <Tooltip title="Voice to Text">
-                          <span
-                            onClick={() => handleContactReactSpeechModal(true)}
-                          >
-                            <MicIcon style={{ fontSize: "1.1rem" }} />
-                          </span>
-                        </Tooltip>
-                      </>
-                    )}
-                  </span>
-                </>
-              }
-              key="2"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <LinkedContactInvestNotes contactInVestDetail={this.props.contactInVestDetail}/>
-              </Suspense>
-            </TabPane> */}
+            </TabPane>       
             <TabPane
               tab={
                 <>
@@ -152,7 +107,9 @@ class ContactInvestDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedContactInvestDocuments contactInVestDetail={this.props.contactInVestDetail}/>
+                <LinkedContactInvestDocuments contactInVestDetail={this.props.contactInVestDetail}
+                
+                />
               </Suspense>
             </TabPane>
             <TabPane
@@ -204,44 +161,30 @@ contactInVestDetail={this.props.contactInVestDetail}
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
         <AddDocumentModals
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
             contactId={contactId}
           />
                <ContactInvestorActivityModal
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage}
+                    translatedMenuItems={this.props.translatedMenuItems}
              contactInVestDetail={this.props.contactInVestDetail}
              contactInvestorActivityModal={contactInvestorActivityModal}
        handleContactInvestActivityModal={handleContactInvestActivityModal}
-        />
-        {/*  <AddContactOpportunityModal
-            addContactOpportunityModal={addContactOpportunityModal}
-            handleContactOpportunityModal={handleContactOpportunityModal}
-            defaultContacts={[
-              {
-                label: `${firstName || ""} ${middleName || ""} ${lastName ||
-                  ""}`,
-                value: contactId,
-              },
-            ]}
-            contactId={{ value: contactId }}
-            callback={() => getOpportunityListByContactId(contactId)}
-          />
-           <ReactContactSpeechModal
-           contactId={ contactId }
-          handleContactReactSpeechModal={handleContactReactSpeechModal}
-          addContactSpeechModal={addContactSpeechModal}
-          /> */}
+        />  
         </Suspense>
       </>
     );
   }
 }
 const mapStateToProps = ({ contact,contactinvest }) => ({
-  //   addContactSpeechModal:contact.addContactSpeechModal,
     documentUploadModal: contact.documentUploadModal,
     contactId:contact.contact.contactId,
     contactInvestorActivityModal:contactinvest.contactInvestorActivityModal,
-  //   addContactOpportunityModal: contact.addContactOpportunityModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

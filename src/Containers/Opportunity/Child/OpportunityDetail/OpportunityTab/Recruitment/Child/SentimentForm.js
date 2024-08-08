@@ -9,7 +9,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { Button ,Tooltip} from "antd";
 import { Formik, Form, Field } from "formik";
 import { FormattedMessage } from "react-intl";
-import { Spacer } from "../../../../../../../Components/UI/Elements";
+
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
@@ -77,7 +77,7 @@ function SentimentForm(props) {
                   }}
                 >
                  
-                  <Spacer />
+                  <div class=" mt-3" />
                   
                 
 
@@ -148,7 +148,7 @@ function SentimentForm(props) {
                   }}
                 ></div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   type="primary"

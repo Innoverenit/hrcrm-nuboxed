@@ -5,7 +5,7 @@ import {
   Title,
   SubTitle,
   MultiAvatar,
-  StyledLabel,
+  
 } from "../../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { getQuotation } from "../../../OpportunityAction";

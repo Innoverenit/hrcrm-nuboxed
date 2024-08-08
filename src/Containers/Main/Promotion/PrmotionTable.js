@@ -2,7 +2,8 @@ import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-  getPrmotionData
+  getPrmotionData,
+  handleUpdatePromotionDrawer
 } from "./PrmotionAction";
 import dayjs from "dayjs";
 import TokenIcon from '@mui/icons-material/Token';
@@ -10,12 +11,16 @@ import {  Tooltip } from "antd";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FilterTiltShiftIcon from "@mui/icons-material/FilterTiltShift";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { Switch, Popconfirm } from "antd";
-
+import PrmotionProductionToggle from "./PrmotionProductionToggle";
+import PrmotionMaterialToggle from "./PrmotionMaterialToggle";
+import PrmotionSupplierInventoryToggle from "./PrmotionSupplierInventoryToggle";
+import PrmotionDiscountToggle from "./PrmotionDiscountToggle";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import PrmotionUpdateDrawer from "./PrmotionUpdateDrawer";
 
 
 const PrmotionTable = (props) => {
@@ -93,16 +98,27 @@ console.log(props.promotionsData)
             <div className=" md:w-[6.1rem] ">
              Discount In %
               </div>
+              <div className=" md:w-[6.15rem] ">
+            Creation Date
+              </div>
+              <div className=" md:w-[6.14rem] ">
+           Start Date
+              </div>
+              <div className=" md:w-[6.13rem] ">
+            End Date
+              </div>
             <div className=" md:w-[7.9rem] ">
            Catalogue
             </div>
-            <div className="md:w-[7.5rem]">
+            <div className="md:w-[7.51rem]">
            Material
               </div>
-            <div className=" md:w-[5.9rem] ">
+            <div className=" md:w-[7.9rem] ">
           SupplierInventory
             </div>
-           
+            <div className=" md:w-[6.12rem] ">
+             Discount Type
+              </div>
             
           </div>
           <div class="">
@@ -110,6 +126,8 @@ console.log(props.promotionsData)
                                 {props.promotionsData.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                    const sdate = dayjs(item.startDate).format("DD/MM/YYYY");
+                                    const edate = dayjs(item.endDate).format("DD/MM/YYYY");
                                     return (
                                         <>
                                        <div >
@@ -148,58 +166,112 @@ console.log(props.promotionsData)
 
 
 </div>
+<div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+
+<div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+  {date}
+</div>
+
+
+
+
+</div>
+<div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+
+<div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+  {sdate}
+</div>
+
+
+
+
+</div>
+<div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+
+<div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+  {edate}
+</div>
+
+
+
+
+</div>
                     </div>
 
 
                     <div className=" flex  flex-row md:w-[11.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
-                        <Switch
+                      <PrmotionProductionToggle
+                          promoCodeId={item.promoCodeId}
+                          productInd={item.productInd}
+                        />
+                        {/* <Switch
                           className="toggle-clr"
                           checked={item.productInd }
                          isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                           //disabled={!props.orderManagementInd}
-                        />
+                        /> */}
                       </div>
                     </div>
                     <div className=" flex  flex-row md:w-[7.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
 <div class=" font-normal text-[0.82rem]  font-poppins">
-<Switch
-    className="toggle-clr"
-    checked={item.materialInd}
-    isLoading={true}
-    checkedChildren="Yes"
-    unCheckedChildren="No"
-    //disabled={!props.orderManagementInd}
-  />
+   <PrmotionMaterialToggle
+                          promoCodeId={item.promoCodeId}
+                          materialInd={item.materialInd}
+                        />
 </div>
 </div>
                     <div className=" flex  flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
-                      <Switch
-                          className="toggle-clr"
-                          checked={item.supplierInventoryInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                          //disabled={!props.orderManagementInd}
+                    
+                         <PrmotionSupplierInventoryToggle
+                          promoCodeId={item.promoCodeId}
+                          supplierInventoryInd={item.supplierInventoryInd}
                         />
                       </div>
                     </div>
-                   
+                    <div className=" flex  flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+
+
+<div class=" font-normal text-[0.82rem]  font-poppins">
+                       <PrmotionDiscountToggle
+                          promoCodeId={item.promoCodeId}
+                          discountType={item.discountType}
+                        />
+</div>
+<div>
+                        <Tooltip title="Edit">
+                          <BorderColorIcon
+                            className="!text-icon cursor-pointer text-[tomato]"
+                            onClick={() => {
+                              handleStoredLocations(item);
+                              props.handleUpdatePromotionDrawer(true);
+                            }}
+                          />
+                        </Tooltip>
+                      </div>
+</div>
                   </div>
                 </div>   
                                         </>
                                     )
                                 })}
           </div>
-   
+          <PrmotionUpdateDrawer
+        storedLoc={storedLoc}
+        prmotionUpdatedrawr={props.prmotionUpdatedrawr}
+        handleUpdatePromotionDrawer={props.handleUpdatePromotionDrawer}
+      />
       </div>
       
     </>
@@ -208,13 +280,14 @@ console.log(props.promotionsData)
 const mapStateToProps = ({promotion , auth }) => ({
 
   orgId: auth.userDetails.organizationId,
-  promotionsData: promotion.promotionsData
+  promotionsData: promotion.promotionsData,
+  prmotionUpdatedrawr:promotion.prmotionUpdatedrawr
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
      getPrmotionData,
-   
+     handleUpdatePromotionDrawer
     },
     dispatch
   );

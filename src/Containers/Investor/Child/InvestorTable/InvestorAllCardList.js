@@ -205,6 +205,7 @@ function InvestorAllCardList(props) {
         hasMore={hasMore}
         loader={fetchingAllInvestors?<div class="flex items-center">Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
         
         { !fetchingAllInvestors && allInvestorsbyId.length === 0 ?<NodataFoundPage />:allInvestorsbyId.map((item,index) =>  {
@@ -334,7 +335,7 @@ function InvestorAllCardList(props) {
             </span>          
                                </div>
                                 </div>
-                                <div className=" flex flex-col w-[4.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex  w-[4.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                                           {/* Owner */}
                        <span>
                        <Tooltip title={item.ownerName}>
@@ -483,24 +484,32 @@ function InvestorAllCardList(props) {
         updateInvestorModal={updateInvestorModal}
         handleUpdateInvestorModal={handleUpdateInvestorModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
            <AddInvestorNotesDrawerModal
         RowData={RowData}
         addDrawerInvestorNotesModal={props.addDrawerInvestorNotesModal}
         handleInvestorNotesDrawerModal={props.handleInvestorNotesDrawerModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
       <InvestorPulseDrawerModal
         RowData={RowData}
         addDrawerInvestorPulseModal={addDrawerInvestorPulseModal}
         handleInvestorPulseDrawerModal={handleInvestorPulseDrawerModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
       <ContactsInvestorModal
         RowData={RowData}
         addDrawerInvestorContactModal={addDrawerInvestorContactModal}
         handleInvestorContModal={handleInvestorContModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
       {/* <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}

@@ -20,6 +20,28 @@ const ProductActionLeft = (props) => {
 
   const [currentCatData, setCurrentCatData] = useState("");
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+  
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     if (props.viewType === "table") {
       props.getRecords();
@@ -120,7 +142,7 @@ const ProductActionLeft = (props) => {
           overflowCount={999}
         >
         <div
-          class=" mr-2 text-sm cursor-pointer"
+          class=" mr-2 text-xs cursor-pointer"
           style={{
 
             color: props.viewType === "table" && "red",
@@ -138,7 +160,7 @@ const ProductActionLeft = (props) => {
       {/* <Tooltip
         title="Category"
       >
-        <span className="mr-2 text-sm cursor-pointer">
+        <span className="mr-2 text-xs cursor-pointer">
           <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
             <AlipayOutlined
               className="!text-2xl cursor-pointer"
@@ -154,7 +176,7 @@ const ProductActionLeft = (props) => {
 
       <Tooltip title="Category">
         <div
-          class=" ml-2 text-sm cursor-pointer"
+          class=" ml-2 text-xs cursor-pointer"
           style={{
 
             color: props.viewType === "category" && "red",

@@ -29,7 +29,7 @@ import {
   SubTitle,
 } from "../../../../Components/UI/Elements";
 import ProductPublishToggle from "./ProductPublishToggle";
-import moment from "moment";
+import dayjs from "dayjs";
 
 
 function onChange(pagination, filters, sorter) {
@@ -287,7 +287,7 @@ function ProductListingTable(props) {
       render: (text, item) => {
         return (
           <>
-            {moment(item.dateOfManufacture).format("DD-MM-YY")}
+            {dayjs(item.dateOfManufacture).format("DD-MM-YY")}
           </>
         )
       }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import moment from "moment";
+import dayjs from "dayjs";
 import { getShipperDocument } from "../../../ShipperAction";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -48,7 +48,7 @@ class ShipperDocumentTable extends Component {
                     <div className="flex rounded mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col">
                       <div className="flex w-3/4">
                         <div className="flex font-medium flex-col md:w-[1.56rem] max-sm:w-full">
-                          {moment(item.creationDate).format("ll")}
+                          {dayjs(item.creationDate).format("ll")}
                         </div>
                         <div className="flex font-medium flex-col md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                           <div className="text-xs  font-poppins text-center">
@@ -105,7 +105,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(ShipperDocumentTable
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import { FormattedMessage } from "react-intl";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // import {
 //   StyledTable,
 // } from "../../../../../../Components/UI/Antd";
@@ -130,7 +130,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(ShipperDocumentTable
 
 //         // dataIndex: "creationDate",
 //         // render: (name, item, i) => {
-//         //   return <span>{` ${moment(item.creationDate).format("ll")}`}</span>;
+//         //   return <span>{` ${dayjs(item.creationDate).format("ll")}`}</span>;
 //         // },
 //       },
 //       {

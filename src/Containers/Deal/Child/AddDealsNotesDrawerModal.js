@@ -1,4 +1,4 @@
-import React, { Component, Suspense,lazy } from "react";
+import React, { Component, Suspense } from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";

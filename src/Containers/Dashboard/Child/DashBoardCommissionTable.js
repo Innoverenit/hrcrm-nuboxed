@@ -6,7 +6,7 @@
  import { Tooltip, Icon,Input,Button, Table,  InputNumber, Popconfirm, Form, Typography  } from "antd";
  import Highlighter from 'react-highlight-words';
  import { CurrencySymbol } from "../../../Components/Common";
- import moment from "moment";
+ import dayjs from "dayjs";
  import { StyledTable, StyledPopconfirm } from "../../../Components/UI/Antd";
  import { MultiAvatar, SubTitle } from "../../../Components/UI/Elements";
  import { BundleLoader } from "../../../Components/Placeholder";

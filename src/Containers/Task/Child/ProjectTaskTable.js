@@ -6,7 +6,7 @@ import {
   handleUpdateProjectTaskModal,
   addProjectTask,
 } from "../TaskAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { Tooltip, Button, Input, Select } from "antd";
 const UpdateProjectTaskModal = lazy(() => import("./UpdateProjectTaskModal"));
@@ -75,7 +75,7 @@ console.log(name)
       title: "Creation Date",
       width: "15%",
       render: (text, item) => {
-        const startDate = moment(item.creationDate).format("ll");
+        const startDate = dayjs(item.creationDate).format("ll");
         return <span>{startDate}</span>;
       },
     },
@@ -83,7 +83,7 @@ console.log(name)
       title: "Start Date",
       width: "15%",
       render: (text, item) => {
-        const PlannerDate = moment(item.plannerStartDate).format("ll");
+        const PlannerDate = dayjs(item.plannerStartDate).format("ll");
         return <span>{PlannerDate}</span>;
       },
     },

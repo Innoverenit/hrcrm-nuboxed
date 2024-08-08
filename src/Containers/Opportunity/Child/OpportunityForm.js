@@ -7,11 +7,10 @@ import { FormattedMessage } from "react-intl";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { Button, Tooltip,Select } from "antd";
+import { Button, Tooltip,Select,Switch } from "antd";
 import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
 import DraggableUpload1 from "../../../Components/Forms/Formik/DraggableUpload1";
-import {  StyledLabel } from "../../../Components/UI/Elements";
 import {
   addOpportunity,
   getInitiative,
@@ -73,10 +72,16 @@ function OpportunityForm(props) {
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [selectedContact, setSelectedContact] = useState(null);
   const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [emailInd, setEmailInd] = useState(false);
+
 
   // useEffect(() => {
   //   fetchCustomers();
   // }, []);
+const  handleEmailInd = (checked) => {
+    setEmailInd(checked)
+  };
+
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -96,7 +101,6 @@ function OpportunityForm(props) {
           'Workflow', // 10
           'Stages', // 11
 
-
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -107,6 +111,7 @@ function OpportunityForm(props) {
         console.error('Error translating menu items:', error);
       }
     };
+
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
@@ -193,7 +198,6 @@ function OpportunityForm(props) {
     }
   };
 
-
   const handleSelectChange = (values) => {
     setSelectedValues(values); // Update selected values
   };
@@ -224,7 +228,6 @@ function OpportunityForm(props) {
     };
   });
 
-
   function getAreaOptions(filterOptionKey, filterOptionValue) {
     const contactOptions = props.contactData
       .filter((option) => option.customerId === filterOptionValue && option.probability !== 0)
@@ -233,11 +236,10 @@ function OpportunityForm(props) {
         value: option.contactId,
       }))
       .sort((a, b) => {
-        // Replace 'propertyToSortBy' with the actual property you want to sort by
+      
         const propertyToSortByA = a.label.toLowerCase();
         const propertyToSortByB = b.label.toLowerCase();
-        
-        // Use localeCompare for case-insensitive string comparison
+               
         return propertyToSortByA.localeCompare(propertyToSortByB);
       });
   
@@ -303,7 +305,6 @@ function OpportunityForm(props) {
       if (libraryNameA > libraryNameB) {
         return 1;
       }
-
       // names must be equal
       return 0;
     })
@@ -373,6 +374,7 @@ const filteredEmployeesData = AllEmplo.filter(
           oppStage: "",
           salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
           // included: selectedValues,
+          emialInd:emailInd ? "true" : "false",
         }}
         validationSchema={OpportunitySchema}
         onSubmit={(values, { resetForm }) => {
@@ -459,6 +461,7 @@ const filteredEmployeesData = AllEmplo.filter(
               included: selectedValues,
               description: transcript ? transcript : text,
               salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
+              emialInd:emailInd ? "true" : "false",
             },
             props.userId,
             props.customerId,
@@ -479,36 +482,23 @@ const filteredEmployeesData = AllEmplo.filter(
           <Form className="form-background">
             <div class=" flex justify-between max-sm:flex-col">
               <div class=" h-full w-[47.5%] mt-3 max-sm:w-wk">
-               
-                <Field
-                  //isRequired
+              <div class="font-bold text-xs">{translatedMenuItems[0]}</div>
+                <Field          
                   name="opportunityName"
                   type="text"
-                  //label="Name"
-
-                  label={translatedMenuItems[0]}
-                  // {
-                  //   <FormattedMessage id="app.name" defaultMessage="Name" />
-                  // }
+                  //label="Name"             
                   isColumn
                   width={"100%"}
-                  component={InputComponent}
-                  // accounts={accounts}
+                  component={InputComponent}              
                   inlineLabel
                 />
                 
                 <div class="flex justify-between max-sm:flex-col mt-3">
                 <div class=" w-w47.5 max-sm:w-wk">
+                <div class="font-bold text-xs">{translatedMenuItems[1]}</div>
                     <Field
                       name="startDate"
-                      //label="Start "
-                    label={translatedMenuItems[1]}
-                      // {
-                      //   <FormattedMessage
-                      //     id="app.startDate"
-                      //     defaultMessage="Start Date"
-                      //   />
-                      // }
+                      //label="Start "                
                       component={DatePicker}
                       value={values.startDate}
                       isColumn
@@ -516,17 +506,11 @@ const filteredEmployeesData = AllEmplo.filter(
                     />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
+                  <div class="font-bold text-xs">{translatedMenuItems[2]}</div>
                     <Field
                       // isRequired
                       name="endDate"
-                      // label="End Date"
-                      label={translatedMenuItems[2]}
-                      // {
-                      //   <FormattedMessage
-                      //     id="app.endDate"
-                      //     defaultMessage="End Date"
-                      //   />
-                      // }
+                      // label="End Date"                 
                       isColumn
                       component={DatePicker}
                       value={values.endDate || values.startDate}
@@ -548,36 +532,23 @@ const filteredEmployeesData = AllEmplo.filter(
                
                 <div class="flex justify-between max-sm:flex-col mt-3">
                 <div class=" w-w47.5 max-sm:w-wk">
+                <div class="font-bold text-xs">{translatedMenuItems[3]}</div>
                     <Field
                       name="proposalAmount"
-                      //label="Value"
-
-                label={translatedMenuItems[3]}
-                      // {
-                      //   <FormattedMessage
-                      //     id="app.proposalamount"
-                      //     defaultMessage="Value"
-                      //   />
-                      // }
+                      //label="Value"          
                       isColumn
                       width={"100%"}
                       component={InputComponent}
                     />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
+                  <div class="font-bold text-xs">{translatedMenuItems[4]}</div>
                     <Field
                       name="currency"
                       isColumnWithoutNoCreate
                       defaultValue={{
                         value: props.user.currency,
-                      }}
-                    label={translatedMenuItems[4]}
-                      // {
-                      //   <FormattedMessage
-                      //     id="app.currency"
-                      //     defaultMessage="Currency"
-                      //   />
-                      // }
+                      }}                 
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -592,10 +563,8 @@ const filteredEmployeesData = AllEmplo.filter(
                   </div>
                 </div>
               
-                <div className="mt-3">
-            {translatedMenuItems[5]}
-                  {/* Description */}
-                  </div>
+                <div class="font-bold text-xs">{translatedMenuItems[5]}</div>
+                {/* Description */}
                 <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>
@@ -638,7 +607,7 @@ const filteredEmployeesData = AllEmplo.filter(
               <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <div className="block font-bold text-[0.75rem] mt-[0.6rem]">
+            <div className=" font-bold text-[0.75rem] mt-[0.6rem]">
           {translatedMenuItems[6]}
               {/* Assigned */}
             </div>
@@ -705,27 +674,8 @@ const filteredEmployeesData = AllEmplo.filter(
         )}
       </Listbox>
 
-       <div class=" mt-2" style={{display:"flex",flexDirection:"column"}}>
-       {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="include"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${empName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
-                  <div className="font-bold text-[0.75rem]">
+       <div class=" mt-2" style={{display:"flex",flexDirection:"column"}}>    
+                  <div className="font-bold text-xs">
                 {translatedMenuItems[7]}
                     {/* Include */}
                     </div>
@@ -748,31 +698,8 @@ const filteredEmployeesData = AllEmplo.filter(
         </Select>
         </div>        
 <div class="flex justify-between max-sm:flex-col mt-[0.75rem]">
-<div class=" w-w47.5 max-sm:w-wk">
-                  {/* <Field
-                    name="customerId"
-                    // selectType="customerList"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.customer"
-                        defaultMessage="Customer"
-                      />
-                    }
-                    //component={SearchSelect}
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(customerNameOption)
-                        ? customerNameOption
-                        : []
-                    }
-                    isColumn
-                    margintop={"0"}
-                    value={values.customerId}
-                    inlineLabel
-                  /> */}
-
-<div className="font-bold text-[0.75rem]">
+<div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
 {translatedMenuItems[8]}
   {/* Customer */}
   </div>
@@ -791,36 +718,7 @@ const filteredEmployeesData = AllEmplo.filter(
       </Select>
           
             </div>
-            <div class=" w-w47.5 max-sm:w-wk">
-            <StyledLabel>
-                  {/* <Field
-                    name="contactId"
-                    // selectType="contactListFilter"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="Contact"
-                      />
-                    }
-                    // component={SearchSelect}
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        getAreaOptions("customerId", values.customerId)
-                      )
-                        ? getAreaOptions("customerId", values.customerId)
-                        : []
-                    }
-                    value={values.contactId}
-                    filterOption={{
-                      filterType: "customerId",
-                      filterValue: values.customerId,
-                    }}
-                    disabled={!values.customerId}
-                    isColumn
-                    inlineLabel
-                  /> */}
+            <div class=" w-w47.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
 {translatedMenuItems[9]}
@@ -837,59 +735,19 @@ const filteredEmployeesData = AllEmplo.filter(
             {contact.fullName}
           </Option>
         ))}
-      </Select>
-                </StyledLabel>
+      </Select>            
                 </div>
                         </div>
-              
-                {/* <StyledLabel>
-                  <Field
-                    name="oppInnitiative"
-                    //selectType="initiativeName"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.initiative"
-                        defaultMessage="Initiative"
-                      />
-                    }
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        getInitiativeOptions("customerId", values.customerId)
-                      )
-                        ? getInitiativeOptions("customerId", values.customerId)
-                        : []
-                    }
-                    value={values.initiativeDetailsId}
-                    filterOption={{
-                      filterType: "customerId",
-                      filterValue: values.customerId,
-                    }}
-                    disabled={!values.customerId}
-                    isColumn
-                    inlineLabel
-                  />
-                </StyledLabel> */}
-                
-
+                                          
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                  <div class=" w-w47.5 max-sm:w-wk">
-                    <StyledLabel>
+                  <div class=" w-w47.5 max-sm:w-wk">                 
+                    <div class="font-bold text-xs">{translatedMenuItems[10]}</div>
                       <Field
                         name="oppWorkflow"
                         // selectType="contactListFilter"
                         isColumnWithoutNoCreate
                         isRequired
-                        placeolder="Select type"
-                        label={translatedMenuItems[10]}
-                        // {
-                        //   <FormattedMessage
-                        //     id="app.workflow"
-                        //     defaultMessage="Workflow"
-                        //   />
-                        // }
-                        // component={SearchSelect}
+                        placeolder="Select type"                     
                         component={SelectComponent}
                         options={
                           Array.isArray(WorkflowOptions) ? WorkflowOptions : []
@@ -897,23 +755,16 @@ const filteredEmployeesData = AllEmplo.filter(
                         value={values.oppWorkflow}
                         isColumn
                         inlineLabel
-                      />
-                    </StyledLabel>
+                      />            
                   </div>
                  
-                  <div class=" w-w47.5 max-sm:w-wk ">
-                    <StyledLabel>
+                  <div class=" w-w47.5 max-sm:w-wk ">          
+                    <div class="font-bold text-xs">{translatedMenuItems[11]}</div>
+                    {/* Stages */}
                       <Field
                         name="oppStage"
                         isRequired
-                        isColumnWithoutNoCreate
-                        label={translatedMenuItems[11]}
-                        // {
-                        //   <FormattedMessage
-                        //     id="app.stages"
-                        //     defaultMessage="Stages"
-                        //   />
-                        // }
+                        isColumnWithoutNoCreate                       
                         component={SelectComponent}
                         options={
                           Array.isArray(
@@ -933,8 +784,7 @@ const filteredEmployeesData = AllEmplo.filter(
                         disabled={!values.oppWorkflow}
                         isColumn
                         inlineLabel
-                      />
-                    </StyledLabel>
+                      />        
                   </div>
                 </div>
                 <div class="mt-3">
@@ -945,7 +795,22 @@ const filteredEmployeesData = AllEmplo.filter(
                                         />
                                     </div>
               </div> 
-  
+   <div class=" flex">
+                  <div class=" w-[47%] mt-2" >
+                      <div class="font-bold text-xs">
+                       Email Ind 
+                    </div>
+                      <div>
+                      <Switch
+                          style={{ width: "6.25em" }}
+                          checked={emailInd}
+                          onChange={handleEmailInd}
+                          checkedChildren="Yes"
+                          unCheckedChildren="No"
+                        />
+                      </div>
+                    </div>
+                    </div>
             </div>
           
             <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">

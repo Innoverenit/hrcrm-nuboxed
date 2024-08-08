@@ -197,3 +197,263 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddSuscriptionForm);
+// import React, { useState } from 'react';
+// import { Card, Button, Input, Switch, Form } from 'antd';
+// // import 'antd/dist/antd.css';
+
+// const SubscriptionManager = () => {
+//   const [subscriptions, setSubscriptions] = useState([]);
+
+//   const addSubscription = () => {
+//     setSubscriptions([...subscriptions, { id: Date.now(), calls: false }]);
+//   };
+
+//   const removeSubscription = (id) => {
+//     setSubscriptions(subscriptions.filter(sub => sub.id !== id));
+//   };
+
+//   const handleCallsChange = (id, checked) => {
+//     setSubscriptions(subscriptions.map(sub => sub.id === id ? { ...sub, calls: checked } : sub));
+//   };
+
+//   return (
+//     <div style={{ padding: '20px' }}>
+//       <Button type="primary" onClick={addSubscription}>Add Subscription</Button>
+//       <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '20px' }}>
+//         {subscriptions.map(sub => (
+//           <Card
+//             key={sub.id}
+//             style={{ width: 300, margin: '10px' }}
+//             actions={[
+//               <Button type="primary" htmlType="submit">Submit</Button>,
+//               <Button type="danger" onClick={() => removeSubscription(sub.id)}>Remove</Button>
+//             ]}
+//           >
+//             <Form layout="vertical">
+//               <Form.Item label="Name">
+//                 <Input placeholder="Enter name" />
+//               </Form.Item>
+//               <Form.Item label="Per month value">
+//                 <Input placeholder="Enter per month value" />
+//               </Form.Item>
+//               <Form.Item label="Calls">
+//                 <Switch checked={sub.calls} onChange={(checked) => handleCallsChange(sub.id, checked)} />
+//                 {sub.calls && <Input style={{ marginTop: '10px' }} placeholder="Enter calls value" />}
+//               </Form.Item>
+//               <Form.Item label="Publish">
+//                 <Switch />
+//               </Form.Item>
+//             </Form>
+//           </Card>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SubscriptionManager;
+
+// import React, { useState,useEffect } from 'react';
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
+// import {addSuscrptions,getSubscrptions} from "./SubscriptionAction"
+// import { Card, Button, Input, Switch, Form } from 'antd';
+
+
+
+
+
+// const SubscriptionManager = (props) => {
+//   const [subscriptions, setSubscriptions] = useState([]);
+  
+//   useEffect(() => {
+    
+   
+//     props.getSubscrptions(props.orgId);
+ 
+// }, [props.orgId]);
+// console.log(props.subscriptionsFormData)
+// useEffect(() => {
+//   // Check if data is available
+//   if (props.subscriptionsFormData.length > 0) {
+    
+//     setSubscriptions(props.subscriptionsFormData);
+//   }
+// }, [props.subscriptionsFormData]);
+
+//   const addSubscription = () => {
+//     setSubscriptions([
+//       ...subscriptions,
+//       { callInd: false, noOfcalls: '', perMonthValue: '', subscriptionId: null, subscriptionName: '', publishInd: false }
+//     ]);
+//   };
+
+//   const removeSubscription = (id) => {
+//     setSubscriptions(subscriptions.filter(sub => sub.subscriptionId !== id));
+//   };
+
+//   const handleInputChange = (index, field, value) => {
+//     const newSubscriptions = [...subscriptions];
+//     newSubscriptions[index][field] = value;
+//     setSubscriptions(newSubscriptions);
+//   };
+
+//   const handleSwitchChange = (index, field, checked) => {
+//     const newSubscriptions = [...subscriptions];
+//     newSubscriptions[index][field] = checked;
+//     setSubscriptions(newSubscriptions);
+
+//     const updatedSubscription = newSubscriptions[index];
+//     let data = {
+//       callInd: updatedSubscription.callInd,
+//       description: "",
+//       liveInd: true,
+//       noOfcalls: updatedSubscription.noOfcalls || 0,
+//       orgId: props.orgId,
+//       perMonthValue: updatedSubscription.perMonthValue || 0,
+//       subscriptionId: updatedSubscription.subscriptionId || null,
+//       subscriptionName: updatedSubscription.subscriptionName,
+//       userId: props.userId,
+//       publishInd: updatedSubscription.publishInd
+//     };
+//     props.addSuscrptions(data);
+//   };
+
+
+//   // const handleSwitchChange = (index, field, checked) => {
+    
+//   //   const newSubscriptions = [...subscriptions];
+//   //   newSubscriptions[index][field] = checked;
+//   //   setSubscriptions(newSubscriptions);
+//   // };
+
+//   const handlePressEnter = (index) => {
+//     const updatedSubscription = subscriptions[index];
+//     console.log({
+//       callInd: updatedSubscription.callInd,
+//       createdBy: "string",
+//       creationDate: "2024-08-05T07:22:47.795Z",
+//       description: "string",
+//       liveInd: true,
+//       noOfcalls: updatedSubscription.noOfcalls || 0,
+//       orgId: "string",
+//       perMonthValue: updatedSubscription.perMonthValue || 0,
+//       subscriptionId: updatedSubscription.subscriptionId || null,
+//       subscriptionName: updatedSubscription.subscriptionName,
+//       updatedBy: "string",
+//       updationDate: "2024-08-05T07:22:47.796Z",
+//       userId: "string",
+//       publishInd: updatedSubscription.publishInd
+//     });
+//     let data={
+//       callInd: updatedSubscription.callInd,
+//       // createdBy: "string",
+//       // creationDate: "2024-08-05T07:22:47.795Z",
+//       description: "",
+//       liveInd: true,
+//       noOfcalls: updatedSubscription.noOfcalls || 0,
+//       orgId: props.orgId,
+//       perMonthValue: updatedSubscription.perMonthValue || 0,
+//       subscriptionId: updatedSubscription.subscriptionId || null,
+//       subscriptionName: updatedSubscription.subscriptionName,
+//       // updatedBy: "string",
+//       // updationDate: "2024-08-05T07:22:47.796Z",
+//       userId: props.userId,
+//       publishInd: updatedSubscription.publishInd
+//     }
+//     props.addSuscrptions(data)
+//   };
+
+//   return (
+//     <div style={{ padding: '20px' }}>
+//       <Button type="primary" onClick={addSubscription}>Add Subscription</Button>
+//       <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '20px' }}>
+//         {subscriptions.map((sub, index) => (
+//           <Card
+//             key={index}
+//             style={{ width: 300, margin: '10px' }}
+//             actions={[
+//               // <Button type="primary" htmlType="submit">Submit</Button>,
+//               <Button type="danger" onClick={() => removeSubscription(sub.subscriptionId)}>Remove</Button>
+//             ]}
+//           >
+//             <Form layout="vertical">
+//               <Form.Item
+//                 label="Name"
+//                 required
+//                 rules={[{ required: true, message: 'Please enter the name' }]}
+//               >
+//                 <Input
+//                   value={sub.subscriptionName}
+//                   onChange={(e) => handleInputChange(index, 'subscriptionName', e.target.value)}
+//                   placeholder="Enter name"
+//                   onPressEnter={() => handlePressEnter(index)}
+//                 />
+//               </Form.Item>
+//               <Form.Item
+//                 label="Per month value"
+//                 required
+//                 rules={[{ required: true, message: 'Please enter the per month value' }]}
+//               >
+//                 <Input
+//                   value={sub.perMonthValue}
+//                   onChange={(e) => handleInputChange(index, 'perMonthValue', e.target.value)}
+//                   placeholder="Enter per month value"
+//                   onPressEnter={() => handlePressEnter(index)}
+//                 />
+//               </Form.Item>
+//               <Form.Item label="Calls">
+//                 <Switch
+//                   checked={sub.callInd}
+//                     checkedChildren="Yes"
+//                         unCheckedChildren="No"
+//                   onChange={(checked) => handleSwitchChange(index, 'callInd', checked)}
+//                 />
+//                 {sub.callInd && (
+//                   <Input
+//                     value={sub.noOfcalls}
+//                     onChange={(e) => handleInputChange(index, 'noOfcalls', e.target.value)}
+//                     style={{ marginTop: '10px' }}
+//                     placeholder="Enter calls value"
+//                     onPressEnter={() => handlePressEnter(index)}
+//                   />
+//                 )}
+//               </Form.Item>
+//               <Form.Item label="Publish">
+//                 <Switch
+//                   checked={sub.publishInd}
+//                     checkedChildren="Yes"
+//                         unCheckedChildren="No"
+//                   onChange={(checked) => handleSwitchChange(index, 'publishInd', checked)}
+//                 />
+//               </Form.Item>
+//             </Form>
+//           </Card>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+// const mapStateToProps = ({ auth,subscription, partner }) => ({
+//   orgId:auth.userDetails.organizationId,
+//   userId:auth.userDetails.userId,
+//   subscriptionsFormData: subscription.subscriptionsFormData,
+// });
+
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators(
+//     {
+//       addSuscrptions,
+//       getSubscrptions
+//     },
+//     dispatch
+//   );
+
+// export default connect(mapStateToProps, mapDispatchToProps)(SubscriptionManager);
+
+
+
+
+
+
+

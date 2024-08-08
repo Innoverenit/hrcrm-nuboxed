@@ -28,6 +28,20 @@ function UpdateSuppliesForm (props) {
    props.getCurrency();
   },[]);
 
+  const [availabilityDate, setAvailabilityDate] = useState('');
+
+  const handleChange = (event) => {
+    const date = event.target.value;
+    if (date) {
+      // Create a new Date object from the date string
+      const dateTime = new Date(`${date}T00:00:00Z`);
+      // Format the date as ISO string with time component
+      const isoString = dateTime.toISOString();
+      setAvailabilityDate(isoString);
+    } else {
+      setAvailabilityDate('');
+    }
+  };
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -116,7 +130,7 @@ function UpdateSuppliesForm (props) {
             netUnit:props.particularDiscountData.netUnit || "",
             netWeight:props.particularDiscountData.netWeight || "",
             reorder:props.particularDiscountData.reorder || "",
-            availabilityDate: formatDateForPayload(props.particularDiscountData.availabilityDate || new Date()),
+            availabilityDate: availabilityDate,
             weight: "",
             width: "",
              length:"",
@@ -130,7 +144,7 @@ function UpdateSuppliesForm (props) {
               {
                 ...values,
                 fifoInd: values.fifoInd ? true : false,
-                availabilityDate: formatDateForPayload(props.particularDiscountData.availabilityDate || new Date())
+                availabilityDate: availabilityDate
                 // imageId: newimageId !== "" ? newimageId.imageId : props.particularDiscountData.imageId,
                 // imageId: props.particularDiscountData.imageId,
               },
@@ -421,19 +435,11 @@ function UpdateSuppliesForm (props) {
                   <div className="flex justify-between mt-4">
                   <label>Availability Date</label>
                   <div className="w-full">
-                    <Field name="availabilityDate">
-                      {({ field, form }) => (
-                        <input
-                          type="date"
-                          {...field}
-                          value={field.value || formatDateForInput(new Date())}
-                          onChange={e => {
-                            const { value } = e.target;
-                            setFieldValue('availabilityDate', value);
-                          }}
-                        />
-                      )}
-                    </Field>
+                  <input
+        type="date"
+        id="availabilityDate"
+        onChange={handleChange}
+      />
                   </div>
                 </div>
                 </div>

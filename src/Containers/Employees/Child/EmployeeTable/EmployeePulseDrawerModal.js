@@ -3,17 +3,14 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import SalaryForm from "../EmployeeTable/SalaryForm"
-import styled from 'styled-components'
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import EmployeeTreeMap from "./EmployeeTreeMap";
-import EmployeeDocumentView from "./EmployeeDrawer/EmployeeDocumentView";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import UserKpiList from "./EmployeeDrawer/UserKpiList";
 import EmployeeEquipmentForm from "./EmployeeDrawer/EmployeeEquipmentForm";
-import AssigenedKpiCardList from "../../../Main/Teams/TeamsCard.js/AssigenedKpiCardList";
 const TabPane = StyledTabs.TabPane;
 class EmployeePulseDrawerModal extends Component {
   constructor(props) {
@@ -234,15 +231,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeePulseDrawerModal);
-const CardWrapper = styled.div`
-border-radius: 1.2rem;
-box-shadow: 0 0.5em 0.375em -0.375em rgb(46 44 44);
-border: 0.0625em solid #eee;
-background-color: #fff;
-color: #444;
-margin: 0.2rem;
-padding: 0.3rem;
-width: 8rem;
-}
-  }
-`

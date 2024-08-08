@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Button } from 'antd'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { FormattedMessage } from 'react-intl'
 import {getlinkedProductWithOpportunity} from "../OpportunityAction";
 
@@ -23,9 +23,9 @@ const OppoProduLinkedCard = (props) => {
     //         deliveryUnit: "Instance",
     //         noOfDays: 1,
     //         orgId: props.orgId,
-    //         deliveryStartDate: moment(),
-    //         deliveryEndDate: moment(),
-    //         subscriptionStartDate: moment()
+    //         deliveryStartDate: dayjs(),
+    //         deliveryEndDate: dayjs(),
+    //         subscriptionStartDate: dayjs()
     //     }, props.distributorId, props.orderId)
     // }
     return (

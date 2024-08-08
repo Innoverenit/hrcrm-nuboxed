@@ -29,6 +29,7 @@ import PhoneDetailsModal from "../../../../Refurbish/ProductionTab/PhoneDetailsM
 import { handlePhoneDetails, handleInTagDrawer } from "../../../../Refurbish/RefurbishAction"
 import TagInDrawer from "../../../../Refurbish/ProductionTab/TagInDrawer";
 import OpenReceivedPlusCard from "./OpenReceivedPlusCard";
+import NodataFoundPageAccount from "../../../../Account/AccountDetailsTab/AccountOrderTab/NodataFoundPageAccount";
 const { Search } = Input;
 
 function OpenReceivedOrderIdForm(props) {
@@ -202,7 +203,7 @@ function OpenReceivedOrderIdForm(props) {
               height={"70vh"}
               endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
             >
-              {props.phoneListById.map((item, index) => {
+              {props.phoneListById.length === 0 ? <NodataFoundPageAccount /> :props.phoneListById.map((item, index) => {
                  const isSelected = selectedRow === item.phoneId;
 
                 return (

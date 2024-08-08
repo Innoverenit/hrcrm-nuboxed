@@ -45,8 +45,7 @@ const { Option } = Select;
 function CustomerTaskActivityForm (props) {
   const [selectedTaskType, setSelectedTaskType] = useState('');
   const [selectedWorkflow, setSelectedWorkflow] = useState("");
-//   const[selectedTaskType,setselectedTaskType]=useState("")
-// const[selectedWorkflow,setselectedWorkflow]=useState("");
+
 const[workflow,setworkflow]=useState([]);
 const[active,setactive]=useState(props.selectedTask ? props.selectedTask.taskStatus
   : "To Start");
@@ -84,16 +83,6 @@ const [priority,setpriority]=useState(props.selectedTask
      setSelectedWorkflow("");
     props.getTaskForWorkflow(selectedTaskType);
   };
-
-//  const handleTaskTypeChange = (event) => {
-//     const selectedTaskType = event.target.value;
-//      const filteredWorkflow = props.recruitWorkflowTask.filter((item) => item.taskTypeId === selectedTaskType);
-//      const workflow=filteredWorkflow
-//      setselectedTaskType(selectedTaskType,workflow);
-//     console.log(selectedTaskType)
-//     props.getTaskForWorkflow(selectedTaskType);
-//   };
-
   const handleWorkflowChange = (event) => {
     const selectedWorkflow = event.target.value;
     setSelectedWorkflow(selectedWorkflow);
@@ -137,27 +126,6 @@ const [priority,setpriority]=useState(props.selectedTask
 
     return newData;
   };
-
-  // handleCheckListOptions = (filterOptionKey, filterOptionValue) => {
-  //   const listOptions =
-  //     this.props.recruitWorkflowTask.length &&
-  //     this.props.recruitWorkflowTask
-  //       .filter((option) => {
-  //         if (
-  //           option.taskTypeId === filterOptionValue &&
-  //           option.probability !== 0
-  //         ) {
-  //           return option;
-  //         }
-  //       })
-  //       .map((option) => ({
-  //         label: option.taskChecklistName || "",
-  //         value: option.taskType,
-  //       }));
-  //   console.log(listOptions);
-
-  //   return listOptions;
-  // };
 
   function taskStageOptions(filterOptionKey, filterOptionValue) {
     const listOptions =
@@ -243,8 +211,6 @@ const [priority,setpriority]=useState(props.selectedTask
       .map((item) => {
         return {
           label: `${item.name}`,
-          // label: `${item.salutation || ""} ${item.firstName ||
-          //   ""} ${item.middleName || ""} ${item.lastName || ""}`,
           value: item.customerId,
         };
       });
@@ -315,14 +281,6 @@ const [priority,setpriority]=useState(props.selectedTask
         value: item.unitId,
       };
     });
-
-    // const TaskOptions = this.props.recruitWorkflowTask.map((item) => {
-    //   return {
-    //     label: `${item.taskChecklistName}`,
-    //     value: item.taskChecklistId,
-    //   };
-    // });
-
 
     const [defaultOption, setDefaultOption] = useState(props.fullName);
     const [selected, setSelected] = useState(defaultOption);
@@ -615,32 +573,7 @@ const [priority,setpriority]=useState(props.selectedTask
               {item.taskType}
             </option>
           ))}
-        </select>
-                      {/* <StyledLabel>Type</StyledLabel>
-                      <Field
-                    name="taskTypeId"
-                    // selectType="customerList"
-                    isColumnWithoutNoCreate
-                 
-                    //component={SearchSelect}
-                    component={SelectComponent}
-                    // options={
-                    //   Array.isArray(TaskOption)
-                    //     ? TaskOption
-                    //     : []
-                    // }
-                    options={Array.isArray(TaskOption) ? TaskOption : []}
-                    isColumn
-                    margintop={"0"}
-                    value={values.taskTypeId}
-                    inlineLabel
-                  /> */}
-                      {/* <Field
-                        name="taskTypeId"
-                         component={SelectComponent}
-                        value={values.taskTypeId}
-                        options={Array.isArray(TaskOption) ? TaskOption : []}
-                      /> */}
+        </select>              
                     </div>
                   
                     {/* {values.taskTypeId === "TSK42340139329302023" && ( */}
@@ -663,87 +596,8 @@ const [priority,setpriority]=useState(props.selectedTask
               {item.taskChecklistName}
             </option>
           ))}
-        </select>
-                      {/* <StyledLabel> Workflow</StyledLabel>
-
-                      <Field
-                    name="taskType"
-                    // selectType="contactListFilter"
-                    isColumnWithoutNoCreate
-                 
-                    // component={SearchSelect}
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.handleCheckListOptions("taskTypeId", values.taskTypeId)
-                      )
-                        ? this.handleCheckListOptions("taskTypeId", values.taskTypeId)
-                        : []
-                    }
-                    value={values.taskType}
-                    filterOption={{
-                      filterType: "taskTypeId",
-                      filterValue: values.taskTypeId,
-                    }}
-                    disabled={!values.taskTypeId}
-                    isColumn
-                    inlineLabel
-                  /> */}
-                          {/* <Field
-                            name="taskChecklistId"
-                            // selectType="contactListFilter"
-                            isColumnWithoutNoCreate
-                            isRequired
-                            placeolder="Select type"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.taskList"
-                            //     defaultMessage="Task CheckList"
-                            //   />
-                            // }
-                            // component={SearchSelect}
-                            component={SelectComponent}
-                            options={
-                              Array.isArray(TaskOptions) ? TaskOptions : []
-                            }
-                            value={values.taskChecklistId}
-                            isColumn
-                            inlineLabel
-                          /> */}
-                     
-                      </div>
-                    {/* )} */}
-                      {/* <div class=" w-1/2">
-             
-                      <StyledLabel>Task Stages</StyledLabel>
-                      <Field
-                    name="taskChecklistId"
-                 
-                    isColumnWithoutNoCreate
-                
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.taskStageOptions("taskTypeId", values.taskTypeId)
-                      )
-                        ? this.taskStageOptions("taskTypeId", values.customerId)
-                        : []
-                    }
-                     value={values.taskChecklistId}
-                    filterOption={{
-                      filterType: "taskTypeId",
-                      filterValue: values.taskTypeId,
-                    }}
-                    disabled={!values.taskTypeId}
-                    isColumn
-                    inlineLabel
-                  />
-                    
-                     
-                      </div> */}
-
-
-                 
+        </select>                                                            
+                      </div>                          
                     <div class="w-[24%]">
                      
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
@@ -796,90 +650,15 @@ const [priority,setpriority]=useState(props.selectedTask
                               />
                             }
                             status={active}
-                            onClick={() => glassButtoClick("Completed")}
-                            //  status={item.taskStatus}
-                            //  onClick={() =>
-                            //    patchTask(item.taskId, { ...item, taskStatus: "Completed" })
-                            //  }
+                            onClick={() => glassButtoClick("Completed")}                      
                           />
                         </ButtonGroup>
                       </div>
                     </div>
                   </div>
             
-                  <div class="mt-3 flex justify-between w-full max-sm:flex-col">
-                   
-                    {/* <div class=" w-5/12 max-sm:w-wk">
-                      <div class=" flex justify-between w-full">
-                        <div class=" w-full">
-                          <Field
-                            isRequired
-                            name="taskName"
-                            //label="Name"
-                            // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.name"
-                                defaultMessage="Name"
-                              />
-                            }
-                            component={InputComponent}
-                            isColumn
-                            width={"100%"}
-                            inlineLabel
-                          />
-                        </div>
-                      </div>
-                    </div> */}
-                  </div>
-                 
-                  {/* <div class=" flex justify-between">
-                    <div class=" w-1/2">
-                      <Field
-                        isRequired
-                        name="startDate"
-                        //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.startDate"
-                            defaultMessage="Start Date"
-                          />
-                        }
-                        isColumn
-                        component={DatePicker}
-                        value={values.startDate}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
-                    <Spacer />
-                    <div class=" w-5/12">
-                      <Field
-                        // isRequired
-                        name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.startTime"
-                            defaultMessage="Start Time"
-                          />
-                        }
-                        isColumn
-                        component={TimePicker}
-                        use12Hours
-                        value={values.startTime}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <Spacer /> */}
-
-               
+                  <div class="mt-3 flex justify-between w-full max-sm:flex-col">                                  
+                  </div>                              
                   <div class=" flex justify-between mt-3">
                     <div class=" w-1/2 ">
                       <Field
@@ -1138,49 +917,12 @@ const [priority,setpriority]=useState(props.selectedTask
                     </div>
                   </div>
                   <div class=" mt-3">
-                  
-                    {/* {values.startDate && (
-                      <>
-                        {dayjs(todayDate).isSameOrBefore(
-                          dayjs(values.startDate)
-                        ) ? (
-                          <></>
-                        ) : (
-                          <>
-                            {" "}
-                            <span
-                            >
-                              <b>This Task occurs in the past !</b>
-                            </span>
-                          </>
-                        )}
-                      </>
-                    )} */}
+                                
                   </div>
                 </div>
                 <div class="h-full w-w47.5 ml-[3rem] max-sm:w-wk">
-                 
-                  {/* <Field
-                    name="assignedTo"
-                    selectType="employee"
-                    isColumnWithoutNoCreate
-                    // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
-                    component={SearchSelect}
-                    isColumn
-                    value={values.assignedTo}
-                    defaultValue={{
-                      label: `${firstName || ""} ${middleName ||
-                        ""} ${lastName || ""}`,
-                      // value: employeeId,
-                    }}
-                    inlineLabel
-                  /> */}
+                         
+               
                                    <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -1248,59 +990,7 @@ const [priority,setpriority]=useState(props.selectedTask
             </div>
           </>
         )}
-      </Listbox>
-                 
-                  {/* {values.taskTypeId === "TSK52434477391272022" && (
-                    <Field
-                      name="included"
-                      //type="text"
-                      label="Team"
-                      mode
-                      component={SelectComponent}
-                        //  options={Array.isArray(employeesData) ? employeesData : []}
-                      options={
-                        Array.isArray(
-                          this.handlecandidateOptions(
-                            "customerId",
-                            values.customerId
-                          )
-                        )
-                          ? this.handlecandidateOptions(
-                              "customerId",
-                              values.customerId
-                            )
-                          : []
-                      }
-                      value={values.included}
-                      defaultValue={{
-                        label: `${candidateName || ""} `,
-                        value: employeeId,
-                      }}
-                    />
-                  )} */}
-                  {/* {values.taskTypeId !== "TSK52434477391272022" && ( */}
-                  {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${fullName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
-              
-                 
-                 
+      </Listbox>                                                                                      
                   <div class=" mt-3">
                   {props.user.crmInd === true &&(
                  <Field
@@ -1343,12 +1033,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     component={SelectComponent}
                     isColumn
                     options={Array.isArray(ContactData) ? ContactData : []}
-                    // value={values.contactId}
-                    // // isDisabled={defaultContacts}
-                    // defaultValue={{
-                    //   label: `${fullName || ""} `,
-                    //   value: contactId,
-                    // }}
+                  
                     inlineLabel
                   />
                   )} 
@@ -1407,11 +1092,7 @@ const [priority,setpriority]=useState(props.selectedTask
                             width={"100%"}
                             inlineLabel
                           />
-                      </div>
-                
-                 
-                  
-                
+                      </div>               
                   <div class=" flex justify-between mt-3">
                     {values.taskTypeId === "TSK52434477391272022" && (
                       <div class=" w-1/2 font-bold">
@@ -1419,8 +1100,7 @@ const [priority,setpriority]=useState(props.selectedTask
                           <div>
                           <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Set Reminder </div>
                           </div>
-                          <div>
-                            {/* <FlexContainer justifyContent="space-between"> */}
+                          <div>                  
                             <Switch
                               onChange={handleReminderChange}
                               checked={reminder}

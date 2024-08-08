@@ -317,7 +317,6 @@ import { addRoomAndRackInInventory, getRoomRackByLocId, updateRoomRackId } from 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { CloseOutlined } from '@ant-design/icons';
-import { FormattedMessage } from 'react-intl';
 import { BundleLoader } from '../../../Components/Placeholder';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 

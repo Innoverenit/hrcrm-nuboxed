@@ -102,9 +102,7 @@ const AssessmentDetails = lazy(() =>
 const Leads = lazy(() =>
   import("../Leads/Leads")
 );
-const LeadDetails = lazy(() =>
-  import("../Leads/Child/LeadsDetailTab/LeadDetails")
-);
+
 const Program = lazy(() =>
   import("../Program/Program")
 );
@@ -1082,7 +1080,7 @@ function MainApp(props) {
                         />
                       )}
                     />   
-                     <Route
+                     {/* <Route
                       exact
                       path="/leads/:leadsId"
                       render={(props) => (
@@ -1092,7 +1090,7 @@ function MainApp(props) {
                            selectedLanguage={selectedLanguage}
                         />
                       )}
-                    /> 
+                    />  */}
                      <Route
                       exact
                       path="/scan/:phoneId"

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
 import { CurrencySymbol } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -148,7 +148,7 @@ function CustrWonOpportunityJumpstartCardList(props) {
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-sm justify-center  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                    {moment(item.startDate).format("ll")}
+                                    {dayjs(item.startDate).format("ll")}
                                     </div>
                                 </div>
                              

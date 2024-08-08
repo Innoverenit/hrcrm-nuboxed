@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import styled from "styled-components";
 import { Tooltip } from "antd";
 
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
-
 class RecruitmentStages extends Component {
-  // componentDidMount() {
-  //   const { getStages } = this.props;
-  //   getStages();
-  // }
+ 
   handleStageClick = (stageId) => {
     this.props.stageClick(stageId);
   };
@@ -30,13 +24,12 @@ class RecruitmentStages extends Component {
         .findIndex((stage) => stage.stageId === this.props.stageId);
 
     return (
-      <FlexContainer justifyContent="space-between">
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
         {" "}
         {rec.stageList
           .filter((item) => item.probability !== 0 && item.probability !== 100)
           .map((item, i) => {
-            // let backgroundColor =
-            //   index >= i ? `rgba(3, 89, 30, 0.${i + 1})` : "lightgray";
+            
             return (
               <div
                 style={{
@@ -105,68 +98,18 @@ class RecruitmentStages extends Component {
                       />
                     </g>
                   </svg>
-                  {/* <svg
-                    width="22"
-                    height="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g>
-                      <title>background</title>
-                      <rect
-                        fill="#fff"
-                        id="canvas_background"
-                        height="18"
-                        width="24"
-                        y="-1"
-                        x="-1"
-                      />
-                      <g
-                        display="none"
-                        overflow="visible"
-                        y="0"
-                        x="0"
-                        height="100%"
-                        width="100%"
-                        id="canvasGrid"
-                      >
-                        <rect
-                          fill="url(#gridpattern)"
-                          stroke-width="0"
-                          y="0"
-                          x="0"
-                          height="100%"
-                          width="100%"
-                        />
-                      </g>
-                    </g>
-                    <g>
-                  
-                      <path
-                        id="svg_1"
-                        d="m1,0.99999l22.5,0l7.50001,12.99998l-7.50001,13.00004l-22.5,0l7.50001,-13.00004l-7.50001,-12.99998z"
-                        stroke-width="0.5"
-                        stroke="#000"
-                        fill={
-                          item.stageId === rec.stageId
-                            ? "rgba(3, 89, 30, 0.6)"
-                            : "lightgrey"
-                        }
-                      />
-                    </g>
-                  </svg> */}
+                 
                 </Tooltip>
               </div>
             );
           })}
-      </FlexContainer>
+      </div>
     );
   }
 }
 
 const mapStateToProps = ({ auth, opportunity, account }) => ({
-  // user: auth.userDetails,
-  // fetchingStages: opportunity.fetchingStages,
-  // stages: opportunity.stages,
+
 });
 
 const mapDispatchToProps = (dispatch) =>

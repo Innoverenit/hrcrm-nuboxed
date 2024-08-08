@@ -10,6 +10,7 @@ import axios from "axios";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import { DeleteOutlined } from "@ant-design/icons";
+import SuppliesCategoryPUnblishToggle from "./SuppliesCategoryPUnblishToggle";
 
 const SuppliesCategoryModal = lazy(() => import("./SuppliesCategoryModal"));
 
@@ -210,6 +211,7 @@ console.log("drb2",data)
                       </div>
       
                     </div>
+
                     <div className=" flex font-medium flex-col  w-[7.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -256,6 +258,16 @@ console.log("drb2",data)
 </div>
 
 </div>
+
+<div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <SuppliesCategoryPUnblishToggle
+                                
+                                  publishInd={item.publishInd}
+                                  categoryId={item.categoryId}
+                                />
+                              </div>
+                            </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                      

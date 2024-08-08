@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../Components/UI/Antd";
 import { getDistributorOfferHistory, handleUpdateDistributorOfferModal, setEditDistributorOffer } from "../../ProductAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Tooltip } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 const UpdateDistributorOfferModal =lazy(()=>import("./UpdateDistributorOfferModal"));
@@ -60,7 +60,7 @@ class DistributorOfferHistory extends Component {
             {
                 title: "Start",
                 render: (text, item) => {
-                    const startDate = moment(item.distributorStartDate).format("lll");
+                    const startDate = dayjs(item.distributorStartDate).format("lll");
                     return <span>{startDate}</span>;
                 },
                 width: "15%",
@@ -69,7 +69,7 @@ class DistributorOfferHistory extends Component {
             {
                 title: "End",
                 render: (text, item) => {
-                    const endDate = moment(item.distributorEndDate).format("lll");
+                    const endDate = dayjs(item.distributorEndDate).format("lll");
                     return <span>{endDate}</span>;
                 },
                 width: "15%",

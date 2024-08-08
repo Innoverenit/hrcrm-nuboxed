@@ -54,13 +54,11 @@ function ExpenseCard(props) {
               {Expenses.map((item) => {
                  return (
                   <div class="rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[8rem] 
-                  text-[#444444] m-1 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
-        
-                               
+                  text-[#444444] m-1 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">                              
                    <div >
                           
                          </div>
-                      {/* <CardDescription> */}
+                  
                       <div class="flex items-center justify-between">
                       <div class="text-sm">Voucher ID</div>
                       <div className="flex text-ellipsis whitespace-nowrap overflow-hidden h-[2em] text-base p-1

@@ -143,7 +143,7 @@ function PurchaseOrderTable(props) {
                             next={handleLoadMore}
                             hasMore={hasMore}
                             loader={props.fetchingPurchaseSupplierList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"72vh"}
+                            height={"67vh"}
                             style={{scrollbarWidth:"thin"}}
                         >
                             {props.purchaseList.length ? <>
@@ -154,7 +154,7 @@ function PurchaseOrderTable(props) {
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 p-1" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" underline font-bold max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                             <span
                                                                 class=" text-sky-700 cursor-pointer"
@@ -257,52 +257,6 @@ function PurchaseOrderTable(props) {
                                                             {item.poValue}
                                                         </div>
                                                     </div>
- 
-                                                    {/* <div className=" flex font-medium  w-[7.32rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins w-20">
-                                                            {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
-                                                                <Select
-                                                                    value={currency}
-                                                                    onChange={(value) =>
-                                                                        handleChangeCurrency(value)
-                                                                    }
-                                                                // placeholder={`select`}
-                                                                >
-                                                                    {props.currencies.map((a) => {
-                                                                        return <Option value={a.currency_name}>{a.currency_name}</Option>;
-                                                                    })}
-                                                                </Select> :
-                                                                item.poCurrency}
-                                                        </div>
-                                                    </div> */}
-        
-                                                    {/* <div className=" flex font-medium  w-[2.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins">
-                                                            <Tooltip title="Update Currency">
-                                                                {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
-                                                                    <div>
-                                                                        <Button onClick={() => {
-                                                                            props.addCurrencyInPo({
-                                                                                poCurrency: currency
-                                                                            }, item.poSupplierDetailsId, handleCallback())
-                                                                        }}>Save</Button>
-                                                                        <Button onClick={handleCurrencyField}>Cancel</Button>
-                                                                    </div> :
-                                                                   <div class=" font-normal text-xs  font-poppins">
-                                                                 
-                                                                   <BorderColorIcon
-                                                                       className=" !text-xl cursor-pointer text-[tomato]"
-                                                                        onClick={() => {
-                                                                            handleRowData(item);
-                                                                            handleCurrencyField()
-                                                                        }}
-                                                                    />
-                                                                  
-                                                                    </div>
-                                                                }
-                                                            </Tooltip>
-                                                        </div>
-                                                    </div> */}
                                                     <div className="flex w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
                 <div className="flex">
                   {editContactId === item.poSupplierDetailsId ? (

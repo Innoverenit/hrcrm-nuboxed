@@ -16,7 +16,7 @@ import {
 } from "../../../ShipperAction";
 import { setEditEvents } from "../../../../../Event/EventAction";
 import { setEditTask } from "../../../../../Task/TaskAction";
-import moment from "moment"
+import dayjs from "dayjs"
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -96,14 +96,14 @@ class ShipperActivityTable extends Component {
                                             </div>
                                             <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
-                                                {` ${moment(item.startDate).format("lll")}`}
+                                                {` ${dayjs(item.startDate).format("lll")}`}
                                                 </div>
                                             </div>
 
                                             <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                
                                                 <div class=" text-xs  font-poppins text-center">
-                                                {` ${moment(item.endDate).format("lll")}`}
+                                                {` ${dayjs(item.endDate).format("lll")}`}
 
                                                 </div>
                                             </div>
@@ -208,7 +208,7 @@ export default connect(
 // } from "../../../ShipperAction";
 // import { setEditEvents } from "../../../../../Event/EventAction";
 // import { setEditTask } from "../../../../../Task/TaskAction";
-// import moment from "moment";
+// import dayjs from "dayjs";
 
 // class ShipperActivityTable extends Component {
 //   componentDidMount() {
@@ -258,7 +258,7 @@ export default connect(
 //         title: "Start",
 //         width: "20%",
 //         render: (name, item, i) => {
-//           return <span>{` ${moment(item.startDate).format("lll")}`}</span>;
+//           return <span>{` ${dayjs(item.startDate).format("lll")}`}</span>;
 //         },
 //       },
 
@@ -266,7 +266,7 @@ export default connect(
 //         title: "End",
 //         width: "20%",
 //         render: (name, item, i) => {
-//           return <span>{` ${moment(item.endDate).format("lll")}`}</span>;
+//           return <span>{` ${dayjs(item.endDate).format("lll")}`}</span>;
 //         },
 //       },
 

@@ -33,6 +33,8 @@ class InvestorLinkedDocuments extends Component {
     this.state = {
       searchText: "",
       searchedColumn: "",
+      translatedMenuItems: [],
+      loading: true
     };
   }
   componentDidMount() {
@@ -42,6 +44,31 @@ class InvestorLinkedDocuments extends Component {
     getInvestorDocument(this.props.investorDetails.investorId);
     this.props.getDocuments();
   }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+    this.props.getCustomerConfigure(this.props.orgId,"add","contact")
+  }
+
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       'Date', // 0
+' Name', // 1
+'Type', // 2
+'Description', // 3
+'Uploaded By', // 4
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
+
 
   getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
@@ -124,17 +151,37 @@ class InvestorLinkedDocuments extends Component {
  
   render() {
     if (this.props.fetchingDocumentsByInvestorId) return <BundleLoader/>;
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
+
     return (
       <>
           <div className=' flex  sticky  z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                   <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                   
-                  <div className="md:w-[9.7rem]">Date</div>
-                      <div className=" md:w-[11.12rem]">Name</div>
-                      <div className=" md:w-[12.122rem]">Type</div>
-                      <div className=" md:w-[9.5rem]">Description</div>
-                      <div className=" md:w-[9.81rem] ">Uploaded By</div>
+                  <div className="md:w-[9.7rem]">
+                  {translatedMenuItems[0]}   
+                    {/* Date */}
+                  </div>
+                      <div className=" md:w-[11.12rem]">
+                      {translatedMenuItems[1]}   
+                        {/* Name */}
+                        </div>
+                      <div className=" md:w-[12.122rem]">
+                      {translatedMenuItems[2]}   
+                        {/* Type */}
+                        </div>
+                      <div className=" md:w-[9.5rem]">
+                      {translatedMenuItems[3]}   
+                        {/* Description */}
+                        </div>
+                      <div className=" md:w-[9.81rem] ">
+                      {translatedMenuItems[4]}   
+                        {/* Uploaded By */}
+                        </div>
                      
                   </div>
                   <div class="overflow-y-auto h-[69vh]">
@@ -146,25 +193,23 @@ class InvestorLinkedDocuments extends Component {
               className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-colscale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                   <div class="flex">
-                                      <div className=" flex font-medium  md:w-[9.8rem] max-sm:w-full  ">
+                                      <div className=" flex  md:w-[9.8rem] max-sm:w-full  ">
                                       <div>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</div>
                                       </div>
 
-                                      <div className=" flex font-medium   md:w-[11.21rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
+                                      <div className=" flex  md:w-[11.21rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
                                           <div class=" text-xs  font-poppins">
                                              {item.documentTitle}
                                           </div>
 
                                       </div>
-                                      <div className=" flex font-medium  md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
+                                      <div className=" flex  md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
                                           <div class=" text-xs  font-poppins">
                                               {item.documentDescription}
                                           </div>
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-
+                                  <div className=" flex  md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <Tooltip title={item.uploadedBy}>
               <SubTitle>
@@ -178,7 +223,7 @@ class InvestorLinkedDocuments extends Component {
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <a
               href={`${base_url}/document/${item.documentId}`}
@@ -193,7 +238,7 @@ class InvestorLinkedDocuments extends Component {
                                       </div>
                                   </div>
                                  
-                                  <div className=" flex font-medium  md:w-[5.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex   md:w-[5.23rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <StyledPopconfirm
               title="Do you want to delete?"
@@ -204,25 +249,18 @@ class InvestorLinkedDocuments extends Component {
             </StyledPopconfirm>
 
                                       </div>
-                                  </div>
-                                  
-
+                                  </div>                               
                               </div>
                           </div>
                       )
                   })}
                   </div>
-              </div>
-             
-              
+              </div>                          
           </div>
       </>
-  )
-
-    
+  )  
   }
 }
-
 const mapStateToProps = ({ customer,investor, document }) => ({
   customer: customer.customer,
   documents: document.documents,

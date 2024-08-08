@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { JumpStartBox } from "../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { CurrencySymbol } from "../../../../../Components/Common";
 
 class EmployeeJumpStartForAdmin extends Component {
@@ -11,7 +10,7 @@ class EmployeeJumpStartForAdmin extends Component {
     return (
       <div class=" flex flex-col">
  
-        <FlexContainer style={{ width: "100%" }}>
+ <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
           <JumpStartBox
             title={<FormattedMessage
               id="app.createdon"
@@ -32,7 +31,7 @@ class EmployeeJumpStartForAdmin extends Component {
             />}
             bgColor="#0093d7"
           />
-        </FlexContainer>
+        </div>
       </div>
     );
   }

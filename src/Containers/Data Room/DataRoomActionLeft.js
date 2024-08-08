@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Avatar, Tooltip } from "antd";
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
-import { FlexContainer } from "../../Components/UI/Layout";
 
 function RefurbishActionLeft (props) {
   const [currentData, setCurrentData] = useState("");
@@ -26,7 +25,7 @@ function RefurbishActionLeft (props) {
       } = props;
         return (
           <>
-            <FlexContainer alignItems="center">                  
+            <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto " >                  
               <Tooltip title="List">
                 <span class=" text-sm cursor-pointer"
                   onClick={() => setDataRoomViewType("list")}
@@ -38,7 +37,7 @@ function RefurbishActionLeft (props) {
                     <HomeRepairServiceIcon className="!text-icon cursor-pointer" /></Avatar>  
                 </span>
               </Tooltip>             
-            </FlexContainer>   
+            </div>   
           </>
         );
 }

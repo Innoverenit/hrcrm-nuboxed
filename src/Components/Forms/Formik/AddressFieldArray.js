@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import { Tooltip } from "antd";
 import { Field } from "formik";
 import { EnvironmentOutlined } from '@ant-design/icons';
-import { FlexContainer } from "../../UI/Layout";
-import { Spacer, } from "../../UI/Elements";
 import FormikPlacesAutoComplete from "./FormikPlacesAutoComplete";
 import { InputComponent } from "../Formik/InputComponent";
-import { FormattedMessage } from "react-intl";
-import { BundleLoader } from "../../Placeholder";
 class AddressFieldArray extends Component {
   constructor(props) {
     super(props);
@@ -15,42 +11,15 @@ class AddressFieldArray extends Component {
       loading: true
     };
   }
-  // componentDidMount() {
-  //   this.fetchMenuTranslations();
-    
-  // }
-//   async fetchMenuTranslations() {
-//     try {
-//       this.setState({ loading: true });
-//         const itemsToTranslate = [
-//             'Address input is only allowed using Location feature', //0
-// 'Address', //1
-// 'Street', //2
-// 'Zip code', //3
-// 'City', //4
-// 'State/Province', //5
-// 'Country', //6
 
-  
-//           ];
-//       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-//       this.setState({ translatedMenuItems: translations ,loading: false });
-//     } catch (error) {
-//       this.setState({ loading: false });
-//       console.error('Error translating menu items:', error);
-//     }
-//   }
   render() {
     console.log(this.props);
     const { arrayHelpers, values, singleAddress } = this.props;
     console.log(singleAddress);
-    const {loading, activeKey,translatedMenuItems } = this.state;
-    // if (loading) {
-    //   return <div><BundleLoader/></div>;
-    // }
+    const {loading, activeKey,translatedMenuItems } = this.state; 
     return (
       <div >
-        <Spacer />
+        <mt-3 />
         {values &&
           values.address.map((address, index) => (
             <div>             
@@ -68,70 +37,17 @@ class AddressFieldArray extends Component {
                   // label="Location"
                   component={FormikPlacesAutoComplete}
                   isColumn
-                  options={{}}                
-                 
-                />
-                {/* <FormikPlacesAutoComplete /> */}
-                <div 
-                //style={{ marginTop: "0.4375em" }}
-                >
-                  {/* {!singleAddress && (
-                    <Button
-                      type="primary"
-                      htmlType="button"
-                      onClick={() =>
-                        arrayHelpers.push({
-                          addressType: "",
-                          address1: "",
-                          address2: "",
-                          town: "",
-                          street: "",
-                          city: "",
-                          state: "",
-                          postalCode: "",
-                          country: "",
-                          latitude: "",
-                          longitude: "",
-                        })
-                      }
-                    >
-                      +
-                    </Button>
-                  )} */}
-                </div>
-              
+                  options={{}}                               
+                />      
+                <div              
+                >              
+                </div>              
                 <div 
                // style={{ marginTop: "0.4375em" }}
-                >
-                  {/* {!singleAddress && (
-                    <Button
-                      type="primary"
-                      htmlType="button"
-                      onClick={() => arrayHelpers.remove(index)}
-                    >
-                      -
-                    </Button>
-                  )} */}
+                >                 
                 </div>
-              </div>
-              {/* {!singleAddress && (
-                <Button
-                  type="primary"
-                  htmlType="button"
-                  onClick={() => arrayHelpers.remove(index)}
-                >
-                  -
-                </Button>
-              )} */}
-              <span>
-                {/* <Field
-                                name={`address[${index}].addressType`}
-                                label='Type'
-                                component={SelectComponent}
-                                options={['Office', 'Communication', 'Headquarters', 'Registered']}
-                                inlineLabel
-                                style={{ flexBasis: '80%' }}
-                            /> */}                
+              </div>          
+              <span>                        
                 <p class="text-xs"
                   style={{
                     fontWeight: "bold",                   
@@ -226,24 +142,9 @@ class AddressFieldArray extends Component {
                       />
                     </Tooltip>
                   </div>   
-                </div>   
-                          
-                <FlexContainer justifyContent="space-between">
-                  {/* <div style={{ width: "47%" }}>
-                    <Tooltip title="Use Location feature for easy search ">
-                      <Field
-                        name={`address.${index}.country`}
-                        label="Country"
-                        disabled
-                        component={InputComponent}
-                        isColumn
-                        width={"100%"}
-                        inlineLabel                       
-                      />
-                    </Tooltip>
-                  </div> */}
-
-                </FlexContainer>
+                </div>                           
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">             
+                </div>
               </span>
             </div>
           ))}

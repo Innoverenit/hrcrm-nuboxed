@@ -150,7 +150,6 @@ function OpportunityAllCardList(props) {
         height={"82vh"}
         style={{scrollbarWidth:"thin"}}
       >
- {/* <CardWrapper>       */}
  { !fetchingAllOpportunity && allOpportunity.length === 0 ?<NodataFoundPage />:allOpportunity.map((item,index) =>  {
                  
                  var findProbability = item.probability;
@@ -441,9 +440,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                   
 
                  )  
-            })}
-              {/* </CardWrapper> */}
-  
+            })} 
 
       </InfiniteScroll>
       </div>
@@ -538,34 +535,3 @@ mapStateToProps,
 mapDispatchToProps
 )(OpportunityAllCardList);
 
-
- 
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`
-const CardElement = styled.div`
- 
-border-radius: 0.75rem;
-    border: 3px solid #EEEEEE;
-    background-color: rgb(255,255,255);
-    box-shadow: 0 0.25em 0.62em #aaa;
-    height: 17rem;
-    color: rgb(68,68,68);
-    margin: 1em;
-    padding: 0.2rem;
-    width: 20vw;
-    display: flex;
-    flex-direction: column;
-  @media only screen and (max-width: 600px) {
-    width: -webkit-fill-available;
-    
-  }
-`

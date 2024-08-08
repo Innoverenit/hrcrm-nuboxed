@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { SubTitle } from "../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 
@@ -17,12 +16,7 @@ class CustomerCardForm extends Component {
           label={<FormattedMessage id="app.url" defaultMessage="URL" />}
           value={url}
         />
-        {/* <CustomerItemRow //label="Phone Number"
-          label={
-            <FormattedMessage id="app.phoneNumber" defaultMessage="Phone #" />
-          }
-          value={phoneNumber}
-        /> */}
+    
         <CustomerItemRow 
         
         
@@ -68,16 +62,12 @@ export default CustomerCardForm;
 
 const CustomerItemRow = ({ label, value }) => {
   return (
-    <FlexContainer
-      alignItems="center"
-      flexWrap="nowrap"
-      style={{ margin: "0.4rem" }}
-    >
+    <div class=" flex flex-row flex-wrap items-start self-start justify-center grow shrink h-auto mr-auto m-[0.4rem] "> 
       <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
       <SubTitle
       >
         {value}
       </SubTitle>
-    </FlexContainer>
+    </div>
   );
 };

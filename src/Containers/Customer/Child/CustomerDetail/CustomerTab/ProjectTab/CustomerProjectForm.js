@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import { FormattedMessage } from "react-intl";
-import {  Spacer } from "../../../../../../Components/UI/Elements";
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
@@ -159,7 +158,7 @@ function CustomerProjectForm(props) {
                
              
           
-              <Spacer />
+              <div class=" mt-3" />
               <div class=" flex justify-end">
                 <Button
                   type="primary"

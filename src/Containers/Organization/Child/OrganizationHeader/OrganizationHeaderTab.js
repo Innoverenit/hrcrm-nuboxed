@@ -124,6 +124,7 @@ import { Tabs, Card } from 'antd';
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import {getOrganizationList} from "../../../Auth/AuthAction"
+import { GlobalOutlined } from "@ant-design/icons";
 
 // const TabPane = StyledTabs.TabPane;
 const { TabPane } = Tabs;
@@ -151,14 +152,16 @@ class OrganizationHeaderTab extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getOrganizationList();
+    }
+
 
   handleRecruitClick = () => {
     this.setState({ file: true });
   };
 
-  componentDidMount() {
-  this.props.getOrganizationList();
-  }
+ 
 
   componentWillUnmount() {
     this.setState({ breadCumb: false });
@@ -181,7 +184,13 @@ class OrganizationHeaderTab extends Component {
       >
         {this.props.organizationDetailsList.map((item) => (
           <TabPane key={item.organizationId
-          } tab={item.organizationName}>
+          } 
+          tab={
+            <>
+            {item.organizationName}
+            {item.type==="Parent" && <GlobalOutlined style={{ marginLeft: 8 }} />}
+            </>
+            }>
             {/* <Card>
               <p>Country: {item.country_name}</p>
               <p>ID: {item.country_id}</p>

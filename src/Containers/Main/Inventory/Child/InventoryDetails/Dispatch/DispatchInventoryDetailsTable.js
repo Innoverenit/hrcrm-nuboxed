@@ -13,7 +13,6 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip } from "antd";
 import { FileDoneOutlined } from "@ant-design/icons";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
-import moment from "moment";
 import RejectedReasonModal from "./RejectedReasonModal";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
@@ -229,7 +228,7 @@ function DispatchInventoryDetailsTable(props) {
   //             onClick={() => props.updateDispatchInspectionButton({
   //               dispatchInspectionInd: 2,
   //               stopDispatchInspectionUser: props.userId,
-  //               stopDispatchInspectionDate: moment()
+  //               stopDispatchInspectionDate: dayjs()
   //             },
   //               props.rowData.orderPhoneId,
   //               props.locationDetailsId)}
@@ -271,7 +270,7 @@ let buttonRendered = false;
               onClick={() => props.updateDispatchInspectionButton({
                 dispatchInspectionInd: 2,
                 stopDispatchInspectionUser: props.userId,
-                stopDispatchInspectionDate: moment()
+                stopDispatchInspectionDate: dayjs()
               }, props.rowData.orderPhoneId, props.locationDetailsId)}
               type="primary"
               disabled={!tense}
@@ -311,7 +310,7 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
               onClick={() => props.updateDispatchInspectionButton({
                 dispatchInspectionInd: 2,
                 stopDispatchInspectionUser: props.userId,
-                stopDispatchInspectionDate: moment()
+                stopDispatchInspectionDate: dayjs()
               },
                 props.rowData.orderPhoneId,
                 props.locationDetailsId)}

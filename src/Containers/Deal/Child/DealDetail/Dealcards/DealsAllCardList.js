@@ -198,17 +198,12 @@ const DealsAllCardList = (props) => {
                          <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
                                     {/* Name */}
                                     
-                           <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-
-                             {/* <Link
-                                              toUrl={`customer/${item.customerId}`}
-                                              title={`${item.name}`} 
-                                            > */}
+                           <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">                            
                              {item.opportunityName}
                              {/* </Link> */}
                              &nbsp;&nbsp;
                              {date === currentdate ? (
-                               <span class="text-[tomato] mt-[0.4rem] font-bold"
+                               <span class="text-[tomato]  text-[0.65rem] mt-[0.4rem] font-bold"
 
                                >
                                  New

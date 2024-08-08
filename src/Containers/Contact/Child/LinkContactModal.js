@@ -37,64 +37,7 @@ const LinkContactModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
           <LinkedContactForm {...formProps}/>
-          {/* <Formik
-            initialValues={{
-              contactId: [],
-            }}
-            onSubmit={(values, { resetForm }) => {
-              console.log(values);
-              linkType === "opportunity"
-                ? linkContactsCheckToOpportunity(
-                  opportunityId.value,
-                  values,
-                  () => handleLinkContactModal(false)
-                )
-                : linkContactsCheckToAccount(accountId.value, values, () =>
-                  handleLinkContactModal(false)
-                );
-            
-              resetForm();
-            }}
-          >
-            {({
-              errors,
-              touched,
-              isSubmitting,
-              setFieldValue,
-              setFieldTouched,
-              values,
-              ...rest
-            }) => (
-              <Form className="form-background">
-                <FlexContainer justifyContent="space-between">
-                  <div style={{ width: "80%" }}>
-                    <Field
-                       name="contactId"
-                       selectType="contactList"
-                      placeholder="Select"
-                      noLabel
-                      
-                      component={SearchSelect}
-                    
-                      mode
-                      style={{
-                        borderRadius: 5,
-
-                      }}
-                    />
-                  </div>
-
-                  <Button type="primary" htmlType="submit" loading={false}>
-                  
-                    <FormattedMessage
-                      id="app.add"
-                      defaultMessage="Add"
-                    />
-                  </Button>
-                </FlexContainer>
-              </Form>
-            )}
-          </Formik> */}
+          
         </Suspense>
       </StyledModal>
     </>

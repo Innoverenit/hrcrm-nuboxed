@@ -23,9 +23,7 @@ import {
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import PostImageUpld from "../../../../../Components/Forms/Formik/PostImageUpld";
-import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import ProgressiveImage from "../../../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../../../Components/Forms/Autocomplete/ClearbitImage";
@@ -930,42 +928,7 @@ props.emptyClearbit();
                   </div>
              
 
-                  {/* <div class=" w-1/2">
-                    <StyledLabel>
-                      <Field
-                        name="proposalValue"
-                        type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.proposalValue"
-                            defaultMessage="Proposal Value"
-                          />
-                        }
-                        isColumn
-                        width={"100%"}
-                        component={InputComponent}
-                        inlineLabel
-                      />
-                      </StyledLabel>
-                    </div>
-                    <div class=" w-1/2">
-                    <StyledLabel>
-                      <Field
-                        name="opportunityName"
-                        type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.opportunityName"
-                            defaultMessage="Opportunity Name"
-                          />
-                        }
-                        isColumn
-                        width={"100%"}
-                        component={InputComponent}
-                        inlineLabel
-                      />
-                      </StyledLabel>
-                    </div> */}
+                 
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
                 >
@@ -1075,19 +1038,10 @@ translatedMenuItems={props.translatedMenuItems}
                         isColumnWithoutNoCreate
                         label="Bedrooms"
                        
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.tagCompany"
-                        //     defaultMessage="Tag Company"
-                        //   />
-                        // }
                         options={["1", "2", "3","4","5","6"]}
                         component={SelectComponent}
                         isColumn
-                        //value={values.customerId}
-                        //isDisabled={defaultCustomers}
-                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                        // defaultValue={defaultCustomers ? defaultCustomers : null}
+                        
                         inlineLabel
                       />
                                          <Switch
@@ -1146,91 +1100,12 @@ translatedMenuItems={props.translatedMenuItems}
                   </div>
                 
                   </div>
-                 
-                 
-
-                 
-                  {/* <Field
-                    name="address[0].address1"
-                    // label="Address"
-                    label={
-                      <FormattedMessage
-                        id="app.address[0].address1"
-                        defaultMessage="Address"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  />
-                   */}
-                  {/* <Field
-                    name="address[0].street"
-                    //label="Street"
-
-                    label={
-                      <FormattedMessage
-                        id="app.street"
-                        defaultMessage="Street"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  /> */}
-                  
+                           
                   <div class=" flex  justify-between mt-3">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div> */}
+                  
                   </div>
                   
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
+                
                 </div>
                 )}
                 <div class="mt-3">

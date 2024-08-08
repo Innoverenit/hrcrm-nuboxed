@@ -2,7 +2,6 @@ import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import styled from "styled-components";
 import TaskStatusToggle from "../Child/TaskStatusToggle";
 import {
   CheckCircleOutlined,
@@ -10,13 +9,10 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal";
 import { Tooltip, Input, Button, Avatar,FloatButton } from "antd";
-import moment from "moment";
-import { BundleLoader } from "../../../Components/Placeholder";
+import dayjs from "dayjs";
 import { StyledPopconfirm, StyledTable } from "../../../Components/UI/Antd";
-import { withRouter } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   getTaskListRangeByUserId,
@@ -30,8 +26,6 @@ import {
   handleTaskopenModal
 } from "../TaskAction";
 import Highlighter from "react-highlight-words";
-import Box from "@mui/material/Box";
-import { DataGrid } from "@mui/x-data-grid";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 const AddTaskNotesDrawerModal = lazy(() => import("./AddTaskNotesDrawerModal"));
@@ -344,7 +338,7 @@ const TaskTable = (props) => {
       width: 8,
       render: (name, item, i) => { 
        
-        return <span>{` ${moment(item.assignedOn).format("ll")}`}</span>;
+        return <span>{` ${dayjs(item.assignedOn).format("ll")}`}</span>;
       },
     },
 
@@ -419,7 +413,7 @@ title: "Start",
 
 width: 6,
 render: (name, item, i) => { 
-const data2 = ` ${moment(item.startDate).format("ll")}`;
+const data2 = ` ${dayjs(item.startDate).format("ll")}`;
 
 return (
       <span>
@@ -435,7 +429,7 @@ title: "End",
 
 width: 6,
 render: (name, item, i) => { 
-const data2 = ` ${moment(item.endDate).format("ll")}`;
+const data2 = ` ${dayjs(item.endDate).format("ll")}`;
 
 return (
       <span>
@@ -822,19 +816,6 @@ handleSetTaskNameId={handleSetTaskNameId}
         }
       }
       
-      const AppIcon = (props) => (
-        <i
-          className={`fas fa-heartbeat ${props.className}`}
-          style={{ fontSize: "123%" }}
-        ></i>
-      );
-      const PulseIcon = styled(AppIcon)`
-        color: #df9697;
-        &:hover {
-          // background: yellow;
-          color: blue;
-        }
-      `;
 
 
 
@@ -868,7 +849,7 @@ handleSetTaskNameId={handleSetTaskNameId}
 // import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 // import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal";
 // import { Tooltip, Input, Button, Avatar } from "antd";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // import { BundleLoader } from "../../../Components/Placeholder";
 // import { StyledPopconfirm, StyledTable } from "../../../Components/UI/Antd";
 // import { withRouter } from "react-router-dom";
@@ -1157,7 +1138,7 @@ handleSetTaskNameId={handleSetTaskNameId}
 //     //     width: 100,
 //     //     renderCell: (cellValues, row) => {
 //     //       const data = cellValues.row;
-//     //       return <span>{` ${moment(data.assignedOn).format("ll")}`}</span>;
+//     //       return <span>{` ${dayjs(data.assignedOn).format("ll")}`}</span>;
 //     //     },
 //     //   },
 //     //   {
@@ -1218,7 +1199,7 @@ handleSetTaskNameId={handleSetTaskNameId}
 //     //     renderCell: (cellValues, row) => {
 //     //       console.log("cell", cellValues);
 //     //       const data = cellValues.row;
-//     //       const date = ` ${moment(data.startDate).format("ll")}`;
+//     //       const date = ` ${dayjs(data.startDate).format("ll")}`;
 //     //       return <span>{date}</span>;
 //     //     },
 //     //   },
@@ -1229,7 +1210,7 @@ handleSetTaskNameId={handleSetTaskNameId}
 //     //     renderCell: (cellValues, row) => {
 //     //       console.log("cell", cellValues);
 //     //       const data = cellValues.row;
-//     //       const data2 = ` ${moment(data.endDate).format("ll")}`;
+//     //       const data2 = ` ${dayjs(data.endDate).format("ll")}`;
 //     //       return <span>{data2}</span>;
 //     //     },
 //     //   },
@@ -1584,7 +1565,7 @@ handleSetTaskNameId={handleSetTaskNameId}
 //         width: 8,
 //         render: (name, item, i) => { 
          
-//           return <span>{` ${moment(item.assignedOn).format("ll")}`}</span>;
+//           return <span>{` ${dayjs(item.assignedOn).format("ll")}`}</span>;
 //         },
 //       },
 
@@ -1652,7 +1633,7 @@ handleSetTaskNameId={handleSetTaskNameId}
 
 // width: 6,
 // render: (name, item, i) => { 
-//   const data2 = ` ${moment(item.startDate).format("ll")}`;
+//   const data2 = ` ${dayjs(item.startDate).format("ll")}`;
 
 // return (
 //         <span>
@@ -1668,7 +1649,7 @@ handleSetTaskNameId={handleSetTaskNameId}
 
 // width: 6,
 // render: (name, item, i) => { 
-//   const data2 = ` ${moment(item.endDate).format("ll")}`;
+//   const data2 = ` ${dayjs(item.endDate).format("ll")}`;
 
 // return (
 //         <span>

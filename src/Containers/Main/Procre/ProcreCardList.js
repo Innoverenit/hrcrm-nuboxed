@@ -16,7 +16,6 @@ import dayjs from "dayjs";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { MultiAvatar } from "../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
 import ProcureOrderModal from "./Child/ProcureOrderModal";
 import AddProcureNotesDrawerModal from "./AddProcureNotesDrawerModal";
 
@@ -41,6 +40,37 @@ function ProcreCardList(props) {
   function handleSetParticularOrderData(item) {
     setParticularRowData(item);
 }
+const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+const [loading, setLoading] = useState(true);
+useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+        'Item', 
+        ' Price/Unit', 
+        'Unit', 
+        'Procure', 
+        'Delivery', 
+        'Location',
+        'Created',
+        "Owner",
+        "Trade",
+        "Submitted By"
+      ];
+      const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     return () => props.emptyProcre();
   }, []);
@@ -114,18 +144,18 @@ const {handleProcureNotesDrawerModal,
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[11rem]"><FormattedMessage id="app.item" defaultMessage="Item"/></div>
-                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit "/></div>
-                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.unit" defaultMessage="Unit "/></div>
-                        <div className=" md:w-[12rem]"><FormattedMessage id="app.procreid#" defaultMessage="Procure ID"/></div>
-                        <div className=" md:w-[6rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
-                        <div className=" md:w-[5rem]"><FormattedMessage id="app.location" defaultMessage="Location"/></div>
-                        <div className=" md:w-[6.01rem]">Created</div>
-                        <div className=" md:w-[3.8rem] "><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
-                        <div className=" md:w-[5rem]"><FormattedMessage id="app.tradeid" defaultMessage="Trade ID"/></div>
-                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.priceunit" defaultMessage="Price/Unit "/></div>
-                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.unit" defaultMessage="Unit "/></div>
-                        <div className=" md:w-[5.8rem]"><FormattedMessage id="app.Submittedby" defaultMessage="Submitted By"/></div>
+                        <div className=" md:w-[11rem]">{translatedMenuItems[0]}</div>
+                        <div className=" md:w-[5.4rem]">{translatedMenuItems[1]}</div>
+                        <div className=" md:w-[5.4rem]">{translatedMenuItems[2]}</div>
+                        <div className=" md:w-[12rem]">{translatedMenuItems[3]}ID</div>
+                        <div className=" md:w-[6rem]">{translatedMenuItems[4]}</div>
+                        <div className=" md:w-[5rem]">{translatedMenuItems[5]}</div>
+                        <div className=" md:w-[6.01rem]">{translatedMenuItems[6]}</div>
+                        <div className=" md:w-[3.8rem] ">{translatedMenuItems[7]}</div>
+                        <div className=" md:w-[5rem]">{translatedMenuItems[8]}ID</div>
+                        <div className=" md:w-[5.4rem]">{translatedMenuItems[1]}</div>
+                        <div className=" md:w-[5.4rem]">{translatedMenuItems[2]}</div>
+                        <div className=" md:w-[5.8rem]">{translatedMenuItems[9]}</div>
                         <div className="md:w-[1rem]"></div>
         </div>
         <InfiniteScroll
@@ -183,7 +213,7 @@ const {handleProcureNotesDrawerModal,
   <div className=" flex   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs  font-semibold  font-poppins">
-                      <div className="font-normal text-xs  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.unit}</div>
                       </div>
                     </div>
@@ -192,7 +222,7 @@ const {handleProcureNotesDrawerModal,
                           <Tooltip>
                           <div class="max-sm:w-full  justify-between md: flex flex-row text-xs">                      
                                 <span
-                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    class="underline cursor-pointer text-[#1890ff] font-bold"
                                                                     onClick={() => {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleProcureOrderModal(true);
@@ -221,7 +251,7 @@ const {handleProcureNotesDrawerModal,
                         </div>
                          </div>
                   </div>
-                  <div class="flex">
+                  <div class="flex items-center">
                     <div className=" flex   md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
 
@@ -391,11 +421,15 @@ const {handleProcureNotesDrawerModal,
       </div>
 
       <ProcureOrderModal
+       selectedLanguage={props.selectedLanguage}
+       translateText={props.translateText}
                 particularRowData={particularRowData}
                 handleProcureOrderModal={props.handleProcureOrderModal}
                 addProcureOrderModal={props.addProcureOrderModal} />
 
 <AddProcureNotesDrawerModal
+ selectedLanguage={props.selectedLanguage}
+ translateText={props.translateText}
         particularRowData={particularRowData}
         addDrawerProcureNotesModal={props.addDrawerProcureNotesModal}
         handleProcureNotesDrawerModal={props.handleProcureNotesDrawerModal}

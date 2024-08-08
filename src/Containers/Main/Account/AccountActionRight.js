@@ -7,6 +7,41 @@ import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import UploadIcon from '@mui/icons-material/Upload';
 
 class AccountActionRight extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          translatedMenuItems: [],
+        };
+      }
+    
+      componentDidMount() {
+        this.fetchMenuTranslations();
+      }
+    
+      componentDidUpdate(prevProps) {
+        if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+          this.fetchMenuTranslations();
+        }
+      }
+    
+      fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+            
+              
+             
+            "Add",
+            "Import"
+            
+            
+          ];
+    
+          const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+          this.setState({ translatedMenuItems: translations });
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      };
     render() {
         const { handleDistributorModal, viewType,user } = this.props;
         return (
@@ -16,7 +51,8 @@ class AccountActionRight extends React.Component {
                         {user.accountCreateInd === true && user.erpInd === true &&(
                         <Button
                             type="primary"  onClick={() => handleDistributorModal(true)}>
-                            <DataSaverOnIcon className=" !text-icon" /> Add {/* <PlusOutlined /> */}
+                            <DataSaverOnIcon className=" !text-icon" /> 
+                            {this.state.translatedMenuItems[0]} {/* Add  */}
                         </Button>
                         )}
                     </Tooltip>
@@ -25,7 +61,8 @@ class AccountActionRight extends React.Component {
           <Button type="primary"  
         onClick={() => this.props.handleAccountImportModal(true)}
         >
-          <UploadIcon className=" !text-icon"/>  Import
+          <UploadIcon className=" !text-icon"/> 
+          {this.state.translatedMenuItems[1]} {/* Import */}
           </Button>
           </div>
             </FlexContainer>

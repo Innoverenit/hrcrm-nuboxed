@@ -8,7 +8,6 @@ import {updateRepositoryDocument} from "../Auth/AuthAction"
 // import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
 import { Formik, Form, Field, FieldArray,FastField } from "formik";
 import { StyledDrawer, StyledModal } from "../../Components/UI/Antd";
-import { Spacer, StyledLabel } from "../../Components/UI/Elements";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 import DocumentUpload from "../../Components/Forms/Formik/DocumentUpload";
@@ -207,7 +206,7 @@ class UpdateRepositoryDocumentForm extends Component {
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                       <Field
                     name="documentType"
                     type="text"
@@ -232,7 +231,7 @@ class UpdateRepositoryDocumentForm extends Component {
                     className="field"
                     isColumn
                      />
-                  <Spacer />
+                  <div class=" mt-3" />
                         <Field
                         name="description"
                         //label="Description"
@@ -269,7 +268,7 @@ class UpdateRepositoryDocumentForm extends Component {
                         component={InputComponent}
                         style={{ height: "2em",  }}
                       />
-                      <Spacer />
+                      <div class=" mt-3" />
                       <Field
                             // name="department"
                             name="catagory"
@@ -301,10 +300,10 @@ class UpdateRepositoryDocumentForm extends Component {
                               Array.isArray(departmentOption) ? departmentOption : []
                             }
                           />
-                      <Spacer style={{ marginBottom: "0.9375em" }} />
+                      <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
 
                       {/* <FlexContainer>
-                        <StyledLabel>Share</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Share</div>
                         <Switch
                           style={{ width: "6.25em", marginLeft: "0.625em" }}
                           checked={showUserList}
@@ -339,7 +338,7 @@ class UpdateRepositoryDocumentForm extends Component {
                     </div>
                   </div>
 
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="flex-end">
                     <Button
                       htmlType="submit"

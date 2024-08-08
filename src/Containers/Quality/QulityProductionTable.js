@@ -219,7 +219,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                     return (
                         <div key={index}>
                             <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                                <div className="flex  md:w-[16.1rem] max-sm:w-full ">
+                                <div className="flex  md:w-[12.1rem] max-sm:w-full ">
                                     <div 
                                     className="flex justify-between text-xs text-[#1890ff] underline font-semibold font-poppins cursor-pointer"
                                     onClick={() => {
@@ -231,13 +231,13 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                     </div>
                                 </div>
 
-                                <div className="flex  md:w-[23rem] max-sm:justify-between  max-sm:flex-row">
+                                <div className="flex  md:w-[20rem] max-sm:justify-between  max-sm:flex-row">
                                     <div className="text-xs text-[0.85rem]  font-poppins ml-[9em] " style={{ marginLeft: "9em" }}>
                                    {item.categoryName} {item.subCategoryName} {item.attributeName} {item.subAttributeName}
                                     </div>
                                 </div>
 
-                                <div className="flex md:w-[13rem] max-sm:justify-between max-sm:flex-row">
+                                <div className="flex md:w-[22rem] max-sm:justify-between max-sm:flex-row">
                                     <div className="text-xs text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                                     {`  ${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
                                     </div>
@@ -310,7 +310,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium  items-center md:w-[17.023rem] max-sm:flex-row  max-sm:justify-between ">
+                                                <div className=" flex  items-center md:w-[17.023rem] max-sm:flex-row  max-sm:justify-between ">
                                                     <div class="flex text-xs  font-semibold  font-poppins" >
                                                          {item.qualityStatus === "Complete"&&(
                                                     <Select placeholder="Select zone" 
@@ -345,7 +345,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     </div>
                                                 </div>
 
-                                <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex items-center md:w-[5.01rem] max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                                     {item.qualityStatus === "Complete"&&
                                                         <MoveToggleQuality 
@@ -361,7 +361,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     </div>
                                                 </div>
 
-                                {/* <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                {/* <div className="flex flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                                     <div className="md:w-[15.5rem]">
                                     <Popconfirm
                             title="Do you want to change the state?"
@@ -379,7 +379,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                     </div>
                                 </div>
                                 {item.usedInd===true&&(
-                                <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                <div className="flex flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                                     <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                                        <Button>Damage</Button>
                                     </div>

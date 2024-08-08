@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import moment from "moment";
+import dayjs from "dayjs";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { TimePicker } from "../../../Components/Forms/Formik/TimePicker";
 import {addHour} from "../../Event/EventAction";
@@ -49,10 +49,10 @@ class HourForm extends Component {
             if (!values.endDate) {
               values.endDate = values.startDate;
             }
-            let newStartDate = moment(values.startDate).format("YYYY-MM-DD");
+            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
             console.log(newStartDate);
 
-            let firstStartTime = moment(values.startTime).format(
+            let firstStartTime = dayjs(values.startTime).format(
               "HH:mm:ss.SSS[Z]"
             ); 
             console.log(firstStartTime);
@@ -83,8 +83,8 @@ class HourForm extends Component {
             let newStartTime = `${finalStartTime}${timeEndPart}`;
             console.log(newStartTime);
 
-            let newEndDate = moment(values.endDate).format("YYYY-MM-DD");
-            let firstEndTime = moment(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
+            let newEndDate = dayjs(values.endDate).format("YYYY-MM-DD");
+            let firstEndTime = dayjs(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
             console.log(firstEndTime);
             let firstEndHours = firstEndTime.substring(0, 5); // getting only hours and minutes
             console.log(firstEndHours);

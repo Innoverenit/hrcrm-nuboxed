@@ -121,27 +121,27 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
       </div>
    
      <OrdersAddedModal
-      selectedLanguage={this.props.selectedLanguage}
-      translateText={this.props.translateText}
+      selectedLanguage={props.selectedLanguage}
+      translateText={props.translateText}
        orderAddedModal={props.orderAddedModal}
        handleOrderAddedModal={props.handleOrderAddedModal}
       />
         <OrdersCancelModal
-         selectedLanguage={this.props.selectedLanguage}
-         translateText={this.props.translateText}
+         selectedLanguage={props.selectedLanguage}
+         translateText={props.translateText}
        orderCancelModal={props.orderCancelModal}
        handleOrderCancelModal={props.handleOrderCancelModal}
       />
        <OrdersClosedModal
-        selectedLanguage={this.props.selectedLanguage}
-        translateText={this.props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
        orderClosedModal={props.orderClosedModal}
        handleOrderClosedModal={props.handleOrderClosedModal}
       />
 
 <OrdersOpenModal
- selectedLanguage={this.props.selectedLanguage}
- translateText={this.props.translateText}
+ selectedLanguage={props.selectedLanguage}
+ translateText={props.translateText}
        orderOpenModal={props.orderOpenModal}
        handleOrderOpenModal={props.handleOrderOpenModal}
       />

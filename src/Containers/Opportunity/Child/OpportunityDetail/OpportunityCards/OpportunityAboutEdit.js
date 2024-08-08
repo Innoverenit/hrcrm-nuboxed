@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import dayjs from "dayjs";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { Spacer } from "../../../../../Components/UI/Elements";
+
 import EditSearchSelect from "../../../../../Components/Forms/Edit/EditSearchSelect";
 import EditableInput from "../../../../../Components/Forms/Edit/EditableInput";
 import EditableTextArea from "../../../../../Components/Forms/Edit/EditableTextArea";
@@ -104,7 +104,7 @@ class OpportunityAboutEdit extends Component {
             </div>
           </FlexContainer>
 
-          <Spacer style={{ margin: "0.125em" }} />
+          <div class=" mt-3" style={{ margin: "0.125em" }} />
           <FlexContainer
             justifyContent="space-between"
             style={{ width: "100%" }}
@@ -138,7 +138,7 @@ class OpportunityAboutEdit extends Component {
             </div>
           </FlexContainer>
 
-          <Spacer style={{ margin: "0.125em" }} />
+          <div class=" mt-3" style={{ margin: "0.125em" }} />
           <div style={{ width: "100%" }}>
             <EditSearchSelect
               defaultValue={{
@@ -163,7 +163,7 @@ class OpportunityAboutEdit extends Component {
             width={"100%"}
             height={"2.375em"}
           />
-          {/* <Spacer style={{ margin: "0.125em" }} />
+          {/* <div class=" mt-3" style={{ margin: "0.125em" }} />
          
           </div> */}
           {/* <EditableInput

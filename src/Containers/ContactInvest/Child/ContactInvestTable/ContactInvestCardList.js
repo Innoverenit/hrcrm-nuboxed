@@ -28,7 +28,6 @@ import {
   handleContactInvestNotesDrawerModal,
   getContactInvestByUserId,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
-import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -245,13 +244,10 @@ function ContactInvestCardList(props) {
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
   </Link>                                               
-           {/* <Link
-          toUrl={`contactinvest/${item.contactId}`}
-          title={`${item.fullName}`}
-        >{item.fullName}</Link> */}
+      
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-[tomato] mt-[0.4rem] font-bold"        
+          <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold"        
           >
             New
           </span>
@@ -382,17 +378,7 @@ function ContactInvestCardList(props) {
             <LocationOnIcon  className="!text-icon cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
-          
-          {/* <div><Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                style={{ cursor: "pointer",fontSize: "1rem" }}
-                onClick={() => {
-                  props.getCustomerById(item.customerId);
-                  props.handleCustomerEmailDrawerModal(true);
-                }}
-              />
-            </Tooltip> </div> */}           
+                        
             <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
@@ -422,7 +408,7 @@ function ContactInvestCardList(props) {
        </InfiniteScroll>
       </div>
       <UpdateContactInvestModal
-         translateText={props.translateText}
+        translateText={props.translateText}
          selectedLanguage={props.selectedLanguage}
          translatedMenuItems={props.translatedMenuItems}
         contactiData={contactiData}
@@ -431,18 +417,18 @@ function ContactInvestCardList(props) {
         handleCurrentContactIdata={handleCurrentContactIdata}
       />
 <AddContactInvestPulseModal
- translateText={props.translateText}
- selectedLanguage={props.selectedLanguage}
- translatedMenuItems={props.translatedMenuItems}
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
+         translatedMenuItems={props.translatedMenuItems}
         contactiData={contactiData}
         addDrawerContactInvestPulseModal={addDrawerContactInvestPulseModal}
         handleContactInvestPulseDrawerModal={handleContactInvestPulseDrawerModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
       />  
       <AddContactInvestNotesDrawerModal
-       translateText={props.translateText}
-       selectedLanguage={props.selectedLanguage}
-       translatedMenuItems={props.translatedMenuItems}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         contactiData={contactiData}
         addDrawerContactInvestNotesModal={addDrawerContactInvestNotesModal}
         handleContactInvestPulseDrawerModal={handleContactInvestPulseDrawerModal}

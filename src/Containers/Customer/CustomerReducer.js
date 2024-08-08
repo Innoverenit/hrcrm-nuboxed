@@ -1113,7 +1113,7 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         puttingCustContcToggle: false,
         contactByCustomerId: state.contactByCustomerId.map((item) => {
-          if (item.contactId === action.payload.contactId) {
+          if (item.contactPersonId === action.payload.contactPersonId) {
             return action.payload;
           } else {
             return item;

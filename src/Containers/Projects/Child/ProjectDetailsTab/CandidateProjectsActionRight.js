@@ -4,7 +4,7 @@ import TimeInterval from "../../../../Utils/TimeInterval";
 import { setSelectedTimeIntervalReport } from "../../ProjectsAction";
 // import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledRangePicker, StyledSelect } from "../../../../Components/UI/Antd";
 import { withRouter } from "react-router-dom";
 import { base_url } from "../../../../Config/Auth";
@@ -65,14 +65,14 @@ class CandidateProjectsActionRight extends React.Component {
         // elt.category,
         // elt.subCategory,
 
-        // `${elt.name}${moment(elt.creationDate).format("lll")}`,
-        // `${elt.approvedBy}${moment(elt.approvedDate).format("lll")}`,
+        // `${elt.name}${dayjs(elt.creationDate).format("lll")}`,
+        // `${elt.approvedBy}${dayjs(elt.approvedDate).format("lll")}`,
         // `${elt.indentData && elt.indentData.map((n) => {
         //     console.log(n.approvedBy)
         //     return (
         //         <>{n.approvedBy}</>
         //     )
-        // })}${moment(elt.indentData.approvedDate).format("lll")}`,
+        // })}${dayjs(elt.indentData.approvedDate).format("lll")}`,
       ]);
       let result = data.length && data.map(Object.values);
       var doc = new jsPDF('l', 'mm', [1000, 500]);
@@ -125,7 +125,7 @@ class CandidateProjectsActionRight extends React.Component {
         //     }
 
         //     doc.text(address, 120, 10);
-        //     var before = `PROVIDER LIST   DATED :- ${moment().format("DD-MM-YYYY")}`;
+        //     var before = `PROVIDER LIST   DATED :- ${dayjs().format("DD-MM-YYYY")}`;
         //     doc.text(before, 73, 40);
         //     var str = "Page " + doc.internal.getNumberOfPages();
         //     // Total page number plugin only available in jspdf v1.0+
@@ -144,7 +144,7 @@ class CandidateProjectsActionRight extends React.Component {
       if (typeof doc.putTotalPages === "function") {
         doc.putTotalPages(totalPagesExp);
       }
-      doc.save(`Provider ${moment().format("L")}`);
+      doc.save(`Provider ${dayjs().format("L")}`);
     }
     const {
       setSelectedTimeIntervalReport,

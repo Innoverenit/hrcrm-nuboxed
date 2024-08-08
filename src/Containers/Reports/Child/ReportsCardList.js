@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import styled from 'styled-components';
 import "jspdf-autotable";
 import { RotatingCircleLoader    } from 'react-loaders-kit';
-import moment from "moment";
+import dayjs from "dayjs";
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined,} from '@ant-design/icons';
 import { Button,  Tooltip, Input} from "antd";
@@ -67,8 +67,8 @@ const ReportsCardList = (props) => {
   
     //    const LocAdd=`${item.addressDetailsViewDTO.city}`;
     //    const country=`${item.addressDetailsViewDTO.country}`;
-        const currentdate = moment().format("YYYY/MM/DD");
-       const date = moment(item.creationDate).format("YYYY/MM/DD");
+        const currentdate = dayjs().format("YYYY/MM/DD");
+       const date = dayjs(item.creationDate).format("YYYY/MM/DD");
  
   
     return (
@@ -151,7 +151,7 @@ const ReportsCardList = (props) => {
           </CatgryName>
           <label class=" text-gray-600 max-sm:text-sm md:text-xs">
           {item.creationDate === null ? "No Transaction" :
-                 <span>{moment.utc(item.creationDate).format("l")}</span>
+                 <span>{dayjs(item.creationDate).format("l")}</span>
             
                 }
             </label>
@@ -167,7 +167,7 @@ const ReportsCardList = (props) => {
           <label class=" text-gray-600 max-sm:text-sm md:text-xs">
           {item.lastPaymentOn === null ? "No Transaction" :
                 <span>
-                  {moment.utc(item.lastPaymentOn).format("l")} 
+                  {dayjs(item.lastPaymentOn).format("l")} 
                 </span>
               }
             </label>

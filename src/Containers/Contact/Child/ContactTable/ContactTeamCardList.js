@@ -118,10 +118,6 @@ function ContactTeamCardList(props) {
 'Pipeline', // 5
 'Portal Access', // 6
 'Owner' // 7
-
-
-
-
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -155,9 +151,6 @@ function ContactTeamCardList(props) {
     setCurrentContactId(item);
     // console.log("Current2", item);
   }
-
- 
-
   const {
     //contact: { contactId, firstName, middleName, lastName },
     contactId,
@@ -186,12 +179,9 @@ function ContactTeamCardList(props) {
 if (loading) {
   return <div><BundleLoader/></div>;
 }
-
-
   return (
     <>
-      
-     
+       
       <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[99%] max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
@@ -441,10 +431,7 @@ if (loading) {
         <MonitorHeartIcon  className=" !text-icon cursor-pointer text-[#df9697]"/>
       )}
       </span>
-                  </div>
-                  
-             
-              
+                  </div>                                       
                 <div>
               <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
       <span
@@ -496,9 +483,7 @@ if (loading) {
       </Tooltip>
 
       </div>
-        )}
-               
-   
+        )}             
                 </div>
                       </div>
                   </div>

@@ -1,9 +1,8 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Icon, Switch, Button, Popconfirm } from "antd";
-import { FlexContainer, MainWrapper } from "../../../../../Components/UI/Layout";
-import { StyledLabel,Spacer } from "../../../../../Components/UI/Elements";
+import {  Switch,  Popconfirm } from "antd";
+import {  MainWrapper } from "../../../../../Components/UI/Layout";
 import { addingComplianceGdpr,getComplianceGdpr } from "../../../SettingsAction";
 import dayjs from "dayjs";
 
@@ -47,14 +46,11 @@ function ComplianceForm(props) {
     <MainWrapper style={{ height: "446px", width:"", overflow: "auto" }}>
       
        <div>
-      {/* <StyledLabel> 
-           Click To Share                   
-      </StyledLabel> */}
-      {/* <PermissionForm /> */}
+     
       </div>
       
-      <Spacer />
-       <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
+      <mt-3 />
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[52%]">
         <p>GDPR Applicable</p>
         <div>
           <Popconfirm
@@ -71,7 +67,7 @@ function ComplianceForm(props) {
             />
           </Popconfirm>
         </div>
-      </FlexContainer>
+      </div>
       <div>Updated on {dayjs(props.gdprCompliance.lastUpdatedOn).format("ll")} by {props.gdprCompliance.name}</div>
     </MainWrapper>
   );

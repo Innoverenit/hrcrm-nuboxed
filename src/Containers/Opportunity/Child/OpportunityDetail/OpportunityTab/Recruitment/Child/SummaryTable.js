@@ -18,7 +18,6 @@ import { Button, Progress, Tooltip, Avatar } from "antd";
 import { FileExcelOutlined, } from "@ant-design/icons";
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import {
-  Spacer,
   MultiAvatar,
 } from "../../../../../../../Components/UI/Elements";
 import jsPDF from "jspdf";
@@ -26,7 +25,7 @@ import "jspdf-autotable";
 import styled from "styled-components";
 import { base_url } from "../../../../../../../Config/Auth";
 import { FormattedMessage } from "react-intl";
-import moment from "moment";
+import dayjs from "dayjs";
 function onChange(pagination, filters, sorter) {
   console.log("Clicked", pagination, filters, sorter);
 }
@@ -184,7 +183,7 @@ class SummaryTable extends Component {
           data.settings.margin.left + 70,
           20
         );
-        var before = `Published on ${moment().format("Do MMM YYYY")}`;
+        var before = `Published on ${dayjs().format("Do MMM YYYY")}`;
         doc.text(before, 75, 30);
 
         // Footer
@@ -208,7 +207,7 @@ class SummaryTable extends Component {
       doc.putTotalPages(totalPagesExp);
     }
     doc.save(
-      `${opportunityName && opportunityName} Requirement ${moment().format(
+      `${opportunityName && opportunityName} Requirement ${dayjs().format(
         "L"
       )}`
     );
@@ -602,7 +601,7 @@ class SummaryTable extends Component {
                 handleMonsterModal={this.props.handleMonsterModal}
               />
             </Suspense>
-            <Spacer />
+            <div class=" mt-3" />
             <FlexContainer
               justifyContent="flex-end"
               style={{ padding: "0em 1.25em" }}

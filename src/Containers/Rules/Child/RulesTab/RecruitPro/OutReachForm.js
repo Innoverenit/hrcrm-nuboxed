@@ -7,7 +7,6 @@ import {
   FlexContainer,
   MainWrapper,
 } from "../../../../../Components/UI/Layout";
-import { StyledLabel, Spacer } from "../../../../../Components/UI/Elements";
 import {
   addingCommunicationAccess,
   getCommunicationAccess,
@@ -269,15 +268,11 @@ function JobPortalForm(props) {
 
   return (
     <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
-      <Spacer />
+      <div class=" mt-3" />
       <FlexContainer justifyContent="space-between" style={{ width: "100%" }}>
-        <div
-          style={{
-            width: "34%",
-          }}
-        >
+      
           <div>
-            <StyledLabel
+            <div class=" text-xs  font-bold font-poppins  "
               style={{
                 flexBasis: "13%",
                 // marginTop: "0.625em",
@@ -286,9 +281,9 @@ function JobPortalForm(props) {
               }}
             >
               Email
-            </StyledLabel>
+            </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -314,7 +309,7 @@ function JobPortalForm(props) {
             </div>
           </div>
 
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -339,7 +334,7 @@ function JobPortalForm(props) {
               </Popconfirm>
             </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -364,7 +359,7 @@ function JobPortalForm(props) {
               </Popconfirm>
             </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -398,8 +393,8 @@ function JobPortalForm(props) {
               + Sequence
             </Button>
           </div> */}
-          <Spacer />
-        </div>
+          <div class=" mt-3" />
+      
 
         <div
           style={{
@@ -410,7 +405,7 @@ function JobPortalForm(props) {
           }}
         >
           <div>
-            <StyledLabel
+            <div class=" text-xs  font-bold font-poppins  "
               style={{
                 flexBasis: "13%",
                 // marginTop: "0.625em",
@@ -419,9 +414,9 @@ function JobPortalForm(props) {
               }}
             >
               Whatsapp
-            </StyledLabel>
+            </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -447,7 +442,7 @@ function JobPortalForm(props) {
               </Popconfirm>
             </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -472,7 +467,7 @@ function JobPortalForm(props) {
               </Popconfirm>
             </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",

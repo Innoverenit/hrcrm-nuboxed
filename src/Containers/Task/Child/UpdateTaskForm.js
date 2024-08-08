@@ -8,7 +8,6 @@ import { Button, Tooltip, Switch } from "antd";
 import { getEmployeelist,getAssignedToList } from "../../../Containers/Employees/EmployeeAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FastField } from "formik";
-import moment from "moment";
 import { getFilteredEmailContact } from "../../Candidate/CandidateAction";
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -178,7 +177,7 @@ function UpdateTaskForm(props) {
   }, [props.setEditingTask]);
   console.log(includeNames)
 
-  const today = moment();
+  const today = dayjs();
   var todayDate = new Date();
   console.log(today);
   const {
@@ -315,7 +314,7 @@ function UpdateTaskForm(props) {
             endDate: endDate || null,
             endDate: dayjs(),
             complitionStatus: active,
-            assignedDate: moment(props.setEditingTask.assignedDate),
+            assignedDate: dayjs(props.setEditingTask.assignedDate),
             // userId:props.userId,
             priority: priority,
             unit: props.setEditingTask.unit || "",
@@ -427,8 +426,8 @@ function UpdateTaskForm(props) {
               priority: priority,
               complexity: complexity,
               // ownerIds: userId === userId ? [userId] : [],
-              // startDate: moment(values.startDate).toISOString(),
-              // endDate: moment(values.endDate).toISOString(),
+              // startDate: dayjs(values.startDate).toISOString(),
+              // endDate: dayjs(values.endDate).toISOString(),
               // startDate: `${newStartDate}T${newStartTime}`,
               // endDate: `${newEndDate}T${newEndTime}`,
               startDate: `${newStartDate}T20:00:00Z`,
@@ -669,8 +668,8 @@ function UpdateTaskForm(props) {
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (
-                              moment(currentDate).isBefore(
-                                moment(values.startDate)
+                              dayjs(currentDate).isBefore(
+                                dayjs(values.startDate)
                               )
                             ) {
                               return true;

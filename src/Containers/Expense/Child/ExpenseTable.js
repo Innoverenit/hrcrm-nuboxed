@@ -6,7 +6,7 @@ import { StyledTable } from "../../../Components/UI/Antd";
 import { Icon, Tooltip } from "antd";
 import { getExpenseById,handleExpenseVoucherIdDrawer } from "../ExpenseAction";
 import { BundleLoader } from "../../../Components/Placeholder";
-import moment from "moment";
+import dayjs from "dayjs";
 import { CurrencySymbol } from "../../../Components/Common";
 import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
 import ExpenseVoucherIdDrawer from "./ExpenseVoucherIdDrawer";
@@ -83,7 +83,7 @@ function ExpenseTable(props) {
         ),
         dataIndex: "voucherDate",
         render: (name, item, i) => {
-          return <span>{moment(item.voucherDate).format("MMM Do YY")}</span>;
+          return <span>{dayjs(item.voucherDate).format("MMM Do YY")}</span>;
         },
       },
       {

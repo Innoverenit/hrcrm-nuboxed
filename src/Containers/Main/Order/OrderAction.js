@@ -863,3 +863,54 @@ export const ClearSearchedOrder = () => (dispatch) => {
     type: types.HANDLE_CLAER_SEARCHED_ORDER,
   });
 };
+
+export const getEcomList = (orgId,pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_ECOM_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/all-procure/${orgId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ECOM_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ECOM_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getEcomStatusItem = (orderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ECOM_STATUS_ITEM_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/orders/getOwnProductStatus/${orderId}`, 
+      {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ECOM_STATUS_ITEM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ECOM_STATUS_ITEM_FAILURE,
+        payload: err,
+      });
+    });
+};

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { MainWrapper, Spacer } from "../../../../../Components/UI/Elements";
+import { MainWrapper } from "../../../../../Components/UI/Elements";
 import { addCommission } from "../../../../Settings/SettingsAction";
 import { FormattedMessage } from "react-intl";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
@@ -146,7 +146,7 @@ console.log("orggg",props.organizationId)
                                     />
                                     </div>
                          &nbsp;&nbsp;
-                                    {/* <Spacer/> */}
+                                    {/* <div class=" mt-3"/> */}
                                     <div
                                     style={{
                                         width: "10%",  

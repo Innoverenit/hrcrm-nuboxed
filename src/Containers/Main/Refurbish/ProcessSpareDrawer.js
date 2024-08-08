@@ -9,6 +9,7 @@ import AddSpareInRepair from "./AddSpareInRepair";
 
 const ProcessSpareDrawer = (props) => {
     const { RowData, ...formProps } = props;
+    console.log(props.newData)
     return (
         <>
             <Modal
@@ -25,7 +26,8 @@ const ProcessSpareDrawer = (props) => {
                 <AddSpareInRepair
                         phoneId={props.phoneId}
                         RowData={RowData}
-                        orderPhoneId={props.rowData.orderPhoneId}
+                        orderPhoneId={props.rowData.orderPhoneId} 
+                        newData={props.newData}                    
                     />
                 </Suspense>
             </Modal>

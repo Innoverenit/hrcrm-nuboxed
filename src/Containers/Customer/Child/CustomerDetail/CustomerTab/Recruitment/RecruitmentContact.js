@@ -1,5 +1,5 @@
 import React from "react";
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledSelect } from "../../../../../../Components/UI/Antd";
 const Option = StyledSelect.Option;
 function RecruitmentContact(props) {
@@ -19,7 +19,7 @@ function RecruitmentContact(props) {
       >
         {props.contactData.map((item) => {
           const date = item.availableDate
-            ? moment(item.availableDate).format("MMM DD")
+            ? dayjs(item.availableDate).format("MMM DD")
             : "";
           return (
             <Option value={item.contactId}>

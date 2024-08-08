@@ -5,11 +5,10 @@ import { FormattedMessage } from "react-intl";
 import {
     getClubAlllist  
 } from "./ClubAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import ReactCountryFlag from 'react-country-flag';
 import { Link } from 'react-router-dom';
 import { Button, Select, Tooltip } from 'antd';
-import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -264,7 +263,7 @@ function ClubTableAll(props) {
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                    
-                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
+                                    {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
                                 <div className=" flex  items-center w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

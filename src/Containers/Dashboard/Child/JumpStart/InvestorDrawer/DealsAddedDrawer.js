@@ -18,7 +18,11 @@ const DealsAddedDrawer = (props) => {
         onClose={()  => props.handleDealAddedDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-        <DealAddedTable/>
+        <DealAddedTable
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
+         translatedMenuItems={this.props.translatedMenuItems}
+        />
         </Suspense>
       </StyledDrawer>
     </>

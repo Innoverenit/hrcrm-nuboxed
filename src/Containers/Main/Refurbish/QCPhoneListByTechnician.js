@@ -69,12 +69,11 @@ const QCPhoneListByTechnician = (props) => {
                         <div className="md:w-[7.2rem]"></div>
                     </div>
                     <InfiniteScroll
-                            dataLength={props.orderPhoneList.length}
+                            dataLength={props.phoneByTechId.length}
                              next={handleLoadMore}
                              hasMore={hasMore}
                             loader={props.fetchingNoOfPhoneInQcById ? <div style={{ textAlign: 'center',scrollbarWidth:"thin" }}>Loading...</div> : null}
                             height={"65vh"}
-                            s
                             endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                         >
                     {props.phoneByTechId.map((item) => {

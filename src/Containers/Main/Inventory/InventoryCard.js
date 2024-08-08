@@ -6,7 +6,6 @@ import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { getInventory, handleInventoryRoomRackModal } from "./InventoryAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../Components/Placeholder";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
@@ -44,8 +43,8 @@ const InventoryCard = (props) => {
   const filteredData = inventory.filter((item) => item.inventoryInd === true);
   return (
     <>
-      {fetchingInventoryList ? <BundleLoader /> : <div className=' flex justify-end sticky  z-auto'>
-        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      {fetchingInventoryList ? <BundleLoader /> : <div className=' flex  sticky  z-auto'>
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">{props.translatedMenuItems[0]}</div>
             <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[1]}</div>
@@ -102,7 +101,7 @@ const InventoryCard = (props) => {
                         </div>
 
 
-                        <div className=" flex font-medium  w-[20.2rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                        <div className=" flex  w-[20.2rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
 
                           {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
@@ -116,7 +115,7 @@ const InventoryCard = (props) => {
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex   w-[17.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden"># Opportunity</div> */}
+                        {/* <div class=" text-xs  font-poppins max-sm:hidden"># Opportunity</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {`${(item.address && item.address[0].city) || ""} ${" "}${(item.address && item.address[0].state) || ""}`}
@@ -124,7 +123,7 @@ const InventoryCard = (props) => {
                         </div>
                       </div>
                       <div className=" flex   w-[16.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {(item.address && item.address[0].postalCode) || ""}
@@ -135,7 +134,7 @@ const InventoryCard = (props) => {
 
                       
 
-                        <div className=" flex font-medium justify-center flex-col max-sm:flex-row  ">
+                        <div className=" flex justify-center flex-col max-sm:flex-row  ">
 
                         <Button type="primary"
                             onClick={() => {

@@ -60,11 +60,21 @@ class Dashboard extends Component {
       activeButton: "test",
       selectedCountry: "",
       setInfoWindowPosition:null,
+      showShareForm: false,
     };
+    this.toggleShareForm = this.toggleShareForm.bind(this);
   }
    handleButtonClick=(buttonName)=>{
     this.setState({activeButton:buttonName});
+    
   }
+
+  toggleShareForm() {
+    this.setState(prevState => ({
+      showShareForm: !prevState.showShareForm
+    }));
+  }
+
 
   handleTabClick = async (key) => {
     this.setState({ activeTab: key, loading: true });
@@ -149,13 +159,18 @@ class Dashboard extends Component {
       dept,
       country,
     } = this.props;
+    console.log(this.state.showShareForm)
+    const buttonName = this.state.showShareForm ? 'Enterprise' : 'My View';
 
     return (
       <React.Fragment>
    
 
-        <Dashboardheader 
+        <Dashboardheader
+        buttonName={buttonName} 
         activeTab={activeTab}
+        toggleShareForm={this.toggleShareForm}
+        showShareForm={this.state.showShareForm}
         tab={tab}
         handleTabClick={this.handleTabClick}
         viewType={viewType}
@@ -203,12 +218,14 @@ class Dashboard extends Component {
              />)
            
              : this.state.activeButton==="Finance" ?
-             (<DashboardFinanceJumpstart/>)
+             (<DashboardFinanceJumpstart
+              buttonName={buttonName} 
+             />)
              : this.state.activeButton==="Accounts" ?
              (<CustomerDashboardJumpStart/>)
 
              : this.state.activeButton === "Regional" && activeTab  ? (
-              <CardElement>
+              <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
                 <div className="font-bold flex-col justify-center flex text-lg">Sales</div>
                 <RegionalSales 
                  tab={tab}
@@ -216,11 +233,11 @@ class Dashboard extends Component {
                 
                  handleTabClick={this.handleTabClick}
                 regionRecords={this.props.regionRecords}/>
-              </CardElement>
+              </div>
             ) 
             
             : this.state.activeButton === "multiOrg" && activeTab  ? (
-              <CardElement>
+              <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
                 <div className="font-bold flex-col justify-center flex text-lg">Sales</div>
                 <MultiOrgSales 
                  tab={tab}
@@ -229,7 +246,7 @@ class Dashboard extends Component {
                  handleTabClick={this.handleTabClick}
                  multiOrgRecords={this.props.multiOrgRecords}
          />
-              </CardElement>
+              </div>
             ) 
             
              :
@@ -273,7 +290,8 @@ class Dashboard extends Component {
       />
           // <CustomerLeadsTab/>
           )
-       :<TaskDashboardTab viewType={viewType}
+       :
+       <TaskDashboardTab viewType={viewType}
        selectedLanguage={this.props.selectedLanguage}
        translateText={this.props.translateText}
        />
@@ -326,9 +344,9 @@ class Dashboard extends Component {
      <div class="w-[47%] max-sm:w-wk">
      <div class=" flex flex-col" >
      <div className="flex justify-between">
-    {this.state.activeButton === "test" && viewType !== "ALL" && (
+    {/* {this.state.activeButton === "test" && viewType !== "ALL" && (
         <TodoDashboardTab viewType={viewType} />
-    )}
+    )} */}
 
     {this.state.activeButton === "Order" && (
         <DashOrderJumpstart
@@ -358,16 +376,16 @@ class Dashboard extends Component {
     )}
 
     {this.state.activeButton === "Regional" && activeTab && (
-        <CardElement>
+        <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
             <div className="font-bold flex-col justify-center flex text-lg">FulFillment</div>
             <FullFillMentJumpstartBox regionRecords={this.props.regionRecords}/>
-        </CardElement>
+        </div>
     )}
      {this.state.activeButton === "multiOrg" && activeTab && (
-        <CardElement>
+       <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
             <div className="font-bold flex-col justify-center flex text-lg">FulFillment</div>
             <MultiOrgFullFillMentMJumpstartBox multiOrgRecords={this.props.multiOrgRecords}/>
-        </CardElement>
+        </div>
     )}
 
     {this.state.activeButton === "Tasks" && (
@@ -422,21 +440,21 @@ class Dashboard extends Component {
                         setInfoWindowPosition={this.state.setInfoWindowPosition}
                         />)
                         : this.state.activeButton === "Regional" && activeTab  ?
-                          <CardElement>
+                        <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
                           <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
                           <InvestorRegionalJumpstartBox regionRecords={this.props.regionRecords}/>
-                          </CardElement>
+                          </div>
                            : this.state.activeButton === "multiOrg" && activeTab  ?
-                           <CardElement>
+                           <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
                            <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
                            <MultiOrgInvestorRegionalJumpstartBox multiOrgRecords={this.props.multiOrgRecords}/>
-                           </CardElement>
+                           </div>
                         : this.state.activeButton === "Investors" ? (
                           <CustomerGoogleMap />)
                           : this.state.activeButton === "Customer" ? (
                             <CustomerViewGoogleMap />)
-                          : this.state.activeButton === "test" ? (
-                            <StackedClosureChart />)
+                          // : this.state.activeButton === "test" ? (
+                          //   <StackedClosureChart />)
                             : this.state.activeButton === "Tasks" ? (
                               <StackedClosureChart />)
                               : this.state.activeButton === "Order" ? (
@@ -528,22 +546,3 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getOpenQuotation
 }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
-
-const CardElement = styled.div`
- 
-border-radius: 0.75rem;
-    border: 3px solid #EEEEEE;
-    background-color: rgb(255,255,255);
-    box-shadow: 0 0.25em 0.62em #aaa;
-    height: 18rem;
-    color: rgb(68,68,68);
-    margin: 1em;
-    padding: 0.2rem;
-    width: 42vw;
-    display: flex;
-    flex-direction: column;
-  @media only screen and (max-width: 600px) {
-    width:  -webkit-fill-available;
-    
-  }
-`

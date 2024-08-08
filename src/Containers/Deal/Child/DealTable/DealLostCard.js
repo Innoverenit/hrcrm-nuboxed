@@ -293,9 +293,7 @@ function DealLostCard(props) {
                                 </span>
                               </Tooltip>
                             </div>
-                          
-                          
-                           
+                                                                         
                               <div>
                                  <Tooltip
                                 placement="right"

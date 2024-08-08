@@ -1,6 +1,5 @@
 import React from "react";
 import { get } from "lodash";
-import { FlexContainer } from "../../Components/UI/Layout";
 import { SelectInput, ValidationError } from "../../Components/UI/Elements";
 const Option = SelectInput.Option;
 export const SelectComponent = ({
@@ -25,7 +24,7 @@ export const SelectComponent = ({
   }
 
   return (
-    <FlexContainer flexWrap="no-wrap" style={{ margin: "0.6rem" }}>
+    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto m-[0.6rem] ">
       <span style={{ width: "28.75em" }}>{label}</span> &nbsp;
       <SelectInput
         {...field}
@@ -42,6 +41,6 @@ export const SelectComponent = ({
       {get(touched, field.name) && get(errors, field.name) && (
         <ValidationError>{get(errors, field.name)}</ValidationError>
       )}
-    </FlexContainer>
+    </div>
   );
 };

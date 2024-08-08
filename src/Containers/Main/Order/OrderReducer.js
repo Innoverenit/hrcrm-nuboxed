@@ -1,5 +1,5 @@
 import * as types from "./OrderActionTypes";
-import moment from "moment";
+import dayjs from "dayjs";
 
 const initialState = {
   viewType: "",
@@ -131,6 +131,13 @@ const initialState = {
   fetchingAllOrderListError: false,
   allOrderList: [],
 
+  fetchingEcomList: false,
+  fetchingEcomListError:false,
+  ecomList:[],
+
+  fetchingEcomStatusItem: false,
+  fetchingEcomStatusItemError:false,
+  statusEcomItems:{}
 };
 
 export const orderReducer = (state = initialState, action) => {
@@ -744,6 +751,38 @@ export const orderReducer = (state = initialState, action) => {
                           completedLowOrder:[],
 
                         };
+
+                        case types.GET_ECOM_LIST_REQUEST:
+                          return { ...state, fetchingEcomList: true };
+                        case types.GET_ECOM_LIST_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingEcomList: false,
+                            ecomList: [
+                              ...state.ecomList,
+                              ...action.payload]
+                          };
+                        case types.GET_ECOM_LIST_FAILURE:
+                          return {
+                            ...state,
+                            fetchingEcomList: false,
+                            fetchingEcomListError: true,
+                          };     
+                          
+                          case types.GET_ECOM_STATUS_ITEM_REQUEST:
+                            return { ...state, fetchingEcomStatusItem: true };
+                          case types.GET_ECOM_STATUS_ITEM_SUCCESS:
+                            return {
+                              ...state,
+                              fetchingEcomStatusItem: false,
+                              statusEcomItems: action.payload,
+                            };
+                          case types.GET_ECOM_STATUS_ITEM_FAILURE:
+                            return {
+                              ...state,
+                              fetchingEcomStatusItem: false,
+                              fetchingEcomStatusItemError: true,
+                            };                 
     
     default:
       return state;

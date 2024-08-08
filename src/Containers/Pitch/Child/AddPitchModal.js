@@ -22,8 +22,7 @@ class AddPitchModal extends Component {
                   defaultMessage="Pitch"
                 />
         }
-       
-
+     
         width={drawerWidth}
           visible={this.props.addPitchModal}
           destroyOnClose
@@ -38,11 +37,8 @@ class AddPitchModal extends Component {
           <PitchForm
           selectedLanguage={this.props.selectedLanguage}
           translateText={this.props.translateText}
-          />{" "}
-       
-        </Suspense>
-
-       
+          />{" "}      
+        </Suspense>       
         </StyledDrawer>
       </>
     );

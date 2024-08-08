@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import { updateShipperContact } from "../../../ShipperAction";
@@ -202,7 +202,7 @@ class UpdateShipperContactForm extends Component {
                           />
                         </div>
                       </FlexContainer>
-                      <Spacer />
+                      <div class=" mt-3" />
                       <FlexContainer justifyContent="space-between">
                         <div style={{ width: "40%" }}>
                           <FastField
@@ -239,7 +239,7 @@ class UpdateShipperContactForm extends Component {
                       </FlexContainer>
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <FastField
@@ -275,7 +275,7 @@ class UpdateShipperContactForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <FastField
@@ -312,7 +312,7 @@ class UpdateShipperContactForm extends Component {
                     </div>
                   </FlexContainer>
 
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "100%" }}>
                       <FastField
@@ -332,7 +332,7 @@ class UpdateShipperContactForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "100%" }}>
                       <FastField
@@ -351,7 +351,7 @@ class UpdateShipperContactForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer style={{ marginTop: "25px" }} />
+                  <div class=" mt-3" style={{ marginTop: "25px" }} />
                   <Field
                     name="notes"
                     label="Notes"
@@ -402,7 +402,7 @@ class UpdateShipperContactForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
 
                   <div style={{ marginTop: "30px" }}>
                     <FieldArray

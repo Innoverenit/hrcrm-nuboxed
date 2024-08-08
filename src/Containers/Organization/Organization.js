@@ -115,7 +115,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
 import { MainWrapper } from "../../Components/UI/Layout";
-import { getOrganizationDetails,setOrganizationViewType ,handleOrganizationModal,getOrganizationList} from "../Auth/AuthAction";
+import { getOrganizationDetails,setOrganizationViewType ,handleOrganizationModal,
+  // getOrganizationList
+} from "../Auth/AuthAction";
 const AddOrganizationModal = lazy(() =>
   import("./Child/OrganizationHeader/AddOrganizationModal")
 );
@@ -136,16 +138,18 @@ const Organization =(props) =>{
   console.log("active",activeTab)
   // console.log("active1",props.organizationDetailsList[0].organizationId)
   
-  useEffect(() => {
+//   useEffect(() => {
    
-    props.getOrganizationList();
-    // props.getOrganizationDetails(activeTab);
+//     props.getOrganizationList();
+//     // props.getOrganizationDetails(activeTab);
    
-},[]);
+// },[]);
 
 useEffect(() => {
+  if(activeTab){
 
  props.getOrganizationDetails(activeTab);
+  }
 //  console.log(activeTab)
 },[activeTab]);
 
@@ -248,7 +252,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getOrganizationDetails,
-      getOrganizationList,
+      // getOrganizationList,
       handleOrganizationModal,
       setOrganizationViewType
     },

@@ -11,7 +11,7 @@ class AccountPulseModal extends Component {
         return (
             <div>
                 <StyledDrawer
-                    // title="Notes"
+                   
                     title={`${this.props.RowData.name}`}
                     width="90%"
                     visible={this.props.showPulseModal}

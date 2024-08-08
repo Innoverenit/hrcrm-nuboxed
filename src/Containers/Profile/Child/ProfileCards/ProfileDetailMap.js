@@ -10,9 +10,9 @@ import {
 
   
 } from '@ant-design/icons';
-import { Icon, Carousel, Button, Tooltip } from "antd";
+import {  Carousel, Tooltip } from "antd";
 import { StyledModal } from "../../../../Components/UI/Antd";
-import { MainWrapper, FlexContainer } from "../../../../Components/UI/Layout";
+import { MainWrapper} from "../../../../Components/UI/Layout";
 import { Leaflet, OpenTripPlanner } from "../../../../Components/Utils";
 import MapPopupmarker from "./MapPopupMarker";
 import { AddressComponent } from "../../../../Components/Common";
@@ -44,11 +44,6 @@ class ProfileDetailMap extends Component {
     } = this.props;
 
     console.log(address);
-    // const userAddressName = `${userAddress.address1 ||
-    //   ""} ${userAddress.address2 || ""} ${userAddress.street ||
-    //   ""} ${userAddress.town || ""} ${userAddress.city ||
-    //   ""} ${userAddress.state || ""} ${userAddress.country ||
-    //   ""} ${userAddress.postalCode || ""}`;
     console.log(userAddress);
     // console.log(userAddressName);
     const position = [];
@@ -60,19 +55,7 @@ class ProfileDetailMap extends Component {
         name: "slack",
       });
     }
-    // _.forEach(account, component => {
-    //   var latlng = _.get(component, "address");
-    //   //////////debugger;
-    //   _.forEach(address, l => {
-    //     if (l.latitude && l.longitude) {
-    //       position.push({
-    //         lat: Number(l.latitude),
-    //         lng: Number(l.longitude),
-    //         name: component.accountName
-    //       });
-    //     }
-    //   });
-    // });
+  
     const markers = [];
 
     address &&
@@ -144,12 +127,7 @@ class ProfileDetailMap extends Component {
               margin={5}
               zoom={9}
               MyPopupMarker={MapPopupmarker}
-              // centerPosition={
-              //   newCenterPosition.length
-              //     ? newCenterPosition
-              //     : [Number(51.92301029999999), Number(4.470038700000032)]
-              // }
-              // centerPosition={newCenterPosition}
+            
               centerPosition={[
                 Number(51.92301029999999),
                 Number(4.470038700000032),
@@ -171,16 +149,9 @@ class ProfileDetailMap extends Component {
         >
           {/* <MapModal position={markers} /> */}
           <>
-            <FlexContainer
-              justifyContent="space-between"
-              alignItems="flex-start"
-              flexWrap="nowrap"
-            >
+          <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
               <div>
-                <FlexContainer
-                  justifyContent="space-between"
-                  style={{ width: 220, position: "relative" }}
-                >
+              <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[220px] relative ">
                   <CarouselIcon
                     //type="left-circle"
                     icon={<LeftCircleTwoTone />}
@@ -195,7 +166,7 @@ class ProfileDetailMap extends Component {
                     theme="twoTone"
                     style={{ position: "absolute", right: -66, top: 40 }}
                   />
-                </FlexContainer>
+                </div>
                 <MainWrapper style={{ width: 220, marginLeft: 32 }}>
                   <Carousel ref={(node) => (this.carousel = node)} {...props}>
                     {address &&
@@ -236,12 +207,7 @@ class ProfileDetailMap extends Component {
                     margin={5}
                     zoom={9}
                     MyPopupMarker={MapPopupmarker}
-                    // centerPosition={
-                    //   centerPosition.length
-                    //     ? centerPosition
-                    //     : [Number(51.92301029999999), Number(4.470038700000032)]
-                    // }
-                    // centerPosition={newCenterPosition}
+                  
                     centerPosition={[
                       Number(51.92301029999999),
                       Number(4.470038700000032),
@@ -251,7 +217,7 @@ class ProfileDetailMap extends Component {
                   />
                 )}
               </div>
-            </FlexContainer>
+            </div>
           </>
         </StyledModal>
       </>

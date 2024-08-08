@@ -32,6 +32,40 @@ function AllOrderList(props) {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [lead, setLead] = useState("")
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+  'Urgent', // 0
+  'Order', // 1
+  ' Customer', // 2
+  'Contact', // 3
+  ' Units', // 4
+  'Owner', // 5
+  ' Supervisor',
+  'Lead',
+ 
+  'Created',
+  "High",
+  "Normal"
+
+
+        ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
   useEffect(() => {
     setPage(page + 1);
     // props.getAllOrderList(props.orgId, page);
@@ -91,15 +125,15 @@ const handleLoadMoreLow = () => {
         <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-      <div className=" md:w-[3.25rem] text-[white] flex justify-center bg-[red]">Urgent </div>
-          <div className=" md:w-[10.31rem] ml-2">Order ID</div>
-          <div className=" md:w-[8.6rem]">Customer</div>
-          <div className=" md:w-[4.051rem] ">Contact</div>
-          <div className="md:w-[5.01rem]">Units</div>
-          <div className="md:w-[5.031rem]">Owner</div>
-          <div className="md:w-[5.2rem]">Supervisor</div>
-          <div className="md:w-[5.06rem]">Lead</div>
-          <div className="md:w-[9.73rem]">Created</div>
+      <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
+        <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
+          <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
+          <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
+          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
           <div className="md:w-24"></div>
         </div>
         <InfiniteScroll
@@ -150,7 +184,7 @@ const handleLoadMoreLow = () => {
                                                                     )}
                                                                     {item.priority === "Medium" && (
                                                                         <div
-                                                                            class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
+                                                                            class="border rounded-[50%] h-6 w-6 bg-[#0f0e0d]"></div>)}
                                                                     {item.priority === "Low" && (
                                                                         <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                 </div>
@@ -158,11 +192,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex  w-wk     max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                         <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -373,15 +407,15 @@ const handleLoadMoreLow = () => {
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-      <div className=" md:w-[3.25rem] text-[white] flex justify-center bg-[orange] ">High </div>
-          <div className=" md:w-[10.31rem] ml-2">Order ID</div>
-          <div className=" md:w-[8.6rem]">Customer</div>
-          <div className=" md:w-[4.051rem] ">Contact</div>
-          <div className="md:w-[5.01rem]">Units</div>
-          <div className="md:w-[5.031rem]">Owner</div>
-          <div className="md:w-[5.2rem]">Supervisor</div>
-          <div className="md:w-[5.06rem]">Lead</div>
-          <div className="md:w-[9.73rem]">Created</div>
+      <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[9]} </div>
+          <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
+          <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
+          <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
+          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
           <div className="md:w-24"></div>
         </div>
         <InfiniteScroll
@@ -440,11 +474,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -656,15 +690,15 @@ const handleLoadMoreLow = () => {
       <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-       <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
-           <div className=" md:w-[10.3rem] ml-2">Order ID</div>
-           <div className=" md:w-[8.6rem]">Customer</div>
-           <div className=" md:w-[4.051rem] ">Contact</div>
-           <div className="md:w-[5.014rem]">Units</div>
-           <div className="md:w-[5.031rem]">Owner</div>
-           <div className="md:w-[5.2rem]">Supervisor</div>
-           <div className="md:w-[5.06rem]">Lead</div>
-           <div className="md:w-[9.73rem]">Created</div>
+       <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[10]} </div>
+                        <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
+          <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
+          <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
+          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
            <div className="md:w-24"></div>
          </div>
          <InfiniteScroll
@@ -723,11 +757,11 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                      <div className=" flex items-center    max-sm:w-full">
-                       <div className="flex max-sm:w-full">
+                       <div className="flex  items-center max-sm:w-full">
                          <div class="w-[9.43rem]">
                            <Badge size="small" count={item.productNum}>
                              <span
-                               class="underline cursor-pointer text-[#1890ff] text-xs"
+                               class="underline font-bold cursor-pointer text-[#1890ff] text-xs"
                                onClick={() => {
                                  handleSetParticularOrderData(item);
                                  props.handleOrderDetailsModal(true);

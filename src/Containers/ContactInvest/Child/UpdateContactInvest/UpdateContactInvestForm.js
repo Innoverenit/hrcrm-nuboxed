@@ -16,6 +16,7 @@ import { getDesignations } from "../../../Settings/Designation/DesignationAction
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getCustomerData } from "../../../Customer/CustomerAction";
 import {getInvestorData,getDialCode} from "../../../Investor/InvestorAction";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const UpdateContactSchema = Yup.object().shape({
@@ -42,8 +43,45 @@ class UpdateContactInvestForm extends Component {
       currentOption: "",
       candidate: false,
       availability: false,
+      translatedMenuItems: [],
+      loading: true
+
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       'First Name', // 0
+'Middle Name', // 1
+'Last Name', // 2
+'Email', // 3
+'Alternate Email', // 4
+'Dial Code', // 5
+'Mobile', // 6
+'WhatsApp', // 7
+'Linkedin', // 8
+'Tag Company', // 9
+'Source', // 10
+'Department', // 11
+'Designation', // 12
+'Notes' //13
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
+
+
   handleCandidate = (checked) => {
     this.setState({ candidate: checked });
   };
@@ -137,6 +175,10 @@ class UpdateContactInvestForm extends Component {
         value: item.customerId,
       };
     });
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
     return (
       <>
         <Formik
@@ -207,35 +249,14 @@ class UpdateContactInvestForm extends Component {
                     <FastField name="imageId" component={PostImageUpld} />
                     <div>
                     <div class=" flex justify-between max-sm:flex-col">
-                        {/* <div class=" w-2/5 max-sm:w-wk">
-                          <FastField
-                            name="salutation"
-                            type="text"
-                            // label="Salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="salutation"
-                              />
-                            }
-                            options={["Mr.", "Ms.", "None"]}
-                            component={SelectComponent}
-                            inlineLabel
-                            className="field"
-                            isColumn
-                          />
-                        </div> */}
+                                 {/* name="salutation" */}
+                       
                         <div class=" w-full max-sm:w-wk">
+                        <div>{translatedMenuItems[0]}     </div>
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label={
-                              <FormattedMessage
-                              id="app.firstname"
-                              defaultMessage="firstname"
-                            />
-                            }
+                            // label="First Name"                                     
                             type="text"
                             width={"100%"}
                             isColumn
@@ -246,15 +267,10 @@ class UpdateContactInvestForm extends Component {
                       </div>
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-wk">
+                        <div>{translatedMenuItems[1]}     </div>
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={
-                              <FormattedMessage
-                                id="app.middle"
-                                defaultMessage="middle"
-                              />
-                            }
+                            //label="Middle Name"                                 
                             type="text"
                             width={"100%"}
                             isColumn
@@ -263,15 +279,10 @@ class UpdateContactInvestForm extends Component {
                           />
                         </div>
                         <div class=" w-1/2 max-sm:w-wk">
+                        <div>{translatedMenuItems[2]}     </div>
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastname"
-                                defaultMessage="lastname"
-                              />
-                            }
+                            //label="Last Name"                                        
                             type="text"
                             width={"100%"}
                             isColumn
@@ -284,16 +295,11 @@ class UpdateContactInvestForm extends Component {
                   </div>
                   <div class=" flex justify-between">
                     <div class=" w-full">
+                    <div>{translatedMenuItems[3]}     </div>
                       <FastField
                         type="email"
                         name="emailId"
-                        //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.email"
-                            defaultMessage="Email"
-                          />
-                        }
+                        //label="Email"                                             
                         className="field"
                         isColumn
                         width={"100%"}
@@ -305,16 +311,11 @@ class UpdateContactInvestForm extends Component {
                   </div>
                   <div class=" flex justify-between">
                     <div class=" w-full">
+                    <div>{translatedMenuItems[4]}     </div>
                       <FastField
                         type="email"
                         name="alternateEmail"
-                        //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.alternateEmail"
-                            defaultMessage="Alternate Email"
-                          />
-                        }
+                        //label="Email"                               
                         className="field"
                         isColumn
                         width={"100%"}
@@ -327,15 +328,10 @@ class UpdateContactInvestForm extends Component {
                   </div>  
                   <div class=" flex justify-between">
                     <div class=" w-2/6 max-sm:w-2/5">
+                    <div>{translatedMenuItems[5]}     </div>
                     <FastField
                         name="countryDialCode"
-                        isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.dialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        isColumnWithoutNoCreate                           
                         defaultValue={{
                           label:`+${contactiData.countryDialCode}`,
                         }}
@@ -347,16 +343,10 @@ class UpdateContactInvestForm extends Component {
                       />
                     </div>
                     <div class=" w-[60%] max-sm:w-2/4">
+                    <div>{translatedMenuItems[6]}     </div>
                       <FastField
                         type="text"
-                        name="mobileNumber"
-                        label={
-                          <FormattedMessage
-                            id="app.mobile"
-                            defaultMessage="mobile #"
-                          />
-                        }
-                        //placeholder="Mobile #"
+                        name="mobileNumber"                     
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
@@ -364,61 +354,14 @@ class UpdateContactInvestForm extends Component {
                       />
                     </div>
                   </div>
-                  {/* <div class=" flex justify-between">
-                    <div class=" w-2/6 max-sm:w-2/5">
-                      <FastField
-                        name="countryDialCode1"
-                        isColumnWithoutNoCreate
-                        selectType="dialCode"
-                        //label="Phone No #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode1"
-                            defaultMessage="Dial Code"
-                          />
-                        }
-                        isColumn
-                        component={SearchSelect}
-                        defaultValue={{
-                          value: this.props.user.countryDialCode,
-                        }}
-                        value={values.countryDialCode1}
-                        inlineLabel
-                      />
-                    </div>
-                    <div class=" w-[60%] max-sm:w-2/4">
-                      <FastField
-                        type="text"
-                        name="phoneNumber"
-                        //placeholder="Phone #"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneNumber"
-                            defaultMessage="Phone #"
-                          />
-                        }
-                        isColumn
-                        component={InputComponent}
-                        inlineLabel
-                        width={"100%"}
-                      />
-                    </div>
-                  </div> */}
-
-                 
-                 
-                  < div class=" flex justify-between mt-3">
+                      
+                     < div class=" flex justify-between mt-3">
                     <div class=" w-full">
+                    <div>{translatedMenuItems[8]}     </div>
                       <FastField
                         type="text"
                         name="linkedinPublicUrl"
-                        //label="Linkedin "
-                        label={
-                          <FormattedMessage
-                          id="app.linkedin"
-                          defaultMessage="linkedin"
-                        />
-                        }
+                        //label="Linkedin "                                           
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -444,16 +387,12 @@ class UpdateContactInvestForm extends Component {
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "> 
                 <div class=" flex  justify-between">
                 <div class=" w-w47.5">
+                <div>{translatedMenuItems[9]}     </div>
                       <Field
                         name="customerId"
                         // selectType="customerList"
-                        isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.tagcompany"
-                            defaultMessage="tagcompany"
-                          />
-                        }
+                        isColumnWithoutNoCreate                    
+                        //Tag Company                   
                         component={SelectComponent}
                         isColumn
                         value={values.customerId}
@@ -462,27 +401,13 @@ class UpdateContactInvestForm extends Component {
                         // defaultValue={defaultCustomers ? defaultCustomers : null}
                         inlineLabel
                       />
-                    </div>
-            
+                    </div>          
                 <div class="  w-w47.5 ">
+                <div>{translatedMenuItems[10]}     </div>
                   <FastField
                     name="designationTypeId"
-                    //label="Designation"
-                    label={
-                      <FormattedMessage
-                      id="app.designation"
-                      defaultMessage="designation"
-                    />
-                    }
-                    selectType="designationType"
-                    // options={[
-                    //   "Board",
-                    //   "CXO",
-                    //   "Director",
-                    //   "Unit Head",
-                    //   "Mid Level",
-                    //   "Junior",
-                    // ]}
+                    //label="Designation"                                  
+                    selectType="designationType"                 
                     isColumn
                     // component={SelectComponent}
                     component={SearchSelect}
@@ -491,19 +416,13 @@ class UpdateContactInvestForm extends Component {
                     inlineLabel
                   />
                 </div>
-              </div>
-              
+              </div>             
               <div class=" flex justify-between mt-3">   
               <div class=" w-w47.5">
+              <div>{translatedMenuItems[11]}     </div>
                     <FastField
                       name="departmentId"
-                      //label="Department"
-                      label={
-                        <FormattedMessage
-                          id="app.department"
-                          defaultMessage="department"
-                        />
-                      }
+                      //label="Department"                                   
                       isColumn
                       isColumnWithoutNoCreate
                       component={SearchSelect}
@@ -513,14 +432,9 @@ class UpdateContactInvestForm extends Component {
                     />
                     </div>
                     <div class=" w-w47.5">
+                    <div>{translatedMenuItems[12]}     </div>
                   <FastField
-                            name="sourceId"
-                             label={
-                              <FormattedMessage
-                              id="app.source"
-                              defaultMessage="source"
-                            />
-                            }
+                            name="sourceId"                                   
                             isColumnWithoutNoCreate
                             selectType="sourceName"
                             component={SearchSelect}
@@ -528,13 +442,10 @@ class UpdateContactInvestForm extends Component {
                             isColumn
                           />
                         </div>
-
-                  </div>
-                 
-                 
+                  </div>                         
                   <div class="mt-6 w-full" style={{backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                      <div class="text-white font-medium m-[0.2rem_0_0.4rem_0.2rem] text-xs flex" ><FormattedMessage
+                      <div class="text-white um m-[0.2rem_0_0.4rem_0.2rem] text-xs flex" ><FormattedMessage
                 id="app.address"
                 defaultMessage="Address"
               /> </div>
@@ -549,62 +460,9 @@ class UpdateContactInvestForm extends Component {
                         values={values}
                       />
                     )}
-                  />
-
-               
-                 
+                  />                          
                   <div class=" flex  justify-between mt-6">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                      </div> */}
-                  </div>
-                 
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
+                  
                 </div>
               </div>
              
@@ -618,6 +476,7 @@ class UpdateContactInvestForm extends Component {
 
                   {/* Update */}
                 </Button>
+              </div>
               </div>
             </Form>
             </div>

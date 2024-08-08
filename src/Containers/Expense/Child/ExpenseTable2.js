@@ -1,4 +1,4 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import React,{component,lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -75,7 +75,7 @@ class ExpenseTable2 extends React.Component {
       {
         title: "Date",
         render: (name, item, i) => {
-          return <span>{moment(item.voucherDate).format("ll")}</span>;
+          return <span>{dayjs(item.voucherDate).format("ll")}</span>;
         },
       },
 

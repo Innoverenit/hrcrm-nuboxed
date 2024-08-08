@@ -90,7 +90,8 @@ const GrnListOfPO = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
-                        height={"76vh"}
+                        height={"67vh"}
+                        style={{ scrollbarWidth:"thin"}}
                     >
                         {props.receivedDetailData.map((item) => {
 
@@ -145,12 +146,12 @@ const GrnListOfPO = (props) => {
                                         </div>
                                         <div class="flex w-[29rem]">
                                         
-                                        <div className=" flex font-medium   w-[7.24rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex    w-[7.24rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.remark}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium   w-[6.123rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex    w-[6.123rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.grnNumber}
                                             </div>
@@ -204,7 +205,7 @@ const GrnListOfPO = (props) => {
                                                 </div>
                                            
                                         }
-                                        <div className=" flex font-medium   w-[3.1rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex    w-[3.1rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.grnNumber !== null &&
                                                     <TransferToStock

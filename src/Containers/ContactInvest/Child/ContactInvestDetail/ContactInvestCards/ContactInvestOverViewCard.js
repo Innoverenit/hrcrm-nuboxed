@@ -10,7 +10,10 @@ class ContactInvestOverViewCard extends Component {
       <div>
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
-            viewType === "view" ? <ContactInvestOverView contactInVestDetail={contactInVestDetail} /> : null
+            viewType === "view" ? <ContactInvestOverView contactInVestDetail={contactInVestDetail} 
+          selectedLanguage={this.props.selectedLanguage}
+          translateText={this.props.translateText}
+            /> : null
           }
         </ViewEditCard>
       </div>

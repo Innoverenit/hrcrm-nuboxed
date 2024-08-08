@@ -6,7 +6,6 @@
 // import { Tabs,Tooltip,Button } from 'antd';
 // import { EnvironmentOutlined } from '@ant-design/icons';
 // import dayjs from "dayjs";
-// import moment from "moment";
 // import { FormattedMessage } from "react-intl";
 // import {getRegionTaskList} from "../RegionalDashAction"
 // import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -230,7 +229,7 @@
                        
                       
 //                        <div class="text-xs  font-poppins"> 
-//                         {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
+//                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
 //                    </div>
                    
 //                     <div class=" w-[4rem]">
@@ -499,7 +498,6 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { Tabs,Tooltip,Button } from 'antd';
 import { EnvironmentOutlined } from '@ant-design/icons';
 import dayjs from "dayjs";
-import moment from "moment";
 import { FormattedMessage } from "react-intl";
 import StageTaskColumns1 from "../../DashboardPage/Child/StageTaskColumns1"
 import styled from "styled-components";
@@ -712,7 +710,7 @@ const SalesTaskCardList = (props) => {
                        
                       
                        <div class="text-xs  font-poppins"> 
-                        {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
+                        {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
                    
                     <div class=" w-[4rem]">

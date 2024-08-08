@@ -10,7 +10,7 @@ import {
 } from "../../AccountAction"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import StartRepairReasonModal from './StartRepairReasonModal';
 import ShowPaymentHistoryModal from './ShowPaymentHistoryModal';
 import { FormattedMessage } from 'react-intl';
@@ -43,7 +43,7 @@ const StatusOfOrder = (props) => {
                                     defaultMessage="progress"
                                 />,
                                 description: <>
-                                    <b>On {moment(orderStatus.creationDate).format("DD-MM-YYYY")} by {orderStatus.userName}</b>
+                                    <b>On {dayjs(orderStatus.creationDate).format("DD-MM-YYYY")} by {orderStatus.userName}</b>
                                 </>
                             },
                             {
@@ -89,7 +89,7 @@ const StatusOfOrder = (props) => {
                                                             </Button>
                                                         </Popconfirm>
                                                     </>
-                                                    : <b> QC approved on {moment(orderStatus.qcStartDate).format("DD-MM-YYYY")}
+                                                    : <b> QC approved on {dayjs(orderStatus.qcStartDate).format("DD-MM-YYYY")}
                                                         &nbsp;  by {orderStatus.qcStartUser}</b>} |
                                             <b>Advance as per Order - {orderStatus.advancePayment} % </b> |
                                             <b>Received - {orderStatus.receivePayment || 0} % </b>
@@ -102,7 +102,7 @@ const StatusOfOrder = (props) => {
                                 status: 'progress',
                                 description: <>
                                     {orderStatus.transferInd !== 0 &&
-                                        <b>By {orderStatus.orderPickUpUser} on {moment(orderStatus.pickUpDate).format("DD-MM-YYYY")} </b>
+                                        <b>By {orderStatus.orderPickUpUser} on {dayjs(orderStatus.pickUpDate).format("DD-MM-YYYY")} </b>
                                     }
                                 </>
                             },
@@ -113,19 +113,19 @@ const StatusOfOrder = (props) => {
                                 description: <>
                                     {/* {orderStatus.transferInd === 2 && */}
                                     {orderStatus.transferInd === 1 && <b>
-                                        Picked Up on {moment(orderStatus.pickUpDate).format("DD-MM-YYYY")} by {orderStatus.inventoryUserName} | Arrived at {orderStatus.locationName}   &nbsp;
+                                        Picked Up on {dayjs(orderStatus.pickUpDate).format("DD-MM-YYYY")} by {orderStatus.inventoryUserName} | Arrived at {orderStatus.locationName}   &nbsp;
                                     </b>}
                                     {orderStatus.inventoryReceiveInd && <b>
-                                        on {moment(orderStatus.inventoryReceiveDate).format("DD-MM-YYYY")},
+                                        on {dayjs(orderStatus.inventoryReceiveDate).format("DD-MM-YYYY")},
                                         Received by {orderStatus.inventoryReceiveUser} |  &nbsp;
                                     </b>}
                                     {orderStatus.inspectionInd === 1
                                         || orderStatus.inspectionInd === 2 && <b>
                                             Inspection started by {orderStatus.startInspectionUserName} on
-                                            &nbsp;{moment(orderStatus.startInspectionDate).format("DD-MM-YYYY")} | &nbsp;
+                                            &nbsp;{dayjs(orderStatus.startInspectionDate).format("DD-MM-YYYY")} | &nbsp;
                                         </b>}
                                     {orderStatus.inspectionInd === 2 && <b>
-                                        Inspection completed by {orderStatus.stopInspectionUserName} on&nbsp;{moment(orderStatus.stoptInspectionDate).format("DD-MM-YYYY")}
+                                        Inspection completed by {orderStatus.stopInspectionUserName} on&nbsp;{dayjs(orderStatus.stoptInspectionDate).format("DD-MM-YYYY")}
                                     </b>}
                                     {/* } */}
                                 </>
@@ -154,12 +154,12 @@ const StatusOfOrder = (props) => {
                                         <b>{(orderStatus.qcStartInd === 2 || orderStatus.qcStartInd === 3) &&
                                             (
                                                 <>
-                                                    Assigned by {orderStatus.orderAssignUser} on {moment(orderStatus.orderAssignDate).format("DD-MM-YYYY")}
+                                                    Assigned by {orderStatus.orderAssignUser} on {dayjs(orderStatus.orderAssignDate).format("DD-MM-YYYY")}
                                                 </>
                                             )}
                                             &nbsp;{orderStatus.qcStartInd === 3 && (
                                                 <>
-                                                    | Started on {moment(orderStatus.orderQcStartTime).format("DD-MM-YYYY")} | Completed on {moment(orderStatus.orderQcEndTime).format("DD-MM-YYYY")}
+                                                    | Started on {dayjs(orderStatus.orderQcStartTime).format("DD-MM-YYYY")} | Completed on {dayjs(orderStatus.orderQcEndTime).format("DD-MM-YYYY")}
                                                 </>
                                             )}
                                         </b>
@@ -177,7 +177,7 @@ const StatusOfOrder = (props) => {
                                 description:
                                     <>
                                         {orderStatus.priceConfirmInd && <b>
-                                            Confirmed on {moment(orderStatus.orderConfirmedDate).format("DD-MM-YYYY")} by {orderStatus.orderConfirmedUser || " "}
+                                            Confirmed on {dayjs(orderStatus.orderConfirmedDate).format("DD-MM-YYYY")} by {orderStatus.orderConfirmedUser || " "}
                                             <Button
                                                 type='primary'
                                                 onClick={() => {
@@ -244,10 +244,10 @@ const StatusOfOrder = (props) => {
                                                     ) :
                                                     <b>{(orderStatus.qcRepairInd === 2 || orderStatus.qcRepairInd === 3) &&
                                                         (<>
-                                                            Assigned by {orderStatus.orderRepairAssignUser} on {moment(orderStatus.orderRepairAssignDate).format("DD-MM-YYYY")}
+                                                            Assigned by {orderStatus.orderRepairAssignUser} on {dayjs(orderStatus.orderRepairAssignDate).format("DD-MM-YYYY")}
                                                         </>)}
                                                         &nbsp;   {orderStatus.qcRepairInd === 3 &&
-                                                            (<> | Started on {moment(orderStatus.orderRepairStartTime).format("DD-MM-YYYY")} | Completed on {moment(orderStatus.orderRepairEndTime).format("DD-MM-YYYY")}
+                                                            (<> | Started on {dayjs(orderStatus.orderRepairStartTime).format("DD-MM-YYYY")} | Completed on {dayjs(orderStatus.orderRepairEndTime).format("DD-MM-YYYY")}
                                                             </>)}
                                                     </b>
                                         }
@@ -261,7 +261,7 @@ const StatusOfOrder = (props) => {
                                 status: 'progress',
                                 description: <>
                                     {orderStatus.dispatchInspectionInd === 3 &&
-                                        <b>Packed By {orderStatus.packedBy} On {moment(orderStatus.packedDate).format("DD-MM-YYYY")}</b>
+                                        <b>Packed By {orderStatus.packedBy} On {dayjs(orderStatus.packedDate).format("DD-MM-YYYY")}</b>
                                     }
                                 </>
                             },
@@ -271,7 +271,7 @@ const StatusOfOrder = (props) => {
                                 status: <>
                                     {orderStatus.pickupInd === false ? 'wait' : 'finish'}</>,
                                 description: <>
-                                    {orderStatus.pickupInd && <b>Scheduled for {orderStatus.unloadingAddresses && orderStatus.unloadingAddresses[0].city || ""} On {moment(orderStatus.unloadingDate).format("DD-MM-YYYY")} by {orderStatus.unloadingUser}</b>}
+                                    {orderStatus.pickupInd && <b>Scheduled for {orderStatus.unloadingAddresses && orderStatus.unloadingAddresses[0].city || ""} On {dayjs(orderStatus.unloadingDate).format("DD-MM-YYYY")} by {orderStatus.unloadingUser}</b>}
                                 </>
                             },
                             {
@@ -280,7 +280,7 @@ const StatusOfOrder = (props) => {
                                 description: <>
                                     {orderStatus.completeOrderInd &&
                                         <b>Dispatched By {orderStatus.dispatchCompleteUserName}
-                                            On {moment(orderStatus.dispatchReceivedDate).format("DD-MM-YYYY")}</b>
+                                            On {dayjs(orderStatus.dispatchReceivedDate).format("DD-MM-YYYY")}</b>
                                     }
                                 </>
 

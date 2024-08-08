@@ -3,7 +3,7 @@ import { Tooltip, Popconfirm } from "antd";
 import { FormattedMessage } from "react-intl";
 import { StopTwoTone} from "@ant-design/icons";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
-import { FlexContainer, MainWrapper } from "../../../Components/UI/Layout";
+import { MainWrapper } from "../../../Components/UI/Layout";
 import {
   MultiAvatar,
   Title,
@@ -28,24 +28,18 @@ const DealGroupCard = (props) => {
     user
   } = props;
   return (
-    <FlexContainer flexDirection="column" style={{ borderRadius: 3 }}>
+    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto rounded-[3px]">
       <MainWrapper>
-        <FlexContainer
-          alignItems="center"
-          flexWrap="no-wrap"
-          style={{ height: "3rem" }}
-        >
-          <FlexContainer style={{ flexBasis: "20%", margin: "0.3rem" }}>
+      <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-[3rem] mr-auto ">
+       
+      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto m-[0.3rem]">
             <MultiAvatar
               primaryTitle={primaryTitle}
               imgHeight={"1.56em"}
               imgWidth={"1.56em"}
             />
-          </FlexContainer>
-          <FlexContainer
-            flexDirection="column"
-            style={{ flexBasis: "70%", overflow: "hidden" }}
-          >
+          </div>
+          <div class=" flex flex-col flex-wrap overflow-hidden items-start self-start justify-start grow shrink h-auto mr-auto ">
             <Title
               fontSize="0.875em"
               overflow="hidden"
@@ -131,17 +125,17 @@ const DealGroupCard = (props) => {
                         )}
                       </StyledPopconfirm>
             </SubTitle>
-          </FlexContainer>
-          <FlexContainer
-            style={{ flexBasis: "10%", alignSelf: "flex-start" }}
-          ></FlexContainer>
-        </FlexContainer>
+          </div>
+          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+
+          </div>
+        </div>
 
         <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
           {/* {elipsize(subtitle1 || "", 23)} */}
         </SubTitle>
       </MainWrapper>
-    </FlexContainer>
+    </div>
   );
 };
 export default DealGroupCard;

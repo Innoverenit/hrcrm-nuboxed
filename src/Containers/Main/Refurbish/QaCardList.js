@@ -187,7 +187,7 @@ function QaCardList(props) {
                             loader={props.fetchingQAorderlist ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                             height={"75vh"}
                             style={{ scrollbarWidth:"thin"}}
-                            endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+                            endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                         >
                             {props.QAorderList.map((item) => {
                                 const currentdate = dayjs().format("DD/MM/YYYY");
@@ -198,18 +198,18 @@ function QaCardList(props) {
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     {item.priority === "High" && (
-                                                        <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[red]"></div>
+                                                        <div class="rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                     )}
                                                     {item.priority === "Medium" && (
-                                                        <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[orange]" ></div>
+                                                        <div class="rounded-[50%] h-6 w-6 bg-[orange]" ></div>
                                                     )}
                                                     {item.priority === "Low" && (
-                                                        <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[teal]" ></div>
+                                                        <div class="rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                                                     )}
                                                 </div>
-                                                <div className=" flex font-medium w-[12.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                                <div className=" flex  w-[12.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.dispatchPhoneCount} / ${item.phoneReceiveCount}`} overflowCount={5000}>
-                                                        <span class="underline text-xs text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        <span class="underline font-bold text-xs text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
 
                                                             onClick={() => {
                                                                 handleRowData(item);
@@ -221,7 +221,7 @@ function QaCardList(props) {
                                                     &nbsp;&nbsp;
                                                     {date === currentdate ? (
                                                         <span
-                                                            class="text-[tomato] font-bold ml-4 text-xs"
+                                                            class="text-[tomato] font-bold ml-4 text-[0.65rem]"
                                                         >
                                                             New
                                                         </span>
@@ -264,38 +264,7 @@ function QaCardList(props) {
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.lead}
                                                     </div>
-
-                                                </div>
-
-                                                {/* <div className=" flex font-medium   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        {item.qcInProgressPhoneCount} In Progress
                                                     </div>
-
-                                                </div> */}
-                                                {/* <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        {item.qcInspectionInd === 0 ?
-                                                            <Button
-                                                                className="w-32"
-                                                                type="primary"
-                                                                loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingQAinspection}
-                                                                onClick={() => {
-                                                                    handleRowData(item)
-                                                                    props.qcInspectionButton({
-                                                                        productionDispatchId: item.productionDispatchId,
-                                                                        orderPhoneId: item.orderPhoneId,
-                                                                        qcInspectionInd: 1
-                                                                    }, item.orderPhoneId, props.userId)
-                                                                }}
-                                                            >
-                                                                Start Inspection
-
-                                                            </Button> : item.qcInspectionInd === 1 ?
-                                                                <Button className="w-32" onClick={handlePauseResume}>{hide ? "Pause Inspection" : "Resume Inspection"}</Button> : <div class="text-green-600">Inspection Completed</div>}
-
-                                                    </div>
-                                                </div> */}
                                                  <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                

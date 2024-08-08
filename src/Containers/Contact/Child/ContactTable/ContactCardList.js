@@ -473,14 +473,10 @@ function ContactCardList(props) {
       </Tooltip>
 
       </div>
-        )}
-               
-   
+        )}               
                 </div>
                       </div>
                   </div>
-
-
                     )
                 })}
                       </InfiniteScroll>

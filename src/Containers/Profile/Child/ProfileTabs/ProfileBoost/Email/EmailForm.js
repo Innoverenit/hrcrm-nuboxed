@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { addEmailCredentials } from "../Email/EmailAction";
 // import { addEmailCredentialsForAdmin } from "../EmailAction";
@@ -71,7 +71,7 @@ class EmailForm extends Component {
                       style={{ flexBasis: "80%" }}
                       width={"100%"}
                     />
-                    <Spacer />
+                    <div class=" mt-3" />
                     <Field
                       type="password"
                       isRequired
@@ -82,7 +82,7 @@ class EmailForm extends Component {
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
+                    <div class=" mt-3" />
                     {/* <Field
                   name="serverType"
                   label="Server Type"
@@ -90,7 +90,7 @@ class EmailForm extends Component {
                   inlineLabel
                   style={{ flexBasis: "80%" }}
                 />
-                <Spacer /> */}
+                <div class=" mt-3" /> */}
                     <Field
                       isMulti
                       isRequired
@@ -120,7 +120,7 @@ class EmailForm extends Component {
                     >
                       Example for other webmail host - mail.example.com{" "}
                     </span>
-                    <Spacer />
+                    <div class=" mt-3" />
                     <Field
                       name="port"
                       label="Port"
@@ -130,7 +130,7 @@ class EmailForm extends Component {
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
+                    <div class=" mt-3" />
                   </div>
                 </div>
                 <FlexContainer justifyContent="flex-end">

@@ -28,7 +28,8 @@ class OpportunityStepper extends Component {
             comments:"",
             catalogueId:"",
             unit:"",
-            price:""
+            price:"",
+            emialInd:false,
         };
     }
     handleSubmit = (data) => {
@@ -99,6 +100,9 @@ class OpportunityStepper extends Component {
 componentDidMount(){
    // this.props.getCreatedOffers(this.props.rowItem.offerId);
 };
+handleEmailInd = (checked) => {
+    this.setState({ emailInd: checked });
+  };
 
     render() {
         const {  ...formProps } = this.props;

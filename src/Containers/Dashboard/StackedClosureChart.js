@@ -14,46 +14,7 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-import { MainWrapper } from "../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
-
-
-// const data = [
-//   {
-//     customerName: "ABN Amro",
-//     userId: null,
-//     customerId: null,
-//     requirementName: null,
-//     recruitmentId: null,
-//     recruiterId: null,
-//     name: null,
-//     orgId: null,
-//     opportunityNo: 0,
-//     openRequirmentNo: 1,
-//     selectedNo: 0,
-//     onboardedNo: 0,
-//     position: 1
-//   },
-//   {
-//     customerName: "TESTING ",
-//     userId: null,
-//     customerId: null,
-//     requirementName: null,
-//     recruitmentId: null,
-//     recruiterId: null,
-//     name: null,
-//     orgId: null,
-//     opportunityNo: 0,
-//     openRequirmentNo: 304,
-//     selectedNo: 0,
-//     onboardedNo: 1,
-//     position: 303
-//   }
-// ]
-
-
- 
-
 
  class StackedClosureChart extends React.Component {
   constructor() {
@@ -84,20 +45,12 @@ import { FormattedMessage } from "react-intl";
     }
   }
 
- 
-
-  // useEffect(() => {
-  //   props.getDashBoardClosureRatio(props.organisationId,"Recruiter");
-    
-  // }, []);
   render() {
     const data=this.props.dashBoardClosureRatio
     console.log("data",data)
   return (
     <>
-    <MainWrapper
-    style={{height:"21rem",marginTop:"1rem",width:"-webkit-fill-available"}}
-    >
+<div class="mr-5 ml-5 mt-4 h-[21rem] w-wk">  
       {/* Recruitment Performance */}
       <div class=" flex justify-between" >
       {/* <div style={{ width: "47%" }}> */}
@@ -136,7 +89,7 @@ import { FormattedMessage } from "react-intl";
       {/* <Bar dataKey="Selected" stackId="a" fill="#ff715885" />
       <Bar dataKey="Onboarded" stackId="a" fill="orange" />  */}
     </BarChart>
-    </MainWrapper>
+    </div>
     </>
   );
 }

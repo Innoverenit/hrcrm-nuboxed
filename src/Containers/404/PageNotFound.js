@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import error from "../../Assets/Images/i.png";
 import { Button } from "antd";
-import { Spacer } from "../../Components/UI/Elements";
 
 class PageNotFound extends Component {
   render() {
@@ -58,7 +57,7 @@ class PageNotFound extends Component {
               Please refresh your browser
             </h1>
           </div>
-          <Spacer /> */}
+          <div class=" mt-3" /> */}
           {/* <Button
             type="primary"
             icon="reload"

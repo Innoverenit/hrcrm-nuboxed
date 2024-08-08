@@ -447,9 +447,9 @@ function DealCardList(props) {
       </InfiniteScroll>
    )} 
       <UpdateDealModal
-      translateText={props.translateText}
-      selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         currentItem={currentItem}
         openupdateDealModal={openupdateDealModal}
         handleUpdateDealModal={handleUpdateDealModal}
@@ -457,12 +457,18 @@ function DealCardList(props) {
       />
       <AddDealsNotesDrawerModal
         currentItem={currentItem}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         addDrawerDealsNotesModal={props.addDrawerDealsNotesModal}
         handleDealsNotesDrawerModal={props.handleDealsNotesDrawerModal}
         handleSetCurrentItem={handleSetCurrentItem}
       />
           <AddDealsContactDrawerModal
         currentItem={currentItem}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         addDrawerDealsContactsModal={props.addDrawerDealsContactsModal}
         handleDealContactsDrawerModal={props.handleDealContactsDrawerModal}
         handleSetCurrentItem={handleSetCurrentItem}
@@ -470,6 +476,9 @@ function DealCardList(props) {
 
 <AddDealsOwnDrawerModal
         currentItem={currentItem}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         addOwnModal={props.addOwnModal}
         handleOwnModal={props.handleOwnModal}
         handleSetCurrentItem={handleSetCurrentItem}

@@ -302,21 +302,21 @@ serachedPitchData={props.serachedPitchData}
                                                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                             
                                                             <div className=" flex  w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                                                {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                                                             {/* Company  */}
                                                                 <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                 {item.source || "None"}
                                       </div>
 
                                                             </div>
                                                             <div className=" flex  w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                                                {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                                                              {/* Company */}
                                                                 <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                 {item.sector || "None"}
                                       </div>
 
                                                             </div>
                                                             <div className=" flex w-[3.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
-                                                                          {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
+                                                                      {/* Assigned */}
 
                                                                           <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                           

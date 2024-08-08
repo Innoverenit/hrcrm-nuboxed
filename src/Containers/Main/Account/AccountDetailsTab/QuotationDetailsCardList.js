@@ -15,7 +15,7 @@ import {
   getLocationList
 } from "../AccountAction";
 import { DeleteOutlined } from "@ant-design/icons";
-import moment from "moment";
+import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
 

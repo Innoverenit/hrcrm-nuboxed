@@ -1,7 +1,7 @@
-import React, { Component,useState } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Tooltip } from "antd";
+import { Button} from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { base_url2 } from "../../../Config/Auth";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -43,8 +43,52 @@ class Productform extends Component {
       marginCustomer: false,
       marginDistributor: true,
       subscriptionAvailable: false,
+       translatedMenuItems: [],
     };
   }
+ 
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "Article",
+        "Name",
+        "category",
+        "Sub Category ",
+        "Atrribute",
+        "Sub Attribute",
+        "Workflow",
+        "Weight",
+        "Lenght",
+        "Width",
+        "Height",
+        "Brand",
+        "Model",
+        "Description",
+        "Create"
+
+
+
+
+        
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   callback = (restForm) => {
     console.log("callback");
     restForm();
@@ -219,9 +263,10 @@ class Productform extends Component {
                     <div>
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-full">
+                        <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[0]}#</div>
                           <Field
                             name="articleNo"
-                            label="Article #"
+                            // label="Article #"
                             placeholder="Article No"
                             isColumn
                             width={"100%"}
@@ -231,10 +276,11 @@ class Productform extends Component {
                           />
                         </div>
                         <div class=" w-1/2 max-sm:w-full">
+                        <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[1]}</div>
                           <Field
                           isRequired
                             name="name"
-                            label="Name"
+                            // label="Name"
                             isColumn
                             width={"100%"}
                             inlineLabel
@@ -248,10 +294,11 @@ class Productform extends Component {
 
                   <div class="flex justify-between mt-4">
                     <div class="w-[48%]">
+                    <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[2]}</div>
                       <Field
                         isRequired
                         name="categoryName"
-                        label="Category"
+                        // label="Category"
                         placeholder="Search or Create"
                         optionLabel="categoryName"
                         optionValue="categoryName"
@@ -264,9 +311,10 @@ class Productform extends Component {
                     </div>
 
                     <div class="w-[47%]">
+                    <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[3]}</div>
                       <Field
                         name="subCategoryName"
-                        label="Sub Category"
+                        // label="Sub Category"
                         placeholder="Search or Create"
                         optionLabel="subCategoryName"
                         optionValue="subCategoryName"
@@ -281,9 +329,10 @@ class Productform extends Component {
 
                   <div class="flex justify-between mt-5">
                     <div class="w-[48%]">
+                    <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[4]}</div>
                       <Field
                         name="attributeName"
-                        label="Attribute"
+                        // label="Attribute"
                         placeholder="Search or Create"
                         optionLabel="attributeName"
                         optionValue="attributeName"
@@ -295,9 +344,10 @@ class Productform extends Component {
                       />
                     </div>
                     <div class="w-[48%]">
+                    <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[5]}</div>
                       <Field
                         name="subAttributeName"
-                        label="Sub Attribute"
+                        // label="Sub Attribute"
                         placeholder="Search or Create"
                         optionLabel="subAttributeName"
                         optionValue="subAttributeName"
@@ -311,9 +361,10 @@ class Productform extends Component {
                   </div>
 
                   <div class="w-[48%]">
+                  <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[6]}</div>
                       <Field
                         name="workflowId"
-                        label="Workflow"
+                        // label="Workflow"
                         //placeholder="Search or Create"
                         //optionLabel="subAttributeName"
                        // optionValue="subAttributeName"
@@ -354,7 +405,7 @@ class Productform extends Component {
 </div> */}
  <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>Weight</label>
+                       <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[7]}</div>
                       <Field
                         name="weight"
                         isColumn
@@ -364,7 +415,7 @@ class Productform extends Component {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>Length</label>
+                    <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[8]}</div>
                       <Field
                         name="length"
                         //label="UOM"
@@ -380,7 +431,7 @@ class Productform extends Component {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>Width</label>
+                <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[9]}</div>
                       <Field
                         name="width"
                         isColumn
@@ -390,7 +441,7 @@ class Productform extends Component {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>Height</label>
+                       <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[10]}</div>
                       <Field
                         name="height"
                         isColumn
@@ -407,10 +458,11 @@ class Productform extends Component {
                 </div>
                 <div class="h-full w-[45%]">
                 <div class="flex justify-between ">
+                <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[11]}</div>
                 <div class="w-[48%]">
                       <Field
                         name="brand"
-                        label="Brand"
+                        // label="Brand"
                         // placeholder="Search or Create"
                         // optionLabel="categoryName"
                         // optionValue="categoryName"
@@ -424,9 +476,10 @@ class Productform extends Component {
                     </div>
 
                     <div class="w-[47%]">
+                    <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[12]}</div>
                       <Field
                         name="model"
-                        label="Model"
+                        // label="Model"
                         component={InputComponent}
                         isColumn
                         inlineLabel
@@ -437,7 +490,7 @@ class Productform extends Component {
                     </div>
                     <div class="flex justify-between">
                     <div class="mt-3">
-                    <div>Description</div>
+                    <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[13]}</div>
                     <div>
                   {/* <div>
                     <span onClick={SpeechRecognition.startListening}>
@@ -485,7 +538,8 @@ class Productform extends Component {
                   htmlType="submit"
                   loading={addingProduct}
                 >
-                  Create
+                  {this.state.translatedMenuItems[14]}
+                  {/* Create */}
                 </Button>
               </div>
             </Form>

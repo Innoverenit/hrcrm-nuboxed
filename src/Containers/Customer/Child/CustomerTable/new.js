@@ -28,7 +28,7 @@ import {
 import { handleLoadCarModal, setRequirementsData } from '../../Requirement/RequirementAction'
 import { FloatButton } from 'antd';
 import { MainForBroker } from '../../../Components/UI/Layout';
-import moment from "moment";
+import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import AddEmptyTruckModal from "../../Leads/Child/AddEmptyTruckModal"
 import ReactCountryFlag from 'react-country-flag';
@@ -217,8 +217,8 @@ function Myleads(props) {
         <div className="header-item"></div> */}
       </div>
                 {props.showLeadsAllTable.map((item) => {
-                    const currentdate = moment().format("YYYY/MM/DD");
-                    const date = moment(item.creationDate).format("YYYY/MM/DD");
+                    const currentdate = dayjs().format("YYYY/MM/DD");
+                    const date = dayjs(item.creationDate).format("YYYY/MM/DD");
                     const result = currentdate === date
                     const LocAdd = `${item.loadingAddresses[0].city}`;
                     const LocAdd1 = `${item.unloadingAddresses
@@ -238,7 +238,7 @@ function Myleads(props) {
                                     <Tooltip title={item.categoryName}>
                                         <h4 class=" text-sm  font-montserrat">
                                             {/* {result ? <span style={{ color: "red", fontWeight: "600" }}>New</span> : null} {translatedMenuItems[2]}:  */}
-                                            {` ${moment(item.availabilityDate).subtract(1, 'day').format("DD-MM-YYYY")}`}
+                                            {` ${dayjs(item.availabilityDate).subtract(1, 'day').format("DD-MM-YYYY")}`}
                                         </h4>
                                         {/* <h4 class=" text-sm  font-montserrat flex items-center">
                                             <ReactCountryFlag
@@ -281,7 +281,7 @@ function Myleads(props) {
                                     {/* {delivery date} */}
                                     <h4 class=" text-sm  font-montserrat"> 
                                     {/* {props.translatedMenuItems[3]}:  */}
-                                    {`  ${moment(item.deliveryFromDate).subtract(1, 'day').format("DD-MM-YYYY")}`}</h4>
+                                    {`  ${dayjs(item.deliveryFromDate).subtract(1, 'day').format("DD-MM-YYYY")}`}</h4>
                                     {/* <h4 class=" text-sm  font-montserrat flex items-center">
                                         <ReactCountryFlag
                                             countryCode={country1}
@@ -299,14 +299,14 @@ function Myleads(props) {
                                     </h4> */}
 
                                     {/* <h4 class=" text-sm  font-montserrat">
-                        {item.endDate === null ? null : moment(item.endDate).format("ll")}
+                        {item.endDate === null ? null : dayjs(item.endDate).format("ll")}
                       </h4> */}
                                 </div>
                                 
                                 {/* <div className=" flex font-bold flex-col ">
                                         <Tooltip title={item.subCategoryName}>
                                             Delivery Date
-                                            <h4 class=" text-sm  font-montserrat">{translatedMenuItems[3]}: {`  ${moment(item.endDate).format("DD-MM-YYYY")}`}</h4>
+                                            <h4 class=" text-sm  font-montserrat">{translatedMenuItems[3]}: {`  ${dayjs(item.endDate).format("DD-MM-YYYY")}`}</h4>
 
                                             <h4 class="text-sm  font-montserrat">
                                                 {item.endDate}

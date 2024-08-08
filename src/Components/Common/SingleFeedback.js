@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import moment from "moment";
-import { SubTitle, Spacer } from "../UI/Elements";
+import dayjs from "dayjs";
+import { SubTitle } from "../UI/Elements";
 import Link from "./Link";
 import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
 const NotesWrapper = styled.div``;
@@ -25,15 +25,15 @@ export default function SingleFeedback(props) {
                 fontFamily="Karla"
                 style={{ color: "#a7b2bc", marginTop: "-12px" }}
             >
-                <Spacer />
+                <div class=" mt-3" />
                 {props.rating === "1" ? (<>😈</>)
                     : props.rating === "2" ? (<>👎</>)
                         : props.rating === "3" ? (<>🌝</>)
                             : props.rating === "4" ? (<>👍</>)
                                 : (<>😀</>)
                 }
-                <Spacer />
-                {`${moment(creationDate).fromNow()}`}
+                <div class=" mt-3" />
+                {`${dayjs(creationDate).fromNow()}`}
                 &nbsp;
                 By &nbsp;{name}
             </SubTitle>

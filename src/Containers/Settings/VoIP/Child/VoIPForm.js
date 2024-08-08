@@ -5,14 +5,9 @@ import { FormattedMessage } from "react-intl";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { addTwilioCredentials, getTwilioCredentials } from "../VoIPAction";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 
-/**
- * yup validation scheme for creating a VoIP
- */
 const VoIPSchema = Yup.object().shape({
   sid: Yup.string().required("Account SID is needed!"),
 });
@@ -76,7 +71,7 @@ class VoIPForm extends Component {
                     component={InputComponent}
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <mt-3 />
                   <Field
                     isRequired
                     name="authorizationToken"
@@ -94,7 +89,7 @@ class VoIPForm extends Component {
                     component={InputComponent}
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <mt-3 />
                   <Field
                     isRequired
                     name="phoneNo"
@@ -112,7 +107,7 @@ class VoIPForm extends Component {
                     width={"100%"}
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <mt-3 />
                   <Field
                     isRequired
                     name="voipProvider"
@@ -130,10 +125,10 @@ class VoIPForm extends Component {
                     width={"100%"}
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <mt-3 />
                 </div>
               </div>
-              <FlexContainer justifyContent="flex-end">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -142,7 +137,7 @@ class VoIPForm extends Component {
                   <FormattedMessage id="app.create" defaultMessage="Create" />
                   {/* Create */}
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

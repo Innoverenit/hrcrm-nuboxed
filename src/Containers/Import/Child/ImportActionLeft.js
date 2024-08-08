@@ -1,13 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { ActionIcon } from "../../../Components/Utils";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { RollbackOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 
 const ImportActionLeft = props => {
   return (
-    <FlexContainer alignItems="center">
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
       <Tooltip title="Back">
         <RollbackOutlined
             // iconType="rollback"
@@ -16,7 +14,7 @@ const ImportActionLeft = props => {
           onClick={() => props.history.goBack()}
         />
       </Tooltip>
-    </FlexContainer>
+    </div>
   );
 };
 

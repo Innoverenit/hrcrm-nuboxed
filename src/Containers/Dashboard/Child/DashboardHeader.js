@@ -8,8 +8,11 @@ class DashboardHeader extends Component {
       <div>
         <ActionHeader
            leftComponent={<DashboardActionLeft 
+            buttonName={this.props.buttonName} 
             viewType={this.props.viewType}
             activeTab={this.props.activeTab}
+            toggleShareForm={this.props.toggleShareForm}
+            showShareForm={this.props.showShareForm}
             tab={this.props.tab}
             handleTabClick={this.props.handleTabClick}
             setDashboardViewType={this.props.setDashboardViewType}

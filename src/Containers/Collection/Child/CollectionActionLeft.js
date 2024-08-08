@@ -1,10 +1,8 @@
 import React, { } from "react";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { Tooltip, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
-import TocIcon from '@mui/icons-material/Toc';
 import {
   inputCustomerAllDataSearch,
   inputCustomerReceivableDataSearch,
@@ -48,7 +46,7 @@ const CollectionActionLeft = (props) => {
   var costB = `${Number(totalB).toFixed(2)}`;
 
   return (
-    <FlexContainer alignItems="center">
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
       <Tooltip title="My Collections "
       // title="Distributor"
       >
@@ -65,18 +63,6 @@ const CollectionActionLeft = (props) => {
           </Avatar>
         </span>
       </Tooltip>
-      {/* <Tooltip
-      //title="Customer"
-      >
-        <span
-          onClick={() => props.setCollectionViewType("customer")}
-          style={{
-            marginRight: "0.5rem",
-            color: props.viewType === "customer" && "#1890ff",
-          }}
-        > <FontAwesomeIcon icon={solid('address-card')}/>&nbsp; Customer
-        </span>
-      </Tooltip> */}
 
       {props.viewType === "distributor" && (
         <>
@@ -127,7 +113,7 @@ const CollectionActionLeft = (props) => {
           )}
         </>
       )}
-    </FlexContainer>
+    </div>
   );
 };
 const mapStateToProps = ({ auth, collection, distributor, customer }) => ({

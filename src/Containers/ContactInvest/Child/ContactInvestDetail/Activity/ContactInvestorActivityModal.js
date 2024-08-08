@@ -8,8 +8,6 @@ const ContactInvestorCallActivityForm =lazy(()=>import("./ContactInvestorCallAct
 const ContactInvestorEventActivityForm =lazy(()=>import("./ContactInvestorEventActivityForm"));
 const ContactInvestorTaskActivityForm =lazy(()=>import("./ContactInvestorTaskActivityForm"));
 
-
-
 const TabPane = StyledTabs.TabPane;
 
 const ContactInvestorActivityModal = (props) => {
@@ -38,7 +36,11 @@ const ContactInvestorActivityModal = (props) => {
           <ContactInvestorActivityTab 
           
            investorId={props. investorId }
-           contactInVestDetail={props.contactInVestDetail}/>
+           contactInVestDetail={props.contactInVestDetail}
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+           />
 
         </Suspense>
       </StyledDrawer>

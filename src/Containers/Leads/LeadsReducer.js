@@ -38,6 +38,10 @@ const initialState = {
   fetchingTeamLeadsColdError: true,
   teamLeadsCold:[],
 
+
+  addingLeadsSubscriptionData:false,
+  addingLeadsSubscriptionDataError:false,
+
   fetchingTeamLeads: false,
             fetchingTeamLeadsError: false,
             teamLeads:[],
@@ -253,6 +257,16 @@ const initialState = {
   leadsCountJunked:[],
 
   openCETmodal:false,
+
+
+  fetchingSubscriptionCompare:false,
+  fetchingSubscriptionCompareError:false,
+  compareSubscription:{},
+
+
+  fetchingLeadsSubscriptionData:false,
+  fetchingLeadsSubscriptionDataError:false,
+  subscriptionLeadsData:[],
 
   
   fetchingAllLeads:false,
@@ -599,6 +613,42 @@ case types.HANDLE_LEADS_MODAL:
               addingDocumentByLeadsId: false,
               addingDocumentByLeadsIdError: true,
             };
+
+
+
+
+            case types.ADD_SUBSCRIPTION_DATA_REQUEST:
+              return { ...state, addingLeadsSubscriptionData: true };
+            case types.ADD_SUBSCRIPTION_DATA_SUCCESS:
+              return { ...state, 
+                addDrawerLeadsSubscriptionModal:false,
+                addingLeadsSubscriptionData: true
+           
+                // leadsAllDataHot: [action.payload,...state.leadsAllDataHot],
+                // leadsAllDataWarm: [action.payload,...state.leadsAllDataWarm],
+                // leadsAllDataCold: [action.payload,...state.leadsAllDataCold]
+              };
+            case types.ADD_SUBSCRIPTION_DATA_FAILURE:
+              return { ...state, addingLeadsSubscriptionData: false, addLeadsModal: false };    
+       
+
+
+
+            case types.GET_LEADS_SUBSCRIPTION_DATA_REQUEST:
+              return { ...state, fetchingLeadsSubscriptionData: true };
+            case types.GET_LEADS_SUBSCRIPTION_DATA_SUCCESS:
+              return {
+                ...state,
+                fetchingLeadsSubscriptionData: false,
+                subscriptionLeadsData: action.payload
+                // clearbit:null
+              };
+            case types.GET_LEADS_SUBSCRIPTION_DATA_FAILURE:
+              return {
+                ...state,
+                fetchingLeadsSubscriptionData: false,
+                fetchingLeadsSubscriptionDataError: true,
+              };
 
 
             case types.GET_LEADS_DOCUMENTS_REQUEST:
@@ -1051,6 +1101,26 @@ case types.HANDLE_LEADS_MODAL:
         fetchingAllLeadsWarm: false,
         fetchingAllLeadsWarmError: true,
       };
+
+
+
+
+      case types.GET_SUBSCRIPTION_COMPARE_REQUEST:
+        return { ...state, fetchingSubscriptionCompare: true };
+      case types.GET_SUBSCRIPTION_COMPARE_SUCCESS:
+        return {
+          ...state,
+          fetchingSubscriptionCompare: false,
+          compareSubscription: action.payload
+          // clearbit:null
+        };
+      case types.GET_SUBSCRIPTION_COMPARE_FAILURE:
+        return {
+          ...state,
+          fetchingSubscriptionCompare: false,
+          fetchingSubscriptionCompareError: true,
+        };
+
 
       case types.GET_ALL_LEADSCOLD_REQUEST:
       return { ...state, fetchingAllLeadsCold: true };

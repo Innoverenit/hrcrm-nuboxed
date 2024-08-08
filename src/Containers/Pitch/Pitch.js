@@ -63,16 +63,13 @@ function Pitch (props) {
                  handleChange={handleChange}
                  handleCurrentData={handleCurrentData}
             />
-             <AddPitchModal
-             
+             <AddPitchModal             
              selectedLanguage={props.selectedLanguage}
              translateText={props.translateText}
               addPitchModal={props.addPitchModal}
              
               handlePitchModal={props.handlePitchModal}
-            />
-           
-          
+            />                    
             <Suspense fallback={<BundleLoader />}>
 
 

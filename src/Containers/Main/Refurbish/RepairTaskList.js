@@ -76,7 +76,9 @@ function RepairTaskList(props) {
             </div>
             <Suspense fallback={<BundleLoader />}>
                 <RepairTaskTable phoneId={props.phoneId} 
-                 RowData={props.RowData}/>
+                 RowData={props.RowData}
+                 rowData={props.rowData}
+                 />
             </Suspense>
         </>
     );

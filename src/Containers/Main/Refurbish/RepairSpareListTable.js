@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { updateSparePacket } from "./RefurbishAction"
-import { getSpareListByPhoneId, deleteSpareList } from "../Account/AccountAction";
+import { getSpareListByPhoneTaskId, deleteSpareList } from "../Account/AccountAction";
 import RepairSpareApproveToggle from "./RepairSpareApproveToggle"
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Popconfirm } from "antd";
@@ -14,12 +14,12 @@ import { MultiAvatar } from "../../../Components/UI/Elements";
 
 function RepairSpareListTable(props) {
     useEffect(() => {
-        props.getSpareListByPhoneId(props.RowData.phoneId)
+        props.getSpareListByPhoneTaskId(props.phoneTaskId)
     }, [])
 
-    let data = props.spareList.every((item) => item.spareUseInd)
-    console.log(data)
-    let phoneSpare = props.spareList.map((item) => ({ phoneSpareId: item.phoneSpareId }))
+    // let data = props.phoneTaskIdSpareList.every((item) => item.spareUseInd)
+    // console.log(data)
+    // let phoneSpare = props.phoneTaskIdSpareList.map((item) => ({ phoneSpareId: item.phoneSpareId }))
     const columns = [
         {
             title: "",
@@ -64,22 +64,22 @@ function RepairSpareListTable(props) {
             width: "15%",
         },
 
-        {
-            title: "To Packet",
-            width: "10%",
-            render: (text, item) => {
-                return (
-                    <>
-                        {item.sparePacketInd && <RepairSpareApproveToggle
+        // {
+        //     title: "To Packet",
+        //     width: "10%",
+        //     render: (text, item) => {
+        //         return (
+        //             <>
+        //                 {item.sparePacketInd && <RepairSpareApproveToggle
 
-                            spareUseInd={item.spareUseInd}
-                            phoneSpareId={item.phoneSpareId}
-                        />}
-                    </>
-                )
-            }
+        //                     spareUseInd={item.spareUseInd}
+        //                     phoneSpareId={item.phoneSpareId}
+        //                 />}
+        //             </>
+        //         )
+        //     }
 
-        },
+        // },
         {
             title: "Completed By",
             width: "10%",
@@ -108,7 +108,7 @@ function RepairSpareListTable(props) {
                                 title="Do you want to delete?"
                                 onConfirm={() => props.deleteSpareList({
                                     userId: props.userId
-                                }, item.phoneSpareId)}
+                                }, item.phoneTaskId)}
                             >
 
                                 <DeleteIcon
@@ -124,16 +124,17 @@ function RepairSpareListTable(props) {
         },
 
     ];
-
+    console.log(props.phoneTaskId)
+    console.log(props.phoneTaskIdSpareList)
     return (
         <>
             <StyledTable
                 columns={columns}
-                dataSource={props.spareList}
+                dataSource={props.phoneTaskIdSpareList}
                 pagination={false}
-                loading={props.fetchingSpareListByPhoneId}
+                loading={props.fetchingSpareListByPhoneTaskId}
             />
-            {data && <div class=" flex justify-end">
+            {/* {data && <div class=" flex justify-end">
 
                 <Button
                     loading={props.updatingSparePacket}
@@ -149,7 +150,7 @@ function RepairSpareListTable(props) {
                         });
                     }}
                 >Create Spare Packet</Button>
-            </div>}
+            </div>} */}
         </>
     );
 }
@@ -159,12 +160,14 @@ const mapStateToProps = ({ distributor, refurbish, auth }) => ({
     updatingSparePacket: refurbish.updatingSparePacket,
     spareList: distributor.spareList,
     userId: auth.userDetails.userId,
+    phoneTaskIdSpareList:distributor.phoneTaskIdSpareList,
+    fetchingSpareListByPhoneTaskId: distributor.fetchingSpareListByPhoneTaskId
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getSpareListByPhoneId,
+            getSpareListByPhoneTaskId,
             deleteSpareList,
             updateSparePacket
         },

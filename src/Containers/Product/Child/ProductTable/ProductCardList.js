@@ -31,13 +31,13 @@ import {  Tooltip,Button } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
-import QrCodeIcon from '@mui/icons-material/QrCode';
 import FeatureProductToggle from "./FeatureProductToggle";
 import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
 const ProductCellDrawer=lazy(()=>import("./ProductCellDrawer"));
+const ProductDetailsDrawer=lazy(()=>import("./ProductDetailsDrawer"));
 
 function ProductCardList(props) {
 
@@ -46,6 +46,16 @@ function ProductCardList(props) {
 
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const componentRefs = useRef([]);
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -146,7 +156,7 @@ function ProductCardList(props) {
     <>
 
       <div className=' flex sticky  z-auto'>
-        <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">  
           <div className="w-[7.01rem]"></div>        
             <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
@@ -180,6 +190,7 @@ function ProductCardList(props) {
             hasMore={hasMore}
             loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
             height={"85vh"}
+            style={{scrollbarWidth:"thin"}}
             endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           >
              {products.length ?
@@ -189,14 +200,14 @@ function ProductCardList(props) {
                 <div>
                   <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium flex-col w-[6.5rem] max-sm:w-auto   ">
+                      <div className=" flex w-[6.5rem] max-sm:w-auto   ">
                         <SubTitle>
                           {item.imageId ? (
                             <MultiAvatar
                               imageId={item.imageId ? item.imageId : ''}
-                              imgHeight={"2.8rem"}
-                              imgWidth={"2.8rem"}
-                              imgRadius={20}
+                              imgHeight={"1.8rem"}
+                              imgWidth={"1.8rem"}
+                             
                             />
                           ) : (
                             <div class="font-bold text-xs" >
@@ -205,13 +216,13 @@ function ProductCardList(props) {
                           )}
                         </SubTitle>
                       </div>
-                      <div className=" flex font-medium flex-col w-[5.3rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                      <div className=" flex w-[5.3rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                         <div class="text-xs   max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.articleNo}
                         </div>
                       </div>
 
-                      <div className=" flex font-medium flex-col  w-[11.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  w-[11.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {`${item.productFullName ? `${item.productFullName}`:`${item.name}`}`}
@@ -221,7 +232,7 @@ function ProductCardList(props) {
 
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium flex-col w-[8.1rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex w-[8.1rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.categoryName}  {item.subCategoryName}
@@ -229,7 +240,7 @@ function ProductCardList(props) {
                     </div>
                    
 
-                    <div className=" flex font-medium flex-col w-[8.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex w-[8.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                       <div class=" text-xs  max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -237,14 +248,14 @@ function ProductCardList(props) {
                       </div>
                     </div>
 </div>
-<div class="flex max-sm:justify-between max-sm:w-wk items-center">
-<div className=" flex font-medium flex-col w-[8.51rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+    <div className=" flex w-[8.51rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.brand}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[10.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex w-[10.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.model}
@@ -252,20 +263,17 @@ function ProductCardList(props) {
                     </div>
 </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
-                      
-
-                      <div className=" flex font-medium flex-col  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                     <div className=" flex  w-[7.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <ProductPublishToggle item={item} />
 
                       </div>
-                      <div className=" flex font-medium flex-col  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  w-[7.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-<FeatureProductToggle item={item}    publishInd={item.publishInd}  suppliesId={item.productId}/>
+                     <FeatureProductToggle item={item}    featureInd={item.featureInd}  productId={item.productId}/>
 
-</div>
-                      {/* <div className=" flex font-medium flex-col  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                    </div>
+                      {/* <div className=" flex  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                       
                       <ReactToPrint
                                                         trigger={() => <Button
@@ -336,7 +344,12 @@ function ProductCardList(props) {
                    
                       <div class=" text-xs  font-poppins">
                         <Tooltip title={item.description}>
-                        <ContactSupportIcon className="!text-icon"/>
+                        <ContactSupportIcon className="!text-icon"
+                        onClick={() => {
+                          openModal();
+                          handleParticularRowData(item);
+                        }}
+                        />
                         </Tooltip>
                       </div>
 <div>
@@ -368,9 +381,7 @@ function ProductCardList(props) {
                           <StyledPopconfirm
                             title="Do you want to delete?"
                             onConfirm={() => handleDelete(item)}
-
-                          >
-                            
+                            >
                             <DeleteOutlined
                               type="delete"
                               className=" !text-icon cursor-pointer text-[red]"
@@ -419,6 +430,11 @@ function ProductCardList(props) {
          particularDiscountData={particularDiscountData}
          productQualityDrawer={props.productQualityDrawer}
          handleProductQuality={props.handleProductQuality}
+        />
+        <ProductDetailsDrawer
+        particularDiscountData={particularDiscountData}
+        modalVisible={modalVisible}
+        closeModal={closeModal}
         />
       </Suspense>
     </>

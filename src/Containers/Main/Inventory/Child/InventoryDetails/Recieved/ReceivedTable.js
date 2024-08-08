@@ -88,10 +88,10 @@ const ReceivedTable = (props) => {
   return (
     <>
       
-        <div className=' flex justify-center sticky  z-auto'>
-          <div class="roundedm-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className=' flex sticky  z-auto'>
+          <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex max-sm:hidden  w-[99%] p-1 bg-transparent font-bold  z-10">
-              <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
+              <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order ID" /></div>
               {/* <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
               <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.contact" defaultMessage="Contact" /></div> */}
               <div className="w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="owner" /></div>
@@ -109,9 +109,9 @@ const ReceivedTable = (props) => {
               next={handleLoadMore}
               hasMore={hasMore}
               loader={props.fetchingReceivedUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"69vh"}
-              style={{overflowX:"hidden"}}
-              endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+              height={"67vh"}
+              style={{overflowX:"hidden", scrollbarWidth:"thin"}}
+              endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
             >
               {props.allReceivedUser.length ? <>
                 {props.allReceivedUser.map((item, key) => {
@@ -123,8 +123,8 @@ const ReceivedTable = (props) => {
                     <div>
                       <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium  w-[9.62rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
-                            <div class="text-sm  font-semibold max-sm:text-sm  font-poppins cursor-pointer  text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          <div className=" flex w-[9.62rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
+                            <div class="text-xs  font-bold max-sm:text-sm  font-poppins cursor-pointer underline text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <div class=" flex ">
                                 <span
                                   onClick={() => {
@@ -134,7 +134,7 @@ const ReceivedTable = (props) => {
                                 >{item.newOrderNo}
                                 </span>&nbsp;&nbsp;
                                 {date === currentdate ? (
-                                  <div class="text-xs font-bold text-[tomato]">
+                                  <div class="text-[0.65rem] font-bold text-[tomato] ">
                                     New
                                   </div>
                                 ) : null}
@@ -142,7 +142,7 @@ const ReceivedTable = (props) => {
                             </div>
                           </div>
 {props.user.customerInfoInd?
-                          <div className=" flex font-medium  w-[10.12rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex w-[10.12rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               {/* {item.distributorName} */}
@@ -160,7 +160,7 @@ const ReceivedTable = (props) => {
                           :null}
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          {/* <div className=" flex font-medium  w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          {/* <div className=" flex w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               <MultiAvatar2
@@ -171,8 +171,8 @@ const ReceivedTable = (props) => {
                               />
                             </div>
                           </div> */}
-                          <div className=" flex font-medium  w-[4.1rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex w-[4.1rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               <MultiAvatar
                                 primaryTitle={item.userName}
@@ -182,13 +182,13 @@ const ReceivedTable = (props) => {
                               />
                             </div>
                           </div>
-                          <div className=" flex font-medium  w-[6.81rem] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex w-[6.81rem] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
                             </div>
                           </div>
-                          <div className=" flex font-medium  w-[4.52rem] max-xl:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex w-[4.52rem] max-xl:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.inspectionInd !== 0 && <MultiAvatar
                                 primaryTitle={item.startInspectionUserName}
                                 imageId={item.imageId}
@@ -197,8 +197,8 @@ const ReceivedTable = (props) => {
                               />}
                             </div>
                           </div>
-                          <div className=" flex font-medium  w-[10.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex w-[10.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* {item.phoneReceiveCount}/{item.phoneCount} */}
                               {isValidPercentage ? (
 
@@ -213,7 +213,7 @@ const ReceivedTable = (props) => {
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium  w-[8.5rem] max-xl:w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex w-[8.5rem] max-xl:w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div>
                               {item.inspectionInd === 0 ? <ReceivedOrderToggle
                                 orderId={item.orderPhoneId}
@@ -223,7 +223,7 @@ const ReceivedTable = (props) => {
                             </div>
                           </div>
 
-                          <div className=" flex font-medium   w-[5.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                          <div className=" flex  w-[5.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               {item.productionLocationName && <MultiAvatar
@@ -234,7 +234,7 @@ const ReceivedTable = (props) => {
                               />}
                             </div>
                           </div>
-                          <div className=" flex font-medium  w-[8rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex w-[8rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.inspectionInd === 0 && item.inventoryReceiveInd ?
                                 <Button

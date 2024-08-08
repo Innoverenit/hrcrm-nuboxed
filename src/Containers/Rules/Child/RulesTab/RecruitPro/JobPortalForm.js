@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Icon, Switch, Button, Popconfirm } from "antd";
 import { FlexContainer, MainWrapper } from "../../../../../Components/UI/Layout";
-import { StyledLabel,Spacer } from "../../../../../Components/UI/Elements";
+
 import { addingSourcingAccess, getSourcingAccess } from "../../../../Settings/SettingsAction";
 
 
@@ -45,13 +45,13 @@ function SourcingForm(props) {
     <MainWrapper style={{ height: "446px", width:"", overflow: "auto" }}>
       
        <div>
-      {/* <StyledLabel> 
+      {/* <div class=" text-xs font-bold font-poppins text-black"> 
            Click To Share                   
-      </StyledLabel> */}
+      </div> */}
       {/* <PermissionForm /> */}
       </div>
       
-      <Spacer />
+      <div class=" mt-3" />
        <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
         <p>Talent out reach</p>
         <div>
@@ -70,7 +70,7 @@ function SourcingForm(props) {
             />
           </Popconfirm>
         </div>
-        <Spacer marginTop="30px" />
+        <div class=" mt-3" marginTop="30px" />
        
       </FlexContainer>
           </MainWrapper>

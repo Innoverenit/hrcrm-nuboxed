@@ -2,7 +2,6 @@ import React, { useEffect,Suspense,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { MainWrapper } from "../../../../../../../Components/UI/Elements";
 import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
@@ -58,7 +57,7 @@ function ExperienceForm(props) {
           ...rest
         }) => (
           <Form className="form-background">
-            <MainWrapper>
+          <div class="mr-5 ml-5">
               <div class=" flex justify-evenly h-full w-full items-center"
               >            
                 <div class=" w-[15%]"
@@ -102,7 +101,7 @@ function ExperienceForm(props) {
                   </Button>
                 </div>
               </div>
-            </MainWrapper>
+            </div>
           </Form>
         )}
       </Formik>
