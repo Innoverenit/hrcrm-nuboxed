@@ -1,16 +1,16 @@
-import React, { Component, useState, useMemo, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getAllSalesList } from "../../../../Opportunity/OpportunityAction"
 import { FormattedMessage } from "react-intl";
-import { Button, Icon, Switch, Tooltip } from "antd";
+import { Button,  Switch, Tooltip } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
 import { getAllOpportunityData } from "../../../../Opportunity/OpportunityAction"
 import { handleCallNotesModal } from "../../../../Call/CallAction";
 import { getFilteredEmailContact } from "../../../../Candidate/CandidateAction";
 import dayjs from "dayjs";
-import { Spacer, StyledLabel } from "../../../../../Components/UI/Elements";
+import { StyledLabel } from "../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
@@ -30,9 +30,7 @@ import { getAssignedToList } from "../../../../Employees/EmployeeAction";
 import { setClearbitCandidateData } from "../../../../Candidate/CandidateAction";
 import SpeechRecognition, { } from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
-import { Fragment } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { Listbox } from '@headlessui/react'
 const ButtonGroup = Button.Group;
 const suffix = (
     <AudioOutlined
@@ -61,9 +59,6 @@ const CallSchema = Yup.object().shape({
         .nullable()
         .required("Input required !"),
 
-    // reminder:Yup.string()
-    // .nullable()
-    // .required("Input required !"),
 });
 function CallForm(props) {
 
@@ -347,7 +342,7 @@ function CallForm(props) {
                                 <div class=" h-full w-w47.5 max-sm:w-wk"   >
                                     <div class=" flex justify-between w-full max-sm:flex-col">
                                         <div class=" w-2/6 max-sm:w-wk">
-                                            <Spacer />
+                                            < div class="mt-3" />
                                             <StyledLabel>
                                                 {/* Type */}
                                                 <FormattedMessage id="app.type" defaultMessage="Type" />
@@ -425,7 +420,7 @@ function CallForm(props) {
                                             </div>
                                         </div>
                                         <div class=" w-1/2">
-                                            <Spacer />
+                                            < div class="mt-3" />
                                             <StyledLabel>
                                                 <FormattedMessage
                                                     id="app.category"
@@ -470,7 +465,7 @@ function CallForm(props) {
                                             </ButtonGroup>
                                         </div>
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div class=" flex justify-between items-end max-sm:flex-col " >
                                         <div class=" self-start">
                                             <StyledLabel>
@@ -529,7 +524,7 @@ function CallForm(props) {
                                         width={"100%"}
                                         inlineLabel
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         name="startDate"
                                         // label="Date"
@@ -542,7 +537,7 @@ function CallForm(props) {
                                         value={values.startDate}
                                         inlineLabel
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div class=" flex justify-between max-sm:flex-col">
                                         <div class=" w-1/2 max-sm:w-wk">
                                             <Field
@@ -587,7 +582,7 @@ function CallForm(props) {
                                             />
                                         </div>
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         isRequired
                                         defaultValue={{ label: timeZone, value: userId }}
@@ -606,7 +601,7 @@ function CallForm(props) {
                                         component={SearchSelect}
                                         inlineLabel
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     {startDate ? (
                                         <span>
                                             {dayjs(startDate).isBefore(dayjs()) && (
@@ -640,7 +635,7 @@ function CallForm(props) {
                                     <Listbox value={selected} onChange={setSelected}>
                                         {({ open }) => (
                                             <>
-                                                <Listbox.Label className="block text-sm font-semibold text-gray-700">
+                                                <Listbox.Label className="block text-xs font-semibold text-gray-700">
                                                     Assigned
                                                 </Listbox.Label>
                                                 <div className="relative mt-1">
@@ -702,7 +697,7 @@ function CallForm(props) {
                                             </>
                                         )}
                                     </Listbox>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         name="included"
                                         // label="Include"
@@ -722,7 +717,7 @@ function CallForm(props) {
                                             value: employeeId,
                                         }}
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
@@ -749,7 +744,7 @@ function CallForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
@@ -776,7 +771,7 @@ function CallForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
@@ -803,28 +798,8 @@ function CallForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
-                                    {/* <div >
-                  <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    //label="Talent"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={props.setClearbitCandidateData}
-                    component={CandidateClearbit}
-                    inlineLabel
-                  />
-                   </div>
-                  <Spacer /> */}
+                                    < div class="mt-3" />
+                                   
                                     <div>
                                         <div class=" w-full"><Field
                                             name="callDescription"
@@ -839,51 +814,11 @@ function CallForm(props) {
                                         /></div>
                                     </div>
 
-                                    <Spacer />
-                                    {/* <div class=" flex justify-between" >
-                    <div 
-                    class=" w-1/2 font-bold">
-                    <div class=" flex justify-between" >
-                        <div>
-                          <StyledLabel>Set Reminder</StyledLabel>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
+                                    < div class="mt-3" />
+                                   
                                 </div>
                             </div>
-                            <Spacer />
+                            < div class="mt-3" />
                             <div class=" flex justify-end">
                                 {isEditing && (
                                     <>

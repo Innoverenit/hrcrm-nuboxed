@@ -73,7 +73,8 @@ const AccountOrderTable = (props) => {
                 "Lead",
                 "Repair",
                 "High",
-                "Normal"
+                "Normal",
+                "Created Date"
 
 
           ];
@@ -175,7 +176,7 @@ const AccountOrderTable = (props) => {
                              {translatedMenuItems[1]} ID
                         </div>
                         <div className=" md:w-[5.012rem]">
-                        Created Date  
+                        {translatedMenuItems[14]}
                         </div>
                         <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
@@ -621,7 +622,7 @@ const AccountOrderTable = (props) => {
                              {translatedMenuItems[1]}ID
                         </div>
                         <div className=" md:w-[5.012rem]">
-                        Created Date  
+                        {translatedMenuItems[14]}
                         </div>
                         <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}

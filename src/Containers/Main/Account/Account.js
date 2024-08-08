@@ -15,8 +15,6 @@ const AddAccountModal = lazy(() => import("./AddAccountModal"));
 const AccountTable = lazy(() => import("./AccountTable"));
 const AccountDeleteTable = lazy(() => import("./AccountDeleteTable"));
 const AllAccountList = lazy(() => import("./AllAccountList"));
-const AccountCard = lazy(() => import("./AccountCard"));
-const AccountDeleteCard = lazy(() => import("./AccountDeleteCard"));
 
 const Account = ({
   addDistributorModal,
@@ -85,18 +83,12 @@ const Account = ({
             />
           </div>
         )
-          : viewType === "card" ? (
-            <AccountCard 
-            selectedLanguage={selectedLanguage}
-            translateText={translateText} />
-          ) : viewType === "dashboard" ? (
+          : viewType === "dashboard" ? (
             <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>
-              {isLargeScreen ? <AccountDeleteTable
+               <AccountDeleteTable
                 selectedLanguage={selectedLanguage}
-                translateText={translateText}/> : 
-                <AccountDeleteCard 
-                selectedLanguage={selectedLanguage}
-                translateText={translateText}/>}
+                translateText={translateText}/> 
+                
             </div>
           ) : viewType === "all" ? (
             <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>

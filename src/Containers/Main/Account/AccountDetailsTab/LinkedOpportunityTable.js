@@ -49,7 +49,8 @@ function LinkedOpportunityTable(props) {
               "Status",
               "To Order",
               
-              "Procure"
+              "Procure",
+              "Created Date"
 
 
         ];
@@ -98,8 +99,8 @@ console.log(props.user.moduleMapper.ecomModInd)
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
                         <div class=" w-[8.5rem]"> {translatedMenuItems[0]}</div>
                         <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>
-                        <div className=" md:w-[6rem]">
-                          Created Date  
+                        <div className=" md:w-[7rem]">
+                        {translatedMenuItems[9]}  
                           </div>
                         <div className=" md:w-[7.1rem]"> {translatedMenuItems[2]}</div>
                         <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>
@@ -259,7 +260,7 @@ console.log(props.user.moduleMapper.ecomModInd)
 <div class=" w-[8.5rem]"> {translatedMenuItems[9]}</div>
 <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>
 <div className=" md:w-[6rem]">
-                        Created Date  
+{translatedMenuItems[9]}
                         </div>
                         <div className=" md:w-[7.1rem]"> {translatedMenuItems[2]}</div>
                         <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>

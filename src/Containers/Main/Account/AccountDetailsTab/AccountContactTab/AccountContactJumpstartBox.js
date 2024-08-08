@@ -1,4 +1,4 @@
-import React, {useEffect,useState,lazy} from "react";
+import React, {useEffect,useState} from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
