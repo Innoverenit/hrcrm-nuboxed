@@ -10,13 +10,13 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { FlexContainer } from "../../../../Components/UI/Layout";
 import { StyledLabel } from "../../../../Components/UI/Elements";
-import { Spacer } from "../../../../Components/UI/Elements";
+
 import { 
   updateMileage, 
   getMileageDetails } from "../../../Settings/SettingsAction";
 import { Class } from "leaflet";
 import { StyledTabs } from "../../../../Components/UI/Antd";
-import moment from "moment";
+import dayjs from "dayjs";
 const TabPane = StyledTabs.TabPane;
 function MileageForm(props) {
 
@@ -94,7 +94,7 @@ function MileageForm(props) {
                   width: "100%",
                 }}
               >
-                <StyledLabel>Mileage rate (For Example EUR/km)</StyledLabel>
+                <div class=" text-xs font-bold font-poppins text-black">Mileage rate (For Example EUR/km)</div>
                 {/* <Field
                   isRequired
                   name="mileageRate"
@@ -140,7 +140,7 @@ function MileageForm(props) {
           
                 
               })}
-                <Spacer />
+                <div class=" mt-3" />
                 <FlexContainer justifyContent="flex-end">
                 {/* <button onClick={handleUpdateButtonClick}>Update All</button> */}
                   <Button
@@ -152,9 +152,9 @@ function MileageForm(props) {
                     Update
                   </Button>
                 </FlexContainer>
-                <div>Updated on {moment(props.mileageData && props.mileageData.length && props.mileageData[0].updationDate).format("ll")} by {props.mileageData && props.mileageData.length && props.mileageData[0].name}</div>
+                <div>Updated on {dayjs(props.mileageData && props.mileageData.length && props.mileageData[0].updationDate).format("ll")} by {props.mileageData && props.mileageData.length && props.mileageData[0].name}</div>
 
-                <Spacer />
+                <div class=" mt-3" />
                
             </div>
             </div>

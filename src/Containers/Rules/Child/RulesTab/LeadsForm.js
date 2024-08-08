@@ -109,7 +109,7 @@ country:props.countryId,
      
                 {/* <FlexContainer justifyContent="space-between">
                   <div style={{ width: "50%", marginTop: "0.625em" }}>
-                    <StyledLabel>Assign To</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Assign To</div>
                     <Switch
                       style={{ width: "7.5em", marginLeft: "0.625em" }}
                       onChange={handleChange}

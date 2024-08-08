@@ -6,16 +6,12 @@ import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import {
-  Spacer,
-  StyledLabel,
-} from "../../../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import {
   getProcessForRecruit,
   getProcessStagesForRecruit,
-} from "../../../../../../Settings/SettingsAction";
+} from "../../../../../../Settings/SettingsAction"; 
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import {
   addRecruit,
@@ -369,7 +365,7 @@ function CustomerForm(props) {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer/>                  
+                  <div class=" mt-3"/>                  
                   <FlexContainer justifyContent="space-between">
                   <div style={{ width: "47%" ,}}>
                     <Field
@@ -406,7 +402,7 @@ function CustomerForm(props) {
                       />
                     </div>
                       </FlexContainer>
-                      <Spacer />
+                      <div class=" mt-3" />
                       <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <Field
@@ -452,7 +448,7 @@ function CustomerForm(props) {
                       />
                     </div>
                   </FlexContainer>  
-                  <Spacer />
+                  <div class=" mt-3" />
                       <FlexContainer justifyContent="space-between">
                   <div style={{ width: "100%" ,}}>
                   <Field
@@ -477,7 +473,7 @@ function CustomerForm(props) {
                    
                    
                       </FlexContainer>
-                      <Spacer />
+                      <div class=" mt-3" />
 
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
@@ -497,7 +493,7 @@ function CustomerForm(props) {
                       />
                     </div>
                     <div style={{ width: "47%" }}>
-                      <StyledLabel>Type </StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Type </div>
                       <br/>
                     <Switch
                         checked={typeData}
@@ -511,7 +507,7 @@ function CustomerForm(props) {
                     </div>
                   </FlexContainer>                
                
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                   <div style={{ width: "47%" }}>
                   <Field
@@ -579,7 +575,7 @@ function CustomerForm(props) {
                     </FlexContainer>
                   
                  
-                    <Spacer />
+                    <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       {" "}
@@ -646,10 +642,10 @@ function CustomerForm(props) {
                     </div>
                   
                   </FlexContainer>
-                  <Spacer style={{marginTop:"1.25em"}}/>
+                  <div class=" mt-3" style={{marginTop:"1.25em"}}/>
                 <FlexContainer style={{}}>
                  
-                 <StyledLabel style={{marginLeft:"0px"}}>Category</StyledLabel>
+                 <div class=" text-xs font-bold font-poppins ml-0" >Category</div>
                  &nbsp;&nbsp;
                  <Switch
                    style={{
@@ -694,7 +690,7 @@ function CustomerForm(props) {
                
               </div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   type="primary"

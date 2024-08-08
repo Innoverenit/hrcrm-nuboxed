@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 // import { getProductsByProductId } from "./InventoryAction";
 import { Link } from "react-router-dom";
-import { MultiAvatar, Spacer } from "../../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../../Components/UI/Elements";
 import { CurrencySymbol } from "../../../../Components/Common";
 import styled from "styled-components";
 import { Select } from "../../../../Components/UI/Elements";

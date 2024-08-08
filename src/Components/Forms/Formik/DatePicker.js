@@ -25,9 +25,9 @@ export const DatePicker = ({
     return (
       <>
         {!noLabel && (
-          <StyledLabel style={{ flexBasis: label || "20%" }}>
+          <div class=" text-xs font-bold font-poppins" style={{ flexBasis: label || "20%" }}>
             {label}
-          </StyledLabel>
+          </div>
         )}
         <StyledDatePicker
           allowClear={false}
@@ -58,7 +58,7 @@ export const DatePicker = ({
       <FlexContainer>
         <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
           {!noLabel && (
-            <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+            <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
           )}
           <StyledDatePicker
             allowClear={false}
@@ -107,7 +107,7 @@ export const DatePicker = ({
 //       <FlexContainer>
 //         <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
 //           {!noLabel && (
-//             <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+//             <div class=" text-xs font-bold font-poppins style={{ flexBasis: "20%" }}>{label}</div>
 //           )}
 //           <StyledDatePicker
 //             allowClear={false}

@@ -2,12 +2,12 @@ import React, { useEffect, useState, useMemo, lazy } from 'react'
 import { StyledTable } from '../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { MultiAvatar, Spacer } from "../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 import { SearchOutlined } from "@ant-design/icons";
 import { CurrencySymbol } from "../../../Components/Common";
 import { getCustomerTask } from "../../../Containers/Task/TaskAction"
 // import { getLeadsTabData,getLeadsDateWise,paidIndicatorLeads,handleStripeModal } from '../LeadsAction';
-import moment from "moment";
+import dayjs from "dayjs";
 import { Tooltip, Button, Input, Space } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from 'react-highlight-words';

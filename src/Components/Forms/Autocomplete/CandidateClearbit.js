@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { get } from "lodash";
 import { base_url } from "../../../Config/Auth";
-import { ValidationError, StyledLabel, StyledAsync } from "../../UI/Elements";
+import { ValidationError,  StyledAsync } from "../../UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setClearbitCandidateData } from "../../../Containers/Candidate/CandidateAction";
@@ -60,11 +60,11 @@ class OrderClearbit extends Component {
     if (isColumnWithoutNoCreate) {
       return (
         <>
-          <StyledLabel
+          <div class=" text-xs font-bold font-poppins"
           
           >
             {label}
-          </StyledLabel>
+          </div>
           <StyledAsync
             isRequired={isRequired}
             backspaceRemoveValue
@@ -93,10 +93,10 @@ class OrderClearbit extends Component {
     if (isColumn) {
       return (
         <>
-          <StyledLabel          
+          <div class=" text-xs font-bold font-poppins"      
           >
             {label}
-          </StyledLabel>
+          </div>
           <StyledAsync
             isRequired={isRequired}
             classNamePrefix="sales"
@@ -125,10 +125,10 @@ class OrderClearbit extends Component {
       <>
        <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
         <div class=" flex flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto flex-col">
-            <StyledLabel            
+            <div class=" text-xs font-bold font-poppins     "       
             >
               {label}
-            </StyledLabel>
+            </div>
             <StyledAsync
               isRequired={isRequired}
               classNamePrefix="sales"

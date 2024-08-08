@@ -3,7 +3,7 @@ import { Switch, Popconfirm, } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateDispatchReceivePhone } from "../../../InventoryAction"
-import moment from "moment";
+import dayjs from "dayjs";
 
 function DispatchReceiveToggle(props) {
 
@@ -12,7 +12,7 @@ function DispatchReceiveToggle(props) {
             dispatchPhoneInd: true,
             dispatchMismatchInd: false,
             dispatchPhoneUser: props.userId,
-            dispatchPhoneDate: moment()
+            dispatchPhoneDate: dayjs()
         },
             props.phoneId,
             props.orderPhoneId,

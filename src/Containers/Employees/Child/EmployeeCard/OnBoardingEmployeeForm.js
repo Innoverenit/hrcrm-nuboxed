@@ -4,7 +4,7 @@ import { Button,Select,Steps,Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import moment from 'moment';
+import dayjs from 'dayjs';
 import styled from "styled-components";
  import { getProcessForOnboarding ,getProcessStagesForOnboarding} from '../../../Settings/SettingsAction';
 import { Field } from 'formik';

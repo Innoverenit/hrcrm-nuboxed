@@ -28,7 +28,7 @@ import styled from "styled-components";
 import { base_url } from "../../../../Config/Auth";
 import { FormattedMessage } from "react-intl";
 import Highlighter from "react-highlight-words";
-import moment from "moment";
+import dayjs from "dayjs";
 function onChange(pagination, filters, sorter) {
   console.log("Clicked", pagination, filters, sorter);
 }
@@ -260,7 +260,7 @@ class OpportunitySummaryTable extends Component {
           data.settings.margin.left + 70,
           20
         );
-        var before = `Published on ${moment().format("Do MMM YYYY")}`;
+        var before = `Published on ${dayjs().format("Do MMM YYYY")}`;
         doc.text(before, 75, 30);
 
         // Footer
@@ -284,7 +284,7 @@ class OpportunitySummaryTable extends Component {
       doc.putTotalPages(totalPagesExp);
     }
     doc.save(
-      `${opportunityName && opportunityName} Requirement ${moment().format(
+      `${opportunityName && opportunityName} Requirement ${dayjs().format(
         "L"
       )}`
     );

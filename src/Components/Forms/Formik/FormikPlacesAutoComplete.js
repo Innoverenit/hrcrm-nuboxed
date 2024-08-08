@@ -169,7 +169,7 @@ class FormikPlacesAutoComplete extends Component {
     if (isColumn) {
       return (
         <>
-          {/* <StyledLabel style={{ marginTop: "0.75em" }}>{label}</StyledLabel> */}
+          {/* <div class=" text-xs font-bold font-poppins style={{ marginTop: "0.75em" }}>{label}</div> */}
           <PlacesAutocomplete
             name={name}
             id={name}

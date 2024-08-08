@@ -6,7 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {updateOrdrSuplrItems,getLocationNamesByProductId} from "../../AccountAction";
 import { Tooltip,Button,Input,Select } from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import moment from "moment";
+import dayjs from "dayjs";
 import { base_url2 } from "../../../../../Config/Auth";
 import axios from 'axios';
 
@@ -208,7 +208,7 @@ const handleSelectChange = (value, key, dataIndex) => {
                                                             </div>
                                                             <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                {moment(item.deliveryDate).format("YYYY/MM/DD")} 
+                                                                {dayjs(item.deliveryDate).format("YYYY/MM/DD")} 
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
@@ -218,12 +218,12 @@ const handleSelectChange = (value, key, dataIndex) => {
           type="date"
           value={date}
           onChange={(e) => handleDateChange(e,item)}
-          min={moment(item.deliveryDate).format("YYYY-MM-DD")}
+          min={dayjs(item.deliveryDate).format("YYYY-MM-DD")}
           class="border border-black rounded"
         /> ) : (
             <div className="font-normal text-sm  font-poppins">
               <div> 
-              {moment(item.shippingDate).format("YYYY/MM/DD")}</div>
+              {dayjs(item.shippingDate).format("YYYY/MM/DD")}</div>
             </div>
           )}
                                                                 </div>

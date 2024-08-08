@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
-import moment from "moment";
+import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 
 function CollectionActionRight (props){
@@ -30,7 +30,7 @@ function CollectionActionRight (props){
 <FormattedMessage
                               id="app.balanceasof"
                               defaultMessage="Balance as of"
-                            />{moment().format("ll")} : ₹{resultForDis.toFixed(2)}
+                            />{dayjs().format("ll")} : ₹{resultForDis.toFixed(2)}
 </div>
 </div>
     </>

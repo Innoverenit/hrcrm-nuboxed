@@ -5,7 +5,7 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { FormattedMessage } from "react-intl";
 import * as Yup from "yup";
-import { Spacer, HeaderText } from "../../Components/UI/Elements";
+import {  HeaderText } from "../../Components/UI/Elements";
 import { FlexContainer } from "../../Components/UI/Layout";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { updateUserById } from "../Auth/AuthAction";
@@ -51,7 +51,7 @@ class TimeZoneForm extends Component {
                     style={{ flexBasis: "50%" }}
                   />
 
-                  <Spacer style={{ marginTop: 15 }} />
+                  <div class=" mt-3" style={{ marginTop: 15 }} />
                   <p style={{ fontSize: "0.75em" }}>
                     Your Korero scheduler needs your time zone as an input.
                     Korero will automatically update daylight settings for your

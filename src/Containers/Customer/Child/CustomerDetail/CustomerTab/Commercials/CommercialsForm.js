@@ -8,10 +8,8 @@ import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { StyledLabel } from "../../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-import { Spacer } from "../../../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import {addCommercialsByCustomerId,getCommercialsByCustomerId} from "../../../../CustomerAction";
-import dayjs from "dayjs";
 
 function CommercialsForm(props) {
   useEffect(()=>{
@@ -60,24 +58,24 @@ function CommercialsForm(props) {
                      
                 <div >
                 <div class=" flex justify-between">
-                  <StyledLabel>Permanent</StyledLabel>        
+                  <div class=" text-xs font-bold font-poppins text-black">Permanent</div>        
                  </div>
                 </div>
-                <Spacer/>
+                <div class=" mt-3"/>
 
                 <div class=" w-2/4">
                 <div class=" flex justify-between">
-                      <StyledLabel>Type</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Type</div>
                       <Switch                                           
                         checkedChildren="Percentage"
                         unCheckedChildren="Amount"
                       />
                       </div>
                       </div>
-                      <Spacer/>
+                      <div class=" mt-3"/>
                 <div >
                 <div class=" flex justify-between">
-                  <StyledLabel>Currency</StyledLabel>   
+                  <div class=" text-xs font-bold font-poppins text-black">Currency</div>   
                       <Field
                         name="currency"
                         isColumnWithoutNoCreate
@@ -93,10 +91,10 @@ function CommercialsForm(props) {
                       </div>
                     </div>
                 
-                      <Spacer/>
+                      <div class=" mt-3"/>
                 <div >
                 <div class=" flex justify-between">
-                  <StyledLabel>Payment after (in days)</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Payment after (in days)</div>
                   <Field
                     name="paymentDate"
                     type="number"
@@ -107,8 +105,8 @@ function CommercialsForm(props) {
                   </div>
                   <h4>Updated on {dayjs(props.commercialsByCustomerId && props.commercialsByCustomerId.length && props.commercialsByCustomerId[0].lastUpdatedOn).format("ll")} by {props.commercialsByCustomerId && props.commercialsByCustomerId.length && props.commercialsByCustomerId[0].ownerName}</h4>
                 </div>
-                <Spacer />
-                <Spacer/>
+                <div class=" mt-3" />
+                <div class=" mt-3"/>
                 <div class=" flex justify-end">
                 <Button
                   type="primary"

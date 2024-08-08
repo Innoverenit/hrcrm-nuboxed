@@ -12,7 +12,7 @@ import {getProjectsData} from "../Projects/ProjectsAction"
 import {getCustomerTask} from "../Task/TaskAction"
 import { DatePicker } from "../../Components/Forms/Formik/DatePicker";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
-import { Spacer } from "../../Components/UI/Elements";
+
 import { TimePicker } from "../../Components/Forms/Formik/TimePicker";
 import { InputComponent } from '../../Components/Forms/Formik/InputComponent'
 import InvoiceListTable from './InvoiceHeader/InvoiceListTable';
@@ -179,7 +179,7 @@ onSubmit={(values, { resetForm }) => {
                           }}
                         />
              </div>
-             <Spacer />
+             <div class=" mt-3" />
                     <div class=" w-2/5">
                     <Field
                         isRequired
@@ -235,7 +235,7 @@ onSubmit={(values, { resetForm }) => {
                         }}
                       />
                     </div>
-                    <Spacer />
+                    <div class=" mt-3" />
                     <div class=" w-2/5">
                     <Field
                         isRequired

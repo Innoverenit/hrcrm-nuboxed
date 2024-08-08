@@ -185,10 +185,10 @@ function handleSetCurrentCandidateId(candidateId) {
           </div>                  
                         </div>                    
                         <div class=" flex flex-row flex-wrap items-baseline self-start  justify-around grow shrink h-auto mr-auto ">                        
-                        <StyledLabel> <SkillsLoadMore 
+                        <div class=" text-xs font-bold font-poppins text-black"> <SkillsLoadMore 
                         skillList={data} 
                         viewType={props.viewType}
-                        /></StyledLabel>
+                        /></div>
                         
                         <Tooltip  title={item.skillList}>
                         <BuildCircleIcon   style={{fontSize:"1.1rem",color:"#24d8a7",padding:"2px"}}  /> 

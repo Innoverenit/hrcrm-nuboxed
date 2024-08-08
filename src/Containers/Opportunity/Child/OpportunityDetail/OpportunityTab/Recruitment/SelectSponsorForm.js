@@ -5,7 +5,6 @@ import { Button, message,  } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { FormattedMessage } from "react-intl";
-import { Spacer, } from "../../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { FlexContainer } from "../../../../../../Components/UI/Layout";
 
@@ -108,7 +107,7 @@ function SelectSponsorForm(props) {
                       </>
                     )}
 
-                  <Spacer />
+                  <div class=" mt-3" />
                 </div>
               &nbsp;
               <div
@@ -117,7 +116,7 @@ function SelectSponsorForm(props) {
                   }}
                 ></div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               {Sponsor.length ? (
                 <>
                   <FlexContainer justifyContent="flex-end">

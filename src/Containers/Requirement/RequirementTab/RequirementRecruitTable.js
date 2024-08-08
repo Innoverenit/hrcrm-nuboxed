@@ -64,7 +64,7 @@ import {
   getTopicsByCandidateId,
   //   getContactDocument,
 } from "../../Candidate/CandidateAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { CurrencySymbol } from "../../../Components/Common";
 import EditRecruitForm from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/EditRecruitForm";
 import { Suspense } from "react";
@@ -260,7 +260,7 @@ class RecruitmentTable extends Component {
         width: "9%",
         render: (name, item, i) => {
           console.log(item);
-          return <span>{moment(item.avilableDate).format("ll")}</span>;
+          return <span>{dayjs(item.avilableDate).format("ll")}</span>;
         },
         sorter: (a, b) => {
           if (a.avilableDate < b.avilableDate) {
@@ -939,14 +939,14 @@ class RecruitmentTable extends Component {
         //         Sponsor Approved on
         //       </p>
         //       <p>{`${record.sponserInd
-        //         ? moment(record.sponserOfferDate).format("lll")
+        //         ? dayjs(record.sponserOfferDate).format("lll")
         //         : ""
         //         }`}</p>
         //       <p style={{ fontWeight: "bold", margin: 0 }}>
         //         Candidate Approved on
         //       </p>
         //       <p>{`${record.candidateOfferAccept} ${record.candidateInd
-        //         ? moment(record.candidateOfferDate).format("lll")
+        //         ? dayjs(record.candidateOfferDate).format("lll")
         //         : ""
         //         }`}</p>
         //       <p style={{ fontWeight: "bold", margin: 0 }}>Description</p>

@@ -252,11 +252,11 @@ console.log(this.state.firstCase)
      />
    </div>
       <div>
-      {/* <StyledLabel><FormattedMessage
+      {/* <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
         id="app.employeetype"
         defaultMessage="Employee Type"
       />
-      </StyledLabel> */}
+      </div> */}
       
     </div>
     <div class="flex flex-row mt-2">

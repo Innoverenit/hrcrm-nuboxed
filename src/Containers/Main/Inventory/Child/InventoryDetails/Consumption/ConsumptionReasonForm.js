@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   addConsumptionReason,
   getConsumptionReasonList,
@@ -17,7 +17,7 @@ function ConsumptionReasonForm(props) {
     <>
       <Formik
         initialValues={{
-          date: moment(),
+          date: dayjs(),
           locationDetailsId: props.locationDetailsId,
           suppliesId: props.setEditingInventoryConsumption.suppliesId || "",
           inStock: props.setEditingInventoryConsumption.quantity || "",
@@ -28,7 +28,7 @@ function ConsumptionReasonForm(props) {
         onSubmit={(values, { resetForm }) => {
           props.addConsumptionReason({
             ...values,
-            date: moment(values.date).toISOString(),
+            date: dayjs(values.date).toISOString(),
           });
         }}
       >

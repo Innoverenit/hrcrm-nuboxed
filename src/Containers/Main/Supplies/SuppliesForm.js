@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,DatePicker } from "antd";
 import * as Yup from "yup";
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Formik, Form, Field } from "formik";
 import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
 import { base_url2 } from "../../../Config/Auth";

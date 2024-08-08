@@ -1,7 +1,7 @@
 import React,{ useEffect, useState, lazy }  from 'react'
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {getManufactureDetailsData} from "../ProductionAction"
@@ -60,7 +60,7 @@ function ManufactureListData(props) {
                         <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                             <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                                 
-                                {`${moment.utc(props.manufactureDetailsData.poCreationDate).format("YYYY/MM/DD")}`}
+                                {`${dayjs(props.manufactureDetailsData.poCreationDate).format("YYYY/MM/DD")}`}
                             </div>
                         </div>
 

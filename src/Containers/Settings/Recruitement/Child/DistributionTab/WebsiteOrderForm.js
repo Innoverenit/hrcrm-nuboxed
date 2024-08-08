@@ -15,7 +15,7 @@ import {
     getDepartmentwiserUser,
 } from "../../../../Settings/SettingsAction";
 import {getDepartments} from "../../../Department/DepartmentAction"
-import moment from "moment";
+import dayjs from "dayjs";
 const { Option } = Select;
 function WebsiteOrderForm(props) {
 
@@ -175,7 +175,7 @@ const handleDeptChange = (event) => {
               </div>
               <div class="mt-4">
                 Updated on{" "}
-                {moment(props.distributionAutomation.updationDate).format("ll")} by{" "}
+                {dayjs(props.distributionAutomation.updationDate).format("ll")} by{" "}
                 {props.distributionAutomation.updatedBy}
               </div>
         </Form>

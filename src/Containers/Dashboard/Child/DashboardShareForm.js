@@ -8,12 +8,12 @@ import {
   getTasks
 } from "../../Settings/Task/TaskAction";
 import { StyledSelect } from "../../../Components/UI/Antd";
-import moment from "moment";
+import dayjs from "dayjs";
 const Option =StyledSelect;
 
 function DashboardShareForm(props) {
-  const startDate = moment().startOf("month"); 
-  const endDate = moment();
+  const startDate = dayjs().startOf("month"); 
+  const endDate = dayjs();
   var today = new Date(),
   date =
     today.getFullYear() +

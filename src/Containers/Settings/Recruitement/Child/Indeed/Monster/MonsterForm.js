@@ -62,7 +62,7 @@ function MonsterForm(props) {
                  
                 }}
               >
-                <StyledLabel>User Name</StyledLabel>
+                <div class=" text-xs font-bold font-poppins text-black">User Name</div>
                 <div >
                  <Field
                   // label="User Name"
@@ -72,7 +72,7 @@ function MonsterForm(props) {
                 />
                 </div>
                
-                  <StyledLabel>Password</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Password</div>
                   <div >
                   <Field
                   // label="Password"

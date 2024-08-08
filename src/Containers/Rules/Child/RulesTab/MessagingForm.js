@@ -117,11 +117,11 @@ function MessagingForm(props) {
                             <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                                     <div style={{ width: "18%" }}>
                                         {" "}
-                                        <StyledLabel>Priority</StyledLabel>
+                                        <div class=" text-xs font-bold font-poppins text-black">Priority</div>
                                     </div>
                                     <div>
                                         {" "}
-                                        <StyledLabel>Executor</StyledLabel>
+                                        <div class=" text-xs font-bold font-poppins text-black">Executor</div>
                                     </div>
                                 </div>
                                 <mt-3 />
@@ -213,7 +213,7 @@ function MessagingForm(props) {
                                     </div>
                                 </div>
                                 <mt-3 />
-                                <StyledLabel>Email</StyledLabel>
+                                <div class=" text-xs font-bold font-poppins text-black">Email</div>
                                 <div>
                                     Same For Notification&nbsp;&nbsp;
                   <Checkbox>Yes</Checkbox>

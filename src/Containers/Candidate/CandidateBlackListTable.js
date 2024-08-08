@@ -1,7 +1,7 @@
 import React, {  useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import styled from "styled-components";
 import { SearchOutlined, UpCircleOutlined } from "@ant-design/icons";
 import { FormattedMessage } from "react-intl";
@@ -376,13 +376,13 @@ function CandidateBlackListTable(props) {
       dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
-        const availableDate = moment(item.availableDate).format("ll");
+        const availableDate = dayjs(item.availableDate).format("ll");
         return (
           <>
             {item.availableDate === null ? (
               "None"
             ) : (
-              <span>{moment(item.availableDate).format("l")}</span>
+              <span>{dayjs(item.availableDate).format("l")}</span>
             )}
           </>
         );

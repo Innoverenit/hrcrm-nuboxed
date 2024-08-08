@@ -6,7 +6,6 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import { Spacer } from "../../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
@@ -77,7 +76,7 @@ function EditRecruitForm(props) {
                       marginTop: "0.25em",
                     }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "46%" }}>
                       {" "}
@@ -140,7 +139,7 @@ function EditRecruitForm(props) {
                     </div>
                   </div>
 
-                  <Spacer />
+                  <div class=" mt-3" />
                 </div>
               &nbsp;
               <div
@@ -149,7 +148,7 @@ function EditRecruitForm(props) {
                   }}
                 ></div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"

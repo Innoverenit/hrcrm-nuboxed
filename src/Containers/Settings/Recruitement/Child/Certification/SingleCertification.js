@@ -6,7 +6,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { TextInput } from "../../../../../Components/UI/Elements";
 import ViewEditCard from "../../../../../Components/UI/Elements/ViewEditCard";
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
 
 class SingleCertification extends Component {
@@ -31,8 +31,8 @@ class SingleCertification extends Component {
       
     } = this.props;
     console.log();
-    const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(creationDate).format("DD/MM/YYYY");
+    const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(creationDate).format("DD/MM/YYYY");
     // const disableDelete = linkedSources && linkedSources.includes(documentTypeId)
     return (
       <CertificationWrapper>

@@ -3,7 +3,6 @@ import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { Button, Radio } from "antd";
-import { Spacer, StyledLabel } from "../../../../../../Components/UI/Elements";
 import {
   FlexContainer,
   BorderBox,
@@ -59,7 +58,7 @@ class SubscriptionForm extends Component {
                     width: "24%",
                   }}
                 >
-                  <Spacer style={{ marginTop: "25px" }} />
+                  <div class=" mt-3" style={{ marginTop: "25px" }} />
                   <Field
                     isRequired
                     inlineLabel
@@ -73,7 +72,7 @@ class SubscriptionForm extends Component {
                     style={{ flexBasis: "60%", borderRight: "2px solid red" }}
                   />
 
-                  <Spacer />
+                  <div class=" mt-3" />
                   {/* <FlexContainer justifyContent="space-between"> */}
 
                   <Field
@@ -98,7 +97,7 @@ class SubscriptionForm extends Component {
                     width: "45%",
                   }}
                 >
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer>
                     <BorderBox>
                       <div
@@ -108,7 +107,7 @@ class SubscriptionForm extends Component {
                           padding: "0.5rem",
                         }}
                       >
-                        <StyledLabel>Frequency of Delivery</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Frequency of Delivery</div>
                         <div>
                           <Radio.Group
                             onChange={this.props.onChangeCustom}
@@ -117,7 +116,7 @@ class SubscriptionForm extends Component {
                             <Radio value={1}>Daily</Radio>
                             <Radio value={2}>Custom</Radio>
                           </Radio.Group>
-                          <Spacer />
+                          <div class=" mt-3" />
                           {this.props.dailyCustomInd === 1 ? null : (
                             <>
                               <div style={{ width: "100%" }}>

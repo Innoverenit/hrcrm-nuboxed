@@ -144,7 +144,7 @@ class SuppliersActivityTaskForm extends Component {
                     </div>
 
                     <div style={{ width: "30%" }}>
-                      <StyledLabel>Status</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Status</div>
 
                       <div style={{ width: "100%" }}>
                         <ButtonGroup>
@@ -181,7 +181,7 @@ class SuppliersActivityTaskForm extends Component {
                     <div style={{ width: "45%" }}>
                     <div class=" flex flex-row flex-wrap items-start self-start justify-between w-full grow shrink h-auto mr-auto ">
                         <div style={{ width: "100%" }}>
-                          <StyledLabel>Priority</StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Priority</div>
 
                           <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                             <Tooltip title="High">

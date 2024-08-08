@@ -5,7 +5,7 @@ import ReactSpeedometer from "react-d3-speedometer";
 import { getOpportunityDeviation } from "../../../OpportunityAction";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { MainWrapper } from "../../../../../Components/UI/Layout";
-import { HeaderText, Spacer } from "../../../../../Components/UI/Elements";
+import { HeaderText } from "../../../../../Components/UI/Elements";
 import { Empty, Divider } from "antd";
 class OpportunityDeviationChart extends Component {
   componentDidMount() {

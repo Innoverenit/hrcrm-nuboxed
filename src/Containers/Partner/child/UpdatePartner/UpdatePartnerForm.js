@@ -6,7 +6,7 @@ import { FormattedMessage } from "react-intl";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../Components/UI/Elements";
+
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import {updatePartner,setEditPartner} from "../../PartnerAction";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
@@ -113,7 +113,7 @@ class UpdatePartnerForm extends Component {
             <Form className="form-background">
                           <div class=" flex justify-between overflow-scroll ">
                 <div class=" h-full w-1/2">
-                <Spacer/>
+                <div class=" mt-3"/>
                   <Field
                     isRequired
                     name="partnerName"
@@ -131,7 +131,7 @@ class UpdatePartnerForm extends Component {
                     accounts={accounts}
                     inlineLabel
                     />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="url"
                     type="text"
@@ -142,7 +142,7 @@ class UpdatePartnerForm extends Component {
                     component={InputComponent}
                     inlineLabel
                     />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="email"
                     type="text"
@@ -155,7 +155,7 @@ class UpdatePartnerForm extends Component {
                     inlineLabel
                     />
                   
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between">
                     <div class=" w-3/12">
                       <FastField
@@ -186,7 +186,7 @@ class UpdatePartnerForm extends Component {
                         />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between">
                     <div class=" w-2/4">
                     <FastField
@@ -208,7 +208,7 @@ class UpdatePartnerForm extends Component {
                   </div>
                   <div class=" w-2/5">
                      <div>
-                  <StyledLabel>Status</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Status</div>
                   </div>
                   <div>
                   <Switch
@@ -220,7 +220,7 @@ class UpdatePartnerForm extends Component {
                    </div>
                   </div>
                   </div>
-                  <Spacer/>
+                  <div class=" mt-3"/>
                   <div class=" flex justify-between">
                     <div class=" w-2/4">
                       <Field
@@ -286,7 +286,7 @@ class UpdatePartnerForm extends Component {
                   </div>
                 </div>
                 <div class=" h-full w-2/5">
-                  <Spacer  />
+                  <div class=" mt-3"  />
                   
                      <FieldArray
                     name="address"
@@ -319,7 +319,7 @@ class UpdatePartnerForm extends Component {
                     />
                   </div>
                 
-                  <Spacer  />
+                  <div class=" mt-3"  />
                   <Field
                     name="notes"
                     // label="Notes"
@@ -331,7 +331,7 @@ class UpdatePartnerForm extends Component {
                     isColumn
                     component={TextareaComponent}
                     />          
-                     <Spacer />
+                     <div class=" mt-3" />
                  </div> 
               </div>
               <div class=" flex  justify-end">

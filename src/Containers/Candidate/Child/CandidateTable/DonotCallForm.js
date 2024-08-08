@@ -91,7 +91,7 @@ function DonotCallForm (props){
               <div class=" flex justify-between" >
                 <div class=" h-full w-[45%]"
                 >
-                   <StyledLabel>Parameter</StyledLabel> 
+                   <div class=" text-xs font-bold font-poppins text-black">Parameter</div> 
                    <Select
   
    style={{ width: '100%' }}

@@ -627,7 +627,7 @@ const AddAccountForm = ({
       {!billingSameAsCommunication && (
         <div class="flex flex-col">
                 <div class="mt-4">
-                  <StyledLabel > Billing Address</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins"> Billing Address</div>
                 </div>
                  
                 <div>

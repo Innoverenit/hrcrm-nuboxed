@@ -6,7 +6,7 @@ import { Tooltip, Input, Popconfirm, Space, Button, Badge } from "antd";
 import { EditOutlined, SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import OnlyWrapCard from "../../../../Components/UI/Layout/OnlyWrapCard"
-import moment from "moment";
+import dayjs from "dayjs";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -61,11 +61,11 @@ useEffect(()=>{
           {props.orderClosedList.length ?
             <>
               {props.orderClosedList.map((item) => {
-                const currentdate = moment().format("DD/MM/YYYY");
-                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
                 const diff = Math.abs(
-                  moment().diff(moment(item.lastRequirementOn), "days")
+                  dayjs().diff(dayjs(item.lastRequirementOn), "days")
                 );
                 const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                   } 

@@ -9,7 +9,6 @@ import * as Yup from "yup";
 import{getAllOpportunityData} from "../../../Opportunity/OpportunityAction"
 import { getFilteredEmailContact } from "../../../Candidate/CandidateAction";
 import dayjs from "dayjs";
-import { Spacer, StyledLabel } from "../../../../Components/UI/Elements";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
@@ -349,11 +348,11 @@ function PitchCallForm(props) {
               <div class=" h-full w-w47.5 max-sm:w-wk"   >
               <div class=" flex justify-between w-full max-sm:flex-col">
                     <div class=" w-2/6 max-sm:w-wk">
-                      <Spacer/>
-                      <StyledLabel>
+                      <div class=" mt-3"/>
+                      <div class=" text-xs font-bold font-poppins text-black">
                         {/* Type */}
                         <FormattedMessage id="app.type" defaultMessage="Type" />
-                      </StyledLabel>
+                      </div>
                       <div class=" flex justify-between">
                         {/* <Tooltip title="Inbound"> */}
                         <Tooltip
@@ -427,13 +426,13 @@ function PitchCallForm(props) {
                       </div>
                     </div>
                     <div class=" w-1/2">
-                      <Spacer />
-                      <StyledLabel>
+                      <div class=" mt-3" />
+                      <div class=" text-xs font-bold font-poppins text-black">
                         <FormattedMessage
                           id="app.category"
                           defaultMessage="Category"
                         />
-                      </StyledLabel>
+                      </div>
                       
                       <ButtonGroup>
                         <Button
@@ -472,16 +471,16 @@ function PitchCallForm(props) {
                       </ButtonGroup>
                     </div>
                   </div>
-                  <Spacer/>
+                  <div class=" mt-3"/>
                   <div class=" flex justify-between items-end max-sm:flex-col " >
                     <div class=" self-start">
-                      <StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">
                       <FormattedMessage
                             id="app.mode"
                             defaultMessage="Mode"
                           />
                       
-                      </StyledLabel>
+                      </div>
                       <Switch
                         // style={{
                         //   marginLeft: "0.3125em"
@@ -535,7 +534,7 @@ function PitchCallForm(props) {
                     width={"100%"}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="startDate"
                     // label="Date"
@@ -548,7 +547,7 @@ function PitchCallForm(props) {
                     value={values.startDate}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between max-sm:flex-col">
                     <div class=" w-1/2 max-sm:w-wk">
                       <Field
@@ -593,7 +592,7 @@ function PitchCallForm(props) {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     isRequired
                      defaultValue={{ label: timeZone, value: userId }}
@@ -612,7 +611,7 @@ function PitchCallForm(props) {
                     component={SearchSelect}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   {/* {startDate ? (
                     <span>
                       {dayjs(startDate).isBefore(dayjs()) && (
@@ -716,7 +715,7 @@ function PitchCallForm(props) {
         </>
       )}
     </Listbox>
-                      <Spacer />
+                      <div class=" mt-3" />
                   <Field
                     name="included"
                     // label="Include"
@@ -738,7 +737,7 @@ function PitchCallForm(props) {
                   />
                  
                
-                  <Spacer/>
+                  <div class=" mt-3"/>
                   {/* <div >
                   <Field
                     disabled="true"
@@ -759,7 +758,7 @@ function PitchCallForm(props) {
                     inlineLabel
                   />
                    </div>
-                  <Spacer /> */}
+                  <div class=" mt-3" /> */}
                   <div>
                     <div class=" w-full"><Field
                       name="callDescription"
@@ -774,13 +773,13 @@ function PitchCallForm(props) {
                     /></div>
                   </div>
                  
-                  <Spacer  />
+                  <div class=" mt-3"  />
                   {/* <div class=" flex justify-between" >
                     <div 
                     class=" w-1/2 font-bold">
                     <div class=" flex justify-between" >
                         <div>
-                          <StyledLabel>Set Reminder</StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Set Reminder</div>
                         </div>
                         <div>
                           <Switch
@@ -818,7 +817,7 @@ function PitchCallForm(props) {
                   </div> */}
                 </div>
               </div>
-              <Spacer  />
+              <div class=" mt-3"  />
               <div class=" flex justify-end">
                 {isEditing && (
                   <>

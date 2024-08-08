@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from 'formik'
 import React from 'react'
 import { FormattedMessage } from "react-intl";
-import { Spacer } from "../../Components/UI/Elements";
+
 import { InputComponent } from '../../Components/Forms/Formik/InputComponent'
 
 function SecondInvoicePage() {
@@ -31,7 +31,7 @@ function SecondInvoicePage() {
                           }}
                         />
              </div>
-             <Spacer />
+             <div class=" mt-3" />
                     <div class=" w-5/12">
                   <Field
                           isRequired

@@ -1,5 +1,5 @@
 import * as types from "./SuppliesActionType";
-import moment from "moment";
+import dayjs from "dayjs";
 const initialState = {
     viewType: "all",
 

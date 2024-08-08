@@ -1,5 +1,5 @@
 import * as types from "./OrderActionTypes";
-import moment from "moment";
+import dayjs from "dayjs";
 
 const initialState = {
   viewType: "",

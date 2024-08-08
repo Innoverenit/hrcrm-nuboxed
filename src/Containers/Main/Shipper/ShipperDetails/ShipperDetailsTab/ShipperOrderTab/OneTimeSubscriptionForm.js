@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { Button } from "antd";
 import { FlexContainer } from "../../../../../../Components/UI/Layout";
-import moment from "moment";
+import dayjs from "dayjs";
 import * as Yup from "yup";
 
 const FormSchema = Yup.object().shape({
@@ -16,7 +16,7 @@ function OneTimeSubscriptionForm(props) {
             <Formik initialValues={{ startDate: "" }}
                 validationSchema={FormSchema}
                 onSubmit={(values, { resetForm }) => {
-                    let newStartDate = moment(values.startDate).format("YYYY-MM-DD");
+                    let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
 
                     props.handleGenerateOrderInShipper
                         ({

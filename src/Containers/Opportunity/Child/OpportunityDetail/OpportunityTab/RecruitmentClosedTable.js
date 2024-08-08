@@ -49,7 +49,7 @@ import {
   getCandidateById,
   getTopicsByCandidateId,
 } from "../../../../Candidate/CandidateAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import EditRecruitForm from "../OpportunityTab/Recruitment/EditRecruitForm";
 import { Suspense } from "react";
 import { elipsize } from "../../../../../Helpers/Function/Functions";
@@ -283,8 +283,8 @@ class RecruitmentClosedTable extends Component {
         dataIndex: "requirementName",
         width: "13%",
         render: (name, item, i) => {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           console.log(item);
 
           return {
@@ -389,7 +389,7 @@ class RecruitmentClosedTable extends Component {
         width: "10%",
         dataIndex: "creationDate",
         render: (text, item) => {
-          const creationDate = moment(item.creationDate).format("ll");
+          const creationDate = dayjs(item.creationDate).format("ll");
 
           return {
             props: {
@@ -424,7 +424,7 @@ class RecruitmentClosedTable extends Component {
               },
             },
 
-            children: <span>{moment(item.avilableDate).format("ll")}</span>,
+            children: <span>{dayjs(item.avilableDate).format("ll")}</span>,
           };
         },
         sorter: (a, b) => {
@@ -936,8 +936,8 @@ class RecruitmentClosedTable extends Component {
       //   render: (name, item, i) => {
       //     // const fullName = ` ${item.salutation || ""} ${item.firstName ||
       //     //   ""} ${item.middleName || ""} ${item.lastName || ""}`;
-      //     //   const currentdate = moment().format("DD/MM/YYYY");
-      //     //   const date = moment(item.creationDate).format("DD/MM/YYYY");
+      //     //   const currentdate = dayjs().format("DD/MM/YYYY");
+      //     //   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
       //     //   console.log(date, currentdate, currentdate === date);
       //     return (
       //       <>
@@ -1330,14 +1330,14 @@ class RecruitmentClosedTable extends Component {
           //         Sponsor Approved on
           //       </p>
           //       <p>{`${record.sponserInd
-          //         ? moment(record.sponserOfferDate).format("lll")
+          //         ? dayjs(record.sponserOfferDate).format("lll")
           //         : ""
           //         }`}</p>
           //       <p style={{ fontWeight: "bold", margin: 0 }}>
           //         Candidate Approved on
           //       </p>
           //       <p>{`${record.candidateOfferAccept} ${record.candidateInd
-          //         ? moment(record.candidateOfferDate).format("lll")
+          //         ? dayjs(record.candidateOfferDate).format("lll")
           //         : ""
           //         }`}</p>
           //       <p style={{ fontWeight: "bold", margin: 0 }}>Description</p>

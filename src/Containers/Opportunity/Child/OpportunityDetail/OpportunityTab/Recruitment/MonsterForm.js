@@ -91,7 +91,7 @@ function MonsterForm(props) {
                      
                      <div >
                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
-                  <StyledLabel>Industry</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Industry</div>
                   <Field
                     name="industry"
                     //label=""
@@ -108,7 +108,7 @@ function MonsterForm(props) {
 
                      <div >
                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
-                  <StyledLabel>Job Category</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Job Category</div>
                   <Field
                     name="jobCategory"
                     //label=""
@@ -125,7 +125,7 @@ function MonsterForm(props) {
                 <div class="mt-3" />
                 <div >
                 <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
-                  <StyledLabel>Job Occupation</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Job Occupation</div>
                   <Field
                     name="jobOccupation"
                     //label=""
@@ -142,7 +142,7 @@ function MonsterForm(props) {
                 <div class="mt-3" />
                       <div >
                       <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
-                  <StyledLabel>Template</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Template</div>
                   <Field
                     name="displayTemplate"
                     //label=""
@@ -158,7 +158,7 @@ function MonsterForm(props) {
              
                 <div >
                 <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
-                  <StyledLabel>Job Duration</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Job Duration</div>
                   <Field
                     name="jobDuration"
                     //label=""
@@ -177,7 +177,7 @@ function MonsterForm(props) {
 
                 <div >
                 <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
-                  <StyledLabel>Job Board Name</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Job Board Name</div>
                   <Field
                     name="jobBoardName"
                     //label=""

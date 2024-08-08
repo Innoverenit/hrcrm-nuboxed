@@ -35,7 +35,6 @@ import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
 import Upload from "../../../../../Components/Forms/Formik/Upload";
 import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
 import { Select } from "antd";
-import moment from "moment";
 import { Listbox, Transition } from '@headlessui/react';
 
 const { Option } = Select;
@@ -602,8 +601,8 @@ const [priority,setpriority]=useState(props.selectedTask
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (
-                              moment(currentDate).isBefore(
-                                moment(values.startDate)
+                              dayjs(currentDate).isBefore(
+                                dayjs(values.startDate)
                               )
                             ) {
                               return true;

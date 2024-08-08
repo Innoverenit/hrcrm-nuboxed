@@ -3,8 +3,7 @@ import { Marker, Popup } from "react-leaflet";
 import { base_url } from "../../Config/Auth";
 import { Link } from "../../Components/Common";
 import {
-  Title,
-  Spacer,
+  Title
 } from "../../Components/UI/Elements";
 import L from "leaflet";
 
@@ -109,7 +108,7 @@ export default function CustomerMapPopUpMarker({ mark }) {
         </div>
       </div>
 
-        <Spacer />
+        <div class=" mt-3" />
         <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[100%]">
           <div
             style={{

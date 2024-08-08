@@ -59,9 +59,9 @@ function CompletedTaskTypeDrawerTable (props) {
         height={"75vh"}
       >
       {/* {props.completedtypeTasks.map((item) => { 
-        const currentDate = moment();
-        const completionDate = moment(item.completionDate);
-        const endDate = moment(item.endDate);
+        const currentDate = dayjs();
+        const completionDate = dayjs(item.completionDate);
+        const endDate = dayjs(item.endDate);
         const difference = currentDate.diff(endDate, 'days');
         const incompleteDeviationDate = endDate.diff(currentDate, 'days');
         const completeDeviation = endDate.diff(completionDate, 'days');
@@ -187,7 +187,7 @@ function CompletedTaskTypeDrawerTable (props) {
                                  
 
                                     <div class=" text-xs  font-poppins text-center">
-                                    {`${moment(item.endDate).format("ll")}`}
+                                    {`${dayjs(item.endDate).format("ll")}`}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">

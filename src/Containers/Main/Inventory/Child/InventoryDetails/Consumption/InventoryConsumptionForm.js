@@ -8,14 +8,14 @@ import { addInventoryConsumption } from "../../../InventoryAction";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { setClearbitPurchaseData } from "../../../../Suppliers/SuppliersAction";
 import PurchaseClearbit from "../../../../../../Components/Forms/Autocomplete/PurchaseClearbit";
-import moment from "moment";
+import dayjs from "dayjs";
 
 function InventoryConsumption(props) {
   return (
     <>
       <Formik
         initialValues={{
-          deliveryDate: moment(),
+          deliveryDate: dayjs(),
           suppliesFullName: "",
           quantity: 0,
           userId: props.userId,
@@ -27,7 +27,7 @@ function InventoryConsumption(props) {
               ...values,
               locationDetailsId: props.locationDetailsId,
               suppliesId: props.suppliesId,
-              deliveryDate: moment(values.deliveryDate).toISOString(),
+              deliveryDate: dayjs(values.deliveryDate).toISOString(),
       
             },
             props.locationDetailsId

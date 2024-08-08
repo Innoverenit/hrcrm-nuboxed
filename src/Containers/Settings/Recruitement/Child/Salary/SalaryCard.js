@@ -11,7 +11,7 @@ import {
   addSalary,
   getSalary,
 } from "../../../../Settings/SettingsAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 
 const { Option } = Select;
@@ -148,7 +148,7 @@ function SalaryCard(props) {
                 </div>
                 <div class="mt-4 font-bold">
                   Updated on{" "}
-                  {moment(props.salary.creationDate).format("ll")} by{" "}
+                  {dayjs(props.salary.creationDate).format("ll")} by{" "}
                   {props.salary.updatedBy}
                 </div>
 

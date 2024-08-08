@@ -6,7 +6,7 @@ import { Button, Rate, Steps } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import EcomStatusItemCard from "./EcomStatusItemCard";
 import {getEcomStatusItem} from "./OrderAction";
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 function EcomStatuShower (props) {
 
@@ -34,7 +34,7 @@ function EcomStatuShower (props) {
                         defaultMessage="progress"
                     />,
                     description: <>
-                 <b> {moment(props.statusEcomItems.creationDate).format("DD-MM-YYYY")} </b>
+                 <b> {dayjs(props.statusEcomItems.creationDate).format("DD-MM-YYYY")} </b>
                     </>
                 },
                 {
@@ -45,7 +45,7 @@ function EcomStatuShower (props) {
                     description:
                         <>
 
-{props.statusEcomItems.paymentType} | {moment(props.statusEcomItems.paymentDate).format("DD-MM-YYYY")}
+{props.statusEcomItems.paymentType} | {dayjs(props.statusEcomItems.paymentDate).format("DD-MM-YYYY")}
 
                         </>
                 },

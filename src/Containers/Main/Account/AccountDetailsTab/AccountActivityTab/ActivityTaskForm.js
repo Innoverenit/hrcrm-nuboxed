@@ -486,14 +486,14 @@ function ActivityTaskForm(props) {
 
                                         <div class=" flex justify-between flex-col w-full">
 
-                                            <StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">
                                                 {/* Priority */}
                                                 <FormattedMessage
                                                     id="app.priority"
                                                     defaultMessage="Priority"
                                                 />
 
-                                            </StyledLabel>
+                                            </div>
 
                                             <div class="flex">
                                                 <Tooltip title="High">
@@ -555,7 +555,7 @@ function ActivityTaskForm(props) {
 
                                         <div class=" w-1/2  max-sm:w-wk ">
 
-                                            <StyledLabel>Type</StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">Type</div>
                                             <select
                                                 style={{ border: "0.06em solid #aaa" }}
                                                 onChange={handleTaskTypeChange}
@@ -572,7 +572,7 @@ function ActivityTaskForm(props) {
 
                                         <div class=" w-1/2 ml-2 max-sm:w-wk">
 
-                                            <StyledLabel>Workflow</StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">Workflow</div>
                                             <select
                                                 style={{ border: "0.06em solid #aaa" }}
                                                 onChange={handleWorkflowChange}
@@ -590,13 +590,13 @@ function ActivityTaskForm(props) {
                                       
                                         <div style={{ width: "24%" }}>
 
-                                            <StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">
                                                 <FormattedMessage
                                                     id="app.status"
                                                     defaultMessage="Status"
                                                 />
                                                 {/* Status */}
-                                            </StyledLabel>
+                                            </div>
 
                                             <div style={{ width: "100%" }}>
                                                 <ButtonGroup>
@@ -813,7 +813,7 @@ function ActivityTaskForm(props) {
                                             <div class=" flex justify-between w-full">
                                                 {values.taskTypeId === "TSK52434477391272022" && (
                                                     <div class=" w-full">
-                                                        <StyledLabel>Complexity</StyledLabel>
+                                                        <div class=" text-xs font-bold font-poppins text-black">Complexity</div>
                                                         <div>
                                                             <Tooltip title="Easy">
                                                                 <Button
@@ -1085,7 +1085,7 @@ function ActivityTaskForm(props) {
                                             <div class=" w-1/2 font-bold">
                                                 <div class=" flex justify-between">
                                                     <div>
-                                                        <StyledLabel>Set Reminder </StyledLabel>
+                                                        <div class=" text-xs font-bold font-poppins text-black">Set Reminder </div>
                                                     </div>
                                                     <div>
                                                         {/* <FlexContainer justifyContent="space-between"> */}

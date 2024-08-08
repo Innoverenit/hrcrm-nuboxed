@@ -5,7 +5,7 @@ import { Button } from "antd";
 import {addProjectsData} from "../ProjectsAction"
 import { FormattedMessage } from "react-intl";
 import {getCustomerTask} from "../../Task/TaskAction"
-import { Spacer } from "../../../Components/UI/Elements";
+
 import { Formik, Form, Field, } from "formik";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -129,7 +129,7 @@ function ProjectsForm(props) {
               </div>
             </div>
 
-            <Spacer />
+            <div class=" mt-3" />
             <div class=" flex justify-end"> 
               <Button type="primary" htmlType="submit" loading={addingProjectsData}>
                 <FormattedMessage id="app.create" defaultMessage="Create" />

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Formik, Form, } from "formik";
 import {
   Select,
-  StyledLabel,
+  
 } from "../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import { Button, Switch } from "antd";
@@ -85,7 +85,7 @@ const handleDeptChange = (event) => {
               >           
                 <div>
                      
-                      <StyledLabel>Assign To</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Assign To</div>
                         <Switch
                           style={{ width: "5em" }}
                           onChange={handleSingleMultiple}

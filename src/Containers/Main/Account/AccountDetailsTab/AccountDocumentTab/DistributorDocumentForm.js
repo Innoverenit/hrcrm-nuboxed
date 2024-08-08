@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { Spacer } from "../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
@@ -171,10 +171,10 @@ class DistributorDocumentForm extends Component {
                     component={TextareaComponent}
                     style={{ height: "5em", marginTop: "0.25em" }}
                   />
-                  <Spacer style={{ marginBottom: "0.9375em" }} />
+                  <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
                 </div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   htmlType="submit"

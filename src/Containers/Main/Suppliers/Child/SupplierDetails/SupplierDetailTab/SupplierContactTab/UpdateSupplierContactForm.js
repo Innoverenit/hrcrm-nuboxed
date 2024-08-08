@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { Button, Select, Icon, Tag, Switch } from "antd";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../../Components/UI/Elements";
+
 import { ShowOrCollapse } from "../../../../../Components/Common";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFieldArray";
@@ -16,7 +16,7 @@ import { StyledLabel } from "../../../../../Components/UI/Elements";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
-import moment from "moment";
+import dayjs from "dayjs";
 import { updateSupplierContact } from "../../../SuppliersAction";
 import { getDesignations } from "../../../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../../../Settings/Department/DepartmentAction";
@@ -182,7 +182,7 @@ class UpdateSupplierContactForm extends Component {
                                                     />
                                                 </div>
                                             </FlexContainer>
-                                            <Spacer />
+                                            <div class=" mt-3" />
                                             <FlexContainer justifyContent="space-between">
                                                 <div style={{ width: "40%" }}>
                                                     <FastField
@@ -219,7 +219,7 @@ class UpdateSupplierContactForm extends Component {
                                             </FlexContainer>
                                         </div>
                                     </FlexContainer>
-                                    <Spacer />
+                                    <div class=" mt-3" />
                                     <FlexContainer justifyContent="space-between">
                                         <div style={{ width: "47%" }}>
                                             <FastField
@@ -254,7 +254,7 @@ class UpdateSupplierContactForm extends Component {
                                             />
                                         </div>
                                     </FlexContainer>
-                                    <Spacer />
+                                    <div class=" mt-3" />
                                     <FlexContainer justifyContent="space-between">
                                         <div style={{ width: "47%" }}>
                                             <FastField
@@ -290,7 +290,7 @@ class UpdateSupplierContactForm extends Component {
                                         </div>
                                     </FlexContainer>
 
-                                    <Spacer />
+                                    <div class=" mt-3" />
                                     <FlexContainer justifyContent="space-between">
                                         <div style={{ width: "100%" }}>
                                             <FastField
@@ -311,7 +311,7 @@ class UpdateSupplierContactForm extends Component {
                                             />
                                         </div>
                                     </FlexContainer>
-                                    <Spacer />
+                                    <div class=" mt-3" />
                                     <FlexContainer justifyContent="space-between">
                                         <div style={{ width: "100%" }}>
                                             <FastField
@@ -330,7 +330,7 @@ class UpdateSupplierContactForm extends Component {
                                             />
                                         </div>
                                     </FlexContainer>
-                                    <Spacer style={{ marginTop: "25px" }} />
+                                    <div class=" mt-3" style={{ marginTop: "25px" }} />
                                     <Field
                                         name="notes"
                                         label="Notes"
@@ -382,7 +382,7 @@ class UpdateSupplierContactForm extends Component {
                                             />
                                         </div>
                                     </FlexContainer>
-                                    <Spacer />
+                                    <div class=" mt-3" />
 
                                     <div style={{ marginTop: "30px" }}>
                                         <FieldArray

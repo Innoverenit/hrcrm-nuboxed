@@ -8,7 +8,7 @@ import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Input, Button, Select, Menu, Dropdown, Progress } from "antd";
 import Highlighter from "react-highlight-words";
 import { CurrencySymbol } from "../../../../Components/Common";
-import moment from "moment";
+import dayjs from "dayjs";
 import SearchIcon from "@mui/icons-material/Search";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LockIcon from "@mui/icons-material/Lock";
@@ -272,8 +272,8 @@ function OpportunityCloseTable(props) {
       defaultSortOrder: "ascend",
       width: "20%",
       render: (name, item, i) => {
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         console.log(date, currentdate, currentdate === date);
         return (
           <>
@@ -346,7 +346,7 @@ function OpportunityCloseTable(props) {
         return 0;
       },
       render: (text, item) => {
-        const startDate = moment(item.startDate).format("ll");
+        const startDate = dayjs(item.startDate).format("ll");
         return <span>{startDate}</span>;
       },
     },

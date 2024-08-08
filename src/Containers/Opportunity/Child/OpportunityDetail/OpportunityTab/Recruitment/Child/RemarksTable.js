@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import moment from "moment";
+import dayjs from "dayjs";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import {
@@ -110,11 +110,11 @@ class RemarksTable extends Component {
           return 0;
         },
         render: (text, item) => {
-          const availableDate = moment(item.creationDate).format("ll");
+          const availableDate = dayjs(item.creationDate).format("ll");
           return <>
           {/* {item.availableDate === null ? "None" : */}
             <span>
-              {moment(item.creationDate).format("l")}
+              {dayjs(item.creationDate).format("l")}
             </span>
           {/* } */}
           

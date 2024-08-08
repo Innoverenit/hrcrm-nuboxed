@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Checkbox, } from "antd";
 import { ScheduleOutlined, } from '@ant-design/icons';
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   SubTitle,
 } from "../../../Components/UI/Elements";
@@ -108,7 +108,7 @@ class TodoItem extends Component {
                   // type={todo.title === "Call" ? "phone" : "schedule"}
                   theme="twoTone"
                 />{" "}
-                &nbsp; {moment(todo.startTime).format("LT")}
+                &nbsp; {dayjs(todo.startTime).format("LT")}
               </SubTitle>
               &nbsp;&nbsp; &nbsp;&nbsp;
             

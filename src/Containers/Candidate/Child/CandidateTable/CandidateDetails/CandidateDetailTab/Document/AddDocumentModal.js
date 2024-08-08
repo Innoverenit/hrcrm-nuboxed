@@ -4,10 +4,6 @@ import { bindActionCreators } from "redux";
 import { Button, Switch, Tooltip,Select } from "antd";
 import { Formik, Form, Field, } from "formik";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
-import {
-  Spacer,
-  StyledLabel,
-} from "../../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import * as Yup from "yup";
@@ -230,7 +226,7 @@ handleContract = (checked) => {
                         
                       /> */}
                     
-                      <StyledLabel>Type</StyledLabel> 
+                      <div class=" text-xs font-bold font-poppins text-black">Type</div> 
                       <Select
                         name="documentTypeId"
                         style={{ width: '100%' }}
@@ -264,7 +260,7 @@ handleContract = (checked) => {
                       </div>
                       </div>
                       <div class=" flex  mt-4">
-                        <StyledLabel>Contract</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Contract</div>
                         <Switch
                           style={{ width: "6.25em", marginLeft: "0.625em" }}
                           onChange={this.handleContract}
@@ -274,7 +270,7 @@ handleContract = (checked) => {
                         />
                       </div>
                       
-                      {/* <StyledLabel >Sharing</StyledLabel> */}
+                      {/* <div class=" text-xs font-bold font-poppins">Sharing</div> */}
                       {this.state.selectedDocument==="DCTP11891528829122022" && (                     
                   <Switch                                              
                   checked={this.state.typeSharing}
@@ -303,7 +299,7 @@ handleContract = (checked) => {
                         />
 
                       <div class=" flex mb-[0.9375em]">
-                        {/* <StyledLabel>Share</StyledLabel> */}
+                        {/* <div class=" text-xs font-bold font-poppins text-black">Share</div> */}
                         {/* <Switch
                           style={{ width: "6.25em", marginLeft: "0.625em" }}
                           onChange={this.handleChange}
@@ -312,11 +308,11 @@ handleContract = (checked) => {
                           unCheckedChildren="Private"
                         /> */}
                       </div>
-                      <Spacer />
+                      <div class=" mt-3" />
                       {!this.state.documentshare && this.props.testShow && (
                         <p>Will be shared with Opportunity Owner</p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                       {this.state.documentshare && (
                         <div class=" flex justify-between"                   
                         >
@@ -363,13 +359,13 @@ handleContract = (checked) => {
                                   />
                                 </div>
                                 <div>
-                                  <StyledLabel>
+                                  <div class=" text-xs font-bold font-poppins text-black">
                                     <FormattedMessage
                                       id="app.level"
                                       defaultMessage="Level"
                                     />
                                     ,{/* Level */}
-                                  </StyledLabel>
+                                  </div>
                                   <div class=" flex justify-between mt-[0.25em]"
                                   >
                                     <ButtonGroup>

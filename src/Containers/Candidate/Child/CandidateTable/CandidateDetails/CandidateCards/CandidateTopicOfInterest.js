@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import { Tag, Input, Tooltip, } from "antd";
 import { PlusOutlined,
 } from '@ant-design/icons';
-import { ViewEditCard, Title, Spacer } from "../../../../../../Components/UI/Elements";
+import { ViewEditCard, Title } from "../../../../../../Components/UI/Elements";
 import {
   addTopicByCandidateId,
   getTopicsByCandidateId,
@@ -160,7 +160,7 @@ class CandidateTopicOfInterest extends React.Component {
                       />
                       </div>
                       </div>
-                      <Spacer />
+                      <div class=" mt-3" />
 
               {fetchingTopicsByCandidateId ? (
                 <p>fetching Skills ...</p>

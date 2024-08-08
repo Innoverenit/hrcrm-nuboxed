@@ -128,9 +128,9 @@ function SlaForm(props) {
                   <div>
                       <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  ">
                       <div style={{ width: "0%" }}>
-                        <StyledLabel style={{ marginLeft: "1.5625em" }}>
+                        <div class=" text-xs font-bold font-poppins style={{ marginLeft: "1.5625em" }}>
                           Priority
-                        </StyledLabel>
+                        </div>
                       </div>
                       <div
                         style={{
@@ -148,16 +148,16 @@ function SlaForm(props) {
                           }}
                         ></div>
                         &nbsp;&nbsp;
-                        <StyledLabel style={{ marginTop: "0.375em" }}>
+                        <div class=" text-xs font-bold font-poppins style={{ marginTop: "0.375em" }}>
                           High
-                        </StyledLabel>
+                        </div>
                       </div>
 
                       <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[30%]">
                         <div style={{ width: "55%" }}>
-                          <StyledLabel style={{ marginLeft: "1.5625em" }}>
+                          <div class=" text-xs font-bold font-poppins style={{ marginLeft: "1.5625em" }}>
                             To Start
-                          </StyledLabel>
+                          </div>
                           <Field
                             name="highPriorityMapper.startUnit"
                             // label="To Start"
@@ -256,9 +256,9 @@ function SlaForm(props) {
                           }}
                         ></div>
                         &nbsp;&nbsp;
-                        <StyledLabel style={{ marginTop: "0.375em" }}>
+                        <div class=" text-xs font-bold font-poppins style={{ marginTop: "0.375em" }}>
                           Medium
-                        </StyledLabel>
+                        </div>
                       </div>
 
                       <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[30%]">
@@ -363,9 +363,9 @@ function SlaForm(props) {
                           }}
                         ></div>
                         &nbsp;&nbsp;
-                        <StyledLabel style={{ marginTop: "0.375em" }}>
+                        <div class=" text-xs font-bold font-poppins style={{ marginTop: "0.375em" }}>
                           Low
-                        </StyledLabel>
+                        </div>
                       </div>
                       <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[30%]">
                         <div style={{ width: "55%" }}>

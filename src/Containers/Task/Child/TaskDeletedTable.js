@@ -11,7 +11,7 @@ import {
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal"
 import { Tooltip,Input, Button, Avatar } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { withRouter } from "react-router-dom";
@@ -314,7 +314,7 @@ class TaskDeletedTable extends React.Component {
         width:100,
         renderCell: (cellValues,row) => {
           const data=cellValues.row
-          return <span>{` ${moment(data.assignedOn).format("ll")}`}</span>;
+          return <span>{` ${dayjs(data.assignedOn).format("ll")}`}</span>;
         },
       },
       {
@@ -400,7 +400,7 @@ class TaskDeletedTable extends React.Component {
        renderCell: (cellValues,row) => {
         console.log("cell",cellValues)
          const data=cellValues.row
-         const date= ` ${moment(data.startDate).format("ll")}`
+         const date= ` ${dayjs(data.startDate).format("ll")}`
           return <span>
 {date}
             {/* <Tooltip title={date}>
@@ -411,7 +411,7 @@ class TaskDeletedTable extends React.Component {
         // sorter: (a, b) => {
         //   var startDateA = a.startDate;
         //   var startDateB = b.startDate;
-        //   return moment.utc(startDateA).diff(moment.utc(startDateB));
+        //   return dayjs(startDateA).diff(dayjs(startDateB));
         // },
       },
       {
@@ -422,7 +422,7 @@ class TaskDeletedTable extends React.Component {
         renderCell: (cellValues,row) => {
           console.log("cell",cellValues)
            const data=cellValues.row
-           const data2= ` ${moment(data.endDate).format("ll")}`
+           const data2= ` ${dayjs(data.endDate).format("ll")}`
           return <span>
             {data2}
            {/* <Tooltip title={data2}>
@@ -434,7 +434,7 @@ class TaskDeletedTable extends React.Component {
         // sorter: (a, b) => {
         //   var endDateA = a.endDate;
         //   var endDateB = b.endDate;
-        //   return moment.utc(endDateA).diff(moment.utc(endDateB));
+        //   return dayjs(endDateA).diff(dayjs(endDateB));
         // },
       },
       {

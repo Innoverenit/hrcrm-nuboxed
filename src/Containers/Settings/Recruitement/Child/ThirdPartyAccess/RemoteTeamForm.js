@@ -51,7 +51,7 @@ function RemoteTeamForm(props) {
     <MainWrapper style={{ height: "446px", width:"", overflow: "auto" }}>
       
           
-      <Spacer />
+      <div class=" mt-3" />
       <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[52%] ">
         <p>Enable Hiring Team Feature on Portal</p>
         <div>
@@ -71,7 +71,7 @@ function RemoteTeamForm(props) {
           </Popconfirm>
         </div>
       </div> 
-    <Spacer />
+    <div class=" mt-3" />
       <div>Updated on {dayjs(props.remoteAccess.lastUpdatedOn).format("ll")} by {props.remoteAccess.name}</div>
     </MainWrapper>
   );

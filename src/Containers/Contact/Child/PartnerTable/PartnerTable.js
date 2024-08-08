@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { FormattedMessage } from "react-intl";
@@ -276,8 +276,8 @@ function ContactTable(props) {
         const fullName = `${item.salutation || ""} ${item.firstName || ""} ${
           item.middleName || ""
         } ${item.lastName || ""} `;
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         console.log(date, currentdate, currentdate === date);
         return (
           <>

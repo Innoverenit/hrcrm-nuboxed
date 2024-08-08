@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import { DistributorCollectionArchiveToday } from "../CollectionAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { FormattedMessage } from "react-intl";
 const DistributorColletcionArchiveForm = lazy(() => import("./DistributorColletcionArchiveForm"));
@@ -68,7 +68,7 @@ function DistributorColletcionArchive(props) {
                     </div>
                     <div className=" flex font-medium  w-[8.01rem]  max-xl:w-[6.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                     <div class=" text-xs  font-poppins text-center">
-                      {` ${moment(item.date).format("DD-MM-YY")}`}
+                      {` ${dayjs(item.date).format("DD-MM-YY")}`}
 
                     </div>
                   </div>
@@ -184,7 +184,7 @@ export default connect(
 //     dataIndex: "paymentDate",
 //     width: "8%",
 //     render: (name, item, i) => {
-//       return <span>{` ${moment(item.paymentDate).format("DD-MM-YY")}`}</span>;
+//       return <span>{` ${dayjs(item.paymentDate).format("DD-MM-YY")}`}</span>;
 //     },
 //     sorter: (a, b) => {
 //       var nameA = a.paymentDate;

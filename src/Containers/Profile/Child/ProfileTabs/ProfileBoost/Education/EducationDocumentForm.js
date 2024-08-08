@@ -146,7 +146,7 @@ class EducationDocumentForm extends Component {
                     />
                   </div>
                   <div class=" mt-3">
-                    <StyledLabel>Course Type</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Course Type</div>
                     <div class=" mt-3">
                     <ButtonGroup>
                       <StatusIcon
