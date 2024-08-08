@@ -53,6 +53,7 @@ function UploadMaterialModalForm(props) {
                                 <Button
                                     type="primary"
                                     htmlType="submit"
+                                    loading={props.uploadingMaterialList}
                                 >
                                     Upload
                                 </Button>

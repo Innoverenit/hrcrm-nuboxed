@@ -11,8 +11,8 @@ const AddSubscriptionModal = (props) => {
     <>
       <StyledDrawer
         title={<FormattedMessage
-          id="app.notes"
-          defaultMessage="Notes"
+          id="app.subscription"
+          defaultMessage="Subscription"
          />}
         width="60%"
         visible={props.addDrawerLeadsSubscriptionModal}
@@ -23,7 +23,9 @@ const AddSubscriptionModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-       <LeadsSubscriptionForm/>
+       <LeadsSubscriptionForm
+        item={props.item}
+       />
         </Suspense>
       </StyledDrawer>
     </>

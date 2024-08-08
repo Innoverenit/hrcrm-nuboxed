@@ -1936,5 +1936,79 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         });
       });
   };
+
+
+
+  export const addSubscriptionData = (leads) => (dispatch, getState) => {
+    const userId = getState().auth.userDetails.userId;
+  
+    // const opportunityId = getState().opportunity.opportunity.opportunityId;
+    // console.log("inside add leads");
+    dispatch({
+      type: types.ADD_SUBSCRIPTION_DATA_REQUEST,
+    });
+  
+    axios
+      .put(`${base_url}/leads/add/subscription`, leads, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Subscription added Successfully!',
+      
+        })
+        //dispatch(getOpportunityRecord(userId));
+        console.log(res);
+        
+        // dispatch(getLeadsRecords(userId));
+  
+        dispatch({
+          type: types.ADD_SUBSCRIPTION_DATA_SUCCESS,
+          payload: res.data,
+        });
+        // cb && cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADD_SUBSCRIPTION_DATA_FAILURE,
+          payload: err,
+        });
+        // cb && cb();
+      });
+  };
+
+
+
+
+  export const getSubscriptionCompare = (leadsId) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_SUBSCRIPTION_COMPARE_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/get/subscription/${leadsId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_SUBSCRIPTION_COMPARE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_SUBSCRIPTION_COMPARE_FAILURE,
+          payload: err,
+        });
+      });
+  };
   
 

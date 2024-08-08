@@ -528,6 +528,7 @@ const LeadsCardList = (props) => {
                         <Html5Outlined
                          className=" !text-icon cursor-pointer text-green-800"
                           onClick={() => {
+                            handleSetCurrentLeadsId(item);
                             // handleRowData(item);
                             props.handleLeadsSubscriptionModal(true);                      
                           }}                     
@@ -1495,6 +1496,7 @@ const LeadsCardList = (props) => {
            handleLeadsConfirmationModal={props.handleLeadsConfirmationModal}
            />
            <AddSubscriptionModal
+             item={currentLeadsId}
           //  rowdata={rowdata}
           //  handleRowData={handleRowData}
           addDrawerLeadsSubscriptionModal={props.addDrawerLeadsSubscriptionModal}
