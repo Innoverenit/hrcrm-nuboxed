@@ -5,7 +5,6 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CardTravelIcon from "@mui/icons-material/CardTravel";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Button, Badge } from "antd";
-import { ResponsiveCard } from "../Layout";
 import { handleUpdateCustomerModal } from "../../../Containers/Customer/CustomerAction";
 import { MultiAvatar1 } from "../Elements";
 import { Title,  } from "./";
@@ -54,7 +53,7 @@ const BussinessCard = (props) => {
   console.log(props.role);
   return (
     <>
-      <ResponsiveCard flexDirection="column" style={{ borderRadius: 3 }}>
+       <div class="w-[20%] block box-border flex-col rounded">
         <div class="flex">
         <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
             <div class=" flex items-center flex-nowrap h-9">
@@ -140,7 +139,7 @@ const BussinessCard = (props) => {
               </div>
           </div>
         </div>
-      </ResponsiveCard>
+      </div>
     </>
   );
 };
