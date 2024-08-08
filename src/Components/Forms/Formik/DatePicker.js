@@ -1,7 +1,7 @@
 import React from "react";
 import { get } from "lodash";
 import { StyledDatePicker } from "../../UI/Antd";
-import { ValidationError, StyledLabel } from "../../UI/Elements";
+import { ValidationError } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 import dayjs from "dayjs";
 export const DatePicker = ({
@@ -90,7 +90,7 @@ export const DatePicker = ({
 // import dayjs from "dayjs";
 
 // import { StyledDatePicker } from "../../UI/Antd";
-// import { ValidationError, StyledLabel } from "../../UI/Elements";
+// import { ValidationError } from "../../UI/Elements";
 // import { FlexContainer } from "../../UI/Layout";
 // export const DatePicker = ({
 //   value,

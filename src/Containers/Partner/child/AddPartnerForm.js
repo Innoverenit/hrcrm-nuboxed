@@ -16,7 +16,7 @@ import { getOwnsalesList } from "../PartnerAction";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 
 /**
  * yup validation scheme for creating a account

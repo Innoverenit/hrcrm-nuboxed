@@ -31,7 +31,7 @@ import {
     getTaskForWorkflow,
 } from "../../../../Settings/SettingsAction";
 import { handleChooserModal } from "../../../../Planner/PlannerAction";
-import { StyledLabel } from "../../../../../Components/UI/Elements";
+
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import ButtonGroup from "antd/lib/button/button-group";
 import { StyledPopconfirm } from "../../../../../Components/UI/Antd";

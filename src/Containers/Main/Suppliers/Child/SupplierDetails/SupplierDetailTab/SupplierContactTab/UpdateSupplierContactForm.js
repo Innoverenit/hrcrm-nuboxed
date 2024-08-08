@@ -12,7 +12,7 @@ import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFie
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import Upload from "../../../../../Components/Forms/Formik/Upload";
-import { StyledLabel } from "../../../../../Components/UI/Elements";
+
 import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";

@@ -5,7 +5,7 @@ import { Button} from "antd";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
-import { StyledLabel } from "../../../../../../Components/UI/Elements";
+
 import { FormattedMessage } from "react-intl";
 import {getJobCategory,getJobBoardName,getJobBoardOccupation,getJobBoardIndustry,addMonster} from "../../../../OpportunityAction";
 

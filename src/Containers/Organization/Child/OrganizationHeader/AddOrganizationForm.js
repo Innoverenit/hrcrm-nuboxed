@@ -5,7 +5,7 @@ import { Button, } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import {addOrganization} from "../../../Auth/AuthAction"
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import PostImageUpld from "../../../../Components/Forms/Formik/PostImageUpld";

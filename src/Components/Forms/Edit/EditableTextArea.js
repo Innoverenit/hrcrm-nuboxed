@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { TextInput, ValidationError } from "../../UI/Elements";
-import { StyledTextarea, StyledLabel } from "../../UI/Elements";
+import { StyledTextarea } from "../../UI/Elements";
 import { get } from "lodash";
 
 // class EditableInput extends Component {

@@ -11,7 +11,7 @@ import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker
 import { handleTaskModal } from "../../../../../Task/TaskAction";
 import {  updateSuppliersTask } from "../../../SuppliersAction";
 import { handleChooserModal } from "../../../../../Planner/PlannerAction";
-import { StyledLabel } from "../../../../../../Components/UI/Elements";
+
 import { getOppoStages } from "../../../../../Settings/SettingsAction";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import ButtonGroup from "antd/lib/button/button-group";

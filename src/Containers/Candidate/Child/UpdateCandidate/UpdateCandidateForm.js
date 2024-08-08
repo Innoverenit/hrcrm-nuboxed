@@ -10,7 +10,7 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { updateCandidate,setEditCandidate } from "../../CandidateAction";
 import Upload from "../../../../Components/Forms/Formik/Upload";
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";

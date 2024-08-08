@@ -10,7 +10,7 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 
 class AddPartnerEmailDrawerModal extends Component {
 

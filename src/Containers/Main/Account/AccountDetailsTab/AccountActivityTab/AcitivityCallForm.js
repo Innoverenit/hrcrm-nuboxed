@@ -10,7 +10,7 @@ import { getAllOpportunityData } from "../../../../Opportunity/OpportunityAction
 import { handleCallNotesModal } from "../../../../Call/CallAction";
 import { getFilteredEmailContact } from "../../../../Candidate/CandidateAction";
 import dayjs from "dayjs";
-import { StyledLabel } from "../../../../../Components/UI/Elements";
+
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";

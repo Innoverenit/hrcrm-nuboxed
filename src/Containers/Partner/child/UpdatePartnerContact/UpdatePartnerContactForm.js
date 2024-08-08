@@ -13,7 +13,7 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { updatePartnerContact,setEditPartnerContact } from "../../PartnerAction";
 import Upload from "../../../../Components/Forms/Formik/Upload";
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 import { FlexContainer } from "../../../../Components/UI/Layout";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";

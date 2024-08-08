@@ -5,7 +5,7 @@ import { Button, Popconfirm,  } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 import { addLeadsaging, getLeadAging } from "../SettingsAction";
 
 function LeadsAgingForm(props) {

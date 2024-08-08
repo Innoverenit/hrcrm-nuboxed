@@ -1,7 +1,7 @@
 import React from "react";
 import { get } from "lodash";
 import { FlexContainer } from "../../UI/Layout";
-import { SelectInput, ValidationError, StyledLabel } from "../../UI/Elements";
+import { SelectInput, ValidationError } from "../../UI/Elements";
 const Option = SelectInput.Option;
 export const SelectComponent = ({
   field,

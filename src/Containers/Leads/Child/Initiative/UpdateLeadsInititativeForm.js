@@ -7,7 +7,7 @@ import { Button } from "antd";
 import { Select } from "antd";
 import {updateLeadsInitiative} from "../../LeadsAction";
 import { Formik, Form, Field} from "formik";
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 import { setEditLeadsInitiative } from "../../LeadsAction";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 const { Option } = Select;

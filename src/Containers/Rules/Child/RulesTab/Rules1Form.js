@@ -9,7 +9,7 @@ import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 
 class Rules1Form extends Component {
     constructor(props) {

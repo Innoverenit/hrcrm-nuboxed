@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button, Tooltip, Checkbox } from "antd";
 import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 import { getProcess } from "../../../Settings/SettingsAction";
 import { addSla } from "../../RulesAction";
 import { Editor } from "react-draft-wysiwyg";
