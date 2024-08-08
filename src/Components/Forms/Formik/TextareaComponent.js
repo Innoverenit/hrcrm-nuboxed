@@ -1,6 +1,6 @@
 import React from "react";
 import { get } from "lodash";
-import { StyledTextarea, StyledLabel } from "../../UI/Elements";
+import { StyledTextarea } from "../../UI/Elements";
 import { ValidationError } from "../../UI/Elements";
 export const TextareaComponent = ({
   field,

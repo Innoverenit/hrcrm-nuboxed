@@ -11,7 +11,7 @@ import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import {updatePartner,setEditPartner} from "../../PartnerAction";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 
 /**
  * yup validation scheme for creating a account

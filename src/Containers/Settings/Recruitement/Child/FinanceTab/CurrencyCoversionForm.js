@@ -7,7 +7,7 @@ import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectCo
 import { Formik, Form, Field,} from "formik";
 import { getCurrency } from "../../../../Auth/AuthAction";
 import { createCurrencyConversion } from "../../../SettingsAction";
-import { Select, StyledLabel } from "../../../../../Components/UI/Elements";
+import { Select } from "../../../../../Components/UI/Elements";
 import * as Yup from "yup";
 
 const { Option } = Select;

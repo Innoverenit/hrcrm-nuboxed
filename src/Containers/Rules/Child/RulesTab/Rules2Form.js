@@ -5,7 +5,7 @@ import { Button, Switch } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 import { FormattedMessage } from "react-intl";
 function Rules2Form() {
   const [visible, setVisible] = useState(false);

@@ -1,6 +1,6 @@
 import React from "react";
 import { get } from "lodash";
-import { TextInput,ValidationError, StyledLabel } from "../../UI/Elements";
+import { TextInput,ValidationError } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 export const InputComponent = ({
   field,

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import {
   getFunctions,
 } from "../../../Containers/Settings/Function/FunctionAction";
-import { StyledCreatable, StyledLabel } from "../../UI/Elements";
+import { StyledCreatable } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 import { get, uniqBy } from "lodash";
 import ValidationError from "../../UI/Elements/ValidationError";

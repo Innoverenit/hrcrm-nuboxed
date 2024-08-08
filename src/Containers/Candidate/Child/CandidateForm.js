@@ -15,7 +15,7 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { addCandidate } from "../CandidateAction";
 import Upload from "../../../Components/Forms/Formik/Upload";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 import VideoUpload from "./VideoUpload"
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";

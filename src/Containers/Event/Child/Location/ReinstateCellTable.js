@@ -9,7 +9,7 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 //import { CustomizeInputComponent } from "../../../../Components/Forms/Formik/CustomizeInputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field,} from "formik";
-import { Select, StyledLabel } from "../../../../Components/UI/Elements";
+import { Select } from "../../../../Components/UI/Elements";
 import * as Yup from "yup";
 import { getDeletedLoCell} from "./LocationAction";
 import { BundleLoader } from "../../../../Components/Placeholder";

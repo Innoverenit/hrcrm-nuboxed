@@ -1,5 +1,5 @@
 import React from "react";
-import { SelectInput, ValidationError, StyledLabel } from "../../UI/Elements";
+import { SelectInput, ValidationError } from "../../UI/Elements";
 const Option = SelectInput.Option;
 const EditableSelect = ({
   field,

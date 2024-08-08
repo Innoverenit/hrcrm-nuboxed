@@ -14,7 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import { trnasferGrnItemToStock } from "../../../InventoryAction"
 import AllowGrnToggle from './AllowGrnToggle';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { MultiAvatar, StyledLabel } from '../../../../../../Components/UI/Elements';
+import { MultiAvatar } from '../../../../../../Components/UI/Elements';
 
 const { Option } = Select;
 

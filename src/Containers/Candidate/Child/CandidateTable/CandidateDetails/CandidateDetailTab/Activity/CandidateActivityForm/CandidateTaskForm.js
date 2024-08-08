@@ -12,7 +12,7 @@ import {
   addCandidateTask,
   getActivityListByCandidateId
 } from "../../../../../../CandidateAction";
-import { StyledLabel } from "../../../../../../../../Components/UI/Elements";
+
 import { TextareaComponent } from "../../../../../../../../Components/Forms/Formik/TextareaComponent";
 import ButtonGroup from "antd/lib/button/button-group";
 import { getTasks } from "../../../../../../../Settings/Task/TaskAction";

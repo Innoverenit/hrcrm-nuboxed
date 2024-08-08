@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Switch, Checkbox, Button, Popconfirm, message } from "antd";
 import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
-import { StyledLabel } from "../../../../../Components/UI/Elements";
+
 import CheckboxGroup from "antd/lib/checkbox/Group";
 import * as Yup from "yup";
 import {

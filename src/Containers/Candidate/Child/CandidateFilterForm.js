@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { Select } from "antd";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 import { Button, Switch } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";

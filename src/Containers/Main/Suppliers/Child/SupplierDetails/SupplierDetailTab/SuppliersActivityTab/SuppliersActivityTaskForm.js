@@ -12,7 +12,7 @@ import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePic
 import {
   addSuppliersActivityTask,
 } from "../../../../SuppliersAction";
-import { StyledLabel } from "../../../../../../../Components/UI/Elements";
+
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import ButtonGroup from "antd/lib/button/button-group";
 import * as Yup from "yup";

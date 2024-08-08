@@ -10,7 +10,7 @@ import { Button} from "antd";
 import { Formik, Form, Field } from "formik";
 import { Select } from "antd";
 import { getPartner,addPartner } from '../../../../SettingsAction';
-import { StyledLabel } from "../../../../../../Components/UI/Elements";
+
 const { Option } = Select;
 
     function PartnerForm(props) {
