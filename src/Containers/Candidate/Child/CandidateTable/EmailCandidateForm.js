@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-import {  StyledLabel } from "../../../../Components/UI/Elements";
 import { Button, Switch } from "antd";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw, } from "draft-js";

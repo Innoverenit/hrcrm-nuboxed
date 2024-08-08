@@ -7,7 +7,6 @@ import { Button } from "antd";
 import { Select } from "antd";
 import { updateCustomerInitiative } from "../../../../CustomerAction";
 import { Formik, Form, Field } from "formik";
-import {  StyledLabel } from "../../../../../../Components/UI/Elements";
 import { setEditCustomerInitiative } from "../../../../CustomerAction";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";

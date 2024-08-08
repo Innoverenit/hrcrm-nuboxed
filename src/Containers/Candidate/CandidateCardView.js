@@ -1,5 +1,5 @@
 import React, { useEffect, useState,  lazy } from "react";
-import { MultiAvatar, MultiAvatar2,  StyledLabel } from '../../Components/UI/Elements'
+import { MultiAvatar, MultiAvatar2   } from '../../Components/UI/Elements'
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';

@@ -7,7 +7,6 @@ export { default as Title1 } from "./Title1";
 export { default as SubTitle } from "./SubTitle";
 export { default as HeaderText } from "./HeaderText";
 export { default as DrawerHeaderText } from "./DrawerHeaderText";
-export { default as StyledLabel } from "./StyledLabel";
 export { default as HeaderLabel } from "./HeaderLabel";
 export { default as BussinessCard } from "./BussinessCard";
 export { default as ViewEditCard } from "./ViewEditCard";

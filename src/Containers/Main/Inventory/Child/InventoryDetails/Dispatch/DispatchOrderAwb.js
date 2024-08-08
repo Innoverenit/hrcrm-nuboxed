@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
-import { StyledLabel } from '../../../../../../Components/UI/Elements';
 import { InputComponent } from '../../../../../../Components/Forms/Formik/InputComponent';
 import dayjs from "dayjs";
 import { Button } from 'antd';

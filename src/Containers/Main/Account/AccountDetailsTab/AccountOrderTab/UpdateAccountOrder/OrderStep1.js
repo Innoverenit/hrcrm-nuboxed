@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import * as Yup from "yup";
-import { StyledLabel } from '../../../../../../Components/UI/Elements';
 import { SelectComponent } from '../../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../../../Components/Forms/Formik/TextareaComponent';
