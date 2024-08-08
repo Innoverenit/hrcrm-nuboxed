@@ -1,8 +1,8 @@
 import React, { useState,  useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Tooltip } from "antd";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
+import { Button } from "antd";
+import { Formik, Form, Field } from "formik";
 import {  StyledLabel } from "../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Select } from "antd";
@@ -121,9 +121,9 @@ function SequenceCandidateForm(props) {
                       />
                     )}
                   </div>
-                </FlexContainer>
-                <Spacer  />
-                <FlexContainer justifyContent="space-between">
+                </div>
+                <mt-3  />
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" }}>
                     <StyledLabel>False</StyledLabel>
                     <Select
@@ -154,9 +154,9 @@ function SequenceCandidateForm(props) {
                       />
                     )}
                   </div>
-                </FlexContainer>
-                <Spacer />
-                <FlexContainer justifyContent="space-between">
+                </div>
+                <mt-3 />
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" }}>
                     <StyledLabel>No Response</StyledLabel>
                     <Select
@@ -187,11 +187,11 @@ function SequenceCandidateForm(props) {
                       />
                     )}
                   </div>
-                </FlexContainer>                
+                </div>                
               </div>
             </div>
-            <Spacer />
-            <FlexContainer justifyContent="flex-end">
+            <mt-3 />
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
               <Button
                 type="primary"
                 htmlType="submit"
@@ -199,7 +199,7 @@ function SequenceCandidateForm(props) {
               >
                 Create
               </Button>
-            </FlexContainer>
+            </div>
           </Form>
         )}
       </Formik>

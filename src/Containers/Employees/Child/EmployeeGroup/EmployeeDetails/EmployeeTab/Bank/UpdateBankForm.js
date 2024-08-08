@@ -6,7 +6,6 @@ import { Button} from "antd";
 import { Formik, Form,  FastField } from "formik";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import { updateBankDetails } from "../../../../../../Profile/ProfileAction";
 const documentSchema = Yup.object().shape({
   documentId: Yup.string().required("Input needed !"),
@@ -124,7 +123,7 @@ class UpdateBankForm extends Component {
                 </div>
 
                 <mt-3 style={{ marginTop: "1.25em" }} />
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     htmlType="submit"
                     type="primary"
@@ -135,7 +134,7 @@ class UpdateBankForm extends Component {
                       defaultMessage="Update"
                     />
                   </Button>
-                </FlexContainer>
+                </div>
               </Form>
             )}
         </Formik>

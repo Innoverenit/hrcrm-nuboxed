@@ -59,7 +59,7 @@ console.log("Item2",this.props.item.hourId)
             ...rest
           }) => (
             <Form className="form-background">
-            <mt-3/>
+            <div class="mt-3" />
          <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{width:"47%"}}>              
                     <Field

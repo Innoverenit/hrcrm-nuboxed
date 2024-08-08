@@ -27,10 +27,6 @@
 // const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
 // const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 
-
-
-
-
 export { base_url, sub_url,login_url, asses_url, base_url2 };
 
 

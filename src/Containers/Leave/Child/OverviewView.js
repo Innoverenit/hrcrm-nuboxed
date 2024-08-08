@@ -94,12 +94,8 @@ class OverviewView extends Component {
             });
         return (
             <>
-                <FlexContainer justifyContent="space-between">
-                    <FlexContainer
-                        justifyContent="flex-start"
-                        flexWrap="nowrap"
-                        style={{ width: "85%" }}
-                    >
+   <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+   <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[85%] ">
                         <div style={{ width: "20%" }}>
                             <MultiAvatar
                                 primaryTitle={leaveFetching.employeeName}
@@ -108,17 +104,18 @@ class OverviewView extends Component {
                             />
                         </div>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <FlexContainer flexDirection="column" style={{ width: "80%" }}>
+            <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[80%] ">
                             <Title
                                 overflow="hidden"
                                 textOverflow="ellipsis"
                                 fontSize={"1.375em"}
                             >{`${leaveFetching.employeeName || ""}  ${leaveFetching.lastName || ""}`}</Title>
-                        </FlexContainer>
-                    </FlexContainer>
-                    <FlexContainer style={{ width: "15%" }} justifyContent="flex-end">                   
-                    </FlexContainer>
-                </FlexContainer>
+                        </div>
+                    </div>
+
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto w-[15%] ">                 
+                    </div>
+                </div>
 
                 <StyledModal
                     title={`${leaveFetching.employeeName || ""} ${leaveFetching.middleName ||
@@ -131,7 +128,7 @@ class OverviewView extends Component {
                     footer={null}
                 >
                     <>
-                        <FlexContainer>
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                             {!address ? (
                                 <>                             
                                     {addAddressVisible && (
@@ -143,11 +140,7 @@ class OverviewView extends Component {
                                     )}
                                 </>
                             ) : null}
-                            <FlexContainer
-                                justifyContent="space-between"
-                                alignItems="flex-start"
-                                flexWrap="nowrap"
-                            >
+                            <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">                        
                                 <div>
                                     <div className="product3" style={{ width: "180" }}>
                                         {address &&
@@ -165,8 +158,8 @@ class OverviewView extends Component {
                                 </div>
                                 <div class="vl"></div>
                              
-                            </FlexContainer>
-                        </FlexContainer>
+                            </div>
+                        </div>
                     </>
                 </StyledModal>
             </>

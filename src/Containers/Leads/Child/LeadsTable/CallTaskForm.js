@@ -314,7 +314,7 @@ function CallForm(props) {
               <div class=" h-full w-1/2 max-sm:w-wk"   >
               <div class=" flex justify-between w-full max-sm:flex-col">
                     <div class=" w-2/6 max-sm:w-wk">
-                      <mt-3/>
+                      <div class="mt-3" />
                       <StyledLabel>
                         {/* Type */}
                         <FormattedMessage id="app.type" defaultMessage="Type" />
@@ -437,7 +437,7 @@ function CallForm(props) {
                       </ButtonGroup>
                     </div>
                   </div>
-                  <mt-3/>
+                  <div class="mt-3" />
                   <div class=" flex justify-between items-end max-sm:flex-col " >
                     <div class=" self-start">
                       <StyledLabel>
@@ -717,7 +717,7 @@ function CallForm(props) {
                     inlineLabel
                   />
                   </div> */}
-                  <mt-3/>
+                  <div class="mt-3" />
                   {/* <div >
                   <Field
                     disabled="true"

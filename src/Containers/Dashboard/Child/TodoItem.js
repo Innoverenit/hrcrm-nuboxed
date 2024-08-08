@@ -118,43 +118,7 @@ class TodoItem extends Component {
                  {/* {``} */}
                  </SubTitle>
             </div>
-          </div>
-
-          {/* <div>
-            <FlexContainer>
-              <SubTitle
-                style={{
-                  fontWeight: 500,
-                  fontSize: 13,
-                  color: "#888",
-                  marginLeft: "1.56em",
-                }}
-              > */}
-               
-
-                {/* {contactName === " " ? null : <>{`${contactName} / `}</>}
-
-                {opportunity === " " ? null : <>{`${opportunity}`}</>}
-    
-              </SubTitle>
-            </FlexContainer>
-          </div> */}
-          {/* <div>
-            <FlexContainer>
-              <SubTitle
-                style={{
-                  fontWeight: 500,
-                  fontSize: 13,
-                  color: "#888",
-                  marginLeft: "1.56em",
-                }}
-              >
-              
-                <div></div>
-             
-              </SubTitle>
-            </FlexContainer>
-          </div> */}
+          </div>              
         </div>
       </>
     );

@@ -5,7 +5,6 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { FormattedMessage } from "react-intl";
 import * as Yup from "yup";
-import { FormWrapper } from "../Auth/styled";
 import { Spacer, HeaderText } from "../../Components/UI/Elements";
 import { FlexContainer } from "../../Components/UI/Layout";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
@@ -37,7 +36,7 @@ class TimeZoneForm extends Component {
           {({ values }) => (
             <Form className="form-background">
               <div>
-                <FormWrapper style={{ height: "auto" }}>
+              <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white h-auto">
                   <HeaderText color="#1890ff" style={{ marginBottom: 20 }}>
                     Few more inputs before using Korero{" "}
                   </HeaderText>
@@ -75,7 +74,7 @@ class TimeZoneForm extends Component {
                       {/* Complete */}
                     </Button>
                   </FlexContainer>
-                </FormWrapper>
+                </div>
               </div>
             </Form>
           )}

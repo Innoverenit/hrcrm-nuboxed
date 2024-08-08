@@ -44,20 +44,13 @@ class Leave extends Component {
           setCurrentData={this.setCurrentData}
         />
         <LeaveJumpstart leaveFetching={this.props.leaveFetching} />
-
-        {/* <FlexContainer>
-          <Suspense fallback={"Loading..."}>
-            <FlexContainer flexWrap="no-wrap" style={{ width: "100%" }}> */}
+      
         {this.props.viewType === "tile" ?
           <LeaveCardView
           selectedLanguage={this.props.selectedLanguage}
           translateText={this.props.translateText}
             viewType={viewType}
-          /> :
-          //  this.props.viewType === "table" ?
-          //      <LeaveTable 
-          //      viewType={viewType}
-          //      />:
+          /> :     
           this.props.viewType === "card" ?
             <LeaveCardList
               viewType={viewType}

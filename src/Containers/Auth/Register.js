@@ -6,7 +6,7 @@ import { Button, Carousel} from "antd";
 import * as Yup from "yup";
 import { get } from "lodash";
 import dayjs from "dayjs";
-import { AuthContainer, FormWrapper, Datepicker } from "./styled";
+import { Datepicker } from "./styled";
 import {
   ValidationError,
  
@@ -109,14 +109,7 @@ class Register extends Component {
     console.log(this.state.rememberMe);
     // console.log(this.state.fileShareInd);
   };
-  // handleAddressCheck = (defaultCountry, defaultCurrency) => {
-  //   debugger;
-  //   this.setState({
-  //     address: !this.state.address,
-  //     defaultCountry,
-  //     defaultCurrency,
-  //   });
-  // };
+ 
   componentDidMount() {
     console.log(this.state.rememberMe);
     // console.log(this.state.fileShareInd);
@@ -127,10 +120,6 @@ class Register extends Component {
   previous() {
     this.carousel.next();
   }
-
-  //   handleChangeInSubcomponent = value => {
-  //  if(value !=== "Jan" || value !=== "April" || value !=== "July"|| value !=== "Oct" )
-  //      };
 
   DatepickerComponent = ({
     value,
@@ -210,14 +199,13 @@ class Register extends Component {
     return (
       <>
       <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
-          <AuthContainer
-            style={{ backgroundColor: "#F5F5F5", flexDirection: "column" }}
-          >
+      <div class="  w-1/2  min-h- [100vh] overflow-auto flex flex-col justify-center items-center bg-[#F5F5F5]">
+         
             
             <br />
-            <FormWrapper style={{ height: "auto" }}>
+            <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid h-auto bg-white">
               {registeringSuccess ? (
-               <div class=" flex flex-row flex-wrap h-[300px] items-center self-start justify-center grow shrink h-auto mr-auto ">
+               <div class=" flex flex-row flex-wrap  items-center self-start justify-center grow shrink h-auto mr-auto ">
                   <div
                     style={{
                       display: "flex",
@@ -537,7 +525,7 @@ class Register extends Component {
                     }}
                   </Formik>
                 )}
-            </FormWrapper>
+            </div>
             <div
               className="text-xs text-center font-poppins mt-auto text-black "
           
@@ -548,7 +536,7 @@ class Register extends Component {
                 reserved.
               </span>
             </div>
-          </AuthContainer>
+          </div>
           <RandomImageScreen />
         </div>
       </>

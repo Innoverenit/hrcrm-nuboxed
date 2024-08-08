@@ -3696,26 +3696,13 @@
       "address": "1665751294912",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Auth\\styled\\Datepicker.js"
     },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751305216",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Auth\\styled\\AuthContainer.js"
-    },
+  
     {
       "type": "fs_event",
       "is_active": "1",
       "is_referenced": "1",
       "address": "1665751297120",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Auth\\styled\\FormContainer.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751295280",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Auth\\styled\\FormWrapper.js"
     },
     {
       "type": "fs_event",

@@ -8,7 +8,7 @@ import {
   FlexContainer,
   BorderBox,
 } from "../../../../../../Components/UI/Layout";
-import moment from "moment";
+import dayjs from "dayjs";
 import * as Yup from "yup";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 
@@ -29,7 +29,7 @@ class SubscriptionForm extends Component {
           }}
           validationSchema={FormSchema}
           onSubmit={(values, { resetForm }) => {
-            let newStartDate = moment(values.startDate).format("YYYY-MM-DD");
+            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
 
             this.props.handleGenerateOrderInShipper({
               ...values,
@@ -69,7 +69,7 @@ class SubscriptionForm extends Component {
                     component={SelectComponent}
                     isColumn
                     options={["7", "15", "30", "45", "60", "90", "180", "365"]}
-                    inlineLabel
+                 
                     style={{ flexBasis: "60%", borderRight: "2px solid red" }}
                   />
 
