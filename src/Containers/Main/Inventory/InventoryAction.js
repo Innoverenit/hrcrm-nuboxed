@@ -2271,3 +2271,10 @@ export const moveRejectToggle = (productionProductId,cellChamberLinkId) => (disp
       // message.error("Something went wrong");
     });
 };
+
+export const handleInventoryexpand = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVENTORY_EXPAND,
+    payload: modalProps,
+  });
+};
