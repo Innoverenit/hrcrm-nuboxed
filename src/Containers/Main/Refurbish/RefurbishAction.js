@@ -2499,3 +2499,16 @@ export const updateDispatchInspectionButton = (data, orderPhoneId,locationId) =>
       });
     });
 };
+
+export const handleAllTaskModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ALL_TASK_MODAL,
+    payload: modalProps,
+  });
+};
+export const handleAllSpareProcess = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ALL_SPARE_PROCESS_MODAL,
+    payload: modalProps,
+  });
+};

@@ -14,6 +14,7 @@ import {
   handleInventoryReceivedNoteOrderModal,
   addDeliveryDate,
 } from "../../../InventoryAction";
+import {handleProductionNotesModal} from "../../../../Refurbish/RefurbishAction"
 import { getLocationList } from "../../../../Account/AccountAction"
 import InfoIcon from '@mui/icons-material/Info'; 
 import dayjs from "dayjs";
@@ -26,6 +27,7 @@ import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFound
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import LabelOffIcon from '@mui/icons-material/LabelOff';
 import ReceivedMismatchModal from "./ReceivedMismatchModal";
+import RefurbishNoteAll from "../../../../Refurbish/RefurbishNoteAll";
 
 const DeliveryDateModal = lazy(() => import("./DeliveryDateModal"));
 const OpenReceivedOrderIdModal = lazy(() => import("./OpenReceivedOrderIdModal"));
@@ -281,16 +283,17 @@ const ReceivedTable = (props) => {
                                     </div>
                           <div class="flex  justify-end ">
                             <div>
-                              <Tooltip title="Notes">
-                                <NoteAltIcon
-                                  className="!text-icon cursor-pointer text-[green]"
-                                  onClick={() => {
-                                    handleRowData(item);
-                                    props.handleInventoryReceivedNoteOrderModal(true);
-                                  }}
-                                />
+                            <Tooltip title="Notes">
+                                                        <NoteAltIcon
+                                                            className="!text-icon cursor-pointer"
+                                                            // style={{ cursor: "pointer" }}
+                                                            onClick={() => {
+                                                                handleRowData(item);
+                                                                props.handleProductionNotesModal(true);
+                                                            }}
+                                                        />
 
-                              </Tooltip>
+                                                    </Tooltip>
                             </div>
                           
                           <div class="flex   max-sm:flex-row max-sm:w-auto">
@@ -340,12 +343,17 @@ const ReceivedTable = (props) => {
         handleMismatchPhoneModal={props.handleMismatchPhoneModal}
         mismatchPhoneModal={props.mismatchPhoneModal}
       />
+       <RefurbishNoteAll
+                     rowData={rowData}
+                     productioNoteModal={props.productioNoteModal}
+                    handleProductionNotesModal={props.handleProductionNotesModal}
+                    />
     </>
   );
 }
 
 
-const mapStateToProps = ({ inventory, distributor, auth }) => ({
+const mapStateToProps = ({ inventory, distributor, auth ,refurbish}) => ({
   updatingInspection: inventory.updatingInspection,
   fetchingReceivedUser: inventory.fetchingReceivedUser,
   allReceivedUser: inventory.allReceivedUser,
@@ -360,6 +368,7 @@ const mapStateToProps = ({ inventory, distributor, auth }) => ({
   addingDeliverDate: inventory.addingDeliverDate,
   mismatchPhoneModal: inventory.mismatchPhoneModal,
   user: auth.userDetails,
+  productioNoteModal: refurbish.productioNoteModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -374,7 +383,8 @@ const mapDispatchToProps = (dispatch) =>
       handleInventoryReceivedNoteOrderModal,
       updateInspection,
       getLocationList,
-      addDeliveryDate
+      addDeliveryDate,
+      handleProductionNotesModal
     },
     dispatch
   );

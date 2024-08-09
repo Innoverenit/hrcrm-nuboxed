@@ -255,7 +255,7 @@ function OpenReceivedOrderIdForm(props) {
                       </div>
                       <div className=" flex font-medium  md:w-[12.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
-                        <span title={item.issue}>{item.issue.substring(0, 10)}{item.issue.length > 10 && '...'}</span>
+                        <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div>
                         </div>
                       </div>
 

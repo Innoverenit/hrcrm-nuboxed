@@ -14,6 +14,10 @@ const initialState = {
   updatingProcessNwTask: false,
   updatingProcessNwTaskError: false,
 
+  allTaskModal:false,
+
+  allSpareProcessModal:false,
+
   fetchingProductionUrgent: false,
   fetchingProductionUrgentError: false,
   productionUrgent:[],
@@ -722,6 +726,9 @@ export const refurbishReducer = (state = initialState, action) => {
     case types.HANDLE_ALL_SPARE_MODAL:
       return { ...state, approveSpareModal: action.payload };
 
+      case types.HANDLE_ALL_SPARE_PROCESS_MODAL:
+        return { ...state, allSpareProcessModal: action.payload };
+
     case types.GET_PRODUCTION_USER_BYID_REQUEST:
       return { ...state, fetchingProductionUserById: true };
     case types.GET_PRODUCTION_USER_BYID_SUCCESS:
@@ -1084,6 +1091,9 @@ export const refurbishReducer = (state = initialState, action) => {
 
         case types.HANDLE_SPARE_PROCESS:
           return { ...state, processSpareModal: action.payload };
+
+          case types.HANDLE_ALL_TASK_MODAL:
+            return { ...state, allTaskModal: action.payload };
 
     case types.HANDLE_QC_PHONE_NOTES_ORDER_MODAL:
       return { ...state, phoNotesQCOrderModal: action.payload };

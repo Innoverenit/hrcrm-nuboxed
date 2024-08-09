@@ -1,34 +1,31 @@
 import React, { lazy, Suspense, useEffect } from "react";
-import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Modal } from "antd";
-import AddSpareInRepair from "./AddSpareInRepair";
+import RepairSpareListTable from "./RepairSpareListTable";
 
 
-const ProcessSpareDrawer = (props) => {
+
+const ProcessAllSpareDrawer = (props) => {
     const { RowData, ...formProps } = props;
     console.log(props.newData)
     return (
         <>
             <Modal
-                title={props.RowData.imei}
+                title={props.newData.taskName}
                 width="60%"
-                visible={props.processSpareModal}
+                visible={props.allSpareProcessModal}
                 closable
                 destroyOnClose
                 footer={null}
                   placement="right"
-                  onCancel={() => props.handleSpareProcess(false)}
+                  onCancel={() => props.handleAllSpareProcess(false)}
             >
                 <Suspense fallback={<BundleLoader />}>
-                <AddSpareInRepair
-                        phoneId={props.phoneId}
-                        RowData={RowData}
-                       // orderPhoneId={props.rowData.orderPhoneId} 
-                        newData={props.newData}                    
-                    />
+                <RepairSpareListTable                      
+                            phoneTaskId={ props.newData.phoneTaskId}                               
+                        />
                 </Suspense>
             </Modal>
         </>
@@ -51,5 +48,5 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ProcessSpareDrawer);
+)(ProcessAllSpareDrawer);
 

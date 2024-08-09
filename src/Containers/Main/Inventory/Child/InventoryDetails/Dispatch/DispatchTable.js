@@ -14,6 +14,7 @@ import {
   handleCreateAWB,
   handleInventoryDispatchModal
 } from "../../../InventoryAction"
+import {handleProductionNotesModal} from "../../../../Refurbish/RefurbishAction"
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -21,6 +22,7 @@ import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFound
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import SubOrderList from "../../../../Account/AccountDetailsTab/AccountOrderTab/SubOrderList";
+import RefurbishNoteAll from "../../../../Refurbish/RefurbishNoteAll";
 
 const DispatchPhoneListModal = lazy(() => import("./DispatchPhoneListModal"));
 const DispatchPackedToggle = lazy(() => import("./DispatchPackedToggle"));
@@ -598,12 +600,17 @@ const AWBtst=[
                           </div>
                           <div class="flex  md:w-[2rem] max-sm:flex-row max-sm:w-[6%]">
                             <div>
-                              <Tooltip title="Notes">
-                                <NoteAltIcon
-                                  className="!text-icon cursor-pointer text-[green]"
-                                />
+                            <Tooltip title="Notes">
+                                                        <NoteAltIcon
+                                                            className="!text-icon cursor-pointer"
+                                                            // style={{ cursor: "pointer" }}
+                                                            onClick={() => {
+                                                                handleRowData(item);
+                                                                props.handleProductionNotesModal(true);
+                                                            }}
+                                                        />
 
-                              </Tooltip>
+                                                    </Tooltip>
                             </div>
                           </div>
                         </div>
@@ -623,7 +630,11 @@ const AWBtst=[
         </div>
 
 
-
+        <RefurbishNoteAll
+                     rowData={rowData}
+                     productioNoteModal={props.productioNoteModal}
+                    handleProductionNotesModal={props.handleProductionNotesModal}
+                    />
       <DispatchPhoneListModalInventory
         rowData={rowData}
         handleInventoryDispatchModal={props.handleInventoryDispatchModal}
@@ -638,7 +649,7 @@ const AWBtst=[
   );
 }
 
-const mapStateToProps = ({ shipper, inventory, auth, dispatch }) => ({
+const mapStateToProps = ({ shipper, inventory, auth, dispatch,refurbish }) => ({
   allDispatchList: inventory.allDispatchList,
   allShipper: shipper.allShipper,
   inventoryDispatchModal:inventory.inventoryDispatchModal,
@@ -648,6 +659,7 @@ const mapStateToProps = ({ shipper, inventory, auth, dispatch }) => ({
   userId: auth.userDetails.userId,
   fetchingDispatchList: inventory.fetchingDispatchList,
   addCreateAwb: inventory.addCreateAwb,
+  productioNoteModal: refurbish.productioNoteModal,
   locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
 });
 
@@ -660,7 +672,8 @@ const mapDispatchToProps = (dispatch) =>
       updateDispatchInspectionButton,
       addFinalDispatchData,
       handleCreateAWB,
-      handleInventoryDispatchModal
+      handleInventoryDispatchModal,
+      handleProductionNotesModal,
     },
     dispatch
   );

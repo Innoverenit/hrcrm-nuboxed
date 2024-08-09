@@ -74,7 +74,7 @@ function DistributorPhoneTaskTable(props) {
                 </div>
             </div>
             <Suspense fallback={<BundleLoader />}>
-                <QCPhoneTaskList phoneId={props.phoneId} />
+                <QCPhoneTaskList phoneId={props.phoneId}  RowData={props.RowData} />
             </Suspense>
         </>
     );
