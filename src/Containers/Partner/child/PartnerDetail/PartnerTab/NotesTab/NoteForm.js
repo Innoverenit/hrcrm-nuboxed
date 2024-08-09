@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import { Button, Icon } from "antd";
-import { Formik, Form, Field } from "formik";
+import { Button } from "antd";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw, ContentState } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import { addNote } from "../../../../PartnerAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
+
 
 /**
  * yup validation scheme for creating a note
@@ -138,11 +137,10 @@ class NoteForm extends Component {
                     // textTransform: "capitalize",
                   }}
                   onEditorStateChange={this.onEditorStateChange}
-                  placeholder={placeholder || "Type here"}
-                  editorState={editorState}
+                  placeholder={placeholder || "Type here"}           
                   toolbar={toolbarOption}
                 />
-                <FlexContainer justifyContent="flex-end">
+        <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -156,7 +154,7 @@ class NoteForm extends Component {
                     {/* Post */}
                     <FormattedMessage id="app.post" defaultMessage="Post" />
                   </Button>
-                </FlexContainer>
+                </div>
               </Form>
             );
           }}

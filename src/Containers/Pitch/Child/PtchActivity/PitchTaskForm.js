@@ -1355,8 +1355,7 @@ const [priority,setpriority]=useState(props.selectedTask
                              
                                </div>
                           </div>
-                          <div>
-                            {/* <FlexContainer justifyContent="space-between"> */}
+                          <div>            
                             <Switch
                               onChange={handleReminderChange}
                               checked={reminder}

@@ -1,13 +1,10 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, {  Suspense, Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch, Tooltip, Icon } from "antd";
-// import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
-import { Formik, Form, Field, FieldArray } from "formik";
+import { Button, Tooltip } from "antd";
+import { Formik, Form, Field } from "formik";
 import { StyledModal } from "../../../../../../../Components/UI/Antd";
 import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSelect";
-import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
-import DocumentUpload from "../../../../../../../Components/Forms/Formik/DocumentUpload";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import * as Yup from "yup";
@@ -16,19 +13,13 @@ import {
   addCandidateDocument,
   getCandidateDocument,
 } from "../../../../../../Candidate/CandidateAction";
-// import { getOppoStages, getLevels } from "../../Settings/SettingsAction";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import DragableUpload from "../../../../../../../Components/Forms/Formik/DragableUpload";
-import LazySelect from "../../../../../../../Components/Forms/Formik/LazySelect";
-import { base_url } from "../../../../../../../Config/Auth";
 import { FormattedMessage } from "react-intl";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
 const documentSchema = Yup.object().shape({
-// documentName: Yup.string().required("This field is required !"),
 documentId: Yup.string().required("Input needed !"),
-// documentDescription: Yup.string().required("This field is required !"),
-// stageId: Yup.string().required("This field is required !")
+
 });
 class AddDocumentModal extends Component {
   constructor(props) {
@@ -79,10 +70,7 @@ class AddDocumentModal extends Component {
     getCandidateDocument(candidate.candidateId);
     handleDocumentUploadModal(false);
   };
-  //   componentDidMount() {
-  //     this.props.getOppoStages();
-  //     this.props.getLevels();
-  //   }
+
   handleApprovalAboveChange = (checked) => {
     this.setState({
       approvalAbove: checked,
@@ -104,23 +92,7 @@ class AddDocumentModal extends Component {
       organization,
     } = this.props;
 
-    // const currentoppStage = opportunity.stageMapper
-    //   // .filter(data => data.stageName !== "Won" && data.stageName !== "Lost")
-    //   .map((item) => {
-    //     return {
-    //       label: item.stageName || "",
-    //       value: item.stageId,
-    //     };
-    //   });
-    // const type = [{ docName: "uyg", docId: "89" }]
-    // const typesdata = type
-    //   .map((item) => {
-    //     return {
-    //       label: item.docName || "",
-    //       value: item.docId,
-    //     };
-    //   });
-    // console.log(currentoppStage);
+
     return (
       <>
         <StyledModal
@@ -144,11 +116,7 @@ class AddDocumentModal extends Component {
                 documentTypeId: "",
                 documentName: "", //input
                 documentDescription: "",
-                // levelType:
-                //   this.state.approvalAbove === true ? "Above" : "Specific",
-                // type:
-                //   this.state.documentshare === true ? "Public" : "Confidential",
-                // stageId: "",
+               
                 candidateId:this.props.candidate.candidateId,
                 documentId:""
               }}
@@ -261,47 +229,17 @@ class AddDocumentModal extends Component {
                       />
                       <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
 
-                      <FlexContainer>
-                        {/* <div class=" text-xs font-bold font-poppins text-black">Share</div> */}
-                        {/* <Switch
-                          style={{ width: "6.25em", marginLeft: "0.625em" }}
-                          onChange={this.handleChange}
-                          checked={this.state.documentshare}
-                          checkedChildren="Public"
-                          unCheckedChildren="Private"
-                        /> */}
-                      </FlexContainer>
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+                    
+                      </div>
                       <div class=" mt-3" />
                       {!this.state.documentshare && this.props.testShow && (
                         <p>Will be shared with Opportunity Owner</p>
                       )}
                       <div class=" mt-3" />
                       {this.state.documentshare && (
-                        <FlexContainer
-                          justifyContent="space-between"
-                          style={{ width: "100%", marginBottom: "8%" }}
-                        >
-                          {/* {organization &&
-                            organization.subscriptionType ===
-                            "FREE" && (
-                              <div style={{ marginTop: "6%" }}>
-                              </div>
-                            )} */}
-                          {/* {organization &&
-                            organization.subscriptionType !==
-                            "FREE" && (
-                              <Tooltip
-                                title={
-                                  organization.subscriptionType !==
-                                    "FREE"
-                                    ? "Upgrade to Professional+ for multiple sharing "
-                                    : ""
-                                }
-                              >
-                                <div style={{ marginTop: "6%" }}>
-                                </div>
-                              </Tooltip>
-                            )} */}
+                        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-full mb-[8%] ">
+                                          
                           {this.state.data.map(() => {
                             return (
                               <>
@@ -340,10 +278,8 @@ class AddDocumentModal extends Component {
                                     />
                                     ,{/* Level */}
                                   </div>
-                                  <FlexContainer
-                                    justifyContent="space-between"
-                                    style={{ marginTop: "0.25em" }}
-                                  >
+                                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto mt-[0.25rem] ">
+                                
                                     <ButtonGroup>
                                       <Tooltip title="Specific">
                                         <Button
@@ -394,7 +330,7 @@ class AddDocumentModal extends Component {
                                         </Button>
                                       </Tooltip>{" "}
                                     </ButtonGroup>
-                                  </FlexContainer>
+                                  </div>
                                 </div>
                                 <div
                                   style={{
@@ -415,13 +351,13 @@ class AddDocumentModal extends Component {
                               </>
                             );
                           })}
-                        </FlexContainer>
+                        </div>
                       )}
                     </div>
                   </div>
 
                   <div class=" mt-3" />
-                  <FlexContainer justifyContent="flex-end">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     <Button
                       htmlType="submit"
                       type="primary"
@@ -433,7 +369,7 @@ class AddDocumentModal extends Component {
                       />
                       {/* Submit */}
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </Form>
               )}
             </Formik>
@@ -443,23 +379,20 @@ class AddDocumentModal extends Component {
     );
   }
 }
-// const DocumentUploadModal = (props) => {
-//     console.log(props)
 
-// }
 
 const mapStateToProps = ({ candidate, settings, auth }) => ({
   candidate: candidate.candidate,
   documentUploadModal: candidate.documentUploadModal,
   addingDocumentBycandidateId: candidate.addingDocumentBycandidateId,
-  //   department: auth.userDetails.department,
+
   organization:
     auth.userDetails &&
     auth.userDetails.metaData &&
     auth.userDetails.metaData.organization,
   organization:
     auth.userDetails.metaData && auth.userDetails.metaData.organization,
-  //   subscriptionType: auth.userDetails.metaData.organization.subscriptionType,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -468,8 +401,7 @@ const mapDispatchToProps = (dispatch) =>
       handleDocumentUploadModal,
       addCandidateDocument,
         getCandidateDocument,
-      //   getOppoStages,
-      //   getLevels,
+    
     },
     dispatch
   );
