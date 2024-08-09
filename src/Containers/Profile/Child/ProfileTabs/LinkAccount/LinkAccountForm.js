@@ -5,7 +5,6 @@ import {  withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Input } from "../../../../Auth/styled";
 import { ValidationError } from "../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import Button from "antd/lib/button";
 
  import { verifyUserEmailurL ,
@@ -64,7 +63,7 @@ class LinkAccountForm extends Component {
 
           <div className="forgot_password">
 
-            <FlexContainer>
+          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
             <div class="   min-h- [100vh] overflow-auto flex  flex-col justify-center w-full bg-white items-center ">
                     
             <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
@@ -270,7 +269,7 @@ class LinkAccountForm extends Component {
              
               </div>
 
-            </FlexContainer>
+            </div>
           </div>
  
         </div>

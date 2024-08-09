@@ -1,9 +1,8 @@
-import React, { Component, Suspense } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { Button, Upload } from "antd";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { Field, Form, Formik } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { Editor } from "react-draft-wysiwyg";

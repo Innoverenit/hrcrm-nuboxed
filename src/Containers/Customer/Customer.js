@@ -53,19 +53,6 @@ class Customer extends Component {
     this.props.getCustomerCloser(this.props.userId, startDate, endDate);
   };
 
-  // componentDidMount() {
-  //   const { viewType, userId, page, getCustomerListByUserId } = this.props;
-    
-  //   if (viewType === "table") {
-  //     getCustomerListByUserId(userId, page, "creationdate");
-  //   } else if (viewType === "teams") {
-  //     getCustomerListByUserId("teams", page, "creationdate");
-  //   } else if (viewType === "all") {
-  //     getCustomerListByUserId("all", page, "creationdate");
-  //   }
-  // }
-
-
   componentDidMount() {
     // Check if isMobile is stored in localStorage
     const storedIsMobile = localStorage.getItem('isMobile');

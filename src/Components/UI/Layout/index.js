@@ -5,5 +5,4 @@ export { default as NavbarWrapper } from "./NavbarWrapper";
 export { default as TabsWrapper } from "./TabsWrapper";
 export { default as MainWrapper } from "./MainWrapper";
 export { default as BorderBox } from "./BorderBox";
-export { default as StyledActionHeader } from "./StyledActionHeader";
 export { default as OnlyWrapCard } from "./OnlyWrapCard";

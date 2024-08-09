@@ -39,8 +39,6 @@ function Pitch (props) {
   const {
     addInvestorModal,
     handleInvestorModal,
-    // viewType,
-    // setPitchViewType,
 
   } = props;
         return (

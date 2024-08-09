@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import { FlexContainer } from "../../Components/UI/Layout";
 import { TextInput } from "../../Components/UI/Elements";
 
 class SinglePolicy extends Component {
@@ -9,7 +8,7 @@ class SinglePolicy extends Component {
         console.log(this.props.stage)
         return (
             <StageWrapper>
-                <FlexContainer justifyContent='space-between'>
+            <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <StageName>{stageName}</StageName>
                     {typeof probability === 'number'
                         ? <TextInput defaultValue={probability} />
@@ -18,7 +17,7 @@ class SinglePolicy extends Component {
                             disabled
                             style={{ backgroundColor: '#f4f4f4', cursor: 'not-allowed' }} />
                     }
-                </FlexContainer>
+                </div>
             </StageWrapper>
         )
     }

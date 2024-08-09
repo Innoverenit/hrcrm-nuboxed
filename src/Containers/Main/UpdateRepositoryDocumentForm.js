@@ -1,14 +1,10 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import { Button, Switch, Tooltip, Icon,Select } from "antd";
+import { Button,Select } from "antd";
 import { getDepartments } from "../../Containers/Settings/Department/DepartmentAction";
 import {updateRepositoryDocument} from "../Auth/AuthAction"
-// import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
 import { Formik, Form, Field, FieldArray,FastField } from "formik";
-import { StyledDrawer, StyledModal } from "../../Components/UI/Antd";
-import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 import DocumentUpload from "../../Components/Forms/Formik/DocumentUpload";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
@@ -16,8 +12,6 @@ import { TextareaComponent } from "../../Components/Forms/Formik/TextareaCompone
 import {getAssignedToList}  from "../Employees/EmployeeAction"
 import * as Yup from "yup";
 import {getDocuments} from "../Settings/Documents/DocumentsAction"
-// import { getOppoStages, getLevels } from "../../Settings/SettingsAction";
-import { FlexContainer } from "../../Components/UI/Layout";
 import DragableUpload from "../../Components/Forms/Formik/DragableUpload";
 import LazySelect from "../../Components/Forms/Formik/LazySelect";
 
@@ -26,12 +20,7 @@ import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
 
 const { Option } = Select;
-// const documentSchema = Yup.object().shape({
-// documentName: Yup.string().required("This field is required !"),
-// documentId: Yup.string().required("Input needed !"),
-// documentDescription: Yup.string().required("This field is required !"),
-// stageId: Yup.string().required("This field is required !")
-// });
+
 const documentSchema = Yup.object().shape({
 
 documentId: Yup.string().required("Input needed!"),
@@ -301,45 +290,12 @@ class UpdateRepositoryDocumentForm extends Component {
                             }
                           />
                       <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
-
-                      {/* <FlexContainer>
-                        <div class=" text-xs font-bold font-poppins text-black">Share</div>
-                        <Switch
-                          style={{ width: "6.25em", marginLeft: "0.625em" }}
-                          checked={showUserList}
-                          onChange={this.handleSwitchChange}
-                
-                          checkedChildren="Public"
-                          unCheckedChildren="Private"
-                        />
-                      </FlexContainer>
-                      {!showUserList && (
-          <div class="mt-1">
-          <Field
-            name="included"
-           
-            label={
-              <FormattedMessage
-                id="app.include"
-                defaultMessage="include"
-              />
-            }
-            mode
-            placeholder="Select"
-            component={SelectComponent}
-            options={Array.isArray(employeesData) ? employeesData : []}
-            value={values.included}
-      
-          />
-         </div>
-        )} */}
-
-                     
+                                        
                     </div>
                   </div>
 
                   <div class=" mt-3" />
-                  <FlexContainer justifyContent="flex-end">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     <Button
                       htmlType="submit"
                       type="primary"
@@ -347,7 +303,7 @@ class UpdateRepositoryDocumentForm extends Component {
                     >
                       Update
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </Form>
               )}
             </Formik>

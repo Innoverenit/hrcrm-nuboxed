@@ -1,14 +1,13 @@
 import React, { Component, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FlexContainer } from "../../../Components/UI/Layout";
 const DetailTab = lazy(() => import("./Tab/DetailTab"));
 class LeaveDetailRight extends Component {
     render() {
         return (
-            <FlexContainer flexDirection="column" style={{ display: "block" }}>
+            <div class=" block flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                 <DetailTab userDetails={this.props.userDetails} />
-            </FlexContainer>
+            </div>
         );
     }
 }

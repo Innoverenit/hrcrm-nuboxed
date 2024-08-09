@@ -21,19 +21,6 @@ function LeadsForm(props) {
     // props.getOnlySalesUser();
   }, []);
 
-  // const teamOption = useMemo(() => {
-  //   if (!props.onlySalesUsers) return [];
-  //   return (
-  //     props.onlySalesUsers.length &&
-  //     props.onlySalesUsers.map((user) => {
-  //       return {
-  //         label: `${user.firstName} - ${user.emailId}` || "",
-  //         value: user.userId,
-  //       };
-  //     })
-  //   );
-  // }, [props.onlySalesUsers]);
-
   return (
     <>
       <Formik
@@ -105,37 +92,7 @@ country:props.countryId,
                   component={InputComponent}
               
                 />
-                   </div>
-     
-                {/* <FlexContainer justifyContent="space-between">
-                  <div style={{ width: "50%", marginTop: "0.625em" }}>
-                    <div class=" text-xs font-bold font-poppins text-black">Assign To</div>
-                    <Switch
-                      style={{ width: "7.5em", marginLeft: "0.625em" }}
-                      onChange={handleChange}
-                      checked={true}
-                      checkedChildren="Specific"
-                      unCheckedChildren="Round Robin"
-                    />
-                  </div>
-                </FlexContainer> */}
-
-           
-                {/* <Field
-                  name="userId"
-                  label="Sales User"
-                  isRequired
-                  isColumn
-                  style={{
-                    flexBasis: "80%",
-
-                    marginTop: "0.25em",
-                  }}
-                  component={SelectComponent}
-                  options={Array.isArray(teamOption) ? teamOption : []}
-                /> */}
-         
-               
+                   </div>                                                 
               </div>
               <div class=" h-full w-w47.5 max-sm:w-wk"   >
               <div class=" mt-2">

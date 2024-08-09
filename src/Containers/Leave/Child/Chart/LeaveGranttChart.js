@@ -3,7 +3,7 @@ import { Gantt} from 'gantt-task-react';
 import "gantt-task-react/dist/index.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import OnlyWrapCard1 from "../../../../Components/UI/Layout/OnlyWrapCard1";
+
 
 
 function LeaveGranttChart(props){
@@ -129,7 +129,9 @@ function LeaveGranttChart(props){
 
     return(
     
-        <OnlyWrapCard1><Gantt tasks={tasks}/></OnlyWrapCard1> 
+      <div class="rounded bg-white m-4 p-2 w-full overflow-auto  boxShadow: '4px 0px 9px 3px rgba(163, 171, 185, 0.5)'  ">
+        <Gantt tasks={tasks}/>
+        </div> 
     )
 }
 const mapStateToProps = ({ auth }) => ({

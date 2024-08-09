@@ -9,7 +9,6 @@ import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { addFeedbackNote } from "./NoteAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { FlexContainer } from "../../Components/UI/Layout";
 import CustomOption from "./CustomOption";
 
 import { BorderBox } from "../../Components/UI/Layout";
@@ -179,7 +178,7 @@ class NoteFormForFeedBack extends Component {
                   />
                 </BorderBox>
                 <div class=" mt-3" />
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -194,7 +193,7 @@ class NoteFormForFeedBack extends Component {
                     {<FormattedMessage id="app.submit" defaultMessage="Submit"/>}
                     
                   </Button>
-                </FlexContainer>
+                </div>
                 {/* </div> */}
               </Form>
             );

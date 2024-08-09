@@ -3,20 +3,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { Button } from "antd";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-// import { base_url } from "../../../Config/Auth";
-
-import Clearbit from "../../../../../../Components/Forms/Autocomplete/Clearbit";
-import LazySelect from "../../../../../../Components/Forms/Formik/LazySelect";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
-import ProgessiveImage from "../../../../../../Components/Utils/ProgressiveImage";
 import { addPartnerOpportunity } from "../../../../PartnerAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
-import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
-import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
 
@@ -101,8 +92,7 @@ class OpportunityForm extends Component {
                         defaultMessage="Name"
                       />
                     }
-                    isColumn
-                    isRequired
+                    isColumn                   
                     width={"100%"}
                     component={InputComponent}
                     // accounts={accounts}
@@ -110,7 +100,7 @@ class OpportunityForm extends Component {
                     style={{ flexBasis: "80%" }}
                   />
                   <div class=" mt-3" />
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         isRequired
@@ -170,9 +160,9 @@ class OpportunityForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
+                  </div>
                   <div class=" mt-3" />
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         name="proposalAmount"
@@ -196,8 +186,7 @@ class OpportunityForm extends Component {
                     </div>
                     <div style={{ width: "47%" }}>
                       <Field
-                        name="currency"
-                        label="Currency"
+                        name="currency"             
                         label={
                           <FormattedMessage
                             id="app.currency"
@@ -213,7 +202,7 @@ class OpportunityForm extends Component {
                         // options={Array.isArray(currency) ? currency : []}
                       />
                     </div>
-                  </FlexContainer>
+                  </div>
                 </div>
                 <div
                   style={{
@@ -245,8 +234,7 @@ class OpportunityForm extends Component {
                   <div class=" mt-3" />
                   <Field
                     name="contactId"
-                    selectType="contactOpportunityList"
-                    label="Contact"
+                    selectType="contactOpportunityList"                   
                     label={
                       <FormattedMessage
                         id="app.contactId"
@@ -268,7 +256,7 @@ class OpportunityForm extends Component {
                 </div>
               </div>
               <div class=" mt-3" />
-              <FlexContainer justifyContent="flex-end">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -277,7 +265,7 @@ class OpportunityForm extends Component {
                   <FormattedMessage id="app.create" defaultMessage="Create" />
                   {/* Create */}
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

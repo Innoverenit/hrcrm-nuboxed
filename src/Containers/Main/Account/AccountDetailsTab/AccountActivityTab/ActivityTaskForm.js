@@ -1088,7 +1088,7 @@ function ActivityTaskForm(props) {
                                                         <div class=" text-xs font-bold font-poppins text-black">Set Reminder </div>
                                                     </div>
                                                     <div>
-                                                        {/* <FlexContainer justifyContent="space-between"> */}
+                                                     
                                                         <Switch
                                                             onChange={handleReminderChange}
                                                             checked={reminder}

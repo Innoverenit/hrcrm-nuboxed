@@ -1,15 +1,9 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import { Button, Switch, Icon, Tooltip } from "antd";
+import { Button } from "antd";
 import {getCountries} from "../../../Auth/AuthAction"
-import { Formik, Form, Field, FastField } from "formik";
 import { elipsize } from "../../../../Helpers/Function/Functions";
-import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-
 
 import { 
   updateMileage, 
@@ -68,18 +62,6 @@ function MileageForm(props) {
        
       };
 
-  // const teamOption = useMemo(() => {
-  //   if (!props.onlySalesUsers) return [];
-  //   return (
-  //     props.onlySalesUsers.length &&
-  //     props.onlySalesUsers.map((user) => {
-  //       return {
-  //         label: `${user.firstName} - ${user.emailId}` || "",
-  //         value: user.userId,
-  //       };
-  //     })
-  //   );
-  // }, [props.onlySalesUsers]);
   console.log(inputValues);
 
   return (
@@ -95,19 +77,7 @@ function MileageForm(props) {
                 }}
               >
                 <div class=" text-xs font-bold font-poppins text-black">Mileage rate (For Example EUR/km)</div>
-                {/* <Field
-                  isRequired
-                  name="mileageRate"
-                  // label="Max leaves (in days)"
-                  label={<FormattedMessage
-                    id="app.mileage rate in eurkm"
-                    defaultMessage="Mileage rate (For Example EUR/km)"
-                  />}
-                  width={"10%"}
-                  component={InputComponent}
-                  inlineLabel
-            
-                /> */}
+             
                     {props.countries.map((item, i) => {
                       return (
                         
@@ -141,7 +111,7 @@ function MileageForm(props) {
                 
               })}
                 <div class=" mt-3" />
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 {/* <button onClick={handleUpdateButtonClick}>Update All</button> */}
                   <Button
                     type="primary"
@@ -151,7 +121,7 @@ function MileageForm(props) {
                   >
                     Update
                   </Button>
-                </FlexContainer>
+                </div>
                 <div>Updated on {dayjs(props.mileageData && props.mileageData.length && props.mileageData[0].updationDate).format("ll")} by {props.mileageData && props.mileageData.length && props.mileageData[0].name}</div>
 
                 <div class=" mt-3" />

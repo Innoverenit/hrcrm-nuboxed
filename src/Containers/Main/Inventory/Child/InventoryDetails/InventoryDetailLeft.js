@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import InventoryOverviewCard from "./InventoryCards/InventoryOverViewCard";
 import InventoryDetailCard from "./InventoryCards/InventoryDetailCard";
 import InventoryAddressViewCard from "./InventoryCards/InventoryAddressViewCard";
@@ -9,11 +8,11 @@ class InventoryDetailLeft extends Component {
     const { inventory } = this.props;
     return (
       <>
-        <FlexContainer flexDirection="column" style={{ display: "block" }}>
+      <div class=" block flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           <InventoryOverviewCard inventory={inventory} />
           <InventoryDetailCard inventory={inventory} />
           <InventoryAddressViewCard inventory={inventory} />
-        </FlexContainer>
+        </div>
       </>
     );
   }

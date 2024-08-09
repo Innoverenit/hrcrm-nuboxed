@@ -5,7 +5,6 @@ import { Button } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 // import { getSalesManagerUser } from "../../Teams/TeamsAction";
@@ -23,13 +22,6 @@ function AddPlantForm(props) {
     props.getProductionManager();
   }, []);
 
-  // const managementOption = props.salesManagementUsers.map((item) => {
-  //   return {
-  //     label: `${item.salutation || ""} ${item.firstName ||
-  //       ""} ${item.middleName || ""} ${item.lastName || ""}`,
-  //     value: item.userId,
-  //   };
-  // });
 
   const productionOption = props.productionManagement.map((item) => {
     return {
@@ -164,7 +156,7 @@ function AddPlantForm(props) {
               </div>
             </div>
             <div class=" mt-3" />
-            <FlexContainer justifyContent="flex-end">
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
               <Button
                 type="primary"
                 htmlType="submit"
@@ -172,7 +164,7 @@ function AddPlantForm(props) {
               >
                 Create
               </Button>
-            </FlexContainer>
+            </div>
           </Form>
         )}
       </Formik>

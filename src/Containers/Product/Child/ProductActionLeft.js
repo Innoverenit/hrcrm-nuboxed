@@ -1,5 +1,4 @@
 import React, { useEffect, useState,useRef } from "react";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -134,7 +133,7 @@ const ProductActionLeft = (props) => {
         }
       }, [listening, isRecording, startTime]);
   return (
-    <FlexContainer alignItems="center">
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
       <Tooltip title="Active Products">
       <Badge
           size="small"
@@ -156,24 +155,7 @@ const ProductActionLeft = (props) => {
         </div>
         </Badge>
       </Tooltip>
-
-      {/* <Tooltip
-        title="Category"
-      >
-        <span className="mr-2 text-xs cursor-pointer">
-          <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-            <AlipayOutlined
-              className="!text-2xl cursor-pointer"
-              onClick={() => setProductViewType("all")}
-              style={{
-                color: viewType === "all" && "#1890ff",
-              }} />
-          </Avatar>
-        </span>
-      </Tooltip> */}
-
-     
-
+    
       <Tooltip title="Category">
         <div
           class=" ml-2 text-xs cursor-pointer"
@@ -220,7 +202,7 @@ const ProductActionLeft = (props) => {
         value={currentCatData}
         />}
             </div>
-    </FlexContainer>
+    </div>
   );
 
 }

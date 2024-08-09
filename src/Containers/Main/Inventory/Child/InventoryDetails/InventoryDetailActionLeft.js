@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { emptyInventory } from "../../InventoryAction"
 import { RollbackOutlined } from "@ant-design/icons";
 import { Link } from 'react-router-dom';
@@ -23,7 +22,7 @@ class InventoryDetailActionLeft extends Component {
     const { setInventoryDetailViewType, viewType1 } = this.props
     return (
       <>
-        <FlexContainer alignItems="center">
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
 
           {/* {user.designation === "Manager" && */}
           <Link to="/inventory">
@@ -79,7 +78,7 @@ class InventoryDetailActionLeft extends Component {
             </div>
           </Tooltip>}
 
-        </FlexContainer>
+        </div>
 
       </>
     );

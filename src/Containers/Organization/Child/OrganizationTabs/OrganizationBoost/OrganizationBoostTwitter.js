@@ -5,7 +5,6 @@ import { Carousel } from "antd";
 import { base_url } from "../../../../../Config/Auth";
 import axios from "axios";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { TweetFeed } from "../../../../../Components/Common";
 import { CarouselIcon } from "../../../../../Components/UI/Elements";
 
@@ -79,18 +78,18 @@ class OrganizationBoost extends Component {
     }
     if (tweets.length <= 3) {
       return (
-        <FlexContainer flexWrap="nowrap">
+        <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           {tweets && !Array.isArray(tweets)
             ? []
             : tweets.map((tweet, i) => {
               return <TweetFeed key={i} {...tweet} />;
             })}
-        </FlexContainer>
+        </div>
       );
     }
     return (
       <>
-        <FlexContainer justifyContent="center">
+     <div class=" flex flex-row flex-wrap items-start self-start justify-center grow shrink h-auto mr-auto ">
           <CarouselIcon
             type="left-circle"
             onClick={this.previous}
@@ -105,7 +104,7 @@ class OrganizationBoost extends Component {
             right="0em"
             theme="twoTone"
           />
-        </FlexContainer>
+        </div>
         <div
           style={{
             width: "91%",

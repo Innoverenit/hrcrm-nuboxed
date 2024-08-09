@@ -4,14 +4,9 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { addEmailCredentials } from "../Email/EmailAction";
-// import { addEmailCredentialsForAdmin } from "../EmailAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
-/**
- * yup validation scheme for creating a Team
- */
+
 const EmailSchema = Yup.object().shape({
   email: Yup.string()
     .email("Enter a valid Email")
@@ -83,14 +78,7 @@ class EmailForm extends Component {
                       style={{ flexBasis: "80%" }}
                     />
                     <div class=" mt-3" />
-                    {/* <Field
-                  name="serverType"
-                  label="Server Type"
-                  component={InputComponent}
-                  inlineLabel
-                  style={{ flexBasis: "80%" }}
-                />
-                <div class=" mt-3" /> */}
+                 
                     <Field
                       isMulti
                       isRequired
@@ -133,7 +121,7 @@ class EmailForm extends Component {
                     <div class=" mt-3" />
                   </div>
                 </div>
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -142,7 +130,7 @@ class EmailForm extends Component {
                   >
                     Create
                 </Button>
-                </FlexContainer>
+                </div>
               </Form>
             )}
         </Formik>
