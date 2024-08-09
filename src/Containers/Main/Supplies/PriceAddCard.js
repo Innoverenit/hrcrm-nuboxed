@@ -8,6 +8,7 @@ import { getMaterialCurrency, createMaterialCurrency,
 import {getSaleCurrency} from "../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import MaterialPriceTypeToggle from "./MaterialPriceTypeToggle";
 
 const { Option } = Select;
 
@@ -166,7 +167,16 @@ function PriceAddCard(props) {
                         onChange={(e) => handleChange(index,'suppliesPriceB2C',e.target.value)}
                       />
                        {errors[`suppliesPriceB2C${index}`] && <span className="text-red-500">{errors[`suppliesPriceB2C${index}`]}</span>}
-                      </div></div>
+                      </div>
+                      </div>
+
+                      <div>
+                <label>Type</label>
+                <div class="w-24">
+                
+                       
+                      </div>
+                      </div>
             </div>
             <div class="mt-4">
             <Button type="primary" onClick={() => handleSave(index)}>
@@ -183,7 +193,7 @@ function PriceAddCard(props) {
             <div className=" md:w-[7%]">Currency</div>
             <div className=" md:w-[6.1rem]">Price(B2B)</div>
             <div className=" md:w-[4.2rem] ">Price(B2C)</div>
-            {/* <div className="md:w-[5.8rem]">VAT(%)</div> */}
+            <div className="md:w-[5.8rem]">Type</div>
             <div className="w-12"></div>             </div>
 
           {data.length ? data.map((item) => {
@@ -248,7 +258,7 @@ function PriceAddCard(props) {
                     )}
                   </div>
                   <div className=" flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                
+                  <MaterialPriceTypeToggle/>
                   </div>
 
                   <div class="flex md:items-center">

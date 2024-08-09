@@ -37,6 +37,7 @@ import QrCodeIcon from '@mui/icons-material/QrCode';
 import { FormattedMessage } from "react-intl";
 import PriceModal from "./PriceModal";
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+import MaterialRecommendToggle from "./MaterialRecommendToggle";
 
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
@@ -185,8 +186,11 @@ function SuppliesTable(props) {
             {/* <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Unique ID</div> */}
             {/* <div className="md:w-[4.2rem]">Scan</div> */}
             <div className="w-[11.8rem]">
-              {/* Process */}
+              
               {translatedMenuItems[8]}
+              </div>
+              <div className="w-[7rem]">
+              Recommend
               </div>
           </div>
 
@@ -301,7 +305,14 @@ function SuppliesTable(props) {
                                 />
                               </div>
                             </div>
-
+                            <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <MaterialRecommendToggle
+                                  recomendInd={item.recomendInd}
+                                  suppliesId={item.suppliesId}
+                                />
+                              </div>
+                            </div>
                             <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" font-normal text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialFifoToggle
