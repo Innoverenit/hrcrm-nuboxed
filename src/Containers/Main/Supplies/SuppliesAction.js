@@ -1148,3 +1148,56 @@ export const suppliesPUnpblishToggle = ( data,categoryId) => (dispatch) => {
       });
     })
 };
+export const materialRecommendToggle = ( data,suppliesId) => (dispatch, getState) => {
+  dispatch({
+    type: types.MATERIAL_RECOMMEND_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/update/recomendInd/${suppliesId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.MATERIAL_RECOMMEND_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.MATERIAL_RECOMMEND_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+export const materialPricetype = ( data,suppliesId) => (dispatch, getState) => {
+  dispatch({
+    type: types.MATERIAL_PRICE_TYPE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/PRICETYPEDUMMTY/${suppliesId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.MATERIAL_PRICE_TYPE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.MATERIAL_PRICE_TYPE_FAILURE,
+        payload: err,
+      });
+    })
+};

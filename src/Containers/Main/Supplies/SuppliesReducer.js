@@ -159,7 +159,13 @@ const initialState = {
                                   
                                   suppliesPUblishToggle: false,
                                       suppliesPUblishToggleError: false,
-                                      
+
+                                      materialRecommendingToggle: false,
+                                        materialRecommendingToggleError:false,
+
+                                        materialPriceType: false,
+                                        materialPriceTypeError:false,   
+
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -888,6 +894,48 @@ export const suppliesReducer = (state = initialState, action) => {
                                       suppliesPUblishToggle: false,
                                       suppliesPUblishToggleError: true,
                                     };
+
+                                    case types.MATERIAL_RECOMMEND_TOGGLE_REQUEST:
+                                      return { ...state, materialRecommendingToggle: true };
+                                    case types.MATERIAL_RECOMMEND_TOGGLE_SUCCESS:
+                                      return {
+                                        ...state,
+                                        materialRecommendingToggle: false,
+                                        purchaseList: state.purchaseList.map((item) => {
+                                          if (item.suppliesId === action.payload.suppliesId) {
+                                            return action.payload;
+                                          } else {
+                                            return item;
+                                          }
+                                        }),
+                                      };
+                                    case types.MATERIAL_RECOMMEND_TOGGLE_FAILURE:
+                                      return {
+                                        ...state,
+                                        materialRecommendingToggle: false,
+                                        materialRecommendingToggleError: true,
+                                      };
+                                      case types.MATERIAL_PRICE_TYPE_REQUEST:
+                                        return { ...state, materialPriceType: true };
+                                      case types.MATERIAL_PRICE_TYPE_SUCCESS:
+                                        return {
+                                          ...state,
+                                          materialPriceType: false,
+                                          materialCurrency: state.materialCurrency.map((item) => {
+                                            if (item.id === action.payload.id) {
+                                              return action.payload;
+                                            } else {
+                                              return item;
+                                            }
+                                          }),
+                                        };
+                                      case types.MATERIAL_PRICE_TYPE_FAILURE:
+                                        return {
+                                          ...state,
+                                          materialPriceType: false,
+                                          materialPriceTypeError: true,
+                                        };
+
         default:
             return state;
     }
