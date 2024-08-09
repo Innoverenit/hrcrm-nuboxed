@@ -2761,7 +2761,7 @@ export const deleteSpareList = (data, phoneSpareId, orderPhoneId, userId) => (di
       },
     })
     .then((res) => {
-      dispatch(getSpareListByPhoneTaskId(phoneTaskId))
+      //dispatch(getSpareListByPhoneTaskId(phoneTaskId))
       dispatch({
         type: types.DELETE_SPARE_LIST_SUCCESS,
         payload: res.data,
