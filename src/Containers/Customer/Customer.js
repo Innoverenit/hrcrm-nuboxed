@@ -113,6 +113,7 @@ class Customer extends Component {
     } = this.props;
     return (
       <React.Fragment>
+        <Suspense fallback={<BundleLoader />}>
         <CustomerHeader
         handleCustomerImportModal={this.props.handleCustomerImportModal}
             handleDropChange={this.handleDropChange}
@@ -135,7 +136,7 @@ class Customer extends Component {
           selectedLanguage={this.props.selectedLanguage}
           translatedMenuItems={this.props.translatedMenuItems}
         />
-        <Suspense fallback={<BundleLoader />}>
+        
 
         {teamsAccessInd ? (
             <CustomerTeamCardList
