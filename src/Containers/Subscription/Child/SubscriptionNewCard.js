@@ -899,15 +899,25 @@
 import React, { useState,useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { base_url } from "../../../Config/Auth";
 import {addSuscrptions,getSubscrptions} from "../SubscriptionAction"
-import { Card, Button, Input, Switch, Form } from 'antd';
+import { Card, Button, Input, Switch,Select, Form } from 'antd';
 
 
-
+const { Option } = Select;
 
 
 const SubscriptionManager = (props) => {
   const [subscriptions, setSubscriptions] = useState([]);
+
+  const [isLoadingRuleType, setIsLoadingRuleType] = useState(false);
+
+  const [touchedRuleType, setTouchedRuleType] = useState(false);
+
+
+  const [ruleType, setRuleType] = useState([]);
+
+  const [isLoadingSector, setIsLoadingSector] = useState(false);
   
   useEffect(() => {
     
@@ -927,7 +937,7 @@ useEffect(() => {
   const addSubscription = () => {
     setSubscriptions([
       ...subscriptions,
-      { callInd: false, noOfcalls: '', perMonthValue: '', subscriptionId: null, subscriptionName: '', publishInd: false }
+      { callInd: false, noOfcalls: '', perMonthValue: '', subscriptionId: null, subscriptionName: '', publishInd: false,ruleDto:[] }
     ]);
   };
 
@@ -941,8 +951,9 @@ useEffect(() => {
     setSubscriptions(newSubscriptions);
   };
 
-  const handleSwitchChange = (index, field, checked) => {
+  const handleSwitchChange = (index, field, checked,ruleIndex) => {
     const newSubscriptions = [...subscriptions];
+    const rule = updatedSubscription.ruleDto[ruleIndex];
     newSubscriptions[index][field] = checked;
     setSubscriptions(newSubscriptions);
 
@@ -957,21 +968,27 @@ useEffect(() => {
       subscriptionId: updatedSubscription.subscriptionId || null,
       subscriptionName: updatedSubscription.subscriptionName,
       userId: props.userId,
-      publishInd: updatedSubscription.publishInd
+      publishInd: updatedSubscription.publishInd,
+      subscriptionRuleId: rule ? rule.subscriptionRuleId : null, // Print null if rule doesn't exist
+      ruleTypeId: rule ? rule.ruletypeId : null,                 // Print null if rule doesn't exist
+      ruleValue: rule ? rule.rulevalue : null
     };
     props.addSuscrptions(data,updatedSubscription.subscriptionId);
   };
 
 
-  // const handleSwitchChange = (index, field, checked) => {
-    
-  //   const newSubscriptions = [...subscriptions];
-  //   newSubscriptions[index][field] = checked;
-  //   setSubscriptions(newSubscriptions);
-  // };
 
-  const handlePressEnter = (index) => {
+
+  const handleRuleChange = (subIndex, ruleIndex, field, value) => {
+    const newSubscriptions = [...subscriptions];
+    newSubscriptions[subIndex].ruleDto[ruleIndex][field] = value;
+    setSubscriptions(newSubscriptions);
+  };
+
+  const handlePressEnter = (index,ruleIndex) => {
     const updatedSubscription = subscriptions[index];
+   
+    const rule = updatedSubscription.ruleDto ? updatedSubscription.ruleDto[ruleIndex] : null;
     console.log({
       callInd: updatedSubscription.callInd,
       createdBy: "string",
@@ -1002,9 +1019,56 @@ useEffect(() => {
       // updatedBy: "string",
       // updationDate: "2024-08-05T07:22:47.796Z",
       userId: props.userId,
-      publishInd: updatedSubscription.publishInd
+      publishInd: updatedSubscription.publishInd,
+      subscriptionRuleId: rule ? rule.subscriptionRuleId : null, // Print null if rule doesn't exist
+      ruleTypeId: rule ? rule.ruletypeId : null,                 // Print null if rule doesn't exist
+      ruleValue: rule ? rule.rulevalue : null
     }
     props.addSuscrptions(data,updatedSubscription.subscriptionId)
+  };
+
+
+  const addRule = (subIndex) => {
+    const newSubscriptions = [...subscriptions];
+    newSubscriptions[subIndex].ruleDto.push({
+      subscriptionRuleId: null,
+      ruletypeId: null, // Initially null until an event is selected
+      rulevalue: ''
+    });
+    setSubscriptions(newSubscriptions);
+  };
+
+
+  const handleSelectRuleType = () => {
+    if (!touchedRuleType) {
+     
+      fetchSelectRuleType();
+
+      setTouchedRuleType(true);
+    }
+  };
+
+
+
+  const fetchSelectRuleType = async () => {
+    setIsLoadingRuleType(true);
+    try {
+      const apiEndpoint = ` ${base_url}/task/todo/taskType-eventType/subscription/drop-down/${props.orgId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setRuleType(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingRuleType(false);
+    }
   };
 
   return (
@@ -1020,10 +1084,10 @@ useEffect(() => {
         padding: '10px' 
       }}>
 
-        {subscriptions.map((sub, index) => (
+        {subscriptions.map((sub, subIndex) => (
           <Card
             // key={index}
-            key={sub.subscriptionId || index}
+            key={sub.subscriptionId || subIndex}
             style={{ width: 300, margin: '10px' }}
             // actions={[
             //    <Button type="primary" htmlType="submit">Submit</Button>,
@@ -1038,9 +1102,9 @@ useEffect(() => {
               >
                 <Input
                   value={sub.subscriptionName}
-                  onChange={(e) => handleInputChange(index, 'subscriptionName', e.target.value)}
+                  onChange={(e) => handleInputChange(subIndex, 'subscriptionName', e.target.value)}
                   placeholder="Enter name"
-                  onPressEnter={() => handlePressEnter(index)}
+                  onPressEnter={() => handlePressEnter(subIndex)}
                 />
               </Form.Item>
               <Form.Item
@@ -1050,9 +1114,9 @@ useEffect(() => {
               >
                 <Input
                   value={sub.perMonthValue}
-                  onChange={(e) => handleInputChange(index, 'perMonthValue', e.target.value)}
+                  onChange={(e) => handleInputChange(subIndex, 'perMonthValue', e.target.value)}
                   placeholder="Enter per month value"
-                  onPressEnter={() => handlePressEnter(index)}
+                  onPressEnter={() => handlePressEnter(subIndex)}
                 />
               </Form.Item>
               <Form.Item label="Calls">
@@ -1060,15 +1124,15 @@ useEffect(() => {
                   checked={sub.callInd}
                     checkedChildren="Yes"
                         unCheckedChildren="No"
-                  onChange={(checked) => handleSwitchChange(index, 'callInd', checked)}
+                  onChange={(checked) => handleSwitchChange(subIndex, 'callInd', checked)}
                 />
                 {sub.callInd && (
                   <Input
                     value={sub.noOfcalls}
-                    onChange={(e) => handleInputChange(index, 'noOfcalls', e.target.value)}
+                    onChange={(e) => handleInputChange(subIndex, 'noOfcalls', e.target.value)}
                     style={{ marginTop: '10px' }}
                     placeholder="Enter calls value"
-                    onPressEnter={() => handlePressEnter(index)}
+                    onPressEnter={() => handlePressEnter(subIndex)}
                   />
                 )}
               </Form.Item>
@@ -1077,9 +1141,44 @@ useEffect(() => {
                   checked={sub.publishInd}
                     checkedChildren="Yes"
                         unCheckedChildren="No"
-                  onChange={(checked) => handleSwitchChange(index, 'publishInd', checked)}
+                  onChange={(checked) => handleSwitchChange(subIndex, 'publishInd', checked)}
                 />
               </Form.Item>
+              <div>
+                <h4>More Rules</h4>
+                {sub.ruleDto.map((rule, ruleIndex) => (
+                  <div key={ruleIndex} style={{ display: 'flex', marginBottom: '10px' }}>
+                    <Select
+                      value={rule.ruletypeId}
+                      onFocus={handleSelectRuleType}
+                      loading={isLoadingRuleType}
+                      onChange={(value) => handleRuleChange(subIndex, ruleIndex, 'ruletypeId', value)}
+                      style={{ width: 120, marginRight: '10px' }}
+                      placeholder="Select event"
+                    >
+                        {ruleType.map(rule => (
+          <Option key={rule.
+            typeId
+            } value={rule.
+              typeId
+              }>
+            {rule.type}
+          </Option>
+        ))}
+                    </Select>
+                    <Input
+                      value={rule.rulevalue}
+                      onChange={(e) => handleRuleChange(subIndex, ruleIndex, 'rulevalue', e.target.value)}
+                      placeholder="Enter value"
+                      onPressEnter={() => handlePressEnter(subIndex, ruleIndex)}
+                      disabled={!rule.ruletypeId} // Disable until event is selected
+                    />
+                  </div>
+                ))}
+                <Button type="dashed" onClick={() => addRule(subIndex)} style={{ width: '100%' }}>
+                  + Add Rule
+                </Button>
+              </div>
             </Form>
           </Card>
         ))}
@@ -1090,6 +1189,7 @@ useEffect(() => {
 const mapStateToProps = ({ auth,subscription, partner }) => ({
   orgId:auth.userDetails.organizationId,
   userId:auth.userDetails.userId,
+  token: auth.token,
   subscriptionsFormData: subscription.subscriptionsFormData,
 });
 
