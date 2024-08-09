@@ -1,10 +1,10 @@
 import React, { lazy, Suspense, useEffect } from "react";
-import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Modal } from "antd";
-import AddSpareInRepair from "./AddSpareInRepair";
+import PhoneListOrderTaskTable from "./PhoneListOrderTaskTable";
+
 
 
 const ProcessSpareDrawer = (props) => {
@@ -13,22 +13,17 @@ const ProcessSpareDrawer = (props) => {
     return (
         <>
             <Modal
-                title={props.RowData.imei}
+                title={props.data.imei}
                 width="60%"
-                visible={props.processSpareModal}
+                visible={props.allTaskModal}
                 closable
                 destroyOnClose
                 footer={null}
                   placement="right"
-                  onCancel={() => props.handleSpareProcess(false)}
+                  onCancel={() => props.handleAllTaskModal(false)}
             >
                 <Suspense fallback={<BundleLoader />}>
-                <AddSpareInRepair
-                        phoneId={props.phoneId}
-                        RowData={RowData}
-                       // orderPhoneId={props.rowData.orderPhoneId} 
-                        newData={props.newData}                    
-                    />
+                <PhoneListOrderTaskTable data={props.data}/>
                 </Suspense>
             </Modal>
         </>

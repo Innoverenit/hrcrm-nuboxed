@@ -17,7 +17,7 @@ const AddSpareInRepair = (props) => {
                         <RepairSpareListTable
                             phoneId={props.phoneId}
                             RowData={props.RowData}
-                            orderPhoneId={props.orderPhoneId}  
+                           // orderPhoneId={props.orderPhoneId}  
                             phoneTaskId={props.newData && props.newData.phoneTaskId}                               
                         />
                     </div>

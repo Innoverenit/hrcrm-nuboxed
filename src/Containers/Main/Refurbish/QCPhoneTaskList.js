@@ -1,15 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getTaskByPhoneId, deleteTaskList } from "./RefurbishAction"
+import AddIcon from '@mui/icons-material/Add';
+import { getTaskByPhoneId, deleteTaskList,handleSpareProcess } from "./RefurbishAction"
 import { Popconfirm, Tooltip } from "antd";
 import DeleteIcon from '@mui/icons-material/Delete';
+import ProcessSpareDrawer from "./ProcessSpareDrawer";
 
 function QCPhoneTaskList(props) {
+    const [newData, setnewData] = useState("");
+
     useEffect(() => {
         props.getTaskByPhoneId(props.phoneId)
     }, [])
-
+    function handleSetNewData(item) {
+        setnewData(item);
+    }
+ 
     return (
         <>
 <div class="mr-5 ml-5">
@@ -19,6 +26,15 @@ function QCPhoneTaskList(props) {
                             <div class="basis-[85%]">
                                 {item.taskName}
                             </div>
+                            <Tooltip title="Spare">
+                                <AddIcon
+                                  onClick={() => {
+                                    props.handleSpareProcess(true);
+                                    handleSetNewData(item);  
+                                    
+                                }}
+                                />
+                                </Tooltip>
                             <div>
                                 <Popconfirm
                                     title="Do you want to delete?"
@@ -34,7 +50,12 @@ function QCPhoneTaskList(props) {
                     )
                 })}
             </div>
-
+            <ProcessSpareDrawer
+         newData={newData} 
+         RowData={props.RowData}                       
+                  processSpareModal={props.processSpareModal}
+                    handleSpareProcess={props.handleSpareProcess}
+                />
 
         </>
     );
@@ -44,14 +65,16 @@ const mapStateToProps = ({ distributor, auth, refurbish }) => ({
     phoTasklist: distributor.phoTasklist,
     orgId: auth.userDetails.organizationId,
     taskByPhone: refurbish.taskByPhone,
-    userId: auth.userDetails.userId
+    userId: auth.userDetails.userId,
+    processSpareModal: refurbish.processSpareModal
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getTaskByPhoneId,
-            deleteTaskList
+            deleteTaskList,
+            handleSpareProcess
         },
         dispatch
     );

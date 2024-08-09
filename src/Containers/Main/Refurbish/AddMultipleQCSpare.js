@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { getTaggedSuppliesByBrand, addSpareList } from "../Account/AccountAction";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { message } from "antd";
 import { CloseOutlined } from "@ant-design/icons"
 import { getCurrency } from "../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
@@ -20,6 +21,14 @@ const AddMultipleQCSpare = (props) => {
     const [level, setLevel] = useState(1);
 
     function buttonOnClick() {
+
+        const invalidRows = rows.filter(row => !row.suppliesId || !row.noOfSpare);
+
+        if (invalidRows.length > 0) {
+            message.error('Please fill out all required fields for Spare 1 and Units.');
+            return;
+        }
+
         let data = {
             userId: props.userId,
             spareList: rows,

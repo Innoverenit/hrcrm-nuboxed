@@ -2,14 +2,16 @@ import React, { useState, lazy, Suspense, useEffect,useRef } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getOrderByUser, handleOrderPhoneModal, qcInspectionButton,
-    inputQcDataSearch,ClearSearchedDataOfQc } from "./RefurbishAction"
-import { Button, Badge ,Input} from "antd";
+    inputQcDataSearch,ClearSearchedDataOfQc,handleProductionNotesModal } from "./RefurbishAction"
+import { Button, Badge ,Input, Tooltip} from "antd";
 import dayjs from "dayjs";
+import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import { FormattedMessage } from "react-intl";
 import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { BundleLoader } from '../../../Components/Placeholder';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import RefurbishNoteAll from './RefurbishNoteAll';
 const OrderPhoneModal = lazy(() => import('./OrderPhoneModal'));
 
 function ProductionOrderListById(props) {
@@ -248,6 +250,21 @@ function ProductionOrderListById(props) {
                                                     </div>
 
                                                 </div>
+                                                <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class="   text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title="Notes">
+                                                        <NoteAltIcon
+                                                            className="!text-icon cursor-pointer"
+                                                            // style={{ cursor: "pointer" }}
+                                                            onClick={() => {
+                                                                handleRowData(item);
+                                                                props.handleProductionNotesModal(true);
+                                                            }}
+                                                        />
+
+                                                    </Tooltip>
+                                                </div>
+                                            </div>
                                                 <div className=" flex  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInspectionInd === 0 ?
@@ -286,6 +303,11 @@ function ProductionOrderListById(props) {
                         handleOrderPhoneModal={props.handleOrderPhoneModal}
                         rowData={rowData}
                     />
+                    <RefurbishNoteAll
+                     rowData={rowData}
+                     productioNoteModal={props.productioNoteModal}
+                    handleProductionNotesModal={props.handleProductionNotesModal}
+                    />
                 </Suspense>
 
             </div>
@@ -299,7 +321,8 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     orderByUser: refurbish.orderByUser,
     updatingQcInspectionButton: refurbish.updatingQcInspectionButton,
     showPhoneList: refurbish.showPhoneList,
-    fetchingOrderByUser: refurbish.fetchingOrderByUser
+    fetchingOrderByUser: refurbish.fetchingOrderByUser,
+    productioNoteModal: refurbish.productioNoteModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -309,7 +332,8 @@ const mapDispatchToProps = (dispatch) =>
             handleOrderPhoneModal,
             qcInspectionButton,
             inputQcDataSearch,
-            ClearSearchedDataOfQc
+            ClearSearchedDataOfQc,
+            handleProductionNotesModal
         },
         dispatch
     );

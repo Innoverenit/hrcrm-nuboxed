@@ -1,6 +1,7 @@
 import React, { useEffect, lazy, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -10,7 +11,9 @@ import { Button,Input,Tooltip,Progress } from "antd"
 import {
     searchimeiNamePhone,
     ClearPhoneDataOfrefurbish,
-    getDispatchUpdateList
+    getDispatchUpdateList,
+    handleAllTaskModal,
+    handleRepairPhoneNotesOrderModal
 } from "./RefurbishAction";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
@@ -19,6 +22,8 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import PhoneListOrderTaskTable from "./PhoneListOrderTaskTable";
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import NodataFoundPageRefubish from "./NodataFoundPageRefubish";
+import ProcessTaskAllDrawer from "./ProcessTaskAllDrawer";
+import RepairPhoneNotesOrderModal from "./RepairPhoneNotesOrderModal";
 const QRCodeModal = lazy(() => import("../../../Components/UI/Elements/QRCodeModal"));
 
 function InspectedPhoneByOrder(props) {
@@ -42,7 +47,10 @@ function InspectedPhoneByOrder(props) {
   const [isRecording, setIsRecording] = useState(false);
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
-
+  const [RowData, setRowData] = useState({});
+  function handleSetRowData(item) {
+      setRowData(item);
+  }
     const handleShow = () => {
         setShow(!show)
     }
@@ -330,12 +338,26 @@ function InspectedPhoneByOrder(props) {
                                                                     onClick={() => {
                                                                         handlePhoneListOrderTask();
                                                                      handleParticularRow(item);
-                                                                     handleExpand(item.phoneId);
+                                                                     props.handleAllTaskModal(true);
+                                                                    //  handleExpand(item.phoneId);
                                                                     }}/>
                                                                     </Tooltip>
 
                                                                 </div>
+                                                                <div className=" flex  w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title="Notes">
+                                                    <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
+                                                            onClick={() => {
+                                                                handleSetRowData(item);
+                                                                props.handleRepairPhoneNotesOrderModal(true);
+                                                            }}
+                                                        />
 
+                                                    </Tooltip>
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 )
@@ -348,12 +370,25 @@ function InspectedPhoneByOrder(props) {
             {showTask &&(
 <PhoneListOrderTaskTable data={data}/>
                 )}
+
+<ProcessTaskAllDrawer
+                   data={data}
+                   allTaskModal={props.allTaskModal}
+                  handleAllTaskModal={props.handleAllTaskModal}
+                />
+                 <RepairPhoneNotesOrderModal
+                    RowData={RowData}
+                    phoNotesRepairOrderModal={props.phoNotesRepairOrderModal}
+                    handleRepairPhoneNotesOrderModal={props.handleRepairPhoneNotesOrderModal}
+                />
         </>
     )
 }
 
-const mapStateToProps = ({ inventory }) => ({
+const mapStateToProps = ({ inventory,refurbish }) => ({
     updateDispatchList: inventory.updateDispatchList,
+    allTaskModal:refurbish.allTaskModal,
+    phoNotesRepairOrderModal: refurbish.phoNotesRepairOrderModal,
     fetchingUpdateDispatchList: inventory.fetchingUpdateDispatchList
 });
 
@@ -362,7 +397,9 @@ const mapDispatchToProps = (dispatch) =>
         {
             getDispatchUpdateList,
             searchimeiNamePhone,
-    ClearPhoneDataOfrefurbish
+    ClearPhoneDataOfrefurbish,
+    handleAllTaskModal,
+    handleRepairPhoneNotesOrderModal,
         },
         dispatch
     );
