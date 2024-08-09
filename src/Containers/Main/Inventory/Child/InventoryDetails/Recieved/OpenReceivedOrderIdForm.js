@@ -12,6 +12,7 @@ import {
   handlereceivePhoneModal,
   getPhonelistByOrderId,
   updateRepairStatus,
+  handleInventoryexpand
 
 } from "../../../InventoryAction";
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
@@ -29,6 +30,7 @@ import PhoneDetailsModal from "../../../../Refurbish/ProductionTab/PhoneDetailsM
 import { handlePhoneDetails, handleInTagDrawer } from "../../../../Refurbish/RefurbishAction"
 import TagInDrawer from "../../../../Refurbish/ProductionTab/TagInDrawer";
 import OpenReceivedPlusCard from "./OpenReceivedPlusCard";
+import InventoryExpandListModal from "./InventoryExpandListModal";
 import NodataFoundPageAccount from "../../../../Account/AccountDetailsTab/AccountOrderTab/NodataFoundPageAccount";
 const { Search } = Input;
 
@@ -266,8 +268,9 @@ function OpenReceivedOrderIdForm(props) {
                             <FileDoneOutlined   className="!text-icon  text-[black]" type="file-done"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
-                                handleExpand(item.phoneId);
-                                setSelectedRow(item.phoneId);
+                                 handleExpand(item.phoneId);
+                                 setSelectedRow(item.phoneId);
+                                props.handleInventoryexpand(true);
                               }}
                             />
 
@@ -435,12 +438,18 @@ function OpenReceivedOrderIdForm(props) {
           </div>
 
 
-          {expand && (
+          {/* {expand && (
             <AccountPhoneTaskTable
               phoneId={phoneId}
               //RowData={particularRowData}
               particularRowData={particularRowData} />
-          )}
+          )} */}
+           <InventoryExpandListModal   
+           phoneId={phoneId}         
+                  particularRowData={particularRowData}
+                  inventoryExpandList={props.inventoryExpandList}
+                  handleInventoryexpand={props.handleInventoryexpand}
+                />
           <ReceivedOrderIdPhoneNoteModal
             particularRowData={particularRowData}
             phoNoteReceivedOrderIdModal={props.phoNoteReceivedOrderIdModal}
@@ -479,6 +488,7 @@ const mapStateToProps = ({ inventory, auth, refurbish }) => ({
   addReceivePhone: inventory.addReceivePhone,
   showPhoneData: refurbish.showPhoneData,
   updatingRepairStatus: inventory.updatingRepairStatus,
+  inventoryExpandList: inventory.inventoryExpandList,
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal
 });
 
@@ -492,7 +502,8 @@ const mapDispatchToProps = (dispatch) =>
       handlereceivePhoneModal,
       updateRepairStatus,
       handlePhoneDetails,
-      handleInTagDrawer
+      handleInTagDrawer,
+      handleInventoryexpand
     },
     dispatch
   );
