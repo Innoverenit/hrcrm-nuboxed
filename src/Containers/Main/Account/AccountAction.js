@@ -2750,7 +2750,7 @@ export const addSpareList = (data, phoneTaskId, orderId, cb) => (dispatch) => {
       cb && cb();
     });
 };
-export const deleteSpareList = (data, phoneSpareId, orderPhoneId, userId) => (dispatch) => {
+export const deleteSpareList = (data, phoneSpareId,phoneTaskId, orderPhoneId, userId) => (dispatch) => {
   dispatch({
     type: types.DELETE_SPARE_LIST_REQUEST,
   });
