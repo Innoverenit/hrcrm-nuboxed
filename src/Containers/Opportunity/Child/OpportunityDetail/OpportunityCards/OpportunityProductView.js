@@ -10,7 +10,6 @@ import {
 import { connect } from "react-redux";
 import { getQuotation } from "../../../OpportunityAction";
 import { bindActionCreators } from "redux";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { ActionIcon } from "../../../../../Components/Utils";
 
 class OpportunityProductView extends Component {
@@ -104,11 +103,8 @@ const ProfileItemRow = ({ label, value, data, data1 }) => {
   console.log(data1);
   console.log(data < data1);
   return (
-    <FlexContainer
-      alignItems="center"
-      flexWrap="nowrap"
-      style={{ margin: "0.4rem" }}
-    >
+
+   <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto  m-2">
       <div
         style={{
           color: "#444",
@@ -130,6 +126,6 @@ const ProfileItemRow = ({ label, value, data, data1 }) => {
       >
         {value}
       </div>
-    </FlexContainer>
+    </div>
   );
 };

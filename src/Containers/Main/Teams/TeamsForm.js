@@ -121,33 +121,7 @@ props.getTeamMemberlist();
                 </div>          
               </div>
               <div class="h-full w-w47.5" >
-                {/* <FlexContainer style={{ justifyContent: "space-between" }}>
-                  <div style={{ width: "100%" }}>
-                    <Field
-                      isRequired
-                      name="state"
-                      type="text"
-                      label="State"
-                      options={["Tripura"]}
-                      component={SelectComponent}
-                      isColumn
-                      inlineLabel
-                      
-                    />                
-                    <Field
-                      isRequired
-                      name="city"
-                      type="text"
-                      label="City"
-                      options={["Agartala"]}
-                      component={SelectComponent}
-                      isColumn
-                      inlineLabel
-                     
-                    />
-                  </div>
-                </FlexContainer>              */}
-           
+               
               </div>
             </div>
           

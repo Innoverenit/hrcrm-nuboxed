@@ -1,8 +1,8 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Icon, Switch, Button, Popconfirm } from "antd";
-import { FlexContainer, MainWrapper } from "../../../../../Components/UI/Layout";
+import {  Switch, Popconfirm } from "antd";
+import {  MainWrapper } from "../../../../../Components/UI/Layout";
 
 import { addingSourcingAccess, getSourcingAccess } from "../../../../Settings/SettingsAction";
 
@@ -52,7 +52,7 @@ function SourcingForm(props) {
       </div>
       
       <div class=" mt-3" />
-       <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between w-[52%] grow shrink h-auto mr-auto ">
         <p>Talent out reach</p>
         <div>
           <Popconfirm
@@ -72,7 +72,7 @@ function SourcingForm(props) {
         </div>
         <div class=" mt-3" marginTop="30px" />
        
-      </FlexContainer>
+      </div>
           </MainWrapper>
    
     

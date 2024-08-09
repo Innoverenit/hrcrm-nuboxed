@@ -1,7 +1,6 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import OpportunityCard from "./OpportunityCards/OpportunityCard";
 const OpportunityDetailTab = lazy(() =>
   import("./OpportunityTab/OpportunityDetailTab")
@@ -28,7 +27,7 @@ class OpportunityDetailLeft extends Component {
     const { account } = this.state;
     console.log(opportunity);
     return (
-      <FlexContainer flexDirection="" style={{ display: "block" }}>
+      <div class=" block flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
         <div>
         <OpportunityCard
           opportunity={opportunity}
@@ -46,7 +45,7 @@ class OpportunityDetailLeft extends Component {
           opportunity={opportunity}
           />
           </div>
-       </FlexContainer>
+       </div>
     );
   }
 }

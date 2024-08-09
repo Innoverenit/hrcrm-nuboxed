@@ -18,7 +18,7 @@ const FlexContainer = styled.div`
     
 //  flex-direction:column;
     
-  }
+}
 `;
 export default FlexContainer;
 

@@ -6,7 +6,6 @@ import { Formik, Form, Field } from "formik";
 import { FormattedMessage } from "react-intl";
 import * as Yup from "yup";
 import {  HeaderText } from "../../Components/UI/Elements";
-import { FlexContainer } from "../../Components/UI/Layout";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { updateUserById } from "../Auth/AuthAction";
 const LevelSchema = Yup.object().shape({
@@ -61,7 +60,7 @@ class TimeZoneForm extends Component {
                     You can reconfigure time zone preference in the Profile
                     section.
                   </p>
-                  <FlexContainer justifyContent="flex-end">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     <Button
                       type="primary"
                       htmlType="submit"
@@ -73,7 +72,7 @@ class TimeZoneForm extends Component {
                       />
                       {/* Complete */}
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </div>
               </div>
             </Form>

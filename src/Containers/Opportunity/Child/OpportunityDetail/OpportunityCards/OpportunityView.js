@@ -14,7 +14,6 @@ import {
 } from "../../../../../Components/UI/Elements";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {linktagCustomer} from "../../../OpportunityAction";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import {  LinkOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
@@ -61,11 +60,8 @@ class OpportunityView extends Component {
     return (
       <>
         <div class="flex justify-between" >
-          <FlexContainer
-            justifyContent="flex-start"
-            flexWrap="nowrap"
-            style={{ width: "85%",marginTop:"-8px" }}
-          >
+        <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto w-full  mt-[-8px] mr-auto">
+        
             <div style={{ width: "20%",marginTop:"4px"  }}>
               <MultiAvatar
                 primaryTitle={opportunity.opportunityName}
@@ -75,7 +71,7 @@ class OpportunityView extends Component {
               {/* )} */}
             </div>
             &nbsp;
-            <FlexContainer flexDirection="column" style={{ width: "80%" }}>
+            <div class=" flex flex-col flex-wrap w-[80%] items-start self-start justify-start grow shrink h-auto mr-auto">
               <Title
                 overflow="hidden"
                 textOverflow="ellipsis"
@@ -91,11 +87,11 @@ class OpportunityView extends Component {
               >
                 {accountName}
               </SubTitle>
-            </FlexContainer>
-            <FlexContainer flexDirection="column" style={{ width: "20%" }}>
+            </div>
+            <div class=" flex flex-col flex-wrap items-start w-[20%] self-start justify-start grow shrink h-auto mr-auto">
             {this.props.partnerLogin === "Yes" &&
             this.props.department === "Partner" ? null : (
-              <FlexContainer style={{ placeItems: "center" }} justifyContent="flex-end">
+              <div class=" flex flex-row flex-wrap items-center self-start justify-end grow shrink h-auto mr-auto">
                 {this.props.account &&
                   this.props.account.hasOwnProperty("accountId") ? (
                     <StyledPopconfirm
@@ -136,10 +132,10 @@ class OpportunityView extends Component {
                        <BorderColorIcon  style={{fontSize:"0.8rem"}}/>
               </span>
                 </Tooltip>
-              </FlexContainer>
+              </div>
             )}
-            </FlexContainer>
-          </FlexContainer>
+            </div>
+          </div>
 
           
         </div>

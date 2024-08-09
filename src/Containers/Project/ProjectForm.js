@@ -274,70 +274,7 @@ class ProjectForm extends Component {
                       />
                     </div>
                   </div>
-                  
-                  {/* <FlexContainer justifyContent="space-between">
-                     <div class="w-[47.5%]">
-                      <Field
-                        isRequired
-                        name="endDate"
-                        label="End "
-                        component={DatePicker}
-                        isColumn
-                        value={values.endDate || values.startDate}
-                        defaultValue={dayjs("2015-01-01")}
-                        inlineLabel
-                        style={{
-                          flexBasis: "80%",
-                          height: "2.0625em",
-                          marginTop: "0.25em",
-                          width: "100%",
-                        }}
-                        disabledDate={(currentDate) => {
-                          if (values.startDate) {
-                            if (
-                              dayjs(currentDate).isBefore(
-                                dayjs(values.startDate)
-                              )
-                            ) {
-                              return true;
-                            } else {
-                              return false;
-                            }
-                          }
-                        }}
-                      />
-                    </div>
-    <div class="w-[47.5%]">
-                    
-                    </div>
-                  </FlexContainer> */}
-
-                  
-                  {/* <Field
-                    isRequired
-                    defaultValue={{ label: timeZone, value: userId }}
-                    name="timeZone"
-                    label="TimeZone "
-                    selectType="timeZone"
-                    isColumn
-                    margintop={"0.25em"}
-                    value={values.timeZone}
-                    component={SearchSelect}
-                    inlineLabel
-                    style={{ flexBasis: "50%" }}
-                  /> */}
-                  {/* 
-                  <FieldArray
-                    name="address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                        singleAddress
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  /> */}
-              
+                                                                      
                   {startDate ? (
                     <span>
                       {dayjs(startDate).isBefore(dayjs()) && (

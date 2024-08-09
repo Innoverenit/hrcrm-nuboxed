@@ -66,11 +66,8 @@ class EmployeeStatusEdit extends Component {
             width="100%"
           />
           <div class=" mt-3" style={{ margin: "0.125em" }} />
-
-          <FlexContainer
-            flexDirection="column"
-            style={{ padding: "0.625em 1.25em 0.625em 1.25em" }}
-          >
+         <div class=" flex flex-col flex-wrap items-start self-start p-[0.625em 1.25em 0.625em 1.25em] justify-start grow shrink h-auto mr-auto ">
+       
             <EditableDatePicker
               defaultValue={dateOfJoining}
               handleChange={this.handleChange}
@@ -80,7 +77,7 @@ class EmployeeStatusEdit extends Component {
               style={{ width: "100%" }}
             /> */}
             {/* <div class=" mt-3" style={{ margin: "0.125em" }} /> */}
-          {/* </FlexContainer> */}
+          {/* </div> */}
 
           <div class=" flex justify-between w-full"
           >

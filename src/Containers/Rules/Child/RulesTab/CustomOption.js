@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-import { Button, Icon, Switch, Tooltip } from "antd";
+import { Button } from "antd";
 import { Select } from "antd";
 const { Option } = Select;
 const data = [
@@ -78,11 +77,7 @@ class CustomOption extends Component {
   };
 
   render() {
-    // console.log(this.props.signatureInd);
-    // const personal = this.props.signatureInd.personal_ind;
-    // console.log(personal);
-    // const admin = this.props.signatureInd.admin_ind;
-    // console.log(admin);
+ 
     const {user}=this.props;
     return (
       <>
@@ -260,173 +255,7 @@ class CustomOption extends Component {
             })} */}
           
           </Select>
-          )}
-         
-      
-        
-
-          {/* <div
-            style={{
-              border: "0.0625em solid #1890ff",
-              fontSize: "0.6875em",
-              borderRadius: "1.375em",
-              display: "flex",
-              boxRadius: "1.875em",
-              justifyItems: "center",
-              alignItems: "center",
-              height: "1.5625em",
-              padding: "0em 0.5em",
-              margin: "0em 0em 0em 0.3125em ",
-              cursor: "pointer",
-            }}
-            onClick={() => this.handleChange("First_Name")}
-          >
-            First_Name
-          </div>
-          <div
-            style={{
-              border: "0.0625em solid #1890ff",
-              fontSize: "0.6875em",
-              borderRadius: "1.375em",
-              display: "flex",
-              boxRadius: "1.875em",
-              justifyItems: "center",
-              alignItems: "center",
-              height: "1.5625em",
-              padding: "0em 0.5em",
-              margin: "0em 0em 0em 0.3125em ",
-              cursor: "pointer",
-            }}
-            onClick={() => this.handleChange("Last_Name")}
-          >
-            Last_Name
-          </div>
-          <div
-            style={{
-              border: "0.0625em solid #1890ff",
-              fontSize: "0.6875em",
-              borderRadius: "1.375em",
-              display: "flex",
-              boxRadius: "1.875em",
-              justifyItems: "center",
-              alignItems: "center",
-              height: "1.5625em",
-              padding: "0em 0.5em",
-              margin: "0em 0em 0em 0.3125em ",
-              cursor: "pointer",
-            }}
-            onClick={() => this.handleChange("Opportunity_name")}
-          >
-            Opportunity_name
-          </div>
-          <div
-            style={{
-              border: "0.0625em solid #1890ff",
-              fontSize: "0.6875em",
-              borderRadius: "1.375em",
-              display: "flex",
-              boxRadius: "1.875em",
-              justifyItems: "center",
-              alignItems: "center",
-              height: "1.5625em",
-              padding: "0em 0.5em",
-              margin: "0em 0em 0em 0.3125em ",
-              cursor: "pointer",
-            }}
-            onClick={() => this.handleChange("Proposal_value")}
-          >
-            Proposal_value
-          </div>
-          <div
-            style={{
-              border: "0.0625em solid #1890ff",
-              fontSize: "0.6875em",
-              borderRadius: "1.375em",
-              display: "flex",
-              boxRadius: "1.875em",
-              justifyItems: "center",
-              alignItems: "center",
-              height: "1.5625em",
-              padding: "0em 0.5em",
-              margin: "0em 0em 0em 0.3125em ",
-              cursor: "pointer",
-            }}
-            onClick={() => this.handleChange("Currency")}
-          >
-            Currency
-          </div>
-          <div
-            style={{
-              border: "0.0625em solid #1890ff",
-              fontSize: "0.6875em",
-              borderRadius: "1.375em",
-              display: "flex",
-              boxRadius: "1.875em",
-              justifyItems: "center",
-              alignItems: "center",
-              height: "1.5625em",
-              padding: "0em 0.5em",
-              margin: "0em 0em 0em 0.3125em ",
-              cursor: "pointer",
-            }}
-            onClick={() => this.handleChange("Customer_Name")}
-          >
-            Customer_Name
-          </div>
-          <div
-            style={{
-              border: "0.0625em solid #1890ff",
-              fontSize: "0.6875em",
-              borderRadius: "1.375em",
-              display: "flex",
-              boxRadius: "1.875em",
-              justifyItems: "center",
-              alignItems: "center",
-              height: "1.5625em",
-              padding: "0em 0.5em",
-              margin: "0em 0em 0em 0.3125em ",
-              cursor: "pointer",
-            }}
-            onClick={() => this.handleChange("Task_Name")}
-          >
-            Task_Name
-          </div>
-          <div
-            style={{
-              border: "0.0625em solid #1890ff",
-              fontSize: "0.6875em",
-              borderRadius: "1.375em",
-              display: "flex",
-              boxRadius: "1.875em",
-              justifyItems: "center",
-              alignItems: "center",
-              height: "1.5625em",
-              padding: "0em 0.5em",
-              margin: "0em 0em 0em 0.3125em ",
-              cursor: "pointer",
-            }}
-            onClick={() => this.handleChange("Task_Name")}
-          >
-            Personal_Signature
-          </div>
-          <div
-            style={{
-              border: "0.0625em solid #1890ff",
-              fontSize: "0.6875em",
-              borderRadius: "1.375em",
-              display: "flex",
-              boxRadius: "1.875em",
-              justifyItems: "center",
-              alignItems: "center",
-              height: "1.5625em",
-              padding: "0em 0.5em",
-              margin: "0em 0em 0em 0.3125em ",
-              cursor: "pointer",
-            }}
-            onClick={() => this.handleChange("Task_Name")}
-          >
-            Organization_Signature
-          </div> */}
+          )}                       
         </div>
       </>
     );

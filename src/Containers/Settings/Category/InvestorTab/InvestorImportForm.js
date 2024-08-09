@@ -1,10 +1,9 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {addInvestorImportForm} from "../InvestorTab/InvestorListAction"
 import { Button,Select } from "antd";
 import { Formik, Form } from "formik";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import CategoryImportUpload from "../../../../Components/Forms/Formik/CategoryImportUpload";
 const ButtonGroup = Button.Group;
 
@@ -23,15 +22,8 @@ class InvestorImportForm extends Component {
     };
   }
 
-
   render() {
-   
-    
-
-  
-
- 
-
+      
     return (
       <>
        
@@ -102,23 +94,14 @@ class InvestorImportForm extends Component {
                         height: "100%",
                         width: "45%",
                       }}
-                    >
-                  
-                      <div class=" mt-3" />
-                   
-
-
-                      <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
-
-                
-      
-
-                     
+                    >               
+                      <div class=" mt-3" />                
+                      <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />                                 
                     </div>
                   </div>
 
                   <div class=" mt-3" />
-                  <FlexContainer justifyContent="flex-end">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     {/* <Button
                       htmlType="submit"
                       type="primary"
@@ -126,7 +109,7 @@ class InvestorImportForm extends Component {
                     >
                       Submit
                     </Button> */}
-                  </FlexContainer>
+                  </div>
                 </Form>
               )}
             </Formik>

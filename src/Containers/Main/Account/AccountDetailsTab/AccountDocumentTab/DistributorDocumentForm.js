@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
-
+import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
@@ -175,7 +173,7 @@ class DistributorDocumentForm extends Component {
                 </div>
               </div>
               <div class=" mt-3" />
-              <FlexContainer justifyContent="flex-end">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   htmlType="submit"
                   type="primary"
@@ -183,7 +181,7 @@ class DistributorDocumentForm extends Component {
                 >
                   Submit
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

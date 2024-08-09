@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { Button,  Tooltip } from "antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import UploadIcon from '@mui/icons-material/Upload';
@@ -45,7 +44,7 @@ class AccountActionRight extends React.Component {
     render() {
         const { handleDistributorModal, viewType,user } = this.props;
         return (
-            <FlexContainer alignItems="center">
+          <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
                 {viewType === "list" ? (
                     <Tooltip title="Create">
                         {user.accountCreateInd === true && user.erpInd === true &&(
@@ -65,7 +64,7 @@ class AccountActionRight extends React.Component {
           {this.state.translatedMenuItems[1]} {/* Import */}
           </Button>
           </div>
-            </FlexContainer>
+            </div>
         );
     }
 }

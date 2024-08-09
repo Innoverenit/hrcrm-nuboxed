@@ -1,9 +1,9 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, { Suspense, Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import { Button, Switch, Tooltip, Icon } from "antd";
-import { Formik, Form, Field, FieldArray } from "formik";
+import { Button, Tooltip} from "antd";
+import { Formik, Form, Field } from "formik";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
@@ -14,7 +14,6 @@ import {
   addPartnerDocument,
   getPartnerDocument,
 } from "../../../../PartnerAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 
@@ -210,49 +209,17 @@ class AddDocumentModal extends Component {
                         />
                       <div class=" mt-3" style={{ marginBottom: "15px" }} />
 
-                      <FlexContainer>
-                        {/* <div class=" text-xs font-bold font-poppins text-black"> */}
-                          {/* Share */}
-                          {/* <FormattedMessage id="app.share" defaultMessage="Share" /> */}
-                          {/* </div> */}
-                        {/* <Switch
-                          style={{ width: "100px", marginLeft: "10px" }}
-                          onChange={this.handleChange}
-                          checked={this.state.documentshare}
-                          checkedChildren="Public"
-                          unCheckedChildren="Private"
-                        /> */}
-                      </FlexContainer>
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+                     
+                      </div>
                       <div class=" mt-3" />
                       {!this.state.documentshare && this.props.testShow && (
                         <p>Will be shared with partner Owner</p>
                       )}
                       <div class=" mt-3" />
                       {this.state.documentshare && (
-                        <FlexContainer
-                          justifyContent="space-between"
-                           >
-                          {/* {organization &&
-                            organization.subscriptionType ===
-                            "FREE" && (
-                              <div style={{ marginTop: "6%" }}>
-                              </div>
-                            )} */}
-                          {/* {organization &&
-                            organization.subscriptionType !==
-                            "FREE" && (
-                              <Tooltip
-                                title={
-                                  organization.subscriptionType !==
-                                    "FREE"
-                                    ? "Upgrade to Professional+ for multiple sharing "
-                                    : ""
-                                }
-                              >
-                                <div style={{ marginTop: "6%" }}>
-                                </div>
-                              </Tooltip>
-                            )} */}
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                       
                           {this.state.data.map(() => {
                             return (
                               <>
@@ -280,9 +247,7 @@ class AddDocumentModal extends Component {
                                     {/* Level */}
                                     <FormattedMessage id="app.level" defaultMessage="Level" />
                                     </div>
-                                  <FlexContainer
-                                    justifyContent="space-between"
-                                    >
+                                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                     <ButtonGroup>
                                       <Tooltip title="Specific">
                                      
@@ -334,7 +299,7 @@ class AddDocumentModal extends Component {
                                         </Button>
                                       </Tooltip>{" "}
                                     </ButtonGroup>
-                                  </FlexContainer>
+                                  </div>
                                 </div>
                                 <div style={{ width: "43%", marginTop: "3px" }}>
                                   <Field
@@ -350,13 +315,13 @@ class AddDocumentModal extends Component {
                               </>
                             );
                           })}
-                        </FlexContainer>
+                        </div>
                       )}
                     </div>
                   </div>
 
                   <div class=" mt-3" />
-                  <FlexContainer justifyContent="flex-end">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     <Button
                       htmlType="submit"
                       type="primary"
@@ -365,7 +330,7 @@ class AddDocumentModal extends Component {
                       {/* Submit */}
                       <FormattedMessage id="app.submit" defaultMessage="Submit" />
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </Form>
               )}
             </Formik>

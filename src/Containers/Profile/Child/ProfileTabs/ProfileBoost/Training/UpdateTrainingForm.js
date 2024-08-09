@@ -238,67 +238,9 @@ class UpdateTrainingForm extends Component {
                       }}
                     />
                   </div>
-                </div>
-               
-              </div>
-
-              {/* <div
-                                        style={{
-                                            width: "50%",
-                                            // border: "0.125em solid green"
-                                        }}
-                                    >
-                                        <FlexContainer justifyContent="space-between"></FlexContainer> */}
-
-              {/* <div
-                                            style={{
-                                                width: "100%",
-                                                // border: "0.125em solid green"
-                                            }}
-                                        >
-                                            <Field
-                                                name="documentId"
-                                                isRequired
-                                                component={DragableUpload}
-                                            />
-
-                                            <Field
-                                                name="documentTitle"
-                                                label="Name"
-                                                width={"100%"}
-                                                isColumn
-                                                component={InputComponent}
-                                                style={{ height: "2.0625em", marginTop: "0.25em" }}
-                                            />
-                                            <div class=" mt-3" />
-                                            <Field
-                                                name="documentDescription"
-                                                label="Description"
-                                                isRequired
-                                                isColumn
-                                                width={"100%"}
-                                                component={TextareaComponent}
-                                                style={{ height: "5em", marginTop: "0.25em" }}
-                                            />
-                                            <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
-                                        </div>
-
-                                        <div class=" mt-3" />
-
-                                        {/* <FieldArray
-                                    name="address"
-                                    render={(arrayHelpers) => (
-                                        <AddressFieldArray
-                                            singleAddress
-                                            arrayHelpers={arrayHelpers}
-                                            values={values}
-                                        />
-                                    )}
-                                /> */}
-
-              {/* </div> */}
-              {/* </div> */}
-            
+                </div>              
+              </div>      
+                                    
               <div class=" flex justify-end mt-3" >
                 <Button
                   htmlType="submit"

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import PartnerOverviewCard from "./PartnerCards/PartnerOverViewCard";
 import PartnerDetailCard from "./PartnerCards/PartnerDetailCard";
 import PartnerTopicOfIntrest from "./PartnerCards/PartnerTopicOfInterest";
@@ -9,12 +8,12 @@ class PartnerDetailLeft extends Component {
     const { partner } = this.props;
     return (
       <>
-        <FlexContainer flexDirection="column" style={{ display: "block" }}>
+     <div class=" block flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           <PartnerOverviewCard partner={partner} />
           <PartnerTopicOfIntrest partner={partner} />
           <PartnerDetailCard partner={partner} />
           <PartnerBankDetailsViewCard partner={partner}/>
-        </FlexContainer>
+        </div>
       </>
     );
   }

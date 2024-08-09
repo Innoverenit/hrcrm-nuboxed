@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { Icon, Button, Tooltip } from "antd";
 import { StyledTabs } from "../../../../Components/UI/Antd";
-import { FlexContainer, TabsWrapper } from "../../../../Components/UI/Layout";
+import {  TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import { handleLeavesModal } from "../../LeavesAction";
 import { bindActionCreators } from "redux";
@@ -36,16 +36,7 @@ class DetailTab extends Component {
                     {/* <Icon type="bank" /> */}
                     Leave Details
                   </span>
-                  {/* {activeKey === "1" && (
-                    <>
-                      <ActionIcon
-                        // type="plus"
-                        tooltipTitle="Add"
-                        size="1em"
-                        // style={{ marginLeft: 10, verticalAlign: "center" }}
-                      />
-                    </>
-                  )} */}
+                 
                 </>
               }
               key="1"

@@ -16,3 +16,4 @@ const OnlyWrapCard = styled.div`
     overflow: auto;
 `
 export default OnlyWrapCard;
+
