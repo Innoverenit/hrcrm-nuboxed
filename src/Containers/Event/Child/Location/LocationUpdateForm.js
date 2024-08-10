@@ -363,9 +363,9 @@ handleInventory = () => {
       {this.state.contract?
       <div className="flex justify-between max-sm:flex-col">
         <div className="w-w48 max-sm:w-wk">
-          <label style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
+          <div style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
             Department
-          </label>
+          </div>
           <Select
   className="w-[250px]"
   value={this.state.department}
@@ -385,9 +385,9 @@ handleInventory = () => {
         </div>
 
         <div className="w-w48 max-sm:w-wk">
-          <label style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
+          <div style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
             User
-          </label>
+          </div>
           <Select
             className="w-[250px]"
             value={this.state.reportingManager}

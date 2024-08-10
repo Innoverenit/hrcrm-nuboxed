@@ -148,7 +148,7 @@ function PriceDiscountCard(props) {
           <div key={index} class="flex items-center justify-between">
             <div class="flex justify-around w-wk">
             {/* <div>
-                <label>Currency</label>
+                <div class="font-bold text-xs font-poppins text-black">Currency</div>
                 <div class="w-24">
                 <Select
                 style={{width:"5rem"}}
@@ -167,7 +167,7 @@ function PriceDiscountCard(props) {
               </div> */}
 
               <div>
-                <label>Volume</label>
+                <div class="font-bold text-xs font-poppins text-black">Volume</div>
                 <div ></div>
                 <Input
                  inputMode="numeric"
@@ -178,7 +178,7 @@ function PriceDiscountCard(props) {
                         {errors[`volume${index}`] && <span className="text-red-500">{errors[`volume${index}`]}</span>}
                       </div>
               <div>
-                <label>Value </label>
+                <div class="font-bold text-xs font-poppins text-black">Value </div>
                 <div>
                 <Input
                  inputMode="numeric"
@@ -189,7 +189,7 @@ function PriceDiscountCard(props) {
                        {errors[`allowedDiscount${index}`] && <span className="text-red-500">{errors[`allowedDiscount${index}`]}</span>}
                       </div></div>
                       <div>
-        <label>Start Date</label>
+        <div class="font-bold text-xs font-poppins text-black">Start Date</div>
         <div >
           <DatePicker
             style={{width:"9rem"}}
@@ -199,7 +199,7 @@ function PriceDiscountCard(props) {
         </div>
       </div>
       <div>
-        <label>End Date</label>
+        <div class="font-bold text-xs font-poppins text-black">End Date</div>
         <div >
           <DatePicker
             style={{width:"9rem"}}

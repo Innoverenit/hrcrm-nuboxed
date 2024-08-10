@@ -84,11 +84,11 @@ const TaggedBuilderList = (props) => {
                 <div style={{
                     width: "40%",
                 }}>
-                    <label style={{
+                    <div style={{
                         fontSize: "15px",
                         fontWeight: "600",
                         margin: "10px",
-                    }}>Part</label>
+                    }}>Part</div>
                     <Select
 
                         value={partName}
@@ -115,11 +115,11 @@ const TaggedBuilderList = (props) => {
                     width: "35%",
                     marginLeft:"10px"
                 }}>
-                    <label style={{
+                    <div style={{
                         fontSize: "15px",
                         fontWeight: "600",
                         margin: "10px",
-                    }}>Part No</label>
+                    }}>Part No</div>
                     <Input 
                     value={data?data:partNo}
                         // width={250}

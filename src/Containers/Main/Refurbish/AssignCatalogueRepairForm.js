@@ -100,7 +100,7 @@ const AssignCatalogueRepairForm = (props) => {
 
 <div class="mt-[10px] flex justify-between">
                 <div>
-                <label class="text-[15px] font-semibold m-[10px]">Department</label>
+                <div class="text-[15px] font-semibold m-[10px]">Department</div>
                     <Select
                         style={{
                             width: 170,
@@ -114,7 +114,7 @@ const AssignCatalogueRepairForm = (props) => {
                     </Select>
                 </div>
                 <div>
-                <label class="text-[15px] font-semibold m-[10px]">Technician</label>
+                <div class="text-[15px] font-semibold m-[10px]">Technician</div>
                     <Select
                         style={{
                             width: 170,
@@ -128,7 +128,7 @@ const AssignCatalogueRepairForm = (props) => {
                     </Select>
                 </div>
                 <div>
-                <label class="text-[15px] font-semibold m-[10px]">Catalogue</label>
+                <div class="text-[15px] font-semibold m-[10px]">Catalogue</div>
                     <Select
                         style={{
                             width: 200,
@@ -143,7 +143,7 @@ const AssignCatalogueRepairForm = (props) => {
                     </Select>
                 </div>
                 <div>
-                <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
+                <div class="text-[15px] font-semibold m-[10px]">Due Date</div>
                     <DatePicker
                         style={{
                             width: 150,

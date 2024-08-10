@@ -82,7 +82,7 @@
 //     <>
 //     <div>
 //       <div style={{ marginBottom: '16px' }}>
-//         <label style={{ display: 'block', marginBottom: '8px' }}>Name</label>
+//         <div style={{ display: 'block', marginBottom: '8px' }}>Name</div>
 //         <Input 
 //           value={name} 
 //           onChange={(e) => setName(e.target.value)} 
@@ -92,7 +92,7 @@
 //       </div>
 
 //       <div style={{ marginBottom: '16px' }}>
-//         <label style={{ display: 'block', marginBottom: '8px' }}>Department</label>
+//         <div style={{ display: 'block', marginBottom: '8px' }}>Department</div>
        
 
 
@@ -359,7 +359,7 @@ const MyForm = (props) => {
     <>
       <div>
         <div style={{ marginBottom: '16px' }}>
-          <label style={{ display: 'block', marginBottom: '8px' }}>Name</label>
+          <div style={{ display: 'block', marginBottom: '8px' }}>Name</div>
           <Input 
             value={name} 
             onChange={(e) => setName(e.target.value)} 
@@ -368,7 +368,7 @@ const MyForm = (props) => {
           />
         </div>
         <div style={{ marginBottom: '16px' }}>
-          <label style={{ display: 'block', marginBottom: '8px' }}>Department</label>
+          <div style={{ display: 'block', marginBottom: '8px' }}>Department</div>
           <Select
             showSearch
             style={{ width: 200 }}
@@ -384,7 +384,7 @@ const MyForm = (props) => {
               </Option>
             ))}
           </Select>
-          <label style={{ display: 'block', marginBottom: '8px' }}>Role</label>
+          <div style={{ display: 'block', marginBottom: '8px' }}>Role</div>
           <Select
         placeholder="Select Role"
         loading={isLoadingRole}

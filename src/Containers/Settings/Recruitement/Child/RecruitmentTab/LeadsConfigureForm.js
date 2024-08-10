@@ -745,7 +745,7 @@ props.emptyClearbit();
                   <div class=" flex  justify-between mt-3">
                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
 
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[8]}</label>
+<div style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[8]}</div>
 
 <Select
         showSearch
@@ -772,7 +772,7 @@ props.emptyClearbit();
                     </div>
                     <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
                           
-                          <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[9]}</label>
+                          <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[9]}</div>
 
 <Select
         showSearch
@@ -800,7 +800,7 @@ props.emptyClearbit();
                   
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">
-                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}</label>
+                    <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}</div>
 
 <Select
         showSearch

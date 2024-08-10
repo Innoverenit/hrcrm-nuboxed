@@ -323,7 +323,7 @@ imageIds:[],
                   </div> */}
 <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>Weight</label>
+                    <div class="font-bold text-xs font-poppins text-black">Weight</div>
                       <Field
                         name="weight"
                         isColumn
@@ -333,7 +333,7 @@ imageIds:[],
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>Length</label>
+                    <div class="font-bold text-xs font-poppins text-black">Length</div>
                       <Field
                         name="length"
                         //label="UOM"
@@ -349,7 +349,7 @@ imageIds:[],
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>Width</label>
+                    <div class="font-bold text-xs font-poppins text-black">Width</div>
                       <Field
                         name="width"
                         isColumn
@@ -359,7 +359,7 @@ imageIds:[],
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>Height</label>
+                    <div class="font-bold text-xs font-poppins text-black">Height</div>
                       <Field
                         name="height"
                         isColumn

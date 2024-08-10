@@ -152,10 +152,10 @@ function AddSuppliersForm (props) {
 
                   <div class="w-full">
                   {props.customerConfigure.approveInd===true&&
-                    <label>
+                    <div class="font-bold text-xs font-poppins text-black">
                      
                       {props.translatedMenuItems[17]} 
-                    </label>
+                    </div>
 }
                     {props.customerConfigure.approveInd===true&&
                   <Switch 

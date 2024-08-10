@@ -169,7 +169,7 @@ handleEmailInd = (checked) => {
                                             type="tertiary"
                                             
                                             onClick={() => this.prev()}>
-                                        <label class="text-base cursor-pointer"> Previous</label>
+                                        <div class="text-base cursor-pointer"> Previous</div>
                                             {/* {this.props.translatedMenuItems[1]} */}
                                         </Button>
                                     )}
@@ -182,7 +182,7 @@ handleEmailInd = (checked) => {
                                                 onClick={() => this.handleComplete()}
                                                 //  disabled={!this.state.checked}
                                             >
-                                                <label class="text-base cursor-pointer">Complete</label> 
+                                                <div class="text-base cursor-pointer">Complete</div> 
                                                 {/* {this.props.translatedMenuItems[2]} */}
                                             </Button>
 
@@ -202,9 +202,9 @@ handleEmailInd = (checked) => {
                                                 }}
                                           
                                             >
-                                           <label class="text-base cursor-pointer">
+                                           <div class="text-base cursor-pointer">
                                            Proceed
-                                             </label>
+                                             </div>
                                   
                                             </Button> : 
                                             null}

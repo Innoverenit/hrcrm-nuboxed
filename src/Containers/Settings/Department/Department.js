@@ -237,7 +237,7 @@ class Department extends Component {
                     loading={addingDepartments}
                     onClick={this.toggleInput}                
                   >
-                   <label class="text-white"> Add More</label>
+                   <div class="text-white"> Add More</div>
                   </Button>
                 </div>
                
@@ -416,7 +416,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Department);
 //           <h2>{department.departmentName}</h2>
 //           {Object.keys(fieldLabels).map((field) => (
 //             <div key={field}>
-//               <label>{fieldLabels[field]}: </label>
+//               <div class="font-bold text-xs font-poppins text-black">{fieldLabels[field]}: </div>
 //               <Popconfirm
 //                 title={`Are you sure to change ${fieldLabels[field]}?`}
 //                 onConfirm={() => handleSwitchChange(department.departmentId, field, !department[field])}

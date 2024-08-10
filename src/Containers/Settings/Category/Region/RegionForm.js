@@ -45,7 +45,7 @@
 //             <div key={header} style={{marginTop:"23px"}}>
 //               <h3>{header}</h3>
 //               <div>
-//                 <label>Target</label>
+//                 <div class="font-bold text-xs font-poppins text-black">Target</div>
 //                 <input
 //                 style={{marginLeft:"12px"}}
 //                   type="number"
@@ -231,7 +231,7 @@ const handleSubmit = () => {
             <div key={header} style={{marginTop:"23px"}}>
               <h3>{header}</h3>
               <div>
-                <label>Target</label>
+                <div class="font-bold text-xs font-poppins text-black">Target</div>
                 <input
                  style={{marginLeft:"12px"}}
                   type="number"

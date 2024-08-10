@@ -1507,7 +1507,7 @@
 //                     }}
 //                   /> */}
 
-// <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
+// <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</div>
 //                    <Select
 //           showSearch
 //           style={{ width: 415 }}
@@ -1530,7 +1530,7 @@
 //                   {props.user.crmInd === true &&(
               
 //      <>        
-// <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label>
+// <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</div>
 
 // <Select
 //         showSearch
@@ -1554,7 +1554,7 @@
 //                   {props.user.crmInd === true &&(
                   
 //                   <>
-//                   <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
+//                   <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</div>
 
 // <Select
 //         showSearch
@@ -1601,7 +1601,7 @@
 //               //    inlineLabel
 //               //  />
 //               <>
-// <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
+// <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</div>
 //               <Select
 //         showSearch
 //         style={{ width: 417 }}

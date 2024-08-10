@@ -66,10 +66,10 @@ function LeadsAgingForm(props) {
                         className="fas fa-mug-hot"
                         style={{ fontSize: "1.12em" }}
                       />                 
-                      <label class="font-semibold ml-8">
+                      <div class="font-semibold ml-8">
                         Hot
                         
-                        </label>      
+                        </div>      
                       <div class="flex">
                         <Field
                           name="hot"
@@ -106,10 +106,10 @@ function LeadsAgingForm(props) {
                       <div  class="flex justify-between" >
                     <div>
                       <i className="	fas fa-burn" style={{ fontSize: "1.12em",marginRight:"2rem" }} />
-                     <label class="mr-[0.7rem] font-semibold">
+                     <div class="mr-[0.7rem] font-semibold">
                         Warm
                         
-                        </label>
+                        </div>
                     </div>
 
                     <div>
@@ -159,13 +159,13 @@ function LeadsAgingForm(props) {
                         style={{ fontSize: "1.12em",marginRight:"2rem" }}
                       />
                     
-                      <label class="font-semibold">
+                      <div class="font-semibold">
                         {/* Cold */}
                         <FormattedMessage
                           id="app.cold"
                           defaultMessage="Cold"
                         />
-                      </label>
+                      </div>
                     </div>
                     <div class="flex justify-between">
                       <div >
@@ -204,7 +204,7 @@ function LeadsAgingForm(props) {
                   <div class="flex justify-between w-[18rem]">
                   
                     <div >
-                    <label class="font-semibold">Not Defined</label>
+                    <div class="font-semibold">Not Defined</div>
                     </div>
                     <div class="flex justify-between">
                       <div >

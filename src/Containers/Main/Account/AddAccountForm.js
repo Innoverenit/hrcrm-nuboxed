@@ -619,10 +619,10 @@ const AddAccountForm = ({
                 </div>
                 {/* <div class="flex items-center">
         <div>Billing Address Same as Communication Address</div>
-        <label className="toggle mt-1 ml-2">
+        <div className="toggle mt-1 ml-2">
           <input type="checkbox" checked={billingSameAsCommunication} onChange={handleToggleChange} />
           <span className="slider round"></span>
-        </label>
+        </div>
       </div>
       {!billingSameAsCommunication && (
         <div class="flex flex-col">

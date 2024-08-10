@@ -45,7 +45,7 @@ class InventoryDetailActionLeft extends Component {
       onClick={() => setInventoryDetailViewType("material")}
     >
       <Button type={viewType1 === "material" ? "primary" : ""} style={{ backgroundColor: viewType1 === "material" ? "" : "tomato" }}>
-        <label class="text-white cursor-pointer">{this.props.translatedMenuItems[0]}</label>
+        <div class="text-white cursor-pointer">{this.props.translatedMenuItems[0]}</div>
       </Button>
     </div>
 
@@ -61,7 +61,7 @@ class InventoryDetailActionLeft extends Component {
             >
              {/* <Button type="primary">  */}
              <Button type={viewType1 === "production" ? "primary" : ""} style={{ backgroundColor: viewType1 === "production" ? "" : "tomato" }}>
-             <label class="text-white cursor-pointer">{this.props.translatedMenuItems[1]}</label></Button>
+             <div class="text-white cursor-pointer">{this.props.translatedMenuItems[1]}</div></Button>
             </div>
           </Tooltip>}
           {this.props.repairInd && <Tooltip title={this.props.translatedMenuItems[2]}>
@@ -74,7 +74,7 @@ class InventoryDetailActionLeft extends Component {
             >
               <Button type={viewType1 === "repair" ? "primary" : ""} style={{ backgroundColor: viewType1 === "repair" ? "" : "tomato" }}>
                 
-              <label class="text-white cursor-pointer">{this.props.translatedMenuItems[2]}</label></Button>
+              <div class="text-white cursor-pointer">{this.props.translatedMenuItems[2]}</div></Button>
             </div>
           </Tooltip>}
 

@@ -202,7 +202,7 @@ console.log(props.currentContactId.contactId)
                     />
                   </div>
                   {/* <div class="mt-1 flex flex-col" >
-<label className=" font-bold text-xs" >Include</label>
+<div className=" font-bold text-xs" >Include</div>
                    <Select
           showSearch
           style={{ width: "-webkit-fill-available" }}
@@ -224,7 +224,7 @@ console.log(props.currentContactId.contactId)
        <div className="mt-1 flex flex-col">
       
       <div className="flex items-center">
-      <label className="font-bold text-xs">Share</label>
+      <div className="font-bold text-xs">Share</div>
         <Switch
           checked={showInclude}
           onChange={handleToggleInclude}
@@ -235,7 +235,7 @@ console.log(props.currentContactId.contactId)
       </div>
       {showInclude && ( // Conditionally render based on showInclude state
       <div className="mt-1 flex flex-col">
-      <label className="font-bold text-xs">Include</label>
+      <div className="font-bold text-xs">Include</div>
         <Select
           showSearch
           style={{ width: "-webkit-fill-available" }}

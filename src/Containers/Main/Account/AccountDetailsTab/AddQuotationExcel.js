@@ -115,7 +115,7 @@ function AddQuotationExcel(props) {
           <div key={index}>
             <div className="flex justify-around w-[30rem]">
             <div>
-                <label>Category</label>
+                <div class="font-bold text-xs font-poppins text-black">Category</div>
                 <div className="w-[9rem]">
                   <Select
                     style={{ width: 120 }}
@@ -130,7 +130,7 @@ function AddQuotationExcel(props) {
               </div>
            
               <div>
-                <label>Brand</label>
+                <div class="font-bold text-xs font-poppins text-black">Brand</div>
                 <div className="w-[13rem]">
                   <Select
                     style={{ width: 200 }}
@@ -144,7 +144,7 @@ function AddQuotationExcel(props) {
                 </div>
               </div>
               <div>
-                <label>Model</label>
+                <div class="font-bold text-xs font-poppins text-black">Model</div>
                 <div className="w-[13rem]">
                   <Select
                     style={{ width: 200 }}
@@ -158,7 +158,7 @@ function AddQuotationExcel(props) {
                 </div>
               </div>
               <div>
-                <label>Attribute</label>
+                <div class="font-bold text-xs font-poppins text-black">Attribute</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -172,7 +172,7 @@ function AddQuotationExcel(props) {
                 </div>
               </div>
               <div>
-                <label>Quality</label>
+                <div class="font-bold text-xs font-poppins text-black">Quality</div>
                 <div className="w-[9rem]">
                   <Select
                     style={{ width: 120 }}
@@ -186,7 +186,7 @@ function AddQuotationExcel(props) {
                 </div>
               </div>
               <div class=" ml-4">
-                <label>Location</label>
+                <div class="font-bold text-xs font-poppins text-black">Location</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -200,7 +200,7 @@ function AddQuotationExcel(props) {
                 </div>
               </div>
               <div>
-                <label>Specs</label>
+                <div class="font-bold text-xs font-poppins text-black">Specs</div>
                 <div className="w-24 ml-2">
                   <Select
                     style={{ width: 100 }}
@@ -215,7 +215,7 @@ function AddQuotationExcel(props) {
                 </div>
               </div>
               <div class=" ml-4">
-                <label>Unit</label>
+                <div class="font-bold text-xs font-poppins text-black">Unit</div>
                 <div className="w-24">
                   <Input
                     type="text"

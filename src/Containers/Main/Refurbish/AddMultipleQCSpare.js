@@ -115,7 +115,7 @@ const AddMultipleQCSpare = (props) => {
                     <>
                         <div class="flex justify-between">
                             <div class="w-[50%]">
-                                <label>{`Spare ${i + 1}`}</label>
+                                <div class="font-bold text-xs font-poppins text-black">{`Spare ${i + 1}`}</div>
 
                                 <Select
                                     name={`${row.id}_value`}
@@ -133,13 +133,13 @@ const AddMultipleQCSpare = (props) => {
                             </div>
 
                             <div class="w-[15%]">
-                                <label>
+                                <div class="font-bold text-xs font-poppins text-black">
                                     <FormattedMessage
                                         id="app.units"
                                         defaultMessage="Units"
                                     />
 
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.noOfSpare}`}
@@ -149,9 +149,9 @@ const AddMultipleQCSpare = (props) => {
                                 />
                             </div>
                             <div class="w-[22%]">
-                                <label>
+                                <div class="font-bold text-xs font-poppins text-black">
                                     Effort (hours)
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.hours}`}

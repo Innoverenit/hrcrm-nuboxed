@@ -9,14 +9,14 @@ import {
   StyledMenu,
   StyledMenuItem
 } from "../../Components/UI/Antd";
-import { ApplicationWrapper, MainWrapper } from "../../Components/UI/Layout";
+import {MainWrapper } from "../../Components/UI/Layout";
 import { logout } from "../Auth/AuthAction";
 import { FormattedMessage } from "react-intl";
 const Theme = lazy(() => import("../Settings/Theme/Theme"));
 
 
 const ProfileMenu = ({ logout, history }) => (
-  <ApplicationWrapper>
+  <div class=" p-1 bg-light-gray ">
     <MainWrapper>
       <StyledMenu>
         <StyledMenuItem  key="0" >
@@ -63,7 +63,7 @@ const ProfileMenu = ({ logout, history }) => (
       {/* <ServerCheckbox /> */}
       {/* <Theme /> */}
     </MainWrapper>
-  </ApplicationWrapper>
+  </div>
 );
 class ProfileDropdown extends Component {
   render() {

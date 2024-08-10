@@ -736,7 +736,7 @@ const {
                   {props.user.crmInd === true &&(
               
      <>        
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label> */}
+{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</div> */}
 
 <Select
         showSearch
@@ -761,7 +761,7 @@ const {
                   {props.user.crmInd === true &&(
                   
                   <>
-                  {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label> */}
+                  {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</div> */}
 
 <Select
         showSearch
@@ -807,7 +807,7 @@ const {
               //    inlineLabel
               //  />
               <>
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label> */}
+{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</div> */}
               <Select
         showSearch
       
@@ -957,7 +957,7 @@ const {
                     }}
                   /> */}
 
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label> */}
+{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</div> */}
                    <Select
           showSearch
           

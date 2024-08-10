@@ -565,7 +565,7 @@ function UpdateDealForm (props) {
     
                     <div class="w-w47.5 max-sm:w-wk flex flex-col">
                     <div class="font-bold font-poppins text-black m-[0.1rem-0-0.02rem-0.2rem] text-xs  ">
-                    <label>{translatedMenuItems[10]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[10]}</div>
                         <Field
                           name="oppStage"
                           isColumnWithoutNoCreate

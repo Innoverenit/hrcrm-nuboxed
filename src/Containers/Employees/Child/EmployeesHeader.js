@@ -1,5 +1,6 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
+
 const EmployeesActionLeft = lazy(() => import("./EmployeesActionLeft"));
 const EmployeesActionRight = lazy(() => import("./EmployeesActionRight"));
 class EmployeesHeader extends Component {

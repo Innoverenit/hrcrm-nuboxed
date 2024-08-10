@@ -32,7 +32,7 @@ function LocationOrderForm(props) {
                 <>
                     <div class=" flex justify-between">
                         <div className=" w-2/5">
-                            <label>Department</label>
+                            <div class="font-bold text-xs font-poppins text-black">Department</div>
                             <Select
                                 placeholder="Select"
                                 className="w-[350px]"
@@ -46,7 +46,7 @@ function LocationOrderForm(props) {
                         </div>
 
                         <div className=" w-2/5">
-                            <label>Team Member</label>
+                            <div class="font-bold text-xs font-poppins text-black">Team Member</div>
                             <Select
                                 placeholder="Select"
                                 className="w-[350px]"

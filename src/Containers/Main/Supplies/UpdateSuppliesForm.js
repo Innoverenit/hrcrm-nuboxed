@@ -172,7 +172,7 @@ function UpdateSuppliesForm (props) {
                       </div>
                     </div>
                   </div>
-                  <label>{translatedMenuItems[0]}</label>
+                  <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[0]}</div>
                   <Field
                     defaultValue={{
                       label:props.particularDiscountData.categoryName,
@@ -190,7 +190,7 @@ function UpdateSuppliesForm (props) {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                     <label>{translatedMenuItems[1]}</label>
+                     <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[1]}</div>
                   <Field
                     defaultValue={{
                       label:props.particularDiscountData.subCategoryName,
@@ -208,7 +208,7 @@ function UpdateSuppliesForm (props) {
                   />
                   <div class="flex justify-between">
                     <div class="w-full">
-                    <label>{translatedMenuItems[2]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[2]}</div>
                       <Field
                         defaultValue={{
                           label:props.particularDiscountData.attributeName,
@@ -224,7 +224,7 @@ function UpdateSuppliesForm (props) {
                         isColumn
                         inlineLabel
                       />
-                      <label>{translatedMenuItems[3]}</label>
+                      <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[3]}</div>
                       <Field
                         defaultValue={{
                           label:props.particularDiscountData.subAttributeName,
@@ -245,7 +245,7 @@ function UpdateSuppliesForm (props) {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[12]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[12]}</div>
                       <Field
                         name="weight"
                         isColumn
@@ -255,7 +255,7 @@ function UpdateSuppliesForm (props) {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[13]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[13]}</div>
                       <Field
                         name="length"
                         //label="UOM"
@@ -271,7 +271,7 @@ function UpdateSuppliesForm (props) {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[14]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[14]}</div>
                       <Field
                         name="width"
                         isColumn
@@ -281,7 +281,7 @@ function UpdateSuppliesForm (props) {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[15]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[15]}</div>
                       <Field
                         name="height"
                         isColumn
@@ -298,7 +298,7 @@ function UpdateSuppliesForm (props) {
                 <div class="h-full w-[50%]">
                   <div class="flex justify-between">
                     <div class="w-wk">
-                    <label>{translatedMenuItems[4]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[4]}</div>
                       <Field
                         name="name"
                         // label="Name"
@@ -313,7 +313,7 @@ function UpdateSuppliesForm (props) {
 
                   <div class="flex justify-between">
                   <div class="w-[47%]">
-                  <label>{translatedMenuItems[5]}</label>
+                  <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[5]}</div>
                       <Field
                         name="hsn"
                         // label="HSN"
@@ -324,7 +324,7 @@ function UpdateSuppliesForm (props) {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[6]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[6]}</div>
                       <Field
                         name="reorder"
                         // label="Re-order"
@@ -350,7 +350,7 @@ function UpdateSuppliesForm (props) {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[7]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[7]}</div>
                       <Field
                         name="netWeight"
                         // label="Net Weight"
@@ -361,7 +361,7 @@ function UpdateSuppliesForm (props) {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[8]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[8]}</div>
                       <Field
                         name="netUnit"
                         // label="UOM"
@@ -377,7 +377,7 @@ function UpdateSuppliesForm (props) {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[9]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[9]}</div>
                       <Field
                         name="grossWeight"
                         // label="Gross Weight"
@@ -388,7 +388,7 @@ function UpdateSuppliesForm (props) {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[8]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[8]}</div>
                       <Field
                         name="grossUnit"
                         // label="UOM"
@@ -416,7 +416,7 @@ function UpdateSuppliesForm (props) {
                 
                   </div>
                   <div class="flex justify-between mt-4">
-                  <label>{translatedMenuItems[10]}</label>
+                  <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[10]}</div>
                     <div class="w-full">
                       <Field
                         name="description"
@@ -433,7 +433,7 @@ function UpdateSuppliesForm (props) {
                     </div> */}
                   </div>
                   <div className="flex justify-between mt-4">
-                  <label>Availability Date</label>
+                  <div class="font-bold text-xs font-poppins text-black">Availability Date</div>
                   <div className="w-full">
                   <input
         type="date"

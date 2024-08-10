@@ -108,7 +108,7 @@ const UsersCellCard = (props) => {
       <>
       <div class="flex justify-between" >
       <div class="ml-2">
-<label class="block" >Cell Code</label>
+<div class="block" >Cell Code</div>
     <Select
       placeholder="Select a cell"
       style={{ width: 200 }}
@@ -123,7 +123,7 @@ const UsersCellCard = (props) => {
     </Select>
     </div>
       <div >
-        <label style={{display: 'block'}}>Department</label>
+        <div style={{display: 'block'}}>Department</div>
     <Select
       placeholder="Select a department"
       style={{ width: 200 }}
@@ -141,7 +141,7 @@ const UsersCellCard = (props) => {
 
 
     <div >
-    <label style={{display: 'block'}}>User </label>
+    <div style={{display: 'block'}}>User </div>
     <Select
       placeholder="Select a user"
       style={{ width: 200 }}

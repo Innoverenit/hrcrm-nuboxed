@@ -170,7 +170,7 @@ const handleStages = (val) => {
     <>
       <div className="mt-4 flex">
       <div class=" w-[35%]" >
-                                                    <label class=" text-[#444] font-bold text-[0.75rem]" >Workflow</label>
+                                                    <div class=" text-[#444] font-bold text-[0.75rem]" >Workflow</div>
                                                     <Select
                         style={{
                             width: 170,

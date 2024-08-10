@@ -139,7 +139,7 @@ const handleDeptChange = (value) => {
       
               <div class=" flex justify-between width-[50%] ml-4 " >
                                                     <div class=" w-[35%]" >
-                                                    <label class=" text-[#444] font-bold text-[0.75rem]" >Department</label>
+                                                    <div class=" text-[#444] font-bold text-[0.75rem]" >Department</div>
                       {/* <select  className="customize-select"
                        
                       onChange={handleDeptChange}>
@@ -171,7 +171,7 @@ const handleDeptChange = (value) => {
           <>                                           
 {single === false?(
             <div class=" w-[35%]" >
-            <label class=" text-[#444] font-bold text-[0.75rem]" >User</label>
+            <div class=" text-[#444] font-bold text-[0.75rem]" >User</div>
             <Select className="customize-select"
          value={selectedUser}
                  onChange={handleUserChange}
@@ -190,7 +190,7 @@ const handleDeptChange = (value) => {
 
 ):(   
   <div class=" w-[35%] ml-8" >
-               <label class=" text-[#444] font-bold text-[0.75rem]" >User</label>
+               <div class=" text-[#444] font-bold text-[0.75rem]" >User</div>
    {/* <Field
                name="multyAsignedTOId"
             

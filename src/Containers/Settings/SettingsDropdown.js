@@ -10,13 +10,10 @@ import {
 import {
  SettingOutlined
 } from '@ant-design/icons';
-import {
-  ApplicationWrapper,
-  MainWrapper,
-} from "../../Components/UI/Layout";
+import { MainWrapper} from "../../Components/UI/Layout";
 let path = window.location.href.split("/")[3];
 const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
-  <ApplicationWrapper>
+  <div class=" p-1 bg-light-gray ">
     <MainWrapper>
       <StyledMenu>
 
@@ -119,7 +116,7 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
         <Menu.Divider />
       </StyledMenu>
     </MainWrapper>
-  </ApplicationWrapper>
+  </div>
 );
 class SettingsDropdown extends Component {
   render() {
