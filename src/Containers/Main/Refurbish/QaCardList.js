@@ -2,10 +2,11 @@ import React, { useState, lazy, Suspense, useEffect,useRef } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getQAorderlist,updateQAinspection, ClearSearchedDataOfQa,
-  updateDispatchInspectionButton
+  updateDispatchInspectionButton,handleProductionNotesModal
      } from "./RefurbishAction"
-import { Button, Badge ,Input} from "antd";
+import { Button, Badge ,Input, Tooltip} from "antd";
 import dayjs from "dayjs";
+import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import {handlePickupDateModal} from "../../../Containers/Main/Inventory/InventoryAction"
 import { FormattedMessage } from "react-intl";
 import { AudioOutlined } from '@ant-design/icons';
@@ -14,6 +15,7 @@ import { BundleLoader } from '../../../Components/Placeholder';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import DispatchPhoneListModal from '../Inventory/Child/InventoryDetails/Dispatch/DispatchPhoneListModal';
 import RefurbishToggle from './RefurbishToggle';
+import RefurbishNoteAll from './RefurbishNoteAll';
 
 
 
@@ -265,6 +267,19 @@ function QaCardList(props) {
                                                         {item.lead}
                                                     </div>
                                                     </div>
+                                                    <div class="   text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title="Notes">
+                                                        <NoteAltIcon
+                                                            className="!text-icon cursor-pointer"
+                                                           
+                                                            onClick={() => {
+                                                                handleRowData(item);
+                                                                props.handleProductionNotesModal(true);
+                                                            }}
+                                                        />
+
+                                                    </Tooltip>
+                                                </div>
                                                  <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                
@@ -290,6 +305,11 @@ function QaCardList(props) {
                         handleOrderPhoneModal={props.handleOrderPhoneModal}
                         rowData={rowData}
                     /> */}
+                      <RefurbishNoteAll
+                     rowData={rowData}
+                     productioNoteModal={props.productioNoteModal}
+                    handleProductionNotesModal={props.handleProductionNotesModal}
+                    />
                     <DispatchPhoneListModal
         rowData={rowData}
         handlePickupDateModal={props.handlePickupDateModal}
@@ -309,7 +329,8 @@ const mapStateToProps = ({ refurbish, auth ,inventory}) => ({
     QAorderList: refurbish.QAorderList,
     updatingQAinspection: refurbish.updatingQAinspection,
     // showPhoneList: refurbish.showPhoneList,
-    fetchingQAorderlist: refurbish.fetchingQAorderlist
+    fetchingQAorderlist: refurbish.fetchingQAorderlist,
+    productioNoteModal: refurbish.productioNoteModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -321,7 +342,8 @@ const mapDispatchToProps = (dispatch) =>
             updateDispatchInspectionButton,
             // qcInspectionButton,
             // inputQcDataSearch,
-            ClearSearchedDataOfQa
+            ClearSearchedDataOfQa,
+            handleProductionNotesModal
         },
         dispatch
     );

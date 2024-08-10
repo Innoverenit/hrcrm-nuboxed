@@ -6,7 +6,8 @@ import { StyledTable } from "../../../../../../Components/UI/Antd";
 import {
   getDispatchUpdateList,
   updateDispatchInspectionButton,
-  handleRejectReasonModal
+  handleRejectReasonModal,
+  handleInventoryTask
 } from "../../../InventoryAction";
 import {handleQCPhoneNotesOrderModal} from "../../../../Refurbish/RefurbishAction"
 import dayjs from "dayjs";
@@ -17,6 +18,7 @@ import { SubTitle } from "../../../../../../Components/UI/Elements";
 import RejectedReasonModal from "./RejectedReasonModal";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import QCPhoneNotesOrderModal from "../../../../Refurbish/QCPhoneNotesOrderModal";
+import InventoryExpandTaskModal from "./InventoryExpandTaskModal";
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
 const DispatchTaskTable = lazy(() => import("./DispatchTaskTable"))
 const DispatchReceiveToggle = lazy(() => import("./DispatchReceiveToggle"));
@@ -389,6 +391,7 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
               onClick={() => {
                 handleRowData(item);
                 handlePhoneTask(item.phoneId);
+                props.handleInventoryTask(true);
               }}
             />
 
@@ -454,7 +457,13 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
             </div>
             <Suspense fallback={<BundleLoader />}>
                 
-            {task && <DispatchTaskTable phoneId={phoneId} />}
+            {/* {task && <DispatchTaskTable phoneId={phoneId} />} */}
+            <InventoryExpandTaskModal  
+           phoneId={phoneId}         
+           rowData={rowData}
+                  inventoryExpandTask={props.inventoryExpandTask}
+                  handleInventoryTask={props.handleInventoryTask}
+                />
       <RejectedReasonModal
         rowData={rowData}
         rejectedReasonModal={props.rejectedReasonModal}
@@ -482,6 +491,7 @@ const mapStateToProps = ({ inventory, distributor, auth,refurbish }) => ({
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal,
   userId: auth.userDetails.userId,
   phoNotesQCOrderModal: refurbish.phoNotesQCOrderModal,
+  inventoryExpandTask: inventory.inventoryExpandTask
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -490,7 +500,8 @@ const mapDispatchToProps = (dispatch) =>
       getDispatchUpdateList,
       updateDispatchInspectionButton,
       handleRejectReasonModal,
-      handleQCPhoneNotesOrderModal
+      handleQCPhoneNotesOrderModal,
+      handleInventoryTask
     },
     dispatch
   );

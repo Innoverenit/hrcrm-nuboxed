@@ -9,6 +9,8 @@ const initialState = {
 
   inventoryExpandList:false,
 
+  inventoryExpandTask:false,
+
   fetchingQualityManufactureData:false,
   fetchingQualityManufactureDataError:false,
   qualityManufactureData:[],
@@ -1836,6 +1838,9 @@ export const inventoryReducer = (state = initialState, action) => {
       };
       case types.HANDLE_INVENTORY_EXPAND:
         return { ...state, inventoryExpandList: action.payload };
+
+        case types.HANDLE_INVENTORY_TASK:
+          return { ...state, inventoryExpandTask: action.payload };
       
     case types.HANDLE_CUSTOM_MODAL:
       return { ...state, custoModal: action.payload };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-    getAccountInvoiveList,
+    getOrderInvoiveList,
     handlenvoiceOrderModal
 } from "../AccountAction";
 import {  Select } from 'antd';
@@ -12,7 +12,7 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvoiceOrderModal from "./InvoiceOrderModal";
 const { Option } = Select;
 
-function AccountInvoiceTable(props) {
+function InvouiceOrderTable(props) {
     const [pageNo, setPageNo] = useState(0);
     
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -44,8 +44,8 @@ function AccountInvoiceTable(props) {
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
     useEffect(() => {
-        setPageNo(pageNo + 1);
-        props.getAccountInvoiveList(props.distributorId,pageNo)
+       // setPageNo(pageNo + 1);
+        props.getOrderInvoiveList(props.rowData.orderId)
     }, []);
     const [rowData, setRowData] = useState({})
     const handleRowData = (item) => {
@@ -67,25 +67,25 @@ function AccountInvoiceTable(props) {
 
     const [hasMore, setHasMore] = useState(true);
     
-    const handleLoadMore = () => {
-        const callPageMapd = props.accountInvoice && props.accountInvoice.length &&props.accountInvoice[0].pageCount
-        setTimeout(() => {
-          const {
-            getAccountInvoiveList,
-           // userDetails: { employeeId },
-          } = props;
-          if  (props.accountInvoice)
-          {
-            if (pageNo < callPageMapd) {
-                setPageNo(pageNo + 1);
-                getAccountInvoiveList(props.orgId,pageNo); 
-          }
-          if (pageNo === callPageMapd){
-            setHasMore(false)
-          }
-        }
-        }, 100);
-      };
+    // const handleLoadMore = () => {
+    //     const callPageMapd = props.orderInvoice && props.orderInvoice.length &&props.orderInvoice[0].pageCount
+    //     setTimeout(() => {
+    //       const {
+    //         getOrderInvoiveList,
+    //        // userDetails: { employeeId },
+    //       } = props;
+    //       if  (props.orderInvoice)
+    //       {
+    //         if (pageNo < callPageMapd) {
+    //             setPageNo(pageNo + 1);
+    //             getOrderInvoiveList(props.orgId,pageNo); 
+    //       }
+    //       if (pageNo === callPageMapd){
+    //         setHasMore(false)
+    //       }
+    //     }
+    //     }, 100);
+    //   };
     return (
         <>
             <div className=' flex sticky  z-auto'>
@@ -99,16 +99,16 @@ function AccountInvoiceTable(props) {
                       
                     </div>
                     <div class="">
-                        <InfiniteScroll
-                            dataLength={props.accountInvoice.length}
+                        {/* <InfiniteScroll
+                            dataLength={props.orderInvoice.length}
                             next={handleLoadMore}
                             hasMore={hasMore}
-                            loader={props.fetchingAccountInvoice ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                            loader={props.fetchingOrderInvoice ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
                             height={"79vh"}
                             style={{scrollbarWidth:"thin"}}
-                        >
-                            {props.accountInvoice.length ? <>
-                                {props.accountInvoice.map((item) => {
+                        > */}
+                            {props.orderInvoice.length ? <>
+                                {props.orderInvoice.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
@@ -135,7 +135,7 @@ function AccountInvoiceTable(props) {
                                                                         handleRowData(item);
                                                                         props.handlenvoiceOrderModal(true);
                                                                     }}
-                                                                > {item.newOrderNo}</span>
+                                                                > {item.orderId}</span>
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
@@ -162,19 +162,17 @@ function AccountInvoiceTable(props) {
                                     )
                                 })}
                             </>
-                                : !props.accountInvoice.length
-                                    && !props.fetchingAccountInvoice ? <NodataFoundPage /> : null}
-                        </InfiniteScroll>
+                                : !props.orderInvoice.length
+                                    && !props.fetchingOrderInvoice ? <NodataFoundPage /> : null}
+                        {/* </InfiniteScroll> */}
                     </div>
                 </div>
             </div>
-            <InvoiceOrderModal
+            {/* <InvoiceOrderModal
                     rowData={rowData}
                     handlenvoiceOrderModal={props.handlenvoiceOrderModal}
                     invoiceOrders={props.invoiceOrders}
-                    selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText}
-                />  
+                />   */}
         </>
     )
 }
@@ -182,19 +180,19 @@ const mapStateToProps = ({ distributor, auth }) => ({
     userId: auth.userDetails.userId,
     orgId: auth.userDetails.organizationId,
     currencies: auth.currencies,
-    fetchingAccountInvoice:distributor.fetchingAccountInvoice,
-    accountInvoice:distributor.accountInvoice,
+    fetchingOrderInvoice:distributor.fetchingOrderInvoice,
+    orderInvoice:distributor.orderInvoice,
     invoiceOrders:distributor.invoiceOrders
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getAccountInvoiveList,
+            getOrderInvoiveList,
             handlenvoiceOrderModal
            
         },
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountInvoiceTable);
+export default connect(mapStateToProps, mapDispatchToProps)(InvouiceOrderTable);
