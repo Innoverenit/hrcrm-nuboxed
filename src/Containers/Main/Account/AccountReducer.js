@@ -18,6 +18,10 @@ const initialState = {
   fetchingSpareListByPhoneTaskIdError: false,
   phoneTaskIdSpareList:[],
 
+  fetchingOrderInvoice: false,
+  fetchingOrderInvoiceError: false,
+  orderInvoice:[],
+
   updatingOrdrSuplrItems: false,
   updatingOrdrSuplrItemsError: false,
 
@@ -74,6 +78,8 @@ const initialState = {
   accountOrderProduction: false,
 
   setEdittingOrder: {},
+
+  invoiceOrders:false,
 
   addDistributorSubscriptionConfigureModal: false,
 
@@ -3382,6 +3388,9 @@ export const distributorReducer = (state = initialState, action) => {
                             case types.HANDLE_STATUS_SHOW_DRAWER:
                               return { ...state, showStatusDrwr: action.payload };
 
+                              case types.HANDLE_INVOICE_ORDER_DRAWER:
+                              return { ...state, invoiceOrders: action.payload };
+
                               case types.GET_PROCURE_STATUS_ITEM_REQUEST:
       return { ...state, fetchingProcureStatusItem: true };
     case types.GET_PROCURE_STATUS_ITEM_SUCCESS:
@@ -3453,6 +3462,22 @@ export const distributorReducer = (state = initialState, action) => {
             fetchingAccountInvoice: false,
             fetchingAccountInvoiceError: true,
           };
+
+          case types.GET_ORDER_INVOICE_REQUEST:
+            return { ...state, fetchingOrderInvoice: true };
+          case types.GET_ORDER_INVOICE_SUCCESS:
+            return {
+              ...state,
+              fetchingOrderInvoice: false,
+              // accountInvoice: [...state.accountInvoice, ...action.payload]
+              orderInvoice: action.payload,
+            };
+          case types.GET_ORDER_INVOICE_FAILURE:
+            return {
+              ...state,
+              fetchingOrderInvoice: false,
+              fetchingOrderInvoiceError: true,
+            };
   
     default:
       return state;

@@ -2278,3 +2278,10 @@ export const handleInventoryexpand = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const handleInventoryTask = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVENTORY_TASK,
+    payload: modalProps,
+  });
+};

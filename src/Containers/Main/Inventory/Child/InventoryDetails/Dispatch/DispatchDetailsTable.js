@@ -7,6 +7,7 @@ import {
   updateDispatchInspectionButton,
   handleRejectReasonModal
 } from "../../../InventoryAction";
+import {handleQCPhoneNotesOrderModal} from "../../../../Refurbish/RefurbishAction"
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip } from "antd";
@@ -14,6 +15,7 @@ import { MultiAvatar} from "../../../../../../Components/UI/Elements"
 import { FileDoneOutlined } from "@ant-design/icons";
 import RejectedReasonModal from "./RejectedReasonModal";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
+import QCPhoneNotesOrderModal from "../../../../Refurbish/QCPhoneNotesOrderModal";
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
 const DispatchTaskTable = lazy(() => import("./DispatchTaskTable"))
 const DispatchReceiveToggle = lazy(() => import("./DispatchReceiveToggle"));
@@ -24,16 +26,19 @@ function OpenReceivedOrderIdForm(props) {
     props.getDispatchUpdateList(props.rowData.orderPhoneId)
   }, [])
 
-  const [rowData, setRowData] = useState({});
+  const [rowData, setrowData] = useState({});
   const [phoneId, setphoneId] = useState("");
   const [task, setTask] = useState(false);
-
+  const [RowData, setRowData] = useState({});
+    function handleSetRowData(item) {
+        setRowData(item);
+    }
   const handlePhoneTask = (id) => {
     setTask(!task)
     setphoneId(id);
   }
   const handleRowData = (data) => {
-    setRowData(data)
+    setrowData(data)
   }
   const itemValue = props.updateDispatchList.every((item) => item.dispatchInspectionInd === 1)
   console.log(itemValue)
@@ -167,10 +172,10 @@ let buttonRendered = false;
           <Tooltip title="Notes">
             <NoteAltIcon className=" cursor-pointer !text-icon text-green-600"
            
-            // onClick={() => {
-            //   handleSetParticularOrderData(item);
-            //   props.handleReceivedOrderIdPhoneNoteModal(true);
-            // }}
+           onClick={() => {
+            handleSetRowData(item);
+            props.handleQCPhoneNotesOrderModal(true);
+        }}
             />
 
           </Tooltip>
@@ -219,6 +224,11 @@ let buttonRendered = false;
         rejectedReasonModal={props.rejectedReasonModal}
         handleRejectReasonModal={props.handleRejectReasonModal}
       /> 
+         <QCPhoneNotesOrderModal
+                    RowData={RowData}
+                    phoNotesQCOrderModal={props.phoNotesQCOrderModal}
+                    handleQCPhoneNotesOrderModal={props.handleQCPhoneNotesOrderModal}
+                />
             </Suspense>
 
         </div>
@@ -226,7 +236,7 @@ let buttonRendered = false;
 )
 }
 
-const mapStateToProps = ({ inventory, distributor, auth }) => ({
+const mapStateToProps = ({ inventory, distributor, auth,refurbish }) => ({
   updateDispatchList: inventory.updateDispatchList,
   fetchingUpdateDispatchList:inventory.fetchingUpdateDispatchList,
   fetchingUpdateDispatchListError:inventory.fetchingUpdateDispatchListError,
@@ -234,7 +244,8 @@ const mapStateToProps = ({ inventory, distributor, auth }) => ({
   updatingDispatchInspectionButton: inventory.updatingDispatchInspectionButton,
   locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal,
-  userId: auth.userDetails.userId
+  userId: auth.userDetails.userId,
+  phoNotesQCOrderModal: refurbish.phoNotesQCOrderModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -242,7 +253,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       getDispatchUpdateList,
       updateDispatchInspectionButton,
-      handleRejectReasonModal
+      handleRejectReasonModal,
+      handleQCPhoneNotesOrderModal,
     },
     dispatch
   );

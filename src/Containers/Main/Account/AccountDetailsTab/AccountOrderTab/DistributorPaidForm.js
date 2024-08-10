@@ -39,6 +39,7 @@ function DistributorPaidForm(props) {
         initialValues={{
           date: "",
           paymentAmount: "",
+          invoiceId:"",
           paymentMode: "",
           remarks: "",
           docId: "",
@@ -95,14 +96,14 @@ function DistributorPaidForm(props) {
                   </div>
                   <div class="w-[31%]">
                     <Field
-                      name="paymentAmount"
+                      name="invoiceId"
                       label="Invoice Id"
                       isRequired
                       isColumn
                       inlineLabel
                       width={"100%"}
                       component={InputComponent}
-                      value={values.paymentAmount}
+                      value={values.invoiceId}
                     />
                   </div>
                   <div class="w-[31%]">
