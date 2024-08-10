@@ -4418,6 +4418,13 @@ export const handlenvoiceOrderModal = (modalProps) => (dispatch) => {
   })
 };
 
+export const handleInvoiceModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVOICE_DRAWER,
+    payload: modalProps
+  })
+};
+
 export const getProcureStatusItem = (orderId) => (dispatch) => {
   dispatch({
     type: types.GET_PROCURE_STATUS_ITEM_REQUEST,
@@ -4541,6 +4548,32 @@ export const getOrderInvoiveList = (orderId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_ORDER_INVOICE_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getInvoiveL = (invoiceId) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVOICEL_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderPayment/paymentList/${invoiceId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVOICEL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_INVOICEL_FAILURE,
         payload: err,
       });
     });

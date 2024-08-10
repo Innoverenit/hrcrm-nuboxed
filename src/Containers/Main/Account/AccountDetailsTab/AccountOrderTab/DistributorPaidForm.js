@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import * as Yup from "yup";
 import { Button } from "antd";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field } from "formik";
@@ -12,7 +13,10 @@ import { TextareaComponent } from "../../../../../Components/Forms/Formik/Textar
 import { FormattedMessage } from "react-intl";
 import { getCurrency } from "../../../../Auth/AuthAction";
 import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
-
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const DistributorSchema = Yup.object().shape({
+  paymentMode: Yup.string().required("Input required"),
+});
 function DistributorPaidForm(props) {
 
   const currencyOption = props.currencies.map((item) => {
@@ -51,6 +55,7 @@ function DistributorPaidForm(props) {
           approveByFinanceInd: false,
           orderId: props.particularRowData.orderId,
         }}
+        validationSchema={DistributorSchema}
 
         onSubmit={(values, { resetForm }) => {
           // let newEndDate = dayjs(values.date).format("YYYY-MM-DD");
