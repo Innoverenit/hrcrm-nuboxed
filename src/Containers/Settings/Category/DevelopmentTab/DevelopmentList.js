@@ -141,7 +141,7 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-            <label class=" font-bold ml-[15rem]">Configuration is per weekly basis</label>
+            <div class=" font-bold ml-[15rem]">Configuration is per weekly basis</div>
     <div class=" flex flex-row justify-between">
 
     <div class=" flex w-[14vw]" style={{marginTop:"12px"}} >

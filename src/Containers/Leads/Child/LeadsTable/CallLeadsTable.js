@@ -59,7 +59,7 @@ const CallLeadsTable = (props) => {
               </span>
                 </div>
                 <div class=" w-[20rem]">
-                  <label class=" cursor-pointer text-blue "
+                  <div class=" cursor-pointer text-blue "
                     type="link"
                     style={{ margin: '0 8px', padding: 0 }}
                     onClick={() => {
@@ -69,7 +69,7 @@ const CallLeadsTable = (props) => {
                     }}
                   >
                     <u>Notes</u>
-                  </label>
+                  </div>
                 </div>
               </div>
             </Timeline.Item>

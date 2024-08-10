@@ -94,7 +94,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                     <div>
                       <div class=" text-sm  font-medium font-poppins">
                         Cover:{" "}
-                        <label class="text-xs"> {item.coverDetails}</label>
+                        <div class="text-xs"> {item.coverDetails}</div>
                         &nbsp;
                       </div>
                     </div>

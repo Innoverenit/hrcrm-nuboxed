@@ -447,7 +447,7 @@ function InvesterForm(props) {
                             : []
                         }
                           /> */}
-                             <label>Sector</label>
+                             <div class="font-bold text-xs font-poppins text-black">Sector</div>
 
 <Select
         showSearch
@@ -482,7 +482,7 @@ function InvesterForm(props) {
                             value={values.source}
                             isColumn
                           /> */}
-                          <label>Source</label>
+                          <div class="font-bold text-xs font-poppins text-black">Source</div>
 
 <Select
         showSearch

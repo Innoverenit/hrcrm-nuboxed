@@ -129,7 +129,7 @@ function PriceAddCard(props) {
           <div key={index} class="flex items-center">
             <div class="flex justify-around w-[30rem]">
               <div>
-                <label>Currency</label>
+                <div class="font-bold text-xs font-poppins text-black">Currency</div>
                 <div class="w-24">
                 <Select
                         classNames="w-32"
@@ -147,7 +147,7 @@ function PriceAddCard(props) {
               </div>
 
               <div>
-                <label>Price (B2B)</label>
+                <div class="font-bold text-xs font-poppins text-black">Price (B2B)</div>
                 <div class="w-24"></div>
                 <Input
                  inputMode="numeric"
@@ -158,7 +158,7 @@ function PriceAddCard(props) {
                         {errors[`suppliesPrice${index}`] && <span className="text-red-500">{errors[`suppliesPrice${index}`]}</span>}
                       </div>
               <div>
-                <label>Price (B2C)</label>
+                <div class="font-bold text-xs font-poppins text-black">Price (B2C)</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -171,7 +171,7 @@ function PriceAddCard(props) {
                       </div>
 
                       <div>
-                <label>Type</label>
+                <div class="font-bold text-xs font-poppins text-black">Type</div>
                 <div class="w-24">
                 
                        

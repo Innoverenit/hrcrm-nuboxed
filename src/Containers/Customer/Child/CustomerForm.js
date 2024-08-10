@@ -590,7 +590,7 @@ country_dial_code
                     <div class="w-w47.5" style={{display:"flex",flexDirection:"column"}}>                
                 
  {props.customerConfigure.sourceInd===true&&
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</label>
+<div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</div>
 }
 {props.customerConfigure.sourceInd===true&&
 <Select

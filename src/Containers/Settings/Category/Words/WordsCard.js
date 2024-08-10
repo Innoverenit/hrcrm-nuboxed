@@ -73,9 +73,9 @@ words={words}
                          language !== 'id' && (
                         <div className="Ccard__title w-40 grid" key={language}>
                           
-                            <label className="text-black-700 text-xs">
+                            <div className="text-black-700 text-xs">
                               {language}
-                            </label>
+                            </div>
                           
                           {/* {editingIndex === index ? (
                             <div>
@@ -97,13 +97,13 @@ words={words}
                               )}
                             </div>
                           ) : (
-                            <label className={`text-gray-600 text-xs ${translations.baseLanguage === language ? 'green-text' : ''}`}>
+                            <div className={`text-gray-600 text-xs ${translations.baseLanguage === language ? 'green-text' : ''}`}>
                               {translations[language]}
-                            </label>
+                            </div>
                           )} */}
-                           <label className={`text-gray-600 text-xs ${translations.baseLanguage === language ? 'green-text' : ''}`}>
+                           <div className={`text-gray-600 text-xs ${translations.baseLanguage === language ? 'green-text' : ''}`}>
                               {translations[language]}
-                            </label>
+                            </div>
                         </div>
                          )
                       ))}

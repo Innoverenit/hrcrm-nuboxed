@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { ApplicationWrapper } from "../Layout";
 import {
   BellOutlined, PlusOutlined,FileFilled
   
@@ -13,7 +12,7 @@ class NoData extends Component {
 
     return (
       <>
-        <ApplicationWrapper>
+        <div class=" p-1 bg-light-gray ">
         <div class=" flex flex-row flex-wrap items-center  self-start justify-center grow shrink h-[80vh] mr-auto ">
         <div class=" flex flex-col flex-wrap items-center self-center justify-center grow shrink h-auto mr-auto ">
           
@@ -34,7 +33,7 @@ class NoData extends Component {
               </SubTitle>
             </div>
           </div>
-        </ApplicationWrapper>
+        </div>
       </>
     );
   }

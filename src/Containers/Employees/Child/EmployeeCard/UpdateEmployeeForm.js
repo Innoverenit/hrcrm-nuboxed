@@ -659,7 +659,7 @@ class UpdateEmployeeForm extends Component {
 
                     <div class=" flex justify-between max-sm:flex-col" >
                       <div class=" w-w48 flex flex-col max-sm:w-wk">
-                        {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</label>
+                        {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</div>
 <select className="customize-select"
 name="departmentId"
                        
@@ -803,7 +803,7 @@ name="departmentId"
                           margintop={"0"}
                           inlineLabel
                         />
-                        {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>WorkPlace</label>
+                        {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>WorkPlace</div>
                     <select className="customize-select"
                       
                       onChange={this.handleCountryChange}>
@@ -854,7 +854,7 @@ name="departmentId"
                         // isColumn
                         // selectType="roleType"
                         />
-                        {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Location</label>
+                        {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Location</div>
                     <select className="customize-select"
              
                       onChange={this.handleLocationChange}
@@ -944,10 +944,10 @@ name="departmentId"
                         &nbsp;&nbsp;
                       </Radio.Group>
                     </div>
-                    <div class="mt-2"><label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reports To</label></div>
+                    <div class="mt-2"><div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reports To</div></div>
                     <div class=" flex justify-between  max-sm:flex-col" >
                       <div class=" w-w48 max-sm:w-wk">
-                        <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Department</label>
+                        <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Department</div>
                         <Select
                           className="w-[250px]"
                           value={department}
@@ -960,7 +960,7 @@ name="departmentId"
                       </div>
 
                       <div class="w-w47.5 max-sm:w-wk">
-                        <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reporting Manager</label>
+                        <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reporting Manager</div>
                         <Select
                           className="w-[250px]"
                           value={reportingManager}
@@ -975,7 +975,7 @@ name="departmentId"
 
                     <div class=" flex justify-between  max-sm:flex-col" >
                       <div class=" w-w48 max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Department</label>
+                      <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Department</div>
                         <Select
                           className="w-[250px]"
                           value={secondatDepartment}
@@ -988,7 +988,7 @@ name="departmentId"
                       </div>
 
                       <div class="w-w47.5 max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Reporting Manager</label>
+                      <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Reporting Manager</div>
                         <Select
                           className="w-[250px]"
                           value={secondaryReportingManager}
@@ -1635,7 +1635,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(UpdateEmployeeForm);
 
 //                     <div class=" flex justify-between max-sm:flex-col" >
 //                       <div class=" w-w48 flex flex-col max-sm:w-wk">
-//                         {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</label>
+//                         {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</div>
 // <select className="customize-select"
 // name="departmentId"
                        
@@ -1779,7 +1779,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(UpdateEmployeeForm);
 //                           margintop={"0"}
 //                           inlineLabel
 //                         />
-//                         {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>WorkPlace</label>
+//                         {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>WorkPlace</div>
 //                     <select className="customize-select"
                       
 //                       onChange={this.handleCountryChange}>
@@ -1830,7 +1830,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(UpdateEmployeeForm);
 //                         // isColumn
 //                         // selectType="roleType"
 //                         />
-//                         {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Location</label>
+//                         {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Location</div>
 //                     <select className="customize-select"
              
 //                       onChange={this.handleLocationChange}
@@ -1920,10 +1920,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(UpdateEmployeeForm);
 //                         &nbsp;&nbsp;
 //                       </Radio.Group>
 //                     </div>
-//                     <div class="mt-2"><label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reports To</label></div>
+//                     <div class="mt-2"><div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reports To</div></div>
 //                     <div class=" flex justify-between  max-sm:flex-col" >
 //                       <div class=" w-w48 max-sm:w-wk">
-//                         <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Department</label>
+//                         <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Department</div>
 //                         <Select
 //                           className="w-[250px]"
 //                           value={department}
@@ -1936,7 +1936,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(UpdateEmployeeForm);
 //                       </div>
 
 //                       <div class="w-w47.5 max-sm:w-wk">
-//                         <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reporting Manager</label>
+//                         <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reporting Manager</div>
 //                         <Select
 //                           className="w-[250px]"
 //                           value={reportingManager}
@@ -1951,7 +1951,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(UpdateEmployeeForm);
 
 //                     <div class=" flex justify-between  max-sm:flex-col" >
 //                       <div class=" w-w48 max-sm:w-wk">
-//                       <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Department</label>
+//                       <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Department</div>
 //                         <Select
 //                           className="w-[250px]"
 //                           value={secondatDepartment}
@@ -1964,7 +1964,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(UpdateEmployeeForm);
 //                       </div>
 
 //                       <div class="w-w47.5 max-sm:w-wk">
-//                       <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Reporting Manager</label>
+//                       <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Reporting Manager</div>
 //                         <Select
 //                           className="w-[250px]"
 //                           value={secondaryReportingManager}

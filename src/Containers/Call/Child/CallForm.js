@@ -1047,7 +1047,7 @@ function CallForm(props) {
                       value: employeeId,
                     }}
                   /> */}
-                  {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label> */}
+                  {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</div> */}
                    <Select
           showSearch
           className=" mt-1"
@@ -1071,7 +1071,7 @@ function CallForm(props) {
                   {props.user.crmInd === true &&(
               
      <>        
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label> */}
+{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</div> */}
 
 <Select
         showSearch
@@ -1096,7 +1096,7 @@ function CallForm(props) {
                   {props.user.crmInd === true &&(
                   
                   <>
-                  {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label> */}
+                  {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</div> */}
 
 <Select
         showSearch
@@ -1143,7 +1143,7 @@ function CallForm(props) {
               //    inlineLabel
               //  />
               <>
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label> */}
+{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</div> */}
               <Select
         showSearch
         placeholder="Search or select opportunity"

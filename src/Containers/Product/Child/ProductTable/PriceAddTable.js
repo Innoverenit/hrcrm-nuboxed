@@ -162,7 +162,7 @@ function ProductbuilderTable(props) {
           <div key={index} class="flex items-center">
             <div class="flex justify-around w-[30rem]">
               <div>
-                <label>Currency</label>
+                <div class="font-bold text-xs font-poppins text-black">Currency</div>
                 <div class="w-24">
                 <Select
                         classNames="w-32"
@@ -180,7 +180,7 @@ function ProductbuilderTable(props) {
               </div>
 
               <div>
-                <label>Price (B2B)</label>
+                <div class="font-bold text-xs font-poppins text-black">Price (B2B)</div>
                 <div class="w-24"></div>
                 <Input
                  inputMode="numeric"
@@ -191,7 +191,7 @@ function ProductbuilderTable(props) {
                         {errors[`price${index}`] && <span className="text-red-500">{errors[`price${index}`]}</span>}
                       </div>
               <div>
-                <label>Price (B2C)</label>
+                <div class="font-bold text-xs font-poppins text-black">Price (B2C)</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -202,7 +202,7 @@ function ProductbuilderTable(props) {
                        {errors[`priceB2C${index}`] && <span className="text-red-500">{errors[`priceB2C${index}`]}</span>}
                       </div></div>
               <div>
-                <label>VAT (in %)</label>
+                <div class="font-bold text-xs font-poppins text-black">VAT (in %)</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"

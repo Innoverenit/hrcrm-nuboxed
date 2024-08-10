@@ -169,9 +169,9 @@ function KpiList(props) {
      <div className="flex flex-wrap justify-between mt-2">
   {activeTab && (
     <div className="w-[25%] mt-[1.2rem] max-sm:w-wk">
-      <label className="text-[#444] font-bold flex-col text-[0.75rem]">
+      <div className="text-[#444] font-bold flex-col text-[0.75rem]">
         Assign KPI
-      </label>
+      </div>
       <select
         className="customize-select"
         onChange={handleWorkflowChange}
@@ -187,9 +187,9 @@ function KpiList(props) {
   )}
   {selected && (
     <div className="w-[18%] mt-[1.2rem] max-sm:w-wk">
-      <label className="text-[#444] font-bold flex-col text-[0.75rem]">
+      <div className="text-[#444] font-bold flex-col text-[0.75rem]">
         LOB
-      </label>
+      </div>
       <select
         className="customize-select"
         style={{ width: "50%" }}
@@ -207,7 +207,7 @@ function KpiList(props) {
   {selected && (
     <>
       <div className="w-[35%]">
-        <label className="text-[#444] font-bold text-[0.75rem]">Assigned</label>
+        <div className="text-[#444] font-bold text-[0.75rem]">Assigned</div>
      
 <div class=" flex flex-row">
         <Field
@@ -278,7 +278,7 @@ function KpiList(props) {
         {/* </div> */}
       </div>
       <div className="w-[15%] ">
-        <label className="text-[#444] font-bold text-[0.75rem]">Weightage</label>
+        <div className="text-[#444] font-bold text-[0.75rem]">Weightage</div>
         <Field
           onChange={(e) => setFieldValue("weitageValue", parseFloat(e.target.value))}
           name="weitageValue"

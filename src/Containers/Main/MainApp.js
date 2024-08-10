@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
 import AssessmentData from "../AssessmentData/AssessmentData"
-import { base_url,login_url } from "../../Config/Auth";
+import { login_url } from "../../Config/Auth";
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
@@ -15,9 +15,7 @@ import { bindActionCreators } from "redux";import {
 } from "antd";
 import { ThemeProvider } from "styled-components";
 import {
-  ApplicationWrapper,
   LayoutWrapper,
-  NavbarWrapper,
 } from "../../Components/UI/Layout";
 import { Select } from "antd";
 import { handleInTagDrawer } from "../../Containers/Main/Refurbish/RefurbishAction";
@@ -440,11 +438,8 @@ function MainApp(props) {
             </Sider>
           </div>
           <LayoutWrapper>
-            <NavbarWrapper style={{
-              padding: 0, height: 50, alignItems: "center", position: "sticky", zIndex: "999", top: " 0.15rem",
-
-
-            }}>
+            <div class=" flex flex-row justify-between w-full items-center content-center nowrap sticky z-50  h-12 leading-[4rem] mt-1 shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
+           
               <Header>
               <div class="max-xl:text-[0.75rem] max-lg:text-[0.5rem]">
                   <LanguageSelector
@@ -560,8 +555,8 @@ function MainApp(props) {
                
                 </div>
               </Header>
-            </NavbarWrapper>
-            <ApplicationWrapper>
+            </div>
+            <div class=" p-1 bg-light-gray ">
               <AppErrorBoundary>
                 <Content>
                   <Suspense maxDuration={6000} fallback={<BundleLoader />}>
@@ -1564,7 +1559,7 @@ function MainApp(props) {
                   </Suspense>
                 </Content>
               </AppErrorBoundary>
-            </ApplicationWrapper>
+            </div>
           </LayoutWrapper>
         </LayoutWrapper>
       </ThemeProvider>

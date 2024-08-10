@@ -44,7 +44,7 @@ const OrderPickupForm = (props) => {
         <div>
             <div class="mt-[10px] flex justify-between">
                 <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Location</label>
+                    <div class="text-[15px] font-semibold m-[10px]">Location</div>
                     <Select
                         className="w-[350px]"
                         value={location}
@@ -57,7 +57,7 @@ const OrderPickupForm = (props) => {
                 </div>
 
                 <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Date</label>
+                    <div class="text-[15px] font-semibold m-[10px]">Date</div>
                     <DatePicker
                         className="w-[300]"
                         value={date}

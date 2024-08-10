@@ -609,9 +609,9 @@ function EmployeeTable(props) {
         console.error('Error translating menu items:', error);
       }
     };
-
-    fetchMenuTranslations();
+   fetchMenuTranslations();
   }, [props.selectedLanguage]);
+  
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {

@@ -164,7 +164,7 @@ console.log(props.clubShareData)
               
 
               <div>
-                <label>Name</label>
+                <div class="font-bold text-xs font-poppins text-black">Name</div>
                 <div class="w-24"></div>
                 <Input
                 type="text"
@@ -177,7 +177,7 @@ console.log(props.clubShareData)
                         {errors[`clubName${index}`] && <span className="text-red-500">{errors[`clubName${index}`]}</span>}
                       </div>
               <div>
-                <label># Shares</label>
+                <div class="font-bold text-xs font-poppins text-black"># Shares</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -188,7 +188,7 @@ console.log(props.clubShareData)
                        {errors[`noOfShare${index}`] && <span className="text-red-500">{errors[`noOfShare${index}`]}</span>}
                       </div></div>
               <div>
-                <label>Discount %</label>
+                <div class="font-bold text-xs font-poppins text-black">Discount %</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"

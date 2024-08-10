@@ -460,7 +460,7 @@ console.log(isLastNameVisible)
           />
     </div>
     <div class="w-16 ml-2 max-sm:w-wk">
-      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
+      <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</div>
       <Select
         showSearch
         style={{ width: 100 }}

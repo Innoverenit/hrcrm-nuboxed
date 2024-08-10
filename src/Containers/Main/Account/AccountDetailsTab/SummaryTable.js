@@ -11,7 +11,7 @@ const SummaryTable = (props) => {
   return (
     <>
      <div class="flex flex-col items-center ">
-      <label class="font-bold"> {year}</label>
+      <div class="font-bold"> {year}</div>
     </div>
    
     <div class="flex justify-between">

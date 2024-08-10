@@ -105,7 +105,7 @@ const AddSpareForm = (props) => {
                     <>
                         <div class="flex justify-between">
                             <div class="w-[30%]">
-                                <label>{`Spare ${i + 1}`}</label>
+                                <div class="font-bold text-xs font-poppins text-black">{`Spare ${i + 1}`}</div>
 
                                 <Select
                                     name={`${row.id}_value`}
@@ -123,13 +123,13 @@ const AddSpareForm = (props) => {
                             </div>
 
                             <div class="w-[15%]">
-                                <label>
+                                <div class="font-bold text-xs font-poppins text-black">
                                     <FormattedMessage
                                         id="app.units"
                                         defaultMessage="Units"
                                     />
 
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.noOfSpare}`}
@@ -139,12 +139,12 @@ const AddSpareForm = (props) => {
                                 />
                             </div>
                             <div class="w-[15%]">
-                                <label>
+                                <div class="font-bold text-xs font-poppins text-black">
                                     <FormattedMessage
                                         id="app.hours"
                                         defaultMessage="Hours"
                                     />
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.hours}`}

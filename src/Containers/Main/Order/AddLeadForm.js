@@ -42,7 +42,7 @@ function AddLeadForm(props) {
                 <>
                     <div class=" flex justify-between">
                         <div className=" w-1/4">
-                            <label>Department</label>
+                            <div class="font-bold text-xs font-poppins text-black">Department</div>
                             <Select
                                 className="w-[200px]"
                                 value={department}
@@ -55,7 +55,7 @@ function AddLeadForm(props) {
                         </div>
 
                         <div className=" w-1/4">
-                            <label>Location</label>
+                            <div class="font-bold text-xs font-poppins text-black">Location</div>
                             <Select
                                 className="w-[200px]"
                                 value={location}
@@ -68,7 +68,7 @@ function AddLeadForm(props) {
                         </div>
 
                         <div className=" w-1/4">
-                            <label>Lead</label>
+                            <div class="font-bold text-xs font-poppins text-black">Lead</div>
                             <Select
                                 className="w-[200px]"
                                 value={technician}

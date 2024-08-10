@@ -586,7 +586,7 @@ function AddDocumentModal (props){
        <div className="mt-1 flex flex-col">
       
       <div className="flex items-center">
-      <label className="font-bold text-xs">Share</label>
+      <div className="font-bold text-xs">Share</div>
         <Switch
           checked={showInclude}
           onChange={handleToggleInclude}
@@ -597,7 +597,7 @@ function AddDocumentModal (props){
       </div>
       {showInclude && (
       <div className="mt-1 flex flex-col">
-      <label className="font-bold text-xs">Include</label>
+      <div className="font-bold text-xs">Include</div>
         <Select
           showSearch
           style={{ width: "-webkit-fill-available" }}

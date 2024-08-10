@@ -104,7 +104,7 @@ const handleDeptChange = (event) => {
       
               <div class=" flex justify-between width-[50%] ml-4 " >
                                                     <div class=" w-[35%]" >
-                                                    <label class=" text-[#444] font-bold text-[0.75rem]" >Department</label>
+                                                    <div class=" text-[#444] font-bold text-[0.75rem]" >Department</div>
                       <select 
                        className="customize-select"
                       onChange={handleDeptChange}>
@@ -122,7 +122,7 @@ const handleDeptChange = (event) => {
           <>                                           
 {single === false?(
             <div class=" w-[35%]" >
-            <label class=" text-[#444] font-bold text-[0.75rem]" >User</label>
+            <div class=" text-[#444] font-bold text-[0.75rem]" >User</div>
             <select
             className="customize-select"
                  onChange={handleUserChange}

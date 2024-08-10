@@ -146,7 +146,7 @@ function InventoryPriceAddTable(props) {
           <div key={index} class="flex items-center justify-between">
             <div class="flex justify-around w-[30rem]">
             <div>
-                <label>Currency</label>
+                <div class="font-bold text-xs font-poppins text-black">Currency</div>
                 <div class="w-24">
                 <Select
                 style={{width:"5rem"}}
@@ -165,7 +165,7 @@ function InventoryPriceAddTable(props) {
               </div>
 
               <div>
-                <label>Quantity Of Share</label>
+                <div class="font-bold text-xs font-poppins text-black">Quantity Of Share</div>
                 <div class="w-24"></div>
                 <Input
                  inputMode="numeric"
@@ -176,7 +176,7 @@ function InventoryPriceAddTable(props) {
                         {errors[`quantityOfShare${index}`] && <span className="text-red-500">{errors[`quantityOfShare${index}`]}</span>}
                       </div>
               <div>
-                <label>Value per Share</label>
+                <div class="font-bold text-xs font-poppins text-black">Value per Share</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -187,7 +187,7 @@ function InventoryPriceAddTable(props) {
                        {errors[`amountPerShare${index}`] && <span className="text-red-500">{errors[`amountPerShare${index}`]}</span>}
                       </div></div>
                       <div>
-        <label>Date</label>
+        <div class="font-bold text-xs font-poppins text-black">Date</div>
         <div class="w-24">
           <DatePicker
             style={{width:"9rem"}}

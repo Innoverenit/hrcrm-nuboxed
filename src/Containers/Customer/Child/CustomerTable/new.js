@@ -169,7 +169,7 @@ function Myleads(props) {
                    style={{backgroundColor:"#5f92ff",borderRadius: "1rem",padding: "0.25rem 1rem"}}
                    onClick={() => props.handleEmptyTruckModal(true)}
                 >
-            <h10 class="text-white"> +</h10> <label class=" font-montserrat cursor-pointer text-white text-base font-bold">{translatedMenuItems[34]}</label>
+            <h10 class="text-white"> +</h10> <div class=" font-montserrat cursor-pointer text-white text-base font-bold">{translatedMenuItems[34]}</div>
                 
                 </button>
 

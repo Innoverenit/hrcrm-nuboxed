@@ -491,7 +491,7 @@ const NameList = (props) => {
             <h3>{item.name}</h3>
             <div className="switches">
               <div className="switch-item">
-                <label>Admin:</label>
+                <div class="font-bold text-xs font-poppins text-black">Admin:</div>
                 <Switch
                  checkedChildren="Yes"
                         unCheckedChildren="No"
@@ -500,7 +500,7 @@ const NameList = (props) => {
                 />
               </div>
               <div className="switch-item">
-                <label>Reporting Manager:</label>
+                <div class="font-bold text-xs font-poppins text-black">Reporting Manager:</div>
                 <Switch
                  checkedChildren="Yes"
                         unCheckedChildren="No"
@@ -509,7 +509,7 @@ const NameList = (props) => {
                 />
               </div>
               <div className="switch-item">
-                <label>Reporting Manager1:</label>
+                <div class="font-bold text-xs font-poppins text-black">Reporting Manager1:</div>
                 <Switch
                  checkedChildren="Yes"
                         unCheckedChildren="No"
