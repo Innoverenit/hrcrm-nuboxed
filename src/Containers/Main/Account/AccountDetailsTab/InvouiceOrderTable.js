@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
     getOrderInvoiveList,
-    handlenvoiceOrderModal
+    handleInvoiceModal
 } from "../AccountAction";
 import {  Select } from 'antd';
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvoiceOrderModal from "./InvoiceOrderModal";
+import InvoiceModal from "./InvoiceModal";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const { Option } = Select;
 
 function InvouiceOrderTable(props) {
@@ -86,6 +88,9 @@ function InvouiceOrderTable(props) {
     //     }
     //     }, 100);
     //   };
+    if (loading) {
+        return <div><BundleLoader/></div>;
+      }
     return (
         <>
             <div className=' flex sticky  z-auto'>
@@ -107,72 +112,76 @@ function InvouiceOrderTable(props) {
                             height={"79vh"}
                             style={{scrollbarWidth:"thin"}}
                         > */}
-                            {props.orderInvoice.length ? <>
+                            {/* {props.orderInvoice.length ? <>
                                 {props.orderInvoice.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-                                    return (
+                                    return ( */}
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
-                                                           {item.distributorId}
+                                                           {/* {item.distributorId} */}
                                                            
 
                                                         </div>
-                                                        {date === currentdate ? (
+                                                        {/* {date === currentdate ? (
                                                                 <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
                                                                     New
                                                                 </div>
-                                                            ) : null}
+                                                            ) : null} */}
                                                     </div>
                                                     <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
-                                                                        handleRowData(item);
-                                                                        props.handlenvoiceOrderModal(true);
+                                                                       // handleRowData(item);
+                                                                        props.handleInvoiceModal(true);
                                                                     }}
-                                                                > {item.orderId}</span>
+                                                                > INV123
+                                                                {/* {item.orderId} */}
+                                                                </span>
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                         {item.categoryName}
+                                                         {/* {item.categoryName} */}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {item.brand}
+                                                            {/* {item.brand} */}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {item.model}
+                                                            {/* {item.model} */}
                                                         </div>
                                                     </div>
                                                     
                                                 </div>
                                             </div>
-                                        </>
-                                    )
+                                         </>
+                                    {/* )
                                 })}
                             </>
                                 : !props.orderInvoice.length
-                                    && !props.fetchingOrderInvoice ? <NodataFoundPage /> : null}
+                                    && !props.fetchingOrderInvoice ? <NodataFoundPage /> : null}  */}
                         {/* </InfiniteScroll> */}
                     </div>
                 </div>
             </div>
-            {/* <InvoiceOrderModal
+            <InvoiceModal
                     rowData={rowData}
-                    handlenvoiceOrderModal={props.handlenvoiceOrderModal}
-                    invoiceOrders={props.invoiceOrders}
-                />   */}
+                    handleInvoiceModal={props.handleInvoiceModal}
+                    invoiceO={props.invoiceO}
+                    selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText}
+                />  
         </>
     )
 }
@@ -182,14 +191,14 @@ const mapStateToProps = ({ distributor, auth }) => ({
     currencies: auth.currencies,
     fetchingOrderInvoice:distributor.fetchingOrderInvoice,
     orderInvoice:distributor.orderInvoice,
-    invoiceOrders:distributor.invoiceOrders
+    invoiceO:distributor.invoiceO
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getOrderInvoiveList,
-            handlenvoiceOrderModal
+            handleInvoiceModal
            
         },
         dispatch

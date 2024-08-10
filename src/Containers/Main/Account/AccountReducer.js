@@ -10,6 +10,12 @@ const initialState = {
 
   showStatusDrwr: false,
 
+  invoiceO:false,
+
+  fetchingInvoiceL: false,
+  fetchingInvoiceLError: true,
+  invoiceL:[],
+
   fetchingAccountInvoice: false,
   fetchingAccountInvoiceError: false,
   accountInvoice:[],
@@ -3391,6 +3397,9 @@ export const distributorReducer = (state = initialState, action) => {
                               case types.HANDLE_INVOICE_ORDER_DRAWER:
                               return { ...state, invoiceOrders: action.payload };
 
+                              case types.HANDLE_INVOICE_DRAWER:
+                                return { ...state, invoiceO: action.payload };
+
                               case types.GET_PROCURE_STATUS_ITEM_REQUEST:
       return { ...state, fetchingProcureStatusItem: true };
     case types.GET_PROCURE_STATUS_ITEM_SUCCESS:
@@ -3477,6 +3486,22 @@ export const distributorReducer = (state = initialState, action) => {
               ...state,
               fetchingOrderInvoice: false,
               fetchingOrderInvoiceError: true,
+            };
+
+            case types.GET_INVOICEL_REQUEST:
+            return { ...state, fetchingInvoiceL: true };
+          case types.GET_INVOICEL_SUCCESS:
+            return {
+              ...state,
+              fetchingInvoiceL: false,
+              // accountInvoice: [...state.accountInvoice, ...action.payload]
+              invoiceL: action.payload,
+            };
+          case types.GET_INVOICEL_FAILURE:
+            return {
+              ...state,
+              fetchingInvoiceL: false,
+              fetchingInvoiceLError: true,
             };
   
     default:

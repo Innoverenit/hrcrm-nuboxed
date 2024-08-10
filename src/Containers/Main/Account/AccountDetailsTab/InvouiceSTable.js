@@ -2,18 +2,19 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-    getAccountInvoiveList,
-    handlenvoiceOrderModal
+    getInvoiveL,
+   // handleInvoiceModal
 } from "../AccountAction";
 import {  Select } from 'antd';
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvoiceOrderModal from "./InvoiceOrderModal";
+import InvoiceModal from "./InvoiceModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const { Option } = Select;
 
-function AccountInvoiceTable(props) {
+function InvouiceSTable(props) {
     const [pageNo, setPageNo] = useState(0);
     
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -45,8 +46,8 @@ function AccountInvoiceTable(props) {
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
     useEffect(() => {
-        setPageNo(pageNo + 1);
-        props.getAccountInvoiveList(props.distributorId,pageNo)
+       // setPageNo(pageNo + 1);
+        props.getInvoiveL("INV123")
     }, []);
     const [rowData, setRowData] = useState({})
     const handleRowData = (item) => {
@@ -68,26 +69,26 @@ function AccountInvoiceTable(props) {
 
     const [hasMore, setHasMore] = useState(true);
     
-    const handleLoadMore = () => {
-        const callPageMapd = props.accountInvoice && props.accountInvoice.length &&props.accountInvoice[0].pageCount
-        setTimeout(() => {
-          const {
-            getAccountInvoiveList,
-           // userDetails: { employeeId },
-          } = props;
-          if  (props.accountInvoice)
-          {
-            if (pageNo < callPageMapd) {
-                setPageNo(pageNo + 1);
-                getAccountInvoiveList(props.orgId,pageNo); 
-          }
-          if (pageNo === callPageMapd){
-            setHasMore(false)
-          }
-        }
-        }, 100);
-      };
-      if (loading) {
+    // const handleLoadMore = () => {
+    //     const callPageMapd = props.invoiceL && props.invoiceL.length &&props.invoiceL[0].pageCount
+    //     setTimeout(() => {
+    //       const {
+    //         getInvoiveL,
+    //        // userDetails: { employeeId },
+    //       } = props;
+    //       if  (props.invoiceL)
+    //       {
+    //         if (pageNo < callPageMapd) {
+    //             setPageNo(pageNo + 1);
+    //             getInvoiveL(props.orgId,pageNo); 
+    //       }
+    //       if (pageNo === callPageMapd){
+    //         setHasMore(false)
+    //       }
+    //     }
+    //     }, 100);
+    //   };
+    if (loading) {
         return <div><BundleLoader/></div>;
       }
     return (
@@ -103,16 +104,16 @@ function AccountInvoiceTable(props) {
                       
                     </div>
                     <div class="">
-                        <InfiniteScroll
-                            dataLength={props.accountInvoice.length}
+                        {/* <InfiniteScroll
+                            dataLength={props.invoiceL.length}
                             next={handleLoadMore}
                             hasMore={hasMore}
-                            loader={props.fetchingAccountInvoice ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                            loader={props.fetchingInvoiceL ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
                             height={"79vh"}
                             style={{scrollbarWidth:"thin"}}
-                        >
-                            {props.accountInvoice.length ? <>
-                                {props.accountInvoice.map((item) => {
+                        > */}
+                            {props.invoiceL.length ? <>
+                                {props.invoiceL.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
@@ -121,64 +122,66 @@ function AccountInvoiceTable(props) {
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
-                                                           {item.distributorId}
+                                                           {/* {item.distributorId} */}
                                                            
 
                                                         </div>
-                                                        {date === currentdate ? (
+                                                        {/* {date === currentdate ? (
                                                                 <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
                                                                     New
                                                                 </div>
-                                                            ) : null}
+                                                            ) : null} */}
                                                     </div>
                                                     <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
-                                                                        handleRowData(item);
-                                                                        props.handlenvoiceOrderModal(true);
+                                                                       // handleRowData(item);
+                                                                       // props.handleInvoiceModal(true);
                                                                     }}
-                                                                > {item.newOrderNo}</span>
+                                                                > INV123
+                                                                {/* {item.orderId} */}
+                                                                </span>
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                         {item.categoryName}
+                                                         {/* {item.categoryName} */}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {item.brand}
+                                                            {/* {item.brand} */}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {item.model}
+                                                            {/* {item.model} */}
                                                         </div>
                                                     </div>
                                                     
                                                 </div>
                                             </div>
-                                        </>
-                                    )
+                                         </>
+                                     )
                                 })}
                             </>
-                                : !props.accountInvoice.length
-                                    && !props.fetchingAccountInvoice ? <NodataFoundPage /> : null}
-                        </InfiniteScroll>
+                                : !props.invoiceL.length
+                                    && !props.fetchingInvoiceL ? <NodataFoundPage /> : null}  
+                        {/* </InfiniteScroll> */}
                     </div>
                 </div>
             </div>
-            <InvoiceOrderModal
+            {/* <InvoiceModal
                     rowData={rowData}
-                    handlenvoiceOrderModal={props.handlenvoiceOrderModal}
-                    invoiceOrders={props.invoiceOrders}
+                    handleInvoiceModal={props.handleInvoiceModal}
+                    invoiceO={props.invoiceO}
                     selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText}
-                />  
+                />   */}
         </>
     )
 }
@@ -186,19 +189,19 @@ const mapStateToProps = ({ distributor, auth }) => ({
     userId: auth.userDetails.userId,
     orgId: auth.userDetails.organizationId,
     currencies: auth.currencies,
-    fetchingAccountInvoice:distributor.fetchingAccountInvoice,
-    accountInvoice:distributor.accountInvoice,
-    invoiceOrders:distributor.invoiceOrders
+    fetchingInvoiceL:distributor.fetchingInvoiceL,
+    invoiceL:distributor.invoiceL,
+    invoiceO:distributor.invoiceO
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getAccountInvoiveList,
-            handlenvoiceOrderModal
+            getInvoiveL,
+           // handleInvoiceModal
            
         },
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountInvoiceTable);
+export default connect(mapStateToProps, mapDispatchToProps)(InvouiceSTable);
