@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
-import { Formik, Form, Field, FastField, FieldArray } from "formik";
-import * as Yup from "yup";
+import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-// import { getPlant } from "../../../Plant/PlantAction";
 import { updateTeamsAllocation } from "./TeamsAction";
 
 function UpdateTeamsAllocationForm(props) {

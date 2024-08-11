@@ -542,7 +542,7 @@
 // export default connect(mapStateToProps, mapDispatchToProps)(EmployeeTable);
 
 
-import React, { Suspense, useEffect,useMemo, useState } from "react";
+import React, { Suspense, useEffect,useMemo, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
@@ -569,14 +569,15 @@ import {
   getRoles,
 } from "../../../Settings/Category/Role/RoleAction";
 import EmployeeDetailsView from "../EmployeeGroup/EmployeeDetails/EmployeeDetailsView";
-import EmployeeDrawerForAdmin from "./EmployeeDrawer/EmployeeDrawerForAdmin";
 import SuspendEmployee from "../SuspendEmployee/SuspendEmployee";
 import dayjs from "dayjs";
-import EmployeePulseDrawerModal from "./EmployeePulseDrawerModal";
-import OpenNotifyDrawer from "../EmployeeCard/OpenNotifyDrawer";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import MultiOrgEmployee from "../MultiOrgEmployee";
 import EmployeeSearchedData from "./EmployeeSearchedData";
+const OpenNotifyDrawer =lazy(()=>import("../EmployeeCard/OpenNotifyDrawer"));
+const EmployeePulseDrawerModal =lazy(()=>import("./EmployeePulseDrawerModal"));
+const EmployeeDrawerForAdmin =lazy(()=>import("./EmployeeDrawer/EmployeeDrawerForAdmin"));
+
 
 function EmployeeTable(props) {
   const [page, setPage] = useState(0);

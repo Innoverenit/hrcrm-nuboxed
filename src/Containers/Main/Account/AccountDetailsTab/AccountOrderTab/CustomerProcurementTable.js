@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy ,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
 import dayjs from "dayjs";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import {
   // getOrderProcurement,
   getDistributorOrderOfHigh,
@@ -18,12 +17,13 @@ import {
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import UpdateProcureModal from "./UpdateProcureModal";
-import AccountProcureDetailsModal from "../AccountProcureDetailsModal";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import ProcureStatusShowDrawer from "./ProcureStatusShowDrawer";
+
+const UpdateProcureModal = lazy(() => import('./UpdateProcureModal'));
+const AccountProcureDetailsModal = lazy(() => import('../AccountProcureDetailsModal'));
+const ProcureStatusShowDrawer = lazy(() => import('./ProcureStatusShowDrawer'));
 
 function CustomerProcurementTable(props) {
   const [page, setPage] = useState(0);
@@ -623,6 +623,7 @@ const handleLoadMoreLow = () => {
                             </> : !props.lowDistributorOrder.length && !props.fetchingDistributorOfLow ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
       </div>
+      <Suspense fallback={<BundleLoader />}>
       <UpdateProcureModal
       selectedLanguage={props.selectedLanguage}
       translateText={props.translateText} 
@@ -646,6 +647,7 @@ translateText={props.translateText}
            showStatusDrwr={props.showStatusDrwr}
            handleStatuShowDrawer={props.handleStatuShowDrawer}
            />
+           </Suspense>
     </>
   );
 

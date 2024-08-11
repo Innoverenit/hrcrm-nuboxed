@@ -1,13 +1,9 @@
-import React, { Component,Suspense } from "react";
+import React, { Component,Suspense, lazy} from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import styled from 'styled-components'
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import EmployeesPendingDocument from "./EmployeesPendingDocument";
-
-
-
+const EmployeesPendingDocument  = lazy(()=> import("./EmployeesPendingDocument"));
 class EmployeeDocumentDrawerModal extends Component {
   render() {
     const {

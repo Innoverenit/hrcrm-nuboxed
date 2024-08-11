@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
@@ -8,8 +8,8 @@ import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
 import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
-import ProcureStep1 from "./ProcureStep1";
 
+const ProcureStep1 = lazy(() => import('./ProcureStep1'));
 const Step = StyledSteps.Step;
 
 class UpdateProcureStepper extends Component {
@@ -45,7 +45,7 @@ class UpdateProcureStepper extends Component {
                     defaultMessage="Order"
                 />,
                 icon: <UserOutlined />,
-                content: <ProcureStep1 orderId={this.props.particularRowData.orderId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
+                content: <Suspense fallback={<BundleLoader />}><ProcureStep1 orderId={this.props.particularRowData.orderId} inspectionRequiredInd={this.props.inspectionRequiredInd} /> </Suspense>,
             },
             // {
             //     title: <FormattedMessage

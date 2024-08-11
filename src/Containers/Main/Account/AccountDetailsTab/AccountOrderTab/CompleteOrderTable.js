@@ -9,7 +9,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { DeleteOutlined } from "@ant-design/icons";
-import AddPickupModal from "./AddPickupModal"
+
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import {
     getDistributorOrderByDistributorId,
@@ -29,8 +29,7 @@ import {
     removeOrderAcc,
     getOrderRecords,
     deleteDistributorData,
-    getLocationList,
-    updateSubOrderAwb,
+     updateSubOrderAwb,
 } from "../../AccountAction";
 import { FormattedMessage } from 'react-intl';
 import { Badge, Button, Input, Select, Tooltip } from 'antd';
@@ -39,9 +38,10 @@ import { BundleLoader } from '../../../../../Components/Placeholder';
 import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import SubOrderList from './SubOrderList';
 import { PersonAddAlt1 } from '@mui/icons-material';
 
+const SubOrderList = lazy(() => import('./SubOrderList'));
+const AddPickupModal = lazy(() => import('./AddPickupModal'));
 const AddLocationInOrder = lazy(() => import('./AddLocationInOrder'));
 const AccountOrderDetailsModal = lazy(() => import('./AccountOrderDetailsModal'));
 const StatusOfOrderModal = lazy(() => import('./StatusOfOrderModal'));

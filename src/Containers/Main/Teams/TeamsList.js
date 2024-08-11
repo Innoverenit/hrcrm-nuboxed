@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Select, Tooltip } from "antd"
 import {getTeamteamsList} from "./TeamsAction"
-import { FormattedMessage } from "react-intl";
 import { MultiAvatar2 } from "../../../Components/UI/Elements";
 const Option = Select;
 function onChange(pagination, filters, sorter) {
@@ -71,14 +70,14 @@ console.log(empName)
                   <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                       >
                            
-                           <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                           <div className=" flex  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 
 <div class="max-sm:w-full">
                               <Tooltip>
                                 <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                 
-                                  <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                  <div class="text-xstext-blue-500  font-poppins font-semibold  cursor-pointer">
                                       
 {item.teamName}
 
@@ -93,7 +92,7 @@ console.log(empName)
 
                    
                     
-                      <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                      <div className=" flex  md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                       
                         
                         <div >
@@ -108,9 +107,9 @@ console.log(empName)
                          </div>
                     </div>
 
-                    <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                    <div className=" flex  md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                       
-                        <div class="text-sm  font-poppins">
+                        <div class="text-xs font-poppins">
                         {empName}
                         </div>
                     </div>

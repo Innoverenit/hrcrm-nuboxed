@@ -1,17 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Timeline } from "antd";
 import { BorderBox } from "../../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-// import { getNotesInOrder } from "../../AccountAction";
-import NoteForm from "../../../../Note/NoteForm";
-import { SingleNote } from "../../../../../Components/Common";
 
+const NoteForm = lazy(() => import("../../../../Note/NoteForm"));
+const SingleNote = lazy(() => import("../../../../../Components/Common"));
 class PhoneNotesForm extends Component {
-    // componentDidMount() {
-    //     this.props.getNotesInOrder(this.props.particularRowData.orderId);
-    // }
+  
 
     render() {
         const { fetchingNotesInOrders, notesInOrders } = this.props;
@@ -19,13 +16,11 @@ class PhoneNotesForm extends Component {
         return (
             <>
                 <div style={{ backgroundColor: "#dcdcdc", height: "275px" }}>
+                <Suspense fallback={<BundleLoader />}>
                     <NoteForm
                         type={"distributor"}
                         orderId={this.props.RowData.orderId}
-                    // callback={() =>
-                    //     this.props.getNotesInOrder(this.props.particularRowData.orderId)
-                    // }
-                    />
+                    /></Suspense>
                 </div>
                 <br />
 
@@ -40,8 +35,9 @@ class PhoneNotesForm extends Component {
                                         <Timeline.Item
                                             key={index}
                                             style={{ paddingBottom: "10px" }}
-                                        >
+                                        > <Suspense fallback={<BundleLoader />}>
                                             <SingleNote {...item} userId={this.props.userId} />
+                                            </Suspense>
                                         </Timeline.Item>
                                     ))}
                             </Timeline>

@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Tooltip } from "antd";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { updateSparePacket } from "./RefurbishAction"
 import { getSpareListByPhoneTaskId, deleteSpareList } from "../Account/AccountAction";
@@ -112,7 +111,7 @@ function RepairSpareListTable(props) {
                             >
 
                                 <DeleteIcon
-                                    className="text-base cursor-pointer text-[red]"
+                                    className="!text-icon cursor-pointer text-[red]"
                                 />
                             </Popconfirm>
                         }

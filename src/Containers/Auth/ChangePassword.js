@@ -8,7 +8,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { CheckCircleOutlined, EyeInvisibleOutlined, EyeOutlined,
 } from "@ant-design/icons";
-import { ValidationError, Title, SubTitle } from "../../Components/UI/Elements";
+import { ValidationError } from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
 import { changePassword, generateOtpByEmail, validateOtp } from "./AuthAction";
 
@@ -57,12 +57,12 @@ class ChangePassword extends Component {
   render() {
     return (
       <>
-        <div class=" flex">
-        <div class="  w-full min-h-[100vh] overflow-auto flex flex-col justify-center items-center bg-[#eaedf1] "> 
+        <div class=" flex justify-center items-center h-[100vh]">
+        <div class="   overflow-auto flex flex-col justify-center items-center bg-[#eaedf1] "> 
        
      <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
-              <Title>Change Password</Title>
-              <SubTitle>Its a good idea to use a strong password.</SubTitle>
+              <div class="text-lg font-poppins font-bold text-black mt-2">Change Password</div>
+              < div class=" text-sm font-poppins text-black mt-2">Its a good idea to use a strong password.</div>
            <div class=" mt-4"></div>
               <Formik
                 initialValues={{
@@ -83,9 +83,9 @@ class ChangePassword extends Component {
                 }}
               >
                 {({ errors, touched, values, isSubmitting }) => (
-                  <Form style={{ width: "25vw" }}>
+                  <Form className=" w-[25vw]" >
                     <div className="flex flex-row items-center">
-                      <div class=" w-full" >
+                      <div class=" w-full mt-2" >
                         <Field
                           name="password"
                           type={this.state.type}
@@ -95,18 +95,16 @@ class ChangePassword extends Component {
                         />
                       </div>
                       {this.state.show ? (
-                        <EyeOutlined
+                        <EyeOutlined className=" !text-icon  -ml-5"
                           type="eye"
                           onClick={this.handleClick}
-                          style={{ marginLeft: "-1.25em",  }}
-                          size="24"
+                          
                         />
                       ) : (
-                        <EyeInvisibleOutlined
+                        <EyeInvisibleOutlined className=" !text-icon  -ml-5"
                           type="eye-invisible"
                           onClick={this.handleClick}
-                          size="24"
-                          style={{ marginLeft: "-1.25em",  }}
+                                               
                         />
                       )}
                     </div>
@@ -114,7 +112,7 @@ class ChangePassword extends Component {
 
                     <div  className="flex flex-row">
                       {/* <div class=" flex justify-between" > */}
-                      <div class=" w-full" >
+                      <div class=" w-full mt-2" >
                           <Field
                             name="confirmPassword"
                             type={this.state.type1}
@@ -125,46 +123,35 @@ class ChangePassword extends Component {
                           />
                         </div>
                         {this.state.show1 ? (
-                          <EyeOutlined
+                          <EyeOutlined  className=" !text-icon  -ml-5"
                             type="eye"
                             onClick={this.handleClick1}
-                            style={{ marginLeft: "-1.25em",  }}
-                            size="24"
-                          // style={{ size: 24 }}
+                      
                           />
                         ) : (
-                          <EyeInvisibleOutlined
+                          <EyeInvisibleOutlined  className=" !text-icon  -ml-5"
                             type="eye-invisible"
                             onClick={this.handleClick1}
-                            style={{ marginLeft: "-1.25em",  }}
-                          size="24"
-                        
-                          />
+                            />
                         )}
                       
                       </div>
                       {values.password.length &&
                         values.password === values.confirmPassword ? (
-                        <CheckCircleOutlined
+                        <CheckCircleOutlined className="!text-icon"
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#52c41a"
-                          size={80}
-                          style={{
-                            marginLeft: "1.25em",
-                            marginTop: "0.875em",
-                            fontSize: "1.5625em",
-                          }}
+                          
                         />
                       ) : null}
                     
                              
-                    <div class="mt-2">
-                    <Button
+                    <div class="mt-4">
+                    <Button className=" w-full h-10"
                       type="primary"
                       htmlType="submit"
                       Loading={this.props.changingPassword}
-                      style={{ width: "100%", height: "2.5em" }}
                    
                     >
                    

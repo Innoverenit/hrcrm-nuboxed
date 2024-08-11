@@ -1,13 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Timeline } from "antd";
 import { BorderBox } from "../../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { getNotesListByDistributorId } from "../../AccountAction";
-import NoteForm from "../../../../Note/NoteForm";
 import { SingleNote } from "../../../../../Components/Common";
-
+const  NoteForm = lazy(() => import('../../../../Note/NoteForm'));
 class LinkedDistributorNotes extends Component {
     componentDidMount() {
         this.props.getNotesListByDistributorId(this.props.distributorDistributorId);
@@ -19,13 +18,14 @@ class LinkedDistributorNotes extends Component {
         return (
             <>
                 <div className="bg-[#dcdcdc] h-[275px]">
+                <Suspense fallback={<BundleLoader />}>
                     <NoteForm
                         type={"distributor"}
                         distributorId={this.props.distributorDistributorId}
                         callback={() =>
                             this.props.getNotesListByDistributorId(this.props.distributorDistributorId)
                         }
-                    />
+                    /></Suspense>
                 </div>
                 <br />
 

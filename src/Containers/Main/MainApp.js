@@ -437,11 +437,11 @@ function MainApp(props) {
               />
             </Sider>
           </div>
-          <LayoutWrapper>
-            <div class=" flex flex-row justify-between w-full items-center content-center nowrap sticky z-50  h-12 leading-[4rem] mt-1 shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
+          <LayoutWrapper class=" w-wk" >
+            <div class=" flex flex-row justify-between w-[100%] items-center content-center nowrap sticky z-50 p-0 h-12 leading-[4rem] mt-1 shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
            
-              <Header>
-              <div class="max-xl:text-[0.75rem] max-lg:text-[0.5rem]">
+              <Header class=" flex bg-white w-[100%] box-border border-2 justify-between p-0 items-center">
+              <div class="max-xl:text-[0.75rem]  max-lg:text-[0.5rem]">
                   <LanguageSelector
                     translateText={translateText}
                     selectedLanguage={selectedLanguage}

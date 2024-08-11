@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,lazy ,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip,Popconfirm } from "antd";
@@ -14,12 +14,10 @@ import {
 } from "../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
-import { FormattedMessage } from "react-intl";
-import AccountProcureDetailsModal from "../AccountDetailsTab/AccountProcureDetailsModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-
+const AccountProcureDetailsModal = lazy(() => import('../AccountDetailsTab/AccountProcureDetailsModal'));
 function LinkedOpportunityTable(props) {
   const [page, setPage] = useState(0);
   useEffect(() => {
@@ -403,12 +401,15 @@ console.log(props.user.moduleMapper.ecomModInd)
                             </> : !props.quotationProcureOrder.length && !props.fetchingQuotationProcureOrder ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
       </div>
-)}  <AccountProcureDetailsModal
-selectedLanguage={props.selectedLanguage}
+)} 
+  <Suspense fallback={<BundleLoader />}>
+ <AccountProcureDetailsModal
+                selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
                 particularRowData={particularRowData}
                 handleProcureDetailsModal={props.handleProcureDetailsModal}
                 addProcureDetailsModal={props.addProcureDetailsModal} />
+                </Suspense>
     </>
   );
 }

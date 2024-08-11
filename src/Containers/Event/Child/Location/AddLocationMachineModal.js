@@ -1,17 +1,14 @@
-import React, { Component, Suspense } from "react";
+import React, { Component, Suspense ,lazy} from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
-
 import { bindActionCreators } from "redux";
-
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import UsersMachineCard from "./UsersMachineCard";
 
+const UsersMachineCard = lazy(() => import("./UsersMachineCard"));
 
 class AddLocationMachineModal extends Component {
   render() {
     
-
     return (
       <div>
         <StyledDrawer

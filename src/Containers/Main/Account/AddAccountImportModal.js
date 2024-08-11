@@ -2,9 +2,9 @@ import React, { Component,Suspense ,lazy} from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AccountImportForm from "../Account/AccountImportForm"
 import { StyledDrawer } from "../../../Components/UI/Antd";
 
+const AccountImportForm = lazy(() => import("../Account/AccountImportForm"));
 
 
 

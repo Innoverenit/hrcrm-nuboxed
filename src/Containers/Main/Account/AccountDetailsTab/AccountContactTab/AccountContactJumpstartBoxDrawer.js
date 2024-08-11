@@ -3,7 +3,6 @@ import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 const AccountContactJumpstartBox = lazy(() => import("./AccountContactJumpstartBox"));
 
-
 const AccountContactJumpstartBoxDrawer = (props) => {
   
   const isSmallScreen = window.innerWidth <= 600;
@@ -20,9 +19,7 @@ const AccountContactJumpstartBoxDrawer = (props) => {
         onClose={() => props.handleCancel(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <AccountContactJumpstartBox 
-         
-          /> 
+          <AccountContactJumpstartBox /> 
         </Suspense>
       </StyledDrawer>
     </>

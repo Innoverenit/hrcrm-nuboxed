@@ -1,19 +1,19 @@
 
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,Suspense, lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { Button } from "antd";
+import { BundleLoader } from "../../../../Components/Placeholder";
 import { DeleteOutlined } from "@ant-design/icons";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { Formik, Form, Field,} from "formik";
-import AddLocationMachineModal from "./AddLocationMachineModal"
 import { Select} from "../../../../Components/UI/Elements";
-
 import {createLoCell, getLoCell,deleteLocationCell,handleLocationMachineModal} from "./LocationAction";
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
-import { getUserByLocationDepartment } from "../../../Main/Account/AccountAction"
+import { getUserByLocationDepartment } from "../../../Main/Account/AccountAction";
 
+const  AddLocationMachineModal  = lazy(() => import("./AddLocationMachineModal"));
 const { Option } = Select;
 
 
@@ -250,6 +250,7 @@ const LocationCellForm = (props) => {
 
         </div>
       </div>
+      <Suspense fallback={<BundleLoader />}>
       <AddLocationMachineModal
       currentItems={currentItems}
       locationId={props.storedLoc.locationDetailsId}
@@ -257,6 +258,7 @@ const LocationCellForm = (props) => {
       handleLocationMachineModal={props.handleLocationMachineModal}
       
       />
+      </Suspense>
       </>
       
      

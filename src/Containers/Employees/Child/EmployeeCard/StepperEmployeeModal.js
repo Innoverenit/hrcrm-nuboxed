@@ -1,8 +1,9 @@
-import React, { lazy, } from "react";
+import React, { lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
 import { setEditEmployee } from "../../EmployeeAction";
+import { BundleLoader } from "../../../../Components/Placeholder";
  const OnBoardingEmployeeForm =lazy(()=> import("./OnBoardingEmployeeForm"));
 
 
@@ -21,14 +22,14 @@ const StepperEmployeeModal = (props) => {
         onClose={() => props.handleOnboardingEmployeeModal(false)}
         footer={null}
       >
-       
+        <Suspense fallback={<BundleLoader />}>
           <OnBoardingEmployeeForm 
            userStageList={props.userStageList}
           currentEmployeeId={currentEmployeeId}
           employeeName={props.employeeName}
             //  employeeId={props.setEditingEmployee.employeeId}
             />
-   
+          </Suspense>
       </StyledDrawer>
     </>
   );

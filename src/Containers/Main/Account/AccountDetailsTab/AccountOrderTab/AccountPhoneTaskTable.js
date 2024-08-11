@@ -1,12 +1,12 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPhoneTasklist } from "../../AccountAction";
 import { addTaskByPhoneId, getTaskListByPhone } from "../../../Refurbish/RefurbishAction"
 import { Button, Input, Select } from "antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import AccountPhoneTaskList from "./AccountPhoneTaskList";
 
+const AccountPhoneTaskList = lazy(() => import('./AccountPhoneTaskList'));
 const { Option } = Select;
 
 function AccountPhoneTaskTable(props) {
@@ -43,7 +43,7 @@ function AccountPhoneTaskTable(props) {
                 <div class=" h-full w-w47.5 max-sm:w-wk">
                     <div class="flex justify-between">
                         <div class="w-[45%]">
-                            <div class="font-semibold text-sm">Task List</div>
+                            <div class="font-semibold text-xs">Task List</div>
                             <Select onChange={handleTask}>
                                 <Option value={"custom"}>{"Custom"} </Option>
                                 {props.phoTasklist.map((a) => {

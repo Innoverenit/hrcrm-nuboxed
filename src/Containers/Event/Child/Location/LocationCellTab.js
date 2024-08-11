@@ -5,8 +5,8 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import DeleteIcon from '@mui/icons-material/Delete';
-import UsersMachineCard from "../Location/UsersMachineCard"
-import ReinstateCellTable from "./ReinstateCellTable";
+import { BundleLoader } from "../../../../Components/Placeholder";
+const ReinstateCellTable =lazy(()=>import("./ReinstateCellTable"));
 const UsersCellCard=lazy(()=>import("./UsersCellCard"));
 const LocationCellForm=lazy(()=>import("./LocationCellForm"));
 const TabPane = StyledTabs.TabPane;
@@ -144,7 +144,9 @@ class LocationCellTab extends Component {
                 </TabPane>
 
                 <TabPane tab="User" key="2">
+                <Suspense fallback={"Loading ..."}>
                     <UsersCellCard storedLoc={this.props.storedLoc} />
+                    </Suspense>
                 </TabPane>
             
 
