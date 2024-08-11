@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from 'react'
+import React, { useEffect, useState, lazy, Suspense } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -11,6 +11,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import ExploreIcon from "@mui/icons-material/Explore";
 import NodataFoundPage from '../../../Helpers/ErrorBoundary/NodataFoundPage';
 import { MultiAvatar } from '../../../Components/UI/Elements';
+import { BundleLoader } from "../../../Components/Placeholder";
 import { Link } from 'react-router-dom';
 import { Tooltip } from 'antd';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
@@ -287,6 +288,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
         </div>
       </div>
           )}
+            <Suspense fallback={<BundleLoader />}>
       <UpdateAccountModal
        selectedLanguage={props.selectedLanguage}
        translateText={props.translateText}
@@ -300,7 +302,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
         RowData={RowData}
         handleAccountPulse={props.handleAccountPulse}
         showPulseModal={props.showPulseModal}
-      />
+      /></Suspense>
     </>
   )
 }

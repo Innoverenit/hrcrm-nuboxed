@@ -39,9 +39,8 @@ import { BundleLoader } from '../../../../../Components/Placeholder';
 import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import SubOrderList from './SubOrderList';
 import { PersonAddAlt1 } from '@mui/icons-material';
-
+const SubOrderList = lazy(() => import('./SubOrderList'));
 const AddLocationInOrder = lazy(() => import('./AddLocationInOrder'));
 const AccountOrderDetailsModal = lazy(() => import('./AccountOrderDetailsModal'));
 const StatusOfOrderModal = lazy(() => import('./StatusOfOrderModal'));

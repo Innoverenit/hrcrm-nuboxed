@@ -1,15 +1,16 @@
 
-import React, { Component } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
 import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
 import { FormattedMessage } from 'react-intl';
+import { BundleLoader } from '../../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
-import AddAddressDetail from "./AddAddressDetail";
-import AddCatalogueForm from "./AddCatalogueForm";
+const AddAddressDetail= lazy(() => import('./AddAddressDetail'));
+const AddCatalogueForm  = lazy(() => import('./AddCatalogueForm'));
 
 const Step = StyledSteps.Step;
 
@@ -48,7 +49,7 @@ class AccountOrder1Stepper extends Component {
                     defaultMessage="Order"
                 />,
                 icon: <UserOutlined />,
-                content: <AddAddressDetail distributorId={this.props.distributorId} />,
+                content:<Suspense fallback={<BundleLoader />}> <AddAddressDetail distributorId={this.props.distributorId} /></Suspense>,
             },
             {
                 title: <FormattedMessage
@@ -58,7 +59,7 @@ class AccountOrder1Stepper extends Component {
                 icon: <PhoneOutlined
                     style={{ color: "blue" }}
                 />,
-                content: <AddCatalogueForm distributorId={this.props.distributorId} />,
+                content: <Suspense fallback={<BundleLoader />}><AddCatalogueForm distributorId={this.props.distributorId} /></Suspense>,
             },
 
 

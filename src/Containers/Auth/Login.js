@@ -81,14 +81,13 @@ class Login extends Component {
             }}
           >
             <img
-              className="big-logo"
-              src={ FWLogo2 }
-              style={{ width: 200 }}
+              className="big-logo w-[13rem]"
+              src={ DevelopTk }
               alt="Tekorero logo"
             />
             <br />
 
-            <div class="w-[25rem] p-4  shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
+            <div class="w-[25rem] p-4  shadow-[ 0em 0.25em 0.625em -0.125em #444] border-box bg-white border-2">
               <Formik
                 enableReinitialize
                 initialValues={{

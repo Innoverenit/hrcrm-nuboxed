@@ -1,16 +1,11 @@
-import React, { Component } from "react";
+import React, { Component , lazy, Suspense} from "react";
 import { connect } from "react-redux";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { bindActionCreators } from "redux";
 import { Button, Select } from "antd";
 import { Formik, Form, Field, } from "formik";
-import { StyledDrawer, StyledModal } from "../../../Components/UI/Antd";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import {addAccountImportForm} from "./AccountAction"
-import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
-import ImportTaskUpload from "../../../Components/Forms/Formik/ImportTaskUpload";
-import { distributorReducer } from "./AccountReducer";
-
+const ImportTaskUpload = lazy(() => import("../../../Components/Forms/Formik/ImportTaskUpload"));
 
 const { Option } = Select;
 
@@ -100,12 +95,13 @@ class AccountImportForm extends Component {
                         width: "45%",
                       }}
                     >
+                       <Suspense fallback={<BundleLoader />}>
                       <Field
                         name="excelId"
                         isRequired
                         component={ImportTaskUpload}
                         // component={DocumentUpload}
-                      />
+                      /></Suspense>
                       {errors.documentId && (
                         <p style={{ color: "tomato", fontWeight: 600 }}>
                           {errors.documentId}

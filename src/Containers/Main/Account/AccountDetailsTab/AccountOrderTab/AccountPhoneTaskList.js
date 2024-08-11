@@ -1,11 +1,12 @@
-import React, { useEffect ,useState} from "react";
+import React, { useEffect ,useState, lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Popconfirm, Tooltip } from "antd";
+import { Tooltip } from "antd";
 import AddIcon from '@mui/icons-material/Add';
+import { BundleLoader } from "../../../../../Components/Placeholder";
 import { getTaskByPhoneId,handleSpareProcess } from "../../../Refurbish/RefurbishAction"
-import ProcessInventoryDrawer from "./ProcessInventoryDrawer";
 
+const ProcessInventoryDrawer = lazy(() => import("./ProcessInventoryDrawer"));
 
 function AccountPhoneTaskList(props) {
     const [newData, setnewData] = useState("");
@@ -42,12 +43,14 @@ console.log(props.particularRowData)
                     )
                 })}
             </div>
+            <Suspense fallback={<BundleLoader />}>
             <ProcessInventoryDrawer
-         newData={newData} 
-         RowData={props.RowData}                       
-                  processSpareModal={props.processSpareModal}
-                    handleSpareProcess={props.handleSpareProcess}
+                        newData={newData} 
+                        RowData={props.RowData}                       
+                        processSpareModal={props.processSpareModal}
+                        handleSpareProcess={props.handleSpareProcess}
                 />
+                </Suspense>
         </>
     );
 }

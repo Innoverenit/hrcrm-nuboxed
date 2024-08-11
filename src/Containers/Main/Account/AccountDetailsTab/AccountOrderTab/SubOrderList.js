@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSubOrderData, updateSubOrderAwb, handleSuborderPhone } from "../../AccountAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { FormattedMessage } from 'react-intl';
 import { Badge, Button, Input } from "antd";
-import SubOrderPhoneModal from "./SubOrderPhoneModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
+import { BundleLoader } from '../../../../../Components/Placeholder';
 import { MultiAvatar2 } from "../../../../../Components/UI/Elements";
-import { BundleLoader } from "../../../../../Components/Placeholder";
+const SubOrderPhoneModal = lazy(() => import('./SubOrderPhoneModal'));
 
 function SubOrderList(props) {
     useEffect(() => {
@@ -141,11 +141,13 @@ function SubOrderList(props) {
                     </div>}
                 </div>
             </div>
+            <Suspense fallback={<BundleLoader />}>
             <SubOrderPhoneModal
                 subRow={subRow}
                 handleSuborderPhone={props.handleSuborderPhone}
                 showSuborderPhoneList={props.showSuborderPhoneList}
             />
+            </Suspense>
         </>
     );
 }

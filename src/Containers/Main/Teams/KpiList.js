@@ -1,15 +1,16 @@
-import React, { useEffect, useState ,useRef} from "react";
+import React, { useEffect, useState ,useRef,lazy,Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
+import { Formik, Form, Field} from "formik";
 import * as Yup from "yup";
-import { Tabs,Select } from 'antd';
+import { Tabs } from 'antd';
 import {addKpi, } from "./TeamsAction";
 import {getLob} from "../../Settings/Category/LOB/LOBAction"
 import {getKpis} from "../../Settings/Category/KPI/KPIAction"
+import { BundleLoader } from "../../../Components/Placeholder";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import AssigenedKpiCardList from "./TeamsCard.js/AssigenedKpiCardList";
+const AssigenedKpiCardList = lazy(() => import("./TeamsCard.js/AssigenedKpiCardList"));
 const { TabPane } = Tabs;
 
 /**
@@ -315,12 +316,14 @@ function KpiList(props) {
    
         )}
       </Formik>
+
       {activeTab && (
+        <Suspense  fallback={<BundleLoader />}>
       <AssigenedKpiCardList  rowdata={props.rowdata}
       selectedYear={selectedYear}
       activeTab={activeTab}
  
-      />
+      /></Suspense>
       )}
     </>
   );

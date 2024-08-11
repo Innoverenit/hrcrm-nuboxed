@@ -13,7 +13,6 @@ import * as Yup from "yup";
 import { getCustomer } from "../../Settings/Category/Customer/CustomerAction";
 import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { updateDistributor ,setClearbitData} from "./AccountAction";
 import { FormattedMessage } from "react-intl";

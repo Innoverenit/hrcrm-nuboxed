@@ -5,8 +5,9 @@ import { MainWrapper } from "../../../../Components/UI/Layout";
 import { withRouter } from "react-router";
 import { getDistributorByDistributorId } from "../AccountAction"
 import { BundleLoader } from "../../../../Components/Placeholder";
-import AccountDetailsHeader from "./AccountDetailsHeader";
-import AccountDetailsRight from "./AccountDetailsRight";
+
+const AccountDetailsRight = lazy(() => import("./AccountDetailsRight"));
+const AccountDetailsHeader = lazy(() => import("./AccountDetailsHeader"));
 
 function AccountDetails(props) {
 
@@ -16,10 +17,10 @@ function AccountDetails(props) {
     const { distributorData, fetchingDistributorDetailsByDistributorId } = props
     return (
         <>
-            <>
+            <><Suspense fallback={"Loading..."}>
                 <AccountDetailsHeader distributorData={props.distributorData}
                  selectedLanguage={props.selectedLanguage}
-                 translateText={props.translateText} />
+                 translateText={props.translateText} /></Suspense>
                 {fetchingDistributorDetailsByDistributorId ? (
                     <MainWrapper>
                         <BundleLoader />

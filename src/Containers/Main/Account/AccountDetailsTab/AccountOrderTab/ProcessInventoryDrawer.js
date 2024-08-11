@@ -2,9 +2,10 @@ import React, { lazy, Suspense, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Modal } from "antd";
-import RepairSpareListTable from "../../../Refurbish/RepairSpareListTable";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 
+
+const RepairSpareListTable  = lazy(() => import("../../../Refurbish/RepairSpareListTable"));
 
 const ProcessInventoryDrawer = (props) => {
     const { RowData, ...formProps } = props;

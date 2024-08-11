@@ -31,8 +31,8 @@ const BussinessCard = (props) => {
         
             <MultiAvatar
               primaryTitle={primaryTitle}
-              imgHeight={"1.56em"}
-              imgWidth={"1.56em"}
+              imgHeight={"1.8rem"}
+              imgWidth={"1.8rem"}
             />
           </div>
           <div class=" flex flex-col flex-wrap items-start self-start justify-start overflow-hidden grow shrink h-auto mr-auto ">

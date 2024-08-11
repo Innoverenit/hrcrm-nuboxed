@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { StyledTabs } from "../../../Components/UI/Antd";
-
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import EmployeeTreeMap from "../../Employees/Child/EmployeeTable/EmployeeTreeMap";
+const EmployeeTreeMap = lazy(() => import("../../Employees/Child/EmployeeTable/EmployeeTreeMap"));
 const KpiList = lazy(() => import("./KpiList"));
 const TabPane = StyledTabs.TabPane;
 
@@ -83,8 +82,6 @@ console.log(this.props.rowdata)
               </Suspense>
             </TabPane>
 
-           
-
             <TabPane
               tab={
                 <>
@@ -125,15 +122,7 @@ console.log(this.props.rowdata)
           />
               </Suspense>
             </TabPane>
-
-
-
-        
-            
-
-           
-          
-          </StyledTabs>
+        </StyledTabs>
         </TabsWrapper>
         
            

@@ -1,16 +1,17 @@
-import React, { Component,Suspense } from "react";
+import React, { Component,Suspense, lazy} from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import SalaryForm from "../EmployeeTable/SalaryForm"
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import EmployeeTreeMap from "./EmployeeTreeMap";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import UserKpiList from "./EmployeeDrawer/UserKpiList";
-import EmployeeEquipmentForm from "./EmployeeDrawer/EmployeeEquipmentForm";
+
+const EmployeeEquipmentForm  =lazy(()=> import("./EmployeeDrawer/EmployeeEquipmentForm"))
+const  UserKpiList  =lazy(()=> import("./EmployeeDrawer/UserKpiList"));
+const EmployeeTreeMap  =lazy(()=> import("./EmployeeTreeMap"));
+const SalaryForm =lazy(()=> import("../EmployeeTable/SalaryForm"));
 const TabPane = StyledTabs.TabPane;
 class EmployeePulseDrawerModal extends Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class EmployeePulseDrawerModal extends Component {
               tab={
                 <>
                   <span>
- <ContactsIcon style={{fontSize:"1.1rem"}}/>
+ <ContactsIcon className="!text-icon"/>
                     <span class=" ml-1">
                       Performance
                     </span>
@@ -111,7 +112,7 @@ class EmployeePulseDrawerModal extends Component {
               tab={
                 <>
                   <InsertDriveFileIcon 
-                  style={{fontSize:"1.1rem"}}
+                 className="!text-icon"
                   />
                   <span class=" ml-1">
                     360 View
@@ -136,7 +137,7 @@ class EmployeePulseDrawerModal extends Component {
               tab={
                 <>
                   <span>
- <ContactsIcon style={{fontSize:"1.1rem"}}/>
+ <ContactsIcon  className="!text-icon"/>
                     <span class=" ml-1">
                       Salary
                     </span>
@@ -186,7 +187,7 @@ class EmployeePulseDrawerModal extends Component {
               tab={
                 <>
                   <span>
- <ContactsIcon style={{fontSize:"1.1rem"}}/>
+ <ContactsIcon className="!text-icon"/>
                     <span class=" ml-1">
                     Equipment
                     </span>

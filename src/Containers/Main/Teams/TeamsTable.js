@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { getTeamList } from "./TeamsAction";
-import TeamDetailsView from "./TeamDetailsView";
 import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
+const TeamDetailsView =lazy(()=> import('./TeamDetailsView'));
 
 function TeamsTable(props) {
   useEffect(() => {
@@ -24,7 +25,9 @@ function TeamsTable(props) {
       defaultSortOrder: "descend",
       sorter: (a, b) => a.name.localeCompare(b.name),
       render: (name, item, i) => (
+        <Suspense fallback={<BundleLoader />}>
         <TeamDetailsView teamId={item.teamId} teamName={item.name} />
+        </Suspense>
       ),
     },
     {
