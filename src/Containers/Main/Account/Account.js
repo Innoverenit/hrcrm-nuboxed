@@ -1,8 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
-import AccountHeader from "./AccountHeader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddAccountImportModal from '../Account/AddAccountImportModal'
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   handleDistributorModal,
@@ -11,6 +9,8 @@ import {
   getDistributorsByUserId,
   getAllDistributorsList
 } from "./AccountAction";
+const  AccountHeader = lazy(() => import("./AccountHeader"));
+const AddAccountImportModal = lazy(() => import("../Account/AddAccountImportModal"));
 const AddAccountModal = lazy(() => import("./AddAccountModal"));
 const AccountTable = lazy(() => import("./AccountTable"));
 const AccountDeleteTable = lazy(() => import("./AccountDeleteTable"));
@@ -55,6 +55,7 @@ const Account = ({
 
   return (
     <>
+    <Suspense fallback={<BundleLoader />}>
       <AccountHeader
         selectedLanguage={selectedLanguage}
         translateText={translateText}
@@ -73,7 +74,7 @@ const Account = ({
         handleDistributorModal={handleDistributorModal}
         addDistributorModal={addDistributorModal}
       />
-      <Suspense fallback={<BundleLoader />}>
+      
         {viewType === "list" ? (
           <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>
             <AccountTable

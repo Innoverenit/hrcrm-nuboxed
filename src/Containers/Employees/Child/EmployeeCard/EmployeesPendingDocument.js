@@ -11,7 +11,7 @@ console.log("employeeName",props.employeeName)
     <div class="flex">  
    {props.employeeName.listOfDocPending.map((item) => {
      return (
-      <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
+      <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-1 bg-white border-[2px] border-[#eeeeee] text-black">
     
      <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
       <div class="flex">

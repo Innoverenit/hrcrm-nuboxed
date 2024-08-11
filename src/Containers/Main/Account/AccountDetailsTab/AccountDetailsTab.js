@@ -6,7 +6,6 @@ import { TabsWrapper } from "../../../../Components/UI/Layout";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { PlusOutlined } from "@ant-design/icons";
 import ReceiptIcon from '@mui/icons-material/Receipt';
-import { FormattedMessage } from "react-intl";
 import {
     handleLinkDistributorOrderConfigureModal,
     handleLinkCustomerProcurementModal,
@@ -22,21 +21,23 @@ import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersActi
 import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
 import AddIcon from '@mui/icons-material/Add';
+import { BundleLoader } from '../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import CompleteOrderTable from "./AccountOrderTab/CompleteOrderTable";
 import { HistoryOutlined } from "@ant-design/icons";
-import AddSupplierContactModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
-import SalesMapTable from "./AccountDocumentTab/SalesMapTable";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
-import AddSupplierDocumentModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
-import AddCustomerProcurementModal from "./AccountOrderTab/AddCustomerProcurementModal";
-import CustomerProcurementTable from "./AccountOrderTab/CustomerProcurementTable";
-import LinkedOpportunityTable from "./LinkedOpportunityTable";
 import ShopIcon from '@mui/icons-material/Shop'
-import AddAccountOpportunityModal from "./AddAccountOpportunityModal";
-import ErpNote from "../../ErpNote/ErpNote";
-import AccountInvoiceTable from "./AccountInvoiceTable";
+
+const CompleteOrderTable= lazy(() => import("./AccountOrderTab/CompleteOrderTable"));
+const AddSupplierContactModal   = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal"));
+const SalesMapTable  = lazy(() => import("./AccountDocumentTab/SalesMapTable"));
+const AddSupplierDocumentModal = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal"));
+const AddCustomerProcurementModal = lazy(() => import("./AccountOrderTab/AddCustomerProcurementModal"));
+const AccountInvoiceTable = lazy(() => import("./AccountInvoiceTable"));
+const ErpNote = lazy(() => import("../../ErpNote/ErpNote"));
+const AddAccountOpportunityModal = lazy(() => import("./AddAccountOpportunityModal"));
+const LinkedOpportunityTable = lazy(() => import("./LinkedOpportunityTable"));
+const CustomerProcurementTable = lazy(() => import("./AccountOrderTab/CustomerProcurementTable"));
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -556,6 +557,7 @@ function AccountDetailsTab(props) {
                     props.handleDistributorDocumentUploadModal
                 }
             /> */}
+              <Suspense fallback={<BundleLoader />}>
             <AddSupplierDocumentModal
              selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
@@ -609,6 +611,7 @@ function AccountDetailsTab(props) {
                 handleAddOrderModal={props.handleAddOrderModal}
                 addCatalogueOrderModal={props.addCatalogueOrderModal}
             />
+            </Suspense>
             {/* <OrderGenerateModal
                 generateOrderModal={props.generateOrderModal}
                 handleOrderGenerateModal={props.handleOrderGenerateModal}

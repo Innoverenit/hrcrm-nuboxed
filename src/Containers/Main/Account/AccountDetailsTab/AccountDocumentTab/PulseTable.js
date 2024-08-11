@@ -1,14 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Popconfirm, Switch, Select } from "antd";
-import dayjs from "dayjs";
+import { Select } from "antd";
 import {
     getLobList,getPulseList
 } from "../../AccountAction";
 import {getSaleCurrency} from "../../../../Auth/AuthAction";
-import { Input } from "antd";
-import LobToggle from "./LobToggle";
 const { Option } = Select;
 const PulseTable = (props) => {
    
@@ -42,27 +39,27 @@ const PulseTable = (props) => {
                             
                             return (
                                 <div >
-                                    <div className="flex rounded-xl  mt-2 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                    <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex ">
-                                            <div className=" flex font-medium flex-col md:w-[6.56rem] max-sm:w-full  ">
+                                            <div className=" flex flex-col md:w-[6.56rem] max-sm:w-full  ">
 
                                                   {item.name}
                                            
                                             </div>
-                                            <div className=" flex font-medium   md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex   md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                          <div class=" text-xs  font-poppins text-center">
                                             {/* <LobToggle/> */}
                                                </div>
                                                 </div>
-                                            <div className=" flex font-medium   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins text-center">
                                                  {/* <Input/> */}
                                                 </div>
                                             </div>
                                            
-                                              <div className=" flex font-medium   md:w-[4.41rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                              <div className=" flex   md:w-[4.41rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                           <div class=" text-xs  font-poppins text-center">
                                           {/* <Select

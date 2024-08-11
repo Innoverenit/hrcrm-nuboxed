@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-import UpdateOrderStepper from "./UpdateOrderStepper";
+import { BundleLoader } from '../../../../../../Components/Placeholder';
 
+const UpdateOrderStepper = lazy(() => import('./UpdateOrderStepper'));
 
 class UpdateOrderModal extends Component {
     render() {
@@ -20,10 +21,11 @@ class UpdateOrderModal extends Component {
                     onClose={() => handleUpdateOrder(false)}
                     footer={null}
                 >
+                 <Suspense fallback={<BundleLoader />}>
                     <UpdateOrderStepper
                         distributorId={this.props.distributorId}
                         particularRowData={this.props.particularRowData} />
-
+                    </Suspense>
                 </StyledDrawer>
             </div>
         );

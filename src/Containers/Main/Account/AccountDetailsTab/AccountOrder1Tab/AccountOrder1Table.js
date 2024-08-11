@@ -11,14 +11,15 @@ import {
 } from "../../AccountAction";
 import PaidIcon from '@mui/icons-material/Paid';
 import { FormattedMessage } from 'react-intl';
-import { Button, Input, Tooltip } from 'antd';
+import { Button,  Tooltip } from 'antd';
+import { BundleLoader } from "../../../../../Components/Placeholder";
 import { MultiAvatar2 } from '../../../../../Components/UI/Elements';
-import OrderDetailModal from './OrderDetailModal';
-import ItemsSearchModal from './ItemsSearchModal';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import ProductionPaymentModal from './ProductionPaymentModal';
 
+const ProductionPaymentModal = lazy(() => import('./ProductionPaymentModal'));
+const ItemsSearchModal = lazy(() => import('./ItemsSearchModal'));
+const  OrderDetailModal = lazy(() => import('./OrderDetailModal'));
 
 const AccountOrder1Table = (props) => {
     const [page, setPage] = useState(0);
@@ -204,6 +205,7 @@ const AccountOrder1Table = (props) => {
 
                 </div>
             </div>
+            <Suspense fallback={<BundleLoader />}>
             <ItemsSearchModal
             selectedLanguage={props.selectedLanguage}
             translateText={props.translateText} 
@@ -224,6 +226,7 @@ const AccountOrder1Table = (props) => {
                 handleOrderPaymentModal={props.handleOrderPaymentModal}
                 particularRowData={particularRowData}
             />
+            </Suspense>
         </>
     )
 }

@@ -43,28 +43,23 @@ function Teams (props) {
   }, [props.selectedLanguage]);
   return (
     <React.Fragment>
-      <TeamsHeader
-       
-       translateText={props.translateText}
-      
+       <Suspense fallback={<BundleLoader />}>
+      <TeamsHeader       
+       translateText={props.translateText}      
        selectedLanguage={props.selectedLanguage}
         viewType={viewType}
         handleTeamsModal={handleTeamsModal}
         setTeamsViewType={setTeamsViewType}
       />
-      <TeamsModal
-       
+      <TeamsModal       
        translateText={props.translateText}
        translatedMenuItems={translatedMenuItems}
        selectedLanguage={props.selectedLanguage}
         addTeamsModal={addTeamsModal}
         handleTeamsModal={handleTeamsModal}
       />
-
-      <Suspense fallback={<BundleLoader />}>
       {  viewType === "table" ?
-       <TeamsCardList 
-       
+       <TeamsCardList        
        translateText={props.translateText}
        translatedMenuItems={translatedMenuItems}
        selectedLanguage={props.selectedLanguage}/>

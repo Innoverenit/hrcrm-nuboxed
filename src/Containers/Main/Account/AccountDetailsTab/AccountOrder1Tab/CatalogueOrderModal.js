@@ -4,7 +4,7 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
-import AccountOrder1Stepper from "./AccountOrder1Stepper";
+const  AccountOrder1Stepper = lazy(() => import('./AccountOrder1Stepper'));
 
 const TabPane = StyledTabs.TabPane;
 class CatalogueOrderModal extends Component {

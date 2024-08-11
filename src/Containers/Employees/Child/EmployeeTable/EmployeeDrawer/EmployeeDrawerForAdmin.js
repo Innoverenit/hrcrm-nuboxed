@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import UserAdminForm from "../EmployeeDrawer/UserAdminForm"
 import {
   MainWrapper,
 } from "../../../../../Components/UI/Layout";
@@ -12,11 +11,13 @@ import {
   DrawerHeaderText,
   TextInput,
 } from "../../../../../Components/UI/Elements";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 import { handleEmployeeDrawerForAdmin } from "../../../EmployeeAction";
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
-import EmployeeJumpStartForAdmin from "./EmployeeJumpStartForAdmin";
 import { PlusOutlined } from "@ant-design/icons";
 
+const UserAdminForm =lazy(()=>import("../EmployeeDrawer/UserAdminForm"));
+const EmployeeJumpStartForAdmin =lazy(()=>import("./EmployeeJumpStartForAdmin"));
 class EmployeeDrawerForAdmin extends Component {
   constructor(props) {
     super(props);
@@ -96,12 +97,14 @@ class EmployeeDrawerForAdmin extends Component {
           onClose={this.handleCloseDrawer}
           visible={employeeDrawerVisibleForAdmin}
         >
+           <Suspense fallback={<BundleLoader />}>
           <UserAdminForm
            employeeId={this.props.employeeId}
           />
           <EmployeeJumpStartForAdmin
 
           />
+          </Suspense>
           <div class=" flex justify-between">
             <div class=" h-full w-full"
             >

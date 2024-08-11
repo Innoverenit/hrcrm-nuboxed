@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,Suspense, lazy  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
+import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledTable } from "../../../Components/UI/Antd";
 import dayjs from "dayjs";
-import { Tooltip, Button, Input, Space, Form } from "antd";
+import { Tooltip, Button, Input, Space } from "antd";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
-import UpdateTeamsAllocationModal from "./UpdateTeamsAllocationModal";
 import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
 import {
   getProductionExecutiveAndManager,
   setEditTeamsAllocation,
   handleUpdateTeamsAllocationModal,
 } from "./TeamsAction";
+const  UpdateTeamsAllocationModal =lazy(()=> import('./UpdateTeamsAllocationModal'));
 
 function TeamsAllocationTable({
   productionExecutiveAndManager,
@@ -218,6 +220,7 @@ function TeamsAllocationTable({
 
   return (
     <>
+      <Suspense fallback={<BundleLoader />}>
       <StyledTable
         columns={columns}
         dataSource={productionExecutiveAndManager}
@@ -226,10 +229,12 @@ function TeamsAllocationTable({
         pagination={false}
         scroll={{ y: tableHeight }}
       />
+
       <UpdateTeamsAllocationModal
         updateTeamsAllocationModal={updateTeamsAllocationModal}
         handleUpdateTeamsAllocationModal={handleUpdateTeamsAllocationModal}
       />
+      </Suspense>
     </>
   );
 }

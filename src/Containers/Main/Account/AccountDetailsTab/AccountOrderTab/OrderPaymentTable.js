@@ -42,9 +42,9 @@ function OrderPaymentTable(props) {
   return (
     <>
 
-      {props.fetchingPaymentHistory ? <BundleLoader /> : <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+      {props.fetchingPaymentHistory ? <BundleLoader /> : <div className=' flex sticky z-auto'>
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
 
             <div className=" md:w-[6.1rem]">Transaction ID</div>
             <div className=" md:w-[4.5rem] ">Created </div>
@@ -61,26 +61,26 @@ function OrderPaymentTable(props) {
               <div>
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "    >
                   <div class="flex">
-                    <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-                      <div class="text-sm  font-semibold  font-poppins cursor-pointer">
+                    <div className=" flex  md:w-[6.1rem] max-sm:w-full  ">
+                      <div class="text-xs  font-semibold  font-poppins cursor-pointer">
                         {item.transactionNumber}
                       </div>
                     </div>
                   </div>
 
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
 
                       {item.salesExecutive}
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                     <div class=" text-xs  font-semibold  font-poppins">
                       {dayjs(item.date).format("DD-MM-YY")}
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                       {row.paymentId === item.paymentId && edit ? (
                         <Input
@@ -88,7 +88,7 @@ function OrderPaymentTable(props) {
                           onChange={(e) => handleChange(e.target.value)}
                         />
                       ) : (
-                        <div className="font-normal text-sm  font-poppins">
+                        <div className="font-normal text-xs  font-poppins">
                           <span>  {item.paymentAmount} {item.orderCurrencyName}</span>
                         </div>
                       )}
@@ -96,7 +96,7 @@ function OrderPaymentTable(props) {
                     </div>
                   </div>
 
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                       {row.paymentId === item.paymentId && edit ? <Select onChange={handlePaymentMode}>
                         {props.paymentModee.map((a) => {
@@ -106,13 +106,13 @@ function OrderPaymentTable(props) {
                         item.paymentModeName}
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
 
                       {item.remarks}
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                       {item.approveByFinanceInd === true ? (
                         <div class="flex">
@@ -127,7 +127,7 @@ function OrderPaymentTable(props) {
                     </div>
                   </div>
 
-                  <div class="flex flex-col md:w-[6rem] max-sm:flex-row max-sm:w-[10%]">
+                  <div class="flex  md:w-[6rem] max-sm:flex-row max-sm:w-[10%]">
                     <div>
                       {row.paymentId === item.paymentId && edit ? (
                         <>
@@ -161,7 +161,7 @@ function OrderPaymentTable(props) {
                         <>
                           {item.approveByFinanceInd === false && (
                             <BorderColorIcon
-                              className="text-[blue] flex justify-items-center justify-center text-xl cursor-pointer"
+                              className="text-[blue] flex justify-items-center justify-center !text-icon cursor-pointer"
                               onClick={() => {
                                 handleRowData(item);
                                 handleEditIcon()
@@ -182,7 +182,7 @@ function OrderPaymentTable(props) {
                       >
                         <Tooltip title="Delete">
                           <DeleteIcon
-                            className="text-xl cursor-pointer text-[red]"
+                            className="!text-icon cursor-pointer text-[red]"
                           />
                         </Tooltip>
                       </StyledPopconfirm>

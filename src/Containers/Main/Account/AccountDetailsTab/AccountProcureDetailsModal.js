@@ -1,8 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import AccountProcureDetails from "./AccountProcureDetails";
-
+const AccountProcureDetails = lazy(() => import('./AccountProcureDetails'));
 
 class AccountProcureDetailsModal extends Component {
     render() {

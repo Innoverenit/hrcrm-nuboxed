@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -10,12 +10,13 @@ import {
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { getContactDistributorList, applyForLoginInContact } from "../../../Suppliers/SuppliersAction"
 import { Tooltip, Button, Input, Select } from "antd";
-import UpdateAccountContactModal from "./UpdateAccountContactModal";
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { FormattedMessage } from "react-intl";
-import AccountContactJumpstartBoxDrawer from "./AccountContactJumpstartBoxDrawer";
+
+const UpdateAccountContactModal = lazy(() => import('./UpdateAccountContactModal'));
+const AccountContactJumpstartBoxDrawer = lazy(() => import('./AccountContactJumpstartBoxDrawer'));
 const ButtonGroup = Button.Group;
 const { Option } = Select;
 class AccountContactTable extends Component {
@@ -415,7 +416,7 @@ class AccountContactTable extends Component {
 
                     </div>
                 </div>
-
+                <Suspense fallback={<BundleLoader />}>
                 <UpdateAccountContactModal
                     selectedLanguage={this.props.selectedLanguage}
                     translateText={this.props.translateText}
@@ -429,6 +430,7 @@ class AccountContactTable extends Component {
                 handleCancel={this.handleCancel}
                 visible={this.state.visible}
                 />
+                </Suspense>
             </>
         );
     }

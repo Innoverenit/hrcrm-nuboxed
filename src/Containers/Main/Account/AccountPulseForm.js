@@ -1,10 +1,10 @@
-import React, { } from "react";
+import React, { lazy,Suspense } from "react";
 import { connect } from "react-redux";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { JumpStartBox,  } from "../../../Components/UI/Elements";
-import SummaryTable from "./AccountDetailsTab/SummaryTable";
-
+const SummaryTable= lazy(() => import("./AccountDetailsTab/SummaryTable"));
 class AccountPulseForm extends React.Component {
   
     componentDidMount() {
@@ -50,9 +50,10 @@ class AccountPulseForm extends React.Component {
                 </div>
             </div>
             <div class="mt-4">
+            <Suspense fallback={<BundleLoader />}>
             <SummaryTable
              RowData={this.props.RowData}
-            />
+            /></Suspense>
             </div>
                                </>
         );

@@ -1,7 +1,8 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { Popconfirm, Tooltip,Input,Button } from "antd";
 import { Link } from 'react-router-dom';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
@@ -24,15 +25,14 @@ import {
 } from "./AccountAction";
 import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
-import AccountPulseModal from "./AccountPulseModal";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
-import AccountModal from "./AccountModal";
 import AccountSearchedData from "./AccountSearchedData";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
-
+const  AccountPulseModal = lazy(() => import("./AccountPulseModal"));
+const AccountModal = lazy(() => import("./AccountModal"));
 
 function AccountTable(props) {
   const [page, setPage] = useState(0);
@@ -465,6 +465,7 @@ function AccountTable(props) {
         </div>
       </div>
         )}
+          <Suspense fallback={<BundleLoader />}>
       <UpdateAccountModal
         RowData={RowData}
         updateAccountModal={props.updateAccountModal}
@@ -487,7 +488,7 @@ function AccountTable(props) {
         handleAccountModal={handleAccountModal}
          selectedLanguage={props.selectedLanguage}
         translateText={props.translateText}/>
-
+</Suspense>
     </>  );
 }
 const mapStateToProps = ({ distributor, auth }) => ({
