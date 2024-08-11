@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from 'react'
+import { BundleLoader } from "../../../../../Components/Placeholder";
 const AddMultipleSpare = lazy(() => import("./AddMultipleSpare"));
 const SpareListTable = lazy(() => import('./SpareListTable'));
 

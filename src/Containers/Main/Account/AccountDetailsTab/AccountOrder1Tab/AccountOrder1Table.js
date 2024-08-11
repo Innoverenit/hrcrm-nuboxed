@@ -12,6 +12,7 @@ import {
 import PaidIcon from '@mui/icons-material/Paid';
 import { FormattedMessage } from 'react-intl';
 import { Button,  Tooltip } from 'antd';
+import { BundleLoader } from "../../../../../Components/Placeholder";
 import { MultiAvatar2 } from '../../../../../Components/UI/Elements';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
