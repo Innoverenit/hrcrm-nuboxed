@@ -4501,12 +4501,12 @@ export const getLocationNamesByProductId = (productId) => (dispatch) => {
     });
 }
 
-export const getAccountInvoiveList = (distributorId,pageNo) => (dispatch) => {
+export const getAccountInvoiveList = (distributorId) => (dispatch) => {
   dispatch({
     type: types.GET_ACCOUNT_INVOICE_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/inVoice/allOrders/${distributorId}/${pageNo}`, {
+    .get(`${base_url2}/orderPayment/noInvoice/${distributorId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -4527,12 +4527,12 @@ export const getAccountInvoiveList = (distributorId,pageNo) => (dispatch) => {
     });
 }
 
-export const getOrderInvoiveList = (orderId) => (dispatch) => {
+export const getGeneratedInvoiveList = (distributorId) => (dispatch) => {
   dispatch({
-    type: types.GET_ORDER_INVOICE_REQUEST,
+    type: types.GET_GENERATED_INVOICE_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderPayment/invoiceList/${orderId}`, {
+    .get(`${base_url2}/orderPayment/invoiceList/${distributorId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -4540,14 +4540,40 @@ export const getOrderInvoiveList = (orderId) => (dispatch) => {
     .then((res) => {
       console.log(res);
       dispatch({
-        type: types.GET_ORDER_INVOICE_SUCCESS,
+        type: types.GET_GENERATED_INVOICE_SUCCESS,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err);
       dispatch({
-        type: types.GET_ORDER_INVOICE_FAILURE,
+        type: types.GET_GENERATED_INVOICE_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const upadtePayment = (data,paymentId) => (dispatch) => {
+  dispatch({
+    type: types.ORDER_INVOICE_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/orderPayment/invoiceUpdate/${paymentId}`,data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ORDER_INVOICE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ORDER_INVOICE_FAILURE,
         payload: err,
       });
     });
@@ -4578,3 +4604,134 @@ export const getInvoiveL = (invoiceId) => (dispatch) => {
       });
     });
 }
+
+export const getPaymentClik = (contactUserId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_PAYMENTCLICK_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/payment/clicks/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PAYMENTCLICK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PAYMENTCLICK_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getQuationClik = (contactUserId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUATATIONCLICK_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/quotation/cart/clicks/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUATATIONCLICK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_QUATATIONCLICK_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getQuationCheckout = (contactUserId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUATATIONCHECKOUT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/quotation/checkout/clicks/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUATATIONCHECKOUT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_QUATATIONCHECKOUT_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getQuationShipping = (contactUserId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUATATIONSHIPPING_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/quotation/toShipping/clicks/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUATATIONSHIPPING_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_QUATATIONSHIPPING_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getLoginCount = (contactUserId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_LOGINCOUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/employee/getLoginCount/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_LOGINCOUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_LOGINCOUNT_FAILURE,
+        payload: err,
+      });
+    });
+}
+

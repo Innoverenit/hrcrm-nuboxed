@@ -12,6 +12,30 @@ const initialState = {
 
   invoiceO:false,
 
+  fetchingGeneratedInvoice: false,
+            fetchingGeneratedInvoiceError: false,
+            generatedInvoice:[],
+
+  fetchingPaymentClick: false,
+  fetchingPaymentClickError: false,
+  paymentclick:{},
+
+  fetchingQuatationClick: false,
+  fetchingQuatationClickError: false,
+  quatationClick:{},
+
+  fetchingQuatationCheckout: false,
+  fetchingQuatationCheckoutError: false,
+  quatationCheckout:{},
+
+  fetchingQuatationShipping: false,
+  fetchingQuatationShippingError: false,
+  quatationShipping:{},
+
+  fetchingLoginCount: false,
+  fetchingLoginCountError: false,
+  loginCount:{},
+
   fetchingInvoiceL: false,
   fetchingInvoiceLError: true,
   invoiceL:[],
@@ -26,7 +50,7 @@ const initialState = {
 
   fetchingOrderInvoice: false,
   fetchingOrderInvoiceError: false,
-  orderInvoice:[],
+
 
   updatingOrdrSuplrItems: false,
   updatingOrdrSuplrItemsError: false,
@@ -3463,7 +3487,8 @@ export const distributorReducer = (state = initialState, action) => {
           return {
             ...state,
             fetchingAccountInvoice: false,
-            accountInvoice: [...state.accountInvoice, ...action.payload]
+            accountInvoice: action.payload,
+            // accountInvoice: [...state.accountInvoice, ...action.payload]
           };
         case types.GET_ACCOUNT_INVOICE_FAILURE:
           return {
@@ -3472,16 +3497,37 @@ export const distributorReducer = (state = initialState, action) => {
             fetchingAccountInvoiceError: true,
           };
 
-          case types.GET_ORDER_INVOICE_REQUEST:
+          case types.GET_GENERATED_INVOICE_REQUEST:
+          return { ...state, fetchingGeneratedInvoice: true };
+        case types.GET_GENERATED_INVOICE_SUCCESS:
+          return {
+            ...state,
+            fetchingGeneratedInvoice: false,
+            generatedInvoice: action.payload,
+          };
+        case types.GET_GENERATED_INVOICE_FAILURE:
+          return {
+            ...state,
+            fetchingGeneratedInvoice: false,
+            fetchingGeneratedInvoiceError: true,
+          };
+
+          case types.ORDER_INVOICE_REQUEST:
             return { ...state, fetchingOrderInvoice: true };
-          case types.GET_ORDER_INVOICE_SUCCESS:
+          case types.ORDER_INVOICE_SUCCESS:
             return {
               ...state,
               fetchingOrderInvoice: false,
-              // accountInvoice: [...state.accountInvoice, ...action.payload]
-              orderInvoice: action.payload,
+              
+              accountInvoice: state.accountInvoice.map((item) => {
+                if (item.paymentId == action.payload.paymentId) {
+                  return action.payload;
+                } else {
+                  return item;
+                }
+              }),
             };
-          case types.GET_ORDER_INVOICE_FAILURE:
+          case types.ORDER_INVOICE_FAILURE:
             return {
               ...state,
               fetchingOrderInvoice: false,
@@ -3503,6 +3549,86 @@ export const distributorReducer = (state = initialState, action) => {
               fetchingInvoiceL: false,
               fetchingInvoiceLError: true,
             };
+
+            case types.GET_PAYMENTCLICK_REQUEST:
+              return { ...state, fetchingPaymentClick: true };
+            case types.GET_PAYMENTCLICK_SUCCESS:
+              return {
+                ...state,
+                fetchingPaymentClick: false,
+                // accountInvoice: [...state.accountInvoice, ...action.payload]
+                paymentclick: action.payload,
+              };
+            case types.GET_PAYMENTCLICK_FAILURE:
+              return {
+                ...state,
+                fetchingPaymentClick: false,
+                fetchingPaymentClickError: true,
+              };
+
+              case types.GET_QUATATIONCLICK_REQUEST:
+                return { ...state, fetchingQuatationClick: true };
+              case types.GET_QUATATIONCLICK_SUCCESS:
+                return {
+                  ...state,
+                  fetchingQuatationClick: false,
+                  // accountInvoice: [...state.accountInvoice, ...action.payload]
+                  quatationClick: action.payload,
+                };
+              case types.GET_QUATATIONCLICK_FAILURE:
+                return {
+                  ...state,
+                  fetchingQuatationClick: false,
+                  fetchingQuatationClickError: true,
+                };
+
+                case types.GET_QUATATIONCHECKOUT_REQUEST:
+                  return { ...state, fetchingQuatationCheckout: true };
+                case types.GET_QUATATIONCHECKOUT_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingQuatationCheckout: false,
+                    // accountInvoice: [...state.accountInvoice, ...action.payload]
+                    quatationCheckout: action.payload,
+                  };
+                case types.GET_QUATATIONCHECKOUT_FAILURE:
+                  return {
+                    ...state,
+                    fetchingQuatationCheckout: false,
+                    fetchingQuatationCheckoutError: true,
+                  };
+
+                  case types.GET_QUATATIONSHIPPING_REQUEST:
+                    return { ...state, fetchingQuatationShipping: true };
+                  case types.GET_QUATATIONSHIPPING_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingQuatationShipping: false,
+                      // accountInvoice: [...state.accountInvoice, ...action.payload]
+                      quatationShipping: action.payload,
+                    };
+                  case types.GET_QUATATIONSHIPPING_FAILURE:
+                    return {
+                      ...state,
+                      fetchingQuatationShipping: false,
+                      fetchingQuatationShippingError: true,
+                    };
+
+                    case types.GET_LOGINCOUNT_REQUEST:
+                      return { ...state, fetchingLoginCount: true };
+                    case types.GET_LOGINCOUNT_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingLoginCount: false,
+                        // accountInvoice: [...state.accountInvoice, ...action.payload]
+                        loginCount: action.payload,
+                      };
+                    case types.GET_LOGINCOUNT_FAILURE:
+                      return {
+                        ...state,
+                        fetchingLoginCount: false,
+                        fetchingLoginCountError: true,
+                      };
   
     default:
       return state;

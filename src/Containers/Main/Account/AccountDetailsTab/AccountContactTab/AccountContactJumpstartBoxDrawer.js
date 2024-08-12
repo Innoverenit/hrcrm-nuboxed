@@ -7,6 +7,7 @@ const AccountContactJumpstartBoxDrawer = (props) => {
   
   const isSmallScreen = window.innerWidth <= 600;
   const drawerWidth = isSmallScreen ? "90%" : "60%";
+  console.log(props.rowData)
   return (
     <>
       <StyledDrawer
@@ -19,7 +20,7 @@ const AccountContactJumpstartBoxDrawer = (props) => {
         onClose={() => props.handleCancel(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <AccountContactJumpstartBox /> 
+          <AccountContactJumpstartBox  rowData={props.rowData} /> 
         </Suspense>
       </StyledDrawer>
     </>

@@ -47,6 +47,7 @@ function OrderPaymentTable(props) {
           <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
 
             <div className=" md:w-[6.1rem]">Transaction ID</div>
+            <div className=" md:w-[4.21rem] ">Invoice Id</div> 
             <div className=" md:w-[4.5rem] ">Created </div>
             <div className="md:w-[5.8rem]">Entry</div>
             <div className=" md:w-[4.2rem] ">Amount</div>
@@ -64,6 +65,11 @@ function OrderPaymentTable(props) {
                     <div className=" flex  md:w-[6.1rem] max-sm:w-full  ">
                       <div class="text-xs  font-semibold  font-poppins cursor-pointer">
                         {item.transactionNumber}
+                      </div>
+                    </div>
+                    <div className=" flex  md:w-[6.12rem] max-sm:w-full  ">
+                      <div class="text-xs  font-semibold  font-poppins cursor-pointer">
+                        {item.invoiceId}
                       </div>
                     </div>
                   </div>
