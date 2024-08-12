@@ -20,6 +20,10 @@ const initialState = {
     fetchingSubscriptions:false,
     fetchingSubscriptionsError:false,
     subscriptionsFormData:[],
+
+    addingSubRules:false,
+    addingSubRulesError:false,
+    duplicateSubRulesError:false,
    
 
     addingNewSubscription: false,
@@ -188,6 +192,58 @@ export const subscriptionReducer = (state = initialState, action) => {
     addingSuscrptions: false,
     duplicateSuscriptionsError: true,
   };
+
+
+
+
+
+
+  case types.ADD_SUB_RULES_REQUEST:
+    return { ...state, addingSubRules: true };
+  case types.ADD_SUB_RULES_SUCCESS:
+    const existingSubscriptionRuleIndex = state.subscriptionsFormData.findIndex(item => item.subscriptionId === action.payload.subscriptionId);
+    console.log(existingSubscriptionRuleIndex)
+
+    let updatedSubscriptionsRuleFormData;
+    if (existingSubscriptionRuleIndex !== -1) {
+      // Update the existing subscription
+      updatedSubscriptionsRuleFormData = state.subscriptionsFormData.map((item, index) => {
+        if (index === existingSubscriptionRuleIndex) {
+          return action.payload;
+        }
+        return item;
+      });
+    } else {
+      // Add the new subscription
+      updatedSubscriptionsRuleFormData = [...state.subscriptionsFormData, action.payload];
+    }
+    return { ...state, 
+      addingSubRules: false, 
+      subscriptionsFormData: updatedSubscriptionsFormData,
+      // subscriptionsFormData: state.subscriptionsFormData.map((item) => {
+      //   if (item.subscriptionId === action.payload.subscriptionId) {
+      //     return action.payload;
+      //   } else {
+      //     return item;
+      //   }
+      // }),
+      //addingSuscrpitionModal: false ,
+      //newSubscriptionList:[action.payload,...state.newSubscriptionList]
+    };
+  case types.ADD_SUB_RULES_FAILURE:
+    return { ...state, 
+      addingSubRules: false,
+      addingSubRulesError:true,
+      // addingSuscrpitionModal: false 
+    };  
+      
+      case types.ADD_SUB_RULES_DUPLICATE:
+return {
+...state,
+addingSubRules: false,
+duplicateSubRulesError: true,
+};
+
 
 
     default:
