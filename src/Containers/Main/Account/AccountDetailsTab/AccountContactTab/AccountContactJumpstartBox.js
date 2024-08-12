@@ -1,13 +1,25 @@
 import React, {useEffect,useState} from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
+import dayjs from "dayjs";
+import {getPaymentClik,
+  getQuationClik,
+  getQuationCheckout,
+  getQuationShipping,
+  getLoginCount} from "../../AccountAction"
 import { bindActionCreators } from "redux";
 import { JumpStartBox, } from "../../../../../Components/UI/Elements";
 import axios from 'axios';
 import {base_url2} from "../../../../../Config/Auth";
 
 function AccountContactJumpstartBox (props) {
- 
+  const today = new Date();
+  const formattedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+
+  const [date, setDate] = useState(formattedDate);
+  const [startDate, setStartDate] = useState(dayjs().startOf("month"));
+  const [endDate, setEndDate] = useState(dayjs());
+  // const { startDate, endDate } = props;
   const [error, setError] = useState(null);
  
   const [data1, setData1] = useState({});
@@ -94,13 +106,13 @@ function AccountContactJumpstartBox (props) {
             }
           };
 
-    useEffect(()=>{
-     fetchData1();
-     fetchData2();
-     fetchData3();
-     fetchData4();
-     fetchData5();
-        },[]);
+    // useEffect(()=>{
+    //  fetchData1();
+    //  fetchData2();
+    //  fetchData3();
+    //  fetchData4();
+    //  fetchData5();
+    //     },[]);
 
 //   useEffect(()=>{
 //     if (props.timeRangeType === "today") {
@@ -117,7 +129,15 @@ function AccountContactJumpstartBox (props) {
 //   }
 //   },[props.userId,props.startDate,props.endDate]);
 
-
+useEffect(()=>{
+  const start = `${startDate.format("YYYY-MM-DD")}T20:00:00Z`;
+    const end = `${endDate.format("YYYY-MM-DD")}T20:00:00Z`;
+   props.getPaymentClik(props.rowData.contactPersonId,start,end)
+   props.getQuationClik(props.rowData.contactPersonId,start,end)
+   props.getQuationCheckout(props.rowData.contactPersonId,start,end)
+   props.getQuationShipping(props.rowData.contactPersonId,start,end)
+   props.getLoginCount(props.rowData.contactPersonId,start,end)
+    },[props.rowData.contactPersonId, startDate, endDate]);
     const { openPitchQualified,handlePitchQualifiedDrawer,openPitchAdded,handlePitchAddedDrawer,
       openDealAdded,handleDealAddedDrawer,openDealClosed,handleDealClosedDrawer
     } = props;
@@ -136,8 +156,8 @@ function AccountContactJumpstartBox (props) {
             />}
             // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
             // cursorData={"pointer"}
-            // value={props.jumpstartInvestorCount.qualifiedInvestorLeadsList}
-            // isLoading={props.user.fetchingJumpstartInvestor}
+            value={props.paymentclick.count}
+            isLoading={props.fetchingPaymentClick}
           />
 
           <JumpStartBox
@@ -149,8 +169,8 @@ function AccountContactJumpstartBox (props) {
             />}
             // jumpstartClick={()=>handlePitchAddedDrawer(true)}
             // cursorData={"pointer"}
-            // value={props.jumpstartInvestor2Count.createdinvestorLeadsList}
-            // isLoading={props.fetchingJumpstartInvestor2}
+            value={props.quatationClick.count}
+            isLoading={props.fetchingQuatationClick}
           />
 </div>
 <div class="flex w-wk">
@@ -163,8 +183,8 @@ function AccountContactJumpstartBox (props) {
             />}
             // jumpstartClick={()=>handleDealAddedDrawer(true)}
             // cursorData={"pointer"}
-            // value={props.jumpstartInvestor3Count.opportunityAdded}
-            // isLoading={props.fetchingJumpstartInvestor3}
+            value={props.quatationCheckout.count}
+            isLoading={props.fetchingQuatationCheckout}
           />
           <JumpStartBox
                        bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
@@ -175,8 +195,8 @@ function AccountContactJumpstartBox (props) {
             />}
             // jumpstartClick={()=>handleDealClosedDrawer(true)}
             // cursorData={"pointer"}
-            // value={ props.jumpstartInvestor4Count.closedOpportunity}
-            // isLoading={props.fetchingJumpstartInvestor4}
+            value={ props.quatationShipping.count}
+            isLoading={props.fetchingQuatationShipping}
           />
           <JumpStartBox
                        bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
@@ -187,8 +207,8 @@ function AccountContactJumpstartBox (props) {
             />}
             // jumpstartClick={()=>handleDealClosedDrawer(true)}
             // cursorData={"pointer"}
-            // value={ props.jumpstartInvestor4Count.closedOpportunity}
-            // isLoading={props.fetchingJumpstartInvestor4}
+            value={ props.loginCount.count}
+            isLoading={props.fetchingLoginCount}
           />
           </div>
         </div>
@@ -199,13 +219,22 @@ function AccountContactJumpstartBox (props) {
      
     );
   }
-const mapStateToProps = ({  auth }) => ({
+const mapStateToProps = ({  auth,distributor }) => ({
   user: auth.userDetails,
   role: auth.userDetails.role,
   orgId: auth.userDetails.organizationId,
   recruiterId: auth.userDetails.userId,
   userId: auth.userDetails.employeeId,
-
+  paymentclick: distributor.paymentclick,
+  quatationClick: distributor.quatationClick,
+  quatationCheckout: distributor.quatationCheckout,
+  quatationShipping: distributor.quatationShipping,
+  loginCount: distributor.loginCount,
+  fetchingPaymentClick: distributor.fetchingPaymentClick,
+  fetchingQuatationClick: distributor.fetchingQuatationClick,
+  fetchingQuatationCheckout: distributor.fetchingQuatationCheckout,
+  fetchingQuatationShipping: distributor.fetchingQuatationShipping,
+  fetchingLoginCount: distributor.fetchingLoginCount,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -220,6 +249,11 @@ const mapDispatchToProps = (dispatch) =>
     //   handleDealAddedDrawer,
     //   handleDealClosedDrawer
 
+    getPaymentClik,
+    getQuationClik,
+    getQuationCheckout,
+    getQuationShipping,
+    getLoginCount
     },
     dispatch
   );

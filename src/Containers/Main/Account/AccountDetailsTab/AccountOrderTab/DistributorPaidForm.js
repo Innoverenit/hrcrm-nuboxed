@@ -53,6 +53,7 @@ function DistributorPaidForm(props) {
           orderCurrencyId: props.particularRowData.orderCurrencyName || "",
           orgId: props.orgId,
           approveByFinanceInd: false,
+          distributorId:props.distributorId,
           orderId: props.particularRowData.orderId,
         }}
         validationSchema={DistributorSchema}
@@ -99,18 +100,7 @@ function DistributorPaidForm(props) {
                       value={values.paymentAmount}
                     />
                   </div>
-                  <div class="w-[31%]">
-                    <Field
-                      name="invoiceId"
-                      label="Invoice Id"
-                      isRequired
-                      isColumn
-                      inlineLabel
-                      width={"100%"}
-                      component={InputComponent}
-                      value={values.invoiceId}
-                    />
-                  </div>
+                
                   <div class="w-[31%]">
                     <Field
                       disabled
@@ -172,7 +162,7 @@ function DistributorPaidForm(props) {
               </div>
               <div class=" h-full w-w47.5 max-sm:w-wk">
                 <div class="flex justify-between">
-                  <div class="w-[48%]">
+                  <div class="w-[30%]">
                     <Field
                       name="transactionNumber"
                       label={
@@ -188,8 +178,19 @@ function DistributorPaidForm(props) {
 
                     />
                   </div>
-
-                  <div class="w-[48%]">
+                  <div class="w-[30%]">
+                    <Field
+                      name="invoiceId"
+                      label="Invoice Id"
+                      isRequired
+                      isColumn
+                      inlineLabel
+                      width={"100%"}
+                      component={InputComponent}
+                      value={values.invoiceId}
+                    />
+                  </div>
+                  <div class="w-[30%]">
                     <Field
                       name="paymentMode"
                       label={
