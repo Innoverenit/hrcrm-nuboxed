@@ -344,6 +344,7 @@ class ContactDetailTab extends Component {
                 count={this.props.customerActivityCount.count}
                 overflowCount={999}
               > 
+                   </Badge>
                   <span class=" ml-1">
                     {
                       <FormattedMessage
@@ -353,8 +354,7 @@ class ContactDetailTab extends Component {
                     }
                     {/* Documents */}
                  
-                  </span>
-                  </Badge>
+                  </span>            
                   {activeKey === "7" && (
                     <>
                       <Tooltip //title="Create"
@@ -446,6 +446,7 @@ class ContactDetailTab extends Component {
                 // count={this.props.customerActivityCount.count}
                 // overflowCount={999}
               > 
+                   </Badge>
                   <span class=" ml-1">
                     {
                       <FormattedMessage
@@ -455,7 +456,7 @@ class ContactDetailTab extends Component {
                     }
                  
                   </span>
-                  </Badge>
+           
                   {activeKey === "9" && (
                     <>
                         <Tooltip //title="Create"
