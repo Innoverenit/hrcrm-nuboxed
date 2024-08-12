@@ -25,7 +25,7 @@ export const addHoliday = (data, cb) => (dispatch) => {
         type: types.ADD_HOLIDAY_SUCCESS,
         payload: res.data,
       });
-      cb && cb("Success");
+      // cb && cb("Success");
       console.log(res.data);
     })
     .catch((err) => {
@@ -34,7 +34,7 @@ export const addHoliday = (data, cb) => (dispatch) => {
         type: types.ADD_HOLIDAY_FAILURE,
         payload: err,
       });
-      cb && cb("Failure");
+      // cb && cb("Failure");
     });
 };
 

@@ -208,3 +208,54 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
         });
       });
   };
+
+
+
+
+  export const addSubRules = (data,subscriptionId) => (dispatch) => {
+    dispatch({
+      type: types.ADD_SUB_RULES_REQUEST,
+    });
+    axios
+      .put(`${sub_url}/subscription/rule/create`, data,
+        {
+          // headers: {
+          //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          // },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+       // dispatch(getDispatchList(id,0))
+       console.log(res.data)
+       if (res.data.subscriptionInd===true) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+        });
+
+        dispatch({
+          type: types.ADD_SUB_RULES_DUPLICATE,
+        });
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: "Subscription added Successfully"
+          ,
+          showConfirmButton: false,
+          timer: 1500
+        })
+        dispatch({
+          type: types.ADD_SUB_RULES_SUCCESS,
+          payload: res.data,
+        });
+        
+       
+      }
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.ADD_SUB_RULES_FAILURE,
+        });
+      });
+  };

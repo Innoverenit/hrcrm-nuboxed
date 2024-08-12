@@ -113,7 +113,7 @@
 // export default connect(mapStateToProps, mapDispatchToProps)(MatrixData);
 
 import React, { useState, useEffect } from 'react';
-import { Table, Input, Select, Button,Popconfirm,Tooltip } from 'antd';
+import { Select, Input, Button, Form, Row, Col } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getLibrarys } from '../../../Library/LibraryAction';
@@ -125,8 +125,13 @@ import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPag
 const { Option } = Select;
 
 const EditableTable = (props) => {
-  const [data, setData] = useState([]);
+  const [form] = Form.useForm();
+  const [data, setData] = useState(props.matrixData);
   const [rows, setRows] = useState([]);
+  const [level3, setLevel3] = useState("");
+  const [level1, setLevel1] = useState("");
+  const [level2, setLevel2] = useState("");
+  const [skillData, setSkillData] = useState("");
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [editedFields, setEditedFields] = useState({});
   const [validationErrors, setValidationErrors] = useState({});
@@ -152,7 +157,11 @@ const EditableTable = (props) => {
   };
 
   useEffect(() => {
-    setData(props.matrixData.map((item, index) => ({ ...item, key: String(index) })));
+    if (props.matrixData.length > 0) {
+      // Update activeTab when data is available
+      setData(props.matrixData);
+    }
+   
   }, [props.matrixData]);
 
   const handleAddRow = () => {
@@ -240,36 +249,10 @@ const EditableTable = (props) => {
     const updatedData = data.map((row) =>
       row.key === key ? { ...row, [dataIndex]: value, skillDefinationId: value } : row
     );
-    setData(updatedData);
+    // setData(updatedData);
   };
 
-  const handleInputChange = (value, key, dataIndex) => {
-    const updatedData = data.map((row) =>
-      row.key === key ? { ...row, [dataIndex]: value } : row
-    );
-    setData(updatedData);
-  };
-  const handleSave = (index) => {
-    const isValid = validateRow(index);
-  
-    if (isValid) {
-      const row = rows[index];
-      const result = {
-        skillDefinationId: row.skillDefinationId,
-        level1: row.level1,
-        level2: row.level2,
-        level3: row.level3,
-        skillLevelLinkId: '',
-        countryId: props.activeTab
-      };
-  
-      props.addSkillLevel(result);
-      setRows([{ skillDefinationId: '', level1: '', level2: '', level3: '' }]);
-    } else {
-      // Display error message or handle invalid state (e.g., highlight fields)
-      console.log('Row validation failed:', validationErrors[index]);
-    }
-  };
+ 
   
 
   // const handleSave = (index) => {
@@ -287,20 +270,24 @@ const EditableTable = (props) => {
   //     props.addSkillLevel(result)
   //     setRows([{ skillDefinationId: '', level1: '', level2: '', level3: '' }]);
   // };
-  const handleEditClick = (productCurrencyId) => {
-    setEditsuppliesId(productCurrencyId);
+  const handleEditClick = (skillLevelLinkId,level1,level2,level3,skillDefinationId) => {
+    setEditsuppliesId(skillLevelLinkId);
+    setLevel1(level1)
+    setLevel2(level2)
+    setLevel3(level3)
+    setSkillData(skillDefinationId)
   };
   const handleCancelClick = (productCurrencyId) => {
-    setEditedFields((prevFields) => ({ ...prevFields, [productCurrencyId]: undefined }));
+    //setEditedFields((prevFields) => ({ ...prevFields, [productCurrencyId]: undefined }));
     setEditsuppliesId(null);
   };
   function handleUpdate(item) {
     console.log('Submitting Row:', item);
     const updatedData = {
-      skillDefinationId: item.skillDefinationId,
-      level1: item.level1,
-      level2: item.level2,
-      level3: item.level3,
+      skillDefinationId: skillData,
+      level1: level1,
+      level2: level2,
+      level3: level3,
       skillLevelLinkId:item.skillLevelLinkId,
       countryId:props.activeTab
     };
@@ -308,18 +295,30 @@ const EditableTable = (props) => {
     setEditsuppliesId(null);
   };
 
+  const onFinish = (values) => {
+    console.log('Form values:', values);
+    form.resetFields();
+    const result = {
+      skillDefinationId: values.skill,
+      level1: values.level1,
+      level2: values.level2,
+      level3: values.level3,
+      skillLevelLinkId: '',
+      countryId: props.activeTab
+    };
+    props.addSkillLevel(result);
+  };
+console.log(editsuppliesId)
   return (
     <div>
-      <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
-        Add Row
-      </Button>
+     
       <div class=" ml-4">Currency is in Local Value</div>
-      {rows.map((row, index) => (
+      {/* {rows.map((row, index) => (
           <div key={index} class="flex items-center">
             <div class="flex justify-around w-[40rem]">
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Skill</div>
-                {/* <div class="w-[6rem]"> */}
+               
                 <Select
   style={{ width: '7rem', borderColor: validationErrors[index]?.skill && 'red' }}
   value={row.skillDefinationId}
@@ -336,7 +335,7 @@ const EditableTable = (props) => {
 )}
 
 
-                {/* </div> */}
+              
               </div>
 
               <div>
@@ -373,7 +372,75 @@ const EditableTable = (props) => {
             </div>
             
           </div>
-        ))}
+        ))} */}
+
+
+<Form form={form} onFinish={onFinish} layout="inline">
+      <Row gutter={16}>
+        <Col>
+          <Form.Item
+            label="Skill"
+            name="skill"
+            rules={[{ required: true, message: 'Please select a skill!' }]}
+          >
+            {/* <Select placeholder="Select a skill" style={{ width: 150 }}>
+              <Option value="javascript">JavaScript</Option>
+              <Option value="react">React</Option>
+              <Option value="nodejs">Node.js</Option>
+              <Option value="python">Python</Option>
+            </Select> */}
+
+<Select
+ placeholder="Select a skill" style={{ width: 150 }}
+>
+  {props.librarys.map((d) => (
+    <Option key={d.definationId} value={d.definationId}>
+      {d.name}
+    </Option>
+  ))}
+</Select>
+          </Form.Item>
+        </Col>
+
+        <Col>
+          <Form.Item
+            label="Level 1"
+            name="level1"
+            rules={[{ required: true, message: 'Please input Level 1!' }]}
+          >
+            <Input placeholder="Level 1" />
+          </Form.Item>
+        </Col>
+
+        <Col>
+          <Form.Item
+            label="Level 2"
+            name="level2"
+            rules={[{ required: true, message: 'Please input Level 2!' }]}
+          >
+            <Input placeholder="Level 2" />
+          </Form.Item>
+        </Col>
+
+        <Col>
+          <Form.Item
+            label="Level 3"
+            name="level3"
+            rules={[{ required: true, message: 'Please input Level 3!' }]}
+          >
+            <Input placeholder="Level 3" />
+          </Form.Item>
+        </Col>
+
+        <Col>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Col>
+      </Row>
+    </Form>
       {/* <Table dataSource={data} columns={columns} /> */}
       <div className=' flex  sticky z-auto h-[79vh]'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -392,11 +459,12 @@ const EditableTable = (props) => {
 
                   <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                     <div class="text-sm  font-semibold  font-poppins cursor-pointer">
-                    {editsuppliesId === item.skillLevelLinkId ? (
+                    {editsuppliesId  === item.skillLevelLinkId ? (
                       <Select
                         classNames="w-32"
-                        value={item.skill}
-                        onChange={(value) => handleSelectChange(value, item.key, 'skill')}
+                        value={skillData}
+                        onChange={(value) => setSkillData(value)}
+                       
                       >
                         {props.librarys.map((d) => (
                           <Option key={d.definationId} value={d.definationId}>
@@ -413,12 +481,13 @@ const EditableTable = (props) => {
                   </div>
 
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                  {editsuppliesId === item.skillLevelLinkId ? (
+                  {editsuppliesId  === item.skillLevelLinkId  ? (
                     <div class=" text-xs  font-poppins">
                       <Input
                         className="w-32"
-                        value={item.level1}
-                        onChange={(e) => handleInputChange(e.target.value, item.key, 'level1')}
+                        value={level1}
+                        onChange={(e) => setLevel1(e.target.value)} 
+                        // onChange={(e) => handleInputChange(e.target.value, item.key, 'level1')}
                       />
                     </div>
  ):(
@@ -431,12 +500,12 @@ const EditableTable = (props) => {
 
 
                   <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  {editsuppliesId === item.skillLevelLinkId ? (
+                  {editsuppliesId  === item.skillLevelLinkId  ? (
                     <div class=" text-xs  font-poppins">
                       <Input
                         className="w-32"
-                        value={item.level2}
-                        onChange={(e) => handleInputChange(e.target.value, item.key, 'level2')}
+                        value={level2}
+                        onChange={(e) => setLevel2(e.target.value)} 
                       />
                     </div>
                      ):(
@@ -446,13 +515,14 @@ const EditableTable = (props) => {
                     )}
                   </div>
                   <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  {editsuppliesId === item.skillLevelLinkId ? (
+                  {editsuppliesId  === item.skillLevelLinkId  ? (
 
                     <div class=" text-xs  font-semibold  font-poppins">
                       <Input
                         className="w-32"
-                        value={item.level3}
-                        onChange={(e) => handleInputChange(e.target.value, item.key, 'level3')}
+                        value={level3}
+                        onChange={(e) => setLevel3(e.target.value)} 
+                        // onChange={(e) => handleInputChange(e.target.value, item.key, 'level3')}
                       />
                     </div>
                      ):(
@@ -473,7 +543,7 @@ const EditableTable = (props) => {
                       </div>
 
                     </div> */}
- {editsuppliesId === item.skillLevelLinkId ? (
+ {editsuppliesId  === item.skillLevelLinkId  ? (
                         <>
                       <Button 
                       type="primary"
@@ -492,7 +562,7 @@ const EditableTable = (props) => {
                       className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
-                        onClick={() => handleEditClick(item.skillLevelLinkId)}
+                        onClick={() => handleEditClick(item.skillLevelLinkId,item.level1,item.level2,item.level3,item.skillDefinationId)}
                       />
                     )}
  {/* <div>

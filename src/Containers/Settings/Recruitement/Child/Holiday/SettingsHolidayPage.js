@@ -22,12 +22,28 @@ class SettingsHolidayPage extends React.Component {
       selectedYear: null,
       holidayType: false,
       date: "",
+      selectedDate:null
     };
   }
+  // componentDidMount() {
+  //   const currentYear = new Date().getFullYear();
+  //   this.props.getHoliday(this.props.country_name,currentYear);
+  // } 
   componentDidMount() {
+    this.fetchHolidayData();
+  }
+
+  componentDidUpdate(prevProps) {
+    // Check if the country_name prop has changed
+    if (prevProps.country_name !== this.props.country_name) {
+      this.fetchHolidayData();
+    }
+  }
+
+  fetchHolidayData = () => {
     const currentYear = new Date().getFullYear();
-    this.props.getHoliday(this.props.country_name,currentYear);
-  } 
+    this.props.getHoliday(this.props.country_name, currentYear);
+  }
   handleChangeHolidayTime = (checked) => {
     this.setState({
       holidayType: checked,
@@ -76,7 +92,8 @@ class SettingsHolidayPage extends React.Component {
    
   };
   handleAddStage = () => {
-    const formattedDate = dayjs(this.state.date).format('YYYY-MM-DD') + 'T00:00:00Z';
+    console.log(this.state.date)
+    const formattedDate = dayjs(this.state.selectedDate).format('YYYY-MM-DD') + 'T00:00:00Z';
     console.log(this.state.holidayName);
     // console.log(dayjs(this.state.date).toISOString());
     console.log(this.state.holidayType ? "Optional" : "Mandatory");
@@ -102,17 +119,10 @@ class SettingsHolidayPage extends React.Component {
   };
   handleChange = ({ target: { name, value } }) =>
     this.setState({ [name]: value });
-    onChangeDatePicker = (date, dateString) => {
-      if (dateString) {
-        const selectedYear = parseInt(dateString, 10);
-        
-       
-        console.log('Selected Year:', selectedYear);
-        this.setState({ selectedYear });
-       
-      }
-     
-    };
+  onChangeDatePicker = (date, dateString) => {
+    this.setState({ selectedDate: date });
+    console.log("Selected date:", dateString);  // To see the selected date string
+  };
   // onChangeDatePicker = (date, dateString) => {
   //   console.log(date, dateString);
   //   this.setState({ date: dayjs(dateString) });
@@ -136,6 +146,7 @@ handleYearChange = (date) => {
   }
 };
   render() {
+    console.log(this.state.date)
     const currentYear = dayjs().format('YYYY');
    
     const { selectedYear } = this.state;
@@ -267,7 +278,7 @@ handleYearChange = (date) => {
             </MainWrapper>
           </div>
         </div>
-        <h4>Updated on {dayjs(this.props.holidays && this.props.holidays.length && this.props.holidays[0].updationDate).format("ll")} by {this.props.holidays && this.props.holidays.length && this.props.holidays[0].updatedBy}</h4>
+        <h4>Updated on {dayjs(this.props.holidays && this.props.holidays.length && this.props.holidays[0].updationDate).format("YYYY-MM-DD")} by {this.props.holidays && this.props.holidays.length && this.props.holidays[0].updatedBy}</h4>
       </>
     );
   }

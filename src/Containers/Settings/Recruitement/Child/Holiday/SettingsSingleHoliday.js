@@ -94,7 +94,8 @@ class SettingsSingleHoliday extends Component {
                     // marginRight: "8%",
                   }}
                 >
-                  {`${dayjs(date).format("ll")}`}
+                  {dayjs(date).format("YYYY-MM-DD")}
+                  {/* {`${dayjs(date).format("ll")}`} */}
                 </StageValue>
                 <StageValue
                   style={{
