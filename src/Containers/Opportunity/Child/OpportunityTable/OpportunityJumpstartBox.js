@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
 import { bindActionCreators } from "redux";
 import { JumpStartBox } from "../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../Components/UI/Layout";
+
 class OpportunityJumpstartBox extends Component {
   
   render() {
     return (
-       <FlexContainer flexDirection="row" style={{ width: "100%"}}>
-        <FlexContainer style={{ width: "100%"}}>
+      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
+    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
         
           <JumpStartBox
             noProgress
@@ -21,8 +20,8 @@ class OpportunityJumpstartBox extends Component {
             title="# Positions "
           />
           
-        </FlexContainer>
-        <FlexContainer style={{ width: "100%"}}>
+        </div>
+        <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
         <JumpStartBox
             noProgress
             title="# Selected"
@@ -32,8 +31,8 @@ class OpportunityJumpstartBox extends Component {
             noProgress
             title="# OnBoarded"
           />
-        </FlexContainer>
-        </FlexContainer>
+        </div>
+        </div>
       
     );
   }
