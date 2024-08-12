@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from "react";
+import React, { lazy, Suspense, useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
@@ -6,7 +6,6 @@ import { TabsWrapper } from "../../../../Components/UI/Layout";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { PlusOutlined } from "@ant-design/icons";
 import ReceiptIcon from '@mui/icons-material/Receipt';
-import { FormattedMessage } from "react-intl";
 import {
     handleLinkDistributorOrderConfigureModal,
     handleLinkCustomerProcurementModal,
@@ -22,22 +21,23 @@ import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersActi
 import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
 import AddIcon from '@mui/icons-material/Add';
+import { BundleLoader } from '../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import CompleteOrderTable from "./AccountOrderTab/CompleteOrderTable";
 import { HistoryOutlined } from "@ant-design/icons";
-import AddSupplierContactModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
-import SalesMapTable from "./AccountDocumentTab/SalesMapTable";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
-import AddSupplierDocumentModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
-import AddCustomerProcurementModal from "./AccountOrderTab/AddCustomerProcurementModal";
-import CustomerProcurementTable from "./AccountOrderTab/CustomerProcurementTable";
-import LinkedOpportunityTable from "./LinkedOpportunityTable";
 import ShopIcon from '@mui/icons-material/Shop'
-import AddAccountOpportunityModal from "./AddAccountOpportunityModal";
-import MainNotes from "../../../CustomNote/MainNotes";
-import ErpNote from "../../ErpNote/ErpNote";
-import AccountInvoiceTable from "./AccountInvoiceTable";
+
+const CompleteOrderTable= lazy(() => import("./AccountOrderTab/CompleteOrderTable"));
+const AddSupplierContactModal   = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal"));
+const SalesMapTable  = lazy(() => import("./AccountDocumentTab/SalesMapTable"));
+const AddSupplierDocumentModal = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal"));
+const AddCustomerProcurementModal = lazy(() => import("./AccountOrderTab/AddCustomerProcurementModal"));
+const AccountInvoiceTable = lazy(() => import("./AccountInvoiceTable"));
+const ErpNote = lazy(() => import("../../ErpNote/ErpNote"));
+const AddAccountOpportunityModal = lazy(() => import("./AddAccountOpportunityModal"));
+const LinkedOpportunityTable = lazy(() => import("./LinkedOpportunityTable"));
+const CustomerProcurementTable = lazy(() => import("./AccountOrderTab/CustomerProcurementTable"));
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -59,7 +59,40 @@ function AccountDetailsTab(props) {
     const [activeKey, setactiveKey] = useState("1")
     const [breadCumb, setBreadCumb] = useState(false)
     const [openOrder, setOpenOrder] = useState(false)
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+    'Production', // 0
+    'Repair', // 1
+    ' Procure', // 2
+    'Quotation', // 3
+    ' Activity', // 4
+    'Notes', // 5
+    ' Documents',
+    'Sales Map',
+    'Summary',
+    'Contact ',
+    'Invoice',
+    'Create'
 
+
+          ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     const handleOrderCreateClick = () => {
         setBreadCumb(true);
     };
@@ -86,14 +119,16 @@ function AccountDetailsTab(props) {
                             <>
                                 <span onClick={() => handleOrderCreateClick(false)}>
                                     <PrecisionManufacturingIcon />
-                                    <span class="ml-1">Production</span>
+                                    <span class="ml-1">
+                                    {translatedMenuItems[0]} {/* Production */}
+                                        </span>
                                 </span>
                                 {activeKey === "2" && (
                                     <>
-                                        <Tooltip title="Create">
+                                        <Tooltip title={translatedMenuItems[11]}>
                                             <AddShoppingCartIcon
                                                 type="plus"
-                                                tooltipTitle="Create"
+                                                tooltipTitle={translatedMenuItems[11]}
                                                 onClick={() => {
                                                     props.handleAddOrderModal(true);
                                                 }}
@@ -105,7 +140,9 @@ function AccountDetailsTab(props) {
                         key="2"
                     >
                         <Suspense fallback={"Loading ..."}>
-                            <AccountOrder1Table distributorId={props.distributorData.distributorId} />
+                            <AccountOrder1Table distributorId={props.distributorData.distributorId} 
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText} />
                         </Suspense>
                     </TabPane>}
                     {props.user.repairInd && <TabPane
@@ -121,7 +158,9 @@ function AccountDetailsTab(props) {
                                             <DynamicFeedIcon
                                                 className="!text-icon  cursor-pointer"
                                             />
-                                            <span class="ml-1 text-sm">Repair</span>
+                                            <span class="ml-1 text-xs">
+                                            {translatedMenuItems[1]}   {/* Repair */}
+                                                </span>
                                         </Tooltip>
                                     </span>
                                 </Badge>
@@ -140,7 +179,7 @@ function AccountDetailsTab(props) {
                                         <Tooltip title="Add Order">
                                             <AddShoppingCartIcon
                                                 type="plus"
-                                                tooltipTitle="Create"
+                                                tooltipTitle={translatedMenuItems[11]}
                                                 onClick={() => {
                                                     props.handleLinkDistributorOrderConfigureModal(true);
                                                 }}
@@ -157,8 +196,12 @@ function AccountDetailsTab(props) {
 
                         <Suspense fallback={"Loading ..."}>
                             {openOrder ?
-                                <CompleteOrderTable distributorId={props.distributorData.distributorId} type="complete" /> :
-                                <AccountOrderTable distributorId={props.distributorData.distributorId} type="incomplete" />
+                                <CompleteOrderTable distributorId={props.distributorData.distributorId} type="complete" 
+                                selectedLanguage={props.selectedLanguage}
+                              translateText={props.translateText} /> :
+                                <AccountOrderTable distributorId={props.distributorData.distributorId} type="incomplete" 
+                                selectedLanguage={props.selectedLanguage}
+                              translateText={props.translateText}/>
                             }
                         </Suspense>
                     </TabPane>}
@@ -176,7 +219,10 @@ function AccountDetailsTab(props) {
                                             <ShopIcon
                                                 className="!text-icon  cursor-pointer"
                                             />
-                                            <span class="ml-1 text-sm">Procure</span>
+                                            <span class="ml-1 text-xs">
+                                            {translatedMenuItems[2]}
+                                            {/* Procure */}
+                                                </span>
                                         </Tooltip>
                  
                               </Badge>
@@ -188,11 +234,11 @@ function AccountDetailsTab(props) {
                                         <Tooltip title="Add Procure">
                                             <AddShoppingCartIcon
                                                 type="plus"
-                                                tooltipTitle="Create"
+                                                tooltipTitle={translatedMenuItems[11]}
                                                 onClick={() => {
                                                     props.handleLinkCustomerProcurementModal(true);
                                                 }}
-                                                className="!text-icon  -ml-3 cursor-pointer "
+                                                className="!text-icon  ml-3 cursor-pointer "
                                             />
                                         </Tooltip>
                                     </>
@@ -205,7 +251,9 @@ function AccountDetailsTab(props) {
 
                         <Suspense fallback={"Loading ..."}>
                        
-                                <CustomerProcurementTable distributorId={props.distributorData.distributorId}  />
+                                <CustomerProcurementTable distributorId={props.distributorData.distributorId} 
+                                selectedLanguage={props.selectedLanguage}
+                                translateText={props.translateText} />
 
                           
                         </Suspense>
@@ -214,34 +262,37 @@ function AccountDetailsTab(props) {
               tab={
                 <>
                   <span>
-                    <LightbulbIcon  style={{fontSize:"1.1rem"}}/>
+                    <LightbulbIcon className="!text-icon" />
                     <span class=" ml-1">
-                      <FormattedMessage
+                      {/* <FormattedMessage
                         id="app.quotation"
                         defaultMessage="Quotation"
-                      />
+                      /> */}
+                     {translatedMenuItems[3]}
+
                     </span>
                   </span>
                   {activeKey === "1" && (
                     <>
                       <Tooltip 
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title={translatedMenuItems[11]}
+                        // {
+                        //   <FormattedMessage
+                        //     id="app.create"
+                        //     defaultMessage="Create"
+                        //   />
+                        // }
                       >
                         {props.user.opportunityCreateInd === true && (
                           <PlusOutlined
                             type="plus"
                             
-                            tooltiptitle={
-                              <FormattedMessage
-                                id="app.Create"
-                                defaultMessage="Create"
-                              />
-                            }
+                            tooltiptitle={translatedMenuItems[11]}
+                            //   <FormattedMessage
+                            //     id="app.Create"
+                            //     defaultMessage="Create"
+                            //   />
+                           
                             onClick={() => {
                               props.handleAccountOpportunityModal(true);
                             }}
@@ -261,7 +312,9 @@ function AccountDetailsTab(props) {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedOpportunityTable distributorData={props.distributorData} />
+                <LinkedOpportunityTable distributorData={props.distributorData} 
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText}/>
               </Suspense>
             </TabPane>
                   
@@ -271,14 +324,17 @@ function AccountDetailsTab(props) {
 
                                 <span>
                                     <i class="fab fa-connectdevelop"></i>
-                                    <span class="ml-1">Activity</span>
+                                    <span class="ml-1">
+                                    {translatedMenuItems[4]}
+                                    {/* Activity */}
+                                        </span>
                                 </span>
                                 {activeKey === "5" && (
                                     <>
-                                        <Tooltip title="Create">
+                                        <Tooltip title= {translatedMenuItems[11]}                                        >
                                             <AddIcon
                                                 type="plus"
-                                                tooltipTitle="Create"
+                                                tooltipTitle= {translatedMenuItems[11]}
                                                 onClick={() => {
                                                     props.handleDistributorActivityModal(true);
                                                 }}
@@ -292,7 +348,9 @@ function AccountDetailsTab(props) {
                         key="5"
                     >
                         <Suspense fallback={"Loading ..."}>
-                            <AccountActivityTable distributorId={props.distributorData.distributorId} />
+                            <AccountActivityTable distributorId={props.distributorData.distributorId} 
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText}/>
                         </Suspense>
                     </TabPane>
 
@@ -301,7 +359,10 @@ function AccountDetailsTab(props) {
                             <>
                                 <span>
                                     <i className="fa fa-sticky-note" aria-hidden="true"></i>
-                                    <span class="ml-1">Notes</span>
+                                    <span class="ml-1">
+                                    {translatedMenuItems[5]}
+                                    {/* Notes */}
+                                        </span>
                                 </span>
                             </>
                         }
@@ -311,6 +372,8 @@ function AccountDetailsTab(props) {
                         <ErpNote
                          type="distributor"
                          id={props.distributorData.distributorId}
+                         selectedLanguage={props.selectedLanguage}
+                              translateText={props.translateText}
                         />
                         </Suspense>
                     </TabPane>
@@ -336,11 +399,14 @@ function AccountDetailsTab(props) {
                             <>
                                 <span>
                                     <i class="far fa-file"></i>
-                                    <span class="ml-1">Documents</span>
+                                    <span class="ml-1">
+                                    {translatedMenuItems[6]}
+                                    {/* Documents */}
+                                        </span>
                                 </span>
                                 {activeKey === "7" && (
                                     <>
-                                        <Tooltip title="Create">
+                                        <Tooltip title="{translatedMenuItems[11]}">
                                             <AddIcon
                                                 // type="plus"
                                                 // tooltipTitle="Create"
@@ -362,6 +428,8 @@ function AccountDetailsTab(props) {
                         <Suspense fallback={"Loading ..."}>
                             <DistributorDocumentTable
                                 distributorId={props.distributorData.distributorId}
+                                selectedLanguage={props.selectedLanguage}
+                              translateText={props.translateText}
                             />
                         </Suspense>
                     </TabPane>
@@ -371,7 +439,10 @@ function AccountDetailsTab(props) {
                             <>
                                 <span>
                                     {/* <i class="far fa-file"></i> */}
-                                    <span class="ml-1">Sales Map</span>
+                                    <span class="ml-1">
+                                    {translatedMenuItems[7]}
+                                    {/* Sales Map */}
+                                        </span>
                                 </span>
 
                             </>
@@ -388,7 +459,10 @@ function AccountDetailsTab(props) {
                             <>
                                 <span>
                                     {/* <i class="far fa-file"></i> */}
-                                    <span class="ml-1">Summary</span>
+                                    <span class="ml-1">
+                                    {translatedMenuItems[8]}
+                                    {/* Summary */}
+                                        </span>
                                 </span>
 
                             </>
@@ -397,7 +471,8 @@ function AccountDetailsTab(props) {
                     >
                         <Suspense fallback={"Loading ..."}>
                             <SalesMapTable
-
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText}
                             />
                             {/* <SummaryTable
                                
@@ -410,14 +485,16 @@ function AccountDetailsTab(props) {
                             <>
                                 <span>
                                     <i class="fas fa-file-contract"></i>
-                                    &nbsp; Contact
+                                    {translatedMenuItems[9]}
+                                    
+                                    {/* Contact */}
                                 </span>
                                 {activeKey === "10" && (
                                     <>
                                         <Tooltip title="Add Contact">
                                             <AddIcon
                                                 type="plus"
-                                                tooltipTitle="Create"
+                                                tooltipTitle="{translatedMenuItems[11]}"
                                                 onClick={() => {
                                                     //  props.handleDistributorContactModal(true);
                                                     props.handleSupplierContactModal(true)
@@ -432,15 +509,18 @@ function AccountDetailsTab(props) {
                         key="10"
                     >
                         <Suspense fallback={"Loading ..."}>
-                            <AccountContactTable distributorId={props.distributorData.distributorId} />
+                            <AccountContactTable distributorId={props.distributorData.distributorId} 
+                              selectedLanguage={props.selectedLanguage}
+                              translateText={props.translateText}/>
                         </Suspense>
                     </TabPane>
                     <TabPane
                         tab={
                             <>
                                 <span>
-                                   <ReceiptIcon/>
-                                    &nbsp; Invoice
+                                   <ReceiptIcon className="!text-icon"/>
+                                   {translatedMenuItems[10]}
+                                   {/* Invoice */}
                                 </span>
                                 {activeKey === "11" && (
                                     <>
@@ -462,7 +542,9 @@ function AccountDetailsTab(props) {
                         key="11"
                     >
                         <Suspense fallback={"Loading ..."}>
-                            <AccountInvoiceTable    distributorId={props.distributorData.distributorId} />
+                            <AccountInvoiceTable    distributorId={props.distributorData.distributorId}
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText} />
                         </Suspense>
                     </TabPane>
                 </StyledTabs>
@@ -475,17 +557,24 @@ function AccountDetailsTab(props) {
                     props.handleDistributorDocumentUploadModal
                 }
             /> */}
+              <Suspense fallback={<BundleLoader />}>
             <AddSupplierDocumentModal
+             selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText}
                 distributorId={props.distributorData.distributorId}
                 supplierDocumentUploadModal={props.supplierDocumentUploadModal}
                 handleSupplierDocumentUploadModal={props.handleSupplierDocumentUploadModal}
             />
             <AddAccountModal
+              selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText}
                 handleLinkDistributorOrderConfigureModal={props.handleLinkDistributorOrderConfigureModal}
                 addLinkDistributorOrderConfigureModal={props.addLinkDistributorOrderConfigureModal}
                 distributorId={props.distributorData.distributorId}
             />
                <AddAccountOpportunityModal
+                 selectedLanguage={props.selectedLanguage}
+                 translateText={props.translateText}
                 distributorId={props.distributorData.distributorId}
             addAccountOpportunityModal={props.addAccountOpportunityModal}
             handleAccountOpportunityModal={props.handleAccountOpportunityModal}
@@ -494,26 +583,35 @@ function AccountDetailsTab(props) {
             // callback={() => getOpportunityListByCustomerId(customerId)}
           />
 
-<AddCustomerProcurementModal
+             <AddCustomerProcurementModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText}
                 handleLinkCustomerProcurementModal={props.handleLinkCustomerProcurementModal}
                 addLinkCustomerProcurementModal={props.addLinkCustomerProcurementModal}
                 distributorId={props.distributorData.distributorId}
             />
 
             <AddSupplierContactModal
+              selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText}
                 addSupplierContactModal={props.addSupplierContactModal}
                 handleSupplierContactModal={props.handleSupplierContactModal}
                 type="distributor"
                 id={props.distributorData.distributorId}
             />
             <AccountActivityModal
+              selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText}
                 addDistributorActivityModal={props.addDistributorActivityModal}
                 handleDistributorActivityModal={props.handleDistributorActivityModal} />
             <CatalogueOrderModal
+              selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText}
                 distributorId={props.distributorData.distributorId}
                 handleAddOrderModal={props.handleAddOrderModal}
                 addCatalogueOrderModal={props.addCatalogueOrderModal}
             />
+            </Suspense>
             {/* <OrderGenerateModal
                 generateOrderModal={props.generateOrderModal}
                 handleOrderGenerateModal={props.handleOrderGenerateModal}

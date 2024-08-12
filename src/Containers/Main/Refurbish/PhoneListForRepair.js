@@ -311,7 +311,7 @@ function PhoneListForRepair(props) {
                             defaultMessage="TAT"
                         /></div>
 
-                        <div className="w-[10.81rem]">Spare</div>
+                        {/* <div className="w-[10.81rem]">Spare</div> */}
                         <div className="w-[10.43rem]">Task</div>
                         <div className="w-[2.03rem]"></div>
                         <div className="w-[2rem]"></div>
@@ -445,7 +445,7 @@ function PhoneListForRepair(props) {
                                                         </Tooltip>
                                                     }
 
-                                                    {item.repairStatus === "In Progress" && item.pauseInd === false && <StatusIcon1
+                                                    {item.repairStatus === "In Progress" && item.pauseInd === false && item.totalTaskCount === item.totalCompleteAndNoNeedTaskCount && <StatusIcon1
                                                         type="Complete"
                                                         iconType="fa-hourglass"
                                                         tooltip="Complete"
@@ -453,7 +453,7 @@ function PhoneListForRepair(props) {
                                                         status={active}
                                                         id={item.phoneId}
                                                         phoneId={RowData.phoneId}
-                                                        disabled={ item.totalTaskCount !== item.totalCompleteTaskCount }
+                                                        // disabled={ item.totalTaskCount !== item.totalCompleteAndNoNeedTaskCount }
                                                         onClick={() => {
                                                             handleQCRepairStatus("Complete", item);
                                                         }}
@@ -512,7 +512,7 @@ function PhoneListForRepair(props) {
                                                         </Badge> 
                                                     </Tooltip> */}
                                                   
-                                                     <Tooltip title="Spare">
+                                                     {/* <Tooltip title="Spare">
                                                               <Progress 
                                                                percent={percentage}
                                                                success={{percentage}}
@@ -524,7 +524,7 @@ function PhoneListForRepair(props) {
                                                                    props.handleSpareProcess(true);
                                                                 }} />
                                                                                                    
-                                                    </Tooltip>
+                                                    </Tooltip> */}
                                                 
                                                 </div>
                                             </div>
@@ -686,6 +686,7 @@ function PhoneListForRepair(props) {
                 <ProcessExpandDrawer
                    phoneId={phoneId}
                    RowData={RowData}
+                   rowData={props.rowData}
                     processExpandModal={props.processExpandModal}
                     handleProcessExpand={props.handleProcessExpand}
                 />

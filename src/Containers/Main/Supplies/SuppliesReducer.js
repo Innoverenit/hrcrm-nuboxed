@@ -1,9 +1,11 @@
 import * as types from "./SuppliesActionType";
-import moment from "moment";
+import dayjs from "dayjs";
 const initialState = {
     viewType: "all",
 
     addSuppliesModal: false,
+    uploadingMaterialList:false,
+    uploadingMaterialListError:false,
 
     addBrandModel: false,
 
@@ -148,6 +150,22 @@ const initialState = {
     fetchingMaterialCategory: false, materialCategorys:[],fetchingMaterialCategoryError: false,
 
     fetchingMaterialCatSrchError:true,
+
+    uploadMaterialModal:false,
+
+    fetchingMaterialsBySuppliesId: false,
+                                  fetchingMaterialsBySuppliesIdError:false,
+                                  materialsBySuppliesId:{},
+                                  
+                                  suppliesPUblishToggle: false,
+                                      suppliesPUblishToggleError: false,
+
+                                      materialRecommendingToggle: false,
+                                        materialRecommendingToggleError:false,
+
+                                        materialPriceType: false,
+                                        materialPriceTypeError:false,   
+
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -242,6 +260,10 @@ export const suppliesReducer = (state = initialState, action) => {
                 fetchingSuppliesHistory: false,
                 fetchingSuppliesHistoryError: true,
             };
+
+
+            case types.HANDLE_UPLOAD_MATERIAL_MODAL:
+      return { ...state, uploadMaterialModal: action.payload };
 
         case types.HANDLE_DELETE_FEEDBACK_MODAL:
             return { ...state, addDeleteFeedbackModal: action.payload };
@@ -342,6 +364,23 @@ export const suppliesReducer = (state = initialState, action) => {
                 addingPriceRateError: true,
 
             };
+
+
+
+            case types.UPLOAD_MATERIAL_LIST_REQUEST:
+                return { ...state, uploadingMaterialList: true };
+              case types.UPLOAD_MATERIAL_LIST_SUCCESS:
+                return {
+                  ...state,
+                  uploadingMaterialList: false,
+                //   uploadProductList: false
+                };
+              case types.UPLOAD_MATERIAL_LIST_FAILURE:
+                return {
+                  ...state,
+                  uploadingMaterialList: false,
+                  uploadingMaterialListError: true,
+                };
 
         case types.GET_SUPPLIES_BY_GROUP_ID_REQUEST:
             return { ...state, fetchingPurchaseByGroupId: true };
@@ -812,7 +851,90 @@ export const suppliesReducer = (state = initialState, action) => {
                            
                             };
                           case types.MATERIAL_CATEGORY_SEARCH_FAILURE:
-                            return { ...state, fetchingMaterialCatSrchError: true };                     
+                            return { ...state, fetchingMaterialCatSrchError: true };   
+                            
+                            
+                            case types.GET_MATERIALS_BY_SUPPLIES_ID_REQUEST:
+                                return {
+                                  ...state,
+                                  fetchingMaterialsBySuppliesId: true,
+                                  fetchingMaterialsBySuppliesIdError: false,
+                                };
+                              case types.GET_MATERIALS_BY_SUPPLIES_ID_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingMaterialsBySuppliesId: false,
+                                  materialsBySuppliesId: action.payload,
+                                };
+                              case types.GET_MATERIALS_BY_SUPPLIES_ID_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingMaterialsBySuppliesId: false,
+                                  fetchingMaterialsBySuppliesIdError: true,
+                                };                                      
+
+
+                                case types.SUPPLIES_PUNBLISH_TOGGLE_REQUEST:
+                                    return { ...state, suppliesPUblishToggle: true };
+                                  case types.SUPPLIES_PUNBLISH_TOGGLE_SUCCESS:
+                                    return {
+                                      ...state,
+                                      suppliesPUblishToggle: false,
+                                      materialCategorys: state.materialCategorys.map((item) => {
+                                        if (item.categoryId === action.payload.categoryId) {
+                                          return action.payload;
+                                        } else {
+                                          return item;
+                                        }
+                                      }),
+                                    };
+                                  case types.SUPPLIES_PUNBLISH_TOGGLE_FAILURE:
+                                    return {
+                                      ...state,
+                                      suppliesPUblishToggle: false,
+                                      suppliesPUblishToggleError: true,
+                                    };
+
+                                    case types.MATERIAL_RECOMMEND_TOGGLE_REQUEST:
+                                      return { ...state, materialRecommendingToggle: true };
+                                    case types.MATERIAL_RECOMMEND_TOGGLE_SUCCESS:
+                                      return {
+                                        ...state,
+                                        materialRecommendingToggle: false,
+                                        purchaseList: state.purchaseList.map((item) => {
+                                          if (item.suppliesId === action.payload.suppliesId) {
+                                            return action.payload;
+                                          } else {
+                                            return item;
+                                          }
+                                        }),
+                                      };
+                                    case types.MATERIAL_RECOMMEND_TOGGLE_FAILURE:
+                                      return {
+                                        ...state,
+                                        materialRecommendingToggle: false,
+                                        materialRecommendingToggleError: true,
+                                      };
+                                      case types.MATERIAL_PRICE_TYPE_REQUEST:
+                                        return { ...state, materialPriceType: true };
+                                      case types.MATERIAL_PRICE_TYPE_SUCCESS:
+                                        return {
+                                          ...state,
+                                          materialPriceType: false,
+                                          materialCurrency: state.materialCurrency.map((item) => {
+                                            if (item.id === action.payload.id) {
+                                              return action.payload;
+                                            } else {
+                                              return item;
+                                            }
+                                          }),
+                                        };
+                                      case types.MATERIAL_PRICE_TYPE_FAILURE:
+                                        return {
+                                          ...state,
+                                          materialPriceType: false,
+                                          materialPriceTypeError: true,
+                                        };
 
         default:
             return state;

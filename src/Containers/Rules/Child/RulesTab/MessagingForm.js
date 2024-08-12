@@ -1,16 +1,12 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch, Icon, Tooltip, Checkbox } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
-import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
+import { Button, Tooltip, Checkbox } from "antd";
+import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-import { StyledLabel } from "../../../../Components/UI/Elements";
-import { Spacer } from "../../../../Components/UI/Elements";
+
 import { getProcess } from "../../../Settings/SettingsAction";
 import { addSla } from "../../RulesAction";
-
 import { Editor } from "react-draft-wysiwyg";
 import {
     EditorState,
@@ -22,8 +18,7 @@ import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import CustomOption from "./CustomOption";
 import { addMatrix, getMatrix } from "../../RulesAction";
-import { string } from "yup";
-import Item from "antd/lib/list/Item";
+
 
 function MessagingForm(props) {
     const [editorState, seteditorState] = useState(EditorState.createEmpty());
@@ -119,21 +114,18 @@ function MessagingForm(props) {
                                     width: "100%",
                                 }}
                             >
-                                <FlexContainer>
+                            <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                                     <div style={{ width: "18%" }}>
                                         {" "}
-                                        <StyledLabel>Priority</StyledLabel>
+                                        <div class=" text-xs font-bold font-poppins text-black">Priority</div>
                                     </div>
                                     <div>
                                         {" "}
-                                        <StyledLabel>Executor</StyledLabel>
+                                        <div class=" text-xs font-bold font-poppins text-black">Executor</div>
                                     </div>
-                                </FlexContainer>
-                                <Spacer />
-                                <FlexContainer
-                                    justifyContent="space-between"
-                                    style={{ width: "100%" }}
-                                >
+                                </div>
+                                <mt-3 />
+                                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-full">
                                     <div
                                         style={{
                                             width: "15%",
@@ -219,15 +211,15 @@ function MessagingForm(props) {
                                             ]}
                                         />
                                     </div>
-                                </FlexContainer>
-                                <Spacer />
-                                <StyledLabel>Email</StyledLabel>
+                                </div>
+                                <mt-3 />
+                                <div class=" text-xs font-bold font-poppins text-black">Email</div>
                                 <div>
                                     Same For Notification&nbsp;&nbsp;
                   <Checkbox>Yes</Checkbox>
                                     <Checkbox>No</Checkbox>
                                 </div>
-                                <Spacer />
+                                <mt-3 />
                                 <Editor
                                     editorState={editorState}
                                     wrapperClassName="demo-wrapper"

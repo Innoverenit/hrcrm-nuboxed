@@ -7,7 +7,6 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {  StyledTabs } from "../../Components/UI/Antd";
-import TabsWrappers from "../../Components/UI/Layout/TabsWrappers";
 import IncludedDealCardList from "./ActionRequired/IncludedDealCardList";
 import IncludedTaskCardList from "./ActionRequired/IncludedTaskCardList";
 import OppIncludedCardList from "./ActionRequired/OppIncludedCardList";
@@ -32,7 +31,7 @@ class ActionTab extends Component {
       <>
         <div class=" flex flex-no-wrap" >
         <div class=" w-full" >
-        <TabsWrappers style={{ height:"80vh"}}>
+        <div class="m-1 w-[98%] bg-slate-500 rounded shadow-[0em 0.25em 0.625em -0.125em] h-[80vh]" >
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}
@@ -129,7 +128,7 @@ class ActionTab extends Component {
             </TabPane>
          
           </StyledTabs>
-        </TabsWrappers>
+        </div>
         </div>
         </div>
       </>

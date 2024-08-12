@@ -679,7 +679,7 @@ function InvestorDealForm(props) {
                           />
                            </div>
                 </div>
-                {/* <StyledLabel>
+                {/* <div class=" text-xs font-bold font-poppins text-black">
                   <Field
                     name="oppInnitiative"
                     //selectType="initiativeName"
@@ -707,7 +707,7 @@ function InvestorDealForm(props) {
                     isColumn
                     inlineLabel
                   />
-                </StyledLabel> */}
+                </div> */}
                
 
                 <div class="flex justify-between max-sm:flex-col mt-3">

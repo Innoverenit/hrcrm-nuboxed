@@ -1,16 +1,14 @@
-import React, { useState,Component,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { getLibrarys } from "../../../Settings/Library/LibraryAction";
 import { Button } from "antd";
 import { Select } from "antd";
 import {updateLeadsInitiative} from "../../LeadsAction";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import { Spacer,StyledLabel } from "../../../../Components/UI/Elements";
+import { Formik, Form, Field} from "formik";
+
 import { setEditLeadsInitiative } from "../../LeadsAction";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 const { Option } = Select;
 function UpdateLeadsInititativeForm (props) {
@@ -93,7 +91,7 @@ function UpdateLeadsInititativeForm (props) {
                     inlineLabel
                   />
 
-<StyledLabel>Skills</StyledLabel> 
+<div class=" text-xs font-bold font-poppins text-black">Skills</div> 
   
   <Select
     name="skillList"
@@ -111,25 +109,11 @@ function UpdateLeadsInititativeForm (props) {
     })}
   </Select>
 
-
-                   {/* <Field
-                      name="skillList"
-                      label="Skills"
-                      mode="multiple"
-                      // isColumn
-                      allowClear
-                      placeholder="Select"
-                      width={"100%"}
-                      component={SelectComponent}
-                      options={
-                        Array.isArray(libraryOption) ? libraryOption : []
-                      }
-                    /> */}
-                  <Spacer />
+  <div class="mt-3" />
                 </div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <div class="mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -138,7 +122,7 @@ function UpdateLeadsInititativeForm (props) {
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Create */}
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

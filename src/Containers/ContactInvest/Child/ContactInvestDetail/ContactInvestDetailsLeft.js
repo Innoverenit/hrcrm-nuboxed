@@ -8,8 +8,14 @@ class ContactInvestDetailsLeft extends Component {
     return (
       <>
         <div  class=" flex flex-col">  
- <ContactInvestOverViewCard contactInVestDetail={contactInVestDetail} /> 
-           <ContactInvestDetailCard contactInVestDetail={contactInVestDetail}  />
+ <ContactInvestOverViewCard contactInVestDetail={contactInVestDetail}
+    selectedLanguage={this.props.selectedLanguage}
+    translateText={this.props.translateText}
+ /> 
+           <ContactInvestDetailCard contactInVestDetail={contactInVestDetail} 
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
+           />
         </div>
       </>
     );

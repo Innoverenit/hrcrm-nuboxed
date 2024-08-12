@@ -511,7 +511,7 @@ function EmployeeForm(props) {
                       />
                     </div>
                     <div class=" max-sm:w-wk">
-                    <label>{translatedMenuItems[5]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[5]}</div>
                       <Field
                         name="currency"
                         isColumnWithoutNoCreate
@@ -786,7 +786,7 @@ function EmployeeForm(props) {
       </Listbox> */}
                   <div class=" flex justify-between max-sm:flex-col mt-4" >
                     <div class=" w-w48 flex flex-col max-sm:w-wk">
-                      {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</label>
+                      {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</div>
                       <select  className="customize-select"
                       
                       onChange={handleDeptChange}>
@@ -925,7 +925,7 @@ function EmployeeForm(props) {
                       </div>
                   <div class=" flex justify-between max-sm:flex-col" >
                     <div class=" w-w48 flex flex-col max-sm:w-wk">
-                      {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>WorkPlace</label>
+                      {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>WorkPlace</div>
                       <select 
                         className="customize-select"
                       onChange={handleCountryChange}>
@@ -960,7 +960,7 @@ function EmployeeForm(props) {
                     </div>
 
                     <div class=" w-w47.5 flex flex-col max-sm:w-wk">
-                      {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Location</label>
+                      {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Location</div>
                     <select  className="customize-select"
                 //  style={{ border: "0.06em solid #aaa" }}
                       onChange={handleLocationChange}

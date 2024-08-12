@@ -572,7 +572,7 @@ function UpdateEventForm (props) {
                   )} 
                   </div>
                   
-                  {/* <Spacer />
+                  {/* <div class=" mt-3" />
                   {startDate ? (
                     <span>
                       {dayjs(startDate).isBefore(dayjs()) && (

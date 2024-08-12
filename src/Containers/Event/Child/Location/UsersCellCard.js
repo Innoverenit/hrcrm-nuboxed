@@ -1,17 +1,14 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button ,Select} from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-
 import {getDepartments} from "../../../../Containers/Settings/Department/DepartmentAction"
 import {getUserListLocation} from "../../Child/Location/LocationAction"
-import AddUserCellModal from "./AddUserCellModal"
-//import { Select } from "../../../../Components/UI/Elements";
 import{getAlLoCell,createUserCell,deleteUserCell,getCellCode,getUserCell,handleUserCellModal} from "../../../Event/Child/Location/LocationAction";
 import { DeleteOutlined } from "@ant-design/icons";
-// import ProductCellToggle from "./ProductCellToggle";
-
+import { BundleLoader } from "../../../../Components/Placeholder";
+const AddUserCellModal = lazy(() => ("/AddUserCellModal"));
 
 
 const { Option } = Select;
@@ -108,7 +105,7 @@ const UsersCellCard = (props) => {
       <>
       <div class="flex justify-between" >
       <div class="ml-2">
-<label class="block" >Cell Code</label>
+<div class="block" >Cell Code</div>
     <Select
       placeholder="Select a cell"
       style={{ width: 200 }}
@@ -123,7 +120,7 @@ const UsersCellCard = (props) => {
     </Select>
     </div>
       <div >
-        <label style={{display: 'block'}}>Department</label>
+        <div style={{display: 'block'}}>Department</div>
     <Select
       placeholder="Select a department"
       style={{ width: 200 }}
@@ -141,7 +138,7 @@ const UsersCellCard = (props) => {
 
 
     <div >
-    <label style={{display: 'block'}}>User </label>
+    <div style={{display: 'block'}}>User </div>
     <Select
       placeholder="Select a user"
       style={{ width: 200 }}
@@ -191,7 +188,7 @@ const UsersCellCard = (props) => {
                 <div className="  w-32 max-md:w-[6.5rem] max-sm:flex-row  max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                    
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.userName}</div>
                       </div>
                     </div>
@@ -200,7 +197,7 @@ const UsersCellCard = (props) => {
 
 <div class=" text-xs  font-poppins">
 
-  <div className="font-normal text-sm  font-poppins">
+  <div className=" text-xs  font-poppins">
     <div> {item.departmentName}</div>
   </div>
 
@@ -208,8 +205,8 @@ const UsersCellCard = (props) => {
 
 </div>
                   <div className="   md:w-[12.1rem] max-sm:w-full  ">
-                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
-                      <div className="font-normal text-sm  font-poppins">
+                    <div class="text-xs  font-semibold  font-poppins cursor-pointer">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.cellChamber}</div>
                       </div>
                     </div>
@@ -235,7 +232,7 @@ const UsersCellCard = (props) => {
                           <div className="flex justify-end  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" flex justify-end text-xs  font-poppins">
                    
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                       <StyledPopconfirm
                             title="Do you want to delete?"
                             onConfirm={() => handleDelete(item)}
@@ -268,6 +265,7 @@ const UsersCellCard = (props) => {
         </div>
       </div> 
 
+      <Suspense fallback={<BundleLoader />}>
       <AddUserCellModal
       addUserCellModal={props.addUserCellModal}
       handleUserCellModal={props.handleUserCellModal}
@@ -277,7 +275,9 @@ const UsersCellCard = (props) => {
       // handleLocationMachineModal={props.handleLocationMachineModal}
       
       />
+      </Suspense>
       </>
+      
     );
    }
 

@@ -6,6 +6,23 @@ const initialState = {
     addingPrmotions: false,
     addingPrmotionsError:false,
 
+    addingProuctToggle: false,
+    addingProuctToggleError: false,
+
+    addingMaterialToggle: false,
+    addingMaterialToggleError: false,
+
+    updatingPrmotion: false,
+     updatingPrmotionError: false,
+
+    addingDiscountToggle: false,
+    addingDiscountToggleError: false,
+
+    prmotionUpdatedrawr:false,
+
+    addingSuppliesToggle: false,
+    addingSuppliesToggleError: false,
+
     fetchingPromotionsData: false,
     fetchingPromotionsDataError: false,
     promotionsData:[]
@@ -48,6 +65,110 @@ const initialState = {
                         fetchingPromotionsData: false,
                         fetchingPromotionsDataError: true,
                       };
+
+                      case types.ADDING_PRODUCT_TOGGLE_REQUEST:
+                        return { ...state, addingProuctToggle: true };
+                      case types.ADDING_PRODUCT_TOGGLE_SUCCESS:
+                        return {
+                          ...state,
+                          addingProuctToggle: false,
+                          promotionsData: state.promotionsData.map((item) => {
+                            if (item.promoCodeId === action.payload.promoCodeId) {
+                              return action.payload;
+                            } else {
+                              return item;
+                            }
+                          }),
+                        }
+                      case types.ADDING_PRODUCT_TOGGLE_FAILURE:
+                        return {
+                          ...state,
+                          addingProuctToggle: false,
+                          addingProuctToggleError: true,
+                        };
+
+                        case types.ADDING_MATERIAL_TOGGLE_REQUEST:
+                          return { ...state, addingMaterialToggle: true };
+                        case types.ADDING_MATERIAL_TOGGLE_SUCCESS:
+                          return {
+                            ...state,
+                            addingMaterialToggle: false,
+                            promotionsData: state.promotionsData.map((item) => {
+                              if (item.promoCodeId === action.payload.promoCodeId) {
+                                return action.payload;
+                              } else {
+                                return item;
+                              }
+                            }),
+                          }
+                        case types.ADDING_MATERIAL_TOGGLE_FAILURE:
+                          return {
+                            ...state,
+                            addingMaterialToggle: false,
+                            addingMaterialToggleError: true,
+                          };
+
+                          case types.ADDING_SUPPLIES_TOGGLE_REQUEST:
+                            return { ...state, addingSuppliesToggle: true };
+                          case types.ADDING_SUPPLIES_TOGGLE_SUCCESS:
+                            return {
+                              ...state,
+                              addingSuppliesToggle: false,
+                              promotionsData: state.promotionsData.map((item) => {
+                                if (item.promoCodeId === action.payload.promoCodeId) {
+                                  return action.payload;
+                                } else {
+                                  return item;
+                                }
+                              }),
+                            }
+                          case types.ADDING_SUPPLIES_TOGGLE_FAILURE:
+                            return {
+                              ...state,
+                              addingSuppliesToggle: false,
+                              addingSuppliesToggleError: true,
+                            };
+
+                            case types.ADDING_DISCOUNT_TOGGLE_REQUEST:
+                              return { ...state, addingDiscountToggle: true };
+                            case types.ADDING_DISCOUNT_TOGGLE_SUCCESS:
+                              return {
+                                ...state,
+                                addingDiscountToggle: false,
+                                promotionsData: state.promotionsData.map((item) => {
+                                  if (item.promoCodeId === action.payload.promoCodeId) {
+                                    return action.payload;
+                                  } else {
+                                    return item;
+                                  }
+                                }),
+                              }
+                            case types.ADDING_DISCOUNT_TOGGLE_FAILURE:
+                              return {
+                                ...state,
+                                addingDiscountToggle: false,
+                                addingDiscountToggleError: true,
+                              };
+
+                              case types.HANDLE_UPDATE_PROMOTION_DRAWER:
+                                return { ...state, prmotionUpdatedrawr: action.payload }; 
+
+                                case types.UPDATE_PRMOTIONS_REQUEST:
+                                  return { ...state, updatingPrmotion: true };
+                                case types.UPDATE_PRMOTIONS_SUCCESS:
+                                  return {
+                                    ...state,
+                                    prmotionUpdatedrawr: false,
+                                    updatingPrmotion: false,
+                                    promotionsData: state.promotionsData.map((LOCS) =>
+                                    LOCS.promoCodeId === action.payload.promoCodeId
+                                      ? action.payload
+                                      : LOCS
+                                  ),
+                                  };
+                                case types.UPDATE_PRMOTIONS_FAILURE:
+                                  return { ...state, updatingPrmotion: false, updatingPrmotionError: true };         
+
 
 
 

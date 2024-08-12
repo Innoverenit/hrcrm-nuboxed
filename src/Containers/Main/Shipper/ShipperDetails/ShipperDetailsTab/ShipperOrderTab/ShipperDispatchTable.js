@@ -11,7 +11,7 @@
 //   handleDeleteOrderModal,
 //   handleShipperDocumentUploadModal,
 // } from "../../../../ShipperAction";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // import { CurrencySymbol } from "../../../../../../Components/Common";
 
 // import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
@@ -105,7 +105,7 @@
 //               fontWeight: item.orderStatus === "Completed" ? "bold" : null,
 //             },
 //           },
-//           children: ` ${moment(item.orderDate).format("ll")}`,
+//           children: ` ${dayjs(item.orderDate).format("ll")}`,
 //         };
 //       },
 //     },
@@ -185,7 +185,7 @@
 //               fontWeight: item.orderStatus === "Completed" ? "bold" : null,
 //             },
 //           },
-//           children: ` ${moment(item.subscriptionEndDate).format("ll")}`,
+//           children: ` ${dayjs(item.subscriptionEndDate).format("ll")}`,
 //         };
 //       },
 //     },
@@ -294,7 +294,7 @@ import { Input, Tooltip, Space, Button, Form, DatePicker } from "antd";
 //   handlePickupDateModal,
 // } from "../../../InventoryAction";
 // import ReceivedModal from "./ReceivedModal";
-import moment from "moment";
+import dayjs from "dayjs";
 
 // import DispatchModal from "./UpdateDispatch/DispatchModal";
 // import PickUpDateModal from "./PickUpDateModal";
@@ -499,8 +499,8 @@ function DispatchTable(props) {
       width: "22%",
       // dataIndex: "dispatchSuppliesId",
       render: (name, item, i) => {
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         return {
           props: {
             style: {
@@ -566,7 +566,7 @@ function DispatchTable(props) {
       },
       render: (name, item, i) => {
         return item.pickupDate ? (
-          moment(item.pickupDate).format("DD/MM/YY")
+          dayjs(item.pickupDate).format("DD/MM/YY")
         ) : (
           <span
             onClick={() => {
@@ -686,7 +686,7 @@ function DispatchTable(props) {
             },
           },
           children: (
-            <span>{moment(item.deliveryDate).format("DD/MM/YY")} &nbsp;&nbsp;</span>
+            <span>{dayjs(item.deliveryDate).format("DD/MM/YY")} &nbsp;&nbsp;</span>
           ),
         };
       },

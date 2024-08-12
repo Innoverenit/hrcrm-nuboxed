@@ -3,6 +3,7 @@
 //  const base_url = "https://develop.tekorero.com/employeePortal/api/v1";
 //  const base_url2 = "https://develop.tekorero.com/Erp";
 //  const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT"
+//  const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 
 
 //Nubox
@@ -16,7 +17,7 @@
 // const base_url = "https://crm.celltechnologies.nl/api/v1";
 // const base_url2 = "https://crm.celltechnologies.nl/Erp";
 // const asses_url = "https://crm.celltechnologies.nl/Assessment-0.0.1-SNAPSHOT";
-
+// const sub_url = "https://crm.celltechnologies.nl/Assessment-0.0.1-SNAPSHOT";
 
 
 //TestHr//hrweb( dkorekologo)
@@ -24,12 +25,9 @@ const login_url = "https://develop.tekorero.com/testHr";
 const base_url = "https://develop.tekorero.com/testHr/api/v1";
 const base_url2 = "https://develop.tekorero.com/testErp";
 const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
+const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 
-
-
-
-
-export { base_url, login_url, asses_url, base_url2 };
+export { base_url, sub_url,login_url, asses_url, base_url2 };
 
 
 

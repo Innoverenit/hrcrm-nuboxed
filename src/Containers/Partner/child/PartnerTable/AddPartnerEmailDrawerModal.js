@@ -1,16 +1,15 @@
-import React, { Component, Suspense } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { Button, Upload } from "antd";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { Field, Form, Formik } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 
 class AddPartnerEmailDrawerModal extends Component {
 
@@ -119,7 +118,7 @@ class AddPartnerEmailDrawerModal extends Component {
                    <div class=" w-full">
                    <div class=" flex items-center">
                     <div class=" w-1/12">
-               <StyledLabel>To</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">To</div>
                     </div>
                     <div class=" w-11/12">
                       
@@ -132,7 +131,7 @@ class AddPartnerEmailDrawerModal extends Component {
                   </div>
                   <div class=" flex items-center">
                   <div class=" w-1/12">
-               <StyledLabel>CC</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">CC</div>
                     </div>
                     <div class=" w-11/12">
                       
@@ -146,7 +145,7 @@ class AddPartnerEmailDrawerModal extends Component {
                  
                   <div class=" flex items-center">
                   <div class=" w-1/12">
-               <StyledLabel>BCC</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">BCC</div>
                     </div>
                     <div class=" w-11/12">
                       
@@ -159,7 +158,7 @@ class AddPartnerEmailDrawerModal extends Component {
                   </div>
                   <div class=" flex items-center">
                   <div class=" w-1/12">
-               <StyledLabel>Subject</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">Subject</div>
                     </div>
                     <div class=" w-11/12">
                       

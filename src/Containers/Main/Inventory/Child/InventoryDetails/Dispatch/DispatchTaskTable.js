@@ -1,11 +1,13 @@
 import React, { useState, useEffect, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddIcon from '@mui/icons-material/Add';
 import { getPhoneTasklist, receiveTaskByDispatch } from "../../../../Account/AccountAction";
-import { MainWrapper } from "../../../../../../Components/UI/Elements";
-import { Checkbox, Switch } from "antd";
+import { Checkbox, Switch, Tooltip } from "antd";
+import { handleSpareProcess } from "../../../../Refurbish/RefurbishAction"
 
 function DispatchTaskTable(props) {
+    const [newData, setnewData] = useState("");
     useEffect(() => {
         props.getPhoneTasklist(props.phoneId)
         settask1Ind(props.phoTasklist.task1Ind)
@@ -28,7 +30,9 @@ function DispatchTaskTable(props) {
     const [task1CompleteInd, settask1CompleteInd] = useState(props.phoTasklist.task1CompleteInd)
     const [task2CompleteInd, settask2CompleteInd] = useState(props.phoTasklist.task2CompleteInd)
     const [task3CompleteInd, settask3CompleteInd] = useState(props.phoTasklist.task3CompleteInd)
-
+    function handleSetNewData(item) {
+        setnewData(item);
+    }
     const handleToggleChange1 = () => {
         props.receiveTaskByDispatch({
             task1CompleteInd: task1CompleteInd ? false : true,
@@ -46,7 +50,7 @@ function DispatchTaskTable(props) {
     }
     return (
         <>
-            <MainWrapper>
+         <div class="mr-5 ml-5">
                 <>
                     <h4>Task Type</h4>
                     {props.phoTasklist.task1 ?
@@ -103,22 +107,38 @@ function DispatchTaskTable(props) {
                             </div>
                         </div>
                         : null}
+                         <Tooltip title="Spare">
+                                <AddIcon
+                                  onClick={() => {
+                                    props.handleSpareProcess(true);
+                                   // handleSetNewData(item);  
+                                    
+                                }}
+                                />
+                                </Tooltip>
                 </>
-            </MainWrapper>
+            </div>
+            {/* <ProcessInventoryDrawer
+         newData={newData} 
+         RowData={props.RowData}                       
+                  processSpareModal={props.processSpareModal}
+                    handleSpareProcess={props.handleSpareProcess}
+                /> */}
         </>
     );
 }
 
-const mapStateToProps = ({ distributor }) => ({
+const mapStateToProps = ({ distributor,refurbish }) => ({
     phoTasklist: distributor.phoTasklist,
-
+    processSpareModal: refurbish.processSpareModal
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getPhoneTasklist,
-            receiveTaskByDispatch
+            receiveTaskByDispatch,
+            handleSpareProcess
         },
         dispatch
     );

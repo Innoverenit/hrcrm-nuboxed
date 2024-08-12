@@ -6,16 +6,19 @@ import { StyledTable } from "../../../../../../Components/UI/Antd";
 import {
   getDispatchUpdateList,
   updateDispatchInspectionButton,
-  handleRejectReasonModal
+  handleRejectReasonModal,
+  handleInventoryTask
 } from "../../../InventoryAction";
+import {handleQCPhoneNotesOrderModal} from "../../../../Refurbish/RefurbishAction"
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip } from "antd";
 import { FileDoneOutlined } from "@ant-design/icons";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
-import moment from "moment";
 import RejectedReasonModal from "./RejectedReasonModal";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
+import QCPhoneNotesOrderModal from "../../../../Refurbish/QCPhoneNotesOrderModal";
+import InventoryExpandTaskModal from "./InventoryExpandTaskModal";
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
 const DispatchTaskTable = lazy(() => import("./DispatchTaskTable"))
 const DispatchReceiveToggle = lazy(() => import("./DispatchReceiveToggle"));
@@ -26,16 +29,19 @@ function DispatchInventoryDetailsTable(props) {
     props.getDispatchUpdateList(props.rowData.orderPhoneId)
   }, [])
 
-  const [rowData, setRowData] = useState({});
+  const [rowData, setrowData] = useState({});
   const [phoneId, setphoneId] = useState("");
   const [task, setTask] = useState(false);
-
+  const [RowData, setRowData] = useState({});
+  function handleSetRowData(item) {
+      setRowData(item);
+  }
   const handlePhoneTask = (id) => {
     setTask(!task)
     setphoneId(id);
   }
   const handleRowData = (data) => {
-    setRowData(data)
+    setrowData(data)
   }
   const itemValue = props.updateDispatchList.every((item) => item.dispatchInspectionInd === 1)
   console.log(itemValue)
@@ -229,7 +235,7 @@ function DispatchInventoryDetailsTable(props) {
   //             onClick={() => props.updateDispatchInspectionButton({
   //               dispatchInspectionInd: 2,
   //               stopDispatchInspectionUser: props.userId,
-  //               stopDispatchInspectionDate: moment()
+  //               stopDispatchInspectionDate: dayjs()
   //             },
   //               props.rowData.orderPhoneId,
   //               props.locationDetailsId)}
@@ -271,7 +277,7 @@ let buttonRendered = false;
               onClick={() => props.updateDispatchInspectionButton({
                 dispatchInspectionInd: 2,
                 stopDispatchInspectionUser: props.userId,
-                stopDispatchInspectionDate: moment()
+                stopDispatchInspectionDate: dayjs()
               }, props.rowData.orderPhoneId, props.locationDetailsId)}
               type="primary"
               disabled={!tense}
@@ -311,7 +317,7 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
               onClick={() => props.updateDispatchInspectionButton({
                 dispatchInspectionInd: 2,
                 stopDispatchInspectionUser: props.userId,
-                stopDispatchInspectionDate: moment()
+                stopDispatchInspectionDate: dayjs()
               },
                 props.rowData.orderPhoneId,
                 props.locationDetailsId)}
@@ -385,20 +391,22 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
               onClick={() => {
                 handleRowData(item);
                 handlePhoneTask(item.phoneId);
+                props.handleInventoryTask(true);
               }}
             />
 
           </Tooltip>
           <Tooltip title="Notes">
-            <NoteAltIcon
-              style={{ cursor: "pointer", fontSize: "13px" }}
-            // onClick={() => {
-            //   handleSetParticularOrderData(item);
-            //   props.handleReceivedOrderIdPhoneNoteModal(true);
-            // }}
-            />
+                                                        <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
 
-          </Tooltip>
+                                                              
+                                                                onClick={() => {
+                                                                    handleSetRowData(item);
+                                                                    props.handleQCPhoneNotesOrderModal(true);
+                                                                }}
+                                                            />
+
+                                                        </Tooltip>
           <Tooltip>
             {props.rowData.dispatchInspectionInd === 1 && <DispatchReceiveToggle
               phoneId={item.phoneId}
@@ -449,12 +457,23 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
             </div>
             <Suspense fallback={<BundleLoader />}>
                 
-            {task && <DispatchTaskTable phoneId={phoneId} />}
+            {/* {task && <DispatchTaskTable phoneId={phoneId} />} */}
+            <InventoryExpandTaskModal  
+           phoneId={phoneId}         
+           rowData={rowData}
+                  inventoryExpandTask={props.inventoryExpandTask}
+                  handleInventoryTask={props.handleInventoryTask}
+                />
       <RejectedReasonModal
         rowData={rowData}
         rejectedReasonModal={props.rejectedReasonModal}
         handleRejectReasonModal={props.handleRejectReasonModal}
       /> 
+      <QCPhoneNotesOrderModal
+                    RowData={RowData}
+                    phoNotesQCOrderModal={props.phoNotesQCOrderModal}
+                    handleQCPhoneNotesOrderModal={props.handleQCPhoneNotesOrderModal}
+                />
             </Suspense>
 
         </div>
@@ -462,7 +481,7 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
 )
 }
 
-const mapStateToProps = ({ inventory, distributor, auth }) => ({
+const mapStateToProps = ({ inventory, distributor, auth,refurbish }) => ({
   updateDispatchList: inventory.updateDispatchList,
   fetchingUpdateDispatchList:inventory.fetchingUpdateDispatchList,
   fetchingUpdateDispatchListError:inventory.fetchingUpdateDispatchListError,
@@ -470,7 +489,9 @@ const mapStateToProps = ({ inventory, distributor, auth }) => ({
   updatingDispatchInspectionButton: inventory.updatingDispatchInspectionButton,
   locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal,
-  userId: auth.userDetails.userId
+  userId: auth.userDetails.userId,
+  phoNotesQCOrderModal: refurbish.phoNotesQCOrderModal,
+  inventoryExpandTask: inventory.inventoryExpandTask
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -478,7 +499,9 @@ const mapDispatchToProps = (dispatch) =>
     {
       getDispatchUpdateList,
       updateDispatchInspectionButton,
-      handleRejectReasonModal
+      handleRejectReasonModal,
+      handleQCPhoneNotesOrderModal,
+      handleInventoryTask
     },
     dispatch
   );

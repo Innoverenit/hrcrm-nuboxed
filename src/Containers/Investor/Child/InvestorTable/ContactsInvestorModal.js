@@ -18,7 +18,11 @@ const ContactsInvestorModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <ContactsInvestorCardList RowData={RowData} />{" "}
+          <ContactsInvestorCardList RowData={RowData}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>

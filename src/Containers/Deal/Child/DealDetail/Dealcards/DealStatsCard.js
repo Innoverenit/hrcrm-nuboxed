@@ -4,9 +4,6 @@ import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import {ReadOutlined } from '@ant-design/icons';
 import { message, Tooltip, Popover} from "antd";
-import dayjs from "dayjs";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { BussinessCard, Spacer } from "../../../../../Components/UI/Elements";
 import StagesSwitch from "./StagesSwitch";
 
 class DealStatsCard extends Component {
@@ -31,10 +28,6 @@ class DealStatsCard extends Component {
   onChange = (checked) => {
     this.setState(
       { qualify: true },
-      // this.props.getLeadsAccounts(this.props.userId, 0),
-      // this.props.getFilterJunkContact(),
-      // this.props.convertLeadsContactToActualContact(
-      // this.props.leadsId,
       this.handleCallback2
       // )
     );
@@ -46,12 +39,7 @@ class DealStatsCard extends Component {
 
     return (
       <>
-        <FlexContainer
-          style={{}}
-          justifyContent="space-between"
-          alignSelf="center"
-          alignItems="center"
-        >
+      <div class=" flex flex-row flex-wrap items-center self-center justify-between grow shrink h-auto mr-auto ">   
           <StageStatus
             stages={dealDetailsbyID.stageMapper}
             key={dealDetailsbyID.invOpportunityId}
@@ -61,13 +49,7 @@ class DealStatsCard extends Component {
             handleCallback={this.handleCallback}
             handleSetCurrentStage={this.handleSetCurrentStage}
           />
-          {/* <span>&#10230;</span> */}
-        </FlexContainer>
-        {/* <OpportunityPlaybookModal
-          currentStageId={this.state.currentStageId}
-          addPlaybookModal={this.props.addPlaybookModal}
-          handlePlaybookModal={this.props.handlePlaybookModal}
-        /> */}
+        </div>      
       </>
       // </div>
     );
@@ -151,13 +133,8 @@ function StageStatus({
                   // onClick={() => alert(stage.stageId)}
                   >
                     <Tooltip title={"Lost"} key={stage.stageId}>
-                      {/* <Arrow
-                      style={{
-                        backgroundColor: "#db584c",
-                        boxShadow
-                      }}
-                    /> */}
-                      <FlexContainer>
+                     
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                         <svg
                           width="82"
                           height="37"
@@ -209,17 +186,8 @@ function StageStatus({
                             />
                           </g>
                         </svg>
-                      </FlexContainer>
-                      {/* <p
-                      style={{
-                        backgroundColor: "#db584c",
-                        margin: "0.625em",
-                        cursor: "pointer",
-                        width: "3.125em",
-                        height: "0.5625em",
-                        borderRadius: "20%",
-                      }}
-                    ></p> */}
+                      </div>
+                
                     </Tooltip>
                   </div>
                 );
@@ -288,7 +256,7 @@ function StageStatus({
                       }
                     >
                     
-                      <FlexContainer>
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                         <svg
                           width="82"
                           height="37"
@@ -340,7 +308,7 @@ function StageStatus({
                             />
                           </g>
                         </svg>
-                      </FlexContainer>
+                      </div>
                     </div>
                   </Popover>
                 );

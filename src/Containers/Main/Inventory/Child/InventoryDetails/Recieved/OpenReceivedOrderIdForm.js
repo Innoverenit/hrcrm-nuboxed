@@ -12,6 +12,7 @@ import {
   handlereceivePhoneModal,
   getPhonelistByOrderId,
   updateRepairStatus,
+  handleInventoryexpand
 
 } from "../../../InventoryAction";
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
@@ -29,6 +30,8 @@ import PhoneDetailsModal from "../../../../Refurbish/ProductionTab/PhoneDetailsM
 import { handlePhoneDetails, handleInTagDrawer } from "../../../../Refurbish/RefurbishAction"
 import TagInDrawer from "../../../../Refurbish/ProductionTab/TagInDrawer";
 import OpenReceivedPlusCard from "./OpenReceivedPlusCard";
+import InventoryExpandListModal from "./InventoryExpandListModal";
+import NodataFoundPageAccount from "../../../../Account/AccountDetailsTab/AccountOrderTab/NodataFoundPageAccount";
 const { Search } = Input;
 
 function OpenReceivedOrderIdForm(props) {
@@ -202,7 +205,7 @@ function OpenReceivedOrderIdForm(props) {
               height={"70vh"}
               endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
             >
-              {props.phoneListById.map((item, index) => {
+              {props.phoneListById.length === 0 ? <NodataFoundPageAccount /> :props.phoneListById.map((item, index) => {
                  const isSelected = selectedRow === item.phoneId;
 
                 return (
@@ -254,7 +257,7 @@ function OpenReceivedOrderIdForm(props) {
                       </div>
                       <div className=" flex font-medium  md:w-[12.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
-                        <span title={item.issue}>{item.issue.substring(0, 10)}{item.issue.length > 10 && '...'}</span>
+                        <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div>
                         </div>
                       </div>
 
@@ -265,8 +268,9 @@ function OpenReceivedOrderIdForm(props) {
                             <FileDoneOutlined   className="!text-icon  text-[black]" type="file-done"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
-                                handleExpand(item.phoneId);
-                                setSelectedRow(item.phoneId);
+                                 handleExpand(item.phoneId);
+                                 setSelectedRow(item.phoneId);
+                                props.handleInventoryexpand(true);
                               }}
                             />
 
@@ -434,12 +438,18 @@ function OpenReceivedOrderIdForm(props) {
           </div>
 
 
-          {expand && (
+          {/* {expand && (
             <AccountPhoneTaskTable
               phoneId={phoneId}
               //RowData={particularRowData}
               particularRowData={particularRowData} />
-          )}
+          )} */}
+           <InventoryExpandListModal   
+           phoneId={phoneId}         
+                  particularRowData={particularRowData}
+                  inventoryExpandList={props.inventoryExpandList}
+                  handleInventoryexpand={props.handleInventoryexpand}
+                />
           <ReceivedOrderIdPhoneNoteModal
             particularRowData={particularRowData}
             phoNoteReceivedOrderIdModal={props.phoNoteReceivedOrderIdModal}
@@ -478,6 +488,7 @@ const mapStateToProps = ({ inventory, auth, refurbish }) => ({
   addReceivePhone: inventory.addReceivePhone,
   showPhoneData: refurbish.showPhoneData,
   updatingRepairStatus: inventory.updatingRepairStatus,
+  inventoryExpandList: inventory.inventoryExpandList,
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal
 });
 
@@ -491,7 +502,8 @@ const mapDispatchToProps = (dispatch) =>
       handlereceivePhoneModal,
       updateRepairStatus,
       handlePhoneDetails,
-      handleInTagDrawer
+      handleInTagDrawer,
+      handleInventoryexpand
     },
     dispatch
   );

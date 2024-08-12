@@ -28,7 +28,8 @@ class OpportunityStepper extends Component {
             comments:"",
             catalogueId:"",
             unit:"",
-            price:""
+            price:"",
+            emialInd:false,
         };
     }
     handleSubmit = (data) => {
@@ -99,6 +100,9 @@ class OpportunityStepper extends Component {
 componentDidMount(){
    // this.props.getCreatedOffers(this.props.rowItem.offerId);
 };
+handleEmailInd = (checked) => {
+    this.setState({ emailInd: checked });
+  };
 
     render() {
         const {  ...formProps } = this.props;
@@ -165,7 +169,7 @@ componentDidMount(){
                                             type="tertiary"
                                             
                                             onClick={() => this.prev()}>
-                                        <label class="text-base cursor-pointer"> Previous</label>
+                                        <div class="text-base cursor-pointer"> Previous</div>
                                             {/* {this.props.translatedMenuItems[1]} */}
                                         </Button>
                                     )}
@@ -178,7 +182,7 @@ componentDidMount(){
                                                 onClick={() => this.handleComplete()}
                                                 //  disabled={!this.state.checked}
                                             >
-                                                <label class="text-base cursor-pointer">Complete</label> 
+                                                <div class="text-base cursor-pointer">Complete</div> 
                                                 {/* {this.props.translatedMenuItems[2]} */}
                                             </Button>
 
@@ -198,9 +202,9 @@ componentDidMount(){
                                                 }}
                                           
                                             >
-                                           <label class="text-base cursor-pointer">
+                                           <div class="text-base cursor-pointer">
                                            Proceed
-                                             </label>
+                                             </div>
                                   
                                             </Button> : 
                                             null}

@@ -5,14 +5,11 @@ import { FormattedMessage } from "react-intl";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { updateTwilioCredentials } from "../VoIPAction";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 
-/**
- * yup validation scheme for creating a VoIP
- */
+
 const VoIPSchema = Yup.object().shape({
   sid: Yup.string().required("Account SID is needed!"),
 });
@@ -83,7 +80,7 @@ class EditVoipForm extends Component {
                     component={InputComponent}
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     isRequired
                     name="authorizationToken"
@@ -101,7 +98,7 @@ class EditVoipForm extends Component {
                     component={InputComponent}
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     isRequired
                     name="phoneNo"
@@ -119,7 +116,7 @@ class EditVoipForm extends Component {
                     width={"100%"}
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     isRequired
                     name="voipProvider"
@@ -137,10 +134,10 @@ class EditVoipForm extends Component {
                     width={"100%"}
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                 </div>
               </div>
-              <FlexContainer justifyContent="flex-end">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -149,7 +146,7 @@ class EditVoipForm extends Component {
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Update */}
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

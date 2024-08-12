@@ -39,7 +39,6 @@ import { getAssignedToList } from "../../../Employees/EmployeeAction";
 import Upload from "../../../../Components/Forms/Formik/Upload";
 import DragableUpload from "../../../../Components/Forms/Formik/DragableUpload";
 import { Select } from "antd";
-import moment from "moment";
 import { Listbox } from '@headlessui/react';
 
 const { Option } = Select;
@@ -600,7 +599,7 @@ const [priority,setpriority]=useState(props.selectedTask
             </option>
           ))}
         </select>
-                      {/* <StyledLabel>Type</StyledLabel>
+                      {/* <div class=" text-xs font-bold font-poppins text-black">Type</div>
                       <Field
                     name="taskTypeId"
                     // selectType="customerList"
@@ -646,7 +645,7 @@ const [priority,setpriority]=useState(props.selectedTask
             </option>
           ))}
         </select>
-                      {/* <StyledLabel> Workflow</StyledLabel>
+                      {/* <div class=" text-xs font-bold font-poppins text-black"> Workflow</div>
 
                       <Field
                     name="taskType"
@@ -697,7 +696,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     {/* )} */}
                       {/* <div class=" w-1/2">
                   
-                      <StyledLabel>Task Stages</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Task Stages</div>
                       <Field
                     name="taskChecklistId"
                  
@@ -856,8 +855,8 @@ const [priority,setpriority]=useState(props.selectedTask
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (
-                              moment(currentDate).isBefore(
-                                moment(values.startDate)
+                              dayjs(currentDate).isBefore(
+                                dayjs(values.startDate)
                               )
                             ) {
                               return true;

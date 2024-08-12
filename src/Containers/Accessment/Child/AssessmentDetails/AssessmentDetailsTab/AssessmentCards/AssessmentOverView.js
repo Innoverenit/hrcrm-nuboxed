@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
+import React, { } from "react";
 import { Title, MultiAvatar } from "../../../../../../Components/UI/Elements";
 
 function AssessmentOverView (props) {

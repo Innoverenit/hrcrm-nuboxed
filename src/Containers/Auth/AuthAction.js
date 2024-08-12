@@ -561,7 +561,7 @@ export const updateOrganizationDetails = (orgId, data, cb) => (dispatch) => {
       console.log(res);
       // dispatch(getOrganizationDetails());
       dispatch(getOrganizationDetails(orgId));
-      dispatch(getOrganizationList(orgId));
+      dispatch(getOrganizationList());
       dispatch({
         type: types.UPDATE_ORGANIZATION_DETAILS_SUCCESS,
         payload: res.data,

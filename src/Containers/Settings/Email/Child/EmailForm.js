@@ -4,14 +4,10 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { addEmailCredentials } from "../EmailAction";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
-/**
- * yup validation scheme for creating a Team
- */
+
 const EmailSchema = Yup.object().shape({
   email: Yup.string().
     email("Enter a valid Email")
@@ -75,7 +71,7 @@ class EmailForm extends Component {
                       style={{ flexBasis: "80%" }}
                       width={"100%"}
                     />
-                    <Spacer />
+                    <mt-3 />
                     <Field
                       type="password"
                       isRequired
@@ -90,15 +86,8 @@ class EmailForm extends Component {
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
-                    {/* <Field
-                  name="serverType"
-                  label="Server Type"
-                  component={InputComponent}
-                  inlineLabel
-                  style={{ flexBasis: "80%" }}
-                />
-                <Spacer /> */}
+                    <mt-3 />
+                  
                     <Field
                       isMulti
                       isRequired
@@ -116,7 +105,7 @@ class EmailForm extends Component {
                     <span style={{ fontSize: "0.75em", fontStyle: "italic", marginLeft: "5.1875em" }}>Example for Outlook users - smtp-mail.outlook.com </span>
                     <br />
                     <span style={{ fontSize: "0.75em", fontStyle: "italic", marginLeft: "5.1875em" }}>Example for other webmail host - mail.example.com </span>
-                    <Spacer />
+                    <mt-3 />
                     <Field
                       name="port"
                       //label="Port"
@@ -130,35 +119,11 @@ class EmailForm extends Component {
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
-                    {/* <Spacer />
-                <Field
-                  name="connectionSecurity"
-                  label="Connection Security"
-                  inlineLabel
-                  component={InputComponent}
-                  style={{ flexBasis: "80%" }}
-                />
-                <Spacer />
-                <Field
-                  name="AuthType"
-                  label="Auth Type"
-                  inlineLabel
-                  component={InputComponent}
-                  style={{ flexBasis: "80%" }}
-                /> */}
-
-                    {/* <Button
-                    type="primary"
-                    htmlType="submit"
-                    Loading={addingEmailCredential}
-                   
-                  >
-                    Create
-                </Button> */}
+                    <mt-3 />
+               
                   </div>
                 </div>
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -172,7 +137,7 @@ class EmailForm extends Component {
                     />
                     {/* Create */}
                   </Button>
-                </FlexContainer>
+                </div>
               </Form>
             )}
         </Formik>

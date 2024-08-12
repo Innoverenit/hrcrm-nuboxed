@@ -1,7 +1,7 @@
 import * as types from "./SuppliesActionType";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 import Swal from 'sweetalert2'
 
@@ -11,6 +11,13 @@ export const setSuppliesViewType = (viewType) => (dispatch) =>
 export const handleSuppliesModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_SUPPLIES_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handleUploadMaterialModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPLOAD_MATERIAL_MODAL,
     payload: modalProps,
   });
 };
@@ -1055,3 +1062,142 @@ export const materialCategorySearch = (categoryName) => (dispatch) => {
       });
     });
 }; 
+
+
+
+
+export const uploadMaterialList = (data) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_MATERIAL_LIST_REQUEST });
+  axios
+    .post(`${base_url2}/import/supplies-details`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getProducts(0))
+      window.location.reload()
+      dispatch({
+        type: types.UPLOAD_MATERIAL_LIST_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Uploaded Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPLOAD_MATERIAL_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getMaterialsBySuppliesId = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIALS_BY_SUPPLIES_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/bothSuppliesAndProduct/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MATERIALS_BY_SUPPLIES_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_MATERIALS_BY_SUPPLIES_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const suppliesPUnpblishToggle = ( data,categoryId) => (dispatch) => {
+  dispatch({
+    type: types.SUPPLIES_PUNBLISH_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/updateCategory/publishInd/${categoryId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.SUPPLIES_PUNBLISH_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SUPPLIES_PUNBLISH_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+export const materialRecommendToggle = ( data,suppliesId) => (dispatch, getState) => {
+  dispatch({
+    type: types.MATERIAL_RECOMMEND_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/update/recomendInd/${suppliesId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.MATERIAL_RECOMMEND_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.MATERIAL_RECOMMEND_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+export const materialPricetype = ( data,suppliesId) => (dispatch, getState) => {
+  dispatch({
+    type: types.MATERIAL_PRICE_TYPE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/PRICETYPEDUMMTY/${suppliesId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.MATERIAL_PRICE_TYPE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.MATERIAL_PRICE_TYPE_FAILURE,
+        payload: err,
+      });
+    })
+};

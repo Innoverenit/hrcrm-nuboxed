@@ -10,7 +10,7 @@ import Highlighter from 'react-highlight-words';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import SearchIcon from '@mui/icons-material/Search';
 import { CurrencySymbol } from "../../../../Components/Common";
-import moment from "moment";
+import dayjs from "dayjs";
 import DeleteIcon from '@mui/icons-material/Delete';
 import ReinstateToggleForLost from "../../Child/OpportunityTable/ReinstateToggleForLost"
 import { StyledTable, StyledPopconfirm } from "../../../../Components/UI/Antd";
@@ -286,8 +286,8 @@ function handleSend (){
       defaultSortOrder: "ascend",
       width: "18%",
       render: (name, item, i) => {     
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         console.log(date, currentdate, currentdate === date);
         return (
           <>
@@ -366,7 +366,7 @@ function handleSend (){
         return 0;
       },
       render: (text, item) => {
-        const startDate = moment(item.startDate).format("ll");
+        const startDate = dayjs(item.startDate).format("ll");
         return <span>{startDate}</span>;
       },
     },
@@ -772,17 +772,3 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(OpportunitylostTable);
-
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button, message } from "antd";
 import { FormattedMessage } from "react-intl";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
-import { MainWrapper, Spacer } from "../../../../../../Components/UI/Elements";
+import { MainWrapper } from "../../../../../../Components/UI/Elements";
 import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
@@ -117,7 +117,7 @@ function InitiativeForm(props) {
                   />
                   </div>
                   </div>
-                <Spacer />
+                <div class=" mt-3" />
                 <div class=" flex justify-end">
                 <Button
                   type="primary"

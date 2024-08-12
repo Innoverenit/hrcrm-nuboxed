@@ -6,12 +6,8 @@ import { Formik, Form, Field } from "formik";
 import { FormattedMessage } from "react-intl";
 import axios from "axios";
 import { base_url } from "../../../Config/Auth";
-import { FlexContainer } from "../../UI/Layout";
-import { ActionIcon } from "../../Utils";
-import { Spacer } from "../../UI/Elements";
 import { InputComponent } from "../Formik/InputComponent";
 import { addEmployeeAddress } from "../../../Containers/Profile/ProfileAction";
-// import { SelectComponent } from "../Formik/SelectComponent";
 import FormikPlacesAutoComplete from "../Formik/FormikPlacesAutoComplete";
 
 class AddAddressField extends Component {
@@ -47,16 +43,6 @@ class AddAddressField extends Component {
         this.setState({ isSubmitting: false });
         toggleAdd();
         console.log(res);
-        // if (addAddressType === "account") {
-        //   ////debugger;
-        //   addEmployeeAddress(accountId);
-        // }
-        // if (editAddressType === "contact") {
-        //   updateContactAddress(contactId, res.data);
-        // }
-        // if (editAddressType === "user") {
-        //   updateUserAddress(userId, res.data);
-        // }
       })
       .catch((err) => {
         toggleAdd();
@@ -119,14 +105,8 @@ class AddAddressField extends Component {
                   component={FormikPlacesAutoComplete}
                   options={{}}
                 />
-                <Spacer />
-                {/* <Field
-                name={`address.addressType`}
-                noLabel
-                placeholder='Address type'
-                component={SelectComponent}
-                options={['Office', 'Communication', 'Headquarters', 'Registered']}
-              /> */}
+                <mt-3 />
+             
                 <Field
                   noLabel
                   placeholder="Address 1"
@@ -183,8 +163,8 @@ class AddAddressField extends Component {
                   component={InputComponent}
                 // defaultValue='low'
                 />
-                <Spacer />
-                <FlexContainer justifyContent="flex-end">
+                <mt-3 />
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto  ">
                   <Button type="primary" htmlType="submit" Loading={isSubmitting}>
                     {/* Save */}
                     <FormattedMessage
@@ -200,7 +180,7 @@ class AddAddressField extends Component {
                     defaultMessage="Cancel"
                     />
                 </Button>
-                </FlexContainer>
+                </div>
               </Form>
             )}
         </Formik>

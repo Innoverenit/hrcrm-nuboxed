@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -306,34 +306,21 @@ if (loading) {
             <div></div>
             <div className=" w-[12.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             {translatedMenuItems[0]}
-              {/* <FormattedMessage
-                id="app.name"
-                defaultMessage="Name"
-              /> */}
+           {/* name */}
             </div>
             <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             {translatedMenuItems[1]}
-              {/* <FormattedMessage
-                id="app.work"
-                defaultMessage="Work"
-              /> */}
-
+             {/* work */}
             </div>
             <div className=" w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             {translatedMenuItems[2]}
-              {/* <FormattedMessage
-                id="app.sector"
-                defaultMessage="Sector"
-              /> */}
-
+              {/* "Sector" */}
+          
             </div>
             <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             {translatedMenuItems[3]}
-              {/* <FormattedMessage
-                id="app.source"
-                defaultMessage="Source"
-              /> */}
-
+             {/* "Source" */}
+         
             </div>
             <div className=" w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
               
@@ -341,48 +328,26 @@ if (loading) {
             </div>
             <div className="w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             {translatedMenuItems[4]}
-              {/* <FormattedMessage
-                id="app.quotation"
-                defaultMessage="Quotation"
-              /> */}
-
+              {/* Quotation" */}
+     
             </div>
             <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
             {translatedMenuItems[5]}
-              {/* <FormattedMessage
-                id="app.pipeline"
-                defaultMessage="Pipeline"
-              /> */}
-
-            </div>
-            {/* <div className="md:w-[3.9rem]">
-        <FormattedMessage
-                        id="app.weighted"
-                        defaultMessage="Weighted"
-                      />
-          
-          </div> */}
+             {/* Pipeline" */}
+            </div>       
             <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             {translatedMenuItems[6]}
-              {/* <FormattedMessage
-                id="app.assigned"
-                defaultMessage="Assigned"
-              /> */}
-
+            {/* Assigned */}
             </div>
             <div className="w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
             {translatedMenuItems[7]}
-              {/* <FormattedMessage
-                id="app.owner"
-                defaultMessage="Owner"
-              /> */}
+              {/* Owner" */}
+          
             </div>
             <div className="w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             {translatedMenuItems[8]}
-              {/* <FormattedMessage
-                id="app.customer"
-                defaultMessage="Customer"
-              /> */}
+              {/* Customer" */}
+          
             </div>
             <div className="w-[4.12rem]"></div>
 
@@ -444,7 +409,7 @@ if (loading) {
 
                                   &nbsp;&nbsp;
                                   {date === currentdate ? (
-                                    <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
+                                    <div class="text-[0.65rem] mt-[0.4rem] text-[tomato] font-bold"
                                     >
                                       New
                                     </div>
@@ -494,8 +459,7 @@ if (loading) {
 
                       </div>
                       <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
-
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                    {/* Sector  */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.sector}
                         </div>
@@ -512,19 +476,15 @@ if (loading) {
 
                       </div>
                       <div className=" flex max-sm:w-auto  items-center  w-[5.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
-
-
-                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                  {/* Country */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
                           {/* &nbsp;
                           {countryCode} */}
                         </div>
                       </div>
-
-
                       <div className=" flex items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                     {/* Pipeline Value */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.oppNo}
@@ -534,7 +494,7 @@ if (loading) {
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex max-sm:w-auto w-[4.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                       {/* Pipeline Value */}
 
                         {/* {item.totalProposalValue > 0 && (
       <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -546,15 +506,7 @@ if (loading) {
       {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
       </div>
     )}
-                      </div>
-                      {/* <div className=" flex font-medium flex-Nonew-96 max-sm:flex-row w-full max-sm:justify-between ">
-                                
-
-                                    <div class=" text-xs  font-poppins text-center">
-                                    {item.weight}
-
-                                    </div>
-                                </div> */}
+                      </div>                  
                       <div className=" flex items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
@@ -664,12 +616,7 @@ if (loading) {
                           </div>
                         </div>
                         <div>
-
-
-                        </div>
-                     
-
-                     
+                        </div>                    
                         <div >
                           <Tooltip title="Contact">
                             <ContactsIcon
@@ -695,9 +642,7 @@ if (loading) {
                             />
                           </Tooltip>
 
-                        </div>
-                     
-                     
+                        </div>                                       
                         <div >
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
@@ -706,7 +651,6 @@ if (loading) {
                                 handleCustomerPulseDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                               }}
-
                             />
                           </Tooltip>
                         </div>
@@ -719,22 +663,15 @@ if (loading) {
                                 handleSetCurrentCustomer(item);
                                 handleRowData(item);
                               }}
-
                             />
                           </Tooltip>
-
-                        </div>
-                     
-
-                      
+                        </div>                                     
                         <div >
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
                             <LocationOnIcon
                               className=" !text-icon cursor-pointer text-[#960A0A]"
-
                             />
-
                           </Tooltip>
                         </div>
                         <div >
@@ -762,21 +699,17 @@ if (loading) {
                 }}
               />
             </Tooltip> */}
-                        </div>
-                      
-
+                        </div>                 
                     </div>
                   </div>
                 </div>
-
-
               )
             })}
           </InfiniteScroll>
         </div>
       </div>
   )}
-
+  <Suspense fallback={<BundleLoader />}>
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
@@ -837,6 +770,7 @@ if (loading) {
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
       />
+      </Suspense>
     </>
   );
 }
@@ -867,7 +801,6 @@ const mapStateToProps = ({
   countries: auth.countries,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
-  // viewType: customer.viewType,
   customerSearch: customer.customerSearch,
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
 });

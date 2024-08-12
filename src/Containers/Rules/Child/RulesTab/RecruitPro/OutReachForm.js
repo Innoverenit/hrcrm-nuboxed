@@ -1,19 +1,15 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { handleSequenceModal } from "../../../../Settings/SettingsAction";
-import { Icon, Switch, Button, Popconfirm } from "antd";
+import {  Switch, Popconfirm } from "antd";
 import {
-  FlexContainer,
   MainWrapper,
 } from "../../../../../Components/UI/Layout";
-import { StyledLabel, Spacer } from "../../../../../Components/UI/Elements";
 import {
   addingCommunicationAccess,
   getCommunicationAccess,
 } from "../../../../Settings/SettingsAction";
-import AddSequenceModal from "./AddSequenceModal";
-import SequenceTable from "./SequenceTable";
 import SequenceForm from "./SequenceForm";
 
 function JobPortalForm(props) {
@@ -269,15 +265,11 @@ function JobPortalForm(props) {
 
   return (
     <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
-      <Spacer />
-      <FlexContainer justifyContent="space-between" style={{ width: "100%" }}>
-        <div
-          style={{
-            width: "34%",
-          }}
-        >
+      <div class=" mt-3" />
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto w-full mr-auto ">
+      
           <div>
-            <StyledLabel
+            <div class=" text-xs  font-bold font-poppins  "
               style={{
                 flexBasis: "13%",
                 // marginTop: "0.625em",
@@ -286,9 +278,9 @@ function JobPortalForm(props) {
               }}
             >
               Email
-            </StyledLabel>
+            </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -314,7 +306,7 @@ function JobPortalForm(props) {
             </div>
           </div>
 
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -339,7 +331,7 @@ function JobPortalForm(props) {
               </Popconfirm>
             </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -364,7 +356,7 @@ function JobPortalForm(props) {
               </Popconfirm>
             </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -398,8 +390,8 @@ function JobPortalForm(props) {
               + Sequence
             </Button>
           </div> */}
-          <Spacer />
-        </div>
+          <div class=" mt-3" />
+      
 
         <div
           style={{
@@ -410,7 +402,7 @@ function JobPortalForm(props) {
           }}
         >
           <div>
-            <StyledLabel
+            <div class=" text-xs  font-bold font-poppins  "
               style={{
                 flexBasis: "13%",
                 // marginTop: "0.625em",
@@ -419,9 +411,9 @@ function JobPortalForm(props) {
               }}
             >
               Whatsapp
-            </StyledLabel>
+            </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -447,7 +439,7 @@ function JobPortalForm(props) {
               </Popconfirm>
             </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -472,7 +464,7 @@ function JobPortalForm(props) {
               </Popconfirm>
             </div>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <div
             style={{
               display: "flex",
@@ -498,7 +490,7 @@ function JobPortalForm(props) {
             </div>
           </div>
         </div>
-      </FlexContainer>
+      </div>
       <SequenceForm />
 
       {/* <AddSequenceModal

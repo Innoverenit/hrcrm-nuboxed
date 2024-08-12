@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { Button, message } from "antd";
 import { Formik, Form, Field } from "formik";
-import { Spacer } from "../../../../../Components/UI/Elements";
+
 import { FormattedMessage } from "react-intl";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
@@ -165,7 +165,7 @@ function TemplateView(props) {
                           }}
                         />
                       </div>
-                      <Spacer style={{ marginBottom: "-0.5em" }} />
+                      <div class=" mt-3" style={{ marginBottom: "-0.5em" }} />
 
                       <div class=" w-[90%]" >
                         <Field

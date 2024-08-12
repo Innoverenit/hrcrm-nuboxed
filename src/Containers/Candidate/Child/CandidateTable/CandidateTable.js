@@ -1,7 +1,7 @@
 import React, {  useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   SearchOutlined,
   UpCircleOutlined,
@@ -416,8 +416,8 @@ function CandidateTable(props) {
       width: "13%",
       ...getColumnSearchProps("fullName"),
       render: (name, item, i) => {
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         return (
           <>
 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`candidate/${item.candidateId}`} title={item.candidateName}>
@@ -653,13 +653,13 @@ function CandidateTable(props) {
       dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
-        const availableDate = moment(item.availableDate).format("ll");
+        const availableDate = dayjs(item.availableDate).format("ll");
         return (
           <>
             {item.availableDate === null ? (
               "None"
             ) : (
-              <span>{moment(item.availableDate).format("l")}</span>
+              <span>{dayjs(item.availableDate).format("l")}</span>
             )}
           </>
         );
@@ -1052,20 +1052,6 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(CandidateTable);
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
 
 
 

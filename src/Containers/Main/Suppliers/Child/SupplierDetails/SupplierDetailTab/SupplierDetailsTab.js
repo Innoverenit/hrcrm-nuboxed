@@ -53,7 +53,7 @@ class SupplierDetailsTab extends Component {
               tab={
                 <>
                   <i class="far fa-share-square"></i>&nbsp;
-                   <label className="max-xl:text-[0.65rem]">Purchase Order</label>
+                   <div className="max-xl:text-[0.65rem]">Purchase Order</div>
                   {activeKey === "1" && (
                     <>
                       <Tooltip title="Create">
@@ -76,7 +76,7 @@ class SupplierDetailsTab extends Component {
               tab={
                 <>
                   <i class="far fa-share-square"></i>&nbsp;
-                   <label className="max-xl:text-[0.65rem]">Inventory</label>
+                   <div className="max-xl:text-[0.65rem]">Inventory</div>
                   {activeKey === "2" && (
                     <>
                       <Tooltip title="Create">

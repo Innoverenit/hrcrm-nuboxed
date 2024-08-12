@@ -1,9 +1,8 @@
-import React, { Component, useEffect, useState, useMemo, lazy } from "react";
+import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
-  EyeInvisibleOutlined,
   MailOutlined,
   SearchOutlined,
   UpCircleOutlined,
@@ -15,24 +14,18 @@ import WalletIcon from '@mui/icons-material/Wallet';
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import Box from "@mui/material/Box";
-import { DataGrid, GridColDef,GridRenderCellParams, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid,GridToolbar } from "@mui/x-data-grid";
 import CandidateRowEmailModal from "./Child/CandidateRowEmailModal";
 import SkillsLoadMore from "../Candidate/Child/CandidateTable/SkillsLoadMore";
 import AddChoiceCandidateModal from "./Child/CandidateTable/AddChoiceCandidateModal";
-import { FormattedMessage } from "react-intl";
-import { StyledTable, StyledPopconfirm } from "../../Components/UI/Antd";
+import {  StyledPopconfirm } from "../../Components/UI/Antd";
 import { Button,Select, Tooltip, Input } from "antd";
 import {
-  MultiAvatar,
-  Spacer,
-  SubTitle,
-  StyledLabel,
-  MultiAvatar2,
+  MultiAvatar,SubTitle, MultiAvatar2,
 } from "../../Components/UI/Elements";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import AddCandidateDrawerModal from "./AddCandidateDrawerModal";
-import { CurrencySymbol } from "../../Components/Common";
 import {
   getCandidateListByUserId,
   getCandidateById,
@@ -54,11 +47,8 @@ import {
 import AddDonotCallModal from "./Child/CandidateTable/AddDonotCallModal";
 import AddPlayerModal from "./Child/CandidateTable/AddPlayerModal"
 import { getRoles } from "../Settings/Category/Role/RoleAction";
-//import { getDesignations } from "../../../Settings/Designation/DesignationAction";
 import { getCountries } from "../Auth/AuthAction";
 import UpdateCandidateResumeModal from "./Child/CandidateTable/UpdateCandidateResumeModal";
-import { BundleLoader } from "../../Components/Placeholder";
-import { FlexContainer } from "../../Components/UI/Layout";
 import StatusToggle from "./Child/CandidateTable/StatusToggle";
 import styled from "styled-components";
 import Highlighter from "react-highlight-words";
@@ -362,8 +352,8 @@ function CandidateGridTable(props) {
               primaryTitle={data.firstName}
               imageId={data.imageId}
               imageURL={data.imageURL}
-              imgWidth={"2.1em"}
-              imgHeight={"2.1em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
           </SubTitle>
         );
@@ -384,8 +374,8 @@ function CandidateGridTable(props) {
          const data=cellValues.row
         // const fullName = ` ${item.salutation || ""} ${item.firstName ||
         //   ""} ${item.middleName || ""} ${item.lastName || ""}`;
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(data.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(data.creationDate).format("DD/MM/YYYY");
         //   console.log(date, currentdate, currentdate === date);
         return (
           <>
@@ -537,35 +527,27 @@ function CandidateGridTable(props) {
     //   },
     },
     {
-        headerName: "Skills",
-        field: "skill",
-      //title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
-      // dataIndex: "skillList",
-      width:150,
-     // ...getColumnSearchProps("skillList"),
-     renderCell: (cellValues,row) => {
-        console.log("cell",cellValues)
-         const data1=cellValues.row
-        const data =
-        data1.skillList === null
-            ? []
-            : data1.skillList.filter((skill) => {
-                return skill !== null && skill !== "";
-              });
-
-        return (
-          <>
-            {data1.skillList === [] ? (
-              "None"
-            ) : (
-              <span>
-                <SkillsLoadMore skillList={data} />
-              </span>
-            )}
-          </>
-        );
+      headerName: "Skills",
+      field: "skill",
+      width: 150,
+      renderCell: (params) => {
+          console.log("cell", params);
+          const data1 = params.row;
+          const data = data1.skillList === null ? [] : data1.skillList.filter((skill) => skill !== null && skill !== "");
+  
+          return (
+              <>
+                  {data.length === 0 ? (
+                      "None"
+                  ) : (
+                      <span>
+                          <SkillsLoadMore skillList={data} />
+                      </span>
+                  )}
+              </>
+          );
       },
-    },
+  },
     {
         headerName: "",
         field: "skilll",
@@ -651,13 +633,13 @@ function CandidateGridTable(props) {
       renderCell: (cellValues,row) => {
         console.log("cell",cellValues)
          const data=cellValues.row
-        const availableDate = moment(data.availableDate).format("ll");
+        const availableDate = dayjs(data.availableDate).format("ll");
         return (
           <>
             {data.availableDate === null ? (
               "None"
             ) : (
-              <span>{moment(data.availableDate).format("l")}</span>
+              <span>{dayjs(data.availableDate).format("l")}</span>
             )}
           </>
         );
@@ -685,8 +667,8 @@ function CandidateGridTable(props) {
                   primaryTitle={data.ownerName}
                   imageId={data.ownerImageId}
                   imageURL={data.imageURL}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
                 />
               </span>
             </Tooltip>

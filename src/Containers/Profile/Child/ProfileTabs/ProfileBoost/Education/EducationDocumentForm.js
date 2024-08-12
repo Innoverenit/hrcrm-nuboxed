@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import { Button, Tooltip,  } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
-import { StyledLabel } from "../../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import * as Yup from "yup";
@@ -146,7 +146,7 @@ class EducationDocumentForm extends Component {
                     />
                   </div>
                   <div class=" mt-3">
-                    <StyledLabel>Course Type</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Course Type</div>
                     <div class=" mt-3">
                     <ButtonGroup>
                       <StatusIcon

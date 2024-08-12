@@ -5,7 +5,7 @@ import { Button, Popconfirm,  } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 import { addLeadsaging, getLeadAging } from "../SettingsAction";
 
 function LeadsAgingForm(props) {
@@ -38,25 +38,25 @@ function LeadsAgingForm(props) {
             >
               <div class=" h-full w-[45%] ml-3"
               >
-                <StyledLabel style={{ fontStyle: "italic" }}>
+                <div class=" text-xs font-bold font-poppins "style={{ fontStyle: "italic" }}>
                   Configure rules for ageing of Contacts in Leads section, if
                   not qualified within the stipulated time then they will be
                   automatically transferred to
-                </StyledLabel>
+                </div>
 
 <div class=" mt-3">
-                <StyledLabel style={{ fontStyle: "italic" }}>
+                <div class=" text-xs font-bold font-poppins" style={{ fontStyle: "italic" }}>
                   Junk section. Junk leads will show up in the admin account for
                   future redistribution.
-                </StyledLabel>
+                </div>
                 </div>
                 <div class=" mb-8">
-                <StyledLabel>
+                <div class=" text-xs font-bold font-poppins text-black">
                   l<FormattedMessage
                     id="app.category"
                     defaultMessage="Category"
                   />
-                </StyledLabel>
+                </div>
                 </div>
 
                 <div className="flex flex-col mt-3 ">
@@ -66,10 +66,10 @@ function LeadsAgingForm(props) {
                         className="fas fa-mug-hot"
                         style={{ fontSize: "1.12em" }}
                       />                 
-                      <label class="font-semibold ml-8">
+                      <div class="font-semibold ml-8">
                         Hot
                         
-                        </label>      
+                        </div>      
                       <div class="flex">
                         <Field
                           name="hot"
@@ -89,13 +89,13 @@ function LeadsAgingForm(props) {
                           }}
                         />
                         <div >
-                        <StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">
                           {/* Days */}
                           <FormattedMessage
                             id="app.days"
                             defaultMessage="Days"
                           />
-                        </StyledLabel>
+                        </div>
                       </div>
                       </div>
                       
@@ -106,10 +106,10 @@ function LeadsAgingForm(props) {
                       <div  class="flex justify-between" >
                     <div>
                       <i className="	fas fa-burn" style={{ fontSize: "1.12em",marginRight:"2rem" }} />
-                     <label class="mr-[0.7rem] font-semibold">
+                     <div class="mr-[0.7rem] font-semibold">
                         Warm
                         
-                        </label>
+                        </div>
                     </div>
 
                     <div>
@@ -133,20 +133,20 @@ function LeadsAgingForm(props) {
                           }}
                         />
                          <div >
-                        <StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">
                           {/* Days */}
                           <FormattedMessage
                             id="app.days"
                             defaultMessage="Days"
                           />
-                        </StyledLabel>
+                        </div>
                       </div>
                       </div>
                      
                       <div >
-                        {/* <StyledLabel>
+                        {/* <div class=" text-xs font-bold font-poppins text-black">
                           Days
-                        </StyledLabel> */}
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -159,13 +159,13 @@ function LeadsAgingForm(props) {
                         style={{ fontSize: "1.12em",marginRight:"2rem" }}
                       />
                     
-                      <label class="font-semibold">
+                      <div class="font-semibold">
                         {/* Cold */}
                         <FormattedMessage
                           id="app.cold"
                           defaultMessage="Cold"
                         />
-                      </label>
+                      </div>
                     </div>
                     <div class="flex justify-between">
                       <div >
@@ -190,13 +190,13 @@ function LeadsAgingForm(props) {
                         />
                       </div>
                       <div >
-                        <StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">
                           {/* Days */}
                           <FormattedMessage
                             id="app.days"
                             defaultMessage="Days"
                           />
-                        </StyledLabel>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -204,7 +204,7 @@ function LeadsAgingForm(props) {
                   <div class="flex justify-between w-[18rem]">
                   
                     <div >
-                    <label class="font-semibold">Not Defined</label>
+                    <div class="font-semibold">Not Defined</div>
                     </div>
                     <div class="flex justify-between">
                       <div >
@@ -224,12 +224,12 @@ function LeadsAgingForm(props) {
                         />
                       </div>
                       <div >
-                        <StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">
                           <FormattedMessage
                             id="app.days"
                             defaultMessage="Days"
                           />
-                        </StyledLabel>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -239,12 +239,12 @@ function LeadsAgingForm(props) {
 
               <div class=" h-full w-[45%] mr-3"
               >
-                <StyledLabel style={{ color: "white" }}>.</StyledLabel>
+                <div class=" text-xs font-bold font-poppins" style={{ color: "white" }}>.</div>
               <div class=" mt-3">
-                <StyledLabel style={{ color: "white" }}>.</StyledLabel>
+                <div class=" text-xs font-bold font-poppins" style={{ color: "white" }}>.</div>
                 </div>
                <div class=" mb-3">
-                <StyledLabel style={{ color: "white" }}>.</StyledLabel>
+                <div class=" text-xs font-bold font-poppins" style={{ color: "white" }}>.</div>
                 </div>
                 
 

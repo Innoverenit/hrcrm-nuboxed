@@ -1,5 +1,6 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
+import { BundleLoader } from "../../../Components/Placeholder";
 const TeamsActionLeft =lazy(()=> import('./TeamsActionLeft'));
 const TeamsActionRight =lazy(()=> import('./TeamsActionRight'));
 
@@ -9,6 +10,7 @@ class TeamsHeader extends Component {
 
     return (
       <>
+        <Suspense fallback={<BundleLoader />}>
         <ActionHeader
           leftComponent={
             <TeamsActionLeft
@@ -27,6 +29,7 @@ class TeamsHeader extends Component {
             handleTeamsModal={handleTeamsModal} />
           }
         />
+        </Suspense>
       </>
     );
   }

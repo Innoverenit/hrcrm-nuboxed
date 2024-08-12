@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Formik, Form, Field } from "formik";
+import { FormattedMessage } from "react-intl";
 import {
   Select,
 } from "../../../../../Components/UI/Elements";
-import { MainWrapper,  } from "../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
-import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
+import { div,  } from "../../../../../Components/UI/Elements";
 import { Button, Switch } from "antd";
 import {
     websiteSingleMultiple,
@@ -15,7 +14,7 @@ import {
     getDepartmentwiserUser,
 } from "../../../../Settings/SettingsAction";
 import {getDepartments} from "../../../Department/DepartmentAction"
-import moment from "moment";
+import dayjs from "dayjs";
 const { Option } = Select;
 function WebsiteForm(props) {
  
@@ -38,14 +37,7 @@ console.log("single",single)
     
   }, []);
   useEffect(() => {
-    // const userOptionNameOption = props.distributionAutomation.multyAsignedTOId===null?[]: props.distributionAutomation.multyAsignedTOId.map((item) => {
-    //   return item
-    // }
-    // )
-    // const userOptionNameOption = 
-    // Array.isArray(props.distributionAutomation?.multyAsignedTOId) 
-    // ? props.distributionAutomation.multyAsignedTOId.map((item) => item) 
-    // : [];
+    
     setSingle(props.distributionAutomation.singleMultiInd)
     setSelectedDept(props.distributionAutomation.departmentId)
     
@@ -73,8 +65,6 @@ const handleDeptChange = (value) => {
     setSelectedUser(selectedUser);
   };
 
-
-
   const handleChangeUserName =(value)=>{
     setUserNames(value)
   }
@@ -93,8 +83,6 @@ const handleDeptChange = (value) => {
           //multyAsignedTOId:single === false ? [selectedUser] : [],
           type:"lead",
           departmentId:props.distributionAutomation.departmentId || "",
-        //   timePeriod: props.distributionAutomation.timePeriod === 0 ? "Not Applicable" :props.distributionAutomation.timePeriod|| "",
-        //   orderTimePeriod: props.distributionAutomation.orderTimePeriod === 0 ? "Not Applicable" :props.distributionAutomation.orderTimePeriod || "",
           userId: props.userId,
           orgId: props.organizationId,
         }}
@@ -117,7 +105,7 @@ const handleDeptChange = (value) => {
         }}
       >
         {({ values }) => (
-        <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
+       <div class="mr-5 ml-5 h-[28rem] overflow-auto">
         <Form className="form-background">
           <div class =" flex  justify-between w-full"
        
@@ -151,7 +139,7 @@ const handleDeptChange = (value) => {
       
               <div class=" flex justify-between width-[50%] ml-4 " >
                                                     <div class=" w-[35%]" >
-                                                    <label class=" text-[#444] font-bold text-[0.75rem]" >Department</label>
+                                                    <div class=" text-[#444] font-bold text-[0.75rem]" >Department</div>
                       {/* <select  className="customize-select"
                        
                       onChange={handleDeptChange}>
@@ -183,7 +171,7 @@ const handleDeptChange = (value) => {
           <>                                           
 {single === false?(
             <div class=" w-[35%]" >
-            <label class=" text-[#444] font-bold text-[0.75rem]" >User</label>
+            <div class=" text-[#444] font-bold text-[0.75rem]" >User</div>
             <Select className="customize-select"
          value={selectedUser}
                  onChange={handleUserChange}
@@ -202,7 +190,7 @@ const handleDeptChange = (value) => {
 
 ):(   
   <div class=" w-[35%] ml-8" >
-               <label class=" text-[#444] font-bold text-[0.75rem]" >User</label>
+               <div class=" text-[#444] font-bold text-[0.75rem]" >User</div>
    {/* <Field
                name="multyAsignedTOId"
             
@@ -252,11 +240,11 @@ const handleDeptChange = (value) => {
               </div>
               <div class="mt-4">
                 Updated on{" "}
-                {moment(props.distributionAutomation.updationDate).format("ll")} by{" "}
+                {dayjs(props.distributionAutomation.updationDate).format("ll")} by{" "}
                 {props.distributionAutomation.updatedBy}
               </div>
         </Form>
-      </MainWrapper>
+      </div>
         )}
       </Formik>
     </>

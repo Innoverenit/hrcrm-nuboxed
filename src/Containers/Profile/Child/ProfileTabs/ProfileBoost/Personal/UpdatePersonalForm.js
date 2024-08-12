@@ -23,15 +23,7 @@ const documentSchema = Yup.object().shape({
 
 class UpdatePersonalForm extends Component {
   render() {
-    // const {
-    //     addingContact,
-    //     users,
-    //     accountId,
-    //     defaultAccounts,
-    //     defaultOpportunities,
-    //     callback,
-    // } = this.props;
-    // console.log(accountId);
+  
     const { updatingPersonalDetails } = this.props;
     return (
       <>
@@ -86,43 +78,7 @@ class UpdatePersonalForm extends Component {
               <div class=" flex w-full h-full justify-between"
               >
                 <div class=" w-full"
-                >
-                  {/* <FlexContainer flexWrap="no-wrap"> */}
-
-                  {/* <FlexContainer justifyContent="space-between">
-                                            <div style={{ width: "47%" }}>
-                                                <FastField
-                                                    type="text"
-                                                    name="bloodGroup"
-                                                    label="Blood Group"
-                                                    isColumn
-                                                    width={"100%"}
-                                                    component={SelectComponent}
-                                                    options={[
-                                                        "A+",
-                                                        "A-",
-                                                        "B+",
-                                                        "B-",
-                                                        "AB+",
-                                                        "AB-",
-                                                        "O+",
-                                                        "O-",
-                                                    ]}
-                                                    inlineLabel
-                                                    style={{
-                                                        flexBasis: "80%",
-                                                        height: "2.0625em",
-                                                        // marginTop: "0.25em",
-                                                    }}
-                                                />
-                                            </div>
-                                            <Spacer />
-                                            <div style={{ width: "47%" }}>
-                                                <StyledLabel>Date of Birth</StyledLabel>
-                                                <DatePicker onChange={onChange} />
-                                            </div>
-                                        </FlexContainer> */}
-
+                >              
                   <div class=" flex justify-between mt-6" >
                     <div class=" w-[25%]" >
                       <FastField
@@ -219,7 +175,6 @@ class UpdatePersonalForm extends Component {
                       />
                     </div>
                   </div>
-                  {/* </FlexContainer> */}
                  
                   <div class=" flex justify-between mt-3" >
                   <div class=" w-[47%]" >
@@ -306,33 +261,8 @@ class UpdatePersonalForm extends Component {
                         }}
                       />
                     </div>
-                  </div>
-                  {/* <FlexContainer justifyContent="space-between"> */}
-
-                  {/* </FlexContainer> */}
-               
-                </div>
-
-                {/* <div
-                  style={{
-                    width: "45%",
-                    // border: "0.125em solid green"
-                  }}
-                >
-                  <FieldArray
-                    name="Address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                        singleAddress
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  />
-
-                  <Spacer style={{ marginBottom: "0.9375em" }} />
-                </div> */}
-           
+                  </div>                             
+                </div>                  
               </div>
              
               <div class=" flex justify-end mt-3" >

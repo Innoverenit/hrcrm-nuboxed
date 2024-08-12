@@ -233,7 +233,7 @@ function LocationCreateShiftForm(props) {
         //      </div>
         //     <div class="h-full w-[45%] max-sm:w-wk mt-2">
         //       <div style={{ width: "100%" }}>
-        //         <StyledLabel>Time Zone</StyledLabel>
+        //         <div class=" text-xs font-bold font-poppins text-black">Time Zone</div>
         //         <Field
         //           name="timeZone"
         //           type="text"

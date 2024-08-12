@@ -1,5 +1,5 @@
 import * as types from "./ProductActionTypes";
-import moment from "moment";
+import dayjs from "dayjs";
 const initialState = {
   addWeightedModal: false,
   addAbsoluteModal: false,
@@ -19,10 +19,10 @@ const initialState = {
       value: "FY",
       starter: true,
       isSelected: true,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("year")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("year")
         .toISOString(),
     },
@@ -32,10 +32,10 @@ const initialState = {
       value: "QTD",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("quarter")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("quarter")
         .toISOString(),
     },
@@ -45,10 +45,10 @@ const initialState = {
       value: "MTD",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("month")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("month")
         .toISOString(),
     },
@@ -58,10 +58,10 @@ const initialState = {
       value: "1W",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("week")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("week")
         .toISOString(),
     },
@@ -375,6 +375,14 @@ const initialState = {
 
   fetchingCatalogueCatSrch: false,
   fetchingCatalogueCatSrchError: false,
+
+  fetchingProductsByProductId: false,
+  fetchingProductsByProductIdError: false,
+  productsByproductId: {},
+
+  productPUblishToggle: false,
+  productPUblishToggleError:false,
+  
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -1631,7 +1639,46 @@ export const productReducer = (state = initialState, action) => {
                                         case types.CATALOGUE_CATEGORY_SEARCH_FAILURE:
                                           return { ...state, fetchingCatalogueCatSrchError: true };                     
 
-                                          
+      
+                                          case types.GET_PRODUCTS_BY_PRODUCTID_REQUEST:
+                                            return {
+                                              ...state,
+                                              fetchingProductsByProductId: true,
+                                              fetchingProductsByProductIdError: false,
+                                            };
+                                          case types.GET_PRODUCTS_BY_PRODUCTID_SUCCESS:
+                                            return {
+                                              ...state,
+                                              fetchingProductsByProductId: false,
+                                              productsByproductId: action.payload,
+                                            };
+                                          case types.GET_PRODUCTS_BY_PRODUCTID_FAILURE:
+                                            return {
+                                              ...state,
+                                              fetchingProductsByProductId: false,
+                                              fetchingProductsByProductIdError: true,
+                                            };   
+
+                                            case types.PRODUCT_PUNBLISH_TOGGLE_REQUEST:
+                                              return { ...state, productPUblishToggle: true };
+                                            case types.PRODUCT_PUNBLISH_TOGGLE_SUCCESS:
+                                              return {
+                                                ...state,
+                                                productPUblishToggle: false,
+                                                categoryProducts: state.categoryProducts.map((item) => {
+                                                  if (item.categoryId === action.payload.categoryId) {
+                                                    return action.payload;
+                                                  } else {
+                                                    return item;
+                                                  }
+                                                }),
+                                              };
+                                            case types.PRODUCT_PUNBLISH_TOGGLE_FAILURE:
+                                              return {
+                                                ...state,
+                                                productPUblishToggle: false,
+                                                productPUblishToggleError: true,
+                                              };
     default:
       return state;
   }

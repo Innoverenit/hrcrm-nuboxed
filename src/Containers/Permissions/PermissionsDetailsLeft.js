@@ -351,9 +351,9 @@ function PermissionsDetailsLeft(props) {
     <MainWrapper style={{ height: "446px", width:"", overflow: "auto" }}>
       
        <div>
-      {/* <StyledLabel> 
+      {/* <div class=" text-xs font-bold font-poppins text-black"> 
            Click To Share                   
-      </StyledLabel> */}
+      </div> */}
       {/* <PermissionForm /> */}
       </div>
       

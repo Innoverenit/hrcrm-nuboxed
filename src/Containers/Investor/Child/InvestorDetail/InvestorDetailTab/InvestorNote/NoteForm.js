@@ -2,21 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import { Button, Icon } from "antd";
-import { Formik, Form, Field } from "formik";
+import { Button } from "antd";
+import { Formik, Form} from "formik";
 import * as Yup from "yup";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import { addNote } from "../../../../InvestorAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
 
-
-/**
- * yup validation scheme for creating a note
- */
 const NoteSchema = Yup.object().shape({
   notes: Yup.string().required(""),
 });
@@ -143,15 +137,12 @@ class NoteForm extends Component {
                   // editorState={editorState}
                   toolbar={toolbarOption}
                 />
-                <FlexContainer justifyContent="flex-end">
+         <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
                     disabled={this.state.edit}
-                    style={{
-                      // marginTop: "2.8125em",
-                      // marginBottom: "0.3125em",
-                      // marginRight: "0.3125em",
+                    style={{              
                       marginRight: "1.3125em",
                       marginTop: "1.3125em",
                     }}
@@ -162,7 +153,7 @@ class NoteForm extends Component {
                     />
                     {/* Post */}
                   </Button>
-                </FlexContainer>
+                </div>
               </Form>
             );
           }}

@@ -102,7 +102,7 @@
 //   return (
 //     <div>
 //       {/* <div>
-//         <label htmlFor="sourceLanguage">Source Language: </label>
+//         <div htmlFor="sourceLanguage">Source Language: </div>
 //         <select id="sourceLanguage" value={sourceLanguage} onChange={handleSourceLanguageChange}>
 //           {languages.map((lang) => (
 
@@ -113,7 +113,7 @@
 //         </select>
 //       </div> */}
 //       <div>
-//         {/* <label htmlFor="targetLanguage">Target Language: </label>
+//         {/* <div htmlFor="targetLanguage">Target Language: </div>
 //         <select id="targetLanguage" value={targetLanguage} onChange={handleTargetLanguageChange}>
 //           {languages.map((lang) => (
 //             <option key={lang.language} value={lang.language}>

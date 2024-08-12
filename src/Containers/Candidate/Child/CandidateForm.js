@@ -15,7 +15,7 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { addCandidate } from "../CandidateAction";
 import Upload from "../../../Components/Forms/Formik/Upload";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 import VideoUpload from "./VideoUpload"
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
@@ -60,21 +60,6 @@ class CandidateForm extends Component {
     };
     // this.onNumber = this.onNumber.bind(this)
   }
-
-//   onNumber(e){
-//     const re = /^[0-9\b]+$/;
-//     if (e.target.value === '' || re.test(e.target.value)) {
-//        this.setState({value: e.target.value})
-//     }
-//  }
-
-  // NumericOnly = (e) => {
-  //   //angka only
-  //   const reg = /^[0-9\b]+$/;
-  //   let preval = e.target.value;
-  //   if (e.target.value === "" || reg.test(e.target.value)) return true;
-  //   else e.target.value = preval.substring(0, preval.length - 1);
-  // };
 
   handleCandidate = (checked) => {
     this.setState({ candidate: checked });
@@ -497,7 +482,7 @@ class CandidateForm extends Component {
                     </div>
                   </div>
                   <div class=" flex">
-                  <StyledLabel>Upload Video  </StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Upload Video  </div>
                   <VideoUpload
                    handleSetVideo={this.handleSetVideo}
                    />
@@ -570,7 +555,7 @@ class CandidateForm extends Component {
                     <div class=" w-[25%] font-bold"
                 
                     >
-                      <StyledLabel>WhatsApp</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">WhatsApp</div>
                       <Switch
                         onChange={this.handleWhatsApp}
                         checked={this.state.whatsapp}
@@ -674,7 +659,7 @@ class CandidateForm extends Component {
                     {user.gdprApplicableInd === true && (
                        <div class=" w-[47%]" >
                         <div>
-                          <StyledLabel>Allow sharing info?</StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Allow sharing info?</div>
                         </div>
                         <div>
                           <Switch
@@ -820,7 +805,7 @@ class CandidateForm extends Component {
                   <div class=" w-[47.5%]">
                   <div class=" flex justify-between" >
                   <div class=" w-[30%]">
-                          <StyledLabel>Employee?</StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Employee?</div>
                           <Switch
                             checked={this.state.empInd}
                             onChange={this.handleEmployee}
@@ -919,31 +904,13 @@ class CandidateForm extends Component {
                   </div>
                   {this.props.responseData && (
                     <>
-                      <StyledLabel>Skill set</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Skill set</div>
                       <SkillsLoadMore
                         skillList={this.props.responseData.skills}
                       />
                     </>
                   )}
-                  <>
-                    {/* <FlexContainer justifyContent="space-between">
-                      <FlexContainer justifyContent="space-between">
-                        <Field
-                          name="skills"
-                          //  selectType="contactList"
-                          // isColumnWithoutNoCreate
-                          label="Skills"
-                          mode
-                          placeholder="Select"
-                          width={"100%"}
-                          component={SelectComponent}
-                          options={
-                            Array.isArray(libraryOption) ? libraryOption : []
-                          }
-                        />
-                      </FlexContainer>
-                    </FlexContainer> */}
-                  
+                  <>                 
                   <div class=" flex justify-between" >
                   <div class=" w-[47.5%]">
                       <div class=" flex justify-between" >
@@ -1046,35 +1013,12 @@ onChange={this.NumericOnly}
                         />
                       </div>
                     </div>
-
-                    {/* <FlexContainer justifyContent="space-between">
-                      <div style={{ width: "47%" }}>
-                        <FastField
-                          name="designationTypeId"
-                          //label="Designation"
-                          label={
-                            <FormattedMessage
-                              id="app.designation"
-                              defaultMessage="Designation"
-                            />
-                          }
-                          isColumnWithoutNoCreate
-                          selectType="designationType"
-                          isColumn
-                          // component={SelectComponent}
-                          component={SearchSelect}
-                          value={values.designationTypeId}
-                          inlineLabel
-                        />
-                      </div>
-                    </FlexContainer> */}
-
-                   
+                                 
                     <div class=" flex justify-between mt-3" >
                     <div class=" w-[47.5%]">
                     <div class=" flex justify-between" >
                     <div class=" w-[48.5%]">
-                        <StyledLabel>Category</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Category</div>
 
                         <Switch
                           checked={this.state.whiteblue}
@@ -1106,7 +1050,7 @@ onChange={this.NumericOnly}
                       </div>
                       <div class=" w-[47.5%]">
                       <div class=" w-[25%]">
-                        <StyledLabel>Type</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Type</div>
 
                         <Switch
                           checked={this.state.billing}
@@ -1125,7 +1069,7 @@ onChange={this.NumericOnly}
                   <div class=" w-[47.5%]">
                   <div class=" flex justify-between" >
                   <div class=" w-[25%]">
-                            <StyledLabel>Active</StyledLabel>
+                            <div class=" text-xs font-bold font-poppins text-black">Active</div>
                             <Switch
                               checked={this.state.availability}
                               onChange={this.handleAvailability}

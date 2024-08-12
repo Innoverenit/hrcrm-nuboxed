@@ -5,9 +5,7 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { FormattedMessage } from "react-intl";
 import * as Yup from "yup";
-import { FormWrapper } from "../Auth/styled";
-import { Spacer, HeaderText } from "../../Components/UI/Elements";
-import { FlexContainer } from "../../Components/UI/Layout";
+import {  HeaderText } from "../../Components/UI/Elements";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { updateUserById } from "../Auth/AuthAction";
 const LevelSchema = Yup.object().shape({
@@ -37,7 +35,7 @@ class TimeZoneForm extends Component {
           {({ values }) => (
             <Form className="form-background">
               <div>
-                <FormWrapper style={{ height: "auto" }}>
+              <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white h-auto">
                   <HeaderText color="#1890ff" style={{ marginBottom: 20 }}>
                     Few more inputs before using Korero{" "}
                   </HeaderText>
@@ -52,7 +50,7 @@ class TimeZoneForm extends Component {
                     style={{ flexBasis: "50%" }}
                   />
 
-                  <Spacer style={{ marginTop: 15 }} />
+                  <div class=" mt-3" style={{ marginTop: 15 }} />
                   <p style={{ fontSize: "0.75em" }}>
                     Your Korero scheduler needs your time zone as an input.
                     Korero will automatically update daylight settings for your
@@ -62,7 +60,7 @@ class TimeZoneForm extends Component {
                     You can reconfigure time zone preference in the Profile
                     section.
                   </p>
-                  <FlexContainer justifyContent="flex-end">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     <Button
                       type="primary"
                       htmlType="submit"
@@ -74,8 +72,8 @@ class TimeZoneForm extends Component {
                       />
                       {/* Complete */}
                     </Button>
-                  </FlexContainer>
-                </FormWrapper>
+                  </div>
+                </div>
               </div>
             </Form>
           )}

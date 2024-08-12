@@ -1,10 +1,9 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import { bindActionCreators } from "redux";
-import { Switch, Button, Popconfirm } from "antd";
-import { FlexContainer, MainWrapper } from "../../../../../Components/UI/Layout";
-import { StyledLabel,Spacer } from "../../../../../Components/UI/Elements";
+import { Switch, Popconfirm } from "antd";
+import {  MainWrapper } from "../../../../../Components/UI/Layout";
 import { addingThirdPartyAccess,getThirdPartyAccess, } from "../../../SettingsAction";
 
 function ThirdPartyForm(props) {
@@ -114,8 +113,8 @@ function ThirdPartyForm(props) {
   return (
     <MainWrapper style={{ height: "446px", width:"", overflow: "auto" }}>
       
-      <Spacer />
-       <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
+      <mt-3 />
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[52%] ">
         <p>Allow Access to Customer Portal</p>
         <div>
           <Popconfirm
@@ -133,9 +132,9 @@ function ThirdPartyForm(props) {
             />
           </Popconfirm>
         </div>
-      </FlexContainer>
-      <Spacer />
-      <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
+      </div>
+      <mt-3 />
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[52%] ">
         <p>Show Available Talent</p>
         <div>
           <Popconfirm
@@ -153,9 +152,9 @@ function ThirdPartyForm(props) {
             />
           </Popconfirm>
         </div>
-      </FlexContainer>
-      <Spacer />
-      <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
+      </div>
+      <mt-3 />
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[52%] ">
         <p>Enable AI Assist</p>
         <div>
           <Popconfirm
@@ -173,7 +172,7 @@ function ThirdPartyForm(props) {
             />
           </Popconfirm>
         </div>
-      </FlexContainer> 
+      </div> 
       <div>Updated on {dayjs(props.thirdPartyAccess.lastUpdatedOn).format("ll")} by {props.thirdPartyAccess.name}</div>
     </MainWrapper>
   );

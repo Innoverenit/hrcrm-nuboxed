@@ -91,7 +91,7 @@ function AddPhoneExcel(props) {
                                             />
                                         </div>
                                         <div class="w-[45%]">
-                                            <label>Required bulk QR code</label>
+                                            <div class="font-bold text-xs font-poppins text-black">Required bulk QR code</div>
                                             <Switch
                                                 onChange={handleBulkQr}
                                                 checked={bulkQr}
@@ -102,7 +102,7 @@ function AddPhoneExcel(props) {
                                     </div>
                                     <div class=" flex justify-between">
                                     <div class="w-[70%] mt-2">
-                                            <label>Send back non repaired units </label>
+                                            <div class="font-bold text-xs font-poppins text-black">Send back non repaired units </div>
                                             <Switch
                                                 onChange={handleRepaired}
                                                 checked={nonRepaied}

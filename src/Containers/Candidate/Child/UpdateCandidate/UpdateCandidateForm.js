@@ -10,7 +10,7 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { updateCandidate,setEditCandidate } from "../../CandidateAction";
 import Upload from "../../../../Components/Forms/Formik/Upload";
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
@@ -369,7 +369,7 @@ class UpdateCandidateForm extends Component {
                     {this.props.user.gdprApplicableInd ===true && (
                    <div class=" w-[47%]">
                       <div>
-                      <StyledLabel >Allow sharing info?</StyledLabel> 
+                      <div class=" text-xs font-bold font-poppins">Allow sharing info?</div> 
                       </div>                      
                       <div>
                       <Switch                                              
@@ -701,7 +701,7 @@ class UpdateCandidateForm extends Component {
                     <div class=" w-[47.5%]">
                     <div class=" flex justify-between" >
                     <div class=" w-[48.5%]">
-                        <StyledLabel>Category</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Category</div>
 
                         <Switch
                           checked={this.state.whiteblue}
@@ -724,7 +724,7 @@ class UpdateCandidateForm extends Component {
                       </div>
                       <div class=" w-[47.5%]">
                       <div class=" w-[25%]">
-                        <StyledLabel>Type</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Type</div>
 
                         <Switch
                           checked={this.state.billing}
@@ -740,7 +740,7 @@ class UpdateCandidateForm extends Component {
                   <div class=" w-[47.5%]">
                   <div class=" flex justify-between" >
                   <div class=" w-[25%]">
-                      <StyledLabel >Active</StyledLabel> 
+                      <div class=" text-xs font-bold font-poppins">Active</div> 
                     <Switch                     
                       checked={this.state.availability}
                        onChange={this.handleAvailability}

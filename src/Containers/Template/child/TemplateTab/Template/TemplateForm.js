@@ -5,7 +5,7 @@ import { Button, } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field } from "formik";
 import {getCustomerListByUserId} from "../../../../Customer/CustomerAction"
-import { Spacer } from "../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
 import { EditorState, convertToRaw } from "draft-js";
@@ -213,7 +213,7 @@ function TemplateForm(props) {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Editor
                     editorState={editorState}
                     wrapperClassName="demo-wrapper"

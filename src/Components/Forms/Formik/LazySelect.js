@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { get } from "lodash";
 import { FlexContainer } from "../../UI/Layout";
-import { ValidationError, StyledLabel, StyledAsync } from "../../UI/Elements";
+import { ValidationError,  StyledAsync } from "../../UI/Elements";
 
 class LazySelect extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class LazySelect extends Component {
     if (isColumn) {
       return (
         <>
-          <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+          <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
           <StyledAsync
             isRequired={isRequired}
             classNamePrefix="sales"
@@ -80,7 +80,7 @@ class LazySelect extends Component {
       <>
         <FlexContainer>
           <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
-            <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+            <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
             <StyledAsync
               isRequired={isRequired}
               classNamePrefix="sales"

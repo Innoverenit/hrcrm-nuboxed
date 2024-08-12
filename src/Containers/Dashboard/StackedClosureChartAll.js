@@ -14,46 +14,7 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-import { MainWrapper } from "../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
-
-
-// const data = [
-//   {
-//     customerName: "ABN Amro",
-//     userId: null,
-//     customerId: null,
-//     requirementName: null,
-//     recruitmentId: null,
-//     recruiterId: null,
-//     name: null,
-//     orgId: null,
-//     opportunityNo: 0,
-//     openRequirmentNo: 1,
-//     Selected: 5,
-//     OnBoarded: 2,
-//     Positions: 15
-//   },
-//   {
-//     customerName: "TESTING ",
-//     userId: null,
-//     customerId: null,
-//     requirementName: null,
-//     recruitmentId: null,
-//     recruiterId: null,
-//     name: null,
-//     orgId: null,
-//     opportunityNo: 0,
-//     openRequirmentNo: 304,
-//     Selected: 0,
-//     OnBoarded: 1,
-//     Positions: 303
-//   }
-// ]
-
-
- 
-
 
  class StackedClosureChartAll extends React.Component {
   constructor() {
@@ -84,18 +45,12 @@ import { FormattedMessage } from "react-intl";
     }
   }
 
- 
-
-  // useEffect(() => {
-  //   props.getDashBoardClosureRatio(props.organisationId,"Recruiter");
-    
-  // }, []);
   render() {
       const data=this.props.dashBoardallClosureRatio
     // console.log("data",data)
   return (
     <>
-    <MainWrapper className="!h-[15rem] w-[60%] max-sm:w-wk">
+    <div class="mr-5 ml-5 !h-[15rem] w-[60%] max-sm:w-wk">
       {/* Recruitment Performance */}
       <div class=" flex justify-between" >
       {/* <div style={{ width: "47%" }}> */}
@@ -131,21 +86,19 @@ import { FormattedMessage } from "react-intl";
       <Bar dataKey="Selected" stackId="a" fill="#ff715885" />
       <Bar dataKey="Onboarded" stackId="a" fill="orange" /> 
     </BarChart>
-    </MainWrapper>
+    </div>
     </>
   );
 }
  }
 const mapStateToProps = ({ dashboard,auth,opportunity }) => ({
-//   dashBoardCustomerChart:dashboard.dashBoardCustomerChart,
   userId: auth.userDetails.userId,
   endDate: opportunity.endDate,
   department:auth.userDetails.department,
 dashBoardallClosureRatio:dashboard.dashBoardallClosureRatio,
 
   startDate: opportunity.startDate,
-//   dashBoardClosureRatio:dashboard.dashBoardClosureRatio,
-//   organisationId:auth.userDetails.organizationId,
+
   dateClosureRangeList:opportunity.dateClosureRangeList
 });
 const mapDispatchToProps = (dispatch) =>
@@ -155,7 +108,7 @@ const mapDispatchToProps = (dispatch) =>
         // getDashBoardClosureRatio,
          setSelectedClosureTimeIntervalReport
       
-     // getDashBoardCustomerChart
+
 
     },
     dispatch

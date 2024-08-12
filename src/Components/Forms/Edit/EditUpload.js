@@ -17,6 +17,12 @@ class EditUpload extends React.Component {
     };
   }
   beforeUpload = file => {
+    const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+    if (!isJpgOrPng) {
+      message.error("You can upload only JPG or PNG file!");
+      file.flag = true;
+      return false;
+    }
     const isLt2M = file.size / 1024 < 150;
     // file.size/1024/1024 <25
     if (!isLt2M) {

@@ -9,8 +9,8 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import {getInvestorCurrency} from "../../Auth/AuthAction"
 import {getAllEmployeelist} from "../../Investor/InvestorAction"
-import { Button, Tooltip,message } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
+import { Button, Tooltip } from "antd";
+import { Formik, Form, Field} from "formik";
 import * as Yup from "yup";
 import {
   getRecruiterName,
@@ -32,9 +32,7 @@ import {createDeals,  getAllDealStages,
   getActiveAssignedToList
 } from "../DealAction";
 import Swal from 'sweetalert2'
-/**
- * yup validation scheme for creating a opportunity
- */
+
 
 const OpportunitySchema = Yup.object().shape({
   opportunityName: Yup.string().required("Input needed!"),
@@ -74,9 +72,6 @@ function DealForm(props) {
               "Contact",//8
               "Workflow",//9
               "Stages"//10
-
-
-
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -181,21 +176,8 @@ function DealForm(props) {
     };
   });
 
-
   const customerNameOption = props.investorData
-    // .sort((a, b) => {
-    //   const libraryNameA = a.name && a.name.toLowerCase();
-    //   const libraryNameB = b.name && b.name.toLowerCase();
-    //   if (libraryNameA < libraryNameB) {
-    //     return -1;
-    //   }
-    //   if (libraryNameA > libraryNameB) {
-    //     return 1;
-    //   }
-
-    //   // names must be equal
-    //   return 0;
-    // })
+  
     .map((item) => {
       return {
         label: `${item.name || ""}`,
@@ -231,11 +213,7 @@ function DealForm(props) {
   });
   const [text, setText] = useState("");
   function handletext(e) {
-  //   if (e.target.value.length === 10) {
-  //     window.alert(
-  //         "Description shouldn't exceed 10 characters"
-  //     );
-  // }
+ 
     setText(e.target.value);
 
   }
@@ -393,35 +371,24 @@ function DealForm(props) {
             <div class=" flex justify-around max-sm:flex-col">
               <div class=" h-full w-w47.5 max-sm:w-wk">
               <div class=" text-xs mt-3">
-              <label>{translatedMenuItems[0]} </label>
+              <div>{translatedMenuItems[0]} </div>
                 <Field
                   isRequired
                   name="opportunityName"
                   type="text"
-                  //label="Name"
-
-                  // label={
-                  //   <FormattedMessage id="app.name" defaultMessage="name" />
-                  // }
+                  //label="Name"             
                   isColumn
                   width={"100%"}
-                  component={InputComponent}
-                  // accounts={accounts}
+                  component={InputComponent}         
                   inlineLabel
                 />
                </div>
                 <div class="flex justify-between max-sm:flex-col mt-3">
                 <div class=" text-xs w-w47.5 max-sm:w-wk">
-                <label>{translatedMenuItems[1]} </label>
+                <div>{translatedMenuItems[1]} </div>
                     <Field
                       name="startDate"
-                      //label="Start "
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.startdate"
-                      //     defaultMessage="startdate"
-                      //   />
-                      // }
+                      //label="Start "                 
                       component={DatePicker}
                       value={values.startDate}
                       isColumn
@@ -429,17 +396,11 @@ function DealForm(props) {
                     />
                   </div>
                   <div class=" text-xs w-w47.5 max-sm:w-wk">
-                  <label>{translatedMenuItems[2]} </label>
+                  <div>{translatedMenuItems[2]} </div>
                     <Field
                       // isRequired
                       name="endDate"
-                      // label="End Date"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.enddate"
-                      //     defaultMessage="enddate"
-                      //   />
-                      // }
+                      // label="End Date"                   
                       isColumn
                       component={DatePicker}
                       value={values.endDate || values.startDate}
@@ -461,37 +422,24 @@ function DealForm(props) {
                
                 <div class="flex justify-between max-sm:flex-col mt-3">
                 <div class="  text-xs w-w47.5 max-sm:w-wk">
-                <label>{translatedMenuItems[3]} </label>
+                <div>{translatedMenuItems[3]} </div>
                     <Field
                       name="proposalAmount"
                       //label="Value"
-
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.fundValue"
-                      //     defaultMessage="fundValue"
-                      //   />
-                      // }
                       isColumn
                       width={"100%"}
                       component={InputComponent}
                     />
                   </div>
                   <div class="  text-xs w-w47.5 max-sm:w-wk">
-                  <label>{translatedMenuItems[4]} </label>
+                  <div>{translatedMenuItems[4]} </div>
                   <Field
                       name="currency"
                       isColumnWithoutNoCreate
                       defaultValue={{
                         //value: props.user.currency,
                         value: props.currency_name
-                      }}
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.currency"
-                      //     defaultMessage="Currency"
-                      //   />
-                      // }
+                      }}               
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -556,16 +504,10 @@ function DealForm(props) {
               </div>
             <div
                class=" h-full w-w47.5 max-sm:w-wk">
-                 <label>{translatedMenuItems[5]} </label>
+                   <div>{translatedMenuItems[5]} </div>
               <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
-          <>
-            {/* <Listbox.Label className="block font-semibold text-[0.75rem] mt-[0.6rem]">
-             <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="assignedto"
-                        />
-            </Listbox.Label> */}
+          <>         
             <div className="relative ">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} >
                 {selected}
@@ -629,16 +571,10 @@ function DealForm(props) {
         )}
       </Listbox>
 <div class="text-xs mt-1">
-<label>{translatedMenuItems[6]} </label>
+<div>{translatedMenuItems[6]} </div>
 <Field
                     name="included"
-                    // label="Include"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.include"
-                    //     defaultMessage="include"
-                    //   />
-                    // }
+                    // label="Include"                
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -654,18 +590,11 @@ function DealForm(props) {
 <div class="mt-2 flex justify-between max-sm:flex-col">
 <div class=" w-w47.5 max-sm:w-wk">
 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-<label>{translatedMenuItems[7]} </label>
+<div>{translatedMenuItems[7]} </div>
                   <Field
                     name="investorId"
                     // selectType="customerList"
-                    isColumnWithoutNoCreate
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.investor"
-                    //     defaultMessage="investor"
-                    //   />
-                    // }
-                    //component={SearchSelect}
+                    isColumnWithoutNoCreate                
                     component={SelectComponent}
                     options={
                       Array.isArray(customerNameOption)
@@ -700,18 +629,11 @@ function DealForm(props) {
                         </div>
                         </div>
                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <label>{translatedMenuItems[8]} </label>
+                        <div>{translatedMenuItems[8]} </div>
                   <Field
                     name="contactId"
                     // selectType="contactListFilter"
-                    isColumnWithoutNoCreate
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.contact"
-                    //     defaultMessage="contact"
-                    //   />
-                    // }
-                    // component={SearchSelect}
+                    isColumnWithoutNoCreate               
                     component={SelectComponent}
                     options={
                       Array.isArray(
@@ -730,7 +652,7 @@ function DealForm(props) {
                     inlineLabel
                   />
                 </div>
-                {/* <StyledLabel>
+                {/* <div class=" text-xs font-bold font-poppins text-black">
                   <Field
                     name="oppInnitiative"
                     //selectType="initiativeName"
@@ -758,26 +680,19 @@ function DealForm(props) {
                     isColumn
                     inlineLabel
                   />
-                </StyledLabel> */}
+                </div> */}
                
 
                 <div class="flex justify-between max-sm:flex-col mt-3">
                   <div class=" w-w47.5 max-sm:w-wk">
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                  <label>{translatedMenuItems[9]} </label>
+                  <div>{translatedMenuItems[9]} </div>
                       <Field
                         name="oppWorkflow"
                         // selectType="contactListFilter"
                         isColumnWithoutNoCreate
                         isRequired
-                        placeolder="Select type"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.workflow"
-                        //     defaultMessage="workflow"
-                        //   />
-                        // }
-                        // component={SearchSelect}
+                        placeolder="Select type"                     
                         component={SelectComponent}
                         options={
                           Array.isArray(WorkflowOptions) ? WorkflowOptions : []
@@ -791,17 +706,11 @@ function DealForm(props) {
                   
                   <div class=" w-w47.5 max-sm:w-wk ">
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                  <label>{translatedMenuItems[10]} </label>
+                  <div>{translatedMenuItems[10]} </div>
                       <Field
                         name="oppStage"
                         isRequired
-                        isColumnWithoutNoCreate
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.stages"
-                        //     defaultMessage="stages"
-                        //   />
-                        // }
+                        isColumnWithoutNoCreate                  
                         component={SelectComponent}
                         options={
                           Array.isArray(

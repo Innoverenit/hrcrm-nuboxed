@@ -6,7 +6,6 @@ import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { MainWrapper } from "../../../../../Components/UI/Layout";
 import {  TextInput } from "../../../../../Components/UI/Elements";
 import dayjs from "dayjs";
-import moment from "moment";
 import { Button, Switch } from "antd";
 import { FormattedMessage } from "react-intl";
 import { DatePicker } from "antd";
@@ -131,13 +130,13 @@ class SettingsHolidayPage extends React.Component {
 };
 handleYearChange = (date) => {
   if (date) {
-    const selectedYear = moment(date).year();
+    const selectedYear = dayjs(date).year();
     console.log('Selected Year:', selectedYear);
     this.setState({ selectedYear });
   }
 };
   render() {
-    const currentYear = moment().format('YYYY');
+    const currentYear = dayjs().format('YYYY');
    
     const { selectedYear } = this.state;
     const yearPickerConfig = {
@@ -172,7 +171,7 @@ handleYearChange = (date) => {
          
                  <DatePicker 
                 //  format="YYYY"
-                defaultValue={moment(currentYear, 'YYYY')}
+                defaultValue={dayjs(currentYear, 'YYYY')}
              
                  onChange={this.onChange}
                   picker="year" />
@@ -268,7 +267,7 @@ handleYearChange = (date) => {
             </MainWrapper>
           </div>
         </div>
-        <h4>Updated on {moment(this.props.holidays && this.props.holidays.length && this.props.holidays[0].updationDate).format("ll")} by {this.props.holidays && this.props.holidays.length && this.props.holidays[0].updatedBy}</h4>
+        <h4>Updated on {dayjs(this.props.holidays && this.props.holidays.length && this.props.holidays[0].updationDate).format("ll")} by {this.props.holidays && this.props.holidays.length && this.props.holidays[0].updatedBy}</h4>
       </>
     );
   }

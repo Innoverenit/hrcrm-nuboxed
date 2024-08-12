@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,DatePicker } from "antd";
 import * as Yup from "yup";
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Formik, Form, Field } from "formik";
 import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
 import { base_url2 } from "../../../Config/Auth";
@@ -145,7 +145,7 @@ class Suppliesform extends Component {
                       </div>
                     </div>
                   </div>
-                  <label>{this.state.translatedMenuItems[0]}</label>
+                  <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[0]}</div>
                   <Field
                     isRequired
                     name="categoryName"
@@ -159,7 +159,7 @@ class Suppliesform extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                    <label>{this.state.translatedMenuItems[1]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[1]}</div>
                   <Field
                     name="subCategoryName"
                     //label="Sub Category"
@@ -173,7 +173,7 @@ class Suppliesform extends Component {
                   />
                   <div class="flex justify-between">
                     <div class="w-full">
-                    <label>{this.state.translatedMenuItems[2]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[2]}</div>
                       <Field
                         name="attributeName"
                         //label="Attribute"
@@ -185,7 +185,7 @@ class Suppliesform extends Component {
                         isColumn
                         inlineLabel
                       />
-                        <label>{this.state.translatedMenuItems[3]}</label>
+                        <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[3]}</div>
                       <Field
                         name="subAttributeName"
                         //label="Sub Attribute"
@@ -202,7 +202,7 @@ class Suppliesform extends Component {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>{this.state.translatedMenuItems[12]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[12]}</div>
                       <Field
                         name="weight"
                         isColumn
@@ -212,7 +212,7 @@ class Suppliesform extends Component {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{this.state.translatedMenuItems[13]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[13]}</div>
                       <Field
                         name="length"
                         //label="UOM"
@@ -228,7 +228,7 @@ class Suppliesform extends Component {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>{this.state.translatedMenuItems[14]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[14]}</div>
                       <Field
                         name="width"
                         isColumn
@@ -238,7 +238,7 @@ class Suppliesform extends Component {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{this.state.translatedMenuItems[15]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[15]}</div>
                       <Field
                         name="height"
                         isColumn
@@ -255,7 +255,7 @@ class Suppliesform extends Component {
                 <div class="h-full w-[50%]">
                   <div class="flex justify-between">
                     <div class="w-wk">
-                    <label>{this.state.translatedMenuItems[4]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[4]}</div>
                       <Field
                         name="name"
                         //label="Name"
@@ -263,6 +263,7 @@ class Suppliesform extends Component {
                         width={"100%"}
                         inlineLabel
                         component={InputComponent}
+                        isRequired
                       />
                     </div>
                    
@@ -270,7 +271,7 @@ class Suppliesform extends Component {
 
                   <div class="flex justify-between">
                   <div class="w-[47%]">
-                  <label>{this.state.translatedMenuItems[5]}</label>
+                  <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[5]}</div>
                       <Field
                         name="hsn"
                         //label="HSN"
@@ -281,7 +282,7 @@ class Suppliesform extends Component {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{this.state.translatedMenuItems[6]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[6]}</div>
                       <Field
                         name="reorder"
                         //label="Re-order"
@@ -307,7 +308,7 @@ class Suppliesform extends Component {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>{this.state.translatedMenuItems[7]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[7]}</div>
                       <Field
                         name="netWeight"
                         //label="Net Weight"
@@ -318,7 +319,7 @@ class Suppliesform extends Component {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{this.state.translatedMenuItems[8]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                       <Field
                         name="netUnit"
                         //label="UOM"
@@ -334,7 +335,7 @@ class Suppliesform extends Component {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>{this.state.translatedMenuItems[9]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[9]}</div>
                       <Field
                         name="grossWeight"
                         //label="Gross Weight"
@@ -345,7 +346,7 @@ class Suppliesform extends Component {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{this.state.translatedMenuItems[8]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                       <Field
                         name="grossUnit"
                         //label="UOM"
@@ -374,7 +375,7 @@ class Suppliesform extends Component {
                   </div>
                   <div class="flex justify-between mt-4">
                     <div class="w-full">
-                    <label>{this.state.translatedMenuItems[10]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[10]}</div>
                       <Field
                         name="description"
                         //label="Description"
@@ -387,7 +388,7 @@ class Suppliesform extends Component {
                   </div>
                   <div className="flex justify-between mt-4">
                     <div className="w-full">
-                      <label>Date</label>
+                      <div class="font-bold text-xs font-poppins text-black">Date</div>
                       <Field name="availabilityDate">
                         {({ field, form }) => (
                           <input
@@ -411,7 +412,7 @@ class Suppliesform extends Component {
                   loading={this.props.addingPurchase}
                 >
                   {/* Create */}
-                  <label>{this.state.translatedMenuItems[11]}</label>
+                  <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[11]}</div>
                 </Button>
               </div>
             </Form>

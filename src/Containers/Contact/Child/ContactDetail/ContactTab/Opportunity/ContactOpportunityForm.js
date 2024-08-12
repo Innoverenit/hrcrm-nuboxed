@@ -11,7 +11,6 @@ import { Button, Tooltip,Select } from "antd";
 import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
 import DraggableUpload1 from "../../../../../../Components/Forms/Formik/DraggableUpload1";
-import { Spacer, StyledLabel } from "../../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import {
   addOpportunity,
@@ -403,7 +402,7 @@ const filteredEmployeesData = AllEmplo.filter(
                   // accounts={accounts}
                   inlineLabel
                 />
-                <Spacer />
+                <div class=" mt-3" />
                 <div class="flex justify-between max-sm:flex-col">
                 <div class=" w-w47.5 max-sm:w-wk">
                     <Field
@@ -450,7 +449,7 @@ const filteredEmployeesData = AllEmplo.filter(
                     />
                   </div>
                 </div>
-                <Spacer />
+                <div class=" mt-3" />
                 <div class="flex justify-between max-sm:flex-col">
                 <div class=" w-w47.5 max-sm:w-wk">
                     <Field
@@ -494,8 +493,8 @@ const filteredEmployeesData = AllEmplo.filter(
                     />
                   </div>
                 </div>
-                <Spacer />
-                <StyledLabel>Description</StyledLabel>
+                <div class=" mt-3" />
+                <div class=" text-xs font-bold font-poppins text-black">Description</div>
                 <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>
@@ -630,7 +629,7 @@ const filteredEmployeesData = AllEmplo.filter(
                       value: employeeId,
                     }}
                   /> */}
-                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
+                  <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</div>
                    <Select
           showSearch
           style={{ width: 415 }}
@@ -680,7 +679,7 @@ const filteredEmployeesData = AllEmplo.filter(
          
                         </div>
               
-                {/* <StyledLabel>
+                {/* <div class=" text-xs font-bold font-poppins text-black">
                   <Field
                     name="oppInnitiative"
                     //selectType="initiativeName"
@@ -708,12 +707,12 @@ const filteredEmployeesData = AllEmplo.filter(
                     isColumn
                     inlineLabel
                   />
-                </StyledLabel> */}
-                <Spacer />
+                </div> */}
+                <div class=" mt-3" />
 
                 <div class="flex justify-between max-sm:flex-col">
                   <div class=" w-w47.5 max-sm:w-wk">
-                    <StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">
                       <Field
                         name="oppWorkflow"
                         // selectType="contactListFilter"
@@ -735,11 +734,11 @@ const filteredEmployeesData = AllEmplo.filter(
                         isColumn
                         inlineLabel
                       />
-                    </StyledLabel>
+                    </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" w-w47.5 max-sm:w-wk">
-                    <StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">
                       <Field
                         name="oppStage"
                         isRequired
@@ -770,7 +769,7 @@ const filteredEmployeesData = AllEmplo.filter(
                         isColumn
                         inlineLabel
                       />
-                    </StyledLabel>
+                    </div>
                   </div>
                 </div>
                 <div class="mt-3">
@@ -783,7 +782,7 @@ const filteredEmployeesData = AllEmplo.filter(
               </div> 
   
             </div>
-            <Spacer />
+            <div class=" mt-3" />
             <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute ">
               <Button
                 type="primary"

@@ -185,7 +185,7 @@ function AddManualForm(props) {
             <div className="flex justify-around w-[30rem]">
 
             <div>
-                <label>Category</label>
+                <div class="font-bold text-xs font-poppins text-black">Category</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -201,7 +201,7 @@ function AddManualForm(props) {
               </div>
 
               <div>
-                <label>Brand</label>
+                <div class="font-bold text-xs font-poppins text-black">Brand</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -216,7 +216,7 @@ function AddManualForm(props) {
                 </div>
               </div>
               <div>
-                <label>Model</label>
+                <div class="font-bold text-xs font-poppins text-black">Model</div>
                 <div className="w-[12rem]">
                   <Select
                     style={{ width: 170 }}
@@ -231,7 +231,7 @@ function AddManualForm(props) {
                 </div>
               </div>
               <div>
-                <label>Attribute</label>
+                <div class="font-bold text-xs font-poppins text-black">Attribute</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -246,7 +246,7 @@ function AddManualForm(props) {
                 </div>
               </div>
               <div>
-                <label>Specs</label>
+                <div class="font-bold text-xs font-poppins text-black">Specs</div>
                 <div className="w-28 ">
                   <Select
                     style={{ width: 100 }}
@@ -262,7 +262,7 @@ function AddManualForm(props) {
                 </div>
               </div>
               <div>
-                <label>Grade</label>
+                <div class="font-bold text-xs font-poppins text-black">Grade</div>
                 <div className="w-28">
                 <Select
                     style={{ width: 100 }}
@@ -279,7 +279,7 @@ function AddManualForm(props) {
                 </div>
               </div>
               <div>
-                <label>Type</label>
+                <div class="font-bold text-xs font-poppins text-black">Type</div>
                 <div className="w-28 ">
                   <Select
                     style={{ width: 100 }}
@@ -294,7 +294,7 @@ function AddManualForm(props) {
               </div>
               
               <div>
-                <label>Location</label>
+                <div class="font-bold text-xs font-poppins text-black">Location</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -309,7 +309,7 @@ function AddManualForm(props) {
                 </div>
               </div>
               <div>
-                <label>Currency</label>
+                <div class="font-bold text-xs font-poppins text-black">Currency</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -324,7 +324,7 @@ function AddManualForm(props) {
                 </div>
               </div>
               <div>
-                <label>Price / Unit</label>
+                <div class="font-bold text-xs font-poppins text-black">Price / Unit</div>
                 <div className="w-28">
                   <Input
                     type="text"
@@ -337,7 +337,7 @@ function AddManualForm(props) {
               </div>
              
               <div>
-                <label>Units</label>
+                <div class="font-bold text-xs font-poppins text-black">Units</div>
                 <div className="w-28">
                   <Input
                     type="text"

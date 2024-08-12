@@ -10,9 +10,23 @@ const initialState = {
 
   showStatusDrwr: false,
 
+  invoiceO:false,
+
+  fetchingInvoiceL: false,
+  fetchingInvoiceLError: true,
+  invoiceL:[],
+
   fetchingAccountInvoice: false,
   fetchingAccountInvoiceError: false,
   accountInvoice:[],
+
+  fetchingSpareListByPhoneTaskId: false,
+  fetchingSpareListByPhoneTaskIdError: false,
+  phoneTaskIdSpareList:[],
+
+  fetchingOrderInvoice: false,
+  fetchingOrderInvoiceError: false,
+  orderInvoice:[],
 
   updatingOrdrSuplrItems: false,
   updatingOrdrSuplrItemsError: false,
@@ -70,6 +84,8 @@ const initialState = {
   accountOrderProduction: false,
 
   setEdittingOrder: {},
+
+  invoiceOrders:false,
 
   addDistributorSubscriptionConfigureModal: false,
 
@@ -2264,6 +2280,21 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingSpareListByPhoneIdError: true,
       };
 
+      case types.GET_SPARE_LIST_BY_PHONETASKID_REQUEST:
+      return { ...state, fetchingSpareListByPhoneTaskId: true };
+    case types.GET_SPARE_LIST_BY_PHONETASKID_SUCCESS:
+      return {
+        ...state,
+        fetchingSpareListByPhoneTaskId: false,
+        phoneTaskIdSpareList: action.payload,
+      };
+    case types.GET_SPARE_LIST_BY_PHONETASKID_FAILURE:
+      return {
+        ...state,
+        fetchingSpareListByPhoneTaskId: false,
+        fetchingSpareListByPhoneTaskIdError: true,
+      };
+
     case types.GET_SUBORDER_DATA_REQUEST:
       return { ...state, fetchingSuborderData: true };
     case types.GET_SUBORDER_DATA_SUCCESS:
@@ -2892,7 +2923,7 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         deletingSpareList: false,
         spareList: state.spareList.filter(
-          (item) => item.phoneSpareId !== action.payload.phoneSpareId
+          (item) => item.phoneTaskId !== action.payload.phoneTaskId
         ),
         // orderPhoneList: state.orderPhoneList.map((item) => {
         //   if (item.phoneId == action.payload.phoneId) {
@@ -3363,6 +3394,12 @@ export const distributorReducer = (state = initialState, action) => {
                             case types.HANDLE_STATUS_SHOW_DRAWER:
                               return { ...state, showStatusDrwr: action.payload };
 
+                              case types.HANDLE_INVOICE_ORDER_DRAWER:
+                              return { ...state, invoiceOrders: action.payload };
+
+                              case types.HANDLE_INVOICE_DRAWER:
+                                return { ...state, invoiceO: action.payload };
+
                               case types.GET_PROCURE_STATUS_ITEM_REQUEST:
       return { ...state, fetchingProcureStatusItem: true };
     case types.GET_PROCURE_STATUS_ITEM_SUCCESS:
@@ -3434,6 +3471,38 @@ export const distributorReducer = (state = initialState, action) => {
             fetchingAccountInvoice: false,
             fetchingAccountInvoiceError: true,
           };
+
+          case types.GET_ORDER_INVOICE_REQUEST:
+            return { ...state, fetchingOrderInvoice: true };
+          case types.GET_ORDER_INVOICE_SUCCESS:
+            return {
+              ...state,
+              fetchingOrderInvoice: false,
+              // accountInvoice: [...state.accountInvoice, ...action.payload]
+              orderInvoice: action.payload,
+            };
+          case types.GET_ORDER_INVOICE_FAILURE:
+            return {
+              ...state,
+              fetchingOrderInvoice: false,
+              fetchingOrderInvoiceError: true,
+            };
+
+            case types.GET_INVOICEL_REQUEST:
+            return { ...state, fetchingInvoiceL: true };
+          case types.GET_INVOICEL_SUCCESS:
+            return {
+              ...state,
+              fetchingInvoiceL: false,
+              // accountInvoice: [...state.accountInvoice, ...action.payload]
+              invoiceL: action.payload,
+            };
+          case types.GET_INVOICEL_FAILURE:
+            return {
+              ...state,
+              fetchingInvoiceL: false,
+              fetchingInvoiceLError: true,
+            };
   
     default:
       return state;

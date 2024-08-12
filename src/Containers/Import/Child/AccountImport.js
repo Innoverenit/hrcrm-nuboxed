@@ -4,10 +4,9 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { message, Button, Upload } from "antd";
 import { Formik, Form, Field } from "formik";
-import { StyledUpload, StyledSteps } from "../../../Components/UI/Antd";
-import { MainWrapper, FlexContainer } from "../../../Components/UI/Layout";
+import { StyledSteps } from "../../../Components/UI/Antd";
+import { MainWrapper} from "../../../Components/UI/Layout";
 import { Title, HeaderText } from "../../../Components/UI/Elements";
-import { Link } from "../../../Components/Common";
 import { SelectComponent } from "../ImportSelect";
 import ImportHeader from "./ImportHeader";
 import ImportHelpGuide from "./ImportHelpGuide";
@@ -37,11 +36,6 @@ class AccountImport extends Component {
     if (!isJPG) {
       message.error("You can only upload excel file!");
     }
-    // const isLt2M = file.size / 1024 / 1024 < 2;
-    // if (!isLt2M) {
-    //     message.error('Image must smaller than 2MB!');
-    // }
-    // return isJPG && isLt2M;
     return false;
   };
 
@@ -93,7 +87,7 @@ class AccountImport extends Component {
     return (
       <>
         <ImportHeader />
-        <FlexContainer flexWrap="no-wrap" style={{ width: "100%" }}>
+        <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
           <div style={{ width: "65%" }}>
             <MainWrapper>
               <HeaderText style={{ textAlign: "center" }}>
@@ -114,11 +108,7 @@ class AccountImport extends Component {
               </StyledSteps>
               <div className="steps-content">
                 {current === 0 && (
-                  <FlexContainer
-                    justifyContent="center"
-                    alignItems="center"
-                    style={{ width: "100%", height: 400 }}
-                  >
+                  <div class=" flex flex-row flex-wrap items-center self-start justify-center grow shrink mr-auto w-[full] h-[400px]">
                    
                     <div className="clearfix" style={{ height: "200px" }}>
                       <Dragger
@@ -145,12 +135,10 @@ class AccountImport extends Component {
                         </p>
                       </Dragger>
                     </div>
-                  </FlexContainer>
+                  </div>
                 )}
                 {current === 1 && (
-                  <FlexContainer
-                    style={{ maxHeight: 400, overflow: "auto", marginTop: 10 }}
-                  >
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto overflow-auto mt-[10px] max-h-[400px]:">          
                     {accountMatchingFields && (
                       <Formik
                         onSubmit={(values) => {
@@ -216,10 +204,8 @@ class AccountImport extends Component {
                                   </>
                                  ); 
                                })} 
-                            <FlexContainer
-                              justifyContent="flex-end"
-                              marginRight="0.62em"
-                            >
+                               <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-[0.62rem] ">
+                          
                               <Button
                                 style={{ marginRight: 8 }}
                                 onClick={() => this.prev()}
@@ -234,20 +220,17 @@ class AccountImport extends Component {
                               >
                                 Map
                               </Button>
-                            </FlexContainer>
+                            </div>
                           </Form>
                         )}
                       </Formik>
                  )} 
-                  </FlexContainer>
+                  </div>
               )} 
                 {current === 2 && (
-                  <FlexContainer
-                    justifyContent="center"
-                    alignItems="center"
-                    style={{ width: "100%", height: 400 }}
-                  >
-                    <FlexContainer justifyContent="center">
+                  <div class=" flex flex-row flex-wrap items-center self-start justify-center grow shrink h-[400px] w-full mr-auto ">
+             
+             <div class=" flex flex-row flex-wrap items-start self-start justify-center grow shrink h-auto mr-auto ">
                       <Title
                         style={{
                           fontSize: "1.37em",
@@ -261,16 +244,16 @@ class AccountImport extends Component {
                         Customer data.
                       </Title>
                       {/* <Link toUrl="/account" title="Go to Customer" /> */}
-                    </FlexContainer>
-                  </FlexContainer>
+                    </div>
+                  </div>
               )} 
               </div>
-            </MainWrapper>
+          </MainWrapper>
           </div>
           <div style={{ width: "35%" }}>
             <ImportHelpGuide />
           </div>
-        </FlexContainer>
+        </div>
       </>
     );
   }

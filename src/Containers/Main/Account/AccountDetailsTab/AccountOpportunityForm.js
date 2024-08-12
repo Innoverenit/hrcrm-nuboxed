@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import * as Yup from "yup";
-import { StyledLabel } from '../../../../Components/UI/Elements';
+
 import { SelectComponent } from '../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../Components/Forms/Formik/TextareaComponent';
@@ -146,10 +146,10 @@ function AccountOpportunityForm(props) {
 
 
 <div class="w-[46%]  ml-8 mt-2">
-    <StyledLabel><FormattedMessage
+    <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
         id="app.priority"
         defaultMessage="Priority"
-    /></StyledLabel>
+    /></div>
     <div class="justify-between flex">
         <div>
             <Tooltip title={<FormattedMessage
@@ -223,11 +223,11 @@ function AccountOpportunityForm(props) {
 
                                     {values.orderType === "Repair" ? (
                                     <div className="mt-3">
-                                        <StyledLabel>
+                                        <div class=" text-xs font-bold font-poppins text-black">
                                             <h3>
                                                 <FormattedMessage id="app.pickupaddress" defaultMessage="Pickup Address" />
                                             </h3>
-                                        </StyledLabel>
+                                        </div>
                                         <FieldArray
                                             name="loadingAddress"
                                             render={(arrayHelpers) => (
@@ -241,11 +241,11 @@ function AccountOpportunityForm(props) {
                                     </div>
                                 ) : (
                                     <div className="mt-3">
-                                        <StyledLabel>
+                                        <div class=" text-xs font-bold font-poppins text-black">
                                             <h3>
                                                 <FormattedMessage id="app.deliveryaddress" defaultMessage="Delivery Address" />
                                             </h3>
-                                        </StyledLabel>
+                                        </div>
                                         <FieldArray
                                             name="loadingAddress"
                                             render={(arrayHelpers) => (

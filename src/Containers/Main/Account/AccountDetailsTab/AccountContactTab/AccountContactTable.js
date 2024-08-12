@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -7,29 +7,65 @@ import {
     getLobList,
     setContactRoleForAccount
 } from "../../AccountAction";
+import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { getContactDistributorList, applyForLoginInContact } from "../../../Suppliers/SuppliersAction"
 import { Tooltip, Button, Input, Select } from "antd";
-import UpdateAccountContactModal from "./UpdateAccountContactModal";
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { FormattedMessage } from "react-intl";
+
+const UpdateAccountContactModal = lazy(() => import('./UpdateAccountContactModal'));
+const AccountContactJumpstartBoxDrawer = lazy(() => import('./AccountContactJumpstartBoxDrawer'));
 const ButtonGroup = Button.Group;
 const { Option } = Select;
 class AccountContactTable extends Component {
+    state = {
+        visible: false,
+      };
 
+      constructor(props) {
+        super(props);
+        this.state = {
+          translatedMenuItems: [],
+          rowData: {}
+        };
+      }
+        
+    
+      
+    
+      componentDidUpdate(prevProps) {
+        if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+          this.fetchMenuTranslations();
+        }
+      }
+    
+      fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+            "Name",//0 
+            "Email",//1
+            "Mobile ",//2
+            "Designation",//3
+            "Department",//4
+            "LOB",//5
+            "Potential",//6
+           ];
+    
+          const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+          this.setState({ translatedMenuItems: translations });
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      };
     componentDidMount() {
         this.props.getContactDistributorList(this.props.distributorId);
         this.props.getLobList(this.props.orgId);
         this.props.getSaleCurrency();
+        this.fetchMenuTranslations();
     }
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            rowData: {}
-        }
-    }
+   
     handleChangeRow(item) {
         this.setState({ rowData: item })
     }
@@ -101,6 +137,18 @@ class AccountContactTable extends Component {
         }
     }
 
+    showModal = () => {
+        this.setState({ visible: true });
+      };
+    
+      handleOk = () => {
+        this.setState({ visible: false });
+      };
+    
+      handleCancel = () => {
+        this.setState({ visible: false });
+      };
+
     render() {
         const {
             fetchingContactDistributorsById,
@@ -115,13 +163,27 @@ class AccountContactTable extends Component {
                 <div className=' flex  sticky h-70 z-auto'>
                     <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                         <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-                            <div className=" md:w-[5.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                            <div className=" md:w-[6.01rem]"><FormattedMessage id="app.email" defaultMessage="Email" /></div>
-                            <div className=" md:w-[4.8rem] "><FormattedMessage id="app.Mobile No" defaultMessage="Mobile No" /></div>
-                            <div className="md:w-[5.9rem]"><FormattedMessage id="app.Designation" defaultMessage="Designation" /></div>
-                            <div className="md:w-[16.6rem]"><FormattedMessage id="app.Department" defaultMessage="Department" /></div>
-                            <div className="md:w-[4.7rem]">LOB</div>
-                            <div className="md:w-[18.8rem]">Potential</div>
+                            <div className=" md:w-[5.1rem]">
+                            {this.state.translatedMenuItems[0]}{/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
+                                </div>
+                            <div className=" md:w-[6.01rem]">
+                            {this.state.translatedMenuItems[1]} {/* <FormattedMessage id="app.email" defaultMessage="Email" /> */}
+                                </div>
+                            <div className=" md:w-[4.8rem] ">
+                            {this.state.translatedMenuItems[2]} {/* <FormattedMessage id="app.Mobile No" defaultMessage="Mobile No" /> */}
+                                </div>
+                            <div className="md:w-[5.9rem]">
+                            {this.state.translatedMenuItems[3]}{/* <FormattedMessage id="app.Designation" defaultMessage="Designation" /> */}
+                                </div>
+                            <div className="md:w-[16.6rem]">
+                            {this.state.translatedMenuItems[4]}     {/* <FormattedMessage id="app.Department" defaultMessage="Department" /> */}
+                                </div>
+                            <div className="md:w-[4.7rem]">
+                            {this.state.translatedMenuItems[5]} {/* LOB */}
+                                </div>
+                            <div className="md:w-[18.8rem]">
+                            {this.state.translatedMenuItems[6]}  {/* Potential */}
+                                </div>
                         </div>
                         {/* <InfiniteScroll
         dataLength={customerByUserId.length}
@@ -139,7 +201,7 @@ class AccountContactTable extends Component {
                                     >
                                         <div class="flex">
 
-                                            <div className=" flex font-bold flex-col  md:w-[6.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex font-bold  md:w-[6.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                 <div class=" text-xs  font-poppins">
                                                     {`${item.salutation || ""} ${item.firstName || ""} ${item.middleName || ""
@@ -149,7 +211,7 @@ class AccountContactTable extends Component {
                                             </div>
 
 
-                                            <div className=" flex  flex-col  md:w-[7.23rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex   md:w-[7.23rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
 
                                                 <div class=" text-xs  font-poppins">
@@ -160,14 +222,14 @@ class AccountContactTable extends Component {
 
                                         </div>
 
-                                        <div className=" flex flex-col md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                                             <div class=" text-xs  font-poppins text-center">
                                                 {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
 
                                             </div>
                                         </div>
-                                        <div className=" flex flex-col md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                                             <div class=" text-xs  font-poppins text-center">
@@ -176,7 +238,7 @@ class AccountContactTable extends Component {
                                             </div>
                                         </div>
 
-                                        <div className=" flex flex-col md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                                             <div class=" text-xs  font-poppins text-center">
@@ -242,7 +304,7 @@ class AccountContactTable extends Component {
 
                                             </div>
                                         </div>
-                                        <div className=" flex flex-col w-[1.01rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[1.01rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
 <div class=" !text-icon  font-poppins">
@@ -258,7 +320,7 @@ class AccountContactTable extends Component {
 </div>
 
 </div>
-                                        <div className=" flex  flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex   md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins text-center">
                                                 <Select
                                                     style={{ width: "8rem" }}
@@ -310,7 +372,7 @@ class AccountContactTable extends Component {
                                             </div>
                                         </div>
 
-                                        <div className=" flex flex-col  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
 
                                             {item.accessInd === 0 ? <div class=" text-xs  font-poppins">
@@ -335,7 +397,16 @@ class AccountContactTable extends Component {
                                             }
 
                                         </div>
+<div><Tooltip title="Pulse">
+                            <MonitorHeartIcon
+                              className=" !text-icon cursor-pointer text-[#df9697]"
+                              onClick={() => {
+                                this.showModal();
+                                // handleSetCurrentCustomer(item);
+                              }}
 
+                            />
+                          </Tooltip></div>
                                     </div>
                                 </div>
 
@@ -345,11 +416,21 @@ class AccountContactTable extends Component {
 
                     </div>
                 </div>
-
+                <Suspense fallback={<BundleLoader />}>
                 <UpdateAccountContactModal
+                    selectedLanguage={this.props.selectedLanguage}
+                    translateText={this.props.translateText}
                     handleUpdateDistributorContactModal={this.props.handleUpdateDistributorContactModal}
                     updateDistributorContactModal={this.props.updateDistributorContactModal}
                 />
+                <AccountContactJumpstartBoxDrawer
+                    selectedLanguage={this.props.selectedLanguage}
+                    translateText={this.props.translateText}
+                showModal={this.showModal}
+                handleCancel={this.handleCancel}
+                visible={this.state.visible}
+                />
+                </Suspense>
             </>
         );
     }

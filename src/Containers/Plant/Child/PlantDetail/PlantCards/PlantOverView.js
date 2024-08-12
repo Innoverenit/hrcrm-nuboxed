@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { Title, MultiAvatar } from "../../../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../../../Components/UI/Elements";
 
 class PlantOverView extends Component {
   render() {
@@ -11,23 +10,19 @@ class PlantOverView extends Component {
 
     return (
       <>
-        <FlexContainer justifyContent="space-between">
-          <FlexContainer
-            justifyContent="flex-start"
-            flexWrap="nowrap"
-            style={{ width: "70%" }}
-          >
+        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+        <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[70%]">
             <div style={{ width: "25%" }}>
               <MultiAvatar />
             </div>
             &nbsp;
-            <FlexContainer flexDirection="column" style={{ width: "70%" }}>
-              <Title overflow="hidden" textOverflow="ellipsis">
+            <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[70%] ">
+              <div overflow="hidden" textOverflow="ellipsis">
                 {` ${name || ""} `}
-              </Title>
-            </FlexContainer>
-          </FlexContainer>
-        </FlexContainer>
+              </div>
+            </div>
+          </div>
+        </div>
       </>
     );
   }

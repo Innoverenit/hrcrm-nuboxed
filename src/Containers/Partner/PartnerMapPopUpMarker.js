@@ -1,10 +1,7 @@
 import React from "react";
 import { Marker, Popup } from "react-leaflet";
 import dayjs from "dayjs";
-import {
-  Title,
-  Spacer,
-} from "../../Components/UI/Elements";
+import {Title} from "../../Components/UI/Elements";
 import { Link } from "../../Components/Common";
 import L from "leaflet";
 
@@ -91,7 +88,7 @@ export default function PartnerMapPopUpMarker({ mark }) {
         </div>
       </div>
 
-        <Spacer />
+        <div class=" mt-3" />
         <div class=" flex justify-between w-full" >
           <div
             style={{

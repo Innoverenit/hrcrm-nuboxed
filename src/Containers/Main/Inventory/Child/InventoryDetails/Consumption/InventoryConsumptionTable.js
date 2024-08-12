@@ -170,7 +170,7 @@ export default connect(
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import { StyledTable } from "../../../../../../Components/UI/Antd";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // import { Tooltip, Button } from "antd";
 // import {
 //   getInventoryConsumptionList,
@@ -254,7 +254,7 @@ export default connect(
 //       title: " Mfg",
 //       dataIndex: "deliveryDate",
 //       render: (name, item, i) => {
-//         return moment(item.deliveryDate).format("l");
+//         return dayjs(item.deliveryDate).format("l");
 //       },
 //       sorter: (a, b) => {
 //         var nameA = a.deliveryDate; // ignore upper and lowercase

@@ -11,14 +11,15 @@ import {
 } from "../../AccountAction";
 import PaidIcon from '@mui/icons-material/Paid';
 import { FormattedMessage } from 'react-intl';
-import { Button, Input, Tooltip } from 'antd';
+import { Button,  Tooltip } from 'antd';
+import { BundleLoader } from "../../../../../Components/Placeholder";
 import { MultiAvatar2 } from '../../../../../Components/UI/Elements';
-import OrderDetailModal from './OrderDetailModal';
-import ItemsSearchModal from './ItemsSearchModal';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import ProductionPaymentModal from './ProductionPaymentModal';
 
+const ProductionPaymentModal = lazy(() => import('./ProductionPaymentModal'));
+const ItemsSearchModal = lazy(() => import('./ItemsSearchModal'));
+const  OrderDetailModal = lazy(() => import('./OrderDetailModal'));
 
 const AccountOrder1Table = (props) => {
     const [page, setPage] = useState(0);
@@ -39,9 +40,9 @@ const AccountOrder1Table = (props) => {
 
     return (
         <>
-            <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
+            <div className=' flex  sticky  z-auto'>
+                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky z-10">
                         <div className=" md:w-[9.41rem]">
                             <FormattedMessage
                                 id="app.orderno"
@@ -83,6 +84,7 @@ const AccountOrder1Table = (props) => {
                             hasMore={hasMore}
                             loader={props.fetchingProductionOrderById ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
                             height={"75vh"}
+                            style={{scrollbarWidth:"thin"}}
                         >
                             {props.productionOrder.length ? <>
                                 {props.productionOrder.map((item) => {
@@ -92,7 +94,7 @@ const AccountOrder1Table = (props) => {
                                         <div >
                                             <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
                                                 <div class="flex w-3/4">
-                                                    <div className=" flex font-medium flex-col md:w-[1.56rem] max-sm:w-full  ">
+                                                    <div className=" flex  md:w-[1.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -112,7 +114,7 @@ const AccountOrder1Table = (props) => {
                                                     </div>
 
                                                     <div class="flex">
-                                                        <div className="ml-1 font-medium flex items-center md:w-[9.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                        <div className="ml-1  flex items-center md:w-[9.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                             <div class=" text-xs  font-poppins">
                                                                 <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
@@ -124,7 +126,7 @@ const AccountOrder1Table = (props) => {
                                                                 &nbsp;&nbsp;
                                                                 {date === currentdate ? (
                                                                     <span
-                                                                        class="text-[tomato] font-bold">
+                                                                        class="text-[tomato] font-bold text-[0.65rem]">
                                                                         {<FormattedMessage
                                                                             id="app.new"
                                                                             defaultMessage="New"
@@ -135,7 +137,7 @@ const AccountOrder1Table = (props) => {
                                                         </div>
                                                     </div>
 
-                                                    <div className=" flex font-medium  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             <MultiAvatar2
                                                                 primaryTitle={item.userName}
@@ -146,7 +148,7 @@ const AccountOrder1Table = (props) => {
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  md:w-[17.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[17.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             {item.type === "Catalogue" ?
                                                                 item.productionLocationDetailsViewDTO && item.productionLocationDetailsViewDTO.name || "" :
@@ -154,14 +156,14 @@ const AccountOrder1Table = (props) => {
                                                         </div>
                                                     </div>
 
-                                                    <div className=" flex font-medium items-center  md:w-[4.51rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex  items-center  md:w-[4.51rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                                                         <div class=" text-xs  font-poppins text-center">
                                                             {item.count}
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium items-center  md:w-[11.52rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex  items-center  md:w-[11.52rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                                                         <div class=" text-xs  font-poppins text-center">
                                                             <Button
@@ -176,7 +178,7 @@ const AccountOrder1Table = (props) => {
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium items-center  md:w-[11.53rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex  items-center  md:w-[11.53rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             <Tooltip title="Collection">
                                                                 <PaidIcon
@@ -203,20 +205,28 @@ const AccountOrder1Table = (props) => {
 
                 </div>
             </div>
+            <Suspense fallback={<BundleLoader />}>
             <ItemsSearchModal
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText} 
                 searchItemsInLocation={props.searchItemsInLocation}
                 handleSearchItem={props.handleSearchItem}
                 particularRowData={particularRowData}
             />
             <OrderDetailModal
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText} 
                 particularRowData={particularRowData}
                 showProductList={props.showProductList}
                 handleProductOrderDetailsModal={props.handleProductOrderDetailsModal} />
             <ProductionPaymentModal
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText} 
                 showPaymentListModal={props.showPaymentListModal}
                 handleOrderPaymentModal={props.handleOrderPaymentModal}
                 particularRowData={particularRowData}
             />
+            </Suspense>
         </>
     )
 }

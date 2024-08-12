@@ -2,19 +2,20 @@ import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import DeletedLocationCard from "./DeletedLocationCard";
 import { handleLocationModal,setLocationViewType } from "./LocationAction";
 const LocationHeader = lazy(() => import("./LocationHeader"));
 const LocationCard = lazy(() => import("./LocationCard"));
 const LocationCard2 = lazy(() => import("./LocationCard2"));
 const AddLocationModal = lazy(() => import("./AddLocationModal"));
 const LocationMap = lazy(() => import("./LocationMap"));
+const DeletedLocationCard = lazy(() =>import("./DeletedLocationCard"));
 
 class Location extends Component {
   render() {
     const {setLocationViewType,viewType}=this.props;
     return (
       <React.Fragment>
+        <Suspense fallback={<BundleLoader />}>
         <LocationHeader 
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
@@ -28,7 +29,7 @@ class Location extends Component {
           handleLocationModal={this.props.handleLocationModal}
           addlocationModal={this.props.addlocationModal}
         />
-         <Suspense fallback={<BundleLoader />}>
+         
           {this.props.viewType === "card" ? (
              <LocationCard
              translateText={this.props.translateText}

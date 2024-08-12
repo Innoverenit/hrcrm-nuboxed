@@ -3,19 +3,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import dayjs from "dayjs";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { Spacer } from "../../../../../Components/UI/Elements";
 import EditSearchSelect from "../../../../../Components/Forms/Edit/EditSearchSelect";
 import EditableInput from "../../../../../Components/Forms/Edit/EditableInput";
 import EditableTextArea from "../../../../../Components/Forms/Edit/EditableTextArea";
 import EditableDatePicker from "../../../../../Components/Forms/Edit/EditableDatePicker";
 import EditableSelect from "../../../../../Components/Forms/Edit/EditableSelect";
-import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { FormattedMessage } from "react-intl";
-// import {
-//   updateOpportunity,
-//   getHistoricalProposalAmount,
-// } from "../../../OpportunityAction";
+
 class OpportunityAboutEdit extends Component {
   constructor(props) {
     super(props);
@@ -62,14 +56,10 @@ class OpportunityAboutEdit extends Component {
     } = this.props;
     return (
       <>
-        <FlexContainer
-          flexDirection="column"
-          style={{ padding: "0.625em 1.25em 0.625em 1.25em" }}
-        >
-          <FlexContainer
-            justifyContent="space-between"
-            style={{ width: "100%" }}
-          >
+ <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto p-2">
+       
+ <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-full ">
+          
             <div style={{ width: "50%" }}>
               <EditableInput
                 isRequired
@@ -102,13 +92,11 @@ class OpportunityAboutEdit extends Component {
                 style={{ height: "1.25em" }}
               />
             </div>
-          </FlexContainer>
+          </div>
 
-          <Spacer style={{ margin: "0.125em" }} />
-          <FlexContainer
-            justifyContent="space-between"
-            style={{ width: "100%" }}
-          >
+          <div class=" mt-3" style={{ margin: "0.125em" }} />
+      
+          <div class=" flex flex-row flex-wrap items-start self-start justify-between w-full grow shrink h-auto mr-auto ">
             <div style={{ width: "50%" }}>
               <EditableDatePicker
                 // defaultValue={dayjs(endDate).format('ll')}
@@ -136,9 +124,9 @@ class OpportunityAboutEdit extends Component {
               />
 
             </div>
-          </FlexContainer>
+          </div>
 
-          <Spacer style={{ margin: "0.125em" }} />
+          <div class=" mt-3" style={{ margin: "0.125em" }} />
           <div style={{ width: "100%" }}>
             <EditSearchSelect
               defaultValue={{
@@ -163,7 +151,7 @@ class OpportunityAboutEdit extends Component {
             width={"100%"}
             height={"2.375em"}
           />
-          {/* <Spacer style={{ margin: "0.125em" }} />
+          {/* <div class=" mt-3" style={{ margin: "0.125em" }} />
          
           </div> */}
           {/* <EditableInput
@@ -172,8 +160,8 @@ class OpportunityAboutEdit extends Component {
                         placeholder='Source'
                         name={'sourceName'}
                         value={this.state.fields.sourceName} /> */}
-        </FlexContainer>
-        <FlexContainer justifyContent="flex-end" marginRight="1.25em">
+        </div>
+        <div class=" flex flex-row flex-wrap items-start self-start justify-end mr-[1.25rem] grow shrink h-auto">
           <Button
             type="primary"
             Loading={updateOpportunityById}
@@ -193,7 +181,7 @@ class OpportunityAboutEdit extends Component {
                  defaultMessage="Cancel"
                 />
           </Button>
-        </FlexContainer>
+        </div>
       </>
     );
   }

@@ -1,7 +1,7 @@
 import * as types from "./SubscriptionActionTypes";
 import axios from "axios";
 import Swal from 'sweetalert2'
-import { base_url,base_url2, login_url } from "../../Config/Auth";
+import { base_url,base_url2, login_url,sub_url } from "../../Config/Auth";
 
 export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
     dispatch({
@@ -128,29 +128,83 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
     dispatch({ type: types.HANDLE_SUSCRIPTION_MODAL, payload: modalProps });
   };
 
-  export const addSuscrptions = (data) => (dispatch) => {
+  export const addSuscrptions = (data,subscriptionId) => (dispatch) => {
     dispatch({
       type: types.ADD_SUSCRIPTIONS_REQUEST,
     });
     axios
-      .post(`${base_url2}/subscription`, data,
+      .put(`${sub_url}/subscription/create`, data,
         {
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
+          // headers: {
+          //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          // },
         }
       )
       .then((res) => {
         console.log(res);
        // dispatch(getDispatchList(id,0))
+       console.log(res.data)
+       if (res.data.subscriptionInd===true) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+        });
+
+        dispatch({
+          type: types.ADD_SUSCRIPTIONS_DUPLICATE,
+        });
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: "Subscription added Successfully"
+          ,
+          showConfirmButton: false,
+          timer: 1500
+        })
         dispatch({
           type: types.ADD_SUSCRIPTIONS_SUCCESS,
           payload: res.data,
         });
+        
+       
+      }
       })
       .catch((err) => {
         dispatch({
           type: types.ADD_SUSCRIPTIONS_FAILURE,
+        });
+      });
+  };
+
+
+  export const getSubscrptions = (orgId) => (dispatch) => {
+    // let api_url = "";
+    // if (userId) {
+    //   api_url = `/sort/all/Customers/user/${userId}`;
+    // } else {
+    //   api_url = `/Customers`;
+    // }
+    dispatch({
+      type: types.GET_SUBSCRIPTIONS_REQUEST,
+    });
+    axios
+      .get(`${sub_url}/subscription/getByOrg/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_SUBSCRIPTIONS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_SUBSCRIPTIONS_FAILURE,
+          payload: err,
         });
       });
   };

@@ -89,7 +89,7 @@ class TrainingDocumentForm extends Component {
                
                   <div class=" flex justify-between mt-3" >
                     <div class=" w-[60%]">
-                      {/* <StyledLabel>Organization/Institution</StyledLabel> */}
+                      {/* <div class=" text-xs font-bold font-poppins text-black">Organization/Institution</div> */}
                       <FastField
                         type="Organization"
                         name="organization"
@@ -113,7 +113,7 @@ class TrainingDocumentForm extends Component {
                       />
                     </div>
                     <div class=" w-[30%]">
-                      {/* <StyledLabel>Grade</StyledLabel> */}
+                      {/* <div class=" text-xs font-bold font-poppins text-black">Grade</div> */}
                       <FastField
                         name="grade"
                         label={

@@ -95,9 +95,9 @@ const SuppliersListForm = (props) => {
                 </div>
                 <div className="w-w47.5">
                
-               <label style={{ fontWeight: "bold", fontSize: "0.75rem" }}>
+               <div style={{ fontWeight: "bold", fontSize: "0.75rem" }}>
                 {/* Quality */} {props.translatedMenuItems[28]}
-                </label>
+                </div>
 
                <Field
             name="quality"

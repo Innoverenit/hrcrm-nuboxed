@@ -102,7 +102,7 @@
 //           <div key={index} class="flex items-center">
 //             <div class="flex justify-around w-[30rem]">
 //               <div>
-//                 <label>Zone Code</label>
+//                 <div class="font-bold text-xs font-poppins text-black">Zone Code</div>
 //                 <div class="w-24">
 //                   <Input
 
@@ -115,7 +115,7 @@
 //               </div>
 
 //               <div>
-//                 <label>#Rack</label>
+//                 <div class="font-bold text-xs font-poppins text-black">#Rack</div>
 //                 <div class="w-24"></div>
 //                 <Input
 
@@ -128,7 +128,7 @@
 //                   required 
 //                 /></div>
 //               <div>
-//                 <label>Zone Type</label>
+//                 <div class="font-bold text-xs font-poppins text-black">Zone Type</div>
 //                 <div class="w-24">
 //                   <Select
 //                     value={row.zoneType}
@@ -140,7 +140,7 @@
 //                     <Option value="exit">Exit</Option>
 //                   </Select></div></div>
 //               <div>
-//                 <label>Description</label>
+//                 <div class="font-bold text-xs font-poppins text-black">Description</div>
 //                 <div class="w-24">
 //                   <Input
 
@@ -317,7 +317,6 @@ import { addRoomAndRackInInventory, getRoomRackByLocId, updateRoomRackId } from 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { CloseOutlined } from '@ant-design/icons';
-import { FormattedMessage } from 'react-intl';
 import { BundleLoader } from '../../../Components/Placeholder';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 
@@ -434,10 +433,10 @@ const RoomAndRackForm = (props) => {
           <div key={index} className="flex items-center">
             <div className="flex justify-around w-[30rem]">
               <div>
-                <label>
+                <div class="font-bold text-xs font-poppins text-black">
                   {/* Zone Code */}
                   {props.translatedMenuItems[7]}
-                </label>
+                </div>
                 <div className="w-24">
                   <Input
                     value={row.zone}
@@ -451,9 +450,9 @@ const RoomAndRackForm = (props) => {
               </div>
 
               <div>
-                <label>
+                <div class="font-bold text-xs font-poppins text-black">
                   {/* #Rack */} #{props.translatedMenuItems[8]}
-                  </label>
+                  </div>
                 <div className="w-24">
                   <Input
                     value={row.rack}
@@ -470,9 +469,9 @@ const RoomAndRackForm = (props) => {
               </div>
 
               <div>
-                <label>
+                <div class="font-bold text-xs font-poppins text-black">
                   {/* Zone Type */} {props.translatedMenuItems[9]}
-                  </label>
+                  </div>
                 <div className="w-24">
                   <Select
                     value={row.zoneType}
@@ -490,9 +489,9 @@ const RoomAndRackForm = (props) => {
               </div>
 
               <div>
-                <label>
+                <div class="font-bold text-xs font-poppins text-black">
                   {/* Description */} {props.translatedMenuItems[10]}
-                  </label>
+                  </div>
                 <div className="w-24">
                   <Input
                     value={row.description}

@@ -1,6 +1,6 @@
 import React from "react";
 import { get } from "lodash";
-import { TextInput,ValidationError, StyledLabel } from "../../UI/Elements";
+import { TextInput,ValidationError } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 export const InputComponent = ({
   field,
@@ -22,9 +22,9 @@ export const InputComponent = ({
     return (
       <>
         {!noLabel && (
-          <StyledLabel style={{ flexBasis: labelWidth || "20%" }}>
+          <div class=" text-xs font-bold font-poppins" style={{ flexBasis: labelWidth || "20%" }}>
             {label}
-          </StyledLabel>
+          </div>
         )}
         <TextInput
         //style={{ height: "1.89em" }}
@@ -49,11 +49,11 @@ export const InputComponent = ({
       <FlexContainer>
         <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
           {!noLabel && (
-            <StyledLabel
+            <div class=" text-xs font-bold font-poppins"
             //  style={{ flexBasis: labelWidth || "20%" }}
              >
               {label}
-            </StyledLabel>
+            </div>
           )}
 
           <TextInput

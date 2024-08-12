@@ -1,15 +1,16 @@
-import React, { useEffect, useState ,useRef} from "react";
+import React, { useEffect, useState ,useRef,lazy,Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
+import { Formik, Form, Field} from "formik";
 import * as Yup from "yup";
-import { Tabs,Select } from 'antd';
+import { Tabs } from 'antd';
 import {addKpi, } from "./TeamsAction";
 import {getLob} from "../../Settings/Category/LOB/LOBAction"
 import {getKpis} from "../../Settings/Category/KPI/KPIAction"
+import { BundleLoader } from "../../../Components/Placeholder";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import AssigenedKpiCardList from "./TeamsCard.js/AssigenedKpiCardList";
+const AssigenedKpiCardList = lazy(() => import("./TeamsCard.js/AssigenedKpiCardList"));
 const { TabPane } = Tabs;
 
 /**
@@ -169,9 +170,9 @@ function KpiList(props) {
      <div className="flex flex-wrap justify-between mt-2">
   {activeTab && (
     <div className="w-[25%] mt-[1.2rem] max-sm:w-wk">
-      <label className="text-[#444] font-bold flex-col text-[0.75rem]">
+      <div className="text-[#444] font-bold flex-col text-[0.75rem]">
         Assign KPI
-      </label>
+      </div>
       <select
         className="customize-select"
         onChange={handleWorkflowChange}
@@ -187,9 +188,9 @@ function KpiList(props) {
   )}
   {selected && (
     <div className="w-[18%] mt-[1.2rem] max-sm:w-wk">
-      <label className="text-[#444] font-bold flex-col text-[0.75rem]">
+      <div className="text-[#444] font-bold flex-col text-[0.75rem]">
         LOB
-      </label>
+      </div>
       <select
         className="customize-select"
         style={{ width: "50%" }}
@@ -207,7 +208,7 @@ function KpiList(props) {
   {selected && (
     <>
       <div className="w-[35%]">
-        <label className="text-[#444] font-bold text-[0.75rem]">Assigned</label>
+        <div className="text-[#444] font-bold text-[0.75rem]">Assigned</div>
      
 <div class=" flex flex-row">
         <Field
@@ -278,7 +279,7 @@ function KpiList(props) {
         {/* </div> */}
       </div>
       <div className="w-[15%] ">
-        <label className="text-[#444] font-bold text-[0.75rem]">Weightage</label>
+        <div className="text-[#444] font-bold text-[0.75rem]">Weightage</div>
         <Field
           onChange={(e) => setFieldValue("weitageValue", parseFloat(e.target.value))}
           name="weitageValue"
@@ -315,12 +316,14 @@ function KpiList(props) {
    
         )}
       </Formik>
+
       {activeTab && (
+        <Suspense  fallback={<BundleLoader />}>
       <AssigenedKpiCardList  rowdata={props.rowdata}
       selectedYear={selectedYear}
       activeTab={activeTab}
  
-      />
+      /></Suspense>
       )}
     </>
   );

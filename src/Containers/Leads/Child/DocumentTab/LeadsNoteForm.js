@@ -11,7 +11,6 @@ import draftToHtml from "draftjs-to-html";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
  import { addLeadsNote } from "../../LeadsAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 
 
 /**
@@ -124,11 +123,7 @@ class LeadsNoteForm extends Component {
 
             return (
               <Form className="form-background">
-                {/* <Field
-                                name='description'
-                                placeholder='Leave notes here ...'
-                                component={TextareaComponent}
-                            /> */}
+           
                 <Editor
                   editorState={editorState}
                   wrapperClassName="demo-wrapper"
@@ -143,7 +138,7 @@ class LeadsNoteForm extends Component {
                   // editorState={editorState}
                   toolbar={toolbarOption}
                 />
-                <FlexContainer justifyContent="flex-end">
+               <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -162,7 +157,7 @@ class LeadsNoteForm extends Component {
                     />
                     {/* Post */}
                   </Button>
-                </FlexContainer>
+                </div>
               </Form>
             );
           }}

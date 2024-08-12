@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
 import AssessmentData from "../AssessmentData/AssessmentData"
-import { base_url,login_url } from "../../Config/Auth";
+import { login_url } from "../../Config/Auth";
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
@@ -15,9 +15,7 @@ import { bindActionCreators } from "redux";import {
 } from "antd";
 import { ThemeProvider } from "styled-components";
 import {
-  ApplicationWrapper,
   LayoutWrapper,
-  NavbarWrapper,
 } from "../../Components/UI/Layout";
 import { Select } from "antd";
 import { handleInTagDrawer } from "../../Containers/Main/Refurbish/RefurbishAction";
@@ -102,9 +100,7 @@ const AssessmentDetails = lazy(() =>
 const Leads = lazy(() =>
   import("../Leads/Leads")
 );
-const LeadDetails = lazy(() =>
-  import("../Leads/Child/LeadsDetailTab/LeadDetails")
-);
+
 const Program = lazy(() =>
   import("../Program/Program")
 );
@@ -441,14 +437,11 @@ function MainApp(props) {
               />
             </Sider>
           </div>
-          <LayoutWrapper>
-            <NavbarWrapper style={{
-              padding: 0, height: 50, alignItems: "center", position: "sticky", zIndex: "999", top: " 0.15rem",
-
-
-            }}>
-              <Header>
-              <div class="max-xl:text-[0.75rem] max-lg:text-[0.5rem]">
+          <LayoutWrapper class=" w-wk" >
+            <div class=" flex flex-row justify-between w-[100%] items-center content-center nowrap sticky z-50 p-0 h-12 leading-[4rem] mt-1 shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
+           
+              <Header class=" flex bg-white w-[100%] box-border border-2 justify-between p-0 items-center">
+              <div class="max-xl:text-[0.75rem]  max-lg:text-[0.5rem]">
                   <LanguageSelector
                     translateText={translateText}
                     selectedLanguage={selectedLanguage}
@@ -562,8 +555,8 @@ function MainApp(props) {
                
                 </div>
               </Header>
-            </NavbarWrapper>
-            <ApplicationWrapper>
+            </div>
+            <div class=" p-1 bg-light-gray ">
               <AppErrorBoundary>
                 <Content>
                   <Suspense maxDuration={6000} fallback={<BundleLoader />}>
@@ -1082,7 +1075,7 @@ function MainApp(props) {
                         />
                       )}
                     />   
-                     <Route
+                     {/* <Route
                       exact
                       path="/leads/:leadsId"
                       render={(props) => (
@@ -1092,7 +1085,7 @@ function MainApp(props) {
                            selectedLanguage={selectedLanguage}
                         />
                       )}
-                    /> 
+                    />  */}
                      <Route
                       exact
                       path="/scan/:phoneId"
@@ -1566,7 +1559,7 @@ function MainApp(props) {
                   </Suspense>
                 </Content>
               </AppErrorBoundary>
-            </ApplicationWrapper>
+            </div>
           </LayoutWrapper>
         </LayoutWrapper>
       </ThemeProvider>

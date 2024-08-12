@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-import {  StyledLabel } from "../../../../Components/UI/Elements";
 import { Button, Switch } from "antd";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw, } from "draft-js";
@@ -244,7 +243,7 @@ class EmailCandidateForm extends Component {
               return (
                 <Form className="form-background">
                   <div class=" w-[15%] flex justify-between" >
-                    <StyledLabel>Select</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Select</div>
                     <Switch
                       checked={this.state.vendor}
                       onChange={this.handleVendor}
@@ -255,7 +254,7 @@ class EmailCandidateForm extends Component {
                   </div>
                 
                   <div class=" flex justify-between mt-3" >
-                    <div class=" w-[3%]" ><StyledLabel>To</StyledLabel></div>
+                    <div class=" w-[3%]" ><div class=" text-xs font-bold font-poppins text-black">To</div></div>
                     <div class=" w-[26%]" >
                       <Field
                         // style={{ width: "7%" }}
@@ -305,7 +304,7 @@ class EmailCandidateForm extends Component {
                   </div>
                   <div class=" flex justify-between" >
                     <div class=" w-[3%]" >
-                      <StyledLabel>Cc</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Cc</div>
                     </div>
                     <div class=" w-[26%]" >
                       <Field
@@ -350,7 +349,7 @@ class EmailCandidateForm extends Component {
                   </div>
                   <div class=" flex justify-between" >
                     <div class=" w-[3%]" >
-                      <StyledLabel>Bcc</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Bcc</div>
                     </div>
                     <div class=" w-[26%]" >
                       <Field

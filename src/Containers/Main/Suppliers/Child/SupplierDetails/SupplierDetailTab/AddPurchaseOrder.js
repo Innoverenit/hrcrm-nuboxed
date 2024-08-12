@@ -124,7 +124,7 @@ const AddPurchaseOrder = (props) => {
                             <div class="flex w-wk">
                                 <div class=" flex flex-col w-wk">
                                     <div class="w-[47.5%]">
-                                    <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Materials</label>
+                                    <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Materials</div>
                       <Select
                         className="w-[250px]"
                         value={material}
@@ -157,7 +157,7 @@ const AddPurchaseOrder = (props) => {
                                         />  */}
                                     </div>
                                     <div class="w-w48  max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Quality</label>
+                      <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Quality</div>
                       <Select
                         className="w-[250px]"
                         value={quality}

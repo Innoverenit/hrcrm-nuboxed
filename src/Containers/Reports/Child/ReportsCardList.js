@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import styled from 'styled-components';
 import "jspdf-autotable";
 import { RotatingCircleLoader    } from 'react-loaders-kit';
-import moment from "moment";
+import dayjs from "dayjs";
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined,} from '@ant-design/icons';
 import { Button,  Tooltip, Input} from "antd";
@@ -67,8 +67,8 @@ const ReportsCardList = (props) => {
   
     //    const LocAdd=`${item.addressDetailsViewDTO.city}`;
     //    const country=`${item.addressDetailsViewDTO.country}`;
-        const currentdate = moment().format("YYYY/MM/DD");
-       const date = moment(item.creationDate).format("YYYY/MM/DD");
+        const currentdate = dayjs().format("YYYY/MM/DD");
+       const date = dayjs(item.creationDate).format("YYYY/MM/DD");
  
   
     return (
@@ -81,96 +81,96 @@ const ReportsCardList = (props) => {
            <Link to={`/provider/${item.serviceId}`}>
            <Tooltip title={item.name}>
            <CatgryName>
-           <label class=" text-black-600 cursor-pointer max-sm:text-sm md:text-xs">
+           <div class=" text-black-600 cursor-pointer max-sm:text-sm md:text-xs">
           {/* Name */}
          {translatedMenuItems[0]}
-          </label>
+          </div>
             </CatgryName>
-            <label class=" text-black-600 cursor-pointer max-sm:text-sm md:text-xs">
+            <div class=" text-black-600 cursor-pointer max-sm:text-sm md:text-xs">
             {item.name}
-          </label>
+          </div>
             </Tooltip>
                 </Link> 
              </div>
              <div className="Ccard__title w-20">
           <CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
           {/* KVK # */}
           {translatedMenuItems[1]}
-          </label> 
+          </div> 
           </CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
     {item.kvkNo}
-            </label>
+            </div>
              </div>
         
              <div className="Ccard__title w-36">
           <CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
           {/* Phone # */}
           {translatedMenuItems[2]}
-          </label> 
+          </div> 
           </CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
           {item.dialCode} {item.mobileNo}
-            </label>
+            </div>
              </div>
              <div className="Ccard__title w-36">
           <CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
           {/* Address */}
           {translatedMenuItems[3]}
-          </label> 
+          </div> 
           </CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
           {
                 (item.addressDetailsDTO &&item.addressDetailsDTO.address1) ||""
               } 
-            </label>
+            </div>
              </div>
              <div className="Ccard__title w-28">
           <CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
           {/* City */}
           {translatedMenuItems[4]}
-          </label> 
+          </div> 
           </CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
           {
        (item.addressDetailsDTO &&item.addressDetailsDTO.city) ||""
        } 
-            </label>
+            </div>
              </div>
 
              <div className="Ccard__title w-32">
           <CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
           {/* Join Date */}
           {translatedMenuItems[5]}
-          </label> 
+          </div> 
           </CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
           {item.creationDate === null ? "No Transaction" :
-                 <span>{moment.utc(item.creationDate).format("l")}</span>
+                 <span>{dayjs(item.creationDate).format("l")}</span>
             
                 }
-            </label>
+            </div>
              </div>
            
              <div className="Ccard__title w-40">
           <CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
           {/* Last Payment */}
           {translatedMenuItems[6]}
-          </label> 
+          </div> 
           </CatgryName>
-          <label class=" text-gray-600 max-sm:text-sm md:text-xs">
+          <div class=" text-gray-600 max-sm:text-sm md:text-xs">
           {item.lastPaymentOn === null ? "No Transaction" :
                 <span>
-                  {moment.utc(item.lastPaymentOn).format("l")} 
+                  {dayjs(item.lastPaymentOn).format("l")} 
                 </span>
               }
-            </label>
+            </div>
              </div>
                    </div>
                    

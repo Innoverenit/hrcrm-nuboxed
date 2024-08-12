@@ -1,8 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import AccountProcureDetails from "./AccountProcureDetails";
-
+const AccountProcureDetails = lazy(() => import('./AccountProcureDetails'));
 
 class AccountProcureDetailsModal extends Component {
     render() {
@@ -24,7 +23,9 @@ class AccountProcureDetailsModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <AccountProcureDetails particularRowData={this.props.particularRowData} />
+                        <AccountProcureDetails particularRowData={this.props.particularRowData}
+                        selectedLanguage={this.props.selectedLanguage}
+                        translateText={this.props.translateText} />
                     </Suspense>
                 </StyledDrawer>
             </>

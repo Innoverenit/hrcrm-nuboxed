@@ -9,7 +9,7 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 //import { CustomizeInputComponent } from "../../../../Components/Forms/Formik/CustomizeInputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field,} from "formik";
-import { Select, StyledLabel } from "../../../../Components/UI/Elements";
+import { Select } from "../../../../Components/UI/Elements";
 import * as Yup from "yup";
 import { getDeletedLoCell} from "./LocationAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -34,9 +34,9 @@ const ReinstateCellTable = (props) => {
      
 
 
-                <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+                <div className=' flex sticky z-auto'>
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
           
             <div className=" md:w-[6rem]">Cell Code</div>
             <div className=" md:w-[4.2rem] ">#Cell</div> 
@@ -47,19 +47,19 @@ const ReinstateCellTable = (props) => {
            {props.deletedLoCell.map((item) => {
             return (
               <div key={item.roomRackId}>
-                <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
+                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-3">
 
-                  <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:w-full  ">
-                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
+                  <div className=" flex  md:w-[10.1rem] max-sm:w-full  ">
+                    <div class="text-xs  font-semibold  font-poppins cursor-pointer">
                     {item.cell}
                     </div>
                   </div>
 
-                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex   md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                     <div class=" text-xs  font-poppins">
                     
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.cellUnit}</div>
                       </div>
                     
@@ -67,9 +67,9 @@ const ReinstateCellTable = (props) => {
 
                   </div>
                 
-                  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                  
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.description}</div>
                       </div>
                   
@@ -78,8 +78,8 @@ const ReinstateCellTable = (props) => {
                   <div class="flex md:items-center">
 
 
-                    <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
-                    <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    <div class="flex w-20 max-sm:flex-row max-sm:w-[10%]">
+                    <div class="  text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateLocCellToggle locationDetailsId={item.locationDetailsId}
                             storedLoc={props.storedLoc} 
                             cellId={item.cellId}/>

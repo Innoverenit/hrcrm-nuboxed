@@ -205,16 +205,12 @@ serachedPitchData={props.serachedPitchData}
 
                                   <div class="max-sm:w-full" >
                                   <Tooltip>
-                                    <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
-                                      {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">
-                                      Name
-                                      </div> */}
-                                      <div class=" text-xs max-sm:text-xs flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
+                                    <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">                                    
+                                      {/* Name */}
+                                    
+                                      <div class=" text-xs max-sm:text-xs flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">                                        
+                                          {/* {/* <Link */}
                                           
-                                          {/* <Link
-                                           toUrl={`customer/${item.customerId}`}
-                                           title={`${item.name}`} 
-                                         > */}
                                          {item.firstName}
                                          &nbsp;
                                          {item.middleName}
@@ -235,12 +231,6 @@ serachedPitchData={props.serachedPitchData}
                                   </div>
                           </div>
                           <div class="flex flex-row items-center w-[6.1rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
-
-
-
-
-
-
 <div>
 <ButtonGroup>
 <RoleButton

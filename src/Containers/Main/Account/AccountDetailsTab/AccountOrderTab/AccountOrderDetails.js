@@ -13,6 +13,8 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
 import QrCodeIcon from '@mui/icons-material/QrCode';
+import NodataFoundPageRefubish from "../../../Refurbish/NodataFoundPageRefubish";
+import NodataFoundPageAccount from "./NodataFoundPageAccount";
 const PhoneNotesOrderModal = lazy(() => import("./PhoneNotesOrderModal"));
 const AccountPhoneTaskTable = lazy(() => import("./AccountPhoneTaskTable"));
 const AddingSpareList = lazy(() => import("./AddingSpareList"));
@@ -27,7 +29,38 @@ function DistributorPauseForm(props) {
     const handlePrint = () => {
         window.print();
     };
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+    
+            'Brand', 
+            ' Model', 
+            'Unique ID', 
+            'Info', 
+            'Condition', 
+            'Quoted',
+            'Total Hours',
+            "Total Cost",
+            "Final Price",
+            "QC",
+            "Issue",
 
+          ];
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
@@ -112,42 +145,19 @@ function DistributorPauseForm(props) {
                         <div className=' flex  sticky flex-col z-auto'>
                             <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                                 <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-                                    <div className=" md:w-[4.2rem]"><FormattedMessage
-                                        id="app.brand"
-                                        defaultMessage="Brand"
-                                    /></div>
-                                    <div className=" md:w-[4.5rem]"><FormattedMessage
-                                        id="app.model"
-                                        defaultMessage="Model"
-                                    /></div>
-                                    <div className="md:w-[6.2rem]">Unique ID</div>
-                                    <div className=" md:w-[9.2rem]">Info</div>
+                                    <div className=" md:w-[4.2rem]">
+                                    {translatedMenuItems[0]}</div>
+                                    <div className=" md:w-[4.5rem]">{translatedMenuItems[1]}</div>
+                                    <div className="md:w-[6.2rem]">{translatedMenuItems[2]}</div>
+                                    <div className=" md:w-[9.2rem]">{translatedMenuItems[3]}</div>
 
-                                    <div className=" md:w-[7.5rem]"><FormattedMessage
-                                        id="app.condition"
-                                        defaultMessage="Condition"
-                                    /></div>
-                                    <div className=" md:w-[6.8rem]">Quoted</div>
-                                    <div className=" md:w-[6.5rem]"><FormattedMessage
-                                        id="app.totalhours"
-                                        defaultMessage="Total Hours"
-                                    /></div>
-                                    <div className=" md:w-[6.31rem]"><FormattedMessage
-                                        id="app.totalcost"
-                                        defaultMessage="Total Cost"
-                                    /></div>
-                                    <div className=" md:w-[6.3rem]"><FormattedMessage
-                                        id="app.finalprice"
-                                        defaultMessage="Final Price"
-                                    /></div>
-                                    <div className=" md:w-[7rem]"><FormattedMessage
-                                        id="app.qc"
-                                        defaultMessage="QC"
-                                    /></div>
-                                    <div className=" md:w-[6rem]"><FormattedMessage
-                                        id="app.issue"
-                                        defaultMessage="Issue"
-                                    /></div>
+                                    <div className=" md:w-[7.5rem]">{translatedMenuItems[4]}</div>
+                                    <div className=" md:w-[6.8rem]">{translatedMenuItems[5]}</div>
+                                    <div className=" md:w-[6.5rem]">{translatedMenuItems[6]}</div>
+                                    <div className=" md:w-[6.31rem]">{translatedMenuItems[7]}</div>
+                                    <div className=" md:w-[6.3rem]">{translatedMenuItems[8]}</div>
+                                    <div className=" md:w-[7rem]">{translatedMenuItems[9]}</div>
+                                    <div className=" md:w-[6rem]">{translatedMenuItems[10]}</div>
                                     <div className=" md:w-[2rem]"></div>
                                     <div className=" md:w-[1rem]"></div>
                                     <div className=" md:w-[1rem]"></div>
@@ -160,9 +170,10 @@ function DistributorPauseForm(props) {
                                         hasMore={hasMore}
                                         loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                                         height={"64vh"}
+                                        style={{scrollbarWidth: "thin"}}
                                         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                                     >
-                                        {props.phoneListById.map((item, index) => { 
+                                          {props.phoneListById.length === 0 ? <NodataFoundPageAccount /> :props.phoneListById.map((item, index) => { 
                                             return (
                                                 <div>
                                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >

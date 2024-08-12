@@ -7,8 +7,7 @@ import {Checkbox} from "antd";
 import dayjs from "dayjs";
 import { Link } from "../../../../../../Components/Common";
 import {
-  Title,
-  Spacer,
+  Title
 } from "../../../../../../Components/UI/Elements";
 import { LinkCandidateRecruit,LinkRecruitCandidate } from "../../../../OpportunityAction";
 import L from "leaflet";
@@ -176,7 +175,7 @@ L.Icon.Default.mergeOptions({
           {(pinCode && pinCode) || ""}&nbsp; */}
         </div>
       </div>
-      <Spacer />
+      <div class=" mt-3" />
         <FlexContainer style={{ width: "100%" }} justifyContent="space-between">
           <div
             style={{

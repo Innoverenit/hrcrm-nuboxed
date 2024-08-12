@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tag, Checkbox, message, Popconfirm } from "antd";
-import styled from "styled-components";
-import { FlexContainer } from "../../Components/UI/Layout";
-import { StyledPopconfirm } from "../../Components/UI/Antd";
-import { Title, HeaderText, SubTitle } from "../../Components/UI/Elements";
+import { Tag, Popconfirm } from "antd";
 import SubscriptionConfirmationContent from "./SubscriptionConfirmationContent";
 // import {
 //   updateOrganizationDetails,

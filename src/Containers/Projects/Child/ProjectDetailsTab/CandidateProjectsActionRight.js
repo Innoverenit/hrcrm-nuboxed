@@ -1,18 +1,18 @@
-import React, { useEffect, useState, useMemo, lazy } from "react";
+import React, { } from "react";
 import { connect } from "react-redux";
 import TimeInterval from "../../../../Utils/TimeInterval";
 import { setSelectedTimeIntervalReport } from "../../ProjectsAction";
 // import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledRangePicker, StyledSelect } from "../../../../Components/UI/Antd";
 import { withRouter } from "react-router-dom";
 import { base_url } from "../../../../Config/Auth";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
-import { Button, Tooltip, Popover, Icons, Badge, Tag } from "antd";
-import { FlexContainer } from "../../../../Components/UI/Layout";
+import { Button, Tooltip } from "antd";
+
 
 async function getDataUrl(url) {
   return new Promise((resolve, reject) => {
@@ -61,18 +61,7 @@ class CandidateProjectsActionRight extends React.Component {
         elt.mobileNo,
         elt.address,
         elt.city,
-        //  elt.url,
-        // elt.category,
-        // elt.subCategory,
-
-        // `${elt.name}${moment(elt.creationDate).format("lll")}`,
-        // `${elt.approvedBy}${moment(elt.approvedDate).format("lll")}`,
-        // `${elt.indentData && elt.indentData.map((n) => {
-        //     console.log(n.approvedBy)
-        //     return (
-        //         <>{n.approvedBy}</>
-        //     )
-        // })}${moment(elt.indentData.approvedDate).format("lll")}`,
+        
       ]);
       let result = data.length && data.map(Object.values);
       var doc = new jsPDF('l', 'mm', [1000, 500]);
@@ -105,46 +94,13 @@ class CandidateProjectsActionRight extends React.Component {
         },
         theme: "grid",
 
-        // didDrawPage: function (data) {
-        //     // Header
-        //     doc.setFontSize(10);
-        //     doc.setTextColor("rgb(0, 119, 179)");
-        //     doc.setFontStyle("normal");
-        //     if (base64Img) {
-        //         doc.addImage(
-        //             base64Img,
-        //             "JPEG",
-
-        //             data.settings.margin.left,
-        //             7,
-        //             25,
-        //             25,
-        //             data.settings.margin.top,
-        //             10
-        //         );
-        //     }
-
-        //     doc.text(address, 120, 10);
-        //     var before = `PROVIDER LIST   DATED :- ${moment().format("DD-MM-YYYY")}`;
-        //     doc.text(before, 73, 40);
-        //     var str = "Page " + doc.internal.getNumberOfPages();
-        //     // Total page number plugin only available in jspdf v1.0+
-        //     if (typeof doc.putTotalPages === "function") {
-        //         str = str + " of " + totalPagesExp;
-        //     }
-        //     var pageSize = doc.internal.pageSize;
-        //     var pageHeight = pageSize.height
-        //         ? pageSize.height
-        //         : pageSize.getHeight();
-        //     doc.text(str, data.settings.margin.left, pageHeight - 10);
-        // },
         margin: { top: 35 },
       });
 
       if (typeof doc.putTotalPages === "function") {
         doc.putTotalPages(totalPagesExp);
       }
-      doc.save(`Provider ${moment().format("L")}`);
+      doc.save(`Provider ${dayjs().format("L")}`);
     }
     const {
       setSelectedTimeIntervalReport,
@@ -153,7 +109,7 @@ class CandidateProjectsActionRight extends React.Component {
       departmentType
     } = this.props;
     return (
-      <FlexContainer alignItems="center" style={{ justifyContent: "space-evenly" }}>
+      <div class=" flex flex-row flex-wrap items-center self-start justify-evenly grow shrink h-auto mr-auto ">
     
         <TimeInterval
           // tableBadgeCount={this.props.tableBadgeCount}
@@ -174,7 +130,7 @@ class CandidateProjectsActionRight extends React.Component {
             </Button>
           </Tooltip>
         </div>
-      </FlexContainer>
+      </div>
     );
   }
 }

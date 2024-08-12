@@ -4,14 +4,16 @@ import { bindActionCreators } from "redux";
 import { getRepairOrderByUser, handleRepairPhone,
      repairInspectionButton,
       getOrderIdForCatalogueItem ,
-      inputProcessDataSearch,ClearSearchedDataOfProcess
+      inputProcessDataSearch,ClearSearchedDataOfProcess,handleProductionNotesModal
     } from "./RefurbishAction"
-import { Button, Badge,Input } from "antd";
+    import NoteAltIcon from '@mui/icons-material/NoteAlt';
+import { Button, Badge,Input, Tooltip } from "antd";
 import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import RefurbishNoteAll from "./RefurbishNoteAll";
 
 const OrderPhoneRepairModal = lazy(() => import('./OrderPhoneRepairModal'));
 
@@ -235,6 +237,21 @@ function ProductionRepairOrder(props) {
                                                     </div>
 
                                                 </div>
+                                                <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class="  text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title="Notes">
+                                                        <NoteAltIcon
+                                                            className="!text-icon cursor-pointer"
+                                                            // style={{ cursor: "pointer" }}
+                                                            onClick={() => {
+                                                                handleRowData(item);
+                                                                props.handleProductionNotesModal(true);
+                                                            }}
+                                                        />
+
+                                                    </Tooltip>
+                                                </div>
+                                            </div>
                                                 <div className=" flex justify-center w-[8rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInspectionInd === 0 ?
@@ -281,6 +298,11 @@ function ProductionRepairOrder(props) {
                     rowData={rowData}
                     inspectionRequiredInd={props.inspectionRequiredInd}
                 />
+                 <RefurbishNoteAll
+                     rowData={rowData}
+                     productioNoteModal={props.productioNoteModal}
+                    handleProductionNotesModal={props.handleProductionNotesModal}
+                    />
             </div>
         </>
     )
@@ -297,6 +319,7 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     fetchingRepairorderById: refurbish.fetchingRepairorderById,
     showRepairPhoneList: refurbish.showRepairPhoneList,
     inspectionRequiredInd: auth.userDetails.inspectionRequiredInd,
+    productioNoteModal: refurbish.productioNoteModal,
     updatingRepairInspectionButton: refurbish.updatingRepairInspectionButton
 });
 
@@ -308,7 +331,8 @@ const mapDispatchToProps = (dispatch) =>
             repairInspectionButton,
             getOrderIdForCatalogueItem,
             inputProcessDataSearch,
-            ClearSearchedDataOfProcess
+            ClearSearchedDataOfProcess,
+            handleProductionNotesModal
         },
         dispatch
     );

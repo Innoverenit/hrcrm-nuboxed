@@ -7,8 +7,6 @@ import {  Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../../Components/UI/Antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
-
-
 const Option = StyledSelect.Option;
 
 class LocationActionRight extends React.Component {

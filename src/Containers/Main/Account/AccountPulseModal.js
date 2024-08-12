@@ -5,13 +5,12 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 const AccountPulseForm = lazy(() => import("./AccountPulseForm"));
 
-
 class AccountPulseModal extends Component {
     render() {
         return (
             <div>
                 <StyledDrawer
-                    // title="Notes"
+                   
                     title={`${this.props.RowData.name}`}
                     width="90%"
                     visible={this.props.showPulseModal}

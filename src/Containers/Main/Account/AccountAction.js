@@ -2717,7 +2717,7 @@ export const checkTaskComplition = (data, phoneId) => (dispatch) => {
       });
     });
 };
-export const addSpareList = (data, phoneId, orderId, cb) => (dispatch) => {
+export const addSpareList = (data, phoneTaskId, orderId, cb) => (dispatch) => {
   // debugger;
   dispatch({ type: types.ADD_SPARE_LIST_REQUEST });
   axios
@@ -2727,9 +2727,15 @@ export const addSpareList = (data, phoneId, orderId, cb) => (dispatch) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Spares Added SucessFully',
+        showConfirmButton: false,
+        timer: 1500,
+      })
       console.log(res);
-      dispatch(getSpareListByPhoneId(phoneId))
-      dispatch(getPhonelistById(orderId))
+      dispatch(getSpareListByPhoneTaskId(phoneTaskId))
+     // dispatch(getPhonelistById(orderId))
       dispatch({
         type: types.ADD_SPARE_LIST_SUCCESS,
         payload: res.data,
@@ -2744,7 +2750,7 @@ export const addSpareList = (data, phoneId, orderId, cb) => (dispatch) => {
       cb && cb();
     });
 };
-export const deleteSpareList = (data, phoneSpareId, orderPhoneId, userId) => (dispatch) => {
+export const deleteSpareList = (data, phoneSpareId,phoneTaskId, orderPhoneId, userId) => (dispatch) => {
   dispatch({
     type: types.DELETE_SPARE_LIST_REQUEST,
   });
@@ -2755,6 +2761,7 @@ export const deleteSpareList = (data, phoneSpareId, orderPhoneId, userId) => (di
       },
     })
     .then((res) => {
+      //dispatch(getSpareListByPhoneTaskId(phoneTaskId))
       dispatch({
         type: types.DELETE_SPARE_LIST_SUCCESS,
         payload: res.data,
@@ -2799,6 +2806,34 @@ export const getSpareListByPhoneId = (phoneId) => (
       console.log(err);
       dispatch({
         type: types.GET_SPARE_LIST_BY_PHONEID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSpareListByPhoneTaskId = (phoneTaskId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_SPARE_LIST_BY_PHONETASKID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneSpare/task/spareList/${phoneTaskId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_PHONETASKID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_PHONETASKID_FAILURE,
         payload: err,
       });
     });
@@ -4376,6 +4411,19 @@ export const handleStatuShowDrawer = (modalProps) => (dispatch) => {
     payload: modalProps
   })
 };
+export const handlenvoiceOrderModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVOICE_ORDER_DRAWER,
+    payload: modalProps
+  })
+};
+
+export const handleInvoiceModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVOICE_DRAWER,
+    payload: modalProps
+  })
+};
 
 export const getProcureStatusItem = (orderId) => (dispatch) => {
   dispatch({
@@ -4474,6 +4522,58 @@ export const getAccountInvoiveList = (distributorId,pageNo) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_ACCOUNT_INVOICE_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getOrderInvoiveList = (orderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDER_INVOICE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderPayment/invoiceList/${orderId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ORDER_INVOICE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ORDER_INVOICE_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getInvoiveL = (invoiceId) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVOICEL_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderPayment/paymentList/${invoiceId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVOICEL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_INVOICEL_FAILURE,
         payload: err,
       });
     });

@@ -4,12 +4,12 @@ import "gantt-task-react/dist/index.css";
 import {getThisMonthTaskGantt} from "../DashboardAction"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { BundleLoader } from '../../../Components/Placeholder';
 
 const TaskThisMonthGanttChart = (props) => {
-    const startDate = moment().startOf("month"); 
-    const endDate = moment();
+    const startDate = dayjs().startOf("month"); 
+    const endDate = dayjs();
     var today = new Date(),
     date =
     today.getFullYear() +

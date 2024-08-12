@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button } from "antd";
 import error from "../../Assets/Images/i.png";
-import { Spacer } from "../../Components/UI/Elements";
+
 import connectionLoss from "../../Assets/Images/connectionLost.png";
 import { FormattedMessage } from "react-intl";
 
@@ -78,7 +78,7 @@ function APIFailed() {
               your connectivity
             </h1>
           </div>
-          <Spacer />
+          <div class=" mt-3" />
           <Button
             type="primary"
             // icon="reload"

@@ -9,7 +9,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { DeleteOutlined } from "@ant-design/icons";
-import AddPickupModal from "./AddPickupModal"
+
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import {
     getDistributorOrderByDistributorId,
@@ -29,8 +29,7 @@ import {
     removeOrderAcc,
     getOrderRecords,
     deleteDistributorData,
-    getLocationList,
-    updateSubOrderAwb,
+     updateSubOrderAwb,
 } from "../../AccountAction";
 import { FormattedMessage } from 'react-intl';
 import { Badge, Button, Input, Select, Tooltip } from 'antd';
@@ -39,9 +38,10 @@ import { BundleLoader } from '../../../../../Components/Placeholder';
 import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import SubOrderList from './SubOrderList';
 import { PersonAddAlt1 } from '@mui/icons-material';
 
+const SubOrderList = lazy(() => import('./SubOrderList'));
+const AddPickupModal = lazy(() => import('./AddPickupModal'));
 const AddLocationInOrder = lazy(() => import('./AddLocationInOrder'));
 const AccountOrderDetailsModal = lazy(() => import('./AccountOrderDetailsModal'));
 const StatusOfOrderModal = lazy(() => import('./StatusOfOrderModal'));
@@ -56,7 +56,7 @@ const CompleteOrderTable = (props) => {
     useEffect(() => {
         setPage(page + 1);
         props.getOrderRecords(props.distributorId,"repair");
-        props.getLocationList(props.orgId);
+        // props.getLocationList(props.orgId);
         props.getHighCompleteOrders(props.distributorId,"repair", page, "High");
         props.getMediumCompleteOrders(props.distributorId,"repair", page, "Medium");
         props.getLowCompleteOrders(props.distributorId,"repair", page, "Low")
@@ -215,7 +215,7 @@ const CompleteOrderTable = (props) => {
                                         <div >
                                             <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                                 <div class="flex ">
-                                                    <div className=" flex font-medium items-center  md:w-[2.56rem] max-sm:w-full  ">
+                                                    <div className=" flex  items-center  md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -235,7 +235,7 @@ const CompleteOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className="ml-1 font-medium flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                    <div className="ml-1  flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                         <div class=" text-xs  font-poppins">
                                                             <Badge
                                                                 class=" ml-2"
@@ -263,10 +263,10 @@ const CompleteOrderTable = (props) => {
                                                             ) : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     </div>
 
-                                                    <div className=" flex font-medium  md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             <MultiAvatar2
                                                                 primaryTitle={item.userName}
@@ -277,7 +277,7 @@ const CompleteOrderTable = (props) => {
                                                         </div>
                                                     </div>
 
-                                                    <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             <Badge
                                                                 class=" ml-2"
@@ -297,7 +297,7 @@ const CompleteOrderTable = (props) => {
                                                             </Badge>
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium   md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex    md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
@@ -310,13 +310,13 @@ const CompleteOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />{item.expectedPrice}
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />{item.finalPrice}
@@ -325,7 +325,7 @@ const CompleteOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />
                                                             {visible && (item.orderId === particularRowData.orderId) ?
@@ -339,7 +339,7 @@ const CompleteOrderTable = (props) => {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex    md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.orderId === particularRowData.orderId) ? (
@@ -368,31 +368,31 @@ const CompleteOrderTable = (props) => {
                                                                     handleUpdateRevisePrice()
                                                                     handleSetParticularOrderData(item)
                                                                 }}
-                                                                className="!text-xl cursor-pointer text-[tomato]"
+                                                                className="!text-icon cursor-pointer text-[tomato]"
                                                             />
                                                         </Tooltip> : null}
 
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.productionLocationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[11.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex    md:w-[11.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     {item.inventoryReceiveInd ? null
                                                         :
                                                         <Tooltip title={<FormattedMessage
@@ -423,7 +423,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Notes"
                                                             />}>
                                                                 <NoteAltIcon
-                                                                    className="!text-xl cursor-pointer text-[green]"
+                                                                    className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
                                                                         props.handleNotesModalInOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -440,7 +440,7 @@ const CompleteOrderTable = (props) => {
                                                             />}>
                                                                 <EventRepeatIcon
 
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatusOfOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -455,7 +455,7 @@ const CompleteOrderTable = (props) => {
                                                         <div>
                                                             <Tooltip title="Collection">
                                                                 <PaidIcon
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handlePaidModal(true);
                                                                         handleSetParticularOrderData(item);
@@ -468,7 +468,7 @@ const CompleteOrderTable = (props) => {
                                                         {/* {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer"> */}
                                                         <Tooltip title="Add Supervisor">
                                                             <PersonAddAlt1
-                                                                className="!text-xl cursor-pointer"
+                                                                className="!text-icon cursor-pointer"
                                                                 style={{ color: item.supervisorUserName ? "green" : "red" }}
                                                                 onClick={() => {
                                                                     props.handleInventoryLocationInOrder(true)
@@ -486,7 +486,7 @@ const CompleteOrderTable = (props) => {
                                                             />}>
                                                                 <StarBorderIcon
 
-                                                                    className="!text-xl cursor-pointer" />
+                                                                    className="!text-icon cursor-pointer" />
                                                             </Tooltip>
 
                                                         </div>
@@ -496,7 +496,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Feedback"
                                                             />}>
                                                                 <FeedbackIcon
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                 />
                                                             </Tooltip>
 
@@ -510,7 +510,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Update Order"
                                                             />}>
                                                                 <BorderColorIcon
-                                                                    className=" !text-xl cursor-pointer text-[tomato]"
+                                                                    className=" !text-icon cursor-pointer text-[tomato]"
                                                                     onClick={() => {
                                                                         props.setEditOrder(item)
                                                                         props.handleUpdateOrder(true)
@@ -525,7 +525,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Detele"
                                                             />}>
                                                                 <DeleteOutlined
-                                                                    className="!text-xl cursor-pointer text-[red]"
+                                                                    className="!text-icon cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
                                                                 />
                                                             </Tooltip>
@@ -645,7 +645,7 @@ const CompleteOrderTable = (props) => {
                                         <div >
                                          <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                                 <div class="flex ">
-                                                    <div className=" flex font-medium items-center  md:w-[3.56rem] max-sm:w-full  ">
+                                                    <div className=" flex  items-center  md:w-[3.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -665,7 +665,7 @@ const CompleteOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className="ml-1 font-medium flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                    <div className="ml-1  flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                         <div class=" text-xs  font-poppins">
                                                             <Badge
                                                                 class=" ml-2"
@@ -693,10 +693,10 @@ const CompleteOrderTable = (props) => {
                                                             ) : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     </div>
 
-                                                    <div className=" flex font-medium  md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             <MultiAvatar2
                                                                 primaryTitle={item.userName}
@@ -707,7 +707,7 @@ const CompleteOrderTable = (props) => {
                                                         </div>
                                                     </div>
 
-                                                    <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             <Badge
                                                                 class=" ml-2"
@@ -727,7 +727,7 @@ const CompleteOrderTable = (props) => {
                                                             </Badge>
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium   md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex    md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
@@ -740,13 +740,13 @@ const CompleteOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />{item.expectedPrice}
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />{item.finalPrice}
@@ -755,7 +755,7 @@ const CompleteOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />
                                                             {visible && (item.orderId === particularRowData.orderId) ?
@@ -769,7 +769,7 @@ const CompleteOrderTable = (props) => {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex    md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.orderId === particularRowData.orderId) ? (
@@ -798,31 +798,31 @@ const CompleteOrderTable = (props) => {
                                                                     handleUpdateRevisePrice()
                                                                     handleSetParticularOrderData(item)
                                                                 }}
-                                                                className="!text-xl cursor-pointer text-[tomato]"
+                                                                className="!text-icon cursor-pointer text-[tomato]"
                                                             />
                                                         </Tooltip> : null}
 
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.productionLocationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[11.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex    md:w-[11.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     {item.inventoryReceiveInd ? null
                                                         :
                                                         <Tooltip title={<FormattedMessage
@@ -853,7 +853,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Notes"
                                                             />}>
                                                                 <NoteAltIcon
-                                                                    className="!text-xl cursor-pointer text-[green]"
+                                                                    className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
                                                                         props.handleNotesModalInOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -870,7 +870,7 @@ const CompleteOrderTable = (props) => {
                                                             />}>
                                                                 <EventRepeatIcon
 
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatusOfOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -885,7 +885,7 @@ const CompleteOrderTable = (props) => {
                                                         <div>
                                                             <Tooltip title="Collection">
                                                                 <PaidIcon
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handlePaidModal(true);
                                                                         handleSetParticularOrderData(item);
@@ -898,7 +898,7 @@ const CompleteOrderTable = (props) => {
                                                         {/* {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer"> */}
                                                         <Tooltip title="Add Supervisor">
                                                             <PersonAddAlt1
-                                                                className="!text-xl cursor-pointer"
+                                                                className="!text-icon cursor-pointer"
                                                                 style={{ color: item.supervisorUserName ? "green" : "red" }}
                                                                 onClick={() => {
                                                                     props.handleInventoryLocationInOrder(true)
@@ -916,7 +916,7 @@ const CompleteOrderTable = (props) => {
                                                             />}>
                                                                 <StarBorderIcon
 
-                                                                    className="!text-xl cursor-pointer" />
+                                                                    className="!text-icon cursor-pointer" />
                                                             </Tooltip>
 
                                                         </div>
@@ -926,7 +926,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Feedback"
                                                             />}>
                                                                 <FeedbackIcon
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                 />
                                                             </Tooltip>
 
@@ -940,7 +940,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Update Order"
                                                             />}>
                                                                 <BorderColorIcon
-                                                                    className=" !text-xl cursor-pointer text-[tomato]"
+                                                                    className=" !text-icon cursor-pointer text-[tomato]"
                                                                     onClick={() => {
                                                                         props.setEditOrder(item)
                                                                         props.handleUpdateOrder(true)
@@ -955,7 +955,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Detele"
                                                             />}>
                                                                 <DeleteOutlined
-                                                                    className="!text-xl cursor-pointer text-[red]"
+                                                                    className="!text-icon cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
                                                                 />
                                                             </Tooltip>
@@ -1074,7 +1074,7 @@ const CompleteOrderTable = (props) => {
                                         <div >
                                             <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                                 <div class="flex ">
-                                                    <div className=" flex font-medium items-center md:w-[2.56rem] max-sm:w-full  ">
+                                                    <div className=" flex  items-center md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -1094,7 +1094,7 @@ const CompleteOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className="ml-1 font-medium flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                    <div className="ml-1  flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                         <div class=" text-xs  font-poppins">
                                                             <Badge
                                                                 class=" ml-2"
@@ -1122,10 +1122,10 @@ const CompleteOrderTable = (props) => {
                                                             ) : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     </div>
 
-                                                    <div className=" flex font-medium  md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             <MultiAvatar2
                                                                 primaryTitle={item.userName}
@@ -1136,7 +1136,7 @@ const CompleteOrderTable = (props) => {
                                                         </div>
                                                     </div>
 
-                                                    <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             <Badge
                                                                 class=" ml-2"
@@ -1156,7 +1156,7 @@ const CompleteOrderTable = (props) => {
                                                             </Badge>
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium   md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex    md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
@@ -1169,13 +1169,13 @@ const CompleteOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />{item.expectedPrice}
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />{item.finalPrice}
@@ -1184,7 +1184,7 @@ const CompleteOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />
                                                             {visible && (item.orderId === particularRowData.orderId) ?
@@ -1198,7 +1198,7 @@ const CompleteOrderTable = (props) => {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex    md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.orderId === particularRowData.orderId) ? (
@@ -1227,31 +1227,31 @@ const CompleteOrderTable = (props) => {
                                                                     handleUpdateRevisePrice()
                                                                     handleSetParticularOrderData(item)
                                                                 }}
-                                                                className="!text-xl cursor-pointer text-[tomato]"
+                                                                className="!text-icon cursor-pointer text-[tomato]"
                                                             />
                                                         </Tooltip> : null}
 
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.productionLocationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[11.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex    md:w-[11.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     {item.inventoryReceiveInd ? null
                                                         :
                                                         <Tooltip title={<FormattedMessage
@@ -1282,7 +1282,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Notes"
                                                             />}>
                                                                 <NoteAltIcon
-                                                                    className="!text-xl cursor-pointer text-[green]"
+                                                                    className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
                                                                         props.handleNotesModalInOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -1299,7 +1299,7 @@ const CompleteOrderTable = (props) => {
                                                             />}>
                                                                 <EventRepeatIcon
 
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatusOfOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -1314,7 +1314,7 @@ const CompleteOrderTable = (props) => {
                                                         <div>
                                                             <Tooltip title="Collection">
                                                                 <PaidIcon
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handlePaidModal(true);
                                                                         handleSetParticularOrderData(item);
@@ -1327,7 +1327,7 @@ const CompleteOrderTable = (props) => {
                                                         {/* {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer"> */}
                                                         <Tooltip title="Add Supervisor">
                                                             <PersonAddAlt1
-                                                                className="!text-xl cursor-pointer"
+                                                                className="!text-icon cursor-pointer"
                                                                 style={{ color: item.supervisorUserName ? "green" : "red" }}
                                                                 onClick={() => {
                                                                     props.handleInventoryLocationInOrder(true)
@@ -1345,7 +1345,7 @@ const CompleteOrderTable = (props) => {
                                                             />}>
                                                                 <StarBorderIcon
 
-                                                                    className="!text-xl cursor-pointer" />
+                                                                    className="!text-icon cursor-pointer" />
                                                             </Tooltip>
 
                                                         </div>
@@ -1355,7 +1355,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Feedback"
                                                             />}>
                                                                 <FeedbackIcon
-                                                                    className="!text-xl cursor-pointer"
+                                                                    className="!text-icon cursor-pointer"
                                                                 />
                                                             </Tooltip>
 
@@ -1369,7 +1369,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Update Order"
                                                             />}>
                                                                 <BorderColorIcon
-                                                                    className=" !text-xl cursor-pointer text-[tomato]"
+                                                                    className=" !text-icon cursor-pointer text-[tomato]"
                                                                     onClick={() => {
                                                                         props.setEditOrder(item)
                                                                         props.handleUpdateOrder(true)
@@ -1384,7 +1384,7 @@ const CompleteOrderTable = (props) => {
                                                                 defaultMessage="Detele"
                                                             />}>
                                                                 <DeleteOutlined
-                                                                    className="!text-xl cursor-pointer text-[red]"
+                                                                    className="!text-icon cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
                                                                 />
                                                             </Tooltip>
@@ -1501,7 +1501,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     handleOrderPickupModal,
     removeOrderAcc,
     deleteDistributorData,
-    getLocationList,
+    // getLocationList,
     updateSubOrderAwb,
     getOrderRecords
 }, dispatch);

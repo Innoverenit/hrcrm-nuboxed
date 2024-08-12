@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button,  } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import {
@@ -170,7 +170,7 @@ function ProfileForm(props) {
                   }
                 /> */}
 
-                <Spacer />
+                <div class=" mt-3" />
                 <Field
                   name="recruitmentId"
                   // label="Requirement"
@@ -193,7 +193,7 @@ function ProfileForm(props) {
                     Array.isArray(recruitmentName) ? recruitmentName : []
                   }
                 />
-                  <Spacer />
+                  <div class=" mt-3" />
 
                 <Field
                   name="recruitmentProcessId"
@@ -223,7 +223,7 @@ function ProfileForm(props) {
                 
                 />
 
-                <Spacer />
+                <div class=" mt-3" />
 
                 <Field
                   name="stageId"
@@ -249,7 +249,7 @@ function ProfileForm(props) {
                   }
                 />
 
-                <Spacer />
+                <div class=" mt-3" />
               </div>
               &nbsp;
               <div
@@ -259,7 +259,7 @@ function ProfileForm(props) {
                 }}
               ></div>
             </div>
-            <Spacer />
+            <div class=" mt-3" />
             <FlexContainer justifyContent="flex-end">
               <Button
                 type="primary"

@@ -1,5 +1,5 @@
 import * as types from "./BillingActionTypes";
-import moment from "moment";
+import dayjs from "dayjs";
 const initialState = {
   viewType: "table",
 
@@ -14,8 +14,8 @@ const initialState = {
   billingByDesignation: [],
 
   isCustomSelected: false,
-  startDate: moment().toISOString(),
-  endDate: moment().toISOString(),
+  startDate: dayjs().toISOString(),
+  endDate: dayjs().toISOString(),
 
   type: "All",
   dateRangeList: [
@@ -25,8 +25,8 @@ const initialState = {
     //   value: "All",
     //   starter: true,
     //   isSelected: true,
-    //   startDate: moment().toISOString(),
-    //   endDate: moment().toISOString(),
+    //   startDate: dayjs().toISOString(),
+    //   endDate: dayjs().toISOString(),
     // },
 
     {
@@ -35,8 +35,8 @@ const initialState = {
       value: "Today",
       starter: true,
       isSelected: false,
-      startDate: moment().toISOString(),
-      endDate: moment().toISOString(),
+      startDate: dayjs().toISOString(),
+      endDate: dayjs().toISOString(),
     },
     {
       id: 2,
@@ -44,10 +44,10 @@ const initialState = {
       value: "Yesterday",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .subtract(1, "days")
         .toISOString(),
-      endDate: moment().subtract(1, "days").toISOString(),
+      endDate: dayjs().subtract(1, "days").toISOString(),
     },
     // {
     //   id: 3,
@@ -55,10 +55,10 @@ const initialState = {
     //   value: "Last 7 days",
     //   starter: false,
     //   isSelected: false,
-    //   startDate: moment()
+    //   startDate: dayjs()
     //     .subtract(7, "days")
     //     .toISOString(),
-    //   endDate: moment()
+    //   endDate: dayjs()
     //     .toISOString(),
     // },
 
@@ -68,10 +68,10 @@ const initialState = {
     //   value: "Last 30 days",
     //   starter: false,
     //   isSelected: false,
-    //   startDate: moment()
+    //   startDate: dayjs()
     //     .subtract(30, "days")
     //     .toISOString(),
-    //   endDate: moment()
+    //   endDate: dayjs()
     //     .toISOString(),
     // },
     {
@@ -80,8 +80,8 @@ const initialState = {
       value: "MTD",
       starter: false,
       isSelected: false,
-      startDate: moment.utc().startOf("month").toISOString(),
-      endDate: moment.utc().toISOString(),
+      startDate: dayjs().startOf("month").toISOString(),
+      endDate: dayjs().toISOString(),
     },
     {
       id: 6,
@@ -89,8 +89,8 @@ const initialState = {
       value: "Last month",
       starter: false,
       isSelected: false,
-      startDate: moment.utc().startOf("month").subtract(1, "month").toISOString(),
-      endDate: moment.utc().endOf('month').subtract(1, "month").toISOString(),
+      startDate: dayjs().startOf("month").subtract(1, "month").toISOString(),
+      endDate: dayjs().endOf('month').subtract(1, "month").toISOString(),
     }
   ],
 

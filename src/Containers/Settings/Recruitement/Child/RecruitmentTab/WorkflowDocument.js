@@ -2,17 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import { Button, Divider, message,Input } from "antd";
-import { MainWrapper, FlexContainer } from "../../../../../Components/UI/Layout";
-import { TextInput, Title } from "../../../../../Components/UI/Elements";
+import { Button,Input } from "antd";
+import { MainWrapper} from "../../../../../Components/UI/Layout";
 import WorkflowSingleDocument from "./WorkflowSingleDocument";
 import {
   removeDocuments,
   updateDocuments,
   searchDocumentsName,
 } from "../../../../Settings/Documents/DocumentsAction";
-import axios from "axios";
-import { base_url } from "../../../../../Config/Auth";
 
 class WorkflowDocument extends Component {
   constructor(props) {
@@ -47,38 +44,12 @@ class WorkflowDocument extends Component {
     }));
   handleChange = ({ target: { name, value } }) =>
     this.setState({ [name]: value });
-  // handleAddDocument = () => {
-  //   const { addDocuments, allDocuments } = this.props;
-  //   const { documentTypeName, addingDocuments, isTextInputOpen,editInd} = this.state;
-  //   let document = { documentTypeName,editInd };
-
-  //   let exist =
-  //   allDocuments &&
-  //   allDocuments.some((element) => element.documentTypeName == documentTypeName);
-
-  //   if (exist) {
-  //     message.error(
-  //       "Can't create as another documentTypeName exists with same name!"
-  //     );
-  //   } else {
-  //     addDocuments(document, () => console.log("add document callback"));
-  //   }
-
-  //   this.setState({
-  //     documentTypeName: "",
-  //     singleDocument: "",
-  //     isTextInputOpen: false,
-  //     editInd:true,
-  //   });
-  // };
+ 
   handleUpdateDocument = (documentTypeName,documentTypeId,editInd, cb) => {
     this.props.updateDocuments(documentTypeName, documentTypeId,editInd,cb);
     this.setState({ documentTypeName: "", singleDocument: "",editInd:true,});
   };
-  // handleDeleteDocument = (documentTypeId={documentTypeId}) => {
-  //   this.props.removeDocuments(documentTypeId);
-  //   this.setState({ documentTypeName: "", singleDocument: "" });
-  // };
+ 
   componentDidMount() {
 
   }
@@ -100,7 +71,7 @@ class WorkflowDocument extends Component {
     if (fetchingAllDocumentsError) return <p>Error ...</p>;
     return (
       <>
-        <FlexContainer flexWrap="nowrap">
+     <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           <MainWrapper
             style={{
               flexBasis: "100%",
@@ -135,7 +106,7 @@ class WorkflowDocument extends Component {
       
         </Button>
         </div>
-            <FlexContainer flexDirection="column">
+        <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
               <MainWrapper style={{ height: "30em", marginTop: "0.62em" }}>
                 {allDocuments.length &&
                   allDocuments.map((document, i) => (
@@ -156,54 +127,10 @@ class WorkflowDocument extends Component {
                     />
                   ))}
               </MainWrapper>
-            </FlexContainer>
-            {/* {isTextInputOpen ? (
-              <FlexContainer
-                alignItems="center"
-                style={{ marginLeft: "0.3125em", marginTop: "0.3125em" }}
-              >
-                <br />
-                <br />
-                <TextInput
-                  placeholder="Add More"
-                  name="documentTypeName"
-                  value={documentTypeName}
-                  onChange={this.handleChange}
-                  width="55%"
-                />
-             
-                <Button
-                  type="primary"
-                  disabled={!documentTypeName}
-                  htmlType="submit"
-                  Loading={addingDocuments}
-                  onClick={this.handleAddDocument}
-                  style={{ marginRight: "0.125em" }}
-                >
-                  
-                  <FormattedMessage
-                    id="app.save"
-                    defaultMessage="Save"
-                  />
-                  
-                </Button>
-               
-                <Button type="primary" ghost onClick={this.toggleInput}>
-                 
-                  <FormattedMessage
-                    id="app.cancel"
-                    defaultMessage="Cancel"
-                  />
-                </Button>
-              </FlexContainer>
-            ) : 
-            (
-              <>
-                <br />
-              </>
-            )} */}
+            </div>
+           
           </MainWrapper>
-        </FlexContainer>
+        </div>
       </>
     );
   }

@@ -2,18 +2,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Icon } from "antd";
-import { Formik, Form, Field } from "formik";
+import { Button } from "antd";
+import { Formik, Form} from "formik";
 import * as Yup from "yup";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw, ContentState } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
-// import { addNote } from "./NoteAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { FlexContainer } from "../../Components/UI/Layout";
-// import { getFunctionNameByUserId } from "../Users/UsersAction"
-import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 
 /**
  * yup validation scheme for creating a note

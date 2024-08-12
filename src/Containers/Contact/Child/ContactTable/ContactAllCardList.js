@@ -84,10 +84,6 @@ function ContactAllCardList(props) {
 'Pipeline', // 5
 'Portal Access', // 6
 'Owner' // 7
-
-
-
-
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -138,8 +134,6 @@ function ContactAllCardList(props) {
     setCurrentContactId(item);
   }
 
- 
-
   const {
     user,
     fetchingContacts,
@@ -166,8 +160,7 @@ if (loading) {
 }
   return (
     <>
-      
-     
+        
       <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[99%] max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
@@ -455,16 +448,13 @@ if (loading) {
           onClick={() => {
             props.setEditContact(item);
             handleUpdateContactModal(true);
-            handleSetCurrentContactId(item);
-            
+            handleSetCurrentContactId(item);            
           }}
         />
       </Tooltip>
 
       </div>
-        )}
-               
-   
+        )}              
                 </div>
                       </div>
                   </div>
@@ -474,8 +464,6 @@ if (loading) {
                 })}
                       </InfiniteScroll>
       </div>
-
-
       <UpdateContactModal
         contactData={currentContactId}
         // fullName={currentContactId}

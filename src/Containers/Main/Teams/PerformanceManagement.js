@@ -1,4 +1,4 @@
-import React, {  useEffect, useState,lazy } from "react";
+import React, {  useEffect, useState,lazy,Suspense } from "react";
 import { MultiAvatar2, } from '../../../Components/UI/Elements'
 import {  Tooltip, Badge } from 'antd'
 import { connect } from 'react-redux'
@@ -14,8 +14,8 @@ import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import {getEmployeeTreeMap} from "../../Employees/EmployeeAction"
 import { BundleLoader } from "../../../Components/Placeholder";
 import { getreportingManager,handleperformanceDrawerModal,handleTeamsPulseDrawerModal } from "./TeamsAction";
-import HandlePulseDrawerModal from "./TeamsCard.js/HandlePulseDrawerModal";
 const HandleperformanceModal = lazy(() => import("./HandleperformanceModal"));
+const  HandlePulseDrawerModal = lazy(() => import("./TeamsCard.js/HandlePulseDrawerModal"));
 
 
 const { Option } = Select;
@@ -86,7 +86,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
                 console.log("noOfDocPending",item.noOfDocPending)
       
                  return (
-                  <div class="rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9.5rem] 
+                  <div class="rounded border-2 bg-[#ffffff]  shadow-[#aaa] h-[9.5rem] 
                   text-[#444444] m-1 p-1 w-[16rem] flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                       <div class="w-[200] flex h-[200]">
                    <Tooltip 
@@ -244,6 +244,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
             })}
               </div>
               </div>
+              <Suspense fallback={<BundleLoader />}>
               <HandleperformanceModal
                  rowdata={rowdata}
                  employeeTreeMap={props.employeeTreeMap}
@@ -257,7 +258,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
                  handleTeamsPulseDrawerModal={props.handleTeamsPulseDrawerModal}
          handleSetCurrentCustomer={handleSetCurrentCustomer}
       />
-
+</Suspense>
             </>
       
     

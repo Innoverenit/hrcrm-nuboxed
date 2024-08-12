@@ -39,9 +39,8 @@ import { BundleLoader } from '../../../../../Components/Placeholder';
 import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import SubOrderList from './SubOrderList';
 import { PersonAddAlt1 } from '@mui/icons-material';
-
+const SubOrderList = lazy(() => import('./SubOrderList'));
 const AddLocationInOrder = lazy(() => import('./AddLocationInOrder'));
 const AccountOrderDetailsModal = lazy(() => import('./AccountOrderDetailsModal'));
 const StatusOfOrderModal = lazy(() => import('./StatusOfOrderModal'));
@@ -53,6 +52,43 @@ const { Option } = Select;
 
 const AccountOrderTable = (props) => {
     const [page, setPage] = useState(0);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+                "Urgent",
+                "Order",
+                "LOB",
+                "Owner",
+                "Contact",
+                "Quoted",
+                "Final",
+                "Revised",
+                "Received",
+                "Supervisor",
+                "Lead",
+                "Repair",
+                "High",
+                "Normal",
+                "Created Date"
+
+
+          ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         setPage(page + 1);
         props.getOrderRecords(props.distributorId,"repair");
@@ -125,79 +161,82 @@ const AccountOrderTable = (props) => {
     return (
         <>
       
-            <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[93%]  bg-transparent font-bold sticky top-0 z-10">
-                    <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">Urgent </div>
+            <div className=' flex sticky  z-auto'>
+                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[99%]  bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+                    {translatedMenuItems[0]}   {/* Urgent */}
+                         </div>
                         <div className=" md:w-[11.41rem] ml-2">
-                            <FormattedMessage
+                            {/* <FormattedMessage
                                 id="app.orderno"
                                 defaultMessage="Order ID"
-                            />
+                            /> */}
+                             {translatedMenuItems[1]} ID
                         </div>
                         <div className=" md:w-[5.012rem]">
-                            LOB
+                        {translatedMenuItems[14]}
+                        </div>
+                        <div className=" md:w-[5.012rem]">
+                        {translatedMenuItems[2]}  {/* LOB */}
                         </div>
                         <div className=" md:w-[5.08rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[3]}   {/* <FormattedMessage
                                 id="app.owner"
                                 defaultMessage="Owner"
-                            />
+                            /> */}
                         </div>
 
                         <div className="md:w-[5.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[4]}   {/* <FormattedMessage
                                 id="app.contact"
                                 defaultMessage="Contact"
-                            />
+                            /> */}
                         </div>
                         <div className="md:w-[8.11rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[5]}  {/* <FormattedMessage
                                 id="app.quoted"
                                 defaultMessage="Quoted"
-                            />
+                            /> */}
                         </div>
                         <div className="md:w-[5.09rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[6]}  {/* <FormattedMessage
                                 id="app.finalprice"
                                 defaultMessage="Final"
-                            />
+                            /> */}
                         </div>
                         <div className="w-[5.076rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[7]}    {/* <FormattedMessage
                                 id="app.revisedprice"
                                 defaultMessage="Revised"
-                            />
+                            /> */}
                         </div>
                         <div className=" md:w-[5.063rem]">
                         </div>
                         <div className=" md:w-[8.10rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[8]}  {/* <FormattedMessage
                                 id="app.received"
                                 defaultMessage="Received"
-                            />
+                            /> */}
                         </div>
                         <div className=" md:w-[8.03rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[9]}   {/* <FormattedMessage
                                 id="app.supervisor"
                                 defaultMessage="Supervisor"
-                            />
+                            /> */}
                         </div>
                         <div className=" md:w-[8.12rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[10]}  {/* <FormattedMessage
                                 id="app.lead"
                                 defaultMessage="Lead"
-                            />
+                            /> */}
                         </div>
 
-                        <div className=" md:w-[8.02rem]">
-                            <FormattedMessage
-                                id="app.repair"
-                                defaultMessage="Repair"
-                            />
-                        </div>
+                        {/* <div className=" md:w-[8.02rem]">
+                        {translatedMenuItems[11]}   
+                        </div> */}
                     </div>
 
                     {/* <div class="overflow-x-auto h-[64vh]"> */}
@@ -207,6 +246,7 @@ const AccountOrderTable = (props) => {
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfHigh ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"21vh"}
+                        style={{scrollbarWidth:"thin"}}
                     >
                         {props.highDistributorOrder.length ?
                             <>
@@ -220,7 +260,7 @@ const AccountOrderTable = (props) => {
                                                     <div className=" flex items-center   md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -237,8 +277,8 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className="font-medium flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
-                                                        <div class=" text-xs  font-poppins">
+                                                    <div className=" flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                        <div class=" text-xs font-poppins">
                                                             <Badge
                                                                 class=" ml-2"
                                                                 size="small"
@@ -246,7 +286,7 @@ const AccountOrderTable = (props) => {
                                                                 overflowCount={999}
                                                             >
                                                                 <span
-                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    class="underline cursor-pointer font-bold text-[#1890ff]"
                                                                     onClick={() => {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleOrderDetailsModal(true);
@@ -266,8 +306,11 @@ const AccountOrderTable = (props) => {
                                                         </div>
                                                     </div>
                                                     <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
                                                     </div>
-
+                                                    <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    
+                                                    </div>
                                                     <div className=" flex   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div >
                                                             <MultiAvatar2
@@ -410,7 +453,7 @@ const AccountOrderTable = (props) => {
                                                         />}>
                                                             <Button
                                                                 type='primary'
-                                                                className="cursor-pointer text-sm bg-[#3096e9] text-white"
+                                                                className="cursor-pointer text-xs bg-[#3096e9] text-white"
                                                                 onClick={() => {
                                                                     handleSetParticularOrderData(item);
                                                                     props.handleOrderPickupModal(true);
@@ -564,78 +607,77 @@ const AccountOrderTable = (props) => {
             </div >
             
            
-            <div className=' flex justify-end sticky  z-auto'>
+            <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[99%]  bg-transparent font-bold sticky  z-10">
-                    <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
+                <div className=" flex  w-[99%]  bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+                    {translatedMenuItems[13]}   {/* High */}
+                         </div>
                         <div className=" md:w-[11.41rem] ml-2">
-                            <FormattedMessage
+                            {/* <FormattedMessage
                                 id="app.orderno"
                                 defaultMessage="Order ID"
-                            />
+                            /> */}
+                             {translatedMenuItems[1]}ID
                         </div>
                         <div className=" md:w-[5.012rem]">
-                            LOB
+                        {translatedMenuItems[14]}
+                        </div>
+                        <div className=" md:w-[5.012rem]">
+                        {translatedMenuItems[2]}  {/* LOB */}
                         </div>
                         <div className=" md:w-[5.08rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[3]}   {/* <FormattedMessage
                                 id="app.owner"
                                 defaultMessage="Owner"
-                            />
+                            /> */}
                         </div>
 
                         <div className="md:w-[5.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[4]}   {/* <FormattedMessage
                                 id="app.contact"
                                 defaultMessage="Contact"
-                            />
+                            /> */}
                         </div>
                         <div className="md:w-[8.11rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[5]}  {/* <FormattedMessage
                                 id="app.quoted"
                                 defaultMessage="Quoted"
-                            />
+                            /> */}
                         </div>
                         <div className="md:w-[5.09rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[6]}  {/* <FormattedMessage
                                 id="app.finalprice"
                                 defaultMessage="Final"
-                            />
+                            /> */}
                         </div>
                         <div className="w-[5.076rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[7]}    {/* <FormattedMessage
                                 id="app.revisedprice"
                                 defaultMessage="Revised"
-                            />
+                            /> */}
                         </div>
                         <div className=" md:w-[5.063rem]">
                         </div>
                         <div className=" md:w-[8.10rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[8]}  {/* <FormattedMessage
                                 id="app.received"
                                 defaultMessage="Received"
-                            />
+                            /> */}
                         </div>
                         <div className=" md:w-[8.03rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[9]}   {/* <FormattedMessage
                                 id="app.supervisor"
                                 defaultMessage="Supervisor"
-                            />
+                            /> */}
                         </div>
                         <div className=" md:w-[8.12rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[10]}  {/* <FormattedMessage
                                 id="app.lead"
                                 defaultMessage="Lead"
-                            />
-                        </div>
-
-                        <div className=" md:w-[8.02rem]">
-                            <FormattedMessage
-                                id="app.repair"
-                                defaultMessage="Repair"
-                            />
+                            /> */}
                         </div>
                     </div>
 
@@ -646,6 +688,7 @@ const AccountOrderTable = (props) => {
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfMedium ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"21vh"}
+                        style={{scrollbarWidth:"thin"}}
                     >
                         {props.mediumDistributorOrder.length ?
                             <>
@@ -676,7 +719,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className="font-medium flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                    <div className=" flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                         <div class=" text-xs  font-poppins">
                                                             <Badge
                                                                 class=" ml-2"
@@ -685,7 +728,7 @@ const AccountOrderTable = (props) => {
                                                                 overflowCount={999}
                                                             >
                                                                 <span
-                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    class="underline cursor-pointer font-bold text-[#1890ff]"
                                                                     onClick={() => {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleOrderDetailsModal(true);
@@ -703,6 +746,9 @@ const AccountOrderTable = (props) => {
                                                                 </span>
                                                             ) : null}
                                                         </div>
+                                                    </div>
+                                                    <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
                                                     </div>
                                                     <div className=" flex  md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     </div>
@@ -849,7 +895,7 @@ const AccountOrderTable = (props) => {
                                                         />}>
                                                             <Button
                                                                 type='primary'
-                                                                className="cursor-pointer text-sm bg-[#3096e9] text-white"
+                                                                className="cursor-pointer text-xs bg-[#3096e9] text-white"
                                                                 onClick={() => {
                                                                     handleSetParticularOrderData(item);
                                                                     props.handleOrderPickupModal(true);
@@ -1002,79 +1048,80 @@ const AccountOrderTable = (props) => {
                 </div>
             </div >
          
-            <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded0 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[99%]  bg-transparent font-bold sticky  z-10">
-                    <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
+            <div className=' flex sticky  z-auto'>
+                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div className=" flex  w-[99%]  bg-transparent font-bold sticky z-10">
+                    <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+                    {translatedMenuItems[14]}   {/* Normal */}
+                         </div>
                         <div className=" md:w-[11.41rem] ml-2">
-                            <FormattedMessage
+                            {/* <FormattedMessage
                                 id="app.orderno"
                                 defaultMessage="Order ID"
-                            />
+                            /> */}
+                             {translatedMenuItems[1]}ID
                         </div>
                         <div className=" md:w-[5.012rem]">
-                            LOB
+                        Created Date  
+                        </div>
+                        <div className=" md:w-[5.012rem]">
+                        {translatedMenuItems[2]}  {/* LOB */}
                         </div>
                         <div className=" md:w-[5.08rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[3]}   {/* <FormattedMessage
                                 id="app.owner"
                                 defaultMessage="Owner"
-                            />
+                            /> */}
                         </div>
 
                         <div className="md:w-[5.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[4]}   {/* <FormattedMessage
                                 id="app.contact"
                                 defaultMessage="Contact"
-                            />
+                            /> */}
                         </div>
                         <div className="md:w-[8.11rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[5]}  {/* <FormattedMessage
                                 id="app.quoted"
                                 defaultMessage="Quoted"
-                            />
+                            /> */}
                         </div>
                         <div className="md:w-[5.09rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[6]}  {/* <FormattedMessage
                                 id="app.finalprice"
                                 defaultMessage="Final"
-                            />
+                            /> */}
                         </div>
                         <div className="w-[5.076rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[7]}    {/* <FormattedMessage
                                 id="app.revisedprice"
                                 defaultMessage="Revised"
-                            />
+                            /> */}
                         </div>
                         <div className=" md:w-[5.063rem]">
                         </div>
                         <div className=" md:w-[8.10rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[8]}  {/* <FormattedMessage
                                 id="app.received"
                                 defaultMessage="Received"
-                            />
+                            /> */}
                         </div>
                         <div className=" md:w-[8.03rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[9]}   {/* <FormattedMessage
                                 id="app.supervisor"
                                 defaultMessage="Supervisor"
-                            />
+                            /> */}
                         </div>
                         <div className=" md:w-[8.12rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[10]}  {/* <FormattedMessage
                                 id="app.lead"
                                 defaultMessage="Lead"
-                            />
+                            /> */}
                         </div>
 
-                        <div className=" md:w-[8.02rem]">
-                            <FormattedMessage
-                                id="app.repair"
-                                defaultMessage="Repair"
-                            />
-                        </div>
+                        
                     </div>
 
                     {/* <div class="overflow-x-auto h-[64vh]"> */}
@@ -1084,6 +1131,7 @@ const AccountOrderTable = (props) => {
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfLow ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"21vh"}
+                        style={{scrollbarWidth:"thin"}}
                     >
                         {props.lowDistributorOrder.length ?
                             <>
@@ -1097,7 +1145,7 @@ const AccountOrderTable = (props) => {
                                                     <div className=" flex items-center  md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                                                <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
@@ -1114,7 +1162,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className="font-medium flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                    <div className=" flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                         <div class=" text-xs  font-poppins">
                                                             <Badge
                                                                 class=" ml-2"
@@ -1123,7 +1171,7 @@ const AccountOrderTable = (props) => {
                                                                 overflowCount={999}
                                                             >
                                                                 <span
-                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    class="underline cursor-pointer font-bold text-[#1890ff]"
                                                                     onClick={() => {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleOrderDetailsModal(true);
@@ -1142,10 +1190,13 @@ const AccountOrderTable = (props) => {
                                                             ) : null}
                                                         </div>
                                                     </div>
+                                                    <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
+                                                    </div>
                                                     <div className=" flex   md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     </div>
 
-                                                    <div className=" flex font-medium  md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div >
                                                             <MultiAvatar2
                                                                 primaryTitle={item.userName}
@@ -1259,7 +1310,7 @@ const AccountOrderTable = (props) => {
                                                         {item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div >
                                                         {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
@@ -1287,7 +1338,7 @@ const AccountOrderTable = (props) => {
                                                         />}>
                                                             <Button
                                                                 type='primary'
-                                                                className="cursor-pointer text-sm bg-[#3096e9] text-white"
+                                                                className="cursor-pointer text-xs bg-[#3096e9] text-white"
                                                                 onClick={() => {
                                                                     handleSetParticularOrderData(item);
                                                                     props.handleOrderPickupModal(true);
@@ -1442,41 +1493,57 @@ const AccountOrderTable = (props) => {
            
             <Suspense fallback={<BundleLoader />}>
                 <AddLocationInOrder
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
                     particularRowData={particularRowData}
                     addInventoryInOrder={props.addInventoryInOrder}
                     handleInventoryLocationInOrder={props.handleInventoryLocationInOrder}
                 />
                 <AddPickupModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
                     handleOrderPickupModal={props.handleOrderPickupModal}
                     addpickupLocation={props.addpickupLocation}
                     particularRowData={particularRowData}
                 />
                 <AddNotesOrderModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
                     particularRowData={particularRowData}
                     addNotesInOrder={props.addNotesInOrder}
                     handleNotesModalInOrder={props.handleNotesModalInOrder}
                 />
                 <AccountOrderDetailsModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
                     particularRowData={particularRowData}
                     handleOrderDetailsModal={props.handleOrderDetailsModal}
                     addOrderDetailsModal={props.addOrderDetailsModal} />
                 <StatusOfOrderModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
                     handleStatusOfOrder={props.handleStatusOfOrder}
                     addStatusOfOrder={props.addStatusOfOrder}
                     particularRowData={particularRowData}
                 />
                 <PaidButtonModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
                     type={props.type}
                     addPaidButtonModal={props.addPaidButtonModal}
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
                 />
                 <AccountproductionModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
                     particularRowData={particularRowData}
                     accountOrderProduction={props.accountOrderProduction}
                     handleAccountProduction={props.handleAccountProduction}
                 />
                 <UpdateOrderModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
                     particularRowData={particularRowData}
                     distributorId={props.distributorId}
                     handleUpdateOrder={props.handleUpdateOrder}

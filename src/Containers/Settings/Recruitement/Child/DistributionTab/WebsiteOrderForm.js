@@ -6,7 +6,6 @@ import {
 
   Select,
 } from "../../../../../Components/UI/Elements";
-import { MainWrapper,  } from "../../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Button, Switch } from "antd";
@@ -16,7 +15,7 @@ import {
     getDepartmentwiserUser,
 } from "../../../../Settings/SettingsAction";
 import {getDepartments} from "../../../Department/DepartmentAction"
-import moment from "moment";
+import dayjs from "dayjs";
 const { Option } = Select;
 function WebsiteOrderForm(props) {
 
@@ -84,41 +83,28 @@ const handleDeptChange = (event) => {
         }}
       >
         {({ values }) => (
-        <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
+       <div class="mr-5 ml-5  h-[28rem] overflow-auto">
         <Form className="form-background">
-          <div class =" flex justify-between w-full"
-       
-          >
-            <div class=" w-[44%] flex flex-row mt-[0.625em] ml-[1em]"
-            >
-            
-        
-             
-            <div class=" flex  flex-col w-[44%]"
-              >
-                   <p class=" w-[6rem]">Assigned</p>
-                <div>
-                      {/* <Popconfirm
-                        title="Do you wish to change Status ? "
-                        // onConfirm={handleAppClick}
-                        // onCancel={handleCancel}
-                        okText="Yes"
-                        cancelText="No"
-                      > */}
+          <div class =" flex justify-between w-full">
+                
+            <div class=" w-[44%] flex flex-row mt-[0.625em] ml-[1em]">                                 
+            <div class=" flex  flex-col w-[44%]">
+              
+                   <div class=" w-24">Assigned</div>
+                <div>                     
                         <Switch
                           style={{ width: "5em" }}
                           onChange={handleSingleMultiple}
                           checked={single}
                           checkedChildren="Multiple"
                           unCheckedChildren="Single"
-                        />
-                      {/* </Popconfirm> */}
+                        />             
                     </div>
               </div>
       
               <div class=" flex justify-between width-[50%] ml-4 " >
                                                     <div class=" w-[35%]" >
-                                                    <label class=" text-[#444] font-bold text-[0.75rem]" >Department</label>
+                                                    <div class=" text-[#444] font-bold text-[0.75rem]" >Department</div>
                       <select 
                        className="customize-select"
                       onChange={handleDeptChange}>
@@ -136,7 +122,7 @@ const handleDeptChange = (event) => {
           <>                                           
 {single === false?(
             <div class=" w-[35%]" >
-            <label class=" text-[#444] font-bold text-[0.75rem]" >User</label>
+            <div class=" text-[#444] font-bold text-[0.75rem]" >User</div>
             <select
             className="customize-select"
                  onChange={handleUserChange}
@@ -155,17 +141,11 @@ const handleDeptChange = (event) => {
 
 ):(   
   <div class=" w-[35%] ml-8" >
-  <label class=" text-[#444] font-bold text-[0.75rem]" >User</label>
+  <div class=" text-[#444] font-bold text-xs" >User</div>
    <Field
                name="multyAsignedTOId"
                // label="Include"
-               style={{width:"10rem"}}
-              //  label={
-              //    <FormattedMessage
-              //      id="app.multyAsignedTOId"
-              //      defaultMessage="User"
-              //    />
-              //  }
+               style={{width:"10rem"}}         
                mode
                placeholder="Select"
                component={SelectComponent}
@@ -195,11 +175,11 @@ const handleDeptChange = (event) => {
               </div>
               <div class="mt-4">
                 Updated on{" "}
-                {moment(props.distributionAutomation.updationDate).format("ll")} by{" "}
+                {dayjs(props.distributionAutomation.updationDate).format("ll")} by{" "}
                 {props.distributionAutomation.updatedBy}
               </div>
         </Form>
-      </MainWrapper>
+      </div>
         )}
       </Formik>
     </>

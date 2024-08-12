@@ -5,7 +5,7 @@ import { Button, } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import {addOrganization} from "../../../Auth/AuthAction"
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import PostImageUpld from "../../../../Components/Forms/Formik/PostImageUpld";
@@ -176,7 +176,7 @@ function AddOrganizationForm (props) {
                   
                     </div>
                     <div class=" w-8/12">
-                    <StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">
                       <FastField
                         type="text"
                         name="phoneNumber"
@@ -186,7 +186,7 @@ function AddOrganizationForm (props) {
                         inlineLabel
                         width={"100%"}
                       />
-                      </StyledLabel>
+                      </div>
                     </div>
                   </div>
 
@@ -212,7 +212,7 @@ function AddOrganizationForm (props) {
                   
                     </div>
                     <div class=" w-8/12">
-                    <StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">
                     <FastField
                             name="fiscalStartMonth"
                             type="text"
@@ -229,7 +229,7 @@ function AddOrganizationForm (props) {
                             // className="field"
                             isColumn
                           />
-                      </StyledLabel>
+                      </div>
                     </div>
                   </div>
 
@@ -254,7 +254,7 @@ function AddOrganizationForm (props) {
                   
                     </div>
                     <div class=" w-8/12">
-                    <StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">
                     <FastField
                             // type="companySize"
                             name="industryType"
@@ -270,7 +270,7 @@ function AddOrganizationForm (props) {
                             width={"100%"}
                             isColumn
                           />
-                      </StyledLabel>
+                      </div>
                     </div>
                   </div>
 
@@ -295,7 +295,7 @@ function AddOrganizationForm (props) {
                   
                     </div>
                     <div class=" w-8/12">
-                    <StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">
                     <FastField
                             // type="companySize"
                             name="organizationUrl"
@@ -311,7 +311,7 @@ function AddOrganizationForm (props) {
                             width={"100%"}
                             isColumn
                           />
-                      </StyledLabel>
+                      </div>
                     </div>
                   </div>
               
@@ -337,7 +337,7 @@ function AddOrganizationForm (props) {
                   
                     </div>
                     <div class=" w-8/12">
-                    <StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">
                     <FastField
                             // type="companySize"
                             name="linkedinUrl"
@@ -353,7 +353,7 @@ function AddOrganizationForm (props) {
                             width={"100%"}
                             isColumn
                           />
-                      </StyledLabel>
+                      </div>
                     </div>
                   </div>
                   <div class=" flex justify-between">
@@ -388,7 +388,7 @@ function AddOrganizationForm (props) {
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
                 >
      
-                  <StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">
                   <FieldArray
                     name="address"
                     label="Address"
@@ -399,7 +399,7 @@ function AddOrganizationForm (props) {
                       />
                     )}
                   />
-                  </StyledLabel>
+                  </div>
           
               
                 </div>

@@ -2,16 +2,48 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-    getAccountInvoiveList
+    getAccountInvoiveList,
+    handlenvoiceOrderModal
 } from "../AccountAction";
 import {  Select } from 'antd';
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import InvoiceOrderModal from "./InvoiceOrderModal";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const { Option } = Select;
 
 function AccountInvoiceTable(props) {
     const [pageNo, setPageNo] = useState(0);
+    
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+    'Invoice ', // 0
+    'Order', // 1
+    'Value', // 2
+    'Type', // 3
+    ' Status', // 4
+   
+
+
+          ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         setPageNo(pageNo + 1);
         props.getAccountInvoiveList(props.distributorId,pageNo)
@@ -55,16 +87,19 @@ function AccountInvoiceTable(props) {
         }
         }, 100);
       };
+      if (loading) {
+        return <div><BundleLoader/></div>;
+      }
     return (
         <>
-            <div className=' flex justify-end sticky  z-auto'>
+            <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                    <div class=" w-[8.5rem]">Invoice ID</div>
-                        <div className=" md:w-[7.4rem]">Order ID</div>
-                        <div className=" md:w-[7.1rem]">Value</div>
-                        <div className="md:w-[3.8rem]">Type</div>
-                        <div className=" md:w-[8.8rem] ">Status</div>
+                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">
+                    <div class=" w-[8.5rem]">{translatedMenuItems[0]} ID</div>
+                        <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} ID</div>
+                        <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
+                        <div className="md:w-[3.8rem]">{translatedMenuItems[3]}</div>
+                        <div className=" md:w-[8.8rem] ">{translatedMenuItems[4]}</div>
                       
                     </div>
                     <div class="">
@@ -91,19 +126,25 @@ function AccountInvoiceTable(props) {
 
                                                         </div>
                                                         {date === currentdate ? (
-                                                                <div class="text-xs font-bold text-[tomato] mr-4">
+                                                                <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
                                                                     New
                                                                 </div>
                                                             ) : null}
                                                     </div>
                                                     <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {dayjs(item.creationDate).format("DD/MM/YYYY")}
+                                                        <span
+                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    onClick={() => {
+                                                                        handleRowData(item);
+                                                                        props.handlenvoiceOrderModal(true);
+                                                                    }}
+                                                                > {item.newOrderNo}</span>
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                           {item.categoryName}
+                                                         {item.categoryName}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
@@ -131,7 +172,13 @@ function AccountInvoiceTable(props) {
                     </div>
                 </div>
             </div>
-           
+            <InvoiceOrderModal
+                    rowData={rowData}
+                    handlenvoiceOrderModal={props.handlenvoiceOrderModal}
+                    invoiceOrders={props.invoiceOrders}
+                    selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText}
+                />  
         </>
     )
 }
@@ -140,13 +187,15 @@ const mapStateToProps = ({ distributor, auth }) => ({
     orgId: auth.userDetails.organizationId,
     currencies: auth.currencies,
     fetchingAccountInvoice:distributor.fetchingAccountInvoice,
-    accountInvoice:distributor.accountInvoice
+    accountInvoice:distributor.accountInvoice,
+    invoiceOrders:distributor.invoiceOrders
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getAccountInvoiveList
+            getAccountInvoiveList,
+            handlenvoiceOrderModal
            
         },
         dispatch

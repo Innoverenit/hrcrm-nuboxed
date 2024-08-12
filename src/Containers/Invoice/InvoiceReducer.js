@@ -1,6 +1,5 @@
 import * as types from "./InvoiceActionTypes";
 import dayjs from "dayjs";
-import moment from "moment";
 
 const initialState = {
   viewType: "table",

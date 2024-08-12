@@ -1,19 +1,12 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import styled from "styled-components";
 import {
-  MainWrapper,
-  Spacer,
-  TextInput,
-} from "../../../Components/UI/Elements";
-import {
   getTaskWorkflowStagesForRecruit,
 } from "../../Settings/SettingsAction";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { Select } from "../../../Components/UI/Elements";
 import { elipsize } from "../../../Helpers/Function/Functions";
@@ -87,20 +80,6 @@ class TaskWorkflowList extends Component {
     });
     this.props.getTaskStagesForRecruit(item.taskChecklistId);
   };
-
-  //   handleModalClick = () => {
-  //     const { currentProcess, publish } = this.state;
-  //     console.log(currentProcess);
-
-  //     const Id = currentProcess.recruitmentProcessId;
-  // let data = {
-  //   recruitmentProcessId: Id,
-  //   publishInd: currentProcess.publishInd ? false : true,
-  // };
-
-  //     this.props.getAllDocumentsType(Id, );
-  //   };
-
   handleApproveIconClick = (item) => {
     this.setState({
       currentStageId: item,
@@ -172,10 +151,8 @@ class TaskWorkflowList extends Component {
     return (
       <>
         <StageWrapper>
-          <MainWrapper>
-           
-
-            <FlexContainer>
+        <div class="mr-5 ml-5">           
+        <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
               <StyledTabs
                 style={{ width: "80%" }}
                 defaultActiveKey={this.state.activeKey}
@@ -196,10 +173,8 @@ class TaskWorkflowList extends Component {
                     ></TabPane>
                   );
                 {/* })} */}
-              </StyledTabs>
-
-            
-            </FlexContainer>
+              </StyledTabs>           
+            </div>
 
             {this.props.recruitTaskWorkflowStages.map((recruitTaskWorkflowStage, i) => (
               <SingleTaskWorkflowList
@@ -224,7 +199,7 @@ class TaskWorkflowList extends Component {
             ))}
 
           
-          </MainWrapper>
+          </div>
           
         </StageWrapper>
 

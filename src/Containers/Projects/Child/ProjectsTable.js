@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo, lazy } from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   MultiAvatar2,
 } from "../../../Components/UI/Elements";
@@ -170,8 +170,8 @@ function ProjectsTable(props) {
                     
                 </div>
                 {props.projectsData.map((item) => {
-                    const currentdate = moment().format("DD/MM/YYYY");
-                    const date = moment(item.creationDate).format("DD/MM/YYYY");
+                    const currentdate = dayjs().format("DD/MM/YYYY");
+                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     return (
                         <div>
                             <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 "

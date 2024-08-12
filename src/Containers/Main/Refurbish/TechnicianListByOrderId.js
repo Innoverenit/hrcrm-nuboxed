@@ -72,7 +72,7 @@ const TechnicianListByOrderId = (props) => {
                                             <span
                                                 onClick={() => handleRowdata(item)}
                                                 style={{
-                                                    textDecoration: "underline",
+                                                    textDecoration: "underline", fontWeight:"bold",
                                                     color: show && item.technicianId === row.technicianId ? "rgb(225 158 14)" : "#0f6ace",
                                                     cursor: "pointer"
                                                 }}

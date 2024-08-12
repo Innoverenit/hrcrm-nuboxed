@@ -110,16 +110,7 @@ export const handleDasboardRepairOrderCloseDrawer = (modalProps) => (dispatch) =
     payload: modalProps,
   });
 };
-// export const setSelectedTodoTimeIntervalReport = (selectedTodoTime) => (dispatch) => {
-//   //console.log(selectedTime);
-//   dispatch({
-//     type: types.CHANGE_SELECTED_TODO_TIME_INTERVAL_REPORT,
-//     payload: selectedTodoTime,
-//   });
-// };
-/**
- * set current Time  report
- */
+
 export const setTimeRangeReport = (startDate, endDate) => (dispatch) => {
   dispatch({
     type: types.SET_TIME_INTERVAL_REPORT,
@@ -129,12 +120,6 @@ export const setTimeRangeReport = (startDate, endDate) => (dispatch) => {
     },
   });
 };
-
-// export const setDashboardType = (type) => (dispatch) =>
-// dispatch({
-//   type: types.SET_DASHBOARD_TYPE,
-//   payload: type,
-// });
 
 export const getListByOrderId = () => (dispatch) => {
   dispatch({
@@ -250,12 +235,6 @@ export const getRecruiterDashboardList = (recruiterId) => (dispatch) => {
     });
 };
 export const getDashboardTable2 = (orgId) => (dispatch) => {
-  // let api_url = "";
-  // if (userId) {
-  //   api_url = `/sort/all/contacts/user/${userId}`;
-  // } else {
-  //   api_url = `/contacts`;
-  // }
   dispatch({
     type: types.GET_DASHBOARD_TABLE_PROGRESS_REQUEST,
   });
@@ -566,8 +545,6 @@ export const getSalesDateWiseList =
   };
 
 export const updateTodoCall = (data, callId, type) => (dispatch, getState) => {
-  // const { userId } = getState("auth").auth.userDetails;
-  // console.log(data);
   dispatch({ type: types.UPDATE_TODO_CALL_BY_ID_REQUEST });
   axios
     .put(`${base_url}/todo/update/${callId}?type=${type}`, data, {
@@ -593,8 +570,6 @@ export const updateTodoCall = (data, callId, type) => (dispatch, getState) => {
 
 export const updateTodoEvent =
   (data, eventId, type) => (dispatch, getState) => {
-    ////debugger
-    // const { userId } = getState("auth").auth.userDetails;
     console.log(data);
     dispatch({ type: types.UPDATE_TODO_EVENT_BY_ID_REQUEST });
     axios

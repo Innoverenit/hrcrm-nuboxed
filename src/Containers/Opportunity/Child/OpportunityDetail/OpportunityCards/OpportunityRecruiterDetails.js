@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { SubTitle } from "../../../../../Components/UI/Elements";
 class OpportunityRecruiterDetailsDetails extends Component {
   render() {
@@ -12,30 +11,13 @@ class OpportunityRecruiterDetailsDetails extends Component {
     const recruiterName=recruiterDetails&&recruiterDetails.length&&recruiterDetails[0].fullName || "";
     return (
       <>
-        <FlexContainer justifyContent="flex-end">
-            {/* <Tooltip title="Edit">
-              <ActionIcon
-                iconType="edit"
-                onClick={this.props.toggleViewType}
-                size="0.875em"
-              />
-            </Tooltip> */}
-        </FlexContainer>
+      <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
+           
+        </div>
         <OpportunityItemRow label="Assigned"
         value={assignedTo} 
         />
-          {/* <MultiAvatar
-                // primaryTitle={
-
-                //    opportunity.opportunityName || opportunity.opportunityId
-                // }
-                primaryTitle={item.recruiterDetails&&item.recruiterDetails.length&&item.recruiterDetails[0].fullName||""}
-                imageId={item.recruiterDetails&&item.recruiterDetails.length&&item.recruiterDetails[0].imageId||""}
-                imageURL={imageURL}
-              /> */}
-        {/* <PartnerItemRow label= "Tax Reg. No." value={taxRegistrationNumber}/>
-        <PartnerItemRow label="Bank Name" value={bankName} />
-        <PartnerItemRow label="Account No." value={accountNumber}/> */}
+       
       </>
     );
   }
@@ -44,13 +26,10 @@ export default OpportunityRecruiterDetailsDetails;
 
 const OpportunityItemRow = ({ label, value }) => {
   return (
-    <FlexContainer
-      alignItems="center"
-      flexWrap="nowrap"
-      // style={{ margin: "5px" }}
-    >
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
+   
       <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
       <SubTitle style={{ textAlign: "end" }}>{value}</SubTitle>
-    </FlexContainer>
+    </div>
   );
 };

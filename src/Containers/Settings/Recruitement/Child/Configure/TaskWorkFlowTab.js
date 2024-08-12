@@ -13,7 +13,7 @@ import {
 } from "../../../SettingsAction";
 import {
   MainWrapper,
-  Spacer,
+  
   TextInput,
 } from "../../../../../Components/UI/Elements";
 import {
@@ -502,7 +502,7 @@ class TaskWorkflowTab extends Component {
               />
             ))}
 
-            <Spacer />
+            <div class=" mt-3" />
             {this.state.isTextInputOpen ? (
               <div
                 style={{

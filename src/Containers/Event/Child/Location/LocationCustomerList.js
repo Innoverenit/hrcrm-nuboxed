@@ -143,6 +143,7 @@ function LocationCustomerList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingDistributorsByUserId?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
+        style={{ scrollbarWidth:"thin"}}
         height={"75vh"}
       >
         {props.distributorsByUserId.map((item) => {
@@ -155,16 +156,16 @@ function LocationCustomerList(props) {
                 }}
               >
                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs  font-poppins">
 
                       Name
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class=" text-[0.82rem]  font-poppins">
                       <AccountDetailsView
                         distributorId={item.distributorId}
                         name={item.name}
@@ -172,81 +173,81 @@ function LocationCustomerList(props) {
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs  font-poppins">
 
                       Work
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class=" text-[0.82rem]  font-poppins">
                       {item.dialCode} {item.phoneNo}
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs  font-poppins">
 
                       Website
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class=" text-[0.82rem]  font-poppins">
                       {item.url}
                     </div>
 
                   </div>
 
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs  font-poppins">
 
                       Type
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class=" text-[0.82rem]  font-poppins">
                       {item.clientName}
                     </div>
 
                   </div>
           
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs  font-poppins">
 
                       Invoice Address
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class=" text-[0.82rem]  font-poppins">
                       {/* {item.addresses[0].address1 || ""} ${item.addresses[0]
                         .address2 || ""} ${item.addresses[0].street || ""} ${item.addresses[0].city || ""}`; */}
 
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs  font-poppins">
 
                       Pin Code
 
                     </div>
 
 
-                    <div class=" font-normal text-[0.82rem]  font-poppins">
+                    <div class=" text-[0.82rem]  font-poppins">
                       {/* {item.addresses[0].pinCode || ""} */}
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-42 max-sm:justify-between  max-sm:flex-row ">
+                  <div className=" flex  md:w-42 max-sm:justify-between  max-sm:flex-row ">
 
                   <Button type="primary">
                      <span class="text-sm" >

@@ -1,7 +1,6 @@
-import Item from "antd/lib/list/Item";
-import React,{useState} from "react";
-import { Button, Progress, Tooltip,Icon } from "antd";
-import { Spacer,MultiAvatar,SubTitle } from "../../../../../../Components/UI/Elements";
+import React from "react";
+import { Tooltip} from "antd";
+import {MultiAvatar} from "../../../../../../Components/UI/Elements";
 // import { StyledSelect } from "../../../../../../Components/UI/Antd";
 
 function CandidateLoadMore(props) {

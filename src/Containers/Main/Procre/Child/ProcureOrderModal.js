@@ -24,7 +24,10 @@ class ProcureOrderModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <ProcureOrderDetails particularRowData={this.props.particularRowData} />
+                        <ProcureOrderDetails particularRowData={this.props.particularRowData}
+                         selectedLanguage={this.props.selectedLanguage}
+                         translateText={this.props.translateText}
+                         />
                     </Suspense>
                 </StyledDrawer>
             </>

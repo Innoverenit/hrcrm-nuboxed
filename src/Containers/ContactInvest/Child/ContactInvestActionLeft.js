@@ -65,7 +65,7 @@ const ContactInvestActionLeft = (props) => {
   } = useSpeechRecognition();
   console.log(transcript);
   useEffect(() => {
-    // props.getCustomerRecords();
+
     if (transcript) {
       console.log(">>>>>>>", transcript);
       setCurrentData(transcript);
@@ -76,9 +76,7 @@ const ContactInvestActionLeft = (props) => {
     props.getContactInvestByUserId(props.userId, page,data);
     setPage(page + 1);
   }
-  // useEffect(() => {
-  // props.getContactInvest(props.userId)
-  // }, [props.userId]);
+
   useEffect(() => {
     if (props.teamsAccessInd) {
       props.getTeamContactInvest(props.userId);
@@ -94,12 +92,6 @@ const ContactInvestActionLeft = (props) => {
     else if (props.viewType === "all") {
       props.getContactInvestAllRecord(props.orgId,"Investor");
     } 
-    
-   
-    // if (transcript) {
-    //   console.log(">>>>>>>", transcript);
-    //   props.setCurrentData(transcript);
-    // }
   }, [props.viewType, props.userId]);
    
  
@@ -197,24 +189,7 @@ const ContactInvestActionLeft = (props) => {
             onChange={handleChange}
              value={currentData}
           />
-      </div>
-      {/* <Button
-        type={props.currentData ? "primary" : "danger"}
-        onClick={() => {
-          props.searchInvestorContactName(props.currentData);
-        }}
-      >
-        Submit
-      </Button>
-      &nbsp;
-      <Button
-        type={props.currentData ? "primary" : "danger"}
-        onClick={() => {
-          props.handleClear();
-        }}
-      >
-        <FormattedMessage id="app.clear" defaultMessage="Clear" />
-      </Button> */}
+      </div>  
       <div class="w-[40%] mt-[0.5rem] ml-2">
           <StyledSelect placeholder="Sort"  onChange={(e)  => props.handleFilterChange(e)}>
           <Option value="CreationDate">Creation Date</Option>

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
-import AccountHeader from "./AccountHeader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddAccountImportModal from '../Account/AddAccountImportModal'
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   handleDistributorModal,
@@ -11,12 +9,12 @@ import {
   getDistributorsByUserId,
   getAllDistributorsList
 } from "./AccountAction";
+const  AccountHeader = lazy(() => import("./AccountHeader"));
+const AddAccountImportModal = lazy(() => import("../Account/AddAccountImportModal"));
 const AddAccountModal = lazy(() => import("./AddAccountModal"));
 const AccountTable = lazy(() => import("./AccountTable"));
 const AccountDeleteTable = lazy(() => import("./AccountDeleteTable"));
 const AllAccountList = lazy(() => import("./AllAccountList"));
-const AccountCard = lazy(() => import("./AccountCard"));
-const AccountDeleteCard = lazy(() => import("./AccountDeleteCard"));
 
 const Account = ({
   addDistributorModal,
@@ -27,7 +25,11 @@ const Account = ({
   getDistributorsByUserId,
   getAllDistributorsList,
   addAccountImportModal,
-  handleAccountImportModal
+  handleAccountImportModal,
+  selectedLanguage,
+  translateText,
+  addPitchModal
+
 }) => {
   const [currentData, setCurrentData] = useState("");
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
@@ -53,7 +55,10 @@ const Account = ({
 
   return (
     <>
+    <Suspense fallback={<BundleLoader />}>
       <AccountHeader
+        selectedLanguage={selectedLanguage}
+        translateText={translateText}
         viewType={viewType}
         setDistributorViewType={setDistributorViewType}
         handleClear={handleClear}
@@ -63,27 +68,40 @@ const Account = ({
         handleDistributorModal={handleDistributorModal}
       />
       <AddAccountModal
+       selectedLanguage={selectedLanguage}
+       translateText={translateText}
+        addPitchModal={addPitchModal}
         handleDistributorModal={handleDistributorModal}
         addDistributorModal={addDistributorModal}
       />
-      <Suspense fallback={<BundleLoader />}>
+      
         {viewType === "list" ? (
           <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>
-            <AccountTable />
+            <AccountTable
+             selectedLanguage={selectedLanguage}
+             translateText={translateText}
+              addPitchModal={addPitchModal}
+            />
           </div>
         )
-          : viewType === "card" ? (
-            <AccountCard />
-          ) : viewType === "dashboard" ? (
+          : viewType === "dashboard" ? (
             <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>
-              {isLargeScreen ? <AccountDeleteTable /> : <AccountDeleteCard />}
+               <AccountDeleteTable
+                selectedLanguage={selectedLanguage}
+                translateText={translateText}/> 
+                
             </div>
           ) : viewType === "all" ? (
             <div className={isLargeScreen ? "hidden sm:block" : "block sm:hidden"}>
-              <AllAccountList />
+              <AllAccountList
+               selectedLanguage={selectedLanguage}
+               translateText={translateText}
+                addPitchModal={addPitchModal} />
             </div>
           ) : null}
             <AddAccountImportModal
+              selectedLanguage={selectedLanguage}
+              translateText={translateText}
             addAccountImportModal={addAccountImportModal}
             handleAccountImportModal={handleAccountImportModal}
         // addLeadsImportModal={this.props.addLeadsImportModal}

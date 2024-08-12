@@ -1,6 +1,6 @@
 import React,{ useEffect, useState, lazy }  from 'react'
 import { connect } from "react-redux";
-import moment from "moment";
+import dayjs from "dayjs";
 //import {getReportsProductivityData} from "../../ReportAction"
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
@@ -87,7 +87,7 @@ function ProductionManufactureCard(props) {
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                                     <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                                         
-                                        {`${moment.utc(item.creationDate).format("YYYY/MM/DD")}`}
+                                        {`${dayjs(item.creationDate).format("YYYY/MM/DD")}`}
                                     </div>
                                 </div>
 

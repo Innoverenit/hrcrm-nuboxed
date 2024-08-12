@@ -2,30 +2,21 @@ import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-
-import styled from "styled-components";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
   UploadOutlined,
-WeiboSquareOutlined,
 } from "@ant-design/icons";
-import moment from "moment";
-import InfiniteScroll from "react-infinite-scroll-component";
+import dayjs from "dayjs";
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Tooltip, Button,  } from "antd";
-import dayjs from "dayjs";
 import { DeleteOutlined } from "@ant-design/icons";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledPopconfirm, } from "../../../../Components/UI/Antd";
 import StairsIcon from '@mui/icons-material/Stairs';
-
-
 import { MultiAvatar, } from "../../../../Components/UI/Elements";
-import InfoIcon from '@mui/icons-material/Info';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 
 const ButtonGroup = Button.Group;
@@ -182,7 +173,7 @@ const ReportTaskList = (props) => {
                        
                       
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
-                        {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
+                        {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
                                 <div class="flex flex-col w-[5.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
@@ -683,16 +674,3 @@ const ReportTaskList = (props) => {
         }
       }
       
-      const AppIcon = (props) => (
-        <i
-          className={`fas fa-heartbeat ${props.className}`}
-          style={{ fontSize: "123%" }}
-        ></i>
-      );
-      const PulseIcon = styled(AppIcon)`
-        color: #df9697;
-        &:hover {
-          // background: yellow;
-          color: blue;
-        }
-      `;

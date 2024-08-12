@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Checkbox } from "antd";
+import { Button} from "antd";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { Listbox, } from '@headlessui/react'
 import { getAllCustomerEmployeelist } from "../../Employees/EmployeeAction";
-import { Spacer, StyledLabel } from "../../../Components/UI/Elements";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import * as Yup from "yup";
 import { getCustomer } from "../../Settings/Category/Customer/CustomerAction";
 import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
-import { FlexContainer } from "../../../Components/UI/Layout";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { updateDistributor ,setClearbitData} from "./AccountAction";
 import { FormattedMessage } from "react-intl";
 import { getCrm} from "../../Leads/LeadsAction";
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
-import AddressFieldArray4 from "../../../Components/Forms/Formik/AddressFieldArray4";
+
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-])|(\\([0-9]{2,3}\\)[ \\-])|([0-9]{2,4})[ \\-])?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const DistributorSchema = Yup.object().shape({
@@ -75,6 +72,10 @@ const UpdateAccountForm = ({
   const CountryOptions = countries.map((item) => ({
     label: `${item.country_name || ""}`,
     value: item.country_id,
+  }));
+  const dialCodeOptions = countries.map((item) => ({
+    label: `${item.country_dial_code || ""}`,
+    value: item.country_dial_code,
   }));
   const customerTypeOptions = customerListData.map((item) => {
     return {
@@ -174,38 +175,7 @@ const UpdateAccountForm = ({
           <Form class="form-background">
             <div class="flex justify-between" >
               <div class=" h-full w-w47.5 max-sm:w-wk">
-              {/* <div>
-              {clearbit && clearbit.hasOwnProperty("logo") ? (
-  <ProgressiveImage
-    preview="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
-    image={clearbit.logo }
-    width={140}
-    height={150}
-    borderRadius={25}
-    padding={15}
-  />
-) : (
-  <ProgressiveImage
-    preview="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
-    image={setEditingDistributor.imageURL} 
-    width={140}
-    height={150}
-    borderRadius={25}
-    padding={15}
-  />
-)}
-
-                    {clearbit && clearbit.hasOwnProperty("logo") ? (
-                      <a
-                        href="https://clearbit.com"
-                        target="_blank"
-                        style={{ fontSize: 13, marginLeft: 5 }}
-                      >
-                        Logos provided by Clearbit
-                      </a>
-                    ) : null}
-                  </div> */}
-                     <div>
+                  <div>
                     {clearbit && clearbit.hasOwnProperty("logo") && (
                       <ProgressiveImage
                         preview={
@@ -247,7 +217,7 @@ const UpdateAccountForm = ({
                     accounts={accounts}
                     inlineLabel
                     />
-                <Spacer />
+                <div class=" mt-3" />
                 <div class=" flex justify-between">
                   <div class=" w-2/6">
                     <FastField
@@ -261,8 +231,10 @@ const UpdateAccountForm = ({
                       }
                       isColumn
                       // width={"100%"}
-                      selectType="dialCode"
-                      component={SearchSelect}
+                      // selectType="dialCode"
+                      // component={SearchSelect}
+                      component={SelectComponent}
+                      options={Array.isArray(dialCodeOptions) ? dialCodeOptions : []}
                       inlineLabel
                     />
                   </div>
@@ -301,7 +273,7 @@ const UpdateAccountForm = ({
                   isColumn
                   inlineLabel
                 />
-                {/* <Spacer />
+                {/* <div class=" mt-3" />
                 <div class=" flex justify-between mt-4">
                   <div>
                     <FormattedMessage
@@ -546,7 +518,7 @@ const UpdateAccountForm = ({
                       </Listbox>
                 </div>
                 <div class="mt-4">
-                  <StyledLabel > Billing Address</StyledLabel>
+                  <div class=" text-xs text-black font-bold font-poppins" > Billing Address</div>
                 </div>
                 <div>
                   <FieldArray
@@ -560,34 +532,7 @@ const UpdateAccountForm = ({
                     )}
                   />
                 </div>
-                {/* <div class="flex items-center">
-        <div>Billing Address Same as Communication Address</div>
-        <label className="toggle mt-1 ml-2">
-          <input type="checkbox" checked={billingSameAsCommunication} onChange={handleToggleChange} />
-          <span className="slider round"></span>
-        </label>
-      </div>
-      {!billingSameAsCommunication && (
-        <div class="flex flex-col">
-                <div class="mt-4">
-                  <StyledLabel > Billing Address</StyledLabel>
-                </div>
-                 
-                <div>
-                  <FieldArray
-                    name="pickUpAddress"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray4
-                        singleAddress
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  />
-                </div>
-                </div>
-                )} */}
-
+                
 
                 <div class="mt-4">
                   <Field

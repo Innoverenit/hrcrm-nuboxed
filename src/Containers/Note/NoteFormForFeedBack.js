@@ -9,9 +9,8 @@ import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { addFeedbackNote } from "./NoteAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { FlexContainer } from "../../Components/UI/Layout";
 import CustomOption from "./CustomOption";
-import { Spacer } from "../../Components/UI/Elements";
+
 import { BorderBox } from "../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
 
@@ -164,9 +163,9 @@ class NoteFormForFeedBack extends Component {
                   <Option value="3">3</Option>
                   <Option value="4">4</Option>
                 </Select> */}
-                <Spacer />
-                <Spacer />
-                <Spacer />
+                <div class=" mt-3" />
+                <div class=" mt-3" />
+                <div class=" mt-3" />
                 <BorderBox style={{ border: "1px solid #aaa" }}>
                   <p>{text}</p>
                   <Rate
@@ -178,8 +177,8 @@ class NoteFormForFeedBack extends Component {
                     title={text}
                   />
                 </BorderBox>
-                <Spacer />
-                <FlexContainer justifyContent="flex-end">
+                <div class=" mt-3" />
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -194,7 +193,7 @@ class NoteFormForFeedBack extends Component {
                     {<FormattedMessage id="app.submit" defaultMessage="Submit"/>}
                     
                   </Button>
-                </FlexContainer>
+                </div>
                 {/* </div> */}
               </Form>
             );

@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik'
 import React, {useEffect,useState} from 'react'
-import moment from "moment";
+import dayjs from "dayjs";
 import * as Yup from "yup";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
@@ -8,12 +8,11 @@ import { bindActionCreators } from "redux";
 import {updateInvoiceData} from "../Invoice/InvoiceAction"
 import { Button, Checkbox, Divider, Select } from 'antd';
 import {getCandidatesTotalBillingsForInvoice} from "../Invoice/InvoiceAction"
-import { MainWrapper } from "../../Components/UI/Elements";
 import {getProjectsData} from "../Projects/ProjectsAction"
 import {getCustomerTask} from "../Task/TaskAction"
 import { DatePicker } from "../../Components/Forms/Formik/DatePicker";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
-import { Spacer } from "../../Components/UI/Elements";
+
 import { TimePicker } from "../../Components/Forms/Formik/TimePicker";
 import { InputComponent } from '../../Components/Forms/Formik/InputComponent'
 import InvoiceListTable from './InvoiceHeader/InvoiceListTable';
@@ -59,13 +58,6 @@ function FirstInvoicePage(props) {
     setCustomers(value)
   }
 
-  
-  // const handleSelectCandidate = (data) => {
-  //   var theobj = JSON.parse(data);
-  //   console.log(theobj);
-  //   setChooseCandidate(theobj)
-  //    props.getItemsSelectedForSupplier(theobj.analysisId)
-  // }
   console.log(customers)
   function handleChangeProject(value) {
     setProjects(value)
@@ -163,7 +155,7 @@ onSubmit={(values, { resetForm }) => {
           values,
           ...rest
         }) => (
-          <MainWrapper  >
+          <div class="mr-5 ml-5">
                 <Form style={{minHeight: "30vh"}}>
                 <div class=" flex justify-between ">
               <div class=" h-full w-1/2">
@@ -187,7 +179,7 @@ onSubmit={(values, { resetForm }) => {
                           }}
                         />
              </div>
-             <Spacer />
+             <div class=" mt-3" />
                     <div class=" w-2/5">
                     <Field
                         isRequired
@@ -243,7 +235,7 @@ onSubmit={(values, { resetForm }) => {
                         }}
                       />
                     </div>
-                    <Spacer />
+                    <div class=" mt-3" />
                     <div class=" w-2/5">
                     <Field
                         isRequired
@@ -281,7 +273,7 @@ onSubmit={(values, { resetForm }) => {
         candidateTotalBillingForInvoice={props.candidateTotalBillingForInvoice}
         />
                 </Form>
-                </MainWrapper>
+                </div>
                  )}
             </Formik>
         </>

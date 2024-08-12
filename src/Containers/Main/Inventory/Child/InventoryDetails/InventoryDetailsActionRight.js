@@ -29,7 +29,7 @@ class InventoryDetailActionRight extends React.Component {
 
                         <div class=" flex flex-row w-[50rem] items-center justify-between"  >
                             <Title width="25%">
-                                <label class=" text-sm font-medium"> {` ${locationName || ""} `}</label>
+                                <div class=" text-sm font-medium"> {` ${locationName || ""} `}</div>
                             </Title>
 
                             <div class=" flex  justify-center ml-[1rem]"  >

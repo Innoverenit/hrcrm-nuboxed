@@ -272,8 +272,7 @@ class PersonalDocumentForm extends Component {
                       />
                     </div>
                   </div>
-                  {/* <FlexContainer justifyContent="space-between"> */}
-
+            
                 </div>
 
                 <div class=" w-[45%]"

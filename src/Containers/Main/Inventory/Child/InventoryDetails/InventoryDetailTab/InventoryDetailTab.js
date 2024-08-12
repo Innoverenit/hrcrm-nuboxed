@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { PlusOutlined } from "@ant-design/icons";
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import { Tooltip } from "antd";
 import { withRouter } from "react-router";

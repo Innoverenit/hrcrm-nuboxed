@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Button, Icon, Tooltip } from "antd";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
+import { Tooltip } from "antd";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
-import dayjs from "dayjs";
+
 
 class CandidateOverViewDetail extends Component {
   render() {
@@ -24,13 +23,9 @@ class CandidateOverViewDetail extends Component {
           label={<FormattedMessage
             id="app.address"
             defaultMessage="Address"
-          />}
-         
-          value={addressdata||""} 
-          
+          />}       
+          value={addressdata||""}        
           />
-         
-
                   <CandidateItemRow label="Street" value={addressdata1||""} />
         <CandidateItemRow label="City" value={addressdata2||""} />
         <CandidateItemRow label="State" value={addressdata3||""} />
@@ -44,17 +39,14 @@ export default CandidateOverViewDetail;
 
 const CandidateItemRow = ({ label, value }) => {
   return (
-    <FlexContainer
-      alignItems="center"
-      flexWrap="nowrap"
-      style={{ margin: "0.4rem" }}
-    >
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto m-[0.4rem]
+ ">
       <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
       <SubTitle style={{ marginLeft: "-1.875em" }}>
         <Tooltip title={value}>
         {value}
         </Tooltip>
         </SubTitle>
-    </FlexContainer>
+    </div>
   );
 };

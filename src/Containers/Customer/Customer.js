@@ -53,19 +53,6 @@ class Customer extends Component {
     this.props.getCustomerCloser(this.props.userId, startDate, endDate);
   };
 
-  // componentDidMount() {
-  //   const { viewType, userId, page, getCustomerListByUserId } = this.props;
-    
-  //   if (viewType === "table") {
-  //     getCustomerListByUserId(userId, page, "creationdate");
-  //   } else if (viewType === "teams") {
-  //     getCustomerListByUserId("teams", page, "creationdate");
-  //   } else if (viewType === "all") {
-  //     getCustomerListByUserId("all", page, "creationdate");
-  //   }
-  // }
-
-
   componentDidMount() {
     // Check if isMobile is stored in localStorage
     const storedIsMobile = localStorage.getItem('isMobile');
@@ -113,6 +100,7 @@ class Customer extends Component {
     } = this.props;
     return (
       <React.Fragment>
+        <Suspense fallback={<BundleLoader />}>
         <CustomerHeader
         handleCustomerImportModal={this.props.handleCustomerImportModal}
             handleDropChange={this.handleDropChange}
@@ -135,7 +123,7 @@ class Customer extends Component {
           selectedLanguage={this.props.selectedLanguage}
           translatedMenuItems={this.props.translatedMenuItems}
         />
-        <Suspense fallback={<BundleLoader />}>
+        
 
         {teamsAccessInd ? (
             <CustomerTeamCardList
@@ -232,6 +220,9 @@ class Customer extends Component {
      <AddCustomerImportModal
         handleCustomerImportModal={this.props.handleCustomerImportModal}
         addCustomerImportModal={this.props.addCustomerImportModal}
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
+       translatedMenuItems={this.props.translatedMenuItems}
         />
          
       </React.Fragment>

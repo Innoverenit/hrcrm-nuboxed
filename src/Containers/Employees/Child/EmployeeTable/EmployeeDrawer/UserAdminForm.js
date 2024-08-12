@@ -1,27 +1,14 @@
-import React, { Component, useMemo } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { Button, Switch } from "antd";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import * as Yup from "yup";
-// import { base_url } from "../../../../../../Config/Auth";
-import { Spacer } from "../../../../../Components/UI/Elements";
-
-// import {
-//     addCandidateDate
-// }
-//   from "../../../../OpportunityAction";
+import { Formik, Form, Field } from "formik";
 import {addUserAdmin} from "../../../EmployeeAction"
-import { FlexContainer } from "../../../../../Components/UI/Layout";
+
 
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
-
-/**
- * yup validation scheme for creating a opportunity
- */
-
 
 class UserAdminForm extends Component {
     constructor(props) {
@@ -38,49 +25,22 @@ class UserAdminForm extends Component {
     this.setState({ convert: checked });
   };
 
-//   componentDidMount() {
-//     this.props.getRecruiterName();
-//     this.props.getAllSalesList();
-//   }
-
   render() {
 
- 
-
-
-
-    // const {
-    //   user: { userId },
-    //   candidateDate,
-    //   onboardDate
-     
-    // } = this.props;
-    // console.log("profile",this.props.profileId);
     return (
       <>
         <Formik
           initialValues={{
             provideDate: this.props.provideDate || dayjs(),
             // onboardInd:true,
-            role: this.state.convert ? "ADMIN" : "USER",
-            // profileId:this.props.profileId,
-            // candidateId:this.props.candidateId,
-
-           
-           
-
+            role: this.state.convert ? "ADMIN" : "USER",                         
 
           }}
           
           onSubmit={(values, { resetForm }) => {
             console.log(values);
             console.log(values);
-            
-
-           
-
-            //let newStartDate = dayjs(values.date).format("YYYY-MM-DD");
-
+                       
             this.props.addUserAdmin(
               {
                 ...values,
@@ -121,15 +81,10 @@ class UserAdminForm extends Component {
                               // disabled={this.state.availability}
                               checkedChildren="Admin"
                               unCheckedChildren="User"
-                            />
-                 
-                  
-                
-                </div>
-               
-               
+                            />                                            
+                </div>                          
               </div>
-              <FlexContainer justifyContent="space-between">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
               {this.state.convert&&(
               <Field
                       isRequired
@@ -145,11 +100,11 @@ class UserAdminForm extends Component {
                     />
                     )}
              
-                </FlexContainer>
+                </div>
               
                 
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <mt-3 />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -158,7 +113,7 @@ class UserAdminForm extends Component {
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Create */}
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>
@@ -169,14 +124,6 @@ class UserAdminForm extends Component {
 
 const mapStateToProps = ({ auth, employee, contact, customer }) => ({
     userAdmin:employee.userAdmin,
-    
-    // user: auth.userDetails,
-    //  employeeId: auth.userDetails.userId,
-    // candidateDate:opportunity.candidateDate,
-    // candidateRequirement:opportunity.candidateRequirement,
-    // profileId:opportunity.candidateRequirement.profileId
-    
-  
 });
 
 const mapDispatchToProps = (dispatch) =>

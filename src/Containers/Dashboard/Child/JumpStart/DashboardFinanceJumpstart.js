@@ -19,6 +19,16 @@ function DashboardFinanceJumpstart(props) {
      props.getFinaceOrderDetails(props.userId,props.timeRangeType)
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
+
+
+  useEffect(() => {
+    if(props.buttonName==="My View"){
+      props.getFinaceOrderDetails(props.userId,props.timeRangeType)
+
+    } else if(props.buttonName==="Enterprise"){
+    props.getFinaceOrderDetails(props.orgId,props.timeRangeType)
+    }
+ }, [props.buttonName,props.orgId,props.userId,props.timeRangeType]);
   return (
     <>
       <div class=" flex flex-row w-full" >

@@ -1,8 +1,7 @@
 import React, { useMemo } from "react";
-import { Title, ViewEditCard } from "../../../../Components/UI/Elements";
+import {  ViewEditCard } from "../../../../Components/UI/Elements";
 import styled from "styled-components";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 
 function TemplateProfileView(props) {
   console.log(props);
@@ -21,11 +20,7 @@ function TemplateProfileView(props) {
           color: "#40A9FF",
         }}
       >
-        {/* <FormattedMessage
-          id="app.templates"
-          defaultMessage="Templates"
-        /> */}
-        {/* Templates */}
+    
       </h1>
 
       {props.rule.map((item) => {
@@ -34,9 +29,7 @@ function TemplateProfileView(props) {
             <ViewEditCard>
               {({ viewType }, toggleViewType) =>
                 viewType === "view" ? (
-                  <FlexContainer
-                    justifyContent="center"
-                    alignItems="center"
+                  <div class=" flex flex-row flex-wrap items-center self-start justify-center grow shrink h-auto mr-auto "              
                     onClick={() => props.handleRuleClick(item)}
                     style={{
                       backgroundColor:
@@ -46,7 +39,7 @@ function TemplateProfileView(props) {
                     }}
                   >
                     <StageName>{item.rulesName}</StageName>
-                  </FlexContainer>
+                  </div>
                 ) : null
               }
             </ViewEditCard>

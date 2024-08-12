@@ -10,7 +10,6 @@ import { Button, Switch } from "antd";
 import { TextInput } from "../../../../../Components/UI/Elements";
 import ViewEditCard from "../../../../../Components/UI/Elements/ViewEditCard";
 import { elipsize } from "../../../../../Helpers/Function/Functions";
-import moment from "moment";
 import dayjs from "dayjs";
 import { date } from "yup";
 
@@ -95,7 +94,7 @@ class SettingsSingleHoliday extends Component {
                     // marginRight: "8%",
                   }}
                 >
-                  {`${moment(date).format("ll")}`}
+                  {`${dayjs(date).format("ll")}`}
                 </StageValue>
                 <StageValue
                   style={{

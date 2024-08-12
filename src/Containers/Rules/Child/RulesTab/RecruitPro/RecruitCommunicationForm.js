@@ -4,9 +4,7 @@ import { bindActionCreators } from "redux";
 import { Switch, Checkbox, Button, Popconfirm, message } from "antd";
 import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { StyledLabel } from "../../../../../Components/UI/Elements";
-import { Spacer } from "../../../../../Components/UI/Elements";
+
 import CheckboxGroup from "antd/lib/checkbox/Group";
 import * as Yup from "yup";
 import {
@@ -182,10 +180,7 @@ function RecruitCommunicationForm(props) {
                 overflow: "auto",
               }}
             >
-              <FlexContainer
-                justifyContent="space-between"
-                style={{ width: "100%" }}
-              >
+             <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[100%]">
                 <div
                   style={{
                     width: "44%",
@@ -195,7 +190,7 @@ function RecruitCommunicationForm(props) {
                   }}
                 >
                   <div>
-                    <StyledLabel
+                    <div class=" text-xs font-bold font-poppins
                       style={{
                         flexBasis: "13%",
                         marginTop: "0.625em",
@@ -204,9 +199,9 @@ function RecruitCommunicationForm(props) {
                       }}
                     >
                       Candidate
-                    </StyledLabel>
+                    </div>
                   </div>
-                  <Spacer />
+                  <mt-3 />
                   <div
                     style={{
                       display: "flex",
@@ -214,14 +209,14 @@ function RecruitCommunicationForm(props) {
                     }}
                   >
                     <div style={{ width: "100%", marginTop: "0.625em" }}>
-                      <StyledLabel
+                      <div class=" text-xs font-bold font-poppins
                         style={{
                           flexBasis: "13%",
                           marginTop: "0.625em",
                         }}
                       >
                         Update at each stage?
-                      </StyledLabel>
+                      </div>
                     </div>
 
                     <div style={{ marginTop: "0.625em" }}>
@@ -244,7 +239,7 @@ function RecruitCommunicationForm(props) {
                     </div>
                   </div>
 
-                  <Spacer />
+                  <mt-3 />
                   <div
                     style={{
                       display: "flex",
@@ -252,14 +247,14 @@ function RecruitCommunicationForm(props) {
                     }}
                   >
                     <div style={{ width: "100%", marginTop: "0.625em" }}>
-                      <StyledLabel
+                      <div class=" text-xs font-bold font-poppins
                         style={{
                           flexBasis: "13%",
                           marginTop: "0.625em",
                         }}
                       >
                         Email Offer?
-                      </StyledLabel>
+                      </div>
                     </div>
                     <div style={{ marginTop: "0.625em" }}>
                     <Popconfirm
@@ -280,10 +275,10 @@ function RecruitCommunicationForm(props) {
                        </Popconfirm>
                     </div>
                   </div>
-                  <Spacer />
+                  <mt-3 />
                   {values.candidateToggleInd && (
                     <>
-                      <StyledLabel>To </StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">To </div>
                       <div style={{ borderBottom: "0.0625em solid #E9E9E9" }}>
                         <Checkbox
                           indeterminate={indeterminateForInternal}
@@ -298,11 +293,8 @@ function RecruitCommunicationForm(props) {
                         value={checkedListForInternal}
                         onChange={onChangeForInternal}
                       />
-                      <Spacer marginTop="0.5em" />
-                      <FlexContainer
-                        style={{ width: "100%" }}
-                        justifyContent="space-between"
-                      >
+                      <mt-3 marginTop="0.5em" />
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                         <span style={{ width: "100%" }}>
                           <Field
                             isRequired
@@ -326,7 +318,7 @@ function RecruitCommunicationForm(props) {
                             }}
                           />
                         </span>
-                      </FlexContainer>
+                      </div>
                       {!props.template.length && (
                         <Link to={`/template/${0}`}>
                           <p style={{ marginTop: "0.3125em" }}>
@@ -334,7 +326,7 @@ function RecruitCommunicationForm(props) {
                           </p>
                         </Link>
                       )}
-                      <Spacer marginTop="0.5em" />
+                      <mt-3 marginTop="0.5em" />
                       <div
                         style={{
                           display: "flex",
@@ -342,14 +334,14 @@ function RecruitCommunicationForm(props) {
                         }}
                       >
                         <div style={{ width: "100%", marginTop: "0.625em" }}>
-                          <StyledLabel
+                          <div class=" text-xs font-bold font-poppins
                             style={{
                               flexBasis: "13%",
                               marginTop: "0.625em",
                             }}
                           >
                             Include offer acceptance link?
-                          </StyledLabel>
+                          </div>
                         </div>
                         <div style={{ marginTop: "0.625em" }}>
                         <Popconfirm
@@ -370,7 +362,7 @@ function RecruitCommunicationForm(props) {
                             </Popconfirm>
                         </div>
                       </div>
-                      <Spacer marginTop="0.5em" />
+                      <mt-3 marginTop="0.5em" />
                       <div
                         style={{
                           display: "flex",
@@ -378,14 +370,14 @@ function RecruitCommunicationForm(props) {
                         }}
                       >
                         <div style={{ width: "100%", marginTop: "0.625em" }}>
-                          <StyledLabel
+                          <div class=" text-xs font-bold font-poppins
                             style={{
                               flexBasis: "13%",
                               marginTop: "0.625em",
                             }}
                           >
                             Also include PDF attachment
-                          </StyledLabel>
+                          </div>
                         </div>
                         <div style={{ marginTop: "0.625em" }}>
                         <Popconfirm
@@ -408,7 +400,7 @@ function RecruitCommunicationForm(props) {
                            </Popconfirm>
                         </div>
                       </div>
-                      <Spacer />
+                      <mt-3 />
                       <Checkbox
                         onChange={handleReminderCandidate}
                         checked={reminderCandidate}
@@ -416,10 +408,10 @@ function RecruitCommunicationForm(props) {
                         Send auto reminder
                       </Checkbox>
 
-                      <Spacer />
+                      <mt-3 />
                       {reminderCandidate && (
                         <>
-                          <FlexContainer>
+                        <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                             <div style={{ width: "47%" }}>
                               <Field
                                 isRequired
@@ -451,7 +443,7 @@ function RecruitCommunicationForm(props) {
                                 }}
                               />
                             </div>
-                          </FlexContainer>
+                          </div>
                         </>
                       )}
                     </>
@@ -467,7 +459,7 @@ function RecruitCommunicationForm(props) {
                   }}
                 >
                   <div>
-                    <StyledLabel
+                    <div class=" text-xs font-bold font-poppins
                       style={{
                         flexBasis: "13%",
                         marginTop: "0.625em",
@@ -476,9 +468,9 @@ function RecruitCommunicationForm(props) {
                       }}
                     >
                       Sponsor
-                    </StyledLabel>
+                    </div>
                   </div>
-                  <Spacer />
+                  <mt-3 />
                   <div
                     style={{
                       display: "flex",
@@ -487,14 +479,14 @@ function RecruitCommunicationForm(props) {
                   >
                     {" "}
                     <div style={{ width: "100%", marginTop: "0.625em" }}>
-                      <StyledLabel
+                      <div class=" text-xs font-bold font-poppins
                         style={{
                           flexBasis: "13%",
                           marginTop: "0.625em",
                         }}
                       >
                         Email for approval on candidate's acceptance?
-                      </StyledLabel>
+                      </div>
                     </div>
                     <div style={{ width: "20%", marginTop: "0.625em" }}>
                     <Popconfirm
@@ -515,13 +507,13 @@ function RecruitCommunicationForm(props) {
                       </Popconfirm>
                     </div>
                   </div>
-                  <Spacer />
+                  <mt-3 />
                   {values.sponsorToggleInd && (
                     <>
-                      <StyledLabel>Send</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Send</div>
 
-                      <StyledLabel>to </StyledLabel>
-                      <Spacer />
+                      <div class=" text-xs font-bold font-poppins text-black">to </div>
+                      <mt-3 />
                       <div style={{ borderBottom: "0.0625em solid #E9E9E9" }}>
                         <Checkbox
                           indeterminate={indeterminateForInternal1}
@@ -536,11 +528,8 @@ function RecruitCommunicationForm(props) {
                         value={checkedListForInternal1}
                         onChange={onChangeForInternal1}
                       />
-                      <Spacer marginTop="0.9375em" />
-                      <FlexContainer
-                        style={{ width: "100%" }}
-                        justifyContent="space-between"
-                      >
+                      <mt-3 marginTop="0.9375em" />
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[100%]">
                         <span style={{ width: "100%" }}>
                           <Field
                             isRequired
@@ -564,7 +553,7 @@ function RecruitCommunicationForm(props) {
                             }}
                           />
                         </span>
-                      </FlexContainer>
+                      </div>
                       {!props.template.length && (
                         <Link to={`/template/${0}`}>
                           <p style={{ marginTop: "0.3125em" }}>
@@ -573,7 +562,7 @@ function RecruitCommunicationForm(props) {
                         </Link>
                       )}
 
-                      <Spacer marginTop="0.9375em" />
+                      <mt-3 marginTop="0.9375em" />
 
                       <div
                         style={{
@@ -582,14 +571,14 @@ function RecruitCommunicationForm(props) {
                         }}
                       >
                         <div style={{ width: "100%", marginTop: "0.625em" }}>
-                          <StyledLabel
+                          <div class=" text-xs font-bold font-poppins
                             style={{
                               flexBasis: "13%",
                               marginTop: "0.625em",
                             }}
                           >
                             Include approval link?
-                          </StyledLabel>
+                          </div>
                         </div>
                         <div style={{ width: "20%", marginTop: "0.625em" }}>
                         <Popconfirm
@@ -610,37 +599,10 @@ function RecruitCommunicationForm(props) {
                           </Popconfirm>
                         </div>
                       </div>
-                      <Spacer marginTop="0.9375em" />
-                      {/* <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <div style={{ width: "100%", marginTop: "0.625em" }}>
-                          <StyledLabel
-                            style={{
-                              flexBasis: "13%",
-                              marginTop: "0.625em",
-                            }}
-                          >
-                            Also include PDF attachment
-                          </StyledLabel>
-                        </div>
-                        <div style={{ width: "40%", marginTop: "0.625em" }}>
-                          <Field
-                            disabled
-                            name="sponserAttachmentInd"
-                            component={SwitchComponent}
-                            data={values.sponserAttachmentInd}
-                            checkedChildren={"Yes"}
-                            unCheckedChildren={"No"}
-                            width={"5em"}
-                          />
-                        </div>
-                      </div> */}
+                      <mt-3 marginTop="0.9375em" />
+                    
                       <div style={{ marginTop: "17%" }}></div>
-                      <Spacer />
+                      <mt-3 />
                       <Checkbox
                         onChange={handleReminderSponsor}
                         checked={reminderSponsor}
@@ -648,10 +610,10 @@ function RecruitCommunicationForm(props) {
                         Send auto reminder
                       </Checkbox>
 
-                      <Spacer />
+                      <mt-3 />
                       {reminderSponsor && (
                         <>
-                          <FlexContainer>
+                          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                             <div style={{ width: "47%" }}>
                               <Field
                                 isRequired
@@ -683,19 +645,16 @@ function RecruitCommunicationForm(props) {
                                 }}
                               />
                             </div>
-                          </FlexContainer>
+                          </div>
                         </>
                       )}
                     </>
                   )}
                 </div>
-              </FlexContainer>
+              </div>
             </div>
-            <Spacer />
-            <FlexContainer
-              justifyContent="flex-end"
-              style={{ marginRight: "0.625em" }}
-            >
+            <mt-3 />
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto  mr-1 ">
               <Popconfirm
                 title="Do you wish to proceed?"
                 onConfirm={() =>
@@ -733,7 +692,7 @@ function RecruitCommunicationForm(props) {
                   Update
                 </Button>
               </Popconfirm>
-            </FlexContainer>
+            </div>
           </Form>
         )}
       </Formik>

@@ -4,9 +4,8 @@ import { bindActionCreators } from "redux";
 import { Formik, Form, } from "formik";
 import {
   Select,
-  StyledLabel,
+  
 } from "../../../../Components/UI/Elements";
-import { MainWrapper } from "../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import { Button, Switch } from "antd";
 import {
@@ -76,7 +75,7 @@ const handleDeptChange = (event) => {
         }}
       >
         {({ values }) => (
-        <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
+      <div class="mr-5 ml-5 h-[28rem] overflow-auto"> 
         <Form className="form-background">
           <div class=" flex justify-between w-full"
           >
@@ -86,7 +85,7 @@ const handleDeptChange = (event) => {
               >           
                 <div>
                      
-                      <StyledLabel>Assign To</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Assign To</div>
                         <Switch
                           style={{ width: "5em" }}
                           onChange={handleSingleMultiple}
@@ -124,8 +123,7 @@ const handleDeptChange = (event) => {
     <option value="">select user</option>
     {props.departmentwiseUser.map((item, index) => (
       <option key={index}
-      // disabled
-      // disabled={selectedDept}
+   
        value={item.employeeId}>
         {item.empName}
       </option>
@@ -134,9 +132,8 @@ const handleDeptChange = (event) => {
   </div>                  
 </> 
         )}                                                  
-                                         </div>
-                                           
-                                          )}
+                                         </div>                                          
+                                         )}
             </div>
           </div>       
               <div class=" flex justify-end mt-3" >
@@ -151,7 +148,7 @@ const handleDeptChange = (event) => {
               </div>
   
         </Form>
-      </MainWrapper>
+      </div>
         )}
       </Formik>
     </>

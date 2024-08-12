@@ -47,7 +47,7 @@ const SearchProductInInventory = (props) => {
                 <>
                     <div class=" flex justify-around">
                         <div class=" w-2/5">
-                            <label>Product</label>
+                            <div class="font-bold text-xs font-poppins text-black">Product</div>
                             <Select
                                 value={product}
                                 onChange={(value) =>
@@ -60,7 +60,7 @@ const SearchProductInInventory = (props) => {
                             </Select>
                         </div>
                         <div class=" w-2/5">
-                            <label>Location</label>
+                            <div class="font-bold text-xs font-poppins text-black">Location</div>
                             <Select
                                 value={location}
                                 onChange={(value) =>

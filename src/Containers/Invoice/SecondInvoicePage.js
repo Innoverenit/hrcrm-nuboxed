@@ -1,15 +1,13 @@
 import { Field, Form, Formik } from 'formik'
 import React from 'react'
 import { FormattedMessage } from "react-intl";
-import { MainWrapper } from "../../Components/UI/Elements";
-import { Spacer } from "../../Components/UI/Elements";
-import { TimePicker } from "../../Components/Forms/Formik/TimePicker";
+
 import { InputComponent } from '../../Components/Forms/Formik/InputComponent'
 
 function SecondInvoicePage() {
     return (
         <>
-        <MainWrapper >
+<div class="mr-5 ml-5">
             <Formik>
                 <Form style={{ minHeight:"30vh"}}>
                 <div class=" flex justify-between ">
@@ -33,7 +31,7 @@ function SecondInvoicePage() {
                           }}
                         />
              </div>
-             <Spacer />
+             <div class=" mt-3" />
                     <div class=" w-5/12">
                   <Field
                           isRequired
@@ -59,7 +57,7 @@ function SecondInvoicePage() {
            </div>
                 </Form>
             </Formik>
-            </MainWrapper>
+            </div>
         </>
     )
 }

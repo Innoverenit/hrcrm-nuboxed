@@ -51,9 +51,7 @@ const PitchCardList = (props) => {
     props.getPitchHot(props.userId, page,"creationdate","hot");
     props.getPitchCold(props.userId, page,"creationdate","cold");
     props.getPitchWarm(props.userId, page,"creationdate","warm");
-    setPage(page + 1);
-    // props.getSectors();
-    // props.getCountries();
+    setPage(page + 1)  
   }, []);
 
   useEffect(() => {
@@ -173,8 +171,6 @@ const handleLoadMore2 = () => {
   }
   }, 100);
 };
-
-
 
 
   function handleSetCurrentLeadsId(item) {
@@ -367,15 +363,11 @@ const countryCode = item.countryAlpha2Code
                                         <div class="max-sm:w-full" >
                                         <Tooltip>
                                           <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
-                                            {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">
-                                            Name
-                                            </div> */}
+                                                                {/* Name
+                                          */}
                                             <div class=" text-xs max-sm:text-xs flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
-                                                
-                                                {/* <Link
-                                                 toUrl={`customer/${item.customerId}`}
-                                                 title={`${item.name}`} 
-                                               > */}
+                                                      {/* {/* <Link */}
+                                              
                                                {item.firstName}
                                                &nbsp;
                                                {item.middleName}
@@ -389,7 +381,7 @@ const countryCode = item.countryAlpha2Code
                                                  </span>
                                                ) : null}
                                               
-                                                                                   </div>
+                                                    </div>
                                             </div>
                                         </Tooltip>
                                         </div>
@@ -398,8 +390,8 @@ const countryCode = item.countryAlpha2Code
       
      </div>  
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                <div className=" flex font-medium   w-[7vw] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
-                           {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Phone # </div> */}
+                <div className=" flex   w-[7vw] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                           {/* Phone #  */}
 
                 <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                   {item.countryDialCode && item.phoneNumber
@@ -408,18 +400,16 @@ const countryCode = item.countryAlpha2Code
                 </div>
 
                        </div>
-                       <div className=" flex font-medium  w-[2.5vw] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                  
-
-                                  {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Country</div> */}
+                       <div className=" flex   w-[2.5vw] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                 
+                                  {/* Country */}
                                   <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                   <CountryFlag1 countryCode={countryCode} />
                       &nbsp;
                       {countryCode}
                                     </div>
                               </div>
-                              <div className=" flex font-medium   w-[6vw] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
-                           {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                              <div className=" flex   w-[6vw] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                          {/* Company  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.companyName || "None"}
 </div>
@@ -428,36 +418,36 @@ const countryCode = item.countryAlpha2Code
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       
-                       <div className=" flex font-medium   w-[3.1vw] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                           {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                       <div className=" flex   w-[3.1vw] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                            {/* Company  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.source || "None"}
 </div>
 
                        </div>
-                       <div className=" flex font-medium   w-[3.12vw] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                           {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                       <div className=" flex   w-[3.12vw] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                        {/* Company  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.sector || "None"}
 </div>
 
                        </div>
                        <div className=" flex font-medium items-center w-[3.121vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                                   {/* # Deals */}
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {Category}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[4vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                                   {/* # Deals */}
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.unitOfShare}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[4.181vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                                  {/* # Deals */}
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                    
@@ -465,14 +455,14 @@ const countryCode = item.countryAlpha2Code
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[4.121vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                                   {/* # Deals */}
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.shareCurrency} {item.valueOfShare}
                                     </div>
                                 </div>
                        <div className=" flex font-medium  w-[4vw] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
-                                    {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
+                                   {/* Assigned */}
 
                                     <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     
@@ -495,14 +485,11 @@ const countryCode = item.countryAlpha2Code
                         )}
                         </>
               )}
-                      </span>
-             
+                      </span>       
                                     </div>
                                 </div>
                                 <div className=" flex font-medium  w-[2.5vw] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                       
-                       {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Owner</div> */}
-
+                                             {/* Owner */}
                        <span>
                        <Tooltip title={item.ownerName}>
                 <div class="max-sm:flex justify-end">
@@ -519,14 +506,12 @@ const countryCode = item.countryAlpha2Code
             </span>
                    </div>
                                 </div>
-                                
-                                
+                                                     
              <div class="rounded-full bg-white  h-5 cursor-pointer w-4 max-xl:w-[1.5rem]">
                     {item.url !== null ? (
               <Tooltip title={item.url}>
                 <span className=" cursor-pointer"
-                  //type="edit"
-                 
+                  //type="edit"             
                   onClick={() => {}}
                 >
                   {" "}
@@ -540,11 +525,8 @@ const countryCode = item.countryAlpha2Code
             ) : null}
                         </div>  
                    <div className=" flex font-medium flex-col w-4 max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                                    {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Qualify</div> */}
-         
-                        
-                                    <div class=" text-xs  font-poppins">
-                {/* qual */}
+                                  {/* Qualif */}                        
+                                    <div class=" text-xs  font-poppins">              
                                     </div>
                                     <div>
                                     {item.companyName ? (
@@ -630,11 +612,9 @@ const countryCode = item.countryAlpha2Code
                   
                 }}
               />
-            </Tooltip>
-        
+            </Tooltip>      
             </div>
-                                )}
-                               
+                                )}                         
                         <div>
 
                         <StyledPopconfirm
@@ -651,7 +631,6 @@ const countryCode = item.countryAlpha2Code
              </Tooltip>
           </StyledPopconfirm>
                         </div>
-
                                 </div>
                       </div>
                    </div>
@@ -665,42 +644,30 @@ const countryCode = item.countryAlpha2Code
     <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] bg-orange-600 text-white  justify-center ">Warm</div>
         <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
-        {translatedMenuItems[0]}{/* <FormattedMessage
-                  id="app.name"
-                  defaultMessage="name"
-                /> */}
+        {translatedMenuItems[0]}
+        {/* Name */}
                 </div>
         <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
         <div className=" w-[7.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[1]}  {/* <FormattedMessage
-                  id="app.mobile#"
-                  defaultMessage="mobile#"
-                /> */}
+        {translatedMenuItems[1]} 
+        {/* mobile# */}
                 </div>
         <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
         <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
-        {translatedMenuItems[2]}{/* <FormattedMessage
-                  id="app.company"
-                  defaultMessage="company"
-                /> */}
+        {translatedMenuItems[2]}
+        {/* company */}
                 </div>
                     <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                    {translatedMenuItems[3]} {/* <FormattedMessage
-                  id="app.Source"
-                  defaultMessage="Source"
-                /> */}
+                    {translatedMenuItems[3]}
+                    {/* source */}
                 </div>
                      <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {translatedMenuItems[4]}{/* <FormattedMessage
-                  id="app.Sector"
-                  defaultMessage="Sector"
-                /> */}
+                     {translatedMenuItems[4]}
+                   {/* sector */}
                 </div>
                  <div className="w-[5.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                 {translatedMenuItems[5]} {/* <FormattedMessage
-                  id="app.Category"
-                  defaultMessage="Category"
-                /> */}
+                 {translatedMenuItems[5]} 
+                 {/* Category */}
           </div>
           <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[6]}
@@ -715,16 +682,12 @@ const countryCode = item.countryAlpha2Code
           {/* Assigned */}
           </div>
         <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[9]}        {/* <FormattedMessage
-                  id="app.owner"
-                  defaultMessage="owner" 
-                /> */}
+        {translatedMenuItems[9]}       
+        {/* owner */}
                 </div>
         <div className="w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
-        {translatedMenuItems[10]} {/* <FormattedMessage
-                  id="app.qualify"
-                  defaultMessage="qualify"
-                /> */}
+        {translatedMenuItems[10]} 
+        {/* qualify */}
                 </div>
 
 
@@ -770,11 +733,6 @@ const countryCode = item.countryAlpha2Code
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                                 <div class="flex flex-row items-center w-[6.1rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
-
-
-
-
-
 
 <div>
 <ButtonGroup>
@@ -860,7 +818,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                          {/* </Link> */}
                                          &nbsp;&nbsp;
                                          {date === currentdate ? (
-                                           <span class="text-[tomato] mt-[0.4rem] font-bold" >
+                                           <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold" >
                                              New
                                            </span>
                                          ) : null}
@@ -874,73 +832,67 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 
 </div>  
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Phone # </div> */}
+                          <div className=" flex   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                   {/* Phone #  */}
 
                      <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.countryDialCode && item.phoneNumber
 ? `${item.countryDialCode} ${item.phoneNumber}`
 : 'None'}
 </div>
-
                  </div>
-                 <div className=" flex font-medium  w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                            
-
-                            {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Country</div> */}
+                 <div className=" flex   w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                           
+                           {/* Country */}
                             <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <CountryFlag1 countryCode={countryCode} />
                 &nbsp;
                 {countryCode}
                               </div>
                         </div>
-                        <div className=" flex font-medium   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                        <div className=" flex   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                  {/* Company  */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "None"}
 </div>
-
                  </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 
-                 <div className=" flex font-medium   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                 <div className=" flex    w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      {/* Company  */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.source || "None"}
 </div>
-
                  </div>
-                 <div className=" flex font-medium   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                 <div className=" flex   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                     {/* Company  */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "None"}
 </div>
 
                  </div>
-                 <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
-
+                 <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                         {/* Deals */}
                               <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {Category}
                               </div>
                           </div>
-                          <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                          <div className=" flex items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                               {/* Deals */}
 
                               <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.unitOfShare}
                               </div>
                           </div>
-                          <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                          <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                             {/* # Deals */}
 
                               <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.valueOfShare}
                               </div>
                           </div>
-                 <div className=" flex font-medium  w-[4.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
-                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
+                 <div className=" flex w-[4.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                           {/* Assigned */}
 
                               <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               
@@ -967,9 +919,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
        
                               </div>
                           </div>
-                          <div className=" flex font-medium  w-[2.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                 
-                 {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Owner</div> */}
+                          <div className=" flex  w-[2.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">               
+                {/* Owner */}
 
                  <span>
                  <Tooltip title={item.ownerName}>
@@ -1031,12 +982,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>       
     
 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-<div class="flex justify-between items-center max-sm:w-[50%] ">
-
-
-          
-                      
-                          
+<div class="flex justify-between items-center max-sm:w-[50%] ">                                              
              <div >
                         <Tooltip title="Notes">
                         <NoteAltIcon
@@ -1047,7 +993,6 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                     className="!text-icon cursor-pointer text-[green]"
                   />
               </Tooltip>
-
       </div>
       <div>
                   <Tooltip
@@ -1100,8 +1045,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       </Tooltip>
   
       </div>
-                          )}
-                         
+                          )}                   
                   <div>
 
                   <StyledPopconfirm
@@ -1117,61 +1061,43 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
        )} 
        </Tooltip>
     </StyledPopconfirm>
-                  </div>
-                
-                
+                  </div>                          
               </div>
               </div>
                 </div>
-                      </div>
-                         
-
-
+                      </div>                       
                     )
                 })}
                   </InfiniteScroll>
       </div>
-
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] bg-blue-600 text-white justify-center ">Cold</div>
         <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
-        {translatedMenuItems[0]}  {/* <FormattedMessage
-                  id="app.name"
-                  defaultMessage="name"
-                /> */}
+        {translatedMenuItems[0]} 
+        {/* name */}
                 </div>
         <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
         <div className=" w-[7.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[1]}  {/* <FormattedMessage
-                  id="app.mobile#"
-                  defaultMessage="mobile#"
-                /> */}
+        {translatedMenuItems[1]} 
+        {/* mobile# */}
                 </div>
         <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
         <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
-        {translatedMenuItems[2]}   {/* <FormattedMessage
-                  id="app.company"
-                  defaultMessage="company"
-                /> */}
+        {translatedMenuItems[2]} 
+        {/* company */}
                 </div>
                     <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                    {translatedMenuItems[3]}   {/* <FormattedMessage
-                  id="app.Source"
-                  defaultMessage="Source"
-                /> */}
+                    {translatedMenuItems[3]}   
+                    {/* source */}
                 </div>
                      <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {translatedMenuItems[4]}   {/* <FormattedMessage
-                  id="app.Sector"
-                  defaultMessage="Sector"
-                /> */}
+                     {translatedMenuItems[4]}  
+                     {/* sector */}
                 </div>
                  <div className="w-[5.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                 {translatedMenuItems[5]}   {/* <FormattedMessage
-                  id="app.Category"
-                  defaultMessage="Category"
-                /> */}
+                 {translatedMenuItems[5]}  
+                 {/* category */}
           </div>
           <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[6]}  
@@ -1190,10 +1116,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
           {/* owner */}
                 </div>
         <div className="w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
-        {translatedMenuItems[10]}  {/* <FormattedMessage
-                  id="app.qualify"
-                  defaultMessage="qualify"
-                /> */}
+        {translatedMenuItems[10]} 
+        {/* qualify */}
                 </div>
       </div>
       <InfiniteScroll
@@ -1319,7 +1243,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                          {/* </Link> */}
                                          &nbsp;&nbsp;
                                          {date === currentdate ? (
-                                           <span class="text-[tomato] mt-[0.4rem] font-bold" >
+                                           <span class="text-[tomato]  text-[0.65rem ]mt-[0.4rem] font-bold" >
                                              New
                                            </span>
                                          ) : null}          
@@ -1357,42 +1281,42 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 
                  <div className=" flex  w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+{/* Company  */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.source || "None"}
 </div>
 
                  </div>
                  <div className=" flex font-medium   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
+                  {/* Company */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "None"}
 </div>
 
                  </div>
                  <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                            {/* # Deals */}
 
                               <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {Category}
                               </div>
                           </div>
                           <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                             {/* # Deals */}
 
                               <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.unitOfShare}
                               </div>
                           </div>
                           <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                              {/* # Deals */}
 
                               <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.valueOfShare}
                               </div>
                           </div>
                  <div className=" flex font-medium  w-[4.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
-                              {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
+                             {/* Assigned */}
 
                               <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               

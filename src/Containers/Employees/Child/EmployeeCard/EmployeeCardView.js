@@ -1,4 +1,4 @@
-import React, { useState, lazy,} from "react";
+import React, { useState, lazy, Suspense} from "react";
 import { MultiAvatar2, } from '../../../../Components/UI/Elements'
 import {  Tooltip, Badge } from 'antd'
 import { connect } from 'react-redux'
@@ -27,7 +27,6 @@ import {
 import { Link } from 'react-router-dom';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { elipsize } from "../../../../Helpers/Function/Functions";
-import EmployeeSearchedData from "../EmployeeTable/EmployeeSearchedData";
 import EmployeeSearchedData1 from "./EmployeeSearchedData1";
 const EmployeeDrawerForAdmin =lazy(()=>import("../EmployeeTable/EmployeeDrawer/EmployeeDrawerForAdmin"));
 const EmployeePulseDrawerModal =lazy(()=>import("../EmployeeTable/EmployeePulseDrawerModal"));
@@ -162,7 +161,7 @@ function handleSetCurrentUser(item) {
           <div class="  text-xs mt-1  font-poppins ">Reports To:    <span>
           {item.reportingManagerName 
                         ? `${item.reportingManagerName}`
-                        : <label class="text-[red]" >Not Assigned</label>}
+                        : <div class="text-[red]" >Not Assigned</div>}
                       </span>
          </div>
           <div class=" flex flex-row justify-between mt-[0.5rem] w-full items-end">
@@ -325,6 +324,7 @@ function handleSetCurrentUser(item) {
 }
               </div>
    )} 
+     <Suspense fallback={<BundleLoader />}>
               <UpdateEmployeeModal
               userData={userData}
        currentEmployeeId={currentEmployeeId}
@@ -365,7 +365,7 @@ function handleSetCurrentUser(item) {
       <OpenNotifyDrawer
       currentEmployeeId={currentEmployeeId}
        openNotifydrwr={props.openNotifydrwr} handleNotifyDrawer={props.handleNotifyDrawer}/>
-
+  </Suspense>
             </>
       
     

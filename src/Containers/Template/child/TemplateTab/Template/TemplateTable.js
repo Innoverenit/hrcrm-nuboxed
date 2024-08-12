@@ -8,7 +8,7 @@ import {
 import AddTemplateViewModal from "../Template/AddTemplateViewModal"
 import { withRouter } from "react-router-dom";
 import { getTemplate } from "../../../../Rules/RulesAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { setCurrentEmail,handleTemplateViewModal } from "../../../../Rules/RulesAction";
 import { FormattedMessage } from "react-intl";
 import { EyeInvisibleOutlined } from "@ant-design/icons";
@@ -99,7 +99,7 @@ class EmployeeTable extends React.Component {
         />,
         width: "15%",
         render: (name, item, i) => {
-          return <span>{moment(item.creationDate).format("YYYY-MM-DD")}</span>;
+          return <span>{dayjs(item.creationDate).format("YYYY-MM-DD")}</span>;
         },
       },
 

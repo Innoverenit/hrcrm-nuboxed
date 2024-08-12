@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Formik, Form, Field } from "formik";
 import { Button } from "antd";
-// import { handleMapModal } from "../../ProfileAction";
-
 import axios from "axios";
 import { base_url } from "../../../Config/Auth";
 import { FormattedMessage } from "react-intl";
@@ -13,13 +11,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
     Title,
-    SubTitle,
     MultiAvatar,
 } from "../../../Components/UI/Elements";
-import { FlexContainer } from "../../../Components/UI/Layout";
-// import { ActionIcon, Leaflet } from "../../../../Components/Utils";
 import { AddressComponent } from "../../../Components/Common";
-// import MapPopupMarker from "./MapPopupMarker";
 import L from "leaflet";
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -100,12 +94,8 @@ class OverviewView extends Component {
             });
         return (
             <>
-                <FlexContainer justifyContent="space-between">
-                    <FlexContainer
-                        justifyContent="flex-start"
-                        flexWrap="nowrap"
-                        style={{ width: "85%" }}
-                    >
+   <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+   <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[85%] ">
                         <div style={{ width: "20%" }}>
                             <MultiAvatar
                                 primaryTitle={leaveFetching.employeeName}
@@ -114,17 +104,18 @@ class OverviewView extends Component {
                             />
                         </div>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <FlexContainer flexDirection="column" style={{ width: "80%" }}>
+            <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[80%] ">
                             <Title
                                 overflow="hidden"
                                 textOverflow="ellipsis"
                                 fontSize={"1.375em"}
                             >{`${leaveFetching.employeeName || ""}  ${leaveFetching.lastName || ""}`}</Title>
-                        </FlexContainer>
-                    </FlexContainer>
-                    <FlexContainer style={{ width: "15%" }} justifyContent="flex-end">                   
-                    </FlexContainer>
-                </FlexContainer>
+                        </div>
+                    </div>
+
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto w-[15%] ">                 
+                    </div>
+                </div>
 
                 <StyledModal
                     title={`${leaveFetching.employeeName || ""} ${leaveFetching.middleName ||
@@ -137,7 +128,7 @@ class OverviewView extends Component {
                     footer={null}
                 >
                     <>
-                        <FlexContainer>
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                             {!address ? (
                                 <>                             
                                     {addAddressVisible && (
@@ -149,11 +140,7 @@ class OverviewView extends Component {
                                     )}
                                 </>
                             ) : null}
-                            <FlexContainer
-                                justifyContent="space-between"
-                                alignItems="flex-start"
-                                flexWrap="nowrap"
-                            >
+                            <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">                        
                                 <div>
                                     <div className="product3" style={{ width: "180" }}>
                                         {address &&
@@ -167,35 +154,12 @@ class OverviewView extends Component {
                                                 />
                                             ))}
                                     </div>
-                                    {/* <OpenTripPlanner
-                    address={address && address.length && address[0]}
-                    userAddress={userAddress[0]}
-                  /> */}
+                        
                                 </div>
                                 <div class="vl"></div>
-                                {/* <div style={{ alignSelf: "flex-end" }}>
-                                    {markers && (
-                                        <Leaflet
-                                            height={400}
-                                            width={500}
-                                            margin={5}
-                                            zoom={9}
-                                            MyPopupMarker={MapPopupMarker}
-                                            centerPosition={
-                                                centerPosition && centerPosition.length
-                                                    ? centerPosition
-                                                    : [
-                                                        Number(51.92301029999999),
-                                                        Number(4.470038700000032),
-                                                    ]
-                                            }
-                                            // centerPosition={[Number(51.92301029999999), Number(4.470038700000032)]}
-                                            markers={markers}
-                                        />
-                                    )}
-                                </div> */}
-                            </FlexContainer>
-                        </FlexContainer>
+                             
+                            </div>
+                        </div>
                     </>
                 </StyledModal>
             </>

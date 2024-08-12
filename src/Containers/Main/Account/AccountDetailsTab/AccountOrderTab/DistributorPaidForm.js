@@ -1,18 +1,22 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import * as Yup from "yup";
 import { Button } from "antd";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { addPaidOrder, getPaymentMode } from "../../../Account/AccountAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import { FormattedMessage } from "react-intl";
 import { getCurrency } from "../../../../Auth/AuthAction";
 import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
-
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const DistributorSchema = Yup.object().shape({
+  paymentMode: Yup.string().required("Input required"),
+});
 function DistributorPaidForm(props) {
 
   const currencyOption = props.currencies.map((item) => {
@@ -39,6 +43,7 @@ function DistributorPaidForm(props) {
         initialValues={{
           date: "",
           paymentAmount: "",
+          invoiceId:"",
           paymentMode: "",
           remarks: "",
           docId: "",
@@ -50,9 +55,10 @@ function DistributorPaidForm(props) {
           approveByFinanceInd: false,
           orderId: props.particularRowData.orderId,
         }}
+        validationSchema={DistributorSchema}
 
         onSubmit={(values, { resetForm }) => {
-          // let newEndDate = moment(values.date).format("YYYY-MM-DD");
+          // let newEndDate = dayjs(values.date).format("YYYY-MM-DD");
           props.addPaidOrder(
             {
               ...values,
@@ -95,14 +101,14 @@ function DistributorPaidForm(props) {
                   </div>
                   <div class="w-[31%]">
                     <Field
-                      name="paymentAmount"
+                      name="invoiceId"
                       label="Invoice Id"
                       isRequired
                       isColumn
                       inlineLabel
                       width={"100%"}
                       component={InputComponent}
-                      value={values.paymentAmount}
+                      value={values.invoiceId}
                     />
                   </div>
                   <div class="w-[31%]">

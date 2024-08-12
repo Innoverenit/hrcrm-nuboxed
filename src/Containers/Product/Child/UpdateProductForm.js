@@ -5,16 +5,13 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { base_url2 } from "../../../Config/Auth";
 import * as Yup from "yup";
-import { Spacer} from "../../../Components/UI/Elements";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import MultiImageUpload from "../../../Components/MultiImageUpload";
 import { updateProduct } from "../ProductAction";
 import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { CurrencySymbol } from "../../../Components/Common";
 import { getWorkflowList } from "../../Production/ProductionAction";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import ProductImagesView from "./ProductImagesView";
 
 const ProductSchema = Yup.object().shape({
@@ -241,7 +238,7 @@ imageIds:[],
                         style={{ flexBasis: "80%" }}
                       />
                     </div>
-                    <Spacer />
+                    <div class=" mt-3" />
                     <div class="w-[47%]">
                       <Field
                         defaultValue={{
@@ -300,7 +297,7 @@ imageIds:[],
                         style={{ flexBasis: "30%" }}
                       />
                     </div>
-                    <Spacer />
+                    <div class=" mt-3" />
                  <div class="w-[30%]">
                     <Field
                         name="bestBefore"
@@ -326,7 +323,7 @@ imageIds:[],
                   </div> */}
 <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>Weight</label>
+                    <div class="font-bold text-xs font-poppins text-black">Weight</div>
                       <Field
                         name="weight"
                         isColumn
@@ -336,7 +333,7 @@ imageIds:[],
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>Length</label>
+                    <div class="font-bold text-xs font-poppins text-black">Length</div>
                       <Field
                         name="length"
                         //label="UOM"
@@ -352,7 +349,7 @@ imageIds:[],
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>Width</label>
+                    <div class="font-bold text-xs font-poppins text-black">Width</div>
                       <Field
                         name="width"
                         isColumn
@@ -362,7 +359,7 @@ imageIds:[],
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>Height</label>
+                    <div class="font-bold text-xs font-poppins text-black">Height</div>
                       <Field
                         name="height"
                         isColumn

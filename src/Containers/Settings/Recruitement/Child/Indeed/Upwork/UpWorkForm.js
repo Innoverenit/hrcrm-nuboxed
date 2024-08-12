@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Switch, Checkbox, Button, Popconfirm, message } from "antd";
-import { Formik, Form, Field } from "formik";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
+import { Switch,  Popconfirm } from "antd";
+import { Formik, Form } from "formik";
 import { Input } from "antd";
 import { addingUpWorkAccess,getUpWorkAccess } from "../../../../SettingsAction";
 const { Search } = Input;
@@ -59,7 +58,7 @@ function UpWorkForm(props) {
                 }}
               >
 
-        <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
+<div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[52%]">
         <p>Enable</p>
         <div>
           <Popconfirm
@@ -77,7 +76,7 @@ function UpWorkForm(props) {
             />
           </Popconfirm>
         </div>
-      </FlexContainer>
+      </div>
            
               </div>
             

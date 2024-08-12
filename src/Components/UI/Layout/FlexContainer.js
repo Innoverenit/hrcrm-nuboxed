@@ -18,6 +18,9 @@ const FlexContainer = styled.div`
     
 //  flex-direction:column;
     
-  }
+}
 `;
 export default FlexContainer;
+
+
+// <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">

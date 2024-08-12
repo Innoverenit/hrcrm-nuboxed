@@ -12,23 +12,10 @@ import {
   addCandidateTask,
   getActivityListByCandidateId
 } from "../../../../../../CandidateAction";
-import { StyledLabel } from "../../../../../../../../Components/UI/Elements";
+
 import { TextareaComponent } from "../../../../../../../../Components/Forms/Formik/TextareaComponent";
 import ButtonGroup from "antd/lib/button/button-group";
 import { getTasks } from "../../../../../../../Settings/Task/TaskAction";
-/**
- * yup validation scheme for creating a opportunity
- */
-// const TaskSchema = Yup.object().shape({
-//   priority: Yup.string().required("Select Priority"),
-//   taskSubject: Yup.string().required("This field is required !"),
-//   taskStatus: Yup.string().required("This field is required !"),
-
-//   timeZone: Yup.string().required("Input required !"),
-//   startDate: Yup.string()
-//     .nullable()
-//     .required("Input required !"),
-// });
 
 class CandidateTaskForm extends Component {
   constructor(props) {
@@ -277,7 +264,7 @@ class CandidateTaskForm extends Component {
                     </div>
 
                     <div class=" w-[30%] " >
-                      <StyledLabel>Status</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Status</div>
 
                       <div class=" w-full " >
                         <ButtonGroup>
@@ -318,7 +305,7 @@ class CandidateTaskForm extends Component {
                 >
                    <div class=" flex justify-between w-full" >
                         <div class=" w-full" style={{ width: "100%" }}>
-                          <StyledLabel>Priority</StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Priority</div>
 
                           <div class=" flex">
                           <Tooltip
@@ -403,10 +390,10 @@ class CandidateTaskForm extends Component {
                     <div class=" flex justify-between w-full " >
 
                         <div class=" w-full" >
-                          <StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">
                             Type
                             {/* <FormattedMessage id="app.type" defaultMessage="Type" /> */}
-                          </StyledLabel>
+                          </div>
                           <Field
                             isRequired
                             name="taskTypeId"
@@ -417,151 +404,12 @@ class CandidateTaskForm extends Component {
                             isColumn
                             inlineLabel
                           />
-                          {/* <Tooltip title="Email">
-                              <div
-                                onClick={() => this.handleTypeChange("Email")}
-                                style={{
-                                  fontSize: "20px",
-                                  cursor: "pointer",
-                                  color:
-                                    this.state.selectedType === "Email"
-                                      ? "Orange"
-                                      : null,
-                                }}
-                              >
-                                <Icon type="mail"></Icon>
-                              </div>
-                            </Tooltip>
-
-                            <Tooltip title="LinkedIn post">
-                              <div
-                                onClick={() =>
-                                  this.handleTypeChange("LinkedIn post")
-                                }
-                                style={{
-                                  fontSize: "20px",
-                                  cursor: "pointer",
-                                  color:
-                                    this.state.selectedType === "LinkedIn post"
-                                      ? "Orange"
-                                      : null,
-                                }}
-                              >
-                                <Icon type="linkedin"></Icon>
-                              </div>
-                            </Tooltip>
-
-                            <Tooltip title="Ticket">
-                              <div
-                                onClick={() => this.handleTypeChange("Ticket")}
-                                style={{
-                                  fontSize: "20px",
-                                  cursor: "pointer",
-                                  color:
-                                    this.state.selectedType === "Ticket"
-                                      ? "Orange"
-                                      : null,
-                                }}
-                              >
-                                <Icon type="idcard"></Icon>
-                              </div>
-                            </Tooltip>
-
-                            <Tooltip title="Documentation">
-                              <div
-                                onClick={() =>
-                                  this.handleTypeChange("Documentation")
-                                }
-                                style={{
-                                  fontSize: "20px",
-                                  cursor: "pointer",
-                                  color:
-                                    this.state.selectedType === "Documentation"
-                                      ? "Orange"
-                                      : null,
-                                }}
-                              >
-                                <Icon type="file"></Icon>
-                              </div>
-                            </Tooltip>
-
-                            <Tooltip title="Research">
-                              <div
-                                onClick={() =>
-                                  this.handleTypeChange("Research")
-                                }
-                                style={{
-                                  fontSize: "20px",
-                                  cursor: "pointer",
-                                  color:
-                                    this.state.selectedType === "Research"
-                                      ? "Orange"
-                                      : null,
-                                }}
-                              >
-                                <Icon type="file-search"></Icon>
-                              </div>
-                            </Tooltip>
-
-                            <Tooltip title="Collaborate">
-                              <div
-                                onClick={() =>
-                                  this.handleTypeChange("Collaborate")
-                                }
-                                style={{
-                                  fontSize: "20px",
-                                  cursor: "pointer",
-                                  color:
-                                    this.state.selectedType === "Collaborate"
-                                      ? "Orange"
-                                      : null,
-                                }}
-                              >
-                                <Icon type="wechat"></Icon>
-                              </div>
-                            </Tooltip>
-
-                            <Tooltip title="Other">
-                              <div
-                                onClick={() => this.handleTypeChange("Other")}
-                                style={{
-                                  fontSize: "20px",
-                                  cursor: "pointer",
-                                  color:
-                                    this.state.selectedType === "Other"
-                                      ? "Orange"
-                                      : null,
-                                }}
-                              >
-                                <Icon type="more"></Icon>
-                              </div>
-                            </Tooltip> */}
+                        
 
                         </div>
                       </div>
                     </div>
                   </div>
-
-                  {/* <div style={{ width: "50%" }}>
-                      <Field
-                        name="taskType"
-                        label="Type"
-                        isColumn
-                        component={SelectComponent}
-                        options={[
-                          "Email",
-                          "LinkedIn post",
-                          "Documentation",
-                          "Research",
-                          "Collaborate",
-                          "Others",
-                        ]}
-                        inlineLabel
-                        style={{ flexBasis: "80%", marginTop: "4px" }}
-                        // defaultValue='low'
-                      />
-                    </div>
-                  </FlexContainer> */}
 
 <div class=" flex justify-between mt-4 w-full" >
                     <div class=" w-[47%]" >

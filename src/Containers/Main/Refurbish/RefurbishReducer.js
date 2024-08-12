@@ -1,6 +1,5 @@
 import * as types from "./RefurbishActionTypes";
 import dayjs from "dayjs";
-import moment from "moment";
 
 const initialState = {
   viewType: "list",
@@ -11,6 +10,13 @@ const initialState = {
   fetchingNoOfRepairTechnicianById: false,
   fetchingNoOfRepairTechnicianByIdError: false,
   repairByTechnician: [],
+
+  updatingProcessNwTask: false,
+  updatingProcessNwTaskError: false,
+
+  allTaskModal:false,
+
+  allSpareProcessModal:false,
 
   fetchingProductionUrgent: false,
   fetchingProductionUrgentError: false,
@@ -720,6 +726,9 @@ export const refurbishReducer = (state = initialState, action) => {
     case types.HANDLE_ALL_SPARE_MODAL:
       return { ...state, approveSpareModal: action.payload };
 
+      case types.HANDLE_ALL_SPARE_PROCESS_MODAL:
+        return { ...state, allSpareProcessModal: action.payload };
+
     case types.GET_PRODUCTION_USER_BYID_REQUEST:
       return { ...state, fetchingProductionUserById: true };
     case types.GET_PRODUCTION_USER_BYID_SUCCESS:
@@ -1082,6 +1091,9 @@ export const refurbishReducer = (state = initialState, action) => {
 
         case types.HANDLE_SPARE_PROCESS:
           return { ...state, processSpareModal: action.payload };
+
+          case types.HANDLE_ALL_TASK_MODAL:
+            return { ...state, allTaskModal: action.payload };
 
     case types.HANDLE_QC_PHONE_NOTES_ORDER_MODAL:
       return { ...state, phoNotesQCOrderModal: action.payload };
@@ -1468,6 +1480,27 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         updatingProcessTask: false,
         updatingProcessTaskError: true,
+      };
+
+      case types.UPDATE_PROCESS_NWTASK_REQUEST:
+      return { ...state, updatingProcessNwTask: true };
+    case types.UPDATE_PROCESS_NWTASK_SUCCESS:
+      return {
+        ...state,
+        updatingProcessNwTask: false,
+        taskByPhone: state.taskByPhone.map((item) => {
+          if (item.phoneTaskId == action.payload.phoneTaskId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_PROCESS_NWTASK_FAILURE:
+      return {
+        ...state,
+        updatingProcessNwTask: false,
+        updatingProcessNwTaskError: true,
       };
 
     case types.GET_TASK_ITEM_COUNT_REQUEST:

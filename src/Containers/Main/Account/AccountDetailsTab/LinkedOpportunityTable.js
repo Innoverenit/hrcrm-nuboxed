@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,lazy ,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip,Popconfirm } from "antd";
@@ -14,12 +14,10 @@ import {
 } from "../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
-import { FormattedMessage } from "react-intl";
-import AccountProcureDetailsModal from "../AccountDetailsTab/AccountProcureDetailsModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-
+const AccountProcureDetailsModal = lazy(() => import('../AccountDetailsTab/AccountProcureDetailsModal'));
 function LinkedOpportunityTable(props) {
   const [page, setPage] = useState(0);
   useEffect(() => {
@@ -32,7 +30,40 @@ function LinkedOpportunityTable(props) {
   }, []);
 
   const [particularRowData, setParticularRowData] = useState({});
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+              "Repair",
+              "Quotation",
+              "Delivery",
+              "Location",
+             "Budget",
+              "Contact",
+             "Payment",
+              "Status",
+              "To Order",
+              
+              "Procure",
+              "Created Date"
 
+
+        ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
   // useEffect(() => {
   //   return () => props.emptyOrders();
   // }, []);
@@ -64,15 +95,18 @@ console.log(props.user.moduleMapper.ecomModInd)
      { props.user.repairInd === true &&(
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-                        <div class=" w-[8.5rem]">Repair</div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.quotationid" defaultMessage="Quotation ID"/></div>
-                        <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
-                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.contact" defaultMessage="Contact"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.Status" defaultMessage="Status"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.toOrder" defaultMessage="To Order"/></div>
+                        <div class=" w-[8.5rem]"> {translatedMenuItems[0]}</div>
+                        <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>
+                        <div className=" md:w-[7rem]">
+                        {translatedMenuItems[9]}  
+                          </div>
+                        <div className=" md:w-[7.1rem]"> {translatedMenuItems[2]}</div>
+                        <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[4]}</div>
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[7]}</div>
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
 
                         <div className="md:w-[6.12rem]"></div>
                      
@@ -122,7 +156,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                 <Tooltip>
                                                   <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                                                   <span
-                                                                                          class="underline cursor-pointer text-[#1890ff]"
+                                                                                          class="underline cursor-pointer font-bold text-[#1890ff]"
                                                                                           onClick={() => {
                                                                                               handleSetParticularOrderData(item);
                                                                                               props.handleProcureDetailsModal(true);
@@ -137,7 +171,11 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                   </div>
                                                 </Tooltip>
                                               </div>
+                                              <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
+                                                    </div>
                                             </div>
+                                            
                                           </div>
                       
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
@@ -168,7 +206,6 @@ console.log(props.user.moduleMapper.ecomModInd)
                                      
                                         <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
-                                              {/* {item.contactPersonName} */}
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
                                                   
@@ -218,15 +255,19 @@ console.log(props.user.moduleMapper.ecomModInd)
      { props.user.moduleMapper.ecomModInd === true &&(
       <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-<div class=" w-[8.5rem]">Procure</div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.quotationid" defaultMessage="Quotation ID"/></div>
-                        <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
-                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.contact" defaultMessage="Contact"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.Status" defaultMessage="Status"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.toOrder" defaultMessage="To Order"/></div>
+<div class=" w-[8.5rem]"> {translatedMenuItems[9]}</div>
+<div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>
+<div className=" md:w-[6rem]">
+{translatedMenuItems[9]}
+                        </div>
+                        <div className=" md:w-[7.1rem]"> {translatedMenuItems[2]}</div>
+                        <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[4]}</div>
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[7]}</div>
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
+
                         <div className="md:w-[6.12rem]"></div>
                      
 
@@ -275,7 +316,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                 <Tooltip>
                                                   <div class="font-bold max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                                                   <span
-                                                                                          class="underline cursor-pointer text-[#1890ff]"
+                                                                                          class="underline font-bold cursor-pointer text-[#1890ff]"
                                                                                           onClick={() => {
                                                                                               handleSetParticularOrderData(item);
                                                                                               props.handleProcureDetailsModal(true);
@@ -290,7 +331,10 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                   </div>
                                                 </Tooltip>
                                               </div>
-                                            </div>
+                                              <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {date}
+                                                    </div>
+                                            </div> 
                                           </div>
                       
                                           <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
@@ -357,10 +401,15 @@ console.log(props.user.moduleMapper.ecomModInd)
                             </> : !props.quotationProcureOrder.length && !props.fetchingQuotationProcureOrder ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
       </div>
-)}  <AccountProcureDetailsModal
+)} 
+  <Suspense fallback={<BundleLoader />}>
+ <AccountProcureDetailsModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText}
                 particularRowData={particularRowData}
                 handleProcureDetailsModal={props.handleProcureDetailsModal}
                 addProcureDetailsModal={props.addProcureDetailsModal} />
+                </Suspense>
     </>
   );
 }

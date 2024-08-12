@@ -18,9 +18,7 @@ import { Button, Progress, Tooltip, Avatar, Input, Badge } from "antd";
 import {
   SearchOutlined,
 } from "@ant-design/icons";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import {
-  Spacer,
   MultiAvatar,
   SubTitle,
 } from "../../../../Components/UI/Elements";
@@ -30,7 +28,7 @@ import styled from "styled-components";
 import { base_url } from "../../../../Config/Auth";
 import { FormattedMessage } from "react-intl";
 import Highlighter from "react-highlight-words";
-import moment from "moment";
+import dayjs from "dayjs";
 function onChange(pagination, filters, sorter) {
   console.log("Clicked", pagination, filters, sorter);
 }
@@ -262,7 +260,7 @@ class OpportunitySummaryTable extends Component {
           data.settings.margin.left + 70,
           20
         );
-        var before = `Published on ${moment().format("Do MMM YYYY")}`;
+        var before = `Published on ${dayjs().format("Do MMM YYYY")}`;
         doc.text(before, 75, 30);
 
         // Footer
@@ -286,7 +284,7 @@ class OpportunitySummaryTable extends Component {
       doc.putTotalPages(totalPagesExp);
     }
     doc.save(
-      `${opportunityName && opportunityName} Requirement ${moment().format(
+      `${opportunityName && opportunityName} Requirement ${dayjs().format(
         "L"
       )}`
     );
@@ -355,14 +353,7 @@ class OpportunitySummaryTable extends Component {
           );
         },
       },
-
-      // {
-      //   //title: "Submitted",
-      //   title: <FormattedMessage id="app.offered" defaultMessage="Submitted" />,
-      //   dataIndex: "offered",
-      //   width: "11%",
-      // },
-
+  
       {
         title: <FormattedMessage id="app.selected" defaultMessage="Selected" />,
         dataIndex: "closedPosition",
@@ -469,7 +460,7 @@ class OpportunitySummaryTable extends Component {
             padding: "0.625em 0em 0.625em 0em",
           }}
         ></div>
-        <FlexContainer>
+ <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           <PDFPreviewTable>
             <StyledTable
               columns={columns}
@@ -492,11 +483,9 @@ class OpportunitySummaryTable extends Component {
                 handleMonsterModal={this.props.handleMonsterModal}
               />
             </Suspense>
-            <Spacer />
-            <FlexContainer
-              justifyContent="flex-end"
-              style={{ padding: "0em 1.25em" }}
-            >
+            <div class="mt-3" />
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto p-[ 0rem 1.25] ">
+           
               <Tooltip // title={"Generate PDF"}
                 title={
                   <FormattedMessage
@@ -541,9 +530,9 @@ class OpportunitySummaryTable extends Component {
                   <PictureAsPdfIcon />
                 </Button>
               </Tooltip>
-            </FlexContainer>
+            </div>
           </PDFPreviewTable>
-        </FlexContainer>
+        </div>
       </>
     );
   }

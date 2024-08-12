@@ -8,7 +8,6 @@ import "jspdf-autotable";
 import {getTeamsDeals} from "./DealAction";
 import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
-import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
@@ -207,7 +206,7 @@ const DealsTeamCardList = (props) => {
                             />
                           </SubTitle>
                         </div>
-                        <div class="w-[4%]">
+                        <div>
 
                         </div>
 
@@ -221,7 +220,7 @@ const DealsTeamCardList = (props) => {
                                 {/* </Link> */}
                                 &nbsp;&nbsp;
                                 {date === currentdate ? (
-                                  <span class="text-[tomato] mt-[0.4rem] font-bold"
+                                  <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold"
                                   >
                                     New
                                   </span>

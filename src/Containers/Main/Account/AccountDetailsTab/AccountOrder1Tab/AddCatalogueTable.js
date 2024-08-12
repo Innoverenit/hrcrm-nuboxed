@@ -3,7 +3,7 @@ import { getProductListByDistributor, addAllProductInOrder } from "../../Account
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Button } from 'antd'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { FormattedMessage } from 'react-intl'
 
 const AddCatalogueTable = (props) => {
@@ -23,16 +23,16 @@ const AddCatalogueTable = (props) => {
             deliveryUnit: "Instance",
             noOfDays: 1,
             orgId: props.orgId,
-            deliveryStartDate: moment(),
-            deliveryEndDate: moment(),
-            subscriptionStartDate: moment()
+            deliveryStartDate: dayjs(),
+            deliveryEndDate: dayjs(),
+            subscriptionStartDate: dayjs()
         }, props.distributorId, props.orderId)
     }
     return (
         <>
-            <div className='sticky top-20 z-auto'>
-                <div class="rounded-lg mx-5 my-2 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
+            <div className='sticky z-auto'>
+                <div class="rounded m-1  p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[99%] p-1 bg-transparent font-bold stickyz-10">
                         <div className=" md:w-[9.41rem]">
                             <FormattedMessage
                                 id="app.name"
@@ -63,29 +63,29 @@ const AddCatalogueTable = (props) => {
 
                             return (
                                 <div >
-                                    <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3">
+                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
                                         <div class="flex w-3/4">
 
-                                            <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     {item.name}
 
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     {item.categoryName} {item.subCategoryName}
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     {item.attributeName} {item.subAttributeName}
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex  md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     {item.quantity}
 

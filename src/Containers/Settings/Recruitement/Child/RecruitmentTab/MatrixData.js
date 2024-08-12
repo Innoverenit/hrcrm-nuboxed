@@ -313,12 +313,12 @@ const EditableTable = (props) => {
       <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
         Add Row
       </Button>
-      <label class=" ml-4">Currency is in Local Value</label>
+      <div class=" ml-4">Currency is in Local Value</div>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center">
             <div class="flex justify-around w-[40rem]">
               <div>
-                <label>Skill</label>
+                <div class="font-bold text-xs font-poppins text-black">Skill</div>
                 {/* <div class="w-[6rem]"> */}
                 <Select
   style={{ width: '7rem', borderColor: validationErrors[index]?.skill && 'red' }}
@@ -340,7 +340,7 @@ const EditableTable = (props) => {
               </div>
 
               <div>
-                <label>Level 1</label>
+                <div class="font-bold text-xs font-poppins text-black">Level 1</div>
         
                 <Input
                         style={{ width:"6rem"}}
@@ -348,7 +348,7 @@ const EditableTable = (props) => {
                         onChange={(e) => handleChange(index,'level1',e.target.value)}
                       /></div>
               <div>
-                <label>Level 2</label>
+                <div class="font-bold text-xs font-poppins text-black">Level 2</div>
                 
                 <Input
                    style={{ width:"6rem"}}
@@ -356,7 +356,7 @@ const EditableTable = (props) => {
                         onChange={(e) => handleChange(index,'level2',e.target.value)}
                       /></div>
               <div>
-                <label>Level 3</label>
+                <div class="font-bold text-xs font-poppins text-black">Level 3</div>
               
                 <Input
                        style={{ width:"6rem"}}

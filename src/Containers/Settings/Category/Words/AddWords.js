@@ -48,7 +48,7 @@ function AddWords(props) {
                     <b>{`Word ${index + 1}`}</b>
                   </div>
               <div>
-              <label>English</label>
+              <div class="font-bold text-xs font-poppins text-black">English</div>
              <div class="w-24">
             <Input
               type="text"
@@ -59,7 +59,7 @@ function AddWords(props) {
             </div>
             </div>
             <div>
-              <label>Dutch</label>
+              <div class="font-bold text-xs font-poppins text-black">Dutch</div>
             <div class="w-24">
             <Input
               type="text"

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   SearchOutlined, MailOutlined
 } from "@ant-design/icons";
@@ -326,8 +326,8 @@ function ContactTable(props) {
       render: (name, item, i) => {
         const fullName = `${item.salutation || ""} ${item.firstName ||
           ""} ${item.middleName || ""} ${item.lastName || ""} `;
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         console.log(date, currentdate, currentdate === date);
         return (
           <>
@@ -398,8 +398,8 @@ function ContactTable(props) {
       width: "19%",
       sorter: (a, b) => a.lastRequirementOn - b.lastRequirementOn,
       render: (text, item) => {
-        // const lastRequirementOn = moment(item.lastRequirementOn ).format("ll");
-        const diff = Math.abs(moment().diff(moment(item.lastRequirementOn), 'days'));
+        // const lastRequirementOn = dayjs(item.lastRequirementOn ).format("ll");
+        const diff = Math.abs(dayjs().diff(dayjs(item.lastRequirementOn), 'days'));
         const date = diff + 1
         return <>
           {item.lastRequirementOn === null ? "None" :
@@ -725,36 +725,3 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(ContactTable);
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-
-const AppIcon1 = (props) => (
-
-  <EditIcon
-    className={`pen-to-square ${props.className}`}
-
-  />
-
-
-
-);
-
-const EditIcon1 = styled(AppIcon1)`
-  color: black;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

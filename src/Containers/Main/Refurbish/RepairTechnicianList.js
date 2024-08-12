@@ -68,9 +68,9 @@ const RepairTechnicianList = (props) => {
     return (
         <>
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[12rem]"><FormattedMessage
+                        <div className=" w-[8rem] md:w-[8rem]"><FormattedMessage
                             id="app.name"
                             defaultMessage="Name"
                         />
@@ -81,10 +81,10 @@ const RepairTechnicianList = (props) => {
                                 defaultMessage="Mobile #"
                             />
                         </div>
-                        <div className="md:w-[8rem]">
+                        <div className="md:w-[7rem]">
                             <FormattedMessage
                                 id="app.totalUnit"
-                                defaultMessage="Total Unit"
+                                defaultMessage="Total Units"
                             /></div>
                         <div className=" md:w-[8rem]">
                             <FormattedMessage
@@ -116,14 +116,14 @@ const RepairTechnicianList = (props) => {
                             <div>
                                 <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                                     <div class="flex">
-                                        <div className=" flex   md:w-[12rem] max-sm:w-full  ">
+                                        <div className=" flex w-[8rem]  md:w-[8rem] max-sm:w-full  ">
                                             <span
                                                 onClick={() => {
                                                     handleShow()
                                                     handleRowdata(item)
                                                 }}
                                                 style={{
-                                                    textDecoration: "underline",
+                                                    textDecoration: "underline", fontWeight: "bold",
                                                     color: show && item.technicianId === row.technicianId ? "rgb(225 158 14)" : "#0f6ace",
                                                     cursor: "pointer"
                                                 }}
@@ -132,7 +132,7 @@ const RepairTechnicianList = (props) => {
                                             </span>
                                         </div>
 
-                                        <div className=" flex    md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex w-[7rem]   md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.mobileNo}
                                             </div>
@@ -145,7 +145,7 @@ const RepairTechnicianList = (props) => {
 
                                         </div>
                                         <div className=" flex    md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins underline text-cyan-700 cursor-pointer">
+                                            <div class=" text-xs  font-bold font-poppins underline text-cyan-700 cursor-pointer">
                                                 <span
                                                     style={{ color: remaining && item.technicianId === row.technicianId ? "rgb(225 158 14)" : "#0f6ace", }}
                                                     onClick={() => {
@@ -164,7 +164,7 @@ const RepairTechnicianList = (props) => {
 
                                         </div>
                                         <div className=" flex    md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins underline text-cyan-700 cursor-pointer">
+                                            <div class=" text-xs  font-poppins font-bold underline text-cyan-700 cursor-pointer">
                                                 <span
                                                     style={{ color: complete && item.technicianId === row.technicianId ? "rgb(225 158 14)" : "#0f6ace", }}
                                                     onClick={() => {
@@ -175,12 +175,12 @@ const RepairTechnicianList = (props) => {
                                             </div>
                                         </div>
                                         <div className=" flex    md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins underline text-cyan-700 cursor-pointer">
+                                            <div class=" text-xs  font-poppins font-bold underline text-cyan-700 cursor-pointer">
                                                 {item.rejectedPhone || 0}
                                             </div>
                                         </div>
                                         <div className=" flex    md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins underline text-cyan-700 cursor-pointer">
+                                            <div class=" text-xs  font-poppins font-bold underline text-cyan-700 cursor-pointer">
                                                 <Button
                                                     onClick={() => {
                                                         handleReassign();

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { get } from "lodash";
 import { base_url, login_url } from "../../../Config/Auth";
-import { ValidationError, StyledLabel, StyledAsync } from "../../UI/Elements";
+import { ValidationError,  StyledAsync } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -70,7 +70,7 @@ class PurchaseClearbit extends Component {
     if (isColumnWithoutNoCreate) {
       return (
         <>
-          <StyledLabel style={{ flexBasis: "20%", marginTop: "-55px", marginRight: "-66px" }}>{label}</StyledLabel>
+          <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%", marginTop: "-55px", marginRight: "-66px" }}>{label}</div>
           <StyledAsync
             formatCreateLabel={() => undefined}
             isRequired={isRequired}
@@ -96,7 +96,7 @@ class PurchaseClearbit extends Component {
     if (isColumn) {
       return (
         <>
-          <StyledLabel style={{ flexBasis: "20%", marginTop: "-55px", marginRight: "-66px" }}>{label}</StyledLabel>
+          <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%", marginTop: "-55px", marginRight: "-66px" }}>{label}</div>
           <StyledAsync
             isRequired={isRequired}
             classNamePrefix="sales"
@@ -122,7 +122,7 @@ class PurchaseClearbit extends Component {
       <>
         <FlexContainer>
           <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
-            <StyledLabel style={{ flexBasis: "20%", marginTop: "-55px", marginRight: "-66px" }}>{label}</StyledLabel>
+            <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%", marginTop: "-55px", marginRight: "-66px" }}>{label}</div>
             <StyledAsync
               isRequired={isRequired}
               classNamePrefix="sales"

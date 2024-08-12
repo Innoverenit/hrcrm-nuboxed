@@ -1,7 +1,5 @@
 import React, { lazy, Suspense } from "react";
-
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const UpdateEmployeeForm =lazy(()=>import("./UpdateEmployeeForm"));

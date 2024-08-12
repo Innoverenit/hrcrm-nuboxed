@@ -1,6 +1,5 @@
 import { Field, Form, Formik } from 'formik'
 import React, {useEffect,useState} from 'react'
-import moment from "moment";
 import * as Yup from "yup";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
@@ -8,17 +7,12 @@ import { bindActionCreators } from "redux";
 import {updateInvoiceData} from "../../../Invoice/InvoiceAction"
 import { Button, Checkbox, Divider, Select } from 'antd';
 import {getCandidatesTotalBillingsForInvoice} from "../../../Invoice/InvoiceAction"
-import { MainWrapper } from "../../../../Components/UI/Elements";
 import {getProjectsData} from "../../ProjectsAction"
 import {getCustomerTask} from "../../../Task/TaskAction"
-import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-import { Spacer } from "../../../../Components/UI/Elements";
-import { TimePicker } from "../../../../Components/Forms/Formik/TimePicker";
+
 import { InputComponent } from '../../../../Components/Forms/Formik/InputComponent'
  import InvoiceListProjectTable from './InvoiceListProjectTable';
-// import InvoiceListTable from './InvoiceHeader/InvoiceListTable';
-// yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const InvoiceSchema = Yup.object().shape({
   customerId: Yup.string().required("Input needed!"),
@@ -27,7 +21,6 @@ const InvoiceSchema = Yup.object().shape({
   year: Yup.string().required("Input needed!"),
  
 });
-
 
 function FirstInvoiceProjectPage(props) {
   useEffect(()=>{
@@ -41,13 +34,6 @@ function FirstInvoiceProjectPage(props) {
     setCustomers(value)
   }
 
-  
-  // const handleSelectCandidate = (data) => {
-  //   var theobj = JSON.parse(data);
-  //   console.log(theobj);
-  //   setChooseCandidate(theobj)
-  //    props.getItemsSelectedForSupplier(theobj.analysisId)
-  // }
   console.log(customers)
   function handleChangeProject(value) {
     setProjects(value)
@@ -102,8 +88,6 @@ function FirstInvoiceProjectPage(props) {
   .map((item) => {
     return {
       label: `${item.name}`,
-      // label: `${item.salutation || ""} ${item.firstName ||
-      //   ""} ${item.middleName || ""} ${item.lastName || ""}`,
       value: item.customerId,
     };
   });
@@ -122,9 +106,6 @@ initialValues={{
 validationSchema={InvoiceSchema}
 onSubmit={(values, { resetForm }) => {
   console.log(values.customerId);
-  // var theobj = JSON.parse(data);
-  //   console.log(theobj);
-  //   setChooseCandidate(theobj)
   props.getCandidatesTotalBillingsForInvoice(values.customerId,values.projectId,values.month,values.year);
   
 }}
@@ -139,7 +120,7 @@ onSubmit={(values, { resetForm }) => {
           values,
           ...rest
         }) => (
-          <MainWrapper  >
+          <div class="mr-5 ml-5">
                 <Form style={{minHeight: "30vh"}}>
                 <div class=" flex justify-between ">
               <div class=" h-full w-1/2">
@@ -163,7 +144,7 @@ onSubmit={(values, { resetForm }) => {
                           }}
                         />
              </div>
-             <Spacer />
+             <div class=" mt-3" />
                     <div class=" w-2/5">
                     <Field
                         isRequired
@@ -219,7 +200,7 @@ onSubmit={(values, { resetForm }) => {
                         }}
                       />
                     </div>
-                    <Spacer />
+                    <div class=" mt-3" />
                     <div class=" w-2/5">
                     <Field
                         isRequired
@@ -257,7 +238,7 @@ onSubmit={(values, { resetForm }) => {
         candidateTotalBillingForInvoice={props.candidateTotalBillingForInvoice}
         />
                 </Form>
-                </MainWrapper>
+                </div>
                  )}
             </Formik>
         </>

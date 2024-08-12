@@ -4,8 +4,7 @@ import { Divider, Tooltip } from "antd";
 import {
     Title,
     SubTitle,
-    MultiAvatar,
-    StyledLabel
+    MultiAvatar    
 } from "../../../Components/UI/Elements";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { ActionIcon } from "../../../Components/Utils";

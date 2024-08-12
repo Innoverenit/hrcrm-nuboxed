@@ -1,18 +1,14 @@
-import React, { useEffect,useState } from 'react';
-import { ClockCircleOutlined } from '@ant-design/icons';
-import { Button,Select,Steps,Tooltip } from 'antd';
+import React, { useEffect,useState,lazy,Suspense } from 'react';
+import { Button,Select,Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import moment from 'moment';
 import styled from "styled-components";
  import { getProcessForOnboarding ,getProcessStagesForOnboarding} from '../../../Settings/SettingsAction';
-import { Field } from 'formik';
 import {addOnboardingEmployee,addEmployeeWorkflow,getUserStageList,updateUserdragstage} from "../../../Employees/EmployeeAction"
-import { FormattedMessage } from 'react-intl';
-import { SelectComponent } from '../../../../Components/Forms/Formik/SelectComponent';
-import StageEmployeeColumns1 from './StageEmployeeColumns1';
 import { BundleLoader } from '../../../../Components/Placeholder';
+const StageEmployeeColumns1 =lazy(()=> import("./StageEmployeeColumns1"));
+
 const { Option } = Select;
 
 const Container = styled.div`
@@ -170,7 +166,7 @@ const handleStages = (val) => {
     <>
       <div className="mt-4 flex">
       <div class=" w-[35%]" >
-                                                    <label class=" text-[#444] font-bold text-[0.75rem]" >Workflow</label>
+                                                    <div class=" text-[#444] font-bold text-[0.75rem]" >Workflow</div>
                                                     <Select
                         style={{
                             width: 170,
@@ -289,14 +285,14 @@ const handleStages = (val) => {
                                       id="style-3"
                                     >
                                       
-                                        
+                                      <Suspense fallback={<BundleLoader />}>
                                             <StageEmployeeColumns1
                                                key={index}
                                               employee={stage}
                                               index={index}
                                               // history={props.history}
                                             />
-                                       
+                                       </Suspense>
                                     </StageColumn>
                                   {/* </Spin> */}
                                 </div>

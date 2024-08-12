@@ -355,6 +355,11 @@ addingShipperCategoryError: false,
   deleteDealsProcessData: false,
   deleteDealsProcessDataError: false,
 
+
+
+  addingPaymentData:false,
+  addingPaymentDataError:false,
+
   fetchingComplianceGdpr: false,
   fetchingComplianceGdprError: false,
   gdprCompliance: [],
@@ -513,6 +518,10 @@ addingShipperCategoryError: false,
   fetchingRecruiterTable: false,
   fetchingRecruiterTableError: false,
   tableRecruiter: [],
+
+  fetchingPaymentFinance:false,
+  fetchingPaymentFinanceError:false,
+  paymentFinance:{},
 
   addingWebsite: false,
   addingWebsiteError: false,
@@ -2608,6 +2617,31 @@ export const settingsReducer = (state = initialState, action) => {
 
 
 
+
+      case types.GET_PAYMENT_FINANCE_REQUEST:
+        return {
+          ...state,
+          fetchingPaymentFinance: true,
+          fetchingPaymentFinanceError: false,
+        };
+      case types.GET_PAYMENT_FINANCE_SUCCESS:
+        return {
+          ...state,
+          fetchingPaymentFinance: false,
+          fetchingPaymentFinanceError: false,
+          paymentFinance:action.payload
+          //conversionCurrencies: [...state.conversionCurrencies, ...action.payload],
+        };
+      case types.GET_PAYMENT_FINANCE_FAILURE:
+        return {
+          ...state,
+          fetchingPaymentFinance: false,
+          fetchingPaymentFinanceError: true,
+        };
+
+
+
+
       case types.GET_PROCESS_TASK_STAGE_REQUEST:
         return { ...state, fetchingProcessTaskedStage: true };
       case types.GET_PROCESS_TASK_STAGE_SUCCESS:
@@ -3648,6 +3682,32 @@ export const settingsReducer = (state = initialState, action) => {
             fetchingCurrencyConversion: false,
             fetchingCurrencyConversionError: true,
           };
+
+
+
+
+          case types.ADD_PAYMENT_DATA_REQUEST:
+            return { ...state, addingPaymentData: true };
+        case types.ADD_PAYMENT_DATA_SUCCESS:
+            return {
+                ...state,
+                addingPaymentData: false,
+                // paymentFinance: state.paymentFinance.map((item) => {
+                //   if (item.paymentTypeId === action.payload.paymentTypeId) {
+                //     return action.payload;
+                //   } else {
+                //     return item;
+                //   }
+                // }),
+    
+            };
+        case types.ADD_PAYMENT_DATA_FAILURE:
+            return {
+                ...state,
+                addingPaymentData: false,
+                addingPaymentDataError: true,
+                // conversionCurrencies:[action.payload,...state.conversionCurrencies]   
+            };
 
           
     case types.ADD_PROCESS_FOR_SUPPLIER_REQUEST:

@@ -55,30 +55,8 @@ function ProductbuilderTable2 (props) {
     setEditedFields((prevFields) => ({ ...prevFields, [productionBuilderId]: undefined }));
     setEditsuppliesId(null);
   };
-
-  // const handleUpdateSupplies = (suppliesId,suppliesName,categoryName,subCategoryName, quantity,steps,description,productionBuilderId
-  //   ) => {
-  //   const data = {
-  //     suppliesId:suppliesId,
-  //     suppliesName:editedFields[suppliesId]?.suppliesName !== undefined ? editedFields[suppliesId].suppliesName : suppliesName,
-  //     categoryName:editedFields[suppliesId]?.categoryName !== undefined ? editedFields[suppliesId].categoryName : categoryName,
-  //     subCategoryName: editedFields[suppliesId]?.subCategoryName !== undefined ? editedFields[suppliesId].subCategoryName : subCategoryName,                 
-  //     quantity: editedFields[suppliesId]?.quantity !== undefined ? editedFields[suppliesId].quantity : quantity,        
-  //     productId:props.particularDiscountData.productId,  
-  //     productionBuilderId:productionBuilderId,   
-  //     steps:steps,
-  //     description:description      
-  //   };
-  
-  //   props.updateProductSuplrBuilder(data)
-  //     setEditedFields((prevFields) => ({ ...prevFields, [suppliesId]: undefined }));
-  //     setEditsuppliesId(null);
-    
-  // };
 const handleSave = (key) => {
     console.log(key)
-    // const targetRow = data.find((row) => row.key === key);
-      // const { } = targetRow;
   
       const result = {
         hsn: key.hsn,
@@ -105,10 +83,9 @@ const handleSave = (key) => {
 return (
     <>
   
-  <div className=' flex justify-end sticky z-auto'> 
-
-  <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-         <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+  <div className=' flex sticky z-auto'> 
+  <div class="rounded m-1 p-1  w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+         <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
          <div className=""></div>
          <div className=" md:w-[9.5rem]">Name</div>
          <div className=" md:w-[8.2rem] ">HSN</div>
@@ -120,13 +97,13 @@ return (
          <div className=" md:w-[10.23rem] ">Description</div>
         <div className="w-12"></div>
             </div>
-            <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky" }}>
+            <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky", scrollbarWidth:"thin" }}>
              {data.map((item) => {
           return (
 <div key={item.productionBuilderId}>
 
 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1  "    >
-<div className=" flex font-medium  w-[9rem]   max-sm:w-full">
+<div className=" flex    w-[9rem]   max-sm:w-full">
                     <div className="flex max-sm:w-full ">
                       <div>
                        
@@ -141,7 +118,7 @@ return (
 
                       <div class="max-sm:w-full md:flex items-center">
                      
-                      <div className=" flex font-medium  md:w-[8.1rem] max-sm:w-full  ">
+                      <div className=" flex    md:w-[8.1rem] max-sm:w-full  ">
     <div class="text-xs    font-poppins cursor-pointer">
                               {item.suppliesName}
                             </div>
@@ -149,7 +126,7 @@ return (
                       </div>
                     </div>
                   </div>
-                  <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex    md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs  font-poppins">
                       
                       {item.hsn}
@@ -157,23 +134,23 @@ return (
                     </div>
     </div>
 
-    <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex    md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs  font-poppins">
                       
                       {item.categoryName} {item.subCategoryName}
                      
                     </div>
     </div>
-    <div className=" flex font-medium  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex    md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
       
         <div class=" text-xs    font-poppins">
         {item.attributeName} {item.subAttributeName}
        
                     </div>
     </div>
-    <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs  font-semibold  font-poppins">
+      <div class=" text-xs  font-bold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
                        <Input
                        style={{ width: "3rem" }}
@@ -182,15 +159,15 @@ return (
                      />
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className="  text-xs  font-poppins">
                         <div> {item.quantity}</div>
                       </div>
                     )}
                     </div>
   </div>
-  <div className=" flex font-medium  md:w-[4.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex md:w-[4.23rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs  font-semibold  font-poppins">
+      <div class=" text-xs  font-bold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
                                          <Input
                                          style={{ width: "3rem" }}
@@ -199,15 +176,15 @@ return (
                                        />
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className="  text-xs  font-poppins">
                         <div> {item.steps}</div>
                       </div>
                     )}
                     </div>
   </div>
-  <div className=" flex font-medium  md:w-[6.24rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex    md:w-[6.24rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs  font-semibold  font-poppins">
+      <div class=" text-xs  font-bold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
                                              <Input
                                              style={{ width: "3rem" }}
@@ -215,7 +192,7 @@ return (
                                              onChange={(e) => handleInputChange(e.target.value, item.key, 'description')}
                                            />
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className="  text-xs  font-poppins">
                         <Tooltip title={item.description}>
                         <div> {item.description}</div>
                         </Tooltip>
@@ -228,7 +205,7 @@ return (
                         <div>
                           <Tooltip title="Notes">
                             <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                              className=" !text-icon cursor-pointer text-[#4bc076]"
                               onClick={() => {
                                 handleProductNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -239,7 +216,7 @@ return (
                           </Tooltip>
 
                         </div>
-                        <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex    md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.productionBuilderId ? (
                         <>
                       <Button 
@@ -256,14 +233,14 @@ return (
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.productionBuilderId)}
                       />
                     )}
     </div>
-  <div class="flex flex-col w-4 max-sm:flex-row max-sm:w-[10%]">
+  <div class="flex  w-4 max-sm:flex-row max-sm:w-[10%]">
    
     <div>
       <Popconfirm
@@ -273,7 +250,7 @@ return (
                           >
                      <Tooltip title="Delete">
                           <DeleteOutlined
-                           className=" !text-xl cursor-pointer !text-[red]"
+                           className=" !text-icon cursor-pointer !text-[red]"
                           />
                        </Tooltip>
                        </Popconfirm>

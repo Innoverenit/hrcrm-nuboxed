@@ -162,7 +162,7 @@ const UserMachineCrd = (props) => {
       <>
       <div class="flex">
       <div class="ml-2">
-<label class="block">Machine</label>
+<div class="block">Machine</div>
     <select
       placeholder="Select a cell"
       style={{ width: 200 }}
@@ -182,7 +182,7 @@ const UserMachineCrd = (props) => {
     </select>
     </div>
       <div style={{marginLeft:"19px"}}>
-        <label style={{display: 'block'}}>Machine Code</label>
+        <div style={{display: 'block'}}>Machine Code</div>
     {/* <Select
       placeholder="Select a department"
       style={{ width: 200 }}

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { Select } from "antd";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 import { Button, Switch } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
@@ -62,7 +62,7 @@ function CandidateFilterForm(props) {
               <div class=" flex justify-evenly" >
                 <div class=" w-[36%]"
                 >
-                  <StyledLabel>Parameter
+                  <div class=" text-xs font-bold font-poppins text-black">Parameter
                   <Select
                     style={{ width: "100%" }}
                     placeholder="Select"
@@ -71,7 +71,7 @@ function CandidateFilterForm(props) {
                     <Option value="Role">Role</Option>
                     <Option value="Cost">Cost</Option>
                   </Select>
-                  </StyledLabel>
+                  </div>
                   <div class=" flex justify-between mt-4" >
                     <div style={{ flexBasis: "100%" }}>
                       {selectType === "Role" ? (
@@ -136,7 +136,7 @@ function CandidateFilterForm(props) {
                 </div>
                 <div class=" w-[36%]"
                 >
-                  <StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">
                     Parameter
                     <Select
                       style={{ width: "100%" }}
@@ -146,7 +146,7 @@ function CandidateFilterForm(props) {
                       <Option value="Work Preference">Work Preference</Option>
                       <Option value="Location">Location</Option>
                     </Select>
-                  </StyledLabel>
+                  </div>
 
                   <div class=" flex justify-between mt-4" >
                     <div style={{ flexBasis: "100%" }}>

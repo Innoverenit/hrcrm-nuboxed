@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { SwitchComponent } from "../../../../../Components/Forms/Formik/SwitchComponent";
-import { StyledLabel } from "../../../../../Components/UI/Elements";
+
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
  import { addApprove, getApproveData } from "../../../../Settings/SettingsAction";
 import {getDepartments} from "../../../Department/DepartmentAction"
@@ -133,7 +133,7 @@ class SupplierContactuserForm extends Component {
                                         <div class=" flex w-[20%]"
                                      
                                         >
-                                            <StyledLabel>Approval Needed</StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">Approval Needed</div>
                                             &nbsp;&nbsp;
                                         </div>
 
