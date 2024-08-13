@@ -1,7 +1,7 @@
 import React,{lazy,Suspense} from "react";
 import Button from "antd/lib/button";
 import { connect } from "react-redux";
-import { base_url } from "../../../Config/Auth";
+import { base_url, base_url2 } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import UploadMaterialModal from "./UploadMaterialModal"
@@ -10,6 +10,7 @@ import { Tooltip } from "antd";
 import { handleSuppliesModal,handleUploadMaterialModal } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
 const SuppliesAddModal=lazy(()=>import("./SuppliesAddModal"));
 
@@ -54,16 +55,13 @@ class SuppliesActionRight extends React.Component {
 
     return (
       <>
-        {user.functionName === "Production" && user.designation === "Manager" &&
-          viewType === "grid" ?
+        {
+          viewType === "all" ?
           <Tooltip title="Export Supplies">
-            <Button
-              //type="primary"
-              className="export"
-              href={`${base_url}/export/supplies`}
-            >
-             
-            </Button>
+            <CloudDownloadIcon
+            className="cursor-pointer"
+              href={`${base_url2}/export/supplies`}
+            />     
           </Tooltip>
           : null}
         {viewType === "all" && (

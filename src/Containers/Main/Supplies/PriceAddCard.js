@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Input, Select,Tooltip } from "antd";
-import { getMaterialCurrency, createMaterialCurrency,
+import { Button, Input, Select,Tooltip,Switch, Popconfirm } from "antd";
+import { getMaterialCurrency, createMaterialCurrency,materialPricetype
  } from "./SuppliesAction";
 import {getSaleCurrency} from "../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -21,6 +21,7 @@ function PriceAddCard(props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
+  const [isBestSeller, setIsBestSeller] = useState(false); 
 
   useEffect(() => {
     props.getMaterialCurrency(props.particularDiscountData.suppliesId);
@@ -76,6 +77,17 @@ function PriceAddCard(props) {
     setData(updatedData);
   };
 
+  function cancelType(){
+    if (isBestSeller) {
+      setIsBestSeller(true);
+    } else {
+      setIsBestSeller(false);
+    }
+  }
+  const handleToggleChange = (checked) => {
+    setIsBestSeller(checked);
+  };
+  
   const handleInputChange = (value, key, dataIndex) => {
     const updatedData = data.map((row) =>
       row.key === key ? { ...row, [dataIndex]: value } : row
@@ -106,17 +118,20 @@ function PriceAddCard(props) {
     setEditedFields((prevFields) => ({ ...prevFields, [id]: undefined }));
     setEditsuppliesId(null);
   };
-  function handleUpdate(key) {
+  function handleUpdate(key,index) {
     console.log('Submitting Row:', key);
+    const row = rows[index];
     const updatedData = {
-        currency: key.currency_id,
+        // currency:row.currency_id ? row.currency_id: key.currency,
+        currency:key.currency,
       suppliesPrice: key.suppliesPrice,
       suppliesPriceB2C: key.suppliesPriceB2C,
       suppliesId: props.particularDiscountData.suppliesId,
       userId: props.userId,
       orgId: props.orgId,
+      type: isBestSeller ? "baseprice" : "mrp"
     };
-    props.createMaterialCurrency(updatedData);
+    props.materialPricetype(updatedData);
     setEditsuppliesId(null);
   };
 
@@ -204,7 +219,7 @@ function PriceAddCard(props) {
 
                   <div className=" flex items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
                     <div class="text-xs font-semibold  font-poppins cursor-pointer">
-                    {editsuppliesId === item.id ? (
+                    {/* {editsuppliesId === item.id ? (
                       <Select
                         classNames="w-32"
                         value={item.currencyName}
@@ -220,7 +235,10 @@ function PriceAddCard(props) {
                       <div className=" text-xs  font-poppins">
                       <div> {item.currencyName}</div>
                     </div>
-                  )}
+                  )} */}
+                  <div className=" text-xs  font-poppins">
+                      <div> {item.currencyName}</div>
+                    </div>
                     </div>
                   </div>
 
@@ -258,7 +276,21 @@ function PriceAddCard(props) {
                     )}
                   </div>
                   <div className=" flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  <MaterialPriceTypeToggle/>
+                  <Popconfirm
+        title="Are you sure you want to change status ?"
+        // onConfirm={handleToggleChange}
+       onCancel={cancelType}
+        okText="Yes"
+        cancelText="No"
+      >
+        <Switch
+         className="toggle-clr"
+         checked={isBestSeller}
+         onChange={handleToggleChange}
+          checkedChildren="Base price"
+          unCheckedChildren="MRP"
+        />
+      </Popconfirm>
                   </div>
 
                   <div class="flex md:items-center">
@@ -332,7 +364,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       getMaterialCurrency,
       createMaterialCurrency,
-    //   handleDiscountModal,
+      materialPricetype,
     //   handleOfferModal,
     //   getCurrency,
       getSaleCurrency,

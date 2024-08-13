@@ -900,7 +900,7 @@ import React, { useState,useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { base_url } from "../../../Config/Auth";
-import {addSuscrptions,getSubscrptions} from "../SubscriptionAction"
+import {addSuscrptions,getSubscrptions,addSubRules} from "../SubscriptionAction"
 import { Card, Button, Input, Switch,Select, Form } from 'antd';
 
 
@@ -1071,6 +1071,29 @@ useEffect(() => {
     }
   };
 
+  const handleValueChange = (index, ruleIndex) => {
+    const updatedSubscription = subscriptions[index];
+   
+    const rule = updatedSubscription.ruleDto ? updatedSubscription.ruleDto[ruleIndex] : null;
+
+    console.log({
+    
+      subscriptionId: updatedSubscription.subscriptionId || null,
+      subscriptionRuleId: rule ? rule.subscriptionRuleId : null, // Print null if rule doesn't exist
+      ruleTypeId: rule ? rule.ruletypeId : null,                 // Print null if rule doesn't exist
+      ruleValue: rule ? rule.rulevalue : null,
+      orgId: props.orgId,
+      userId:props.userId
+    });
+    let data={
+      subscriptionId: updatedSubscription.subscriptionId || null,
+      subscriptionRuleId: rule ? rule.subscriptionRuleId : null, // Print null if rule doesn't exist
+      ruleTypeId: rule ? rule.ruletypeId : null,                 // Print null if rule doesn't exist
+      ruleValue: rule ? rule.rulevalue : null
+    }
+    props.addSubRules(data)
+  };
+
   return (
     <div style={{ padding: '20px' }}>
       <Button type="primary" onClick={addSubscription}>Add Subscription</Button>
@@ -1170,7 +1193,8 @@ useEffect(() => {
                       value={rule.rulevalue}
                       onChange={(e) => handleRuleChange(subIndex, ruleIndex, 'rulevalue', e.target.value)}
                       placeholder="Enter value"
-                      onPressEnter={() => handlePressEnter(subIndex, ruleIndex)}
+                     
+                      onPressEnter={() => handleValueChange(subIndex, ruleIndex)}
                       disabled={!rule.ruletypeId} // Disable until event is selected
                     />
                   </div>
@@ -1197,7 +1221,8 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addSuscrptions,
-      getSubscrptions
+      getSubscrptions,
+      addSubRules
     },
     dispatch
   );

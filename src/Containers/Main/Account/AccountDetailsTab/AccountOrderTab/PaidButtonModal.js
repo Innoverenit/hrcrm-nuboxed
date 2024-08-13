@@ -25,7 +25,7 @@ class PaidButtonModal extends Component {
 
                         {this.props.type === "incomplete" ?
                             <>
-                                <DistributorPaidForm particularRowData={this.props.particularRowData} />
+                                <DistributorPaidForm particularRowData={this.props.particularRowData}  distributorId={this.props.distributorId} />
                                 <OrderPaymentTable particularRowData={this.props.particularRowData} />
                             </> :
                             <OrderPaymentTable particularRowData={this.props.particularRowData} />}

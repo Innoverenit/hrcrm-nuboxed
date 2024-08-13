@@ -1527,6 +1527,7 @@ const AccountOrderTable = (props) => {
                     particularRowData={particularRowData}
                 />
                 <PaidButtonModal
+                distributorId={props.distributorId}
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText} 
                     type={props.type}

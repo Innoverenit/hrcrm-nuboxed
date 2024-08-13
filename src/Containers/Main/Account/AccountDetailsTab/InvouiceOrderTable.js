@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-    getOrderInvoiveList,
+    // getOrderInvoiveList,
     handleInvoiceModal
 } from "../AccountAction";
 import {  Select } from 'antd';
@@ -45,10 +45,10 @@ function InvouiceOrderTable(props) {
     
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
-    useEffect(() => {
-       // setPageNo(pageNo + 1);
-        props.getOrderInvoiveList(props.rowData.orderId)
-    }, []);
+    // useEffect(() => {
+    //    // setPageNo(pageNo + 1);
+    //     props.getOrderInvoiveList(props.rowData.orderId)
+    // }, []);
     const [rowData, setRowData] = useState({})
     const handleRowData = (item) => {
         setRowData(item)
@@ -197,7 +197,7 @@ const mapStateToProps = ({ distributor, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getOrderInvoiveList,
+           // getOrderInvoiveList,
             handleInvoiceModal
            
         },

@@ -12,6 +12,7 @@ import LeadsTab from "../../../../Rules/Child/RulesTab/LeadsTab";
 const TabPane = StyledTabs.TabPane;
 
 function SettingsHolidayTab(props) {
+    const [activeKey, setActiveKey] = useState("1");
     const [departmentData, setDepartmentData] = useState({});
     const [selectedDepartmentId, setSelectedDepartmentId] = useState(null);
     // useEffect(() => {
@@ -29,11 +30,49 @@ function SettingsHolidayTab(props) {
         setDepartmentData(data);
         props.getCountries();
       };
+
+      const handleTabChange = (key) => {
+        setActiveKey(key);
+      };
+
+
+      const renderTabContent = (key) => {
+        switch (key) {
+          case "1":
+            return (
+              <Suspense fallback={"Loading..."}>
+                <CountryList />
+              </Suspense>
+            );
+          case "2":
+            return (
+              <Suspense fallback={"Loading..."}>
+                <WeekendCountryList
+                //   translateText={props.translateText}
+                //   selectedLanguage={props.selectedLanguage}
+                />
+              </Suspense>
+            );
+          case "3":
+            return (
+              <Suspense fallback={"Loading..."}>
+                <LeadsTab
+                  
+                />
+              </Suspense>
+            );
+        
+          default:
+            return null;
+        }
+      };
     
    return (
         <>
             <TabsWrapper>
-                <StyledTabs  type="card">
+                <StyledTabs  type="card"
+                 defaultActiveKey={activeKey} onChange={handleTabChange}
+                >
                     <TabPane 
                      tab={
                         <span onClick={() => handleOnClick()}>
@@ -43,14 +82,7 @@ function SettingsHolidayTab(props) {
                    
                      key="1"
                      >
-                    {/* {departmentData && ( */}
-                                        <Suspense fallback={"Loading..."}>
-                                            <CountryList 
-                                    //   country_id={this.departmentData.country_id} 
-                                                />
-                                            
-                                        </Suspense>
-                                    {/* )} */}
+                
                      
                     </TabPane>
                     <TabPane 
@@ -63,12 +95,7 @@ function SettingsHolidayTab(props) {
                    key="2"
                     >
                          
-                                        <Suspense fallback={"Loading..."}>
-                                            <WeekendCountryList 
-                                    //   country_id={this.departmentData.country_id} 
-                                                />
-                                            
-                                        </Suspense>
+                                       
                                  
                      
                     </TabPane>
@@ -82,17 +109,15 @@ function SettingsHolidayTab(props) {
                    key="3"
                     >
                          
-                                        <Suspense fallback={"Loading..."}>
-                                            <LeadsTab 
-                                    //   country_id={this.departmentData.country_id} 
-                                                />
-                                            
-                                        </Suspense>
+                                      
                                  
                      
                     </TabPane>
                   
                 </StyledTabs>
+                <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
                 {/* <h1>Approval</h1> */}
             </TabsWrapper>
         </>

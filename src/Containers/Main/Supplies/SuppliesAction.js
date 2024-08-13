@@ -1180,10 +1180,10 @@ export const materialPricetype = ( data,suppliesId) => (dispatch, getState) => {
     type: types.MATERIAL_PRICE_TYPE_REQUEST,
   });
   axios
-  .put(`${base_url2}/supplies/PRICETYPEDUMMTY/${suppliesId}`,data,  {
-    headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-    },
+  .post(`${base_url2}/supplies/suppliesPrice`,data,  {
+    // headerss: {
+    //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    // },
   })
 
     .then((res) => {

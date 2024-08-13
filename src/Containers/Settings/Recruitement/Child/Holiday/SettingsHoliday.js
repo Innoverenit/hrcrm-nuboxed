@@ -14,6 +14,7 @@ class SettingsHoliday extends Component {
   render() {
     const { addHolidayModal, handleHolidayModal } = this.props;
     console.log(this.props.country_id);
+    console.log(this.props.country_name);
     return (
       <>
            {/* <StyledTabs
