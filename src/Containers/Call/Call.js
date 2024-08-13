@@ -50,6 +50,7 @@ function Call (props) {
     return (
 
       <React.Fragment>
+         <Suspense fallback={<BundleLoader />}>
         <CallHeader 
         handleCallModal={handleCallModal} 
         translatedMenuItems={translatedMenuItems}
@@ -63,10 +64,7 @@ function Call (props) {
           handleCallModal={handleCallModal}
 
         />
-
-        <Suspense fallback={<BundleLoader />}>
-        
-          <CallTable 
+        <CallTable 
           translatedMenuItems={translatedMenuItems}
           selectedLanguage={props.selectedLanguage}
           translateText={props.translateText}
