@@ -2734,7 +2734,7 @@ const [priority,setpriority]=useState(props.selectedTask
                       </div>
                       <div class="mt-2">
               <div>
-            <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</span>
+            <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</span>
             <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">

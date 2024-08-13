@@ -418,7 +418,7 @@ function MainApp(props) {
                 className="logo1"
                 style={{
                   display: "flex",
-                  width: "-webkit-fill-available",
+                  width: "90%",
                   justifyContent: !collapsed ? "center" : "center",
 
                 }}
@@ -437,7 +437,7 @@ function MainApp(props) {
               />
             </Sider>
           </div>
-          <LayoutWrapper class=" w-wk" >
+          <LayoutWrapper class="w-[90%]" >
             <div class=" flex flex-row justify-between w-[100%] items-center content-center nowrap sticky z-50 p-0 h-12 leading-[4rem] mt-1 shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
            
               <Header class=" flex bg-white w-[100%] box-border border-2 justify-between p-0 items-center">

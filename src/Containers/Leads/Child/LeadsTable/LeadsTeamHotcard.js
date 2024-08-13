@@ -199,6 +199,7 @@ const LeadsTeamHotcard = (props) => {
                     <div>
                       <ButtonGroup>
                         <RoleButton
+                          className="!text-icon"
                           type="Hot"
                           iconType="fas fa-mug-hot"
                           // tooltip="Hot"
@@ -219,6 +220,7 @@ const LeadsTeamHotcard = (props) => {
                     <div>
                       <ButtonGroup>
                         <RoleButton1
+                          className="!text-icon"
                           type="Warm"
                           iconType="	fas fa-burn"
                           // tooltip="Warm"
@@ -239,6 +241,7 @@ const LeadsTeamHotcard = (props) => {
                     <div>
                       <ButtonGroup>
                         <RoleButton2
+                          className="!text-icon"
                           type="Cold"
                           iconType="far fa-snowflake"
                           // tooltip="Cold"
@@ -279,7 +282,7 @@ const LeadsTeamHotcard = (props) => {
                               {item.name}
                               &nbsp;&nbsp;
                               {date === currentdate ? (
-                                <div class="text-xs  text-[tomato] font-bold"
+                                <div class="text-[0.65rem]  text-[tomato] font-bold"
                                   
                                 >
                                   New
