@@ -1069,7 +1069,7 @@ export const materialCategorySearch = (categoryName) => (dispatch) => {
 export const uploadMaterialList = (data) => (dispatch) => {
   dispatch({ type: types.UPLOAD_MATERIAL_LIST_REQUEST });
   axios
-    .post(`${base_url2}/import/supplies-details`, data, {
+    .post(`${base_url2}/excel/supplies-details`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
