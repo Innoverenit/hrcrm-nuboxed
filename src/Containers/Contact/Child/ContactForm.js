@@ -324,7 +324,8 @@ class ContactForm extends Component {
                           />
                         }
                         </div>
-                        <div class=" w-1/2 max-sm:w-full">
+
+                        <div class=" w-1/2 max-sm:w-full flex flex-col">
                         {this.props.customerConfigure.lastNameInd===true&&
                         <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
   }
@@ -343,7 +344,7 @@ class ContactForm extends Component {
                       </div>
                     </div>
                   </div>
-                  <div class=" flex justify-between">
+                  <div class=" flex justify-between  flex-col mt-3">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
                     <div class=" w-full">
                       <FastField
@@ -360,7 +361,7 @@ class ContactForm extends Component {
                     </div>
                   
                   </div>  
-                  <div class=" flex justify-between">
+                  <div class=" flex flex-col justify-between ">
                   {this.props.customerConfigure.alternateEmailInd===true&&
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
   }
@@ -381,12 +382,13 @@ class ContactForm extends Component {
                     </div>
                   
                   </div>               
-                  <div class=" flex justify-between">
+                  <div class=" flex justify-between mt-3 ">
+                    <div class="flex flex-col w-1/4">
                   {this.props.customerConfigure.dailCodeInd===true&&
-                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
+                  <div class="  flex flex-col text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
   }
                   {this.props.customerConfigure.dailCodeInd===true&&
-                    <div class=" w-2/6 max-sm:w-2/5">
+                    <div class=" w-wk max-sm:w-2/5">
                       <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate                 
@@ -399,8 +401,10 @@ class ContactForm extends Component {
                         inlineLabel
                       />
                     </div>
+               
   }
-                    <div class=" w-2/5 max-sm:w-2/5">
+  </div>
+                    <div class=" w-2/5 max-sm:w-2/5 ">
                     {this.props.customerConfigure.phoneNoInd===true&&
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
   }
@@ -415,7 +419,7 @@ class ContactForm extends Component {
                       />
                     }
                     </div>
-                    <div class=" w-1/4 " >
+                    <div class=" w-1/4  flex flex-col" >
                     {this.props.customerConfigure.whatsupInd===true&&
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
   }
@@ -430,7 +434,7 @@ class ContactForm extends Component {
                     </div>
                   </div>
                  
-                  <div class=" flex justify-between">
+                  <div class=" flex flex-col justify-between">
                     <div class=" w-2/4">
                     <div class=" text-xs font-bold font-poppins"> </div>
                       {" "}
@@ -469,7 +473,7 @@ class ContactForm extends Component {
                   </div>
                  
                  
-                  < div class=" flex justify-between mt-3">
+                  < div class=" flex flex-col justify-between mt-3">
                   {this.props.customerConfigure.linkedinInd===true&&
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
   }
@@ -489,11 +493,13 @@ class ContactForm extends Component {
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 >
-                  <div class=" flex  justify-between max-sm:mt-20">
+                  <div class="  flex justify-between max-sm:mt-20">
+        <div class="flex flex-col w-w47.5">
                   {this.props.customerConfigure.tagCompanyInd===true&&
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
+                  // Tag Company
   }
-                    <div class="  w-w47.5">
+                    <div class="  w-wk">
                     {this.props.customerConfigure.tagCompanyInd===true&&
                       <Field
                         name="customerId"            
@@ -507,10 +513,12 @@ class ContactForm extends Component {
                         inlineLabel
                       />
                     }
+                    </div>
                     </div>              
-                    <div class=" w-w47.5">
+                    <div class=" w-w47.5 ">
                     {this.props.customerConfigure.sourceInd===true&&
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
+                    // source
   }
                     {this.props.customerConfigure.sourceInd===true&&
                     <FastField
@@ -520,6 +528,7 @@ class ContactForm extends Component {
                             component={SearchSelect}
                             value={values.source}
                             isColumn
+                            inlineLabel
                           />
                     }
                         </div>
@@ -527,11 +536,12 @@ class ContactForm extends Component {
                     
                   </div>
                  
-                  <div class=" flex justify-between mt-3">  
+                  <div class=" flex  justify-between">  
+                       <div class="w-w47.5 flex flex-col">
                   {this.props.customerConfigure.departmentInd===true&&  
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div> 
   }    
-                  <div class="  w-w47.5">
+                  <div class="  w-wk">
                   {this.props.customerConfigure.departmentInd===true&&
                     <Field
                       name="departmentId"     
@@ -544,6 +554,7 @@ class ContactForm extends Component {
                       inlineLabel
                     />
                   }
+                  </div>
                   </div>
                   <div class="w-w47.5">
                   {this.props.customerConfigure.designationInd===true&&
@@ -563,8 +574,8 @@ class ContactForm extends Component {
                       </div>
                   </div>
                  
-                  <div class="mt-8" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
-                      <div>
+                  <div class="mt-6" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
+                      <div class="mt-3">
                       {this.props.customerConfigure.addressInd===true&&
                       <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</div>
   }

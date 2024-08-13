@@ -854,10 +854,10 @@ translatedMenuItems={props.translatedMenuItems}
                 )}
                  {props.customerConfigure.noteInd===true&&
               <div class="mt-3">
+                <div>
                   {/* Notes */}
-                    <div class=" font-bold text-xs">{translatedMenuItems[14]}
-                    <div>
-                  <div>
+                    <span class=" font-bold text-xs font-poppins">{translatedMenuItems[14]}</span>
+                  <span>
                     <span onClick={startListening}>
                       <Tooltip title="Start">
                         <span  >
@@ -881,7 +881,7 @@ translatedMenuItems={props.translatedMenuItems}
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                  </span>
 
                   <div>                  
         <textarea
@@ -894,7 +894,7 @@ translatedMenuItems={props.translatedMenuItems}
 
                   </div>
                   </div>
-                </div>
+          
                   </div>
 }
                 </div>

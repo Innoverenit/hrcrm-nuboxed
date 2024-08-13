@@ -1213,10 +1213,7 @@ function CallForm(props) {
                         </span>
                       </Tooltip>
                     </span>
-                  </span> 
-                  
-                 
-                  
+                  </span>                               
                 </div>
                   </div>
               

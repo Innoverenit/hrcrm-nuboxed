@@ -204,6 +204,7 @@ const LeadsTeamWarmcard = (props) => {
                   <div>
                     <ButtonGroup>
                       <RoleButton
+                        className="!text-icon"
                         type="Hot"
                         iconType="fas fa-mug-hot"
                         tooltip={
@@ -223,6 +224,7 @@ const LeadsTeamWarmcard = (props) => {
                   <div>
                     <ButtonGroup>
                       <RoleButton1
+                        className="!text-icon"
                         type="Warm"
                         iconType="	fas fa-burn"
                         tooltip={
@@ -242,6 +244,7 @@ const LeadsTeamWarmcard = (props) => {
                   <div>
                     <ButtonGroup>
                       <RoleButton2
+                        className="!text-icon"
                         type="Cold"
                         iconType="far fa-snowflake"
                         tooltip={

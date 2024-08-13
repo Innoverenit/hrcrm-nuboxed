@@ -562,11 +562,11 @@ const filteredEmployeesData = AllEmplo.filter(
                     />
                   </div>
                 </div>
-              
-                <div class="font-bold text-xs">{translatedMenuItems[5]}</div>
+                <div class="mt-3">
+              <div>
+                <span class="font-bold text-xs">{translatedMenuItems[5]}</span>
                 {/* Description */}
-                <div>
-                  <div>
+                   <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
                         <span >
@@ -590,7 +590,8 @@ const filteredEmployeesData = AllEmplo.filter(
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                    </span>
+                
                   <div>
                     <textarea
                       name="description"
@@ -600,8 +601,10 @@ const filteredEmployeesData = AllEmplo.filter(
                       onChange={handletext}
                     ></textarea>
                   </div>
-                </div>
+                  </div>
               </div>
+              </div>
+
             <div
                class=" h-full w-[47.5%] max-sm:w-wk mr-1">
               <Listbox value={selected} onChange={setSelected}>
@@ -794,15 +797,13 @@ const filteredEmployeesData = AllEmplo.filter(
                                             component={DraggableUpload1}
                                         />
                                     </div>
-              </div> 
-   <div class=" flex">
+                                    <div class=" flex">
                   <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">
                        Email Ind 
                     </div>
                       <div>
-                      <Switch
-                          style={{ width: "6.25em" }}
+                      <Switch               
                           checked={emailInd}
                           onChange={handleEmailInd}
                           checkedChildren="Yes"
@@ -811,6 +812,8 @@ const filteredEmployeesData = AllEmplo.filter(
                       </div>
                     </div>
                     </div>
+              </div> 
+             
             </div>
           
             <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">
