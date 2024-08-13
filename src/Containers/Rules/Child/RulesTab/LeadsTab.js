@@ -1,7 +1,8 @@
 
 
-import React, {  PureComponent, Suspense,lazy  } from "react";
+import React,{lazy,Suspense,useEffect,useState} from "react";
 import { connect } from "react-redux";
+import { Tabs, Badge } from 'antd';
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
@@ -10,67 +11,84 @@ const LeadsForm = lazy(() => import("./LeadsForm"));
 
 
 const TabPane = StyledTabs.TabPane;
-class LeadsTab extends PureComponent {
 
-    constructor(props) {
-        super(props)
+function LeadsTab (props) {
+    const [activeKey, setActiveKey] = useState("")
 
-        this.state = {
-            key: "",
-            departmentData: {}
+
+    useEffect(() => {
+        props.getCountries(); 
+      //  props.getSectorCount(props.orgId) 
+    }, [])
+    useEffect(() => {
+        // Ensure the initial tab content is rendered on component mount
+        
+        if (props.countries.length > 0) {
+       
+          setActiveKey(props.countries[0]?.country_id);
         }
-    }
+      }, [props.countries]);
 
-    componentDidMount() {
-        this.props.getCountries()
-    }
-
-    handleOnClick = (data) => {
-        console.log(data);
-        debugger;
-        this.setState({
-            departmentData: data,
-        });
-
-    };
-    render() {
-        const { countries } = this.props;
+    useEffect(() => {
+        // Ensure the initial tab content is rendered on component mount
+        renderTabContent(activeKey);
+        
+      }, [activeKey]);
+    const handleTabChange = (key) => {
+        console.log(key)
+        setActiveKey(key);
+        //const selectedTypedata = type.find(type => type.workflowCategoryId === value);
+      };
+    
+    const renderTabContent = (key) => {
+        const tab = props.countries.find(tab => tab.country_id === key);
+        console.log(tab)
+        if (!tab) return null;
+    
+        return <LeadsForm 
+        // label={tab.name} 
+        // activeKey={activeKey}
+        country_name={tab.country_name}
+                          country_id={tab.country_id}
+        />;
+      };
         return (
             <>
                 <TabsWrapper>
-                    <StyledTabs type="card">
-                        {countries.map((member, i) => {
-                            return (
+
+                    <Tabs type="card"
+                    defaultActiveKey={activeKey} onChange={handleTabChange}
+                    >
+                        {props.countries.map(member => (
+                        
                                 <TabPane
-                                    key={i}
+                                   
                                     tab={
-                                        <span onClick={() => this.handleOnClick(member)}>
+                                        <>
+                                        <span >
+                                       
                                             {member.country_name}
                                         </span>
+                                        </>
                                     }
-                                >
-                                    {this.state.departmentData.country_id && (
-                                        <Suspense fallback={"Loading..."}>
-                                            <LeadsForm 
-                                    countryId={this.state.departmentData.country_id}
+                                    key={member.country_id}  
+                                />
+                        ))}
                                     
-                                                />
-                                            {/* <AccessForm 
-                                            departmentId={this.state.departmentData.departmentId} 
-                                            /> */}
-                                        </Suspense>
-                                    )}
 
-                                </TabPane>
-                            );
-                        })}
+                              
+                            
+                        
 
-                    </StyledTabs>
+                    </Tabs>
+                    <Suspense fallback={<div className="flex justify-center">Loading...</div>}>
+        {renderTabContent(activeKey)}
+      </Suspense>
                 </TabsWrapper>
             </>
         )
     }
-}
+
 
 const mapStateToProps = ({ settings, opportunity, auth }) => ({
   countries: auth.countries,
