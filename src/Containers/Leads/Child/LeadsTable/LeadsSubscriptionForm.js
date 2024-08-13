@@ -290,6 +290,7 @@ function LeadsSubscriptionForm(props) {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   console.log("Component Rendered");
+  console.log(props.item)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -332,11 +333,18 @@ function LeadsSubscriptionForm(props) {
       setClickedIndex(index);
       let data = {
         leadsId: props.item.leadsId,
-        paymentId: "",
-        paymentInd: true,
-        subscriptionId: subscription.subscriptionId,
-        validationFrom: "",
-        validationTo: ""
+        amount:subscription.perMonthValue,
+        name:props.item.name,
+        phone:props.item.phoneNumber,
+        currency:"INR",
+        email:props.item.email,
+        // paymentId: "",
+        userId:props.userId,
+        orgId:props.orgId
+        // paymentInd: true,
+        // subscriptionId: subscription.subscriptionId,
+        // validationFrom: "",
+        // validationTo: ""
       };
       props.addSubscriptionData(data);
     }
@@ -365,10 +373,14 @@ console.log(props.compareSubscription)
                   hoverable
                   onClick={() => handleClick(subscription, index)}
                 >
-                  <p>Per Month Value: ${subscription.perMonthValue}</p>
+                  <p>Per Month Value: ₹{subscription.perMonthValue}</p>
                   {subscription.callInd && (
                     <p>Calls: {subscription.noOfcalls}</p>
                   )}
+{subscription.ruleDto.map((item, index) => (
+  <p key={index}>{item.ruleType}: {item.ruleValue}</p>
+))}
+<p style={{fontWeight:"bolder"}}>10% discount on additional services</p>
                 </Card>
               </Col>
             ))}
@@ -386,6 +398,7 @@ const mapStateToProps = ({ auth, leads, subscription }) => ({
   subscriptionLeadsData: leads.subscriptionLeadsData,
   organizationId: auth.userDetails.organizationId,
   orgId: auth.userDetails.organizationId,
+  userId: auth.userDetails.userId,
   compareSubscription: leads.compareSubscription,
   updatingSuscrption: subscription.updatingSuscrption,
 });

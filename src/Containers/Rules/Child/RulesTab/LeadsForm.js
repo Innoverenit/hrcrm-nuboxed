@@ -17,9 +17,9 @@ function LeadsForm(props) {
     setVisible(checked);
   };
   useEffect(() => {
-    props.getLeavesDetails(props.countryId);
+    props.getLeavesDetails(props.country_id);
     // props.getOnlySalesUser();
-  }, []);
+  }, [props.country_id]);
 
   return (
     <>
@@ -39,7 +39,7 @@ country:props.countryId,
         //   props.addLeaves(values),props.countryId;
         // }}
         onSubmit={(values) => {
-          props.addLeaves({ ...values  },props.countryId);
+          props.addLeaves({ ...values  },props.country_id);
       }}
       
       >
