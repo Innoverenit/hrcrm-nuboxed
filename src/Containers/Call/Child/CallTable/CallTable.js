@@ -1,4 +1,4 @@
-import React, { useEffect, useState,lazy } from "react";
+import React, { useEffect, useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
@@ -17,7 +17,7 @@ import {
   emptyCall
 } from "../../CallAction";
 import { MultiAvatar2, MultiAvatar } from "../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddCallNotesDrawerModal = lazy(() => import("../AddCallNotesDrawerModal"));
 
 function CallTable(props) {
@@ -250,6 +250,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
       </InfiniteScroll>
       </div>
       </div>
+      <Suspense fallback={<BundleLoader />}>      
       <AddCallNotesDrawerModal
 handleSetCallNameId={handleSetCallNameId}
 handleCallNotesDrawerModal={props.handleCallNotesDrawerModal}
@@ -257,7 +258,7 @@ addDrawerCallNotesModal={props.addDrawerCallNotesModal}
   currentNameId={currentNameId}
   // taskName={currentprocessName.taskName} // Pass taskName as a prop
 
-/>
+/></Suspense>
     </>
   );
 }

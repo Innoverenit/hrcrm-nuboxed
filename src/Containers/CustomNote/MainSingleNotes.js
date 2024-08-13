@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
-import relativeTime from 'dayjs/plugin/relativeTime';
 const NotesWrapper = styled.div``;
 export default function MainSingleNotes(props) {
   console.log(props);
