@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Input } from "./styled";
-import { ValidationError, Title, SubTitle } from "../../Components/UI/Elements";
+import { ValidationError} from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import FWLogo from "../../Assets/Images/name.jpg";  // for CT
@@ -51,7 +51,7 @@ class ForgotPassword extends Component {
   render() {
     return (
       <>
-        <div className="main" style={{ display: "flex", justifyContent: "space-evenly" }}>
+        <div className="main flex justify-evenly" >
 
           <div className="forgot_password">
 
@@ -65,8 +65,8 @@ class ForgotPassword extends Component {
                   alt="Tekorero logo"
                 />
            <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
-                  <Title>Forgot Password</Title>
-                  <SubTitle>Link will be sent to your registered email id</SubTitle>
+                  <div class=" text-lg font-poppins font-bold text-black ">Forgot Password</div>
+                  <div class=" text-sm font-poppins text-black">Link will be sent to your registered email id</div>
                   <div class="mt-3" />
                   <Formik
                     initialValues={{
@@ -87,7 +87,7 @@ class ForgotPassword extends Component {
                     }}
                   >
                     {({ errors, touched, values, isSubmitting }) => (
-                      <Form style={{ width: "25vw" }}>
+                      <Form className=" w-[25vw]">
                         <div >
                           <div className="flex w-full">
                             <div className="w-[75%]" >
@@ -197,24 +197,14 @@ class ForgotPassword extends Component {
                               />
                             </div>
                             {this.state.show1 ? (
-                              <EyeOutlined
+                              <EyeOutlined  className=" !text-icon  -ml-5 -mt-1"
                                 type="eye"
                                 onClick={this.handleClick1}
-                                style={{
-                                  marginLeft: "-1.25em",
-                                  marginTop: "-0.25em",
-                                }}
-                              // style={{ size: 24 }}
-                              />
+                                />
                             ) : (
-                              <EyeInvisibleOutlined
+                              <EyeInvisibleOutlined  className=" !text-icon  -ml-5 -mt-1"
                                 type="eye-invisible"
                                 onClick={this.handleClick1}
-                                style={{
-                                  marginLeft: "-1.25em",
-                                  marginTop: "-0.25em",
-                                }}
-                            
                               />
                             )}
                           
@@ -238,7 +228,7 @@ class ForgotPassword extends Component {
 
                             </span>
 
-                            <Button
+                            <Button 
                               type="primary"
                               htmlType="submit"
                               loading={this.props.doResetpassword}
