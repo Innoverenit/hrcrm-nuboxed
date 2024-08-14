@@ -16,6 +16,9 @@ import DragableUpload from "../../../../../Components/Forms/Formik/DragableUploa
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const DistributorSchema = Yup.object().shape({
   paymentMode: Yup.string().required("Input required"),
+  paymentAmount: Yup.string().required("Input required"),
+  date: Yup.string().required("Input required"),
+  
 });
 function DistributorPaidForm(props) {
 
@@ -123,6 +126,7 @@ function DistributorPaidForm(props) {
                       name="date"
                       label="Date "
                       isColumn
+                      isRequired
                       inlineLabel
                       width={"100%"}
                       component={DatePicker}
@@ -182,7 +186,7 @@ function DistributorPaidForm(props) {
                     <Field
                       name="invoiceId"
                       label="Invoice Id"
-                      isRequired
+                     
                       isColumn
                       inlineLabel
                       width={"100%"}

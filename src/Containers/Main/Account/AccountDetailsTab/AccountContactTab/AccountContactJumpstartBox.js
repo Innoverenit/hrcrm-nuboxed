@@ -132,12 +132,12 @@ function AccountContactJumpstartBox (props) {
 useEffect(()=>{
   const start = `${startDate.format("YYYY-MM-DD")}T20:00:00Z`;
     const end = `${endDate.format("YYYY-MM-DD")}T20:00:00Z`;
-   props.getPaymentClik(props.rowData.contactPersonId,start,end)
-   props.getQuationClik(props.rowData.contactPersonId,start,end)
-   props.getQuationCheckout(props.rowData.contactPersonId,start,end)
-   props.getQuationShipping(props.rowData.contactPersonId,start,end)
-   props.getLoginCount(props.rowData.contactPersonId,start,end)
-    },[props.rowData.contactPersonId, startDate, endDate]);
+   props.getPaymentClik(props.rowData.contactUserId,start,end)
+   props.getQuationClik(props.rowData.contactUserId,start,end)
+   props.getQuationCheckout(props.rowData.contactUserId,start,end)
+   props.getQuationShipping(props.rowData.contactUserId,start,end)
+   props.getLoginCount(props.rowData.contactUserId,start,end)
+    },[props.rowData.contactUserId, startDate, endDate]);
     const { openPitchQualified,handlePitchQualifiedDrawer,openPitchAdded,handlePitchAddedDrawer,
       openDealAdded,handleDealAddedDrawer,openDealClosed,handleDealClosedDrawer
     } = props;
@@ -147,69 +147,57 @@ useEffect(()=>{
        <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
         <div class="flex w-wk">
+        <JumpStartBox
+                       bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+            noProgress
+            title="Login Clicks"
+            // jumpstartClick={()=>handleDealClosedDrawer(true)}
+            // cursorData={"pointer"}
+            value={ props.loginCount.count}
+            isLoading={props.fetchingLoginCount}
+          />
+           <JumpStartBox
+                       bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
+            noProgress
+            title="Quotation Clicks"
+            // jumpstartClick={()=>handlePitchAddedDrawer(true)}
+            // cursorData={"pointer"}
+            value={props.quatationClick.count}
+            isLoading={props.fetchingQuatationClick}
+          />
           <JumpStartBox
             noProgress
             bgColor="linear-gradient(270deg,#F15753,orange)"
-            title={<FormattedMessage
-              id="app.pitchQualified"
-              defaultMessage="Pitch Qualified"
-            />}
+            title="Checkout Clicks"
             // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
             // cursorData={"pointer"}
             value={props.paymentclick.count}
             isLoading={props.fetchingPaymentClick}
           />
 
-          <JumpStartBox
-                       bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-            noProgress
-            title={<FormattedMessage
-              id="app.pitchAdded"
-              defaultMessage="Pitch Added"
-            />}
-            // jumpstartClick={()=>handlePitchAddedDrawer(true)}
-            // cursorData={"pointer"}
-            value={props.quatationClick.count}
-            isLoading={props.fetchingQuatationClick}
-          />
+         
 </div>
 <div class="flex w-wk">
-          <JumpStartBox
-  bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
-            noProgress
-            title={<FormattedMessage
-              id="app.dealsAdded"
-              defaultMessage="Deals Added"
-            />}
-            // jumpstartClick={()=>handleDealAddedDrawer(true)}
-            // cursorData={"pointer"}
-            value={props.quatationCheckout.count}
-            isLoading={props.fetchingQuatationCheckout}
-          />
-          <JumpStartBox
+<JumpStartBox
                        bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
             noProgress
-            title={<FormattedMessage
-              id="app.dealsClosed"
-              defaultMessage="Deals Closed"
-            />}
+            title="Shipping Hits"
             // jumpstartClick={()=>handleDealClosedDrawer(true)}
             // cursorData={"pointer"}
             value={ props.quatationShipping.count}
             isLoading={props.fetchingQuatationShipping}
           />
           <JumpStartBox
-                       bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+  bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
             noProgress
-            title={<FormattedMessage
-              id="app.opnn"
-              defaultMessage="Deals 5"
-            />}
-            // jumpstartClick={()=>handleDealClosedDrawer(true)}
+            title="Paid Clicks"
+            // jumpstartClick={()=>handleDealAddedDrawer(true)}
             // cursorData={"pointer"}
-            value={ props.loginCount.count}
-            isLoading={props.fetchingLoginCount}
+            value={props.quatationCheckout.count}
+            isLoading={props.fetchingQuatationCheckout}
           />
+         
+         
           </div>
         </div>
       </div>

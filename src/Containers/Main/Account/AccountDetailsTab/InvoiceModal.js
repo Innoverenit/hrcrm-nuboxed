@@ -13,7 +13,7 @@ class InvoiceModal extends Component {
         return (
             <div>
                 <StyledDrawer
-                    title="Update Order"
+                    title={this.props.rowData.invoiceId}
                     width="60%"
                     visible={invoiceO}
                     destroyOnClose
