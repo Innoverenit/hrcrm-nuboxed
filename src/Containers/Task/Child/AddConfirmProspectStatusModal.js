@@ -1,9 +1,8 @@
-import React, { Suspense } from "react";
+import React, { Suspense ,lazy} from "react";
 import { FormattedMessage } from "react-intl";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import ProspectConfirmStatusForm from "./ProspectConfirmStatusForm";
-
+const ProspectConfirmStatusForm = lazy(() => import("./ProspectConfirmStatusForm"));
 const AddConfirmProspectStatusModal = (props) => {
   const isSmallScreen = window.innerWidth <= 600;
     const drawerWidth = isSmallScreen ? "90%" : "60%";

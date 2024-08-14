@@ -1,5 +1,6 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
+import { BundleLoader } from "../../../Components/Placeholder";
 const TaskActionRight = lazy(() => import("./TaskActionRight"));
 const TaskActionLeft = lazy(() => import("./TaskActionLeft"));
 class TaskHeader extends Component {
@@ -10,13 +11,15 @@ class TaskHeader extends Component {
       top: "3.35rem",
       zIndex: "998"}}>
         <ActionHeader
-          leftComponent={<TaskActionLeft 
+          leftComponent={
+            
+            <Suspense fallback={<BundleLoader />}><TaskActionLeft 
             viewType={viewType}
             setTaskViewType={setTaskViewType}
-          />}
-          rightComponent={<TaskActionRight 
+          /></Suspense>}
+          rightComponent={<Suspense fallback={<BundleLoader />}><TaskActionRight 
             viewType={viewType}
-          />}
+          /></Suspense>}
         />
       </div>
     );

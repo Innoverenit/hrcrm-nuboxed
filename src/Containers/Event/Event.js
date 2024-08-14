@@ -12,6 +12,7 @@ function Event (props) {
         const { addEventModal, handleEventModal } = props;
         return (
             <React.Fragment>
+                 <Suspense fallback={<BundleLoader />}>
                 <EventHeader
                     selectedLanguage={props.selectedLanguage}
                     translateText={props.translateText}
@@ -21,7 +22,7 @@ function Event (props) {
                     translateText={props.translateText}
                     addEventModal={addEventModal}
                     handleEventModal={handleEventModal} />
-                <Suspense fallback={<BundleLoader />}>
+               
                     {/* <EventTable />
                      */}
                      <EventCardList 

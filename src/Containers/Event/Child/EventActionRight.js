@@ -1,10 +1,11 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Button from "antd/lib/button";
 import { Tooltip } from "antd";
 import { handleEventModal } from "../EventAction";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import { BundleLoader } from "../../../Components/Placeholder";
 const EventSharedForm =lazy(()=>import("./EventSharedForm"));
 
 class EventActionRight extends React.Component {
@@ -29,7 +30,7 @@ class EventActionRight extends React.Component {
     return (
       <div class=" flex items-center" >
          {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.eventFullListInd === true &&(
-         <EventSharedForm/>
+         <Suspense fallback={<BundleLoader />}> <EventSharedForm/></Suspense>
          )} 
         <Tooltip placement="left" title="Create">
           <Button type="primary"

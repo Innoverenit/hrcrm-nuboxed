@@ -2,12 +2,8 @@ import React, { Component,Suspense ,lazy} from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import TaskImportForm from "../Child/TaskImportForm"
-import styled from 'styled-components'
 import { StyledDrawer } from "../../../Components/UI/Antd";
-
-
-
+const TaskImportForm = lazy(() => import("../Child/TaskImportForm"));
 
 class AddTaskImportModal extends Component {
   render() {

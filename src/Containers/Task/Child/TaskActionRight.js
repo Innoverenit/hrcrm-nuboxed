@@ -1,12 +1,12 @@
-import React from "react";
+import React ,{Suspense ,lazy}from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddTaskImportModal from "../Child/AddTaskImportModal"
 import Button from "antd/lib/button";
 import { Tooltip } from "antd";
+import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { handleTaskModal, handleTaskImportModal,getTaskListRangeByUserId } from "../TaskAction";
-// const TaskSharedForm = lazy(() => import("./TaskSharedForm"));
+ const AddTaskImportModal = lazy(() => import("../Child/AddTaskImportModal"));
 
 const TaskActionRight = (props) => {
   function handleTaskRefresh() {
@@ -48,11 +48,12 @@ const TaskActionRight = (props) => {
         </Button>
      
     </div>
+    <Suspense fallback={<BundleLoader />}>
     <AddTaskImportModal
     handleTaskImportModal={props.handleTaskImportModal}
     addTaskImportModal={props.addTaskImportModal}
 
-    />
+    /></Suspense>
     </>
   );
 };
