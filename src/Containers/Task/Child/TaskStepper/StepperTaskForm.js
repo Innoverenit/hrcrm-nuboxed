@@ -1,23 +1,21 @@
 
 
-import React, {useState,useEffect } from "react";
+import React, {useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Tooltip, Switch ,Select} from "antd";
-import { getTasks } from "../../../../Containers/Settings/Task/TaskAction";
+import { Button, Tooltip,Select} from "antd";
 import { FormattedMessage } from "react-intl";
-import { Formik, Form, Field, FastField } from "formik";
+import { Formik, Form, Field} from "formik";
+import { BundleLoader } from "../../../../Components/Placeholder";
 import dayjs from "dayjs";
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { getUnits } from "../../../../Containers/Settings/Unit/UnitAction";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import {
     addStepperTask,
 } from "../../TaskAction";
 import ButtonGroup from "antd/lib/button/button-group";
-import StepperTaskList from "./StepperTaskList";
+
+const  StepperTaskList = lazy(() => import("./StepperTaskList"));
 
 const { Option } = Select;
 
@@ -341,7 +339,7 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
             // </div>
           )}
         </Formik>
-        <StepperTaskList currentNameId={props.currentNameId}/>
+        <Suspense fallback={<BundleLoader />}> <StepperTaskList currentNameId={props.currentNameId}/></Suspense>
       </>
     );
 }

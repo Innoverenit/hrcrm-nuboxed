@@ -1,9 +1,8 @@
-import React, { useState,lazy,useEffect } from "react";
+import React, { useState,lazy,Suspense,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
-import AddTaskDocumentDrawerModal from "../Child/AddTaskDocumentDrawerModal"
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
@@ -25,8 +24,7 @@ import { StyledPopconfirm, } from "../../../Components/UI/Antd";
 import {
   // getTaskListRangeByUserId,
   getHighTaskListRange,
-  getMediumTaskListRange,
-  
+  getMediumTaskListRange,  
   getLowTaskListRange,
   deleteTask,
   handleUpdateDocumentDrawerModal,
@@ -43,17 +41,19 @@ import {
   handleTaskopenModal,
   handleTaskDocumentDrawerModal
 } from "../TaskAction";
-import UpdateDocumentDrawerModal from "../Child/UpdateDocumentDrawerModal"
 import { MultiAvatar, MultiAvatar2, } from "../../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import AddTaskStepperDrawerModal from "./TaskStepper/AddTaskStepperDrawerModal";
 import { BundleLoader } from "../../../Components/Placeholder";
+
+const AddTaskDocumentDrawerModal = lazy(() => import("../Child/AddTaskDocumentDrawerModal"));
+const AddTaskStepperDrawerModal = lazy(() => import("./TaskStepper/AddTaskStepperDrawerModal"));
 const AddTaskProjectDrawerModal = lazy(() => import("../Child/AddTaskProjectDrawerModal"));
 const AddTaskNotesDrawerModal = lazy(() => import("./AddTaskNotesDrawerModal"));
 const OpenTaskModal = lazy(() => import("./OpenTaskModal"));
 const DownloadTaskModal = lazy(() => import("./DownloadTaskModal"));
 const UpdateTaskModal = lazy(() => import("./UpdateTaskModal"));
 const AddTaskFeedbackDrawerModal = lazy(() => import("./AddTaskFeedbackDrawerModal"));
+const UpdateDocumentDrawerModal = lazy(() => import("../Child/UpdateDocumentDrawerModal"));
 const ButtonGroup = Button.Group;
 
 const TaskCardList = (props) => {
@@ -1532,7 +1532,8 @@ const TaskCardList = (props) => {
                  </InfiniteScroll>
       </div>
 </div>
-<UpdateTaskModal
+<Suspense fallback={<BundleLoader />}>
+   <UpdateTaskModal
           updateTaskModal={updateTaskModal}
           handleUpdateTaskModal={handleUpdateTaskModal}
         />
@@ -1589,7 +1590,7 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
  handleUpdateDocumentDrawerModal={props.handleUpdateDocumentDrawerModal}
  addUpdatedocumentTaskModal={props.addUpdatedocumentTaskModal}
 />
-
+</Suspense>
 
       {/* AddTaskProjectDrawerModal and AddTaskNotesDrawerModal components go here */}
     </>

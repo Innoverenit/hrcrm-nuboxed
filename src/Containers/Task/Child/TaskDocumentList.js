@@ -8,7 +8,6 @@ import { bindActionCreators } from 'redux';
 import { base_url } from "../../../Config/Auth";
 import dayjs from 'dayjs';
  import { getTaskTimeline } from '../TaskAction';
-//import { BundleLoader } from '../../../../Components/Placeholder';
 
 const TaskDocumentList = (props) => {
   useEffect(() => {
