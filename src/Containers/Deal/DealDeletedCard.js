@@ -134,7 +134,7 @@ const DealDeletedCard = (props) => {
                 // }}
                 >
                   <div class="flex justify-between">
-                    <div className=" flex font-medium flex-col w-[12rem]   max-sm:w-full">
+                    <div className=" flex  w-[12rem]   max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
                         <div>
                           <SubTitle>
@@ -142,8 +142,8 @@ const DealDeletedCard = (props) => {
                               primaryTitle={item.opportunityName}
                               imageId={item.imageId}
                               imageURL={item.imageURL}
-                              imgWidth={"1.8em"}
-                              imgHeight={"1.8em"}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
                             />
                           </SubTitle>
                         </div>
@@ -151,7 +151,7 @@ const DealDeletedCard = (props) => {
                         </div>
                         <div class="max-sm:w-full" >
                           <Tooltip>
-                            <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">                           
+                            <div class="max-sm:w-full max-sm:justify-between flex md:">                           
                                             {/* Name */}
                                        
                               <div class=" text-[0.82rem] flex text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -160,7 +160,7 @@ const DealDeletedCard = (props) => {
                                 {/* </Link> */}
                                 &nbsp;&nbsp;
                                 {date === currentdate ? (
-                                  <span class="text-[tomato] mt-[0.4rem] font-bold"
+                                  <span class="text-[tomato] mt-[0.4rem] text-[0.65rem] font-bold"
                                   >
                                     New
                                   </span>
@@ -187,8 +187,8 @@ const DealDeletedCard = (props) => {
                               primaryTitle={item.contactName}
                               imageId={item.imageId}
                               imageURL={item.imageURL}
-                              imgWidth={"1.8em"}
-                              imgHeight={"1.8em"}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
                             />
                           }
                         </SubTitle>

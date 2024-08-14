@@ -1,4 +1,4 @@
-import React, { useEffect, useState,lazy} from "react";
+import React, { useEffect, useState,lazy,Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -417,6 +417,7 @@ function DealWonCard(props) {
       </InfiniteScroll>
 
       </div>
+      <Suspense fallback={<BundleLoader />}>
       <UpdateDealModal
         currentItem={currentItem}
         openupdateDealModal={openupdateDealModal}
@@ -429,6 +430,7 @@ function DealWonCard(props) {
         handleDealsNotesDrawerModal={props.handleDealsNotesDrawerModal}
         handleSetCurrentItem={handleSetCurrentItem}
       />
+      </Suspense>
     </>
   );
 }

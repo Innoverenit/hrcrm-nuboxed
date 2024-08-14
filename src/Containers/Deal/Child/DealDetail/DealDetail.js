@@ -17,10 +17,11 @@ class DealDetail extends Component {
 
     return (
       <>
+       <Suspense fallback={<BundleLoader />}>
         <DealDetailHeader
           dealDetailsbyID={dealDetailsbyID}
           fetchDealdetails={fetchDealdetails}
-        />
+        /></Suspense>
         {fetchDealdetails ? (
           <MainWrapper>
             <BundleLoader />

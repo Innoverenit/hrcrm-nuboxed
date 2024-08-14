@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getDealsContactList,setDealsContactValue  } from "../../DealAction"
@@ -9,9 +9,8 @@ import dayjs from "dayjs";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Button ,Input} from "antd";
 import { DatePicker } from "antd";
-import DealsCardToggle from "./DealsCardToggle";
 import { BundleLoader } from "../../../../Components/Placeholder";
-
+const DealsCardToggle = lazy(() => import("./DealsCardToggle"));
 const ButtonGroup = Button.Group;
 
 function LinkedDealContact(props) {
@@ -170,11 +169,11 @@ if (props.fetchingDealsContactList) {
                             <div className=" flex md:w-[30rem] max-sm:justify-between w-full max-sm:flex-row ">
      
 <div class=" text-xs  font-poppins">
-
+<Suspense fallback={<BundleLoader />}>
  <DealsCardToggle
 item={item}
 invOpportunityId={props.currentItem.invOpportunityId}
- />
+ /></Suspense>
 </div>
 </div>
 

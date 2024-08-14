@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
@@ -15,8 +15,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import SearchedDataDeal from "../../../SearchedDataDeal";
-
+const SearchedDataDeal =lazy(()=>import("../../../SearchedDataDeal"));
 const ButtonGroup = Button.Group;
 
 const DealsAllCardList = (props) => {
@@ -145,6 +144,7 @@ const DealsAllCardList = (props) => {
           hasMore={hasMore}
           loader={fetchingAllDealsData ? <div class="flex justify-center">Loading...</div> : null}
           height={"80vh"}
+          style={{ scrollbarWidth: "thin"}}
         >
           {!fetchingAllDealsData && props.allDealsData.length === 0 ? <NodataFoundPage /> : props.allDealsData.map((item, index) => {
             var findProbability = item.probability;
@@ -176,7 +176,7 @@ const DealsAllCardList = (props) => {
              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
                <div class="flex justify-between">
-                 <div className=" flex font-medium  w-[15rem]   max-sm:w-full">
+                 <div className=" flex  w-[15rem]   max-sm:w-full">
                    <div className="flex max-sm:w-full items-center">
                      <div>
                        <SubTitle>
@@ -225,7 +225,7 @@ const DealsAllCardList = (props) => {
                    </div>
                  </div>
 
-                 <div className=" flex font-medium  items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 <div className=" flex  items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs font-poppins">
                      <SubTitle>
@@ -234,8 +234,8 @@ const DealsAllCardList = (props) => {
                            primaryTitle={item.contactName}
                            imageId={item.imageId}
                            imageURL={item.imageURL}
-                           imgWidth={"1.8em"}
-                           imgHeight={"1.8em"}
+                           imgWidth={"1.8rem"}
+                           imgHeight={"1.8rem"}
                          />
                        }
                      </SubTitle>

@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState,lazy} from "react";
+import React, { useEffect, useState,lazy, Suspense} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -12,6 +12,7 @@ import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import { BundleLoader, } from "../../../Components/Placeholder";
 import {
   getPitch,
   getPitchHot,
@@ -29,7 +30,6 @@ import AddchartIcon from '@mui/icons-material/Addchart';
 import { Button, Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
@@ -545,7 +545,7 @@ const countryCode = item.countryAlpha2Code
       </div>
 
     
-
+      <Suspense fallback={<BundleLoader />}>
 
       <UpdateLPitchModal
         item={currentLeadsId}
@@ -575,7 +575,7 @@ const countryCode = item.countryAlpha2Code
           //  handleRowData={handleRowData}
            addPitchConvertModal={props.addPitchConvertModal}
            handlePitchConvertModal={props.handlePitchConvertModal}
-           />
+           /></Suspense>
     </>
    
   );

@@ -6,7 +6,6 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Button } from "antd";
 import { StyledSelect } from "../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
 const Option = StyledSelect.Option;
 
 class DataRoomActionRight extends React.Component {

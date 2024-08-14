@@ -39,17 +39,15 @@ import {
 } from "../Task/TaskAction";
 import { MultiAvatar, MultiAvatar2, } from "../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import AddTaskStepperDrawerModal from "../Task/Child/TaskStepper/AddTaskStepperDrawerModal";
-import AddTaskNotesDrawerModal from "../Task/Child/AddTaskNotesDrawerModal";
-import AddTaskProjectDrawerModal from "../Task/Child/AddTaskProjectDrawerModal";
-import OpenTaskModal from "../Task/Child/OpenTaskModal";
-import DownloadTaskModal from "../Task/Child/DownloadTaskModal";
-import UpdateTaskModal from "../Task/Child/UpdateTaskModal";
-import AddTaskDocumentDrawerModal from "../Task/Child/AddTaskDocumentDrawerModal";
-import UpdateDocumentDrawerModal from "../Task/Child/UpdateDocumentDrawerModal";
-import AddTaskFeedbackDrawerModal from "../Task/Child/AddTaskFeedbackDrawerModal";
-
-
+const UpdateTaskModal=lazy(()=> import("../Task/Child/UpdateTaskModal"));
+const AddTaskDocumentDrawerModal=lazy(()=> import("../Task/Child/AddTaskDocumentDrawerModal"));
+const UpdateDocumentDrawerModal=lazy(()=> import("../Task/Child/UpdateDocumentDrawerModal"));
+const AddTaskFeedbackDrawerModal=lazy(()=> import("../Task/Child/AddTaskFeedbackDrawerModal"));
+const AddTaskStepperDrawerModal =lazy(()=> import("../Task/Child/TaskStepper/AddTaskStepperDrawerModal"));
+const  AddTaskNotesDrawerModal =lazy(()=> import("../Task/Child/AddTaskNotesDrawerModal"));
+const AddTaskProjectDrawerModal=lazy(()=> import("../Task/Child/AddTaskProjectDrawerModal"));
+const OpenTaskModal =lazy(()=> import("../Task/Child/OpenTaskModal"));
+const DownloadTaskModal=lazy(()=> import("./../Task/Child/DownloadTaskModal"));
 const ButtonGroup = Button.Group;
 
 const TaskDataCardList = (props) => {
@@ -639,6 +637,7 @@ const TaskDataCardList = (props) => {
                  </InfiniteScroll>
       </div>
 </div>
+<Suspense fallback={<BundleLoader />}>
 <UpdateTaskModal
           updateTaskModal={updateTaskModal}
           handleUpdateTaskModal={handleUpdateTaskModal}
@@ -696,7 +695,7 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
  handleUpdateDocumentDrawerModal={props.handleUpdateDocumentDrawerModal}
  addUpdatedocumentTaskModal={props.addUpdatedocumentTaskModal}
 />
-
+</Suspense>
 
       {/* AddTaskProjectDrawerModal and AddTaskNotesDrawerModal components go here */}
     </>

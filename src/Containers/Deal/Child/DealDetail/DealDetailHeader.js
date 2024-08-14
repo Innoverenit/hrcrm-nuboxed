@@ -1,5 +1,6 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense} from "react";
 import { ActionHeader } from "../../../../Components/Utils";
+import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 const DealDetailActionLeft = lazy(() => import("./DealDetailActionLeft"));
@@ -11,18 +12,13 @@ class DealDetailHeader extends Component {
         <ActionHeader
           leftComponent={
             <>
-              <DealDetailActionLeft
-                             />
-              {/* <OpportunityStatsCard opportunity={opportunity} /> */}
+            <Suspense fallback={<BundleLoader />}>
+              <DealDetailActionLeft/>
+              </Suspense>
+           
             </>
           }
-        //   rightComponent={
-        //     <>
-        //       <OpportunityDetailActionRight
-        //         opportunity={this.props.opportunity}
-        //       />
-        //     </>
-        //   }
+       
         />
       </div>
     );

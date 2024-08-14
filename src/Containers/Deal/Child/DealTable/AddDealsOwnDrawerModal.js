@@ -3,8 +3,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import WonForm from "./WonForm";
-
+const WonForm = lazy(() => import("./WonForm"));
 class AddDealsOwnDrawerModal extends Component {
   render() {
      

@@ -43,6 +43,7 @@ function Pitch (props) {
   } = props;
         return (
             <React.Fragment>
+           <Suspense fallback={<BundleLoader />}>
             <PitchHeader
             selectedLanguage={props.selectedLanguage}
             translateText={props.translateText}
@@ -68,7 +69,7 @@ function Pitch (props) {
              
               handlePitchModal={props.handlePitchModal}
             />                    
-            <Suspense fallback={<BundleLoader />}>
+        
 
 
               

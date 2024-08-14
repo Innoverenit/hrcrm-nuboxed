@@ -1,5 +1,6 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
+import { BundleLoader} from "../../../Components/Placeholder";
 const DealActionLeft = lazy(()=>import("./DealActionLeft"));
 const DealActionRight = lazy(()=>import("./DealActionRight"));
 
@@ -18,18 +19,20 @@ class DealHeader extends Component {
         zIndex: "998"}}>
         <ActionHeader
           leftComponent={
+            <Suspense fallback={<BundleLoader />}>
             <DealActionLeft
             teamsAccessInd={teamsAccessInd}
               viewType={viewType}
               setDealViewType={setDealViewType}
-            />
+            /></Suspense>
           }
           rightComponent={
-            <DealActionRight
+            <Suspense fallback={<BundleLoader />}>
+               <DealActionRight
               viewType={viewType}
               opencreateDealModal={opencreateDealModal}
               handleDealModal={handleDealModal}
-            />
+            /></Suspense>
           }
         />
       </div>

@@ -1,17 +1,17 @@
 
 
-import React, { } from "react";
+import React, { lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
+import { BundleLoader, } from "../../../Components/Placeholder";
 import { FormattedMessage } from "react-intl";
 import {handleUploadPitchModal} from "../PitchAction";
-import UploadPitch from "./UploadPitch";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import UploadIcon from '@mui/icons-material/Upload';
-
+const UploadPitch=lazy(()=> import("./UploadPitch"));
 const Option = StyledSelect.Option;
 
 class PitchActionRight extends React.Component {
@@ -79,10 +79,11 @@ class PitchActionRight extends React.Component {
             </Button>
           </Tooltip> */}
           </div>
+          <Suspense fallback={<BundleLoader />}>
           <UploadPitch
           handleUploadPitchModal={this.props.handleUploadPitchModal}
           uploadPitchList={this.props.uploadPitchList}
-        />
+        /></Suspense>
       </>
     );
   }

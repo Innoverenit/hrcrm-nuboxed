@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
@@ -13,8 +13,7 @@ import { BundleLoader } from "../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
-import SearchedDataDeal from "./SearchedDataDeal";
-
+const SearchedDataDeal=lazy(()=>import ("./SearchedDataDeal"));
 const ButtonGroup = Button.Group;
 
 const DealsTeamCardList = (props) => {
@@ -111,9 +110,10 @@ const DealsTeamCardList = (props) => {
   return (
     <>
       {props.dealSerachedData.length > 0 ? (
-    <SearchedDataDeal
+     <Suspense fallback={<BundleLoader />}>
+   <SearchedDataDeal
     dealSerachedData={props.dealSerachedData}
-    />
+    /></Suspense>
   ) : (
       <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">

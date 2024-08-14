@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,lazy } from "react";
+import React, { useEffect, useState ,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import {  DeleteOutlined } from "@ant-design/icons";
+import { BundleLoader} from "../../../../Components/Placeholder";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
 import { Link } from 'react-router-dom';
@@ -46,13 +47,12 @@ import {
   handleOwnModal
 } from "../../DealAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import AddDealsContactDrawerModal from "../UpdateDeal/AddDealsContactDrawerModal";
-import AddDealsOwnDrawerModal from "./AddDealsOwnDrawerModal";
-import SearchedDataDeal from "../../SearchedDataDeal";
-import { BundleLoader } from "../../../../Components/Placeholder";
+const AddDealsContactDrawerModal =lazy(() =>import("../UpdateDeal/AddDealsContactDrawerModal"));
+const SearchedDataDeal =lazy(()=>import("../../SearchedDataDeal"));
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const DealSelectStages =lazy(()=>import("./DealSelectStages"));
+const AddDealsOwnDrawerModal =lazy(()=>import("./AddDealsOwnDrawerModal"));
 
 function DealCardList(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -446,6 +446,7 @@ function DealCardList(props) {
         </div>
       </InfiniteScroll>
    )} 
+    <Suspense fallback={<BundleLoader />}>
       <UpdateDealModal
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
@@ -474,7 +475,7 @@ function DealCardList(props) {
         handleSetCurrentItem={handleSetCurrentItem}
       />
 
-<AddDealsOwnDrawerModal
+    <AddDealsOwnDrawerModal
         currentItem={currentItem}
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
@@ -483,7 +484,7 @@ function DealCardList(props) {
         handleOwnModal={props.handleOwnModal}
         handleSetCurrentItem={handleSetCurrentItem}
       />
-
+    </Suspense>
     </>
   );
 }
