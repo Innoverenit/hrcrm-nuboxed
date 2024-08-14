@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState,lazy } from "react";
+import React, { useEffect, useMemo, useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { StyledTabs} from "../../../Components/UI/Antd";
 import { MainWrapper, } from "../../../Components/UI/Layout";
+import { BundleLoader} from "../../../Components/Placeholder";
 import {
     getProcessForDeals,
     getProcessStagesForDeals,
@@ -218,6 +219,7 @@ function DealsBoard(props) {
                                         )
                                         .map((opp, index) => {
                                           return (
+                                            <Suspense fallback={<BundleLoader />}>
                                             <DealStageColumn
                                               key={index}
                                               dealDetailsbyID={opp}
@@ -225,6 +227,7 @@ function DealsBoard(props) {
                                               history={props.history}
                                              // aLLdealsList={props.aLLdealsList}
                                             />
+                                            </Suspense>
                                           );
                                         })}
          {/* {props.aLLdealsList.length === 0 && (

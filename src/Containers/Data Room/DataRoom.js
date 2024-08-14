@@ -1,12 +1,11 @@
-import React, {Suspense } from 'react';
+import React, {Suspense,lazy} from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddDataRoomModal from "../Data Room/AddDataRoomModal"
-import DataRoomHeader from "../Data Room/DataRoomHeader"
-import DataRoomCard from "../Data Room/DataRoomCard"
-import { BundleLoader, } from "../../Components/Placeholder";
+import { BundleLoader } from "../../Components/Placeholder";
 import {setDataRoomViewType,handleDataroomModal} from "./DataRoomAction";
-
+const AddDataRoomModal=lazy(()=> import("../Data Room/AddDataRoomModal"));
+const DataRoomHeader=lazy(()=> import("../Data Room/DataRoomHeader"));
+const DataRoomCard=lazy(()=> import("../Data Room/DataRoomCard"));
 function DataRoom (props) {
     const {
         handleDataroomModal ,
@@ -14,6 +13,7 @@ function DataRoom (props) {
       } = props;
         return (
             <React.Fragment>
+            <Suspense fallback={<BundleLoader />}>
             <DataRoomHeader
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
@@ -27,14 +27,14 @@ function DataRoom (props) {
              addDataroomModal={addDataroomModal}
              handleDataroomModal={handleDataroomModal}
         />                  
-            <Suspense fallback={<BundleLoader />}>
+       
             {props.viewType === "list" ? (
            //<DataRoomTab />
-         <DataRoomCard
-         translateText={props.translateText}
-         selectedLanguage={props.selectedLanguage}
-         translatedMenuItems={props.translatedMenuItems}
-         />
+              <DataRoomCard
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+              translatedMenuItems={props.translatedMenuItems}
+              />
           ) : null}   
             </Suspense>  
           </React.Fragment>

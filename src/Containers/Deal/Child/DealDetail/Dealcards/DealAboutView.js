@@ -17,90 +17,48 @@ class DealAboutView extends Component {
     console.log(data);
     const menu = (
       <Menu>
-        <p
-          style={{
-            paddingRight: "0.625em",
-            paddingLeft: "0.625em",
-            fontSize: "bold",
-          }}
-        >
+        <div class=" pl-2 pr-2 font-bold" >
           <FormattedMessage
                 id="app.proposalvalueis"
                 defaultMessage=" Deals Value is"
               />
          
-        </p>
-        <p
-          style={{
-            textAlign: "right",
-            paddingRight: "0.625em",
-          }}
-        >{` ${parseFloat(exchangePrice && exchangePrice.EUR).toFixed(
+       </div>
+        <div class=" text-right pr-2" >{` ${parseFloat(exchangePrice && exchangePrice.EUR).toFixed(
           0
-        )} EUR`}</p>
-        <p
-          style={{
-            textAlign: "right",
-            paddingRight: "0.625em",
-          }}
-        >{`  ${parseFloat(exchangePrice && exchangePrice.GBP).toFixed(
+        )} EUR`}</div>
+        <div class=" text-right pr-2" >{`  ${parseFloat(exchangePrice && exchangePrice.GBP).toFixed(
           0
-        )} GBP`}</p>
-        <p
-          style={{
-            textAlign: "right",
-            paddingRight: "0.625em",
-          }}
-        >{`  ${parseFloat(exchangePrice && exchangePrice.USD).toFixed(
+        )} GBP`}</div>
+        <div class=" text-right pr-2">{`  ${parseFloat(exchangePrice && exchangePrice.USD).toFixed(
           0
-        )} USD`}</p>
-        <p
-          style={{
-            textAlign: "right",
-            paddingRight: "0.625em",
-          }}
-        >{` ${parseFloat(exchangePrice && exchangePrice.INR).toFixed(
+        )} USD`}</div>
+        <div class=" text-right pr-2">
+          {` ${parseFloat(exchangePrice && exchangePrice.INR).toFixed(
           0
-        )} INR`}</p>
-        <p
-          style={{
-            textAlign: "right",
-            paddingRight: "0.625em",
-          }}
-        >{` ${parseFloat(exchangePrice && exchangePrice.BDT).toFixed(
+        )} INR`}</div>
+        <div class=" text-right pr-2" >
+          {` ${parseFloat(exchangePrice && exchangePrice.BDT).toFixed(
           0
-        )} BDT`}</p>
-        <p
-          style={{
-            textAlign: "right",
-            paddingRight: "0.625em",
-          }}
-        >{` ${parseFloat(exchangePrice && exchangePrice.AUD).toFixed(
+        )} BDT`}</div>
+        <div class=" text-right pr-2" >
+          {` ${parseFloat(exchangePrice && exchangePrice.AUD).toFixed(
           0
-        )} AUD`}</p>
-        <p
-          style={{
-            textAlign: "right",
-            paddingRight: "0.625em",
-          }}
-        >{` ${parseFloat(exchangePrice && exchangePrice.CAD).toFixed(
+        )} AUD`}</div>
+        <div class=" text-right pr-2">
+          {` ${parseFloat(exchangePrice && exchangePrice.CAD).toFixed(
           0
-        )}  CAD`}</p>
-        <p
-          style={{
-            textAlign: "right",
-            paddingRight: "0.625em",
-          }}
-        >
+        )}  CAD`}</div>
+        <div class=" text-right pr-2" >
           {" "}
           {` ${parseFloat(exchangePrice && exchangePrice.SGD).toFixed(0)}  SGD`}
-        </p>
+       </div>
       </Menu>
     );
 
     return (
       <>
- <ProfileItemRow
+ <divrofileItemRow
           //label="Proposal value"
           label={<FormattedMessage
             id="app.proposalvalue"

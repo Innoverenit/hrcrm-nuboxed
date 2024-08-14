@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { MultiAvatar, MultiAvatar2, SubTitle } from "../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../Components/UI/Elements";
 import "jspdf-autotable";
 import {
   getTeamsDeals
@@ -11,8 +11,6 @@ import {
 import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import { FormattedMessage } from "react-intl";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { BundleLoader } from "../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -155,18 +153,18 @@ const DealsTeamCardList = (props) => {
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                   <div class="flex justify-between">
-                    <div className=" flex font-medium  w-[15rem]   max-sm:w-full">
+                    <div className=" flex   w-[15rem]   max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
                         <div>
-                          <SubTitle>
+                          <div>
                             <MultiAvatar
                               primaryTitle={item.opportunityName}
                               imageId={item.imageId}
                               imageURL={item.imageURL}
-                              imgWidth={"1.8em"}
-                              imgHeight={"1.8em"}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
                             />
-                          </SubTitle>
+                          </div>
                         </div>
                         <div class="w-[4%]">
 
@@ -188,7 +186,7 @@ const DealsTeamCardList = (props) => {
                                 {/* </Link> */}
                                 &nbsp;&nbsp;
                                 {date === currentdate ? (
-                                  <span class="text-[tomato] mt-[0.4rem] font-bold"
+                                  <span class="text-[tomato] mt-[0.4rem] font-bold text-[0.65rem]"
 
                                   >
                                     New
@@ -201,7 +199,7 @@ const DealsTeamCardList = (props) => {
                         </div>
                       </div>
                     </div>
-                    <div className=" flex font-medium  items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-sm  font-poppins">
                         <Link to="/investor">
@@ -210,26 +208,26 @@ const DealsTeamCardList = (props) => {
                       </div>
                     </div>
 
-                    <div className=" flex font-medium  items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm  font-poppins">
-                        <SubTitle>
+                        <div>
                           {item.contactName === null ? "None" :
                             <MultiAvatar2
                               primaryTitle={item.contactName}
                               imageId={item.imageId}
                               imageURL={item.imageURL}
-                              imgWidth={"1.8em"}
-                              imgHeight={"1.8em"}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
                             />
                           }
-                        </SubTitle>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm justify-center  font-poppins">
@@ -237,7 +235,7 @@ const DealsTeamCardList = (props) => {
                       </div>
                     </div>
 
-                    <div className=" flex font-medium items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm  font-poppins text-center">
@@ -247,7 +245,7 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm  font-poppins text-center">
@@ -283,10 +281,10 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium items-center  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
                     {myIndicator}
                     </div>
-                    <div className=" flex font-medium items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm  font-poppins">
@@ -312,7 +310,7 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium items-center  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                    <div className=" flex  items-center  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
 
 
 

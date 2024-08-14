@@ -177,8 +177,8 @@ function DealLostCard(props) {
                         primaryTitle={item.contactName}
                         imageId={item.imageId}
                          imageURL={item.imageURL}
-                        imgWidth={"1.8em"}
-                        imgHeight={"1.8em"}
+                        imgWidth={"1.8rem"}
+                        imgHeight={"1.8rem"}
                       />
                     }                
                                             </div>                                   
@@ -231,8 +231,8 @@ function DealLostCard(props) {
                                             <span>
                                             <MultiAvatar2
                       primaryTitle={item.assignedTo}
-                      imgWidth={"1.8em"}
-                      imgHeight={"1.8em"}
+                      imgWidth={"1.8rem"}
+                      imgHeight={"1.8rem"}
                     />
                     </span>
                            </div>
@@ -445,13 +445,13 @@ function DealLostCard(props) {
                  return (
                     <div>
                     <div
-                      className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                      className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                       // style={{
                       //   borderBottom: "3px dotted #515050",
                       // }}
                     >
                       <div class="flex ">
-                      <div className=" flex font-medium  md:w-[13.1rem] max-sm:flex-row w-full  items-center">
+                      <div className=" flex  md:w-[13.1rem] max-sm:flex-row w-full  items-center">
                                 <div>
             <MultiAvatar
               primaryTitle={item.opportunityName}
@@ -495,8 +495,8 @@ function DealLostCard(props) {
                 primaryTitle={item.contactName}
                 imageId={item.imageId}
                  imageURL={item.imageURL}
-                imgWidth={"1.8em"}
-                imgHeight={"1.8em"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             }
                                      </div>
@@ -562,8 +562,8 @@ function DealLostCard(props) {
                                     <span>
                                     <MultiAvatar2
               primaryTitle={item.assignedTo}
-              imgWidth={"1.8em"}
-              imgHeight={"1.8em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
             </span>
                                                  </div>

@@ -1,5 +1,6 @@
-import React, { Component,lazy} from "react";
+import React, { Component,lazy, Suspense} from "react";
 import { ActionHeader } from "../../Components/Utils";
+import { BundleLoader } from "../../Components/Placeholder";
 const DataRoomActionRight=lazy(()=> import("../Data Room/DataRoomActionRight"));
 const DataRoomActionLeft=lazy(()=> import("../Data Room/DataRoomActionLeft"));
 
@@ -10,20 +11,22 @@ class DataRoomHeader extends Component {
     } = this.props;
     return (
       <div>
+        
         <ActionHeader
           leftComponent={
+            <Suspense fallback={<BundleLoader />}>
             <DataRoomActionLeft
             setDataRoomViewTyp={this.props.setDataRoomViewType}
-      viewType={this.props.viewType}
-     
-             
-            />
+            viewType={this.props.viewType}/>
+      </Suspense>
           }
           rightComponent={
+            <Suspense fallback={<BundleLoader />}>
             <DataRoomActionRight
             viewType={this.props.viewType}
             handleDataroomModal={handleDataroomModal}
             />
+            </Suspense>
           }
         />
       </div>

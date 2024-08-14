@@ -1,11 +1,11 @@
-import React from "react";
+import React, { lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, } from "formik";
 import {uploadPitchList} from "../PitchAction";
-import DraggableUpload1 from "../../../Components/Forms/Formik/DraggableUpload1";
-
+import { BundleLoader } from "../../../Components/Placeholder";
+const DraggableUpload1=lazy(()=> import("../../../Components/Forms/Formik/DraggableUpload1"));
 
 
 function UploadPitchForm(props) {
@@ -43,11 +43,12 @@ function UploadPitchForm(props) {
                         <Form class="form-background">
                         <div class="flex justify-between">
                                 <div class="h-full w-full mt-4">
+                                <Suspense fallback={<BundleLoader />}>
                                     <Field
                                         name="excelId"
                                         isRequired
                                         component={DraggableUpload1}
-                                    />
+                                    /></Suspense>
                                 </div>
 
                             </div>

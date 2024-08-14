@@ -1,4 +1,4 @@
-import React, { useEffect, useState,lazy} from "react";
+import React, { useEffect, useState,lazy,Suspense} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -31,8 +31,8 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import PitchSearchedData from "./PitchSearchedData";
 import { BundleLoader } from "../../../Components/Placeholder";
+const PitchSearchedData =lazy(()=>import("./PitchSearchedData"));
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
@@ -1481,6 +1481,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                 })}
                   </InfiniteScroll>
       </div>
+      <Suspense fallback={<BundleLoader />}>
       <UpdateLPitchModal
         item={currentLeadsId}
         updatePitchModal={props.updatePitchModal}
@@ -1510,6 +1511,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
            addPitchConvertModal={props.addPitchConvertModal}
            handlePitchConvertModal={props.handlePitchConvertModal}
            />
+            </Suspense>
     </>
      )}
     </div>

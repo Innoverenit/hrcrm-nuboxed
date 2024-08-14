@@ -1,14 +1,14 @@
 import React, {Suspense,lazy,useEffect } from "react";
-import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import {handlePitchActivityModal,getPitchActivityRecords} from "../../PitchAction"
 import { PlusOutlined } from "@ant-design/icons";
 import { FormattedMessage } from "react-intl";
 import { Tooltip,Badge } from "antd";
+import { BundleLoader, } from "../../../../Components/Placeholder";
+
 const PitchTimeline =lazy(()=>import("../../../Pitch/Child/PitchTimeline"));
 const AddPitchActivityModal =lazy(()=>import("../PtchActivity/AddPitchActivityModal"));
 
@@ -91,11 +91,13 @@ const TabPane = StyledTabs.TabPane;
           
           </StyledTabs>
         </TabsWrapper>
+        <Suspense fallback={<BundleLoader />}>
         <AddPitchActivityModal
         rowdata={props.rowdata}
         addPitchactivityModal={addPitchactivityModal}
         handlePitchActivityModal={handlePitchActivityModal}
         />
+        </Suspense>
       </>
     );
 }

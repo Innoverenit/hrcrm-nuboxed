@@ -13,8 +13,8 @@ import { LinkOutlined, PlusOutlined,
 } from '@ant-design/icons';
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import {handleDealContactModal,handleDocumentUploadModal} from "../../../DealAction";
-import LinkedDocuments from "./Document/LinkedDocuments";
-import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
+const LinkedDocuments = lazy(() => import("./Document/LinkedDocuments"));
+const AddDocumentModals = lazy(() => import("../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
 const LinkedDealContact = lazy(() => import("./DealContact/LinkedDealContact"));
 const DealContactModal = lazy(() => import("./DealContact/DealContactModal"));
 

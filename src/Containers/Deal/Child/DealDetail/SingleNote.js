@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
-import {SubTitle } from "../../../../Components/UI/Elements";
 
 const NotesWrapper = styled.div``;
 export default function SingleNote(props) {
@@ -15,14 +14,9 @@ export default function SingleNote(props) {
   } = props;
   return (
     <NotesWrapper>
-      {/* <SubTitle fontSize='1.125em' whiteSpace='normal' fontFamily='Abel' style={{ color: '#393a3a' }}>
-                {description}
-            </SubTitle> */}
+    
       <div dangerouslySetInnerHTML={{ __html: notes }} />
-      <SubTitle
-        fontSize="0.875em"
-        fontFamily="poppins"
-        style={{ color: "rgb(53, 57, 61)", marginTop: "-0.75em" }}
+      <div className=" text-sm font-poppins" style={{ color: "rgb(53, 57, 61)", marginTop: "-0.75em" }}
       >
         <div class=" mt-3" />
         {`${dayjs(creationDate).fromNow()}`}
@@ -34,7 +28,7 @@ export default function SingleNote(props) {
         <div>
         {props.ownerName}
         </div>
-      </SubTitle>
+      </div>
     </NotesWrapper>
   );
 }

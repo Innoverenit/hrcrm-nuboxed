@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,lazy} from "react";
+import React, { useEffect, useState ,lazy,Suspense} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -22,10 +22,9 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import PitchSearchedData from "./PitchSearchedData";
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
-const StatusPitchToggle =lazy(()=>import("../Child/StatusPitchToggle"));
+const PitchSearchedData =lazy(()=>import("./PitchSearchedData"));
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 
 const ButtonGroup = Button.Group;
@@ -495,6 +494,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   </InfiniteScroll>
       </div>
          )}
+         <Suspense fallback={<BundleLoader />}>
       <UpdateLPitchModal
         item={currentLeadsId}
         translateText={props.translateText}
@@ -512,7 +512,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
        item={currentLeadsId}
         addDrawerPitchNotesModal={props.addDrawerPitchNotesModal}
         handlePitchNotesDrawerModal={props.handlePitchNotesDrawerModal}
-      />
+      /></Suspense>
     </>
   );
 };

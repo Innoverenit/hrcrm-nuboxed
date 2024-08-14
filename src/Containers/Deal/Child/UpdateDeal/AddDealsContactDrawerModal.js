@@ -3,7 +3,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import LinkedDealContact from "./LinkedDealContact";
+const LinkedDealContact =lazy(()=>import("./LinkedDealContact"));
 class AddDealsContactDrawerModal extends Component {
   render() {
      

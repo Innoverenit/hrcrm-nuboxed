@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,lazy} from "react";
+import React, { useEffect, useState ,lazy,Suspense} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { connect } from "react-redux";
@@ -26,12 +26,11 @@ import { Button, Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
-import PitchSearchedData from "./PitchSearchedData";
 import { BundleLoader } from "../../../Components/Placeholder";
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("./UpdateLPitchModal"));
-const StatusPitchToggle =lazy(()=>import("../Child/StatusPitchToggle"));
+const PitchSearchedData =lazy(()=>import("./PitchSearchedData"));
 
 const ButtonGroup = Button.Group;
 
@@ -494,6 +493,7 @@ serachedPitchData={props.serachedPitchData}
                                                       })}
                                                         </InfiniteScroll>
                                             </div>
+                                            <Suspense fallback={<BundleLoader />}>
                                             <UpdateLPitchModal
                                               item={currentLeadsId}
                                               updatePitchModal={props.updatePitchModal}
@@ -516,10 +516,11 @@ serachedPitchData={props.serachedPitchData}
                                             handleAssimodal={props.handleAssimodal}
                                             />
                                               <AddPitchNotesDrawerModal 
-                                            item={currentLeadsId}
+                                              item={currentLeadsId}
                                               addDrawerPitchNotesModal={props.addDrawerPitchNotesModal}
                                               handlePitchNotesDrawerModal={props.handlePitchNotesDrawerModal}
                                             />
+                                            </Suspense>
                                           </>
                                           )}
                                           </div>
