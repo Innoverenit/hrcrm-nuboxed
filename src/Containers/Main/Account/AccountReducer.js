@@ -10,6 +10,10 @@ const initialState = {
 
   showStatusDrwr: false,
 
+  fetchingInvoiceCount: false,
+  fetchingInvoiceCountError: false,
+  invoiceCount:{},
+
   invoiceO:false,
 
   fetchingGeneratedInvoice: false,
@@ -3629,6 +3633,22 @@ export const distributorReducer = (state = initialState, action) => {
                         fetchingLoginCount: false,
                         fetchingLoginCountError: true,
                       };
+
+                      case types.GET_INVOICECOUNT_REQUEST:
+                        return { ...state, fetchingInvoiceCount: true };
+                      case types.GET_INVOICECOUNT_SUCCESS:
+                        return {
+                          ...state,
+                          fetchingInvoiceCount: false,
+                          // accountInvoice: [...state.accountInvoice, ...action.payload]
+                          invoiceCount: action.payload,
+                        };
+                      case types.GET_INVOICECOUNT_FAILURE:
+                        return {
+                          ...state,
+                          fetchingInvoiceCount: false,
+                          fetchingInvoiceCountError: true,
+                        };
   
     default:
       return state;

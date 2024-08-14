@@ -15,7 +15,8 @@ import {
     handleOrderGenerateModal,
     handleAddOrderModal,
     getOrderRecords,
-    handleAccountOpportunityModal
+    handleAccountOpportunityModal,
+    getInvoiceCount
 } from "../AccountAction";
 import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
 import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
@@ -51,16 +52,15 @@ const AccountActivityTable = lazy(() => import("./AccountActivityTab/AccountActi
 const TabPane = StyledTabs.TabPane;
 
 function AccountDetailsTab(props) {
-    // useEffect(() => {
-    //     props.getOrderRecords(props.distributorData.distributorId,"repair");
-    //     props.getOrderRecords(props.distributorData.distributorId,"repair");
-
-    // }, []);
+ 
     const [activeKey, setactiveKey] = useState("1")
     const [breadCumb, setBreadCumb] = useState(false)
     const [openOrder, setOpenOrder] = useState(false)
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    useEffect(() => {
+props.getInvoiceCount(props.distributorData.distributorId)
+    }, []);
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
@@ -517,11 +517,17 @@ function AccountDetailsTab(props) {
                     <TabPane
                         tab={
                             <>
+                            <Badge
+            size="small"
+            count={( props.invoiceCount.investorTeam) || 0}
+            overflowCount={999}
+          >
                                 <span>
                                    <ReceiptIcon className="!text-icon"/>
                                    {translatedMenuItems[10]}
                                    {/* Invoice */}
                                 </span>
+                                </Badge>
                                 {activeKey === "11" && (
                                     <>
                                         {/* <Tooltip title="Add Contact">
@@ -636,6 +642,7 @@ const mapStateToProps = ({ distributor, auth, suppliers,customer }) => ({
     supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
     procureRecordData:distributor.procureRecordData,
     addAccountOpportunityModal: distributor.addAccountOpportunityModal,
+    invoiceCount: distributor.invoiceCount
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -651,7 +658,8 @@ const mapDispatchToProps = (dispatch) =>
             handleAddOrderModal,
             handleSupplierContactModal,
             getOrderRecords,
-            handleAccountOpportunityModal
+            handleAccountOpportunityModal,
+            getInvoiceCount
         },
         dispatch
     );
