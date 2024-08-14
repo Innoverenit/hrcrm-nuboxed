@@ -439,15 +439,12 @@ useEffect(() => {
     setSubscriptions(newSubscriptions);
   };
 
-  // const handleRuleChange = (subIndex, ruleIndex, field, value) => {
+  // const handleRuleChange = (subIndex, ruleIndex, value) => {
   //   const newSubscriptions = [...subscriptions];
-  //   if (field === 'ruleTypeId') {
-  //     newSubscriptions[subIndex].ruleDto[ruleIndex][field] = value.value; // Store the ID
-  //     newSubscriptions[subIndex].ruleDto[ruleIndex].ruleTypeName = value.label; // Store the name
-  //   } else {
-  //     newSubscriptions[subIndex].ruleDto[ruleIndex][field] = value;
-  //   }
+  //   newSubscriptions[subIndex].ruleDto[ruleIndex].ruleTypeId = value.value;
+  //   newSubscriptions[subIndex].ruleDto[ruleIndex].ruleTypeName = value.label;
   //   setSubscriptions(newSubscriptions);
+  //   setSubscriptions([...newSubscriptions]);
   // };
   
 
@@ -515,7 +512,9 @@ useEffect(() => {
     }
   };
 
-
+  // useEffect(() => {
+  //   fetchSelectRuleType(); // Fetch ruleType data on component mount
+  // }, []);
 
   const fetchSelectRuleType = async () => {
     setIsLoadingRuleType(true);
@@ -653,8 +652,10 @@ useEffect(() => {
                 {sub.ruleDto.map((rule, ruleIndex) => (
                   <div key={ruleIndex} style={{ display: 'flex', marginBottom: '10px' }}>
                     <Select
-                    // value={rule.ruleTypeId ? { value: rule.ruleTypeId, label: rule.ruleType } : undefined}
-                      value={rule.ruleTypeId}
+                   
+                    
+                    value={rule.ruleTypeId}
+  
                       onFocus={handleSelectRuleType}
                       loading={isLoadingRuleType}
                       onChange={(value) => handleRuleChange(subIndex, ruleIndex, 'ruleTypeId', value)}
