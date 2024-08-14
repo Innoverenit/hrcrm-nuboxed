@@ -4,20 +4,26 @@ import { bindActionCreators } from "redux";
 import {
     getAccountInvoiveList,
     handlenvoiceOrderModal,
-    getGeneratedInvoiveList
+    getGeneratedInvoiveList,
+    upadtePayment,
+    handleInvoiceModal
 } from "../AccountAction";
-import {  Select } from 'antd';
+import { FormattedMessage } from "react-intl";
+import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
+import {  Select,Popconfirm, Tooltip,Input,Button } from 'antd';
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvoiceOrderModal from "./InvoiceOrderModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import InvoiceModal from "./InvoiceModal";
 const { Option } = Select;
 
 function AccountInvoiceTable(props) {
     const [pageNo, setPageNo] = useState(0);
     
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [particularRowData, setParticularRowData] = useState({});
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchMenuTranslations = async () => {
@@ -67,7 +73,34 @@ function AccountInvoiceTable(props) {
         setShowIcon(false)
         setCurrency("")
     }
-
+    function handleSetParticularOrderData(item) {
+        setParticularRowData(item);
+    }
+    const [visible, setVisible] = useState(false)
+    const handleUpdateRevisePrice = () => {
+        setVisible(!visible)
+    }
+    const [price, setPrice] = useState(particularRowData.invoiceId)
+    const handleChange = (val) => {
+          setPrice(val)
+        // if (!isNaN(val) && val > 0 && val < 101) {
+        //   setPrice(val);
+        // } else {
+        //   setPrice(''); // Reset the input if the value is not valid
+        // }
+    
+    }
+    const handleSubmitPrice = () => {
+        props.upadtePayment(
+            {
+                invoiceId: price,
+                
+            },
+            particularRowData.paymentId,props.distributorId
+  
+        );
+        setVisible(false)
+    }
     const [hasMore, setHasMore] = useState(true);
     
     const handleLoadMore = () => {
@@ -105,7 +138,7 @@ function AccountInvoiceTable(props) {
                         <div className=" md:w-[7.4rem]">Value </div>
                         <div className=" md:w-[7.1rem]">Mode</div>
                         <div className="md:w-[3.8rem]">{translatedMenuItems[1]} ID</div>
-                        
+                        <div className="md:w-[3.81rem]">{translatedMenuItems[0]} ID</div>
                       
                     </div>
                     <div class="h-[33vh]">
@@ -120,14 +153,14 @@ function AccountInvoiceTable(props) {
                             {props.accountInvoice.length ? <>
                                 {props.accountInvoice.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
-                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                    const date = dayjs(item.paymentDate).format("DD/MM/YYYY");
                                     return (
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
-                                                           {item.distributorId}
+                                                           {item.paymentId}
                                                            
 
                                                         </div>
@@ -139,13 +172,14 @@ function AccountInvoiceTable(props) {
                                                     </div>
                                                     <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        <span
+                                                        {/* <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
                                                                         handleRowData(item);
                                                                         props.handlenvoiceOrderModal(true);
                                                                     }}
-                                                                > {item.newOrderNo}</span>
+                                                                > {item.date}</span> */}
+                                                                 {date}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
@@ -156,16 +190,64 @@ function AccountInvoiceTable(props) {
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {item.brand}
+                                                            {item.paymentModeName}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {item.status}
+                                                            {item.newOrderNo}
                                                         </div>
                                                     </div>
-                                                    
+                                                    <div className=" flex  max-sm:w-auto w-[11rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">       
+                              {visible && (item.paymentId === particularRowData.paymentId) ?(
+                                                                <Input
+                                                                    type='text'
+                                                                    value={price}
+                                                                    onChange={(e) => handleChange(e.target.value)}
+                                                                />
+                                                            ) : item.invoiceId === "null" || item.invoiceId === null ? (
+                                                                "No Data"
+                                                            ) : (
+                                                              item.invoiceId
+                                                            )}                                                          
+                                                            
+                            </div>
+                          </div>
+                          <div className=" flex    md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins">
+
+                                                        {visible && (item.paymentId === particularRowData.paymentId) ? (
+                                                            <>
+                                                                <div className=" flex justify-between flex-col">
+                                                                    <Button onClick={() => {
+                                                                        handleSubmitPrice()
+                                                                    }} >
+                                                                        <FormattedMessage
+                                                                            id="app.save"
+                                                                            defaultMessage="Save"
+                                                                        />
+                                                                    </Button>
+                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}><FormattedMessage
+                                                                        id="app.cancel"
+                                                                        defaultMessage="Cancel"
+                                                                    /></Button>
+                                                                </div>
+                                                            </>
+                                                        ) : <Tooltip title="Update Invoice">
+                                                            <PublishedWithChangesIcon
+                                                                onClick={() => {
+                                                                    handleUpdateRevisePrice()
+                                                                    handleSetParticularOrderData(item)
+                                                                }}
+                                                                className="!text-icon cursor-pointer text-[tomato]"
+                                                            />
+                                                        </Tooltip> }
+
+                                                    </div>
+
+                                                </div>
                                                 </div>
                                             </div>
                                         </>
@@ -212,8 +294,14 @@ function AccountInvoiceTable(props) {
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
-                                                           {item.invoiceId}
-                                                           
+                                                          
+                                                           <span
+                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    onClick={() => {
+                                                                        handleRowData(item);
+                                                                        props.handleInvoiceModal(true);
+                                                                    }}
+                                                                > {item.invoiceId} </span>
 
                                                         </div>
                                                         {date === currentdate ? (
@@ -224,13 +312,8 @@ function AccountInvoiceTable(props) {
                                                     </div>
                                                     <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        <span
-                                                                    class="underline cursor-pointer text-[#1890ff]"
-                                                                    onClick={() => {
-                                                                        handleRowData(item);
-                                                                        props.handlenvoiceOrderModal(true);
-                                                                    }}
-                                                                > {item.orderId}</span>
+                                                        
+                                                                {item.orderId}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
@@ -270,6 +353,13 @@ function AccountInvoiceTable(props) {
                     selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText}
                 />  
+                 <InvoiceModal
+                    rowData={rowData}
+                    handleInvoiceModal={props.handleInvoiceModal}
+                    invoiceO={props.invoiceO}
+                    selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText}
+                /> 
         </>
     )
 }
@@ -281,7 +371,8 @@ const mapStateToProps = ({ distributor, auth }) => ({
     accountInvoice:distributor.accountInvoice,
     invoiceOrders:distributor.invoiceOrders,
     fetchingGeneratedInvoice: distributor.fetchingGeneratedInvoice,
-    generatedInvoice: distributor.generatedInvoice
+    generatedInvoice: distributor.generatedInvoice,
+    invoiceO: distributor.invoiceO
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -289,7 +380,9 @@ const mapDispatchToProps = (dispatch) =>
         {
             getAccountInvoiveList,
             getGeneratedInvoiveList,
-            handlenvoiceOrderModal
+            handlenvoiceOrderModal,
+            upadtePayment,
+            handleInvoiceModal
            
         },
         dispatch

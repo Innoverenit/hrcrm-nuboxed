@@ -47,7 +47,7 @@ function InvouiceSTable(props) {
       }, [props.selectedLanguage]);
     useEffect(() => {
        // setPageNo(pageNo + 1);
-        props.getInvoiveL("INV123")
+        props.getInvoiveL(props.rowData.invoiceId)
     }, []);
     const [rowData, setRowData] = useState({})
     const handleRowData = (item) => {
@@ -122,7 +122,7 @@ function InvouiceSTable(props) {
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
-                                                           {/* {item.distributorId} */}
+                                                           {item.invoiceId}
                                                            
 
                                                         </div>
@@ -132,34 +132,26 @@ function InvouiceSTable(props) {
                                                                 </div>
                                                             ) : null} */}
                                                     </div>
-                                                    <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  w-[14.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        <span
-                                                                    class="underline cursor-pointer text-[#1890ff]"
-                                                                    onClick={() => {
-                                                                       // handleRowData(item);
-                                                                       // props.handleInvoiceModal(true);
-                                                                    }}
-                                                                > INV123
-                                                                {/* {item.orderId} */}
-                                                                </span>
+                                                        {item.orderId}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                         {/* {item.categoryName} */}
+                                                         {item.paymentAmount}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {/* {item.brand} */}
+                                                            {item.paymentModeName}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {/* {item.model} */}
+                                                            {item.remarks}
                                                         </div>
                                                     </div>
                                                     

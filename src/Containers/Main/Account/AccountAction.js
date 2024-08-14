@@ -4553,7 +4553,7 @@ export const getGeneratedInvoiveList = (distributorId) => (dispatch) => {
     });
 }
 
-export const upadtePayment = (data,paymentId) => (dispatch) => {
+export const upadtePayment = (data,paymentId,distributorId) => (dispatch) => {
   dispatch({
     type: types.ORDER_INVOICE_REQUEST,
   });
@@ -4565,6 +4565,9 @@ export const upadtePayment = (data,paymentId) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
+      dispatch(getAccountInvoiveList(distributorId));
+      dispatch(getGeneratedInvoiveList(distributorId));
+      
       dispatch({
         type: types.ORDER_INVOICE_SUCCESS,
         payload: res.data,
@@ -4688,7 +4691,7 @@ export const getQuationShipping = (contactUserId,startDate,endDate) => (dispatch
     type: types.GET_QUATATIONSHIPPING_REQUEST,
   });
   axios
-    .get(`${base_url2}/quotation/toShipping/clicks/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+    .get(`${base_url2}/quotation/quotation/toShipping/clicks/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -4714,7 +4717,7 @@ export const getLoginCount = (contactUserId,startDate,endDate) => (dispatch) => 
     type: types.GET_LOGINCOUNT_REQUEST,
   });
   axios
-    .get(`${base_url2}/employee/getLoginCount/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+    .get(`${base_url}/employee/getLoginCount/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
