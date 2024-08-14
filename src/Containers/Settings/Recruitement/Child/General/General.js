@@ -53,6 +53,13 @@ function General(props) {
           trnsfrToErpQtionWinInd:props.requirementDuration.trnsfrToErpQtionWinInd,
           piInd:props.requirementDuration.piInd,
           autoCiInd:props.requirementDuration.autoCiInd,
+          b2bProcureInd:props.requirementDuration.b2bProcureInd,
+          b2bRepairInd:props.requirementDuration.b2bRepairInd,
+          b2bProductionInd:props.requirementDuration.b2bProductionInd,
+          b2cProcureInd:props.requirementDuration.b2cProcureInd,
+          b2cRepairInd:props.requirementDuration.b2cRepairInd,
+          b2cProductionInd:props.requirementDuration.b2cProductionInd,
+          leadsToCustInd:props.requirementDuration.leadsToCustInd,
           partNoInd:props.requirementDuration.partNoInd,
           inniInspectInd:props.requirementDuration.inniInspectInd,
           typeInd: props.requirementDuration.typeInd,
@@ -226,6 +233,19 @@ function General(props) {
                         </div>
                       </div>
                       <div class=" flex  justify-between mt-2">
+                      <div class=" text-xs  ">Leads To Customer</div>
+                      <div>
+                        <Field
+                          name="leadsToCustInd"
+                          component={SwitchComponent}
+                          data={values.leadsToCustInd}
+                          checkedChildren={"yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+                      <div class=" flex  justify-between mt-2">
                           <div class=" text-xs  ">Show Orders To Investor</div>
                           <div>
                             <Field
@@ -352,6 +372,102 @@ function General(props) {
                         />
                         </div>
                       </div>
+                      {props.user.ecomInd  && (
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">B2b Procure 
+</div>
+                      <div>
+                        <Field
+                          name="b2bProcureInd"
+                          component={SwitchComponent}
+                          data={values.b2bProcureInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+                      )}
+                      {props.user.repairInd  && (
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">B2b Reapir
+</div>
+                      <div>
+                        <Field
+                          name="b2bRepairInd"
+                          component={SwitchComponent}
+                          data={values.b2bRepairInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+                      )}
+                      {props.user.productionInd  && (
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">B2b Production
+</div>
+                      <div>
+                        <Field
+                          name="b2bProductionInd"
+                          component={SwitchComponent}
+                          data={values.b2bProductionInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+)}
+ {props.user.ecomInd  && (
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">B2c Procure
+</div>
+                      <div>
+                        <Field
+                          name="b2cProcureInd"
+                          component={SwitchComponent}
+                          data={values.b2cProcureInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+ )}
+                      {props.user.repairInd  && (
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">B2c Reapir
+</div>
+                      <div>
+                        <Field
+                          name="b2cRepairInd"
+                          component={SwitchComponent}
+                          data={values.b2cRepairInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+                      )}
+                      {props.user.productionInd  && (
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">B2c Production
+</div>
+                      <div>
+                        <Field
+                          name="b2cProductionInd"
+                          component={SwitchComponent}
+                          data={values.b2cProductionInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+                      )}
                     </div>
 
                   </div>

@@ -4738,3 +4738,29 @@ export const getLoginCount = (contactUserId,startDate,endDate) => (dispatch) => 
     });
 }
 
+export const getInvoiceCount = (distributorId) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVOICECOUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderPayment/invoiceList/count/${distributorId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVOICECOUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_INVOICECOUNT_FAILURE,
+        payload: err,
+      });
+    });
+}
+
