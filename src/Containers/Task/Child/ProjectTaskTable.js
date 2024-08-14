@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -7,6 +7,7 @@ import {
   addProjectTask,
 } from "../TaskAction";
 import dayjs from "dayjs";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { Button, Input } from "antd";
 const UpdateProjectTaskModal = lazy(() => import("./UpdateProjectTaskModal"));
@@ -141,12 +142,13 @@ console.log(name)
         dataSource={props.projectTaskTable}
         pagination={false}
       />
-
+    <Suspense fallback={<BundleLoader />}>
       <UpdateProjectTaskModal
         item={currentItem}
         updateProjectTaskModal={props.updateProjectTaskModal}
         handleUpdateProjectTaskModal={props.handleUpdateProjectTaskModal}
       />
+      </Suspense>
     </>
   );
 }
