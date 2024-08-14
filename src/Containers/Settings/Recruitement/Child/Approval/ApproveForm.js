@@ -37,11 +37,27 @@ class ApproveForm extends Component {
     };
 
 
- componentDidMount() {
-         this.props.getDepartments();
-         this.props.getRoles(this.props.organizationId);
-     this.props.getApproveData( "Leave");
- }
+//  componentDidMount() {
+//          this.props.getDepartments();
+//          this.props.getRoles(this.props.organizationId);
+//      this.props.getApproveData(this.props.label);
+//  }
+componentDidMount() {
+    this.fetchHolidayData();
+  }
+
+
+ componentDidUpdate(prevProps) {
+    // Check if the country_name prop has changed
+    if (prevProps.label !== this.props.label) {
+      this.fetchHolidayData();
+    }
+  }
+  fetchHolidayData = () => {
+    this.props.getDepartments();
+    this.props.getRoles(this.props.organizationId);
+this.props.getApproveData(this.props.label);
+  }
 
 
 
@@ -92,7 +108,7 @@ class ApproveForm extends Component {
                         roleTypeId: this.props.approvalData.roleTypeId || "",
                         jobLevel: this.props.approvalData.jobLevel || 1,
                         // processName: "BOQ",
-                        subProcessName: "Leave",
+                        subProcessName: this.props.label,
                         approvalType: this.props.approvalData.approvalType === "Standard" ? true : false,
                         approvalIndicator: this.props.approvalData.approvalIndicator ? true : false,
                     

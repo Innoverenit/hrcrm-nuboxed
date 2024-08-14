@@ -5,6 +5,7 @@ import {
 } from "../SettingsAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import RecruitTab from "../../Rules/Child/RulesTab/RecruitPro/RecruitTab";
 const SalaryTab = lazy(() => import("./Child/Salary/SalaryTab"));
 const RecruitmentActionLeft = lazy(() => import("./RecruitmentActionLeft"));
 const RecruitmentActionRight = lazy(() => import("./RecruitmentActionRight"));
@@ -113,11 +114,11 @@ function Recruitment(props) {
       ruleId: "15",
       component: <SalaryTab />,
     },
-    // {
-    //   rulesName: "Automation",
-    //   ruleId: "2",
-    //   component: <RecruitTab />,
-    // },
+     {
+      rulesName: "Automation1",
+      ruleId: "21",
+      component: <RecruitTab/>,
+    },
     // {
     //   rulesName: "Search",
     //   ruleId: "3",
