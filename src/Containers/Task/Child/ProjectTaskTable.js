@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, lazy } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -8,7 +8,7 @@ import {
 } from "../TaskAction";
 import dayjs from "dayjs";
 import { StyledTable } from "../../../Components/UI/Antd";
-import { Tooltip, Button, Input, Select } from "antd";
+import { Button, Input } from "antd";
 const UpdateProjectTaskModal = lazy(() => import("./UpdateProjectTaskModal"));
 
 function ProjectTaskTable(props) {
@@ -24,8 +24,7 @@ function ProjectTaskTable(props) {
   function handleSet( inputData, hourId) {
     setData1(
        inputData,
-     
-    );
+     );
   }
   console.log(data1);
   function handleDescription(textData){

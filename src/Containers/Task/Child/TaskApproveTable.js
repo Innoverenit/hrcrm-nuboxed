@@ -1,25 +1,15 @@
-import React, { useState,lazy,useEffect } from "react";
+import React, { useState,lazy,useEffect, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import styled from "styled-components";
-import TaskStatusToggle from "../Child/TaskStatusToggle";
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
+import {CloseCircleOutlined} from "@ant-design/icons";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { OnlyWrapCard } from '../../../Components/UI/Layout';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal";
-import { Tooltip, Input, Button, Avatar,FloatButton } from "antd";
+import { Tooltip,  Button } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { StyledPopconfirm, StyledTable } from "../../../Components/UI/Antd";
-import { withRouter } from "react-router-dom";
-import DeleteIcon from "@mui/icons-material/Delete";
+
 import {
   getAprrovalTaskTable,
   deleteTask,
@@ -31,14 +21,10 @@ import {
   handleTaskNotesDrawerModal,
   handleTaskProjectDrawerModal,
 } from "../TaskAction";
-import Highlighter from "react-highlight-words";
-import Box from "@mui/material/Box";
-import { DataGrid } from "@mui/x-data-grid";
 import { MultiAvatar } from "../../../Components/UI/Elements";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
-import AddConfirmProspectStatusModal from "./AddConfirmProspectStatusModal";
-
+const AddTaskProjectDrawerModal = lazy(() => import("../Child/AddTaskProjectDrawerModal"));
+const AddConfirmProspectStatusModal = lazy(() => import("./AddConfirmProspectStatusModal"));
 const AddTaskNotesDrawerModal = lazy(() => import("./AddTaskNotesDrawerModal"));
 const UpdateTaskModal = lazy(() => import("./UpdateTaskModal"));
 const ButtonGroup = Button.Group;
@@ -369,14 +355,12 @@ const TaskApproveTable = (props) => {
                 })}
                     </InfiniteScroll>
       </div>
-
-<UpdateTaskModal
+      <Suspense fallback={<BundleLoader />}>
+      <UpdateTaskModal
           updateTaskModal={updateTaskModal}
           handleUpdateTaskModal={handleUpdateTaskModal}
         />
-   
-
-        <AddTaskProjectDrawerModal
+         <AddTaskProjectDrawerModal
           handleTaskProjectDrawerModal={props.handleTaskProjectDrawerModal}
           addDrawerTaskProjectModal={props.addDrawerTaskProjectModal}
           data={data}
@@ -397,6 +381,7 @@ rowdata={rowdata}
   // taskName={currentprocessName.taskName} // Pass taskName as a prop
 
 />
+</Suspense>
 
 </>
 );

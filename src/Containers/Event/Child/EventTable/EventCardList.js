@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
@@ -188,8 +188,8 @@ function EventCardList (props) {
                                 }}>
                                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex w-[8.98rem] max-xl:w-[6.98rem] max-lg:w-[5.28rem] max-sm:w-auto ">
-<div className="flex max-sm:w-full"> 
-          <div class="max-sm:w-full">
+                                    <div className="flex max-sm:w-full"> 
+                                        <div class="max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
                                             {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
@@ -395,11 +395,12 @@ function EventCardList (props) {
                    </InfiniteScroll>
       </div>
       </div>
-     
+      <Suspense fallback={<BundleLoader />}>
         <UpdateEventModal
           updateEventModal={updateEventModal}
           handleUpdateEventModal={handleUpdateEventModal}
         />
+         </Suspense>
       </>
     );
   }

@@ -3,7 +3,6 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import { sortedLastIndex } from "lodash";
 const ProjectTaskTable = lazy(() => import("./ProjectTaskTable"));
 
 class AddTaskProjectDrawerModal extends Component {

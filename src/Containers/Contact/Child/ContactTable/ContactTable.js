@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState, useMemo, lazy } from "react";
+import React, { Component, useEffect, useState, useMemo, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
@@ -13,6 +13,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import { StyledTable, } from "../../../../Components/UI/Antd";
+import { BundleLoader } from "../../../../Components/Placeholder";
 import { Button, Tooltip, Input, Select } from "antd";
 import Highlighter from "react-highlight-words";
 import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../Components/UI/Elements";
@@ -650,6 +651,7 @@ function ContactTable(props) {
         dataSource={props.contactByUserId}
       />
       </InfiniteScroll>
+      <Suspense fallback={<BundleLoader />}>      
       <UpdateContactModal
         contactData={currentContactId}
         // fullName={currentContactId}
@@ -680,6 +682,7 @@ function ContactTable(props) {
         addDrawerContactModal={props.addDrawerContactModal}
         handleContactDrawerModal={props.handleContactDrawerModal}
       />
+      </Suspense>
     </>
   );
 }
