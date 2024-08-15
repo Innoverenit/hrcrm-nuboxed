@@ -3282,12 +3282,12 @@ export const addApprove = (data, subProcessName) => (dispatch) => {
       
       console.log(res);
       // dispatch(getIndentApprovalData("Indent", "IndentApproval"))
-      dispatch(getApproveData("Leave"))
-      dispatch(getApproveData("Mileage"))
-      dispatch(getApproveData("Expense"))
-      dispatch(getApproveData("ContactUser"))
-      dispatch(getApproveData("PhonePair"))
-      dispatch(getApproveData("ProspectToCustomer"))
+      // dispatch(getApproveData("Leave"))
+      // dispatch(getApproveData("Mileage"))
+      // dispatch(getApproveData("Expense"))
+      // dispatch(getApproveData("ContactUser"))
+      // dispatch(getApproveData("PhonePair"))
+      // dispatch(getApproveData("ProspectToCustomer"))
       dispatch({
         type: types.ADD_APPROVE_SUCCESS,
         payload: res.data,

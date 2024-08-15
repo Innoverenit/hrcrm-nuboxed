@@ -25,7 +25,7 @@ function ApprovalTab(props) {
       };
     const tabData=[
         {
-            tabName:"Leaves",
+            tabName:"Leave",
             id:"1"
         },
          {
