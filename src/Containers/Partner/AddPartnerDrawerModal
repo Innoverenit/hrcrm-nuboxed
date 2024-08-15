@@ -1,12 +1,6 @@
-import React, { Component,Suspense } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { BundleLoader } from "../../Components/Placeholder";
+import React, { Component} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { StyledDrawer } from "../../Components/UI/Antd";
-import PartnerDocumentView from "./PartnerDocumentView";
-
 
 
 class AddPartnerDrawerModal extends Component {
