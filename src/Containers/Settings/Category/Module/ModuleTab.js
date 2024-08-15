@@ -34,8 +34,8 @@ class ModuleTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <ViewModuleIcon />
-                      <span class=" ml-1 !text-icon" >
+                      <ViewModuleIcon  className=" ml-1 !text-icon"/>
+                      <span >
                       Module
                       </span>
                     </>
