@@ -379,7 +379,7 @@ class Register extends Component {
                                       About You
                                   </div>
                                     <div className="register">
-                                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[99%]">
+                                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[100%] ">
                                         <div class=" w-1/2 h-[2.0625rem]"  >
                                           <Field
                                             type="text"

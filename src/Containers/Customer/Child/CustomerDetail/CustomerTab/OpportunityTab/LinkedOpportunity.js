@@ -381,8 +381,8 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
   return (
     <>
     <div className=' flex  sticky z-auto'>
-    <div class="rounded m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+    <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[16rem]">Quotation ID</div>
         <div className=" md:w-[5.1rem]">Start Date</div>
         <div className=" md:w-[6.21rem] ">End Date</div>

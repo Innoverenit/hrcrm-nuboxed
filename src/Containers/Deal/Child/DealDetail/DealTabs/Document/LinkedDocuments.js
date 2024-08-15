@@ -32,8 +32,8 @@ class LinkedDocuments extends Component {
     return (
       <>
           <div className=' flex  sticky z-auto'>          
-<div class="rounded m-1 p-1w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                  <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+<div class="rounded m-1 p-1w-[100%]   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                  <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                   
                   <div className="md:w-[9.7rem]">Date</div>
                       <div className=" md:w-[11.12rem]">Name</div>

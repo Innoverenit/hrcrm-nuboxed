@@ -90,7 +90,7 @@ function ExpenseDrawerCard(props) {
     <>
     
     <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+      <div className=" flex  w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
       <div className=" md:w-[10.1rem]"></div>
         <div className=" md:w-[8.1rem]">ID</div>
         <div className=" md:w-[9.5rem]">Type</div>

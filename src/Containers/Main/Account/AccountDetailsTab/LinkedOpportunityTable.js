@@ -93,7 +93,7 @@ console.log(props.user.moduleMapper.ecomModInd)
   return (
     <>
      { props.user.repairInd === true &&(
-    <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
                         <div class=" w-[8.5rem]"> {translatedMenuItems[0]}</div>
                         <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>
@@ -253,7 +253,7 @@ console.log(props.user.moduleMapper.ecomModInd)
       </div>
      )}
      { props.user.moduleMapper.ecomModInd === true &&(
-      <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
 <div class=" w-[8.5rem]"> {translatedMenuItems[9]}</div>
 <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>

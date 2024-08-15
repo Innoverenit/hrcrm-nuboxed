@@ -41,7 +41,7 @@ class AllDistributorList extends Component {
       <>
         <div className='flex  sticky z-auto'>
           <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
-            <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+            <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
               <div className=" md:w-[8.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
               <div className=" md:w-[5.1rem]"><FormattedMessage id="app.mobile" defaultMessage="Mobile" /></div>
               <div className=" md:w-[6.8rem] "><FormattedMessage id="app.website" defaultMessage="Website" /></div>

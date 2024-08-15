@@ -44,7 +44,7 @@ function CourseTable(props) {
     <>
         <div className='flex justify-end sticky top-28 z-auto'>
          <OnlyWrapCard style={{backgroundColor:"#eaedf1"}}>
-         <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+         <div className=" flex justify-between w-[100%]  px-2 bg-transparent font-bold sticky top-0 z-10">
         
          <div className=" md:w-[4.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
         <div className=" md:w-[6.1rem]"><FormattedMessage id="app.duration" defaultMessage="Duration"/></div>
