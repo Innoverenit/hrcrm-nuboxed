@@ -1,61 +1,61 @@
-import React, { Component} from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+// import React, { Component} from "react";
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
 
 
-class AddPartnerDrawerModal extends Component {
-  render() {
+// class AddPartnerDrawerModal extends Component {
+//   render() {
    
-    const {
-      partner: { partnerName, middleName, lastName,partnerId },
-      toggleViewType,
-      partner,
-    } = this.props;
+//     const {
+//       partner: { partnerName, middleName, lastName,partnerId },
+//       toggleViewType,
+//       partner,
+//     } = this.props;
 
-      console.log("full",partnerId)
+//       console.log("full",partnerId)
    
    
-    return (
-      <div>
- <StyledDrawer
-          title={partnerName}
-          width={400}
-          visible={this.props.addDrawerPartnerModal}
-        //   maskClosable={false}
-          closable
-          placement="right"
-          destroyOnClose
-          maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-        //   onCancel={() => this.props.handleCandidateEmailModal(false)}
-        onClose={() => this.props.handlePartnerDrawerModal(false)}
-          //style={{ top: 40 }}
-        //   footer={null}
+//     return (
+//       <div>
+//  <StyledDrawer
+//           title={partnerName}
+//           width={400}
+//           visible={this.props.addDrawerPartnerModal}
+//           maskClosable={false}
+//           closable
+//           placement="right"
+//           destroyOnClose
+//           maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
+//           onCancel={() => this.props.handleCandidateEmailModal(false)}
+//         onClose={() => this.props.handlePartnerDrawerModal(false)}
+//           style={{ top: 40 }}
+//           footer={null}
         
-        >
-          <Suspense fallback={<BundleLoader />}>         
-          <PartnerDocumentView
-           partnerId={partnerId}
-           documentsByPartnerId={this.props.documentsByPartnerId}          
-          />
+//         >
+//           <Suspense fallback={<BundleLoader />}>         
+//           <PartnerDocumentView
+//            partnerId={partnerId}
+//            documentsByPartnerId={this.props.documentsByPartnerId}          
+//           />
           
-        </Suspense>
+//         </Suspense>
          
-        </StyledDrawer>
-      </div>
-    );
-  }
-}
-const mapStateToProps = ({ partner}) => ({
+//         </StyledDrawer>
+//       </div>
+//     );
+//   }
+// }
+// const mapStateToProps = ({ partner}) => ({
     
-  partner: partner.partner,
-});
+//   partner: partner.partner,
+// });
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators(
+//     {
       
-    },
-    dispatch
-  );
+//     },
+//     dispatch
+//   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddPartnerDrawerModal);
+// export default connect(mapStateToProps, mapDispatchToProps)(AddPartnerDrawerModal);

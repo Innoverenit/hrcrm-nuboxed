@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { getCallTimeline,handleLeadsNoteDrawerModal,getNotesListOfLeads } from '../../LeadsAction';
 import { Tooltip } from "antd";
 import { BundleLoader } from '../../../../Components/Placeholder';
-import AddLeadsNotesListDrawerModal from './AddLeadsNotesListDrawerModal';
+
 
 const CallLeadsTable = (props) => {
   const [rowdata, setrowdata] = useState("");
@@ -75,15 +75,7 @@ const CallLeadsTable = (props) => {
             </Timeline.Item>
           ))}
       </Timeline>
-      <AddLeadsNotesListDrawerModal
-    rowdata={rowdata}
-    handleRowData={handleRowData}
-    callTimeline={props.callTimeline}
-    notesListOfLeads={props.notesListOfLeads}
-       addLeadsNoteDrawerModal={props.addLeadsNoteDrawerModal}
-       handleLeadsNoteDrawerModal={props.handleLeadsNoteDrawerModal
-       }
-       />
+      
     </div>
   );
 };

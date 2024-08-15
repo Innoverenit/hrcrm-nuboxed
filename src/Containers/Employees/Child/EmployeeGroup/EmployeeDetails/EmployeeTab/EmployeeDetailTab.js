@@ -60,7 +60,6 @@ const EducationTable = lazy(() => import("./Education/EducationTable"));
 const EmploymentTable = lazy(() => import("./Employment/EmploymentTable"));
 const TrainingTable = lazy(() => import("./Training/TrainingTable"));
 const PersonalTable2 = lazy(() => import("./Personal/PersonalTable2"));
-const EmployeesNotes = lazy(() => import("./Notes/EmployeesNotes"));
 const LinkedDocuments = lazy(() => import("./Document/LinkedDocuments"));
 const AddDocumentModal = lazy(() => import("./Document/AddDocumentModal"));
 const TabPane = StyledTabs.TabPane;
@@ -332,7 +331,7 @@ componentDidMount(){
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <EmployeesNotes />
+                {/* <EmployeesNotes /> */}
               </Suspense>
             </TabPane> 
        

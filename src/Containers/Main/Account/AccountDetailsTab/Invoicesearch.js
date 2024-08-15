@@ -21,10 +21,9 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvoiceOrderModal from "./InvoiceOrderModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import InvoiceModal from "./InvoiceModal";
-import Invoicesearch from "./Invoicesearch";
 const { Option } = Select;
 
-function AccountInvoiceTable(props) {
+function Invoicesearch(props) {
     const [pageNo, setPageNo] = useState(0);
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
@@ -84,9 +83,7 @@ function AccountInvoiceTable(props) {
         const handleChanges = (e) => {
             setCurrentData(e.target.value);
         
-            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search  
-                props.getAccountInvoiveList(props.distributorId)
-                props.getGeneratedInvoiveList(props.distributorId)       
+            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search         
               props.ClearSearchedInvoice()
               setSearchOnEnter(false);
             }
@@ -220,30 +217,12 @@ function AccountInvoiceTable(props) {
       }
     return (
         <>
-         <div class=" w-64 max-sm:w-24">
-        <Input
-          placeholder="Search by ID"
-          width={"100%"}
-          suffix={suffix}
-          onPressEnter={handleSearch}
-          onChange={handleChanges}
-        value={currentData}
-        />
-        </div>
-        {props.invoiceSearch.length > 0 ? (
-    <Invoicesearch
-    invoiceSearch={props.invoiceSearch}
-    translateText={props.translateText}
-    selectedLanguage={props.selectedLanguage}
-  translatedMenuItems={props.translatedMenuItems}
-    />
-  ) : (
-        <>
+        
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">
                     <div className=" md:w-[7rem] text-[white] flex justify-center bg-[red]">
-                  Not Generated
+                 Type
                          </div>
                     <div class=" w-[8.5rem]">Payment ID</div>
                         <div className=" md:w-[7.4rem]"> Date</div>
@@ -254,16 +233,9 @@ function AccountInvoiceTable(props) {
                       
                     </div>
                     <div class="h-[33vh]">
-                        {/* <InfiniteScroll
-                            dataLength={props.accountInvoice.length}
-                            next={handleLoadMore}
-                            hasMore={hasMore}
-                            loader={props.fetchingAccountInvoice ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"33vh"}
-                            style={{scrollbarWidth:"thin"}}
-                        > */}
-                            {props.accountInvoice.length ? <>
-                                {props.accountInvoice.map((item) => {
+                       
+        <>
+                                {props.invoiceSearch.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.paymentDate).format("DD/MM/YYYY");
                                     return (
@@ -366,100 +338,12 @@ function AccountInvoiceTable(props) {
                                     )
                                 })}
                             </>
-                                : !props.accountInvoice.length
-                                    && !props.fetchingAccountInvoice ? <NodataFoundPage /> : null}
-                        {/* </InfiniteScroll> */}
+                       
                     </div>
                 </div>
             </div>
 
-            <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">
-                    <div className=" md:w-[6.54rem] text-[white] flex justify-center bg-[Green]">
-                   Generated
-                         </div>
-                    <div class=" w-[8.5rem]">{translatedMenuItems[0]} ID</div>
-                        <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} ID</div>
-                        <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} </div>
-                        <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
-                        <div className="md:w-[3.8rem]">{translatedMenuItems[3]}</div>
-                        <div className=" md:w-[8.8rem] ">{translatedMenuItems[4]}</div>
-                      
-                    </div>
-                    <div class="h-[33vh]">
-                        {/* <InfiniteScroll
-                            dataLength={props.accountInvoice.length}
-                            next={handleLoadMore}
-                            hasMore={hasMore}
-                            loader={props.fetchingAccountInvoice ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"33vh"}
-                            style={{scrollbarWidth:"thin"}}
-                        > */}
-                            {props.generatedInvoice.length ? <>
-                                {props.generatedInvoice.map((item) => {
-                                    const currentdate = dayjs().format("DD/MM/YYYY");
-                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-                                    return (
-                                        <>
-                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
-                                                <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
-                                                          
-                                                           <span
-                                                                    class="underline cursor-pointer text-[#1890ff]"
-                                                                    onClick={() => {
-                                                                        handleRowData(item);
-                                                                        props.handleInvoiceModal(true);
-                                                                    }}
-                                                                > {item.invoiceId} </span>
-
-                                                        </div>
-                                                        {date === currentdate ? (
-                                                                <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
-                                                                    New
-                                                                </div>
-                                                            ) : null}
-                                                    </div>
-                                                    <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        
-                                                                {item.orderId}
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                         {item.orderPaymentType}
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {item.paymentAmount}
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex   w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {item.status}
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </>
-                                    )
-                                })}
-                            </>
-                                : !props.generatedInvoice.length
-                                    && !props.fetchingGeneratedInvoice ? <NodataFoundPage /> : null}
-                        {/* </InfiniteScroll> */}
-                    </div>
-                </div>
-            </div>
-            </>
-              )}
+            
             <InvoiceOrderModal
                     rowData={rowData}
                     handlenvoiceOrderModal={props.handlenvoiceOrderModal}
@@ -505,4 +389,4 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountInvoiceTable);
+export default connect(mapStateToProps, mapDispatchToProps)(Invoicesearch);
