@@ -193,7 +193,8 @@ class Dashboard extends Component {
            <div class=" flex flex-col h-[21rem] overflow-auto " >
            {viewType==="ME"?(
              <DashboardJumpstartAll/> )
-             :viewType==="bulb" ? (<DashboardBulbJumpstart/>
+             :
+             viewType==="bulb" ? (<DashboardBulbJumpstart/>
              )
              :viewType==="ques" ? (<DashboardDetailsTab/>
              )
@@ -208,7 +209,7 @@ class Dashboard extends Component {
            (<DashboardJumpstartAll/>)
              : this.state.activeButton==="Investors" ?
              (<DashboardInvestorsOrgJumpstart/>)
-            // (<DashboardCustomerOrgJumpstart/>)
+   
              :viewType === "ALL" && this.state.activeButton==="Customer" ?
              (<DashboardCustomerOrgJumpstart/>)
              : this.state.activeButton==="Order" ?
@@ -252,6 +253,7 @@ class Dashboard extends Component {
              :
              (
               <DashboardJumpstart />
+      
           )}
              <div class=" w-wk" >
              <div class=" flex flex-col " >

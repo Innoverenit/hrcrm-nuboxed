@@ -10,6 +10,7 @@ import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import SupplierSearchedData from "./SupplierSearchedData";
 
 function SuppliersNotApprovalList(props) {
 
@@ -53,6 +54,12 @@ function SuppliersNotApprovalList(props) {
 
   return (
     <>
+     {props.searchSupplierList.length > 0 ? (
+    <SupplierSearchedData
+    searchSupplierList={props.searchSupplierList}
+    translatedMenuItems={props.translatedMenuItems}
+    />
+  ) : (
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
@@ -163,6 +170,7 @@ function SuppliersNotApprovalList(props) {
           </div> 
         </div>
       </div>
+      )}
     </>
   )
 }
@@ -179,6 +187,7 @@ const mapStateToProps = ({ shipper, suppliers, auth }) => ({
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
   updateSupplierModal: suppliers.updateSupplierModal,
+  searchSupplierList:suppliers.searchSupplierList
 });
 
 const mapDispatchToProps = (dispatch) =>

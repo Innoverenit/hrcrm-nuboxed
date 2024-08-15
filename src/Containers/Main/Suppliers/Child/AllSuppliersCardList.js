@@ -55,6 +55,7 @@ return(
 {props.searchSupplierList.length > 0 ? (
     <SupplierSearchedData
     searchSupplierList={props.searchSupplierList}
+    translatedMenuItems={props.translatedMenuItems}
     />
   ) : (
 <div className=' flex  sticky  z-auto'>

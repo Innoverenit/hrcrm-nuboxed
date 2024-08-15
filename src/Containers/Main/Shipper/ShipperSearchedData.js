@@ -201,12 +201,14 @@ function ShipperSearchedData(props) {
         updateShipperModal={updateShipperModal}
         handleSetCurrentShipperId={handleSetCurrentShipperId}
         handleUpdateShipperModal={handleUpdateShipperModal}
+        translatedMenuItems={props.translatedMenuItems}
       />
       <AddShipperOrderModal
         addShipperOrderModal={props.addShipperOrderModal}
         handleShipperOrderModal={props.handleShipperOrderModal}
         shipperId={currentShipperId}
         handleSetCurrentShipperId={handleSetCurrentShipperId}
+        translatedMenuItems={props.translatedMenuItems}
       />
     </>
   )

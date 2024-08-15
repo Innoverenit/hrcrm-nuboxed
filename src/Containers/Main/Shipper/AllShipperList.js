@@ -64,6 +64,7 @@ function AllShipperList(props) {
      {props.shipperSerachedData.length > 0 ? (
     <ShipperSearchedData
     shipperSerachedData={props.shipperSerachedData}
+    translatedMenuItems={props.translatedMenuItems}
     />
   ) : (
       <div className=' flex  sticky  z-auto'>

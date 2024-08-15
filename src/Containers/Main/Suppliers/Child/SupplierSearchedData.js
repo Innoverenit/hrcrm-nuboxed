@@ -228,7 +228,7 @@ function SupplierSearchedData(props) {
 
       <UpdateSupplierModal
         rowdata={rowdata}
-
+        translatedMenuItems={props.translatedMenuItems}
         updateSupplierModal={props.updateSupplierModal}
         handleRowData={handleRowData}
         handleUpdateSupplierModal={props.handleUpdateSupplierModal}

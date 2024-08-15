@@ -90,6 +90,9 @@ const ShipperActionLeft = (props) => {
       } else if (props.viewType === "all") {
         props.inputDataSearch(currentData,'all');
       }
+      else if (props.viewType === "grid") {
+        props.inputDataSearch(currentData,'grid');
+      }
       setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
@@ -126,6 +129,9 @@ const ShipperActionLeft = (props) => {
         props.inputDataSearch(transcript,'table');
       } else if (props.viewType === "all") {
         props.inputDataSearch(transcript,'all');
+      }
+      else if (props.viewType === "grid") {
+        props.inputDataSearch(transcript,'grid');
       }
       setSearchOnEnter(true);
     }

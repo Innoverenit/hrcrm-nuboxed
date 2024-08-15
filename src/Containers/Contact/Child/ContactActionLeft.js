@@ -20,6 +20,8 @@ import {
   getContactAllRecord,
   getCustomerRecords,
   getContactRecord,
+  getAllContact,
+  getTeamContact
 } from "../ContactAction";
 import {getDepartments} from "../../Settings/Department/DepartmentAction";
 
@@ -35,16 +37,34 @@ const ContactActionLeft = (props) => {
 
     if (searchOnEnter&&e.target.value.trim() === "") {
       setPage(pageNo + 1);
+      if (props.viewType === "table") {
       props.getContactListByUserId(props.userId, pageNo,"creationdate");
+      }
+      else if (props.viewType === "teams") {
+      props.getAllContact("0","Customer");
+      }
+      else if (props.viewType === "all") {
+      props.getTeamContact(props.userId, "0");
+      }
       props.ClearReducerDataOfContact()
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      // Perform the search
-      props.inputContactDataSearch(currentData);
-      setSearchOnEnter(true);  //Code for Search
-    } else {
+      if (props.viewType === "table") {
+      props.inputContactDataSearch(currentData,"table","customer");
+      }
+      else if (props.viewType === "teams") {
+        props.inputContactDataSearch(currentData,"teams","customer");
+        }
+        else if (props.viewType === "all") {
+          props.inputContactDataSearch(currentData,"all","customer");
+          }
+      setSearchOnEnter(true);  
+    } 
+    
+    
+    else {
       console.error("Input is empty. Please provide a value.");
     }
   };
@@ -284,7 +304,9 @@ const mapDispatchToProps = (dispatch) =>
       getContactAllRecord,
       getCustomerRecords,
       getContactRecord,
-      getDepartments
+      getDepartments,
+      getAllContact,
+      getTeamContact
     },
     dispatch
   );

@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-    getInventorylist,inputInventorySearch,ClearReducerDataOfInventory
-   
+    getInventorylist,inputInventorySearch,ClearReducerDataOfInventory 
 } from "../../../SuppliersAction"
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
-import { Input, Select,  } from 'antd';
+import { Input, Select, Button } from 'antd';
 import dayjs from "dayjs";
 import NodataFoundPage from '../../../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { AudioOutlined } from "@ant-design/icons"
 import SuplierInventoryPublishToggle from "./SuplierInventoryPublishToggle";
-
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { base_url2 } from "../../../../../../Config/Auth";
+import axios from "axios";
 
 const { Option } = Select;
 
@@ -20,18 +21,29 @@ function InventoryTable(props) {
     const [pageNo, setPageNo] = useState(0);
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
+    const [rowData, setRowData] = useState({});
+    const [currency, setCurrency] = useState("");
+    const [showIcon, setShowIcon] = useState(false);
+    const [editedFields, setEditedFields] = useState({});
+    const [editsuppliesId, setEditsuppliesId] = useState(null);
+    const [data, setData] = useState([]);
+    const [availabilityDate, setavailabilityDate] = useState('');
+
     useEffect(() => {
         setPageNo(pageNo + 1);
-        // props.getCurrency()
-        // props.getPurchaseSuppliersList(props.supplier.supplierId);
         props.getInventorylist(props.userId,pageNo)
     }, []);
-    const [rowData, setRowData] = useState({})
+
+    useEffect(() => {
+        setData(props.inventoryList || []);
+    }, [props.inventoryList]);
+
+
     const handleRowData = (item) => {
         setRowData(item)
     }
-    const [currency, setCurrency] = useState("")
-    const [showIcon, setShowIcon] = useState(false)
+
     const handleCurrencyField = () => {
         setShowIcon(!showIcon)
 
@@ -44,7 +56,10 @@ function InventoryTable(props) {
         setCurrency("")
     }
 
-    const [hasMore, setHasMore] = useState(true);
+    const handleDateChange = (e, item) => {
+            setavailabilityDate(e.target.value);
+       
+    };
     
     const handleLoadMore = () => {
         const callPageMapd = props.inventoryList && props.inventoryList.length &&props.inventoryList[0].pageCount
@@ -107,6 +122,45 @@ function InventoryTable(props) {
         
             />
           );
+          
+          const handleEditClick = (inventorySupplieId) => {
+            setEditsuppliesId(inventorySupplieId);
+          };
+          const handleCancelClick = (inventorySupplieId) => {
+            setEditedFields((prevFields) => ({ ...prevFields, [inventorySupplieId]: undefined }));
+            setEditsuppliesId(null);
+          };
+        
+          const handleSave = async (item) => {
+            console.log(item)
+            const updatedItem = {
+                orgId:props.organizationId,
+                userId:props.userId,
+                // shipBy: item.shipBy, 
+                availabilityDate: new Date(availabilityDate).toISOString()
+            };
+              
+         console.log("resd",updatedItem);  
+         try {
+
+            const response = await axios.put(`${base_url2}/supplier/inventory/update/availabilityDate/${item.inventorySupplieId}`, updatedItem, {
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            });
+            console.log("API Response:", response.data);
+            setData(prevData => 
+              prevData.map(cat =>
+                cat.inventorySupplieId === item.inventorySupplieId ? response.data : cat
+              )
+            );
+                    setEditsuppliesId(null);
+                } catch (error) {
+                    console.error("Error updating item:", error);
+                    setEditsuppliesId(null);
+                  }
+          };
+        
     return (
         <>
         <div class=" ml-6 h-6 w-60 max-sm:w-[11rem]">
@@ -140,6 +194,9 @@ function InventoryTable(props) {
                            Model
                         </div>
                         <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                          Availability Date
+                        </div>
+                        <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
                           Attribute
                         </div>
                         <div className=" w-[12.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
@@ -160,20 +217,20 @@ function InventoryTable(props) {
                     </div>
                     <div class="">
                         <InfiniteScroll
-                            dataLength={props.inventoryList.length}
+                            dataLength={data.length}
                             next={handleLoadMore}
                             hasMore={hasMore}
                             loader={props.fetchingInventorylist ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
                             height={"79vh"}
                             style={{scrollbarWidth:"thin"}}
                         >
-                            {props.inventoryList.length ? <>
-                                {props.inventoryList.map((item) => {
+                            {data.length ? <>
+                                {data.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" > 
+                                            <div key={item.inventorySupplieId} className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" > 
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                                                 <div className=" flex font-medium justify-between items-center  w-[15.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-xs font-poppins flex items-center">
@@ -217,6 +274,24 @@ function InventoryTable(props) {
                                                     </div>
                                                     <div className=" flex  w-[6.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+{editsuppliesId === item.inventorySupplieId ? (
+                                                                <input
+          type="date"
+          value={availabilityDate}
+          onChange={(e) => handleDateChange(e,item)}
+          min={dayjs(item.availabilityDate).format("DD/MM/YYYY")}
+          class="border border-black rounded"
+        /> ) : (
+            <div className="font-normal text-sm  font-poppins">
+              <div> 
+              {dayjs(item.availabilityDate).format("YYYY/MM/DD")}</div>
+            </div>
+          )}
+                                                        
+                                                        </div>
+                                                    </div>
+                                                    <div className=" flex  w-[6.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                             {item.attributeName}
                                                         </div>
@@ -250,13 +325,42 @@ function InventoryTable(props) {
                                 />
                               </div>
                             </div>
+
+                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                                            <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    {editsuppliesId === item.inventorySupplieId ? (
+                        <>
+                      <Button 
+                      type="primary"
+                    //   loading={props.updatingOrdrSuplrItems}
+                      onClick={() => handleSave(item)}>
+                        Save
+                      </Button>
+                        <Button 
+                         type="primary"
+                        onClick={() => handleCancelClick(item.inventorySupplieId)} className="ml-[0.5rem]">
+                        Cancel
+                      </Button>
+                      </>
+                      
+                    ) : (
+                      <BorderColorIcon
+                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                        tooltipTitle="Edit"
+                        iconType="edit"
+                        onClick={() => handleEditClick(item.inventorySupplieId)}
+                      />
+                    )}
+    </div>
+                                                        </div>
                                                 </div>
+
                                             </div>
                                         </>
                                     )
                                 })}
                             </>
-                                : !props.inventoryList.length
+                                : !data.length
                                     && !props.fetchingInventorylist ? <NodataFoundPage /> : null}
                         </InfiniteScroll>
                     </div>
@@ -269,6 +373,7 @@ function InventoryTable(props) {
 const mapStateToProps = ({ suppliers, auth }) => ({
     inventoryList: suppliers.inventoryList,
     userId: auth.userDetails.userId,
+    organizationId: auth.userDetails.organizationId,
     addlocationInPo: suppliers.addlocationInPo,
     addPoListmModal: suppliers.addPoListmModal,
     addTermsnCondition: suppliers.addTermsnCondition,
