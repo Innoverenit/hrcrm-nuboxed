@@ -83,8 +83,8 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   return (
     <>
        <div className=' flex  justify-center sticky  z-auto'>
-       <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-       <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+       <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">            
         {props.translatedMenuItems[2]}
 </div>

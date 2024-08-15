@@ -89,7 +89,7 @@ console.log(props.promotionsData)
           loader={props.fetchingLocationData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
           height={"80vh"}
         > */}
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
             <div className=" md:w-[7.5rem]">
             Name</div>
             <div className="   md:w-[9.1rem]">

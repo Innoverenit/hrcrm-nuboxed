@@ -419,7 +419,7 @@ Resinstate
   return (
     <>
   <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className=" flex  w-[99%] max-lg:w-[94%] max-xl:w-[94%] p-2 bg-transparent font-bold sticky top-0 z-10">
+ <div className=" flex  w-[100%]  max-lg:w-[94%] max-xl:w-[94%] p-2 bg-transparent font-bold sticky top-0 z-10">
  <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
         <div className=" w-[9.1rem] max-xl:w-[11.1rem] max-lg:w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
         <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Phone #</div>

@@ -59,7 +59,7 @@ const handleLoadMore = () => {
         height={"80vh"}
         style={{scrollbarWidth:"thin"}}
       >
-      <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+      <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[7.5rem]">
         {translatedMenuItems[0]}
         {/* Name */}

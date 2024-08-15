@@ -161,7 +161,7 @@ function ProductionOrderListById(props) {
         />
       </div>
 
-                    <div className=" flex max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+                    <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                         <div className='w-[17.2rem]'></div>
                         <div className=" w-[23.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order ID</div>
                         <div className=" w-[36.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage

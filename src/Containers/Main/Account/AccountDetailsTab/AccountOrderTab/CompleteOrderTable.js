@@ -124,8 +124,8 @@ const CompleteOrderTable = (props) => {
         <>
       
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[99%]  bg-transparent font-bold sticky  z-10">
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[100%]   bg-transparent font-bold sticky  z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">Urgent </div>
                         <div className=" md:w-[11.41rem] ml-2">
                             <FormattedMessage
@@ -554,8 +554,8 @@ const CompleteOrderTable = (props) => {
             
            
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[99%]  bg-transparent font-bold sticky z-10">
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[100%]   bg-transparent font-bold sticky z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
                         <div className=" md:w-[11.41rem] ml-2">
                             <FormattedMessage
@@ -983,8 +983,8 @@ const CompleteOrderTable = (props) => {
             </div >
          
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[99%]  bg-transparent font-bold sticky z-10">
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[100%]   bg-transparent font-bold sticky z-10">
                     <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
                         <div className=" md:w-[11.41rem] ml-2">
                             <FormattedMessage

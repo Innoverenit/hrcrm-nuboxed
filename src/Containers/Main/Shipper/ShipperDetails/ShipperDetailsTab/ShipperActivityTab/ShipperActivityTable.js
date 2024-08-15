@@ -45,7 +45,7 @@ class ShipperActivityTable extends Component {
       <>
             <div className=' flex  sticky  z-auto'>
             <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
+            <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=" md:w-[0.5rem]"></div>
                         <div className=" md:w-[7.4rem]"><FormattedMessage id="app.type" defaultMessage="Type"/></div>
                         <div className=" md:w-[5.1rem]"><FormattedMessage id="app.topic" defaultMessage="Topic"/></div>

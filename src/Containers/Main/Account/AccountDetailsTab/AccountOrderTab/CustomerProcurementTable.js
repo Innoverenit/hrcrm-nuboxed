@@ -106,7 +106,7 @@ const handleLoadMoreLow = () => {
 
   return (
     <>
-    <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
         {translatedMenuItems[0]} {/* Urgent */}
@@ -272,7 +272,7 @@ const handleLoadMoreLow = () => {
                             </> : !props.highDistributorOrder.length && !props.fetchingDistributorOfHigh ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
       </div>
-      <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
         {translatedMenuItems[8]} {/* High */}
@@ -438,7 +438,7 @@ const handleLoadMoreLow = () => {
                             </> : !props.mediumDistributorOrder.length && !props.fetchingDistributorOfMedium ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
       </div>
-      <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
         {translatedMenuItems[9]} {/* Normal */}

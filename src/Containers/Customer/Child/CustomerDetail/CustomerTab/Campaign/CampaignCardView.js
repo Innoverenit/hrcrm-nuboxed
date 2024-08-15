@@ -318,9 +318,9 @@ if(fetchingCustomerCampaign){
     return (
       <>
       <div className=' flex  sticky  z-auto'>
-      <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
-         <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+         <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[7.8rem]"><FormattedMessage
                   id="app.type"
                   defaultMessage="type"
