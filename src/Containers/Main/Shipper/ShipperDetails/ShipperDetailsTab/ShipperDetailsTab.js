@@ -40,9 +40,7 @@ const AddShipperDocumentModal = lazy(() =>
   import("./ShipperDocumentTab/AddShipperDocumentModal")
 );
 
-const LinkedShipperNotes = lazy(() =>
-  import("../ShipperDetailsTab/ShipperNotetab/LinkedShipperNotes")
-);
+
 // const AddShipperActivityModal = lazy(() =>import(
 //     "../ShipperDetailsTab/ShipperActivitytab/AddShipperActivityModal"
 //   )

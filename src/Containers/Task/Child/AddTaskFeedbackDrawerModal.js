@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import NotesForm from "./NotesForm";
+
 
 class AddTaskFeedbackDrawerModal extends Component {
   render() {
@@ -24,9 +24,9 @@ class AddTaskFeedbackDrawerModal extends Component {
           onClose={() => this.props.handleTaskFeedbackDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <NotesForm currentNameId={this.props.currentNameId} 
+            {/* <NotesForm currentNameId={this.props.currentNameId} 
             taskId={this.props.currentNameId.taskId} 
-            />
+            /> */}
           </Suspense>
         </StyledDrawer>
       </div>

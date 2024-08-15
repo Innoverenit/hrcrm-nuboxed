@@ -10,6 +10,12 @@ const initialState = {
 
   showStatusDrwr: false,
 
+  piButtonModal:false,
+
+  fetchingInputInvoiceData: false,
+  fetchingInputInvoiceDataError: false,
+  invoiceSearch:[],
+
   fetchingInvoiceCount: false,
   fetchingInvoiceCountError: false,
   invoiceCount:{},
@@ -1180,6 +1186,17 @@ export const distributorReducer = (state = initialState, action) => {
     case types.INPUT_SEARCH_DATA_FAILURE:
       return { ...state, fetchingInputDistributorDataError: true };
 
+      case types.INPUT_SEARCH_INVOICE_REQUEST:
+        return { ...state, fetchingInputInvoiceData: true };
+      case types.INPUT_SEARCH_INVOICE_SUCCESS:
+        return {
+          ...state,
+          fetchingInputInvoiceData: false,
+          invoiceSearch: action.payload,
+        };
+      case types.INPUT_SEARCH_INVOICE_FAILURE:
+        return { ...state, fetchingInputInvoiceDataError: true };
+
     case types.GET_ORDER_DETAILS_BY_ID_REQUEST:
       return { ...state, fetchingOrderDetailsById: true };
     case types.GET_ORDER_DETAILS_BY_ID_SUCCESS:
@@ -1382,6 +1399,9 @@ export const distributorReducer = (state = initialState, action) => {
 
     case types.HANDLE_PAID_BUTTON_MODAL:
       return { ...state, addPaidButtonModal: action.payload };
+
+      case types.HANDLE_PI_MODAL:
+        return { ...state, piButtonModal: action.payload };
 
     /**
      * post paid form
@@ -3416,6 +3436,12 @@ export const distributorReducer = (state = initialState, action) => {
                           case types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT:
                             return { ...state, 
                               distributorSearch: [], 
+                              // deletedTruck: [] 
+                            };
+
+                            case types.HANDLE_CLAER_SEARCHED_INVOICE:
+                            return { ...state, 
+                              invoiceSearch: [], 
                               // deletedTruck: [] 
                             };
 

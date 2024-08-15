@@ -31,6 +31,7 @@ import {
     deleteDistributorData,
     getLocationList,
     updateSubOrderAwb,
+    handlePIModal
 } from "../../AccountAction";
 import { FormattedMessage } from 'react-intl';
 import { Badge, Button, Input, Select, Tooltip } from 'antd';
@@ -40,6 +41,7 @@ import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import { PersonAddAlt1 } from '@mui/icons-material';
+import PIOPenModal from './PIOPenModal';
 const SubOrderList = lazy(() => import('./SubOrderList'));
 const AddLocationInOrder = lazy(() => import('./AddLocationInOrder'));
 const AccountOrderDetailsModal = lazy(() => import('./AccountOrderDetailsModal'));
@@ -469,6 +471,21 @@ const AccountOrderTable = (props) => {
                                                 </div>
                                                 <div class="flex items-center  justify-end w-[8rem]">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
+                                                    <div>
+                                                            <Tooltip title={<FormattedMessage
+                                                                id="app.notes"
+                                                                defaultMessage="Notes"
+                                                            />}>
+                                                                <span
+                                                                    className="!text-icon cursor-pointer text-[green]"
+                                                                    onClick={() => {
+                                                                        props.handlePIModal(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}>PI</span>
+                                                                
+
+                                                            </Tooltip>
+                                                        </div>
                                                         <div>
                                                             <Tooltip title={<FormattedMessage
                                                                 id="app.notes"
@@ -1550,6 +1567,14 @@ const AccountOrderTable = (props) => {
                     handleUpdateOrder={props.handleUpdateOrder}
                     updateOrderModal={props.updateOrderModal}
                 />
+                 <PIOPenModal
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
+                    particularRowData={particularRowData}
+                    distributorId={props.distributorId}
+                    handlePIModal={props.handlePIModal}
+                    piButtonModal={props.piButtonModal}
+                />
 
             </Suspense>
         </>
@@ -1579,6 +1604,7 @@ const mapStateToProps = ({ distributor, auth, departments }) => ({
     fetchingDistributorOfMedium:distributor.fetchingDistributorOfMedium,
     lowDistributorOrder:distributor.lowDistributorOrder,
     fetchingDistributorOfLow:distributor.fetchingDistributorOfLow,
+    piButtonModal: distributor.piButtonModal
 
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -1600,7 +1626,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     deleteDistributorData,
     getLocationList,
     updateSubOrderAwb,
-    getOrderRecords
+    getOrderRecords,
+    handlePIModal
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountOrderTable);

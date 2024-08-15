@@ -22,6 +22,8 @@ import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersActi
 import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
 import AddIcon from '@mui/icons-material/Add';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 import { BundleLoader } from '../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
@@ -44,7 +46,6 @@ const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
 const AccountActivityModal = lazy(() => import("./AccountActivityTab/AccountActivityModal"));
 const DistributorDocumentTable = lazy(() => import("./AccountDocumentTab/DistributorDocumentTable"));
-const LinkedDistributorNotes = lazy(() => import("./AccountNoteTab/LinkedDistributorNotes"));
 const CatalogueOrderModal = lazy(() => import("./AccountOrder1Tab/CatalogueOrderModal"));
 const AccountContactTable = lazy(() => import("./AccountContactTab/AccountContactTable"))
 const AccountActivityTable = lazy(() => import("./AccountActivityTab/AccountActivityTable"));
@@ -458,11 +459,11 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                                    {/* <i class="far fa-file"></i> */}
-                                    <span class="ml-1">
+                                <SummarizeIcon className="!text-icon mr-1"/>
+                                    
                                     {translatedMenuItems[8]}
                                     {/* Summary */}
-                                        </span>
+                                       
                                 </span>
 
                             </>
@@ -484,7 +485,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                                    <i class="fas fa-file-contract"></i>
+                               <ContactsIcon className="!text-icon" />
                                     {translatedMenuItems[9]}
                                     
                                     {/* Contact */}
@@ -519,7 +520,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                             <>
                             <Badge
             size="small"
-            count={( props.invoiceCount.investorTeam) || 0}
+            count={( props.invoiceCount.paymentCount) || 0}
             overflowCount={999}
           >
                                 <span>
@@ -543,6 +544,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                                         </Tooltip> */}
                                     </>
                                 )}
+                                
                             </>
                         }
                         key="11"

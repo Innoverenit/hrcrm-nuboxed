@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Timeline, Button, Popconfirm, Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import AddCustomerNotesListDrawerModal from "../CustomerDetail/AddCustomerNotesListDrawerModal"
 import { bindActionCreators } from 'redux';
 import dayjs from 'dayjs';
 import { getCustomerActivityTimeline,
@@ -81,11 +80,6 @@ const CustomerActivityTable = (props) => {
           ))}
       </Timeline>
 
-      <AddCustomerNotesListDrawerModal
-        customerNoteList={props.customerNoteList}
-        addCustomerNoteDrawerModal={props.addCustomerNoteDrawerModal}
-        handleCustomerNoteDrawerModal={props.handleCustomerNoteDrawerModal}
-      />
       
       <AddCustomerActivityDrawerModal
        
