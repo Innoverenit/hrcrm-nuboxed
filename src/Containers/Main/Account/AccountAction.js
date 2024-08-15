@@ -1007,6 +1007,30 @@ export const inputDataSearch = (name,type) => (dispatch) => {
       });
     });
 };
+
+export const searchInoice = (id) => (dispatch) => {
+  dispatch({
+    type: types.INPUT_SEARCH_INVOICE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderPayment/search/${id}`,  {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.INPUT_SEARCH_INVOICE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.INPUT_SEARCH_INVOICE_FAILURE,
+        payload: err,
+      });
+    });
+};
 /**
  * Get Order Details
  */
@@ -1387,6 +1411,12 @@ export const getDistributorHistory = (distributorId) => (dispatch) => {
 export const handlePaidModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_PAID_BUTTON_MODAL,
+    payload: modalProps,
+  });
+};
+export const handlePIModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PI_MODAL,
     payload: modalProps,
   });
 };
@@ -4298,6 +4328,12 @@ export const addQuotationPhoneDetails = (customer, orderPhoneId, cb) => (dispatc
 export const ClearSearchedDataOfAccount = () => (dispatch) => {
   dispatch({
     type: types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT,
+  });
+};
+
+export const ClearSearchedInvoice = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_INVOICE,
   });
 };
 

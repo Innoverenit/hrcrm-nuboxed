@@ -23,12 +23,11 @@ import { handlePartnerContactModal } from "../../../PartnerAction";
 import { handlePartnerOpportunityModal } from "../../../PartnerAction";
 import AddPartnerContactModal from "./ContactTab/AddPartnerContactModal";
 import AddPartnerOpportunityModal from "./OpportunityTab/AddPartnerOpportunityModal";
-import LinkedPartnerNotes from "./NotesTab/LinkedPartnerNotes";
 import LinkedPartnerOpportunity from "./OpportunityTab/LinkedPartnerOpportunity";
 import LinkedPartnerContact from "./ContactTab/LinkedPartnerContact";
 import CommercialsForm from "./Commercials/CommercialsForm";
 import ReactPartnerSpeechModal from "../../../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/ReactPartnerSpeechModal";
-import LinkedNotes from "../../../../Opportunity/Child/OpportunityDetail/OpportunityTab/LinkedNotes";
+
 
 const TabPane = StyledTabs.TabPane;
 
@@ -224,7 +223,7 @@ class ContactDetailTab extends Component {
               key="4"
             >
               <Suspense fallback={"Loading ..."}>
-                <LinkedPartnerNotes />{" "}
+                {/* <LinkedPartnerNotes />{" "} */}
               </Suspense>
             </TabPane>
 

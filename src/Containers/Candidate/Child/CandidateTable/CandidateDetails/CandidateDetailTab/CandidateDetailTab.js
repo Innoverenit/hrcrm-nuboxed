@@ -40,7 +40,6 @@ const BankTable = lazy(() => import("./Bank/BankTable"));
 const PlacementTable = lazy(() => import("./Placement/PlacementTable"));
 const ActivityModal = lazy(() => import("./Activity/ActivityModal"));
 const ActivityTable = lazy(() => import("./Activity/ActivityTable"));
-const LinkedNotes = lazy(() => import("./Notes/LinkedNotes"));
 
 const TabPane = StyledTabs.TabPane;
 
@@ -270,7 +269,7 @@ function CandidateDetailTab(props) {
             key="5"
           >
             <Suspense fallback={"Loading ..."}>
-              <LinkedNotes />{" "}
+              {/* <LinkedNotes />{" "} */}
             </Suspense>
           </TabPane>
           <TabPane
