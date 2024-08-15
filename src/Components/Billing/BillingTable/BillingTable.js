@@ -1,21 +1,13 @@
-import React, { useEffect, useState,useMemo,lazy } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyledTable } from '../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { getLeadsTabData,getLeadsDateWise,paidIndicatorLeads,handleStripeModal } from '../LeadsAction';
-import dayjs from "dayjs";
-import { Tooltip,Button,Input } from "antd";
+import { Button,Input } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
-import Highlighter from 'react-highlight-words';
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import jsPDF from "jspdf";
+import Highlighter from 'react-highlight-words'
 import "jspdf-autotable";
 import {getBillingTable} from "../BillingAction"
-import { base_url } from "../../../Config/Auth";
 import { BundleLoader } from '../../../Components/Placeholder';
-import { Link } from 'react-router-dom';
-// import {getCreditInfo} from "../SettingsAction";
 
 function BillingTable (props)  {
     
