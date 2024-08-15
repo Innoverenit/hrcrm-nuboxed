@@ -4,7 +4,6 @@
 // import dayjs from "dayjs";
 // import { Select } from "../../../../../Components/UI/Elements";
 // import { InputNumber, Popconfirm, Form, Input, Typography, Button, Space, DatePicker,Tooltip } from 'antd';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { FormattedMessage } from "react-intl";
 // import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 // // import AddCandidateSequenceModal from "./AddCandidateSequenceModal"

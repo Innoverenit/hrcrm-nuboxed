@@ -10,10 +10,9 @@ import {
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import UpdateOrderDetailModal from "./UpdateOrderDetailModal";
 import { Tooltip } from "antd";
-import { EditOutlined } from "@ant-design/icons";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class ShipperOrderGeneratorTable extends Component {
   componentDidMount() {
     // this.props.fetchingNewShipperOrder(this.props.shipperShipperId);
