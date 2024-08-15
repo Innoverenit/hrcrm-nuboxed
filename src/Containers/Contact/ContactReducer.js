@@ -532,6 +532,8 @@ export const contactReducer = (state = initialState, action) => {
         ...state,
         fetchingContactInputSearchData: false,
         contactByUserId: action.payload,
+        allContacts:action.payload,
+        teamContact:action.payload,
         // serachedData: action.payload,
       };
     case types.INPUT_CONTACT_SEARCH_DATA_FAILURE:
@@ -1004,6 +1006,8 @@ export const contactReducer = (state = initialState, action) => {
             case types.HANDLE_CLAER_REDUCER_DATA_CONTACT:
               return { ...state, 
                 contactByUserId: [], 
+                allContacts:[],
+                teamContact:[]
               };
               case types.HANDLE_CONTACT_CET_DRAWER:
                 return { ...state, contactCETdrawer: action.payload };

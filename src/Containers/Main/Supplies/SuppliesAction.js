@@ -729,7 +729,7 @@ export const inputSuppliesDataSearch = (name) => (dispatch) => {
       },
     })
     .then((res) => {
-      message.success(res.data.message);
+      // message.success(res.data.message);
 
       dispatch({
         type: types.INPUT_SUPPLIES_SEARCH_DATA_SUCCESS,

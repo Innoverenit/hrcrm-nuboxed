@@ -9,6 +9,7 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import UpdateSupplierModal from "./UpdateSupplierModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import ReInstateSuppliers from "../ReInstateSuppliers";
+import SupplierSearchedData from "./SupplierSearchedData";
 
 function SuppliersDeletedCardList(props) {
 
@@ -40,6 +41,12 @@ function SuppliersDeletedCardList(props) {
     }
   return (
     <>
+     {props.searchSupplierList.length > 0 ? (
+    <SupplierSearchedData
+    searchSupplierList={props.searchSupplierList}
+    translatedMenuItems={props.translatedMenuItems}
+    />
+  ) : (
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
@@ -150,7 +157,7 @@ function SuppliersDeletedCardList(props) {
           </div>
         </div>
       </div>
-
+)}
       <UpdateSupplierModal
         rowdata={rowdata}
         updateSupplierModal={props.updateSupplierModal}
@@ -170,6 +177,7 @@ const mapStateToProps = ({ shipper, suppliers, auth }) => ({
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
   updateSupplierModal:suppliers.updateSupplierModal,
+  searchSupplierList:suppliers.searchSupplierList
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -76,6 +76,11 @@ const {
           } else if (props.viewType === "all") {
             props.inputDataSearch(currentData,'all');
           } 
+          else if (props.viewType === "not approved") {
+            props.inputDataSearch(currentData,'not approved');
+          } else if (props.viewType === "delete") {
+            props.inputDataSearch(currentData,'delete');
+          } 
           setSearchOnEnter(true);  //Code for Search
         } else {
           console.error("Input is empty. Please provide a value.");
@@ -112,6 +117,11 @@ const {
             props.inputDataSearch(transcript,'card');
           } else if (props.viewType === "all") {
             props.inputDataSearch(transcript,'all');
+          } 
+          else if (props.viewType === "not approved") {
+            props.inputDataSearch(transcript,'not approved');
+          } else if (props.viewType === "delete") {
+            props.inputDataSearch(transcript,'delete');
           } 
           setSearchOnEnter(true);
         }
@@ -166,7 +176,7 @@ const {
                             color: viewType === "not approved" && "#1890ff",
                         }}
                     >
-                       <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                       <Avatar style={{ background: viewType === "not approved" ? "#f279ab" : "#4bc076" }}>
                        <TocIcon className="text-white !text-icon" />
                             </Avatar> 
                     </span>

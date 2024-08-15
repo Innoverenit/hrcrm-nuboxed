@@ -627,12 +627,15 @@ export const updateContact = (data, contactId) => (dispatch) => {
     });
 };
 //SEARCH
-export const inputContactDataSearch = (name) => (dispatch) => {
+export const inputContactDataSearch = (name,type,contactType) => (dispatch) => {
   dispatch({
     type: types.INPUT_CONTACT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/contact/Name/${name}`, {
+    // .get(`${base_url}/contact/Name/${name}`, 
+    .get(`${base_url}/contact/search/alltype/${name}/${type}/${contactType}`,
+      {
+
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

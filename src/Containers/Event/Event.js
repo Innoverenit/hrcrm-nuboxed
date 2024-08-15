@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense,useState, lazy } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
@@ -10,25 +10,34 @@ const EventCardList = lazy(() => import('./Child/EventTable/EventCardList'))
 function Event (props) {
    
         const { addEventModal, handleEventModal } = props;
+
+const [clickView,setclickView]=useState("table");
+
+
         return (
             <React.Fragment>
                  <Suspense fallback={<BundleLoader />}>
                 <EventHeader
                     selectedLanguage={props.selectedLanguage}
                     translateText={props.translateText}
-                    handleEventModal={handleEventModal} />
+                    handleEventModal={handleEventModal} 
+                    clickView={clickView}
+                    setclickView={setclickView}
+                    />
                 <AddEventModal
                     selectedLanguage={props.selectedLanguage}
                     translateText={props.translateText}
                     addEventModal={addEventModal}
                     handleEventModal={handleEventModal} />
                
-                    {/* <EventTable />
-                     */}
+                   {clickView==="table" ?
                      <EventCardList 
                      selectedLanguage={props.selectedLanguage}
                      translateText={props.translateText}
-                     />
+                     />:
+clickView==="all" ?
+                    <h2>Hello All</h2> 
+                    :null}
                 </Suspense>
             </React.Fragment>
         )
