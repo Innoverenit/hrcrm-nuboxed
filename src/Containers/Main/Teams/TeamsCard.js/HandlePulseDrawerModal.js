@@ -2,7 +2,6 @@ import React, { Component,Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import styled from 'styled-components'
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
@@ -50,7 +49,7 @@ class HandlePulseDrawerModal extends Component {
               tab={
                 <>
                   <span>
- <ContactsIcon style={{fontSize:"1.1rem"}}/>
+ <ContactsIcon className=" !text-icon"/>
                     <span class=" ml-1">
                       Performance Mangement
                     </span>
