@@ -69,13 +69,6 @@
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Access);
 
-
-
-
-
-
-
-
 import React, { PureComponent,lazy, Suspense, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";

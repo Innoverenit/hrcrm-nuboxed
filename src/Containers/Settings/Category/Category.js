@@ -57,14 +57,15 @@ class Category extends Component {
     tab={
         <>
             <i className="fas fa-building"></i>
-            
             <span className="ml-1">Department 
-            <Badge 
-                count={this.props.departmentCount.DepartmentCount}
-                overflowCount={999}
-              > </Badge>
             </span>
+            <Badge 
+             count={this.props.departmentCount.DepartmentCount}
+            overflowCount={999}  offset={[ 0, -16]}>
+          
+            
            
+            </Badge>
         </>
     }
     key="4"
