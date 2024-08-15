@@ -438,7 +438,7 @@ function MainApp(props) {
             </Sider>
           </div>
           <LayoutWrapper class="w-[90%]" >
-            <div class=" flex flex-row justify-between w-[100%] items-center content-center nowrap sticky z-50 p-0 h-12 leading-[4rem] mt-1 shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
+            <div class=" flex flex-row justify-between w-[100%] items-center content-center nowrap sticky z-50  h-10  leading-8  shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
            
               <Header class=" flex bg-white w-[100%] box-border border-2 justify-between p-0 items-center">
               <div class="max-xl:text-[0.75rem]  max-lg:text-[0.5rem]">
@@ -536,21 +536,21 @@ function MainApp(props) {
                 
                   <div class=" flex items-center h-0">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
-                      <SettingsDropdown />
+                      <SettingsDropdown className=" !text-icon" />
                       : null
                     }
                     <a href="#" style={{ marginRight: 4 }}>
                       <div class=" flex items-center "
                       >
-                        <NotificationPopover />
+                        <NotificationPopover className=" !text-icon" />
                       </div>
                     </a>
 
-                    <RepositoryData />
-                    <FAQPage />
+                    <RepositoryData className=" !text-icon" />
+                    <FAQPage className=" !text-icon"/>
 
                   </div>
-                  <ProfileDropdown />
+                  <ProfileDropdown className=" !text-icon cursor-pointer"/>
 
                
                 </div>

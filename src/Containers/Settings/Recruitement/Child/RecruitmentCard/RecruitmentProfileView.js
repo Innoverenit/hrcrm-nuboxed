@@ -8,10 +8,9 @@ function RecruitmentProfileView(props) {
   return (
     <>
       <div class=" flex justify-around">
-        <h1 class=" flex justify-center items-center text-poppins text-[#40A9FF] "
-        >
+        <div class=" flex justify-center text-sm items-center text-poppins text-[#40A9FF] ">
           Theme
-        </h1>
+        </div>
       </div>
      
       {props.rules.map((item, i) => {
