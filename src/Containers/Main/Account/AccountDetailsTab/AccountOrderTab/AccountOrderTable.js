@@ -162,8 +162,7 @@ const AccountOrderTable = (props) => {
 
     return (
         <>
-      w-[100%] 
-            <div className=' flex sticky  zw-[100%] 
+      <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[99%]  bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
@@ -608,8 +607,8 @@ const AccountOrderTable = (props) => {
                                                     </div>
                                             </div>
 
-                                            w-[100%] wb && (item.orderId === particularRowData.orderId) &&
-                                       w-[100%]   <SubOrderList orderId={particularRowData.orderId} />
+                                            {checkAwb && (item.orderId === particularRowData.orderId) &&
+                                                <SubOrderList orderId={particularRowData.orderId} />
                                             }
                                         </div>
 
@@ -1049,8 +1048,7 @@ const AccountOrderTable = (props) => {
                                                 </div>
 
                                             </div>
-w-[100%] 
-                                       w-[100%] heckAwb && (item.orderId === particularRowData.orderId) &&
+                                            {checkAwb && (item.orderId === particularRowData.orderId) &&
                                                 <SubOrderList orderId={particularRowData.orderId} />
                                             }
                                         </div>
