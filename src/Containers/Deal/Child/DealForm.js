@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { getCustomerData,getInvestorData } from "../../Customer/CustomerAction";
 import { getdealsContactdata } from "../../Contact/ContactAction";
 import { FormattedMessage } from "react-intl";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -18,7 +19,6 @@ import {
   getStages,
 } from "../../Opportunity/OpportunityAction";
 import {getSources} from "../../Settings/Category/Source/SourceAction"
-import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -31,7 +31,7 @@ import {createDeals,  getAllDealStages,
   getDealLinkedStages,
   getActiveAssignedToList
 } from "../DealAction";
-import Swal from 'sweetalert2'
+
 
 
 const OpportunitySchema = Yup.object().shape({
@@ -64,14 +64,15 @@ function DealForm(props) {
           " Name",//0
           "Start Date",//1
               "End Date",//2
-              "Fund Value",//3
+              "Value",//3
               "Currency",//4
-              "Assigned",//5
-              "Include",//6
-              "Investor",//7
-              "Contact",//8
-              "Workflow",//9
-              "Stages"//10
+              "Description",//5
+              "Assigned",//6
+              "Include",//7
+              "Investor",//8
+              "Contact",//9
+              "Workflow",//10
+              "Stages"//11
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -370,8 +371,8 @@ function DealForm(props) {
           <Form className="form-background">
             <div class=" flex justify-around max-sm:flex-col">
               <div class=" h-full w-w47.5 max-sm:w-wk">
-              <div class=" text-xs mt-3">
-              <div>{translatedMenuItems[0]} </div>
+              <div class=" text-xs font-bold font-poppins ">
+               {translatedMenuItems[0]} 
                 <Field
                   isRequired
                   name="opportunityName"
@@ -384,8 +385,8 @@ function DealForm(props) {
                 />
                </div>
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class=" text-xs w-w47.5 max-sm:w-wk">
-                <div>{translatedMenuItems[1]} </div>
+                <div class=" text-xs font-bold font-poppins w-w47.5 max-sm:w-wk">
+               {translatedMenuItems[1]}
                     <Field
                       name="startDate"
                       //label="Start "                 
@@ -395,10 +396,9 @@ function DealForm(props) {
                       inlineLabel
                     />
                   </div>
-                  <div class=" text-xs w-w47.5 max-sm:w-wk">
-                  <div>{translatedMenuItems[2]} </div>
-                    <Field
-                      // isRequired
+                  <div class=" text-xs font-bold font-poppins w-w47.5 max-sm:w-wk">
+               {translatedMenuItems[2]} 
+                    <Field         
                       name="endDate"
                       // label="End Date"                   
                       isColumn
@@ -421,8 +421,8 @@ function DealForm(props) {
                 </div>
                
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class="  text-xs w-w47.5 max-sm:w-wk">
-                <div>{translatedMenuItems[3]} </div>
+                <div class="  text-xs font-bold font-poppins w-w47.5 max-sm:w-wk">
+               {translatedMenuItems[3]} 
                     <Field
                       name="proposalAmount"
                       //label="Value"
@@ -431,13 +431,12 @@ function DealForm(props) {
                       component={InputComponent}
                     />
                   </div>
-                  <div class="  text-xs w-w47.5 max-sm:w-wk">
-                  <div>{translatedMenuItems[4]} </div>
+                  <div class=" text-xs font-bold font-poppins w-w47.5 max-sm:w-wk">
+                  {translatedMenuItems[4]} 
                   <Field
                       name="currency"
                       isColumnWithoutNoCreate
                       defaultValue={{
-                        //value: props.user.currency,
                         value: props.currency_name
                       }}               
                       width="100%"
@@ -453,43 +452,36 @@ function DealForm(props) {
                     />
                   </div>
                 </div>
-                <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
-                  <FormattedMessage
-                          id="app.description"
-                          defaultMessage="Description (up to 150 characters)"
-                        /></div>
+                <div class="mt-3">   
                 <div>
-                  <div>
+                <span class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
+                  {translatedMenuItems[5]}     
+                {/* Description          */}
+                        </span>
+               
+                  <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
-                        <span style={{ fontSize: "1.5em", color: "red" }}>
-                          <PlayCircleFilledIcon />
-                        </span>
+                      <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>                         
                       </Tooltip>
                     </span>
 
                     <span onClick={SpeechRecognition.stopListening}>
                       <Tooltip title="Stop">
-                        <span
-                          style={{
-                            fontSize: "1.5em",
-                            color: "green",
-                            marginLeft: "3px",
-                          }}
-                        >
-                          <StopCircleIcon />
+                        <span   >
+                        <StopCircleIcon className="!text-icon ml-1 text-green-600" />                                
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span style={{ fontSize: "1.5em", marginLeft: "3px" }}>
-                          <RotateRightIcon />
+                        <span>
+                        <RotateRightIcon  className="!text-icon ml-1"/>
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                  </span>
                   <div>
                     <textarea
                
@@ -500,11 +492,15 @@ function DealForm(props) {
                       onChange={handletext}
                     ></textarea>
                   </div>
-                </div>
+                  </div>
+                  </div>
+                  
+                
               </div>
             <div
-               class=" h-full w-w47.5 max-sm:w-wk">
-                   <div>{translatedMenuItems[5]} </div>
+               class="text-xs font-bold font-poppins h-full w-w47.5 max-sm:w-wk">
+                  {translatedMenuItems[6]} 
+                  {/* Assigned */}
               <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>         
@@ -570,8 +566,8 @@ function DealForm(props) {
           </>
         )}
       </Listbox>
-<div class="text-xs mt-1">
-<div>{translatedMenuItems[6]} </div>
+<div class="text-xs font-bold font-poppins mt-2">
+{translatedMenuItems[7]} 
 <Field
                     name="included"
                     // label="Include"                
@@ -588,9 +584,9 @@ function DealForm(props) {
   </div>
                 
 <div class="mt-2 flex justify-between max-sm:flex-col">
-<div class=" w-w47.5 max-sm:w-wk">
-<div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-<div>{translatedMenuItems[7]} </div>
+<div class=" w-w47.5 max-sm:w-wk mt-1">
+<div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+{translatedMenuItems[8]}
                   <Field
                     name="investorId"
                     // selectType="customerList"
@@ -601,8 +597,7 @@ function DealForm(props) {
                         ? customerNameOption
                         : []
                     }
-                    isColumn
-                    margintop={"0"}
+                    isColumn                 
                     value={values.investorId}
                     inlineLabel
                   />
@@ -628,8 +623,8 @@ function DealForm(props) {
                           />
                         </div>
                         </div>
-                        <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <div>{translatedMenuItems[8]} </div>
+                        <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-2">
+                       {translatedMenuItems[9]} 
                   <Field
                     name="contactId"
                     // selectType="contactListFilter"
@@ -652,41 +647,12 @@ function DealForm(props) {
                     inlineLabel
                   />
                 </div>
-                {/* <div class=" text-xs font-bold font-poppins text-black">
-                  <Field
-                    name="oppInnitiative"
-                    //selectType="initiativeName"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.initiative"
-                        defaultMessage="Initiative"
-                      />
-                    }
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        getInitiativeOptions("customerId", values.customerId)
-                      )
-                        ? getInitiativeOptions("customerId", values.customerId)
-                        : []
-                    }
-                    value={values.initiativeDetailsId}
-                    filterOption={{
-                      filterType: "customerId",
-                      filterValue: values.customerId,
-                    }}
-                    disabled={!values.customerId}
-                    isColumn
-                    inlineLabel
-                  />
-                </div> */}
                
-
+           
                 <div class="flex justify-between max-sm:flex-col mt-3">
                   <div class=" w-w47.5 max-sm:w-wk">
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                  <div>{translatedMenuItems[9]} </div>
+                  <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+               {translatedMenuItems[10]} 
                       <Field
                         name="oppWorkflow"
                         // selectType="contactListFilter"
@@ -705,8 +671,8 @@ function DealForm(props) {
                   </div>
                   
                   <div class=" w-w47.5 max-sm:w-wk ">
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                  <div>{translatedMenuItems[10]} </div>
+                  <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                  {translatedMenuItems[11]} 
                       <Field
                         name="oppStage"
                         isRequired
