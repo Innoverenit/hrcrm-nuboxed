@@ -127,9 +127,8 @@ const{handleContactInvestModal,addContactInvestModal,
                 filter={filter}
               />
              <AddContactInvestModal
-             translateText={props.translateText}
-             selectedLanguage={props.selectedLanguage}
-             translatedMenuItems={props.translatedMenuItems}
+              selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText}
              addContactInvestModal={addContactInvestModal}
              handleContactInvestModal={handleContactInvestModal}
       />

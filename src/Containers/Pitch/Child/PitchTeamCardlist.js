@@ -307,14 +307,14 @@ serachedPitchData={props.serachedPitchData}
                                       </div>
 
                                                             </div>
-                                                            <div className=" flex  w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                                            <div className=" flex  w-[4.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                               {/* Company */}
                                                                 <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                 {item.sector || "None"}
                                       </div>
 
                                                             </div>
-                                                            <div className=" flex w-[3.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                                                            <div className=" flex w-[2.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                                                       {/* Assigned */}
 
                                                                           <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">

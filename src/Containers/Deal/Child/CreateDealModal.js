@@ -23,7 +23,11 @@ const CreateDealModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <DealForm />{" "}
+          <DealForm
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText}
+
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>

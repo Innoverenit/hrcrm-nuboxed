@@ -109,8 +109,8 @@ props.getInvestorCurrency();
               "Middle Name",//1
               "Last Name",//2
               "Email",//3
-              "DialCode",//4
-              "PhoneNo",//5
+              "Dial Code",//4
+              "Phone No",//5
               "Company",//6
               "Url",//7
               "Share Quantity",//8
@@ -119,13 +119,13 @@ props.getInvestorCurrency();
               "Date",//11
               "Currency",//12
               "Assigned",//13
-              "Address",//14
+              // "Address",
               // "Street",//15
               // "Zip Code",//16
               // "City",//17
               // "State",//18
               // "Country",//19
-              "Notes"//20
+              "Notes"//14
             ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -403,7 +403,7 @@ props.getInvestorCurrency();
                       </div>                  
                       <div class=" flex justify-between  max-sm:flex-col">
                         <div class=" text-xs font-bold w-2/5 max-sm:w-full"> 
-                        <div>{translatedMenuItems[1]} </div>  
+                        {translatedMenuItems[1]}  
                           <FastField
                             name="middleName"                                    
                             type="text"
@@ -414,7 +414,7 @@ props.getInvestorCurrency();
                           />
                         </div>
                         <div class=" text-xs font-bold w-1/2 max-sm:w-full"> 
-                        <div>{translatedMenuItems[2]} </div>            
+                      {translatedMenuItems[2]}            
                           <FastField
                             name="lastName"
                             // label="Last Name"                      
@@ -428,7 +428,7 @@ props.getInvestorCurrency();
                       </div>
                     </div>
                   </div>  
-                  <div className="text-xs font-bold w-1/2 max-sm:w-full">
+                  <div className="text-xs font-bold w-1/2 max-sm:w-full mt-1">
                   {translatedMenuItems[3]} </div>  
               <Field
                   isRequired
@@ -440,8 +440,8 @@ props.getInvestorCurrency();
                     inlineLabel
                   />                             
                 <div class=" flex justify-between">
-                    <div class=" w-3/12 max-sm:w-[32%]">
-                    <div>{translatedMenuItems[4]} </div>     
+                    <div class="font-bold text-xs w-3/12 max-sm:w-[32%]">
+                 {translatedMenuItems[4]}     
                       <FastField
                       name="countryDialCode"
                         isColumnWithoutNoCreate                   
@@ -458,7 +458,7 @@ props.getInvestorCurrency();
                     </div>
                     <div class=" w-8/12">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">   
-                    <div>{translatedMenuItems[5]} </div>    
+                 {translatedMenuItems[5]}     
                     {/* //Phone Number           */}
                       <FastField
                         type="text"
@@ -473,7 +473,7 @@ props.getInvestorCurrency();
                   </div>
                  
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">   
-                  <div>{translatedMenuItems[6]} </div>         
+                 {translatedMenuItems[6]}        
                   <Field
                     name="companyName"
                     type="text"               
@@ -486,7 +486,7 @@ props.getInvestorCurrency();
                   />
                   </div>
                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">  
-                 <div>{translatedMenuItems[7]} </div>     
+               {translatedMenuItems[7]}     
                  {/* url  */}
                   <Field
                     name="url"
@@ -541,10 +541,10 @@ props.getInvestorCurrency();
                       : ( null)}
                   </div>
 
-                  <div class=" flex justify-between">
+                  <div class=" flex justify-between mt-1">
                     <div class=" w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    <div>{translatedMenuItems[8]} </div>  
+                   {translatedMenuItems[8]}  
                       <Field
                         name="unitOfShare"
                         type="text"
@@ -556,9 +556,9 @@ props.getInvestorCurrency();
                       />
                       </div>
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5 mt-1">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    <div>{translatedMenuItems[9]} </div>  
+                    {translatedMenuItems[9]} 
                       <Field
                         name="valueOfShare"
                         type="text"
@@ -619,7 +619,7 @@ props.getInvestorCurrency();
                     <div class=" flex items-center justify-between">
                     <div class=" flex flex-col   mt-4">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    <div>{translatedMenuItems[10]} </div>   {/* Category */}
+                  {translatedMenuItems[10]}   {/* Category */}
                       </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
@@ -681,9 +681,9 @@ props.getInvestorCurrency();
     </div>
                       </div>
 </div>
-<div class=" flex items-center justify-between">
+<div class=" flex items-center justify-between mt-1">
 <div class=" text-xs font-bold w-w47.5 max-sm:w-wk">
-<div>{translatedMenuItems[11]} </div>  
+{translatedMenuItems[11]}  
                     <Field
                       name="firstMeetingDate"
                       // label="Date"
@@ -695,7 +695,7 @@ props.getInvestorCurrency();
                   </div>
 
                   <div class="text-xs font-bold w-w47.5 max-sm:w-wk"> 
-                  <div>{translatedMenuItems[12]} </div>       
+                {translatedMenuItems[12]}      
                     <Field
                       name="shareCurrency"
                       isColumnWithoutNoCreate
@@ -717,7 +717,7 @@ props.getInvestorCurrency();
   </div>
                 </div>
                 <div class=" text-xs font-bold h-3/4 w-w47.5 max-sm:w-wk "  
-                >             <div>{translatedMenuItems[13]} </div>  
+                >           {translatedMenuItems[13]}  
                 {/* Assigned */}
                    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
@@ -797,11 +797,12 @@ props.getInvestorCurrency();
                   />
                   </div>
                   
-                <div class="mt-3">               
-                <div>{translatedMenuItems[14]} </div>  
+                <div class="mt-3">   
+                  <div>          
+                <span class=" font-bold text-xs font-poppins">{translatedMenuItems[14]} </span>  
                 {/* Notes */}
-                    <div>
-                  <div>
+           
+                  <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
                         <span  >
@@ -825,7 +826,7 @@ props.getInvestorCurrency();
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                  </span>
                   <div>
                     <textarea
                       name="description"
@@ -835,6 +836,7 @@ props.getInvestorCurrency();
                       onChange={handletext}
                     ></textarea>
                   </div>
+              
                 </div>
                   </div>
                 </div>

@@ -190,7 +190,7 @@ const ContactInvestActionLeft = (props) => {
              value={currentData}
           />
       </div>  
-      <div class="w-[40%] mt-[0.5rem] ml-2">
+      <div class="w-[40%]  ml-2">
           <StyledSelect placeholder="Sort"  onChange={(e)  => props.handleFilterChange(e)}>
           <Option value="CreationDate">Creation Date</Option>
             <Option value="ascending">A To Z</Option>

@@ -162,9 +162,10 @@ const AccountOrderTable = (props) => {
 
     return (
         <>
-      <div className=' flex  sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[99%]  bg-transparent font-bold sticky top-0 z-10">
+      
+            <div className=' flex sticky  z-auto'>
+                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[100%]  bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
                     {translatedMenuItems[0]}   {/* Urgent */}
                          </div>
@@ -624,8 +625,8 @@ const AccountOrderTable = (props) => {
             
            
             <div className=' flex  sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[99%]  bg-transparent font-bold sticky top-0 z-10">
+                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div className=" flex  w-[100%]  bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
                     {translatedMenuItems[13]}   {/* High */}
                          </div>
@@ -1048,6 +1049,7 @@ const AccountOrderTable = (props) => {
                                                 </div>
 
                                             </div>
+
                                             {checkAwb && (item.orderId === particularRowData.orderId) &&
                                                 <SubOrderList orderId={particularRowData.orderId} />
                                             }
@@ -1064,8 +1066,8 @@ const AccountOrderTable = (props) => {
             </div >
          
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[99%]  bg-transparent font-bold sticky z-10">
+                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div className=" flex  w-[100%]  bg-transparent font-bold sticky z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
                     {translatedMenuItems[14]}   {/* Normal */}
                          </div>

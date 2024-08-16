@@ -55,7 +55,7 @@ class ContactInvestActionRight extends React.Component {
            type="primary"
          onClick={() => handleContactInvestModal(true)}
         >
-        <DataSaverOnIcon/> <FormattedMessage
+       <DataSaverOnIcon className="!text-icon"/> <FormattedMessage
                         id="app.add"
                         defaultMessage="Add"
                       />
