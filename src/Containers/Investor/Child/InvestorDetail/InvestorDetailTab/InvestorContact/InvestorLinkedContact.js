@@ -27,7 +27,13 @@ const InvestorUpdateContactModal = lazy(() =>
 const ButtonGroup = Button.Group;
 
 class InvestorLinkedContact extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+      loading: true
+    };
+  }
   componentDidMount() {
     this.props.getContactListByInvestorId(this.props.investorDetails.investorId);
     this.props.getDesignations();
@@ -36,7 +42,6 @@ class InvestorLinkedContact extends Component {
 
   componentDidMount() {
     this.fetchMenuTranslations();
-    this.props.getCustomerConfigure(this.props.orgId,"add","contact")
   }
 
   async fetchMenuTranslations() {

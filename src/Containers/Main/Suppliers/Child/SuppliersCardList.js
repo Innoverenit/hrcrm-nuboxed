@@ -23,6 +23,7 @@ import SupplierPriceModal from "./SupplierPriceModal";
 import SupplierAddListModal from "./SupplierAddListModal";
 import SuplierPublishToggle from "./SuplierPublishToggle";
 import SupplierSearchedData from "./SupplierSearchedData";
+import SuplierNotApprovalPublish from "./SuplierNotApprovalPublish";
 
 function SuppliersCardList(props) {
 
@@ -81,26 +82,27 @@ function SuppliersCardList(props) {
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[20.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
+            <div className=" w-[13.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
             {/* "Name" */}
             {props.translatedMenuItems[0]}
             </div>
-            <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
+            <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
               {/* Phone  */}
                {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[22.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+            <div className=" w-[16.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Email */}
                {props.translatedMenuItems[2]}
                </div>
             
-            <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
-             {/* Country  */}
+            {/* <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
+             Country 
              {props.translatedMenuItems[3]}
 
-            </div>
+            </div> */}
 
-            <div class=" w-[5rem]"></div>
+            <div class=" w-[5.001rem]">Publish</div>
+            <div class=" w-[16.7rem]">Approve</div>
           </div>
           <div class="overflow-x-auto h-[80vh]">
             <InfiniteScroll
@@ -127,7 +129,7 @@ function SuppliersCardList(props) {
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className="font-medium  flex items-center w-[14.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                                 <div>
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-xs underline font-bold font-poppins text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1  underline font-bold font-poppins text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}
                                     title={`${item.shipperName}`}
                                   >{item.name}</Link>
@@ -161,7 +163,7 @@ function SuppliersCardList(props) {
                               </div>
                     
                             </div>
-                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                            {/* <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className=" flex  w-[9.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
 
                                 <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -170,7 +172,7 @@ function SuppliersCardList(props) {
                                    {countryCode}
                                 </div>
                              </div>
-                            </div>
+                            </div> */}
 
                             <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -180,7 +182,15 @@ function SuppliersCardList(props) {
                                 />
                               </div>
                             </div>
-
+                            <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs">
+                                <SuplierNotApprovalPublish
+                                 approvedInd={item.approvedInd}
+                                supplierId={item.supplierId}
+                                
+                                />
+                              </div>
+                            </div>   
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
                               <div>
                                 <Tooltip title={props.translatedMenuItems[18]}>

@@ -243,7 +243,7 @@ const handleLoadMoreLow = () => {
                                 </span>
                               ) : null}
                         </div>
-
+                        {props.user.accountInfoInd?
                         <div class="max-sm:w-full md:w-[9.02rem] font-bold">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:text-xs">
@@ -251,9 +251,10 @@ const handleLoadMoreLow = () => {
                             </div>
                           </Tooltip>
                         </div>
+                         :null}
                       </div>
                     </div>
-
+                    {props.user.accountInfoInd?
                     <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
@@ -265,6 +266,7 @@ const handleLoadMoreLow = () => {
 
                       </div>
                     </div>
+                       :null}
                   </div>
                   <div class="flex">
                     <div className=" flex  text-xs md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -491,7 +493,7 @@ const handleLoadMoreLow = () => {
                                 </span>
                               ) : null}
                         </div>
-
+                        {props.user.accountInfoInd?
                         <div class="max-sm:w-full md:w-[9.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:text-xs">
@@ -499,9 +501,10 @@ const handleLoadMoreLow = () => {
                             </div>
                           </Tooltip>
                         </div>
+                           :null}
                       </div>
                     </div>
-
+                    {props.user.accountInfoInd?
                     <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
@@ -513,6 +516,7 @@ const handleLoadMoreLow = () => {
 
                       </div>
                     </div>
+                       :null}
                   </div>
                   <div class="flex">
                     <div className=" flex md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -740,7 +744,7 @@ const handleLoadMoreLow = () => {
                                 </span>
                               ) : null}
                         </div>
-
+                        {props.user.accountInfoInd?
                         <div class="max-sm:w-full md:w-[9.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:text-xs font-bold">
@@ -748,9 +752,10 @@ const handleLoadMoreLow = () => {
                             </div>
                           </Tooltip>
                         </div>
+                            :null}
                       </div>
                     </div>
-
+                    {props.user.accountInfoInd?
                     <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
@@ -762,6 +767,7 @@ const handleLoadMoreLow = () => {
 
                       </div>
                     </div>
+                     :null}
                   </div>
                   <div class="flex">
                     <div className=" flex   md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -968,7 +974,7 @@ const mapStateToProps = ({ order, auth, distributor }) => ({
   fetchingOrderByIdError: distributor.fetchingOrderByIdError,
   fetchingOrderById: distributor.fetchingOrderById,
   userId: auth.userDetails.userId,
-
+  user: auth.userDetails,
   addLeadInOrder: distributor.addLeadInOrder,
   addOrderDetailsModal: distributor.addOrderDetailsModal,
   orderShowById: distributor.orderShowById,

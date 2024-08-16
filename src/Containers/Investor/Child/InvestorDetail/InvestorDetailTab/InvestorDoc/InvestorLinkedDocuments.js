@@ -47,7 +47,6 @@ class InvestorLinkedDocuments extends Component {
 
   componentDidMount() {
     this.fetchMenuTranslations();
-    this.props.getCustomerConfigure(this.props.orgId,"add","contact")
   }
 
   async fetchMenuTranslations() {

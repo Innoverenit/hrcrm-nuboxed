@@ -10,6 +10,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateSupplierModal from "./UpdateSupplierModal";
 import { DeleteOutlined } from "@ant-design/icons";
 import SupplierSearchedData from "./SupplierSearchedData";
+import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 
 function AllSuppliersCardList(props) {
 
@@ -61,22 +62,22 @@ return(
 <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[18.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  {props.translatedMenuItems[0]}</div>
-            <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
+            <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  {props.translatedMenuItems[0]}</div>
+            <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
             {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[15.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[2]}</div>
-            <div className="w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[15.9rem]">
-             {/* Address */}
+            <div className=" w-[8.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[2]}</div>
+            {/* <div className="w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[15.9rem]">
+             Address
                {props.translatedMenuItems[34]}
 
             </div>
             <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
-            {/* City */}
+            City
               {props.translatedMenuItems[35]}
-            </div>
+            </div> */}
           
-            <div class=" w-[3rem]"></div>
+            <div class=" w-[22rem]">Owner</div>
           </div>
         <InfiniteScroll
         dataLength={props.allSupplierList.length}
@@ -97,7 +98,7 @@ return(
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="font-medium  flex items-center w-[18.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                               <div >
-                              <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] text-xs  underline font-bold font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
+                              <a class="overflow-ellipsis whitespace-nowrap h-8 p-1 text-[#042E8A] text-xs  underline font-bold font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
                             href={`supplier/${item.supplierId}`}>{item.name}</a>
                               </div>
                           
@@ -121,16 +122,31 @@ return(
                                  {item.emailId}
                               </div>
                             </div>
+                            <div className=" flex w-20 max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
+                     
 
-                            <div className=" flex  w-[16.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.04rem] max-lg:w-[10.03rem] ">
+
+                     <Tooltip title={item.userName}>
+                 <span>
+                   <MultiAvatar2
+                     primaryTitle={item.userName}
+                     imageId={item.ownerImageId}
+                       imageURL={item.imageURL}
+                       imgWidth={"1.8rem"}
+                       imgHeight={"1.8rem"}
+                     />
+                   </span>
+                     </Tooltip>
+                           </div>
+                            {/* <div className=" flex  w-[16.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.04rem] max-lg:w-[10.03rem] ">
                               <div class="  text-xs  font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
           ${(item.address && item.address.length && item.address[0].street) || ""}  ${(item.address && item.address.length && item.address[0].postalCode) || ""}`}
                               </div>
+                            </div> */}
                             </div>
-                            </div>
-                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                            {/* <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className=" flex w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
 
                               <div class="  text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -140,7 +156,7 @@ return(
                                   ""}
                               </div>
                             </div>                       
-                            </div>
+                            </div> */}
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
                             <div>
 <Tooltip title={props.translatedMenuItems[18]}>

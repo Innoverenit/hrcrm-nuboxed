@@ -143,7 +143,7 @@ const ReceivedTable = (props) => {
                               </div>
                             </div>
                           </div>
-{props.user.customerInfoInd?
+{props.user.accountInfoInd?
                           <div className=" flex w-[10.12rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 

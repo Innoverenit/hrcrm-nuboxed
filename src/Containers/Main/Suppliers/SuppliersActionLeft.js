@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import {
     inputDataSearch, setSuppliersDashboardType, setSelectedTimeInterval,
-    setTimeRange,getSupplierCount,getSupplierAllCount,
+    setTimeRange,getSupplierCount,getSupplierAllCount,getSupplierCountNot,
     getSupplierDeletedCount,
     ClearSearchedDataOfSupplier,
     getSuppliersList
@@ -35,6 +35,9 @@ function SuppliersActionLeft (props) {
         } 
         else if (props.viewType === "delete") {
           props.getSupplierDeletedCount(props.orgId);
+        } 
+        else if (props.viewType === "not approved") {
+          props.getSupplierCountNot(props.userId);
         } 
       }, [props.viewType, props.userId, props.orgId]);
     
@@ -167,7 +170,7 @@ const {
                 <Tooltip title={`${props.translatedMenuItems[4]}-${props.translatedMenuItems[5]}`}>
                 <Badge
           size="small"
-          //count={(props.viewType === "not approved" && props.allCountSupplier.AllSupplierCount) || 0}
+          count={(props.viewType === "not approved" && props.countSupplierNot.supplierCount) || 0}
           overflowCount={999}
         >
                     <span class=" mr-1 text-sm cursor-pointer"
@@ -245,6 +248,7 @@ const mapStateToProps = ({ auth, suppliers }) => ({
     countSupplier:suppliers.countSupplier,
     allCountSupplier:suppliers.allCountSupplier,
     deletedCountSupplier:suppliers.deletedCountSupplier,
+    countSupplierNot:suppliers.countSupplierNot
 });
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
@@ -254,6 +258,7 @@ const mapDispatchToProps = (dispatch) =>
             setSelectedTimeInterval,
             setTimeRange,
             getSupplierCount,
+            getSupplierCountNot,
             getSupplierAllCount,
             getSupplierDeletedCount,
             ClearSearchedDataOfSupplier,
