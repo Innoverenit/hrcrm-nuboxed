@@ -1,13 +1,81 @@
-import React from 'react'
+import React, { useEffect,useState } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import GridViewIcon from '@mui/icons-material/GridView';
 import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 import { FormattedMessage } from "react-intl";
-import { Tooltip, Avatar } from "antd";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { AudioOutlined } from "@ant-design/icons";
+import {Input, Tooltip, Avatar } from "antd";
 import { withRouter } from "react-router-dom";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import {
+  getExpenseById,
+  searchExpenseList
+} from "../ExpenseAction";
 
+const { Search } = Input;
 const ExpenseActionLeft = (props) => {
+
+  const [currentData, setCurrentData] = useState("");
+  const [pageNo, setPage] = useState(0);
+  const [searchOnEnter, setSearchOnEnter] = useState(false);
+
+  const handleChange = (e) => {
+    setCurrentData(e.target.value);
+    if (searchOnEnter && e.target.value.trim() === "") {
+      setPage(pageNo + 1);
+      if (props.viewType === "card") {
+        props.getExpenseById(props.userId);
+      }
+      // props.ClearReducerDataOfContact()
+    }
+  };
+  const handleSearch = () => {
+    if (currentData.trim() !== "") {
+      if (props.viewType === "card") {
+      props.searchExpenseList(currentData,"card");
+      }
+setSearchOnEnter(true);  
+    } 
+    else {
+      console.error("Input is empty. Please provide a value.");
+    }
+  };
+
+  const suffix = (
+    <AudioOutlined
+      onClick={SpeechRecognition.startListening}
+      style={{
+        fontSize: 16,
+        color: "#1890ff",
+      }}
+    />
+  );
+
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  useEffect(() => {
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
+
+    useEffect(() => {
+      if (transcript) {
+        console.log(">>>>>>>", transcript);
+        props.setCurrentData(transcript);
+      }
+    }, [props.viewType, props.employeeId, transcript]);
+
+
   return (
     <div class=" flex items-center" >
       <Tooltip
@@ -66,6 +134,17 @@ const ExpenseActionLeft = (props) => {
 
         </Tooltip>
       )}
+        <div class=" w-72 md:ml-4 max-sm:w-36 ml-0">
+        <Input
+         placeholder="Search by Name, Company"
+         class="w-96"
+              suffix={suffix}
+              onPressEnter={handleSearch}  
+              onChange={handleChange}
+               value={currentData}
+            />
+   
+        </div>
     </div>
   )
 }
@@ -77,7 +156,8 @@ const mapStateToProps = ({ customer, auth, candidate }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-
+      searchExpenseList,
+      getExpenseById
     },
     dispatch
   );
