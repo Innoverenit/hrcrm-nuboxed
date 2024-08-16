@@ -21,6 +21,8 @@ class DealHeader extends Component {
           leftComponent={
             <Suspense fallback={<BundleLoader />}>
             <DealActionLeft
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
             teamsAccessInd={teamsAccessInd}
               viewType={viewType}
               setDealViewType={setDealViewType}
@@ -29,6 +31,8 @@ class DealHeader extends Component {
           rightComponent={
             <Suspense fallback={<BundleLoader />}>
                <DealActionRight
+                 selectedLanguage={this.props.selectedLanguage}
+                 translateText={this.props.translateText}
               viewType={viewType}
               opencreateDealModal={opencreateDealModal}
               handleDealModal={handleDealModal}

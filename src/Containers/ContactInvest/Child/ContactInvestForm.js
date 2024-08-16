@@ -55,6 +55,11 @@ class ContactInvestForm extends Component {
 
   
   componentDidMount() {
+    this.props.getCustomerData(this.props.userId);
+    this.props.getDepartments();
+    
+  }
+  componentDidMount() {
     this.fetchMenuTranslations();
     this.props.getCustomerConfigure(this.props.orgId,"add","contact")
   }
@@ -270,7 +275,7 @@ class ContactInvestForm extends Component {
                       <div class=" flex justify-between max-sm:flex-col">                     
                             {/* name="salutation"                                        */}
                         <div class=" w-full max-sm:w-wk">
-                          <div>{translatedMenuItems[0]}</div>
+                          {translatedMenuItems[0]}
                           <FastField
                             isRequired
                             name="firstName"
@@ -285,7 +290,7 @@ class ContactInvestForm extends Component {
                       </div>                  
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-wk">
-                        <div>{translatedMenuItems[1]}</div>
+                       {translatedMenuItems[1]}
                           <FastField
                             name="middleName"
                             //label="Middle Name"                                               
@@ -297,7 +302,7 @@ class ContactInvestForm extends Component {
                           />
                         </div>
                         <div class=" w-1/2 max-sm:w-wk">
-                        <div>{translatedMenuItems[2]}</div>
+                       {translatedMenuItems[2]}
                           <FastField
                             name="lastName"
                             //label="Last Name"                                           
@@ -313,7 +318,7 @@ class ContactInvestForm extends Component {
                   </div>
                   <div class=" flex justify-between">
                     <div class=" w-full">
-                    <div>{translatedMenuItems[3]}</div>
+                  {translatedMenuItems[3]}
                       <FastField
                         type="email"
                         name="emailId"
@@ -329,7 +334,7 @@ class ContactInvestForm extends Component {
                   </div>  
                   <div class=" flex justify-between">
                     <div class=" w-full">
-                    <div>{translatedMenuItems[4]}</div>
+                    {translatedMenuItems[4]}
                       <FastField
                         type="email"
                         name="alternateEmail"
@@ -346,7 +351,7 @@ class ContactInvestForm extends Component {
                   </div>                            
                   <div class=" flex justify-between">
                     <div class=" w-2/6">
-                    <div>{translatedMenuItems[5]}</div>
+                  {translatedMenuItems[5]}
                     <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate                                
@@ -361,7 +366,7 @@ class ContactInvestForm extends Component {
                       />
                     </div>
                     <div class=" w-[60%]">
-                    <div>{translatedMenuItems[6]}</div>
+                   {translatedMenuItems[6]}
                       <FastField
                         type="number"
                         name="mobileNumber"                                      
@@ -404,7 +409,7 @@ class ContactInvestForm extends Component {
                       )}
                     </div>
                     <div class=" w-2/4"> 
-                       <div>{translatedMenuItems[7]}</div>
+                      {translatedMenuItems[7]}
                       {this.state.whatsapp && (
                         <FastField
                           type="text"
@@ -423,7 +428,7 @@ class ContactInvestForm extends Component {
                  
                   < div class=" flex justify-between mt-3">
                     <div class=" w-full">
-                    <div>{translatedMenuItems[8]}</div>
+                  {translatedMenuItems[8]}
                       <FastField
                         type="text"
                         name="linkedinPublicUrl"
@@ -436,17 +441,16 @@ class ContactInvestForm extends Component {
                     </div>
                   </div>
                   <div class="mt-3">
-                  <div>   {translatedMenuItems[9]}
+                  {translatedMenuItems[9]}
                     {/* Descriptions */}
-                    </div>
+                 
                     <div>               
                   <div>
                     <textarea
                       name="description"
                       className="textarea"
                       type="text"
-                      // value={transcript ? transcript : text}
-                      // onChange={handletext}
+                      
                     ></textarea>
                   </div>
                 </div>
@@ -455,7 +459,7 @@ class ContactInvestForm extends Component {
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " >
                   <div class=" flex  justify-between">
                     <div class=" w-w47.5">
-                    <div>{translatedMenuItems[10]}</div>
+                    {translatedMenuItems[10]}
                       <Field
                         name="investorId"
                         // selectType="customerList"
@@ -471,7 +475,7 @@ class ContactInvestForm extends Component {
                     </div>
 
                     <div class=" w-w47.5">
-                    <div>{translatedMenuItems[11]}</div>
+                    {translatedMenuItems[11]}
                       <FastField
                         name="designationTypeId"
                         //label="Designation"                                         
@@ -487,7 +491,7 @@ class ContactInvestForm extends Component {
                 
                   <div class=" flex justify-between mt-3">         
                   <div class="w-w47.5">
-                  <div>{translatedMenuItems[12]}</div>
+                 {translatedMenuItems[12]}
                     <FastField
                       name="departmentId"
                       //label="Department"                                
@@ -500,7 +504,7 @@ class ContactInvestForm extends Component {
                     />
                   </div>
                   <div class=" w-w47.5">
-                  <div>{translatedMenuItems[13]}</div>
+                 {translatedMenuItems[13]}
                   <Field
                             name="sourceId"
                             //source                                
