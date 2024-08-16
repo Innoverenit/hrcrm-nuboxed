@@ -15,6 +15,7 @@ const { Option } = Select;
 function PriceDiscountCard(props) {
 
   const [editedFields, setEditedFields] = useState({});
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [rows, setRows] = useState([]);
   const [showNoDataAlert, setShowNoDataAlert] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
@@ -37,6 +38,24 @@ function PriceDiscountCard(props) {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Add Row",//0
+          "Volume",//1
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     setData(props.materialDiscount.map((item, index) => ({ ...item, key: String(index) })));
   }, [props.materialDiscount]);
@@ -142,7 +161,7 @@ function PriceDiscountCard(props) {
   return (
     <div>
       <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
-        Add Row
+        {/* Add Row */}
       </Button>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center justify-between">
@@ -167,7 +186,9 @@ function PriceDiscountCard(props) {
               </div> */}
 
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Volume</div>
+                <div class="font-bold text-xs font-poppins text-black">
+                  Volume
+                  </div>
                 <div ></div>
                 <Input
                  inputMode="numeric"

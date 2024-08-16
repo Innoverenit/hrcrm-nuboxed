@@ -37,6 +37,7 @@ import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import ShopTwoIcon from '@mui/icons-material/ShopTwo';
 import PeopleIcon from '@mui/icons-material/People';
 import { BundleLoader } from '../../Components/Placeholder';
@@ -1003,7 +1004,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 <Menu.Item key="/promotion" style={{ height: "1.45rem", 
         color: selectedMenuItem === '/promotion' ? 'tomato' : '#4bc076' }}>
           <Link to="/promotion" onClick={() => handleSelect('/promotion')}>
-            <VerifiedUserIcon
+            <PointOfSaleIcon 
               style={{ fontSize: "large" }}
             />
             <span class="text-white text-ls ml-1">
