@@ -98,7 +98,7 @@ const LocationCard = (props) => {
           loader={props.fetchingLocationData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
           height={"80vh"}
         >
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex justify-between w-[100%] mt-3 p-1 bg-transparent font-bold sticky  z-10">
             <div className=" md:w-[7.5rem]">
             {translatedMenuItems[0]}</div>
             <div className="   md:w-[9.1rem]">
@@ -133,7 +133,7 @@ const LocationCard = (props) => {
             {translatedMenuItems[9]}{/* Regions */}
               </div>
           </div>
-          <div class="">
+          <div class="w-[99%]">
             {props.showLocation.map((item) => {
               return (
                 <div >

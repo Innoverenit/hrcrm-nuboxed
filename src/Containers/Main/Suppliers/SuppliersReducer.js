@@ -159,6 +159,13 @@ const initialState = {
    fetchingMaterialWiseQualityError: false ,
    materialwiseQuality:[],
 
+   addingSupplierApproval: false,
+   addingSupplierApprovalError: false,
+
+   fetchingSupplierCountNot: false,
+   fetchingSupplierCountNotError: false,
+   countSupplierNot:{},
+
   suppliersListOpenDrawer:false,
 
   fetchingSuppliesListById: false,
@@ -938,6 +945,24 @@ export const suppliersReducer = (state = initialState, action) => {
       };
 
 
+      case types.ADDING_SUPPLIER_APPROVAL_REQUEST:
+        return { ...state, addingSupplierApproval: true };
+      case types.ADDING_SUPPLIER_APPROVAL_SUCCESS:
+        return {
+          ...state,
+          addingSupplierApproval: false,
+          supplierList: state.supplierList.filter(
+            (item) => item.supplierId !== action.payload
+          ),
+        };
+      case types.ADDING_SUPPLIER_APPROVAL_FAILURE:
+        return {
+          ...state,
+          addingSupplierApproval: false,
+          addingSupplierApprovalError: true,
+        };
+
+
     case types.GET_SUPPLIERS_NOT_APPROVAL_LIST_REQUEST:
       return { ...state, fetchingNotApprovalSupplierList: true };
     case types.GET_SUPPLIERS_NOT_APPROVAL_LIST_SUCCESS:
@@ -1558,6 +1583,21 @@ export const suppliersReducer = (state = initialState, action) => {
         ...state,
         fetchingSupplierCount: false,
         fetchingSupplierCountError: true,
+      };
+
+      case types.GET_SUPPLIER_COUNT_NOT_REQUEST:
+      return { ...state, fetchingSupplierCountNot: true };
+    case types.GET_SUPPLIER_COUNT_NOT_SUCCESS:
+      return {
+        ...state,
+        fetchingSupplierCountNot: false,
+        countSupplierNot: action.payload,
+      };
+    case types.GET_SUPPLIER_COUNT_NOT_FAILURE:
+      return {
+        ...state,
+        fetchingSupplierCountNot: false,
+        fetchingSupplierCountNotError: true,
       };
 
     case types.GET_ALL_SUPPLIER_COUNT_REQUEST:

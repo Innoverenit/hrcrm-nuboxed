@@ -850,7 +850,12 @@ export const investorReducer = (state = initialState, action) => {
                                                   investorsbyId: state.investorsbyId.filter(
                                                     (item) => item.investorId !== action.payload
                                                 ), 
-                                  
+                                                teamInvestor: state.teamInvestor.filter(
+                                                  (item) => item.investorId !== action.payload
+                                              ), 
+                                              allInvestorsbyId: state.allInvestorsbyId.filter(
+                                                (item) => item.investorId !== action.payload
+                                            ), 
                                                 };
                                               case types.DELETE_INVESTOR_DATA_FAILURE:
                                                 return { ...state, deleteInvestorData: false, deleteInvestorDataError: false };

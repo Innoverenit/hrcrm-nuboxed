@@ -12,6 +12,7 @@ const CheckboxGroup = Checkbox.Group;
 const plainOptions = ['Access', 'Create', 'Update', 'Delete','Full List'];
 const accountOptions =['Access', 'Create', 'Update', 'Delete','Full List','Info'];
 const materialOptions = ['Access', 'Create', 'Update', 'Delete',];
+const materialNewOptions = ['Access', 'Create', 'Update', 'Delete','Inventory Material'];
 const userOptions = ['Access', 'Create', 'Update', 'Delete','Access Plus'];
  const defaultCheckedList=['Full List'];
  const melCheckedList=['Full List','Access'];
@@ -497,12 +498,12 @@ const AccessForm = (props) => {
                                              
                                                const onMaterialsChange = (list) => {
                                                  setCheckedMaterialsList(list);
-                                                 setIndeterminateMaterials(!!list.length && list.length < materialOptions.length);
-                                                 setCheckAllMaterials(list.length === materialOptions.length);
+                                                 setIndeterminateMaterials(!!list.length && list.length < materialNewOptions.length);
+                                                 setCheckAllMaterials(list.length === materialNewOptions.length);
                                                };
                                              
                                                const onCheckAllMaterialsChange = (e) => {
-                                                 setCheckedMaterialsList(e.target.checked ? materialOptions : []);
+                                                 setCheckedMaterialsList(e.target.checked ? materialNewOptions : []);
                                                  setIndeterminateMaterials(false);
                                                  setCheckAllMaterials(e.target.checked);
                                                };
@@ -1424,7 +1425,7 @@ const onCheckAllTeamsChange = (e) => {
                   <div class="text-xs">   Check all </div>
                   </Checkbox>
                   <Divider />
-                  <CheckboxGroup options={materialOptions} value={checkedMaterialsList} onChange={onMaterialsChange} />
+                  <CheckboxGroup options={materialNewOptions} value={checkedMaterialsList} onChange={onMaterialsChange} />
                 </div>                   
         </div>
         <div class="flex justify-between mt-4">

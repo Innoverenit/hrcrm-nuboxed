@@ -3,25 +3,24 @@ import { Switch, Checkbox, Popconfirm} from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-    linkSupplierNotApproval,
-    // getPartnerListByUserId
+    linkSupplierApproval,
 } from "../SuppliersAction";
 
-function SuplierNotApprovalPublishToggle(props) {
-    //const [toggle, setToggle] = React.useState(props.item.completeInd)
-    const [data, setData] = useState(props.notApprovalSupplierList);
-    useEffect(() => {
-      setData(props.notApprovalSupplierList);
-    }, [props.notApprovalSupplierList]);
+function SuplierNotApprovalPublish(props) {
+    const [data, setData] = useState(props.supplierList);
+  useEffect(() => {
+    setData(props.supplierList);
+  }, [props.supplierList]);
+
     function handleDispatchToggle() {
-        props.linkSupplierNotApproval(
+        props.linkSupplierApproval(
         //   {     
         //     dispatchInd: true,
         //     userId:props.item.userId,
            
         //   },
           props.supplierId,
-          true
+          false
         );
       }
     return (
@@ -46,19 +45,16 @@ function SuplierNotApprovalPublishToggle(props) {
     );
 }
 
-const mapStateToProps = ({ auth, partner,suppliers }) => ({
+const mapStateToProps = ({ auth, suppliers }) => ({
     userId: auth.userDetails.userId,
-    updatePartnerById: partner.updatePartnerById,
-    updatePartnerByIdError: partner.updatePartnerByIdError,
-    notApprovalSupplierList:suppliers.notApprovalSupplierList,
+    supplierList: suppliers.supplierList, 
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            linkSupplierNotApproval,
-            // getPartnerListByUserId,
+            linkSupplierApproval,         
         },
         dispatch
     );
-export default connect(mapStateToProps, mapDispatchToProps)(SuplierNotApprovalPublishToggle);
+export default connect(mapStateToProps, mapDispatchToProps)(SuplierNotApprovalPublish);

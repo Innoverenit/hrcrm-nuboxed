@@ -1674,6 +1674,32 @@ export const getSupplierCount = (userId) => (dispatch) => {
       });
     });
 };
+
+export const getSupplierCountNot = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIER_COUNT_NOT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/user/NotApproved/count/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIER_COUNT_NOT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIER_COUNT_NOT_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const getSupplierAllCount = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_SUPPLIER_COUNT_REQUEST,
@@ -2251,5 +2277,32 @@ export const linkSupplierNotApproval = (supplierId,approveInd) => (dispatch) => 
         payload: err,
       });
       // message.error("Something went wrong");
+    });
+};
+ 
+export const linkSupplierApproval = (supplierId,approveInd) => (dispatch) => {
+  dispatch({
+    type: types.ADDING_SUPPLIER_APPROVAL_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplier/user/updateApprovedInd/${supplierId}/${approveInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      dispatch({
+        type: types.ADDING_SUPPLIER_APPROVAL_SUCCESS,
+        payload: supplierId,
+      });
+      message.success(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADDING_SUPPLIER_APPROVAL_FAILURE,
+        payload: err,
+      });
     });
 };

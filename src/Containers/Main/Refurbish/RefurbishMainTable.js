@@ -232,13 +232,14 @@ const ProductionOrderList = (props) => {
                                                     </span>
                                                 ) : null}
                                             </div>
-                                           
+                                            {props.user.accountInfoInd?
                                             <div className=" flex  w-[6.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
                                                 </div>
 
                                             </div>
+                                              :null}
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             {/* <div className=" flex font-medium  w-[3.6rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -510,13 +511,14 @@ const ProductionOrderList = (props) => {
                                                     </span>
                                                 ) : null}
                                             </div>
-                                           
+                                            {props.user.accountInfoInd?
                                             <div className=" flex   w-[6.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
                                                 </div>
 
                                             </div>
+                                              :null}
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             {/* <div className=" flex font-medium  w-[3.6rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -788,13 +790,14 @@ const ProductionOrderList = (props) => {
                                                     </span>
                                                 ) : null}
                                             </div>
-                                           
+                                            {props.user.accountInfoInd?
                                             <div className=" flex   w-[6.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
                                                 </div>
 
                                             </div>
+                                               :null}
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             {/* <div className=" flex font-medium  w-[3.6rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -1043,7 +1046,8 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     fetchingProductionUrgent: refurbish.fetchingProductionUrgent,
     fetchingProductionHigh: refurbish.fetchingProductionHigh,
     fetchingProductionNormal: refurbish.fetchingProductionNormal,
-    searchRefurbish: refurbish.searchRefurbish
+    searchRefurbish: refurbish.searchRefurbish,
+    user: auth.userDetails,
     
 });
 
