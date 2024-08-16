@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { MultiAvatar, SubTitle } from "../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 import { Button, Tooltip,Input,Popconfirm } from "antd";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { getMaterialCategory } from "./SuppliesAction";
@@ -168,7 +168,7 @@ console.log("drb2",data)
             {translatedMenuItems[0]}   {/* Category */}
               </div>
             <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]"></div>
-            <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+            <div className=" flex  w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Add">
                           <AddCircleIcon
@@ -186,53 +186,28 @@ console.log("drb2",data)
               return (
                 <div>
                   <div key={item.categoryId} className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                 
+                    <div className=" flex   w-[5.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+
+                <div class=" text-xs  max-sm:text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                {editsuppliesId === item.categoryId ? (
                     
-
-                      <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
-                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {editsuppliesId === item.categoryId ? (
-                            <Input
-                            style={{ width: "3rem" }}
-                            value={item.categoryName}
-                            onChange={(e) => handleInputChange(e.target.value, item.categoryId, 'categoryName')}
-                          />
-                      
+                    <EditUpload
+                    imageId={item.imageId}
+                    imgWidth={100}
+                    imgHeight={100}
+                    getImage={handleSetImage}
+                  />
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
-                        <div>  {item.categoryName}</div>
-                      </div>
-                    )}
-                         
-                        </div>
-
-                      </div>
-      
-                    </div>
-
-                    <div className=" flex font-medium flex-col  w-[7.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
-<div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-{editsuppliesId === item.categoryId ? (
-    
-    <EditUpload
-    imageId={item.imageId}
-    imgWidth={100}
-    imgHeight={100}
-    getImage={handleSetImage}
-  />
-                       
-                    ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> 
                             {item.imageId ? (
                             <MultiAvatar
                               imageId={item.imageId ? item.imageId : ''}
-                              imgHeight={"1.8em"}
-                              imgWidth={"1.8em"}
-                              imgRadius={20}
+                              imgHeight={"1.8rem"}
+                              imgWidth={"1.8rem"}
+                             
                             />
                           ) : (
                             <div class="font-bold text-xs" >
@@ -257,10 +232,33 @@ console.log("drb2",data)
                       
 </div>
 
-</div>
+                    </div>
+                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                      <div className=" flex  w-[35.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-<div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-[0.65rem]  cursor-pointer max-sm:text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {editsuppliesId === item.categoryId ? (
+                            <Input
+                            style={{ width: "3rem" }}
+                            value={item.categoryName}
+                            onChange={(e) => handleInputChange(e.target.value, item.categoryId, 'categoryName')}
+                          />
+                      
+                       
+                    ) : (
+                      <div className=" text-xs  font-poppins">
+                        <div>  {item.categoryName}</div>
+                      </div>
+                    )}
+                         
+                        </div>
+
+                      </div>
+      
+                    </div>
+
+     <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <SuppliesCategoryPUnblishToggle
                                 
                                   publishInd={item.publishInd}
@@ -321,6 +319,8 @@ console.log("drb2",data)
       </div>
       <Suspense fallback={"Loading"}>
       <SuppliesCategoryModal
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
            modalVisible={modalVisible}
            closeModal={closeModal}
            handleSuppliesCategoryModal={handleSuppliesCategoryModal}

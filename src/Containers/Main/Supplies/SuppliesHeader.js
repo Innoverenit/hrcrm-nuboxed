@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
-import SuppliesActionLeft from "./SuppliesActionLeft";
-import SuppliesActionRight from "./SuppliesActionRight";
+import { BundleLoader } from "../../../Components/Placeholder";
 
+const SuppliesActionLeft =lazy(()=>import("./SuppliesActionLeft"));
+const SuppliesActionRight =lazy(()=>import("./SuppliesActionRight"));
 class SuppliesHeader extends Component {
     render() {
         const { viewType, setSuppliesViewType, handleConfigureModal } = this.props;
@@ -10,16 +11,21 @@ class SuppliesHeader extends Component {
             <div>
                 <ActionHeader
                     leftComponent={
+                        <Suspense fallback={<BundleLoader />}>
                         <SuppliesActionLeft
+                        translateText={this.props.translateText}
+                        selectedLanguage={this.props.selectedLanguage}
                             viewType={viewType}
                             setSuppliesViewType={setSuppliesViewType}
-                        />
+                        /></Suspense>
                     }
-                    rightComponent={<SuppliesActionRight 
+                    rightComponent={
+                        <Suspense fallback={<BundleLoader />}>
+                            <SuppliesActionRight 
                         viewType={viewType}
                         translateText={this.props.translateText}
                      selectedLanguage={this.props.selectedLanguage}
-                    />}
+                    /></Suspense>}
                 />
             </div>
         );

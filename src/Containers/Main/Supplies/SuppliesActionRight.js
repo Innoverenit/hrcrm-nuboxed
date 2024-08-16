@@ -40,7 +40,7 @@ class SuppliesActionRight extends React.Component {
           
          
         "Add",
-        
+        "Upload"
         
       ];
 
@@ -82,7 +82,8 @@ class SuppliesActionRight extends React.Component {
               onClick={() => this.props.handleUploadMaterialModal(true)}
             >
              <UploadIcon className=" !text-icon"/>
-              Upload
+             {this.state.translatedMenuItems[1]}
+             
              
             </Button>
           </Tooltip>

@@ -1,9 +1,9 @@
-import React, {  Suspense } from "react";
+import React, {  lazy,Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import PriceAddCard from "./PriceAddCard";
-import PriceDiscountCard from "./PriceDiscountCard";
-import PriceDiscountCardB2C from "./PriceDiscountCardB2C";
+const PriceAddCard = lazy(() => import("./PriceAddCard"));
+const PriceDiscountCard = lazy(() => import("./PriceDiscountCard"));
+const PriceDiscountCardB2C = lazy(() => import("./PriceDiscountCardB2C"));
 
 const PriceModal = (props) => {
   const { priceOpenModal, handlePriceModal, particularDiscountData, ...formProps } = props;
@@ -22,11 +22,17 @@ const PriceModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
         <div class="font-semibold ">Price</div>
-          <PriceAddCard particularDiscountData={particularDiscountData} />
+          <PriceAddCard particularDiscountData={particularDiscountData}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage} />  
           <div class="font-semibold ">Discount B2B</div>
-          <PriceDiscountCard particularDiscountData={particularDiscountData} />
+          <PriceDiscountCard particularDiscountData={particularDiscountData} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage} /> 
           <div class="font-semibold ">Discount B2C</div>
-          <PriceDiscountCardB2C particularDiscountData={particularDiscountData} />
+          <PriceDiscountCardB2C particularDiscountData={particularDiscountData} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage} />
         </Suspense>
       </StyledDrawer>
     </>

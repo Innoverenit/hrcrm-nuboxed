@@ -2,9 +2,8 @@ import React, { Suspense,useState, useEffect,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setSuppliesViewType, handleSuppliesModal } from "./SuppliesAction";
-import SuppliesHeader from "./SuppliesHeader";
 import { BundleLoader } from "../../../Components/Placeholder";
-
+const SuppliesHeader =lazy(()=>import("./SuppliesHeader"));
 const SuppliesTable =lazy(()=>import("./SuppliesTable"));
 const SuppliesDeletedTable =lazy(()=>import("./SuppliesDeletedTable"));
 const SuppliesCategoryCard =lazy(()=>import("./SuppliesCategoryCard"));
@@ -26,15 +25,16 @@ function Supplies(props) {
     }, []);
     return (
         <React.Fragment>
-            <SuppliesHeader
-            translateText={props.translateText}
-            selectedLanguage={props.selectedLanguage}
+              <Suspense fallback={<BundleLoader />}>
+              <SuppliesHeader
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
                 setSuppliesViewType={setSuppliesViewType}
                 viewType={viewType}
                 handleSuppliesModal={handleSuppliesModal}
             />
 
-            <Suspense fallback={<BundleLoader />}>
+          
                 {viewType === "all" ? (
               
                    <SuppliesTable
