@@ -459,6 +459,10 @@ export const suppliersReducer = (state = initialState, action) => {
       return { ...state, addSuppliersModal: action.payload };
 
 
+      case types.EMPTY_NOT_APPROVED_SUPPLIER_LIST:
+      return { ...state, notApprovalSupplierList: [] };
+
+
       case types.HANDLE_SUPPLIER_INVENTORY_IMPORT_MODAL:
         return { ...state, addSupplierInventoryImportModal: action.payload };
 
