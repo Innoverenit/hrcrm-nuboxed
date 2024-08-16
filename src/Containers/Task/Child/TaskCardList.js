@@ -282,7 +282,7 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                          <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                          <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                                 <div className=" flex w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
@@ -502,7 +502,7 @@ const TaskCardList = (props) => {
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
     <>
       <div>
-        <Button
+        <Button className=""
         onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
           style={{ backgroundColor: "teal", color: "white" }}
         >
@@ -720,7 +720,7 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                           <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                                 <div className=" flex w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
@@ -1150,7 +1150,7 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                           <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                           <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                                 <div className=" flex w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
