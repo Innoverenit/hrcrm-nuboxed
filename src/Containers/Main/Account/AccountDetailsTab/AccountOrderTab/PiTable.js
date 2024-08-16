@@ -153,8 +153,8 @@ import { EditOutlined, CloseOutlined } from '@ant-design/icons';
 
 const PiTable = (props) => {
     const [editMode, setEditMode] = useState(false); // Control edit mode
-    const [price1, setPrice1] = useState('10'); // Initial value for "Item"
-    const [price2, setPrice2] = useState('20'); // Initial value for "Value"
+    const [price1, setPrice1] = useState(); // Initial value for "Item"
+    const [price2, setPrice2] = useState(); // Initial value for "Value"
     const [mode, setMode] = useState('order'); // 'manual' or 'order'
 
     const toggleMode = (checked) => {

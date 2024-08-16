@@ -34,6 +34,7 @@ function SuppliersCardList(props) {
 
   useEffect(() => {
     setPage(page + 1);
+    props.emptysUPPLIERS();
     props.getSuppliersList(props.userId, page);
   }, []);
 
@@ -65,9 +66,9 @@ function SuppliersCardList(props) {
     }, 100);
   };
 
-  useEffect(() => {
-    props.emptysUPPLIERS();
-  }, []);
+  // useEffect(() => {
+  //   props.emptysUPPLIERS();
+  // }, []);
 
   return (
     <>

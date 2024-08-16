@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
   getSuppliersNotApprovalList, 
+  emptynotApprovedSuppliers
 } from "../SuppliersAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 import SuplierNotApprovalPublishToggle from "../Child/SuplierNotApprovalPublishToggle"
@@ -22,6 +23,7 @@ function SuppliersNotApprovalList(props) {
 
   useEffect(() => {
     setPage(page + 1);
+    props.emptynotApprovedSuppliers();
     props.getSuppliersNotApprovalList(props.userId, page);
   }, []);
 
@@ -193,7 +195,8 @@ const mapStateToProps = ({ shipper, suppliers, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getSuppliersNotApprovalList
+      getSuppliersNotApprovalList,
+      emptynotApprovedSuppliers
     },
     dispatch
   );

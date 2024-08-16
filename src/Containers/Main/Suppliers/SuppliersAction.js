@@ -15,6 +15,13 @@ export const handleSuppliersModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+export const emptynotApprovedSuppliers = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_NOT_APPROVED_SUPPLIER_LIST,
+  });
+};
+
 // add supplier
 
 export const addSuppliers = (data, userId) => (dispatch) => {
