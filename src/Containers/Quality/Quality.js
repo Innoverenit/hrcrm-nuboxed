@@ -18,6 +18,7 @@ class Quality extends Component {
     return (
       <React.Fragment>
         <QulityHeader
+        
           setQualityViewType={setQualityViewType}
           translateText={this.props.translateText}
          selectedLanguage={this.props.selectedLanguage}

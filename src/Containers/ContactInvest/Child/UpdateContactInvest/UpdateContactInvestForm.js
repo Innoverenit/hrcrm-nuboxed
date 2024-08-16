@@ -5,7 +5,6 @@ import { Button } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
@@ -28,11 +27,7 @@ const UpdateContactSchema = Yup.object().shape({
 });
 
 class UpdateContactInvestForm extends Component {
-  componentDidMount() {
-    this.props.getCustomerData(this.props.userId);
-    this.props.getInvestorData(this.props.userId);
-    this.props.getDialCode();
-  }
+ 
   constructor(props) {
     super(props);
     this.state = {
@@ -47,6 +42,11 @@ class UpdateContactInvestForm extends Component {
       loading: true
 
     };
+  }
+  componentDidMount() {
+    this.props.getCustomerData(this.props.userId);
+    this.props.getInvestorData(this.props.userId);
+    this.props.getDialCode();
   }
   componentDidMount() {
     this.fetchMenuTranslations();
@@ -208,16 +208,16 @@ class UpdateContactInvestForm extends Component {
             customerId:contactiData.customerId||"",
             linkedinPublicUrl:
               contactiData.linkedinPublicUrl || "",
-              address: [
-              {
-                addressId: contactiData.address.length ? contactiData.address[0].addressId : "",
-                address1: contactiData.address.length ? contactiData.address[0].address1 : "",
-                street:  contactiData.address.length ? contactiData.address[0].street : "",
-                city:  contactiData.address.length ? contactiData.address[0].city : "",
-                state:  contactiData.address.length ? contactiData.address[0].state : "",
-                postalCode:  contactiData.address.length ? contactiData.address[0].postalCode : "",
-              },
-            ],
+            //   address: [
+            //   {
+            //     addressId: contactiData.address.length ? contactiData.address[0].addressId : "",
+            //     address1: contactiData.address.length ? contactiData.address[0].address1 : "",
+            //     street:  contactiData.address.length ? contactiData.address[0].street : "",
+            //     city:  contactiData.address.length ? contactiData.address[0].city : "",
+            //     state:  contactiData.address.length ? contactiData.address[0].state : "",
+            //     postalCode:  contactiData.address.length ? contactiData.address[0].postalCode : "",
+            //   },
+            // ],
             notes: contactiData.notes || "",
           }}
           validationSchema={UpdateContactSchema}
@@ -251,7 +251,7 @@ class UpdateContactInvestForm extends Component {
                     <div class=" flex justify-between max-sm:flex-col">
                                  {/* name="salutation" */}
                        
-                        <div class=" w-full max-sm:w-wk">
+                        <div class=" font-bold font-poppins text-xs w-full max-sm:w-wk">
                     {translatedMenuItems[0]}  
                           <FastField
                             isRequired
@@ -265,8 +265,8 @@ class UpdateContactInvestForm extends Component {
                           />
                         </div>
                       </div>
-                      <div class=" flex justify-between max-sm:flex-col">
-                        <div class=" w-2/5 max-sm:w-wk">
+                      <div class=" flex justify-between max-sm:flex-col mt-1">
+                        <div class=" font-bold font-poppins text-xs w-2/5 max-sm:w-wk">
                     {translatedMenuItems[1]}    
                           <FastField
                             name="middleName"
@@ -278,7 +278,7 @@ class UpdateContactInvestForm extends Component {
                             inlineLabel
                           />
                         </div>
-                        <div class=" w-1/2 max-sm:w-wk">
+                        <div class=" font-bold font-poppins text-xs w-1/2 max-sm:w-wk mt-1">
                    {translatedMenuItems[2]} 
                           <FastField
                             name="lastName"
@@ -293,8 +293,8 @@ class UpdateContactInvestForm extends Component {
                       </div>
                     </div>
                   </div>
-                  <div class=" flex justify-between">
-                    <div class=" w-full">
+                  <div class=" flex justify-between mt-1">
+                    <div class=" font-bold font-poppins text-xs w-full">
             {translatedMenuItems[3]}   
                       <FastField
                         type="email"
@@ -309,8 +309,8 @@ class UpdateContactInvestForm extends Component {
                       />
                     </div>
                   </div>
-                  <div class=" flex justify-between">
-                    <div class=" w-full">
+                  <div class=" flex justify-between mt-1 ">
+                    <div class=" font-bold font-poppins text-xs w-full">
                    {translatedMenuItems[4]}    
                       <FastField
                         type="email"
@@ -327,7 +327,7 @@ class UpdateContactInvestForm extends Component {
                   
                   </div>  
                   <div class=" flex justify-between">
-                    <div class=" w-2/6 max-sm:w-2/5">
+                    <div class="   font-bold font-poppins text-xs w-2/6 max-sm:w-2/5">
                  {translatedMenuItems[5]} 
                     <FastField
                         name="countryDialCode"
@@ -342,7 +342,7 @@ class UpdateContactInvestForm extends Component {
                         inlineLabel
                       />
                     </div>
-                    <div class=" w-[60%] max-sm:w-2/4">
+                    <div class=" font-bold font-poppins text-xs w-[60%] max-sm:w-2/4">
                   {translatedMenuItems[6]}   
                       <FastField
                         type="text"
@@ -355,8 +355,8 @@ class UpdateContactInvestForm extends Component {
                     </div>
                   </div>
                       
-                     < div class=" flex justify-between mt-3">
-                    <div class=" w-full">
+                     < div class=" flex justify-between mt-2">
+                    <div class="  font-bold font-poppins text-xs w-full">
                  {translatedMenuItems[8]}  
                       <FastField
                         type="text"
@@ -370,7 +370,7 @@ class UpdateContactInvestForm extends Component {
                     </div>
                   </div>
                  
-                  <div class="mt-6">
+                  <div class="mt-2">
                   <Field
                     name="notes"
                     // label="Notes"
@@ -386,7 +386,7 @@ class UpdateContactInvestForm extends Component {
                 
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "> 
                 <div class=" flex  justify-between">
-                <div class=" w-w47.5">
+                <div class="  font-bold font-poppins text-xs w-w47.5">
             {translatedMenuItems[9]}  
                       <Field
                         name="customerId"
@@ -402,7 +402,7 @@ class UpdateContactInvestForm extends Component {
                         inlineLabel
                       />
                     </div>          
-                <div class="  w-w47.5 ">
+                <div class="  font-bold font-poppins text-xs w-w47.5 ">
                 {translatedMenuItems[10]} 
                   <FastField
                     name="designationTypeId"
@@ -418,7 +418,7 @@ class UpdateContactInvestForm extends Component {
                 </div>
               </div>             
               <div class=" flex justify-between mt-3">   
-              <div class=" w-w47.5">
+              <div class=" font-bold font-poppins text-xs w-w47.5">
               {translatedMenuItems[11]} 
                     <FastField
                       name="departmentId"
@@ -431,7 +431,7 @@ class UpdateContactInvestForm extends Component {
                       inlineLabel    
                     />
                     </div>
-                    <div class=" w-w47.5">
+                    <div class=" font-bold font-poppins text-xs w-w47.5">
                    {translatedMenuItems[12]}  
                   <FastField
                             name="sourceId"                                   
@@ -443,7 +443,7 @@ class UpdateContactInvestForm extends Component {
                           />
                         </div>
                   </div>                         
-                  <div class="mt-6 w-full" style={{backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
+                  {/* <div class="mt-6 w-full" style={{backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
                       <div class="text-white um m-[0.2rem_0_0.4rem_0.2rem] text-xs flex" ><FormattedMessage
                 id="app.address"
@@ -460,7 +460,7 @@ class UpdateContactInvestForm extends Component {
                         values={values}
                       />
                     )}
-                  />                          
+                  />                           */}
                   <div class=" flex  justify-between mt-6">
                   
                 </div>
