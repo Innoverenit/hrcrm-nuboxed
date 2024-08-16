@@ -26,6 +26,8 @@ function InvestorHeader (props) {
         <ActionHeader
           leftComponent={
             <InvestorActionLeft
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
             teamsAccessInd={teamsAccessInd}
             viewType={viewType}
             setInvestorViewType={setInvestorViewType}
@@ -45,6 +47,8 @@ function InvestorHeader (props) {
             // currentUser={this.props.currentUser} 
             // handleDropChange={this.props.handleDropChange}
             handleInvestorModal={handleInvestorModal}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
             />
           }
         />

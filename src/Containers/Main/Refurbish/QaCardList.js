@@ -8,7 +8,6 @@ import { Button, Badge ,Input, Tooltip} from "antd";
 import dayjs from "dayjs";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import {handlePickupDateModal} from "../../../Containers/Main/Inventory/InventoryAction"
-import { FormattedMessage } from "react-intl";
 import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { BundleLoader } from '../../../Components/Placeholder';
@@ -27,6 +26,33 @@ function QaCardList(props) {
   const [isRecording, setIsRecording] = useState(false); //Code for Search
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "Order",//0
+          "Inspection",//1
+          "Due Date",//2
+          "Move To Dispatch",//3       
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
     useEffect(() => {
         // setPageNo(pageNo + 1);
         props.getQAorderlist(props.locationId,pageNo)
@@ -147,6 +173,10 @@ function QaCardList(props) {
     const handlePauseResume = () => {
         sethide(!hide)
     }
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    }
+
     return (
         <>
             <div className=' flex sticky  z-auto'>
@@ -164,22 +194,21 @@ function QaCardList(props) {
 
                     <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                         <div className='w-[7.2rem]'></div>
-                        <div className=" w-[9.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order ID</div>
-                        <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
-                        <div className=" w-[36.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.duedate"
-                            defaultMessage="duedate"
-                        /></div>
-                        {/* <div className=" w-[34.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.lead"
-                            defaultMessage="Lead"
-                        /></div> */}
-
-                        {/* <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.status"
-                            defaultMessage="status"
-                        /></div> */}
-                        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Move to Dispatch</div>
+                        <div className=" w-[9.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]}  
+                          {/* Order ID */}
+                          </div>
+                        <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">
+                        {translatedMenuItems[1]}
+                        {/* Inspection */}
+                          </div>
+                        <div className=" w-[36.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[2]} 
+                        {/* Due Date */}
+                        </div>                                        
+                        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[3]} 
+                          {/* Move to Dispatch */}
+                          </div>
                     </div>
                     <div class="">
                         <InfiniteScroll
@@ -267,7 +296,18 @@ function QaCardList(props) {
                                                         {item.lead}
                                                     </div>
                                                     </div>
-                                                    <div class="   text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                   
+                                                 <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                               
+                                <RefurbishToggle        
+                                  orderPhoneId={item.orderPhoneId}
+                                  newDispatchInd={item.newDispatchInd}
+                                  item={item}
+                                />
+                              </div>
+                            </div>
+                            <div class="   flex justify-end text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title="Notes">
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer"
@@ -280,16 +320,6 @@ function QaCardList(props) {
 
                                                     </Tooltip>
                                                 </div>
-                                                 <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                               
-                                <RefurbishToggle        
-                                  orderPhoneId={item.orderPhoneId}
-                                  newDispatchInd={item.newDispatchInd}
-                                  item={item}
-                                />
-                              </div>
-                            </div>
                                             </div>
 
                                         </div>

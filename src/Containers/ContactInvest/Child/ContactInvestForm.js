@@ -31,11 +31,7 @@ const ContactSchema = Yup.object().shape({
 });
 
 class ContactInvestForm extends Component {
-  componentDidMount() {
-    this.props.getInvestorData(this.props.userId);
-    this.props.getSources(this.props.orgId);
-    this.props.getDialCode();
-  }
+  
 
   constructor(props) {
     super(props);
@@ -53,7 +49,11 @@ class ContactInvestForm extends Component {
     };
   }
 
-  
+  componentDidMount() {
+    this.props.getInvestorData(this.props.userId);
+    this.props.getSources(this.props.orgId);
+    this.props.getDialCode();
+  }
   componentDidMount() {
     this.props.getCustomerData(this.props.userId);
     this.props.getDepartments();
@@ -61,7 +61,6 @@ class ContactInvestForm extends Component {
   }
   componentDidMount() {
     this.fetchMenuTranslations();
-    this.props.getCustomerConfigure(this.props.orgId,"add","contact")
   }
 
   async fetchMenuTranslations() {
@@ -274,7 +273,7 @@ class ContactInvestForm extends Component {
                     <div>
                       <div class=" flex justify-between max-sm:flex-col">                     
                             {/* name="salutation"                                        */}
-                        <div class=" w-full max-sm:w-wk">
+                        <div class=" font-bold font-poppins text-xs w-full max-sm:w-wk">
                           {translatedMenuItems[0]}
                           <FastField
                             isRequired
@@ -289,7 +288,7 @@ class ContactInvestForm extends Component {
                         </div>
                       </div>                  
                       <div class=" flex justify-between max-sm:flex-col">
-                        <div class=" w-2/5 max-sm:w-wk">
+                        <div class="font-bold font-poppins text-xs w-2/5 max-sm:w-wk">
                        {translatedMenuItems[1]}
                           <FastField
                             name="middleName"
@@ -301,7 +300,7 @@ class ContactInvestForm extends Component {
                             inlineLabel
                           />
                         </div>
-                        <div class=" w-1/2 max-sm:w-wk">
+                        <div class=" font-bold font-poppins text-xs w-1/2 max-sm:w-wk">
                        {translatedMenuItems[2]}
                           <FastField
                             name="lastName"
@@ -317,7 +316,7 @@ class ContactInvestForm extends Component {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-full">
+                    <div class=" font-bold font-poppins text-xs w-full">
                   {translatedMenuItems[3]}
                       <FastField
                         type="email"
@@ -333,7 +332,7 @@ class ContactInvestForm extends Component {
                     </div>
                   </div>  
                   <div class=" flex justify-between">
-                    <div class=" w-full">
+                    <div class=" font-bold font-poppins text-xs  w-full">
                     {translatedMenuItems[4]}
                       <FastField
                         type="email"
@@ -350,7 +349,7 @@ class ContactInvestForm extends Component {
                   
                   </div>                            
                   <div class=" flex justify-between">
-                    <div class=" w-2/6">
+                    <div class="font-bold font-poppins text-xs  w-2/6">
                   {translatedMenuItems[5]}
                     <FastField
                         name="countryDialCode"
@@ -365,7 +364,7 @@ class ContactInvestForm extends Component {
                         inlineLabel
                       />
                     </div>
-                    <div class=" w-[60%]">
+                    <div class=" font-bold font-poppins text-xs w-[60%]">
                    {translatedMenuItems[6]}
                       <FastField
                         type="number"
@@ -379,20 +378,13 @@ class ContactInvestForm extends Component {
                     </div>                  
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-2/4">
+                    <div class=" w-2/4">                
                       {" "}
                       {this.state.whatsapp && (
                          <Field
                          name="countryDialCode1"
                          selectType="dialCode"
-                         isColumnWithoutNoCreate
-                         // label="Phone #"
-                          label= {
-                           <FormattedMessage
-                             id="app.phone"
-                             defaultMessage="Dial Code"
-                           />
-                         }
+                         isColumnWithoutNoCreate                     
                          defaultValue={{
                           label:`+${user.countryDialCode1}`,
                         }}
@@ -408,8 +400,8 @@ class ContactInvestForm extends Component {
                        />
                       )}
                     </div>
-                    <div class=" w-2/4"> 
-                      {translatedMenuItems[7]}
+                    <div class=" font-bold font-poppins text-xs w-2/4">      
+                    {translatedMenuItems[7]}           
                       {this.state.whatsapp && (
                         <FastField
                           type="text"
@@ -426,8 +418,8 @@ class ContactInvestForm extends Component {
                     </div>
                   </div>
                  
-                  < div class=" flex justify-between mt-3">
-                    <div class=" w-full">
+                  < div class=" flex justify-between mt-2">
+                    <div class="font-bold font-poppins text-xs w-full">
                   {translatedMenuItems[8]}
                       <FastField
                         type="text"
@@ -440,7 +432,7 @@ class ContactInvestForm extends Component {
                       />
                     </div>
                   </div>
-                  <div class="mt-3">
+                  <div class="font-bold font-poppins text-xs mt-2">
                   {translatedMenuItems[9]}
                     {/* Descriptions */}
                  
@@ -458,7 +450,7 @@ class ContactInvestForm extends Component {
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " >
                   <div class=" flex  justify-between">
-                    <div class=" w-w47.5">
+                    <div class="font-bold font-poppins text-xs  w-w47.5">
                     {translatedMenuItems[10]}
                       <Field
                         name="investorId"
@@ -474,7 +466,7 @@ class ContactInvestForm extends Component {
                       />
                     </div>
 
-                    <div class=" w-w47.5">
+                    <div class=" font-bold font-poppins text-xs w-w47.5">
                     {translatedMenuItems[11]}
                       <FastField
                         name="designationTypeId"
@@ -490,7 +482,7 @@ class ContactInvestForm extends Component {
                   </div>
                 
                   <div class=" flex justify-between mt-3">         
-                  <div class="w-w47.5">
+                  <div class="font-bold font-poppins text-xs w-w47.5">
                  {translatedMenuItems[12]}
                     <FastField
                       name="departmentId"
@@ -503,7 +495,7 @@ class ContactInvestForm extends Component {
                       inlineLabel
                     />
                   </div>
-                  <div class=" w-w47.5">
+                  <div class="font-bold font-poppins text-xs w-w47.5">
                  {translatedMenuItems[13]}
                   <Field
                             name="sourceId"

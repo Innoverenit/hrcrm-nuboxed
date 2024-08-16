@@ -38,6 +38,8 @@ function InvesterForm(props) {
 
    const[checked,setChecked]=useState(true);
   const[whiteblue,setWhiteblue]=useState(true);
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]); 
 
   function handleWhiteBlue (checked) {
     setWhiteblue( checked );
@@ -51,6 +53,42 @@ function InvesterForm(props) {
  !checked
     );
   };
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Name",//0
+          "URL",//1
+          "Email",//2  
+          "Dial Code",//3
+          "Phone No",//4
+          "Type",//5
+          "Category",//6
+          "UBO",//7
+          "Identification",//8
+          "Infocit",//9
+          "Date",//10
+          "Description",//11
+          "Assigned",//12
+          // "Address",//14
+          // "Street",//15
+          // "Zip Code",//16
+          // "City",//17
+          // "State",//18
+          // "Country",//19
+        
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     // props.getSectors();
      props.getAllEmployeelist();
@@ -347,14 +385,13 @@ function InvesterForm(props) {
                       </a>
                     ) : null}
                   </div>
-                <div class="mt-[0.7rem]">
+                <div class="font-bold font-poppins text-xs">
+                {translatedMenuItems[0]} 
+                {/* Name */}
                   <Field
                     name="name"
                     type="text"
-                    //label="Name"
-                    label={
-                      <FormattedMessage id="app.name" defaultMessage="Name" />
-                    }
+                    //label="Name"                
                     isColumn
                     width={"100%"}
                     setClearbitData={props.setClearbitData}
@@ -363,24 +400,24 @@ function InvesterForm(props) {
                     inlineLabel
                   />
                   </div>
-                  <Field
+                  <div class="font-bold font-poppins text-xs  mt-[0.7rem]">
+                {translatedMenuItems[1]} 
+                   <Field
                     name="url"
                     type="text"
-                    // label="URL"
-                    label={<FormattedMessage id="app." defaultMessage="URL" />}
+                    // label="URL"    
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
                   />
+                  </div>
                   {!contract ?
+                 
                   <Field
                     name="email"
                     type="text"
-                    // label="Email"
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
+                     label = {translatedMenuItems[2]}           
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -388,16 +425,12 @@ function InvesterForm(props) {
                   />     
                   : ( null)}             
                    <div class=" flex justify-between mt-3">
-                    <div class=" w-3/12 max-sm:w-[30%]">
+                    <div class=" font-bold font-poppins text-xs w-3/12 max-sm:w-[30%]">
+                    {translatedMenuItems[3]} 
+                    {/* Dial Code */}
                     <FastField
                         name="countryDialCode"
-                        isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.dialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        isColumnWithoutNoCreate    
                         defaultValue={{
                           label:`+${user.countryDialCode}`,
                         }}
@@ -409,11 +442,12 @@ function InvesterForm(props) {
                         inlineLabel
                       />
                     </div>
-                    <div class=" w-8/12">
+                    <div class=" w-8/12 font-bold font-poppins text-xs">
+                    {translatedMenuItems[4]} 
                       <FastField
                         type="text"
                         name="phoneNumber"
-                        label="Phone No"
+                        // label="Phone No"
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -501,18 +535,13 @@ function InvesterForm(props) {
                           : ( null)}
                   </div>
                   <div class=" flex justify-between">
-                  <div class=" w-w47.5">
+                  <div class="font-bold font-poppins text-xs w-w47.5 ">
+                  {translatedMenuItems[5]}
                   <Field                     
-                            name="investorCategoryId"
-                            label={
-                              <FormattedMessage
-                                id="app.type"
-                                defaultMessage="Type"
-                              />
-                            }
+                            name="investorCategoryId"                          
                             isColumn
                             placeholder="Type"
-                           
+                          //  type
                             value={values.investorCategoryId}
                             component={SelectComponent}
                             options={
@@ -524,7 +553,10 @@ function InvesterForm(props) {
                           />
                     </div>
                     <div class=" flex flex-col items-center  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Category</div>
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[6]} 
+                    {/* Category */}
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       onChange={handleContract}
@@ -536,7 +568,10 @@ function InvesterForm(props) {
                     </div> 
                  <div class="flex justify-between">
                  <div class=" flex flex-col items-center  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">UBO</div>
+                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[7]} 
+                      {/* UBO */}
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       //onChange={handleContract}
@@ -546,7 +581,10 @@ function InvesterForm(props) {
                     />
                   </div>
                   <div class=" flex flex-col items-center  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Identification</div>
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[8]} 
+                    {/* Identification */}
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       //onChange={handleContract}
@@ -559,7 +597,10 @@ function InvesterForm(props) {
                  </div>
                  
                   <div class=" flex flex-col   mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Inofocit</div>
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[9]} 
+                      {/* Inofocit */}
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       //onChange={handleContract}
@@ -568,10 +609,11 @@ function InvesterForm(props) {
                       unCheckedChildren="No"
                     />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5 max-sm:w-wk font-bold font-poppins text-xs">
+                  {translatedMenuItems[10]}  
+                  {/* Date */}
                     <Field
-                      name="firstMeetingDate"
-                      label="Date"
+                      name="firstMeetingDate"                    
                       component={DatePicker}
                       value={values.firstMeetingDate}
                       isColumn
@@ -579,9 +621,10 @@ function InvesterForm(props) {
                     />
                   </div>
                   <div class="mt-3">
-                  <div>Descriptions</div>
                     <div>
-                  <div>
+                 <span class="font-bold font-poppins text-xs ">{translatedMenuItems[11]} </span> 
+                  {/* description */}           
+                  <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
                         <span  >
@@ -592,10 +635,9 @@ function InvesterForm(props) {
 
                     <span onClick={SpeechRecognition.stopListening}>
                       <Tooltip title="Stop">
-                        <span
-                          
-                        >
-                          <StopCircleIcon     className="!text-icon ml-1 text-green-600"/>
+                        <span >                      
+                        
+                          <StopCircleIcon  className="!text-icon ml-1 text-green-600"/>
                         </span>
                       </Tooltip>
                     </span>
@@ -607,7 +649,7 @@ function InvesterForm(props) {
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                  </span>
                   <div>
                     <textarea
                       name="description"
@@ -616,7 +658,7 @@ function InvesterForm(props) {
                       value={transcript ? transcript : text}
                       onChange={handletext}
                     ></textarea>
-                  </div>
+                  </div>           
                 </div>
                   </div>
                 </div>
@@ -624,12 +666,13 @@ function InvesterForm(props) {
                 >
                  
                  <div class=" flex justify-between">
-                    <div class=" h-full w-full mt-2">
+                    <div class=" h-full w-full ">
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] ">
-              Assigned
+            <Listbox.Label className="font-bold text-xs font-poppins ">
+            {translatedMenuItems[12]} 
+            {/* Assigned */}
             </Listbox.Label>
             <div className="relative mt-[0.1rem]">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">

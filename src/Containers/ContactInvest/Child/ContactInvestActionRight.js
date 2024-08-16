@@ -5,13 +5,48 @@ import { withRouter } from "react-router-dom";
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip,} from "antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import { FormattedMessage } from "react-intl";
 import {handleUploadContactInvestModal} from "../ContactInvestAction";
 import UploadContactInvest from "./UploadContactInvest";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import UploadIcon from '@mui/icons-material/Upload';
 
 class ContactInvestActionRight extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+          
+         
+        "Add",//0
+      "Import",//1
+      "Upload"//2
+        
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
 
   render() {
     const {
@@ -55,10 +90,8 @@ class ContactInvestActionRight extends React.Component {
            type="primary"
          onClick={() => handleContactInvestModal(true)}
         >
-       <DataSaverOnIcon className="!text-icon"/> <FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
+       <DataSaverOnIcon className="!text-icon"/> 
+       {this.state.translatedMenuItems[0]}
           </Button>
         </Tooltip>
         )}
@@ -68,10 +101,8 @@ class ContactInvestActionRight extends React.Component {
           default
           onClick={() => this.props.history.push("/import/account")}
         >
-         <UploadIcon className=" !text-icon"/>  <FormattedMessage
-                        id="app.import"
-                        defaultMessage="Import"
-                      />
+         <UploadIcon className=" !text-icon"/> 
+         {this.state.translatedMenuItems[1]}
           
         </Button>
         )}
@@ -82,7 +113,9 @@ class ContactInvestActionRight extends React.Component {
           ghost
           onClick={() => this.props.handleUploadContactInvestModal(true)}
         >
-         <UploadIcon className=" !text-icon"/> Upload
+         <UploadIcon className=" !text-icon"/>
+         {this.state.translatedMenuItems[2]}
+         {/* Upload */}
         </Button>
       </Tooltip>
       </div>
