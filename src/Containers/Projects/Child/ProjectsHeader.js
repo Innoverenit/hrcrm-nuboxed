@@ -7,7 +7,7 @@ class ProjectsHeader extends Component {
     const { handleProjectsModal, viewType, setCourseViewType } = this.props;
     return (
       <>
-       <div class="sticky top-[3.35rem] z-[998]">
+         <div className="sticky mt-1 z-50"> 
           <ActionHeader
             leftComponent={
               <ProjectsActionLeft

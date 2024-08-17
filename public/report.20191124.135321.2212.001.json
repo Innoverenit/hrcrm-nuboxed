@@ -2061,13 +2061,6 @@
       "type": "fs_event",
       "is_active": "1",
       "is_referenced": "1",
-      "address": "1665750508992",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Utils\\TextEditor.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
       "address": "1665750511200",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Utils\\TwilioDialer.js"
     },

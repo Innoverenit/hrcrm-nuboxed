@@ -8,9 +8,7 @@ class EventHeader extends Component {
     render() {
         // const { viewType, setEventViewType } = this.props;
         return (
-            <div style={{position: "sticky",
-            top: "3.35rem",
-            zIndex: "998"}}>
+            <div className="sticky mt-1 z-50"> 
                 <Suspense fallback={<BundleLoader />}>
                 <ActionHeader
                     leftComponent={<EventActionLeft clickView={this.props.clickView}

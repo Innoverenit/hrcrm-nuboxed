@@ -28,6 +28,8 @@ class LeadsHeader extends Component {
               handleFilterChange={this.props.handleFilterChange}
               filter={this.props.filter}
               setCurrentData={this.props.setCurrentData}
+              selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
             />
           }
           rightComponent={
@@ -36,7 +38,10 @@ class LeadsHeader extends Component {
             handleLeadsImportModal={this.props.handleLeadsImportModal}
             currentUser={this.props.currentUser} 
             handleDropChange={this.props.handleDropChange}
-            handleLeadsModal={handleLeadsModal} />
+            handleLeadsModal={handleLeadsModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+             />
           }
         />
       </div>
