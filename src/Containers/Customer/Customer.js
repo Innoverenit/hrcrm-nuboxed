@@ -115,6 +115,9 @@ class Customer extends Component {
           setCurrentData={this.setCurrentData}
           handleFilterChange={this.handleFilterChange}
           filter={this.state.filter}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
         />
         <AddCustomerModal
           addCustomerModal={addCustomerModal}

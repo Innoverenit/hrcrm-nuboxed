@@ -69,7 +69,7 @@ class UpdateContactInvestForm extends Component {
 'Source', // 10
 'Department', // 11
 'Designation', // 12
-'Notes' //13
+'Update'//13
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -472,7 +472,7 @@ class UpdateContactInvestForm extends Component {
                   htmlType="submit"
                   loading={updateContactInvestById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="update" />
+<div className="font-bold font-poppins text-xs"> {translatedMenuItems[13]} </div>
 
                   {/* Update */}
                 </Button>

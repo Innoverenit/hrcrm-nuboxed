@@ -344,7 +344,7 @@ class ContactForm extends Component {
                       </div>
                     </div>
                   </div>
-                  <div class=" flex justify-between  flex-col mt-3">
+                  <div class=" flex justify-between  flex-col mt-2">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
                     <div class=" w-full">
                       <FastField
@@ -361,7 +361,7 @@ class ContactForm extends Component {
                     </div>
                   
                   </div>  
-                  <div class=" flex flex-col justify-between ">
+                  <div class=" flex flex-col justify-between mt-2 ">
                   {this.props.customerConfigure.alternateEmailInd===true&&
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
   }
@@ -382,7 +382,7 @@ class ContactForm extends Component {
                     </div>
                   
                   </div>               
-                  <div class=" flex justify-between mt-3 ">
+                  <div class=" flex justify-between mt-2 ">
                     <div class="flex flex-col w-1/4">
                   {this.props.customerConfigure.dailCodeInd===true&&
                   <div class="  flex flex-col text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>

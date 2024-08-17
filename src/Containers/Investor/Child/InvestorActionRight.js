@@ -1,10 +1,9 @@
-import React, {  } from "react";
+import React, {useEffect,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
 import {handleUploadInvestorModal} from "../InvestorAction";
 import UploadInvestor from "./UploadInvestor";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
@@ -14,6 +13,27 @@ const Option = StyledSelect.Option;
 
 function InvestorActionRight (props) {
  
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+  useEffect(() => {
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]); // Re-run when selectedLanguage changes
+
+  const fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "Add", //0   
+        "Upload", //1
+      ];
+
+      const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+      setTranslatedMenuItems(translations);
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
+  
     const {
       user,
       handleInvestorModal
@@ -28,10 +48,9 @@ function InvestorActionRight (props) {
             type="primary"
             onClick={() => handleInvestorModal(true)}
           >
-       <DataSaverOnIcon className="!text-icon"/><FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
+       <DataSaverOnIcon className="!text-icon"/>
+       {translatedMenuItems[0]}
+    
           </Button>
      </Tooltip>
 
@@ -41,7 +60,9 @@ function InvestorActionRight (props) {
        ghost
        onClick={() => props.handleUploadInvestorModal(true)}
      >
-      <UploadIcon className=" !text-icon"/> Upload
+      <UploadIcon className=" !text-icon"/> 
+      {translatedMenuItems[1]}
+      {/* Upload */}
      </Button>
    </Tooltip>
    </div>

@@ -125,7 +125,8 @@ props.getInvestorCurrency();
               // "City",//17
               // "State",//18
               // "Country",//19
-              "Notes"//14
+              "Notes",//14
+              "Create"
             ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -848,7 +849,7 @@ props.getInvestorCurrency();
                   htmlType="submit"
                   loading={props.addingPitch}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="create" />
+                             <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[15]}</div>  
                   {/*                     
                     Create */}
                 </Button>

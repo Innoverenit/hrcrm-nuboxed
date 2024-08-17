@@ -28,6 +28,9 @@ class CustomerHeader extends Component {
               setCurrentData={this.props.setCurrentData}
               handleFilterChange={this.props.handleFilterChange}
               filter={this.props.filter}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
             />
           }
           rightComponent={
@@ -38,7 +41,7 @@ class CustomerHeader extends Component {
             handleDropChange={this.props.handleDropChange}
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
-          translatedMenuItems={this.props.translatedMenuItems}
+           translatedMenuItems={this.props.translatedMenuItems}
 
             handleCustomerModal={handleCustomerModal} />
           }

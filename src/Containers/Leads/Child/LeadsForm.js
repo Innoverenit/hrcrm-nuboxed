@@ -102,6 +102,7 @@ props.emptyClearbit();
 'Registration', // 12
 'Assigned', // 13
 'Notes', // 14
+'Create'
 
 
         ];
@@ -907,7 +908,7 @@ translatedMenuItems={props.translatedMenuItems}
                htmlType="submit"
                   loading={addingLeads}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                       <div class=" font-bold text-xs font-poppins">{translatedMenuItems[15]}</div>
                   {/*                     
                     Create */}
                 </Button>

@@ -2,7 +2,6 @@ import React, {useState,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select} from "antd";
-import { FormattedMessage } from "react-intl";
 import ProgressiveImage from "../../../../Components/Utils/ProgressiveImage";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
@@ -132,6 +131,7 @@ function UpdateLeadsForm (props) {
 'Registration', // 12
 'Assigned', // 13
 'Notes', // 14
+'Update'
    
           ];
   
@@ -694,7 +694,7 @@ function UpdateLeadsForm (props) {
                   htmlType="submit"
                   loading={updateLeadsById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                <div class=" font-bold text-xs font-poppins">{translatedMenuItems[15]}</div>
                   {/* Update */}
                 </Button>
               </div>

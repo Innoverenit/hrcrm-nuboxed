@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip, } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
-import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import UploadIcon from '@mui/icons-material/Upload';
@@ -17,6 +16,40 @@ const Option = StyledSelect.Option;
 
 const dataSource = ["Burns Bay Road", "Downing Street", "Wall Street"];
 class ContactActionRight extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+                     
+        "Add",//0
+      "Import",//1
+       
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
 
   render() {
     const {
@@ -72,7 +105,10 @@ class ContactActionRight extends React.Component {
           <Button 
            type="primary"
            onClick={() => handleContactModal(true)}>
-                 <DataSaverOnIcon className="!text-icon"/>Add
+            
+                 <DataSaverOnIcon className="!text-icon"/>
+                 {this.state.translatedMenuItems[0]}
+                 {/* Add */}
 
             
           </Button>
@@ -86,7 +122,9 @@ class ContactActionRight extends React.Component {
           <Button 
            type="primary"
            onClick={() => handleContactImportModal(true)}>
-            <UploadIcon className=" !text-icon"/>Import
+            <UploadIcon className=" !text-icon"/>
+            {this.state.translatedMenuItems[1]}
+            {/* Import */}
           </Button>
              )}
         </Tooltip>

@@ -72,7 +72,8 @@ function DealForm(props) {
               "Investor",//8
               "Contact",//9
               "Workflow",//10
-              "Stages"//11
+              "Stages",//11
+              'Create'
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -709,7 +710,7 @@ function DealForm(props) {
                 htmlType="submit"
                 loading={creatingDeal}
               >
-                <FormattedMessage id="app.create" defaultMessage="create" />
+                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div> 
                 {/* Create */}
               </Button>
             </div>
