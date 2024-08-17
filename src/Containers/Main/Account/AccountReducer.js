@@ -8,6 +8,14 @@ const initialState = {
 
   updateAccountModal: false,
 
+  fetchingPiByItem: false,
+  fetchingPiByItemError: false,
+  piByItem:[],
+
+          fetchingPiFirststep: false,
+          fetchingPiFirststepError: false,
+          piFirstStep:[],
+
   showStatusDrwr: false,
 
   piButtonModal:false,
@@ -243,6 +251,10 @@ const initialState = {
   fetchingFeedbackByDistributorId: false,
   fetchingFeedbackByDistributorIdError: false,
   feedbacks: [],
+
+  addingPi: false,
+  addingPiError: false,
+  piIdFromPreview:null,
 
   fetchingRecords: false,
   fetchingRecordsError: false,
@@ -682,6 +694,25 @@ export const distributorReducer = (state = initialState, action) => {
         addingDistributorError: true,
         addDistributorModal: false,
       };
+
+      case types.ADD_PI_REQUEST:
+        return { ...state, addingPi: true };
+      case types.ADD_PI_SUCCESS:
+        return {
+          ...state,
+          addingPi: false,
+          piIdFromPreview: action.payload,
+          //addDistributorModal: false,
+          //customerListByUser: [action.payload, ...state.customerListByUser]
+        };
+      case types.ADD_PI_FAILURE:
+        return {
+          ...state,
+          addingPi: false,
+          addingPiError: true,
+         // addDistributorModal: false,
+        };
+
     case types.EMPTY_DISTRIBUTOR_LIST:
       return {
         ...state,
@@ -709,6 +740,36 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingDistributorsByUserId: false,
         fetchingDistributorsByUserIdError: true,
       };
+
+      case types.GET_PI_BY_ITEM_REQUEST:
+      return { ...state, fetchingPiByItem: true };
+    case types.GET_PI_BY_ITEM_SUCCESS:
+      return {
+        ...state,
+        fetchingPiByItem: false,
+        piByItem: action.payload,
+      };
+    case types.GET_PI_BY_ITEM_FAILURE:
+      return {
+        ...state,
+        fetchingPiByItem: false,
+        fetchingPiByItemError: true,
+      };
+
+      case types.GET_PI_FIRSTSTEP_REQUEST:
+        return { ...state, fetchingPiFirststep: true };
+      case types.GET_PI_FIRSTSTEP_SUCCESS:
+        return {
+          ...state,
+          fetchingPiFirststep: false,
+          piFirstStep: action.payload,
+        };
+      case types.GET_PI_FIRSTSTEP_FAILURE:
+        return {
+          ...state,
+          fetchingPiFirststep: false,
+          fetchingPiFirststepError: true,
+        };
 
     case types.GET_DISTRIBUTOR_BY_DISTRIBUTOR_ID_REQUEST:
       return { ...state, fetchingDistributorDetailsByDistributorId: true };
