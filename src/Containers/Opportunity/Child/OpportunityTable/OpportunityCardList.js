@@ -596,6 +596,7 @@ imgHeight={"1.8rem"}
       />
 
 <AddOpportunityDrawerModal
+
  opportunityData={currentOpportunityId}
 opportunityForecast={props.opportunityForecast}
 opportunityInitiativesSkillsDetails={props.opportunityInitiativesSkillsDetails}
@@ -611,6 +612,9 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
              allRecruitmentPositionByOppId={props.allRecruitmentPositionByOppId}
                handleOpportunityDrawerModal={props.handleOpportunityDrawerModal}
                addDrawerOpportunityModal={props.addDrawerOpportunityModal}
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+               translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );

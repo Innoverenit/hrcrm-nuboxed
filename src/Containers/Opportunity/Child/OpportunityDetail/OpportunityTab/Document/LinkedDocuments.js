@@ -30,6 +30,8 @@ class LinkedDocuments extends Component {
     } = this.props;
     getOpportunityDocument(opportunityId);
   }
+
+  
   render() {
     const {
       documentsByOpportunityId,

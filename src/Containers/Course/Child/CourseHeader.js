@@ -6,9 +6,7 @@ class CourseHeader extends Component {
     const { handleCourseModal, viewType, setCourseViewType } = this.props;
     return (
       <>
- <div style={{position: "sticky",
-        top: "3.35rem",
-        zIndex: "998"}}>
+   <div className="sticky mt-1 z-50"> 
           <ActionHeader
             rightComponent={
               <CourseActionRight
