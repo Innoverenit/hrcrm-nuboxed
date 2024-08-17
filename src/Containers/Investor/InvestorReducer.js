@@ -10,6 +10,10 @@ const initialState = {
   fetchingInvestorsError: false,
   investorsbyId: [],
 
+  fetchingDeleteInvestors: false,
+        fetchingDeleteInvestorsError: false,
+        deleteInvestorList:[],
+
   fetchingDocumentList: false,
    fetchingDocumentListError: false,
    documentAllList:[],
@@ -206,6 +210,22 @@ export const investorReducer = (state = initialState, action) => {
         ...state,
         fetchingInvestors: false,
         fetchingInvestorsError: true,
+      };
+
+      case types.GET_INVESTORS_DELETELIST_REQUEST:
+      return { ...state, fetchingDeleteInvestors: true };
+    case types.GET_INVESTORS_DELETELIST_SUCCESS:
+      return {
+        ...state,
+        fetchingDeleteInvestors: false,
+         deleteInvestorList:action.payload,
+        
+      };
+    case types.GET_INVESTORS_DELETELIST_FAILURE:
+      return {
+        ...state,
+        fetchingDeleteInvestors: false,
+        fetchingDeleteInvestorsError: true,
       };
 
       case types.GET_ALL_INVESTORS_BY_ID_REQUEST:
@@ -969,7 +989,23 @@ export const investorReducer = (state = initialState, action) => {
                 uploadingInvestorListError: true,
               };
 
-
+              case types.REINSTATE_TOGGLE_FOR_INVESTOR_REQUEST:
+                return { ...state, reInstatedInvestor: true };
+            case types.REINSTATE_TOGGLE_FOR_INVESTOR_SUCCESS:
+                return {
+                    ...state,
+                    reInstatedInvestor: false,
+                    deleteInvestorList: state.deleteInvestorList.filter(
+                        (item) => item.investorId !== action.payload
+                      ),
+                 
+                };
+            case types.REINSTATE_TOGGLE_FOR_INVESTOR_FAILURE:
+                return {
+                    ...state,
+                    reInstatedInvestor: false,
+                    reInstatedInvestorError: true,
+                };
 
 default:
       return state;

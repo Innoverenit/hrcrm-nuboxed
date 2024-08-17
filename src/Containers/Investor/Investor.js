@@ -10,6 +10,7 @@ import {
   getLatestCustomer,
   getCustomerCloser, 
 } from "../Customer/CustomerAction";
+import InvestorDeleteList from './InvestorDeleteList';
 const InvestorHeader = lazy(() => import("./Child/InvestorHeader"));
 const InvestorTeamCardList = lazy(() => import("./Child/InvestorTable/InvestorTeamCardList"));
 const InvestorAllCardList = lazy(() => import("./Child/InvestorTable/InvestorAllCardList"));
@@ -102,6 +103,10 @@ const handleChange = (e) => {
              selectedLanguage={props.selectedLanguage}
             /> }
             {viewType === 'teams' &&  <InvestorTeamCardList
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+            />}
+             {viewType === 'delete' &&  <InvestorDeleteList
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
             />}

@@ -24,7 +24,7 @@ class PIOPenModal extends Component {
                 >
                     <Suspense fallback={<BundleLoader />}>
 <PiTable
- particularRowData={this.props.particularRowData}/>
+ particularRowData={this.props.particularRowData}  distributorId={this.props.distributorId}/>
                       
                     </Suspense>
                 </StyledDrawer>

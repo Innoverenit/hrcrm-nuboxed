@@ -66,6 +66,44 @@ export const addDistributor = (distributor) => (dispatch) => {
     });
 };
 
+export const addPi = (data) => (dispatch) => {
+  dispatch({
+    type: types.ADD_PI_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/pi/piInquire`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      if (res.data.message) {
+        message.success(res.data.message)
+
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: 'Customer Created Successfully',
+          showConfirmButton: false,
+   timer: 1500,
+        })
+      }
+
+      dispatch({
+        type: types.ADD_PI_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PI_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 
 
 export const handleAccountImportModal = (modalProps) => (dispatch) => {
@@ -100,6 +138,63 @@ export const getDistributorsByUserId = (userId, pageNo) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_DISTRIBUTORS_BY_USER_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getPibyItem = (orderPhoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PI_BY_ITEM_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/pi/piRepairList/${orderPhoneId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PI_BY_ITEM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PI_BY_ITEM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getPiFirststep = (piId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PI_FIRSTSTEP_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/pi/firstStep/${piId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PI_FIRSTSTEP_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PI_FIRSTSTEP_FAILURE,
         payload: err,
       });
     });

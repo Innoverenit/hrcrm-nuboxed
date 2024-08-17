@@ -20,9 +20,7 @@ function InvestorHeader (props) {
 
     } =props;
     return (
-      <div style={{position: "sticky",
-        top: "3.35rem",
-        zIndex: "998"}}>
+      <div className="sticky mt-1 z-50">
         <ActionHeader
           leftComponent={
             <InvestorActionLeft

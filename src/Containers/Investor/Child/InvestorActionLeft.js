@@ -4,6 +4,7 @@ import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { Tooltip, Badge, Avatar } from "antd";
 import { connect } from "react-redux";
+import { DeleteOutlined } from "@ant-design/icons";
 import { bindActionCreators } from "redux";
 import PeopleIcon from '@mui/icons-material/People';
 import { withRouter } from "react-router-dom";
@@ -228,6 +229,23 @@ const InvestorActionLeft = (props) => {
           </Badge>
         </Tooltip>
       )}
+       <Tooltip title="Delete List">
+                {/* <Badge
+          size="small"
+          count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
+          overflowCount={999}
+        > */}
+                    <span class=" mr-1 !text-icon cursor-pointer"
+                        onClick={() => props.setInvestorViewType("delete")}
+                        style={{
+                            color: props.viewType === "delete" && "#1890ff",
+                        }}
+                    >
+                        <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
+                        <DeleteOutlined className="text-white" /></Avatar>
+                    </span>
+                    {/* </Badge> */}
+                </Tooltip>
       {/* <Tooltip>
         <Badge
           size="small"
@@ -293,7 +311,7 @@ const InvestorActionLeft = (props) => {
         >
           <FormattedMessage id="app.clear" defaultMessage="Clear" />
         </Button> */}
-        <div class=" w-[40%] mt-2 ml-2" >
+        <div class=" w-[40%]  ml-2" >
           <StyledSelect placeholder="Sort" onChange={(e) => props.handleFilterChange(e)}>
             <Option value="CreationDate">Creation Date</Option>
             <Option value="ascending">A To Z</Option>
