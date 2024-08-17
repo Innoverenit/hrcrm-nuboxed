@@ -306,7 +306,8 @@ function CustomerForm(props) {
         setLoading(true); 
         const itemsToTranslate = [
           ' Name', // 0
-          'Include User '// 1
+          'Include User',// 1
+          'Create'
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -442,7 +443,7 @@ function CustomerForm(props) {
                htmlType="submit"
                   loading={addingDataroom}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                           <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>  
                   {/*                     
                     Create */}
                 </Button>

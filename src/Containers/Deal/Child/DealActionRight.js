@@ -9,6 +9,45 @@ import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import UploadIcon from '@mui/icons-material/Upload';
 
 class DealActionRight extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+          
+         
+        "Add",//0
+      "Export",//1
+      
+        
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
+
+
   render() {
     const {
       userId,
@@ -29,10 +68,9 @@ class DealActionRight extends React.Component {
             // ghost
             onClick={() => handleDealModal(true)}
           >
-              <DataSaverOnIcon/> <FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
+              <DataSaverOnIcon className="!text-icon"/> 
+              {this.state.translatedMenuItems[0]}
+
           </Button>
             )}  
         </Tooltip>
@@ -46,11 +84,9 @@ class DealActionRight extends React.Component {
           // default
         href={`${base_url}/excel/export/user/opportunity/${userId}`}
         >
-          {/* Export */}<UploadIcon className=" !text-icon"/>
-          <FormattedMessage
-                id="app.export"
-                defaultMessage="Export"
-              />
+          {/* Export */}
+          <UploadIcon className=" !text-icon"/>
+          {this.state.translatedMenuItems[1]}
         </Button>
         </div>
         

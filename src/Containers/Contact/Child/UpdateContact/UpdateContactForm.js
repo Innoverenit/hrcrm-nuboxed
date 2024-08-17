@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select, } from "antd";
-import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field } from "formik";
 import * as Yup from "yup";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
@@ -71,7 +70,8 @@ class UpdateContactForm extends Component {
 'Source', // 10
 'Department', // 11
 'Designation', // 12
-'Notes' //13
+'Notes', //13
+'Update'
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -254,11 +254,11 @@ class UpdateContactForm extends Component {
                             {/* // label="Salutation" */}
                            
                         <div class=" w-wk max-sm:w-full">
+                        <div class="text-xs font-poppins font-bold ">{translatedMenuItems[0]}</div>
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label= {translatedMenuItems[0]}
+                            // label="First Name"                         
                             type="text"
                             width={"100%"}
                             isColumn
@@ -269,10 +269,10 @@ class UpdateContactForm extends Component {
                       </div>
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-full">
+                        <div class="text-xs font-poppins font-bold ">{translatedMenuItems[1]}</div>
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={translatedMenuItems[1]}
+                            //label="Middle Name"                        
                             type="text"
                             width={"100%"}
                             isColumn
@@ -281,10 +281,11 @@ class UpdateContactForm extends Component {
                           />
                         </div>
                         <div class=" w-1/2 max-sm:w-full">
+                        <div class="text-xs font-poppins font-bold ">{translatedMenuItems[2]}</div>
                           <FastField
                             name="lastName"
                             //label="Last Name"
-                            label={translatedMenuItems[2]}
+                     
                             type="text"
                             width={"100%"}
                             isColumn
@@ -296,12 +297,13 @@ class UpdateContactForm extends Component {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-full">
+                    <div class="text-xs font-bold font-poppins w-full">
+                   {translatedMenuItems[3]}
                       <FastField
                         type="email"
                         name="emailId"
                         //label="Email"
-                        label={translatedMenuItems[3]}
+                      
                         className="field"
                         isColumn
                         width={"100%"}
@@ -312,12 +314,13 @@ class UpdateContactForm extends Component {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-full">
+                    <div class=" text-xs font-bold font-poppins w-full">
+                    {translatedMenuItems[4]}
                       <FastField
                         type="email"
                         name="alternateEmail"
                         //label="Email"
-                        label={translatedMenuItems[4]}
+                      
                         className="field"
                         isColumn
                         width={"100%"}
@@ -344,11 +347,12 @@ class UpdateContactForm extends Component {
                         inlineLabel
                       />
                     </div>
-                    <div class=" w-[60%] max-sm:w-2/4">
+                    <div class="text-xs font-bold font-poppins w-[60%] max-sm:w-2/4">
+                    {translatedMenuItems[6]}
                       <FastField
                         type="text"
                         name="mobileNumber"
-                        label={translatedMenuItems[6]}
+                     
                         //placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
@@ -358,12 +362,13 @@ class UpdateContactForm extends Component {
                     </div>
                   </div>                                     
                   < div class=" flex justify-between mt-3">
-                    <div class=" w-full">
+                    <div class="text-xs font-bold font-poppins w-full">
+                    {translatedMenuItems[8]}
                       <FastField
                         type="text"
                         name="linkedinPublicUrl"
                         //label="Linkedin "
-                        label={translatedMenuItems[8]}
+                      
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -373,11 +378,12 @@ class UpdateContactForm extends Component {
                   </div>
                  
                   
-                  <div class="mt-4">
+                  <div class="mt-3 text-xs font-bold font-poppins">
+                  {translatedMenuItems[13]}
                   <Field
                     name="notes"
                     // label="Notes"
-                    label={translatedMenuItems[13]}
+                  
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -388,12 +394,13 @@ class UpdateContactForm extends Component {
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 > 
                 <div class=" flex  justify-between max-sm:mt-20">
-                <div class=" w-1/2">
+                <div class=" text-xs font-bold font-poppins w-1/2">
+                {translatedMenuItems[9]}
                       <Field
                         name="customerId"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
-                        label={translatedMenuItems[9]}
+                       
                         //Tag Company
                         component={SelectComponent}
                         isColumn
@@ -405,10 +412,11 @@ class UpdateContactForm extends Component {
                       />
                     </div>
                
-                <div class=" w-w47.5">
+                <div class=" text-xs font-bold font-poppins w-w47.5">
+                {translatedMenuItems[10]}
                     <FastField
                             name="source"
-                            label={translatedMenuItems[10]}
+                        
                             isColumnWithoutNoCreate
                             selectType="sourceName"
                             component={SearchSelect}
@@ -420,11 +428,12 @@ class UpdateContactForm extends Component {
               </div>
               
                   <div class=" flex justify-between mt-3">      
-              <div class="w-1/2">
+              <div class="text-xs font-bold font-poppins w-1/2">
+              {translatedMenuItems[11]}
                     <FastField
                       name="departmentId"
                       //label="Department"
-                      label={translatedMenuItems[11]}
+                 
                       width="100%"
                       isColumn
                       isColumnWithoutNoCreate
@@ -435,11 +444,12 @@ class UpdateContactForm extends Component {
                       inlineLabel
                     />
                   </div>
-                  <div class=" w-[47.5%]">
+                  <div class="text-xs font-bold font-poppins w-[47.5%]">
+                  {translatedMenuItems[12]}
                   <FastField
                     name="designationTypeId"
                     //label="Designation"
-                    label={translatedMenuItems[12]}
+                  
                     selectType="designationType"
                     isColumn
                     component={SearchSelect}
@@ -525,7 +535,7 @@ class UpdateContactForm extends Component {
                   htmlType="submit"
                   loading={updateContactById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                  <div class="text-xs font-bold font-poppins"> {translatedMenuItems[14]}</div>
 
                   {/* Update */}
                 </Button>

@@ -50,7 +50,7 @@ function UpdateOpportunityForm (props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-   ' Name', // 0
+       ' Name', // 0
 'Start Date', // 1
 'End Date', // 2
 'Value', // 3

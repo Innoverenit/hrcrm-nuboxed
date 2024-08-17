@@ -151,6 +151,9 @@ const filterData = filteredData.filter(item =>
         <AddContactImportModal
         addContactImportModal={addContactImportModal}
         handleContactImportModal={handleContactImportModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <Suspense fallback={<BundleLoader />}>
 

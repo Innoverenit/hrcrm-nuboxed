@@ -72,20 +72,18 @@ function UpdateCustomerForm (props) {
           const itemsToTranslate = [
      'Name', // 0
 'URL', // 1
-'DialCode', // 2
-'PhoneNumber', // 3
+'Dial Code', // 2
+'Phone No', // 3
 'Sector', // 4
 'Source', // 5
 'Potential', // 6
 'Currency', // 7
 'Type', // 8
-'Source', // 9
-'LOB', // 10
-'Notes', // 11
-'Assigned', // 12
-'Vat No', // 13
-'Registration', // 14
-   
+'Notes', // 9
+'Assigned', // 10
+'Vat No', // 11
+'Registration', // 12
+   'Update'
           ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -196,19 +194,19 @@ function UpdateCustomerForm (props) {
             assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
             notes: setEditingCustomer.notes || "",
             potentialValue:setEditingCustomer.potentialValue || "",
-            address: [
-              {
-                // country:setEditingCustomer.country || "",
-                addressId: setEditingCustomer.address.length ? setEditingCustomer.address[0].addressId : "",
-                address1: setEditingCustomer.address.length ? setEditingCustomer.address[0].address1 : "",
-                address2:  setEditingCustomer.address.length ? setEditingCustomer.address[0].address2 : "",
-                street:  setEditingCustomer.address.length ? setEditingCustomer.address[0].street : "",
-                city:  setEditingCustomer.address.length ? setEditingCustomer.address[0].city : "",
-                state:  setEditingCustomer.address.length ? setEditingCustomer.address[0].state : "",
-                country: setEditingCustomer.address.length ? setEditingCustomer.address[0].country : "",
-                postalCode:  setEditingCustomer.address.length ? setEditingCustomer.address[0].postalCode : "",             
-              },
-            ],
+            // address: [
+            //   {
+            //     // country:setEditingCustomer.country || "",
+            //     addressId: setEditingCustomer.address.length ? setEditingCustomer.address[0].addressId : "",
+            //     address1: setEditingCustomer.address.length ? setEditingCustomer.address[0].address1 : "",
+            //     address2:  setEditingCustomer.address.length ? setEditingCustomer.address[0].address2 : "",
+            //     street:  setEditingCustomer.address.length ? setEditingCustomer.address[0].street : "",
+            //     city:  setEditingCustomer.address.length ? setEditingCustomer.address[0].city : "",
+            //     state:  setEditingCustomer.address.length ? setEditingCustomer.address[0].state : "",
+            //     country: setEditingCustomer.address.length ? setEditingCustomer.address[0].country : "",
+            //     postalCode:  setEditingCustomer.address.length ? setEditingCustomer.address[0].postalCode : "",             
+            //   },
+            // ],
           }}
           validationSchema={UpdateCustomerSchema}
           onSubmit={(values, { resetForm }) => {
@@ -537,7 +535,7 @@ function UpdateCustomerForm (props) {
                  <div class=" text-[white] text-xs" >Corporate Address</div>
                   </div>
                     </div>
-                <div class=" mt-3">
+                {/* <div class=" mt-3">
                   <FieldArray
                     name="address"
                     label="Address"
@@ -548,7 +546,7 @@ function UpdateCustomerForm (props) {
                       />
                     )}
                   />
-                  </div>
+                  </div> */}
                                         
                 </div>
               </div>
@@ -558,7 +556,7 @@ function UpdateCustomerForm (props) {
                   htmlType="submit"
                   loading={updateCustomerById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                 <div class="font-bold font-poppins  text-xs ">{translatedMenuItems[13]}</div>
                   {/* Update */}
                 </Button>
               </div>

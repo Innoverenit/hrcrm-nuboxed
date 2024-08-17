@@ -68,10 +68,11 @@ function CustomerForm(props) {
 'Sector', // 4
 'Source', // 5
 'Potential', // 6
-'Currrency', // 7
+'Currency', // 7
 'Type', // 8
 'Assigned', // 9
 'Address', // 10
+'Create'
 // 'Street',//11
 // 'Zip Code',//12
 // 'City',//13
@@ -590,7 +591,10 @@ country_dial_code
                     <div class="w-w47.5" style={{display:"flex",flexDirection:"column"}}>                
                 
  {props.customerConfigure.sourceInd===true&&
-<div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</div>
+<div style={{fontWeight:"bold",fontSize:"0.75rem"}}>
+{translatedMenuItems[5]} 
+  {/* Source */}
+  </div>
 }
 {props.customerConfigure.sourceInd===true&&
 <Select
@@ -614,7 +618,7 @@ country_dial_code
                   <div class="flex justify-between mt-2">
   <div class="w-w47.5 flex">
     <div class="w-24">
-    <div class="font-bold text-xs"> {translatedMenuItems[5]}  </div>
+    <div class="font-bold text-xs"> {translatedMenuItems[6]}  </div>
     {props.customerConfigure.potentialInd===true&&
       <Field
         name="potentialValue"     
@@ -628,7 +632,7 @@ country_dial_code
     <div class="w-16 ml-2 max-sm:w-wk">
     {props.customerConfigure.potentialCurrencyInd===true&&
        <div className="font-bold text-[0.75rem]">
-       {translatedMenuItems[6]}
+       {translatedMenuItems[7]}
         {/* Currency */}
         </div>
     }
@@ -653,7 +657,7 @@ country_dial_code
   </div>
 
   <div class="w-w47.5">
-  <div class="font-bold text-xs"> {translatedMenuItems[7]}  </div>
+  <div class="font-bold text-xs"> {translatedMenuItems[8]}  </div>
   {props.customerConfigure.typeInd===true&&
     <Field
       name="type" 
@@ -724,7 +728,7 @@ country_dial_code
                         {({ open }) => (
                           <>
                             <div className="font-bold text-xs ">                                               
-                               {translatedMenuItems[8]}                            
+                               {translatedMenuItems[9]}                            
                               {/* Assigned */}
                             </div>
                             <div className="relative ">
@@ -847,7 +851,7 @@ country_dial_code
                     </div>
                   </div>
                   <div class=" mt-3">
-                  <div class="font-bold text-xs"> {translatedMenuItems[9]}  </div>
+                  <div class="font-bold text-xs"> {translatedMenuItems[10]}  </div>
                     <FieldArray
                       name="address"
                       // label="Address"                 
@@ -870,7 +874,7 @@ country_dial_code
                   htmlType="submit"
                   loading={addingCustomer}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                 <div className="text-xs font-bold font-poppins">{translatedMenuItems[11]} </div>
                   {/*                     
                     Create */}
                 </Button>

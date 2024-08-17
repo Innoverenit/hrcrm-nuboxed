@@ -26,12 +26,18 @@ class OpportunityHeader extends Component {
               currentData={currentData}
               handleClear={handleClear}
               setCurrentData={this.props.setCurrentData}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
             />
           }
           rightComponent={
             <OpportunityActionRight
               viewType={viewType}
               handleOpportunityModal={handleOpportunityModal}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
             />
           }
         />

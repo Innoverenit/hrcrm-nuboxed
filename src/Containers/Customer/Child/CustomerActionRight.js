@@ -6,7 +6,6 @@ import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip } from "antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { StyledSelect } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import UploadIcon from '@mui/icons-material/Upload';
 
@@ -16,6 +15,38 @@ const Option = StyledSelect.Option;
 
 class CustomerActionRight extends React.Component {
  
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+                     
+        "Add",//0
+      "Import",//1
+       
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const {
       userId,
@@ -49,10 +80,8 @@ class CustomerActionRight extends React.Component {
             type="primary"
             onClick={() => handleCustomerModal(true)}
           >
-                          <DataSaverOnIcon className="!text-icon"/>   <FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
+                          <DataSaverOnIcon className="!text-icon"/> 
+                          {this.state.translatedMenuItems[0]}
           
           </Button>
            )} 
@@ -61,7 +90,9 @@ class CustomerActionRight extends React.Component {
           <Button type="primary"  
         onClick={() => this.props.handleCustomerImportModal(true)}
         >
-          <UploadIcon className=" !text-icon"/>  Import
+          <UploadIcon className=" !text-icon"/>
+          {this.state.translatedMenuItems[1]}
+            {/* Import */}
           </Button>
           </div>
       </div>

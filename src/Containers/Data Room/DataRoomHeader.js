@@ -23,6 +23,8 @@ class DataRoomHeader extends Component {
           rightComponent={
             <Suspense fallback={<BundleLoader />}>
             <DataRoomActionRight
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
             viewType={this.props.viewType}
             handleDataroomModal={handleDataroomModal}
             />

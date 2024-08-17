@@ -93,7 +93,8 @@ function UpdateDealForm (props) {
           "Investor",//7
           "Contact",//8
           "Workflow",//9
-          "Stages"//10
+          "Stages",//10
+          "Create"
           
         ];
 
@@ -606,7 +607,7 @@ function UpdateDealForm (props) {
                   htmlType="submit"
                   Loading={updateOpportunityById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="update" />
+                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div> 
                   {/* Update */}
                 </Button>
               </div>
