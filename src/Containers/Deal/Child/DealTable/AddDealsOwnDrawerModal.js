@@ -20,7 +20,10 @@ console.log(this.props.currentItem.opportunityName)
           onClose={() => this.props.handleOwnModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <WonForm currentItem={this.props.currentItem}/>
+            <WonForm currentItem={this.props.currentItem}
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
+            />
           </Suspense>
         </StyledDrawer>
       </div>

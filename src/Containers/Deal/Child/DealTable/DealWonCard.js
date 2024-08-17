@@ -423,6 +423,8 @@ function DealWonCard(props) {
         openupdateDealModal={openupdateDealModal}
         handleUpdateDealModal={handleUpdateDealModal}
         handleSetCurrentItem={handleSetCurrentItem}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
       />
       <AddDealsNotesDrawerModal
         currentItem={currentItem}

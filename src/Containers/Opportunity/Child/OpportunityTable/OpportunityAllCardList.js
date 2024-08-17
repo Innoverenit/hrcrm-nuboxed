@@ -455,7 +455,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
+       translatedMenuItems={props.translatedMenuItems}
       />
 
 <AddOpportunityDrawerModal
