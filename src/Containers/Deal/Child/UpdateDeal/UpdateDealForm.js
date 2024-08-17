@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Button,Select } from "antd";
 import {getInvestorCurrency} from "../../../Auth/AuthAction"
 import {getAllEmployeelist} from "../../../Investor/InvestorAction"
-import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";

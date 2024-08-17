@@ -56,6 +56,10 @@ class OpportunityUpdateStepper extends Component {
                 icon: <UserOutlined />,
                 content: <UpdateOpportunityForm
                 opportunityId={this.props.opportunityId}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
+
                 />,
             },
             {

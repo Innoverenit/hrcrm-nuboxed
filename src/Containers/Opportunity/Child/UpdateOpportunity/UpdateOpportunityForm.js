@@ -61,6 +61,7 @@ function UpdateOpportunityForm (props) {
 'Contact', // 8
 'Workflow', // 9
 'Stages', // 10
+'Update'
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -488,13 +489,12 @@ function UpdateOpportunityForm (props) {
                     </div>
                   </div>
                   
-                  <div class="flex justify-between max-sm:flex-col ">
+                  <div class="flex justify-between max-sm:flex-col mt-2">
                     <div class=" w-1/2 max-sm:w-wk">
                     <div class="font-bold text-xs">{translatedMenuItems[3]}</div>
                         <Field
                           name="proposalAmount"
-                          // label="Value"
-                       label={translatedMenuItems[3]}                     
+                          // label="Value"                                 
                           isColumn
                           isRequired
                           width={"100%"}
@@ -502,7 +502,7 @@ function UpdateOpportunityForm (props) {
                         />
                    
                     </div>
-                    <div class=" w-2/5 max-sm:w-wk">
+                    <div class=" w-2/5 max-sm:w-wk mt-1">
                     <div class="font-bold text-xs">{translatedMenuItems[4]}</div>
                       <Field
                         name="currency"
@@ -641,7 +641,7 @@ function UpdateOpportunityForm (props) {
       )}
     </Listbox>
     <div>
-    <div class=" text-black font-bold text-[0.75rem]" >
+    <div class=" text-black font-bold text-[0.75rem] mt-2" >
      {translatedMenuItems[6]}
       {/* Include */}
       </div>
@@ -762,7 +762,7 @@ function UpdateOpportunityForm (props) {
                   htmlType="submit"
                   loading={updateOpportunityById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                 <div class="font-bold font-poppins text-xs">{translatedMenuItems[11]}</div>
                   {/* Update */}
                 </Button>
               </div>
