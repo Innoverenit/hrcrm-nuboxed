@@ -563,6 +563,7 @@ import { bindActionCreators } from "redux";
 import { getCountries } from "../../Auth/AuthAction";
 import { addAttendence, getAttendanceList, addLocationDetails } from "../../Customer/CustomerAction";
 import { BundleLoader } from "../../../Components/Placeholder";
+import {base_url} from "../../../Config/Auth";
 import dayjs from "dayjs";
 
 const { Option } = Select;
@@ -648,7 +649,7 @@ function StartStop(props) {
 
   const fetchOtherInclude = async () => {
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/countries/list`;
+      const apiEndpoint = `${base_url}/countries/list`;
       const response = await fetch(apiEndpoint, {
         method: 'GET',
         headers: {

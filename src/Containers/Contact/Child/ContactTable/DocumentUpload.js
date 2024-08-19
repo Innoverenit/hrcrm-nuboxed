@@ -18,6 +18,7 @@ import DragableUpload from "../../../../Components/Forms/Formik/DragableUpload";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import HospitalDocument from "./HospitalDocument";
+import {base_url} from "../../../../Config/Auth";
 
 const { Option } = Select;
 const ButtonGroup = Button.Group;
@@ -41,7 +42,7 @@ function DocumentUpload (props){
   const fetchInclude = async () => {
     setIsLoadingInclude(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {

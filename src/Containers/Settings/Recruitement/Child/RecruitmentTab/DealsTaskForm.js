@@ -335,8 +335,7 @@ const MyForm = (props) => {
   const fetchRole = async (departmentId) => {
     setIsLoadingRole(true);
     try {
-      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
-      // setContacts(response.data);
+     
       const apiEndpoint = `${base_url}/roleType/department/${departmentId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',

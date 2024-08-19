@@ -23,6 +23,7 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Listbox } from '@headlessui/react'
 import { BundleLoader } from "../../../../Components/Placeholder";
+import {base_url} from "../../../../Config/Auth";
 const { Option } = Select; 
 
 // yup validation scheme for creating a account
@@ -94,7 +95,7 @@ function UpdateLeadsForm (props) {
     const fetchSource = async () => {
       setIsLoading(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+        const apiEndpoint = `${base_url}/source/${props.organizationId}`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
@@ -162,7 +163,7 @@ function UpdateLeadsForm (props) {
     const fetchSector = async () => {
       setIsLoadingSector(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+        const apiEndpoint = `${base_url}/sector`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
@@ -194,7 +195,7 @@ function UpdateLeadsForm (props) {
     const fetchLob = async () => {
       setIsLoadingLob(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/lob/all/${props.orgId}`;
+        const apiEndpoint = `${base_url}/lob/all/${props.orgId}`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {

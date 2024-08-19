@@ -1872,7 +1872,7 @@ import { getAssignedToList } from "../../Employees/EmployeeAction";
 import Upload from "../../../Components/Forms/Formik/Upload";
 import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
 import { Listbox } from '@headlessui/react';
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
+import {base_url} from "../../../Config/Auth";
 
 const { Option } = Select;
 
@@ -2169,7 +2169,7 @@ const [priority,setpriority]=useState(props.selectedTask
      setIsLoadingCustomer(true);
      try {
        const apiEndpoint = `
-       https://develop.tekorero.com/employeePortal/api/v1/customer/drop/customer-list/${props.userId}`;
+       ${base_url}/customer/drop/customer-list/${props.userId}`;
        const response = await fetch(apiEndpoint,{
          method: 'GET',
          headers: {
@@ -2209,7 +2209,7 @@ const [priority,setpriority]=useState(props.selectedTask
      setIsLoadingContact(true);
      try {
        const apiEndpoint = `
-       https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`;
+       ${base_url}/customer/contact/drop/${customerId}`;
        const response = await fetch(apiEndpoint,{
          method: 'GET',
          headers: {
@@ -2245,7 +2245,7 @@ const [priority,setpriority]=useState(props.selectedTask
      try {
        const apiEndpoint = `
        
- https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityList/customer/${customerId}`;
+${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
        const response = await fetch(apiEndpoint,{
          method: 'GET',
          headers: {
@@ -2281,7 +2281,7 @@ const [priority,setpriority]=useState(props.selectedTask
    const fetchInclude = async () => {
     setIsLoadingInclude(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {

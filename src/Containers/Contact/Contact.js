@@ -139,6 +139,9 @@ const filterData = filteredData.filter(item =>
         filter={filter}
         selectedCountry={selectedCountry}
         handleCountryChange={handleCountryChange}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+       translatedMenuItems={props.translatedMenuItems}
       />
 
       <AddContactModal

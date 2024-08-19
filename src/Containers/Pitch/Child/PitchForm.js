@@ -24,6 +24,7 @@ import { Listbox, } from '@headlessui/react'
 import {getInvestorCurrency} from "../../Auth/AuthAction"
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
+import {base_url} from "../../../Config/Auth";
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
   firstName: Yup.string().required("Input needed!"),
@@ -150,7 +151,7 @@ props.getInvestorCurrency();
     const fetchSector = async () => {
       setIsLoadingSector(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+        const apiEndpoint = `${base_url}/sector`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
@@ -207,7 +208,7 @@ props.getInvestorCurrency();
     const fetchSource = async () => {
       setIsLoading(true);
       try {
-        const apiEndpoint =`https://develop.tekorero.com/employeePortal/api/v1/source/${props.userId}`;
+        const apiEndpoint =`${base_url}/source/${props.userId}`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
@@ -577,7 +578,7 @@ props.getInvestorCurrency();
                   <div class=" flex justify-between">
                   {contract ?
                   <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>           
-                     <div>Sector</div>
+                     <div class="font-bold text-xs">Sector</div>
 <Select
         showSearch
        
@@ -598,7 +599,7 @@ props.getInvestorCurrency();
                        {contract ?
                     <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>                
 
-                     <div> Source</div>
+                     <div class="font-bold text-xs"> Source</div>
 
 <Select
         showSearch    
