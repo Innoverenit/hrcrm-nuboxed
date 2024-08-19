@@ -9,7 +9,6 @@ import {
     getDeletedDeal
 } from "./DealAction";
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
-import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
@@ -22,6 +21,36 @@ const DealDeletedCard = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+         " Name",//0
+          "Investor",//1
+          "Sponsor",//2
+          "Start Date",//3
+          "Values",//4
+          "Stages",//5
+          "Sales Rep",//6
+          "Owner",//7
+          "Action",//8
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getDeletedDeal(page);
     setPage(page + 1);
@@ -56,43 +85,30 @@ const DealDeletedCard = (props) => {
   if (fetchingDeletedDeal) {
     return <BundleLoader />;
   }
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[10.5rem]"><FormattedMessage
-            id="app.name"
-            defaultMessage="name"
-          /></div>
-          <div className=" md:w-[9.1rem]"><FormattedMessage
-            id="app.investor"
-            defaultMessage="investor"
-          /></div>
-          <div className=" md:w-[15.2rem] "><FormattedMessage
-            id="app.sponsor"
-            defaultMessage="sponsor"
-          /></div>
-          <div className="md:w-[11.1rem]"><FormattedMessage
-            id="app.startdate"
-            defaultMessage="startdate"
-          /></div>
-          <div className="md:w-[7.5rem]"><FormattedMessage
-            id="app.value"
-            defaultMessage="Value"
-          /></div>
-          <div className="md:w-[4.2rem]"><FormattedMessage
-            id="app.stages"
-            defaultMessage="stages"
-          /></div>
-          <div className="md:w-[7.1rem]"><FormattedMessage
-            id="app.assignto"
-            defaultMessage="Assign To"
-          /></div>
-          <div className="md:w-[3rem]"><FormattedMessage
-            id="app.owner"
-            defaultMessage="owner"
-          /></div>
-
+          <div className=" md:w-[10.5rem]">
+          {translatedMenuItems[0]} </div>
+          {/* Name */}
+          <div className=" md:w-[9.1rem]">  {translatedMenuItems[1]} </div>
+          {/* investor */}
+          <div className=" md:w-[15.2rem] ">  {translatedMenuItems[2]}</div>
+          {/* Sponsor */}
+          <div className="md:w-[11.1rem]">  {translatedMenuItems[3]}</div>
+          {/* startDate */}
+          <div className="md:w-[7.5rem]">  {translatedMenuItems[4]}</div>
+          {/* Value */}
+          <div className="md:w-[4.2rem]">  {translatedMenuItems[5]}</div>
+          {/* Stages */}
+          <div className="md:w-[7.1rem]">  {translatedMenuItems[6]}</div>
+          {/* assignedTo */}
+          <div className="md:w-[3rem]">  {translatedMenuItems[7]}</div>
+            {/* owner  */}
         </div>
         <InfiniteScroll
           dataLength={props.deletedDeal.length}
