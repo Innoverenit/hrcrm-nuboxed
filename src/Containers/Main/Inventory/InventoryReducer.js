@@ -360,6 +360,9 @@ const initialState = {
   rejectedReasonModal: false,
 
   custoModal:false,
+
+  fetchingOpenOrdeReceived: false,
+  fetchingOpenOrdeReceivedError: false,
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -1844,6 +1847,19 @@ export const inventoryReducer = (state = initialState, action) => {
       
     case types.HANDLE_CUSTOM_MODAL:
       return { ...state, custoModal: action.payload };
+
+
+      case types.SEARCH_OPEN_ORDER_RECEIVED_REQUEST:
+        return { ...state, fetchingOpenOrdeReceived: true };
+      case types.SEARCH_OPEN_ORDER_RECEIVED_SUCCESS:
+        return {
+          ...state,
+          fetchingOpenOrdeReceived: false,
+          phoneListById: action.payload,
+        };
+      case types.SEARCH_OPEN_ORDER_RECEIVED_FAILURE:
+        return { ...state, fetchingOpenOrdeReceivedError: true };
+      
 
     default:
       return state;

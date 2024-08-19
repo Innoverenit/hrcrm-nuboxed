@@ -382,6 +382,12 @@ const initialState = {
 
   productPUblishToggle: false,
   productPUblishToggleError:false,
+
+  warrentyProductToggle: false,
+  warrentyProductToggleError:false,
+
+  updateDateYearProduct: false,
+  updateDateYearProductError:false,
   
 };
 const newDateRange = (dateRange, newDate) =>
@@ -1679,6 +1685,49 @@ export const productReducer = (state = initialState, action) => {
                                                 productPUblishToggle: false,
                                                 productPUblishToggleError: true,
                                               };
+
+                                              case types.WARRENTY_PRODUCT_TOGGLE_REQUEST:
+                                                return { ...state, warrentyProductToggle: true };
+                                              case types.WARRENTY_PRODUCT_TOGGLE_SUCCESS:
+                                                return {
+                                                  ...state,
+                                                  warrentyProductToggle: false,
+                                                  products: state.products.map((item) => {
+                                                    if (item.productId === action.payload.productId) {
+                                                      return action.payload;
+                                                    } else {
+                                                      return item;
+                                                    }
+                                                  }),
+                                                };
+                                              case types.WARRENTY_PRODUCT_TOGGLE_FAILURE:
+                                                return {
+                                                  ...state,
+                                                  warrentyProductToggle: false,
+                                                  warrentyProductToggleError: true,
+                                                };
+                                                case types.UPDATE_DATE_YEAR_PRODUCT_REQUEST:
+                                                  return { ...state, updateDateYearProduct: true };
+                                                case types.UPDATE_DATE_YEAR_PRODUCT_SUCCESS:
+                                                  return {
+                                                    ...state,
+                                                    updateDateYearProduct: false,
+                                                    products: state.products.map((item) => {
+                                                      if (item.productId === action.payload.productId) {
+                                                        return action.payload;
+                                                      } else {
+                                                        return item;
+                                                      }
+                                                    }),
+                                                  };
+                                                case types.UPDATE_DATE_YEAR_PRODUCT_FAILURE:
+                                                  return {
+                                                    ...state,
+                                                    updateDateYearProduct: false,
+                                                    updateDateYearProductError: true,
+                                                  };
+  
+
     default:
       return state;
   }
