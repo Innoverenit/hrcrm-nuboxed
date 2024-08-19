@@ -18,11 +18,16 @@ class ReportDetailLeft extends Component {
             handleSelectChange={this.props.handleSelectChange}
             handleButtonClick={this.props.handleButtonClick}
             dropdownData={this.props.dropdownData}
-               handleDropChange={this.props.handleDropChange} />
+               handleDropChange={this.props.handleDropChange} 
+               selectedButtonIcon={this.props.selectedButtonIcon}
+               handleButtonIcon={this.props.handleButtonIcon}
+               />
           <ReportTimeCard customer={customer} 
              handleButtonTask={this.props.handleButtonTask}
              taskData={this.props.taskData}
            selectedCategory={this.props.selectedCategory}
+           selectedButtonIcon={this.props.selectedButtonIcon}
+               handleButtonIcon={this.props.handleButtonIcon}
           />
           <ReportDocumentsCard customer={customer} />
         </div>

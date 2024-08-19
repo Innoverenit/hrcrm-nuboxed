@@ -37,7 +37,11 @@ class ReportDetails extends Component {
             handleSelectChange={this.props.handleSelectChange}
             handleButtonClick={this.props.handleButtonClick}
             buttonData={this.props.buttonData}
-               handleDropChange={this.props.handleDropChange} />
+               handleDropChange={this.props.handleDropChange} 
+               selectedButtonIcon={this.props.selectedButtonIcon}
+               handleButtonIcon={this.props.handleButtonIcon}
+               
+               />
                     </div>
                     <div class=" w-4/5 max-sm:w-full">
                       <ReportDetailRight 
@@ -46,8 +50,10 @@ class ReportDetails extends Component {
                       selectedCategory={this.props.selectedCategory}
                       customer={customer} 
                       reportTask={this.props.reportTask}
-         
           gettingReportTask={this.props.gettingReportTask}
+          selectedButtonIcon={this.props.selectedButtonIcon}
+          handleButtonIcon={this.props.handleButtonIcon}
+
                       />
                     </div>
                   </div>

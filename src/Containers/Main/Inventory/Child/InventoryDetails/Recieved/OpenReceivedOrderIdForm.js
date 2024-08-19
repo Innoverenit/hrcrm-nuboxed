@@ -12,8 +12,8 @@ import {
   handlereceivePhoneModal,
   getPhonelistByOrderId,
   updateRepairStatus,
-  handleInventoryexpand
-
+  handleInventoryexpand,
+  searchOpenOrdeReceived
 } from "../../../InventoryAction";
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
 import { EditOutlined, FileDoneOutlined, PlusOutlined } from "@ant-design/icons";
@@ -32,6 +32,9 @@ import TagInDrawer from "../../../../Refurbish/ProductionTab/TagInDrawer";
 import OpenReceivedPlusCard from "./OpenReceivedPlusCard";
 import InventoryExpandListModal from "./InventoryExpandListModal";
 import NodataFoundPageAccount from "../../../../Account/AccountDetailsTab/AccountOrderTab/NodataFoundPageAccount";
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import { AudioOutlined } from '@ant-design/icons';
+
 const { Search } = Input;
 
 function OpenReceivedOrderIdForm(props) {
@@ -48,6 +51,13 @@ function OpenReceivedOrderIdForm(props) {
 
   const [hasMore, setHasMore] = useState(true);
   const [selectedRow, setSelectedRow] = useState(null);
+
+  const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false); 
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); 
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
 
   // const handleLoadMore = () => {
   //   setPage(page + 1);
@@ -113,18 +123,112 @@ function OpenReceivedOrderIdForm(props) {
       [phoneId]: value
     }));
   };
+ const {
+      transcript,
+      listening,
+      resetTranscript,
+      browserSupportsSpeechRecognition
+    } = useSpeechRecognition();
+
+    useEffect(() => {
+      // props.getCustomerRecords();
+      if (transcript) {
+        console.log(">>>>>>>", transcript);
+        setCurrentData(transcript);
+      }
+      }, [ transcript]);
+
+      const {
+          viewType,
+          setSuppliesViewType,
+          suppliesCount,
+          suppliesDeletedCount,
+      } = props;
+
+      const handleChange = (e) => {
+          setCurrentData(e.target.value);
+          if (searchOnEnter&& e.target.value.trim() === "") {  //Code for Search
+             props.getPhonelistByOrderId(props.rowData.orderPhoneId, page);
+            // props.ClearReducerDataOfMaterial();
+            setSearchOnEnter(false);
+          }
+        };
+        const handleSearch = () => {
+          if (currentData.trim() !== "") {
+            // Perform the search
+             props.searchOpenOrdeReceived(currentData);
+            setSearchOnEnter(true);  //Code for Search
+          } else {
+            console.error("Input is empty. Please provide a value.");
+          }
+        };
+        const handleStartListening = () => {
+          setStartTime(Date.now());
+          setIsRecording(true);
+          SpeechRecognition.startListening();
+          if (timerRef.current) {
+            clearTimeout(timerRef.current);
+          }
+          timerRef.current = setTimeout(() => {
+            SpeechRecognition.stopListening();
+            setIsRecording(false);
+          }, minRecordingTime);
+        };
+        const suffix = (
+          <AudioOutlined
+            onClick={handleStartListening}
+            style={{
+              fontSize: 16,
+              color: '#1890ff',
+            }}
+      
+          />
+        );
+
+      const handleStopListening = () => {
+          SpeechRecognition.stopListening();
+          setIsRecording(false);
+          if (transcript.trim() !== "") {
+            setCurrentData(transcript);
+            props.searchOpenOrdeReceived(transcript);
+            setSearchOnEnter(true);
+          }
+        };
+        useEffect(() => {
+          if (!listening && isRecording) {
+            handleStopListening();
+          }
+        }, [listening]);
+        useEffect(() => {
+          if (isRecording && !listening) {
+            const elapsedTime = Date.now() - startTime;
+            if (elapsedTime < minRecordingTime) {
+              SpeechRecognition.startListening();
+            } else {
+              setIsRecording(false);
+            }
+          }
+        }, [listening, isRecording, startTime]);
 
   return (
     <>
       <div class=" flex justify-between">
         <div class=" w-3/6">
           <div style={{ display: "flex", marginLeft: "8rem" }}>
-
+ 
             <Button type="primary">
-              Scan
+              Scan 
             </Button>
             <div style={{ marginLeft: '10px' }}>
-              <Search placeholder="input search text" onSearch={onSearch} enterButton />
+            <Input
+          placeholder="Search by Name "
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+
             </div>
           </div>
         </div>
@@ -503,7 +607,8 @@ const mapDispatchToProps = (dispatch) =>
       updateRepairStatus,
       handlePhoneDetails,
       handleInTagDrawer,
-      handleInventoryexpand
+      handleInventoryexpand,
+      searchOpenOrdeReceived
     },
     dispatch
   );

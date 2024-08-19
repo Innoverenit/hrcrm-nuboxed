@@ -2145,3 +2145,56 @@ export const productPUnpblishToggle = ( data,categoryId) => (dispatch) => {
       });
     })
 };
+
+export const OnOffwarrentyProduct = ( data,productId) => (dispatch) => {
+  dispatch({
+    type: types.WARRENTY_PRODUCT_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/product/warrenty/${productId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.WARRENTY_PRODUCT_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.WARRENTY_PRODUCT_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+export const updateDateYearProduct = ( data,productId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_DATE_YEAR_PRODUCT_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/product/year/${productId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_DATE_YEAR_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_DATE_YEAR_PRODUCT_FAILURE,
+        payload: err,
+      });
+    })
+};

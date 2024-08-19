@@ -2285,3 +2285,30 @@ export const handleInventoryTask = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const searchOpenOrdeReceived = (name) => (dispatch) => {
+  dispatch({
+    type: types.SEARCH_OPEN_ORDER_RECEIVED_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/suppliesName/${name}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // message.success(res.data.message);
+
+      dispatch({
+        type: types.SEARCH_OPEN_ORDER_RECEIVED_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+     
+      dispatch({
+        type: types.SEARCH_OPEN_ORDER_RECEIVED_FAILURE,
+        payload: err,
+      });
+    });
+}; 
