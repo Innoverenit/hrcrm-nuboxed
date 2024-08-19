@@ -48,8 +48,12 @@ const ProductBuilderDrawer = (props) => {
         onClose={() => handleProductBuilderDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <ProductbuilderTable particularDiscountData={particularDiscountData} />
-          <ProductbuilderTable2 particularDiscountData={particularDiscountData} />
+          <ProductbuilderTable particularDiscountData={particularDiscountData} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}/>
+          <ProductbuilderTable2 particularDiscountData={particularDiscountData} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

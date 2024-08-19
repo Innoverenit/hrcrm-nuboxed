@@ -1,28 +1,13 @@
-
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { getProductsByProductId } from "./InventoryAction";
-import { Link } from "react-router-dom";
-import { MultiAvatar } from "../../../../Components/UI/Elements";
-import { CurrencySymbol } from "../../../../Components/Common";
 import styled from "styled-components";
 import { Select } from "../../../../Components/UI/Elements";
-import Tooltip from '@mui/material/Tooltip';
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { Button } from "antd";
-import {
-  DeleteOutlined,
-  MinusOutlined,
-  PlusOutlined,
-} from '@ant-design/icons';
-import Carousel from "react-elastic-carousel";
-import { base_url } from "../../../../Config/Auth";
-import ProductDetailsCardViewId from "./ProductDetailsCardViewId";
 import {getProductsByProductId} from "../../ProductAction";
 import img from "../../../../Assets/Images/Erp.jpg"
 import "../../Product.scss";
-
+const ProductDetailsCardViewId = lazy(() => import("./ProductDetailsCardViewId"));
 const { Option } = Select;
 
 function InveProductsDetails(props) {
@@ -89,9 +74,10 @@ const breakPoints = [
     {/* <div dangerouslySetInnerHTML={{ __html: `<p>${props.productsByproductId.description}</p>` }} /> */}
     
     <div className="cardDs-bottom">
+    <Suspense fallback={<BundleLoader />}>
       <ProductDetailsCardViewId 
       productsByproductId={props.productsByproductId}
-      />
+      /></Suspense>
     
       </div>
       <hr class=" mt-4 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />

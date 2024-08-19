@@ -1,11 +1,8 @@
 import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import ProductQualityDrawer from "../ProductTable/ProductQualityDrawer"
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { DeleteOutlined } from "@ant-design/icons";
-import ReactToPrint from "react-to-print";
-import QRCode from "qrcode.react";
 import {
   getProducts,
   getProductByGroup,
@@ -27,7 +24,7 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
-import {  Tooltip,Button } from "antd";
+import {  Tooltip } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
@@ -38,6 +35,7 @@ const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
 const ProductCellDrawer=lazy(()=>import("./ProductCellDrawer"));
 const ProductDetailsDrawer=lazy(()=>import("./ProductDetailsDrawer"));
+const ProductQualityDrawer=lazy(()=>import("../ProductTable/ProductQualityDrawer"));
 
 function ProductCardList(props) {
 
@@ -222,7 +220,7 @@ function ProductCardList(props) {
                         </div>
                       </div>
 
-                      <div className=" flex  w-[11.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  w-[14.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {`${item.productFullName ? `${item.productFullName}`:`${item.name}`}`}
@@ -255,7 +253,7 @@ function ProductCardList(props) {
                         {item.brand}
                       </div>
                     </div>
-                    <div className=" flex w-[10.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex w-[8.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.model}

@@ -1,7 +1,6 @@
 
 import React, { lazy, Component, Suspense } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const ProductCellCard = lazy(() => import("./ProductCellCard"));
 
@@ -24,7 +23,9 @@ class ProductCellDrawer extends Component {
 
 
           <Suspense fallback={<BundleLoader />}>
-          <ProductCellCard  particularDiscountData={particularDiscountData}/>
+          <ProductCellCard  particularDiscountData={particularDiscountData}
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
 
 

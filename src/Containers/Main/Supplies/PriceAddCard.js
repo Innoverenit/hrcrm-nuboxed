@@ -18,6 +18,7 @@ function PriceAddCard(props) {
   const [rows, setRows] = useState([]);
   const [showNoDataAlert, setShowNoDataAlert] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
@@ -27,6 +28,29 @@ function PriceAddCard(props) {
     props.getMaterialCurrency(props.particularDiscountData.suppliesId);
     props.getSaleCurrency()
   }, []);
+  
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Add Row",//0
+          "Currency",//1
+          "Price",//2
+          "Type",
+          "Submit",//3
+             " Save",
+             "Cancel"  
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -138,13 +162,15 @@ function PriceAddCard(props) {
   return (
     <div>
       <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
-        Add Row
+      {translatedMenuItems[0]} {/* Add Row */}
       </Button>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center">
             <div class="flex justify-around w-[30rem]">
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Currency</div>
+                <div class="font-bold text-xs font-poppins text-black">
+                  {/* Currency */} {translatedMenuItems[1]}
+                  </div>
                 <div class="w-24">
                 <Select
                         classNames="w-32"
@@ -162,7 +188,7 @@ function PriceAddCard(props) {
               </div>
 
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Price (B2B)</div>
+                <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[2]}  (B2B)</div>
                 <div class="w-24"></div>
                 <Input
                  inputMode="numeric"
@@ -173,7 +199,9 @@ function PriceAddCard(props) {
                         {errors[`suppliesPrice${index}`] && <span className="text-red-500">{errors[`suppliesPrice${index}`]}</span>}
                       </div>
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Price (B2C)</div>
+                <div class="font-bold text-xs font-poppins text-black">
+                {translatedMenuItems[2]}{/* Price  */}(B2C)
+                  </div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -186,7 +214,9 @@ function PriceAddCard(props) {
                       </div>
 
                       <div>
-                <div class="font-bold text-xs font-poppins text-black">Type</div>
+                <div class="font-bold text-xs font-poppins text-black">
+                  {/* Type */}  {translatedMenuItems[3]}
+                  </div>
                 <div class="w-24">
                 
                        
@@ -195,21 +225,22 @@ function PriceAddCard(props) {
             </div>
             <div class="mt-4">
             <Button type="primary" onClick={() => handleSave(index)}>
-              Submit
+              {/* Submit */} {translatedMenuItems[4]}
             </Button>
             </div>
             
           </div>
         ))}
 
-      <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
-            <div className=" md:w-[7%]">Currency</div>
-            <div className=" md:w-[6.1rem]">Price(B2B)</div>
-            <div className=" md:w-[4.2rem] ">Price(B2C)</div>
-            <div className="md:w-[5.8rem]">Type</div>
-            <div className="w-12"></div>             </div>
+      <div className=' flex sticky z-auto'>
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">          <div className=""></div>
+            <div className=" md:w-[7%]">  {translatedMenuItems[1]}</div>
+            <div className=" md:w-[6.1rem]">  {translatedMenuItems[2]}(B2B)</div>
+            <div className=" md:w-[4.2rem] ">  {translatedMenuItems[2]}(B2C)</div>
+            <div className="md:w-[5.8rem]">  {translatedMenuItems[3]}</div>
+            <div className="w-12"></div>         
+            </div>
 
           {data.length ? data.map((item) => {
             return (
@@ -300,18 +331,18 @@ function PriceAddCard(props) {
                       <Button 
                       type="primary"
                       onClick={() => handleUpdate(item)}>
-                        Save
+                        {translatedMenuItems[5]}
                       </Button>
                         <Button 
                          type="primary"
                         onClick={() => handleCancelClick(item.id)} className="ml-[0.5rem]">
-                        Cancel
+                        {translatedMenuItems[6]}
                       </Button>
                       </>
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.id)}

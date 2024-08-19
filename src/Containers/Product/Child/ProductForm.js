@@ -75,12 +75,6 @@ class Productform extends Component {
         "Model",
         "Description",
         "Create"
-
-
-
-
-        
-        
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
