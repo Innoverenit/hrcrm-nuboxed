@@ -275,10 +275,12 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Switch, Select, Form, Button, Row, Col } from 'antd';
+import { Switch, Select, Form, Button, Row, Col,Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
-import { getApproveData,addApprove } from "../../../SettingsAction";
+import { 
+    // getApproveData,
+    addApprove } from "../../../SettingsAction";
 import { bindActionCreators } from "redux";
 import { getDepartments } from "../../../Department/DepartmentAction";
 import { base_url } from '../../../../../Config/Auth';
@@ -289,20 +291,17 @@ const ApprovalSwitchComponent = (props) => {
   const [role, setRole] = useState([]);
   const [isLoadingRole, setIsLoadingRole] = useState(false);
   const [isApprovalNeeded, setIsApprovalNeeded] = useState(false);
-  const [departmentList, setDepartmentList] = useState([{ department: null, role: null }]);
+  const [departmentList, setDepartmentList] = useState([{ department: null, role: null,threshold:"" }]);
 
   useEffect(() => {
     props.getDepartments();
-    fetchHolidayData();
+   
   }, []);
+  console.log(props.label)
 
-  const fetchHolidayData = () => {
-    props.getApproveData(props.label);
-  };
+ 
 
-  useEffect(() => {
-    fetchHolidayData();
-  }, [props.label]);
+
 
   useEffect(() => {
     // Default to empty array if `approvalData.level` is undefined
@@ -310,7 +309,8 @@ const ApprovalSwitchComponent = (props) => {
     const mappedData = Array.isArray(approvalData.level) 
       ? approvalData.level.map(item => ({
           department: item.levelId,
-          role: item.roleType,
+          role: item.roleTypeId,
+          threshold:item.threshold
         }))
       : []; // Ensure `mappedData` is always an array
   
@@ -321,7 +321,7 @@ const ApprovalSwitchComponent = (props) => {
   const handleSwitchChange = (checked) => {
     setIsApprovalNeeded(checked);
     if (!checked) {
-      setDepartmentList([{ department: null, role: null }]);
+      setDepartmentList([{ department: null, role: null,threshold:"" }]);
     }
   };
 
@@ -341,21 +341,30 @@ const ApprovalSwitchComponent = (props) => {
     console.log("Selected Role:", value);
   };
 
+
+  const handleAdditionalInfoChange = (index, e) => {
+    const updatedDepartmentList = [...departmentList];
+    updatedDepartmentList[index].threshold = e.target.value;
+    setDepartmentList(updatedDepartmentList);
+  };
+
   const addDepartmentField = () => {
-    setDepartmentList([...departmentList, { department: null, role: null }]);
+    setDepartmentList([...departmentList, { department: null, role: null,threshold:"" }]);
   };
 
   const handleSubmit = () => {
+    const filteredDepartments = departmentList.filter(item => item.department !== null);
     const dataToSubmit = {
         approvalType: "Standard",
-        subProcessName: props.label,
-        jobLevel: props.approvalData.jobLevel || 1,
+        subProcessName: props.activeKey,
+        levelCount: filteredDepartments.length,
       approvalIndicator: isApprovalNeeded,
       level: departmentList
         .filter(item => item.department !== null)
         .map(item => ({
-          level: item.department,
-          roleType: item.role
+          levelId: item.department,
+          roleTypeId: item.role,
+          threshold:item.threshold?item.threshold:"",
         }))
     };
     props.addApprove(dataToSubmit)
@@ -387,20 +396,23 @@ const ApprovalSwitchComponent = (props) => {
   return (
     <Form layout="vertical">
       <Form.Item label="Approval Needed">
-        <Switch checked={isApprovalNeeded} onChange={handleSwitchChange} />
+        <Switch 
+         checkedChildren="Yes"
+                        unCheckedChildren="No"
+        checked={isApprovalNeeded} onChange={handleSwitchChange} />
       </Form.Item>
 
       {isApprovalNeeded && (
         <>
           {departmentList.map((item, index) => (
             <Row gutter={16} key={index} align="middle">
-              <Col span={12}>
-                <Form.Item label={`Department ${index + 1}`} style={{ marginBottom: 0 }}>
+              <Col span={8}>
+                <Form.Item label={`Level ${index + 1}`} style={{ marginBottom: 0 }}>
                   <Select
                     placeholder="Select Department"
                     onChange={(value) => handleDepartmentChange(index, value)}
                     value={item.department}
-                    style={{ width: '100%' }}
+                    style={{ width: '41%' }}
                   >
                     <Option value="ReportingManager">Reporting Manager</Option>
                     <Option value="ReportingManager+1">Reporting Manager +1</Option>
@@ -412,16 +424,20 @@ const ApprovalSwitchComponent = (props) => {
                   </Select>
                 </Form.Item>
               </Col>
+             
 
-              <Col span={12}>
+              <Col span={8}>
                 {item.department && item.department !== "ReportingManager" && item.department !== "ReportingManager+1" && (
-                  <Form.Item label={`Role ${index + 1}`} style={{ marginBottom: 0 }}>
+                  <Form.Item 
+                //   label={`Role ${index + 1}`} 
+                label={""} 
+                  style={{ marginBottom: 0 }}>
                     <Select
                       placeholder="Select Role"
                       loading={isLoadingRole}
                       onChange={(value) => handleRoleChange(index, value)}
                       value={item.role}
-                      style={{ width: '100%' }}
+                      style={{ width: '41%' }}
                     >
                       {role.map((r) => (
                         <Option key={r.roleTypeId} value={r.roleTypeId}>
@@ -432,13 +448,26 @@ const ApprovalSwitchComponent = (props) => {
                   </Form.Item>
                 )}
               </Col>
+
+              {["Leave", "Mileage", "Expense"].includes(props.activeKey) && (
+                <Col span={8}>
+                  <Form.Item label="" style={{ marginBottom: 0 }}>
+                    <Input
+                      placeholder="Enter threshold"
+                      value={item.threshold}
+                      style={{ width: '41%' }}
+                      onChange={(e) => handleAdditionalInfoChange(index, e)}
+                    />
+                  </Form.Item>
+                </Col>
+              )}
             </Row>
           ))}
 
           <Row justify="start" style={{ marginTop: 16 }}>
             <Col>
               <Button type="dashed" onClick={addDepartmentField} icon={<PlusOutlined />} style={{ marginRight: 8 }}>
-                Add Department
+                Add Level
               </Button>
             </Col>
             <Col>
@@ -456,7 +485,7 @@ const ApprovalSwitchComponent = (props) => {
 const mapStateToProps = ({ settings, role, auth, departments }) => ({
   departments: departments.departments || [],
   roles: role.roles || [],
-  approvalData: settings.approvalData || { approvalIndicator: false, level: [] },
+  //approvalData: settings.approvalData || { approvalIndicator: false, level: [] },
   userId: auth.userDetails.userId,
   token: auth.token,
   orgId: auth.userDetails.organizationId,
@@ -467,7 +496,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getDepartments,
-      getApproveData,
+    //   getApproveData,
       addApprove
     },
     dispatch
