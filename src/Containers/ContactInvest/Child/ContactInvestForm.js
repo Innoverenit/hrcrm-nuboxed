@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select } from "antd";
-import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import {getSources} from "../../Settings/Category/Source/SourceAction"
@@ -81,6 +80,7 @@ class ContactInvestForm extends Component {
 'Designation' , // 11
 'Department', // 12
 'Source' ,//13
+'Create'
 // 'Address',
  
 //   'Create'
@@ -539,7 +539,7 @@ class ContactInvestForm extends Component {
                   htmlType="submit"
                   loading={addingContact}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="create" />
+                 <div className="font-bold font-poppins text-xs"> {translatedMenuItems[14]}</div>
                   {/*                     
                     Create */}
                 </Button>
