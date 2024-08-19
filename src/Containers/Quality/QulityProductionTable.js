@@ -88,8 +88,7 @@ export const QulityProductionTable = (props) => {
 const fetchZone = async () => {
     setIsLoadingZone(true);
     try {
-      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
-      // setCustomers(response.data);
+  
       const apiEndpoint = `${base_url2}/roomrack/roomAndRackDetails/quality/${props.locationId}/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
@@ -123,8 +122,7 @@ const fetchZone = async () => {
   const fetchRack = async (roomRackId) => {
     setIsLoadingRack(true);
     try {
-      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
-      // setContacts(response.data);
+    
       const apiEndpoint = `${base_url2}/roomrack/${roomRackId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',

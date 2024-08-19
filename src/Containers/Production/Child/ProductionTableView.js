@@ -6,9 +6,6 @@ import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import { Tooltip, Button, Select } from "antd";
 import OnboardingProduction from "../Child/OnboardingProduction.js"
 import dayjs from "dayjs";
-
-import { FormattedMessage } from "react-intl";
-import ReactToPrint from "react-to-print";
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import ButtonGroup from "antd/lib/button/button-group";
 import {updateProStatus,handleProductionQuality,updateProductionPauseStatus} from "../ProductionAction"
@@ -18,7 +15,7 @@ import InpectProductionToggle from "./InpectProductionToggle.js";
 import { base_url2 } from "../../../Config/Auth";
 import AddProductionQualityModal from "../Child/AddProductionQualityModal.js"
 import MoveToggleProduction from "../Child/MoveToggleProduction.js"
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage.js";
+
 
 const { Option } = Select;
 
@@ -87,8 +84,7 @@ function ProductionTableView(props) {
     const fetchZone = async () => {
         setIsLoadingZone(true);
         try {
-          // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
-          // setCustomers(response.data);
+       
           const apiEndpoint = `${base_url2}/roomrack/roomAndRackDetails/quality/${props.locationId}/${props.orgId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',
@@ -152,8 +148,7 @@ function ProductionTableView(props) {
       const fetchRack = async (roomRackId) => {
         setIsLoadingRack(true);
         try {
-          // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
-          // setContacts(response.data);
+         
           const apiEndpoint = `${base_url2}/roomrack/${roomRackId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',

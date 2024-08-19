@@ -30,6 +30,7 @@ import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker
 import dayjs from "dayjs";
 import { Listbox } from "@headlessui/react";
 import { getAllEmployeelist } from "../../../../../Investor/InvestorAction";
+import {base_url} from "../../../../../../Config/Auth";
 
 /**
  * yup validation scheme for creating a opportunity
@@ -85,7 +86,7 @@ function ContactOpportunityForm(props) {
   const fetchInclude = async () => {
     setIsLoading(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.organizationId}`;
+      const apiEndpoint = `${ base_url}/employee/active/user/drop-down/${props.organizationId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {

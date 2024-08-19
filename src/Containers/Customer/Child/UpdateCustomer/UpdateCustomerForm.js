@@ -18,6 +18,7 @@ import { Listbox, } from '@headlessui/react'
 import { getCrm} from "../../../Leads/LeadsAction";
 import {getCurrency} from "../../../Auth/AuthAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import {base_url} from "../../../../Config/Auth";
 const { Option } = Select; 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const UpdateCustomerSchema = Yup.object().shape({
@@ -138,7 +139,7 @@ function UpdateCustomerForm (props) {
     const fetchCurrency = async () => {
       setIsLoadingCurrency(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/currencies/sales`;
+        const apiEndpoint = `${base_url}/currencies/sales`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {

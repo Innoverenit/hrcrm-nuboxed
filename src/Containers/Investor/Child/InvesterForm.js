@@ -25,6 +25,7 @@ import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import {getInvestorList} from "../../Settings/Category/InvestorTab/InvestorListAction";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
+import {base_url} from "../../../Config/Auth";
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -180,7 +181,7 @@ function InvesterForm(props) {
     const fetchSource = async () => {
       setIsLoading(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+        const apiEndpoint = `${base_url}/source/${props.organizationId}`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
@@ -218,7 +219,7 @@ function InvesterForm(props) {
     const fetchSector = async () => {
       setIsLoadingSector(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+        const apiEndpoint = `${base_url}/sector`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
