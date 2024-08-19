@@ -4895,3 +4895,54 @@ export const getInvoiceCount = (distributorId) => (dispatch) => {
     });
 }
 
+export const getPiListByDistributor = (distributorId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PILISTBY_DISTRIBUTOR_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/pi/piListByDistriubutor/${distributorId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PILISTBY_DISTRIBUTOR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PILISTBY_DISTRIBUTOR_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getPiListByOrder = (phoneOrderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PILISTBY_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/pi/piListByOrder/${phoneOrderId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PILISTBY_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PILISTBY_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+}
