@@ -34,6 +34,27 @@ const ProductCellCard = (props) => {
         props.getCatalogueCell(props.orgId)
     },[]);
 
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+   
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+           "Cell",//0
+            "Tag Production",//1
+            "Target Units/day",//2
+            "Submit"
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -127,9 +148,14 @@ if(props.fetchingCatalogueCell){
             <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">      
                 <div className=""></div>
-                <div className=" md:w-[6rem]">#Cell</div>
-                <div className="md:w-[7.2rem] ">Tag Production</div>
-                <div className="w-[7rem]">Target Units/day</div>    </div>
+                <div className=" md:w-[6rem]">#{translatedMenuItems[0]}</div>
+                <div className="md:w-[7.2rem] ">
+                {translatedMenuItems[1]}
+                {/* Tag Production */}
+                </div>
+                <div className="w-[7rem]">
+                {translatedMenuItems[2]} {/* Target Units/day */}
+                  </div>    </div>
                 
     
                {props.cellCardList .sort((a, b) => b.usedInd - a.usedInd)
@@ -180,7 +206,7 @@ if(props.fetchingCatalogueCell){
                         type="primary"
                         onClick={() => handleSubmit(item.cellChamberLinkId)}
                       >
-                        Submit
+                        {translatedMenuItems[3]}{/* Submit */}
                       </Button>
                     </>
                    ) : null} 

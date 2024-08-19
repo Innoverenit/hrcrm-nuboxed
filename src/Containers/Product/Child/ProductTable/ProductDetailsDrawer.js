@@ -1,6 +1,5 @@
 import React, { lazy, Component, Suspense } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const InveProductsDetails = lazy(() => import("./InveProductsDetails"));
 
@@ -23,7 +22,9 @@ function ProductDetailsDrawer(props) {
 
 
           <Suspense fallback={<BundleLoader />}>
-          <InveProductsDetails  particularDiscountData={particularDiscountData}/> 
+          <InveProductsDetails  particularDiscountData={particularDiscountData}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
           </Suspense>
 
 

@@ -194,7 +194,7 @@ const DeleteOnClick = async (item) => {
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     
 
-                      <div className=" flex   w-[7.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   w-[10.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {editsuppliesId === item.categoryId ? (
@@ -215,7 +215,7 @@ const DeleteOnClick = async (item) => {
                       </div>
       
                     </div>
-                    <div className=" flex   w-[7.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex   w-[10.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
@@ -249,17 +249,11 @@ const DeleteOnClick = async (item) => {
 </div>
 
 </div>
-<div className=" flex  w-[7.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+<div className=" flex  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 <ProductCategoryPUnblishToggle item={item}    publishInd={item.publishInd}  categoryId={item.categoryId}/>
+              </div>
 
-
-                    </div>
-
-                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
-                     
-                     
-                    
+                   <div class="flex justify-end   max-sm:justify-between max-sm:w-wk items-center">
                    <div className=" flex  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.categoryId ? (
                         <>

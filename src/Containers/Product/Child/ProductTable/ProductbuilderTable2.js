@@ -24,6 +24,30 @@ function ProductbuilderTable2 (props) {
     setData(props.builderbyProductId.map((item, index) => ({ ...item, key: String(index) })));
   }, [props.builderbyProductId]);
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Name",//0
+          "HSN",//1
+          "Category",//2
+          "Attribute",
+          "Unit",//3
+          "Step",
+          "Description"  
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   const handleChange = (suppliesId, fieldName, value) => {
     setEditedFields((prevFields) => ({
@@ -87,14 +111,14 @@ return (
   <div class="rounded m-1 p-1  w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
          <div className=""></div>
-         <div className=" md:w-[9.5rem]">Name</div>
-         <div className=" md:w-[8.2rem] ">HSN</div>
-        <div className=" md:w-[8.2rem] ">Category</div>
-        <div className="md:w-[9.8rem]">Attribute</div>
+         <div className=" md:w-[9.5rem]">{translatedMenuItems[0]}</div>
+         <div className=" md:w-[8.2rem] ">{translatedMenuItems[1]}</div>
+        <div className=" md:w-[8.2rem] ">{translatedMenuItems[2]}</div>
+        <div className="md:w-[9.8rem]">{translatedMenuItems[3]}</div>
     
-        <div className=" md:w-[4.21rem] ">Unit</div>
-        <div className=" md:w-[3.22rem] ">Step</div>
-         <div className=" md:w-[10.23rem] ">Description</div>
+        <div className=" md:w-[4.21rem] ">{translatedMenuItems[4]}</div>
+        <div className=" md:w-[3.22rem] ">{translatedMenuItems[5]}</div>
+         <div className=" md:w-[10.23rem] ">{translatedMenuItems[6]}</div>
         <div className="w-12"></div>
             </div>
             <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky", scrollbarWidth:"thin" }}>

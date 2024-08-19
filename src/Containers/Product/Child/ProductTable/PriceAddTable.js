@@ -22,11 +22,34 @@ function ProductbuilderTable(props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   useEffect(() => {
     props.getProductCurrency(props.particularDiscountData.productId);
     props.getSaleCurrency()
   }, []);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Add Row",//0
+          "Currency",//1
+          "Price",//2
+          "VAT",
+          "Submit",//3
+             " Save",
+             "Cancel"  
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -156,13 +179,13 @@ function ProductbuilderTable(props) {
   return (
     <div>
       <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
-        Add Row
+      {translatedMenuItems[0]}  {/* Add Row */}
       </Button>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center">
             <div class="flex justify-around w-[30rem]">
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Currency</div>
+                <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[1]} </div>
                 <div class="w-24">
                 <Select
                         classNames="w-32"
@@ -191,7 +214,7 @@ function ProductbuilderTable(props) {
                         {errors[`price${index}`] && <span className="text-red-500">{errors[`price${index}`]}</span>}
                       </div>
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Price (B2C)</div>
+                <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[2]}  (B2C)</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -202,7 +225,9 @@ function ProductbuilderTable(props) {
                        {errors[`priceB2C${index}`] && <span className="text-red-500">{errors[`priceB2C${index}`]}</span>}
                       </div></div>
               <div>
-                <div class="font-bold text-xs font-poppins text-black">VAT (in %)</div>
+                <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[0]}
+                   {/* VAT  */}
+                   (in %)</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -216,7 +241,7 @@ function ProductbuilderTable(props) {
             </div>
             <div class="mt-4">
             <Button type="primary" onClick={() => handleSave(index)}>
-              Submit
+            {translatedMenuItems[4]}  {/* Submit */}
             </Button>
             </div>
             
@@ -227,10 +252,10 @@ function ProductbuilderTable(props) {
         <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">        
               <div className=""></div>
-            <div className=" md:w-[7%]">Currency</div>
-            <div className=" md:w-[6.1rem]">Price(B2B)</div>
-            <div className=" md:w-[4.2rem] ">Price(B2C)</div>
-            <div className="md:w-[5.8rem]">VAT(%)</div>
+            <div className=" md:w-[7%]"> {translatedMenuItems[1]} </div>
+            <div className=" md:w-[6.1rem]"> {translatedMenuItems[2]}(B2B)</div>
+            <div className=" md:w-[4.2rem] "> {translatedMenuItems[2]}(B2C)</div>
+            <div className="md:w-[5.8rem]"> {translatedMenuItems[3]}(%)</div>
             <div className="w-12"></div>             </div>
 
           {data.length ? data.map((item) => {
@@ -327,12 +352,12 @@ function ProductbuilderTable(props) {
                       <Button 
                       type="primary"
                       onClick={() => handleUpdate(item)}>
-                        Save
+                       {translatedMenuItems[5]} {/* Save */}
                       </Button>
                         <Button 
                          type="primary"
                         onClick={() => handleCancelClick(item.productCurrencyId)} className="ml-[0.5rem]">
-                        Cancel
+                       {translatedMenuItems[6]} {/* Cancel */}
                       </Button>
                       </>
                       

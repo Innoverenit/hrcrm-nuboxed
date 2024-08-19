@@ -20,7 +20,9 @@ const PriceDrawer = (props) => {
         onClose={() => handlePriceDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <PriceAddTable particularDiscountData={particularDiscountData} />
+          <PriceAddTable particularDiscountData={particularDiscountData} 
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

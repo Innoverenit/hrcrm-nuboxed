@@ -1,4 +1,4 @@
-import React from "react";
+import React, {  lazy, Suspense }  from "react";
 import Button from "antd/lib/button";
 import { connect } from "react-redux";
 import { base_url } from "../../../Config/Auth";
@@ -8,11 +8,11 @@ import { Tooltip } from "antd";
 import {
   handleUploadProductModal
 } from "../ProductAction";
-
+import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { FileExcelOutlined } from "@ant-design/icons";
-import UploadCatalogue from "./UploadCatalogue";
 import UploadIcon from '@mui/icons-material/Upload';
+const UploadCatalogue=lazy(()=>import("./UploadCatalogue"));
 
 class ProductActionRight extends React.Component {
   constructor(props) {
@@ -94,13 +94,13 @@ class ProductActionRight extends React.Component {
           </Tooltip>
          
         </div>
-        
+        <Suspense fallback={<BundleLoader />}>
         <UploadCatalogue
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
           handleUploadProductModal={this.props.handleUploadProductModal}
           uploadProductList={this.props.uploadProductList}
-        />
+        /></Suspense>
       </>
     );
   }

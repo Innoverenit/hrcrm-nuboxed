@@ -18,7 +18,9 @@ const UpdateProductModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <UpdateProductForm />
+          <UpdateProductForm
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage} />
         </Suspense>
       </StyledDrawer>
     </>

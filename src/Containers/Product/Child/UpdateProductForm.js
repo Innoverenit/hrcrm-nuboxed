@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { base_url2 } from "../../../Config/Auth";
 import * as Yup from "yup";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import MultiImageUpload from "../../../Components/MultiImageUpload";
 import { updateProduct } from "../ProductAction";
@@ -12,8 +13,8 @@ import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { CurrencySymbol } from "../../../Components/Common";
 import { getWorkflowList } from "../../Production/ProductionAction";
-import ProductImagesView from "./ProductImagesView";
 
+const ProductImagesView =lazy(()=>import("./ProductImagesView"));
 const ProductSchema = Yup.object().shape({
   categoryName: Yup.string().required("Please provide First Name"),
   // subCategoryName: Yup.string().required("Please provide First Name"),
@@ -32,7 +33,8 @@ class Productform extends Component {
   constructor(props){
     super(props);
     this.state = {
-imageIds:[],
+      imageIds:[],
+      translatedMenuItems: [],
     };
     this.handleSetImage = this.handleSetImage.bind(this);
   }
@@ -44,9 +46,41 @@ imageIds:[],
     }));
   }
 
-  componentDidMount() {
+  componentDidMount() { 
+    this.fetchMenuTranslations();
     this.props.getWorkflowList(this.props.orgId)
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "Price",
+        "Article",
+        "Name",
+        "Category",
+        "Sub Category",
+        "Attribute",
+        "Sub Attribute",
+        "Weight",
+        "Length",
+        "Width",
+        "Height",
+        "Brand",
+        "Model",
+        "Description",
+        " Update"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }};
 
   render() {
     const Imagedata = this.state.imageIds && this.state.imageIds.map((str, index) => ({ imageId: str}));
@@ -61,7 +95,7 @@ imageIds:[],
     const { updateProductById, updateProduct } = this.props;
     const currencySymbol = (
       <span>
-        Price&nbsp;
+        {this.state.translatedMenuItems[0]} {/* Price */}
         <CurrencySymbol currencyType={"INR"} />
       </span>
     );
@@ -148,9 +182,10 @@ imageIds:[],
                     <div>  
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-full">
+                        <div class=" font-bold font-poppins text-xs"> {this.state.translatedMenuItems[1]} #</div>
                         <Field
                    name="articleNo"
-                   label="Article #"
+                  //  label="Article #"
                    placeholder="Article No"
                    width={"100%"}
                    isColumn
@@ -159,10 +194,11 @@ imageIds:[],
                  />
                         </div>
                         <div class=" w-1/2 max-sm:w-full">
+                        <div class=" font-bold font-poppins text-xs"> {this.state.translatedMenuItems[2]}</div>
                         <Field
                         isRequired
                     name="name"
-                    label="Name"
+                    // label="Name"
                     isColumn
                     width={"100%"}
                     inlineLabel
@@ -175,6 +211,7 @@ imageIds:[],
 
 <div class="flex justify-between mt-4">
 <div class="w-[48%]">
+<div class=" font-bold font-poppins text-xs"> {this.state.translatedMenuItems[3]}</div>
                   <Field
                     defaultValue={{
                       label: this.props.setEditingProducts.categoryName,
@@ -182,7 +219,7 @@ imageIds:[],
                     }}
                     isRequired
                     name="categoryName"
-                    label="Category"
+                    // label="Category"
                     placeholder="Start typing..."
                     optionLabel="categoryName"
                     optionValue="categoryName"
@@ -196,14 +233,14 @@ imageIds:[],
                 
                
                   <div class="w-[47%]">
-                 
+                  <div class=" font-bold font-poppins text-xs"> {this.state.translatedMenuItems[4]}</div>
                   <Field
                     defaultValue={{
                       label: this.props.setEditingProducts.subCategoryName,
                       value: this.props.setEditingProducts.subCategoryName,
                     }}
                     name="subCategoryName"
-                    label="Sub Category"
+                    // label="Sub Category"
                     placeholder="Start typing to search or create..."
                     optionLabel="subCategoryName"
                     optionValue="subCategoryName"
@@ -220,14 +257,14 @@ imageIds:[],
        
 
                   <div class="w-[47%]">
-
+                  <div class=" font-bold font-poppins text-xs"> {this.state.translatedMenuItems[5]}</div>
                       <Field
                         defaultValue={{
                           label: this.props.setEditingProducts.attributeName,
                           value: this.props.setEditingProducts.attributeName,
                         }}
                         name="attributeName"
-                        label="Attribute"
+                        // label="Attribute"
                         placeholder="Start typing to search or create..."
                         optionLabel="attributeName"
                         optionValue="attributeName"
@@ -240,13 +277,14 @@ imageIds:[],
                     </div>
                     <div class=" mt-3" />
                     <div class="w-[47%]">
+                    <div class=" font-bold font-poppins text-xs"> {this.state.translatedMenuItems[6]}</div>
                       <Field
                         defaultValue={{
                           label: this.props.setEditingProducts.subAttributeName,
                           value: this.props.setEditingProducts.subAttributeName,
                         }}
                         name="subAttributeName"
-                        label="Sub Attribute"
+                        // label="Sub Attribute"
                         placeholder="Start typing to search or create..."
                         optionLabel="subAttributeName"
                         optionValue="subAttributeName"
@@ -323,7 +361,9 @@ imageIds:[],
                   </div> */}
 <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <div class="font-bold text-xs font-poppins text-black">Weight</div>
+                    <div class="font-bold text-xs font-poppins text-black">
+                    {this.state.translatedMenuItems[7]} {/* Weight */}
+                      </div>
                       <Field
                         name="weight"
                         isColumn
@@ -333,7 +373,9 @@ imageIds:[],
                       />
                     </div>
                     <div class="w-[47%]">
-                    <div class="font-bold text-xs font-poppins text-black">Length</div>
+                    <div class="font-bold text-xs font-poppins text-black">
+                    {this.state.translatedMenuItems[8]}{/* Length */}
+                      </div>
                       <Field
                         name="length"
                         //label="UOM"
@@ -349,7 +391,10 @@ imageIds:[],
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <div class="font-bold text-xs font-poppins text-black">Width</div>
+                    <div class="font-bold text-xs font-poppins text-black">
+                      {/* Width */}{this.state.translatedMenuItems[9]}
+
+                    </div>
                       <Field
                         name="width"
                         isColumn
@@ -359,7 +404,10 @@ imageIds:[],
                       />
                     </div>
                     <div class="w-[47%]">
-                    <div class="font-bold text-xs font-poppins text-black">Height</div>
+                    <div class="font-bold text-xs font-poppins text-black">
+                    {this.state.translatedMenuItems[10]}  {/* Height */}
+
+                    </div>
                       <Field
                         name="height"
                         isColumn
@@ -378,13 +426,15 @@ imageIds:[],
                 <div class="h-full w-[45%]">
                 <div class="flex justify-between ">
                 <div class="w-[48%]">
+               <div class="font-bold text-xs font-poppins text-black">
+                      {this.state.translatedMenuItems[11]}</div>
                       <Field
                       // defaultValue={{
                       //   label: this.props.setEditingProducts.brand,
                       //   value: this.props.setEditingProducts.brand,
                       // }}
                         name="brand"
-                        label="Brand"
+                        // label="Brand"
                         // placeholder="Search or Create"
                         // optionLabel="categoryName"
                         // optionValue="categoryName"
@@ -398,9 +448,11 @@ imageIds:[],
                     </div>
 
                     <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">
+                    {this.state.translatedMenuItems[12]}</div>
                       <Field
                         name="model"
-                        label="Model"
+                        // label="Model"
                         component={InputComponent}
                         isColumn
                         inlineLabel
@@ -412,9 +464,11 @@ imageIds:[],
               
                     <div class="flex justify-between">
 <div class="w-full">
+<div class="font-bold text-xs font-poppins text-black">
+{this.state.translatedMenuItems[13]}</div>
                       <Field
                         name="description"
-                        label="Description"
+                        // label="Description"
                         isColumn
                         width={"350px"}
                         component={TextareaComponent}
@@ -430,7 +484,8 @@ imageIds:[],
                     
                   </div>
                   <div class="mt-3">
-                      <ProductImagesView />
+                  <Suspense fallback={<BundleLoader />}>
+                      <ProductImagesView /></Suspense>
                     </div>
                 </div>
               </div>
@@ -441,7 +496,7 @@ imageIds:[],
                   htmlType="submit"
                   loading={updateProductById}
                 >
-                  Update
+                 {this.state.translatedMenuItems[14]} {/* Update */}
                 </Button>
               </div>
             </Form>

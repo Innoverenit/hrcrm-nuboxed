@@ -3,21 +3,9 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 // import { getmaterialsBySuppliesId } from "./InventoryAction";
-import { Link } from "react-router-dom";
-import { MultiAvatar } from "../../../../Components/UI/Elements";
-import { CurrencySymbol } from "../../../../Components/Common";
+
 import styled from "styled-components";
 import { Select } from "../../../../Components/UI/Elements";
-import Tooltip from '@mui/material/Tooltip';
-import { BundleLoader } from "../../../../Components/Placeholder";
-import { Button } from "antd";
-import {
-  DeleteOutlined,
-  MinusOutlined,
-  PlusOutlined,
-} from '@ant-design/icons';
-import Carousel from "react-elastic-carousel";
-import { base_url } from "../../../../Config/Auth";
 import MaterialsDetailsCardViewId from "./MaterialsDetailsCardViewId";
 import {getMaterialsBySuppliesId} from "../SuppliesAction";
 import "../Supplies.scss";

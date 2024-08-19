@@ -2,8 +2,8 @@ import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
-import ProductHeader from "./Child/ProductHeader";
 import { handleConfigureModal, setProductViewType } from "./ProductAction";
+const ProductHeader=lazy(()=>import("./Child/ProductHeader"));
 const ProductDeleteList =lazy(()=>import("./Child/ProductTable/ProductDeleteList"));
 const ProductCategory =lazy(()=>import("./Child/ProductTable/ProductCategory"));
 const ProductListingTable =lazy(()=>import("./Child/ProductTable/ProductListingTable"));
@@ -23,6 +23,7 @@ class Product extends Component {
     } = this.props;
     return (
       <React.Fragment>
+         <Suspense fallback={<BundleLoader />}>
         <ProductHeader
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
@@ -38,7 +39,7 @@ class Product extends Component {
         />
 
 
-        <Suspense fallback={<BundleLoader />}>
+       
           {this.props.viewType === "all" ?
             (<ProductListingTable
               translateText={this.props.translateText}

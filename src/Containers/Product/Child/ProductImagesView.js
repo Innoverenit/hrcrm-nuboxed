@@ -1,7 +1,6 @@
 
 import ImageGallery from 'react-image-gallery';
-import React, { Component, Suspense, lazy } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import '../../../../node_modules/react-image-gallery/styles/css/image-gallery.css';
 
 const images = [
