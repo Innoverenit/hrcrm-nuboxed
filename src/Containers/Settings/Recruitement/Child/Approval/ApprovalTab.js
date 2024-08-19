@@ -62,37 +62,37 @@ function ApprovalTab(props) {
         },
         ]
 
-        // const renderTabContent = (key) => {
-        //     const tab = tabData.find(tab => tab.id === key);
-        //     console.log(tab)
-        //     if (!tab) return null;
+        const renderTabContent = (key) => {
+            const tab = tabData.find(tab => tab.id === key);
+            console.log(tab)
+            if (!tab) return null;
         
-        //     return<ApproveForm
-        //     label={tab.tabName} 
-        //     activeKey={activeKey}
-        //     // processForWorkflowData={props.processForWorkflowData}
+            return<ApproveForm
+            label={tab.tabName} 
+            activeKey={activeKey}
+            // processForWorkflowData={props.processForWorkflowData}
         
-        //     // count={countMapping[tab.name]} 
-        //     />;
-        //   };
-        //   useEffect(() => {
+            // count={countMapping[tab.name]} 
+            />;
+          };
+          useEffect(() => {
            
             
-        //     if (tabData.length > 0) {
+            if (tabData.length > 0) {
            
-        //       setActiveKey(tabData[0]?.id);
-        //     }
-        //   }, [tabData]);
-        //   useEffect(() => {
-        //     // Ensure the initial tab content is rendered on component mount
-        //     renderTabContent(activeKey);
+              setActiveKey(tabData[0]?.id);
+            }
+          }, [tabData]);
+          useEffect(() => {
+            // Ensure the initial tab content is rendered on component mount
+            renderTabContent(activeKey);
             
-        //   }, [activeKey]);
+          }, [activeKey]);
 
     return (
         <>
             <TabsWrapper>
-                <StyledTabs defaultActiveKey="1" type="card">
+                {/* <StyledTabs defaultActiveKey="1" type="card">
                     <TabPane tab={`Leaves`} key="1">
                         <div class=" mt-4" >
                         <ApproveForm/>
@@ -136,9 +136,9 @@ function ApprovalTab(props) {
                         </div>
                     </TabPane>
                     
-                </StyledTabs>
+                </StyledTabs> */}
 
-{/* <Tabs type="card" defaultActiveKey={activeKey} onChange={handleTabChange}>
+ <Tabs type="card" defaultActiveKey={activeKey} onChange={handleTabChange}>
         {tabData.map(tab => (
           <TabPane
             tab={
@@ -155,7 +155,7 @@ function ApprovalTab(props) {
       </Tabs>
       <Suspense fallback={<div className="flex justify-center">Loading...</div>}>
         {renderTabContent(activeKey)}
-      </Suspense> */}
+      </Suspense> 
             </TabsWrapper>
         </>
     );
