@@ -23,7 +23,7 @@ class OrganizationDetailLeft extends Component {
     const { organizationDetails } = this.props;
     console.log(organizationDetails);
     return (
-      <div class=" flex flex-col block">
+      <div class=" flex flex-col ">
         <OrganizationOverviewCard
          organizationList={this.props.organizationList} 
          organization={organizationDetails} />

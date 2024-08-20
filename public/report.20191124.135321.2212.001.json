@@ -5022,13 +5022,7 @@
       "address": "1665727582128",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Organization\\Child\\OrganizationCards\\OrganizationStatsView.js"
     },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665727576608",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Organization\\Child\\OrganizationCards\\OrganizationTermsCard.js"
-    },
+   
     {
       "type": "fs_event",
       "is_active": "1",
