@@ -240,7 +240,6 @@ const ContactInvest = lazy(() => import("../ContactInvest/ContactInvest"));
 const Investor = lazy(() => import("../Investor/Investor"));
 const InvestorDetail = lazy(() => import("../Investor/Child/InvestorDetail/InvestorDetail"));
 const ContactInvestDetail = lazy(() => import("../ContactInvest/Child/ContactInvestDetail/ContactInvestDetail"));
-const DealDetail = lazy(() => import("../Deal/Child/DealDetail/DealDetail"));
 const Product = lazy(() => import("../Product/Product"));
 const Collection = lazy(() => import("../Collection/Collection"));
 const Plant = lazy(() => import("../Plant/Plant"));
@@ -1529,18 +1528,7 @@ function MainApp(props) {
                            selectedLanguage={selectedLanguage}
                         />
                       )}
-                    />
-                      <Route
-                      exact
-                      path="/dealDetails/:invOpportunityId"
-                      render={(props) => (
-                        <DealDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
-                    />
+                    />                      
                     <Route
                       exact
                       path="/subscriptionmainapps"
