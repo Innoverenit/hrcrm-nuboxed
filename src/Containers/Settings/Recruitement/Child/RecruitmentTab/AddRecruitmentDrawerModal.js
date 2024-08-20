@@ -1,14 +1,11 @@
-import React, { Component, Suspense } from "react";
-
+import React, { Component, Suspense, lazy } from "react";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import{handleRecruitmentDrawerModal} from "../../../SettingsAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
-import { sortedLastIndex } from "lodash";
-import WorkflowDocument from "../../../../Settings/Recruitement/Child/RecruitmentTab/WorkflowDocument";
-import { Modal } from "antd";
 
+const  WorkflowDocument = lazy(() => import( "../../../../Settings/Recruitement/Child/RecruitmentTab/WorkflowDocument"));
 class AddRecruitmentDrawerModal extends Component {
   render() {
     const {

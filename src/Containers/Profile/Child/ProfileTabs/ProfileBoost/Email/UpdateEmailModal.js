@@ -24,7 +24,9 @@ class UpdateEmailModal extends Component {
           onClose={() => handleUpdateEmailModal(false)}
           footer={null}
         >
-          <Suspense fallback={<BundleLoader />}>{<UpdateEmailForm />}</Suspense>
+          <Suspense fallback={<BundleLoader />}>{<UpdateEmailForm 
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}/>}</Suspense>
         </StyledDrawer>
       </>
     );

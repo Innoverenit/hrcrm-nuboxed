@@ -29,7 +29,9 @@ class UpdateTrainingModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <UpdateTrainingForm />
+            <UpdateTrainingForm
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage} />
           </Suspense>
         </StyledDrawer>
       </>

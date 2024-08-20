@@ -30,7 +30,9 @@ class UpdatePersonalModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <UpdatePersonalForm />
+            <UpdatePersonalForm 
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
         </StyledDrawer>
       </>

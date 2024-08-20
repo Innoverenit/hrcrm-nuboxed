@@ -34,7 +34,9 @@ class AddPersonalDetailsModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <PersonalDetailDocumentForm employeeId={this.props.employeeId}/>
+            <PersonalDetailDocumentForm employeeId={this.props.employeeId}
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
         </StyledDrawer>
       </>

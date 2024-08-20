@@ -58,7 +58,7 @@ class EmployeesActionRight extends React.Component {
               <a
                 href={`${base_url}/excel/export/vendor/user/employee/${userId}`}
               >
-                <InsertDriveFileIcon style={{ fontSize: "x-large" }} />
+                <InsertDriveFileIcon className="!text-icon" />
               </a>
             </Tooltip>
           )}

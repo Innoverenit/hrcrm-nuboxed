@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy , Suspense} from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
@@ -183,11 +183,13 @@ class EmploymentTable extends Component {
           loading={fetchingEmploymentDetails || fetchingEmploymentDetailsError}
           onChange={console.log("task onChangeHere...")}
         />
-
+       <Suspense fallback={"Loading ..."}>
         <UpdateEmploymentModal
           updateEmploymentModal={updateEmploymentModal}
           handleUpdateEmploymentModal={handleUpdateEmploymentModal}
-        />
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        /></Suspense>
         {/* )} */}
       
       </>

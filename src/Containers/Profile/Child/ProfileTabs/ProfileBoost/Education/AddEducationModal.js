@@ -30,7 +30,9 @@ class AddEducationModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <EducationDocumentForm employeeId={this.props.employeeId}/>
+            <EducationDocumentForm employeeId={this.props.employeeId}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
         </StyledDrawer>
       </>

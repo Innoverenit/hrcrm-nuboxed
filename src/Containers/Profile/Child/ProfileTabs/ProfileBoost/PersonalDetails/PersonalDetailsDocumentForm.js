@@ -19,8 +19,36 @@ class PersonalDetailsDocumentForm extends Component {
     super(props);
     this.state = {
       active: "Full Time",
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+      "Type",
+       "Document ID number",
+       "Name of Document",
+       "Description of Document",
+       "Submit"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
   glassButtoClick = (type) => {
     this.setState({ active: type });
     // alert(this.state.active)
@@ -63,18 +91,17 @@ class PersonalDetailsDocumentForm extends Component {
             <Form className="form-background">
               <div class=" flex w-full h-full justify-between"
               >
-                <div class=" w-[45%]"
-
-                >
+                <div class=" w-[45%]">
+                <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[0]}</div>
                   <FastField
                     name="documentTypeId"
                     // type="text"
                     selectType="documentTypeName"
                     isColumnWithoutNoCreate
                     //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                    // label={
+                    //   <FormattedMessage id="app.type" defaultMessage="Type" />
+                    // }
                     // options={[
                     //   "Aadhar Card",
                     //   "Voter-Id Card",
@@ -89,6 +116,7 @@ class PersonalDetailsDocumentForm extends Component {
                      />
                 
                   <div class=" mt-3">
+                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[1]}</div>
                     <Field
                       isRequired
                       name="idNo"
@@ -96,12 +124,12 @@ class PersonalDetailsDocumentForm extends Component {
                       isColumn
                       width={"100%"}
                       //label="Document ID number"
-                      label={
-                        <FormattedMessage
-                          id="app.idNo"
-                          defaultMessage="Document ID number"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.idNo"
+                      //     defaultMessage="Document ID number"
+                      //   />
+                      // }
                       component={InputComponent}
                       inlineLabel
                      />
@@ -116,16 +144,16 @@ class PersonalDetailsDocumentForm extends Component {
                     component={DragableUpload}
                   />
                  <div class=" mt-3">
-
+                 <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[2]}</div>
                   <Field
                     name="documentTitle"
                     //label="Name of Document"
-                    label={
-                      <FormattedMessage
-                        id="app.documentTitle"
-                        defaultMessage="Name of Document"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.documentTitle"
+                    //     defaultMessage="Name of Document"
+                    //   />
+                    // }
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -133,15 +161,16 @@ class PersonalDetailsDocumentForm extends Component {
                   />
                   </div>
                   <div class=" mt-3">
+                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
                   <Field
                     name="documentDescription"
                     //label="Description of Document"
-                    label={
-                      <FormattedMessage
-                        id="app.documentDescription"
-                        defaultMessage="Description of Document"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.documentDescription"
+                    //     defaultMessage="Description of Document"
+                    //   />
+                    // }
                     isRequired
                     isColumn
                     width={"100%"}
@@ -158,7 +187,7 @@ class PersonalDetailsDocumentForm extends Component {
                   type="primary"
                   Loading={addingPersonalDocumentDetails}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                  {this.state.translatedMenuItems[4]}{/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
                 </Button>
               </div>
             </Form>

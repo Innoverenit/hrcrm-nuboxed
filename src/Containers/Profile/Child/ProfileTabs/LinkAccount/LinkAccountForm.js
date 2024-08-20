@@ -13,6 +13,40 @@ import Button from "antd/lib/button";
 } from "../../../ProfileAction";
 
 class LinkAccountForm extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+      activeKey: "1",
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "Send OTP",
+        "Validate",
+        "Submit"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+  
   state = {
     type: "password",
     type1: "password",
@@ -120,7 +154,7 @@ class LinkAccountForm extends Component {
                                 }}
 
                               >
-                                Send OTP
+                                {this.state.translatedMenuItems[0]} {/* Send OTP */}
                               </Button>
                             </div>
                           </div>
@@ -153,7 +187,7 @@ class LinkAccountForm extends Component {
                                 }}
                               // disabled={!this.state.sendOtpClicked}
                               >
-                                Validate
+                                 {this.state.translatedMenuItems[1]}{/* Validate */}
                               </Button>
                             </div>
                           </div>
@@ -194,7 +228,7 @@ class LinkAccountForm extends Component {
                                 }}
 
                               >
-                                Send OTP
+                                {this.state.translatedMenuItems[0]} {/* Send OTP */}
                               </Button>
                             </div>
                           </div>
@@ -228,7 +262,7 @@ class LinkAccountForm extends Component {
                                 }}
                               // disabled={!this.state.sendOtpClicked}
                               >
-                                Validate
+                                 {this.state.translatedMenuItems[1]}{/* Validate */}
                               </Button>
                             </div>
                           </div>
@@ -255,7 +289,7 @@ class LinkAccountForm extends Component {
                                 secondaryEmailId:values.email2,
                               })}
                             >
-                            Submit
+                            {this.state.translatedMenuItems[2]} {/* Submit */}
                             </Button>
                           </span>
                         </div>
