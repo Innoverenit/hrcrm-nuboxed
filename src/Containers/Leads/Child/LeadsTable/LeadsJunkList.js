@@ -56,9 +56,6 @@ const LeadsJunkList = (props) => {
   }
   const { deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingJunkedLeads,junkedLeadsData  } = props;
 
-  // if (fetchingJunkedLeads) {
-  //   return <BundleLoader />;
-  // }
   const handleLoadMore = () => {
     const callPageMapd = props.junkedLeadsData && props.junkedLeadsData.length &&props.junkedLeadsData[0].pageCount
     setTimeout(() => {
@@ -98,7 +95,7 @@ if (isMobile){
         dataLength={junkedLeadsData.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingJunkedLeads?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
+        loader={fetchingJunkedLeads?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"75vh"}
       > */}
       {junkedLeadsData.map((item) => { 
@@ -151,7 +148,7 @@ if (isMobile){
                                   <Tooltip>
                                     <div class="max-sm:w-full justify-between flex md:flex-col">
                                      
-                                      <h4 class="text-[0.82rem] flex  font-semibold  font-poppins cursor-pointer">
+                                      <div class="text-xs flex  font-semibold  font-poppins cursor-pointer">
                                       {item.name}
                                      &nbsp;&nbsp;
                                      {date === currentdate ? (
@@ -162,8 +159,7 @@ if (isMobile){
     </span>
   ) : null}   
 
- 
-                                      </h4>
+                                      </div>
                                       </div>
                                   </Tooltip>
                                   </div>
@@ -232,32 +228,32 @@ props.updateTypeForLead(item.leadsId,typ)
 </div>
 <div class="flex justify-between items-center w-wk "> 
                           <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                     <h4 class=" text-[0.82rem]  font-poppins">  
+                     <div class=" text-xs  font-poppins">  
                      {item.countryDialCode && item.phoneNumber ? (
 `${item.countryDialCode} ${item.phoneNumber}`
 ) : (
 "None"
 )} 
                     
-                     </h4>
+                     </div>
                  </div>
-                 <div className=" flex font-medium flex-col justify-center md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                            <h4 class=" text-[0.82rem]  font-poppins">
+                 <div className=" flex  justify-center md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins">
                             <CountryFlag1 countryCode={countryCode} />
                       &nbsp;
                       {countryCode}
-                            </h4>
+                            </div>
                         </div>
                
                  </div>
                  <div class="flex justify-between items-center w-wk "> 
-                 <div className=" flex font-medium flex-col justify-center  md:w-40 max-sm:flex-row w-full max-sm:justify-between ">
-                     <h4 class=" text-[0.82rem]  font-semibold  font-poppins">   
+                 <div className=" flex  justify-center  md:w-40 max-sm:flex-row w-full max-sm:justify-between ">
+                     <div class=" text-xs  font-semibold  font-poppins">   
                      <Link to={`leads/${item.leadsId}`} title={item.companyName || "None"}>
 {item.companyName || "None"}
 </Link>
 
-                     </h4>
+                     </div>
                  </div>
                  <div class="rounded-full bg-white  h-5 cursor-pointer w-8">
               {item.url !== null ? (
@@ -270,7 +266,7 @@ props.updateTypeForLead(item.leadsId,typ)
             {" "}
             <a href={`https://www.${item.url}`} target="_blank">
               <OpenInBrowserIcon
-                className=" !text-xl cursor-pointer text-green-800"
+                className=" !!text-icon cursor-pointer text-green-800"
               />
             </a>
           </span>
@@ -278,16 +274,16 @@ props.updateTypeForLead(item.leadsId,typ)
       ) : null}
                   </div>
                  
-                          <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between ">
-                              <h4 class=" text-[0.82rem]  font-poppins">   
+                          <div className=" flex   md:w-28 max-sm:flex-row w-full max-sm:justify-between ">
+                              <div class=" text-xs  font-poppins">   
                               {item.sector}
-                              </h4>
+                              </div>
                           </div>
                           </div>
                           <div class="flex justify-between items-center w-wk "> 
-                          <div className=" flex font-medium flex-col justify-center md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex  justify-center md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
 
-                              <div class=" text-[0.82rem]  font-poppins">
+                              <div class=" text-xs  font-poppins">
                               
                               <div>
                       {item.assignedTo === null ? (
@@ -310,7 +306,7 @@ props.updateTypeForLead(item.leadsId,typ)
        
                               </div>
                           </div>
-                          <div className=" flex font-medium flex-col justify-center md:w-20  max-sm:flex-row w-full max-sm:justify-between">
+                          <div className=" flex  justify-center md:w-20  max-sm:flex-row w-full max-sm:justify-between">
                  
                  <span>
         <MultiAvatar
@@ -322,7 +318,7 @@ props.updateTypeForLead(item.leadsId,typ)
         />
       </span>
              </div>
-             <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
+             <div className=" flex  md:w-32 max-sm:flex-row w-full justify-between ">
                               <div class=" text-[0.75rem]  font-poppins">
 
                               </div>
@@ -335,11 +331,11 @@ Resinstate
 </div>
                           </div>
                          
-                          <div class="flex flex-col w-[5%] max-sm:flex-row max-sm:w-[10%]">
+                          <div class="flex  w-[5%] max-sm:flex-row max-sm:w-[10%]">
                           <div>
       <Tooltip title="Edit">
         <BorderColorIcon
-        className="!text-xl cursor-pointer text-[tomato]"
+        className="!!text-icon cursor-pointer text-[tomato]"
           onClick={() => {
             props.setEditLeads(item);
             handleUpdateLeadsModal(true);
@@ -357,7 +353,7 @@ Resinstate
     >
       <DeleteOutlined
         type="delete"
-        className=" !text-xl cursor-pointer text-[red]"
+        className=" !!text-icon cursor-pointer text-[red]"
       />
     </StyledPopconfirm>
                   </div>
@@ -366,7 +362,7 @@ Resinstate
 
               </div>
               </div>
-              <div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[10%]">
+              <div class="flex  w-[2%] max-sm:flex-row max-sm:w-[10%]">
                 <div>
               <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
       <span
@@ -374,7 +370,7 @@ Resinstate
           cursor: "pointer",
         }}
       >
-      <LocationOnIcon    className="!text-xl cursor-pointer text-[#960a0a]"/>
+      <LocationOnIcon    className="!!text-icon cursor-pointer text-[#960a0a]"/>
       </span>
     </Tooltip>
     </div>
@@ -382,7 +378,7 @@ Resinstate
     <Tooltip title={item.email}>
         <MailOutlineIcon
           type="mail"
-          className="!text-xl cursor-pointer text-green-400"
+          className="!!text-icon cursor-pointer text-green-400"
           onClick={() => {
             handleSetCurrentLeadsId(item);
             props.handleLeadsEmailDrawerModal(true);
@@ -487,7 +483,7 @@ Resinstate
                                   <Tooltip>
                                     <div class="max-sm:w-full justify-between flex md:flex-col">
                                      
-                                      <div class="text-[0.82rem] flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
+                                      <div class="text-xs flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
                                       {item.name}
                                      &nbsp;&nbsp;
                                      {date === currentdate ? (
@@ -569,7 +565,7 @@ props.updateTypeForLead(item.leadsId,typ)
 </div>
 <div class="flex"> 
                           <div className=" flex font-medium flex-col  w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
-                     <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
+                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
                      {item.countryDialCode && item.phoneNumber ? (
 `${item.countryDialCode} ${item.phoneNumber}`
 ) : (
@@ -578,8 +574,8 @@ props.updateTypeForLead(item.leadsId,typ)
                     
                      </div>
                  </div>
-                 <div className=" flex font-medium flex-col justify-center w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[3rem] ">
-                            <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                 <div className=" flex  justify-center w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[3rem] ">
+                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <CountryFlag1 countryCode={countryCode} />
                       &nbsp;
                       {countryCode}
@@ -588,8 +584,8 @@ props.updateTypeForLead(item.leadsId,typ)
                
                  </div>
                  <div class="flex"> 
-                 <div className=" flex font-medium flex-col justify-center  w-40 max-sm:flex-row  max-sm:justify-between max-xl:w-[7rem] max-lg:w-[4rem] ">
-                     <div class=" text-[0.82rem]  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
+                 <div className=" flex  justify-center  w-40 max-sm:flex-row  max-sm:justify-between max-xl:w-[7rem] max-lg:w-[4rem] ">
+                     <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
                      <Link to={`leads/${item.leadsId}`} title={item.companyName || "None"}>
 {item.companyName || "None"}
 </Link>
@@ -607,7 +603,7 @@ props.updateTypeForLead(item.leadsId,typ)
             {" "}
             <a href={`https://www.${item.url}`} target="_blank">
               <OpenInBrowserIcon
-                className=" !text-xl cursor-pointer text-green-800"
+                className=" !!text-icon cursor-pointer text-green-800"
               />
             </a>
           </div>
@@ -615,16 +611,16 @@ props.updateTypeForLead(item.leadsId,typ)
       ) : null}
                   </div>
                  
-                          <div className=" flex font-medium flex-col  w-28 max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[4rem] max-lg:max-w-[10ch] truncate">
-                              <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">   
+                          <div className=" flex   w-28 max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[4rem] max-lg:max-w-[10ch] truncate">
+                              <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">   
                               {item.sector}
                               </div>
                           </div>
                           </div>
                           <div class="flex mb-1"> 
-                          <div className=" flex font-medium flex-col justify-center w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[3rem] max-lg:w-[2rem] ">
+                          <div className=" flex  justify-center w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[3rem] max-lg:w-[2rem] ">
 
-                              <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               
                               <div>
         {item.assignedTo === null ? (
@@ -652,7 +648,7 @@ props.updateTypeForLead(item.leadsId,typ)
         />
       </div>
              </div>
-             <div className=" flex font-medium items-center  md:w-32 max-sm:flex-row w-full  ">
+             <div className=" flex  items-center  md:w-32 max-sm:flex-row w-full  ">
                               <div class=" text-[0.75rem]  font-poppins">
 
                               </div>
@@ -665,11 +661,11 @@ Resinstate
 </div>
                           </div>
                          
-                          <div class="flex flex-col w-[5%] max-sm:flex-row max-sm:w-[10%]">
+                          <div class="flex  w-[5%] max-sm:flex-row max-sm:w-[10%]">
                           <div>
       <Tooltip title="Edit">
         <BorderColorIcon
-          className="!text-xl cursor-pointer text-[tomato]"
+          className="!!text-icon cursor-pointer text-[tomato]"
           onClick={() => {
             props.setEditLeads(item);
             handleUpdateLeadsModal(true);
@@ -688,7 +684,7 @@ Resinstate
          <Tooltip title="Delete">
       <DeleteOutlined
         type="delete"
-        className=" !text-xl cursor-pointer text-[red]"
+        className=" !!text-icon cursor-pointer text-[red]"
       />
       </Tooltip>
     </StyledPopconfirm>
@@ -704,7 +700,7 @@ Resinstate
       <div className=""
        
       >
-      <LocationOnIcon  className="!text-xl cursor-pointer text-[#960a0a]"/>
+      <LocationOnIcon  className="!!text-icon cursor-pointer text-[#960a0a]"/>
       </div>
     </Tooltip>
     </div>
@@ -712,7 +708,7 @@ Resinstate
     <Tooltip title={item.email}>
         <MailOutlineIcon
           type="mail"
-          className="!text-xl cursor-pointer text-green-400"
+          className="!!text-icon cursor-pointer text-green-400"
           onClick={() => {
             handleSetCurrentLeadsId(item);
             props.handleLeadsEmailDrawerModal(true);
@@ -789,7 +785,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} text-xl max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
+        <i className={`${iconType} !text-icon max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
       </Button>
     </Tooltip>
   );

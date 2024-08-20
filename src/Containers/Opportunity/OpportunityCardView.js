@@ -3,7 +3,6 @@ import { MultiAvatar } from "../../Components/UI/Elements";
 import { getOpportunityListByUserId } from "../Opportunity/OpportunityAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import styled from "styled-components";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 
 class OpportunityCardView extends Component {

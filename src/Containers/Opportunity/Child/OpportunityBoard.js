@@ -70,11 +70,6 @@ const StageHeader = styled.div`
 function OpportunityBoard(props) {
   const { udatingOpp } = props;
 
-  // const processData = useMemo(() => {
-  //   if (!props.opportunityProcess) return null;
-  //   let id = props.opportunityProcess[0];
-  //   return id;
-  // }, [props.opportunityProcess]);
   const processData = useMemo(() => {
     if (!props.opportunityProcess) return null;
 

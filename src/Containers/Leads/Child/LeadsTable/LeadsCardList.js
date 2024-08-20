@@ -38,7 +38,7 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedData from "./SearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const UpdateLeadsModal = lazy(() => import("../UpdateLeads/UpdateLeadsModal"));
-const OpenCETmodal = lazy(() => import("./OpenCETmodal"));
+const OpenCETmodal = lazy(() => import("./OpenCETmodal")); //ActivityModal
 const AddLeadsEmailDrawerModal = lazy(() => import("../UpdateLeads/AddLeadsEmailDrawerModal"));
 const AddLeadsNotesDrawerModal = lazy(() => import("../AddLeadsNotesDrawerModal"));
 const AddConfirmLedsStatusModal = lazy(() => import("./AddConfirmLedsStatusModal"));
@@ -1576,7 +1576,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} text-xl max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
+        <i className={`${iconType} !text-icon max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
       </Button>
     </Tooltip>
   );
@@ -1601,7 +1601,7 @@ function RoleButton1({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} text-xl max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+        <i className={`${iconType} !text-icon max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );
@@ -1626,7 +1626,7 @@ function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} text-xl max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+        <i className={`${iconType} !text-icon max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );

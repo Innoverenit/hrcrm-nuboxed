@@ -23,7 +23,7 @@ function LeadsActivityTab (props) {
           <TabsWrapper>
             <StyledTabs
               defaultActiveKey="1"
-              style={{ overflow: "visible", width: "53vw", padding: "15px" }}
+              style={{ overflow: "visible", width: "56vw", padding: "5px" }}
               animated={false}
             >
               <TabPane

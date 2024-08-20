@@ -1,5 +1,4 @@
 import React, { lazy, Suspense,useEffect } from "react";
-import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -10,7 +9,6 @@ import { PlusOutlined } from "@ant-design/icons";
 import { FormattedMessage } from "react-intl";
 import { Tooltip,Badge } from "antd";
 
-const CallLeadsTable = lazy(() => import("./CallLeadsTable"));
 const AddCallTaskModal = lazy(() => import("./AddCallTaskModal"));
 
 
@@ -26,23 +24,25 @@ const TabPane = StyledTabs.TabPane;
     console.log(props.rowdata)
     return (
       <>
-        <TabsWrapper>
-          <StyledTabs
-            defaultActiveKey="1"
-            style={{ overflow: "visible", width: "53vw", padding: "15px" }}
+        <TabsWrapper >
+          <StyledTabs className=" w-[56vw] p-2 h-[60rem] "
+          // style={{height:"65rem"}}
+            defaultActiveKey="1"            
             animated={false}
           >
             <TabPane
               tab={
                 <>
-                  <span>
+                
                   <Badge
                 count={props.leadsActivityCount.count}
                 overflowCount={999}
               > 
+                </Badge>
+                <span>
                        <i class="fas fa-phone-square"></i>&nbsp;
                   Activity
-                  </Badge>
+                
                   </span>
                 
                     <>
@@ -55,9 +55,8 @@ const TabPane = StyledTabs.TabPane;
                         }
                       >
                        &nbsp;
-                        <PlusOutlined
-                          type="plus"
-                          style={{color:"blue"}}
+                        <PlusOutlined className="text-blue-600 !text-icon"
+                          type="plus"                    
                           tooltiptitle={
                             <FormattedMessage
                               id="app.Create"
@@ -67,7 +66,7 @@ const TabPane = StyledTabs.TabPane;
                           onClick={() => {
                             handleLeadCallModal(true);
                           }}
-                          size="0.875em"
+                      
                         />
                        
                       </Tooltip>
@@ -77,12 +76,7 @@ const TabPane = StyledTabs.TabPane;
               }
               key="1"
             >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <CallLeadsTable
-                  rowdata={props.rowdata}
-                />
-              </Suspense>
+              
             </TabPane>
           
           </StyledTabs>

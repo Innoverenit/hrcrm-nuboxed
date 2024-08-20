@@ -19,7 +19,6 @@ import dayjs from "dayjs";
 const CustomerWhiteTable =lazy(()=> import("../Customer/Child/CustomerTable/CustomerWhiteTable"));
 const CustomerBlueTable =lazy(()=> import("../Customer/Child/CustomerTable/CustomerBlueTable"));
 const CustomerTeamCardList =lazy(()=> import("./Child/CustomerTable/CustomerTeamCardList"));
-const CustomerCardView =lazy(()=> import("./CustomerCardView"));
 const AddCustomerModal = lazy(() => import( "./Child/AddCustomerModal"));
 const CustomerHeader = lazy(() => import("./Child/CustomerHeader"));
 const CustomerCardList=lazy(() => import("./Child/CustomerTable/CustomerCardList"));
@@ -137,11 +136,11 @@ class Customer extends Component {
             />
         ) : (
           <>
-            {viewType === 'card' &&   <CustomerCardView
+            {/* {viewType === 'card' &&   <CustomerCardView
               translateText={this.props.translateText}
               selectedLanguage={this.props.selectedLanguage}
             translatedMenuItems={this.props.translatedMenuItems}
-            />}
+            />} */}
             {viewType === 'list' &&   <CustomerWhiteTable 
               translateText={this.props.translateText}
               selectedLanguage={this.props.selectedLanguage}

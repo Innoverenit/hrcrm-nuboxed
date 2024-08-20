@@ -24,12 +24,7 @@ class LeadsActionRight extends React.Component {
       <>
         {user.leadsCreateInd === true && user.crmInd === true &&(
         <div class=" flex  items-center">
-          {/* {user.customerFullListInd === true &&(  */}
-        {/* <LeadShareForm
-      handleDropChange={this.props.handleDropChange}
-      currentUser={this.props.currentUser} 
-      /> */}
-      {/* )} */}
+       
       {this.props.viewType==="teams" || this.props.viewType ==="all" ?  "" :
       <>
 
