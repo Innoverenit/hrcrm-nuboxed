@@ -148,6 +148,13 @@ export const LinkProcessPublish = (data, cb,) => (dispatch) => {
 };
 
 
+export const emptySkillLevel = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_SKILL_LEVEL, 
+  });
+};
+
+
 export const addTaskForRecruiter = (data, taskTypeId, cb) => (
   dispatch
 ) => {
@@ -6447,5 +6454,56 @@ export const addPaymentData = (paymentModeId,liveInd,cb) => (dispatch) => {
         payload: err,
       });
       cb && cb("Failure");
+    });
+};
+
+
+
+
+export const removeSkillData = (skillLevelLinkId) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_SKILL_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url}/category/skillLevel/delete/${skillLevelLinkId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Skill Deleted Successfully',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch({
+        type: types.REMOVE_SKILL_DATA_SUCCESS,
+        payload: skillLevelLinkId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_SKILL_DATA_FAILURE,
+        payload: err,
+      });
     });
 };
