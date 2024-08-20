@@ -3,15 +3,12 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { MailOutlined
-} from '@ant-design/icons';
 import { PlusOutlined } from "@ant-design/icons";
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import PaymentIcon from '@mui/icons-material/Payment';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import PhoneIcon from '@mui/icons-material/Phone';
-import HeadphonesIcon from '@mui/icons-material/Headphones';
 import ContrastIcon from '@mui/icons-material/Contrast';
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
@@ -19,7 +16,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+
 
 import {
   handlePersonalModal,
@@ -47,11 +44,6 @@ const SalaryTable =lazy(()=>import("./Salary/SalaryTable"));
 const AddContractModal =lazy(()=>import("./Contract/AddContractModal"));
 const ContractTable =lazy(()=>import("./Contract/ContractTable"));
 const ContactsIcon =lazy(()=>import("@mui/icons-material/Contacts"));
-const CandidateTable =lazy(()=>import("../../../../../Candidate/Child/CandidateTable/CandidateTable"));
-const OpportunityTable =lazy(()=>import("../../../../../Opportunity/Child/OpportunityTable/OpportunityTable"));
-const CustomerTable =lazy(()=>import("../../../../../Customer/Child/CustomerTable/CustomerTable"));
-const PartnerTable =lazy(()=>import("../../../../../Partner/child/PartnerTable/PartnerTable"));
-const RecruitmentTable =lazy(()=>import("../../../../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentTable"));
 const EmployeeExperienceForm =lazy(()=>import("./Experience/EmployeeExperienceForm"));
 const AddVisaModal =lazy(()=>import("./Visa/AddVisaModal"));
 const VisaTable =lazy(()=>import("./Visa/VisaTable"));
@@ -453,10 +445,7 @@ componentDidMount(){
               }
               key="12"
             >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <CandidateTable />
-              </Suspense>
+           
             </TabPane>
                 :null} 
 
@@ -486,10 +475,7 @@ componentDidMount(){
               }
               key="13"
             >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <OpportunityTable />
-              </Suspense>
+           
             </TabPane>:null}
             {this.props.singleEmployee.suspendInd? 
             <TabPane
@@ -519,7 +505,7 @@ componentDidMount(){
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <CustomerTable />
+               
               </Suspense>
             </TabPane>:null}
             {this.props.singleEmployee.suspendInd? 
@@ -542,10 +528,7 @@ componentDidMount(){
               }
               key="15"
             >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <RecruitmentTable />
-              </Suspense>
+             
             </TabPane>:null}
             {this.props.singleEmployee.suspendInd? 
             <TabPane
@@ -573,10 +556,7 @@ componentDidMount(){
               }
               key="16"
             >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <PartnerTable />
-              </Suspense>
+              
             </TabPane>:null}
 
             <TabPane

@@ -30,22 +30,7 @@ class PitchActionRight extends React.Component {
       <>
       <div>
         {this.props.viewType === "card" && user.imInd === true  &&  user.pitchCreateInd === true && (
-        <div class=" flex  items-center">
-          {/* {user.customerFullListInd === true &&(  */}
-        {/* <LeadShareForm
-      handleDropChange={this.props.handleDropChange}
-      currentUser={this.props.currentUser} 
-      /> */}
-      {/* )} */}
-          {/* <Button type="primary" 
-           onClick={() => this.props.handlePitchModal(true)}
-           className="hover:bg-[#8eca9af2] focus:outline-none focus:shadow-outline"
-          >
-                    <FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
-          </Button> */}
+        <div class=" flex  items-center">      
           <div class=" flex  items-center">
             <Button
               type="primary"

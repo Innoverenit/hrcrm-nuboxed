@@ -304,7 +304,7 @@ function UpdateLeadsForm (props) {
                     <div>
                       <div class=" flex justify-between max-sm:flex-col">
                    {/* saluatation */}
-                        <div class=" w-wk max-sm:w-full">
+                        <div class=" w-wk max-sm:w-full ml-2">
                           <div class="font-bold text-xs">{translatedMenuItems[0]}</div>
                           <FastField
                             isRequired
@@ -319,7 +319,7 @@ function UpdateLeadsForm (props) {
                         </div>
                       </div>                  
                       <div class=" flex justify-between max-sm:flex-col">
-                        <div class=" w-2/5 max-sm:w-full">
+                        <div class=" w-2/5 max-sm:w-full ml-2">
                         <div class="font-bold text-xs">{translatedMenuItems[1]}</div>
                           <FastField
                             name="middleName"                       
@@ -346,7 +346,7 @@ function UpdateLeadsForm (props) {
                     </div>
                   </div>
                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
-                  <div class="font-bold text-xs">{translatedMenuItems[3]}</div>
+                  <div class="font-bold text-xs mt-1">{translatedMenuItems[3]}</div>
                   <Field
                     name="email"
                     type="text"  

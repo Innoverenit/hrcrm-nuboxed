@@ -81,7 +81,7 @@ const handleDeptChange = (event) => {
           >
             <div class=" flex  mt-[0.625rem] ml-[1rem]"
             >             
-              <div class=" flex justify-between w-[30%] "
+              <div class=" flex justify-between w-[30%] mr-3 "
               >           
                 <div>
                      

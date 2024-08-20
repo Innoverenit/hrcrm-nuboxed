@@ -434,10 +434,10 @@ props.emptyClearbit();
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
                    
                     <div>
-                      <div class=" flex justify-between max-sm:flex-col">                        
+                      <div class=" flex justify-between max-sm:flex-col ml-2">                        
                             {/* name="salutation" */}
                     
-                        <div class=" w-wk max-sm:w-full ">
+                        <div class=" w-wk max-sm:w-full  ">
                           <div className="font-bold text-xs">{translatedMenuItems[0]}</div>
                           <FastField
                             isRequired
@@ -451,7 +451,7 @@ props.emptyClearbit();
                           />
                         </div>
                       </div>                  
-                      <div class=" flex justify-between max-sm:flex-col">
+                      <div class=" flex justify-between max-sm:flex-col ml-2 ">
                       {props.customerConfigure.middleNameInd===true&&
                         <div class=" w-2/5 max-sm:w-full">
                            <div className="font-bold text-xs">{translatedMenuItems[1]}</div>
@@ -484,7 +484,7 @@ props.emptyClearbit();
                     </div>
                   </div>
 } 
-                    <div className="font-bold text-xs">{translatedMenuItems[3]}</div>
+                    <div className="font-bold text-xs mt-1">{translatedMenuItems[3]}</div>
                   <Field
                     isRequired
                     name="email"

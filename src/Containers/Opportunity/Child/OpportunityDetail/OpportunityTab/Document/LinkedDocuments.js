@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import DownloadIcon from '@mui/icons-material/Download';
 import DeleteIcon from '@mui/icons-material/Delete';
 import dayjs from "dayjs";
@@ -22,6 +21,16 @@ import ContractToggle from "./ContractToggle";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 class LinkedDocuments extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchText: "",
+    searchedColumn: "",
+    translatedMenuItems: [],
+      loading: true
+    };
+  }
   componentDidMount() {
     const {
       opportunity: { opportunityId },
@@ -31,7 +40,30 @@ class LinkedDocuments extends Component {
     getOpportunityDocument(opportunityId);
   }
 
-  
+  componentDidMount() {
+    this.fetchMenuTranslations();
+ 
+  }
+
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       'Name', // 0
+'Designation', // 1
+'Functiom', // 2
+'Email', // 3
+'Mobile'//4
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
   render() {
     const {
       documentsByOpportunityId,
@@ -46,32 +78,34 @@ class LinkedDocuments extends Component {
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
     return (
       <>
         {true && (
               <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-              <div className=" md:w-[6.5rem]">
-            <FormattedMessage
-                      id="app.date"
-                      defaultMessage="Date"
-                    /></div>
+              <div className=" md:w-[6.5rem]">{translatedMenuItems[0]}
+            </div>
      
           
-            <div className="md:w-[10.1rem]">  <FormattedMessage id="app.name" defaultMessage="Name" /></div>
-            <div className="md:w-[10.1rem]">  <FormattedMessage id="app.type" defaultMessage="Type" /></div>
-                     <div className="md:w-[11.12rem]">
-                     <FormattedMessage
-              id="app.description"
-              defaultMessage="Description"
-            /></div>
-                           <div className=" md:w-[9.12rem]">
-                           <FormattedMessage id="app.uploadedBy" defaultMessage="Uploaded By" /></div>
-    
-                          
-           
-                           <div className=" md:w-[7.1rem]">
-                           <FormattedMessage id="app.fileName" defaultMessage="File Name" /></div>
+            <div className="md:w-[10.1rem]"> {translatedMenuItems[1]} 
+              {/* Name */}
+            </div>
+            <div className="md:w-[10.1rem]">{translatedMenuItems[2]}
+              {/* Type */}
+               </div>
+                     <div className="md:w-[11.12rem]">{translatedMenuItems[3]}
+{/* description */}
+                 </div>
+                           <div className=" md:w-[9.12rem]"> {translatedMenuItems[4]}
+                            {/* uploadedBy */}
+                           </div>         
+                           <div className=" md:w-[7.1rem]">{translatedMenuItems[5]}
+                         {/* fileName */}
+                         </div>
     
             <div className="w-[10.2rem]"></div>
     
@@ -126,17 +160,17 @@ class LinkedDocuments extends Component {
                                        
                                        <div class="text-xs  font-poppins">
                      
-                         <div className="font-normal text-xs  font-poppins">
+                         <div className=" text-xs  font-poppins">
                            <span>{item.uploadedBy}</span>
                          </div>
                      
                                        </div>
                                    </div>
-                                   <div className=" flex font-medium  md:w-[20.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                   <div className=" flex   md:w-[20.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                        
                                        <div class="text-xs  font-poppins">
                      
-                         <div className="font-normal text-xs  font-poppins">
+                         <div className=" text-xs  font-poppins">
                            <span>{item.fileName}</span>
                          </div>
                      

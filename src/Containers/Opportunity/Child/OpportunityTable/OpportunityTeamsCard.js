@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
-import styled from "styled-components";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
@@ -478,7 +477,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
+        translatedMenuItems={props.translatedMenuItems}
       />
 
 <AddOpportunityDrawerModal
@@ -493,8 +492,8 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
                handleOpportunityDrawerModal={props.handleOpportunityDrawerModal}
                addDrawerOpportunityModal={props.addDrawerOpportunityModal}
                translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
+               selectedLanguage={props.selectedLanguage}
+               translatedMenuItems={props.translatedMenuItems}
              // candidateByUserId={this.props.candidateByUserId}
       />
     </>

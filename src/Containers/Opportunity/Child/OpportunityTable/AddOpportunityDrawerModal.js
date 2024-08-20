@@ -27,9 +27,13 @@ class AddOpportunityDrawerModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
             <OpportunityJumpstartBox
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems}
               allRecruitmentByOppId={this.props.allRecruitmentByOppId}
               allRecruitmentPositionFilledByOppId={
                 this.props.allRecruitmentPositionFilledByOppId
+             
               }
               allRecruitmentAvgTimeByOppId={
                 this.props.allRecruitmentAvgTimeByOppId
@@ -39,6 +43,9 @@ class AddOpportunityDrawerModal extends Component {
               }
             />
             <OpportunityInitiativeForm
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
               opportunityInitiativesSkillsDetails={
                 this.props.opportunityInitiativesSkillsDetails
               }
@@ -47,12 +54,18 @@ class AddOpportunityDrawerModal extends Component {
             />
 
             <OpportunitySummaryTable
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
               allRecruitmentDetailsByOppId={
-                this.props.allRecruitmentDetailsByOppId
+                this.props.allRecruitmentDetailsByOppId           
               }
               opportunityId={this.props.opportunityId}
             />
             <OpportunityForecastForm
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems}
               item={this.props.item}
               opportunityForecast={this.props.opportunityForecast}
             />
