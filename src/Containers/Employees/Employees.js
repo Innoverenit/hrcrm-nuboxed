@@ -103,6 +103,8 @@ class Employees extends Component {
      
         { this.props.viewType==="tile"?
         <EmployeeCardView
+        translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         filteredData={this.state.filteredData}
         filter={this.state.filter}
            viewType={viewType}

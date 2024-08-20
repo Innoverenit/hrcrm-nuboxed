@@ -1,4 +1,4 @@
-import React, { Component ,lazy} from "react";
+import React, { Component ,lazy ,Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -192,11 +192,13 @@ class EducationTable extends Component {
             );
           }}
         />
-
+<Suspense fallback={"Loading ..."}>
         <UpdateEducationModal
           updateEducationModal={updateEducationModal}
           handleUpdateEducationModal={handleUpdateEducationModal}
-        />
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        /></Suspense>
       </>
     );
   }

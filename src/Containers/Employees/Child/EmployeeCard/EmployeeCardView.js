@@ -161,7 +161,7 @@ function handleSetCurrentUser(item) {
           <div class="  text-xs mt-1  font-poppins ">Reports To:    <span>
           {item.reportingManagerName 
                         ? `${item.reportingManagerName}`
-                        : <div class="text-[red]" >Not Assigned</div>}
+                        : <span class="text-[red]" >Not Assigned </span>}
                       </span>
          </div>
           <div class=" flex flex-row justify-between mt-[0.5rem] w-full items-end">

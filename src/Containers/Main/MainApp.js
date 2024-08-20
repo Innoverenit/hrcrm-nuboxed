@@ -536,21 +536,21 @@ function MainApp(props) {
                 
                   <div class=" flex items-center h-0">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
-                      <SettingsDropdown className=" !text-icon" />
+                      <SettingsDropdown />
                       : null
                     }
                     <a href="#" style={{ marginRight: 4 }}>
                       <div class=" flex items-center "
                       >
-                        <NotificationPopover className=" !text-icon" />
+                        <NotificationPopover />
                       </div>
                     </a>
 
-                    <RepositoryData className=" !text-icon" />
-                    <FAQPage className=" !text-icon"/>
+                    <RepositoryData  />
+                    <FAQPage/>
 
                   </div>
-                  <ProfileDropdown className=" !text-icon cursor-pointer"/>
+                  <ProfileDropdown />
 
                
                 </div>

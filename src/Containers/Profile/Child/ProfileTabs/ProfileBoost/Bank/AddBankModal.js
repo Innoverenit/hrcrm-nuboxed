@@ -23,7 +23,9 @@ class AddBankModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <BankDocumentForm employeeId={this.props.employeeId}/>
+            <BankDocumentForm employeeId={this.props.employeeId}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
         </StyledDrawer>
       </>

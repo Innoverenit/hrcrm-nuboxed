@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { Button,Input } from "antd";
 import { MainWrapper} from "../../../../../Components/UI/Layout";
-import WorkflowSingleDocument from "./WorkflowSingleDocument";
 import {
   removeDocuments,
   updateDocuments,
   searchDocumentsName,
 } from "../../../../Settings/Documents/DocumentsAction";
+const WorkflowSingleDocument = lazy(() => import( "./WorkflowSingleDocument"));
 
 class WorkflowDocument extends Component {
   constructor(props) {
@@ -107,9 +107,11 @@ class WorkflowDocument extends Component {
         </Button>
         </div>
         <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+        <Suspense fallback={"Loading..."}>
               <MainWrapper style={{ height: "30em", marginTop: "0.62em" }}>
                 {allDocuments.length &&
                   allDocuments.map((document, i) => (
+                    
                     <WorkflowSingleDocument
                       key={i}
                       value={singleDocument}
@@ -127,6 +129,7 @@ class WorkflowDocument extends Component {
                     />
                   ))}
               </MainWrapper>
+              </Suspense>
             </div>
            
           </MainWrapper>

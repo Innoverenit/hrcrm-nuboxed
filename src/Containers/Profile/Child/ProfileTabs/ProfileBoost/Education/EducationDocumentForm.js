@@ -24,8 +24,43 @@ class EducationDocumentForm extends Component {
     super(props);
     this.state = {
       active: "Full Time",
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       "Education",
+        "Course Name",
+        "Specialization",
+        "University/Institute",
+        "Year of Passing",
+        "Marks Secured",
+        "Marks Type",
+        "Document Id",
+        "Name of Document",
+        "Type",
+        "Description of document",
+        "Submit",
+      "Course Type"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   glassButtoClick = (type) => {
     this.setState({ active: type });
     // alert(this.state.active)
@@ -74,20 +109,19 @@ class EducationDocumentForm extends Component {
             ...rest
           }) => (
             <Form className="form-background">
-              <div class=" flex w-full h-full justify-between"
-              >
-                <div class=" w-[45%]"
-                >
+              <div class=" flex w-full h-full justify-between">
+                <div class=" w-[45%]">
+                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[0]}</div>
                   <FastField
                     name="educationTypeId"
                     // type="text"
                     //label="Education"
-                    label={
-                      <FormattedMessage
-                        id="app.education"
-                        defaultMessage="Education"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.education"
+                    //     defaultMessage="Education"
+                    //   />
+                    // }
                     // options={[
                     //   "Matriculation",
                     //   "Intermediate",
@@ -123,6 +157,7 @@ class EducationDocumentForm extends Component {
                   />
               
                   <div class=" mt-3">
+                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[1]}</div>
                     <Field
                       isRequired
                       name="courseName"
@@ -130,12 +165,12 @@ class EducationDocumentForm extends Component {
                       isColumn
                       width={"100%"}
                       //label="Course Name"
-                      label={
-                        <FormattedMessage
-                          id="app.courseName"
-                          defaultMessage="Course Name"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.courseName"
+                      //     defaultMessage="Course Name"
+                      //   />
+                      // }
                       component={InputComponent}
                       inlineLabel
                       style={{
@@ -146,7 +181,9 @@ class EducationDocumentForm extends Component {
                     />
                   </div>
                   <div class=" mt-3">
-                    <div class=" text-xs font-bold font-poppins text-black">Course Type</div>
+                    <div class=" text-xs font-bold font-poppins text-black">{this.state.translatedMenuItems[12]}
+                      {/* Course Type */}
+                      </div>
                     <div class=" mt-3">
                     <ButtonGroup>
                       <StatusIcon
@@ -182,6 +219,7 @@ class EducationDocumentForm extends Component {
                   </div>
               
                   <div class=" mt-3">
+                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[2]}</div>
                     <Field
                       isRequired
                       name="specialization"
@@ -189,12 +227,12 @@ class EducationDocumentForm extends Component {
                       isColumn
                       width={"100%"}
                       //label="Specialization"
-                      label={
-                        <FormattedMessage
-                          id="app.Specialization"
-                          defaultMessage="Specialization"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.Specialization"
+                      //     defaultMessage="Specialization"
+                      //   />
+                      // }
                       component={InputComponent}
                       inlineLabel
                       style={{
@@ -206,6 +244,7 @@ class EducationDocumentForm extends Component {
                   </div>
                  
                   <div class=" mt-3">
+                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
                     <Field
                       isRequired
                       name="university"
@@ -213,12 +252,12 @@ class EducationDocumentForm extends Component {
                       isColumn
                       width={"100%"}
                       //label="University/Institute "
-                      label={
-                        <FormattedMessage
-                          id="app.university"
-                          defaultMessage="University/Institute"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.university"
+                      //     defaultMessage="University/Institute"
+                      //   />
+                      // }
                       component={InputComponent}
                       inlineLabel
                       style={{
@@ -232,15 +271,16 @@ class EducationDocumentForm extends Component {
 
                   <div class=" flex mt-3">
                     <div class=" w-[50%]" >
+                    <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[4]}</div>
                       <Field
                         name="yearOfPassing"
                         //label="Year of Passing"
-                        label={
-                          <FormattedMessage
-                            id="app.yearOfPassing"
-                            defaultMessage="Year of Passing"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.yearOfPassing"
+                        //     defaultMessage="Year of Passing"
+                        //   />
+                        // }
                         component={InputComponent}
                         isColumn
                         width={"100%"}
@@ -256,15 +296,16 @@ class EducationDocumentForm extends Component {
                     </div>
                    
                     <div class=" w-[49%] ml-4" >
+                    <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[5]}</div>
                       <Field
                         isRequired
                         //label="Marks Secured"
-                        label={
-                          <FormattedMessage
-                            id="app.marksSecured"
-                            defaultMessage="Marks Secured"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.marksSecured"
+                        //     defaultMessage="Marks Secured"
+                        //   />
+                        // }
                         name="marksSecured"
                         type="text"
                         isColumn
@@ -279,14 +320,15 @@ class EducationDocumentForm extends Component {
                     </div>
                    
                     <div class=" w-[60%] ml-4" >
+                    <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[6]}</div>
                       <Field
                         name="marksType"
-                        label={
-                          <FormattedMessage
-                            id="app.marksType"
-                            defaultMessage="Marks Type"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.marksType"
+                        //     defaultMessage="Marks Type"
+                        //   />
+                        // }
                         type="text"
                         component={SelectComponent}
                         options={["%", "Out of 10", "Out of 5"]}
@@ -306,30 +348,30 @@ class EducationDocumentForm extends Component {
              
                 </div>
 
-                <div class=" w-[45%]"
-                >
+                <div class=" w-[45%]">
+                <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[7]}</div>
                   <Field
                     name="documentId"
-                    label={
-                      <FormattedMessage
-                        id="app.documentId"
-                        defaultMessage="Document Id"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.documentId"
+                    //     defaultMessage="Document Id"
+                    //   />
+                    // }
                     isRequired
                     component={DragableUpload}
                   />
                <div class=" mt-3">
-
+               <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[8]}</div>
                   <Field
                     name="documentTitle"
                     //label="Name of Document"
-                    label={
-                      <FormattedMessage
-                        id="app.documentTitle"
-                        defaultMessage="Name of Document"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.documentTitle"
+                    //     defaultMessage="Name of Document"
+                    //   />
+                    // }
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -337,17 +379,18 @@ class EducationDocumentForm extends Component {
                   />
                   </div>
                   <div class=" mt-3">
+                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[9]}</div>
                   <Field
                     name="documentTypeId"
                     selectType="documentTypeName"
                     isColumnWithoutNoCreate
                     // label="Type"
-                    label={
-                      <FormattedMessage
-                        id="app.documentId"
-                        defaultMessage="Type"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.documentId"
+                    //     defaultMessage="Type"
+                    //   />
+                    // }
                     // isRequired
                     component={SearchSelect}
                     isColumn
@@ -359,15 +402,16 @@ class EducationDocumentForm extends Component {
                   />
                     </div>
                     <div class=" mt-3">
+                    <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[10]}</div>
                   <Field
                     name="documentDescription"
                     //label="Description of document"
-                    label={
-                      <FormattedMessage
-                        id="app.documentDescription"
-                        defaultMessage="Description of document"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.documentDescription"
+                    //     defaultMessage="Description of document"
+                    //   />
+                    // }
                     isRequired
                     isColumn
                     width={"100%"}
@@ -384,7 +428,7 @@ class EducationDocumentForm extends Component {
                   type="primary"
                   Loading={addingEducationDetails}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                {this.state.translatedMenuItems[11]} {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
                 </Button>
               </div>
             </Form>

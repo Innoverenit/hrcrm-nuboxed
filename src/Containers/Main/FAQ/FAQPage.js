@@ -16,7 +16,7 @@ function FAQPage(props) {
       <div>
         <Tooltip title="FAQ/HELP">
           <HelpIcon
-            className="!text-xl cursor-pointer text-[#1890FF] mr-[0.25rem]"
+            className="!text-icon cursor-pointer text-[#1890FF] mr-[0.25rem]"
             onClick={() => {
 
               props.handleFAQModal(true);

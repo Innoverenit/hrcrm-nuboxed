@@ -10,9 +10,7 @@
 // const login_url = "https://hrnuboxed.azurewebsites.net";
 // const base_url = "https://hrnuboxed.azurewebsites.net/api/v1";
 // const base_url2 = "https://erpnuboxed.azurewebsites.net";
-// const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
-// const sub_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
-
+// const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT"
 
 // // // CT
 // const login_url = "https://crm.celltechnologies.nl";
@@ -30,6 +28,3 @@ const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
 const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 
 export { base_url, sub_url,login_url, asses_url, base_url2 };
-
-
-
