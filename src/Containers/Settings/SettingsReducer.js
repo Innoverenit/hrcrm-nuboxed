@@ -10,6 +10,11 @@ const initialState = {
   candidateSequenceModal: false,
 
 
+
+  removeSkillData:false,
+  removeSkillDataError:false,
+
+
   movingRejectToggleTask:false,
   movingRejectToggleTaskError:false,
 
@@ -2493,6 +2498,10 @@ export const settingsReducer = (state = initialState, action) => {
       };
 
 
+      case types.EMPTY_SKILL_LEVEL:
+        return { ...state, matrixData: [] };
+
+
 
 
       case types.ADD_SKILL_LEVEL_REQUEST:
@@ -2506,6 +2515,27 @@ export const settingsReducer = (state = initialState, action) => {
     case types.ADD_SKILL_LEVEL_FAILURE:
       return { ...state, addingSkillLevel: false, 
        
+      };
+
+
+
+
+
+      case types.REMOVE_SKILL_DATA_REQUEST:
+      return { ...state, removeSkillData: true };
+    case types.REMOVE_SKILL_DATA_SUCCESS:
+      return {
+        ...state,
+        removeSkillData: false,
+        matrixData: state.matrixData.filter(
+          (item) => item.skillLevelLinkId !== action.payload
+        ),
+      };
+    case types.REMOVE_SKILL_DATA_FAILURE:
+      return {
+        ...state,
+        removeSkillData: false,
+        removeSkillDataError: false,
       };
 
 
