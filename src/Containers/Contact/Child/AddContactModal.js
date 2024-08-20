@@ -24,9 +24,9 @@ const AddContactModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
           <ContactForm {...formProps}
           
-          translateText={props.translateText}
+            translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}
-          translatedMenuItems={props.translatedMenuItems}
+            translatedMenuItems={props.translatedMenuItems}
           />
         </Suspense>
       </StyledDrawer>

@@ -36,7 +36,11 @@ const LinkContactModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <LinkedContactForm {...formProps}/>
+          <LinkedContactForm {...formProps}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+          />
           
         </Suspense>
       </StyledModal>

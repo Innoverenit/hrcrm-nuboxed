@@ -32,6 +32,9 @@ const AddCustomerContactModal = (props) => {
           <CustomerContactForm {...formProps} 
           opportunityId={props.opportunityId}
           investorId={props.investorId}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
           />{" "}
         </Suspense>
       </StyledDrawer>

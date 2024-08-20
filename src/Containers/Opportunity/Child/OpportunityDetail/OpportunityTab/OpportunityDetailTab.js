@@ -363,7 +363,11 @@ return  <BundleLoader />
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedContact/>
+                <LinkedContact
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+                translatedMenuItems={this.props.translatedMenuItems}
+                />
               </Suspense>
             </TabPane>
             <TabPane
@@ -405,7 +409,11 @@ return  <BundleLoader />
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments opportunity={opportunity} />
+                <LinkedDocuments opportunity={opportunity} 
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
+                />
               </Suspense>
             </TabPane>
 
@@ -500,6 +508,9 @@ return  <BundleLoader />
               { label: opportunityName, value: opportunityId },
             ]}
             linkType="opportunity"
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems}
           />
 
 <AddDocumentModals
@@ -511,6 +522,9 @@ opportunityId={opportunityId}
           opportunityId={opportunityId}
           handleReactSpeechModal={handleReactSpeechModal}
           addSpeechModal={addSpeechModal}
+          translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
           />
       
         </Suspense>

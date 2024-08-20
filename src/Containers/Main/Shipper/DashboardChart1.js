@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Empty, Button, Tooltip, Icon, Popover } from "antd";
 import { FullscreenOutlined } from "@ant-design/icons";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { BarChart_ } from "../../../Components/Charts";
