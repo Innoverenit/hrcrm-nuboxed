@@ -27,7 +27,7 @@ class OpportunityDetailLeft extends Component {
     const { account } = this.state;
     console.log(opportunity);
     return (
-      <div class=" block flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+      <div class=" flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
         <div>
         <OpportunityCard
           opportunity={opportunity}
@@ -40,7 +40,7 @@ class OpportunityDetailLeft extends Component {
         </div>
         
         
-          <div style={{ width: "89vw" }}>
+          <div className="w-[89vw]">
          <OpportunityDetailTab
           opportunity={opportunity}
           />

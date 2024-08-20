@@ -61,7 +61,7 @@ class DealActionRight extends React.Component {
                 id="app.create"
                 defaultMessage="Create"
               />}>
-           {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
+  
            {viewType === "table" && user.imInd === true  && user.opportunityCreateInd ===true && (
           <Button
             type="primary"
@@ -74,9 +74,6 @@ class DealActionRight extends React.Component {
           </Button>
             )}  
         </Tooltip>
-         {/* {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.opportunityFullListInd===true &&( */}
-  {/* <OpportunityShareForm/> */}
-         {/* )} */}
          <div class="max-sm:hidden">
         <Button
         style={{lineHeight:"inherit"}}

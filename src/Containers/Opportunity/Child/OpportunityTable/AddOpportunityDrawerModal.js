@@ -5,7 +5,6 @@ import OpportunityInitiativeForm from "./OpportunityInitiativeForm";
 import { bindActionCreators } from "redux";
 import OpportunityJumpstartBox from "../OpportunityTable/OpportunityJumpstartBox";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import OpportunitySummaryTable from "./OpportunitySummaryTable";
 import OpportunityForecastForm from "./Opportunityforecastform";
 
 class AddOpportunityDrawerModal extends Component {
@@ -16,8 +15,7 @@ class AddOpportunityDrawerModal extends Component {
       <div>
         <StyledDrawer
           title={this.props.opportunityName}
-          width="55em"
-          style={{ marginTop: "5rem" }}
+          width="60%"
           visible={this.props.addDrawerOpportunityModal}
           closable
           placement="right"
@@ -51,16 +49,6 @@ class AddOpportunityDrawerModal extends Component {
               }
               opportunitySkills={this.props.opportunitySkills}
               item={this.props.item}
-            />
-
-            <OpportunitySummaryTable
-            translateText={this.props.translateText}
-            selectedLanguage={this.props.selectedLanguage}
-            translatedMenuItems={this.props.translatedMenuItems}
-              allRecruitmentDetailsByOppId={
-                this.props.allRecruitmentDetailsByOppId           
-              }
-              opportunityId={this.props.opportunityId}
             />
             <OpportunityForecastForm
              translateText={this.props.translateText}
