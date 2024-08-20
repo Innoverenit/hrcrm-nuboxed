@@ -655,6 +655,8 @@ const initialState = {
 
   addingSupervisor: false,
   addingSupervisorError: false,
+  
+  addNewModal:false,
 
   addingLead: false,
   addingLeadError: false,
@@ -679,6 +681,9 @@ export const distributorReducer = (state = initialState, action) => {
     case types.HANDLE_DISTRIBUTOR_MODAL:
       return { ...state, addDistributorModal: action.payload, };
 
+      case types.HANDLE_OPENNEW_MODAL:
+        return { ...state, addNewModal: action.payload, };
+  
 
       case types.HANDLE_ACCOUNT_IMPORT_MODAL:
         return { ...state, addAccountImportModal: action.payload };

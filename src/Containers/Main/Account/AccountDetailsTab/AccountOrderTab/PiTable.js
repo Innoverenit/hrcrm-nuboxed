@@ -276,14 +276,16 @@ const PiTable = (props) => {
     useEffect(() => {
         props.getPibyItem(props.particularRowData.orderPhoneId)
         if (props.piIdFromPreview) {
-            props.getPiFirststep(props.piIdFromPreview);
+            props.getPiFirststep(props.piIdFromPreview,mode);
         }
-    }, [props.particularRowData.orderPhoneId, props.piIdFromPreview]);
+    }, [props.particularRowData.orderPhoneId, props.piIdFromPreview,mode]);
 
     const toggleMode = (checked) => {
         setMode(checked ? 'order' : 'manual');
         setEditMode(false);
         setSelectedItems([]); // Reset selected items when mode changes
+        setInputValues({});
+
     };
 
     const handleCheckboxChange = (itemId) => {

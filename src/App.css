@@ -806,3 +806,7 @@ iframe#webpack-dev-server-client-overlay {
 .scroller {  
 scrollbar-width: thin;
 }
+
+.ant-modal .ant-modal-footer {
+  display: none;
+}

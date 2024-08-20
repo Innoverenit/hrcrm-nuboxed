@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddIcon from '@mui/icons-material/Add';
 import { Button, Switch } from "antd";
 import { Formik, Form, Field } from "formik";
-import { addCarDetails } from "../../AccountAction"
+import { addCarDetails,handleOpenNewModal } from "../../AccountAction"
 import DraggableUpload1 from "../../../../../Components/Forms/Formik/DraggableUpload1";
 import { FormattedMessage } from 'react-intl';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
+import AddOpenNewModal from "./AddOpenNewModal";
 
 function AddPhoneExcel(props) {
 
@@ -59,7 +61,7 @@ function AddPhoneExcel(props) {
                     <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
                         <Form class="form-background">
                             <div class="justify-between flex mt-3">
-                                <div class="h-full w-[45%]">
+                                <div class="h-full w-[45%] flex flex-col">
                                     <div class="mt-3">
                                         <Field
                                             name="excelId"
@@ -67,7 +69,13 @@ function AddPhoneExcel(props) {
                                             component={DraggableUpload1}
                                         />
                                     </div>
+                                    <AddIcon
+                                onClick={() => {
+                                    props.handleOpenNewModal(true);
+                                }}
+                                />
                                 </div>
+                               
                                 <div class="h-full w-[45%]">
                                     <div class="mt-3">
                                         <Field
@@ -128,6 +136,11 @@ function AddPhoneExcel(props) {
                     </div>
                 )}
             </Formik>
+            <AddOpenNewModal           
+                handleOpenNewModal={props.handleOpenNewModal}
+                addNewModal={props.addNewModal}
+                distributorId={props.distributorId}
+            />
         </>
     );
 }
@@ -136,12 +149,14 @@ const mapStateToProps = ({ auth, distributor }) => ({
     orderDetailsId: distributor.orderDetailsId,
     addingCar: distributor.addingCar,
     orgId: auth.userDetails.organizationId,
+    addNewModal: distributor.addNewModal
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            addCarDetails
+            addCarDetails,
+            handleOpenNewModal
         },
         dispatch
     );

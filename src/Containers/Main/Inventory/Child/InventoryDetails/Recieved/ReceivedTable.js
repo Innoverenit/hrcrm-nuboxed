@@ -1,7 +1,7 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Select, Progress } from "antd";
+import { Tooltip, Button, Select, Progress, Badge } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
   getReceivedUserList,
@@ -128,13 +128,16 @@ const ReceivedTable = (props) => {
                           <div className=" flex w-[9.62rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
                             <div class="text-xs  font-bold max-sm:text-sm  font-poppins cursor-pointer underline text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <div class=" flex ">
+                              <Badge size="small" count={`${item.phoneReceiveCount} / ${item.phoneCount}`} overflowCount={5000}>
                                 <span
                                   onClick={() => {
                                     handleRowData(item);
                                     props.handleReceivedOrderIdModal(true);
                                   }}
                                 >{item.newOrderNo}
-                                </span>&nbsp;&nbsp;
+                                </span>
+                                </Badge>
+                                &nbsp;&nbsp;
                                 {date === currentdate ? (
                                   <div class="text-[0.65rem] font-bold text-[tomato] ">
                                     New

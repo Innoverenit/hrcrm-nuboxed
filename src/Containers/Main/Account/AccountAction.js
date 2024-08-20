@@ -13,6 +13,12 @@ export const handleDistributorModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+export const handleOpenNewModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_OPENNEW_MODAL,
+    payload: modalProps,
+  });
+};
 
 /**
  * SET DISTRIBUTOR VIEW TYPE
@@ -172,12 +178,12 @@ export const getPibyItem = (orderPhoneId) => (dispatch) => {
     });
 };
 
-export const getPiFirststep = (piId) => (dispatch) => {
+export const getPiFirststep = (piId,type) => (dispatch) => {
   dispatch({
     type: types.GET_PI_FIRSTSTEP_REQUEST,
   });
   axios
-    .get(`${base_url2}/pi/firstStep/${piId}`,
+    .get(`${base_url2}/pi/firstStep/${piId}/${type}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
