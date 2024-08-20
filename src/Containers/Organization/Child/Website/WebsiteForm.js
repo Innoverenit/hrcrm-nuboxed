@@ -17,6 +17,36 @@ const EmailSchema = Yup.object().shape({
 });
 
 class WebsiteForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+        "Create"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const {
         addingWebsite,
@@ -57,72 +87,13 @@ class WebsiteForm extends Component {
                   >
                     <Field
                        name="website"
-                      label="URL"
+                      // label="URL"
                       inlineLabel
                       isRequired
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                       width={"100%"}
                     />
-                    
-                    {/* <Field
-                      type="password"
-                      isRequired
-                      name="password"
-                      label="Password"
-                      inlineLabel
-                      width={"100%"}
-                      component={InputComponent}
-                      style={{ flexBasis: "80%" }}
-                    /> */}
-                   
-                    {/* <Field
-                  name="serverType"
-                  label="Server Type"
-                  component={InputComponent}
-                  inlineLabel
-                  style={{ flexBasis: "80%" }}
-                />
-                <div class=" mt-3" /> */}
-                    {/* <Field
-                      isMulti
-                      isRequired
-                      name="host"
-                      label="Host Name"
-                      component={InputComponent}
-                      inlineLabel
-                      width={"100%"}
-                      style={{ flexBasis: "80%" }}
-                    /> */}
-                    {/* <span
-                      style={{
-                        fontSize: "0.75em",
-                        fontStyle: "italic",
-                        marginLeft: "6.25em",
-                      }}
-                    >
-                      Example for Outlook users - smtp-mail.outlook.com{" "}
-                    </span> */}
-                    <br />
-                    {/* <span
-                      style={{
-                        fontSize: "0.75em",
-                        fontStyle: "italic",
-                        marginLeft: "6.25em",
-                      }}
-                    >
-                      Example for other webmail host - mail.example.com{" "}
-                    </span> */}
-                  
-                    {/* <Field
-                      name="port"
-                      label="Port"
-                      inlineLabel
-                      isRequired
-                      width={"100%"}
-                      component={InputComponent}
-                      style={{ flexBasis: "80%" }}
-                    /> */}
                 
                   </div>
                 </div>
@@ -133,7 +104,7 @@ class WebsiteForm extends Component {
                     // style={{ float: "right" }}
                     Loading={addingWebsite}
                   >
-                    Create
+                   {this.state.translatedMenuItems[0]} {/* Create */}
                 </Button>
                 </div>
               </Form>

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, {  Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch,Select } from "antd";
@@ -12,7 +12,6 @@ import {getAssignedToList}  from "../Employees/EmployeeAction"
 import * as Yup from "yup";
 import {getDocuments} from "../Settings/Documents/DocumentsAction"
 import DragableUpload from "../../Components/Forms/Formik/DragableUpload";
-import LazySelect from "../../Components/Forms/Formik/LazySelect";
 
 import { FormattedMessage } from "react-intl";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";

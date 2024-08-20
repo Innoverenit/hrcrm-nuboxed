@@ -16,7 +16,6 @@ const AddOrganizationModal = (props) => {
           defaultMessage="Add Organization"
         />}
         width={drawerWidth}
-        style={{marginTop:"3rem"}}
         visible={props.addOrganizationModal}
         closable
         destroyOnClose
@@ -24,7 +23,9 @@ const AddOrganizationModal = (props) => {
         onClose={() => props.handleOrganizationModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <AddOrganizationForm />{" "}
+          <AddOrganizationForm 
+           selectedLanguage={props.selectedLanguage}
+           translateText={props.translateText}/>{" "}
         </Suspense>
       </StyledDrawer>
     </>

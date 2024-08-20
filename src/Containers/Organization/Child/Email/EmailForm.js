@@ -20,6 +20,41 @@ const EmailSchema = Yup.object().shape({
 });
 
 class EmailForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "Email Id",
+        "Password",
+        "Host Name",
+        "Example for Outlook users",
+        "Example for other webmail host",
+        "Port",
+        "Create"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const {
       addingEmail,
@@ -54,35 +89,35 @@ class EmailForm extends Component {
           }) => (
               <Form className="form-background">
                 <div class=" flex justify-between" >
-                  <div class=" w-[75%] h-full"
-                  
-                  >
+                  <div class=" w-[75%] h-full"   >
+                    <div class=" text-xs font-bold font-poppins text-black">{this.state.translatedMenuItems[0]}</div>
                     <Field
                       name="email"
-                      label="Email Id"
+                      // label="Email Id"
                       isColumn
                       isRequired
                       component={InputComponent}
                       width={"100%"}
                     />
                   <div class=" mt-4">
+                  <div class=" text-xs font-bold font-poppins text-black">{this.state.translatedMenuItems[1]}</div>
                     <Field
                       type="password"
                       isRequired
                       name="password"
-                      label="Password"
+                      // label="Password"
                       isColumn
                       width={"100%"}
                       component={InputComponent}
                     />
                     </div>
                     {/* <div class=" mt-4"> */}
-                    
+                    <div class=" text-xs font-bold font-poppins text-black">{this.state.translatedMenuItems[2]}</div>
                     <Field
                       isMulti
                       isRequired
                       name="host"
-                      label="Host Name"
+                      // label="Host Name"
                       component={InputComponent}
                       isColumn
                       width={"100%"}
@@ -94,7 +129,7 @@ class EmailForm extends Component {
                         marginLeft: "6.25em",
                       }}
                     >
-                      Example for Outlook users - smtp-mail.outlook.com{" "}
+                     {this.state.translatedMenuItems[3]}- smtp-mail.outlook.com{" "}
                     </span>
                     <br />
                     <span
@@ -104,17 +139,18 @@ class EmailForm extends Component {
                         marginLeft: "6.25em",
                       }}
                     >
-                      Example for other webmail host - mail.example.com{" "}
+                      {this.state.translatedMenuItems[4]} - mail.example.com{" "}
                     </span>
                     <div class=" mt-4">
+                    <div class=" text-xs font-bold font-poppins text-black">{this.state.translatedMenuItems[5]}</div>
                     <Field
                       name="port"
-                      label={
-                        <FormattedMessage
-                          id="app.port"
-                          defaultMessage="Port"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.port"
+                      //     defaultMessage="Port"
+                      //   />
+                      // }
                       isColumn
                       isRequired
                       width={"100%"}
@@ -131,7 +167,7 @@ class EmailForm extends Component {
                     // style={{ float: "right" }}
                     Loading={addingEmail}
                   >
-                    Create
+                  {this.state.translatedMenuItems[6]}  {/* Create */}
                 </Button>
                 </div>
               </Form>

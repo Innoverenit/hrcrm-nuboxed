@@ -57,33 +57,13 @@ useEffect(() => {
     setActiveTab(key);
      props.getOrganizationDetails(key);
   };
-//   constructor(props) {
-//     super(props)
-
-//     this.state = {
-//         key: "",
-//         organizationList: {}
-//     }
-// }
-  // componentDidMount() {
-  //   const { getOrganizationDetails ,} = this.props;
-  //   getOrganizationDetails();
-  // }
-  // handleOnClick = (data) => {
-  //   console.log(data);
-  //   debugger;
-  //   this.setState({
-  //     organizationList: data,
-  //   });
-
-
   
-    
     const { fetchingOrganizationDetails,addOrganizationModal,organizationDetails,handleOrganizationModal } = props;
     // console.log(this.props.organizationDetails.imageId)
     return (
     
       <>
+       <Suspense fallback={"Loading..."}>
         <OrganizationHeader 
         activeTab={activeTab}
         handleOnClick={handleTabClick}
@@ -93,11 +73,14 @@ useEffect(() => {
          viewType={props.viewType}
          handleOrganizationModal={handleOrganizationModal}
         setOrganizationViewType={props.setOrganizationViewType}
-        />
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}/>
           <AddOrganizationModal
           addOrganizationModal={addOrganizationModal}
           handleOrganizationModal={handleOrganizationModal}
-        />
+          selectedLanguage={props.selectedLanguage}
+          translateText={props.translateText}/>
+        </Suspense>
         {fetchingOrganizationDetails ? (
           <MainWrapper>
             <BundleLoader />
@@ -109,15 +92,19 @@ useEffect(() => {
               {activeTab && (
                   <div class=" w-[25%]" >
                     <OrganizationDetailLeft
-                    organizationDetailsList={props.organizationDetailsList}
-                    // organizationDetails={props.organizationDetails}
-                    organizationList={props.organizationDetails} 
+                      selectedLanguage={props.selectedLanguage}
+                      translateText={props.translateText}
+                      organizationDetailsList={props.organizationDetailsList}
+                      // organizationDetails={props.organizationDetails}
+                      organizationList={props.organizationDetails} 
                     />
                   </div>
                      )}
                       {activeTab && (
                   <div class=" w-[75%]" >
-                    <OrganizationDetailRight />
+                    <OrganizationDetailRight
+                      selectedLanguage={props.selectedLanguage}
+                      translateText={props.translateText} />
                   </div>
                     )}
                 </div>

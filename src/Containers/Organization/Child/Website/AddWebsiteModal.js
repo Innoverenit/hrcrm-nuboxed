@@ -21,7 +21,9 @@ class AddWebsiteModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <WebsiteForm />
+            <WebsiteForm
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText} />
           </Suspense>
         </StyledDrawer>
       </>

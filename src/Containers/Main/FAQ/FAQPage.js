@@ -1,9 +1,10 @@
 import HelpIcon from '@mui/icons-material/Help';
-import React, { lazy } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { handleFAQModal } from "../../Auth/AuthAction"
 import { Tooltip } from 'antd';
+import { BundleLoader } from "../../../Components/Placeholder";
 const FaqOrganizationModal = lazy(() =>
   import("./FaqOrganizationModal")
 );
@@ -24,11 +25,12 @@ function FAQPage(props) {
           />
         </Tooltip>
       </div>
-
+      <Suspense fallback={<BundleLoader />}>
       <FaqOrganizationModal
         faqModal={props.faqModal}
         handleFAQModal={props.handleFAQModal}
       />
+      </Suspense>
     </>
   )
 }
