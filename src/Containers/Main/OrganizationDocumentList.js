@@ -150,7 +150,7 @@ return (
           dataLength={filteredData.length} 
           height={"75vh"}
         > */}
-        <div className=' overflow-auto h-[63vh]'>
+        <div className=' overflow-auto h-[67vh]'>
             {this.props.repositoryData.map((item) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               //const countryCode = item.address[0].country_alpha2_code

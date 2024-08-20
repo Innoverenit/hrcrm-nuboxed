@@ -7,7 +7,7 @@ class OrganizationDetailRight extends Component {
     render() {
 
         return (
-            <div class=" flex flex-col block" >
+            <div class=" flex flex-col" >
                  <Suspense fallback={<BundleLoader />}>
                 <OrganizationDetailTab userDetails={this.props.userDetails} 
                  selectedLanguage={this.props.selectedLanguage}
