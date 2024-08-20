@@ -4,12 +4,42 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
 const Option = StyledSelect.Option;
 
 class OrganizationActionRight extends React.Component {
- 
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+          "Add",
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
   render() {
     const {
       userId,
@@ -27,11 +57,7 @@ class OrganizationActionRight extends React.Component {
             type="primary"
             onClick={() => handleOrganizationModal(true)}
           >
-                             <FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
-          
+          <DataSaverOnIcon className="!text-icon"/>{this.state.translatedMenuItems[0]}
           </Button>
            )} 
         </Tooltip>

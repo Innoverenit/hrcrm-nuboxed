@@ -26,6 +26,28 @@ function IndustryForm(props) {
   const handleBirthday = (checked) => {
     setBirthday(checked);
   };
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+    
+          " Update"
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getOrgType(props.orgId);
   }, []);
@@ -87,7 +109,7 @@ function IndustryForm(props) {
                     htmlType="submit"
                     Loading={props.organizationType}
                   >
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                    {translatedMenuItems[0]}
                     {/* Update */}
                   </Button>
                 </div>
