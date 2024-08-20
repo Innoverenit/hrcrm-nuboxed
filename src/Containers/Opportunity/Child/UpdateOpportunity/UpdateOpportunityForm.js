@@ -2,7 +2,6 @@ import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select } from "antd";
-import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -19,6 +18,7 @@ import { getCrm} from "../../../Leads/LeadsAction";
 import {getAssignedToList} from "../../../Employees/EmployeeAction"
 import { getAllEmployeelist } from "../../../Investor/InvestorAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import {base_url} from "../../../../Config/Auth";
 
 const { Option } = Select;
 /**
@@ -103,9 +103,8 @@ function UpdateOpportunityForm (props) {
   const fetchCustomers = async () => {
     setIsLoadingCustomers(true);
     try {
-      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
-      // setCustomers(response.data);
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}`;
+    
+      const apiEndpoint = `${base_url}/customer/user/${props.userId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -135,9 +134,8 @@ function UpdateOpportunityForm (props) {
   const fetchContacts = async (customerId) => {
     setIsLoadingContacts(true);
     try {
-      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
-      // setContacts(response.data);
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`;
+     
+      const apiEndpoint = `${base_url}/customer/contact/drop/${customerId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {

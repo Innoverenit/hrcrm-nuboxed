@@ -113,11 +113,11 @@
 // export default connect(mapStateToProps, mapDispatchToProps)(MatrixData);
 
 import React, { useState, useEffect } from 'react';
-import { Select, Input, Button, Form, Row, Col } from 'antd';
+import { Select, Input, Button,Popconfirm,Tooltip, Form, Row, Col } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getLibrarys } from '../../../Library/LibraryAction';
-import { addSkillLevel,updateSkillLevel } from '../../../SettingsAction';
+import { addSkillLevel,emptySkillLevel,updateSkillLevel,removeSkillData } from '../../../SettingsAction';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteIcon from '@mui/icons-material/Delete';
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -137,6 +137,7 @@ const EditableTable = (props) => {
   const [validationErrors, setValidationErrors] = useState({});
 
   useEffect(() => {
+    props.emptySkillLevel()
     props.getLibrarys(props.organizationId);
   }, [props.organizationId]);
 
@@ -565,10 +566,10 @@ console.log(editsuppliesId)
                         onClick={() => handleEditClick(item.skillLevelLinkId,item.level1,item.level2,item.level3,item.skillDefinationId)}
                       />
                     )}
- {/* <div>
+ <div>
       <Popconfirm
                           title="Do you want to delete?"
-                          onConfirm={() => props.removeProductPrice(item.skillLevelLinkId)}
+                          onConfirm={() => props.removeSkillData(item.skillLevelLinkId)}
 
                           >
                      <Tooltip title="Delete">
@@ -577,7 +578,7 @@ console.log(editsuppliesId)
                           />
                        </Tooltip>
                        </Popconfirm>
-                       </div> */}
+                       </div>
                   </div>
 
                 </div>
@@ -602,7 +603,9 @@ const mapDispatchToProps = (dispatch) =>
     {
       getLibrarys,
       addSkillLevel,
-      updateSkillLevel
+      updateSkillLevel,
+      removeSkillData,
+      emptySkillLevel
     },
     dispatch
   );

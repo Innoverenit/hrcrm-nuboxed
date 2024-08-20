@@ -298,7 +298,7 @@ const LeadsCardList = (props) => {
                             <FormattedMessage
                               id="app.hot"
                               defaultMessage="Hot"
-                            />
+                            />                        
                           }
                           role={item.type}
                           onClick={() => {

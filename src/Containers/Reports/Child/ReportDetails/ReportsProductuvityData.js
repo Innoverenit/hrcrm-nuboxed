@@ -13,6 +13,7 @@ function ReportsProductivityData(props) {
             <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=""></div>
+                    <div className="md:w-[22.12rem]"><FormattedMessage id="app.manufactureid" defaultMessage="Manufacture Id" /></div>
                     <div className="md:w-[22.12rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
                     <div className="md:w-[15.5rem]"><FormattedMessage id="app.starttime" defaultMessage="Start Time" /></div>
                     <div className="md:w-[15.5rem]"><FormattedMessage id="app.endtime" defaultMessage="End Time" /></div>
@@ -27,6 +28,11 @@ function ReportsProductivityData(props) {
                     return (
                         <div key={index}>
                             <div className="flex rounded-xl mt-2 bg-white h-12 items-center p-3">
+                            <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
+                                    <div className="flex justify-between text-sm  font-semibold font-poppins">
+                                        {item.manufactureId}
+                                    </div>
+                                </div>
                                 <div className="flex font-medium flex-col md:w-[36.1rem] max-sm:w-full">
                                     <div className="flex justify-between text-sm  font-semibold font-poppins">
                                         {item.productFullName}

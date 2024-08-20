@@ -10,6 +10,9 @@ import OrgRequirement from "../OrganizationView/Requirement";
 import ReportsCardList from "../ReportsCardList";
 import { setTimeRangeReport,getAllReportInvestors } from "../../ReportAction";
 import ReportsProspectList from "../../ReportsProspectList";
+import OrderRepairCard from "./OrderRepairCard";
+import OrderProductionCard from "./OrderProductionCard";
+import OrderProcureCard from "./OrderProcureCard";
 
 class ReportDetailRight extends Component {
 
@@ -55,10 +58,29 @@ class ReportDetailRight extends Component {
   )}
             {this.props.selectedCategory === "Task" && (
     <ReportsTaskList 
-    reportTask={this.props.reportTask}
-         
+    reportTask={this.props.reportTask}      
     gettingReportTask={this.props.gettingReportTask} />
   )}
+   {this.props.selectedButtonIcon === "repair" && this.props.selectedCategory === "Orders" && (
+   <OrderRepairCard               
+   selectedButtonIcon={this.props.selectedButtonIcon}
+   selectedCategory={this.props.selectedCategory}
+   />
+  )}
+    {this.props.selectedButtonIcon === "Procure" && this.props.selectedCategory === "Orders" && (
+  <OrderProcureCard
+  selectedButtonIcon={this.props.selectedButtonIcon}
+  selectedCategory={this.props.selectedCategory}
+  />
+  )}
+{this.props.selectedButtonIcon === "production" && this.props.selectedCategory === "Orders" && (
+  <OrderProductionCard
+  selectedButtonIcon={this.props.selectedButtonIcon}
+  selectedCategory={this.props.selectedCategory}
+  />
+  )}
+
+
           {reportViewType === "ME" && (
             <>
 

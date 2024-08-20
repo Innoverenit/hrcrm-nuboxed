@@ -16,7 +16,8 @@ import {
   handleProductBuilderDrawer,
   handlePriceDrawer,
   handleProdCellDrawer,
-  handleProductQuality
+  handleProductQuality,
+  updateDateYearProduct
 } from "../../ProductAction";
 import Token from '@mui/icons-material/Token';
 import ProductPublishToggle from "./ProductPublishToggle";
@@ -24,12 +25,13 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
-import {  Tooltip } from "antd";
+import {  Tooltip,Button,Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
 import FeatureProductToggle from "./FeatureProductToggle";
 import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
+import WarrentyProductToggle from "./WarrentyProductToggle";
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
@@ -46,6 +48,9 @@ function ProductCardList(props) {
   const componentRefs = useRef([]);
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [editedFields, setEditedFields] = useState({});
+  const [editsuppliesId, setEditsuppliesId] = useState(null);
+  const [data, setData] = useState([]);
 
   const openModal = () => {
     setModalVisible(true);
@@ -70,8 +75,9 @@ function ProductCardList(props) {
             " Brand",//5
             " Model",//5
             " Website",//6
-            
-
+            "Feature",//7
+            "Warranty",//8
+"Year",//9
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -112,6 +118,9 @@ function ProductCardList(props) {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+useEffect(() => {
+    setData(props.products.map((item, index) => ({ ...item, key: String(index) })));
+  }, [props.products]);
 
   const [particularDiscountData, setParticularDiscountData] = useState({});
 
@@ -123,9 +132,9 @@ function ProductCardList(props) {
 
     // setPage(page + 1);
     // props.getProducts(page);
-    const proPag = props.products && props.products.length && props.products[0].pageCount
+    const proPag = data && data.length && data[0].pageCount
     setTimeout(() => {
-      if (props.products) {
+      if (data) {
         if (page < proPag) {
           setPage(page + 1);
           props.getProducts(page);
@@ -149,6 +158,30 @@ function ProductCardList(props) {
     priceOpenDrawer,
     deleteCatalogData
   } = props;
+
+  const handleInputChange = (value, key, dataIndex) => {
+    const updatedData = data.map((row) =>
+      row.key === key ? { ...row, [dataIndex]: value } : row
+    );
+    setData(updatedData);
+  };
+  const handleEditClick = (productId) => {
+    setEditsuppliesId(productId);
+  };
+  const handleCancelClick = (productId) => {
+    setEditedFields((prevFields) => ({ ...prevFields, [productId]: undefined }));
+    setEditsuppliesId(null);
+  };
+  const handleSave = (key) => {
+    console.log(key)
+  
+      const result = {
+        yearNo: key.yearNo,
+        productId:key.productId,  
+            };
+      props.updateDateYearProduct(result,key.productId)
+    
+  };
 
   return (
     <>
@@ -180,10 +213,19 @@ function ProductCardList(props) {
             <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             {translatedMenuItems[6]}  {/* Website */}
               </div>
+              <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            {translatedMenuItems[7]}  
+              </div>
+              <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            {translatedMenuItems[8]}  
+              </div>
+              <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            {translatedMenuItems[9]}  
+              </div>
             <div className="w-[7rem]"></div>
           </div>
           <InfiniteScroll
-            dataLength={products.length}
+            dataLength={data.length}
             next={handleLoadMore}
             hasMore={hasMore}
             loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
@@ -191,12 +233,12 @@ function ProductCardList(props) {
             style={{scrollbarWidth:"thin"}}
             endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           >
-             {products.length ?
+             {data.length ?
               <>
-                {products.map((item,index) => {
+                {data.map((item,index) => {
                return (
                 <div>
-                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  <div key={item.productId} className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex w-[6.5rem] max-sm:w-auto   ">
                         <SubTitle>
@@ -271,6 +313,53 @@ function ProductCardList(props) {
                      <FeatureProductToggle item={item}    featureInd={item.featureInd}  productId={item.productId}/>
 
                     </div>
+                    <div className=" flex  w-[7.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+
+<WarrentyProductToggle item={item}    warrantyInd={item.warrantyInd}  productId={item.productId}/>
+
+</div>
+<div className=" flex  w-[7.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+{/* {item.warrantyInd ? 
+<> */}
+{editsuppliesId === item.productId ? (
+                       <Input
+                       style={{ width: "3rem" }}
+                       value={item.yearNo}
+                       onChange={(e) => handleInputChange(e.target.value, item.key, 'yearNo')}
+                     />
+                       
+                    ) : (
+                      <div className="  text-xs  font-poppins">
+                        <div> {item.yearNo}</div>
+                      </div>
+                    )}
+<div className=" flex    md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    {editsuppliesId === item.productId ? (
+                        <>
+                      <Button 
+                      type="primary"
+                      onClick={() => handleSave(item)}>
+                        Save
+                      </Button>
+                        <Button 
+                         type="primary"
+                        onClick={() => handleCancelClick(item.productId)} className="ml-[0.5rem]">
+                        Cancel
+                      </Button>
+                      </>
+                      
+                    ) : (
+                      <BorderColorIcon
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                        tooltipTitle="Edit"
+                        iconType="edit"
+                        onClick={() => handleEditClick(item.productId)}
+                      />
+                    )}
+    </div> 
+   {/* </>
+    :null}  */}
+</div>
                       {/* <div className=" flex  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                       
                       <ReactToPrint
@@ -463,7 +552,8 @@ const mapStateToProps = ({ product, auth, supplies }) => ({
   proBuilderDrawer: product.proBuilderDrawer,
   priceOpenDrawer: product.priceOpenDrawer,
   productQualityDrawer:product.productQualityDrawer,
-  clickProdclDrwr:product.clickProdclDrwr
+  clickProdclDrwr:product.clickProdclDrwr,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -481,7 +571,8 @@ const mapDispatchToProps = (dispatch) =>
       handleProductBuilderDrawer,
       handlePriceDrawer,
       handleProdCellDrawer,
-      handleProductQuality
+      handleProductQuality,
+      updateDateYearProduct
     },
     dispatch
   );

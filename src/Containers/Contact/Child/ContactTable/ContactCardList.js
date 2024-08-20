@@ -431,32 +431,7 @@ function ContactCardList(props) {
      </Tooltip>
                   </div>
 
-                 
-                  
-             
-              
-                {/* <div>
-              <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-      <span
-        style={{
-          cursor: "pointer",
-        }}
-      >
-      <LocationOnIcon   
-      className=" !text-icon cursor-pointer text-[#960A0A]"/>
-      </span>
-    </Tooltip>
-    </div> */}
-    {/* <div><Tooltip title={item.email}>
-        <MailOutlineIcon
-          type="mail"
-          style={{ cursor: "pointer",fontSize: "1rem" }}
-          onClick={() => {
-            props.getCustomerById(item.customerId);
-            props.handleCustomerEmailDrawerModal(true);
-          }}
-        />
-      </Tooltip> </div> */}
+                              
         {user.contactUpdateInd === true &&  user.crmInd === true && (
       <div>
      

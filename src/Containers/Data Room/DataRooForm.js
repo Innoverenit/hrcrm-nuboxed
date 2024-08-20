@@ -245,6 +245,7 @@ import * as Yup from "yup";
 import  {addDataroom,getuserList} from  "./DataRoomAction";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { BundleLoader } from "../../Components/Placeholder";
+import {base_url} from "../../Config/Auth";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
@@ -282,7 +283,7 @@ function CustomerForm(props) {
   const fetchInclude = async () => {
     setIsLoadingInclude(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {

@@ -77,6 +77,9 @@ class Leads extends Component {
     return (
       <React.Fragment>
         <LeadsHeader
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
+         translatedMenuItems={this.props.translatedMenuItems}
           handleFilterChange={this.handleFilterChange}
           filter={this.state.filter}
           handleDropChange={this.handleDropChange}

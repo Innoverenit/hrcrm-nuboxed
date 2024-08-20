@@ -1,15 +1,16 @@
 import React from "react";
 import { bindActionCreators } from "redux";
-import { Badge, Popover,Tooltip } from "antd";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { Tag, } from "antd";
+import { Badge, Tag, Tooltip, Avatar, Button } from "antd";
+import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import ShopIcon from '@mui/icons-material/Shop'
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import PersonIcon from '@mui/icons-material/Person';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { StyledSelect, } from "../../../Components/UI/Antd";
 import {
@@ -34,6 +35,7 @@ class ReportActionLeft extends React.Component {
   // handleIconClick = (iconKey) => {
   //   this.setState({ activeIcon: iconKey });
   // };
+
   render() {
     const {
       reportTypes,
@@ -289,6 +291,73 @@ style={{ fontSize: "1rem" ,}}
 
             </div>
                )} */}
+
+{this.props.selectedCategory === "Orders" && (
+                <Badge
+                  size="small"
+                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+                // overflowCount={999}
+                >
+                  <span class="cursor-pointer mr-1"
+                    onClick={() => this.props.handleButtonIcon("repair")}
+                    style={{
+                      color: this.props.selectedButtonIcon === "repair" && "tomato",
+
+                    }}
+                  >
+                    <Tooltip title="Repair">
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "repair" ? "#f279ab" : "#4bc076" }}>
+                        <OnDeviceTrainingIcon className="text-white !text-icon" />
+                      </Avatar>
+                    </Tooltip>
+
+                  </span>
+                </Badge>
+              )}
+         
+{this.props.selectedCategory === "Orders" && (     
+ <Badge
+                  size="small"
+                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+                // overflowCount={999}
+                >
+                  <span class="cursor-pointer mr-1"
+                    onClick={() => this.props.handleButtonIcon("Procure")}
+                    style={{
+                      color: this.props.selectedButtonIcon === "Procure" && "tomato",
+
+                    }}
+                  >
+                    <Tooltip title="Procure">
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "Procure" ? "#f279ab" : "#4bc076" }}>
+                        <ShopIcon className="text-white !text-icon" />
+                      </Avatar>
+                    </Tooltip>
+
+                  </span>
+                </Badge>
+)}
+{this.props.selectedCategory === "Orders" && (   
+<Badge
+                  size="small"
+                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+                // overflowCount={999}
+                >
+                  <span class="cursor-pointer mr-1"
+                    onClick={() => this.props.handleButtonIcon("production")}
+                    style={{
+                      color: this.props.selectedButtonIcon === "production" && "tomato",
+
+                    }}
+                  >  <Tooltip title="Production">
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "production" ? "#f279ab" : "#4bc076" }}>
+                        <DynamicFeedIcon className="text-white !text-icon"
+
+                        />
+                      </Avatar>
+                    </Tooltip>
+                  </span>
+                </Badge>)}
                 </div>
               </>
             )}

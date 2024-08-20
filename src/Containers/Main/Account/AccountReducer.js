@@ -18,6 +18,14 @@ const initialState = {
 
   showStatusDrwr: false,
 
+  fetchingPilistByDistributor: false,
+  fetchingPilistByDistributorError: false,
+  piListByDistributor:[],
+
+  fetchingPilistByOrder: false,
+  fetchingPilistByOrderError: false,
+  piListByOrder:[],
+
   piButtonModal:false,
 
   fetchingInputInvoiceData: false,
@@ -3736,6 +3744,38 @@ export const distributorReducer = (state = initialState, action) => {
                           fetchingInvoiceCount: false,
                           fetchingInvoiceCountError: true,
                         };
+
+                        case types.GET_PILISTBY_DISTRIBUTOR_REQUEST:
+                          return { ...state, fetchingPilistByDistributor: true };
+                        case types.GET_PILISTBY_DISTRIBUTOR_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingPilistByDistributor: false,
+                            // accountInvoice: [...state.accountInvoice, ...action.payload]
+                            piListByDistributor: action.payload,
+                          };
+                        case types.GET_PILISTBY_DISTRIBUTOR_FAILURE:
+                          return {
+                            ...state,
+                            fetchingPilistByDistributor: false,
+                            fetchingPilistByDistributorError: true,
+                          };
+
+                          case types.GET_PILISTBY_ORDER_REQUEST:
+                            return { ...state, fetchingPilistByOrder: true };
+                          case types.GET_PILISTBY_ORDER_SUCCESS:
+                            return {
+                              ...state,
+                              fetchingPilistByOrder: false,
+                              // accountInvoice: [...state.accountInvoice, ...action.payload]
+                              piListByOrder: action.payload,
+                            };
+                          case types.GET_PILISTBY_ORDER_FAILURE:
+                            return {
+                              ...state,
+                              fetchingPilistByOrder: false,
+                              fetchingPilistByOrderError: true,
+                            };
   
     default:
       return state;

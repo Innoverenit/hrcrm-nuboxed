@@ -472,10 +472,7 @@ const AccountOrderTable = (props) => {
                                                 <div class="flex items-center  justify-end w-[8rem]">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                     <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.notes"
-                                                                defaultMessage="Notes"
-                                                            />}>
+                                                            <Tooltip title="PI List">
                                                                 <span
                                                                     className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
@@ -928,6 +925,18 @@ const AccountOrderTable = (props) => {
                                                 </div>
                                                 <div class="flex items-center  justify-end  w-[8rem]">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
+                                                    <div>
+                                                            <Tooltip title="PI List">
+                                                                <span
+                                                                    className="!text-icon cursor-pointer text-[green]"
+                                                                    onClick={() => {
+                                                                        props.handlePIModal(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}>PI</span>
+                                                                
+
+                                                            </Tooltip>
+                                                        </div>
                                                         <div>
                                                             <Tooltip title={<FormattedMessage
                                                                 id="app.notes"
@@ -1371,6 +1380,18 @@ const AccountOrderTable = (props) => {
                                                 </div>
                                                 <div class="flex items-center justify-end w-[8rem]">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
+                                                    <div>
+                                                            <Tooltip title="PI List">
+                                                                <span
+                                                                    className="!text-icon cursor-pointer text-[green]"
+                                                                    onClick={() => {
+                                                                        props.handlePIModal(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}>PI</span>
+                                                                
+
+                                                            </Tooltip>
+                                                        </div>
                                                         <div>
                                                             <Tooltip title={<FormattedMessage
                                                                 id="app.notes"

@@ -27,6 +27,7 @@ import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import { BundleLoader } from "../../../Components/Placeholder";
+import {base_url} from "../../../Config/Auth";
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -178,7 +179,7 @@ function CustomerForm(props) {
   const fetchSource = async () => {
     setIsLoading(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+      const apiEndpoint = `${base_url}/source/${props.organizationId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -205,7 +206,7 @@ console.log(selectedSource)
   const fetchSector = async () => {
     setIsLoadingSector(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+      const apiEndpoint = ` ${base_url}/sector`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -226,7 +227,7 @@ console.log(selectedSource)
   const fetchAssign = async () => {
     setIsLoadingAssign(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/employee/create/all-employees`;
+      const apiEndpoint = ` ${base_url}/customer/employee/create/all-employees`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -247,7 +248,7 @@ console.log(selectedSource)
   const fetchCurrency = async () => {
     setIsLoadingCurrency(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/currencies/sales`;
+      const apiEndpoint = `${base_url}/currencies/sales`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -268,7 +269,7 @@ console.log(selectedSource)
   const fetchCode = async () => {
     setIsLoadingCode(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/countries/all/dail-code/list`;
+      const apiEndpoint = `${ base_url}/countries/all/dail-code/list`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
