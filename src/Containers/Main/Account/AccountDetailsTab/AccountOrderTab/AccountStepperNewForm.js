@@ -3,9 +3,9 @@ import { Button, Input, Select } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {addManual,getCategorylist} from "../../../Suppliers/SuppliersAction";
+import {getCategorylist} from "../../../Suppliers/SuppliersAction";
 // import {getSaleCurrency} from "../../../../../../Auth/AuthAction";
-import {getAllProductList,getLocationList, getBrand, getModel} from "../../AccountAction";
+import {getAllProductList,getLocationList, getBrand, getModel,addNewList} from "../../AccountAction";
 const { Option } = Select;
 
 function AccountStepperNewForm(props) {
@@ -137,7 +137,7 @@ function AccountStepperNewForm(props) {
   };
 
   const handleAddRow = () => {
-    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currency_id:'',saleCurrencies:'',id:'' }]);
+    setRows([...rows, { brand: '', model: '', company: '', issue: '', uniqueCode: '',conditions:''}]);
   };
 
   const handleRemoveRow = (index) => {
@@ -150,30 +150,23 @@ function AccountStepperNewForm(props) {
     const dataToSend =
     {
         phoneList: rows.map((row) => ({
-            orderPhoneId: props.orderDetailsId.orderId,
-            brandId: row.brand,
-            modelId: row.model,
-            orgId: props.orgId,
-            userId: props.userId,
-            unit: row.unit,
-            spces: row.spces,
-            type: row.type,
-            price: row.price,
-            quality: row.quality,
-            currencyId:row.currencyId,
-            category:row.category,
-            attribute:row.attribute,
-            location:row.locationId,
-            supplierId: props.supplierId,
-            source:"erp"
-                            
+           
+            company: row.brand,
+            model: row.model,
+            uniqueCode: row.uniqueCode,
+            issue: row.issue,
+            conditions: row.conditions,
           })),
+          orderPhoneId: props.orderDetailsId.orderId,
+          orgId: props.orgId,
+          userId: props.userId,
+          distributorId :props.distributorId
     } 
    
 
     // Make the API call
-    props.addManual(dataToSend, props.userId,"0");
-    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currency_id:'',saleCurrencies:'',id:'' }]);
+    props.addNewList(dataToSend, props.userId,"0");
+    setRows([{ brand: '', model: '', company: '', issue: '', uniqueCode: '',conditions:''}]);
   };
 
   return (
@@ -327,8 +320,8 @@ function AccountStepperNewForm(props) {
                 <div className="w-28">
                   <Input
                     type="text"
-                    value={row.price}
-                    onChange={(e) => handleUnitChange(index, 'price', e.target.value)}
+                    value={row.uniqueCode}
+                    onChange={(e) => handleUnitChange(index, 'uniqueCode', e.target.value)}
                     placeholder="Enter Code"
                    // disabled={!fieldEnabled.price}
                   />
@@ -340,9 +333,9 @@ function AccountStepperNewForm(props) {
                 <div className="w-28">
                   <Input
                     type="text"
-                    value={row.unit}
-                    onChange={(e) => handleUnitChange(index, 'unit', e.target.value)}
-                    placeholder="Enter unit"
+                    value={row.issue}
+                    onChange={(e) => handleUnitChange(index, 'issue', e.target.value)}
+                    placeholder="Enter Issue"
                     // disabled={!fieldEnabled.unit}
                   />
                 </div>
@@ -352,8 +345,8 @@ function AccountStepperNewForm(props) {
                 <div className="w-28">
                   <Input
                     type="text"
-                    value={row.unit}
-                    onChange={(e) => handleUnitChange(index, 'unit', e.target.value)}
+                    value={row.conditions}
+                    onChange={(e) => handleUnitChange(index, 'conditions', e.target.value)}
                     placeholder="Enter Description"
                     // disabled={!fieldEnabled.unit}
                   />
@@ -391,7 +384,7 @@ const mapStateToProps = ({ distributor, brandmodel, auth,suppliers }) => ({
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({
-    addManual,
+    addNewList,
     getBrand,
     getModel,
    // getSaleCurrency,

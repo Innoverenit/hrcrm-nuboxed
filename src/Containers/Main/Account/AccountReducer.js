@@ -407,6 +407,9 @@ const initialState = {
 
   setEditingOrderDetail: {},
 
+  addingNewList: false,
+  addingNewListError:false,
+
   fetchingPhoneListById: false,
   fetchingPhoneListByIdError: false,
   phoneListById: [],
@@ -655,7 +658,7 @@ const initialState = {
 
   addingSupervisor: false,
   addingSupervisorError: false,
-  
+
   addNewModal:false,
 
   addingLead: false,
@@ -3781,6 +3784,23 @@ export const distributorReducer = (state = initialState, action) => {
                               fetchingPilistByOrder: false,
                               fetchingPilistByOrderError: true,
                             };
+
+                            case types.ADD_NEWLIST_REQUEST:
+                              return { ...state, addingNewList: true };
+                            case types.ADD_NEWLIST_SUCCESS:
+                              return {
+                                ...state,
+                                addingNewList: false,
+                                addNewModal: false,
+                                //inventoryList: [...action.payload, ...state.inventoryList],
+                              };
+                            case types.ADD_NEWLIST_FAILURE:
+                              return {
+                                ...state,
+                                addingNewList: false,
+                                addingNewListError:true,
+                                
+                              };
   
     default:
       return state;

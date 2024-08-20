@@ -4952,3 +4952,38 @@ export const getPiListByOrder = (phoneOrderId) => (dispatch) => {
       });
     });
 }
+
+export const addNewList = (customer) => (dispatch) => {
+
+  dispatch({
+    type: types.ADD_NEWLIST_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/phone/row-add`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getInventorylist(userId,"0"))
+      Swal.fire({
+        icon: 'success',
+        title: 'list added',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      dispatch({
+        type: types.ADD_NEWLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_NEWLIST_FAILURE,
+        payload: err,
+      });
+      //cb && cb();
+    });
+};
