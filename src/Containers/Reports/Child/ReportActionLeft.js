@@ -22,19 +22,38 @@ import {
 } from "../ReportAction";
 const Option = StyledSelect.Option;
 class ReportActionLeft extends React.Component {
-  // state = {
-  //   // dropdownData: {
-  //   //   investorTypes: ["Investor List","Investor all contacts","All Deals","Open Deals","Closed Deals","Pitch"],
-  //   //   prospectTypes: ["Prospect List","Prospect all contacts","All Opportunities","Open Opportunities","Closed Opportunities","Pitch"],
-  //   //   hrTypes: ["Employee","Suspended Employee","All Attendedance","Expenses","Mileages","Leaves"],
-  //   //   recruitProType: ["Requirement", "Selected"],
-  //   //   // Add more icons and corresponding items as needed
-  //   // },
-  //   activeIcon: null,
-  // };
-  // handleIconClick = (iconKey) => {
-  //   this.setState({ activeIcon: iconKey });
-  // };
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "Enterprise",
+        "My View"
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
 
   render() {
     const {
@@ -65,130 +84,6 @@ class ReportActionLeft extends React.Component {
     console.log(selectedSubReportType)
     return (
       <div class=" flex items-center" >
-
-{/* <div class="flex w-[12rem] ">
-        <Badge
-        size="small"
-      >
-        <span class=" cursor-pointer ml-2 "
-          > 
-              <Tooltip title="My Details">
-          <PersonIcon  style={{ fontSize: "1rem" }}/>
-          </Tooltip>
-        
-        </span>
-        </Badge>
-        {user.hrInd === true  && (
-        <Badge
-        size="small"
-      >
-        <span class="cursor-pointer ml-2" 
- onClick={() => handleIconClick("hrTypes")}
-        >
-         <Tooltip title="HR">
-             
-     <FactCheckIcon
-                style={{ fontSize: "1rem", }}
-              />
-              </Tooltip>
-        </span>
-  </Badge>
-          )} 
-    {user.crmInd === true && (
-        <Badge
-        size="small"
-      >
-        <span class="cursor-pointer ml-2"
-          onClick={() => handleIconClick("prospectTypes")}
-      
-        >
-          <Tooltip title="Prospects">
-          <ApartmentIcon
-
-style={{ fontSize: "1rem", }}
-/>
-</Tooltip>        
-        </span>
-        </Badge>
- )} 
-       
-
-   
-    {user.erpInd === true && (
-         <Badge
-         size="small"
-       >
-        <span class="cursor-pointer ml-2"
-
-        >
-          <Tooltip title="Customers">
-          <AcUnitIcon
-                style={{ fontSize: "1rem", }}
-              />
-          </Tooltip>
-        </span>
-        </Badge>
-  )}
-{user.erpInd === true  && (
-      <Badge
-      size="small"
-    >
-        <span class="cursor-pointer ml-2"
-        >  <Tooltip title="Order">
-          <DynamicFeedIcon
-                style={{ fontSize: "1rem", }}
-              />
-           </Tooltip>
-        </span>
-        </Badge>
- )} 
-   
-    {user.erpInd === true && (
-        <Badge
-        size="small"
-        // count={(props.reportViewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-        // overflowCount={999}
-      >
-        <span class="cursor-pointer ml-2"
-            // onClick={() => this.handleIconClick("investorTypes")}
-        // onClick={() => handleButtonClick("Finance")} 
-        // style={{
-        //   color:activeButton === "Finance" && "tomato",
-          
-        // }}
-        >
-           <Tooltip title="Finance">
-          <ReceiptIcon  style={{ fontSize: "1rem" ,}}/>
-          </Tooltip>
-          
-        </span>
-        </Badge>
-     )} 
-        {user.imInd === true  && (
-            <Badge
-            size="small"
-            // count={(props.reportViewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-            // overflowCount={999}
-          >
-        <span class="cursor-pointer ml-2"
-         onClick={() => handleIconClick("investorTypes")}
-        // onClick={() => setReportViewType("investor")} 
-        // style={{
-        //   color:activeButton === "Investors" && "tomato",
-    
-        // }}
-        >  
-        <Tooltip title="Investors">
-          <LocationCityIcon
-
-style={{ fontSize: "1rem" ,}}
-/>
-</Tooltip>       
-        </span>
-        </Badge>
- )} 
-    
-   </div> */}
           {user.department === "Management" && (
               <>
               <div class=" flex ">
@@ -210,92 +105,14 @@ style={{ fontSize: "1rem" ,}}
                     <FormattedMessage
                       id="app.enterprise"
                       defaultMessage="Enterprise"
-                    /> : <FormattedMessage
+                    />
+                     : <FormattedMessage
                     id="app.myview"
                     defaultMessage="My View"
                   />}
                   </Tag>
                 </div>
-                {/* <div>
-                  <Tag
-                    color={reportViewType === "ME" ? "	#FFA500" : "orange"}
-                    style={{
-                      cursor: "pointer",
-                      fontWeight: reportViewType === "ME" ? "bold" : null,
-                      textAlign: "center",
-                      borderColor: "orange",
-                    }}
-                    onClick={() => setReportViewType("ME")}
-                  >My View</Tag>
-                </div> */}
-                {/* <div class=" mt-2">
-              {reportViewType === "ME" ? (
-                <StyledSelect
-                  showSearch
-                  width={"20%"}
-                  placeholder="Select Report"
-                  onChange={(type) => setSelectedReportType(type)}
-                  defaultValue={selectedReportType}
-                  filterOption={(input, option) =>
-                    option.props.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  }
-                >
-                  {reportTypes.map((option, i) => (
-                    <Option key={i} value={option}>
-                      {option}
-                    </Option>
-                  ))}
-                </StyledSelect>
-              ) : (
-                <StyledSelect
-                  showSearch
-                  width={"20%"}
-                  placeholder="Select Report"
-                  onChange={(type) => setSelectedReportType(type)}
-                  defaultValue={selectedReportType}
-                  filterOption={(input, option) =>
-                    option.props.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  }
-                >
-                  {reportType.map((option, i) => (
-                    <Option key={i} value={option}>
-                      {option}
-                    </Option>
-                  ))}
-                </StyledSelect>
-              )}
-
-            </div> */}
-            {/* {activeIcon && (
-            <div class=" mt-2">
-            
-              <StyledSelect
-                  showSearch
-                  width={"20%"}
-                  placeholder="Select Report"
-                  onChange={(e) => this.props.handleDropChange(e)}
-                  defaultValue={selectedReportType}
-                  filterOption={(input, option) =>
-                    option.props.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  }
-                >
-                   {dropdownData[activeIcon].map((item, i) => (
-                <Option key={i} value={item}>
-                  {item}
-                </Option>
-              ))}
-                 
-                </StyledSelect>
-            
-
-            </div>
-               )} */}
+             
 
 {this.props.selectedCategory === "Orders" && (
                 <Badge

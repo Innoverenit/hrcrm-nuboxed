@@ -89,12 +89,12 @@ function AddSuppliersForm (props) {
             <Form className="form-background">
               <div class="flex justify-between max-sm:flex-col">
                 <div class="h-full w-w47.5 max-sm:w-full">
-                
+                <div className=" text-xs font-poppins font-bold text-black"> {props.translatedMenuItems[0]} </div>
                   <Field
                     isRequired
                     name="name"
                     type="text"
-                    label={props.translatedMenuItems[0]} 
+                    // label={props.translatedMenuItems[0]} 
                     width={"100%"}
                     component={InputComponent}
                   
