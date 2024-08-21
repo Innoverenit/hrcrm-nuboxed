@@ -9,9 +9,6 @@ import {
 } from "../../../../../Settings/SettingsAction";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import dayjs from "dayjs";
-import {
-  HeaderLabel
-} from "../../../../../../Components/UI/Elements";
 import { getAllPartnerListByUserId } from "../../../../../Partner/PartnerAction"
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
@@ -641,7 +638,7 @@ function RequirementDetailForm(props) {
                 <FlexContainer justifyContent="space-between">
                 <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <HeaderLabel style={{color:"white"}}>Location</HeaderLabel>
+                      <div class="font-semibold text-xs flex text-white"> Location</div>
                   </div>
                   </div>
                 <div style={{ width: "100%" }}>

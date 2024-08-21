@@ -5,9 +5,7 @@ import { Switch,Button,Select  } from "antd";
 import { getSectors } from "../../../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import * as Yup from "yup";
 import { getAllCustomerEmployeelist } from "../../../../Employees/EmployeeAction";
-import { HeaderLabel,  } from "../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFieldArray";
 import {
@@ -713,7 +711,7 @@ console.log(isLastNameVisible)
                   
                   <div class="mt-8" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <HeaderLabel style={{color:"white"}} >Corporate Address</HeaderLabel>
+                      <div class="font-semibold text-xs text-white flex"> Corporate Address</div>
                   </div>
                     </div>
            

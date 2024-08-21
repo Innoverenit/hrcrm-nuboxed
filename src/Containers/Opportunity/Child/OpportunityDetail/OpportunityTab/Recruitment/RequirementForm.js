@@ -8,10 +8,6 @@ import {
   getProcessForRecruit,
 } from "../../../../../Settings/SettingsAction";
 import dayjs from "dayjs";
-import {
-  HeaderLabel
-  
-} from "../../../../../../Components/UI/Elements";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import { getAllPartnerListByUserId } from "../../../../../Partner/PartnerAction"
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
@@ -669,7 +665,7 @@ function RequirementForm(props) {
                   <FlexContainer justifyContent="space-between">
                   <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <HeaderLabel style={{color:"white"}}>Location</HeaderLabel>
+                      <div class="font-semibold text-white text-xs flex"> Location</div>
                   </div>
                   </div>
                   <div style={{ width: "100%" }}>

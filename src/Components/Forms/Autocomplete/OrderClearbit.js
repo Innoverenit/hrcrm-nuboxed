@@ -126,8 +126,7 @@ class OrderClearbit extends Component {
       return (
         <>
           <div class=" text-xs font-bold font-poppins
-            style={{
-              flexBasis: "20%",
+            style={{            
               marginTop: "-49px",
               marginRight: "-48px",
             }}

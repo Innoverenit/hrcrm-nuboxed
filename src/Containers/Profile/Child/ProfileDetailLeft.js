@@ -11,7 +11,7 @@ class ProfileDetailLeft extends Component {
     const { userDetails } = this.props;
     console.log(userDetails);
     return (
-      <div class=" flex flex-col h-full display-block"
+      <div class=" flex flex-col h-full "
       ><Suspense fallback={"Loading..."}>
         <ProfileOverviewCard user={userDetails} 
         translateText={this.props.translateText}

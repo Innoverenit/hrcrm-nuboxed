@@ -60,7 +60,7 @@ const ProfileMenu = ({ logout, history }) => (
         </StyledMenuItem>
         <Menu.Divider />
       </StyledMenu>
-      {/* <ServerCheckbox /> */}
+  
       {/* <Theme /> */}
     </MainWrapper>
   </div>

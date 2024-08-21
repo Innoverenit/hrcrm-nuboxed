@@ -8,7 +8,6 @@ import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import { getCustomerDetailsById } from "../../CustomerAction";
 import { updateCustomer,setEditCustomer } from "../../CustomerAction";
-import { HeaderLabel } from "../../../../Components/UI/Elements";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
@@ -315,7 +314,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                    <div class="mt-3" />
                   <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <HeaderLabel style={{color:"white"}} >Corporate Address</HeaderLabel>
+                  <div class="font-semibold text-xs flex">Corporate Address</div>
                   </div>
                     </div>
                   <mt-3 /><mt-3 />
