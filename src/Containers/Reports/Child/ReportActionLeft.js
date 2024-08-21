@@ -197,12 +197,13 @@ style={{ fontSize: "1rem" ,}}
                     color={this.props.userorgflipClick && reportViewType === "ALL" ? "tomato" : "#FFA500"}
                     style={{
                       cursor: "pointer",
-                      fontWeight: reportViewType === "ALL" ? "bold" : null,
+                      fontWeight: this.props.userorgflipClick && reportViewType === "ALL" ? "bold" : null,
                       textAlign: "center",
                       fontFamily:"poppins",
                       borderColor: "tomato",
                     }}
-                    onClick={() =>{ setReportViewType("ALL");
+                    onClick={() =>{ 
+                      {!this.props.userorgflipClick ? setReportViewType("ALL") : setReportViewType("ME");}
                       this.props.UserOrgFlipClick();
                     }}
                   >

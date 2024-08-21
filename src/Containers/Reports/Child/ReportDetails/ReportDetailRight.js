@@ -13,6 +13,7 @@ import ReportsProspectList from "../../ReportsProspectList";
 import OrderProductionCard from "./OrderProductionCard";
 import OrderProcureCard from "./OrderProcureCard";
 import OrdeRepairTab from "./OrdeRepairTab";
+import OrdeRepairOrgTab from "./OrdeRepairOrgTab";
 
 class ReportDetailRight extends Component {
 
@@ -41,7 +42,7 @@ class ReportDetailRight extends Component {
   render() {
     const { reportViewType, selectedReportType, selectedSubReportType } = this.props;
     console.log("selectedSubReportType", selectedSubReportType, selectedReportType)
-    console.log(this.props.customer);
+    console.log("lkj",this.props.customer,this.props.reportViewType,this.props.userorgflipClick);
     return (
       <div class=" w-full">
                   {this.props.selectedCategory === "Productivity" && (
@@ -64,7 +65,7 @@ class ReportDetailRight extends Component {
    
 
 
-          {reportViewType === "ME" ? (
+          {this.props.reportViewType === "ME" && (
             <>
 {this.props.selectedButtonIcon === "repair" && this.props.selectedCategory === "Orders" && (
    <OrdeRepairTab               
@@ -87,10 +88,15 @@ class ReportDetailRight extends Component {
               {selectedReportType === "Requirement" && <Requirement />}
               {selectedReportType === "Selected" && <Selected />}
             </>
-          ):
-           (
+          )}
+           {this.props.reportViewType === "ALL" && this.props.userorgflipClick && (
             <>
-            <h2>Hello Org !</h2>
+          {this.props.selectedButtonIcon === "repair" && this.props.selectedCategory === "Orders" && (
+   <OrdeRepairOrgTab               
+   selectedButtonIcon={this.props.selectedButtonIcon}
+   selectedCategory={this.props.selectedCategory}
+   />
+  )}
               {selectedReportType === "Requirement" &&
                 <OrgRequirement />}
               {selectedReportType === "Selected" && <OrgSelected />}
