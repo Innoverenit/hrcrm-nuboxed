@@ -2286,12 +2286,12 @@ export const handleInventoryTask = (modalProps) => (dispatch) => {
   });
 };
 
-export const searchOpenOrdeReceived = (name) => (dispatch) => {
+export const searchOpenOrdeReceived = (imei) => (dispatch) => {
   dispatch({
     type: types.SEARCH_OPEN_ORDER_RECEIVED_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplies/suppliesName/${name}`, {
+    .get(`${base_url2}/phone/search/${imei}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
