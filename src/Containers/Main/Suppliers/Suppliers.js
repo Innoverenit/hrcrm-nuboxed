@@ -2,9 +2,9 @@ import React, { useState,useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setSuppliersViewType } from "./SuppliersAction";
-import SuppliersHeader from "../../Main/Suppliers/SuppliersHeader";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { getSuppliersList, getAllSuppliersList } from "./SuppliersAction";
+const SuppliersHeader =lazy(()=>import("../../Main/Suppliers/SuppliersHeader"));
 const SuppliersDeletedCardList =lazy(()=>import("./Child/SuppliersDeletedCardList"));
 const SuppliersCardList =lazy(()=>import("./Child/SuppliersCardList"));
 const AllSuppliersCardList=lazy(()=>import("./Child/AllSuppliersCardList"));
@@ -76,6 +76,7 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
     const { setSuppliersViewType, viewType } = props;
     return (
       <React.Fragment>
+       <Suspense fallback={<BundleLoader />}>
         <SuppliersHeader
           setSuppliersViewType={setSuppliersViewType}
           viewType={viewType}
@@ -87,7 +88,7 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
           selectedLanguage={props.selectedLanguage}
         />
 
-        <Suspense fallback={<BundleLoader />}>
+       
           {props.viewType === "card" ? (
             <SuppliersCardList 
             translateText={props.translateText}

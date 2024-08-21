@@ -5,8 +5,8 @@ import { setTimeRangeReport,getAllReportInvestors,getReportProspect,getReportTas
 import { bindActionCreators } from "redux";
 import ReportsProspectList from "../Reports/ReportsProspectList"
 import ReportsCardList from "./Child/ReportsCardList";
-import ReportDetails from "./Child/ReportDetails/ReportDetails";
 const ReportHeader =lazy(()=> import("./Child/ReportHeader"));
+const ReportDetails =lazy(()=> import("./Child/ReportDetails/ReportDetails"));
 const Requirement =lazy(()=> import("./Child/MyViewReports/Requirement"));
 const OrgSelected =lazy(()=> import("./Child/OrganizationView/Selected"));
 const OrgRequirement =lazy(()=> import("./Child/OrganizationView/Requirement"));
@@ -86,11 +86,10 @@ console.log(selectedTask)
     // console.log("selectedSubReportType", selectedSubReportType, selectedReportType)
     return (
       <React.Fragment>
+         <Suspense fallback={<BundleLoader />}>
         <ReportHeader 
-        // handleDropChange={handleDropChange}
-        // handleIconClick={this.handleIconClick}
-        // activeIcon={this.state.activeIcon}
-        // dropdownData={this.state.dropdownData}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
         UserOrgFlipClick={UserOrgFlipClick}
         userorgflipClick={userorgflipClick}
         selectedCategory={selectedCategory}
@@ -99,10 +98,11 @@ console.log(selectedTask)
         handleButtonIcon={handleButtonIcon}
 
         />
-        <Suspense fallback={<BundleLoader />}>
+       
           <ReportDetails
-          reportTask={props.reportTask}
-         
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+          reportTask={props.reportTask}         
           gettingReportTask={props.gettingReportTask}
           reportProspect={props.reportProspect}
           gettingReportProspect={props.gettingReportProspect}
@@ -110,35 +110,13 @@ console.log(selectedTask)
           selectedCategory={selectedCategory}
           handleButtonTask={handleButtonTask}
           taskData={props.taskData}
-
           dropdownOptions={dropdownOptions}
-          // handleSelectChange={handleSelectChange}
           handleButtonClick={handleButtonClick}
           selectedButtonIcon={selectedButtonIcon}
           handleButtonIcon={handleButtonIcon}
           UserOrgFlipClick={UserOrgFlipClick}
           userorgflipClick={userorgflipClick}
           />
-        {/* {selectedCategory === "Prospect" && (
-    <ReportsProspectList 
-    // allReportInvestors={this.props.allReportInvestors} 
-    />
-  )} */}
-          {/* {reportViewType === "ME" && (
-            <>
-
-              {selectedReportType === "Requirement" && <Requirement />}
-              {selectedReportType === "Selected" && <Selected />}
-            </>
-          )}
-          {reportViewType === "ALL" && (
-            <>
-
-              {selectedReportType === "Requirement" &&
-                <OrgRequirement />}
-              {selectedReportType === "Selected" && <OrgSelected />}
-            </>
-          )} */}
         </Suspense>
       </React.Fragment>
     );
@@ -178,107 +156,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Reports);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, Suspense,useState, lazy } from "react";
-// import { BundleLoader } from "../../Components/Placeholder";
-// import { connect } from "react-redux";
-// import { setTimeRangeReport,getAllReportInvestors } from "./ReportAction";
-// import { bindActionCreators } from "redux";
-// import ReportsCardList from "./Child/ReportsCardList";
-
-// const ReportHeader = lazy(() => import("./Child/ReportHeader"));
-// const Requirement = lazy(() => import("./Child/MyViewReports/Requirement"));
-// const OrgSelected = lazy(() => import("./Child/OrganizationView/Selected"));
-// const OrgRequirement = lazy(() => import("./Child/OrganizationView/Requirement"));
-// const Selected = lazy(() => import("./Child/MyViewReports/Selected"));
-
-// const Reports = ({
-//   setTimeRangeReport,
-//   getAllReportInvestors,
-//   orgId,
-//   allReportInvestors,
-//   todayStartDate,
-//   todayEndDate,
-//   reportViewType,
-//   selectedReportType,
-//   selectedSubReportType,
-// }) => {
-//   handleIconClick = (iconKey) => {
-//     this.setState({ activeIcon: iconKey });
-//   };
-  
-//   const [currentUser, setCurrentUser] = useState("");
-//   const handleDropChange = (value) => {
-//     setCurrentUser(value);
-//     getAllReportInvestors(orgId);
-//   };
-//   useEffect(() => {
-//     setTimeRangeReport(todayStartDate, todayEndDate);
-//   }, [setTimeRangeReport, todayStartDate, todayEndDate]);
-
-//   return (
-//     <>
-//       <ReportHeader   handleDropChange={handleDropChange}/>
-//       <Suspense fallback={<BundleLoader />}>
-//       {reportViewType === "table" ? (
-//           <ReportsCardList 
-//           allReportInvestors={allReportInvestors} />
-//         ) : null}
-//         {reportViewType === "ME" && (
-//           <>
-//             {selectedReportType === "Requirement" && <Requirement />}
-//             {selectedReportType === "Selected" && <Selected />}
-//           </>
-//         )}
-//         {reportViewType === "ALL" && (
-//           <>
-//             {selectedReportType === "Requirement" && <OrgRequirement />}
-//             {selectedReportType === "Selected" && <OrgSelected />}
-//           </>
-//         )}
-//       </Suspense>
-//     </>
-//   );
-// };
-
-// const mapStateToProps = ({ auth, report }) => ({
-//   reportViewType: report.reportViewType,
-//   allReportInvestors:report.allReportInvestors,
-//   orgId:auth.userDetails.organizationId,
-//   selectedReportType: report.selectedReportType,
-//   fiscalStartDate: auth.userDetails.fiscalMapper.fiscalStartDate,
-//   fiscalEndDate: auth.userDetails.fiscalMapper.fiscalEndDate,
-//   selectedSubReportType: report.selectedSubReportType,
-// });
-
-// const mapDispatchToProps = (dispatch) =>
-//   bindActionCreators(
-//     {
-//       setTimeRangeReport,
-//       getAllReportInvestors,
-//     },
-//     dispatch
-//   );
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Reports);
