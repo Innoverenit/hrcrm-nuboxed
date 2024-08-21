@@ -18,6 +18,8 @@ class ReportHeader extends Component {
                handleButtonTask={this.props.handleButtonTask}
                selectedButtonIcon={this.props.selectedButtonIcon}
                handleButtonIcon={this.props.handleButtonIcon}
+               UserOrgFlipClick={this.props.UserOrgFlipClick}
+               userorgflipClick={this.props.userorgflipClick}
                
                />}
           // rightComponent={<ReportActionRight />}

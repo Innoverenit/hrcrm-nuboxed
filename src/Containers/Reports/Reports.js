@@ -35,6 +35,7 @@ function Reports (props){
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedTask, setSelectedTask] = useState(null);
   const [selectedButtonIcon, setSelectedButtonIcon] = useState("");
+  const [userorgflipClick, setuserorgflipClick] = useState(false);
 
   const handleButtonClick = (category) => {
     setSelectedCategory(category);
@@ -47,6 +48,10 @@ function Reports (props){
   const handleButtonIcon = (icon) => {
     setSelectedButtonIcon(icon);
   };
+
+  const UserOrgFlipClick = () => {
+    setuserorgflipClick(prevState => !prevState);
+  }
 
 console.log(selectedTask)
   useEffect(()=> {
@@ -86,6 +91,8 @@ console.log(selectedTask)
         // handleIconClick={this.handleIconClick}
         // activeIcon={this.state.activeIcon}
         // dropdownData={this.state.dropdownData}
+        UserOrgFlipClick={UserOrgFlipClick}
+        userorgflipClick={userorgflipClick}
         selectedCategory={selectedCategory}
         handleButtonTask={handleButtonTask}
         selectedButtonIcon={selectedButtonIcon}
@@ -109,6 +116,8 @@ console.log(selectedTask)
           handleButtonClick={handleButtonClick}
           selectedButtonIcon={selectedButtonIcon}
           handleButtonIcon={handleButtonIcon}
+          UserOrgFlipClick={UserOrgFlipClick}
+          userorgflipClick={userorgflipClick}
           />
         {/* {selectedCategory === "Prospect" && (
     <ReportsProspectList 

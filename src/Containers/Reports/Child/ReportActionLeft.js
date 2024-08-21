@@ -194,7 +194,7 @@ style={{ fontSize: "1rem" ,}}
               <div class=" flex ">
               <div>
                   <Tag
-                    color={reportViewType === "ALL" ? "tomato" : "#FFA500"}
+                    color={this.props.userorgflipClick && reportViewType === "ALL" ? "tomato" : "#FFA500"}
                     style={{
                       cursor: "pointer",
                       fontWeight: reportViewType === "ALL" ? "bold" : null,
@@ -202,13 +202,18 @@ style={{ fontSize: "1rem" ,}}
                       fontFamily:"poppins",
                       borderColor: "tomato",
                     }}
-                    onClick={() => setReportViewType("ALL")}
+                    onClick={() =>{ setReportViewType("ALL");
+                      this.props.UserOrgFlipClick();
+                    }}
                   >
-                    {/* Organization */}
+                {this.props.userorgflipClick ?
                     <FormattedMessage
                       id="app.enterprise"
                       defaultMessage="Enterprise"
-                    />
+                    /> : <FormattedMessage
+                    id="app.myview"
+                    defaultMessage="My View"
+                  />}
                   </Tag>
                 </div>
                 {/* <div>
