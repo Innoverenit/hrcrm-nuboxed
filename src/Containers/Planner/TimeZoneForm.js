@@ -85,8 +85,6 @@ class TimeZoneForm extends Component {
 
 const mapStateToProps = ({ auth }) => ({
   userId: auth.userDetails && auth.userDetails.userId,
-  //   addingProcess: settings.addingProcess,
-  //   addingProcessError: settings.addingProcessError
 });
 
 const mapDispatchToProps = (dispatch) =>

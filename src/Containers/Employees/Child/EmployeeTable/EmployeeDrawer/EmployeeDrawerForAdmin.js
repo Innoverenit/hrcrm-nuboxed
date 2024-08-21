@@ -8,7 +8,6 @@ import {
 } from "../../../../../Components/UI/Layout";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import {
-  DrawerHeaderText,
   TextInput,
 } from "../../../../../Components/UI/Elements";
 import { BundleLoader } from "../../../../../Components/Placeholder";
@@ -64,17 +63,16 @@ class EmployeeDrawerForAdmin extends Component {
         <StyledDrawer
           title={
             <div className="HeaderText">
-              <DrawerHeaderText fontSize={"1.375em"}>
+              <div class="text-lg">
                 <span
                   style={{
-                    fontSize: "1em",
-
+                   
                     marginLeft: "0.3125em",
                     cursor: "pointer",
                   }}
                 >
                 </span>
-              </DrawerHeaderText>
+              </div>
               <div
                 className="logo"
                 style={{

@@ -2,22 +2,14 @@
 import React, {  useEffect,  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Badge } from "antd";
+import { Tooltip} from "antd";
 import dayjs from "dayjs";
-import PaidIcon from '@mui/icons-material/Paid';
 import {getContactAddedList} from "../../DashboardAction"
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 
 function ContactAddedList(props) {
- 
-//   useEffect(() => {
-//     props.getAllOrderList(props.orgId, page);
-//     setPage(page + 1);
-//   }, []);
+
 useEffect(()=>{
     if (props.timeRangeType === "today") {
     props.getContactAddedList(props.orgId,props.startDate,props.endDate)

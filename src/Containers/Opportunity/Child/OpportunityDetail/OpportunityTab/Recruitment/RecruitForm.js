@@ -10,9 +10,6 @@ import dayjs from "dayjs";
 import {
   getTalentRoles,
 } from "../../../../../Settings/Category/Role/RoleAction";
-import {
-  HeaderLabel
-} from "../../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import {
@@ -786,7 +783,7 @@ function RecruitForm(props) {
                 <FlexContainer justifyContent="space-between">
                 <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <HeaderLabel style={{color:"white"}}>Location</HeaderLabel>
+                      <div class="font-semibold text-xs flex"> Location</div>
                   </div>
                   </div>
                   <div style={{ width: "100%" }}>

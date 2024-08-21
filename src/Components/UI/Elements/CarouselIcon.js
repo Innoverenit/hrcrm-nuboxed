@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Icon } from "antd";
 import { DashOutlined} from '@ant-design/icons';
 const StyledIcon = styled(DashOutlined)`
   position: absolute;

@@ -390,23 +390,12 @@ const TaskCardList = (props) => {
         </ButtonGroup>
         <div></div>
                         </div>
-                        {/* <div>
-                       
-                        {item.complitionStatus === "completed" && (
-              <TaskStatusToggle
-                completionInd={item.completionInd}
-                taskId={item.taskId}
-              />
-            )}
-                    </div> */}
+          
                     </div>
                    
                     <div className="flex w-[4.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
-                       {/* <div class="text-sm  font-poppins max-sm:hidden">Deviation</div> */}
-                       {/* <div class="text-xs  font-poppins"> 
-                       {item.taskStatus === "Completed" ? `${completeDeviation} Days` : `${incompleteDeviationDate} Days`}
-                   </div> */}
+                  
                      <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
   {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
    (incompleteDeviationDate > 0 && <span className=" text-red-900 font-semibold">{incompleteDeviationDate} Days</span>)}
@@ -487,16 +476,11 @@ const TaskCardList = (props) => {
                 </Tooltip>
                 </span>
               
-                :null}
-
-     
+                :null}  
      </div> 
      )}
      </div>
-    
-  
-                  
-                   
+                                        
                    <div class="flex  w-[8.21rem] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <div class=" w-36">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
@@ -614,8 +598,7 @@ const TaskCardList = (props) => {
                                   className="!text-icon cursor-pointer"
                                  
                                 />
-                             </Tooltip>
-                    {/* )} */}
+                             </Tooltip>         
         
             </div>
                     <div class="flex max-sm:flex-row max-sm:w-auto justify-evenly ">   
@@ -713,9 +696,7 @@ const TaskCardList = (props) => {
         const currentDate = dayjs();
         const completionDate = dayjs(item.completionDate);
         const endDate = dayjs(item.endDate);
-        const difference = currentDate.diff(endDate, 'days');
-        // const incompleteDeviationDate = endDate.diff(currentDate, 'days');
-        // const completeDeviation = endDate.diff(completionDate, 'days');
+        const difference = currentDate.diff(endDate, 'days');    
         const incompleteDeviationDate = currentDate.diff(endDate, 'days');
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
@@ -758,15 +739,11 @@ const TaskCardList = (props) => {
                 onClick={() => {
                   props.handleTaskopenModal(true);               
                   handleSetCurrentProcessName(item)
-                  // this.props.setCurrentOpportunityRecruitMentData(item);
+   
                 }}
-                className="cursor-pointer text-[#042E8A]"
-                          
+                className="cursor-pointer text-[#042E8A]"                         
                >
-
                  {`${item.taskName} `} 
-
-
                </span>
                                     </div>
                                 </div>
@@ -827,24 +804,11 @@ const TaskCardList = (props) => {
           
         </ButtonGroup>
         <div></div>
-                        </div>
-                        {/* <div>
-                       
-                        {item.complitionStatus === "completed" && (
-              <TaskStatusToggle
-                completionInd={item.completionInd}
-                taskId={item.taskId}
-              />
-            )}
-                    </div> */}
+                        </div>               
                     </div>
                    
                     <div className="flex w-[4.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
-                       
-                       {/* <div class="text-sm  font-poppins max-sm:hidden">Deviation</div> */}
-                       {/* <div class="text-xs  font-poppins"> 
-                       {item.taskStatus === "Completed" ? `${completeDeviation} Days` : `${incompleteDeviationDate} Days`}
-                   </div> */}
+                                          
                      <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
   {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
    (incompleteDeviationDate > 0 && <span className=" text-red-900 font-semibold">{incompleteDeviationDate} Days</span>)}
@@ -878,9 +842,7 @@ const TaskCardList = (props) => {
                   <MultiAvatar2
                   primaryTitle={item.assignedToName}
                   imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-                  // className="!bg-[#94b3e4]"
-                  // // style={{ backgroundColor: "#94b3e4" }}
+                  imgHeight={"1.8rem"}             
                 />
                 )}
                 </>
@@ -925,16 +887,10 @@ const TaskCardList = (props) => {
                 </Tooltip>
                 </span>
               
-                :null}
-
-     
+                :null}     
      </div> 
      )}
-     </div>
-     
-  
-                  
-                   
+     </div>                                   
                    <div class="flex  w-[8.21rem] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <div class=" w-36">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
@@ -1144,8 +1100,6 @@ const TaskCardList = (props) => {
         const completionDate = dayjs(item.completionDate);
         const endDate = dayjs(item.endDate);
         const difference = currentDate.diff(endDate, 'days');
-        // const incompleteDeviationDate = endDate.diff(currentDate, 'days');
-        // const completeDeviation = endDate.diff(completionDate, 'days');
         const incompleteDeviationDate = currentDate.diff(endDate, 'days');
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
@@ -1257,24 +1211,11 @@ const TaskCardList = (props) => {
           
         </ButtonGroup>
         <div></div>
-                        </div>
-                        {/* <div>
-                       
-                        {item.complitionStatus === "completed" && (
-              <TaskStatusToggle
-                completionInd={item.completionInd}
-                taskId={item.taskId}
-              />
-            )}
-                    </div> */}
+                        </div>            
                     </div>
                    
                     <div className="flex w-[4.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
-                       
-                       {/* <div class="text-sm  font-poppins max-sm:hidden">Deviation</div> */}
-                       {/* <div class="text-xs  font-poppins"> 
-                       {item.taskStatus === "Completed" ? `${completeDeviation} Days` : `${incompleteDeviationDate} Days`}
-                   </div> */}
+                                         
                      <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
   {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
    (incompleteDeviationDate > 0 && <span className=" text-red-900 font-semibold">{incompleteDeviationDate} Days</span>)}
@@ -1308,9 +1249,7 @@ const TaskCardList = (props) => {
                   <MultiAvatar2
                   primaryTitle={item.assignedToName}
                   imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-                  // className="!bg-[#94b3e4]"
-                  // // style={{ backgroundColor: "#94b3e4" }}
+                  imgHeight={"1.8rem"}             
                 />
                 )}
                 </>
@@ -1355,16 +1294,10 @@ const TaskCardList = (props) => {
                 </Tooltip>
                 </span>
               
-                :null}
-
-     
+                :null}    
      </div> 
      )}
-     </div>
-    
-  
-                  
-                   
+     </div>                                  
                    <div class="flex flex-col w-[8.21rem] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <div class=" w-36">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
@@ -1442,10 +1375,7 @@ const TaskCardList = (props) => {
                 props.handleUpdateDocumentDrawerModal(true);
                 handleSetTaskNameId(item);
               }}
-          />    
-              
-
-     
+          />                    
      </div> 
      <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
@@ -1455,10 +1385,7 @@ const TaskCardList = (props) => {
           handleTaskStepperDrawerModal(true);
           handleSetTaskNameId(item);
         }}
-     />
-               
- 
-      
+     />                    
       </div> 
                     <div class="flex  max-sm:flex-row  max-sm:w-auto justify-evenly  ">
                     <Tooltip title="Notes">
@@ -1649,33 +1576,6 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
     );
     export default connect(mapStateToProps, mapDispatchToProps)(TaskCardList);
    
-    // function StatusIcon(props) {
-    //   const { type, iconType, tooltip, status, onClick, difference } = props; // Receive the difference prop
-    //   const start = type;
-    //   let size;
-    
-    //   if (status === type) {
-    //     size = "1.875em";
-    //   } else {
-    //     size = "1em";
-    //   }
-    
-    //   return (
-    //     <Tooltip title={`${tooltip} (${difference} days)`}> {/* Use difference prop in the tooltip */}
-    //       <Button
-    //         ghost={status !== type}
-    //         style={{
-    //           padding: "0.375em",
-    //           borderColor: "transparent",
-    //           color: status === type ? "rgb(251, 133, 0)" : "grey",
-    //         }}
-    //         onClick={onClick}
-    //       >
-    //         <i className={`fas ${iconType}`} style={{ fontSize: "1.375em" }}></i>
-    //       </Button>
-    //     </Tooltip>
-    //   );
-    // }
     function StatusIcon(props) {
       const { type, iconType, tooltip, status, onClick, difference } = props;
     
