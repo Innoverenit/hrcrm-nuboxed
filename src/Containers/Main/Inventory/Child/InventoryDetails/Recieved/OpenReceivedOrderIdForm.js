@@ -148,7 +148,7 @@ function OpenReceivedOrderIdForm(props) {
       const handleChange = (e) => {
           setCurrentData(e.target.value);
           if (searchOnEnter&& e.target.value.trim() === "") {  //Code for Search
-             props.getPhonelistByOrderId(props.rowData.orderPhoneId, page);
+             props.getPhonelistByOrderId(props.rowData.orderPhoneId, "0");
             // props.ClearReducerDataOfMaterial();
             setSearchOnEnter(false);
           }

@@ -176,11 +176,11 @@ useEffect(() => {
     console.log(key)
   
       const result = {
-        yearNo: key.yearNo,
+        year: key.year,
         productId:key.productId,  
             };
       props.updateDateYearProduct(result,key.productId)
-    
+      setEditsuppliesId();
   };
 
   return (
@@ -319,18 +319,18 @@ useEffect(() => {
 
 </div>
 <div className=" flex  w-[7.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-{/* {item.warrantyInd ? 
-<> */}
+{item.warrantyInd ? 
+<> 
 {editsuppliesId === item.productId ? (
                        <Input
                        style={{ width: "3rem" }}
-                       value={item.yearNo}
-                       onChange={(e) => handleInputChange(e.target.value, item.key, 'yearNo')}
+                       value={item.year}
+                       onChange={(e) => handleInputChange(e.target.value, item.key, 'year')}
                      />
                        
                     ) : (
                       <div className="  text-xs  font-poppins">
-                        <div> {item.yearNo}</div>
+                        <div> {item.year}</div>
                       </div>
                     )}
 <div className=" flex    md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -357,8 +357,8 @@ useEffect(() => {
                       />
                     )}
     </div> 
-   {/* </>
-    :null}  */}
+  </>
+    :null}  
 </div>
                       {/* <div className=" flex  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                       
