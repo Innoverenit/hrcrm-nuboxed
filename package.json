@@ -26,7 +26,7 @@
     "antd": "^5.9.0",
     "apexcharts": "^3.46.0",
     "axios": "^1.7.4",
-    "cheerio": "^1.0.0",
+    "cheerio": "^1.0.0-rc.10",
     "d3-funnel": "^2.1.1",
     "dayjs": "^1.11.12",
     "draft-js": "^0.11.7",
