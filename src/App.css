@@ -810,3 +810,7 @@ scrollbar-width: thin;
 .ant-modal .ant-modal-footer {
   display: none;
 }
+
+.flip {
+  transform: rotateY(180deg);
+}

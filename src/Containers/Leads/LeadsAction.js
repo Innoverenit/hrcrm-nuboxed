@@ -1109,12 +1109,12 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
-  export const getJunkedLeadsRecords = (userId) => (dispatch) => {
+  export const getJunkedLeadsRecords = (orgId) => (dispatch) => {
     dispatch({
       type: types.GET_JUNKED_LEADS_RECORDS_REQUEST,
     });
     axios
-      .get(`${base_url}/leads/junked/count/${userId}`, {
+      .get(`${base_url}/leads/junked/count/for-org/${orgId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

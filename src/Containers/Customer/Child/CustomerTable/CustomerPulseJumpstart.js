@@ -24,8 +24,11 @@ import CustrContJumpstartCardList from "./CustrContJumpstartCardList";
 import CustrWonOpportunityJumpstartCardList from "./CustrWonOpportunityJumpstartCardList";
 import CustrActivityJumpstartCardList from "./CustrActivityJumpstartCardList";
 class CustomerPulseJumpStart extends React.Component{
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFlipped: false,
+    };
     const startDate = dayjs().startOf("month"); 
     const endDate = dayjs();
     var today = new Date(),
@@ -57,12 +60,17 @@ componentDidMount() {
     this.props.getProspectPipeLineValue(this.props.customer.customerId);
 
 }
+handleClick = () => {
+  this.setState(prevState => ({
+    isFlipped: !prevState.isFlipped
+  }));
+};
 handleCardClick = (cardName) => {
   this.setState({ activeCard: cardName });
 }
 
 render() {
-
+  const { isFlipped } = this.state;
    if (this.props.fetchingOppValue) {
     return <BundleLoader />;
   }
@@ -93,8 +101,14 @@ render() {
     <>
     <div class=" flex flex-row w-full" >
     <div class="flex w-full justify-center" >
-        
-        <JumpStartBox
+    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                        <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-3 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                </div>
+                                <JumpStartBox
             noProgress
             title={
               <FormattedMessage
@@ -118,7 +132,18 @@ render() {
           
           />
   
-  <JumpStartBox
+                            </div>
+                        </div>
+                    
+                    </div>  
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                        <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-3 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                                </div>
+                                <JumpStartBox
   noProgress
   title={
     <FormattedMessage
@@ -134,10 +159,19 @@ render() {
   }
   isLoading={this.props.fetchingPipelineValue} 
 />
-         
-
-
-<JumpStartBox
+                            </div>
+                        </div>
+                     
+                    </div>  
+  
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                        <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-3 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                                </div>
+                                <JumpStartBox
     noProgress
     title={
         <FormattedMessage
@@ -161,10 +195,20 @@ render() {
     isLoading={this.props.fetchingWonCustomerOppValue} 
     //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
 />
+                            </div>
+                        </div>
+                      
+                    </div>    
 
 
-
-      <JumpStartBox
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                      
+                        <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-3 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                                </div>
+                                <JumpStartBox
         noProgress
         title={
           <FormattedMessage
@@ -189,7 +233,19 @@ render() {
         //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
       
       />
-      <JumpStartBox
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                    {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                    
+                       <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-3 bg-red-500"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
+                                </div>
+                                <JumpStartBox
             noProgress
             title={
               <FormattedMessage
@@ -215,7 +271,78 @@ render() {
             bgColor="linear-gradient(270deg,black,grey)"
             isLoading={this.props.fetchingContactValue} 
             //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"               
-          />                      
+          /> 
+                            </div>
+                        </div>
+                       
+                    </div> */}
+
+<div className="w-full md:w-1/2 xl:w-1/3 p-2" style={{ perspective: '1000px' }}>
+        <div
+          className={`relative w-full h-[5rem] transition-transform duration-700 ${isFlipped ? 'flip' : ''}`}
+          style={{ transformStyle: 'preserve-3d' }}
+          onClick={this.handleClick}
+        >
+          {/* Front of the card */}
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl flex items-center p-1"
+            style={{ backfaceVisibility: 'hidden' }}
+          >
+             <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-3 bg-red-500"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
+                                </div>
+            {/* Replace with your actual JumpStartBox component */}
+            <div>
+            <JumpStartBox
+            noProgress
+            title={
+              <FormattedMessage
+                id="app.#Contacts"
+                defaultMessage="#Contacts "
+              />
+            }
+            jumpstartClick={() => this.handleCardClick("contacts")}
+          
+            cursorData={
+              this.props.fetchingContactValue ||   this.props.contactValue.CustomerContactDetails === 0 ? "not-allowed" : "pointer"
+            }
+
+            // value={
+            //   this.props.contactValue.CustomerContactDetails
+
+            // }
+            value={
+              this.props.fetchingContactValue ? "Loading..." :
+              this.props.contactValue.CustomerContactDetails === 0 ? "None" :
+              this.props.contactValue.CustomerContactDetails
+            }
+            bgColor="linear-gradient(270deg,black,grey)"
+            isLoading={this.props.fetchingContactValue} 
+            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"               
+          /> 
+            </div>
+          </div>
+
+          {/* Back of the card */}
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-gray-200 to-gray-100 border-b-4 border-gray-500 rounded-lg shadow-xl flex flex-col items-center justify-center"
+            style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+          >
+            <h2 className="text-lg font-semibold">Additional Details</h2>
+            <p>Some more information can be displayed here.</p>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+                           
         </div>
 
      

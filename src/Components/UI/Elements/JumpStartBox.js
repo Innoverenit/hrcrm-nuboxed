@@ -103,7 +103,7 @@ const JumpStartDetail = ({
   const cursorDisabled = value === 0 ? "cursor-not-allowed" : "pointer";
 
   return (
-    <JumpStartWrapper
+    <div
       bgColor={bgColor}
       clickable={clickable}
       onClick={jumpstartClick}
@@ -124,7 +124,7 @@ const JumpStartDetail = ({
             </Tooltip>
           </div>
         ) : (
-            <div class=" font-semibold">{title || "N/A"}</div>
+            <div class=" font-semibold font-poppins">{title || "N/A"}</div>
           )}
 
         {isLoading ? (
@@ -139,7 +139,7 @@ const JumpStartDetail = ({
             <MyLoader />{" "}
           </span>
         ) : (
-            <div class="text-xl" >
+            <div class="text-2xl font-poppins" >
               {isLevelTextInputOpen ? (
                 <>
                   <Select
@@ -207,7 +207,7 @@ const JumpStartDetail = ({
             </div>
           )}
       </div>
-    </JumpStartWrapper>
+    </div>
   );
 };
 
