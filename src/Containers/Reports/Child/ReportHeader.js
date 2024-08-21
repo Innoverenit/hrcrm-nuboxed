@@ -1,6 +1,5 @@
-import React, { Component,lazy, Suspense,Suspense} from "react";
+import React, { Component,lazy, Suspense} from "react";
 import { ActionHeader } from "../../../Components/Utils";
-import { BundleLoader } from "../../../Components/Placeholder";
 import BundleLoader from "../../../Components/Placeholder/BundleLoader";
 const ReportActionLeft =lazy(()=> import("./ReportActionLeft"));
 const ReportActionRight =lazy(()=> import("./ReportActionRight"));
@@ -11,9 +10,10 @@ class ReportHeader extends Component {
       <div >
          <Suspense fallback={<BundleLoader />}>
         <ActionHeader
-            // translateText={this.this.props.translateText}
-            // selectedLanguage={this.props.selectedLanguage}
+        
             leftComponent={<ReportActionLeft   
+           translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             handleIconClick={this.props.handleIconClick}
             activeIcon={this.props.activeIcon}
             dropdownData={this.props.dropdownData}
