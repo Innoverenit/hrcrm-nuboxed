@@ -39,7 +39,7 @@ const LeadsActionLeft = (props) => {
     if (props.viewType === "card") {
       props.getLeadsRecords(props.userId);
     } else if (props.viewType === "list") {
-      props.getJunkedLeadsRecords(props.userId);
+      props.getJunkedLeadsRecords(props.orgId);
     } else if (props.viewType === "teams") {
       props.getLeadsTeamRecords(props.userId);
     }

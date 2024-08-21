@@ -3792,6 +3792,7 @@ export const distributorReducer = (state = initialState, action) => {
                                 ...state,
                                 addingNewList: false,
                                 addNewModal: false,
+                                addLinkDistributorOrderConfigureModal: false,
                                 //inventoryList: [...action.payload, ...state.inventoryList],
                               };
                             case types.ADD_NEWLIST_FAILURE:
