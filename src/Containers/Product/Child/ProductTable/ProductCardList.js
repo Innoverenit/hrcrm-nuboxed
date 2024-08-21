@@ -180,7 +180,7 @@ useEffect(() => {
         productId:key.productId,  
             };
       props.updateDateYearProduct(result,key.productId)
-      setEditsuppliesId();
+      setEditsuppliesId(null);
   };
 
   return (

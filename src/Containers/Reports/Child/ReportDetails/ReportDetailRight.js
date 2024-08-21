@@ -10,9 +10,9 @@ import OrgRequirement from "../OrganizationView/Requirement";
 import ReportsCardList from "../ReportsCardList";
 import { setTimeRangeReport,getAllReportInvestors } from "../../ReportAction";
 import ReportsProspectList from "../../ReportsProspectList";
-import OrderRepairCard from "./OrderRepairCard";
 import OrderProductionCard from "./OrderProductionCard";
 import OrderProcureCard from "./OrderProcureCard";
+import OrdeRepairTab from "./OrdeRepairTab";
 
 class ReportDetailRight extends Component {
 
@@ -61,8 +61,13 @@ class ReportDetailRight extends Component {
     reportTask={this.props.reportTask}      
     gettingReportTask={this.props.gettingReportTask} />
   )}
-   {this.props.selectedButtonIcon === "repair" && this.props.selectedCategory === "Orders" && (
-   <OrderRepairCard               
+   
+
+
+          {reportViewType === "ME" ? (
+            <>
+{this.props.selectedButtonIcon === "repair" && this.props.selectedCategory === "Orders" && (
+   <OrdeRepairTab               
    selectedButtonIcon={this.props.selectedButtonIcon}
    selectedCategory={this.props.selectedCategory}
    />
@@ -79,18 +84,13 @@ class ReportDetailRight extends Component {
   selectedCategory={this.props.selectedCategory}
   />
   )}
-
-
-          {reportViewType === "ME" && (
-            <>
-
               {selectedReportType === "Requirement" && <Requirement />}
               {selectedReportType === "Selected" && <Selected />}
             </>
-          )}
-          {reportViewType === "ALL" && (
+          ):
+           (
             <>
-
+            <h2>Hello Org !</h2>
               {selectedReportType === "Requirement" &&
                 <OrgRequirement />}
               {selectedReportType === "Selected" && <OrgSelected />}

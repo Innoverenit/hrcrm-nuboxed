@@ -25,7 +25,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 const ButtonGroup = Button.Group;
 
-const OrderRepairCard = (props) => {
+const OrderRepairCompletedCard = (props) => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const tab = document.querySelector('.ant-layout-sider-children');
   const tableHeight = tab && tab.offsetHeight * 0.75;
@@ -43,7 +43,7 @@ const OrderRepairCard = (props) => {
         const end = `${endDate.format("YYYY-MM-DD")}T20:00:00Z`;
 
       try {
-        const response = await axios.get(`${base_url2}/dashboard/allOrderList/${props.userId}/${props.startDate}/${props.endDate}/${page}`,{
+        const response = await axios.get(`${base_url2}/dashboard/completeOrderList/${props.userId}/${props.startDate}/${props.endDate}/${page}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -98,7 +98,7 @@ const OrderRepairCard = (props) => {
     <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
+          <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
                         /></div>
@@ -119,7 +119,7 @@ const OrderRepairCard = (props) => {
                           id="app.assignedto"
                           defaultMessage="assignedto"
                         /></div>
-       
+        
         <div className="w-[6.01rem]"></div>
         <div className="w-[3%]"></div>
         <div className="w-[5%]"></div>
@@ -145,8 +145,9 @@ const OrderRepairCard = (props) => {
         const incompleteDeviationDate = currentDate.diff(endDate, 'days');
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
-                      <div>
-                      <div
+                       
+                        <div>
+                            <div
                         className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                        <div class="flex  max-sm:w-wk items-center">
                        <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
@@ -226,7 +227,7 @@ const OrderRepairCard = (props) => {
                </div>
                         </div> 
                       </div>
-                    </div>
+                      </div>
 
                     )
                 })}
@@ -254,7 +255,4 @@ const OrderRepairCard = (props) => {
       },
       dispatch
     );
-    export default connect(mapStateToProps, mapDispatchToProps)(OrderRepairCard);
-   
-    
-    
+    export default connect(mapStateToProps, mapDispatchToProps)(OrderRepairCompletedCard);

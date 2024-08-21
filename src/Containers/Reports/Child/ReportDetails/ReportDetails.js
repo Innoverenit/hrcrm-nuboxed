@@ -40,7 +40,8 @@ class ReportDetails extends Component {
                handleDropChange={this.props.handleDropChange} 
                selectedButtonIcon={this.props.selectedButtonIcon}
                handleButtonIcon={this.props.handleButtonIcon}
-               
+               UserOrgFlipClick={this.props.UserOrgFlipClick}
+               userorgflipClick={this.props.userorgflipClick}
                />
                     </div>
                     <div class=" w-4/5 max-sm:w-full">
@@ -53,6 +54,8 @@ class ReportDetails extends Component {
           gettingReportTask={this.props.gettingReportTask}
           selectedButtonIcon={this.props.selectedButtonIcon}
           handleButtonIcon={this.props.handleButtonIcon}
+          UserOrgFlipClick={this.props.UserOrgFlipClick}
+          userorgflipClick={this.props.userorgflipClick}
 
                       />
                     </div>

@@ -21,6 +21,8 @@ class ReportDetailLeft extends Component {
                handleDropChange={this.props.handleDropChange} 
                selectedButtonIcon={this.props.selectedButtonIcon}
                handleButtonIcon={this.props.handleButtonIcon}
+               UserOrgFlipClick={this.props.UserOrgFlipClick}
+               userorgflipClick={this.props.userorgflipClick}
                />
           <ReportTimeCard customer={customer} 
              handleButtonTask={this.props.handleButtonTask}
@@ -28,6 +30,8 @@ class ReportDetailLeft extends Component {
            selectedCategory={this.props.selectedCategory}
            selectedButtonIcon={this.props.selectedButtonIcon}
                handleButtonIcon={this.props.handleButtonIcon}
+               UserOrgFlipClick={this.props.UserOrgFlipClick}
+               userorgflipClick={this.props.userorgflipClick}
           />
           <ReportDocumentsCard customer={customer} />
         </div>
