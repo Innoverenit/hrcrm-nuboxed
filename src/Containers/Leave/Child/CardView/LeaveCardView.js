@@ -56,7 +56,7 @@ function LeaveCardView(props) {
         <div className="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
           {leaveListRangeByUserId.map((item) => {
             return (
-              <div className="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[6.5rem] 
+              <div className="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[8rem] 
 text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                 <div className="w-[200] flex h-[200] max-sm:w-full max-sm:flex-col max-sm:items-center  ">
                   <div className=" flex flex-col justify-around w-full ">
