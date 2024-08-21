@@ -533,6 +533,20 @@ console.log(editsuppliesId)
                     )}
                   </div>
 
+                  <div>
+      <Popconfirm
+                          title="Do you want to delete?"
+                          onConfirm={() => props.removeSkillData(item.skillLevelLinkId)}
+
+                          >
+                     <Tooltip title="Delete">
+                          <DeleteIcon
+                           className="!text-base cursor-pointer text-[red]"
+                          />
+                       </Tooltip>
+                       </Popconfirm>
+                       </div>
+
                   <div class="flex md:items-center">
 
 
@@ -566,19 +580,7 @@ console.log(editsuppliesId)
                         onClick={() => handleEditClick(item.skillLevelLinkId,item.level1,item.level2,item.level3,item.skillDefinationId)}
                       />
                     )}
- <div>
-      <Popconfirm
-                          title="Do you want to delete?"
-                          onConfirm={() => props.removeSkillData(item.skillLevelLinkId)}
 
-                          >
-                     <Tooltip title="Delete">
-                          <DeleteIcon
-                           className="!text-base cursor-pointer text-[red]"
-                          />
-                       </Tooltip>
-                       </Popconfirm>
-                       </div>
                   </div>
 
                 </div>

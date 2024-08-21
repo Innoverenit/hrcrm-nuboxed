@@ -6465,7 +6465,7 @@ export const removeSkillData = (skillLevelLinkId) => (dispatch) => {
     type: types.REMOVE_SKILL_DATA_REQUEST,
   });
   axios
-    .put(`${base_url}/category/skillLevel/delete/${skillLevelLinkId}`, {
+    .put(`${base_url}/category/skillLevel/delete/${skillLevelLinkId}`,{}, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
