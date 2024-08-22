@@ -224,7 +224,7 @@ const DashboardJumpStart = (props) => {
             noProgress
             title="Calls"
             bgColor="linear-gradient(270deg,#F15753,orange)"
-            value={`User Calls- ${data2.TodayCompletedCall} Org Calls- ${data4.TodayCompletedCall}`}
+            value={`${data2.TodayCompletedCall}`}
             isLoading={loading2 || loading4}
           />
                          </div>
@@ -242,8 +242,9 @@ const DashboardJumpStart = (props) => {
             noProgress
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
             title={<FormattedMessage id="app.avHoursThisMonth" defaultMessage="Average work hours" />}
-            value={avgHour.hours}
+            value={`${avgHour.hours} avg hours / day `} 
             isLoading={fetchingAvgHour}
+            
           />
                            </div>
                        </div>
@@ -279,7 +280,7 @@ const DashboardJumpStart = (props) => {
             noProgress
             title="Events"
             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-            value={`User Events- ${data5.TodayCompletedEvent} Org Events- ${data6.TodayCompletedEvent}`}
+            value={`${data5.TodayCompletedEvent}`}
             isLoading={loading5}
           />
                           </div>

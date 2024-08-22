@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSuppliersDeletedList, emptysUPPLIERS ,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers} from "../SuppliersAction"
@@ -8,9 +8,8 @@ import { Link } from 'react-router-dom';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import UpdateSupplierModal from "./UpdateSupplierModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import ReInstateSuppliers from "../ReInstateSuppliers";
-import SupplierSearchedData from "./SupplierSearchedData";
-
+const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
+const ReInstateSuppliers =lazy(()=>import("../ReInstateSuppliers"));
 function SuppliersDeletedCardList(props) {
 
   const [hasMore, setHasMore] = useState(true);
@@ -143,7 +142,7 @@ function SuppliersDeletedCardList(props) {
 
                             <div className=" flex  w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class="  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            <ReInstateSuppliers supplierId={item.supplierId} />
+                            <Suspense fallback={<BundleLoader />}> <ReInstateSuppliers supplierId={item.supplierId} /></Suspense>
                             </div>
                           </div>
                           </div>
@@ -158,6 +157,7 @@ function SuppliersDeletedCardList(props) {
         </div>
       </div>
 )}
+ <Suspense fallback={<BundleLoader />}>
       <UpdateSupplierModal
         rowdata={rowdata}
         updateSupplierModal={props.updateSupplierModal}
@@ -165,6 +165,7 @@ function SuppliersDeletedCardList(props) {
         handleUpdateSupplierModal={props.handleUpdateSupplierModal}
         translatedMenuItems={props.translatedMenuItems}
       />
+      </Suspense>
     </>
   )
 }
