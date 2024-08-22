@@ -36,6 +36,9 @@ class OpportunityDetailLeft extends Component {
           setAccount={this.setAccount}
           department={this.props.department}
           partnerLogin={this.props.partnerLogin}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
         />
         </div>
         

@@ -45,10 +45,10 @@ class LinkedContact extends Component {
       this.setState({ loading: true });
       const itemsToTranslate = [
        'Name', // 0
-       'Designation', // 1
-       'Function', // 2
-       'Email', // 3
-       'Mobile'//4
+'Designation', // 1
+'Function', // 2
+'Email', // 3
+'Mobile'//4
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
