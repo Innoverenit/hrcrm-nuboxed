@@ -157,9 +157,9 @@ return  <BundleLoader />
                 <>
                   <span onClick={this.handleRecruitClick}>
                   <TransferWithinAStationIcon 
-                  style={{fontSize:"1.1rem"}}
+                 className="!text-icon"
                    />
-                    <span style={{ marginLeft: '0.25em' }}>RecruitPro</span>
+                    <span className="ml-[0.25rem]">RecruitPro</span>
                   </span>
                   {activeKey === "1" && (
                     <>
@@ -168,47 +168,19 @@ return  <BundleLoader />
                      
                         <Tooltip title="Add Requirement">
                         {user.userType !== "USER" && user.department !== "Recruiter" && ( 
-                          <PlusOutlined
+                          <PlusOutlined className="ml-[0.125rem flex items-center ]"
                             type="plus"
                             tooltipTitle="Add Requirement"
                             onClick={() =>
                               this.props.handleRecruitModal(true)
                             }
-                            size="0.875em"
-                            style={{
-                              marginLeft: "0.125em",
-                              verticalAlign: "center",
-                            }}
+                            size="0.875em"                         
                           />
                         )}
-                          </Tooltip>
-                        
-                        {/* <Tooltip //title="Tag Position"
-                          title={<FormattedMessage
-                            id="app.tagposition"
-                            defaultMessage="Tag Position"
-                          />}
-
-                        >
-                           {user.userType !== "USER" && user.department !== "Recruiter" && ( 
-                          <Icon
-                            type="link"
-                            onClick={() => {
-                              this.handlepartnerPopoverVisibleChange();
-                              handleTagProfileModal(true);
-                            }}
-                            size="0.875em"
-                            style={{
-                              marginLeft: "-5px",
-                              verticalAlign: "center",
-                            }}
-                          />
-                           )}
-                        </Tooltip> */}
+                          </Tooltip>                                        
 
                         <Tooltip title="Summary">
-                      <span
-                       style={{marginLeft:"-4px"}}
+                      <span className="ml-[-4px]"                   
                           type="area-chart"
                           // tooltipTitle="Summary"
                           onClick={() => {
@@ -216,9 +188,8 @@ return  <BundleLoader />
                           }}
                           size="0.875em"                         
                           >
-                          {/* <i class="fas fa-chart-line"></i> */}
-                          {/* <i class="fas-solid fa-chart-pie"></i> */}
-                          <PieChartIcon  style={{fontSize:"1.1rem"}} />
+                       
+                          <PieChartIcon className="!text-icon" />
                           </span>
                         </Tooltip>
 
@@ -233,7 +204,7 @@ return  <BundleLoader />
                           }}
                           size="0.8em"                         
                           >
-                             <LockIcon style={{fontSize:"1.1rem"}} />
+                             <LockIcon className="!text-icon" />
                             
                           
                           </span>
@@ -495,6 +466,9 @@ return  <BundleLoader />
           handleCustomerContactModal={handleCustomerContactModal}
             addCustomerContactModal={addCustomerContactModal}
             opportunityId={opportunityId}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
             // defaultCustomers={[{ label: name, value: customerId }]}
             // customerId={{ value: customerId }}
             // callback={() => getContactListByCustomerId(customerId)}
@@ -517,6 +491,9 @@ return  <BundleLoader />
 opportunityId={opportunityId}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
           />
           <ReactSpeechModal
           opportunityId={opportunityId}

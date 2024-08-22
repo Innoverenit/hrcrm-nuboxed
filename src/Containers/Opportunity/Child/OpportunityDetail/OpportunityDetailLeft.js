@@ -43,6 +43,9 @@ class OpportunityDetailLeft extends Component {
           <div className="w-[89vw]">
          <OpportunityDetailTab
           opportunity={opportunity}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
           />
           </div>
        </div>

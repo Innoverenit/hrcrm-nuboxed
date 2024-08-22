@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
-import styled from "styled-components";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
@@ -156,7 +155,7 @@ function OpportunityLostCard(props) {
 
                   <div className="max-sm:w-wk">
                   <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex  items-center rounded justify-between  bg-white mt-1 h-8  p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium w-[14.5rem] max-xl:w-[9.5rem] max-lg:w-[6.5rem] max-sm:flex-row  ">
@@ -171,16 +170,13 @@ function OpportunityLostCard(props) {
           />
         </div>
 </div>
-                                 <div class="w-[4%]">
-
-                                 </div>
                                  
                                       <Tooltip>
-                                      <div class=" flex max-sm:w-full  flex-row md:flex-col">
+                                      <div class=" flex  max-sm:w-full  flex-row md:flex-col">
                                           {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                           Name
                                           </div> */}
-                                          <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
+                                          <div class=" text-xs flex text-blue-500  font-poppins font-semibold cursor-pointer">
                                               
                                           <Link class="overflow-ellipsis whitespace-nowrap max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}

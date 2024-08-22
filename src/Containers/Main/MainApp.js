@@ -215,7 +215,6 @@ const Accessment = lazy(() => import("../Accessment/Accessment"));
 const Task = lazy(() => import("../Task/Task"));
 const Event = lazy(() => import("../Event/Event"));
 const Leave = lazy(() => import("../Leave/Leave"));
-const PageNotFound = lazy(() => import("../404/PageNotFound"));
 const LiveMessage = lazy(() =>
   import("../../Containers/LiveMessages/LiveMessage")
 );
@@ -1542,7 +1541,7 @@ function MainApp(props) {
                       )}
                     />
                      
-                      <Route path="**" component={PageNotFound} />
+                     
                     </Switch>
                   </Suspense>
                 </Content>

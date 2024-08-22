@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import styled from "styled-components";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
 import {
   MultiAvatar,
-  SubTitle,
 } from "../../../../Components/UI/Elements";
 import {
   getDeletedOpportunity,

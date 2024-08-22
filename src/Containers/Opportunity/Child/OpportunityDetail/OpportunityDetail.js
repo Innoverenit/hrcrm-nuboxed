@@ -21,6 +21,9 @@ class OpportunityDetail extends Component {
         <OpportunityDetailHeader
           opportunity={opportunity}
           fetchingOpportunityById={fetchingOpportunityById}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
         />
         {fetchingOpportunityById ? (
           <MainWrapper>
@@ -31,10 +34,17 @@ class OpportunityDetail extends Component {
             <Suspense fallback={""}>
             <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
                 <div class=" w-[22%] max-sm:w-full max-sm:flex flex-col">
-                  <OpportunityDetailLeft opportunity={opportunity} />
+                  <OpportunityDetailLeft opportunity={opportunity}
+                   translateText={this.props.translateText}
+                   selectedLanguage={this.props.selectedLanguage}
+                   translatedMenuItems={this.props.translatedMenuItems}
+                  />
                 </div>
                 <div class="w-[80%] max-sm:hidden">
                   <OpportunityDetailRight 
+                   translateText={this.props.translateText}
+                   selectedLanguage={this.props.selectedLanguage}
+                   translatedMenuItems={this.props.translatedMenuItems}
                   opportunity={opportunity}
                   />
                 </div>

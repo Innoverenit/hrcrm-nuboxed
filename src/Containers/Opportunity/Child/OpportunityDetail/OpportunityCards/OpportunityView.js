@@ -7,11 +7,7 @@ import LinkTagCustomerModal from "./LinkTagCustomerModal"
 import {
   StyledPopconfirm,
 } from "../../../../../Components/UI/Antd";
-import {
-  Title,
-  SubTitle,
-  MultiAvatar,
-} from "../../../../../Components/UI/Elements";
+import {MultiAvatar} from "../../../../../Components/UI/Elements";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {linktagCustomer} from "../../../OpportunityAction";
 import {  LinkOutlined } from "@ant-design/icons";
@@ -60,9 +56,9 @@ class OpportunityView extends Component {
     return (
       <>
         <div class="flex justify-between" >
-        <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto w-full  mt-[-8px] mr-auto">
+        <div class=" flex flex-row flex-wrap  grow shrink w-full ">
         
-            <div style={{ width: "20%",marginTop:"4px"  }}>
+            <div>
               <MultiAvatar
                 primaryTitle={opportunity.opportunityName}
                 imageId={imageId}
@@ -71,27 +67,27 @@ class OpportunityView extends Component {
               {/* )} */}
             </div>
             &nbsp;
-            <div class=" flex flex-col flex-wrap w-[80%] items-start self-start justify-start grow shrink h-auto mr-auto">
-              <Title
+            <div class=" flex  flex-wrap w-[78%]   grow shrink ">
+              <div
                 overflow="hidden"
                 textOverflow="ellipsis"
                 style={{fontSize:"0.85rem",lineHeight:"2rem"}}
-                // style={{ marginLeft: "0.625em" }}
+         
               >
                 {`${opportunityName || ""}`}
-              </Title>
-              <SubTitle
+              </div>
+              <div className="ml-[0.625rem]"
                 overflow="hidden"
                 textOverflow="ellipsis"
-                style={{ marginLeft: "0.625em" }}
+               
               >
                 {accountName}
-              </SubTitle>
+              </div>
             </div>
-            <div class=" flex flex-col flex-wrap items-start w-[20%] self-start justify-start grow shrink h-auto mr-auto">
+            <div class=" flex  flex-wrap  grow shrink  ">
             {this.props.partnerLogin === "Yes" &&
             this.props.department === "Partner" ? null : (
-              <div class=" flex flex-row flex-wrap items-center self-start justify-end grow shrink h-auto mr-auto">
+              <div class=" flex flex-row flex-wrap  justify-end grow shrink  ">
                 {this.props.account &&
                   this.props.account.hasOwnProperty("accountId") ? (
                     <StyledPopconfirm
@@ -107,12 +103,11 @@ class OpportunityView extends Component {
                         defaultMessage="Tag Customer"
                       />}
                     >
-                      <LinkOutlined
+                      <LinkOutlined class="text-[#fb8500] text-[0.8rem]"
                         tooltipTitle="Tag Customer"
                         iconType="link"
                         onClick={this.handleLinkContactModalVisible}
-                        size="16px"
-                        style={{ color: "#fb8500",fontSize:"0.8rem" }}
+                        size="16px"                   
                       />
                     </Tooltip>
                   )}
@@ -129,7 +124,7 @@ class OpportunityView extends Component {
                     onClick={toggleViewType}
                     // size="16px"
                   >
-                       <BorderColorIcon  style={{fontSize:"0.8rem"}}/>
+                       <BorderColorIcon className="!text-icon"/>
               </span>
                 </Tooltip>
               </div>
