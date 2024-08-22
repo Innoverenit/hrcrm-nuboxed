@@ -64,7 +64,7 @@ const initialState = {
             type: "Today",
             value: "Today",
             starter: false,
-            isSelected: false,
+            isSelected: true,
             startDate: dayjs()
                 // .subtract(1, "days")
                 .toISOString(),
@@ -128,7 +128,7 @@ const initialState = {
         // },
     ],
     isCustomSelected: false,
-    // timeRangeType: "today",
+    timeRangeType: "Today",
     // startDate: dayjs()
     //     .startOf("year")
     //     .toISOString(),
