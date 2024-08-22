@@ -68,7 +68,6 @@ class ContactForm extends Component {
 'Tag Company', // 8
 'Designation' ,// 9
 'Department', // 10
-'Designation' ,// 11
  'Address',//12
 'Notes',//13
   'Create'
@@ -281,7 +280,7 @@ class ContactForm extends Component {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-2/6 max-sm:w-2/5">
+                    <div class=" w-2/6 max-sm:w-2/5 mt-1">
                     <div class=" text-xs font-bold font-poppins"> 
                          {translatedMenuItems[3]}    
                          {/* dialCode*/}
@@ -300,7 +299,7 @@ class ContactForm extends Component {
                         inlineLabel
                       />
                     </div>
-                    <div class=" w-2/5">
+                    <div class=" w-2/5 ml-2 mr-2 mt-1">
                     <div class=" text-xs font-bold font-poppins"> 
                          {translatedMenuItems[4]}             
                           </div>
@@ -315,7 +314,7 @@ class ContactForm extends Component {
                       />
                     </div>
                     
-                    <div class=" text-xs font-bold font-poppins"> 
+                    <div class="  mt-1 text-xs font-bold font-poppins"> 
                          {translatedMenuItems[5]}                                              
                     {/* WhatsApp */}
                     <Switch
@@ -371,7 +370,7 @@ class ContactForm extends Component {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-full">
+                    <div class=" w-full mt-1">
                     <div class=" text-xs font-bold font-poppins"> 
                          {translatedMenuItems[6]}    
                          {/* Email          */}
@@ -389,7 +388,7 @@ class ContactForm extends Component {
                     </div>
                   </div>
               
-                  <div class=" flex justify-between mt-3">
+                  <div class=" flex justify-between mt-2">
                     <div class="w-full">
                     <div class=" text-xs font-bold font-poppins"> 
                          {translatedMenuItems[7]}    
@@ -407,7 +406,7 @@ class ContactForm extends Component {
                   </div>
               
 
-                  <div class=" flex justify-between mt-3">
+                  <div class=" flex justify-between mt-2">
                     <div class=" w-2/4">
                       <>
                       <div class=" text-xs font-bold font-poppins"> 
@@ -444,7 +443,7 @@ class ContactForm extends Component {
                       />
                     </div>
                   </div>
-                  <div class="  w-w47.5">
+                  <div class="  w-w47.5 mt-2">
                   <div class=" text-xs font-bold font-poppins"> 
                          {translatedMenuItems[10]}             
                           </div>

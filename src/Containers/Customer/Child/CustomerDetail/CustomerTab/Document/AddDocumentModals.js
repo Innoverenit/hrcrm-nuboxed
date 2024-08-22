@@ -453,7 +453,7 @@ function AddDocumentModal (props){
           "Name",//2
           "Description",//3
           "Share",//4
-          "Inlcude",//5
+          "Include",//5
           "Submit",//6
          
         ];

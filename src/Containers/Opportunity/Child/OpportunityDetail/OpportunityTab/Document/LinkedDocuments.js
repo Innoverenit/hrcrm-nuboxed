@@ -51,7 +51,7 @@ class LinkedDocuments extends Component {
       const itemsToTranslate = [
        'Name', // 0
 'Designation', // 1
-'Functiom', // 2
+'Function', // 2
 'Email', // 3
 'Mobile'//4
 

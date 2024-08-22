@@ -46,7 +46,11 @@ const OpportunityDetailActionLeft = (props) => {
         </div>
       ) : (
           // <BundleLoader />
-          <OpportunityStatsCard opportunity={opportunity} />
+          <OpportunityStatsCard opportunity={opportunity}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
+          />
         )}
    
 

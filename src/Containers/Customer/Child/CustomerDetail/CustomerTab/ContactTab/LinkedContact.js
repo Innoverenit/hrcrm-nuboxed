@@ -337,6 +337,10 @@ function LinkedContact(props) {
           defaultCustomers={props.defaultCustomers}
           customerId={props.customerId}
           handleUpdateCustomerContactModal={handleUpdateCustomerContactModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
+
         />
        
      
