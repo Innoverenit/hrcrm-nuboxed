@@ -89,8 +89,25 @@ class TabContentComponent extends Component {
     this.setState({
       currentProcess: item,
     });
-      this.props.getProcessStagesForDeals(item.workflowDetailsId);
+      //this.props.getProcessStagesForDeals(item.workflowDetailsId);
   };
+
+
+  componentDidUpdate(prevProps, prevState) {
+    // Ensure the initial tab content is rendered on component mount
+    if (prevProps.processForWorkflowData !== this.props.processForWorkflowData && this.props.processForWorkflowData.length > 0) {
+      this.setState({ currentProcess: this.props.processForWorkflowData[0]?.workflowDetailsId });
+    }
+
+    if (prevState.currentProcess !== this.state.currentProcess && this.state.currentProcess) {
+      this.props.getProcessStagesForDeals( this.state.currentProcess.workflowDetailsId);
+    }
+  }
+
+
+  // componentDidMount() {
+  //   this.props.getProcessStagesForDeals(this.state.currentProcess);
+  // }
 
 
   handlePublishClick = () => {
@@ -344,6 +361,7 @@ fetchType = async () => {
     });
   };
   render() {
+    console.log(this.state.currentProcess)
     console.log(this.state.currentItem)
     const { addingProcessForDeals, addProcessForDeals } = this.props;
     return (
