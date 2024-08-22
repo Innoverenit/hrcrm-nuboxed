@@ -18,8 +18,9 @@ const AddSuppliersModal = (props) => {
             >
                 <Suspense fallback={<BundleLoader />}>
                     <AddSuppliersForm   translatedMenuItems={props.translatedMenuItems} {...formProps} 
-                     translateText={this.props.translateText}
-                     selectedLanguage={this.props.selectedLanguage}/>
+                    //  translateText={this.props.translateText}
+                    //  selectedLanguage={this.props.selectedLanguage}
+                     />
                 </Suspense>
             </StyledDrawer>
         </>

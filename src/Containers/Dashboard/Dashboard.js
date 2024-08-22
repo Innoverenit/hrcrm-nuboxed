@@ -1,10 +1,8 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import styled from 'styled-components';
 import { MainWrapper } from "../../Components/UI/Layout";
 import Piechart1 from "../../Components/Charts/PieChart1";
-import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { BundleLoader } from "../../Components/Placeholder";
 import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
 import CustomerViewGoogleMap from "./CustomerViewGoogleMap"
