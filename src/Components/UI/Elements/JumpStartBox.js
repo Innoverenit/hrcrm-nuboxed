@@ -139,7 +139,7 @@ const JumpStartDetail = ({
             <MyLoader />{" "}
           </span>
         ) : (
-            <div class="text-2xl font-poppins" >
+            <div class="text-base font-poppins" >
               {isLevelTextInputOpen ? (
                 <>
                   <Select
