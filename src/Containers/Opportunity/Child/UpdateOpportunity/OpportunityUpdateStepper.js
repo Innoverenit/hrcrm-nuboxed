@@ -78,14 +78,14 @@ class OpportunityUpdateStepper extends Component {
             <>
                 <StyledSteps current={current}>
                     <Step
-                        title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
+                        title={<AddShoppingCartIcon className="!text-icon" />}
                         description={<FormattedMessage
                             id="app.oderdetails"
                             defaultMessage="Order Details"
                         />}
                     />
                     <Step
-                        title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
+                        title={<ControlPointDuplicateIcon  className="!text-icon" />}
                         description={<FormattedMessage
                             id="app.unitsinfo"
                             defaultMessage="Units Info"

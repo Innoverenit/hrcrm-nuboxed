@@ -16,6 +16,9 @@ class OpportunityDetailHeader extends Component {
               <OpportunityDetailActionLeft
                 opportunity={opportunity}
                 fetchingOpportunityById={fetchingOpportunityById}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
               />
               {/* <OpportunityStatsCard opportunity={opportunity} /> */}
             </>
@@ -24,6 +27,9 @@ class OpportunityDetailHeader extends Component {
             <>
               <OpportunityDetailActionRight
                 opportunity={this.props.opportunity}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
               />
             </>
           }

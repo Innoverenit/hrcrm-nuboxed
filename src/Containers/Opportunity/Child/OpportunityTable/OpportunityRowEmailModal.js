@@ -2,7 +2,7 @@ import React, { Component, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import { Button, Upload } from "antd";
+import { Button } from "antd";
 import { Field, Form, Formik } from "formik";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
@@ -293,20 +293,7 @@ formData.append('file', file); // 'file' is the key for the file content
                     />
                       </div>
                   </div>
-                 
-                  {/* <div class=" flex items-center" >
-                  <div class=" w-[12%]" >
-               <div class=" text-xs font-bold font-poppins text-black">BCC</div>
-                    </div>
-                    <div class="w-[88%]" >
-                      
-                    <Field
-                      name="bcc"
-                      component={InputComponent}
-                      width="100%"
-                    />
-                      </div>
-                  </div> */}
+                            
                   <div class=" flex items-center" >
                   <div class=" w-[12%]" >
                <div class=" text-xs font-bold font-poppins text-black">Subject</div>
@@ -344,40 +331,23 @@ formData.append('file', file); // 'file' is the key for the file content
                            </span>
           </div>
                     <div class=" flex flex-row"
-                    >
-                      {/* <Upload
-                        onChange={this.onFileChoose}
-                        onRemove={this.handleRemove}
-                      >
-                        <Button
-                          type="link"
-                          style={{
-                            marginTop: "8px",
-                            marginLeft: "",
-                          }}
-                        >
-                          Upload
-                        </Button>
-                      </Upload> */}
+                    >                
 
                       <Button
                         type="primary"
-                        htmlType="submit"
-                        // disabled={!values.to && values.cc && values.bcc}
-                        // disabled={!empty.length}
+                        htmlType="submit"                   
                          loading={sendingEmail}
                         style={{ marginTop: "10px" }}
                       >
                         Send
                       </Button>
-                      {/* <Button type='default' style={{ marginLeft: 5, marginTop: '5px' }} onClick={() => setSmsModalVisible(false)}>cancel</Button> */}
+                     
                     </div>
                   </div>
                 </Form>
               );
             }}
-          </Formik>
-          {/* <Suspense fallback={<BundleLoader />}></Suspense> */}
+          </Formik>     
         </StyledDrawer>
       </div>
     );
