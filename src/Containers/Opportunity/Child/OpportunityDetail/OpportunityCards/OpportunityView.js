@@ -139,6 +139,9 @@ class OpportunityView extends Component {
         opportunityId={opportunityId}
         linkContactModalVisible={this.state.linkContactModalVisible}
         handleLinkContactModalVisible={this.handleLinkContactModalVisible}
+         translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
         />
       </>
     );
