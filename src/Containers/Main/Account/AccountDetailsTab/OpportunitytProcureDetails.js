@@ -19,13 +19,10 @@ import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/Suppli
 import { DeleteOutlined } from "@ant-design/icons";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { base_url2 } from "../../../../Config/Auth";
-import axios from "axios";
-import Swal from 'sweetalert2';
 
 const { Option } = Select;
 
-function AccountProcureDetails(props) {
+function OpportunitytProcureDetails(props) {
   const [editedFields, setEditedFields] = useState({});
   const [editContactId, setEditContactId] = useState(null);
   const [attribute, setAttribute] = useState("");
@@ -38,15 +35,10 @@ function AccountProcureDetails(props) {
   const [location, setLocation] = useState("");
   const [currency, setCurrency] = useState("");
   const [newPrice, setPrice] = useState('');
-  const [invoices, setInvoices] = useState('');
-  // const [particularRowData, setParticularRowData] = useState({});
+
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-
-  const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
       const fetchMenuTranslations = async () => {
         try {
@@ -60,11 +52,7 @@ function AccountProcureDetails(props) {
   'Location', // 5
   'Specs',
   'Units',
-  'Price',//8
-  'Pending',
-  "Invoice",//10
-  "Available",
-  'Generate Invoice',//12
+  'Price',
         ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -86,7 +74,7 @@ function AccountProcureDetails(props) {
     props.getSupplierSuppliesQuality();
     props.getLocationList(props.orgId);
     props.getSaleCurrency()
-    props.getProcureDetails(props.particularRowData.orderPhoneId);
+    props.getProcureDetails(props.particularRowItem.orderPhoneId);
   }, []);
 
   const handleChange = (id, fieldName, value) => {
@@ -157,7 +145,7 @@ function AccountProcureDetails(props) {
   const handleUpdate = (id) => {
     const data = {
       model: brand,
-      orderPhoneId: props.particularRowData.orderId,
+      orderPhoneId: props.particularRowItem.orderId,
       brandId: model,
       unit: newUnitName,
       specs: specs,
@@ -167,7 +155,6 @@ function AccountProcureDetails(props) {
       location:location,
       currency:currency,
       price:newPrice,
-      invoice: invoices,
     };
 
     props.updateProcureDetails(data, id);
@@ -176,63 +163,6 @@ function AccountProcureDetails(props) {
     setEditContactId(null);
   };
 
-  // const handleSetParticularOrderData = (item) => {
-  //   setParticularRowData(item);
-  // };
-
-  // if (props.fetchingProcureDetails) {
-  //   return <BundleLoader />;
-  // }
-
-const handleGenerateInvoice= async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await axios.post(`${base_url2}/orderPayment/payment`,{
-        paymentMode: "Cash",
-        remarks: "",
-        invoiceId:invoices,
-        userId: props.userId,
-        orderPaymentType: "Repair",
-        transactionNumber: "",
-        orgId: props.orgId,
-        distributorId:props.distributorId,
-        orderId: props.particularRowData.orderId,
-        paymentAmount: "550",
-      },
-        {
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-        }
-        
-      );
-      setData(response.data);
-
-      Swal.fire({
-        title: 'Success!',
-        text: 'Invoice generated successfully!',
-        icon: 'success',
-        confirmButtonText: 'OK'
-    });
-    } 
-    
-    catch (err) {
-      setError(err);
-      Swal.fire({
-        title: 'Error!',
-        text: 'There was an issue generating the invoice.',
-        icon: 'error',
-        confirmButtonText: 'OK'
-    });
-    } finally {
-      setLoading(false);
-    }
-  }; 
-
-
-
-  
   return (
     <>
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -258,21 +188,14 @@ const handleGenerateInvoice= async () => {
           <div className="md:w-[8.8rem]">
           {translatedMenuItems[6]}{/* <FormattedMessage id="app.specs" defaultMessage="Specs" /> */}
           </div>
-          <div className="md:w-[4.8rem]">
-          {translatedMenuItems[8]} {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}
-          </div>
           <div className="md:w-[2.8rem]">
           {translatedMenuItems[7]} {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
           </div>
           <div className="md:w-[4.8rem]">
-          {translatedMenuItems[9]}
+          {translatedMenuItems[8]} {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}
           </div>
-          <div className="md:w-[4.8rem]">
-          {translatedMenuItems[10]} 
-          </div>
-          <div className="md:w-[4.8rem]">
-          {translatedMenuItems[11]} 
-          </div>
+        
+        
           <div className="md:w-[2rem]"></div>
         </div>
         <InfiniteScroll
@@ -369,7 +292,7 @@ const handleGenerateInvoice= async () => {
               </div>
               <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
+                  {editContactId === item.id ? (
                     <select
                       className="customize-select"
                       style={{ width: "70%" }}
@@ -384,13 +307,12 @@ const handleGenerateInvoice= async () => {
                     </select>
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.quality}</div>
-                  )} */}
-                  <div className="font-normal text-xs  font-poppins">{item.quality}</div>
+                  )}
                 </div>
               </div>
               <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
+                  {editContactId === item.id ? (
                     <select
                       className="customize-select"
                       style={{ width: "70%" }}
@@ -405,13 +327,12 @@ const handleGenerateInvoice= async () => {
                     </select>
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.location}</div>
-                  )} */}
-                   <div className="font-normal text-xs  font-poppins">{item.location}</div>
+                  )}
                 </div>
               </div>
               <div className="flex  md:w-[6rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
+                  {editContactId === item.id ? (
                     <Select
                       style={{ width: 100 }}
                       value={specs}
@@ -424,30 +345,13 @@ const handleGenerateInvoice= async () => {
                     </Select>
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.specs}</div>
-                  )} */}
-                  <div className="font-normal text-xs  font-poppins">{item.specs}</div>
+                  )}
                 </div>
               </div>
 
-            <div className="flex  ml-2 md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
-                    <input
-                      placeholder="Update Price"
-                      style={{border:"2px solid black",width:"6rem"}}
-                      type="text"
-                      value={newPrice}
-                      onChange={(e) => setPrice(e.target.value)}
-                    />
-                  ) : (
-                    <div className="font-normal text-xs  font-poppins">{item.price}{item.currency} </div>
-                  )} */}
-                  <div className="font-normal text-xs  font-poppins">{item.price}{item.currency} </div>
-                </div>
-              </div>
               <div className="flex  ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
+                  {editContactId === item.id ? (
                     <input
                       placeholder="Update Unit"
                       style={{border:"2px solid black"}}
@@ -457,14 +361,28 @@ const handleGenerateInvoice= async () => {
                     />
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.unit}</div>
-                  )} */}
-                   <div className="font-normal text-xs  font-poppins">{item.unit}</div>
+                  )}
                 </div>
               </div>
 
+              <div className="flex  ml-2 md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                  {editContactId === item.id ? (
+                    <input
+                      placeholder="Update Price"
+                      style={{border:"2px solid black",width:"6rem"}}
+                      type="text"
+                      value={newPrice}
+                      onChange={(e) => setPrice(e.target.value)}
+                    />
+                  ) : (
+                    <div className="font-normal text-xs  font-poppins">{item.price}{item.currency} </div>
+                  )}
+                </div>
+              </div>
               <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
+                  {editContactId === item.id ? (
                     <select
                       className="customize-select"
                       style={{ width: "70%" }}
@@ -480,26 +398,11 @@ const handleGenerateInvoice= async () => {
                   ) : (
                   
                     <div className="font-normal text-xs  font-poppins"></div>
-                  )} */}
-                </div>
-              </div>
-             
-              <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-xs  font-poppins">
-                  {editContactId === item.id ? (
-                   <input
-                   placeholder="invoice"
-                   style={{border:"2px solid black"}}
-                   type="text"
-                   value={invoices}
-                   onChange={(e) => setInvoices(e.target.value)}
-                 />
-                  ) : (
-                  
-                    <div className="font-normal text-xs  font-poppins"> {item.invoice} </div>
                   )}
                 </div>
               </div>
+             
+
               <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
                 <div className="flex">
                   {editContactId === item.id ? (
@@ -541,12 +444,6 @@ const handleGenerateInvoice= async () => {
             </div>
           );
         })}
-          <Button
-                        type='primary'
-                        onClick={handleGenerateInvoice}
-                    >
-        {translatedMenuItems[12]}
-                    </Button>
           </InfiniteScroll>
       </div>
     </>
@@ -565,7 +462,6 @@ const mapStateToProps = ({ distributor,suppliers,auth }) => ({
   locationlist:distributor.locationlist,
   saleCurrencies: auth.saleCurrencies,
   orgId: auth.userDetails.organizationId,
-  distributorId: distributor.distributorDetailsByDistributorId.distributorId,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -585,4 +481,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountProcureDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(OpportunitytProcureDetails);

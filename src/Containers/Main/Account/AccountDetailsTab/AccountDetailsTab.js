@@ -77,10 +77,10 @@ props.getInvoiceCount(props.distributorData.distributorId)
     'Sales Map',
     'Summary',
     'Contact ',
-    'Invoice',
-    'Create'
-
-
+    'Invoice',//10
+    'Create',
+     'Commerce', //12              
+    'Add Commerce',//13
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -216,12 +216,12 @@ props.getInvoiceCount(props.distributorData.distributorId)
                                     overflowCount={999}
                                 >
                                    
-                                        <Tooltip title="Procure">
+                                        <Tooltip title={translatedMenuItems[12]}>
                                             <ShopIcon
                                                 className="!text-icon  cursor-pointer"
                                             />
                                             <span class="ml-1 text-xs">
-                                            {translatedMenuItems[2]}
+                                            {translatedMenuItems[12]}
                                             {/* Procure */}
                                                 </span>
                                         </Tooltip>
@@ -232,7 +232,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                               
                                 {activeKey === "4" && (
                                     <>
-                                        <Tooltip title="Add Procure">
+                                        <Tooltip title={translatedMenuItems[13]}>
                                             <AddShoppingCartIcon
                                                 type="plus"
                                                 tooltipTitle={translatedMenuItems[11]}

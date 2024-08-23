@@ -1861,6 +1861,12 @@ export const inventoryReducer = (state = initialState, action) => {
         return { ...state, fetchingOpenOrdeReceivedError: true };
       
 
+        case types.CLAER_REDUCERS_DATA:
+          return {
+            ...state,
+            phoneListById: [],
+          };   
+
     default:
       return state;
   }

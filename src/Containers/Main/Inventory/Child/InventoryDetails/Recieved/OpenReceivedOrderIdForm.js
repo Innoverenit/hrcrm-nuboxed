@@ -13,7 +13,8 @@ import {
   getPhonelistByOrderId,
   updateRepairStatus,
   handleInventoryexpand,
-  searchOpenOrdeReceived
+  searchOpenOrdeReceived,
+  ClearReducerData
 } from "../../../InventoryAction";
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
 import { EditOutlined, FileDoneOutlined, PlusOutlined } from "@ant-design/icons";
@@ -145,11 +146,11 @@ function OpenReceivedOrderIdForm(props) {
           suppliesDeletedCount,
       } = props;
 
-      const handleChange = (e) => {
+   const handleChange = (e) => {
           setCurrentData(e.target.value);
           if (searchOnEnter&& e.target.value.trim() === "") {  //Code for Search
              props.getPhonelistByOrderId(props.rowData.orderPhoneId, "0");
-            // props.ClearReducerDataOfMaterial();
+             props.ClearReducerData();
             setSearchOnEnter(false);
           }
         };
@@ -608,7 +609,8 @@ const mapDispatchToProps = (dispatch) =>
       handlePhoneDetails,
       handleInTagDrawer,
       handleInventoryexpand,
-      searchOpenOrdeReceived
+      searchOpenOrdeReceived,
+      ClearReducerData
     },
     dispatch
   );

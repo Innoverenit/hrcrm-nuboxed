@@ -36,11 +36,15 @@ function LeadRefurbishForm(props) {
     }
     const handleSubmit = () => {
         props.addLeadInRefurbish({
-            teamLeadUserId: technician
+            teamLeadUserId: technician,
+            teamLeadAssignedBy:props.userId,
         }, props.rowData.orderPhoneId, handleCallback())
     }
     const handleCallback = () => {
-        props.getProductionOrderId(props.userId)
+        // props.getProductionOrderId(props.userId)
+        setTimeout(() => {
+            window.location.reload(true);
+                   }, 5000);
     }
     return (
         <>
