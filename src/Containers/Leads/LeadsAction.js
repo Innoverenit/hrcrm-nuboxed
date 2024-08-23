@@ -27,6 +27,14 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
   };
 
 
+  export const handleLeadsAddressDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_LEADS_ADDRESS_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+
+
   export const handleLeadsImportModal = (modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_LEADS_IMPORT_MODAL,

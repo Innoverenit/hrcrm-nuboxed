@@ -104,9 +104,9 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
     });
     axios
       .get(`${base_url2}/subscription/getByOrg/${orgId}`, {
-        headers: {
-          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-        },
+        // headers: {
+        //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        // },
       })
       .then((res) => {
         console.log(res);
@@ -189,9 +189,9 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
     });
     axios
       .get(`${sub_url}/subscription/getByOrg/${orgId}`, {
-        headers: {
-          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-        },
+        // headers: {
+        //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        // },
       })
       .then((res) => {
         console.log(res);
@@ -256,6 +256,111 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
       .catch((err) => {
         dispatch({
           type: types.ADD_SUB_RULES_FAILURE,
+        });
+      });
+  };
+
+
+
+
+
+
+
+  export const removeSubscriptionData = (id,userId,subscriptionId) => (dispatch) => {
+    dispatch({
+      type: types.DELETE_SUBSCRIPTION_DATA_REQUEST,
+    });
+    axios
+      .delete(`${sub_url}/subscription/delete/${id}/${userId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Subscription Deleted Successfully',
+          // showConfirmButton: false,
+          // timer: 1500
+        })
+        // if (res.data) {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: res.data,
+        //     showConfirmButton: false,
+        //     // timer: 1500
+        //   });
+        // } else {
+         
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: 'Not Deleted',
+        //     showConfirmButton: false,
+        //     // timer: 1500
+        //   });
+        // }
+        console.log(res);
+        dispatch({
+          type: types.DELETE_SUBSCRIPTION_DATA_SUCCESS,
+          payload: subscriptionId,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.DELETE_SUBSCRIPTION_DATA_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+
+  export const removeSubscriptionRules = (subscriptionRuleId,userId,subscriptionId) => (dispatch) => {
+    dispatch({
+      type: types.DELETE_SUBSCRIPTION_RULES_REQUEST,
+    });
+    axios
+      .delete(`${sub_url}/subscriptionRule/delete/${subscriptionRuleId}/${userId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Subscription Rules Deleted Successfully',
+          // showConfirmButton: false,
+          // timer: 1500
+        })
+        // if (res.data) {
+        //   Swal.fire({
+        //     icon: 'success',
+        //     title: res.data,
+        //     showConfirmButton: false,
+        //     // timer: 1500
+        //   });
+        // } else {
+         
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: 'Not Deleted',
+        //     showConfirmButton: false,
+        //     // timer: 1500
+        //   });
+        // }
+        console.log(res);
+        dispatch({
+          type: types.DELETE_SUBSCRIPTION_RULES_SUCCESS,
+          payload: subscriptionId,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.DELETE_SUBSCRIPTION_RULES_FAILURE,
+          payload: err,
         });
       });
   };
