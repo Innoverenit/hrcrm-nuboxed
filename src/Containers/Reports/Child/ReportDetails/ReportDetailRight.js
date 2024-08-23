@@ -85,6 +85,12 @@ class ReportDetailRight extends Component {
   selectedCategory={this.props.selectedCategory}
   />
   )}
+  {this.props.selectedCategory === "Invoice" && (
+  <OrderProductionCard
+  selectedButtonIcon={this.props.selectedButtonIcon}
+  selectedCategory={this.props.selectedCategory}
+  />
+  )}
               {selectedReportType === "Requirement" && <Requirement />}
               {selectedReportType === "Selected" && <Selected />}
             </>

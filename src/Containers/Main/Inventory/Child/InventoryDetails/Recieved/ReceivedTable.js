@@ -94,9 +94,13 @@ const ReceivedTable = (props) => {
           <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold  z-10">
               <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order ID" /></div>
-              {/* <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
-              <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.contact" defaultMessage="Contact" /></div> */}
-              <div className="w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="owner" /></div>
+              {props.accountInfoInd && (
+                <>
+              <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
+              <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
+              </>
+              )}
+              {/* <div className="w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="owner" /></div> */}
               <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.phone" defaultMessage="Phones #" /></div>
               <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.inspectedby" defaultMessage="Inspected By" /></div>
               <div className="w-[11.2rem]"></div>
@@ -146,23 +150,29 @@ const ReceivedTable = (props) => {
                               </div>
                             </div>
                           </div>
-{props.user.accountInfoInd?
+{props.accountInfoInd &&
+<>
                           <div className=" flex w-[10.12rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-
-                              {/* {item.distributorName} */}
-                              {/* <Tooltip title={`${item.distributorName}  ${item.contactPersonName}`}>
+                              {item.distributorName}
+                             {/* <Tooltip title={`${item.distributorName}  ${item.contactPersonName}`}>
                               <InfoIcon/>
-                              </Tooltip> */}
+                              </Tooltip> 
                               <Tooltip title={<div className="flex flex-col">{`${item.distributorName} 
                             ${item.contactPersonName}`}</div>}>
   <InfoIcon onClick={() => alert(`${item.distributorName} ${item.contactPersonName}`)} />
-</Tooltip>
+</Tooltip>  */}
 
 
                             </div>
                           </div>
-                          :null}
+                          <div className=" flex w-[10.12rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.contactPersonName}
+                            </div>
+                          </div>
+                          </>
+                          }
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           {/* <div className=" flex w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

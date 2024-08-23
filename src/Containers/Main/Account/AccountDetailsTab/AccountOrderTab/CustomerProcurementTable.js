@@ -1,7 +1,7 @@
 import React, { useEffect, useState, lazy ,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip } from "antd";
+import { Tooltip,Button } from "antd";
 import dayjs from "dayjs";
 import {
   // getOrderProcurement,
@@ -27,6 +27,8 @@ const ProcureStatusShowDrawer = lazy(() => import('./ProcureStatusShowDrawer'));
 
 function CustomerProcurementTable(props) {
   const [page, setPage] = useState(0);
+  const [openInvoiceModal,setopenInvoiceModal] = useState(false);
+
   useEffect(() => {
     props.getProcureRecords(props.distributorId,"procure");
     props.getDistributorOrderOfHigh(props.distributorId, page, "procure","High");
@@ -53,9 +55,9 @@ function CustomerProcurementTable(props) {
                "Payment",
                 "Status",
                 "High",
-                "Normal"
-
-
+                "Normal",
+                'Created', //10
+                'Invoices',//11
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -74,10 +76,9 @@ function CustomerProcurementTable(props) {
   //   return () => props.emptyOrders();
   // }, []);
   const [hasMore, setHasMore] = useState(true);
+
   function handleSetParticularOrderData(item) {
     setParticularRowData(item);
-
-
 }
 const handleLoadMore = () => {
   setPage(page + 1);
@@ -114,8 +115,8 @@ const handleLoadMoreLow = () => {
                         <div className=" md:w-[7.4rem] ml-2">
                         {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
-                          <div className=" md:w-[6rem]">
-                          Created Date  
+                          <div className=" md:w-[6rem]">  
+                          {translatedMenuItems[10]}
                           </div>
                         <div className=" md:w-[7.1rem]">
                         {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
@@ -135,7 +136,9 @@ const handleLoadMoreLow = () => {
                         <div className="md:w-[3.8rem]">
                         {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
                           </div>
-
+                          <div className="md:w-[3.8rem]">
+                   
+                          </div>
                         <div className="md:w-[6.12rem]"></div>
                      
 
@@ -186,8 +189,8 @@ const handleLoadMoreLow = () => {
                                                   <span
                                                                                           class="underline font-bold cursor-pointer text-[#1890ff]"
                                                                                           onClick={() => {
-                                                                                              handleSetParticularOrderData(item);
                                                                                               props.handleProcureDetailsModal(true);
+                                                                                              handleSetParticularOrderData(item);
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
@@ -247,7 +250,9 @@ const handleLoadMoreLow = () => {
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
-                                     
+                                        <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <Button type="primary">{translatedMenuItems[11]}</Button>
+                  </div>
                                         <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
                                             <Tooltip title={<FormattedMessage
                                                                 id="app.status"
@@ -274,14 +279,14 @@ const handleLoadMoreLow = () => {
       </div>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange]">
         {translatedMenuItems[8]} {/* High */}
            </div>
                         <div className=" md:w-[7.4rem] ml-2">
                         {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
                           <div className=" md:w-[6rem]">
-                          Created Date
+                          {translatedMenuItems[10]}
                           </div>
                         <div className=" md:w-[7.1rem]">
                         {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
@@ -301,7 +306,9 @@ const handleLoadMoreLow = () => {
                         <div className="md:w-[3.8rem]">
                         {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
                           </div>
-
+                          <div className="md:w-[3.8rem]">
+                     
+                          </div>
                         <div className="md:w-[6.12rem]"></div>
                      
 
@@ -413,7 +420,9 @@ const handleLoadMoreLow = () => {
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
-                                     
+                                        <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <Button type="primary" onClick={()=>{setopenInvoiceModal(true);}}>{translatedMenuItems[11]}</Button>
+                  </div>
                                         <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
                                             <Tooltip title={<FormattedMessage
                                                                 id="app.status"
@@ -440,14 +449,14 @@ const handleLoadMoreLow = () => {
       </div>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
         {translatedMenuItems[9]} {/* Normal */}
            </div>
                         <div className=" md:w-[7.4rem] ml-2">
                         {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
                           <div className=" md:w-[6rem]">
-                                Created Date
+                          {translatedMenuItems[10]}
                           </div>
                         <div className=" md:w-[7.1rem]">
                         {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
@@ -467,7 +476,9 @@ const handleLoadMoreLow = () => {
                         <div className="md:w-[3.8rem]">
                         {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
                           </div>
-
+                          <div className="md:w-[3.8rem]">
+                       
+                          </div>
                         <div className="md:w-[6.12rem]"></div>
                      
 
@@ -579,7 +590,9 @@ const handleLoadMoreLow = () => {
                         {item.paymentInTerms}
                       </div>
                   </div>
-               
+                  <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <Button type="primary">{translatedMenuItems[11]}</Button>
+                  </div>
                   <div class="flex w-6 max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
                                                         {/* <Tooltip title={<FormattedMessage
@@ -634,9 +647,9 @@ const handleLoadMoreLow = () => {
                 />
 
                 <AccountProcureDetailsModal
+                particularRowData={particularRowData}
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText} 
-                particularRowData={particularRowData}
                 handleProcureDetailsModal={props.handleProcureDetailsModal}
                 addProcureDetailsModal={props.addProcureDetailsModal} />
 

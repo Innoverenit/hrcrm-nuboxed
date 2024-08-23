@@ -3,17 +3,16 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-const AccountProcureDetails =lazy(()=> import("./AccountProcureDetails"));
+const OpportunitytProcureDetails =lazy(()=> import("./OpportunitytProcureDetails"));
 
-const AccountProcureDetailsModal = (props) => {
+const OpportunitytProcureDetailsModal = (props) => {
     const isSmallScreen = window.innerWidth <= 600;
     const drawerWidth = isSmallScreen ? "90%" : "70%";
 
-    console.log("dddph",props.particularRowData)
     return (
         <>
             <StyledDrawer  
-                title={`Order : ${props.particularRowData.newOrderNo}`}
+                title={`Order : ${props.particularRowItem.newOrderNo}`}
                 width={drawerWidth}
                 visible={props.addProcureDetailsModal}
                 closable
@@ -24,8 +23,8 @@ const AccountProcureDetailsModal = (props) => {
             >
                 <Suspense fallback={<BundleLoader />}>
                 
-               <AccountProcureDetails  
-               particularRowData={props.particularRowData}
+               <OpportunitytProcureDetails  
+               particularRowItem={props.particularRowItem}
                selectedLanguage={props.selectedLanguage}
                translateText={props.translateText}
                
@@ -44,4 +43,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(AccountProcureDetailsModal);
+export default connect(mapStateToProps, mapDispatchToProps)(OpportunitytProcureDetails);
