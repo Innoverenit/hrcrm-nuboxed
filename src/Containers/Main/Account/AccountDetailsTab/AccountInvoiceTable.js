@@ -22,6 +22,7 @@ import InvoiceOrderModal from "./InvoiceOrderModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import InvoiceModal from "./InvoiceModal";
 import Invoicesearch from "./Invoicesearch";
+import PaidUnpaidAccountInvoiceToggle from "./PaidUnpaidAccountInvoiceToggle";
 const { Option } = Select;
 
 function AccountInvoiceTable(props) {
@@ -326,6 +327,7 @@ function AccountInvoiceTable(props) {
                                                             )}                                                          
                                                             
                             </div>
+                           
                           </div>
                           <div className=" flex    md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
@@ -439,11 +441,13 @@ function AccountInvoiceTable(props) {
                                                             {item.paymentAmount}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex   w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {item.status}
-                                                        </div>
+                                                      
+                            <PaidUnpaidAccountInvoiceToggle item={item}/>
+                          </div>
+                                                   
                                                     </div>
                                                     
                                                 </div>
