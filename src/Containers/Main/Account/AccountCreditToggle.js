@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { Switch, Popconfirm } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { distributorAccountCredit } from "./AccountAction";
+import { distributorAccountCredit } from "./AccountAction";
 
 function AccountCreditToggle(props) {
 
@@ -10,7 +10,7 @@ function AccountCreditToggle(props) {
 
   function handleToggleClick(item) {
     if (props.distributorCreditInd) {
-      props.featureMaterialToggle({
+      props.distributorAccountCredit({
         distributorId: props.distributorId,
         distributorCreditInd: props.distributorCreditInd ? false : true,
          
@@ -18,7 +18,7 @@ function AccountCreditToggle(props) {
       setToggle( props.distributorCreditInd ? false : true);
  
     } else {
-      props.featureMaterialToggle({
+      props.distributorAccountCredit({
         distributorId: props.distributorId,
         distributorCreditInd: props.distributorCreditInd ? false : true,
       },props.distributorId);
@@ -63,7 +63,7 @@ const mapStateToProps = ({ auth, supplies }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   distributorAccountCredit,
+      distributorAccountCredit,
     },
     dispatch
   );
