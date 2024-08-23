@@ -507,6 +507,7 @@ function ContactCardList(props) {
       />
        <AddContactAddressDrawerModal
         item={currentContact}
+        type="Contact"
         addDrawerContactAddressModal={props.addDrawerContactAddressModal}
         handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
       />

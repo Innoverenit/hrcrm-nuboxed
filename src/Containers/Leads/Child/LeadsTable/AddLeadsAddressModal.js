@@ -2,25 +2,25 @@ import React, { Component, Suspense,lazy } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import ContactAddressData from "../ContactTable/ContactAddressData"
+//import ContactAddressData from "../ContactTable/ContactAddressData"
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import AddressData from "../../../Address/AddressData";
 //import MainNotes from "../../CustomNote/MainNotes";
 
-class AddContactAddressDrawerModal extends Component {
+class AddLeadsAddressDrawerModal extends Component {
   render() {
-     
+     console.log(this.props.item)
 
     return (
       <div>
         <StyledDrawer
           title="Address"
           width="60%"
-          visible={this.props.addDrawerContactAddressModal}
+          visible={this.props.addDrawerLeadsAddressModal}
           closable
           placement="right"
           destroyOnClose
-          onClose={() => this.props.handleContactAddressDrawerModal(false)}
+          onClose={() => this.props.handleLeadsAddressDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
           
@@ -28,7 +28,7 @@ class AddContactAddressDrawerModal extends Component {
            item={this.props.item}
           /> */}
           <AddressData
-          uniqueId={this.props.item.contactId}
+          uniqueId={this.props.item.leadsId}
           type={this.props.type}
           />
 
@@ -46,4 +46,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddContactAddressDrawerModal);
+)(AddLeadsAddressDrawerModal);

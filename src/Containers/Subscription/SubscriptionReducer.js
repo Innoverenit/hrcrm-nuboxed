@@ -9,6 +9,9 @@ const initialState = {
     addingSuscrptionsError:false,
     duplicateSuscriptionsError:false,
 
+    deleteSubscriptionRules:false,
+    deleteSubscriptionRulesError:false,
+
     updatingSuscrption: false,
     updatingSuscrptionError: false,
 
@@ -20,6 +23,9 @@ const initialState = {
     fetchingSubscriptions:false,
     fetchingSubscriptionsError:false,
     subscriptionsFormData:[],
+
+    deleteSubscriptionData:false,
+    deleteSubscriptionDataError:false,
 
     addingSubRules:false,
     addingSubRulesError:false,
@@ -185,6 +191,28 @@ export const subscriptionReducer = (state = initialState, action) => {
                         addingSuscrptions: false,
                         addingSuscrptionsError:true,
                         addingSuscrpitionModal: false };  
+
+
+
+
+
+                        case types.DELETE_SUBSCRIPTION_DATA_REQUEST:
+      return { ...state, deleteSubscriptionData: true };
+    case types.DELETE_SUBSCRIPTION_DATA_SUCCESS:
+      return {
+        ...state,
+        deleteSubscriptionData: false,
+        subscriptionsFormData: state.subscriptionsFormData.filter(
+          (item) => item.subscriptionId !== action.payload
+        ),
+      };
+    case types.DELETE_SUBSCRIPTION_DATA_FAILURE:
+      return {
+        ...state,
+        deleteSubscriptionData: false,
+        deleteSubscriptionDataError: false,
+      };
+
                         
                         case types.ADD_SUSCRIPTIONS_DUPLICATE:
   return {
@@ -243,6 +271,28 @@ return {
 addingSubRules: false,
 duplicateSubRulesError: true,
 };
+
+
+
+
+case types.DELETE_SUBSCRIPTION_RULES_REQUEST:
+      return { ...state, deleteSubscriptionRules: true };
+    case types.DELETE_SUBSCRIPTION_RULES_SUCCESS:
+      console.log(action.payload)
+      // console.log(subscriptionsFormData)
+      return {
+        ...state,
+        deleteSubscriptionRules: false,
+        subscriptionsFormData: state.subscriptionsFormData.filter(
+          (item) => item.subscriptionId !== action.payload
+        ),
+      };
+    case types.DELETE_SUBSCRIPTION_RULES_FAILURE:
+      return {
+        ...state,
+        deleteSubscriptionRules: false,
+        deleteSubscriptionRulesError: false,
+      };
 
 
 
