@@ -673,6 +673,11 @@ const initialState = {
   fetchingLocationNamesByProductId: false,
           fetchingLocationNamesByProductIdError:false,
           locationNamesByProductId:[],
+
+
+          distributorAccountCrediting: false,
+          distributorAccountCreditingError:false,
+
 };
 
 export const distributorReducer = (state = initialState, action) => {
@@ -3802,6 +3807,30 @@ export const distributorReducer = (state = initialState, action) => {
                                 addingNewListError:true,
                                 
                               };
+
+
+                              case types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_REQUEST:
+                                return { ...state, distributorAccountCrediting: true };
+                              case types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_SUCCESS:
+                                return {
+                                  ...state,
+                                  distributorAccountCrediting: false,
+                                  customerListByUser: state.customerListByUser.map((item) => {
+                                    if (item.distributorId === action.payload.distributorId) {
+                                      return action.payload;
+                                    } else {
+                                      return item;
+                                    }
+                                  }),
+                                };
+                              case types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_FAILURE:
+                                return {
+                                  ...state,
+                                  distributorAccountCrediting: false,
+                                  distributorAccountCreditingError: true,
+                                };
+                
+
   
     default:
       return state;
