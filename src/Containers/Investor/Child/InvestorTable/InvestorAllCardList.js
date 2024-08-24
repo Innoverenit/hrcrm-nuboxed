@@ -15,6 +15,7 @@ import {
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
 import { Link } from 'react-router-dom';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import {
   updateOwnercustomerById,
   handleCustomerDrawerModal,
@@ -28,7 +29,8 @@ import {getAllInvestorsbyId,handleInvestorNotesDrawerModal,emptyInvestor,
   handleUpdateInvestorModal,
   handleInvestorPulseDrawerModal,
   handleInvestorContModal,
-  deleteInvestorData
+  deleteInvestorData,
+  handleInvestorAddressDrawerModal
 } from "../../InvestorAction";
 import {  DeleteOutlined } from "@ant-design/icons";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
@@ -38,6 +40,7 @@ import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
 import ContactsInvestorModal from "./ContactsInvestorModal";
 import InvestorSearchedData from "./InvestorSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddInvestorAdressModal from "./AddInvestorAdressModal";
 const UpdateInvestorModal = lazy(() =>
   import("../UpdateInvestor/UpdateInvestorModal")
 );
@@ -230,7 +233,7 @@ function InvestorAllCardList(props) {
                     return (
                       <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex font-medium  w-[13.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
@@ -372,7 +375,15 @@ function InvestorAllCardList(props) {
                   className=" !text-icon cursor-pointer text-[#df9697]"
                 />
              </Tooltip>
-                          </div>                                                                                  
+                          </div>     
+                          <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleInvestorAddressDrawerModal(true);
+            handleCurrentRowData(item);
+          }}
+          
+        />                                                                                   
                           <div >
                    <Tooltip title="Notes">
        <NoteAltIcon
@@ -511,6 +522,12 @@ function InvestorAllCardList(props) {
         translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
       />
+        <AddInvestorAdressModal   
+        item={RowData}
+         type="investor"
+         addInvestorAddressModal={props.addInvestorAddressModal}
+         handleInvestorAddressDrawerModal={props.handleInvestorAddressDrawerModal}
+      /> 
       {/* <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
@@ -546,6 +563,7 @@ const mapStateToProps = ({
   investorSerachedData:investor.investorSerachedData,
   fetchingInvestorSearchData:investor.fetchingInvestorSearchData,
   employees: employee.employees,
+  addInvestorAddressModal: investor.addInvestorAddressModal,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
 });
 const mapDispatchToProps = (dispatch) =>
@@ -563,7 +581,8 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerEmailDrawerModal,
       getCustomerById,
       handleInvestorContModal,
-      deleteInvestorData
+      deleteInvestorData,
+      handleInvestorAddressDrawerModal
     },
     dispatch
   );

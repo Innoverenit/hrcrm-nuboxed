@@ -6,6 +6,7 @@ import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import {  DeleteOutlined } from "@ant-design/icons";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ArticleIcon from '@mui/icons-material/Article';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -34,7 +35,8 @@ import {getInvestorsbyId,
   handleInvestorDocumentModal,
   handleInvestorNotesDrawerModal,emptyInvestor,
   deleteInvestorData,
-  handleInvestorPriceDrawer
+  handleInvestorPriceDrawer,
+  handleInvestorAddressDrawerModal
 } from "../../InvestorAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
@@ -42,6 +44,7 @@ import InventoryPriceDrawer from "./InventoryPriceDrawer";
 import InvestorDocumentDrawerModal from "./InvestorDocumentDrawerModal";
 import InvestorSearchedData from "./InvestorSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddInvestorAdressModal from "./AddInvestorAdressModal";
 const AddInvestorNotesDrawerModal = lazy(() => import("../InvestorDetail/AddInvestorNotesDrawerModal"));
 const ContactsInvestorModal = lazy(() => import("./ContactsInvestorModal"));
 const UpdateInvestorModal = lazy(() =>
@@ -458,7 +461,15 @@ function InvestorCardList(props) {
                   className=" !text-icon cursor-pointer text-[#df9697]"
                 />
              </Tooltip>
-                          </div>                                                                            
+                          </div>  
+                          <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleInvestorAddressDrawerModal(true);
+            handleCurrentRowData(item);
+          }}
+          
+        />                                                                           
                           <div >
                    <Tooltip title="Notes">
        <NoteAltIcon
@@ -602,6 +613,12 @@ function InvestorCardList(props) {
           priceInvestorDrawer={priceInvestorDrawer}
           key={priceInvestorDrawer ? 'open' : 'closed'}
         />
+        <AddInvestorAdressModal    
+        item={RowData}
+         type="investor"
+         addInvestorAddressModal={props.addInvestorAddressModal}
+         handleInvestorAddressDrawerModal={props.handleInvestorAddressDrawerModal}
+      /> 
       {/* <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
@@ -638,6 +655,7 @@ const mapStateToProps = ({
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   investorSerachedData:investor.investorSerachedData,
   fetchingInvestorSearchData:investor.fetchingInvestorSearchData,
+  addInvestorAddressModal: investor.addInvestorAddressModal,
   addDrawerInvestorDocumentModal: investor.addDrawerInvestorDocumentModal
 });
 const mapDispatchToProps = (dispatch) =>
@@ -657,7 +675,8 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerKeySkill,
       handleCustomerEmailDrawerModal,
       getCustomerById,
-      handleInvestorPriceDrawer
+      handleInvestorPriceDrawer,
+      handleInvestorAddressDrawerModal
 
     },
     dispatch

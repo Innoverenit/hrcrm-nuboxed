@@ -19,7 +19,13 @@ export const holidaySelector = createSelector([holidayList], (plannerHolidays) =
     console.log(`leave start date ${holidaysDate}`);
     console.log(`leave end date ${holidaysendDate}`);
 
-    if (dayjs().isBetween(holidaysDate, holidaysendDate)) {
+    // if (dayjs().isBetween(holidaysDate, holidaysendDate)) {
+    //   var value = "orange";
+    // } else {
+    //   var value = "white";
+    // }
+
+    if (dayjs().isAfter(holidaysDate) && dayjs().isBefore(holidaysendDate)) {
       var value = "orange";
     } else {
       var value = "white";
@@ -49,11 +55,17 @@ export const leaveSelector = createSelector([leaveList], (leaves) => {
     console.log(`leave start date ${leaveDate}`);
     console.log(`leave end date ${leaveendDate}`);
 
-    if (dayjs().isBetween(leaveDate, leaveendDate)) {
+    // if (dayjs().isBetween(leaveDate, leaveendDate)) {
+    //   var value = "orange";
+    // } else {
+    //   var value = "white";
+    // }
+    if (dayjs().isAfter(leaveDate) && dayjs().isBefore(leaveendDate)) {
       var value = "orange";
     } else {
       var value = "white";
     }
+    
 
     return {
       title: leaves.coverDetails,
@@ -79,11 +91,18 @@ export const eventSelector = createSelector([eventList], (events) => {
     console.log(`event start date ${eventDate}`);
     console.log(`event end date ${eventendDate}`);
 
-    if (dayjs().isBetween(eventDate, eventendDate)) {
+    // if (dayjs().isBetween(eventDate, eventendDate)) {
+    //   var value = "orange";
+    // } else {
+    //   var value = "white";
+    // }
+
+    if (dayjs().isAfter(eventDate) && dayjs().isBefore(eventendDate)) {
       var value = "orange";
     } else {
       var value = "white";
     }
+    
 
     return {
       title: event.eventType,
@@ -108,11 +127,18 @@ export const callSelector = createSelector([callList], (calls) => {
       var callendDate = dayjs(call.endDate);
       console.log(`event start date ${callDate}`);
       console.log(`event end date ${callendDate}`);
-      if (dayjs().isBetween(callDate, callendDate)) {
+
+      // if (dayjs().isBetween(callDate, callendDate)) {
+      //   var value = "orange";
+      // } else {
+      //   var value = "white";
+      // }
+      if (dayjs().isAfter(callDate) && dayjs().isBefore(callendDate)) {
         var value = "orange";
       } else {
         var value = "white";
       }
+
       return {
         title: call.callType,
         start: call.startDate,
@@ -136,7 +162,14 @@ export const taskSelector = createSelector([taskList], (tasks) => {
     var taskendDate = dayjs(task.endDate);
     console.log(`event start date ${taskDate}`);
     console.log(`event end date ${taskendDate}`);
-    if (dayjs().isBetween(taskDate, taskendDate)) {
+
+
+    // if (dayjs().isBetween(taskDate, taskendDate)) {
+    //   var value = "orange";
+    // } else {
+    //   var value = "white";
+    // }
+    if (dayjs().isAfter(taskDate) && dayjs().isBefore(taskendDate)) {
       var value = "orange";
     } else {
       var value = "white";
@@ -163,12 +196,16 @@ export const projectSelector = createSelector([projectList], (projects) => {
     console.log(`project start date ${projectDate}`);
     console.log(`project end date ${projectendDate}`);
 
-    if (dayjs().isBetween(projectDate, projectendDate)) {
+    // if (dayjs().isBetween(projectDate, projectendDate)) {
+    //   var value = "orange";
+    // } else {
+    //   var value = "white";
+    // }
+    if (dayjs().isAfter(projectDate) && dayjs().isBefore(projectendDate)) {
       var value = "orange";
     } else {
       var value = "white";
     }
-
     return {
       title: project.projectType,
       start: project.startDate,

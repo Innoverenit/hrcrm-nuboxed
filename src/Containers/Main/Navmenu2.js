@@ -150,8 +150,8 @@ function NavMenu(props) {
   return (
     <div className="header">
       <ul className={click ? "nav-options active" : "nav-options"}>
-        <div class="-ml-[1.1875em] w-wk h-screen">
-          <div class="overflow-y-auto max-h-[36.5rem]">
+        <div class="-ml-[1.1875em] -mt-2 w-wk h-screen">
+          <div class="overflow-y-auto max-h-[39rem]">
           <Menu
       //  defaultSelectedKeys={[selectedMenuItem]}
         defaultSelectedKeys={["/" + path]}

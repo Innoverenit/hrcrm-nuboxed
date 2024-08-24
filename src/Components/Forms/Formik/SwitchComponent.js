@@ -22,7 +22,7 @@ export const SwitchComponent = ({
 
   return (
     <>
-    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">ner>
+    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
         <Switch
           disabled={disabled}
           label={label}

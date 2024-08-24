@@ -8,6 +8,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip } from "antd";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import {
   handleUpdateContactModal,
@@ -26,10 +27,11 @@ import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {getTeamsContactInvest,
   handleContactInvestNotesDrawerModal,
-  emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
+  emptyContactInvest,handleUpdateContactInvestModal,handleContactAddressDrawerModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddContactInvestAdressModal from "./AddContactInvestAdressModal";
 const AddContactInvestNotesDrawerModal = lazy(() =>
   import("../AddContactInvestNotesDrawerModal")
 );
@@ -347,7 +349,15 @@ if (loading) {
         }}
       />
      </Tooltip>
-     </div>                    
+     </div>      
+     <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleContactAddressDrawerModal(true);
+            handleCurrentContactIdata(item);
+          }}
+          
+        />               
                   <div >
                   <span class="cursor-pointer"
         
@@ -430,6 +440,12 @@ if (loading) {
         selectedLanguage={props.selectedLanguage}
         translatedMenuItems={props.translatedMenuItems}
       />
+      <AddContactInvestAdressModal     
+        item={contactiData}
+         type="contactinvest"
+        addContactAddressModal={props.addContactAddressModal}
+        handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
+      /> 
       {/* <AddContactEmailDrawerModal
         contactData={currentContactId}
         addDrawerContactEmailModal={props.addDrawerContactEmailModal}
@@ -473,6 +489,7 @@ const mapStateToProps = ({
   contactiNVESTbyId: contactinvest.contactiNVESTbyId,
   allContactInvestData:contactinvest.allContactInvestData,
   teamsContactInvestData:contactinvest.teamsContactInvestData,
+  addContactAddressModal:contactinvest.addContactAddressModal,
   addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal
 });
 const mapDispatchToProps = (dispatch) =>
@@ -491,7 +508,8 @@ const mapDispatchToProps = (dispatch) =>
       getTeamsContactInvest,
       handleUpdateContactInvestModal,
       handleContactInvestNotesDrawerModal,
-      handleContactInvestPulseDrawerModal
+      handleContactInvestPulseDrawerModal,
+      handleContactAddressDrawerModal
     },
     dispatch
   );

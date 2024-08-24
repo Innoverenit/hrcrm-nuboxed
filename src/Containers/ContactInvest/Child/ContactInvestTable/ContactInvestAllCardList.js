@@ -24,12 +24,14 @@ import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import {getAllContactInvest,
   handleContactInvestNotesDrawerModal,
-  emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
+  emptyContactInvest,handleUpdateContactInvestModal,handleContactAddressDrawerModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddContactInvestAdressModal from "./AddContactInvestAdressModal";
 const AddContactInvestNotesDrawerModal = lazy(() =>
   import("../AddContactInvestNotesDrawerModal")
 );
@@ -360,7 +362,14 @@ if (loading) {
       <LocationOnIcon  className="!text-icon cursor-pointer text-[#960a0a]"/>
       </span>
     </Tooltip>   
-                                             
+    <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleContactAddressDrawerModal(true);
+            handleCurrentContactIdata(item);
+          }}
+          
+        />                                  
               <Tooltip title="Notes">
  <NoteAltIcon
           onClick={() => {
@@ -418,6 +427,12 @@ if (loading) {
         selectedLanguage={props.selectedLanguage}
         translatedMenuItems={props.translatedMenuItems}
       />   
+       <AddContactInvestAdressModal    
+        item={contactiData}
+         type="contactinvest"
+        addContactAddressModal={props.addContactAddressModal}
+        handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
+      /> 
     </>
   );
 }
@@ -443,6 +458,7 @@ const mapStateToProps = ({
   addDrawerContactModal: contact.addDrawerContactModal,
   contactiNVESTbyId: contactinvest.contactiNVESTbyId,
   allContactInvestData:contactinvest.allContactInvestData,
+  addContactAddressModal:contactinvest.addContactAddressModal,
   addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal
 });
 const mapDispatchToProps = (dispatch) =>
@@ -461,7 +477,8 @@ const mapDispatchToProps = (dispatch) =>
       getAllContactInvest,
       handleUpdateContactInvestModal,
       handleContactInvestNotesDrawerModal,
-      handleContactInvestPulseDrawerModal
+      handleContactInvestPulseDrawerModal,
+      handleContactAddressDrawerModal
     },
     dispatch
   );

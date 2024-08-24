@@ -26,12 +26,14 @@ import {
 } from "../../../Customer/CustomerAction";
 import ReactCountryFlag from 'react-country-flag';
 import {getTeamInvestor,handleInvestorNotesDrawerModal,emptyInvestor,
-  handleInvestorPulseDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData} from "../../InvestorAction";
+  handleInvestorPulseDrawerModal,  handleInvestorAddressDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData} from "../../InvestorAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
 import ContactsInvestorModal from "./ContactsInvestorModal";
 import InvestorSearchedData from "./InvestorSearchedData";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddInvestorAdressModal from "./AddInvestorAdressModal";
 const AddInvestorNotesDrawerModal = lazy(() =>
   import("../InvestorDetail/AddInvestorNotesDrawerModal")
 );
@@ -152,7 +154,7 @@ function InvestorTeamCardList(props) {
     fetchingInvestorSearchData={props.fetchingInvestorSearchData}
     />
   ) : (
-  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] max-sm:bg-gradient-to-b from-white to-gray-100  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
   <div className=" flex justify-between max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[14.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
         {translatedMenuItems[0]}
@@ -179,19 +181,21 @@ function InvestorTeamCardList(props) {
           {translatedMenuItems[5]}
           {/* "Category */}
           </div>
+         
         <div className="w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
         {translatedMenuItems[6]}
         {/* Assigned" */}
              
          </div>
+         <div className="w-[9.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+        {translatedMenuItems[8]}
+         {/* Source" */}         
+          </div>
         <div className="w-[4.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
         {translatedMenuItems[7]}
         {/* owner" */}         
                 </div>
-        <div className="w-[9.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        {translatedMenuItems[8]}
-         {/* Source" */}         
-          </div>
+      
       </div>
         <InfiniteScroll
         dataLength={teamInvestor.length}
@@ -225,7 +229,9 @@ function InvestorTeamCardList(props) {
                     return (
                       <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between max-sm:rounded-lg
+               max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500
+                bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex font-medium  w-[13.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
@@ -270,8 +276,6 @@ function InvestorTeamCardList(props) {
                                     {item.sector}
                                     </div>
                                 </div>
-                                </div>                                                                                   
-                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center w-[3.21rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
                                  {/* Country */}
                                   <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -287,6 +291,9 @@ function InvestorTeamCardList(props) {
                      {item.countryAlpha2Code}
                                   </div>
                               </div>
+                                </div>                                                                                   
+                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                               
                                 <div className=" flex  items-center w-[7.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                      {/* Deals */}
 
@@ -317,6 +324,9 @@ function InvestorTeamCardList(props) {
                                     {Category}
                                     </div>
                                 </div>
+                               
+                                </div>
+                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Assigned */}
 
@@ -344,6 +354,12 @@ function InvestorTeamCardList(props) {
             </span>           
                                     </div>
                                 </div>
+                                <div className=" flex  items-center  w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Source */}
+                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.source}
+                                    </div>
+                                </div>
                                 <div className=" flex   w-[4.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                                          {/* Owner */}
                        <span>
@@ -361,15 +377,10 @@ function InvestorTeamCardList(props) {
           </Tooltip>
             </span>
                    </div>
-                   </div>
+                  </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                   <div className=" flex  items-center  w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   {/* Source */}
-                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.source}
-                                    </div>
-                                </div>
-                                <div class="flex items-center justify-between">            
+                  
+                                       
                                 <div >
                                 {/* {user.pulseAccessInd === true && */}
                           <Tooltip title="Pulse">
@@ -378,11 +389,21 @@ function InvestorTeamCardList(props) {
                     handleInvestorPulseDrawerModal(true);
                     handleCurrentRowData(item);
                   }}
-                  className=" !text-icon cursor-pointer text-[#df9697]"
+                  className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-2xl "
                 />
              </Tooltip>
         {/* } */}
                           </div>
+                          <div>
+                          <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-2xl"
+          onClick={() => {
+            props.handleInvestorAddressDrawerModal(true);
+            handleCurrentRowData(item);
+          }}
+          
+        />   
+        </div>  
                          <div>
                    <Tooltip title="Notes">
        <NoteAltIcon
@@ -390,7 +411,7 @@ function InvestorTeamCardList(props) {
                   props.handleInvestorNotesDrawerModal(true);
                   handleCurrentRowData(item);
                 }}
-                className=" !text-icon cursor-pointer text-green-800"
+                className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
               />
            </Tooltip>
                    </div>
@@ -405,7 +426,7 @@ function InvestorTeamCardList(props) {
                   {" "}
                   <a href={`https://${item.url}`} target="_blank">
                     <ExploreIcon
-                      className=" !text-icon cursor-pointer text-green-800"
+                      className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                     />
                   </a>
                 </span>
@@ -418,7 +439,7 @@ function InvestorTeamCardList(props) {
           
             <Tooltip title="Investor Contact">
               <LocationCityIcon
-              className=" !text-icon cursor-pointer p-1 text-blue-500 "
+              className=" !text-icon cursor-pointer p-1 text-blue-500 max-sm:!text-3xl"
                 onClick={() => {
                   handleInvestorContModal(true);
                     handleCurrentRowData(item);                 
@@ -429,14 +450,14 @@ function InvestorTeamCardList(props) {
             <div>
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span class="cursor-pointer">
-            <LocationOnIcon   className=" !text-icon cursor-pointer text-[#960a0a]"/>
+            <LocationOnIcon   className=" !text-icon cursor-pointer text-[#960a0a] max-sm:!text-2xl"/>
             </span>
           </Tooltip>
           </div>
             <div>
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
             <Tooltip title="Edit">
-              <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato]"
+              <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-2xl"
                 onClick={() => {
                     handleUpdateInvestorModal(true);
                     handleCurrentRowData(item);                
@@ -455,19 +476,22 @@ function InvestorTeamCardList(props) {
                          <Tooltip title="Delete">                      
                           <DeleteOutlined
                             type="delete"
-                            className="!text-icon text-[red] cursor-pointer"
+                            className="!text-icon text-[red] cursor-pointer max-sm:!text-2xl"
                           />                      
                         </Tooltip>
                       </StyledPopconfirm>        
                   </div>
-                  </div>
+                  
                       </div>   
                             </div>
                         </div>
+
                     )
                 })}
      </InfiniteScroll> 
      </div>
+
+
         )}  
 
       <UpdateInvestorModal
@@ -502,6 +526,12 @@ function InvestorTeamCardList(props) {
         translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
       />
+         <AddInvestorAdressModal
+        item={RowData}
+         type="investor"
+         addInvestorAddressModal={props.addInvestorAddressModal}
+         handleInvestorAddressDrawerModal={props.handleInvestorAddressDrawerModal}
+      /> 
       {/* <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
@@ -534,6 +564,7 @@ const mapStateToProps = ({
   user: auth.userDetails,
   employees: employee.employees,
   investorSerachedData:investor.investorSerachedData,
+  addInvestorAddressModal: investor.addInvestorAddressModal,
   fetchingInvestorSearchData:investor.fetchingInvestorSearchData,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   addDrawerInvestorPulseModal:investor.addDrawerInvestorPulseModal,
@@ -554,7 +585,8 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerById,
       handleInvestorPulseDrawerModal,
       deleteInvestorData,
-      handleInvestorContModal
+      handleInvestorContModal,
+      handleInvestorAddressDrawerModal
     },
     dispatch
   );
