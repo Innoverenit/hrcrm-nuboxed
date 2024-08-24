@@ -46,7 +46,7 @@ class FunnelTab extends Component {
     const { activeKey } = this.state;
     return (
       <>
-        <TabsWrapper style={{height:"44vh"}}>
+        <TabsWrapper style={{height:"44vh", width:"-webkit-fill-available"}}>
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}

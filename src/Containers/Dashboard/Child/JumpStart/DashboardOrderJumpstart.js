@@ -55,7 +55,7 @@ function DashboardOrderJumpstart(props) {
     <>
       <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
-          <div class="flex w-wk">
+          
           <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
                      <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
@@ -98,11 +98,7 @@ function DashboardOrderJumpstart(props) {
                        </div>
                     
                    </div>  
-           
-
-           
-          </div>
-          <div class="flex w-wk">
+                    
                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
                        <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
@@ -124,6 +120,7 @@ function DashboardOrderJumpstart(props) {
                        </div>
                      
                    </div>  
+                   
                    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                       
                       <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
@@ -150,23 +147,9 @@ function DashboardOrderJumpstart(props) {
 
 
           </div>
-           {/* <div class="flex w-wk">
-          <JumpStartBox
-                         bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-              noProgress
-              title={<FormattedMessage
-                id="app.financeopen"
-                defaultMessage="Receivables Open"
-              />}
-           
-            // jumpstartClick={()=>handlePitchAddedDrawer(true)}
-            // cursorData={"pointer"}
-            // value={props.financeDetail.createdinvestorLeadsList}
-            // isLoading={props.fetchingJumpstartInvestor2}
-            />
-               </div> */}
+          
         </div>
-      </div>
+      
    
      <OrdersAddedModal
       selectedLanguage={props.selectedLanguage}
@@ -193,18 +176,8 @@ function DashboardOrderJumpstart(props) {
        orderOpenModal={props.orderOpenModal}
        handleOrderOpenModal={props.handleOrderOpenModal}
       />
-       {/* <PitchAddedDrawer
-      openPitchAdded={openPitchAdded}
-      handlePitchAddedDrawer={handlePitchAddedDrawer}
-      />
-      <DealsAddedDrawer 
-     openDealAdded={openDealAdded}
-     handleDealAddedDrawer={handleDealAddedDrawer}
-    />
-    <DealsClosedDrawer 
-     openDealClosed={openDealClosed}
-     handleDealClosedDrawer={handleDealClosedDrawer}
-    />  */}
+      
+   
     </>
 
   );

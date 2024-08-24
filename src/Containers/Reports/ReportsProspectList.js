@@ -411,7 +411,7 @@ const {user}=props
                         <div>
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
-                              className=" !text-xl cursor-pointer text-[#df9697]"
+                              className=" !text-icon cursor-pointer text-[#df9697]"
                             //   onClick={() => {
                             //     handleCustomerPulseDrawerModal(true);
                             //     handleSetCurrentCustomer(item);

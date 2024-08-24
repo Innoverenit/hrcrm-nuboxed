@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
@@ -14,16 +14,16 @@ import {
 } from "../../../SuppliersAction"
 import { Button, Select, Tooltip } from 'antd';
 import dayjs from "dayjs";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 import NodataFoundPage from '../../../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import PoLocationModal from "./PoLocationModal";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
-import POSupplierDetailsModal from "./POSupplierDetailsModal";
 import { TerminalSharp } from "@mui/icons-material";
-import TermsnConditionModal from "./TermsnConditionModal";
 import { getCurrency } from "../../../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-
+const PoLocationModal  = lazy(() => import("./PoLocationModal"));
+const POSupplierDetailsModal  = lazy(() => import("./POSupplierDetailsModal"));
+const TermsnConditionModal  = lazy(() => import("./TermsnConditionModal"));
 const { Option } = Select;
 
 function PurchaseOrderTable(props) {
@@ -32,6 +32,36 @@ function PurchaseOrderTable(props) {
   const [editContactId, setEditContactId] = useState(null);
   const [contact, setContact] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+           "PO",//0
+            "Created",//1
+            "Location",//2
+            "Delivery",//3
+            "Contact",//4
+            "Currency ",//5
+            "Value",//6
+            
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
     useEffect(() => {
         props.getCurrency()
@@ -98,36 +128,37 @@ function PurchaseOrderTable(props) {
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=" w-[15.1rem]  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[0]} {/* <FormattedMessage
                                 id="app.po"
                                 defaultMessage="PO ID"
-                            /></div>
+                            /> */}
+                            </div>
                         <div className=" w-[14.1rem]   old max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[1]}    {/* <FormattedMessage
                                 id="app.created"
-                                defaultMessage="Created" />
+                                defaultMessage="Created" /> */}
                         </div>
                         <div className=" w-[14.1rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[2]} {/* <FormattedMessage
                                 id="app.location"
-                                defaultMessage="Location" />
+                                defaultMessage="Location" /> */}
                         </div>
                         <div className=" w-[14.12rem]   max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
-                            Delivery
+                        {translatedMenuItems[3]}  {/* Delivery */}
                         </div>
                         <div className=" w-[14.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
-                            Contact
+                        {translatedMenuItems[4]} {/* Contact */}
                         </div>
                        
                         <div className=" w-[14.13rem]    max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[5]}  {/* <FormattedMessage
                                 id="app.currency"
-                                defaultMessage="Currency" />
+                                defaultMessage="Currency" /> */}
                         </div>
                         <div className=" w-[14.11rem]   max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[6]}  {/* <FormattedMessage
                                 id="app.value"
-                                defaultMessage="Value" />
+                                defaultMessage="Value" /> */}
                         </div>
                         <div className=" md:w-[5.1rem]">
 
@@ -321,23 +352,32 @@ function PurchaseOrderTable(props) {
                     </div>
                 </div>
             </div>
+            <Suspense fallback={<BundleLoader />}>
             <PoLocationModal
                 supplierId={props.supplier.supplierId}
                 rowData={rowData}
                 addlocationInPo={props.addlocationInPo}
                 handlePoLocationModal={props.handlePoLocationModal}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
             />
             <POSupplierDetailsModal
                 supplierId={props.supplier.supplierId}
                 rowData={rowData}
                 addPoListmModal={props.addPoListmModal}
                 handlePoListModal={props.handlePoListModal}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
+                
             />
             <TermsnConditionModal
                 rowData={rowData}
                 addTermsnCondition={props.addTermsnCondition}
                 handleTermsnConditionModal={props.handleTermsnConditionModal}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
             />
+            </Suspense>
         </>
     )
 }

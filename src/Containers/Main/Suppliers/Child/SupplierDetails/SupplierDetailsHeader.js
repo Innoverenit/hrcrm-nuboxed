@@ -1,15 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense} from 'react';
 import { ActionHeader } from '../../../../../Components/Utils';
-import SupplierDetailsHeaderLeft from './SupplierDetailsHeaderLeft';
-
+import { BundleLoader } from "../../../../../Components/Placeholder";
+const SupplierDetailsHeaderLeft =lazy(()=>import("./SupplierDetailsHeaderLeft"));
 class SupplierDetailsHeader extends Component {
     render() {
         return (
             <div>
+                <Suspense fallback={<BundleLoader />}>
                 <ActionHeader
-                    leftComponent={<SupplierDetailsHeaderLeft />}
+                    leftComponent={<SupplierDetailsHeaderLeft 
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage}/>}
                     rightComponent={<></>}
+                   
                 />
+                </Suspense>
             </div>
         )
     }

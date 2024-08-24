@@ -52,7 +52,7 @@ function DashboardFinanceJumpstart(props) {
             />
                          </div>
                      </div>
-                 
+                     </div>
                 
                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
@@ -74,11 +74,6 @@ function DashboardFinanceJumpstart(props) {
                        </div>
                     
                    </div>  
-            
-
-          
-          </div>
-          
                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
                        <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
@@ -122,25 +117,6 @@ function DashboardFinanceJumpstart(props) {
                      
                   </div>
             
-            
-
-
-         
-           {/* <div class="flex w-wk">
-          <JumpStartBox
-                         bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-              noProgress
-              title={<FormattedMessage
-                id="app.financeopen"
-                defaultMessage="Receivables Open"
-              />}
-           
-            // jumpstartClick={()=>handlePitchAddedDrawer(true)}
-            // cursorData={"pointer"}
-            // value={props.financeDetail.createdinvestorLeadsList}
-            // isLoading={props.fetchingJumpstartInvestor2}
-            />
-               </div> */}
         </div>
       </div>
 
@@ -158,23 +134,6 @@ function DashboardFinanceJumpstart(props) {
       // addDashboardRepairOrderModal={props.addDashboardRepairOrderModal}
        handleDasboardRepairOrderCloseDrawer={props.handleDasboardRepairOrderCloseDrawer}
       />
-   
-      {/* <PitchQualifiedDrawer
-      openPitchQualified={openPitchQualified}
-      handlePitchQualifiedDrawer={handlePitchQualifiedDrawer}
-      />
-       <PitchAddedDrawer
-      openPitchAdded={openPitchAdded}
-      handlePitchAddedDrawer={handlePitchAddedDrawer}
-      />
-      <DealsAddedDrawer 
-     openDealAdded={openDealAdded}
-     handleDealAddedDrawer={handleDealAddedDrawer}
-    />
-    <DealsClosedDrawer 
-     openDealClosed={openDealClosed}
-     handleDealClosedDrawer={handleDealClosedDrawer}
-    /> */}
     </>
 
   );

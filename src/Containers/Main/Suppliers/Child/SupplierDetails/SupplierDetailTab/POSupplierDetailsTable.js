@@ -9,6 +9,37 @@ import { Button, Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 function PoSupplierDetailsTable(props) {
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+  
+              "Name",//0
+              "Category",//1
+              "Attribute",
+              "Unit",
+              "Price/Unit",
+              "Add",
+              "Cancel"
+  
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
+
+    
     useEffect(() => {
         props.getPurchaseOrderDetailsList(props.poSupplierDetailsId);
     }, []);
@@ -43,31 +74,32 @@ function PoSupplierDetailsTable(props) {
                 <div class="rounded m-1 p-1   w-[100%]   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[16.1rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[0]} {/* <FormattedMessage
                                 id="app.name"
                                 defaultMessage="Name"
-                            /></div>
+                            /> */}
+                            </div>
                         <div className=" md:w-[13.1rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[1]}   {/* <FormattedMessage
                                 id="app.category"
-                                defaultMessage="Category" />
+                                defaultMessage="Category" /> */}
                         </div>
 
                         <div className=" md:w-[10.12rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[2]}   {/* <FormattedMessage
                                 id="app.attribute"
-                                defaultMessage="Attribute" />
+                                defaultMessage="Attribute" /> */}
                         </div>
 
                         <div className=" md:w-[8.13rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[3]}  {/* <FormattedMessage
                                 id="app.unit"
-                                defaultMessage="Unit" />
+                                defaultMessage="Unit" /> */}
                         </div>
                         <div className=" md:w-[21.14rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[4]}  {/* <FormattedMessage
                                 id="app.price"
-                                defaultMessage="Price/Unit" />
+                                defaultMessage="Price/Unit" /> */}
                         </div>
 
                     </div>
@@ -138,8 +170,8 @@ function PoSupplierDetailsTable(props) {
                                                                     suppliesId: item.suppliesId,
                                                                     poSupplierDetailsId: props.poSupplierDetailsId
                                                                 }, handleCallback())}
-                                                            >Add</Button>
-                                                            <Button onClick={handlePrice}>Cancel</Button>
+                                                            >{translatedMenuItems[5]}</Button>
+                                                            <Button onClick={handlePrice}>{translatedMenuItems[6]}</Button>
                                                         </>
                                                         : <span>
                                                             {item.price}

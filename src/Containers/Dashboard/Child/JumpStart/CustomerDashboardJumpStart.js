@@ -90,9 +90,10 @@ render() {
   console.log(startDate)
   console.log(this.state.endDate.format('DD-MM-YYYY'))
   return(
+    <>
     <div class=" flex flex-row w-full" >
     <div class="flex w-full max-sm:flex-col" >
-    <div class="flex w-wk">
+   
 
     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
@@ -192,65 +193,10 @@ render() {
                       </div>
                      
                   </div>
-
-       
-  
-       
-         
-          </div>
-          {/* <JumpStartBox
-            noProgress
-            title="Profiles Submitted"
-            bgColor="linear-gradient(270.23deg, #00A843 0.19%, #1FD071 99.8%)"
-            value={this.props.showDatelist.taggedProfile}
-            isLoading={this.props.fetchingDatewiseReport}
-          /> */}
-          
-           {/* <JumpStartBox
-            noProgress
-            title="DashBoard6"
-            bgColor="linear-gradient(269.97deg, #FFFFFF 0.02%, #000000 0.03%)"
-          /> */}
-          {/* <JumpStartBox
-                    // jumpstartClick={
-                    //   subscriptionType === "PROFESSIONALPLUS"
-                    //     ? () => this.props.handleLifetimeModal(true)
-                    //     : null
-                    // }
-                    // cursorData={
-                    //   subscriptionType === "PROFESSIONALPLUS" ? "pointer" : "default"
-                    // }
-                    noProgress
-                    currencyType={currencyType}
-                    title="Won"
-                    bgColor="#4cc9f0"
-                />
-                <JumpStartBox
-                    // jumpstartClick={
-                    //   subscriptionType === "PROFESSIONALPLUS"
-                    //     ? () => this.props.handleLifetimeModal(true)
-                    //     : null
-                    // }
-                    // cursorData={
-                    //   subscriptionType === "PROFESSIONALPLUS" ? "pointer" : "default"
-                    // }
-                    noProgress
-                    currencyType={currencyType}
-                    title="Customers Added"
-                    bgColor="#92defe"
-                /> */}
+                  </div>
         </div>
 
-        {/* <FlexContainer>
-          <JumpStartBox noProgress title="All Products" bgColor="#8791a1" />
-          <JumpStartBox noProgress title="Quantity On Hand" bgColor="#8791a1" />
-          <JumpStartBox
-            noProgress
-            title="Out of Stock Products"
-            bgColor="#8791a1"
-          />
-          <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
-        </FlexContainer> */}
+        
          <CustomerAddedModal
        customerAddedModal={this.props.customerAddedModal}
        handleCustomerAddedModal={this.props.handleCustomerAddedModal}
@@ -268,8 +214,8 @@ render() {
        orderClosedModal={this.props.orderClosedModal}
        handleOrderClosedModal={this.props.handleOrderClosedModal}
       />
-      </div>
-    
+     
+   </>
   ); 
 }
 }
