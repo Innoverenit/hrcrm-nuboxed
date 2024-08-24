@@ -43,6 +43,8 @@ const initialState = {
     fetchingTeamsContactInvestError: false,
     teamsContactInvestData:[],
 
+    addContactAddressModal:false,
+
     contactInvestorActivityModal:false,
 
     addDrawerContactInvestNotesModal:false,
@@ -82,6 +84,9 @@ export const contactInvestReducer = (state = initialState, action) => {
 
     case types.HANDLE_CONTACT_INVEST_MODAL:
         return { ...state, addContactInvestModal: action.payload };
+
+        case types.HANDLE_CONTACT_ADDRESS_MODAL:
+        return { ...state, addContactAddressModal: action.payload };
         
     case types.ADD_CONTACT_INVEST_REQUEST:
       return { ...state, addingContactInvest: true };

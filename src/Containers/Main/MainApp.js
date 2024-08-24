@@ -435,10 +435,13 @@ function MainApp(props) {
               />
             </Sider>
           </div>
-          <LayoutWrapper class="w-[90%]" >
+          <LayoutWrapper class="w-[90%] max-sm:w-wk" >
             <div class=" flex flex-row justify-between w-[100%] items-center content-center nowrap sticky z-50  h-10  leading-8  shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
            
               <Header class=" flex bg-white w-[100%] box-border border-2 justify-between p-0 items-center">
+              <div class="xl:hidden ml-4 "><Navmenu2 
+                  translateText={translateText}
+                  selectedLanguage={selectedLanguage} /></div>
               <div class="max-xl:text-[0.75rem]  max-lg:text-[0.5rem]">
                   <LanguageSelector
                     translateText={translateText}
@@ -449,9 +452,7 @@ function MainApp(props) {
                   />
                 </div> 
                 <div class="flex justify-between items-center">
-                  <div class="xl:hidden ml-4 "><Navmenu2 
-                  translateText={translateText}
-                  selectedLanguage={selectedLanguage} /></div>
+                  
                   <StartStop />
                   <div >
                      </div>

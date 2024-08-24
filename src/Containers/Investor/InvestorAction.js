@@ -146,6 +146,13 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
       payload: modalProps,
     });
   };
+
+  export const handleInvestorAddressDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_INVESTOR_ADDRESS_MODAL,
+      payload: modalProps,
+    });
+  };
   export const handleUpdateInvestorModal=(modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_INVESTOR_UPDATE_MODAL,

@@ -14,6 +14,13 @@ export const handleContactInvestModal = (modalProps) => (dispatch) => {
       payload: modalProps,
     });
   }
+
+  export const handleContactAddressDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CONTACT_ADDRESS_MODAL,
+      payload: modalProps,
+    });
+  }
   
  export const addContactInvest = (contact) => (dispatch, getState) => {
     const userId = getState().auth.userDetails.userId;

@@ -70,7 +70,7 @@ class Login extends Component {
     console.log(this.props);
     return (
       <>
-        <div class="flex justify-between ">
+        <div class="flex justify-between p-4">
           <div class=" flex justify-center w-1/2 items-center md:min-h-screen max-sm:w-wk h-[80vh] "
             style={{
               // backgroundColor: "#F5F5F5",
@@ -87,7 +87,7 @@ class Login extends Component {
             />
             <br />
 
-            <div class="w-[25rem] p-4  shadow-[ 0em 0.25em 0.625em -0.125em #444] border-box bg-white border-2">
+            <div class="w-[25rem] p-4 max-sm:w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-box bg-white border-2">
               <Formik
                 enableReinitialize
                 initialValues={{

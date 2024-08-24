@@ -65,6 +65,9 @@ function General(props) {
           typeInd: props.requirementDuration.typeInd,
           repairOrdInd: props.requirementDuration.repairOrdInd,
           qcInd: props.requirementDuration.qcInd,
+          b2bCheckInvenOrdInd: props.requirementDuration.b2bCheckInvenOrdInd,
+          b2cCheckInvenOrdInd: props.requirementDuration.b2cCheckInvenOrdInd,
+          shipInvoicePayImentnd: props.requirementDuration.shipInvoicePayImentnd,
           
           
           proInd: props.requirementDuration.proInd,
@@ -468,6 +471,48 @@ function General(props) {
                         </div>
                       </div>
                       )}
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">B2b Inventory Order
+</div>
+                      <div>
+                        <Field
+                          name="b2bCheckInvenOrdInd"
+                          component={SwitchComponent}
+                          data={values.b2bCheckInvenOrdInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">B2c Inventory Order
+</div>
+                      <div>
+                        <Field
+                          name="b2cCheckInvenOrdInd"
+                          component={SwitchComponent}
+                          data={values.b2cCheckInvenOrdInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
+                      <div class=" flex  justify-between mt-3">
+                      <div class=" text-xs  ">Ship Invoice Payment
+</div>
+                      <div>
+                        <Field
+                          name="shipInvoicePayImentnd"
+                          component={SwitchComponent}
+                          data={values.shipInvoicePayImentnd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
+                        </div>
+                      </div>
                     </div>
 
                   </div>

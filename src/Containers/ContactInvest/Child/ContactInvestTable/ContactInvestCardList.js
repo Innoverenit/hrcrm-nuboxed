@@ -8,6 +8,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip } from "antd";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import {
   handleUpdateContactModal,
@@ -27,10 +28,11 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {
   handleContactInvestNotesDrawerModal,
   getContactInvestByUserId,
-  emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
+  emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal,handleContactAddressDrawerModal} from "../../ContactInvestAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddContactInvestAdressModal from "./AddContactInvestAdressModal";
 const AddContactInvestNotesDrawerModal = lazy(() =>
   import("../AddContactInvestNotesDrawerModal")
 );
@@ -356,6 +358,14 @@ function ContactInvestCardList(props) {
               }}
             />
            </Tooltip>
+           <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleContactAddressDrawerModal(true);
+            handleCurrentContactIdata(item);
+          }}
+          
+        /> 
            <Tooltip title="location" >
                      
                         <div >
@@ -425,6 +435,12 @@ function ContactInvestCardList(props) {
         handleContactInvestPulseDrawerModal={handleContactInvestPulseDrawerModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
       />  
+      <AddContactInvestAdressModal      
+        item={contactiData}
+         type="contactinvest"
+        addContactAddressModal={props.addContactAddressModal}
+        handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
+      /> 
       <AddContactInvestNotesDrawerModal
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
@@ -459,6 +475,7 @@ const mapStateToProps = ({
   addContactSpeechModal: contact.addContactSpeechModal,
   addDrawerContactModal: contact.addDrawerContactModal,
   contactiNVESTbyId: contactinvest.contactiNVESTbyId,
+  addContactAddressModal:contactinvest.addContactAddressModal
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -476,7 +493,8 @@ const mapDispatchToProps = (dispatch) =>
       emptyContactInvest,
       handleUpdateContactInvestModal,
       handleContactInvestPulseDrawerModal,
-      handleContactInvestNotesDrawerModal
+      handleContactInvestNotesDrawerModal,
+      handleContactAddressDrawerModal
     },
     dispatch
   );
