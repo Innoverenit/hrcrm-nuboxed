@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import { base_url } from "../../../../../../Config/Auth";
 import {
   StyledPopconfirm,
@@ -21,12 +20,49 @@ import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFound
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 class LinkedDocuments extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {
     const {
       contact: { contactId },
       getContactDocument,
+      
     } = this.props;
+    this.fetchMenuTranslations();
     getContactDocument(contactId);
+    
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       'Date', // 0
+'Name', // 1
+'Type', // 2
+'Share', // 3
+'Description', // 4
+'Uploaded By', // 5
+
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
   }
   render() {
     const {
@@ -40,21 +76,26 @@ class LinkedDocuments extends Component {
     const tab = document.querySelector(".ant-layout-sider-children");
   const tableHeight = tab && tab.offsetHeight * 0.75;
   if (fetchingDocumentsByContactId) return <BundleLoader/>;
+  const {loading,translatedMenuItems } = this.state;
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  } 
     return (
       <>
          <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[6.9rem]">
-        <FormattedMessage
-                  id="app.date"
-                  defaultMessage="Date"
-                /></div>
- 
-        <div className="md:w-[11.1rem]">  <FormattedMessage id="app.name" defaultMessage="Name" /></div>
-        <div className="md:w-[11.1rem]">  <FormattedMessage id="app.type" defaultMessage="Type" /></div>
-        <div className="md:w-[11.1rem]">  <FormattedMessage id="app.share" defaultMessage="Share" /></div>
-        <div className="md:w-[18.12rem]"> <FormattedMessage id="app.description"defaultMessage="Description"/></div>
-        <div className=" md:w-[7.1rem]"> <FormattedMessage id="app.uploadedBy" defaultMessage="Uploaded By" /></div>
+          <div className=" md:w-[6.9rem]">{this.state.translatedMenuItems[0]} </div>
+          {/* Date */}
+        <div className="md:w-[11.1rem]"> {this.state.translatedMenuItems[1]}      </div>
+           {/* Name */}   
+        <div className="md:w-[11.1rem]"> {this.state.translatedMenuItems[2]}</div>
+          {/* type */}          
+        <div className="md:w-[11.1rem]"> {this.state.translatedMenuItems[3]}</div>
+          {/* Share */}      
+        <div className="md:w-[18.12rem]"> {this.state.translatedMenuItems[4]}</div>
+          {/* Description */}    
+        <div className=" md:w-[7.1rem]"> {this.state.translatedMenuItems[5]}</div>
+          {/* UploadedBy */}       
         <div className="w-[4.2rem]"></div>
 
       </div>

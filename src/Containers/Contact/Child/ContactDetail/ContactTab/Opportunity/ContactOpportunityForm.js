@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCustomerData } from "../../../../../Customer/CustomerAction";
 import { getContactData,addContactOpportunity } from "../../../../../Contact/ContactAction";
-import { FormattedMessage } from "react-intl";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -11,7 +10,6 @@ import { Button, Tooltip,Select } from "antd";
 import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
 import DraggableUpload1 from "../../../../../../Components/Forms/Formik/DraggableUpload1";
-import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import {
   addOpportunity,
   getInitiative,
@@ -44,6 +42,35 @@ const OpportunitySchema = Yup.object().shape({
   //customerId:Yup.string().required("Input needed!"),
 });
 function ContactOpportunityForm(props) {
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+       "Name",//0
+          "Start Date",//1
+         "End Date",//2
+          "Value",//3
+         "Currency",//4
+          "Description",//5
+          " Assigned",//6
+          "Include",//7
+         "Workflow",///8
+         "Stages",//9
+         "Create"
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     // props.getContactData(props.userId);
     // props.getCustomerData(props.userId);
@@ -77,12 +104,6 @@ function ContactOpportunityForm(props) {
   //   fetchCustomers();
   // }, []);
 
-
- 
-
- 
-
- 
   const fetchInclude = async () => {
     setIsLoading(true);
     try {
@@ -381,22 +402,18 @@ const filteredEmployeesData = AllEmplo.filter(
           setFieldValue,
           setFieldTouched,
           values,
-          ...rest
+          ...res
         }) => (
           <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
           <Form className="form-background">
             <div class=" flex justify-between max-sm:flex-col">
-              <div class=" h-full w-[47.5%] mt-3 max-sm:w-wk">
-               
+              <div class=" h-full w-[47.5%]  max-sm:w-wk">
+              <div className="font-bold font-poppins  text-black text-xs">{translatedMenuItems[0]}</div>
                 <Field
                   isRequired
                   name="opportunityName"
                   type="text"
-                  //label="Name"
-
-                  label={
-                    <FormattedMessage id="app.name" defaultMessage="Name" />
-                  }
+                  //label="Name"          
                   isColumn
                   width={"100%"}
                   component={InputComponent}
@@ -406,15 +423,10 @@ const filteredEmployeesData = AllEmplo.filter(
                 <div class=" mt-3" />
                 <div class="flex justify-between max-sm:flex-col">
                 <div class=" w-w47.5 max-sm:w-wk">
+                <div className="font-bold font-poppins  text-xs">{translatedMenuItems[1]}</div>
                     <Field
                       name="startDate"
-                      //label="Start "
-                      label={
-                        <FormattedMessage
-                          id="app.startDate"
-                          defaultMessage="Start Date"
-                        />
-                      }
+                      //label="Start "                 
                       component={DatePicker}
                       value={values.startDate}
                       isColumn
@@ -422,16 +434,11 @@ const filteredEmployeesData = AllEmplo.filter(
                     />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
+                  <div className="font-bold font-poppins  text-black text-xs">{translatedMenuItems[2]}</div>
                     <Field
                       // isRequired
                       name="endDate"
-                      // label="End Date"
-                      label={
-                        <FormattedMessage
-                          id="app.endDate"
-                          defaultMessage="End Date"
-                        />
-                      }
+                      // label="End Date"                 
                       isColumn
                       component={DatePicker}
                       value={values.endDate || values.startDate}
@@ -453,34 +460,23 @@ const filteredEmployeesData = AllEmplo.filter(
                 <div class=" mt-3" />
                 <div class="flex justify-between max-sm:flex-col">
                 <div class=" w-w47.5 max-sm:w-wk">
+                <div className="font-bold font-poppins text-black  text-xs">{translatedMenuItems[3]}</div>
                     <Field
                       name="proposalAmount"
                       //label="Value"
-
-                      label={
-                        <FormattedMessage
-                          id="app.proposalamount"
-                          defaultMessage="Value"
-                        />
-                      }
                       isColumn
                       width={"100%"}
                       component={InputComponent}
                     />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
+                  <div className="font-bold font-poppins  text-black text-xs">{translatedMenuItems[4]}</div>
                     <Field
                       name="currency"
                       isColumnWithoutNoCreate
                       defaultValue={{
                         value: props.user.currency,
-                      }}
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
+                      }}                  
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -495,12 +491,13 @@ const filteredEmployeesData = AllEmplo.filter(
                   </div>
                 </div>
                 <div class=" mt-3" />
-                <div class=" text-xs font-bold font-poppins text-black">Description</div>
                 <div>
-                  <div>
+                <span class=" text-xs font-bold  text-black font-poppins">{translatedMenuItems[5]}
+                  {/* Description */}                  </span>           
+                    <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
-                        <span style={{ fontSize: "1.5em", color: "red" }}>
+                        <span className="!text-icon text-red-600">
                           <PlayCircleFilledIcon />
                         </span>
                       </Tooltip>
@@ -509,11 +506,7 @@ const filteredEmployeesData = AllEmplo.filter(
                     <span onClick={SpeechRecognition.stopListening}>
                       <Tooltip title="Stop">
                         <span
-                          style={{
-                            fontSize: "1.5em",
-                            color: "green",
-                            marginLeft: "3px",
-                          }}
+                        className="!text-icon ml-[3px] text-green-700"
                         >
                           <StopCircleIcon />
                         </span>
@@ -522,12 +515,13 @@ const filteredEmployeesData = AllEmplo.filter(
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span style={{ fontSize: "1.5em", marginLeft: "3px" }}>
+                        <span  className="!text-icon ml-[3px]">
                           <RotateRightIcon />
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                    </span>
+                 
                   <div>
                     <textarea
                       name="description"
@@ -537,16 +531,18 @@ const filteredEmployeesData = AllEmplo.filter(
                       onChange={handletext}
                     ></textarea>
                   </div>
-                </div>
+               
+              </div>
               </div>
             <div
                class=" h-full w-[47.5%] max-sm:w-wk">
               <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mt-[0.6rem]">
-              Assigned
-            </Listbox.Label>
+            <div className=" font-semibold text-xs  text-black ">
+            {translatedMenuItems[6]}
+              {/* Assigned */}
+            </div>
             <div className="relative mt-1">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -610,27 +606,10 @@ const filteredEmployeesData = AllEmplo.filter(
         )}
       </Listbox>
 
-       <div class=" mt-2" style={{display:"flex",flexDirection:"column"}}>
-       {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="include"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${empName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
-                  <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</div>
+       <div class=" mt-2 flex flex-col"> 
+                  <div className="font-bold  text-black font-poppins text-xs">{translatedMenuItems[7]}
+                    {/* Include */}
+                    </div>
                    <Select
           showSearch
           style={{ width: 415 }}
@@ -651,81 +630,23 @@ const filteredEmployeesData = AllEmplo.filter(
         </div>        
 <div class="flex justify-between max-sm:flex-col mt-[0.85rem]">
 <div class=" w-w47.5 max-sm:w-wk">
-                  {/* <Field
-                    name="customerId"
-                    // selectType="customerList"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.customer"
-                        defaultMessage="Customer"
-                      />
-                    }
-                    //component={SearchSelect}
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(customerNameOption)
-                        ? customerNameOption
-                        : []
-                    }
-                    isColumn
-                    margintop={"0"}
-                    value={values.customerId}
-                    inlineLabel
-                  /> */}
-
-
-          
+                       
             </div>
          
-                        </div>
-              
-                {/* <div class=" text-xs font-bold font-poppins text-black">
-                  <Field
-                    name="oppInnitiative"
-                    //selectType="initiativeName"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.initiative"
-                        defaultMessage="Initiative"
-                      />
-                    }
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        getInitiativeOptions("customerId", values.customerId)
-                      )
-                        ? getInitiativeOptions("customerId", values.customerId)
-                        : []
-                    }
-                    value={values.initiativeDetailsId}
-                    filterOption={{
-                      filterType: "customerId",
-                      filterValue: values.customerId,
-                    }}
-                    disabled={!values.customerId}
-                    isColumn
-                    inlineLabel
-                  />
-                </div> */}
+                        </div>                         
                 <div class=" mt-3" />
 
                 <div class="flex justify-between max-sm:flex-col">
                   <div class=" w-w47.5 max-sm:w-wk">
                     <div class=" text-xs font-bold font-poppins text-black">
+                    {translatedMenuItems[8]}
+                    {/* Workflow */}
                       <Field
                         name="oppWorkflow"
                         // selectType="contactListFilter"
                         isColumnWithoutNoCreate
                         isRequired
-                        placeolder="Select type"
-                        label={
-                          <FormattedMessage
-                            id="app.workflow"
-                            defaultMessage="Workflow"
-                          />
-                        }
+                        placeolder="Select type"                     
                         // component={SearchSelect}
                         component={SelectComponent}
                         options={
@@ -740,16 +661,11 @@ const filteredEmployeesData = AllEmplo.filter(
                   <div class=" mt-3" />
                   <div class=" w-w47.5 max-sm:w-wk">
                     <div class=" text-xs font-bold font-poppins text-black">
+                    {translatedMenuItems[9]}
                       <Field
                         name="oppStage"
                         isRequired
-                        isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.stages"
-                            defaultMessage="Stages"
-                          />
-                        }
+                        isColumnWithoutNoCreate                  
                         component={SelectComponent}
                         options={
                           Array.isArray(
@@ -790,7 +706,8 @@ const filteredEmployeesData = AllEmplo.filter(
                 htmlType="submit"
                 loading={props.addingContactOpportunity}
               >
-                <FormattedMessage id="app.create" defaultMessage="Create" />
+                <div class=" text-xs font-bold font-poppins text-black">
+                {translatedMenuItems[10]}</div>
                 {/* Create */}
               </Button>
             </div>

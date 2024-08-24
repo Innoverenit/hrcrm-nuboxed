@@ -22,6 +22,32 @@ const AddCustomerUpdateOpportunityModal =lazy(()=>import("./AddCustomerUpdateOpp
 
 
 function OpportunityTable(props) {
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Quotation",//0
+          "Start Date",//1
+          "End Date",//2      
+          "Value",//3
+          "Status",//4
+          "Sponsor",//5
+         
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getOpportunityListByCustomerId(props.customerId);
   }, []);
@@ -39,8 +65,8 @@ function OpportunityTable(props) {
         confirm,
         clearFilters,
       }) => (
-        <div style={{ padding: 8 }}>
-          <Input
+        <div className="p-8">
+          <Input 
             placeholder={`Search ${dataIndex}`}
             value={selectedKeys[0]}
             onChange={(e) =>
@@ -60,10 +86,10 @@ function OpportunityTable(props) {
           >
             Search
           </Button>
-          <Button
+          <Button className="w-[90%]"
             onClick={() => handleReset(clearFilters)}
             size="small"
-            style={{ width: 90 }}
+            
           >
             Reset
           </Button>
@@ -383,12 +409,19 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
     <div className=' flex  sticky z-auto'>
     <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[16rem]">Quotation ID</div>
-        <div className=" md:w-[5.1rem]">Start Date</div>
-        <div className=" md:w-[6.21rem] ">End Date</div>
-        <div className="md:w-[4.2rem]">Value</div>
-        <div className="md:w-[5.51rem]">Status</div>
-        <div className="md:w-[1.8rem]">Sponsor</div> 
+        <div className=" md:w-[16rem]">{translatedMenuItems[0]} ID</div>
+        {/* Quotation ID */}
+        <div className=" md:w-[5.1rem]">{translatedMenuItems[1]}</div>
+        {/* Start Date         */}
+        <div className=" md:w-[6.21rem] ">{translatedMenuItems[2]}</div>
+        {/* End Date */}   
+        <div className="md:w-[4.2rem]">{translatedMenuItems[3]}</div>
+        {/* Value */}  
+        <div className="md:w-[5.51rem]">{translatedMenuItems[4]}</div>
+          {/* Status */}      
+        <div className="md:w-[1.8rem]">{translatedMenuItems[5]}</div>
+        {/* Sponsor */}
+       
         <div className="w-[7rem]"></div>
 
       </div>
@@ -577,6 +610,9 @@ width={30}
        addUpdateCustomerOpportunityModal={addUpdateCustomerOpportunityModal}
         handleUpdateCustomerOpportunityModal={handleUpdateCustomerOpportunityModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
         
       />
     </>

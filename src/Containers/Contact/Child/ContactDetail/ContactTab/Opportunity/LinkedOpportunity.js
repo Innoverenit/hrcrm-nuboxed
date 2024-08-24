@@ -6,16 +6,14 @@ import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {  Menu, Dropdown, Progress } from "antd";
 import { Link } from "../../../../../../Components/Common";
-import { FormattedMessage } from "react-intl";
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import { bindActionCreators } from "redux";
-import { StyledTable } from "../../../../../../Components/UI/Antd";
+
 import {
   MultiAvatar,
   MultiAvatar2,
-  SubTitle,
+
 } from "../../../../../../Components/UI/Elements";
-import styled from "styled-components";
 import { getOpportunityListByContactId } from "../../../../ContactAction";
 import { Tooltip } from "antd";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -25,10 +23,37 @@ function onChange(pagination, filters, sorter) {
 }
 
 function OpportunityTable(props) {
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [currentOpportunityId, setCurrentOpportunityId] = useState("");
   useEffect(() => {
     props.getOpportunityListByContactId(props.contactId);
   }, []);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Quotation",//0
+          "Prospect",//1
+          "Sponsor",//2
+          "Start Date",//3
+          "Value",//4
+          "Stages",//5
+          "Sales Rep",//6
+          "Owner"//7
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   console.log(props.contactId);
   function handleSetCurrentOpportunityId(opportunityId,opportunityName) {
     setCurrentOpportunityId(opportunityId,opportunityName);
@@ -43,14 +68,22 @@ function OpportunityTable(props) {
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">Quotation ID</div>
-        <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Prospect</div>
-        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Sponsor</div>
-        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Start Date</div>
-        <div className="w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Value</div>
-        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Stages</div> 
-        <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sales Rep</div>
-        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">Owner</div>
+        <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]} ID</div>
+        {/* Quotation ID */}
+        <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        {/* Prospect */}
+        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]}</div>
+        {/* Sponsor */}
+        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[3]}</div>
+        {/* Start Date */}
+        <div className="w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[4]}</div>
+        {/* Value */}
+        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div>
+        {/* Stages */}
+        <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div>
+        {/* Sales Rep */}
+        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">{translatedMenuItems[7]}</div>
+        {/* Owner */}
         <div className="w-[4.8rem] "></div>
         <div className="w-12"></div>
       </div>

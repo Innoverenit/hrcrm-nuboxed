@@ -474,6 +474,9 @@ function ContactCardList(props) {
         addDrawerContactNotesModal={addDrawerContactNotesModal}
         handleContactNotesDrawerModal={handleContactNotesDrawerModal}
         handleSetCurrentContact={handleSetCurrentContact}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
          <AddContactPulseDrawerModal
         contactData={currentContact}
@@ -481,12 +484,18 @@ function ContactCardList(props) {
         addDrawerContactPulseModal={addDrawerContactPulseModal}
         handleContactPulseDrawerModal={handleContactPulseDrawerModal}
         handleSetCurrentContact={handleSetCurrentContact}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <AddContactEmailDrawerModal
         // item={currentContactId}
         contactData={currentContactId}
         addDrawerContactEmailModal={props.addDrawerContactEmailModal}
         handleContactEmailDrawerModal={props.handleContactEmailDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <ReactContactSpeechModal
         // item={currentContactId}
@@ -494,22 +503,34 @@ function ContactCardList(props) {
         handleContactReactSpeechModal={handleContactReactSpeechModal}
         addContactSpeechModal={addContactSpeechModal}
         handleSetCurrentContactId={handleSetCurrentContactId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <ContactCETdrawer
         currentContact={currentContact}
         contactCETdrawer={props.contactCETdrawer}
         handleContactCETdrawer={props.handleContactCETdrawer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <AddContactDrawerModal
         item={currentContactId}
         addDrawerContactModal={props.addDrawerContactModal}
         handleContactDrawerModal={props.handleContactDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
        <AddContactAddressDrawerModal
         item={currentContact}
         type="Contact"
         addDrawerContactAddressModal={props.addDrawerContactAddressModal}
         handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );

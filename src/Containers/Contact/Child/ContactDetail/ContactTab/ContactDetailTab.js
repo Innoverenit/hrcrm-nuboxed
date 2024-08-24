@@ -12,6 +12,7 @@ import { handleContactReactSpeechModal,handleContactOpportunityModal } from "../
 import { getOpportunityListByContactId } from "../../../ContactAction";
 import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import { BundleLoader } from "../../../../../Components/Placeholder";
 
 const LinkedDocuments =lazy(()=>import("./Document/LinkedDocuments"));
 const ReactContactSpeechModal =lazy(()=>import("../ReactContactSpeechModal"));
@@ -24,9 +25,36 @@ class ContactDetailTab extends Component {
     super(props);
     this.state = {
       activeKey: "1",
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+    
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
 
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       'Documents', // 0
+     'Quotation', // 1
+
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
   handleTabChange = (key) => this.setState(  key );
   render() {
     const { activeKey } = this.state;
@@ -41,6 +69,10 @@ class ContactDetailTab extends Component {
       getOpportunityListByContactId,
     } = this.props;
 
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    }
     return (
       <>
         <TabsWrapper>
@@ -112,13 +144,9 @@ class ContactDetailTab extends Component {
             <TabPane
               tab={
                 <>
-                 <InsertDriveFileIcon style={{fontSize:"1.1rem"}}/>
+                 <InsertDriveFileIcon className="!text-icon"/>
                     <span class=" ml-1">
-                   
-                    <FormattedMessage
-                      id="app.documents"
-                      defaultMessage="Documents"
-                    />
+                    {this.state.translatedMenuItems[0]} 
                     {/* Documents */}
                   </span>
                   {activeKey === "1" && (
@@ -142,7 +170,11 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments />
+                <LinkedDocuments 
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
+                />
               </Suspense>
             </TabPane>
 
@@ -150,25 +182,14 @@ class ContactDetailTab extends Component {
             <TabPane
               tab={
                 <>
-                 <LightbulbIcon style={{fontSize:"1.1rem"}}/>
+                 <LightbulbIcon className="!text-icon"/>
                     <span class=" ml-1">
-                   
-                    {/* <FormattedMessage
-                      id="app.documents"
-                      defaultMessage="Documents"
-                    /> */}
-                    Quotation
+                    {this.state.translatedMenuItems[1]}            
+                    {/* Quotation */}
                   </span>
                   {/* {activeKey === "2" && ( */}
                     <>
-                      <PlusOutlined
-                        //type="plus"
-                      // tooltipTitle="Quotation"
-                        // tooltiptitle={<FormattedMessage
-                        //   id="app.uploaddocument"
-                        //   defaultMessage="Upload Document"
-                        // />}
-                        //onClick={() => handleDocumentUploadModal(true)}
+                      <PlusOutlined                  
                         onClick={() => {
                           handleContactOpportunityModal(true);
                         }}
@@ -183,7 +204,11 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedOpportunity />
+                <LinkedOpportunity
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
+                />
               
               </Suspense>
             </TabPane>
@@ -194,11 +219,17 @@ class ContactDetailTab extends Component {
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
             contactId={ contactId }
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
           />
           <AddContactOpportunityModal
            contactId={ contactId }
             addContactOpportunityModal={addContactOpportunityModal}
             handleContactOpportunityModal={handleContactOpportunityModal}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
             // defaultContacts={[
             //   {
             //     label: `${firstName || ""} ${middleName || ""} ${lastName ||
@@ -213,6 +244,9 @@ class ContactDetailTab extends Component {
            contactId={ contactId }
           handleContactReactSpeechModal={handleContactReactSpeechModal}
           addContactSpeechModal={addContactSpeechModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
           />
         </Suspense>
       </>

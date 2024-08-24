@@ -335,6 +335,9 @@ function ContactTable(props) {
             <ContactDetailView
               contactId={item.contactId}
               contactName={fullName}
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
             />
             &nbsp;&nbsp;
             {date === currentdate ? (

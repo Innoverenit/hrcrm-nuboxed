@@ -73,8 +73,41 @@ class ContactDetailTab extends Component {
       ganttChart: false,
       costId: "",
       file: false,
+      translatedMenuItems: [],
     };
   }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+        "Quotation",//0
+        "Contact",//1
+        "Documents",//2
+        "Activity",//3
+        "Invoice",//4
+        "Campaign",//5
+        "Summary"//6
+      
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   handleRecriutmentdashboard = () => {
     this.setState({ recriutmentdashboard: true });
 
@@ -130,12 +163,9 @@ class ContactDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <LightbulbIcon  style={{fontSize:"1.1rem"}}/>
+                    <LightbulbIcon className="!text-icon"/>
                     <span class=" ml-1">
-                      <FormattedMessage
-                        id="app.quotation"
-                        defaultMessage="Quotation"
-                      />
+                    {this.state.translatedMenuItems[0]}
                     </span>
                   </span>
                   {activeKey === "1" && (
@@ -177,20 +207,21 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedOpportunity customer={this.props.customer} />
+                <LinkedOpportunity customer={this.props.customer}
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
+                />
               </Suspense>
             </TabPane>
             <TabPane
               tab={
                 <>
                   <span>
- <ContactsIcon style={{fontSize:"1.1rem"}}/>
+ <ContactsIcon className="!text-icon"/>
                     <span class=" ml-1">
                       {/* Contacts */}
-                      <FormattedMessage
-                        id="app.contacts"
-                        defaultMessage="Contacts"
-                      />
+                      {this.state.translatedMenuItems[1]}
                     </span>
                   </span>
                   {activeKey === "2" && (
@@ -234,7 +265,11 @@ class ContactDetailTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <LinkedContact  defaultCustomers={[{ label: name, value: customerId }]}
-            customerId={{ value: customerId }} />
+            customerId={{ value: customerId }}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
+            />
               </Suspense>
             </TabPane>
 
@@ -256,13 +291,10 @@ class ContactDetailTab extends Component {
               tab={
                 <>
                   <InsertDriveFileIcon 
-                  style={{fontSize:"1.1rem"}}
+                 className="!text-icon"
                   />
                   <span class=" ml-1">
-                    <FormattedMessage
-                      id="app.documents"
-                      defaultMessage="Documents"
-                    />
+                  {this.state.translatedMenuItems[2]}
                     {/* Documents */}
                   </span>
                   {activeKey === "5" && (
@@ -301,7 +333,11 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments />
+                <LinkedDocuments
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
+                />
               </Suspense>
             </TabPane>
             {/* <TabPane
@@ -339,20 +375,15 @@ class ContactDetailTab extends Component {
               tab={
                 <>
 
-                  <ReceiptIcon style={{fontSize:"1.1rem"}}/>
+                  <ReceiptIcon className="!text-icon"/>
                   <Badge
                 count={this.props.customerActivityCount.count}
                 overflowCount={999}
               > 
                    </Badge>
-                  <span class=" ml-1">
-                    {
-                      <FormattedMessage
-                        id="app.activity"
-                        defaultMessage="Activity"
-                      />
-                    }
-                    {/* Documents */}
+                  <span class=" ml-1">                   
+                         {this.state.translatedMenuItems[3]}                 
+          {/* Activity */}
                  
                   </span>            
                   {activeKey === "7" && (
@@ -393,39 +424,24 @@ class ContactDetailTab extends Component {
                 <CustomerActivityTable
 
                  customer={this.props.customer}
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
                 />
               </Suspense>
             </TabPane>
             <TabPane
               tab={
                 <>
-                  <ReceiptIcon style={{fontSize:"1.1rem"}}/>
+                  <ReceiptIcon className="!text-icon"/>
                   <span class=" ml-1">
-                    {
-                      <FormattedMessage
-                        id="app.invoice"
-                        defaultMessage="Invoice"
-                      />
-                    }
-                    {/* Documents */}
+                    
+                         {this.state.translatedMenuItems[4]}
+                    {/* Invoice */}
                   </span>
                   {activeKey === "8" && (
                     <>
-                      {/* <PlusOutlined
-                        type="plus"
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
-                        onClick={() => handleInvoiceModal(true)}
-                        size="0.875em"
-                        style={{
-                          marginLeft: "0.3125em",
-                          verticalAlign: "center",
-                        }}
-                      /> */}
+                    
                     </>
                   )}
                 </>
@@ -434,26 +450,27 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedInvoice />
+                <LinkedInvoice 
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
+                />
               </Suspense>
             </TabPane>
             <TabPane
               tab={
                 <>
 
-                  <ReceiptIcon style={{fontSize:"1.1rem"}}/>
+                  <ReceiptIcon className="!text-icon"/>
                   <Badge
                 // count={this.props.customerActivityCount.count}
                 // overflowCount={999}
               > 
                    </Badge>
                   <span class=" ml-1">
-                    {
-                      <FormattedMessage
-                        id="app.campaign"
-                        defaultMessage="Campaign"
-                      />
-                    }
+                    
+                      {this.state.translatedMenuItems[5]}
+                    
                  
                   </span>
            
@@ -495,6 +512,9 @@ class ContactDetailTab extends Component {
               
                 <CampaignCardView
                  customer={this.props.customer}
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
                 />
               </Suspense>
             </TabPane>
@@ -504,7 +524,9 @@ class ContactDetailTab extends Component {
                             <>
                                 <span>
                                     {/* <i class="far fa-file"></i> */}
-                                    <span class="ml-1">Summary</span>
+                                    <span class="ml-1">   {this.state.translatedMenuItems[6]}
+                                      {/* Summary */}
+                                      </span>
                                 </span>
                                 
                             </>
@@ -513,7 +535,9 @@ class ContactDetailTab extends Component {
                     >
                         <Suspense fallback={"Loading ..."}>
                         <CustomerMapTable
-                               
+                                translateText={this.props.translateText}
+                                selectedLanguage={this.props.selectedLanguage}
+                              translatedMenuItems={this.props.translatedMenuItems}
                                />                       
                         </Suspense>
                     </TabPane>
@@ -524,18 +548,24 @@ class ContactDetailTab extends Component {
           <AddRecruitModal
             addRecruitModal={this.props.addRecruitModal}
             handleRecruitModal={this.props.handleRecruitModal}
-          />
+            selectedLanguage={this.props.selectedLanguage}
+          translateText={this.props.translateText}/>
+          
 
      
           <AddTagProfileModal
             addTagProfileModal={this.props.addTagProfileModal}
             handleTagProfileModal={this.props.handleTagProfileModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
           />
 
           <AddDocumentModals
            customerId={customerId}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
           />
 
           <AddCustomerContactModal
@@ -550,22 +580,30 @@ class ContactDetailTab extends Component {
           <AddInvoiceModal
             addInvoiceModal={addInvoiceModal}
             handleInvoiceModal={handleInvoiceModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
           />
           <ReactCustomerSpeechModal
             customerId={customerId}
             handleCustomerReactSpeechModal={handleCustomerReactSpeechModal}
             addCustomerSpeechModal={addCustomerSpeechModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
           />
           <AddCustomerOpportunityModal
             addCustomerOpportunityModal={addCustomerOpportunityModal}
             handleCustomerOpportunityModal={handleCustomerOpportunityModal}
             defaultCustomers={[{ label: name, value: customerId }]}
             customerId={{ value: customerId }}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
             // callback={() => getOpportunityListByCustomerId(customerId)}
           />
                  <AddProjectDrawer
             addCustomerProjectDrawer={addCustomerProjectDrawer}
             handleCustomerProjectDrawer={handleCustomerProjectDrawer}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
           />
           
           <AddCustomerActivityModal
@@ -575,11 +613,15 @@ class ContactDetailTab extends Component {
           // callback={() => getContactListByCustomerId(customerId)}
             callActivityModal={callActivityModal}
             handleCallActivityModal={handleCallActivityModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
           /> 
           <CampaignDrawer
           customer={this.props.customer}
            openCampaigndrwr={this.props.openCampaigndrwr}
            handleCampaignDrawer={this.props.handleCampaignDrawer}
+           selectedLanguage={this.props.selectedLanguage}
+           translateText={this.props.translateText}
           />
         </Suspense>
       </>
