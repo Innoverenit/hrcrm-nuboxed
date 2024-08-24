@@ -182,6 +182,7 @@ function LanguageSelector({ onLanguageChange,supportedLanguages,selectedLanguage
         <option value="Polish">PL</option>
         <option value="Arabic">عربي</option>
         <option value="Hindi">हिंदी</option>
+        <option value="Chinese">中国人</option>
         
       </select>
     </div>

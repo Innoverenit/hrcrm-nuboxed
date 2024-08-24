@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component , lazy, Suspense} from "react";
 import { ViewEditCard } from "../../../../../../Components/UI/Elements";
-import SupplierDetailView from "./SupplierDetailView";
-import SupplierViewDataEdit from "./SupplierViewDataEdit";
-
+import { BundleLoader } from "../../../../../../Components/Placeholder";
+const SupplierDetailView =lazy(()=>import("./SupplierDetailView"));
+const SupplierViewDataEdit =lazy(()=>import("./SupplierViewDataEdit"));
 class SupplierDetailCard extends Component {
     render() {
         const { supplier } = this.props;
@@ -11,14 +11,18 @@ class SupplierDetailCard extends Component {
                 <ViewEditCard>
                     {({ viewType }, toggleViewType) =>
                         viewType === "view" ? (
+                            <Suspense fallback={<BundleLoader />}>
                             <SupplierDetailView supplier={supplier}
                                 toggleViewType={toggleViewType}
-                            />
+                                translateText={this.props.translateText}
+                                selectedLanguage={this.props.selectedLanguage}/></Suspense>
                         ) : (
+                            <Suspense fallback={<BundleLoader />}>
                                 <SupplierViewDataEdit
-                                supplier={supplier}
+                                    supplier={supplier}
                                     toggleViewType={toggleViewType}
-                                />
+                                    translateText={this.props.translateText}
+                                    selectedLanguage={this.props.selectedLanguage} /></Suspense>
                             )
                     }
 

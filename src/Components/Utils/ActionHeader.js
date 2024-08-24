@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const ActionHeader = (props) => {
     return (
-        <div class="h-10  p-1 flex justify-between items-center content-center rounded shadow-md ">
+        <div class="h-10  pt-1 flex justify-between items-center content-center  shadow-md ">
             <div >{props.leftComponent}</div>
             <div>{props.rightComponent}</div>
         </div>

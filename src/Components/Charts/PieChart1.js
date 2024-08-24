@@ -28,7 +28,7 @@ console.log(props.showHotColdWarm)
 // }
   return (
     <React.Fragment>
-      <div className="container-fluid mb-3">
+      <div >
         {/* <h3 className="mt-3">Welcome to Piechart </h3> */}
         <Chart
           type="pie"

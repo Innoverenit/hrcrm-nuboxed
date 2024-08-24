@@ -2,6 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 import CategoryIcon from '@mui/icons-material/Category';
 import {
   TabsWrapper,
@@ -10,16 +11,17 @@ import {
   handleLinkSuppliersOrderConfigureModal, getTodayPurchaseOrder,
   handleSuppleirSuppliesDrawer, handleSupplierContactModal,
   handleSupplierDocumentUploadModal, handleSupplierInventoryImportModal,handleSuppliersActivityModal,handleSupplierExcleUploadModal
-} from "../../../SuppliersAction"
-import AddPoModal from "./AddPoModal";
-import AddSupplierInventoryImportModal from "../AddSupplierInventoryImportModal"
-import PurchaseOrderTable from "./PurchaseOrderTable";
+} from "../../../SuppliersAction";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { FileExcelOutlined, PlusOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
-import SupplierSuppliesDrawer from "./SupplierSupplies/SupplierSuppliesDrawer";
-import InventoryTable from "./InventoryTable";
-import AddSupplierExcleModal from "./SupplierDocumentTab/AddSupplierExcleModal";
+
+const AddPoModal = lazy(() => import("./AddPoModal"));
+const AddSupplierInventoryImportModal = lazy(() => import("./SuppliersActivityTab/SuppliersActivityTable"));
+const PurchaseOrderTable = lazy(() => import("./PurchaseOrderTable"));
+const SupplierSuppliesDrawer = lazy(() => import("./SupplierSupplies/SupplierSuppliesDrawer"));
+const InventoryTable = lazy(() => import("./InventoryTable"));
+const AddSupplierExcleModal = lazy(() => import("./SupplierDocumentTab/AddSupplierExcleModal"));
 const SupplierSuppliesCardTable = lazy(() => import("./SupplierSupplies/SupplierSuppliesCardTable"));
 const AddSupplierContactModal = lazy(() => import("./SupplierContactTab/AddSupplierContactModal"));
 const SupplierContactTable = lazy(() => import("./SupplierContactTab/SupplierContactTable"));
@@ -35,6 +37,7 @@ class SupplierDetailsTab extends Component {
     super(props);
     this.state = {
       activeKey: "1",
+      translatedMenuItems: [],
     };
   }
 
@@ -42,7 +45,32 @@ class SupplierDetailsTab extends Component {
 
   componentDidMount() {
     this.props.getTodayPurchaseOrder(this.props.supplier.supplierId)
+    this.fetchMenuTranslations();
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+        "Purchase Order",
+        "Inventory",
+        "Materials",
+        "Contact",
+        "Documents",
+        "Activity" 
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
   render() {
     const { activeKey } = this.state
     return (
@@ -53,7 +81,10 @@ class SupplierDetailsTab extends Component {
               tab={
                 <>
                   <i class="far fa-share-square"></i>&nbsp;
-                   <div className="max-xl:text-[0.65rem]">Purchase Order</div>
+                   <div className="max-xl:text-[0.65rem]">
+                   {this.state.translatedMenuItems[0]}
+                   {/* Purchase Order */}
+                   </div>
                   {activeKey === "1" && (
                     <>
                       <Tooltip title="Create">
@@ -76,7 +107,7 @@ class SupplierDetailsTab extends Component {
               tab={
                 <>
                   <i class="far fa-share-square"></i>&nbsp;
-                   <div className="max-xl:text-[0.65rem]">Inventory</div>
+                   <div className="max-xl:text-[0.65rem]">{this.state.translatedMenuItems[1]}</div>
                   {activeKey === "2" && (
                     <>
                       <Tooltip title="Create">
@@ -104,7 +135,7 @@ class SupplierDetailsTab extends Component {
                 <>
 
                   <CategoryIcon className="!text-icon"/>
-                  <span className="max-xl:text-[0.65rem] ml-1" >Materials</span>
+                  <span className="max-xl:text-[0.65rem] ml-1" >{this.state.translatedMenuItems[2]}</span>
                 </>
               }
               key="3"
@@ -120,7 +151,7 @@ class SupplierDetailsTab extends Component {
                 <>
 
                   <ContactsIcon className="!text-icon "/>
-                  <span className="max-xl:text-[0.65rem] ml-1">Contact</span>
+                  <span className="max-xl:text-[0.65rem] ml-1">{this.state.translatedMenuItems[3]}</span>
 
                   {activeKey === "4" && (
                     <>
@@ -151,7 +182,7 @@ class SupplierDetailsTab extends Component {
                 <>
                   <span>
                     <i class="far fa-file"></i>
-                    <span className="max-xl:text-[0.65rem] ml-1">Documents</span>
+                    <span className="max-xl:text-[0.65rem] ml-1">{this.state.translatedMenuItems[4]}</span>
                   </span>
                   {activeKey === "5" && (
                     <>
@@ -178,7 +209,7 @@ class SupplierDetailsTab extends Component {
                 <>
                   <span>
                     <i class="far fa-file"></i>
-                    <span className="max-xl:text-[0.65rem] ml-1">Activity</span>
+                    <span className="max-xl:text-[0.65rem] ml-1">{this.state.translatedMenuItems[5]}</span>
                   </span>
                   {activeKey === "6" && (
                     <>
@@ -206,28 +237,36 @@ class SupplierDetailsTab extends Component {
           </StyledTabs>
 
         </TabsWrapper>
+        <Suspense fallback={<BundleLoader />}>
         <AddPoModal
           supplier={this.props.supplier}
           addLinkSuppliersOrderConfigureModal={this.props.addLinkSuppliersOrderConfigureModal}
           handleLinkSuppliersOrderConfigureModal={this.props.handleLinkSuppliersOrderConfigureModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
         <SupplierSuppliesDrawer
           supplier={this.props.supplier}
           supplierSuppliesdrwr={this.props.supplierSuppliesdrwr}
           handleSuppleirSuppliesDrawer={this.props.handleSuppleirSuppliesDrawer}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
         <AddSupplierContactModal
           type="supplier"
           id={this.props.supplier.supplierId}
           addSupplierContactModal={this.props.addSupplierContactModal}
           handleSupplierContactModal={this.props.handleSupplierContactModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
         <AddSupplierDocumentModal
           supplier={this.props.supplier}
           supplierDocumentUploadModal={this.props.supplierDocumentUploadModal}
           handleSupplierDocumentUploadModal={
-            this.props.handleSupplierDocumentUploadModal
-          }
+            this.props.handleSupplierDocumentUploadModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
 
 <AddSupplierExcleModal
@@ -236,19 +275,24 @@ class SupplierDetailsTab extends Component {
           handleSupplierExcleUploadModal={
             this.props.handleSupplierExcleUploadModal
           }
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
 
         <AddSuppliersActivityModal
           supplier={this.props.supplier}
           addSuppliersActivityModal={this.props.addSuppliersActivityModal}
-          handleSuppliersActivityModal={
-            this.props.handleSuppliersActivityModal
-          }
+          handleSuppliersActivityModal={this.props.handleSuppliersActivityModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
         <AddSupplierInventoryImportModal
         handleSupplierInventoryImportModal={this.props.handleSupplierInventoryImportModal}
         addSupplierInventoryImportModal={this.props.addSupplierInventoryImportModal}
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
         />
+         </Suspense>
       </>
     );
   }

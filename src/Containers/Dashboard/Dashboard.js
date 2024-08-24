@@ -180,13 +180,13 @@ class Dashboard extends Component {
         />
         <Suspense fallback={<BundleLoader />}>
         <MainWrapper
-         style={{marginTop:"0.5rem",overflow:"hidden"}}
+         style={{marginTop:"0.25rem",overflow:"hidden"}}
     >
        {/* <div className=" rounded-md shadow-[0em_0.25em_0.625em_-0.125em]
          border-[0625em] border-solid m-1 p-1 w-full font-poppins  mt-2 overflow-hidden h-[21rem] max-sm:h-[30rem]
         "></div> */}
-          <div class=" h-[21rem] max-sm:h-[19rem] max-sm:overflow-x-auto">
-         <div class="flex justify-between  max-sm:flex-col">
+          <div class=" h-[45vh] max-sm:h-[19rem] max-sm:overflow-x-auto">
+         <div class="flex justify-around  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
            <div class=" flex flex-col h-[21rem] overflow-auto " >
            {viewType==="ME"?(

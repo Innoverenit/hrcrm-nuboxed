@@ -101,8 +101,8 @@ function SuppliersCardList(props) {
 
             </div> */}
 
-            <div class=" w-[5.001rem]">Publish</div>
-            <div class=" w-[16.7rem]">Approve</div>
+            <div class=" w-[5.001rem]"> {props.translatedMenuItems[17]}</div>
+            <div class=" w-[16.7rem]"> {props.translatedMenuItems[38]}</div>
           </div>
           <div class="overflow-x-auto h-[80vh]">
             <InfiniteScroll
