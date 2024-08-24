@@ -28,8 +28,34 @@ const Option = Select;
 
 
 function LinkedContact(props) {
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Name ",//0
+          "Email",//1
+          "Mobile",//2      
+          "Department",//3
+          "Designation",//4
+          "Portal",//5
+         
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getContactListByCustomerId(props.customerId,);
     // setPage(page + 1);
@@ -80,34 +106,27 @@ function LinkedContact(props) {
      
       <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className=" md:w-[17.5rem]">
-        <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
-        <div className=" md:w-[16.1rem]"><FormattedMessage
-                  id="app.Email"
-                  defaultMessage="Email"
-                /></div>
-        <div className="md:w-[10.1rem]"><FormattedMessage
-                  id="app.mobile"
-                  defaultMessage="Mobile #"
-                /></div>
-        <div className="md:w-[14.2rem]"><FormattedMessage
-                  id="app.Department"
-                  defaultMessage="Department"
-                /></div>
-                     <div className="md:w-[7.2rem]"><FormattedMessage
-                  id="app.Designation"
-                  defaultMessage="Designation"
-                /></div>
+        <div className=" md:w-[17.5rem]">{translatedMenuItems[0]}
+          {/* Name */}
+        </div>
+        <div className=" md:w-[16.1rem]">{translatedMenuItems[1]}
+{/* Email */}
+        </div>
+        <div className="md:w-[10.1rem]">{translatedMenuItems[2]}
+          {/* Mobile */}
+        </div>
+        <div className="md:w-[14.2rem]">{translatedMenuItems[3]}
+          {/* Department */}
+        </div>
+                     <div className="md:w-[7.2rem]">{translatedMenuItems[4]}
+                      {/* Designation */}
+                     </div>
                 
         
         <div className="w-[4.21rem]"></div>
-        <div className="md:w-[7.21rem]"><FormattedMessage
-                  id="app.Portal"
-                  defaultMessage="Portal"
-                /></div>
+        <div className="md:w-[7.21rem]">{translatedMenuItems[5]}
+{/* Portal */}
+        </div>
 
       </div>
    

@@ -40,7 +40,6 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import AddDocumentModals from "../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 import DocumentUpload from "./DocumentUpload";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
@@ -511,6 +510,9 @@ if (loading) {
         addDrawerContactNotesModal={addDrawerContactNotesModal}
         handleContactNotesDrawerModal={handleContactNotesDrawerModal}
         handleSetCurrentContact={handleSetCurrentContact}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+       translatedMenuItems={props.translatedMenuItems}
       />
        <DocumentUpload
             hospitalUploadModal={hospitalUploadModal}
@@ -523,12 +525,18 @@ if (loading) {
         addDrawerContactPulseModal={addDrawerContactPulseModal}
         handleContactPulseDrawerModal={handleContactPulseDrawerModal}
         handleSetCurrentContact={handleSetCurrentContact}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+       translatedMenuItems={props.translatedMenuItems}
       />
       <AddContactEmailDrawerModal
         // item={currentContactId}
         contactData={currentContactId}
         addDrawerContactEmailModal={props.addDrawerContactEmailModal}
         handleContactEmailDrawerModal={props.handleContactEmailDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+       translatedMenuItems={props.translatedMenuItems}
       />
       <ReactContactSpeechModal
         // item={currentContactId}
@@ -536,6 +544,9 @@ if (loading) {
         handleContactReactSpeechModal={handleContactReactSpeechModal}
         addContactSpeechModal={addContactSpeechModal}
         handleSetCurrentContactId={handleSetCurrentContactId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+       translatedMenuItems={props.translatedMenuItems}
       />
       {/* <AddDonotCallModal
         addDonotCallModal={props.addDonotCallModal}
@@ -546,6 +557,9 @@ if (loading) {
         item={currentContactId}
         addDrawerContactModal={props.addDrawerContactModal}
         handleContactDrawerModal={props.handleContactDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+       translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );

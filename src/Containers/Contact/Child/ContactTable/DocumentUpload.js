@@ -259,7 +259,7 @@ console.log(props.currentContactId.contactId)
     </div>
                   <div class=" mt-3">
                     {!documentshare && (
-                      <p>Will be shared with customer Owner</p>
+                      <p>Will be  with customer Owner</p>
                     )}
                   </div>
                   <div class=" mt-3">

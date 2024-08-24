@@ -18,7 +18,11 @@ class CustomerDetail extends Component {
     return (
       <>
         <>
-          <CustomerDetailHeader />
+          <CustomerDetailHeader 
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+          />
           {fetchingCustomerDetailsById ? (
             <MainWrapper>
               <BundleLoader />
@@ -29,10 +33,18 @@ class CustomerDetail extends Component {
                   <div class=" flex flex-nowrap w-full max-sm:flex-col max-sm:overflow-x-auto max-sm:h-[63vh]"
                 >
                     <div class=" w-1/4 max-sm:w-full">
-                      <CustomerDetailLeft customer={customer} />
+                      <CustomerDetailLeft customer={customer}
+                       translateText={this.props.translateText}
+                       selectedLanguage={this.props.selectedLanguage}
+                     translatedMenuItems={this.props.translatedMenuItems}
+                      />
                     </div>
                     <div class=" w-3/4 max-sm:w-full">
-                      <CustomerDetailRight customer={customer} />
+                      <CustomerDetailRight customer={customer}
+                       translateText={this.props.translateText}
+                       selectedLanguage={this.props.selectedLanguage}
+                     translatedMenuItems={this.props.translatedMenuItems}
+                      />
                     </div>
                   </div>
                 </Suspense>

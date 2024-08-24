@@ -480,6 +480,9 @@ if (loading) {
         addDrawerContactNotesModal={addDrawerContactNotesModal}
         handleContactNotesDrawerModal={handleContactNotesDrawerModal}
         handleSetCurrentContact={handleSetCurrentContact}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
          <AddContactPulseDrawerModal
         contactData={currentContact}
@@ -487,12 +490,18 @@ if (loading) {
         addDrawerContactPulseModal={addDrawerContactPulseModal}
         handleContactPulseDrawerModal={handleContactPulseDrawerModal}
         handleSetCurrentContact={handleSetCurrentContact}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <AddContactEmailDrawerModal
         // item={currentContactId}
         contactData={currentContactId}
         addDrawerContactEmailModal={props.addDrawerContactEmailModal}
         handleContactEmailDrawerModal={props.handleContactEmailDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <ReactContactSpeechModal
         // item={currentContactId}
@@ -500,6 +509,9 @@ if (loading) {
         handleContactReactSpeechModal={handleContactReactSpeechModal}
         addContactSpeechModal={addContactSpeechModal}
         handleSetCurrentContactId={handleSetCurrentContactId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       {/* <AddDonotCallModal
         addDonotCallModal={props.addDonotCallModal}
@@ -510,6 +522,9 @@ if (loading) {
         item={currentContactId}
         addDrawerContactModal={props.addDrawerContactModal}
         handleContactDrawerModal={props.handleContactDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );

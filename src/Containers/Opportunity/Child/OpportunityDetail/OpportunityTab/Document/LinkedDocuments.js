@@ -52,8 +52,8 @@ class LinkedDocuments extends Component {
        'Name', // 0
 'Type', // 1
 'Description', // 2
-'UploadedBy', // 3
-'FileName'//4
+'Uploaded By', // 3
+'File Name'//4
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);

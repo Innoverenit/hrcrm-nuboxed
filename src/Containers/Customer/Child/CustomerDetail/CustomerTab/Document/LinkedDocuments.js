@@ -20,7 +20,6 @@ import {
   getCustomerDocument,
   deleteDocument,
 } from "../../../../CustomerAction";
-import { FormattedMessage } from "react-intl";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import dayjs from "dayjs";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -33,6 +32,7 @@ class LinkedDocuments extends Component {
     this.state = {
       searchText: "",
       searchedColumn: "",
+       translatedMenuItems: [],
     };
   }
   componentDidMount() {
@@ -40,10 +40,36 @@ class LinkedDocuments extends Component {
       customer: { customerId },
       getCustomerDocument,
     } = this.props;
+    this.fetchMenuTranslations();
     getCustomerDocument(customerId);
     // this.props.getDocuments();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+"Date",//0
+"Name",//1
+"Description",//2
+"Uploaded By",//3
+"File Name",//4
+"Contract",//5
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -66,19 +92,19 @@ class LinkedDocuments extends Component {
           }
           style={{ width: 188, marginBottom: 8, display: "block" }}
         />
-        <Button
+        <Button className="w-[90%] mr-8"
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
           icon={<SearchOutlined />}
           size="small"
-          style={{ width: 90, marginRight: 8 }}
+        
         >
           Search
         </Button>
-        <Button
+        <Button className="w-[90%]"
           onClick={() => this.handleReset(clearFilters)}
           size="small"
-          style={{ width: 90 }}
+     
         >
           Reset
         </Button>
@@ -149,30 +175,18 @@ class LinkedDocuments extends Component {
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
           
         <div className=" md:w-[6rem]">
-        <FormattedMessage
-                  id="app.date"
-                  defaultMessage="Date"
-                /></div>
-                <div className=" md:w-[8.1rem]"><FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
-        <div className=" md:w-[9.13rem]"><FormattedMessage
-                  id="app.description"
-                  defaultMessage="Description"
-                /></div>
-        <div className="md:w-[5.1rem]"><FormattedMessage
-                  id="app.Uploadedby"
-                  defaultMessage="Uploaded By"
-                /></div>
-        <div className="md:w-[10.2rem]"><FormattedMessage
-                  id="app.filename"
-                  defaultMessage="File Name"
-                /></div>
-                     <div className="md:w-[8.2rem]"><FormattedMessage
-                  id="app.contract"
-                  defaultMessage="Contract"
-                /></div>
+        {this.state.translatedMenuItems[0]}</div>
+        {/* Date */}
+                <div className=" md:w-[8.1rem]">{this.state.translatedMenuItems[1]}</div>
+                {/* Name */}
+        <div className=" md:w-[9.13rem]">{this.state.translatedMenuItems[2]}</div>
+        {/* Description */}
+        <div className="md:w-[5.1rem]">{this.state.translatedMenuItems[3]}</div>
+        {/* uploadedBy */}
+        <div className="md:w-[10.2rem]">{this.state.translatedMenuItems[4]}</div>
+        {/* fileName */}
+                     <div className="md:w-[8.2rem]">{this.state.translatedMenuItems[1]}</div>
+                     {/* Contract */}
         
         
       </div>
