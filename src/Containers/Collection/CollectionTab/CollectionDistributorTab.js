@@ -5,6 +5,7 @@ import {
   setCustomerSubViewType,
   setDistributorViewType
 } from "../CollectionAction";
+import CreditMemoList from "./CreditMemoList"
 import { getAllDistributorsList } from "../CollectionAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -104,6 +105,33 @@ function CollectionDistributorTab(props) {
 
                 handleClearReturnCheck={handleClearReturnCheck}
               />
+            </Suspense>
+          </TabPane>
+
+
+
+
+          <TabPane
+            tab={
+              <>
+                <span>
+                  <i class="fas fa-archive"></i>&nbsp;<FormattedMessage
+                    id="app.creditmemo"
+                    defaultMessage="Credit Memo"
+                  />
+                </span>
+                &nbsp;
+              </>
+            }
+            key="3"
+          >
+            <Suspense fallback={"Loading ..."}>
+              <CreditMemoList/>
+{/* 
+              <DistributorColletcionArchive
+
+                handleClearReturnCheck={handleClearReturnCheck}
+              /> */}
             </Suspense>
           </TabPane>
 

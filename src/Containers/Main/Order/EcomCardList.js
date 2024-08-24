@@ -44,10 +44,15 @@ useEffect(() => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-        'Order',
-         'Created Date ', 
-        'Item',
+        'Order',//0
+        'Created', 
+        'Items',//2
         'Status',
+        'Customer',//4
+        'Shipping Address',
+        'Billing Address',//6
+        'Invoices',
+        'Shipments',
       ];
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -107,6 +112,12 @@ const {handleProcureNotesDrawerModal,
                         <div className=" md:w-[11rem]">{translatedMenuItems[0]} ID</div>
                         <div className=" md:w-[5.4rem]">{translatedMenuItems[1]}</div>
                         <div className=" md:w-[5.4rem]">{translatedMenuItems[2]}</div>
+                        <div className=" md:w-[5.4rem]">{translatedMenuItems[7]}</div>
+                        <div className=" md:w-[5.4rem]">{translatedMenuItems[8]}</div>
+                        <div className=" md:w-[5.4rem]">{translatedMenuItems[4]}</div>
+                        <div className=" md:w-[5.4rem]">{translatedMenuItems[5]}</div>
+                        <div className=" md:w-[5.4rem]">{translatedMenuItems[6]}</div>
+                        <div className=" md:w-[5.4rem]"></div>
                         <div className=" md:w-[12rem]"></div>
                        
                         <div className="md:w-[1rem]"></div>
@@ -154,7 +165,33 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-
                             </div>
 
                         </div>
+                        <div className=" flex   md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs  font-poppins">
+                      
+                            </div>
+                    
+                        </div>
+                        <div className=" flex   md:w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs  font-poppins">
                        
+                            </div>
+                    
+                        </div>
+                        <div className=" flex   md:w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs  font-poppins">
+                            
+                            </div>
+                    
+                        </div>
+                        <div className=" flex   md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs  font-poppins">
+                              
+                            </div>
+                    
+                        </div>
+                        <div className=" flex   md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <Button type="primary" >{translatedMenuItems[7]}</Button>
+                        </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">                                                 
                         <div>
                         <Tooltip title="Status"

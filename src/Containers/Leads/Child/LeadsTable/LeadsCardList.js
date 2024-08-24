@@ -9,6 +9,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import "jspdf-autotable";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { DeleteOutlined, Html5Outlined } from "@ant-design/icons";
@@ -26,7 +27,8 @@ import {
   updateTypeForLead,
   handleCETmodal,
   emptyLeads,
-  handleLeadsConfirmationModal
+  handleLeadsConfirmationModal,
+  handleLeadsAddressDrawerModal
 } from "../../../Leads/LeadsAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import AddchartIcon from "@mui/icons-material/Addchart";
@@ -37,6 +39,7 @@ import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedData from "./SearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddLeadsAddressModal from "./AddLeadsAddressModal";
 const UpdateLeadsModal = lazy(() => import("../UpdateLeads/UpdateLeadsModal"));
 const OpenCETmodal = lazy(() => import("./OpenCETmodal")); //ActivityModal
 const AddLeadsEmailDrawerModal = lazy(() => import("../UpdateLeads/AddLeadsEmailDrawerModal"));
@@ -525,6 +528,19 @@ const LeadsCardList = (props) => {
                   </div>
                   </div>
                   <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
+                  <div>
+              <Tooltip title="Address">
+ <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleLeadsAddressDrawerModal(true);
+            // handleSetCurrentContact(item);
+          handleSetCurrentLeadsId(item);
+          }}
+          
+        />
+     </Tooltip>
+     </div>
                   <div >
                       <Tooltip title="Subscription">
                       
@@ -942,6 +958,19 @@ const LeadsCardList = (props) => {
                 </div>
                 <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
                 <div >
+                <div>
+              <Tooltip title="Address">
+ <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleLeadsAddressDrawerModal(true);
+            // handleSetCurrentContact(item);
+            handleSetCurrentLeadsId(item);
+          }}
+          
+        />
+     </Tooltip>
+     </div>
                       <Tooltip title="Subscription">
                       
                         <Html5Outlined
@@ -1356,7 +1385,15 @@ const LeadsCardList = (props) => {
 </div>
                 </div>
                 </div>
-                <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
+                <div class="flex max-sm:justify-end max-sm:w-wk items-center">
+                <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleLeadsAddressDrawerModal(true);
+            handleSetCurrentLeadsId(item);
+          }}
+          
+        /> 
                 <div >
                       <Tooltip title="Subscription">
                       
@@ -1505,6 +1542,15 @@ const LeadsCardList = (props) => {
           addDrawerLeadsSubscriptionModal={props.addDrawerLeadsSubscriptionModal}
            handleLeadsSubscriptionModal={props.handleLeadsSubscriptionModal}
            />
+
+<AddLeadsAddressModal
+             item={currentLeadsId}
+              type="leads"
+          //  rowdata={rowdata}
+          //  handleRowData={handleRowData}
+          addDrawerLeadsAddressModal={props.addDrawerLeadsAddressModal}
+          handleLeadsAddressDrawerModal={props.handleLeadsAddressDrawerModal}
+           />
     </div>
   );
 
@@ -1527,6 +1573,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   addDrawerLeadsEmailModal: leads.addDrawerLeadsEmailModal,
   fetchingLeads: leads.fetchingLeads,
   openCETmodal: leads.openCETmodal,
+  addDrawerLeadsAddressModal:leads.addDrawerLeadsAddressModal,
   addDrawerLeadsSubscriptionModal:leads.addDrawerLeadsSubscriptionModal,
   addLeadsConfirmationModal:leads.addLeadsConfirmationModal,
   addDrawerLeadsNotesModal: leads.addDrawerLeadsNotesModal,
@@ -1551,6 +1598,7 @@ const mapDispatchToProps = (dispatch) =>
       getLeadsCold,
       getLeadsWarm,
       getLeadsHot,
+      handleLeadsAddressDrawerModal
     },
     dispatch
   );

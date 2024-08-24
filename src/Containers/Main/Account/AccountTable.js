@@ -30,6 +30,7 @@ import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
 import AccountSearchedData from "./AccountSearchedData";
+import AccountCreditToggle from "./AccountCreditToggle";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 const  AccountPulseModal = lazy(() => import("./AccountPulseModal"));
 const AccountModal = lazy(() => import("./AccountModal"));
@@ -56,6 +57,7 @@ function AccountTable(props) {
             'Tax', // 6
             'Assigned', // 7
             'Owner', // 8
+            "Credit",//9
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -172,6 +174,10 @@ function AccountTable(props) {
             {/* {translatedMenuItems[8]} */}
            {/* Owner */}        
             {/* </div> */}
+            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+          {translatedMenuItems[9]}
+            {/* Assigned */}          
+            </div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
           </div>
@@ -279,6 +285,7 @@ function AccountTable(props) {
                                                                 : item.dispatchPaymentPercentage}
                             </div>
                           </div>
+                          
                           <div className=" flex    md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
@@ -362,6 +369,9 @@ function AccountTable(props) {
                             </Tooltip>
                           </div>                      
                       </div>                 */}
+                      <div className=" flex  max-sm:w-auto w-[7rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>
+                          </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">            
 <div className=" flex  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">

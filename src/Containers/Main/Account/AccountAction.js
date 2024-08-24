@@ -4987,3 +4987,30 @@ export const addNewList = (customer) => (dispatch) => {
       //cb && cb();
     });
 };
+
+export const distributorAccountCredit = ( data,distributorId) => (dispatch, getState) => {
+  dispatch({
+    type: types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/distributor/distributoCreditInd/update/${distributorId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+}

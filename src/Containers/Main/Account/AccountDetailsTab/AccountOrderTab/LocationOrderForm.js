@@ -24,7 +24,10 @@ function LocationOrderForm(props) {
         props.getUserByLocationDepartment(location, val);
     }
     const handleSubmit = () => {
-        props.addSupervisor({ supervisorUserId: technician }, props.particularRowData.orderId)
+        props.addSupervisor({
+             supervisorUserId: technician,
+             supervisorAssignedBy:props.userId,
+         }, props.particularRowData.orderId)
     }
     return (
         <>

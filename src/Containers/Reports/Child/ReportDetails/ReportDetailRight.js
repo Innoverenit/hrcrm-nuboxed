@@ -14,6 +14,7 @@ import OrderProductionCard from "./OrderProductionCard";
 import OrderProcureCard from "./OrderProcureCard";
 import OrdeRepairTab from "./OrdeRepairTab";
 import OrdeRepairOrgTab from "./OrdeRepairOrgTab";
+import InvoiceReportUserTab from "./InvoiceReportUserTab";
 
 class ReportDetailRight extends Component {
 
@@ -81,6 +82,12 @@ class ReportDetailRight extends Component {
   )}
 {this.props.selectedButtonIcon === "production" && this.props.selectedCategory === "Orders" && (
   <OrderProductionCard
+  selectedButtonIcon={this.props.selectedButtonIcon}
+  selectedCategory={this.props.selectedCategory}
+  />
+  )}
+  {this.props.selectedCategory === "Invoice" && (
+  <InvoiceReportUserTab
   selectedButtonIcon={this.props.selectedButtonIcon}
   selectedCategory={this.props.selectedCategory}
   />

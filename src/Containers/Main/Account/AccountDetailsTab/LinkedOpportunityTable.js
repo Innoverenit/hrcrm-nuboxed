@@ -17,6 +17,7 @@ import NextPlanIcon from '@mui/icons-material/NextPlan';
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import OpportunitytProcureDetailsModal from "./OpportunitytProcureDetailsModal";
 const AccountProcureDetailsModal = lazy(() => import('../AccountDetailsTab/AccountProcureDetailsModal'));
 function LinkedOpportunityTable(props) {
   const [page, setPage] = useState(0);
@@ -29,7 +30,7 @@ function LinkedOpportunityTable(props) {
     setPage(page + 1);
   }, []);
 
-  const [particularRowData, setParticularRowData] = useState({});
+  const [particularRowItem, setParticularRowItem] = useState({});
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -68,8 +69,9 @@ function LinkedOpportunityTable(props) {
   //   return () => props.emptyOrders();
   // }, []);
   const [hasMore, setHasMore] = useState(true);
-  function handleSetParticularOrderData(item) {
-    setParticularRowData(item);
+
+  function handleRowItem(item) {
+    setParticularRowItem(item);
 
 
 }
@@ -158,7 +160,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                   <span
                                                                                           class="underline cursor-pointer font-bold text-[#1890ff]"
                                                                                           onClick={() => {
-                                                                                              handleSetParticularOrderData(item);
+                                                                                            handleRowItem(item);
                                                                                               props.handleProcureDetailsModal(true);
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>
@@ -318,7 +320,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                   <span
                                                                                           class="underline font-bold cursor-pointer text-[#1890ff]"
                                                                                           onClick={() => {
-                                                                                              handleSetParticularOrderData(item);
+                                                                                              handleRowItem(item);
                                                                                               props.handleProcureDetailsModal(true);
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>
@@ -403,10 +405,10 @@ console.log(props.user.moduleMapper.ecomModInd)
       </div>
 )} 
   <Suspense fallback={<BundleLoader />}>
- <AccountProcureDetailsModal
+ <OpportunitytProcureDetailsModal
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
-                particularRowData={particularRowData}
+                particularRowItem={particularRowItem}
                 handleProcureDetailsModal={props.handleProcureDetailsModal}
                 addProcureDetailsModal={props.addProcureDetailsModal} />
                 </Suspense>

@@ -19,6 +19,7 @@ const buttonData = [
   { name: 'Production' },
   { name: 'Receivables' },
   { name: 'Productivity' },
+  { name: 'Invoice' },
 ];
 
 const dropdownOptions = {

@@ -2312,3 +2312,8 @@ export const searchOpenOrdeReceived = (imei) => (dispatch) => {
       });
     });
 }; 
+export const ClearReducerData= () => (dispatch) => {
+  dispatch({
+    type: types.CLAER_REDUCERS_DATA,
+  });
+}

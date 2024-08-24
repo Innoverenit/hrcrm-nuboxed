@@ -199,6 +199,8 @@ const initialState = {
 
   addLeadsImportModal:false,
 
+  addDrawerLeadsAddressModal:false,
+
   updatingLeadsNoteDrawerModal:false,
 
   updatingLeadsOpportunity: false,
@@ -285,7 +287,8 @@ case types.HANDLE_LEADS_MODAL:
       case types.HANDLE_LEADS_CONFIRMATION_MODAL:
       return { ...state, addLeadsConfirmationModal: action.payload };
 
-     
+      case types.HANDLE_LEADS_ADDRESS_DRAWER_MODAL:
+        return { ...state, addDrawerLeadsAddressModal: action.payload };
 
       case types.HANDLE_LEADS_SUBSCRIPTION_DRAWER_MODAL:
         return { ...state, addDrawerLeadsSubscriptionModal: action.payload };

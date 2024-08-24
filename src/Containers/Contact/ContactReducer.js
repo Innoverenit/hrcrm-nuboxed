@@ -98,6 +98,9 @@ const initialState = {
   fetchingContactActivityCountError: false,
   contactActivityCount:{},
 
+  updateContactAddress:false,
+  updateContactAddressError:false,
+
   updateContactModal: false,
 
   linkingOpportunityContact:false,
@@ -229,6 +232,11 @@ addingNotesByContactId:false,
   fetchingContactAddress:false,
   fetchingContactAddressError:false,
   contactAddress:[],
+
+
+
+  removeAddressData:false,
+  removeAddressDataError:false,
 
   uploadingContactList: false,
   uploadingContactListError: false,
@@ -462,6 +470,35 @@ export const contactReducer = (state = initialState, action) => {
         fetchingNotesListByContactIdError: true,
       };
 
+
+
+
+      case types.UPDATE_CONTACT_ADDRESS_REQUEST:
+        return { ...state, updateContactAddress: true };
+      case types.UPDATE_CONTACT_ADDRESS_SUCCESS:
+        return {
+          ...state,
+          //contactAddress
+          updateContactAddress: false,
+          contactAddress: state.contactAddress.map((item) => {
+            if (item.addressId === action.payload.addressId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+          //sectors:[action.payload,...state.sectors]
+          // sectors: [...state.sectors, action.payload],
+          
+        };
+      case types.UPDATE_CONTACT_ADDRESS_FAILURE:
+        return {
+          ...state,
+          updateContactAddress: false,
+          updateContactAddressError: true,
+        };
+    
+
     /* Add a contact opportunity */
     case types.ADD_CONTACT_OPPORTUNITY_REQUEST:
       return { ...state, addingContactOpportunity: true };
@@ -523,6 +560,27 @@ export const contactReducer = (state = initialState, action) => {
         updateContactById: false,
         updateContactByIdError: true,
       };
+
+
+
+
+      
+      case types.REMOVE_ADDRESS_DATA_REQUEST:
+        return { ...state, removeAddressData: true };
+      case types.REMOVE_ADDRESS_DATA_SUCCESS:
+        return {
+          ...state,
+          removeAddressData: false,
+          contactAddress: state.contactAddress.filter(
+            (item) => item.addressId !== action.payload
+          ),
+        };
+      case types.REMOVE_ADDRESS_DATA_FAILURE:
+        return {
+          ...state,
+          removeAddressData: false,
+          removeAddressDataError: false,
+        };
 
     //SEARCH
     case types.INPUT_CONTACT_SEARCH_DATA_REQUEST:
@@ -681,7 +739,7 @@ export const contactReducer = (state = initialState, action) => {
     return {
       ...state,
       addingContactAddress: false,
-      //sectors:[action.payload,...state.sectors]
+      contactAddress:[action.payload,...state.contactAddress]
       // sectors: [...state.sectors, action.payload],
       
     };
