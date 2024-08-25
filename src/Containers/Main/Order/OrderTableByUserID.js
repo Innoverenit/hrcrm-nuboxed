@@ -64,7 +64,7 @@ function OrderTableByUserID(props) {
     'Lead',
    
     'Created',
-    "High",
+    // "High",
     "Normal"
 
 
@@ -188,7 +188,7 @@ const handleLoadMoreLow = () => {
           hasMore={hasMore}
           loader={props.fetchingRepairHighOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
           style={{ scrollbarWidth:"thin"}}
-          height={"23vh"}
+          height={"38vh"}
           endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
                         {props.repairHighCompleteOrder.length ?
@@ -416,257 +416,7 @@ const handleLoadMoreLow = () => {
 
                 </div>
             </div >
-            <div className=' flex  sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]   bg-transparent font-bold sticky  z-10">
-                        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">{translatedMenuItems[9]} </div>
-                        <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
-          <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
-          <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
-          <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
-          <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
-          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
-          <div className="md:w-24"></div>
-                    </div>
-
-                    {/* <div class="overflow-x-auto h-[64vh]"> */}
-                   
-          <InfiniteScroll
-          dataLength={props.repairMediumCompleteOrder.length}
-          next={handleLoadMoreMedium}
-          hasMore={hasMore}
-          loader={props.fetchingRepairMediumOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-          height={"23vh"}
-          style={{scrollbarWidth:"thin"}}
-          endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
-        >
-                        {props.repairMediumCompleteOrder.length ?
-                            <>
-                                {props.repairMediumCompleteOrder.map((item) => {
-                                    const currentdate = dayjs().format("DD/MM/YYYY");
-                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-                                    return (
-                                      <div>
-                                        
-                <div className="flex justify-between  rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                  <div class="flex">
-                  <div className=" flex items-center md:w-[4.26rem] max-sm:w-full  ">
-                                                        <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
-
-                                                                    {item.priority === "High" && (
-                                                                        <div
-                                                                            class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
-                                                                    )}
-                                                                    {item.priority === "Medium" && (
-                                                                        <div
-                                                                            class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
-                                                                    {item.priority === "Low" && (
-                                                                        <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
-                                                                </div>
-                                                            </div>
-                                                        </Tooltip>
-                                                    </div>
-                    <div className=" flex font-bold w-wk   max-sm:w-full">
-                      <div className="flex items-center max-sm:w-full">
-                        <div class="w-[9.43rem]">
-                          <Badge size="small" count={item.productNum}>
-                            <span
-                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
-                              onClick={() => {
-                                handleSetParticularOrderData(item);
-                                props.handleOrderDetailsModal(true);
-                              }}
-
-                            >{`${item.newOrderNo} `}
-
-                             
-                            </span>
-                          </Badge>
-                          &nbsp;&nbsp;
-                              {date === currentdate ? (
-                                <span className=" text-[0.65rem] text-[tomato] font-bold" >
-                                  New
-                                </span>
-                              ) : null}
-                        </div>
-                        {props.user.accountInfoInd?
-                        <div class="max-sm:w-full md:w-[9.02rem]">
-                          <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:text-xs">
-                              {item.distributorName}
-                            </div>
-                          </Tooltip>
-                        </div>
-                           :null}
-                      </div>
-                    </div>
-                    {props.user.accountInfoInd?
-                    <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                        <MultiAvatar2
-                          primaryTitle={item.contactPersonName}
-                          imageURL={item.imageURL}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
-
-                      </div>
-                    </div>
-                       :null}
-                  </div>
-                  <div class="flex">
-                    <div className=" flex md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class=" font-poppins  text-xs">
-                        {item.noOfPhones}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                    <div>
-                      <MultiAvatar
-                        primaryTitle={item.userName}
-                        imageURL={item.imageURL}
-                        imgWidth={"1.8rem"}
-                        imgHeight={"1.8rem"}
-                      />
-                    </div>
-                  </div>
-                  <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                        <MultiAvatar2
-                          primaryTitle={item.supervisorUserName}
-                          imageURL={item.imageURL}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
-
-                      </div>
-                    </div>
-                    <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                        {item.teamLeadUserName && <MultiAvatar2
-                          primaryTitle={item.teamLeadUserName}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />}
-                      </div>
-                    </div>
-                    
-                  </div>
-                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <span>{date}</span>
-                  </div>
-                  <div class="flex justify-end items-center">
-                    <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-                      <div class=" text-xs  font-semibold  font-poppins">
-                        {item.noOfownerPhones}
-                      </div>
-                    </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
-                      {item.orderStatus}
-                    </div>
-                    <div className=" flex    max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
-                        {item.qcStartInd !== 0 && <Tooltip title="Add Lead">
-                          <PersonAddAlt1
-                            className="!text-icon cursor-pointer"
-                            style={{ color: item.supervisorUserName ? "green" : "red" }}
-                            onClick={() => {
-                              props.handleLeadModal(true)
-                              handleSetParticularOrderData(item)
-                            }} />
-                        </Tooltip>}
-                      </div>
-                    </div>
-                    <div className=" flex    max-sm:flex-row  max-sm:justify-between  ">
-
-                      {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs  font-poppins">
-                        <Tooltip title="Notes">
-                          <NoteAltIcon
-                                className=" !text-icon cursor-pointer text-green-800"
-                            onClick={() => {
-
-                              props.handleNotesModalInOrder(true);
-                              handleSetParticularOrderData(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-
-
-                    </div>
-
-                 
-                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
-                        <Tooltip title="Status">
-                          <EventRepeatIcon
-                           className="!text-icon cursor-pointer"
-                            onClick={() => {
-                              props.handleStatusOfOrder(true);
-                              handleSetParticularOrderData(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-
-                    </div>
-                    <div className=" flex max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
-                        <Tooltip title="Collection">
-                          <PaidIcon
-                            className="!text-icon cursor-pointer"
-                            onClick={() => {
-                              props.handlePaidModal(true);
-                              handleSetParticularOrderData(item);
-                            }}
-                          // style={{ color: "blue" }}
-                          />
-                        </Tooltip>
-
-                      </div>
-                    </div>
-                    <div className=" flex max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
-                        <Tooltip title="Collection">
-                        <Popconfirm
-                              title="Do you want to delete?"
-                               onConfirm={() => props.deleteOrderRepairData(item.orderId,props.userId)}
-                            >
-                              <DeleteOutlined
-                                className=" !text-icon cursor-pointer text-[red]"
-
-                              />
-                            </Popconfirm>
-                        </Tooltip>
-
-                      </div>
-                    </div>
-
-
-                  </div>
-
-                </div>
-                              
-              </div>
-
-
-                                    )
-                                })}
-                            </> : !props.repairMediumCompleteOrder.length && !props.fetchingRepairMediumOrderList ? <NodataFoundPage /> : null}
-                    </InfiniteScroll>
-
-                    {/* </div> */}
-                              
-                </div>
-            </div >
+            
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]   bg-transparent font-bold sticky  z-10">
@@ -689,7 +439,7 @@ const handleLoadMoreLow = () => {
           next={handleLoadMoreLow}
           hasMore={hasMore}
           loader={props.fetchingRepairLowOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-          height={"23vh"}
+          height={"38vh"}
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >

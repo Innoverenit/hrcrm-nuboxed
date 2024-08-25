@@ -240,7 +240,7 @@ useEffect(() => {
                 <div>
                   <div key={item.productId} className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex w-[6.5rem] max-sm:w-auto   ">
+                      <div className=" flex w-[4.5rem] max-sm:w-auto   ">
                         <SubTitle>
                           {item.imageId ? (
                             <MultiAvatar
@@ -256,13 +256,13 @@ useEffect(() => {
                           )}
                         </SubTitle>
                       </div>
-                      <div className=" flex w-[5.3rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                      <div className=" flex w-[3.3rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                         <div class="text-xs   max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.articleNo}
                         </div>
                       </div>
 
-                      <div className=" flex  w-[9.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  w-[8.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {`${item.productFullName ? `${item.productFullName}`:`${item.name}`}`}
@@ -272,7 +272,7 @@ useEffect(() => {
 
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex w-[8.1rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex w-[6.1rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.categoryName}  {item.subCategoryName}
@@ -280,7 +280,7 @@ useEffect(() => {
                     </div>
                    
 
-                    <div className=" flex w-[8.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex w-[6.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                       <div class=" text-xs  max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -318,7 +318,7 @@ useEffect(() => {
 <WarrentyProductToggle item={item}    warrantyInd={item.warrantyInd}  productId={item.productId}/>
 
 </div>
-<div className=" flex  w-[7.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+<div className=" flex  w-[3.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 {item.warrantyInd ? 
 <> 
 {editsuppliesId === item.productId ? (

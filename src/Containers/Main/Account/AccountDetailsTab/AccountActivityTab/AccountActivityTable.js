@@ -68,10 +68,10 @@ class DistributorActivityTable extends Component {
                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[7.4rem]">{this.props.translatedMenuItems[0]}</div>
-                        <div className=" md:w-[5.1rem]"> {this.props.translatedMenuItems[1]}</div>
-                        <div className=" md:w-[8.8rem] "> {this.props.translatedMenuItems[2]}</div>
-                        <div className="md:w-[3.8rem]"> {this.props.translatedMenuItems[3]}</div>
+                        <div className=" md:w-[7.4rem]">{this.state.translatedMenuItems[0]}</div>
+                        <div className=" md:w-[5.1rem]"> {this.state.translatedMenuItems[1]}</div>
+                        <div className=" md:w-[8.8rem] "> {this.state.translatedMenuItems[2]}</div>
+                        <div className="md:w-[3.8rem]"> {this.state.translatedMenuItems[3]}</div>
                         <div className="md:w-[6.12rem]"></div>
                      
 
