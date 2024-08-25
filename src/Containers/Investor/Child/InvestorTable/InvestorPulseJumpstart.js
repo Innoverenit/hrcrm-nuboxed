@@ -72,8 +72,14 @@ render() {
     <div class=" flex flex-row w-full" >
     
     <div class="flex w-full" >
-        
-        <JumpStartBox
+    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                             </div>
+                             <JumpStartBox
             noProgress
             title={
               <FormattedMessage
@@ -91,9 +97,18 @@ render() {
             //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
           
           />
-  
-       
-          <JumpStartBox
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                               </div>
+                               <JumpStartBox
             noProgress
             // bgColor="linear-gradient(270deg,#ad82f7,#3dcec7)"
             bgColor="#34495E "
@@ -112,8 +127,19 @@ render() {
             //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
           
           />
-
-          <JumpStartBox
+                           </div>
+                       </div>
+                    
+                   </div>  
+                    
+                <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                               </div>
+                               <JumpStartBox
             bgColor="#35CD7A"
           // bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
             noProgress
@@ -133,7 +159,19 @@ render() {
           
             
           />
-          <JumpStartBox
+                           </div>
+                       </div>
+                     
+                   </div>  
+                   
+                   <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                      
+                      <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                          <div class="flex flex-row items-center">
+                              <div class="flex-shrink pr-3">
+                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                              </div>
+                              <JumpStartBox
         noProgress
         title={
           <FormattedMessage
@@ -151,11 +189,22 @@ render() {
   
         cursorData={"pointer"}
         bgColor="#FF4C33"
-        // isLoading={this.props.fetchingWonCustomerOppValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
+
       
       />
-          <JumpStartBox
+                          </div>
+                      </div>
+                     
+                  </div>
+       
+                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                      
+                      <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                          <div class="flex flex-row items-center">
+                              <div class="flex-shrink pr-3">
+                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                              </div>
+                              <JumpStartBox
            bgColor="linear-gradient(270deg,black,grey)"
             noProgress
             title={
@@ -170,16 +219,24 @@ render() {
 
             }
             isLoading={this.props.fetchingInvContactValue} 
-            // //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          />      
-
-        </div>
+          />    
+                          </div>
+                      </div>
+                     
+                  </div>
+         </div>
       </div>
       <div class=" text-base justify-center flex font-bold  text-[blue]">Past</div>
         <div class=" flex flex-row w-full mt-4" >
         <div class="flex w-full" >
-            
-            <JumpStartBox
+        <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                             </div>
+                             <JumpStartBox
              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 title={
@@ -196,9 +253,18 @@ render() {
                 //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
               
               />
-      
-           
-              <JumpStartBox
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                               </div>
+                               <JumpStartBox
                bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 title={
@@ -207,17 +273,26 @@ render() {
                     defaultMessage="Won Pipe line value"
                   />
                 }
-              
                 value={
                   this.props.WonInvestorPipeline.pipeLineWonValue
     
                 }
                  isLoading={this.props.fetchingWonInvPipelineValue} 
-                //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-              
               />
     
-              <JumpStartBox
+                           </div>
+                       </div>
+                    
+                   </div>  
+                    
+                <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                               </div>
+                               <JumpStartBox
                bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 // title="Open Tasks"
@@ -232,8 +307,13 @@ render() {
     
                 }
                 isLoading={this.props.fetchingWonINVWeightedValue} 
-                //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
+                
               />
+                           </div>
+                       </div>
+                     
+                   </div>  
+           
             </div>
           </div>
 

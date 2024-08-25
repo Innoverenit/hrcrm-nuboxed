@@ -17,27 +17,65 @@ class AccountPulseForm extends React.Component {
             <>
             <div class=" flex flex-row w-full" >
                 <div class="flex w-full" >
-
-                    <JumpStartBox
+                <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                             </div>
+                             <JumpStartBox
                         noProgress
                         title="#Open Orders"
                         bgColor="linear-gradient(270deg,#F15753,orange)"
                                      />
-
-
-                    <JumpStartBox
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                               </div>
+                               <JumpStartBox
                         noProgress
                         title="Revenue Booked"
                         bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
                     />
 
-                    <JumpStartBox
+                           </div>
+                       </div>
+                    
+                   </div>  
+         
+                   <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                               </div>
+                               <JumpStartBox
                         noProgress
                         bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                         
                         title="Revenue Relised"
                    />
-                    <JumpStartBox
+                           </div>
+                       </div>
+                     
+                   </div>  
+                   <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                      
+                      <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                          <div class="flex flex-row items-center">
+                              <div class="flex-shrink pr-3">
+                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                              </div>
+                              <JumpStartBox
                         noProgress
                         bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                         title={
@@ -47,6 +85,16 @@ class AccountPulseForm extends React.Component {
                             />
                         }
    />
+                          </div>
+                      </div>
+                     
+                  </div>
+                   
+
+
+                   
+                   
+                   
                 </div>
             </div>
             <div class="mt-4">
