@@ -22,7 +22,7 @@ class MainNotes extends Component {
         
 
         <BorderBox>
-          <div class="h-80 overflow-auto p-[0.3rem]">
+          <div class="h-80 overflow-auto p-[0.8rem]">
             {fetchingNotesListByCustomerId ? (
               <BundleLoader />
             ) : (

@@ -21,7 +21,7 @@ const DeletedLocationCard = (props) => {
           "Name",//0
           "Country",//1
           "Address",//2
-          "Regions",//3
+          "Region",//3
           "Reinstate"//4
          
         ];
@@ -75,7 +75,7 @@ const handleLoadMore = () => {
         {translatedMenuItems[3]} {/* Regions */}
           </div>
         <div className="md:w-[30.9rem]">
-        {translatedMenuItems[54]}{/* Reinstate */}
+        {translatedMenuItems[4]}{/* Reinstate */}
           </div>
       </div>
       <div class="">
