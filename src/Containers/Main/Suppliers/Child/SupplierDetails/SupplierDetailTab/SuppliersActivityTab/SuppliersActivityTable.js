@@ -8,8 +8,9 @@ import dayjs from "dayjs";
 import {getActivityListBySupplierId} from "../../../../SuppliersAction";
 
 class SuppliersActivityTable extends Component {
+
     componentDidMount() {
-        this.props.getActivityListBySupplierId(this.props.supplier.supplierId);
+        this.props.getActivityListBySupplierId(this.props.supplierId);
     }
     render() {
         const {
