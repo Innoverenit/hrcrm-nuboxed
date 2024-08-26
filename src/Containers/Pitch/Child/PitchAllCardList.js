@@ -9,10 +9,12 @@ import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact
 import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
     getAllPitch,
-    deletePitchData
+    deletePitchData,
+    handleAddresspitchModal
 } from "../PitchAction";
 import dayjs from "dayjs";
 import AddchartIcon from '@mui/icons-material/Addchart';  
@@ -22,6 +24,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import AddPitchAdressModal from "./AddPitchAdressModal";
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
 const PitchSearchedData =lazy(()=>import("./PitchSearchedData"));
@@ -424,6 +427,16 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           </Tooltip>
                             </div>
                             <div>
+            <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAddresspitchModal(true);
+            handleRowData(item);
+          }}
+          
+        />   
+            </div>
+                            <div>
                                 <Tooltip
                                   title={
                                     <FormattedMessage id="app.activity" defaultMessage="Activity" />
@@ -508,7 +521,13 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         openASSImodal={props.openASSImodal}
       handleAssimodal={props.handleAssimodal}
       />
-         <AddPitchNotesDrawerModal 
+       <AddPitchAdressModal
+        item={rowdata}
+         type="investorLeads"
+         addressPitchModal={props.addressPitchModal}
+         handleAddresspitchModal={props.handleAddresspitchModal}
+      /> 
+         <AddPitchNotesDrawerModal
        item={currentLeadsId}
         addDrawerPitchNotesModal={props.addDrawerPitchNotesModal}
         handlePitchNotesDrawerModal={props.handlePitchNotesDrawerModal}
@@ -525,13 +544,15 @@ user: auth.userDetails,
   updatePitchModal:pitch.updatePitchModal,
   openASSImodal:pitch.openASSImodal,
   allPitchData:pitch.allPitchData,
-  serachedPitchData:pitch.serachedPitchData
+  serachedPitchData:pitch.serachedPitchData,
+  addressPitchModal: pitch.addressPitchModal
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getAllPitch,
          deletePitchData,
+         handleAddresspitchModal
      
     },
     dispatch

@@ -30,8 +30,10 @@ import {
   customerToAccount,
   handleCustomerPulseDrawerModal,
   handleCustomerContactDrawerModal,
-  handleCustomerOpportunityDrawerModal
+  handleCustomerOpportunityDrawerModal,
+  handleAddressCutomerModal
 } from "../../CustomerAction";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
@@ -41,6 +43,7 @@ import CustomerContactDrawerModal from "./CustomerContactDrawerModal";
 import CustomerOpportunityDrawerModal from "./CustomerOpportunityDrawerModal";
 import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddCustomerAdressModal from "./AddCustomerAdressModal";
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
@@ -562,6 +565,14 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>
+                        <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAddressCutomerModal(true);
+            handleRowData(item);
+          }}
+          
+        /> 
                         <div class="w-4">
                           <Tooltip title="Notes">
                             <NoteAltIcon
@@ -649,6 +660,12 @@ const [rowdata, setrowdata] = useState("");
         addDrawerCustomerEmailModal={props.addDrawerCustomerEmailModal}
         handleCustomerEmailDrawerModal={props.handleCustomerEmailDrawerModal}
       />
+      <AddCustomerAdressModal
+        item={rowdata}
+         type="customer"
+         addAddressCustomerModal={props.addAddressCustomerModal}
+         handleAddressCutomerModal={props.handleAddressCutomerModal}
+      /> 
 <CustomerContactDrawerModal
         customer={currentCustomer}
         addDrawerCustomerContactModal={addDrawerCustomerContactModal}
@@ -701,6 +718,7 @@ const mapStateToProps = ({
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
+  addAddressCustomerModal:customer.addAddressCustomerModal
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -719,7 +737,8 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerNotesDrawerModal,
       getCustomerById,
       handleCustomerContactDrawerModal,
-      handleCustomerOpportunityDrawerModal
+      handleCustomerOpportunityDrawerModal,
+      handleAddressCutomerModal
     },
     dispatch
   );

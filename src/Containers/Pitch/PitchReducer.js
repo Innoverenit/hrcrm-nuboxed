@@ -39,6 +39,8 @@ const initialState = {
 
       clearbit: {},
 
+      addressPitchModal:false,
+
       addingPitchActivityEvent: false,
       addingPitchActivityEventError: false,
 
@@ -492,6 +494,10 @@ case types.GET_PITCH_REQUEST:
   
               case types.HANDLE_ASSI_MODAL:
                 return { ...state, openASSImodal: action.payload };
+
+                case types.HANDLE_ADDRESS_PITCH_MODAL:
+                  return { ...state, addressPitchModal: action.payload };
+  
 
 
                 case types.GET_PITCH_TIMELINE_REQUEST:

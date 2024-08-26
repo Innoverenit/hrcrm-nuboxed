@@ -2417,6 +2417,13 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
     });
   };
 
+  export const handleAddressCutomerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_ADDRESS_CUSTOMER_MODAL,
+      payload: modalProps,
+    });
+  };
+
   export const getProspectWeightedValue = (customerId, startDate, endDate) => (dispatch) => {
     dispatch({ type: types.GET_PROSPECT_WEIGHTED_VALUE_REQUEST });
   

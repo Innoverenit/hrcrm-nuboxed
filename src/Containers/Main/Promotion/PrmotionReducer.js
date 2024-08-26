@@ -32,6 +32,13 @@ const initialState = {
     switch (action.type) {
         case types.SET_PROMOTION_VIEW_TYPE:
             return { ...state, viewType: action.payload };
+
+            case types.ADD_PROMOTION_DATA:
+              return { ...state,  promotionsData: [...state.promotionsData, action.payload]};
+
+              case types.DELETE_PROMOTION_DATA:
+                return { ...state,   promotionsData: state.promotionsData.filter(item => item.promoCodeId !== action.payload)};
+
             case types.HANDLE_PROMOTIOND_MODAL:
                 return { ...state, addingpromotionModal: action.payload }; 
 

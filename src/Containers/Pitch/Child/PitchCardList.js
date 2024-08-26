@@ -3,6 +3,7 @@ import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -22,7 +23,8 @@ import {
   handlePitchNotesDrawerModal,
   updateTypeForPitch,
   handleAssimodal,
-  handlePitchConvertModal
+  handlePitchConvertModal,
+  handleAddresspitchModal
 } from "../PitchAction";
 import AddchartIcon from '@mui/icons-material/Addchart';  
 import { Button, Tooltip } from "antd";
@@ -32,6 +34,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../Components/Placeholder";
+import AddPitchAdressModal from "./AddPitchAdressModal";
 const PitchSearchedData =lazy(()=>import("./PitchSearchedData"));
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
@@ -566,6 +569,16 @@ const countryCode = item.countryAlpha2Code
 
             </div>
             <div>
+            <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAddresspitchModal(true);
+            handleRowData(item);
+          }}
+          
+        />   
+            </div>
+            <div>
 <Tooltip
         title={
           <FormattedMessage id="app.activity" defaultMessage="Activity" />
@@ -995,6 +1008,16 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
               </Tooltip>
       </div>
       <div>
+            <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAddresspitchModal(true);
+            handleRowData(item);
+          }}
+          
+        />   
+            </div>
+      <div>
                   <Tooltip
                     title={
                       <FormattedMessage id="app.activity" defaultMessage="Activity" />
@@ -1412,6 +1435,16 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         />
                     </Tooltip>
                     </div>
+                    <div>
+            <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAddresspitchModal(true);
+            handleRowData(item);
+          }}
+          
+        />   
+            </div>
       <div>
                 <Tooltip
                   title={
@@ -1511,6 +1544,12 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
            addPitchConvertModal={props.addPitchConvertModal}
            handlePitchConvertModal={props.handlePitchConvertModal}
            />
+            <AddPitchAdressModal 
+        item={rowdata}
+         type="investorLeads"
+         addressPitchModal={props.addressPitchModal}
+         handleAddresspitchModal={props.handleAddresspitchModal}
+      /> 
             </Suspense>
     </>
      )}
@@ -1534,7 +1573,8 @@ addPitchConvertModal:pitch.addPitchConvertModal,
   fetchingPitchHot:pitch.fetchingPitchHot,
   fetchingPitchWarm:pitch.fetchingPitchWarm,
   fetchingPitchCold:pitch.fetchingPitchCold,
-  serachedPitchData:pitch.serachedPitchData
+  serachedPitchData:pitch.serachedPitchData,
+  addressPitchModal: pitch.addressPitchModal
 
 });
 const mapDispatchToProps = (dispatch) =>
@@ -1550,7 +1590,8 @@ const mapDispatchToProps = (dispatch) =>
         updateTypeForPitch,
         handlePitchNotesDrawerModal,
         handleAssimodal,
-        handlePitchConvertModal
+        handlePitchConvertModal,
+        handleAddresspitchModal
     },
     dispatch
   );

@@ -35,12 +35,15 @@ import {
   handleCustomerPulseDrawerModal,
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
+  handleAddressCutomerModal
 } from "../../CustomerAction";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddCustomerAdressModal from "./AddCustomerAdressModal";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
 );
@@ -653,6 +656,14 @@ if (loading) {
                             />
                           </Tooltip>
                         </div>
+                        <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAddressCutomerModal(true);
+            handleRowData(item);
+          }}
+          
+        /> 
                         <div >
                           <Tooltip title="Notes">
                             <NoteAltIcon
@@ -769,6 +780,12 @@ if (loading) {
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
       />
+      <AddCustomerAdressModal
+        item={rowdata}
+         type="customer"
+         addAddressCustomerModal={props.addAddressCustomerModal}
+         handleAddressCutomerModal={props.handleAddressCutomerModal}
+      /> 
       </Suspense>
     </>
   );
@@ -801,6 +818,7 @@ const mapStateToProps = ({
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   customerSearch: customer.customerSearch,
+  addAddressCustomerModal:customer.addAddressCustomerModal,
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
 });
 const mapDispatchToProps = (dispatch) =>
@@ -824,6 +842,7 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerById,
       getCountries,
       getAllCustomerEmployeelist,
+      handleAddressCutomerModal
     },
     dispatch
   );
