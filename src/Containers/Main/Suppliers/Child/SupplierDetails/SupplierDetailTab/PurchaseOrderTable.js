@@ -52,7 +52,7 @@ function PurchaseOrderTable(props) {
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
+        // setTranslatedMenuItems(translations);
         setLoading(false);
       } catch (error) {
         setLoading(false);

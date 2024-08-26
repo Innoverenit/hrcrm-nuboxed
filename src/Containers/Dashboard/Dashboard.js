@@ -4,23 +4,23 @@ import { bindActionCreators } from "redux";
 import { MainWrapper } from "../../Components/UI/Layout";
 import Piechart1 from "../../Components/Charts/PieChart1";
 import { BundleLoader } from "../../Components/Placeholder";
-import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
-import CustomerViewGoogleMap from "./CustomerViewGoogleMap"
-import CustomerAccountGoogleMap from "../Dashboard/CustomerAccountGoogleMap"
-import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpStart";
 import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear,getRegionRecords,getMultiOrgRegionRecords} from "./DashboardAction";
-import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumpstart";
-import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
-// import CustomerPieChart from "../Dashboard/Child/JumpStart/CustomerPieChart"
-import DashOrderJumpstart from "./Child/JumpStart/DashOrderJumpstart";
-import DashOrderFinanceJumpstart from "./Child/JumpStart/DashOrderFinanceJumpstart";
-import InvestorFunnelTab from "./Child/InvestorFunnelTab";
-import RegionalSales from "../DashboardPage/Child/RegionalSales";
-import FullFillMentJumpstartBox from "./FullFillMentJumpstartBox";
-import InvestorRegionalJumpstartBox from "../DashboardPage/Child/InvestorRegionalJumpstartBox";
-import MultiOrgInvestorRegionalJumpstartBox from "../DashboardPage/Child/MultiOrgInvestorRegionalJumpstartBox";
-import MultiOrgFullFillMentMJumpstartBox from "../DashboardPage/Child/MultiOrgFullFillMentMJumpstartBox";
-import MultiOrgSales from "../DashboardPage/Child/MultiOrgSales";
+
+const CustomerGoogleMap=lazy(()=>import("./Child/Chart/CustomerGoogleMap"));
+const CustomerViewGoogleMap=lazy(()=>import("./CustomerViewGoogleMap"));
+const CustomerAccountGoogleMap=lazy(()=> import("../Dashboard/CustomerAccountGoogleMap"));
+const CustomerDashboardJumpStart=lazy(()=>import("./Child/JumpStart/CustomerDashboardJumpStart"));
+const DashboardProspectJumpstart=lazy(()=>import("./Child/JumpStart/DashboardProspectJumpstart"));
+const CustomerDashJumpstart=lazy(()=>import("./Child/JumpStart/CustomerDashJumpstart"));
+const  DashOrderJumpstart=lazy(()=>import("./Child/JumpStart/DashOrderJumpstart"));
+const DashOrderFinanceJumpstart=lazy(()=> import("./Child/JumpStart/DashOrderFinanceJumpstart"));
+const InvestorFunnelTab=lazy(()=>import("./Child/InvestorFunnelTab"));
+const RegionalSales =lazy(()=>import("../DashboardPage/Child/RegionalSales"));
+const FullFillMentJumpstartBox=lazy(()=>import("./FullFillMentJumpstartBox"));
+const InvestorRegionalJumpstartBox=lazy(()=>import("../DashboardPage/Child/InvestorRegionalJumpstartBox"));
+const  MultiOrgInvestorRegionalJumpstartBox=lazy(()=>import("../DashboardPage/Child/MultiOrgInvestorRegionalJumpstartBox"));
+const MultiOrgFullFillMentMJumpstartBox=lazy(()=>import("../DashboardPage/Child/MultiOrgFullFillMentMJumpstartBox"));
+const MultiOrgSales=lazy(()=>import("../DashboardPage/Child/MultiOrgSales"));
 const DashboardCustomerTab= lazy(()=>import("./DashboardCustomerTab"));
 const FunnelChartAll= lazy(()=>import("./FunnelChartAll"));
 const DashboardJumpstartAll= lazy(()=>import("../Dashboard/Child/JumpStart/DashboardJumpstartAll"));
@@ -162,8 +162,7 @@ class Dashboard extends Component {
 
     return (
       <React.Fragment>
-   
-
+         <Suspense fallback={<BundleLoader />}>
         <Dashboardheader
         buttonName={buttonName} 
         activeTab={activeTab}
@@ -178,23 +177,25 @@ class Dashboard extends Component {
         selectedLanguage={this.props.selectedLanguage}
         translateText={this.props.translateText}
         />
-        <Suspense fallback={<BundleLoader />}>
-        <MainWrapper
-         style={{marginTop:"0.25rem",overflow:"hidden"}}
-    >
-       {/* <div className=" rounded-md shadow-[0em_0.25em_0.625em_-0.125em]
-         border-[0625em] border-solid m-1 p-1 w-full font-poppins  mt-2 overflow-hidden h-[21rem] max-sm:h-[30rem]
-        "></div> */}
+       
+        <MainWrapper style={{marginTop:"0.25rem",overflow:"hidden"}}>
+      
           <div class=" h-[45vh] max-sm:h-[19rem] max-sm:overflow-x-auto">
          <div class="flex justify-around  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
            <div class=" flex flex-col h-[21rem] overflow-auto " >
            {viewType==="ME"?(
-             <DashboardJumpstartAll/> )
+             <DashboardJumpstartAll
+             selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/> )
              :
-             viewType==="bulb" ? (<DashboardBulbJumpstart/>
+             viewType==="bulb" ? (<DashboardBulbJumpstart
+              selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>
              )
-             :viewType==="ques" ? (<DashboardDetailsTab/>
+             :viewType==="ques" ? (<DashboardDetailsTab
+              selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>
              )
              : 
                this.state.activeButton==="Tasks" ?
@@ -204,12 +205,18 @@ class Dashboard extends Component {
              />)
              : 
              this.state.activeButton==="RecruitPro" ?
-           (<DashboardJumpstartAll/>)
+           (<DashboardJumpstartAll
+            selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>)
              : this.state.activeButton==="Investors" ?
-             (<DashboardInvestorsOrgJumpstart/>)
+             (<DashboardInvestorsOrgJumpstart
+              selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>)
    
              :viewType === "ALL" && this.state.activeButton==="Customer" ?
-             (<DashboardCustomerOrgJumpstart/>)
+             (<DashboardCustomerOrgJumpstart
+              selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>)
              : this.state.activeButton==="Order" ?
              (<DashboardOrderJumpstart
               selectedLanguage={this.props.selectedLanguage}
@@ -219,9 +226,13 @@ class Dashboard extends Component {
              : this.state.activeButton==="Finance" ?
              (<DashboardFinanceJumpstart
               buttonName={buttonName} 
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
              />)
              : this.state.activeButton==="Accounts" ?
-             (<CustomerDashboardJumpStart/>)
+             (<CustomerDashboardJumpStart
+              selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>)
 
              : this.state.activeButton === "Regional" && activeTab  ? (
               <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
@@ -229,9 +240,10 @@ class Dashboard extends Component {
                 <RegionalSales 
                  tab={tab}
                  tabKey={this.state.activeTab}
-                
                  handleTabClick={this.handleTabClick}
-                regionRecords={this.props.regionRecords}/>
+                 regionRecords={this.props.regionRecords}
+                 selectedLanguage={this.props.selectedLanguage}
+                 translateText={this.props.translateText}/>
               </div>
             ) 
             
@@ -241,16 +253,19 @@ class Dashboard extends Component {
                 <MultiOrgSales 
                  tab={tab}
                  tabKey={this.state.activeTab}
-                
                  handleTabClick={this.handleTabClick}
                  multiOrgRecords={this.props.multiOrgRecords}
+                 selectedLanguage={this.props.selectedLanguage}
+                 translateText={this.props.translateText}
          />
               </div>
             ) 
             
              :
              (
-              <DashboardJumpstart />
+              <DashboardJumpstart 
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}/>
       
           )}
              <div class=" w-wk" >
@@ -262,21 +277,31 @@ class Dashboard extends Component {
        translateText={this.props.translateText}
        />)
        :this.state.activeButton==="Investors" ?(
-        <InvestorsPitchTab/>)
+        <InvestorsPitchTab
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}/>)
         // <CustomerLeadsTab/>)
         :this.state.activeButton==="RecruitPro" ?(
-          <StackedClosureChartAll/>)
+          <StackedClosureChartAll
+          selectedLanguage={this.props.selectedLanguage}
+          translateText={this.props.translateText}/>)
         :this.state.activeButton==="Order" ?(
-          <OrdersDashTab/>)
+          <OrdersDashTab
+          selectedLanguage={this.props.selectedLanguage}
+          translateText={this.props.translateText}/>)
           :this.state.activeButton==="Finance" ?(
-            <FinanceDashTab/>)
+            <FinanceDashTab
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}/>)
             :this.state.activeButton==="Regional" && activeTab ?(
               null)
               :this.state.activeButton==="multiOrg" && activeTab ?(
                 null)
             
        :  this.state.activeButton==="Customer" ?(
-        <CustomerLeadsTab/>)
+        <CustomerLeadsTab
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}/>)
         :  viewType==="ALL" ?(
           <Piechart1
           // width={450}
@@ -303,7 +328,9 @@ class Dashboard extends Component {
 
     <div className="flex justify-between">
   {viewType === "ME" ? (
-    <StackedClosureChartAll />
+    <StackedClosureChartAll 
+    selectedLanguage={this.props.selectedLanguage}
+    translateText={this.props.translateText}/>
   )
   //  : this.state.activeButton === "Investors" ? (
   //   // <DashInvestorsChartTab />
@@ -356,44 +383,62 @@ class Dashboard extends Component {
     )}
 
     {this.state.activeButton === "Finance" && (
-        <DashOrderFinanceJumpstart />
+        <DashOrderFinanceJumpstart 
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}/>
     )}
 
     {viewType === "bulb" && (
-        <SourceChart />
+        <SourceChart
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}/>
     )}
 
     {this.state.activeButton === "Investors" && (
-        <InvestorFunnelTab />
+        <InvestorFunnelTab 
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}/>
     )}
 
     {this.state.activeButton === "Customer" && (
-        <FunnelTab />
+        <FunnelTab 
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}/>
     )}
 
     {this.state.activeButton === "Accounts" && (
-        <FunnelTab />
+        <FunnelTab
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText} />
     )}
 
     {this.state.activeButton === "Regional" && activeTab && (
         <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
             <div className="font-bold flex-col justify-center flex text-lg">FulFillment</div>
-            <FullFillMentJumpstartBox regionRecords={this.props.regionRecords}/>
+            <FullFillMentJumpstartBox regionRecords={this.props.regionRecords}
+             selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>
         </div>
     )}
      {this.state.activeButton === "multiOrg" && activeTab && (
        <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
             <div className="font-bold flex-col justify-center flex text-lg">FulFillment</div>
-            <MultiOrgFullFillMentMJumpstartBox multiOrgRecords={this.props.multiOrgRecords}/>
+            <MultiOrgFullFillMentMJumpstartBox multiOrgRecords={this.props.multiOrgRecords}
+             selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>
         </div>
     )}
 
     {this.state.activeButton === "Tasks" && (
-        <GantChartTab />
+        <GantChartTab 
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}/>
     )}
 
     {this.state.activeButton === "RecruitPro" && (
-        <FunnelChartAll />
+        <FunnelChartAll 
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}/>
     )}
 </div>
 
@@ -405,7 +450,8 @@ class Dashboard extends Component {
                   {this.state.activeButton==="RecruitPro"?
      (<DashboardCustomerTab
       viewType={viewType}
-      />) :null
+      selectedLanguage={this.props.selectedLanguage}
+      translateText={this.props.translateText}/>) :null
              }
 
       </div>
@@ -442,25 +488,39 @@ class Dashboard extends Component {
                         : this.state.activeButton === "Regional" && activeTab  ?
                         <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
                           <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
-                          <InvestorRegionalJumpstartBox regionRecords={this.props.regionRecords}/>
+                          <InvestorRegionalJumpstartBox regionRecords={this.props.regionRecords}
+                           selectedLanguage={this.props.selectedLanguage}
+                           translateText={this.props.translateText}/>
                           </div>
                            : this.state.activeButton === "multiOrg" && activeTab  ?
                            <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
                            <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
-                           <MultiOrgInvestorRegionalJumpstartBox multiOrgRecords={this.props.multiOrgRecords}/>
+                           <MultiOrgInvestorRegionalJumpstartBox multiOrgRecords={this.props.multiOrgRecords}
+                            selectedLanguage={this.props.selectedLanguage}
+                            translateText={this.props.translateText}/>
                            </div>
                         : this.state.activeButton === "Investors" ? (
-                          <CustomerGoogleMap />)
+                          <CustomerGoogleMap 
+                          selectedLanguage={this.props.selectedLanguage}
+                          translateText={this.props.translateText}/>)
                           : this.state.activeButton === "Customer" ? (
-                            <CustomerViewGoogleMap />)
+                            <CustomerViewGoogleMap 
+                            selectedLanguage={this.props.selectedLanguage}
+                            translateText={this.props.translateText} />)
                           // : this.state.activeButton === "test" ? (
                           //   <StackedClosureChart />)
                             : this.state.activeButton === "Tasks" ? (
-                              <StackedClosureChart />)
+                              <StackedClosureChart 
+                              selectedLanguage={this.props.selectedLanguage}
+                              translateText={this.props.translateText}/>)
                               : this.state.activeButton === "Order" ? (
-                                <StackedClosureChart />)
+                                <StackedClosureChart 
+                                selectedLanguage={this.props.selectedLanguage}
+                                translateText={this.props.translateText} />)
                                 : this.state.activeButton === "Finance" ? (
-                                  <StackedClosureChart />)
+                                  <StackedClosureChart 
+                                  selectedLanguage={this.props.selectedLanguage}
+                                  translateText={this.props.translateText}/>)
                   //  : viewType==="ALL" || this.state.activeButton==="Customer" ? (<DashCustomerChartTab/>)               
             :(           
           null
@@ -474,10 +534,14 @@ class Dashboard extends Component {
      <div class=" flex flex-col " >
        <div class=" flex flex-col  justify-between" >
        {this.state.activeButton==="Accounts"&&
-       <CustomerDashJumpstart/>
+       <CustomerDashJumpstart
+       selectedLanguage={this.props.selectedLanguage}
+       translateText={this.props.translateText}/>
              }
                   {this.state.activeButton==="Customer"&&
        <DashboardProspectJumpstart
+       selectedLanguage={this.props.selectedLanguage}
+       translateText={this.props.translateText}
        selectedCountry={this.state.selectedCountry}
        fetchingProspectQuotation={this.props.fetchingProspectQuotation}
        fetchingProspectData={this.props.fetchingProspectData}
@@ -490,7 +554,9 @@ class Dashboard extends Component {
        />
              }
                       {this.state.activeButton==="Investors"&&
-       <DashboardProspectJumpstart/>
+       <DashboardProspectJumpstart
+       selectedLanguage={this.props.selectedLanguage}
+       translateText={this.props.translateText}/>
              }
                 <div class=" flex flex-col justify-between" >
                      {/* {this.state.activeButton==="Customer"&&
@@ -513,9 +579,6 @@ class Dashboard extends Component {
     </MainWrapper>
     
     </Suspense>
-
-
- 
       </React.Fragment>
     );
   }

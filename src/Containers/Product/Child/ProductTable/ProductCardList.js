@@ -262,7 +262,7 @@ useEffect(() => {
                         </div>
                       </div>
 
-                      <div className=" flex  w-[14.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  w-[9.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {`${item.productFullName ? `${item.productFullName}`:`${item.name}`}`}
@@ -360,37 +360,7 @@ useEffect(() => {
   </>
     :null}  
 </div>
-                      {/* <div className=" flex  w-[5.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-                      
-                      <ReactToPrint
-                                                        trigger={() => <Button
-                                                            onClick={handlePrint}
-                                                        >
-                                                            Print<QrCodeIcon className="!text-icon"/></Button>
-                                                        }
-                                                        content={() => componentRefs.current[index]
-                                                        }
-                                                    />
-                                                    <div style={{ display: "none", textAlign: "center" }}>
 
-                                                        <div
-                                                            ref={(el) => (componentRefs.current[index] = el)}
-                                                            style={{
-                                                                fontSize: "16px",
-                                                                marginBottom: "20px",
-                                                                display: "flex",
-                                                                flexDirection: "column",
-                                                                alignItems: "center",
-                                                            }}
-                                                        >
-                                                           
-                                                            <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
-                                                                <QRCode value={item.newProductNo} size={128} />
-                                                            </div>
-                                                            <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>ID:</span> {item.newProductNo}</div>
-                                                        </div>
-                                                    </div>
-                      </div> */}
 
                       <div>
                         <Tooltip title="Quality">
