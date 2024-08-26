@@ -6507,3 +6507,60 @@ export const removeSkillData = (skillLevelLinkId) => (dispatch) => {
       });
     });
 };
+
+
+
+
+
+
+export const updateWords = (data,id) => (dispatch) => {
+  dispatch({ type: types.UPDATE_WORDS_REQUEST });
+  axios
+    .put(`${login_url}/words/${id}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_WORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_WORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const searchWordsName = (word) => (dispatch) => {
+  dispatch({
+    type: types.GET_WORDS_SEARCH_REQUEST,
+  });
+  axios
+    .get(`${login_url}/words/navLangSearch/${word}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      message.success(res.data.message);
+      dispatch({
+        type: types.GET_WORDS_SEARCH_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_WORDS_SEARCH_FAILURE,
+        payload: err,
+      });
+    });
+}; 
