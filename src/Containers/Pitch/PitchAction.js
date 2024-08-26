@@ -561,6 +561,13 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
     });
   }
 
+  export const handleAddresspitchModal= (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_ADDRESS_PITCH_MODAL,
+      payload: modalProps,
+    });
+  }
+
   export const getpichTimeline = (investorLeadsId) => (dispatch) => {
     dispatch({
         type: types.GET_PITCH_TIMELINE_REQUEST,

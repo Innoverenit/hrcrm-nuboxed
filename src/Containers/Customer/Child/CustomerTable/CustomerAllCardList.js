@@ -33,13 +33,16 @@ import {
   handleCustomerPulseDrawerModal,
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
+  handleAddressCutomerModal
 } from "../../CustomerAction";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddCustomerAdressModal from "./AddCustomerAdressModal";
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
 const CustomerOpportunityDrawerModal =lazy(()=> import("./CustomerOpportunityDrawerModal"));
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
@@ -518,6 +521,14 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>
+                        <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAddressCutomerModal(true);
+            handleRowData(item);
+          }}
+          
+        /> 
                         <div>
                           <Tooltip title="Notes">
                             <NoteAltIcon
@@ -636,7 +647,12 @@ const [rowdata, setrowdata] = useState("");
         handleCustomerEmailDrawerModal={props.handleCustomerEmailDrawerModal}
       />
 
-      
+<AddCustomerAdressModal
+        item={rowdata}
+         type="customer"
+         addAddressCustomerModal={props.addAddressCustomerModal}
+         handleAddressCutomerModal={props.handleAddressCutomerModal}
+      /> 
 <AddCustomerNotesDrawerModal
  translateText={props.translateText}
  selectedLanguage={props.selectedLanguage}
@@ -677,6 +693,7 @@ const mapStateToProps = ({
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   customerSearch: customer.customerSearch,
+  addAddressCustomerModal:customer.addAddressCustomerModal,
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
 });
 const mapDispatchToProps = (dispatch) =>
@@ -700,6 +717,7 @@ const mapDispatchToProps = (dispatch) =>
       // getAllCustomerEmployeelist,
       handleCustomerContactDrawerModal,
       handleCustomerOpportunityDrawerModal,
+      handleAddressCutomerModal
     },
     dispatch
   );

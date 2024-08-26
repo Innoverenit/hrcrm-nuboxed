@@ -10,6 +10,8 @@ const initialState = {
   fetchingWonCusmWeightedValueError: false,
   WonCustomerWeighted: {},
 
+  addAddressCustomerModal:false,
+
   fetchingSelectdrop: false,
   fetchingSelectdropError: false,
   selectDrop: [],
@@ -1773,6 +1775,9 @@ export const customerReducer = (state = initialState, action) => {
 
     case types.HANDLE_CUSTOMER_OPPORTUNITY_DRAWER_MODAL:
       return { ...state, addDrawerCustomerOpportunityModal: action.payload };
+
+      case types.HANDLE_ADDRESS_CUSTOMER_MODAL:
+        return { ...state, addAddressCustomerModal: action.payload };
 
     case types.GET_OPPORTUNITY_RECORD_REQUEST:
       return { ...state, fetchingOpportunityRecord: true };

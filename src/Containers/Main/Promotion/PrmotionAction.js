@@ -16,6 +16,22 @@ export const handlePromotionsDrawer = (modalProps) => (dispatch) => {
     });
   };
 
+  export const addPromotionData = (newRow) => (dispatch) => {
+    dispatch({
+      type: types.ADD_PROMOTION_DATA,
+      payload: newRow,
+    });
+  };
+
+  export const deletePromotionData = (id) => (dispatch) => {
+    dispatch({
+      type: types.DELETE_PROMOTION_DATA,
+      payload: id,
+    });
+  };
+  
+  
+
   export const addPromotions = (data) => (dispatch) => {
     dispatch({
       type: types.ADD_PROMOTIONS_REQUEST,

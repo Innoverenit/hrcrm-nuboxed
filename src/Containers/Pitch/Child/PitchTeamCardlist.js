@@ -2,6 +2,7 @@ import React, { useEffect, useState ,lazy,Suspense} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { connect } from "react-redux";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import ExploreIcon from "@mui/icons-material/Explore";
@@ -19,7 +20,8 @@ import {
   setEditPitch,
   handlePitchNotesDrawerModal,
   updateTypeForPitch,
-  handleAssimodal
+  handleAssimodal,
+  handleAddresspitchModal
 } from "../PitchAction";
 import AddchartIcon from '@mui/icons-material/Addchart';  
 import { Button, Tooltip } from "antd";
@@ -27,6 +29,7 @@ import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
+import AddPitchAdressModal from "./AddPitchAdressModal";
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("./UpdateLPitchModal"));
@@ -422,6 +425,16 @@ serachedPitchData={props.serachedPitchData}
 
                                                                                     </div>
                                                                                     <div>
+            <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAddresspitchModal(true);
+            handleRowData(item);
+          }}
+          
+        />   
+            </div>
+                                                                                    <div>
                                                                         <Tooltip
                                                                                 title={
                                                                                   <FormattedMessage id="app.activity" defaultMessage="Activity" />
@@ -515,6 +528,12 @@ serachedPitchData={props.serachedPitchData}
                                               openASSImodal={props.openASSImodal}
                                             handleAssimodal={props.handleAssimodal}
                                             />
+                                            <AddPitchAdressModal
+        item={rowdata}
+         type="investorLeads"
+         addressPitchModal={props.addressPitchModal}
+         handleAddresspitchModal={props.handleAddresspitchModal}
+      /> 
                                               <AddPitchNotesDrawerModal 
                                               item={currentLeadsId}
                                               addDrawerPitchNotesModal={props.addDrawerPitchNotesModal}
@@ -535,7 +554,8 @@ serachedPitchData={props.serachedPitchData}
                                         updatePitchModal:pitch.updatePitchModal,
                                         openASSImodal:pitch.openASSImodal,
                                         teamPitch:pitch.teamPitch,
-                                        serachedPitchData:pitch.serachedPitchData
+                                        serachedPitchData:pitch.serachedPitchData,
+                                        addressPitchModal: pitch.addressPitchModal
                                       });
                                       const mapDispatchToProps = (dispatch) =>
                                         bindActionCreators(
@@ -546,7 +566,8 @@ serachedPitchData={props.serachedPitchData}
                                               setEditPitch,
                                               updateTypeForPitch,
                                               handlePitchNotesDrawerModal,
-                                              handleAssimodal
+                                              handleAssimodal,
+                                              handleAddresspitchModal
                                           },
                                           dispatch
                                         );

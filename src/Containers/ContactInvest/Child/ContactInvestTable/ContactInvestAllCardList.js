@@ -429,7 +429,7 @@ if (loading) {
       />   
        <AddContactInvestAdressModal    
         item={contactiData}
-         type="contactinvest"
+         type="contact"
         addContactAddressModal={props.addContactAddressModal}
         handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
       /> 
