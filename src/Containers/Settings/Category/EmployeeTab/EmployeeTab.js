@@ -54,14 +54,14 @@ class EmployeeTab extends Component {
                   tab={
                     <>
                       <SourceIcon className="!text-icon" />
-                      <Badge
-                count={this.props.developeCount.DevelopmentCount}
-                overflowCount={999}
-              >
-                      <span class=" ml-1">
+                     
+                      <span class=" ml-1 text-sm">
                       Development
                       </span>
-                      </Badge>
+                      <Badge
+                count={this.props.developeCount.DevelopmentCount}
+                overflowCount={999} offset={[ 0, -16]}
+              > </Badge>
                     </>
                   }
                   key="0"
@@ -72,14 +72,14 @@ class EmployeeTab extends Component {
                   tab={
                     <>
                       <BuildCircleIcon className="!text-icon" />
+                     
+                      <span class=" ml-1 text-sm">
+                Equipment 
+                      </span>
                       <Badge
                 count={this.props.equipmentCount.EquipmentCount}
-                overflowCount={999}
-              >
-                      <span class=" ml-1">
-                Equipment
-                      </span>
-                      </Badge>
+                overflowCount={999} offset={[ 0, -16]}
+              > </Badge>
                     </>
                   }
                   key="1"
