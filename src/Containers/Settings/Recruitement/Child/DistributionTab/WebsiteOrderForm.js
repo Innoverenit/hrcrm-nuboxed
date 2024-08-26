@@ -90,10 +90,9 @@ const handleDeptChange = (event) => {
             <div class=" w-[44%] flex flex-row mt-[0.625em] ml-[1em]">                                 
             <div class=" flex  flex-col w-[44%]">
               
-                   <div class=" w-24">Assigned</div>
+            <div class=" text-[#444] font-bold text-xs w-24" >Assigned</div>
                 <div>                     
-                        <Switch
-                          style={{ width: "5em" }}
+                        <Switch className="w-[5rem]"                        
                           onChange={handleSingleMultiple}
                           checked={single}
                           checkedChildren="Multiple"
@@ -104,7 +103,7 @@ const handleDeptChange = (event) => {
       
               <div class=" flex justify-between width-[50%] ml-4 " >
                                                     <div class=" w-[35%]" >
-                                                    <div class=" text-[#444] font-bold text-[0.75rem]" >Department</div>
+                                                    <div class=" text-[#444] font-bold text-xs" >Department</div>
                       <select 
                        className="customize-select"
                       onChange={handleDeptChange}>
@@ -140,12 +139,11 @@ const handleDeptChange = (event) => {
   </div> 
 
 ):(   
-  <div class=" w-[35%] ml-8" >
+  <div class=" w-[35%] ml-4" >
   <div class=" text-[#444] font-bold text-xs" >User</div>
-   <Field
+   <Field class="w-[10rem]"
                name="multyAsignedTOId"
-               // label="Include"
-               style={{width:"10rem"}}         
+               // label="Include"                  
                mode
                placeholder="Select"
                component={SelectComponent}

@@ -63,30 +63,19 @@ function LeadsAgingForm(props) {
                   <div >
                     <div class="flex justify-between w-[18rem]" >
                       <i
-                        className="fas fa-mug-hot"
-                        style={{ fontSize: "1.12em" }}
+                        className="fas fa-mug-hot  !text-icon"
                       />                 
-                      <div class="font-semibold ml-8">
-                        Hot
-                        
+                      <div class="font-bold ml-8">
+                        Hot                    
                         </div>      
                       <div class="flex">
-                        <Field
+                        <Field className="w-40 h-2 text-center bg-[#f5f3f3] "
                           name="hot"
                           // label="To Start"
-
-                          isColumn
-                          
+                          isColumn                         
                           width={"100%"}
                           component={InputComponent}
-                          inlineLabel
-                          style={{
-                            width:"11rem",
-                            marginTop: "0em",
-                            height: "2em",
-                            textAlign: "center",
-                            backgroundColor:"#f5f3f3"
-                          }}
+                          inlineLabel                     
                         />
                         <div >
                         <div class=" text-xs font-bold font-poppins text-black">
@@ -97,42 +86,26 @@ function LeadsAgingForm(props) {
                           />
                         </div>
                       </div>
-                      </div>
-                      
+                      </div>                   
                     </div>
-
-                    <div  class="flex justify-between">
-                      
-                      <div  class="flex justify-between" >
-                    <div>
-                      <i className="	fas fa-burn" style={{ fontSize: "1.12em",marginRight:"2rem" }} />
-                     <div class="mr-[0.7rem] font-semibold">
-                        Warm
-                        
-                        </div>
-                    </div>
-
-                    <div>
-                      <div class="flex" >
-                        <Field
-                          name="worm"
-                     
-                          isColumn
+                 {/* .............................................................. */}
+                    <div class="flex justify-between w-[18rem]" >
+                      <i
+                        className="fas fa-burn  !text-icon"
+                      />                 
+                      <div class="font-bold ml-8">
+                        Warm                  
+                        </div>      
+                      <div class="flex">
+                        <Field className="w-40 h-2 text-center bg-[#f5f3f3] "
+                          name="warm"
+                          // label="To Start"
+                          isColumn                         
                           width={"100%"}
-                          
                           component={InputComponent}
-                          inlineLabel
-                          style={{
-                            flexBasis: "80%",
-                            marginTop: "0em",
-                            width:"10rem",
-                            height: "2em",
-                            textAlign: "center",
-                            backgroundColor:"#f5f3f3"
-                       
-                          }}
+                          inlineLabel                     
                         />
-                         <div >
+                        <div >
                         <div class=" text-xs font-bold font-poppins text-black">
                           {/* Days */}
                           <FormattedMessage
@@ -141,55 +114,26 @@ function LeadsAgingForm(props) {
                           />
                         </div>
                       </div>
-                      </div>
-                     
-                      <div >
-                        {/* <div class=" text-xs font-bold font-poppins text-black">
-                          Days
-                        </div> */}
-                      </div>
-                    </div>
-                  </div>
-                    </div>
-                  </div>
-                  <div class="flex justify-between w-[18rem]">
-                    <div>
+                      </div>                   
+                    </div>               
+                  </div>          
+                  <div class="flex justify-between w-[18rem]" >
                       <i
-                        className="far fa-snowflake"
-                        style={{ fontSize: "1.12em",marginRight:"2rem" }}
-                      />
-                    
-                      <div class="font-semibold">
-                        {/* Cold */}
-                        <FormattedMessage
-                          id="app.cold"
-                          defaultMessage="Cold"
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between">
-                      <div >
-                        <Field
+                        className="far fa-snowflake  !text-icon"
+                      />                 
+                      <div class="font-bold ml-8">
+                        Cold                 
+                        </div>      
+                      <div class="flex">
+                        <Field className="w-40 h-2 text-center bg-[#f5f3f3] "
                           name="cold"
                           // label="To Start"
-                          isColumn
-                          disabled={props.subscriptionType === "FREE"}
+                          isColumn                         
                           width={"100%"}
                           component={InputComponent}
-                          inlineLabel
-                          style={{
-                            flexBasis: "80%",
-                            marginTop: "0em",
-                            height: "2em",
-                            textAlign: "center",
-                            backgroundColor:
-                              props.subscriptionType === "FREE"
-                                ? "#f5f3f3"
-                                : null,
-                          }}
+                          inlineLabel                     
                         />
-                      </div>
-                      <div >
+                        <div >
                         <div class=" text-xs font-bold font-poppins text-black">
                           {/* Days */}
                           <FormattedMessage
@@ -198,53 +142,20 @@ function LeadsAgingForm(props) {
                           />
                         </div>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="flex justify-between w-[18rem]">
-                  
-                    <div >
-                    <div class="font-semibold">Not Defined</div>
-                    </div>
-                    <div class="flex justify-between">
-                      <div >
-                        <Field
-                          name="notDefined"
-                          isColumn
-                          width={"100%"}
-                          component={InputComponent}
-                          inlineLabel
-                          style={{
-                            flexBasis: "80%",
-                            marginTop: "0em",
-                            height: "2em",
-                            textAlign: "center",
-                            backgroundColor:"#f5f3f3"
-                          }}
-                        />
-                      </div>
-                      <div >
-                        <div class=" text-xs font-bold font-poppins text-black">
-                          <FormattedMessage
-                            id="app.days"
-                            defaultMessage="Days"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                 
+                      </div>                   
+                    </div> 
+                                          
                 </div>
               </div>
 
               <div class=" h-full w-[45%] mr-3"
               >
-                <div class=" text-xs font-bold font-poppins" style={{ color: "white" }}>.</div>
+                <div class=" text-xs font-bold font-poppins text-white">.</div>
               <div class=" mt-3">
-                <div class=" text-xs font-bold font-poppins" style={{ color: "white" }}>.</div>
+                <div class=" text-xs font-bold font-poppins text-white">.</div>
                 </div>
                <div class=" mb-3">
-                <div class=" text-xs font-bold font-poppins" style={{ color: "white" }}>.</div>
+                <div class=" text-xs font-bold font-poppins text-white">.</div>
                 </div>
                 
 
@@ -273,15 +184,10 @@ function LeadsAgingForm(props) {
                       defaultMessage="Cancel"
                     />}
                   >
-                    <Button
+                    <Button className="mr-[-0.43em] mt-[1.25rem] mb-[0.31em]"
                       type="primary"
                       loading={props.addingLeadAging}
                       htmlType="submit"
-                      style={{
-                        marginRight: "-0.43em",
-                        marginTop: "1.25em",
-                        marginBottom: "0.31em",
-                      }}
                     >
                       {/* Update */}
                       <FormattedMessage
