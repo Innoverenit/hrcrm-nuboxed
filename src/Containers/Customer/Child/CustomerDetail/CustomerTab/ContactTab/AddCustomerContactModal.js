@@ -34,7 +34,7 @@ const AddCustomerContactModal = (props) => {
           investorId={props.investorId}
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
-        translatedMenuItems={props.translatedMenuItems}
+          translatedMenuItems={props.translatedMenuItems}
           />{" "}
         </Suspense>
       </StyledDrawer>
