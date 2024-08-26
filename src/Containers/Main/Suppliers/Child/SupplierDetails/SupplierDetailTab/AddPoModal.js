@@ -22,6 +22,7 @@ const AddPoModal = (props) => {
             >
                 <Suspense fallback={<BundleLoader />}>
                     <AddPurchaseOrder supplier={props.supplier} 
+                   
                       translateText={props.translateText}
                       selectedLanguage={props.selectedLanguage}/>
                 </Suspense>
