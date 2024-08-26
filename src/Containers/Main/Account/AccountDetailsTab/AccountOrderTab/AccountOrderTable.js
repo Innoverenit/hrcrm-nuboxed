@@ -96,7 +96,7 @@ const AccountOrderTable = (props) => {
         props.getOrderRecords(props.distributorId,"repair");
         props.getLocationList(props.orgId);
         props.getDistributorOrderOfHigh(props.distributorId, page, "repair","High");
-        props.getDistributorOrderOfMedium(props.distributorId, page, "repair","Medium");
+        // props.getDistributorOrderOfMedium(props.distributorId, page, "repair","Medium");
         props.getDistributorOrderOfLow(props.distributorId, page, "repair","Low")
         
         // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
@@ -123,11 +123,11 @@ const AccountOrderTable = (props) => {
         props.getDistributorOrderOfHigh(props.distributorId, page, "repair","High")
     };
 
-    const handleLoadMoreMedium = () => {
-        setPage(page + 1);
-        // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
-        props.getDistributorOrderOfMedium(props.distributorId, page, "repair","Medium")
-    };
+    // const handleLoadMoreMedium = () => {
+    //     setPage(page + 1);
+    //     // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
+    //     props.getDistributorOrderOfMedium(props.distributorId, page, "repair","Medium")
+    // };
     const handleLoadMoreLow = () => {
         setPage(page + 1);
         // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
@@ -247,7 +247,7 @@ const AccountOrderTable = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfHigh ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"21vh"}
+                        height={"33vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
                         {props.highDistributorOrder.length ?
@@ -620,471 +620,14 @@ const AccountOrderTable = (props) => {
                 </div>
             </div >
             
-           
-            <div className=' flex  sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  bg-transparent font-bold sticky top-0 z-10">
-                    <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
-                    {translatedMenuItems[12]}   {/* High */}
-                         </div>
-                        <div className=" md:w-[11.41rem] ml-2">
-                            {/* <FormattedMessage
-                                id="app.orderno"
-                                defaultMessage="Order ID"
-                            /> */}
-                             {translatedMenuItems[1]}ID
-                        </div>
-                        <div className=" md:w-[5.012rem]">
-                        {translatedMenuItems[14]}
-                        </div>
-                        <div className=" md:w-[5.012rem]">
-                        {translatedMenuItems[2]}  {/* LOB */}
-                        </div>
-                        <div className=" md:w-[5.08rem]">
-                        {translatedMenuItems[3]}   {/* <FormattedMessage
-                                id="app.owner"
-                                defaultMessage="Owner"
-                            /> */}
-                        </div>
-
-                        <div className="md:w-[5.81rem]">
-                        </div>
-                        <div className="md:w-[7.91rem]">
-                        {translatedMenuItems[4]}   {/* <FormattedMessage
-                                id="app.contact"
-                                defaultMessage="Contact"
-                            /> */}
-                        </div>
-                        <div className="md:w-[8.11rem]">
-                        {translatedMenuItems[5]}  {/* <FormattedMessage
-                                id="app.quoted"
-                                defaultMessage="Quoted"
-                            /> */}
-                        </div>
-                        <div className="md:w-[5.09rem]">
-                        {translatedMenuItems[6]}  {/* <FormattedMessage
-                                id="app.finalprice"
-                                defaultMessage="Final"
-                            /> */}
-                        </div>
-                        <div className="w-[5.076rem]">
-                        {translatedMenuItems[7]}    {/* <FormattedMessage
-                                id="app.revisedprice"
-                                defaultMessage="Revised"
-                            /> */}
-                        </div>
-                        <div className=" md:w-[5.063rem]">
-                        </div>
-                        <div className=" md:w-[8.10rem]">
-                        {translatedMenuItems[8]}  {/* <FormattedMessage
-                                id="app.received"
-                                defaultMessage="Received"
-                            /> */}
-                        </div>
-                        <div className=" md:w-[8.03rem]">
-                        {translatedMenuItems[9]}   {/* <FormattedMessage
-                                id="app.supervisor"
-                                defaultMessage="Supervisor"
-                            /> */}
-                        </div>
-                        <div className=" md:w-[8.12rem]">
-                        {translatedMenuItems[10]}  {/* <FormattedMessage
-                                id="app.lead"
-                                defaultMessage="Lead"
-                            /> */}
-                        </div>
-                    </div>
-
-                    {/* <div class="overflow-x-auto h-[64vh]"> */}
-                    <InfiniteScroll
-                        dataLength={props.mediumDistributorOrder.length}
-                        next={handleLoadMoreMedium}
-                        hasMore={hasMore}
-                        loader={props.fetchingDistributorOfMedium ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"21vh"}
-                        style={{scrollbarWidth:"thin"}}
-                    >
-                        {props.mediumDistributorOrder.length ?
-                            <>
-                                {props.mediumDistributorOrder.map((item) => {
-                                    const currentdate = dayjs().format("DD/MM/YYYY");
-                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-                                    return (
-                                        <div >
-                                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                                                <div class="flex ">
-                                                    <div className=" flex  items-center md:w-[3.56rem] max-sm:w-full  ">
-                                                        <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
-
-                                                                    {item.priority === "High" && (
-                                                                        <div
-                                                                            class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
-                                                                    )}
-                                                                    {item.priority === "Medium" && (
-                                                                        <div
-                                                                            class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
-                                                                    {item.priority === "Low" && (
-                                                                        <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
-                                                                </div>
-                                                            </div>
-                                                        </Tooltip>
-                                                    </div>
-
-
-                                                    <div className=" flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
-                                                        <div class=" text-xs  font-poppins">
-                                                            <Badge
-                                                                class=" ml-2"
-                                                                size="small"
-                                                                count={item.count || 0}
-                                                                overflowCount={999}
-                                                            >
-                                                                <span
-                                                                    class="underline cursor-pointer font-bold text-[#1890ff]"
-                                                                    onClick={() => {
-                                                                        handleSetParticularOrderData(item);
-                                                                        props.handleOrderDetailsModal(true);
-                                                                    }}
-                                                                >{item.newOrderNo}</span>
-                                                            </Badge>
-                                                            &nbsp;&nbsp;
-                                                            {date === currentdate ? (
-                                                                <span
-                                                                    class="text-[tomato] text-[0.65rem] font-bold">
-                                                                    {<FormattedMessage
-                                                                        id="app.new"
-                                                                        defaultMessage="New"
-                                                                    />}
-                                                                </span>
-                                                            ) : null}
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    {date}
-                                                    </div>
-                                                    <div className=" flex  md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    </div>
-
-                                                    <div className=" flex   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs  font-poppins text-center">
-                                                            <MultiAvatar2
-                                                                primaryTitle={item.userName}
-                                                                imageURL={item.imageURL}
-                                                                imgWidth={"1.8rem"}
-                                                                imgHeight={"1.8rem"}
-                                                            />
-                                                        </div>
-                                                    </div>
-
-                                                    <div className=" flex   md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class="  font-poppins ">
-                                                            <Badge
-                                                                class=" ml-2"
-                                                                size="small"
-                                                                count={item.awbCount || 0}
-                                                                overflowCount={999}
-                                                            >
-                                                                <Button
-                                                                    style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
-                                                                    class=" bg-green-500"
-                                                                    onClick={() => {
-                                                                        handleCheckAwb();
-                                                                        handleSetParticularOrderData(item)
-                                                                    }
-                                                                    }
-                                                                ><span className='!text-[#faad14]'>AWB</span></Button>
-                                                            </Badge>
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex   md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div >
-                                                            <MultiAvatar
-                                                                primaryTitle={item.contactPersonName}
-                                                                imageURL={item.imageURL}
-                                                                imgWidth={"1.8rem"}
-                                                                imgHeight={"1.8rem"}
-                                                            />
-                                                        </div>
-
-                                                    </div>
-
-
-                                                    <div className=" flex  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs  font-poppins">
-                                                        <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
-                                                        </div>
-
-                                                    </div>
-                                                    <div className=" flex  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                                                        <div class=" text-xs  font-poppins">
-                                                        <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 1000).toFixed(2)}k
-                                                        </div>
-
-                                                    </div>
-
-
-                                                    <div className=" flex   items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs  font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />
-                                                            {visible && (item.orderId === particularRowData.orderId) ?
-                                                                <Input
-                                                                    type='text'
-                                                                    value={price}
-                                                                    onChange={(e) => handleChange(e.target.value)}
-                                                                />
-                                                                : (item.offerPrice / 1000).toFixed(2)}k
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div className=" flex  md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs  font-poppins">
-
-                                                        {visible && (item.orderId === particularRowData.orderId) ? (
-                                                            <>
-                                                                <div className=" flex justify-between flex-col">
-                                                                    <Button onClick={() => {
-                                                                        handleSubmitPrice()
-                                                                    }} >
-                                                                        <FormattedMessage
-                                                                            id="app.save"
-                                                                            defaultMessage="Save"
-                                                                        />
-                                                                    </Button>
-                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}><FormattedMessage
-                                                                        id="app.cancel"
-                                                                        defaultMessage="Cancel"
-                                                                    /></Button>
-                                                                </div>
-                                                            </>
-                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={<FormattedMessage
-                                                            id="app.updaterevisedprice"
-                                                            defaultMessage="Update Revised Price"
-                                                        />}>
-                                                            <PublishedWithChangesIcon
-                                                                onClick={() => {
-                                                                    handleUpdateRevisePrice()
-                                                                    handleSetParticularOrderData(item)
-                                                                }}
-                                                                className="!text-icon cursor-pointer text-[tomato]"
-                                                            />
-                                                        </Tooltip> : null}
-
-                                                    </div>
-
-                                                </div>
-                                                <div className=" flex   md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-poppins text-center">
-                                                        {item.locationName}
-                                                    </div>
-                                                </div>
-                                                <div className=" flex   md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div >
-                                                    {item.supervisorUserName ? 
-                                                    <MultiAvatar
-                                                                primaryTitle={item.supervisorUserName}
-                                                                imageURL={item.imageURL}
-                                                                imgWidth={"1.8rem"}
-                                                                imgHeight={"1.8rem"}
-                                                            /> : <div class="text-[red]">Tag Supervisor</div>}
-                                                        {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
-                                                            {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
-                                                        </span> */}
-                                                    </div>
-                                                </div>
-                                                <div className=" flex   md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-poppins text-center">
-                                                        {item.productionLocationName}
-                                                    </div>
-                                                </div>
-                                                <div className=" flex   md:w-[11.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    {item.inventoryReceiveInd ? null
-                                                        :
-                                                        <Tooltip title={<FormattedMessage
-                                                            id="app.selectinventorylocation"
-                                                            defaultMessage="Select Inventory Location"
-                                                        />}>
-                                                            <Button
-                                                                type='primary'
-                                                                className="cursor-pointer text-xs bg-[#3096e9] text-white"
-                                                                onClick={() => {
-                                                                    handleSetParticularOrderData(item);
-                                                                    props.handleOrderPickupModal(true);
-                                                                }}
-                                                            >
-                                                                <FormattedMessage
-                                                                    id="app.orderpickup"
-                                                                    defaultMessage="Pickup"
-                                                                />
-
-                                                            </Button>
-                                                        </Tooltip>}
-                                                </div>
-                                                <div class="flex items-center  justify-end  w-[8rem]">
-                                                    <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
-                                                    <div>
-                                                            <Tooltip title="PI List">
-                                                                <span
-                                                                    className="!text-icon cursor-pointer text-[green]"
-                                                                    onClick={() => {
-                                                                        props.handlePIModal(true);
-                                                                        handleSetParticularOrderData(item);
-                                                                    }}>PI</span>
-                                                                
-
-                                                            </Tooltip>
-                                                        </div>
-                                                        <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.notes"
-                                                                defaultMessage="Notes"
-                                                            />}>
-                                                                <NoteAltIcon
-                                                                    className="!text-icon cursor-pointer text-[green]"
-                                                                    onClick={() => {
-                                                                        props.handleNotesModalInOrder(true);
-                                                                        handleSetParticularOrderData(item);
-                                                                    }}
-                                                                />
-
-                                                            </Tooltip>
-                                                        </div>
-
-                                                        <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.status"
-                                                                defaultMessage="Status"
-                                                            />}>
-                                                                <EventRepeatIcon
-
-                                                                    className="!text-icon cursor-pointer"
-                                                                    onClick={() => {
-                                                                        props.handleStatusOfOrder(true);
-                                                                        handleSetParticularOrderData(item);
-                                                                    }}
-                                                                />
-                                                            </Tooltip>
-                                                        </div>
-
-                                                   
-                                                   
-
-                                                        <div>
-                                                            <Tooltip title="Collection">
-                                                                <PaidIcon
-                                                                    className="!text-icon cursor-pointer"
-                                                                    onClick={() => {
-                                                                        props.handlePaidModal(true);
-                                                                        handleSetParticularOrderData(item);
-                                                                    }}
-
-                                                                />
-                                                            </Tooltip>
-
-                                                        </div>
-                                                        { !item.inventoryReceiveInd ? (
-                                                            <div class=" cursor-pointer">
-                                                        <Tooltip title="Add Supervisor">
-                                                            <PersonAddAlt1
-                                                                className="!text-icon cursor-pointer"
-                                                                style={{ color: item.supervisorUserName ? "green" : "red" }}
-                                                                onClick={() => {
-                                                                    props.handleInventoryLocationInOrder(true)
-                                                                    handleSetParticularOrderData(item)
-                                                                }} />
-                                                        </Tooltip>
-                                                       </div> ) : null
-                                                    }
-
-                                                 
-                                                   
-                                                        <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.rating"
-                                                                defaultMessage="Rating"
-                                                            />}>
-                                                                <StarBorderIcon
-
-                                                                    className="!text-icon cursor-pointer" />
-                                                            </Tooltip>
-
-                                                        </div>
-                                                        <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.feedback"
-                                                                defaultMessage="Feedback"
-                                                            />}>
-                                                                <FeedbackIcon
-                                                                    className="!text-icon cursor-pointer text-[#10d512]"
-                                                                />
-                                                            </Tooltip>
-
-                                                        </div>
-                                                  
-
-                                                    
-                                                        <div>
-                                                            {item.inventoryReceiveInd ? null : <Tooltip title={<FormattedMessage
-                                                                id="app.updateorder"
-                                                                defaultMessage="Update Order"
-                                                            />}>
-                                                                <BorderColorIcon
-                                                                    className=" !text-icon cursor-pointer text-[tomato]"
-                                                                    onClick={() => {
-                                                                        props.setEditOrder(item)
-                                                                        props.handleUpdateOrder(true)
-                                                                        handleSetParticularOrderData(item)
-                                                                    }}
-                                                                />
-                                                            </Tooltip>}
-                                                        </div>
-                                                        <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.delete"
-                                                                defaultMessage="Detele"
-                                                            />}>
-                                                                <DeleteOutlined
-                                                                    className="!text-icon cursor-pointer text-[red]"
-                                                                    onClick={() => { props.removeOrderAcc(item.orderId) }}
-                                                                />
-                                                            </Tooltip>
-
-                                                        </div>
-
-                                                        </div>
-                                                </div>
-
-                                            </div>
-
-                                            {checkAwb && (item.orderId === particularRowData.orderId) &&
-                                                <SubOrderList orderId={particularRowData.orderId} />
-                                            }
-                                        </div>
-
-
-                                    )
-                                })}
-                            </> : !props.mediumDistributorOrder.length && !props.fetchingDistributorOfMedium ? <NodataFoundPage /> : null}
-                    </InfiniteScroll>
-                    {/* </div> */}
-
-                </div>
-            </div >
-         
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  bg-transparent font-bold sticky z-10">
-                    <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+                    <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
                     {translatedMenuItems[13]}   {/* Normal */}
                          </div>
                         <div className=" md:w-[11.41rem] ml-2">
-                            {/* <FormattedMessage
-                                id="app.orderno"
-                                defaultMessage="Order ID"
-                            /> */}
+                        
                              {translatedMenuItems[1]}ID
                         </div>
                         <div className=" md:w-[5.012rem]">
@@ -1094,69 +637,43 @@ const AccountOrderTable = (props) => {
                         {translatedMenuItems[2]}  {/* LOB */}
                         </div>
                         <div className=" md:w-[5.08rem]">
-                        {translatedMenuItems[3]}   {/* <FormattedMessage
-                                id="app.owner"
-                                defaultMessage="Owner"
-                            /> */}
+                        {translatedMenuItems[3]}   
                         </div>
 
                         <div className="md:w-[5.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
-                        {translatedMenuItems[4]}   {/* <FormattedMessage
-                                id="app.contact"
-                                defaultMessage="Contact"
-                            /> */}
+                        {translatedMenuItems[4]}
                         </div>
                         <div className="md:w-[8.11rem]">
-                        {translatedMenuItems[5]}  {/* <FormattedMessage
-                                id="app.quoted"
-                                defaultMessage="Quoted"
-                            /> */}
+                        {translatedMenuItems[5]}  
                         </div>
                         <div className="md:w-[5.09rem]">
-                        {translatedMenuItems[6]}  {/* <FormattedMessage
-                                id="app.finalprice"
-                                defaultMessage="Final"
-                            /> */}
+                        {translatedMenuItems[6]}  
                         </div>
                         <div className="w-[5.076rem]">
-                        {translatedMenuItems[7]}    {/* <FormattedMessage
-                                id="app.revisedprice"
-                                defaultMessage="Revised"
-                            /> */}
+                        {translatedMenuItems[7]}   
                         </div>
                         <div className=" md:w-[5.063rem]">
                         </div>
                         <div className=" md:w-[8.10rem]">
-                        {translatedMenuItems[8]}  {/* <FormattedMessage
-                                id="app.received"
-                                defaultMessage="Received"
-                            /> */}
+                        {translatedMenuItems[8]}  
                         </div>
                         <div className=" md:w-[8.03rem]">
-                        {translatedMenuItems[9]}   {/* <FormattedMessage
-                                id="app.supervisor"
-                                defaultMessage="Supervisor"
-                            /> */}
+                        {translatedMenuItems[9]}   
                         </div>
                         <div className=" md:w-[8.12rem]">
-                        {translatedMenuItems[10]}  {/* <FormattedMessage
-                                id="app.lead"
-                                defaultMessage="Lead"
-                            /> */}
+                        {translatedMenuItems[10]}  
                         </div>
-
-                        
                     </div>
 
-                    {/* <div class="overflow-x-auto h-[64vh]"> */}
+                   
                     <InfiniteScroll
                         dataLength={props.lowDistributorOrder.length}
                         next={handleLoadMoreLow}
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfLow ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"21vh"}
+                        height={"33vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
                         {props.lowDistributorOrder.length ?
@@ -1529,7 +1046,7 @@ const AccountOrderTable = (props) => {
                 </div>
             </div >
            
-            <Suspense fallback={<BundleLoader />}>
+          
                 <AddLocationInOrder
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText} 
@@ -1597,7 +1114,7 @@ const AccountOrderTable = (props) => {
                     piButtonModal={props.piButtonModal}
                 />
 
-            </Suspense>
+           
         </>
     )
 }
