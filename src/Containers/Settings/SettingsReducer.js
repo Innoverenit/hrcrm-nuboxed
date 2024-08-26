@@ -416,6 +416,12 @@ addingShipperCategoryError: false,
   setEditingEmail: {},
 
 
+
+
+  updateWords:false,
+  updateWordsError:false,
+
+
   fetchingTaskStagesForRecruit: false,
   fetchingTaskStagesForRecruitError: false,
   recruitTaskStages: [],
@@ -643,6 +649,10 @@ addingShipperCategoryError: false,
   deleteOpportunityProcessDataError: false,
 
   addDrawerRecruitmentModal: false,
+
+
+  fetchingWordSearchDataError:false,
+  fetchingWordSearchData:false,
 
   fetchingProcessStagesForOpportunity: false,
   fetchingProcessStagesForOpportunityError: false,
@@ -2498,6 +2508,31 @@ export const settingsReducer = (state = initialState, action) => {
       };
 
 
+
+      case types.UPDATE_WORDS_REQUEST:
+        return { ...state, updateWords: true };
+      case types.UPDATE_WORDS_SUCCESS:
+        return {
+          ...state,
+          updateWords: false,
+          // updatePartnerModal: false,
+          langWords: state.langWords.map((item) => {
+            if (item.id === action.payload.id) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+        };
+      case types.UPDATE_WORDS_FAILURE:
+        return {
+          ...state,
+          updateWords: false,
+          updateWordsError: true,
+        };
+  
+
+
       case types.EMPTY_SKILL_LEVEL:
         return { ...state, matrixData: [] };
 
@@ -3223,6 +3258,19 @@ export const settingsReducer = (state = initialState, action) => {
         linkingDealsProcessPublish: false,
         linkingDealsProcessPublishError: true,
       };
+
+
+
+      case types.GET_WORDS_SEARCH_REQUEST:
+        return { ...state, fetchingWordSearchDataError: true };
+      case types.GET_WORDS_SEARCH_SUCCESS:
+        return {
+          ...state,
+          fetchingWordSearchDataError: false,
+          langWords: action.payload,
+        };
+      case types.GET_WORDS_SEARCH_FAILURE:
+        return { ...state, fetchingWordSearchDataError: true };
 
 
     case types.LINK_DEALS_STAGES_PUBLISH_REQUEST:

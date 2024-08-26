@@ -262,11 +262,7 @@ const AddressTable = (props) => {
                 {editingIndex === index ? (
                   <>
                     <FaSave onClick={() => handleSave(index)} />
-                    {/* <Button 
-                    
-                    onClick={() => setEditingIndex(null)}
-                    >
-                        Cancel</Button> */}
+                   
                         <Button onClick={() => handleCancel(index)}>Cancel</Button>
                   </>
                 ) : (
