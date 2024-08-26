@@ -45,13 +45,14 @@ class CategoryActivity extends Component {
                 tab={
                   <>
                     <i className="far fa-calendar-check"></i>
-                    <Badge
-                count={this.props.eventCount.EventTypeCount}
-                overflowCount={999}
-              >
-                    <span className="ml-1 font-poppins">Event 
+                    <span className="ml-1 font-poppins text-sm">Event 
                     {/* <span className="text-red-500 font-bold">{this.props.eventCount.EventTypeCount}</span> */}
                     </span>
+                    <Badge
+                count={this.props.eventCount.EventTypeCount}
+                overflowCount={999} offset={[ 0, -16]}
+              >
+                   
                     </Badge>
                   </>
                 }
@@ -61,13 +62,14 @@ class CategoryActivity extends Component {
                 tab={
                   <>
                     <i className="fas fa-tasks"></i>
-                    <Badge
-                count={this.props.taskCount.TaskTypeCount}
-                overflowCount={999}
-              >
-                    <span className="ml-1 font-poppins">Task 
+                    <span className="ml-1 font-poppins text-sm">Task 
                     {/* <span className="text-red-500 font-bold">{this.props.taskCount.TaskTypeCount}</span> */}
                     </span>
+                    <Badge
+                count={this.props.taskCount.TaskTypeCount}
+                overflowCount={999} offset={[ 0, -16]}
+              >
+                   
                     </Badge>
                   </>
                 }

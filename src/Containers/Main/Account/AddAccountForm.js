@@ -65,24 +65,22 @@ const AddAccountForm = ({
   //     try {
   //       setLoading(true); 
   //       const itemsToTranslate = [
-  //           "Name",
-  //           "Dial Code",
-  //           "Phone",
-  //           "Website",
-  //           "Country",
-  //           "Tax Registration",
-  //           "Insurancegrade",
-  //           "Type",
-  //           "Creditlimit",
-  //           "Currency",
-  //           "Payment Term Days",
-  //           "Category",
-  //           "Custom Payment",
-  //           "Assigned",
-  //           "Description",
-  //           "Create"
-
-
+  //        " Name",
+  //                   "Dial Code",
+  //                   "Phone",
+  //                   "Website",
+  //                   "Country",
+  //                   "Tax Registration",
+  //                   "Insurancegrade",
+  //                   "Type",
+  //                   "Creditlimit",
+  //                   "Currency",
+  //                   "Payment Term Days",
+  //                   "Category",
+  //                   "Custom Payment",
+  //                   "Assigned",
+  //                   "Description",
+  //                      "Create"
   //     ];
 
   //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

@@ -76,14 +76,14 @@ class OrderTab extends Component {
                   tab={
                     <>
                       < HandymanIcon  className=" !text-icon" />
-                      <Badge
-                count={this.props.itemTaskCount.ItemTaskCount}
-                overflowCount={999}
-              >
-                      <span class=" ml-1" >
+                     
+                      <span class=" ml-1 text-sm" >
                       Repair Task
                       </span>
-                      </Badge>
+                      <Badge
+                count={this.props.itemTaskCount.ItemTaskCount}
+                overflowCount={999} offset={[ 0, -16]}
+              > </Badge>
                     </>
                   }
                   key="0"
@@ -95,14 +95,15 @@ class OrderTab extends Component {
                   tab={
                     <>
                      
-                      <Badge
-                count={this.props.shipByCount.shipByCount}
-                overflowCount={999}
-              >
-                     <LocalShippingIcon className=" !text-icon"/> <span class=" ml-1">
+                      
+                     <LocalShippingIcon className=" !text-icon"/> <span class=" ml-1 text-sm">
                         Ship By
                       </span>
-                      </Badge>
+                     
+                      <Badge
+                count={this.props.shipByCount.shipByCount}
+                overflowCount={999} offset={[ 0, -16]}
+              > </Badge>
                     </>
                   }
                   key="1"
@@ -115,7 +116,7 @@ class OrderTab extends Component {
                   tab={
                     <>
                      
-                      <QuizIcon className=" !text-icon"/> <span class=" ml-1">
+                      <QuizIcon className=" !text-icon"/> <span class=" ml-1 text-sm">
                         Brand Model
                       </span>
                     </>
@@ -130,7 +131,7 @@ class OrderTab extends Component {
                   tab={
                     <>
                       <SourceIcon  className=" !text-icon"/>
-                      <span class=" ml-1">
+                      <span class=" ml-1 text-sm">
                      Category
                       </span>
                     </>
@@ -156,13 +157,14 @@ class OrderTab extends Component {
                   tab={
                     <>
                       <VerifiedUserIcon className=" !text-icon"/>
-                      <Badge
-                count={this.props.qualityCount.QualityCount}
-                overflowCount={999}
-              >
-                      <span class=" ml-1">
+                      <span class=" ml-1 text-sm">
                        Quality
                       </span>
+                      <Badge
+                count={this.props.qualityCount.QualityCount}
+                overflowCount={999} offset={[ 0, -16]}
+              >
+                      
                       </Badge>
                     </>
                   }
@@ -174,13 +176,14 @@ class OrderTab extends Component {
                   tab={
                     <>
                       < FeedbackIcon className=" !text-icon"/>
-                      <Badge
-                count={this.props.feedBackCount.FeedbackCount}
-                overflowCount={999}
-              >
-                      <span class=" ml-1">
+                      <span class=" ml-1 text-sm">
                        FeedBack
                       </span>
+                      <Badge
+                count={this.props.feedBackCount.FeedbackCount}
+                overflowCount={999} offset={[ 0, -16]}
+              >
+                      
                       </Badge>
                     </>
                   }

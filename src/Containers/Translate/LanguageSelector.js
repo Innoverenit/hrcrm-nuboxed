@@ -171,18 +171,20 @@ function LanguageSelector({ onLanguageChange,supportedLanguages,selectedLanguage
 
   return (
     <div>
-      <select class="notranslate w-14" value={selectedLanguage} onChange={onLanguageChange}>
+      <select class="notranslate w-18" value={selectedLanguage} onChange={onLanguageChange}>
       
-        <option value="English">EN</option>
-        <option value="Dutch">NL</option>
-        <option value="German">DE</option>
-        <option value="French">FR</option>
-        <option value="Spanish">ES</option>
-        <option value="Italian">IT</option>
-        <option value="Polish">PL</option>
+        <option value="English">English</option>
+        <option value="Dutch">Nederlands</option>
+        <option value="German">Deutsch</option>
+        <option value="French">Français</option>
+        <option value="Spanish">Español</option>
+        <option value="Italian">Italiano</option>
+        <option value="Polish">Polski</option>
         <option value="Arabic">عربي</option>
         <option value="Hindi">हिंदी</option>
         <option value="Chinese">中国人</option>
+        <option value="Turkish">Türkçe</option>
+
         
       </select>
     </div>
