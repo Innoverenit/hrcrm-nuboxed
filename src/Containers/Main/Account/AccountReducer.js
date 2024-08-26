@@ -677,6 +677,8 @@ const initialState = {
 
           distributorAccountCrediting: false,
           distributorAccountCreditingError:false,
+          paidUnpaidToggling: false,
+                                    paidUnpaidTogglingError:false,
 
 };
 
@@ -3830,8 +3832,30 @@ export const distributorReducer = (state = initialState, action) => {
                                   distributorAccountCreditingError: true,
                                 };
                 
-
+                                case types.PAID_UNPAID_TOGGLE_REQUEST:
+                                  return { ...state, paidUnpaidToggling: true };
+                                case types.PAID_UNPAID_TOGGLE_SUCCESS:
+                                  return {
+                                    ...state,
+                                    paidUnpaidToggling: false,
+                                    generatedInvoice: state.customerListByUser.map((item) => {
+                                      if (item.id === action.payload.id) {
+                                        return action.payload;
+                                      } else {
+                                        return item;
+                                      }
+                                    }),
+                                  };
+                                case types.PAID_UNPAID_TOGGLE_FAILURE:
+                                  return {
+                                    ...state,
+                                    paidUnpaidToggling: false,
+                                    paidUnpaidTogglingError: true,
+                                  };
+                  
   
+
+
     default:
       return state;
   }

@@ -117,11 +117,8 @@ function SuppliesTable(props) {
           "Re-order ",//6
           "Created",//7
           "Process",//8
-          " Recommend",//9
-          "Featured "//10
-      
-       
-          
+          "Recommend",//9
+          "Featured",//10         
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -159,7 +156,7 @@ function SuppliesTable(props) {
               Supplies ID 
               {translatedMenuItems[1]}
               </div> */}
-            <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Name */}
               {translatedMenuItems[2]}
               </div>
@@ -220,7 +217,7 @@ function SuppliesTable(props) {
                       <div className="flex rounded justify-center bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex  w-[10.91rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
+                            <div className=" flex  w-[7rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
                               <div className="flex max-sm:w-wk max-sm:justify-between ">
                                 <div className=" flex items-center w-[3rem]">
                                   {item.imageId && (
@@ -265,7 +262,7 @@ function SuppliesTable(props) {
                                 </div>
                               </div>
                             </div>
-                            <div className=" flex  w-[7.12rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[15rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {item.suppliesName}
                               </div>

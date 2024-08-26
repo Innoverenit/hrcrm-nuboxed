@@ -4643,7 +4643,7 @@ export const getAccountInvoiveList = (distributorId) => (dispatch) => {
     type: types.GET_ACCOUNT_INVOICE_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderPayment/noInvoice/${distributorId}`, {
+    .get(`${base_url2}/invoice/noInvoice/${distributorId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -4669,7 +4669,7 @@ export const getGeneratedInvoiveList = (distributorId) => (dispatch) => {
     type: types.GET_GENERATED_INVOICE_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderPayment/invoiceList/${distributorId}`, {
+    .get(`${base_url2}/invoice/invoiceList/${distributorId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -5014,3 +5014,30 @@ export const distributorAccountCredit = ( data,distributorId) => (dispatch, getS
       });
     })
 }
+
+export const paidUnpaidInvoice = ( data,procureOrderInvoiceId) => (dispatch, getState) => {
+  dispatch({
+    type: types.PAID_UNPAID_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/invoice/procure/${procureOrderInvoiceId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.PAID_UNPAID_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.PAID_UNPAID_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+}
+
