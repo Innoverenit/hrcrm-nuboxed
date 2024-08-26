@@ -33,6 +33,8 @@ import MaterialFeatureToggle from "./MaterialFeatureToggle";
 import MaterialFifoToggle from "./MaterialFifoToggle";
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import MaterialRecommendToggle from "./MaterialRecommendToggle";
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import MaterialComplementaryDrawer from "./MaterialComplementaryDrawer";
 
 const PriceModal = lazy(() => import("./PriceModal"));
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
@@ -51,6 +53,7 @@ function SuppliesTable(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [openComplementary,setopenComplementary] = useState(false);
 
   const openModal = () => {
     setModalVisible(true);
@@ -460,7 +463,13 @@ function SuppliesTable(props) {
                                 <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
                               </Popconfirm>
                             </div>
-
+                            <div>
+                             <FactCheckIcon
+                             className="!text-icon cursor-pointer text-[pink]"
+                              onClick={()=>{
+                                setopenComplementary(true);}}
+                             />
+                              </div>
                           </div>
 
                         </div>
@@ -522,7 +531,11 @@ function SuppliesTable(props) {
          modalVisible={modalVisible}
        closeModal={closeModal}
         />
-
+ <MaterialComplementaryDrawer
+   particularDiscountData={particularDiscountData}
+      openComplementary={openComplementary}
+      setopenComplementary={setopenComplementary}
+      />
       </Suspense>
 
     </>

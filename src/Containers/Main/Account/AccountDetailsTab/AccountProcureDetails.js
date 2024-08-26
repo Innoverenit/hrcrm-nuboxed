@@ -228,6 +228,7 @@ const handleGenerateInvoice= async () => {
     } finally {
       setLoading(false);
     }
+    setInvoices("");
   }; 
 
 
@@ -484,7 +485,7 @@ const handleGenerateInvoice= async () => {
                 </div>
               </div>
              
-              <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+              {/* <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                    <input
@@ -499,9 +500,9 @@ const handleGenerateInvoice= async () => {
                     <div className="font-normal text-xs  font-poppins"> {item.invoice} </div>
                   )}
                 </div>
-              </div>
+              </div> */}
               <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
-                <div className="flex">
+                {/* <div className="flex">
                   {editContactId === item.id ? (
                     <>
                       <Button onClick={() => handleUpdate(item.id,)}>
@@ -519,7 +520,7 @@ const handleGenerateInvoice= async () => {
                       style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
                     />
                   )}
-                </div>
+                </div> */}
                 <div>
                   <StyledPopconfirm
                     title="Do you want to delete?"
@@ -541,6 +542,17 @@ const handleGenerateInvoice= async () => {
             </div>
           );
         })}
+         <div className="flex  md:w-[4rem] max-sm:flex-row ">
+                <div className="text-xs  font-poppins">
+                   <input
+                   placeholder="invoice"
+                   style={{border:"2px solid black"}}
+                   type="text"
+                   value={invoices}
+                   onChange={(e) => setInvoices(e.target.value)}
+                 />
+                </div>
+              </div>
           <Button
                         type='primary'
                         onClick={handleGenerateInvoice}

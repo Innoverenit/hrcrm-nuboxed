@@ -149,12 +149,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                     {props.user.repairInd && <TabPane
                         tab={
                             <>
-                                <Badge
-                                    size="small"
-                                    count={(props.orderRecordData.order) || 0}
-                                    overflowCount={999}
-                                >
-                                    <span onClick={() => handleOrderClick(false)}>
+                             <span onClick={() => handleOrderClick(false)}>
                                         <Tooltip title="Orders">
                                             <DynamicFeedIcon
                                                 className="!text-icon  cursor-pointer"
@@ -164,7 +159,12 @@ props.getInvoiceCount(props.distributorData.distributorId)
                                                 </span>
                                         </Tooltip>
                                     </span>
-                                </Badge>
+                                <Badge
+                                    size="small"
+                                    count={(props.orderRecordData.order) || 0}
+                                    overflowCount={999}
+                                    offset={[ 0, -16]}
+                                ></Badge>
                                 &nbsp;
                                 {activeKey === "3" && (
                                     <Tooltip title="Completed Orders">
@@ -210,13 +210,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                    <TabPane
                         tab={
                             <>
-                                <Badge
-                                    size="small"
-                                    count={(props.procureRecordData.order) || 0}
-                                    overflowCount={999}
-                                >
-                                   
-                                        <Tooltip title={translatedMenuItems[12]}>
+                             <Tooltip title={translatedMenuItems[12]}>
                                             <ShopIcon
                                                 className="!text-icon  cursor-pointer"
                                             />
@@ -225,7 +219,12 @@ props.getInvoiceCount(props.distributorData.distributorId)
                                             {/* Procure */}
                                                 </span>
                                         </Tooltip>
-                 
+                                <Badge
+                                    size="small"
+                                    count={(props.procureRecordData.order) || 0}
+                                    overflowCount={999}
+                                    offset={[ 0, -16]}
+                                >
                               </Badge>
                                 &nbsp;  &nbsp;
                             
@@ -518,30 +517,20 @@ props.getInvoiceCount(props.distributorData.distributorId)
                     <TabPane
                         tab={
                             <>
+                            <span>
+                                   <ReceiptIcon className="!text-icon"/>
+                                   {translatedMenuItems[10]}
+                                </span>
                             <Badge
             size="small"
             count={( props.invoiceCount.paymentCount) || 0}
             overflowCount={999}
+            offset={[ 0, -16]}
           >
-                                <span>
-                                   <ReceiptIcon className="!text-icon"/>
-                                   {translatedMenuItems[10]}
-                                   {/* Invoice */}
-                                </span>
+                                
                                 </Badge>
                                 {activeKey === "11" && (
-                                    <>
-                                        {/* <Tooltip title="Add Contact">
-                                            <AddIcon
-                                                type="plus"
-                                                tooltipTitle="Create"
-                                                onClick={() => {
-                                                    //  props.handleDistributorContactModal(true);
-                                                    props.handleSupplierContactModal(true)
-                                                }}
-                                                className="!text-icon  cursor-pointer ml-1"
-                                            />
-                                        </Tooltip> */}
+                                    <>  
                                     </>
                                 )}
                                 

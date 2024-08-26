@@ -75,7 +75,7 @@ function AccountTable(props) {
 
   useEffect(() => {
     props.getCustomerByUser(props.userId, page);
-    setPage(page + 1);
+    // setPage(page + 1);
   }, []);
   function handleCurrentRowData(datas) {
     setRowData(datas);
@@ -222,13 +222,13 @@ function AccountTable(props) {
                                 />
                               </div>
                               <div class="w-[0.25rem]"></div>
-                              <div class="max-sm:w-auto flex items-center">
+                             
                                 <Tooltip>
                                   <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                    <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center">
+                                  
 
                                       <Link
-                                        class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-xs text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
+                                        class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-xs text-[#042E8A] flex items-center cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
                                         to={`distributor/${item.distributorId}`}
                                         title={`${item.name}`}>
                                         {item.name.substring(0, 25)}
@@ -239,10 +239,10 @@ function AccountTable(props) {
                                         </div>
                                       ) : null}
 
-                                    </div>
+                                
                                   </div>
                                 </Tooltip>
-                              </div>
+                        
                             </div>
                           </div>
                           <div className=" flex  items-center  w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
