@@ -366,7 +366,7 @@ class Dashboard extends Component {
 
 
     </div>
-    </div>
+     </div>
 
      <div class="w-[47%] max-sm:w-wk">
      <div class=" flex flex-col" >

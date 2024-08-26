@@ -1,8 +1,9 @@
 import { Badge, Tag, Tooltip, Avatar, Button } from "antd";
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
 import { connect } from "react-redux";
 import { Tabs } from "antd";
+import { BundleLoader } from "../../../Components/Placeholder";
 import {
   setSelectedTimeIntervalReport,
   setTimeRangeReport,
@@ -18,7 +19,7 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import ShopIcon from '@mui/icons-material/Shop'
-import DashboardShareForm from "./DashboardShareForm";
+const DashboardShareForm=lazy(()=>import("./DashboardShareForm"));
 const { TabPane } = Tabs;
 const DashboardActionLeft = (props) => {
   //   const tab=[
@@ -52,25 +53,19 @@ const DashboardActionLeft = (props) => {
   };
   return (
     <>
-      <div class=" flex items-center "  >
+      <div class=" flex items-center w-[60vw]"  >
         {user.department === "Management" && (
           <>
-
-
-
           </>
         )}
 
         {user.dashboardFullListInd === true && (
-          <Tag
+          <Tag className=" cursor-pointer text-center font-poppins border-[tomato]"
             color={showShareForm && viewType === "ALL" ? "tomato" : "#FFA500"}
             
             style={{
-              cursor: "pointer",
               fontWeight: viewType === "ALL" ? "tomato" : "#FFA500",
-              textAlign: "center",
-              fontFamily: "poppins",
-              borderColor: "tomato",
+              
             }}
             onClick={() => {
               setDashboardViewType("ALL");
@@ -85,10 +80,10 @@ const DashboardActionLeft = (props) => {
           </Tag>
         )}
 
-        {viewType === "ALL" && showShareForm && <DashboardShareForm />}
+        {viewType === "ALL" && showShareForm &&<Suspense fallback={<BundleLoader />}><DashboardShareForm /></Suspense> }
 
 
-        <div className="flex w-[10rem] ml-4 items-center">
+        <div className="flex w-[22rem] ml-4 items-center">
           {viewType === "ALL" && showShareForm ? (
             // Render all icons except "My Details"
             <>
@@ -158,10 +153,7 @@ const DashboardActionLeft = (props) => {
                   >
                     <Tooltip title="Prospect">
                       <Avatar style={{ background: activeButton === "Customer" ? "#f279ab" : "#4bc076" }}>
-                        <ApartmentIcon className="text-white !text-icon"
-
-
-                        />
+                        <ApartmentIcon className="text-white !text-icon"/>
                       </Avatar>
                     </Tooltip>
                   </span>
@@ -185,9 +177,7 @@ const DashboardActionLeft = (props) => {
                   >
                     <Tooltip title="Customer">
                       <Avatar style={{ background: activeButton === "Accounts" ? "#f279ab" : "#4bc076" }}>
-                        <AcUnitIcon className="text-white !text-icon"
-
-                        />
+                        <AcUnitIcon className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>
                   </span>
@@ -209,9 +199,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >  <Tooltip title="Production">
                       <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#4bc076" }}>
-                        <DynamicFeedIcon className="text-white !text-icon"
-
-                        />
+                        <DynamicFeedIcon className="text-white !text-icon"/>
                       </Avatar>
                     </Tooltip>
                   </span>
@@ -255,8 +243,7 @@ const DashboardActionLeft = (props) => {
                   >
                     <Tooltip title="Investors">
                       <Avatar style={{ background: activeButton === "Investors" ? "#f279ab" : "#4bc076" }}>
-                        <LocationCityIcon className="text-white !text-icon"
-                        />
+                        <LocationCityIcon className="text-white !text-icon"/>
                       </Avatar>
                     </Tooltip>
                   </span>
@@ -278,8 +265,7 @@ const DashboardActionLeft = (props) => {
                   >
                     <Tooltip title="RecruitPro">
                       <Avatar style={{ background: activeButton === "RecruitPro" ? "#f279ab" : "#4bc076" }}>
-                        <RecentActorsIcon className="text-white !text-icon"
-                        />
+                        <RecentActorsIcon className="text-white !text-icon"  />
                       </Avatar>
                     </Tooltip>
                   </span>
@@ -418,10 +404,7 @@ const DashboardActionLeft = (props) => {
                   >
                     <Tooltip title="Prospect">
                       <Avatar style={{ background: activeButton === "Customer" ? "#f279ab" : "#4bc076" }}>
-                        <ApartmentIcon className="text-white !text-icon"
-
-
-                        />
+                        <ApartmentIcon className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>
                   </span>
@@ -580,7 +563,7 @@ const DashboardActionLeft = (props) => {
 
 
             {activeButton === "Regional" || activeButton === "multiOrg" ? (
-              <div class="ml-[14rem]  max-sm:hidden">
+              <div class=" flex justify-end  ml-2  max-sm:hidden">
                 <Tabs type="card" activeKey={props.activeTab} onChange={props.handleTabClick}>
                   {props.tab.map((tabs) => (
                     <TabPane key={tabs} tab={tabs}></TabPane>
@@ -588,9 +571,8 @@ const DashboardActionLeft = (props) => {
                 </Tabs>
               </div>
             ) : (
-              <div class="ml-[14rem]">
-                <TimeInterval
-                  style={{ fontSize: "0.67" }}
+              <div class="flex justify-end ml-2">
+                <TimeInterval className=" text-xs"
                   times={dateRangeList}
                   handleClick={setSelectedTimeIntervalReport}
                 />
