@@ -36,6 +36,7 @@ function AccountInvoiceTable(props) {
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [particularRowData, setParticularRowData] = useState({});
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
@@ -45,7 +46,7 @@ function AccountInvoiceTable(props) {
     'Order', // 1
     'Value', // 2
     'Type', // 3
-    ' Status', // 4
+    'Status', // 4
    
 
 
@@ -383,9 +384,9 @@ function AccountInvoiceTable(props) {
                          </div>
                     <div class=" w-[8.5rem]">{translatedMenuItems[0]} ID</div>
                         <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} ID</div>
-                        <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} </div>
+                        {/* <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} </div> */}
                         <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
-                        <div className="md:w-[3.8rem]">{translatedMenuItems[3]}</div>
+                        {/* <div className="md:w-[3.8rem]">{translatedMenuItems[3]}</div> */}
                         <div className=" md:w-[8.8rem] ">{translatedMenuItems[4]}</div>
                       
                     </div>
@@ -427,25 +428,25 @@ function AccountInvoiceTable(props) {
                                                     <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         
-                                                                {item.orderId}
+                                                                {item.newOrderNo}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    {/* <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                          {item.orderPaymentType}
                                                         </div>
-                                                    </div>
+                                                    </div> */}
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {item.paymentAmount}
+                                                            {item.totalValue}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                       
-                            <PaidUnpaidAccountInvoiceToggle item={item}/>
+                            <PaidUnpaidAccountInvoiceToggle item={item} paymentInd={item.paymentInd}/>
                           </div>
                                                    
                                                     </div>

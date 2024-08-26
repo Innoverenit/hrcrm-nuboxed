@@ -2,50 +2,50 @@ import React, { useState,useEffect } from "react";
 import { Switch, Popconfirm } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { featureMaterialToggle } from "../Supplies/SuppliesAction";
+import { paidUnpaidInvoice } from "../AccountAction";
 
 function PaidUnpaidAccountInvoiceToggle (props) {
 
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(props.paymentInd);
 
-//   function handleToggleClick(item) {
-//     if (props.featureInd) {
-//       props.featureMaterialToggle({
-//         suppliesId: props.suppliesId,
-//         featureInd: props.featureInd ? false : true,
+  function handleToggleClick(item) {
+    if (props.paymentInd) {
+      props.paidUnpaidInvoice({
+        userId: props.userId,
+        paymentInd: props.paymentInd ? false : true,
          
-//       },props.suppliesId);
-//       setToggle( props.featureInd ? false : true);
+      },props.userId);
+      setToggle( props.paymentInd ? false : true);
  
-//     } else {
-//       props.featureMaterialToggle({
-//         suppliesId: props.suppliesId,
-//         featureInd: props.featureInd ? false : true,
-//       },props.suppliesId);
-//       setToggle( props.featureInd ? false : true);
-//     }
-//   }
+    } else {
+      props.paidUnpaidInvoice({
+        userId: props.userId,
+        paymentInd: props.paymentInd ? false : true,
+      },props.userId);
+      setToggle( props.paymentInd ? false : true);
+    }
+  }
 
-//   function handleCancel() {
-//     if (props.featureInd) {
-//       setToggle(true);
-//     } else {
-//       setToggle(false);
-//     }
-//   }
+  function handleCancel() {
+    if (props.paymentInd) {
+      setToggle(true);
+    } else {
+      setToggle(false);
+    }
+  }
 
   return (
     <div>
       <Popconfirm
         title="Are you sure you want to change the status?"
-        // onConfirm={() => handleToggleClick()}
-        // onCancel={handleCancel}
+        onConfirm={() => handleToggleClick()}
+        onCancel={handleCancel}
         okText="Yes"
         cancelText="No"
       >
         <Switch
          className="toggle-clr"
-         checked={toggle}
+         checked={toggle || props.paymentInd}
          isLoading={true}
           checkedChildren="Paid"
           unCheckedChildren="Unpaid"
@@ -63,7 +63,7 @@ const mapStateToProps = ({ auth, supplies }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   featureMaterialToggle,
+      paidUnpaidInvoice,
     },
     dispatch
   );
