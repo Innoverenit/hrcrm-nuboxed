@@ -625,7 +625,7 @@ const AccountOrderTable = (props) => {
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
-                    {translatedMenuItems[13]}   {/* High */}
+                    {translatedMenuItems[12]}   {/* High */}
                          </div>
                         <div className=" md:w-[11.41rem] ml-2">
                             {/* <FormattedMessage
@@ -1078,7 +1078,7 @@ const AccountOrderTable = (props) => {
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  bg-transparent font-bold sticky z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
-                    {translatedMenuItems[14]}   {/* Normal */}
+                    {translatedMenuItems[13]}   {/* Normal */}
                          </div>
                         <div className=" md:w-[11.41rem] ml-2">
                             {/* <FormattedMessage
@@ -1088,7 +1088,7 @@ const AccountOrderTable = (props) => {
                              {translatedMenuItems[1]}ID
                         </div>
                         <div className=" md:w-[5.012rem]">
-                        Created Date  
+                        {translatedMenuItems[14]}
                         </div>
                         <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}

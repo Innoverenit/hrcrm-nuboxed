@@ -19,7 +19,7 @@ import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {geCustomerCampaignEvent,addCustomerCampaignEvent} from "../../../../CustomerAction";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-// const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
+
 
 const { Option } = Select;
 
@@ -29,7 +29,45 @@ function CampaignCardView (props) {
   const [isCopied, setIsCopied] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [data, setData] = useState([]);
- 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "First Name",//0
+          "Middle Name",//1
+          "Last Name",//2
+          "Email",//3
+          "Dial Code",//4
+          "Phone No",//5
+          "Company",//6
+          "Url",//7
+          "Share Quantity",//8
+          "Share Value",//9
+          "Category",//10
+          "Date",//11
+          "Currency",//12
+          "Assigned",//13
+          // "Address",
+          // "Street",//15
+          // "Zip Code",//16
+          // "City",//17
+          // "State",//18
+          // "Country",//19
+          "Notes",//14
+          "Create"
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
          props.geCustomerCampaignEvent(props.customer.customerId,page);
         setPage(page + 1);
@@ -158,13 +196,7 @@ if(fetchingCustomerCampaign){
                                       <div class="text-[0.82rem]  font-poppins">
                                       {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                       </div>
-                                 
-                                 
-                                     
-                                  
-                                 
-                                    
-  
+                                                                                                                                                                                                        
                                       <div class=" text-[0.82rem]  font-poppins">
                                       <Avatar.Group
                      maxCount={7}
@@ -268,18 +300,8 @@ if(fetchingCustomerCampaign){
      <EventNoteIcon className="text-icon cursor-pointer" />
    </Tooltip>
                    </div>
-                   
-                   {/* <Tooltip title="Edit">
-                <BorderColorIcon
-                  type="edit"
-                  className="!text-xl cursor-pointer text-[tomato]"
-                  onClick={() => {
-                    props.setEditEvents(item);
-                    handleUpdateEventModal(true);
-                  }}
-                />
-              </Tooltip>
-              */}
+                                
+        
               <div>
              
              <StyledPopconfirm
@@ -321,37 +343,21 @@ if(fetchingCustomerCampaign){
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
          <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[7.8rem]"><FormattedMessage
-                  id="app.type"
-                  defaultMessage="type"
-                /></div>
-        <div className=" md:w-[6.23rem]"><FormattedMessage
-                  id="app.subject"
-                  defaultMessage="subject"
-                /></div>
-        <div className=" md:w-[7.25rem] "><FormattedMessage
-                  id="app.start"
-                  defaultMessage="start"
-                /></div>
-        <div className=" md:w-[5.43rem] "><FormattedMessage
-                  id="app.end"
-                  defaultMessage="end"
-                /></div>
+        <div className=" md:w-[7.8rem]">{translatedMenuItems[0]} </div>
+        {/* Type */}
+        <div className=" md:w-[6.23rem]">{translatedMenuItems[1]} </div>
+        {/* Subject */}
+        <div className=" md:w-[7.25rem] ">{translatedMenuItems[2]} </div>
+        {/* Start */}
+        <div className=" md:w-[5.43rem] ">{translatedMenuItems[3]} </div>
+        {/* End */}
      
-        <div className="md:w-[5.32rem]"><FormattedMessage
-                  id="app.include"
-                  defaultMessage="include"
-                /></div>
-     
-        <div className="md:w-[6.15rem]"><FormattedMessage
-                  id="app.assignedto"
-                  defaultMessage="assignedto"
-                /></div>
-        <div className="md:w-[24rem]"><FormattedMessage
-                  id="app.owner"
-                  defaultMessage="owner"
-                /></div>
-                   
+        <div className="md:w-[5.32rem]">{translatedMenuItems[4]} </div>
+     {/* Include */}
+        <div className="md:w-[6.15rem]">{translatedMenuItems[5]} </div>
+        {/* Assigned */}
+        <div className="md:w-[24rem]">{translatedMenuItems[6]} </div>
+                {/* Owner    */}
       </div>
       <InfiniteScroll
         dataLength={props.customerCampaign.length}

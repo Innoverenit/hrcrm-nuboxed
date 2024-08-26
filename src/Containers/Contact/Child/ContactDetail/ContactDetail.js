@@ -28,10 +28,18 @@ class ContactDetails extends Component {
                 <Suspense fallback={"Loading..."}>
                   <div class=" flex flex-nowrap w-full max-sm:flex-col">
                     <div class=" w-1/4 max-sm:w-full">
-                      <ContactDetailsLeft contact={contact} />
+                      <ContactDetailsLeft contact={contact} 
+                       translateText={this.props.translateText}
+                       selectedLanguage={this.props.selectedLanguage}
+                     translatedMenuItems={this.props.translatedMenuItems}
+                      />
                     </div>
                     <div class=" w-3/4 max-sm:w-full">
-                      <ContactDetailsRight contact={contact} />
+                      <ContactDetailsRight contact={contact}
+                        translateText={this.props.translateText}
+                        selectedLanguage={this.props.selectedLanguage}
+                      translatedMenuItems={this.props.translatedMenuItems}
+                      />
                     </div>
                   </div>
                 </Suspense>

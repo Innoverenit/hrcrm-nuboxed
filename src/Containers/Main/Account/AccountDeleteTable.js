@@ -93,49 +93,47 @@ function AccountDeleteTable(props) {
        <div class="flex">
    
     <div className=" flex  md:w-[6.1rem] max-sm:w-full  ">
-    <h4 class="text-sm  font-semibold  font-poppins cursor-pointer">
+    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
 
         {item.name}
-                            </h4>
+                            </div>
     </div>
 
     <div className=" flex   md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-    <h4 class=" text-xs  font-poppins">
+    <div class=" text-xs  font-poppins">
     {item.dialCode} {item.phoneNo} 
-                    </h4>
+                    </div>
     
     </div> 
  
     </div>
     
     <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-    <h4 class=" text-xs  font-poppins">
+    <div class=" text-xs  font-poppins">
                       
                       {item.url}
-                    </h4>
+                    </div>
     </div>
     <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
         
 
-        <h4 class=" text-xs  font-semibold  font-poppins">
-        {item.address[0].address1 || ""} {item.address[0]
-          .address2 || ""} {item.address[0].street || ""} 
-                {item.address[0].city || ""}  
-                    </h4>
+        <div class=" text-xs  font-semibold  font-poppins">
+        {item.address[0].address1 || ""} {item.address[0].address2 || ""} {item.address[0].street || ""}  {item.address[0].city || ""}  
+                    </div>
     </div>
     
     <div className=" flex  md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-        <h4 class=" text-xs  font-semibold  font-poppins">
+        <div class=" text-xs  font-semibold  font-poppins">
         {item.address[0].city || ""}
-             </h4>
+             </div>
     </div>
     <div className=" flex  md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-        <h4 class=" text-xs  font-semibold  font-poppins">
+        <div class=" text-xs  font-semibold  font-poppins">
         {item.address[0].pinCode || ""}
-             </h4>
+             </div>
     </div>
     
 

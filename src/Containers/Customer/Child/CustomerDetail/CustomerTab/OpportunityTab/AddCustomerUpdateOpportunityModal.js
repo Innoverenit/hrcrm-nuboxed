@@ -18,7 +18,11 @@ const AddCustomerUpdateOpportunityModal = (props) => {
         onClose={() => props.handleUpdateCustomerOpportunityModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <UpdateCustomerOpportunityForm opportunityId={props.opportunityId} {...formProps}/> {" "}
+          <UpdateCustomerOpportunityForm opportunityId={props.opportunityId} {...formProps}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
+          /> {" "}
         </Suspense>
       </StyledDrawer>
     </>

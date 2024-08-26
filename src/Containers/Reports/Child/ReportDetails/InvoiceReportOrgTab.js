@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Icon, Button, Input, Popconfirm, Modal,Badge } from "antd";
 import styled from 'styled-components';
-import InvoiceUserCompleteCard from './InvoiceUserCompleteCard';
-import InvoiceUserInCompleteCard from './InvoiceUserInCompleteCard';
-import InvoiceUserAllCard from './InvoiceUserAllCard';
+import InvoiceOrgCompleteCard from './InvoiceOrgCompleteCard';
+import InvoiceOrgInCompleteCard from './InvoiceOrgInCompleteCard';
+import InvoiceOrgAllCard from './InvoiceOrgAllCard';
 
 
-function InvoiceReportUserTab (props) {
+function InvoiceReportOrgTab (props) {
 
     const [clickedTab,setClickedTab]= useState("open");
 
@@ -52,15 +52,15 @@ function InvoiceReportUserTab (props) {
     </div>
 
 {clickedTab === "open" ? (
-      <InvoiceUserInCompleteCard               
+      <InvoiceOrgInCompleteCard               
       selectedButtonIcon={props.selectedButtonIcon}
       selectedCategory={props.selectedCategory}
       />
 ) : clickedTab === "complete" ?
-<InvoiceUserCompleteCard selectedButtonIcon={props.selectedButtonIcon}
+<InvoiceOrgCompleteCard selectedButtonIcon={props.selectedButtonIcon}
       selectedCategory={props.selectedCategory}/>
 : clickedTab === "all" ?
-<InvoiceUserAllCard selectedButtonIcon={props.selectedButtonIcon}
+<InvoiceOrgAllCard selectedButtonIcon={props.selectedButtonIcon}
       selectedCategory={props.selectedCategory}/> 
       :null
 }
@@ -79,4 +79,4 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(InvoiceReportUserTab);
+export default connect(mapStateToProps, mapDispatchToProps)(InvoiceReportOrgTab);

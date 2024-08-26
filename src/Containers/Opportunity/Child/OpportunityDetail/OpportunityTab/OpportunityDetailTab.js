@@ -70,7 +70,36 @@ class OpportunityDetailTab extends Component {
       customField: [],
       ganttChart: false,
       costId: "",
+      translatedMenuItems: [],
+      loading: true
     };
+  }
+
+  componentDidMount() {
+    this.props.getCustomerData(this.props.userId);
+    this.props.getDepartments();
+    
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       'Contact', // 0
+       'Documents', // 1
+       'Version', // 2
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
   }
 
   handleRecriutmentdashboard = () => {
@@ -143,6 +172,10 @@ class OpportunityDetailTab extends Component {
     if(fetchingOpportunityDetailsById){
 return  <BundleLoader />
     }
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
     return (
       <>
         <TabsWrapper>
@@ -274,12 +307,9 @@ return  <BundleLoader />
               tab={
                 <>
                   <span>
-                    <ContactsIcon   style={{fontSize:"1.1rem"}}/>
-                    <span style={{ marginLeft: '0.25em' }}>
-                      <FormattedMessage
-                        id="app.contacts"
-                        defaultMessage="Contacts"
-                      />
+                    <ContactsIcon className="!text-icon"/>
+                    <span className="ml-[0.25rem]">     
+                    {translatedMenuItems[0]}           
                     </span>
                   </span>
                 
@@ -344,12 +374,9 @@ return  <BundleLoader />
             <TabPane
               tab={
                 <>
-                  <InsertDriveFileIcon   style={{fontSize:"1.1rem"}}/>
-                    <span style={{ marginLeft: "0.25em" }}>
-                      <FormattedMessage
-                        id="app.documents"
-                        defaultMessage="Documents"
-                      />
+                  <InsertDriveFileIcon className="!text-icon"/>
+                    <span className="ml-[0.25rem]">
+                    {translatedMenuItems[1]}
                   </span>
                   {activeKey === "3" && (
                     <>
@@ -391,12 +418,9 @@ return  <BundleLoader />
               <TabPane
               tab={
                 <>
-                  <DynamicFeedIcon   style={{fontSize:"1.1rem"}}/>
-                    <span style={{ marginLeft: "0.25em" }}>
-                      <FormattedMessage
-                        id="app.version"
-                        defaultMessage="Version"
-                      />
+                  <DynamicFeedIcon  className="!text-icon"/>
+                  <span className="ml-[0.25rem]">
+                    {translatedMenuItems[2]}
                   </span>
                
                 </>
@@ -450,10 +474,14 @@ return  <BundleLoader />
            opportunity={this.props.opportunity}
             addRecruitModal={this.props.addRecruitModal}
             handleRecruitModal={this.props.handleRecruitModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
           />
           <AddTagProfileModal
             addTagProfileModal={this.props.addTagProfileModal}
             handleTagProfileModal={this.props.handleTagProfileModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
           />
 
           {/* <AddContactModal
