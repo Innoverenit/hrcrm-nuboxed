@@ -28,6 +28,8 @@ const OpportunitySchema = Yup.object().shape({
   oppStage: Yup.string().required("Input needed!"),
 });
 function CustomerOpportunityForm(props) {
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]); 
   const handleReset = (resetForm) => {
     resetForm();
   };
@@ -39,6 +41,33 @@ function CustomerOpportunityForm(props) {
     props. getCrm();
   }, []);
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "Name",//0
+          "Start Date",//1
+          "End Date",//2
+          "Value",//3
+          "Currency",//4
+          "Description",//5
+          "Assigned",//6      
+          "Customer",//7
+          "Contact",//8
+          "Workflow",//9
+          "Stages",//10    
+          "Create"
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const {
     addingCustomerOpportunity,
     customerId,
@@ -47,6 +76,8 @@ function CustomerOpportunityForm(props) {
     defaultCustomers,
     userId,
   } = props;
+
+
   function getAreaOptions(filterOptionKey, filterOptionValue) {
     const contactOptions =
       props.contactByUserId.length &&
@@ -256,21 +287,14 @@ function CustomerOpportunityForm(props) {
           
             <div class=" h-full w-[47.5%] mt-3"
                 >
+                  <div class="text-xs font-bold w-full max-sm:w-full">
+                  {translatedMenuItems[0]} </div>
                 <Field
                   isRequired
                   name="opportunityName"
                   type="text"
-
-                  //label="Name"
-
-                  label={
-                    <FormattedMessage
-                      id="app.name"
-                      defaultMessage="Name"
-                    />
-                  }
+                  //label="Name"              
                   isColumn
-
                   width={"100%"}
                   component={InputComponent}
                   // accounts={accounts}
@@ -279,16 +303,12 @@ function CustomerOpportunityForm(props) {
            
                 <div class=" flex justify-between mt-3">
                   <div class=" w-2/4">
+                  <div class="text-xs font-bold w-full max-sm:w-full">
+                  {translatedMenuItems[1]} </div>
                     <Field
                       isRequired
                       name="startDate"
-                      //label="Start "
-                      label={
-                        <FormattedMessage
-                          id="app.startdate"
-                          defaultMessage="Start Date"
-                        />
-                      }
+                      //label="Start "                   
                       component={DatePicker}
                       value={values.startDate}
                       isColumn
@@ -296,16 +316,12 @@ function CustomerOpportunityForm(props) {
                     />
                   </div>
                   <div class=" w-2/5">
+                  <div class="text-xs font-bold w-full max-sm:w-full">
+                  {translatedMenuItems[2]} </div>
                     <Field
                       isRequired
                       name="endDate"
-                      // label="End Date"
-                      label={
-                        <FormattedMessage
-                          id="app.enddate"
-                          defaultMessage="End Date"
-                        />
-                      }
+                      // label="End Date"                   
                       isColumn
                       component={DatePicker}
                       // value={values.endDate}
@@ -330,34 +346,25 @@ function CustomerOpportunityForm(props) {
           
                 <div class=" flex justify-between mt-3">
                   <div class=" w-2/4">
+                  <div class="text-xs font-bold w-full max-sm:w-full">
+                  {translatedMenuItems[3]} </div>
                     <Field
                       name="proposalAmount"
-                      //label="Value"
-
-                      label={
-                        <FormattedMessage
-                          id="app.Value"
-                          defaultMessage="Value"
-                        />
-                      }
+                      //label="Value"                 
                       isColumn
                       width={"100%"}
                       component={InputComponent}
                     />
                   </div>
                   <div class=" w-2/5">
+                  <div class="text-xs font-bold w-full max-sm:w-full">
+                  {translatedMenuItems[4]} </div>
                   <Field
                       name="currency"
                       isColumnWithoutNoCreate
                       defaultValue={{
                         value: props.user.currency,
-                      }}
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
+                      }}                   
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -374,12 +381,11 @@ function CustomerOpportunityForm(props) {
                 </div>
                
 <div class=" mt-3">
+<div class="text-xs font-bold w-full max-sm:w-full">
+{translatedMenuItems[5]} </div>
                 <Field
                   name="description"
-                  // label="Notes"
-                  label={
-                    <FormattedMessage id="app.description" defaultMessage="Description" />
-                  }
+                  // label="Notes"                
                   width={"100%"}
                   isColumn
                   component={TextareaComponent}
@@ -392,11 +398,10 @@ function CustomerOpportunityForm(props) {
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2  "
-            // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
-            >
-              Assigned
-            </Listbox.Label>
+            <div className=" font-bold text-xs mb-1 leading-lh1.2  ">                        
+               {translatedMenuItems[0]} 
+              {/* Assigned */}
+            </div>
             <div className="relative mt-1">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -483,19 +488,12 @@ function CustomerOpportunityForm(props) {
                   style={{ flexBasis: "80%" }}
                 /> */}
                  <div class="mt-3">
+                 <div class="text-xs font-bold w-full max-sm:w-full">
+                 {translatedMenuItems[7]} </div>
                 <Field
                   name="customerId"
                   isColumnWithoutNoCreate
-                  // selectType="customerList"
-                  // label="Customer"
-
-                  label={
-                    <FormattedMessage
-                      id="app.customer"
-                      defaultMessage="Customer"
-                    />
-                  }
-                  // isRequired
+                  // label="Customer"           
                   component={SelectComponent}
                   isColumn
                   options={[]}
@@ -507,17 +505,13 @@ function CustomerOpportunityForm(props) {
                 />
                 </div>
          <div class=" mt-3">
+         <div class="text-xs font-bold w-full max-sm:w-full">
+         {translatedMenuItems[8]} </div>
                 <Field
                   name="contactId"
                   isColumnWithoutNoCreate
                   selectType="contactOpportunityList"
-                  // label="Contact"
-                  label={
-                    <FormattedMessage
-                      id="app.contact"
-                      defaultMessage="Contact"
-                    />
-                  }
+                  // label="Contact"               
                   component={SearchSelect}
                   isColumn
                   value={values.contactId}
@@ -526,17 +520,12 @@ function CustomerOpportunityForm(props) {
 </div>
                 <div class=" flex justify-between mt-3">
                   <div class=" w-2/4">
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"> 
+                  <div class="text-xs font-bold w-full max-sm:w-full">
+                  {translatedMenuItems[9]} 
                       <Field
                         name="oppWorkflow"
                         // selectType="contactListFilter"
-                        isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.workflow"
-                            defaultMessage="Workflow"
-                          />
-                        }
+                        isColumnWithoutNoCreate                 
                         // component={SearchSelect}
                         component={SelectComponent}
                         options={Array.isArray(WorkflowOptions) ? WorkflowOptions : []}
@@ -548,17 +537,13 @@ function CustomerOpportunityForm(props) {
                   </div>
                 
                   <div class=" w-2/5 ">
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"> 
+                  <div class="text-xs font-bold w-full max-sm:w-full">
+                  {translatedMenuItems[10]} 
                       <Field
                         name="oppStage"
                         //selectType="initiativeName"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.stages"
-                            defaultMessage="Stages"
-                          />
-                        }
+                       //stages
                         component={SelectComponent}
                         options={
                           Array.isArray(getStagesOptions("oppWorkflow", values.oppWorkflow))
@@ -586,7 +571,8 @@ function CustomerOpportunityForm(props) {
                 htmlType="submit"
                 Loading={addingCustomerOpportunity}
               >
-                <FormattedMessage id="app.create" defaultMessage="Create" />
+                <div class="text-xs font-bold font-poppins">
+                {translatedMenuItems[11]} </div>
     
               </Button>
             </div>

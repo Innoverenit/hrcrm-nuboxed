@@ -391,7 +391,7 @@ props.getInvestorCurrency();
                             {/* name="salutation"
                             */}
                         <div class="text-xs font-bold w-full max-sm:w-full">
-                    <div>{translatedMenuItems[0]} </div>
+                             {translatedMenuItems[0]}
                              <FastField
                             isRequired
                             name="firstName"                                               

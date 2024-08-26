@@ -43,21 +43,21 @@ class ContactForm extends Component {
       loading: true
     };
   }
-
-  componentDidMount() {
-    this.props.getCustomerData(this.props.userId);
-    this.props.getDepartments();
-    
-  }
   componentDidMount() {
     this.fetchMenuTranslations();
+    // this.props.getDocuments();
   }
 
-  async fetchMenuTranslations() {
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
     try {
-      this.setState({ loading: true });
       const itemsToTranslate = [
-       'First Name', // 0
+'First Name', // 0
 'Middle Name', // 1
 'Last Name', // 2
 'Dial Code', // 3
@@ -71,15 +71,15 @@ class ContactForm extends Component {
  'Address',//12
 'Notes',//13
   'Create'
+        
       ];
+
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations ,loading: false});
-     
+      this.setState({ translatedMenuItems: translations });
     } catch (error) {
-      this.setState({ loading: false });
       console.error('Error translating menu items:', error);
     }
-  }
+  };
   handleCandidate = (checked) => {
     this.setState({ candidate: checked });
   };

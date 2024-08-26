@@ -25,12 +25,12 @@ import {
 import {addCustomerActivityCall} from "../../../Customer/CustomerAction"
 import {getAllCustomerData} from "../../../Customer/CustomerAction"
 import { handleChooserModal } from "../../../Planner/PlannerAction";
-import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { setClearbitCandidateData } from "../../../Candidate/CandidateAction";
 import SpeechRecognition, { } from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
 import { Listbox } from '@headlessui/react'
+import { BundleLoader } from "../../../../Components/Placeholder";
 const ButtonGroup = Button.Group;
 const suffix = (
   <AudioOutlined
@@ -72,6 +72,8 @@ function CustomerCallActivityForm(props) {
   const[reminder,setReminder] =useState(true)
   console.log("category",category);
   const[Type,setType]=useState(props.selectedCall?props.selectedCall.callType:"Inbound",)
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   function handleCategoryChange (data)  {
     debugger;
@@ -95,6 +97,41 @@ function CustomerCallActivityForm(props) {
     callback && callback();
     // resetForm();
   };
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+    'Type', // 0
+'Category', // 1
+'Mode', // 2
+'Channel', // 3
+'Subject', // 4
+'Date', // 5
+'Start Time', // 6
+'End Time', // 7
+'Time Zone', // 8
+'Assigned ',//9
+'Include',//10
+'Tag Company',//11
+'Contact',//12
+"Opportunity",//13
+'Create'
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getAllSalesList();
     props.getAllCustomerData(props.userId)
@@ -193,6 +230,9 @@ function CustomerCallActivityForm(props) {
       var data = props.selectedCall.callCategory === "New" ? false : true;
     }
    const selectedOption = props.sales.find((item) => item.fullName === selected);
+   if (loading) {
+    return <div><BundleLoader/></div>;
+  }
    return (
       <>
         <Formik
@@ -350,7 +390,7 @@ function CustomerCallActivityForm(props) {
                   
                       <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
                         {/* Type */}
-                        <FormattedMessage id="app.type" defaultMessage="Type" />
+                        {translatedMenuItems[0]}
                       </div>
                       <div class=" flex justify-between">
                         {/* <Tooltip title="Inbound"> */}
@@ -427,10 +467,7 @@ function CustomerCallActivityForm(props) {
                     <div class=" w-1/2">
                      
                       <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
-                        <FormattedMessage
-                          id="app.category"
-                          defaultMessage="Category"
-                        />
+                      {translatedMenuItems[1]}
                       </div>
                       
                       <ButtonGroup>
@@ -474,7 +511,8 @@ function CustomerCallActivityForm(props) {
                   <div class=" flex justify-between mt-3 items-end max-sm:flex-col " >
                     <div class=" self-start">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                      Mode
+                    {translatedMenuItems[2]}
+                      {/* Mode */}
                       </div>
                       <Switch
                         // style={{
@@ -486,9 +524,10 @@ function CustomerCallActivityForm(props) {
                       />
                     </div>
                     <div class=" w-1/3 self-baseline max-sm:w-wk">
+                    {translatedMenuItems[3]}
                       <FastField
                         name="modeType"
-                        label="Channel"
+                        // label="Channel"
                         isColumn
                         options={[
                           "Zoom Call",
@@ -514,28 +553,24 @@ function CustomerCallActivityForm(props) {
                       />
                     </div>
                   </div>
+                  <div className="font-bold text-xs font-poppins">
+                  {translatedMenuItems[4]}</div>
                   <Field
                     // isRequired
                     name="callPurpose"
                     // label="Topic"
-                    label={
-                      <FormattedMessage
-                        id="app.subject"
-                        defaultMessage="Subject"
-                      />
-                    }
+                  // subject
                     component={InputComponent}
                     isColumn
                     width={"100%"}
                     inlineLabel
                   />
             <div class=" mt-3">
+             <div className="font-bold text-xs font-poppins">
+                  {translatedMenuItems[5]}</div>
                   <Field
                     name="startDate"
-                    // label="Date"
-                    label={
-                      <FormattedMessage id="app.date" defaultMessage="Date" />
-                    }
+                    // label="Date"                 
                     component={DatePicker}
                     isColumn
                     width={"100%"}
@@ -545,16 +580,11 @@ function CustomerCallActivityForm(props) {
                   </div>
                 
                   <div class=" flex justify-between mt-3 max-sm:flex-col">
-                    <div class=" w-1/2 max-sm:w-wk">
+                    <div class=" w-1/2 max-sm:w-wk">               
+                    {translatedMenuItems[6]}
                       <Field
                         name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.starttime"
-                            defaultMessage="Start Time"
-                          />
-                        }
+                        // label="Start Time"                 
                         component={TimePicker}
                         isRequired
                         isColumn
@@ -567,15 +597,10 @@ function CustomerCallActivityForm(props) {
                       />
                     </div>
                     <div class=" w-2/5 max-sm:w-wk">
+                    {translatedMenuItems[7]}
                       <Field
                         name="endTime"
-                        // label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        // label="End Time"                   
                         component={TimePicker}
                         use12Hours
                         isRequired
@@ -589,18 +614,13 @@ function CustomerCallActivityForm(props) {
                     </div>
                   </div>
                  <div class=" mt-3">
+                 {translatedMenuItems[8]}
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
                     name="timeZone"
                     isColumnWithoutNoCreate
-                    //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="Time Zone"
-                      />
-                    }
+                    //label="TimeZone "                 
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -608,42 +628,16 @@ function CustomerCallActivityForm(props) {
                     inlineLabel
                   />
                   </div>
-                
-                  {/* {startDate ? (
-                    <span>
-                      {dayjs(startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>
-                            <FormattedMessage
-                              id="app.thiscalloccursinthepast!"
-                              defaultMessage="This Call occurs in the past !"
-                            />
-                          </b>
-                        </span>
-                      )}
-                    </span>
-                  ) : (
-                    <span>
-                      {dayjs(values.startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>
-                            {" "}
-                            <FormattedMessage
-                              id="app.thiscalloccursinthepast!"
-                              defaultMessage="This Call occurs in the past !"
-                            />
-                          </b>
-                        </span>
-                      )}
-                    </span>
-                  )} */}
+                              
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
                 >
                 <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-semibold text-[0.75rem]">Assigned</Listbox.Label>
+          <div className=" font-bold text-xs">   {translatedMenuItems[9]}
+            {/* Assigned */}
+            </div>
           <div className="relative mt-1">
               <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
