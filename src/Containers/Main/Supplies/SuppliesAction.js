@@ -1,5 +1,5 @@
 import * as types from "./SuppliesActionType";
-import { base_url2 } from "../../../Config/Auth";
+import { base_url, base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 import dayjs from "dayjs";
 import { message } from "antd";
@@ -1122,6 +1122,33 @@ export const getMaterialsBySuppliesId = (suppliesId) => (dispatch) => {
       });
     });
 };
+
+export const getComplementaryList = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLEMENTARY_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/complementary/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLEMENTARY_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_COMPLEMENTARY_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const suppliesPUnpblishToggle = ( data,categoryId) => (dispatch) => {
   dispatch({
     type: types.SUPPLIES_PUNBLISH_TOGGLE_REQUEST,
@@ -1200,4 +1227,58 @@ export const materialPricetype = ( data,suppliesId) => (dispatch, getState) => {
         payload: err,
       });
     })
+};
+
+export const linkComplementryToggle = ( data) => (dispatch) => {
+  dispatch({
+    type: types.MATERIAL_COMPLEMENTARY_REQUEST,
+  });
+  axios
+  .post(`${base_url2}/supplies/complementary`,data,  {
+    headerss: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.MATERIAL_COMPLEMENTARY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.MATERIAL_COMPLEMENTARY_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+export const getStatusTimeline = (customerId) => (dispatch) => {
+  dispatch({
+      type: types.GET_STATUS_TIMELINE_REQUEST,
+  });
+
+  axios
+      .get(`${base_url}/customer/activity/list/${customerId}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_STATUS_TIMELINE_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_STATUS_TIMELINE_FAILURE,
+              payload: err,
+          });
+      });
 };

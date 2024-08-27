@@ -7,6 +7,10 @@ const initialState = {
     uploadingMaterialList:false,
     uploadingMaterialListError:false,
 
+    fetchingTimelineStatus: false,
+    fetchingTimelineStatusError: false,
+    statusActivityTimeline:[],
+
     addBrandModel: false,
 
     priceOpenModal:false,
@@ -17,6 +21,13 @@ const initialState = {
     fetchingMaterialCurrency: false,
     fetchingMaterialCurrencyError: false,
     materialCurrency:[],
+
+    materialCpmplementary: false,
+    materialCpmplementaryError: false,
+
+    fetchingComplementaryList: false,
+    fetchingComplementaryListError: false,
+    complementaryList:[],
     
     creatingMaterialDiscount: false,
     creatingMaterialDiscountError: false,
@@ -880,6 +891,24 @@ export const suppliesReducer = (state = initialState, action) => {
                                   fetchingMaterialsBySuppliesIdError: true,
                                 };                                      
 
+                                case types.GET_COMPLEMENTARY_LIST_REQUEST:
+                                return {
+                                  ...state,
+                                  fetchingComplementaryList: true,
+                                  fetchingComplementaryListError: false,
+                                };
+                              case types.GET_COMPLEMENTARY_LIST_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingComplementaryList: false,
+                                  complementaryList: action.payload,
+                                };
+                              case types.GET_COMPLEMENTARY_LIST_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingComplementaryList: false,
+                                  fetchingComplementaryListError: true,
+                                };
 
                                 case types.SUPPLIES_PUNBLISH_TOGGLE_REQUEST:
                                     return { ...state, suppliesPUblishToggle: true };
@@ -942,6 +971,43 @@ export const suppliesReducer = (state = initialState, action) => {
                                           materialPriceType: false,
                                           materialPriceTypeError: true,
                                         };
+
+                                        case types.MATERIAL_COMPLEMENTARY_REQUEST:
+                                          return { ...state, materialCpmplementary: true };
+                                        case types.MATERIAL_COMPLEMENTARY_SUCCESS:
+                                          return {
+                                            ...state,
+                                            materialCpmplementary: false,
+                                            purchaseList: state.purchaseList.map((item) => {
+                                              if (item.suppliesId === action.payload.suppliesId) {
+                                                return action.payload;
+                                              } else {
+                                                return item;
+                                              }
+                                            }),
+                                          };
+                                        case types.MATERIAL_COMPLEMENTARY_FAILURE:
+                                          return {
+                                            ...state,
+                                            materialCpmplementary: false,
+                                            materialCpmplementaryError: true,
+                                          };
+
+                                          case types.GET_STATUS_TIMELINE_REQUEST:
+      return { ...state, fetchingTimelineStatus: true };
+    case types.GET_STATUS_TIMELINE_SUCCESS:
+      return {
+        ...state,
+        fetchingTimelineStatus: false,
+        statusActivityTimeline: action.payload,
+      };
+    case types.GET_STATUS_TIMELINE_FAILURE:
+      return {
+        ...state,
+        fetchingTimelineStatus: false,
+        fetchingTimelineStatusError: true,
+      };
+  
 
         default:
             return state;
