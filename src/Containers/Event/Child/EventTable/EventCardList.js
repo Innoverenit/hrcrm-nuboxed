@@ -34,13 +34,13 @@ function EventCardList (props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          "Type",//0
-          "Subject",//1
-          "Start",//2
-          "End",//3
-          "Include",//4
-          "Assigned",//5
-           "Owner",//6
+        "71",  // "Type",//0
+        "72" , // "Subject",//1
+         "158", // "Start",//2
+         "111", // "End",//3
+        "75" , // "Include",//4
+          "76",// "Assigned",//5
+         "77" //  "Owner",//6
 
         ];
 
