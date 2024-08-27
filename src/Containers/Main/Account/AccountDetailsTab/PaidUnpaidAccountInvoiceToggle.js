@@ -14,14 +14,14 @@ function PaidUnpaidAccountInvoiceToggle (props) {
         userId: props.userId,
         paymentInd: props.paymentInd ? false : true,
          
-      },props.userId);
+      },props.procureOrderInvoiceId);
       setToggle( props.paymentInd ? false : true);
  
     } else {
       props.paidUnpaidInvoice({
         userId: props.userId,
         paymentInd: props.paymentInd ? false : true,
-      },props.userId);
+      },props.procureOrderInvoiceId);
       setToggle( props.paymentInd ? false : true);
     }
   }

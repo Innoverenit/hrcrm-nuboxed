@@ -36,11 +36,10 @@ class SuppliesActionRight extends React.Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        
-          
-         
-        "Add",
-        "Upload"
+        "85",//0
+        "294",//1
+        "104",//2
+        "796",//3
         
       ];
 
@@ -65,7 +64,7 @@ class SuppliesActionRight extends React.Component {
           </Tooltip>
           : null}
         {viewType === "all" && (
-          <Tooltip placement="left" title="Create">
+          <Tooltip placement="left" title={this.state.translatedMenuItems[2]}>
             <Button
               type="primary"
               onClick={() => handleSuppliesModal(true)}
@@ -75,7 +74,7 @@ class SuppliesActionRight extends React.Component {
             </Button>
           </Tooltip>
         )}
-         <Tooltip placement="left" title="Create">
+         <Tooltip placement="left" title={this.state.translatedMenuItems[1]}>
             <Button
               type="primary"
               ghost
@@ -93,11 +92,12 @@ class SuppliesActionRight extends React.Component {
          selectedLanguage={this.props.selectedLanguage}
           handleSuppliesModal={handleSuppliesModal}
           addSuppliesModal={addSuppliesModal}
+          translatedMenuItems={this.state.translatedMenuItems}
         />
           <UploadMaterialModal
-         
           handleUploadMaterialModal={this.props.handleUploadMaterialModal}
           uploadMaterialModal={this.props.uploadMaterialModal}
+          translatedMenuItems={this.state.translatedMenuItems}
         />
         </Suspense>
       </>

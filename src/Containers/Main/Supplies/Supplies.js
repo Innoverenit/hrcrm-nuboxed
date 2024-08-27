@@ -11,7 +11,8 @@ const SuppliesCategoryCard =lazy(()=>import("./SuppliesCategoryCard"));
 function Supplies(props) {
     const { setSuppliesViewType, viewType, handleSuppliesModal } = props;
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
-    
+
+
     useEffect(() => {
         const handleResize = () => {
             setIsLargeScreen(window.innerWidth > 768);
@@ -23,6 +24,10 @@ function Supplies(props) {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
+    
+
+
     return (
         <React.Fragment>
               <Suspense fallback={<BundleLoader />}>

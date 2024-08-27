@@ -446,7 +446,7 @@ function AccountInvoiceTable(props) {
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                       
-                            <PaidUnpaidAccountInvoiceToggle item={item} paymentInd={item.paymentInd}/>
+                            <PaidUnpaidAccountInvoiceToggle procureOrderInvoiceId={item.procureOrderInvoiceId} paymentInd={item.paymentInd}/>
                           </div>
                                                    
                                                     </div>

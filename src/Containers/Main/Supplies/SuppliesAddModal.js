@@ -9,7 +9,7 @@ class SuppliesAddModal extends Component {
         return (
             <div>
                 <StyledDrawer
-                    title="Material"
+                    title={this.props.translatedMenuItems[3]}
                     width="60%"                   
                     visible={addSuppliesModal}
                     destroyOnClose

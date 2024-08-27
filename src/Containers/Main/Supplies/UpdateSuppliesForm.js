@@ -47,17 +47,18 @@ function UpdateSuppliesForm (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Category",//0
-          "Sub Category",//1
-          "Attribute",//1
-          "Sub Attribute",//1
-          "Name",//1
-          "HSN",//1
-          "Re-order",//1
-          "Net Weight",//1
-          "UOM",//1
-          "Gross Weight",
-          "Description",
+          "14",//0 
+          "1154",//1
+          "259",//2
+          "263",//3
+          "110",//4
+          "799",//5
+          "815",//6
+          "816",//7
+          "817",//8
+          "818",//9
+          "147",//10
+          "104",//11
           "Update",
           "Weight",//12
           "Length",//13

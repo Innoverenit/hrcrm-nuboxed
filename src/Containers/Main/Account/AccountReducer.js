@@ -3838,8 +3838,8 @@ export const distributorReducer = (state = initialState, action) => {
                                   return {
                                     ...state,
                                     paidUnpaidToggling: false,
-                                    generatedInvoice: state.customerListByUser.map((item) => {
-                                      if (item.id === action.payload.id) {
+                                    generatedInvoice: state.generatedInvoice.map((item) => {
+                                      if (item.procureOrderInvoiceId === action.payload.procureOrderInvoiceId) {
                                         return action.payload;
                                       } else {
                                         return item;
