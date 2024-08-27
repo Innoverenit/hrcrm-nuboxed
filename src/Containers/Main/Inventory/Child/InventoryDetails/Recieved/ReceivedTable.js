@@ -46,6 +46,34 @@ const ReceivedTable = (props) => {
 
 
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          '672', // 0
+'248', // 1
+'73', // 2
+'875', // 3
+'Inspected By', // 4
+'Pick up', // 5
+'658', // 6
+
+            
+             
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
  
 
@@ -101,19 +129,33 @@ const ReceivedTable = (props) => {
         <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold  z-10">
-              <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order ID" /></div>
+              <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {translatedMenuItems[0]}
+                </div>
               {props.accountInfoInd && (
                 <>
-              <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
-              <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
+              <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+              {translatedMenuItems[1]}
+                </div>
+              <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {translatedMenuItems[2]}
+                </div>
               </>
               )}
               {/* <div className="w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="owner" /></div> */}
-              <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.phone" defaultMessage="Phones #" /></div>
-              <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.inspectedby" defaultMessage="Inspected By" /></div>
+              <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {translatedMenuItems[3]}
+                </div>
+              <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {translatedMenuItems[4]}
+                </div>
               <div className="w-[11.2rem]"></div>
-              <div className="w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.pickup" defaultMessage="Pick Up" /></div>
-              <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.location" defaultMessage="Location" /></div>
+              <div className="w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {translatedMenuItems[5]}
+                </div>
+              <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {translatedMenuItems[6]}
+                </div>
               <div className="w-[2.31rem]"></div>
               <div className="w-[2.1rem]"></div>
               <div className="w-[2.01rem]"></div>

@@ -3,6 +3,8 @@ import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ContactAutomateTab from "../DistributionTab/ContactAutomateTab"
+
 const WebsiteTab = lazy(() => import("./WebsiteTab"));
 const WebsiteOrderForm = lazy(() => import("../DistributionTab/WebsiteOrderForm"));
 
@@ -26,6 +28,11 @@ function DistributionTab(props) {
                     <TabPane tab={`Order`} key="2">
                     <div class=" mt-[10px]" >
                         <WebsiteOrderForm/>
+                        </div>
+                    </TabPane>
+                    <TabPane tab={`Contact`} key="3">
+                    <div class=" mt-[10px]" >
+                        <ContactAutomateTab/>
                         </div>
                     </TabPane>
                  
