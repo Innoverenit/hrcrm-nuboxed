@@ -1,64 +1,78 @@
-import React, { useState,lazy,useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  UploadOutlined,
-} from "@ant-design/icons";
-import dayjs from "dayjs";
-import FeedbackIcon from '@mui/icons-material/Feedback';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { Tooltip, Button,  } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
-import { StyledPopconfirm, } from "../../../Components/UI/Antd";
-import StairsIcon from '@mui/icons-material/Stairs';
-import { MultiAvatar, } from "../../../Components/UI/Elements";
+  getSuppliesList,
+  getComplementaryList
+} from "./SuppliesAction";
+import EuroIcon from '@mui/icons-material/Euro';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import axios from 'axios';
-import {base_url2} from "../../../Config/Auth";
+import { Tooltip, Popconfirm } from "antd";
+import {
+  DeleteOutlined,
+  PhoneFilled,
+} from "@ant-design/icons";
+import CategoryIcon from '@mui/icons-material/Category'
+import dayjs from "dayjs";
+import InventoryIcon from '@mui/icons-material/Inventory';
+import { BundleLoader } from "../../../Components/Placeholder";
+import { MultiAvatar } from "../../../Components/UI/Elements";
+import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import InfiniteScroll from "react-infinite-scroll-component";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import ComplementaryToggle from "./ComplementaryToggle";
 
 
-const ButtonGroup = Button.Group;
 
-const MaterialComplementaryCard = (props) => {
+function MaterialComplementaryCard(props) {
+
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
-  const tab = document.querySelector('.ant-layout-sider-children');
-  const tableHeight = tab && tab.offsetHeight * 0.75;
-  const [hasMore, setHasMore] = useState(true);
+
   const [page, setPage] = useState(0);
-  const [startDate, setStartDate] = useState(dayjs().startOf("month"));
-  const [endDate, setEndDate] = useState(dayjs());
-  const [error, setError] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
-  const [data1, setData1] = useState([]);
-  const [loading1, setLoading1] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [openComplementary,setopenComplementary] = useState(false);
 
-    const fetchData1 = async () => {
-        const start = `${startDate.format("YYYY-MM-DD")}T20:00:00Z`;
-        const end = `${endDate.format("YYYY-MM-DD")}T20:00:00Z`;
+  const openModal = () => {
+    setModalVisible(true);
+  };
 
-      try {
-        const response = await axios.get(`${base_url2}/materialcomplement/${props.userId}/${page}`,{
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-        });
-        setData1(response.data);
-        setLoading1(false);
-      } catch (error) {
-        setError(error);
-        setLoading1(false);
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const componentRefs = useRef([]);
+  const handlePrint = () => {
+    window.print();
+};
+  useEffect(() => {
+    setPage(page + 1);
+    props.getSuppliesList(page);
+
+  }, []);
+
+  const handleLoadMore = () => {
+    const PageMapd = props.purchaseList && props.purchaseList.length && props.purchaseList[0].pageCount
+    setTimeout(() => {
+      const {
+        getSuppliesList,
+
+        userId
+      } = props;
+      if (props.purchaseList) {
+        if (page < PageMapd) {
+          setPage(page + 1);
+          getSuppliesList(page);
+        }
+        if (page === PageMapd) {
+          setHasMore(false)
+        }
       }
-    };
+    }, 100);
+  };
 
-    useEffect(() => {
-        fetchData1();
-    }, [props.userId,]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -70,185 +84,148 @@ const MaterialComplementaryCard = (props) => {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "799",//0
+          "800",//1
+          "110",//2
+          "14",//3
+          "1154",//4
+          "259",//5
+          "815",//6
+          "679",//7
+          "1068",//8
+          "1174",//9
+          "1173",//10
+          "742",//11
+          "824",//12
+          "880",//13
+          "170",//14
 
+        ];
 
-  const handleLoadMore = () => {
-    const PageMapd =  data1 &&  data1.length && data1[0].pageCount
-    setTimeout(() => {
-      if  (data1)
-      {
-        if (page < PageMapd) {
-          setPage(page + 1);
-          fetchData1();
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
       }
-      if (page === PageMapd){
-        setHasMore(false)
-      }
-    }
-    }, 100);
-  };
+    };
 
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+  const [particularDiscountData, setParticularDiscountData] = useState({});
+
+  function handleParticularRowData(item) {
+    setParticularDiscountData(item);
+  }
+
+  const { updateSuppliesDrawer,
+     handleUpdateSupplieDrawer,
+      materialBuildrawer, 
+      handleMaterialBuilderDrawer,
+      handlePriceModal } = props;
   return (
     <>
-    
-    <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
-                          id="app.type"
-                          defaultMessage="type"
-                        /></div>
-        <div className=" w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] "><FormattedMessage
-                          id="app.order"
-                          defaultMessage="Order"
-                        />#</div>
-             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] "><FormattedMessage
-                          id="app.end"
-                          defaultMessage="end"
-                        /></div>
-             <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]"><FormattedMessage
-                          id="app.ordervalue"
-                          defaultMessage="Value"
-                        /></div>
-        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]"><FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="assignedto"
-                        /></div>
-       
-        <div className="w-[6.01rem]"></div>
-        <div className="w-[3%]"></div>
-        <div className="w-[5%]"></div>
-        <div className="w-[3.1rem]"></div>
-        <div className="w-12"></div>
-        {/* <div className="w-12"></div> */}
-      </div>
-      <InfiniteScroll
-        dataLength={data1.length}
-        next={handleLoadMore}
-      hasMore={hasMore}
-        loader={loading1?<div class="flex justify-center" >Loading...</div>:null}
-        height={"75vh"}
-        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
-      >
-      {data1.map((item) => { 
-        const currentDate = dayjs();
-        const completionDate = dayjs(item.completionDate);
-        const endDate = dayjs(item.endDate);
-        const difference = currentDate.diff(endDate, 'days');
-        // const incompleteDeviationDate = endDate.diff(currentDate, 'days');
-        // const completeDeviation = endDate.diff(completionDate, 'days');
-        const incompleteDeviationDate = currentDate.diff(endDate, 'days');
-        const completeDeviation = completionDate.diff(endDate, 'days');
-                    return (
-                      <div>
-                      <div
-                        className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
-                       <div class="flex  max-sm:w-wk items-center">
-                       <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
-                       <div className="flex max-sm:w-full"> 
-{item.priority === "High" && (
-                    <div class="rounded-[50%] h-[2.1875em] w-[3.1875em] bg-[red]"></div>
-                  )}
-                  {item.priority === "Medium" && (
-                    <div class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]" ></div>
-                  )}
-                  {item.priority === "Low" && (
-                    <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
-                  )}
-                  <div class=" w-2"></div>
-                  </div>
-                          </div>
-                          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.newOrderNo}
-                         
-                            </div> 
+      <div className=" flex sticky z-auto">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex max-sm:hidden justify-between  p-1 bg-transparent font-bold sticky  z-10">
+           
+            
+            
+            <div className=" w-[12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              Name
+              
+              </div>
+          </div>
+
+          <InfiniteScroll
+            dataLength={props.purchaseList.length}
+            next={handleLoadMore}
+            hasMore={hasMore}
+            loader={props.fetchingPurchaseList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+            height={"80vh"}
+            style={{ scrollbarWidth:"thin" }}
+          >
+            {props.purchaseList.length ?
+              <>
+                {props.purchaseList.map((item,index) => {
+                  const currentDate = dayjs().format("DD/MM/YYYY");
+                  
+                  return (
+                    <>
+                      <div className="flex rounded justify-center bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
+                        <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
+                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                            
-                        </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex  w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
-                 
-                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}
+                            <div className=" flex  w-[15rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                {item.suppliesName}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                            <div className=" flex  w-[7.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs truncate max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <ComplementaryToggle
+                                  complementaryInd={item.complementaryInd}
+                                  suppliesId={item.suppliesId}
+                                  complementaryItem={props.particularDiscountData.suppliesId}
+                                />
+                              </div>
+                            </div>
+
+                           
+                          </div>
                          
-                            </div>
-                          </div>
-                          <div className=" flex  w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
-                 
-                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                 {item.offerprice}
-              
-                 </div>
-               </div>
-                          <div className=" flex   w-[10rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
-                            <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
-                            <span>
-            {item.contactPersonName === null ? (
-              "Not available"
-            ) : (
-              <> 
-              <MultiAvatar
-                primaryTitle={item.contactPersonName}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              /> 
-              </>
-            )}
-          </span>
-                            </div>
-                          </div>
-                          <div className=" flex  w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
-                 
-                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                 
-              
-                 </div>
-               </div>
 
-               <div className=" flex  w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
-                 
-                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                
-              
-                 </div>
-               </div>
-
-               <div className=" flex  w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
-                 
-                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                 
-              
-                 </div>
-               </div>
-                        </div> 
+                        </div>
                       </div>
-                    </div>
-
-                    )
+                    </>
+                  );
                 })}
-
-              </InfiniteScroll> 
+              </> :
+              !props.purchaseList.length
+                && !props.fetchingPurchaseList ? <NodataFoundPage /> : null}
+          </InfiniteScroll>
+        </div>
       </div>
-</div>
 
+      <Suspense fallback={<BundleLoader />}>
+      
+      </Suspense>
 
     </>
   );
-};
-  const mapStateToProps = ({ auth}) => ({
-    userDetails: auth.userDetails,
-    userId: auth.userDetails.userId,
+}
 
-  });
-  
-  const mapDispatchToProps = (dispatch) =>
-    bindActionCreators(
-      {
+
+const mapStateToProps = ({ supplies, auth }) => ({
+  fetchingPurchaseList: supplies.fetchingPurchaseList,
+  purchaseList: supplies.purchaseList,
+  updateSuppliesDrawer: supplies.updateSuppliesDrawer,
+  addCurrencyValue: supplies.addCurrencyValue,
+  addBrandModel: supplies.addBrandModel,
+  materialBuildrawer: supplies.materialBuildrawer,
+  repairInd: auth.userDetails.repairInd,
+  suppliersListDrwr: supplies.suppliersListDrwr,
+  materialInveDawer:supplies.materialInveDawer,
+  priceOpenModal: supplies.priceOpenModal,
+  orgId: auth.userDetails.organizationId,
+   complementaryList: supplies.complementaryLis
+});
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      getSuppliesList,
+      getComplementaryList
       
-      },
-      dispatch
-    );
-    export default connect(mapStateToProps, mapDispatchToProps)(MaterialComplementaryCard);
-   
-    
-    
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialComplementaryCard);
+  

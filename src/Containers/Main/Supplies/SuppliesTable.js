@@ -35,6 +35,7 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import MaterialRecommendToggle from "./MaterialRecommendToggle";
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import MaterialComplementaryDrawer from "./MaterialComplementaryDrawer";
+import StatusDrawer from "./StatusDrawer";
 
 const PriceModal = lazy(() => import("./PriceModal"));
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
@@ -54,6 +55,7 @@ function SuppliesTable(props) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [openComplementary,setopenComplementary] = useState(false);
+  const [openStatus,setopenStatus] = useState(false);
 
   const openModal = () => {
     setModalVisible(true);
@@ -465,13 +467,27 @@ function SuppliesTable(props) {
                                 <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
                               </Popconfirm>
                             </div>
+                            <Tooltip title="Complimentry">
                             <div>
                              <FactCheckIcon
                              className="!text-icon cursor-pointer text-[pink]"
                               onClick={()=>{
-                                setopenComplementary(true);}}
+                                setopenComplementary(true);
+                                handleParticularRowData(item);
+                              }}
+                                
                              />
                               </div>
+                              </Tooltip>
+                              <Tooltip title="Status">
+                              <div>
+                             <FactCheckIcon
+                             className="!text-icon cursor-pointer text-[pink]"
+                              onClick={()=>{
+                                setopenStatus(true);}}
+                             />
+                              </div>
+                              </Tooltip>
                           </div>
 
                         </div>
@@ -537,6 +553,11 @@ function SuppliesTable(props) {
    particularDiscountData={particularDiscountData}
       openComplementary={openComplementary}
       setopenComplementary={setopenComplementary}
+      />
+       <StatusDrawer
+ 
+ openStatus={openStatus}
+ setopenStatus={setopenStatus}
       />
       </Suspense>
 
