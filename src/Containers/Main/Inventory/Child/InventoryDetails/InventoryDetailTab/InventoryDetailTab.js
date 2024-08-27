@@ -141,6 +141,8 @@ class InventoryDetailTab extends PureComponent {
             >
               <Suspense fallback={"Loading..."}>
                 <DispatchTable 
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
                    inventory={this.props.inventory}
                 />
               </Suspense>
