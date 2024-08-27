@@ -71,25 +71,25 @@ function EventForm (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Type",//0
-         "Subject",//1
-         "Start Date",//2
-         "Start Time",//3
-          "End Date",//4
-          "End Time",//5
-          " Time Zone",//6
-          "Prospect",//7
-          "Contact",//8
-          "Opportunity",//9
-          "Assigned",//10
-          "Include",//11
-          "Address",//12
+        "71",//  "Type",//0
+       "72", //  "Subject",//1
+       "176", //  "Start Date",//2
+       "93", //  "Start Time",//3
+        "126" , // "End Date",//4
+         "94", // "End Time",//5
+        "95",  // " Time Zone",//6
+        "97" , // "Prospect",//7
+          "73",// "Contact",//8
+         "99", // "Opportunity",//9
+         "76", // "Assigned",//10
+          "75",// "Include",//11
+      "185", //"Address",//12
           // "Street",//13
           // "Zip Code",//14
           // "City", //15
           //  "State",//16
           //  "Country",///17
-           "Notes"//18
+         "316" //  "Notes"//18
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
