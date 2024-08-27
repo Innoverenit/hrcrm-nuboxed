@@ -30,9 +30,9 @@ props.getTeamMemberlist();
     const fetchMenuTranslations = async () => {
       try {
           const itemsToTranslate = [
-            'Name',//0
-            'Team Lead',//1
-            'Create',//2
+          "110",  // 'Name',//0
+           "1139", // 'Team Lead',//1
+           "104" // 'Create',//2
            ];
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);

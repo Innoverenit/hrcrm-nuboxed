@@ -53,16 +53,16 @@ const LocationCard = (props) => {
       try {
         const itemsToTranslate = [
        
-          "Name",//0
-          "Address",//1
-          "Production",//2
-          "Refurbish",//3
-          "Inventory",//4
-          "Billing",//5
-          "Corporate",//6
-          "Project",//7
-          "Retail",//8
-          "Region"//9
+        "110",  // "Name",//0
+         "185", // "Address",//1
+         "203", // "Production",//2
+         "758", // "Refurbish",//3
+        "880",  // "Inventory",//4
+        "1010",  // "Billing",//5
+         "1011", // "Corporate",//6
+       "137",   // "Project",//7
+        "1013",  // "Retail",//8
+        "24"  // "Region"//9
          
         ];
 

@@ -1,4 +1,4 @@
-import React, { useState,lazy} from "react";
+import React, { useState,lazy, useEffect} from "react";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
@@ -40,68 +40,124 @@ const Words =lazy(()=>import("./Words/Words"));
 const TabPane = StyledTabs.TabPane;
 
 function CategoryTab (props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+           "",   // "Module",
+           "980",   // "Role",
+           "1165",    // "Activity",
+           "1011",   // "Corporate",
+           "248",   // "Customer",
+           "824",   // "Suppliers",
+           "887",   // "Shipper",
+           "511",   // "Investor",
+           "660",   // "Order",
+           "940",    // "Performance Management",
+           "",    // "Words",
+           "992",   // "Employee",
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
         const name = [
               {
             rulesName: "Module",
             ruleId: "1",
-            component:<ModuleTab/>,
+            component:<ModuleTab
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}/>,
           },
 
           {
-            rulesName: "Role",
+            rulesName:"Role",
             ruleId: "2",
-            component:<Category/>,
+            component:<Category
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}/>,
           },
             {
-              rulesName: "Activity",
+              rulesName:  "Activity",
               ruleId: "3",
-              component:   <CategoryActivity/>,
+              component:   <CategoryActivity
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>,
             },
             {
               rulesName: "Corporate",
               ruleId: "4",
-              component: <OthersTab />,
+              component: <OthersTab 
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>,
             },
             {
               rulesName: "Customer",
               ruleId: "5",
-              component:<CustomerSectorTab />,
+              component:<CustomerSectorTab 
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>,
             },
             {
               rulesName: "Suppliers",
               ruleId: "6",
-              component:<SuppliersTab />,
+              component:<SuppliersTab 
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>,
             },
             {
               rulesName: "Shipper",
               ruleId: "7",
-              component:<ShipperTab />,
+              component:<ShipperTab 
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>,
             },
             {
               rulesName: "Investor",
               ruleId: "8",
-              component:<InvestorTab />,
+              component:<InvestorTab 
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>,
             },
             {
               rulesName: "Order",
               ruleId: "9",
-              component:<OrderTab />,
+              component:<OrderTab
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage} />,
             },
             {
               rulesName: "Performance Management",
               ruleId: "10",
-              component:<PerformanceManagementTab />,
+              component:<PerformanceManagementTab 
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>,
             },
             {
               rulesName: "Words",
               ruleId: "11",
-              component:<Words/>,
+              component:<Words
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>,
             },
             {
               rulesName: "Employee",
               ruleId: "12",
-              component:<EmployeeTab/>,
+              component:<EmployeeTab
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>,
             },
 
           ];
@@ -122,10 +178,14 @@ function CategoryTab (props) {
                     handleRuleClick={handleRuleClick}
                     rules={rules}
                     currentRulesOpen={currentRulesOpen}
+                    translateText={props.translateText}
+                    selectedLanguage={props.selectedLanguage}
                   />
                 </div>
                 <div class=" w-[78%]" >
-                  <CategoryActionRight current={currentRulesOpen} />
+                  <CategoryActionRight current={currentRulesOpen} 
+                   translateText={props.translateText}
+                           selectedLanguage={props.selectedLanguage}/>
                 </div>
               </div>
             {/* </Suspense> */}

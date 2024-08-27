@@ -18,11 +18,11 @@ const DeletedLocationCard = (props) => {
       try {
         const itemsToTranslate = [
        
-          "Name",//0
-          "Country",//1
-          "Address",//2
-          "Region",//3
-          "Reinstate"//4
+        "110",  // "Name",//0
+        "1109",  // "Country",//1
+         "185", // "Address",//2
+       "24",   // "Region",//3
+         "1069" // "Reinstate"//4
          
         ];
 

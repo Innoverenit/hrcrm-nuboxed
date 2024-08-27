@@ -35,7 +35,7 @@ class EmployeesActionRight extends React.Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-       'Add'
+     "85" //  'Add'
        ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
