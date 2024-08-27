@@ -67,20 +67,20 @@ props.getInvoiceCount(props.distributorData.distributorId)
           try {
             setLoading(true); 
             const itemsToTranslate = [
-    'Production', // 0
-    'Repair', // 1
-    ' Procure', // 2
-    'Quotation', // 3
-    ' Activity', // 4
-    'Notes', // 5
-    ' Documents',
-    'Sales Map',
-    'Summary',
-    'Contact ',
-    'Invoice',//10
-    'Create',
-     'Commerce', //12              
-    'Add Commerce',//13
+   "203", // 'Production', // 0
+   "661", // 'Repair', // 1
+   "668", // ' Procure', // 2
+    "213",// 'Quotation', // 3
+    "1165",// ' Activity', // 4
+    "316",// 'Notes', // 5
+   "116", // ' Documents',
+   "1167", // 'Sales Map',
+    "1168",// 'Summary',
+    "73",// 'Contact ',
+    "1169",// 'Invoice',//10
+    "104",// 'Create',
+   "1212", //  'Commerce', //12              
+   "1213", // 'Add Commerce',//13
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
