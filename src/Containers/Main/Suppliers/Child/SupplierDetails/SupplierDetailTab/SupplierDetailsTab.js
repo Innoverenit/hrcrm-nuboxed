@@ -57,12 +57,12 @@ class SupplierDetailsTab extends Component {
     try {
       const itemsToTranslate = [
        
-        "Purchase Order",
-        "Inventory",
-        "Materials",
-        "Contact",
-        "Documents",
-        "Activity" 
+       "831", // "Purchase Order",
+       "880",// "Inventory",
+       "1235",// "Materials",
+       "73",  // "Contact",
+       "1166",  // "Documents",
+       "1165", // "Activity" 
             ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);

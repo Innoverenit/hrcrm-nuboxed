@@ -17,13 +17,13 @@ function PoSupplierDetailsTable(props) {
           setLoading(true); 
           const itemsToTranslate = [
   
-              "Name",//0
-              "Category",//1
-              "Attribute",
-              "Unit",
-              "Price/Unit",
-              "Add",
-              "Cancel"
+           "110", //"Name",//0
+           "14", //"Category",//1
+           "259", //   "Attribute",
+           "254",//   "Unit",
+           "788",//   "Price/Unit",
+           "85", //   "Add",
+           "1079",  //   "Cancel"
   
           ];
   

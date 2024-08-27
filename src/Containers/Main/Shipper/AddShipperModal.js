@@ -17,7 +17,8 @@ const AddShipperModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <AddShipperForm {...formProps}     translatedMenuItems={props.translatedMenuItems} />
+                    <AddShipperForm {...formProps}   
+                    translatedMenuItems={props.translatedMenuItems} />
                 </Suspense>
             </StyledDrawer>
         </>

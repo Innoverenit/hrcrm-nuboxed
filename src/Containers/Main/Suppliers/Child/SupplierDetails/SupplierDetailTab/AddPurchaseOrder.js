@@ -5,7 +5,6 @@ import { Button,Select } from 'antd';
 import { linkPurchaseToSuppliers, getSuppliesListBySupplier,getSupplierwiseQuality } from "../../../SuppliersAction"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import AddedSuppliesTable from './AddedSuppliesTable';
 import * as Yup from "yup";
 import { BundleLoader } from '../../../../../../Components/Placeholder';
@@ -26,14 +25,14 @@ const AddPurchaseOrder = (props) => {
             setLoading(true); 
             const itemsToTranslate = [
        
-               "Materials",//0
-                "Quality",//1
-                "Units",//2
-                "Category",//3
-                "Sub Category",//5
-                "Attribute",//5
-                "Sub Attribute",//6
-                "Submit",//7
+          "798",  // "Materials",//0
+             "654",   // "Quality",//1
+              "260",  // "Units",//2
+              "14",  // "Category",//3
+               "1154", // "Sub Category",//5
+               "259", // "Attribute",//5
+                "263",// "Sub Attribute",//6
+               "154", // "Submit",//7
                 
     
             ];

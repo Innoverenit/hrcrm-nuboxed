@@ -23,45 +23,45 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Name",//0
-          "Phone",//1
-          "Email",//2
-          "Country",//3
-          "My Suppliers",//4
-          "Not Approved",//5
-          "ALL",//6
-          'Deleted',//7
-          'Search by Name or Sector',//8
-          'Add',//9
-          'Loading',//10
-          'Export Supplier',//11
-          'Create',//12
-          'Suppliers',//13
-          'Dial Code',//14
-          'Phone',//15
-          'Email',//16
-          'Approve',//17
-          'Purchase Order',//18
-          'Price',//19
-          'Edit',//20
-          'Delete',//21
-          'Do you want to delete',//22
-          'New',//23
-          'Assigned',//24
-          'Update',//25
-          'Category',//26
-          'Attribute',//27
-          'Quality',//28
-          'Last',//29
-          'Date',//30
-          'Cancel',//31
-          'Material',//32
-          'Currency',//33
-          'Address',//34
-          'City',//35
-          'Pin Code',//36
-          'Reinstate',//37
-          "Publish",
+       "110", //  "Name",//0
+        "102",  // "Phone",//1
+       "140",   // "Email",//2
+        "1109",  // "Country",//3
+        "835",  // "My Suppliers",//4
+         "", // "Not Approved",//5
+         "228", // "ALL",//6
+         "", // 'Deleted',//7
+        "288",  // 'Search by Name or Sector',//8
+        "85",  // 'Add',//9
+         "82", // 'Loading',//10
+         "", // 'Export Supplier',//11
+         "104", // 'Create',//12
+         "824", // 'Suppliers',//13
+         "357", // 'Dial Code',//14
+         "102", // 'Phone',//15
+        "140",  // 'Email',//16
+        "116",  // 'Approve',//17
+        "831",  // 'Purchase Order',//18
+        "657",  // 'Price',//19
+        "170",  // 'Edit',//20
+        "84",  // 'Delete',//21
+        "",  // 'Do you want to delete',//22
+        "100",  // 'New',//23
+         "76", // 'Assigned',//24
+         "", // 'Update',//25
+         "14", // 'Category',//26
+         "259", // 'Attribute',//27
+          "654",// 'Quality',//28
+         "", // 'Last',//29
+          "76",// 'Date',//30
+         "1079", // 'Cancel',//31
+         "796", // 'Material',//32
+         "241", // 'Currency',//33
+         "185", // 'Address',//34
+         "188", // 'City',//35
+         "879", // 'Pin Code',//36
+         "1069", // 'Reinstate',//37
+          "739",// "Publish",
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
