@@ -22,7 +22,7 @@ class InvoiceOrderModal extends Component {
                     footer={null}
                 >
                     <InvouiceOrderTable
-                          rowData={this.props.rowData}
+                          particularRowData={this.props.particularRowData}
                           selectedLanguage={this.props.selectedLanguage}
                             translateText={this.props.translateText} />
 

@@ -7,9 +7,7 @@ const initialState = {
     uploadingMaterialList:false,
     uploadingMaterialListError:false,
 
-    fetchingTimelineStatus: false,
-    fetchingTimelineStatusError: false,
-    statusActivityTimeline:[],
+
 
     addBrandModel: false,
 
@@ -993,20 +991,7 @@ export const suppliesReducer = (state = initialState, action) => {
                                             materialCpmplementaryError: true,
                                           };
 
-                                          case types.GET_STATUS_TIMELINE_REQUEST:
-      return { ...state, fetchingTimelineStatus: true };
-    case types.GET_STATUS_TIMELINE_SUCCESS:
-      return {
-        ...state,
-        fetchingTimelineStatus: false,
-        statusActivityTimeline: action.payload,
-      };
-    case types.GET_STATUS_TIMELINE_FAILURE:
-      return {
-        ...state,
-        fetchingTimelineStatus: false,
-        fetchingTimelineStatusError: true,
-      };
+
   
 
         default:

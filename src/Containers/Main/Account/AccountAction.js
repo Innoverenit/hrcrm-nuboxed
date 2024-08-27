@@ -1537,10 +1537,12 @@ export const handleOrderPaymentModal = (modalProps) => (dispatch) => {
 /**
  * Link paid in distributor
  */
-export const addPaidOrder = (data, orderId,) => (dispatch) => {
+export const addPaidOrder = (data,procureOrderInvoiceId, orderId) => (dispatch) => {
   dispatch({ type: types.ADD_PAID_BY_DISTRIBUTOR_ID_REQUEST });
   axios
-    .post(`${base_url2}/orderPayment/payment`, data, {
+    // .post(`${base_url2}/orderPayment/payment`,
+    .put(`${base_url2}/invoice/procure/${procureOrderInvoiceId}`,
+       data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1555,8 +1557,8 @@ export const addPaidOrder = (data, orderId,) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Payment Successful!',
-        showConfirmButton: false,
-        timer: 1500,
+        // showConfirmButton: false,
+        // timer: 1500,
       })
     })
     .catch((err) => {
@@ -5040,4 +5042,30 @@ export const paidUnpaidInvoice = ( data,procureOrderInvoiceId) => (dispatch, get
       });
     })
 }
+
+export const getStatusTimeline = (customerId) => (dispatch) => {
+  dispatch({
+      type: types.GET_STATUS_TIMELINE_REQUEST,
+  });
+  axios
+      .get(`${base_url}/customer/activity/list/${customerId}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_STATUS_TIMELINE_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_STATUS_TIMELINE_FAILURE,
+              payload: err,
+          });
+      });
+};
 

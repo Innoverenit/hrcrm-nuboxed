@@ -3,6 +3,7 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 const DistributorPaidForm = lazy(() => import("./DistributorPaidForm"));
 const OrderPaymentTable = lazy(() => import("./OrderPaymentTable"));
+
 class PaidButtonModal extends Component {
     render() {
         const {
@@ -10,6 +11,8 @@ class PaidButtonModal extends Component {
             handlePaidModal,
             ...formProps
         } = this.props;
+        console.log("modll",this.props.particularRowData)
+
         return (
             <>
                 <StyledDrawer
@@ -25,8 +28,12 @@ class PaidButtonModal extends Component {
 
                         {this.props.type === "incomplete" ?
                             <>
-                                <DistributorPaidForm particularRowData={this.props.particularRowData}  distributorId={this.props.distributorId} />
-                                <OrderPaymentTable particularRowData={this.props.particularRowData} />
+                                <DistributorPaidForm particularRowData={this.props.particularRowData}  distributorId={this.props.distributorId} 
+                                type={this.props.type}
+                                />
+                                <OrderPaymentTable particularRowData={this.props.particularRowData} 
+                                  type={this.props.type}
+                                />
                             </> :
                             <OrderPaymentTable particularRowData={this.props.particularRowData} />}
                     </Suspense>

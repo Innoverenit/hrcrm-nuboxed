@@ -13,7 +13,7 @@ class InvoiceModal extends Component {
         return (
             <div>
                 <StyledDrawer
-                    title={this.props.rowData.invoiceId}
+                    title={this.props.particularRowData.invoiceId}
                     width="60%"
                     visible={invoiceO}
                     destroyOnClose
@@ -23,7 +23,7 @@ class InvoiceModal extends Component {
                     footer={null}
                 >
                     <InvouiceSTable
-                          rowData={this.props.rowData}
+                          particularRowData={this.props.particularRowData}
                           selectedLanguage={this.props.selectedLanguage}
                             translateText={this.props.translateText} />
 
