@@ -61,21 +61,21 @@ function DealForm(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-          " Name",//0
-          "Start Date",//1
-              "End Date",//2
-              "Value",//3
-              "Currency",//4
-              "Description",//5
-              "Assigned",//6
-              "Include",//7
-              "Investor",//8
-              "Contact",//9
-              "Workflow",//10
-              "Stages",//11
-              'Create'
+          "110",//0 Name
+          "176",//1 Start Date
+              "126",//2 End Date
+              "218",//3 Value
+              "241",// 4 Currency
+              "147",//5 Description
+              "76",//13 Assigned
+              "75",//7 Include
+              "511",//8 Investor
+              "73",//9 Contact
+              "141",//10 Workflow
+              "219",//11 Stages
+              '104'// Create
         ];
-
+     
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
       } catch (error) {

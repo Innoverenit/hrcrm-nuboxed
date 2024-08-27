@@ -68,19 +68,19 @@ function InvestorCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [         
-            "Name",//0
-            "Sector",//1
-            "Deals",//2
-            "In Progress",//3
-            "signed",//4
-            "Category",//5
-            "First Meeting",//6
-            "Shares",//7
-            " Value",//8
-            "Club",//9
-            "Assigned",//10
-            "Owner",//11
-            "Source"//12
+            "110",//0 Name
+            "278",//1Sector
+            "490",//2Deals
+            "144",//3In Progress
+            "579",//4signed
+            "14",//5 Category
+            "589",//6 First Meeting
+            "1161",//7 Shares
+            "218",//8Value
+            "529",//9Club
+            "76",//10Assigned
+            "77",//11 Owner
+            "279"//12Source
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

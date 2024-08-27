@@ -57,15 +57,15 @@ function InvestorTeamCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [        
-            "Name",//0
-            "Sector",//1
-            "Deals",//2
-            "Discussion",//3
-            "signed",//4
-            "Category",//5
-           "Assigned",//6
-            "Owner",//7
-            "Source"//8
+          "110",//0 Name
+          "278",//1Sector
+          "490",//2Deals
+            "578",//3Discussion
+            "579",//4signed
+            "14",//5 Category
+            "76",//10Assigned
+            "77",//11 Owner
+            "279"//12Source
 
         ];
 

@@ -65,8 +65,7 @@ function Pitch (props) {
              <AddPitchModal             
              selectedLanguage={props.selectedLanguage}
              translateText={props.translateText}
-              addPitchModal={props.addPitchModal}
-             
+              addPitchModal={props.addPitchModal}           
               handlePitchModal={props.handlePitchModal}
             />                    
         

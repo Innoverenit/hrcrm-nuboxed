@@ -24,8 +24,10 @@ const CreateDealModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
           <DealForm
-            selectedLanguage={props.selectedLanguage}
+      
             translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
 
           />{" "}
         </Suspense>

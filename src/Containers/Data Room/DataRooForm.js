@@ -306,9 +306,9 @@ function CustomerForm(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          ' Name', // 0
-          'Include User',// 1
-          'Create'
+          '110', // 0  Name
+          '1124',// 1 Include User
+          '104' //Create
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

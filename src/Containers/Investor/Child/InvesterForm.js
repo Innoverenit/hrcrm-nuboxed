@@ -18,7 +18,6 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
@@ -59,25 +58,26 @@ function InvesterForm(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Name",//0
-          "URL",//1
-          "Email",//2  
-          "Dial Code",//3
-          "Phone No",//4
-          "Type",//5
-          "Category",//6
-          "UBO",//7
-          "Identification",//8
-          "Infocit",//9
-          "Date",//10
-          "Description",//11
-          "Assigned",//12
-          // "Address",//14
-          // "Street",//15
-          // "Zip Code",//16
-          // "City",//17
-          // "State",//18
-          // "Country",//19
+         "110",//0 Name
+          "102",//1 URL
+          "140",//2 Email
+          "357",//3 Dial Code
+          "300",//4 Phone No
+          '71', // 5Type
+         "14",//6 Category
+          "619",//7 UBO
+          "622",//8 Identification
+          // "",//9Infocit
+          "74",//10 Date
+          "147",//11 Description
+          "76",//12 Assigned
+          "185", //13 "Address",
+              "186", // "Street",//15
+             "187",//Zip Code",//16
+             "188",// "City",17
+              "314",// "State",//18
+              "1109",// "Country",//19
+              "Create"
         
         ];
 

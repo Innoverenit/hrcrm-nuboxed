@@ -95,10 +95,10 @@
 import React, { useEffect, useState } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import {  Input,Tooltip,Popconfirm} from "antd";
+import {  Input} from "antd";
 import { getLangWords,updateWords ,searchWordsName} from "../../SettingsAction";
-import { MainWrapper } from "../../../../Components/UI/Elements";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 
 function WordsCard(props) {
   const [currentData, setCurrentData] = useState("");
@@ -170,7 +170,7 @@ function WordsCard(props) {
 
   return (
     <div className="cwrapper" style={{ height: "89vh", overflowY: "auto" }}>
-         <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+         <div class=" flex  mt-12" >
             <Input
          placeholder="Search by Name"
         style={{width:"100%",marginLeft:"0.5rem"}}
@@ -235,14 +235,16 @@ function WordsCard(props) {
                   </div>
                 </div>
 
-                <div className="flex items-center" style={{marginLeft:"-57px"}}>
+                <div className="flex items-center ml-[-57px] ">
                   {isEditing ? (
                     <>
                       <button onClick={() => handleSave(index)}>Save</button>
                       <button onClick={handleCancel}>Cancel</button>
                     </>
                   ) : (
-                    <button onClick={() => handleEdit(index)}>Edit</button>
+                    <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato]"
+                      onClick={() => handleEdit(index)}
+                    />
                   )}
                 </div>
               </div>

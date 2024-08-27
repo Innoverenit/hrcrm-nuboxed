@@ -56,20 +56,20 @@ class UpdateContactInvestForm extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       'First Name', // 0
-'Middle Name', // 1
-'Last Name', // 2
-'Email', // 3
-'Alternate Email', // 4
-'Dial Code', // 5
-'Mobile', // 6
-'WhatsApp', // 7
-'Linkedin', // 8
-'Tag Company', // 9
-'Source', // 10
-'Department', // 11
-'Designation', // 12
-'Update'//13
+        "295",//0 First Name
+        "353",//1 Middle Name
+        "354",//2 Last Name
+        "140",//3 Email
+'1117', // 4 Alternate Email
+'357', // 5Dial Code
+'546', // 6 Mobile
+'1157', // 7 WhatsApp
+'547', // 8 Linkedin
+'361', // 10 Tag Company
+'279' ,//13 Source
+'326', // 11Department
+'325', // 12
+'1107'//13Update
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);

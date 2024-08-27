@@ -40,11 +40,11 @@ class LinkedContactInvestDocuments extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       'Date', // 0
-'Name', // 1
-'Type', // 2
-'File Name', // 3
-'Uploaded By'//4
+       '74', // 0 Date
+'110', // 1 Name
+'71', // 2Type
+'1208', // 3File Name
+'1207'//4Uploaded By
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
       this.setState({ translatedMenuItems: translations ,loading: false});

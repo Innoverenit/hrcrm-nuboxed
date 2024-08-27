@@ -62,16 +62,16 @@ const PitchCardList = (props) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          "Name",//0
-          "Mobile",//1
-          "Company",//2
-          "Source",//3
-          "Sector",//4
-          "Category",//5
-          "Share",//6
-          "Value",//7
-           "Owner",//8
-           "Qualify"//9
+          "110",//0 Name
+          "546",//1 Mobile
+          "277",//2 Company
+          "279",//3 source
+          "278",//4 sector
+          "14",//5 Category
+          "1158",//6 share
+          "218",//7Value
+           "77",//8 Owner
+           "1114"//9 qualify
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
