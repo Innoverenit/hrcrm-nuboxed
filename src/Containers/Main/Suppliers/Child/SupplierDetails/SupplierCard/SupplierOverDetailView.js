@@ -23,11 +23,11 @@ class SupplierOverDetailView extends Component {
     try {
       const itemsToTranslate = [
        
-        "City",
-        "State",
-        "Pincode",
-        "Country",
-        "Street" 
+      "188",  // "City",
+      "",   // "State",
+      "1236",   // "Pincode",
+      "1109",  // "Country",
+      "186",   // "Street" 
             ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);

@@ -16,15 +16,15 @@ function TermsAndConditionForm(props) {
           setLoading(true); 
           const itemsToTranslate = [
   
-             "Special terms and condition",//0
-              "Delivery",//1
-             "Freight",
-             "Packing",
-              "Warrenty",
-              "Test Certificate",
-              "Order Acceptance",
-                "Payment",
-                "Submit"
+         "",   //  "Special terms and condition",//0
+         "772",   //   "Delivery",//1
+         "",   //  "Freight",
+         "",  //  "Packing",
+         "",   //   "Warrenty",
+         "",  //   "Test Certificate",
+         "", //   "Order Acceptance",
+         "1171",     // "Payment",
+         "154",     // "Submit"
 
           ];
   

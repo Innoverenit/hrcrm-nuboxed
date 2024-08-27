@@ -18,8 +18,8 @@ function AddLocationInPo(props) {
         setLoading(true); 
         const itemsToTranslate = [
 
-            "Location",//0
-            "Submit",//1
+           "658", // "Location",//0
+           "154"// "Submit",//1
 
         ];
 
