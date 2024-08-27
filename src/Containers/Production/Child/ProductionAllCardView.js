@@ -28,19 +28,19 @@ function ProductionAllCardView(props) {
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "MFG ID",//0
-              "Location",//1
-              "Cell",//1
-              "Created",//1
-              "Item",//1
-              "Category",//1
-              "Attribute",//1
-              "Start",//1
-              "End",//1
-              "Workflow",//1
-              "Status",//1
-              "Inspected",//1
-              "Dispatch",//1
+            "1061",//  "MFG ID",//0
+           "658" ,//   "Location",//1
+            "744",//   "Cell",//1
+           "679" ,//   "Created",//1
+            "1044",//   "Item",//1
+           "14", //   "Category",//1
+           "259", //   "Attribute",//1
+            "158",//   "Start",//1
+           "111", //   "End",//1
+            "141",//   "Workflow",//1
+            "142",//   "Status",//1
+           "1051", //   "Inspected",//1
+            "1063"//   "Dispatch",//1
           
           
            

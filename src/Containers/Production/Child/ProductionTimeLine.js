@@ -51,8 +51,8 @@ const Component2 = (props) => {
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "Steps",//0
-              "Add Parts",//1
+           "1156", //  "Steps",//0
+           "1054" //   "Add Parts",//1
           
           
            

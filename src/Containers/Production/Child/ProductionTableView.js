@@ -118,18 +118,18 @@ function ProductionTableView(props) {
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "Manufacture ID",//0
-              "Cell",//1
-              "Created",//2
-              "Item",//3
-              "Category",//5
-              "Attribute",//6
-              "Status",//7
-              "Workflow",//8
-              "Stage",//8
-              "Inspected",//8
-              "Store",//8
-              "To Quality",//8
+           "774" ,//  "Manufacture ID",//0
+           "744", //   "Cell",//1
+           "679", //   "Created",//2
+           "1044", //   "Item",//3
+            "14",//   "Category",//5
+              "259",//6
+           "142", //   "Status",//7
+           "141", //   "Workflow",//8
+           "1050" ,//   "Stage",//8
+            "1051",//   "Inspected",//8
+           "1052", //   "Store",//8
+            "1053"//   "To Quality",//8
               
             ];
     

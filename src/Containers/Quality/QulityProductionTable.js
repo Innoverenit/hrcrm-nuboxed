@@ -42,14 +42,14 @@ export const QulityProductionTable = (props) => {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Manufacture ID",//0
-          "Name",//1
-          "Date",//2
-          "Status",//3
-          "To Dispatch",//5
+        "774",//  "Manufacture ID",
+         "110", // "Name",
+         "74" ,// "Date",//2
+         "142", // "Status",//3
+        "778" , // "To Dispatch",//5
           "Assignedto",//6
-          "Manufacture",//7
-          "Step",//8
+        "1042",  // "Manufacture",//7
+         "1043" // "Step",//8
           
         ];
 
