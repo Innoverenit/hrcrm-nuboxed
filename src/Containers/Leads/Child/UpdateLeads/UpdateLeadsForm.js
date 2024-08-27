@@ -117,22 +117,22 @@ function UpdateLeadsForm (props) {
         try {
           setLoading(true); 
           const itemsToTranslate = [
-     'First Name', // 0
-'Middle ', // 1
-'Last Name', // 2
-'Email', // 3
-'Dial Code', // 4
-'Phone No', // 5
-'Company', // 6
-'URL', // 7
-'Sector', // 8
-'Source', // 9
-'LOB', // 10
-'VAT Number', // 11
-'Registration', // 12
-'Assigned', // 13
-'Notes', // 14
-'Update'
+     '295', // 0
+'296', // 1
+'354', // 2
+'140', // 3
+'357', // 4
+'300', // 5
+'277', // 6
+'302', // 7
+'278', // 8
+'279', // 9
+'280', // 10
+'306', // 11
+'307', // 12
+'76', // 13
+'316', // 14
+// 'Update'
    
           ];
   

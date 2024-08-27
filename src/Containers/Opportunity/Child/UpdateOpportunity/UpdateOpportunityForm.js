@@ -50,18 +50,18 @@ function UpdateOpportunityForm (props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-       ' Name', // 0
-'Start Date', // 1
-'End Date', // 2
-'Value', // 3
-'Currency', // 4
-'Assigned', // 5
-'Include', // 6
-'Customer', // 7
-'Contact', // 8
-'Workflow', // 9
-'Stages', // 10
-'Update'
+       '110', // 0
+'176', // 1
+'126', // 2
+'218', // 3
+'241', // 4
+'76', // 5
+'75', // 6
+'248', // 7
+'73', // 8
+'141', // 9
+'219', // 10
+// 'Update'
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

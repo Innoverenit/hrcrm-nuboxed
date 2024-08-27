@@ -44,11 +44,11 @@ class LinkedContact extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       'Name', // 0
-'Designation', // 1
-'Function', // 2
-'Email', // 3
-'Mobile'//4
+       '110', // 0
+'325', // 1
+'1206', // 2
+'140', // 3
+'546'//4
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);

@@ -57,20 +57,20 @@ class ContactForm extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-'First Name', // 0
-'Middle Name', // 1
-'Last Name', // 2
-'Dial Code', // 3
-'Mobile', // 4
-'WhatsApp', // 5
-'Email',//6
-'Linkedin', // 7
-'Tag Company', // 8
-'Designation' ,// 9
-'Department', // 10
- 'Address',//12
-'Notes',//13
-  'Create'
+'295', // 0
+'353', // 1
+'354', // 2
+'357', // 3
+'546', // 4
+'1157', // 5
+'140',//6
+'547', // 7
+'361', // 8
+'325' ,// 9
+'326', // 10
+ '185',//12
+'316',//13
+  '104'
         
       ];
 
@@ -152,9 +152,9 @@ class ContactForm extends Component {
 
       
     const {loading,translatedMenuItems } = this.state;
-    if (loading) {
-      return <div><BundleLoader/></div>;
-    } 
+    // if (loading) {
+    //   return <div><BundleLoader/></div>;
+    // } 
     return (
       <>
         <Formik

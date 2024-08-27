@@ -49,11 +49,11 @@ class LinkedDocuments extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       'Name', // 0
-'Type', // 1
-'Description', // 2
-'Uploaded By', // 3
-'File Name'//4
+       '110', // 0
+'71', // 1
+'147', // 2
+'1207', // 3
+'1208'//4
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
