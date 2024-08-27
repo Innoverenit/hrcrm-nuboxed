@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button,Switch} from "antd";
-import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import {getAllEmployeelist,getDialCode} from "../../InvestorAction"
@@ -35,25 +34,25 @@ function UpdateInvestorForm (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Name",//0
-          "URL",//1
-          "Email",//2  
-          "Dial Code",//3
-          "Phone No",//4
-          "Type",//5
-          "Category",//6
-          "UBO",//7
-          "Identification",//8
-          "Infocit",//9
-          "Date",//10
-          "Notes",//11
-          "Assigned",//12
-          // "Address",//14
-          // "Street",//15
-          // "Zip Code",//16
-          // "City",//17
-          // "State",//18
-          // "Country",//19
+          "110",//0 Name
+          "102",//1 URL
+          "140",//3 Email
+          "357",//4 Dial Code
+          "300",//5 Phone No
+          '71', // 2Type
+         "14",//10 Category
+          "619",//7UBO
+          "622",//8Identification
+          // "",//9Infocit
+          "74",//11 Date
+          "316",//11Notes
+          "76",//12 Assigned
+          "185", // "Address",
+          "186", // "Street",//15
+           "187",//Zip Code",//16
+           "188",// "City",17
+              "314",// "State",//18
+              "1109",// "Country",//19
         
         ];
 

@@ -82,18 +82,18 @@ function UpdateDealForm (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         " Name",//0
-      "Start Date",//1
-          "End Date",//2
-          "Fund Value",//3
-          "Currency",//4
-          "Assigned",//5
-          "Include",//6
-          "Investor",//7
-          "Contact",//8
-          "Workflow",//9
-          "Stages",//10
-          "Create"
+          "110",//0 Name
+         "176",//1 Start Date
+              "126",//2 End Date
+          "503",//3 Fund Value
+          "214",// 4 Currency
+          "76",//5 Assigned
+          "75",//7 Include
+              "511",//8 Investor
+              "73",//9 Contact
+              "141",//10 Workflow
+              "219",//11 Stages
+          "104"// Create
           
         ];
 

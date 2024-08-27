@@ -72,14 +72,14 @@ function ContactInvestAllCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          "Name",//0
-           "Company",//1
-           "Designation",//2
-           "Department",//3
-           "Deal",//4
-           "Deal Value",//5
-          "Source",//6
-           "Owner",//7         
+          "110",//0 Name
+           "277",//1 Company
+           "325",//2Designation
+           "326",//3Department
+           "1160",//4 Deal
+           "526",//5 Deal Value
+          "279",// Source
+           "77",//7     Owner          
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

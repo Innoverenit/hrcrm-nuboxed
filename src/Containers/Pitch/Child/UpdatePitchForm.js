@@ -55,27 +55,27 @@ function UpdatePitchForm (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "First Name",//0
-          "Middle Name",//1
-          "Last Name",//2
-          "Email",//3
-          "Dial Code",//4
-          "Phone No",//5
-          "Company",//6
-          "Url",//7
-          "Share Quantity",//8
-          "Share Value",//9
-          "Category",//10
-          "Date",//11
-          "Currency",//12
-          "Assigned",//13
-          // "Address",//14
-          // "Street",//15
-          // "Zip Code",//16
-          // "City",//17
-          // "State",//18
-          // "Country",//19
-          "Notes"//20
+             "295",//0 First Name
+              "353",//1 Middle Name
+              "354",//2 Last Name
+              "140",//3 Email
+              "357",//4 Dial Code
+              "300",//5 Phone No
+              "277",//6 Company
+              "302",//7 Url
+              "454",//8 Share Quantity
+              "455",//9 Share Value
+              "14",//10 Category
+              "74",//11 Date
+              "241",//12 Currency
+              "76",//13 Assigned
+              "185", // "Address",
+              "186", // "Street",//15
+             "187",//Zip Code",//16
+             "188",// "City",17
+              "314",// "State",//18
+              "1109",// "Country",//19
+              "316",//14 Notes
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

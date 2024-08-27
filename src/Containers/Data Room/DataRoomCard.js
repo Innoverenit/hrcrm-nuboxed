@@ -29,10 +29,10 @@ const DataRoomCard = (props) => {
         setLoading(true); 
         const itemsToTranslate = [
    
-           "Room Name",//0
-            "Room Member List",//1
-            "List Of User",//2
-            "List of Contact",//3
+           "482 ",//0 Room Name
+            "483 ",//1 Room Member List
+            "484 ",//2 List Of User
+            "485 ",//3 List of Contact
             
 
         ];

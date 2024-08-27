@@ -49,14 +49,14 @@ const PitchTeamCardList = (props) => {
         setLoading(true); 
         const itemsToTranslate = [
    
-          "Name",//0
-          "Mobile",//1
-          "Company",//2
-          "Source",//3
-          "Sector",//4
-          "Assigned",//5
-          "Owner",//6
-          "Qualify",//7
+          "110",//0 Name
+          "546",//1 Mobile
+          "277",//2 Company
+          "279",//3 source
+          "278",//4 sector
+          "76",//5 Assigned
+          "77",//6 Owner
+          "1114"//9 qualify
 
         ];
 

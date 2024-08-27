@@ -30,15 +30,15 @@ const DealsAllCardList = (props) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [  
-         " Name",//0
-          "Investor",//1
-          "Sponsor",//2
-          "Start Date",//3
-          "Values",//4
-          "Stages",//5
-          "Sales Rep",//6
-          "Owner",//7
-          "Action",//8
+          "110",//0  Name
+          "511",//1 Investor
+          "216",//2 Sponsor
+          "176",//3 Start Date
+          "1159",//4 Values
+          "219",//5 Stages
+          "220",//6 Sales Rep
+          "77",//7 Owner
+          "9",//8 Action
         ];
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
