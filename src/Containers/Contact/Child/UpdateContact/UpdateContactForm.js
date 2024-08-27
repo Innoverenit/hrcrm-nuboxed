@@ -57,21 +57,21 @@ class UpdateContactForm extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       'First Name', // 0
-'Middle Name', // 1
-'Last Name', // 2
-'Email', // 3
-'Alternate Email', // 4
-'Dial Code', // 5
-'Mobile', // 6
-'WhatsApp', // 7
-'Linkedin', // 8
-'Tag Company', // 9
-'Source', // 10
-'Department', // 11
-'Designation', // 12
-'Notes', //13
-'Update'
+        '295', // 0
+'353', // 1
+'354', // 2
+'140', // 3
+'1117', // 4
+'357', // 5
+'546', // 6
+'1157', // 7
+'547', // 8
+'361', // 9
+'279', // 10
+'326', // 11
+'325' ,// 12
+'316', //13
+// 'Update'
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);

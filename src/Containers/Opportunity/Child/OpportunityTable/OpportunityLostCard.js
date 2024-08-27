@@ -5,7 +5,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import { Tooltip,  Menu, Dropdown, Progress } from "antd";
+import { Tooltip,  Menu, Dropdown, Progress } from "antd"; 
 import { CurrencySymbol, } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
@@ -71,14 +71,14 @@ function OpportunityLostCard(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-        'Name', // 0
-'Prospect', // 1
-'Sponsor', // 2
-'Start Date', // 3
-'Value', // 4
-'Stages', // 5
-'Sales Rep', // 6
-'Owner' // 7
+          '110', // 0
+          '97', // 1
+          '216', // 2
+          '176', // 3
+          '218', // 4
+          '219', // 5
+          '220', // 6
+          '77' // 7
 
         ];
 
@@ -142,7 +142,7 @@ function OpportunityLostCard(props) {
         height={"80vh"}
         style={{overflowX:"hidden",scroll:"thin"}}
       >
- <div class="flex">      
+    
               {lostOpportunity.map((item) => {
                  
                  var findProbability = item.probability;
@@ -448,7 +448,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
 
                  )  
             })}
-              </div>
+           
   
 
       </InfiniteScroll>

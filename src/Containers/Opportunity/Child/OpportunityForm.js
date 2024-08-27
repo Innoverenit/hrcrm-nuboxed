@@ -89,18 +89,18 @@ const  handleEmailInd = (checked) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          ' Name', // 0
-          'Start Date', // 1
-          'End Date', // 2
-          'Value', // 3
-          'Currency', // 4
-          "Description",//5
-          'Assigned', // 6
-          'Include', // 7
-          'Customer', // 8
-          'Contact', // 9
-          'Workflow', // 10
-          'Stages', // 11
+          '110', // 0
+          '176', // 1
+          '126', // 2
+          '218', // 3
+          '241', // 4
+          "147",//5
+          '76', // 6
+          '75', // 7
+          '248', // 8
+          '73', // 9
+          '141', // 10
+          '219', // 11
 
         ];
 

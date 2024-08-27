@@ -88,9 +88,9 @@ class OpportunityDetailTab extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       'Contact', // 0
-       'Documents', // 1
-       'Version', // 2
+       '73', // 0
+       '1166', // 1
+      //  'Version', // 2
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);

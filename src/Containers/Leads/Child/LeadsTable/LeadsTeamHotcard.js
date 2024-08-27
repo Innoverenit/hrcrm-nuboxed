@@ -56,20 +56,20 @@ const LeadsTeamHotcard = (props) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-              'Hot', // 0
-          'Name', // 1
-          'Phone', // 2
-          'Country', // 3
-          'Company', // 4
-          'Sector', // 5
-          'Source', // 6
-          'LOB', // 7
-          'Assigned', // 8
-          'By', // 9
-          'Owner', // 10
-          'Qualify', // 11
-          'Warm', //12
-          'Cold', //13
+              '271', // 0
+          '110', // 1
+          '102', // 2
+          '1109', // 3
+          '277', // 4
+          '278', // 5
+          '279', // 6
+          '280', // 7
+          '76', // 8
+          '1113', // 9
+          '77', // 10
+          '1114', // 11
+          '272', //12
+          '273', //13
             ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

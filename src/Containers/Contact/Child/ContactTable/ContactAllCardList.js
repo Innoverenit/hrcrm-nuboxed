@@ -76,14 +76,14 @@ function ContactAllCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          'Name', // 0
-'Company', // 1
-'Designation', // 2
-'Department', // 3
-'Quotation', // 4
-'Pipeline', // 5
-'Portal Access', // 6
-'Owner' // 7
+          '110', // 0 
+          '277', // 1
+          '325', // 2
+          '326', // 3
+          '213', // 4
+          '328', // 5
+          '329', // 6
+          '77' // 7
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

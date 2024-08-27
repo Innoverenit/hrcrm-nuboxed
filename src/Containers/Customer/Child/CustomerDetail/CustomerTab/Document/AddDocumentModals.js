@@ -448,13 +448,13 @@ function AddDocumentModal (props){
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Type",//0
-          "Contract",//1
-          "Name",//2
-          "Description",//3
-          "Share",//4
-          "Include",//5
-          "Submit",//6
+         "71",//0
+          "1205",//1
+          "110",//2
+          "147",//3
+          "1158",//4
+          "75",//5
+          "154",//6
          
         ];
 

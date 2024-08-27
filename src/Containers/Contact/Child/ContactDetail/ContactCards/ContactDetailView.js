@@ -22,11 +22,11 @@ class ContactDetailView extends Component {
     try {
       const itemsToTranslate = [
         
-          "Company",//0
-          "Department",//1
-          "Designation",//2
-          "Email",//3
-          "Mobile",//4
+          "277",//0
+          "326",//1
+          "325",//2
+          "140",//3
+          "546",//4
         
       ];
 

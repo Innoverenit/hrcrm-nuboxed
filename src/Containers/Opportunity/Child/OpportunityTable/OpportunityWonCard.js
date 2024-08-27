@@ -67,19 +67,19 @@ function OpportunityWonCard(props) {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  useEffect(() => {
+  useEffect(() => { 
     const fetchMenuTranslations = async () => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-        'Name', // 0
-'Prospect', // 1
-'Sponsor', // 2
-'Start Date', // 3
-'Value', // 4
-'Stages', // 5
-'Sales Rep', // 6
-'Owner' // 7
+          '110', // 0
+          '97', // 1
+          '216', // 2
+          '176', // 3
+          '218', // 4
+          '219', // 5
+          '220', // 6
+          '77' // 7
 
         ];
 
