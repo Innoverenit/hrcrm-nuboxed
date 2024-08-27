@@ -48,14 +48,14 @@ function EmployeeTable(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-       
-          "Name",//0
-          "Department",//1
-          "Role",//2
-          "Mobile #",//3
-          "Email #",//4
-          "Stop Access",//5
-          "Multi Org"//6
+      
+       "110" ,// "Name",0
+        "326",  // "Department",//1
+         "980", // "Role",//2
+          "299",// "Mobile #",//3
+         "1141", // "Email #",//4
+         "1142", // "Stop Access",//5
+         "1143" // "Multi Org"//6
          
         ];
 

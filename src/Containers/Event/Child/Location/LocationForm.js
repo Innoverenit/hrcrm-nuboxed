@@ -84,19 +84,19 @@ class LocationForm extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-          "Name",
-          "Region",
-          "inventory",
-         "Production",
-        "Corporate",
-        "Retail",
-        "Billing",
-        " 3rd Party Location",
-        "Department",
-        "User",
-        "Address",
-        "Create",
-        "Time Zone"
+       "110",   // "Name",
+       "24"  , // "Region",
+       "880"  , // "inventory",
+       "203"  , //  "Production",
+       "1011"  , // "Corporate",
+       "1013"  ,  // "Retail",
+       "1010"  , // "Billing",
+       "1030"  , // " 3rd Party Location",
+       "326"  , // "Department",
+       "user"  , // "User",
+       "185"  ,  // "Address",
+       "104"  ,  // "Create",
+       "95"  , // "Time Zone"
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
