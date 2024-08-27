@@ -109,7 +109,10 @@ class InventoryDetailTab extends PureComponent {
             >
               {" "}
               <Suspense fallback={"Loading..."}>
-                <ReceivedTable />
+                <ReceivedTable
+                  translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+                 />
               </Suspense>
             </TabPane>
 

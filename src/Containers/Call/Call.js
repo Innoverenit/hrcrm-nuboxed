@@ -16,24 +16,24 @@ function Call (props) {
       const fetchMenuTranslations = async () => {
         try {
             const itemsToTranslate = [
-              'Create',//0
-              'Add',//1
-              'Type',//2
-              'Subject',//3
-              'Contact',//4
-              'Date', //5
-              'Include',//6
-              'Assigned',//7
-              'Owner',//8
-              'Completed',//9
-              'Loading',//10
+             "104" ,// 'Create',//0
+           "85",
+            "71" , // 'Type',//2
+           "72" ,  // 'Subject',//3
+            "73"  ,// 'Contact',//4
+             "74", // 'Date', //5
+             "75" ,// 'Include',//6
+             "76", // 'Assigned',//7
+            "77",  // 'Owner',//8
+             "78" ,// 'Completed',//9
+             "82" ,// 'Loading',//10
               'You have reached the end of page',//11
-              'None',//12
-              'Not available',//13
-              'Yes',//14
-              'No',//15
-              'Notes',//16
-              'Delete',//17
+             "222", // 'None',//12
+             "118", // 'Not available',//13
+             "80" ,// 'Yes',//14
+             "81", // 'No',//15
+             "316" ,// 'Notes',//16
+             "84", // 'Delete',//17
               '',//
 
             ];

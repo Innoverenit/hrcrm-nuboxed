@@ -77,16 +77,16 @@ const TaskCardList = (props) => {
         setLoading(true); 
         const itemsToTranslate = [
    
-           "Type",//0
-            "Name",//1
-            "End",//2
-            "Ageing",//3
-            "Info",//5
-            "Assigned ",//5
-            "Owner",//6
-            "Urgent",//7
-            "High",
-            "Normal"
+         "71", //  "Type",//0
+          "110",  // "Name",//1
+          "111" , // "End",//2
+           "112" ,// "Ageing",//3
+          "113" , // "Info",//5
+           "76", // "Assigned ",//5
+          "77" , // "Owner",//6
+          "106" , // "Urgent",//7
+           "107" ,// "High",
+           "108", // "Normal"
 
         ];
 

@@ -35,11 +35,19 @@ const { Option } = Select;
 
 const ReceivedTable = (props) => {
   const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   useEffect(() => {
     setPage(page + 1);
     props.getLocationList(props.orgId);
     props.getReceivedUserList(props.locationDetailsId, page)
   }, [])
+
+
+
+
+
+ 
 
   const [hasMore, setHasMore] = useState(true);
 

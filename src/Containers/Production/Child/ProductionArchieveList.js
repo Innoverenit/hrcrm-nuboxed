@@ -20,12 +20,12 @@ function ProductionArchieveList(props) {
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "Article #",//0
-              "Name",//1
-              "Category",//1
-              "Sub",//1
-              "Attribute",//1
-              "Website",//1
+            "732",//  "Article #",//0
+           "110", //   "Name",//1
+           "14" ,//   "Category",//1
+           "1059", //   "Sub",//1
+            "259",//   "Attribute",//1
+            "700",//   "Website",//1
           
           
            

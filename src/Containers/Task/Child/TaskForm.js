@@ -1939,20 +1939,20 @@ const [priority,setpriority]=useState(props.selectedTask
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         " Priority",//0
-          "Name",//1
-          "End date",//2
-          "Type",//3
-          "WorkFlow",//4
-          "Status",//5
-          "Description",//6
-          "Assigned",//7
-          "Include",//8
-          "Prospect",//9
-          "Contact",//10
-          "Opportunity",//11
-          "Link",//12
-          "Contact",//13
+       "124" ,//  " Priority",//0
+        "110",  // "Name",//1
+        "126",  // "End date",//2
+        "71", // "Type",//3"
+        "141",  // "WorkFlow",//4
+        "142" , // "Status",//5
+         "147" ,// "Description",//6
+         "76" ,// "Assigned",//7
+         "75" ,// "Include",//8
+        "97" , // "Prospect",//9
+         "73" ,// "Contact",//10
+        "99" , // "Opportunity",//11
+         "91" ,// "Link",//12
+        "73"  // "Contact",//13
          
         ];
 
