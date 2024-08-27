@@ -1256,29 +1256,3 @@ export const linkComplementryToggle = ( data) => (dispatch) => {
     })
 };
 
-export const getStatusTimeline = (customerId) => (dispatch) => {
-  dispatch({
-      type: types.GET_STATUS_TIMELINE_REQUEST,
-  });
-
-  axios
-      .get(`${base_url}/customer/activity/list/${customerId}`, {
-          headers: {
-              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-      })
-      .then((res) => {
-          console.log(res);
-          dispatch({
-              type: types.GET_STATUS_TIMELINE_SUCCESS,
-              payload: res.data,
-          });
-      })
-      .catch((err) => {
-          console.log(err);
-          dispatch({
-              type: types.GET_STATUS_TIMELINE_FAILURE,
-              payload: err,
-          });
-      });
-};

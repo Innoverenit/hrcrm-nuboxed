@@ -13,7 +13,7 @@ const { Option } = Select;
 function OrderPaymentTable(props) {
 
   useEffect(() => {
-    props.getDistributorOrderPayment(props.particularRowData.orderId)
+    props.getDistributorOrderPayment(props.particularRowData.orderId ? props.particularRowData.orderId:props.particularRowData.orderPhoneId);
     props.getPaymentMode(props.orgId)
   }, [])
   const [mode, setMode] = useState("");
@@ -47,7 +47,7 @@ function OrderPaymentTable(props) {
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
 
             <div className=" md:w-[6.1rem]">Transaction ID</div>
-            <div className=" md:w-[4.21rem] ">Invoice Id</div> 
+            {/* <div className=" md:w-[4.21rem] ">Invoice Id</div>  */}
             <div className=" md:w-[4.5rem] ">Created </div>
             <div className="md:w-[5.8rem]">Entry</div>
             <div className=" md:w-[4.2rem] ">Amount</div>
@@ -67,11 +67,11 @@ function OrderPaymentTable(props) {
                         {item.transactionNumber}
                       </div>
                     </div>
-                    <div className=" flex  md:w-[6.12rem] max-sm:w-full  ">
+                    {/* <div className=" flex  md:w-[6.12rem] max-sm:w-full  ">
                       <div class="text-xs  font-semibold  font-poppins cursor-pointer">
                         {item.invoiceId}
                       </div>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">

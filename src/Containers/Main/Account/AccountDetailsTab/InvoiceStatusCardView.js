@@ -3,8 +3,8 @@ import { Timeline, Button, Popconfirm, Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import dayjs from 'dayjs';
-import { getStatusTimeline } from './SuppliesAction';
-import { BundleLoader } from '../../../Components/Placeholder';
+import { getStatusTimeline } from '../AccountAction';
+import { BundleLoader } from '../../../../Components/Placeholder';
 
 
 

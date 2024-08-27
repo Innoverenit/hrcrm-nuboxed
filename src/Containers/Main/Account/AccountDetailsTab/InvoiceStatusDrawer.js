@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
-import { BundleLoader } from "../../../Components/Placeholder";
-import { StyledDrawer } from "../../../Components/UI/Antd";
-import StatusCardView from "./StatusCardView";
+import { BundleLoader } from "../../../../Components/Placeholder";
+import { StyledDrawer } from "../../../../Components/UI/Antd";
+import InvoiceStatusCardView from "./InvoiceStatusCardView";
 
-const StatusDrawer = (props) => {
+const InvoiceStatusDrawer = (props) => {
   
   return (
     <>
@@ -17,11 +17,11 @@ const StatusDrawer = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-        <StatusCardView/>
+        <InvoiceStatusCardView/> 
         </Suspense>
       </StyledDrawer>
     </>
   );
 };
 
-export default StatusDrawer;
+export default InvoiceStatusDrawer;

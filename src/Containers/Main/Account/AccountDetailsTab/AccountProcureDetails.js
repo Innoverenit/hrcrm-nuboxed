@@ -183,6 +183,16 @@ function AccountProcureDetails(props) {
   // if (props.fetchingProcureDetails) {
   //   return <BundleLoader />;
   // }
+  
+  const handleUnitChange = (id, value) => {
+    setEditedFields((prevFields) => ({
+      ...prevFields,
+      [id]: {
+        ...prevFields[id],
+        unit: value,
+      },
+    }));
+  };
 
 const handleGenerateInvoice= async () => {
     setLoading(true);
@@ -190,10 +200,10 @@ const handleGenerateInvoice= async () => {
     const itemList = props.procureDetails.map(item => ({
       price: item.price,
       procureOrderProductId: item.id, // Assuming id is the procureOrderProductId
-      unit: item.unit
+      unit: editedFields[item.id]?.unit || item.unit
     }));
     try {
-      const response = await axios.post(`${base_url2}/invoice/procureInvoice `,{
+      const response = await axios.post(`${base_url2}/invoice/procureInvoice/test `,{
       //   paymentMode: "Cash",
       //   remarks: "",
       //   invoiceId:invoices,
@@ -304,7 +314,7 @@ const handleGenerateInvoice= async () => {
 
 <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                {editContactId === item.id ? (
+                {/* {editContactId === item.id ? (
                     <select
                       className="customize-select"
                       style={{ width: "70%" }}
@@ -319,12 +329,13 @@ const handleGenerateInvoice= async () => {
                     </select>
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.category}</div>
-                  )}
+                  )} */}
+                                      <div className="font-normal text-xs  font-poppins">{item.category}</div>
                 </div>
               </div>
               <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {editContactId === item.id ? (
+                  {/* {editContactId === item.id ? (
                     <select
                       className="customize-select"
                       style={{ width: "70%" }}
@@ -339,12 +350,13 @@ const handleGenerateInvoice= async () => {
                     </select>
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.brand}</div>
-                  )}
+                  )} */}
+                                   <div className="font-normal text-xs  font-poppins">{item.brand}</div>
                 </div>
               </div>
               <div className="flex  md:w-[30rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {editContactId === item.id ? (
+                  {/* {editContactId === item.id ? (
                     <Select
                       className="w-32"
                       value={model}
@@ -358,12 +370,13 @@ const handleGenerateInvoice= async () => {
                     </Select>
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.model}</div>
-                  )}
+                  )} */}
+                             <div className="font-normal text-xs  font-poppins">{item.model}</div>
                 </div>
               </div>
               <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {editContactId === item.id ? (
+                  {/* {editContactId === item.id ? (
                     <select
                       className="customize-select"
                       style={{ width: "70%" }}
@@ -378,12 +391,13 @@ const handleGenerateInvoice= async () => {
                     </select>
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.attribute}</div>
-                  )}
+                  )} */}
+                   <div className="font-normal text-xs  font-poppins">{item.attribute}</div>
                 </div>
               </div>
               <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {editContactId === item.id ? (
+                  {/* {editContactId === item.id ? (
                     <select
                       className="customize-select"
                       style={{ width: "70%" }}
@@ -398,8 +412,8 @@ const handleGenerateInvoice= async () => {
                     </select>
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.quality}</div>
-                  )}
-                 
+                  )} */}
+                  <div className="font-normal text-xs  font-poppins">{item.quality}</div>
                 </div>
               </div>
               <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
@@ -425,7 +439,7 @@ const handleGenerateInvoice= async () => {
               </div>
               <div className="flex  md:w-[6rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {editContactId === item.id ? (
+                  {/* {editContactId === item.id ? (
                     <Select
                       style={{ width: 100 }}
                       value={specs}
@@ -438,14 +452,14 @@ const handleGenerateInvoice= async () => {
                     </Select>
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.specs}</div>
-                  )}
-       
+                  )} */}
+            <div className="font-normal text-xs  font-poppins">{item.specs}</div>
                 </div>
               </div>
 
             <div className="flex  ml-2 md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {editContactId === item.id ? (
+                  {/* {editContactId === item.id ? (
                     <input
                       placeholder="Update Price"
                       style={{border:"2px solid black",width:"6rem"}}
@@ -455,23 +469,28 @@ const handleGenerateInvoice= async () => {
                     />
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.price}{item.currency} </div>
-                  )}
-
+                  )} */}
+<div className="font-normal text-xs  font-poppins">{item.price}{item.currency} </div>
                 </div>
               </div>
               <div className="flex  ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {editContactId === item.id ? (
-                    <input
+                
+                     {/* <input
                       placeholder="Update Unit"
                       style={{border:"2px solid black"}}
                       type="text"
                       value={newUnitName}
                       onChange={(e) => setUnitName(e.target.value)}
-                    />
-                  ) : (
-                    <div className="font-normal text-xs  font-poppins">{item.unit}</div>
-                  )}
+                    /> */}
+                    <input
+  placeholder="Update Unit"
+  style={{border:"2px solid black"}}
+  type="text"
+  value={editedFields[item.id]?.unit || item.unit}
+  onChange={(e) => handleUnitChange(item.id, e.target.value)}
+/>
+                  
                  
                 </div>
               </div>
@@ -515,7 +534,7 @@ const handleGenerateInvoice= async () => {
                 </div>
               </div> */}
               <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
-                <div className="flex">
+                {/* <div className="flex">
                   {editContactId === item.id ? (
                     <>
                       <Button onClick={() => handleUpdate(item.id,)}>
@@ -533,7 +552,7 @@ const handleGenerateInvoice= async () => {
                       style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
                     />
                   )}
-                </div>
+                </div> */}
                 <div>
                   <StyledPopconfirm
                     title="Do you want to delete?"

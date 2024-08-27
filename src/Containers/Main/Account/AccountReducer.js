@@ -680,6 +680,10 @@ const initialState = {
           paidUnpaidToggling: false,
                                     paidUnpaidTogglingError:false,
 
+                                    fetchingTimelineStatus: false,
+                                    fetchingTimelineStatusError: false,
+                                    statusActivityTimeline:[],
+
 };
 
 export const distributorReducer = (state = initialState, action) => {
@@ -3854,7 +3858,20 @@ export const distributorReducer = (state = initialState, action) => {
                                   };
                   
   
-
+                                  case types.GET_STATUS_TIMELINE_REQUEST:
+                                    return { ...state, fetchingTimelineStatus: true };
+                                  case types.GET_STATUS_TIMELINE_SUCCESS:
+                                    return {
+                                      ...state,
+                                      fetchingTimelineStatus: false,
+                                      statusActivityTimeline: action.payload,
+                                    };
+                                  case types.GET_STATUS_TIMELINE_FAILURE:
+                                    return {
+                                      ...state,
+                                      fetchingTimelineStatus: false,
+                                      fetchingTimelineStatusError: true,
+                                    };
 
     default:
       return state;

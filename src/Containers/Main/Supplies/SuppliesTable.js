@@ -20,7 +20,7 @@ import {
   DeleteOutlined,
   PhoneFilled,
 } from "@ant-design/icons";
-import CategoryIcon from '@mui/icons-material/Category'
+import CategoryIcon from '@mui/icons-material/Category';
 import dayjs from "dayjs";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -35,7 +35,6 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import MaterialRecommendToggle from "./MaterialRecommendToggle";
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import MaterialComplementaryDrawer from "./MaterialComplementaryDrawer";
-import StatusDrawer from "./StatusDrawer";
 
 const PriceModal = lazy(() => import("./PriceModal"));
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
@@ -479,15 +478,6 @@ function SuppliesTable(props) {
                              />
                               </div>
                               </Tooltip>
-                              <Tooltip title="Status">
-                              <div>
-                             <FactCheckIcon
-                             className="!text-icon cursor-pointer text-[pink]"
-                              onClick={()=>{
-                                setopenStatus(true);}}
-                             />
-                              </div>
-                              </Tooltip>
                           </div>
 
                         </div>
@@ -554,11 +544,7 @@ function SuppliesTable(props) {
       openComplementary={openComplementary}
       setopenComplementary={setopenComplementary}
       />
-       <StatusDrawer
- 
- openStatus={openStatus}
- setopenStatus={setopenStatus}
-      />
+      
       </Suspense>
 
     </>

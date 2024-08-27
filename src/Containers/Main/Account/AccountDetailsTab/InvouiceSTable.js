@@ -47,11 +47,11 @@ function InvouiceSTable(props) {
       }, [props.selectedLanguage]);
     useEffect(() => {
        // setPageNo(pageNo + 1);
-        props.getInvoiveL(props.rowData.invoiceId)
+        props.getInvoiveL(props.particularRowData.invoiceId)
     }, []);
-    const [rowData, setRowData] = useState({})
+    const [particularRowData, setParticularRowData] = useState({})
     const handleRowData = (item) => {
-        setRowData(item)
+        setParticularRowData(item)
     }
     const [currency, setCurrency] = useState("")
     const [showIcon, setShowIcon] = useState(false)
@@ -168,7 +168,7 @@ function InvouiceSTable(props) {
                 </div>
             </div>
             {/* <InvoiceModal
-                    rowData={rowData}
+                    particularRowData={particularRowData}
                     handleInvoiceModal={props.handleInvoiceModal}
                     invoiceO={props.invoiceO}
                     selectedLanguage={props.selectedLanguage}

@@ -46,18 +46,17 @@ function CustomerProcurementTable(props) {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-                "Urgent",
-                "Order",
-                "Delivery",
-                "Location",
-               "Budget",
-                "Contact",
-               "Payment",
-                "Status",
-                "High",
-                "Normal",
-                'Created', //10
-                'Invoices',//11
+                "106",
+                "660",
+                "772",
+                "658",
+               "1170",
+                "73",
+               "1171",
+                "142",
+                "108",
+                "679", //10
+                "1210",//11
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

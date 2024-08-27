@@ -47,11 +47,12 @@ function InvouiceOrderTable(props) {
       }, [props.selectedLanguage]);
     // useEffect(() => {
     //    // setPageNo(pageNo + 1);
-    //     props.getOrderInvoiveList(props.rowData.orderId)
+    //     props.getOrderInvoiveList(props.particularRowData.orderId)
     // }, []);
-    const [rowData, setRowData] = useState({})
+    
+    const [particularRowData, setParticularRowData] = useState({})
     const handleRowData = (item) => {
-        setRowData(item)
+        setParticularRowData(item)
     }
     const [currency, setCurrency] = useState("")
     const [showIcon, setShowIcon] = useState(false)
@@ -176,7 +177,7 @@ function InvouiceOrderTable(props) {
                 </div>
             </div>
             <InvoiceModal
-                    rowData={rowData}
+                    particularRowData={particularRowData}
                     handleInvoiceModal={props.handleInvoiceModal}
                     invoiceO={props.invoiceO}
                     selectedLanguage={props.selectedLanguage}
