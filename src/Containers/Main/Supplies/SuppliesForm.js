@@ -45,20 +45,18 @@ class Suppliesform extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        "Category",//0
-          
-         
-        "Sub Category",//1
-        "Attribute",//2
-        "Sub Attribute",//3
-        "Name",//4
-        "HSN",//5
-        "Re-order",//6
-        "Net Weight",//7
-        "UOM",//8
-        "Gross Weight",//9
-        "Description",//10
-        "Create",//11
+        "14",//0 
+        "1154",//1
+        "259",//2
+        "263",//3
+        "110",//4
+        "799",//5
+        "815",//6
+        "816",//7
+        "817",//8
+        "818",//9
+        "147",//10
+        "104",//11
         "Weight",//12
         "Length",//13
         "Width",//14

@@ -27,7 +27,7 @@ function SuppliesActionLeft (props) {
     const minRecordingTime = 3000; // 3 seconds
     const timerRef = useRef(null);
     const dummy = ["cloud", "azure", "fgfdg"];
-
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [currentCatData, setCurrentCatData] = useState("");
 
     const {
@@ -142,30 +142,54 @@ function SuppliesActionLeft (props) {
             }
           }, [listening, isRecording, startTime]);
 
+
+          useEffect(() => {
+            const fetchMenuTranslations = async () => {
+              try {
+                const itemsToTranslate = [
+                 "",//0
+                  "228",//1
+                  "14",//2
+                  "798",//3
+                 
+        
+                ];
+        
+                const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+                setTranslatedMenuItems(translations);
+              } catch (error) {
+                console.error('Error translating menu items:', error);
+              }
+            };
+        
+            fetchMenuTranslations();
+          }, [props.selectedLanguage]);
+
         return (
             <>
          
             <div class="flex items-center">
 
-                <Tooltip title="All Materials">
+                         {/* All Materials  */}
+                <Tooltip title={translatedMenuItems[0]}>
                     <Badge size="small"
                         count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
                     >
                         <span class=" md:mr-2 text-sm cursor-pointer"
-                            onClick={() => setSuppliesViewType("all")}text-sm
+                            onClick={() => setSuppliesViewType("all")}
                             style={{
 
                                 color: viewType === "all" && "#1890ff",
                             }}
                         >
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white ">ALL</div></Avatar>
+                                <div className="text-white">{translatedMenuItems[1]}</div></Avatar>
 
                         </span>
                     </Badge>
                 </Tooltip>
-                <Tooltip title="Category">
+                <Tooltip title={translatedMenuItems[2]}>
         <div
           class=" ml-2 text-sm cursor-pointer"
           style={{
@@ -181,7 +205,7 @@ function SuppliesActionLeft (props) {
         </div>
       </Tooltip>
 
-                <Tooltip title="Deleted Materials">
+                <Tooltip title={translatedMenuItems[3]}>
                 <Badge size="small"
                         count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
                         overflowCount={999}
@@ -202,7 +226,7 @@ function SuppliesActionLeft (props) {
                 <div class=" w-64 max-sm:w-24">
                 {viewType === "all" &&         
         <Input
-          placeholder="Search by Name "
+          placeholder=""
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -211,7 +235,7 @@ function SuppliesActionLeft (props) {
         />}
 {viewType === "category" &&
 <Input
-          placeholder="Search by Category Name "
+          placeholder=""
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleCatSearch}

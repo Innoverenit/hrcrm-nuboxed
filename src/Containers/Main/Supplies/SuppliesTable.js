@@ -108,17 +108,22 @@ function SuppliesTable(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "HSN",//0
-          "Supplies ID",//1
-          "Name",//2
-          "Category",//3
-          "Sub Category",//4
-          "Attribute",//5
-          "Re-order ",//6
-          "Created",//7
-          "Process",//8
-          "Recommend",//9
-          "Featured",//10         
+         "799",//0
+          "800",//1
+          "110",//2
+          "14",//3
+          "1154",//4
+          "259",//5
+          "815",//6
+          "679",//7
+          "1068",//8
+          "1174",//9
+          "1173",//10
+          "742",//11
+          "824",//12
+          "880",//13
+          "170",//14
+
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -355,7 +360,7 @@ function SuppliesTable(props) {
 
                                                     </div> */}
                                                      <div>
-                        <Tooltip title="Add Price">
+                        <Tooltip title={translatedMenuItems[11]}>
                           <EuroIcon
                             className="!text-icon cursor-pointer text-[blue]"
                             onClick={() => {
@@ -365,7 +370,7 @@ function SuppliesTable(props) {
                           />
                         </Tooltip>
                       </div>
-                            <div>
+                            <div> 
                               <Tooltip title="Material Builder">
                                 <ViewQuiltIcon
                                   className="cursor-pointer !text-icon"
@@ -390,19 +395,19 @@ function SuppliesTable(props) {
 
 
                             <div>
-                              <Tooltip title="Suppliers">
+                              <Tooltip title={translatedMenuItems[12]}>
                                 <CategoryIcon
                                   onClick={() => {
                                     props.handleSuppliersListDrawer(true);
                                     handleParticularRowData(item);
                                   }}
-                                  className=" !text-icon cursor-pointer"
+                                  className="!text-icon cursor-pointer"
                                 />
                               </Tooltip>
                             </div>
 
                             <div>
-                              <Tooltip title="Inventory">
+                              <Tooltip title={translatedMenuItems[13]}>
                                 <InventoryIcon className=" !text-icon cursor-pointer"  onClick={() => {
                                     props.handleMaterialInventory(true);
                                     handleParticularRowData(item);
@@ -441,7 +446,7 @@ function SuppliesTable(props) {
 </div>
 </div> */}
                             <div>
-                              <Tooltip title="Edit">
+                              <Tooltip title={translatedMenuItems[14]}>
                                 <BorderColorIcon
                                   onClick={() => {
                                     handleUpdateSupplieDrawer(true);

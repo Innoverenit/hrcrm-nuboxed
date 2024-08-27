@@ -46,12 +46,7 @@ function SuppliesCategoryCard(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-   
-          
-            "Category",//0
-           
-            
-
+            "14",//0
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

@@ -4,6 +4,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 
 const SuppliesActionLeft =lazy(()=>import("./SuppliesActionLeft"));
 const SuppliesActionRight =lazy(()=>import("./SuppliesActionRight"));
+
 class SuppliesHeader extends Component {
     render() {
         const { viewType, setSuppliesViewType, handleConfigureModal } = this.props;
@@ -16,7 +17,7 @@ class SuppliesHeader extends Component {
                         translateText={this.props.translateText}
                         selectedLanguage={this.props.selectedLanguage}
                             viewType={viewType}
-                            setSuppliesViewType={setSuppliesViewType}
+                            setSuppliesViewType={setSuppliesViewType} 
                         /></Suspense>
                     }
                     rightComponent={
@@ -25,6 +26,7 @@ class SuppliesHeader extends Component {
                         viewType={viewType}
                         translateText={this.props.translateText}
                      selectedLanguage={this.props.selectedLanguage}
+                    
                     /></Suspense>}
                 />
             </div>

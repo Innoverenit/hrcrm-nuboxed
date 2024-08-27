@@ -23,15 +23,14 @@ function SuppliesDeletedTable(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "HSN",//0
-          
-          "Name",//1
-          "Category",//1
-          "Sub Category",//1
-          "Attribute",//1
-          "Re-order level",//1
-          "Created",//1
-          "Reinstate",//1
+         "799",//0
+          "110",//1
+          "14",//1
+          "803",//1
+          "259",//1
+          "805",//1
+          "679",//1
+          "1069",//1
       
       
        
