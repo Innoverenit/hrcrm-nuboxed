@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { ActionHeader } from '../../../Components/Utils';
-import ShipperActionLeft from './ShipperActionLeft';
-import ShipperActionRight from './ShipperActionRight';
+import { BundleLoader } from "../../../Components/Placeholder";
 
+const ShipperActionLeft =lazy(()=>import("./ShipperActionLeft"));
+const  ShipperActionRight =lazy(()=>import("./ShipperActionRight"));
 class ShipperHeader extends Component {
     render() {
         const {
@@ -18,6 +19,7 @@ class ShipperHeader extends Component {
             <>
                 <ActionHeader
                     leftComponent={
+                        <Suspense fallback={<BundleLoader />}>
                         <ShipperActionLeft
                             viewType={viewType}
                             setShipperViewType={setShipperViewType}
@@ -27,16 +29,17 @@ class ShipperHeader extends Component {
                             translateText={this.props.translateText}
           translatedMenuItems={this.props.translatedMenuItems}
           selectedLanguage={this.props.selectedLanguage}
-                        />
+                        /></Suspense>
                     }
                     rightComponent={
+                        <Suspense fallback={<BundleLoader />}>
                         <ShipperActionRight
                              viewType={viewType}
                             handleShipperModal={handleShipperModal} 
                             translateText={this.props.translateText}
           translatedMenuItems={this.props.translatedMenuItems}
           selectedLanguage={this.props.selectedLanguage}
-                            />
+                            /></Suspense>
                     }
                 />
             </>

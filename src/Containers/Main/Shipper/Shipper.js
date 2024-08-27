@@ -1,5 +1,4 @@
 import React, { useState,useEffect, Suspense, lazy } from "react";
-import ShipperHeader from "./ShipperHeader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -10,6 +9,7 @@ import {
   getAllShipperList,
 } from "./ShipperAction";
 
+const ShipperHeader =lazy(()=>import("./ShipperHeader"));
 const AddShipperModal =lazy(()=>import("./AddShipperModal"));
 const AllShipperList =lazy(()=>import("./AllShipperList"));
 const ShipperDeleteTable =lazy(()=>import("./ShipperDeleteTable"));
@@ -81,6 +81,7 @@ const handleClear = () => {
 
     return (
       <>
+      <Suspense fallback={<BundleLoader />}>
         <ShipperHeader
           viewType={viewType}
           setShipperViewType={setShipperViewType}
@@ -99,7 +100,7 @@ const handleClear = () => {
           translatedMenuItems={translatedMenuItems}
           selectedLanguage={props.selectedLanguage}
         />
-        <Suspense fallback={<BundleLoader />}>
+        
           {props.viewType === "table" ? (
             <ShipperCardList translateText={props.translateText}
             translatedMenuItems={translatedMenuItems}

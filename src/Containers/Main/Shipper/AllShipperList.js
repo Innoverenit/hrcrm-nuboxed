@@ -90,9 +90,10 @@ function AllShipperList(props) {
             return (
               <>
                 <div  >
-                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
-                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium flex-col w-[11.6rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:rounded-lg
+               max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
+                        <div className=" flex  w-[11.6rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                             <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -112,7 +113,7 @@ function AllShipperList(props) {
 
                         </div>
                         </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
                         <div className=" flex  w-[13.3rem] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                           <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -129,7 +130,7 @@ function AllShipperList(props) {
 
                         </div>
                         </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
                         <div className=" flex   w-[12.31rem] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                           <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -149,18 +150,19 @@ function AllShipperList(props) {
                           </div>
 
                         </div>
-                        </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex   w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {(item.address &&
-                              item.address.length &&
-                              item.address[0].postalCode) ||
-                              ""}
-                          </div>
+<div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+  {(item.address &&
+    item.address.length &&
+    item.address[0].postalCode) ||
+    ""}
+</div>
 
+</div>
                         </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
+                       
                         <div>
                           <Switch
                             className="toggle-clr"
@@ -170,7 +172,7 @@ function AllShipperList(props) {
                             unCheckedChildren="No"
                           />
                         </div>
-                        <div class="flex max-sm:justify-end max-sm:w-wk items-center">
+                       
                           <div>
                             <Tooltip title={props.translatedMenuItems[9]}>
                               <BorderColorIcon
@@ -201,7 +203,7 @@ function AllShipperList(props) {
 
 
                       </div>
-                    </div>
+                    
               </>
             )
           })}
